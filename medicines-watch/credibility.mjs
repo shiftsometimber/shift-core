@@ -1,0 +1,45 @@
+import receipt from './reviews/2026-10-03-credibility-improvements.json' with {type:'json'};
+export const registrySources=receipt.registrySources;
+export const supportSources=receipt.supportSources;
+export const credibilitySources=[...registrySources,...supportSources];
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const date=v=>v?new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'Europe/London'}).format(new Date(v)):'Not verified';
+export const sourceStatus=state=>({current:'Source unchanged',awaiting_review:'Source review required',check_delayed:'Source check delayed',verification_pending:'Verification pending'}[state]||'Verification pending');
+export function evidenceLabel(s) {
+  if (/^https:\/\/clinicaltrials.gov\/study\/NCT\d{8}$/.test(s.url)) return 'Trial registry record';
+  if (/post-hoc|predicted risk|modelling/i.test(s.checkScope||'')) return 'Post-hoc analysis / modelling — see limitations';
+  if (/preclinical/i.test(s.checkScope||'') && !/human/i.test(s.checkScope||'')) return 'Preclinical research — see limitations';
+  if (s.evidenceType) return s.evidenceType;
+  const host=new URL(s.url).hostname;
+  if (host==='www.medicines.org.uk') return 'Official product information';
+  if (host==='www.nice.org.uk' || host.endsWith('.nhs.uk')) return 'NICE / NHS guidance or information';
+  if (host==='www.gov.uk') return 'Government / regulator communication';
+  if (host==='pmc.ncbi.nlm.nih.gov' || host==='pubmed.ncbi.nlm.nih.gov') return 'Published research — see study design';
+  return 'Original source — see findings and limitations';
+}
+export function registryEvidenceMarkup(link,health) {
+  const s=registrySources.find(s=>s.url===link.url);
+  if(!s)return null;
+  const h=health.sources?.find(h=>h.id===s.id);
+  return `<li><a href="${esc(s.url)}" rel="noopener noreferrer">${esc(link.title)}</a><small>Trial registry record · ${s.lifecycle.hasResults?'Results posted; outcomes need separate assessment':'No results posted at record-status review'} · First posted ${date(s.sourcePublishedAt)} · Updated ${date(s.sourceUpdatedAt)}</small><small>Medical evidence summary reviewed ${date(link.reviewedAt)} · Record status reviewed ${date(s.reviewedAt)} · ${sourceStatus(h?.status)} · Status checks do not assess clinical outcomes.</small></li>`;
+}
+export function industryReviewFlag(entry,health,now=Date.now()) {
+  const ids=[...entry.sourceIds,...registrySources.filter(s=>s.entryIds.includes(entry.id)).map(s=>s.id)];
+  const states=ids.map(id=>health.sources?.find(s=>s.id===id)?.status||'verification_pending');
+  const overdue=now-Date.parse(entry.reviewedAt)>7*24*60*60*1000;
+  if(overdue)return '<p class="mw-flag">This evidence summary is due for factual review. A successful source check does not renew it.</p>';
+  if(states.some(s=>s!=='current'))return '<p class="mw-flag">Some evidence checks need attention or are pending. This is the dated reviewed summary; check the original record for the latest position.</p>';
+  return '';
+}
+export const changes=[
+ {date:'2026-10-03',kind:'Coverage and usability',text:'Added checks for 67 linked trial records, a regulator safety notice, UK nation access context, evidence labels and this change history. The catalogue remains 86 programmes.',anchor:'how-we-check'},
+ {date:'2026-10-03',kind:'Research additions',text:'Added VK3019 Phase 1 and AT673 with semaglutide Phase 2 summaries. Neither record has posted results.',anchor:'industry-vk3019'},
+ {date:'2026-10-03',kind:'Correction',text:'Clarified Wegovy injection’s separate UK MASH indication and the pending NICE appraisal. UK authorisation does not confirm NHS England MASH access.',anchor:'wegovy-injection'},
+ {date:'2026-10-03',kind:'Evidence clarification',text:'Added the Foundayo ATTAIN-1 analysis as predicted-risk modelling, not observed prevention of diabetes or cardiovascular events.',anchor:'foundayo'},
+];
+export function credibilityMarkup(health={}) {
+ const source=id=>{const s=supportSources.find(s=>s.id===id),h=health.sources?.find(h=>h.id===id);return `<p><a href="${esc(s.url)}">${esc(s.title)}</a><small>Published ${date(s.sourcePublishedAt)}${s.sourceUpdatedAt?' · Updated '+date(s.sourceUpdatedAt):''} · Reviewed ${date(s.reviewedAt)} · ${sourceStatus(h?.status)}</small></p>`;};
+ return `<section id="watch-changes" class="mw-overview"><h2>What changed?</h2><p>Recent additions and corrections. Each item keeps its own evidence and review date.</p><ul>${changes.map(c=>`<li><strong>${date(c.date)} · ${esc(c.kind)}</strong><p>${esc(c.text)} <a href="#${esc(c.anchor)}">View the reference ↓</a></p></li>`).join('')}</ul></section>
+ <section id="watch-safety" class="mw-overview"><h2>Safety updates matter too</h2><p>Weight-management medicines are prescribed medicines. New research and approvals do not remove the need to understand risks.</p><p>MHRA’s 29 January 2026 notice strengthened warnings about acute pancreatitis with GLP-1 and GLP-1/GIP medicines, including rare severe and fatal reports. Its patient advice is to seek urgent medical attention for severe, persistent abdominal pain, which may radiate to the back and come with nausea or vomiting.</p>${source('mhra-glp1-pancreatitis-20260129')}<p><a href="https://yellowcard.mhra.gov.uk/">Report suspected side effects through MHRA Yellow Card</a>. Reporting does not replace urgent medical care. This is one reviewed safety notice, not a complete list of risks; read the product leaflet and speak to your prescriber or pharmacist.</p></section>
+ <section id="watch-uk-access" class="mw-overview"><h2>NHS access depends on where you live</h2><p>The medicine cards describe England. These additional national sources describe different pathways; a recommendation or announcement does not prove local appointments, prescribing capacity or pharmacy stock. This first access comparison concerns weight management, principally tirzepatide; it does not establish access for every medicine or indication.</p><div class="mw-card-grid"><section class="mw-cell"><h3>Scotland</h3><p>SMC accepted tirzepatide for restricted weight-management use in June 2024. Its public summary describes the eligible group; an individual’s suitability and local pathway still need checking.</p>${source('scotland-tirzepatide-access')}</section><section class="mw-cell"><h3>Wales</h3><p>The circular updated 7 July 2026 describes specialist weight-management prescribing, with specified exceptions for suitably competent prescribers in urgent clinical circumstances and approved innovation proposals. This is not general GP access for everyone meeting NICE criteria.</p>${source('wales-weight-access')}</section><section class="mw-cell"><h3>Northern Ireland</h3><p>The 29 June 2026 announcement planned the first phase of the Regional Obesity Management Service for autumn 2026, prioritising highest clinical need. That dated plan does not confirm the service is open or medicine is available now. Current operational access remains unverified here; check with your HSC team.</p>${source('ni-weight-access')}</section></div></section>`;
+}

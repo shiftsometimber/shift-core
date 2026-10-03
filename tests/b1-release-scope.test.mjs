@@ -172,7 +172,7 @@ test('Pfizer PDF monitor repair binds its exact reviewed commit',async()=>{
  const reads=[];
  validateWatchPfizerPdfRepair((ref,path)=>{reads.push([ref,path]);return path});
  assert.ok(reads.some(([ref,path])=>ref===WATCH_REGISTRY_WAVE_COMMIT&&path==='medicines-watch/README.md'));
- assert.ok(reads.some(([ref,path])=>ref===WATCH_PFIZER_PDF_REPAIR_COMMIT&&path==='medicines-watch/monitor.mjs'));
+ assert.ok(reads.some(([ref,path])=>ref===WATCH_REGISTRY_WAVE_COMMIT&&path==='medicines-watch/monitor.mjs'));
  for(const changed of WATCH_PFIZER_PDF_REPAIR_PATHS)assert.throws(()=>validateWatchPfizerPdfRepair((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/Pfizer PDF monitor repair drift/);
 });
 
@@ -186,7 +186,7 @@ test('enobosarm and semaglutide release binds its exact reviewed commit',async()
 });
 
 test('public wording/menu release accepts only the exact browser-tested source',()=>{
- const reviewed=(ref,path)=>ref==='HEAD'?PUBLIC_WORDING_PREVIEW+':'+path:ref+':'+path;
+ const reviewed=(ref,path)=>ref==='HEAD'?(path==='medicines-watch/page.mjs'?WATCH_REGISTRY_WAVE_COMMIT:PUBLIC_WORDING_PREVIEW)+':'+path:ref+':'+path;
  validatePublicWording(reviewed);
  for(const changed of PUBLIC_WORDING_PATHS)assert.throws(()=>validatePublicWording((ref,path)=>ref==='HEAD'&&path===changed?'drift':reviewed(ref,path)),/source drift/);
 });
@@ -197,9 +197,9 @@ test('treatment release binds every browser-tested eligibility and information f
  for(const drift of TREATMENT_GUIDANCE_PATHS)assert.throws(()=>validateTreatmentGuidance((ref,path)=>ref==='HEAD'&&path===drift?'changed':read(ref,path)),/Treatment service criteria\/source drift/);
 });
 
-test('registry wave retains only exact PR1020 reviewed files',async()=>{
+test('registry wave retains exact reviewed Watch credibility files',async()=>{
  const {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,validateWatchRegistryWave}=await import('../release/watch-registry-wave-scope.mjs');
- assert.equal(WATCH_REGISTRY_WAVE_COMMIT,'6601ecf56c7d30564b551c5ef90a2ad169b4c4d5');assert.equal(WATCH_REGISTRY_WAVE_PATHS.length,22);
+ assert.equal(WATCH_REGISTRY_WAVE_COMMIT,'56b04f9ffb847621a5a670a8ee921a83e529761e');assert.equal(WATCH_REGISTRY_WAVE_PATHS.length,30);
  validateWatchRegistryWave((ref,path)=>path);
  for(const drift of WATCH_REGISTRY_WAVE_PATHS)assert.throws(()=>validateWatchRegistryWave((ref,path)=>ref==='HEAD'&&path===drift?'changed':path),/registry-wave source drift/);
 });

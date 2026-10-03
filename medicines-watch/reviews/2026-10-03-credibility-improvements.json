@@ -1,0 +1,5020 @@
+{
+  "reviewedAt": "2026-10-03T18:59:53.508Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt agreed on 3 October 2026 to trial monitoring, visible safety coverage, evidence labels, change history and devolved UK access. Standing authority permits supported informational release through passing gates.",
+    "clinicalApproval": null
+  },
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "medicalSummaryReviewDatesChanged": false,
+  "registryReviewScope": "Primary API records retrieved completely. Identity, sponsor, status, phase, enrolment, actual/estimated study dates, update/publication dates and results-posting status read and compared as bounded factual record-status evidence. This is not clinical assessment of outcomes and does not renew medicine-summary review dates.",
+  "registrySources": [
+    {
+      "id": "registry-nct07855133",
+      "nctId": "NCT07855133",
+      "title": "ClinicalTrials.gov NCT07855133",
+      "url": "https://clinicaltrials.gov/study/NCT07855133",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07855133",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07855133"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-10-02",
+      "sourceUpdatedAt": "2026-10-02",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07855133",
+        "title": "A Research Study Investigating How Adults With Overweight or Obesity, With or Without Type 2 Diabetes, Tolerate Switching to a New Treatment (Zenagamtide) From Their Current Semaglutide Medication",
+        "sponsor": "Novo Nordisk A/S",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 60,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-09-30",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2028-09-06",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-09-06",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-10-02",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-10-02",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "zenagamtide"
+      ],
+      "reviewedFingerprint": "a0ba893321830e068560fd1fde5d7033e691fa2d23c46058b07b967b48ee1079"
+    },
+    {
+      "id": "registry-nct07757087",
+      "nctId": "NCT07757087",
+      "title": "ClinicalTrials.gov NCT07757087",
+      "url": "https://clinicaltrials.gov/study/NCT07757087",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07757087",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07757087"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-08-11",
+      "sourceUpdatedAt": "2026-10-01",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07757087",
+        "title": "A Research Study to See How NNC0487-0111 Affects the Body's Energy Use After a Weight Loss in Adults Living With Overweight or Obesity, Compared to a Low-calorie Diet or Placebo",
+        "sponsor": "Novo Nordisk A/S",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 120,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-08-03",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2028-09-18",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-09-18",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-08-11",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-10-01",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "zenagamtide"
+      ],
+      "reviewedFingerprint": "aa0d5c7ed953180dcf405e100a86a046344450d4b9c766ff01b004de4ffb6f47"
+    },
+    {
+      "id": "registry-nct06066528",
+      "nctId": "NCT06066528",
+      "title": "ClinicalTrials.gov NCT06066528",
+      "url": "https://clinicaltrials.gov/study/NCT06066528",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06066528",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06066528"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2023-10-04",
+      "sourceUpdatedAt": "2026-08-06",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT06066528",
+        "title": "A Study to Test Whether Survodutide (BI 456906) Helps People Living With Overweight or Obesity Who Also Have Diabetes to Lose Weight",
+        "sponsor": "Boehringer Ingelheim",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": {
+          "count": 755,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2023-11-27",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2025-12-12",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2026-04-01",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2023-10-04",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-06",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "survodutide"
+      ],
+      "reviewedFingerprint": "4af53f0644a08538e1d6e952bce55e6a965ac0e4d8800b729573acdbcdf5c743"
+    },
+    {
+      "id": "registry-nct07850050",
+      "nctId": "NCT07850050",
+      "title": "ClinicalTrials.gov NCT07850050",
+      "url": "https://clinicaltrials.gov/study/NCT07850050",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07850050",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07850050"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-09-30",
+      "sourceUpdatedAt": "2026-09-30",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07850050",
+        "title": "SYNCHRONIZE®-HERA: A Study to Test Whether Survodutide Helps Women Who Are Living With Overweight or Obesity and Are Going Through or Have Finished Menopause, to Lose Weight",
+        "sponsor": "Boehringer Ingelheim",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": {
+          "count": 600,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-10-31",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2028-07-26",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-07-26",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-09-30",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-30",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "survodutide"
+      ],
+      "reviewedFingerprint": "3e0328cd2ccd002a7793955fd187f09107cfa86373cee29e50e921db0a7828b5"
+    },
+    {
+      "id": "registry-nct07855900",
+      "nctId": "NCT07855900",
+      "title": "ClinicalTrials.gov NCT07855900",
+      "url": "https://clinicaltrials.gov/study/NCT07855900",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07855900",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07855900"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-10-02",
+      "sourceUpdatedAt": "2026-10-02",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07855900",
+        "title": "SYNCHRONIZE®-START- A Study to Test Whether Survodutide Helps People Living With Overweight or Obesity Who do Not Have Diabetes to Lose Weight",
+        "sponsor": "Boehringer Ingelheim",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": {
+          "count": 350,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-11-07",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2028-06-25",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-06-25",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-10-02",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-10-02",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "survodutide"
+      ],
+      "reviewedFingerprint": "0f719834da4abad9f954fcdcfe348f5b12c72e509e1af943391fe025e1df0f41"
+    },
+    {
+      "id": "registry-nct07595549",
+      "nctId": "NCT07595549",
+      "title": "ClinicalTrials.gov NCT07595549",
+      "url": "https://clinicaltrials.gov/study/NCT07595549",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07595549",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07595549"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-05-19",
+      "sourceUpdatedAt": "2026-09-28",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07595549",
+        "title": "A Study to Learn About the Study Medicine Called Berobenatide (PF-08653944) in People With Overweight or Obesity",
+        "sponsor": "Pfizer",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": {
+          "count": 954,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-06-10",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2028-05-04",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-06-21",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-05-19",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-28",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "pf3944"
+      ],
+      "reviewedFingerprint": "cb6a4b6785b54847aedbcdd068b36db8154594d49dc91453616720c370a10edd"
+    },
+    {
+      "id": "registry-nct07285902",
+      "nctId": "NCT07285902",
+      "title": "ClinicalTrials.gov NCT07285902",
+      "url": "https://clinicaltrials.gov/study/NCT07285902",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07285902",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07285902"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2025-12-16",
+      "sourceUpdatedAt": "2026-02-27",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07285902",
+        "title": "A Study Comparing the Efficacy and Safety of HRS9531 Injection With Semaglutide Injection in Subjects With Obesity",
+        "sponsor": "Fujian Shengdi Pharmaceutical Co., Ltd.",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": {
+          "count": 572,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2025-12-25",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-03",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-03",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2025-12-16",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-02-27",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "ribupatide-injection"
+      ],
+      "reviewedFingerprint": "9b6473553d69c83bc5c878418b7bc5f91e368db6cd92ae0338978898d0ffab6d"
+    },
+    {
+      "id": "registry-nct07709910",
+      "nctId": "NCT07709910",
+      "title": "ClinicalTrials.gov NCT07709910",
+      "url": "https://clinicaltrials.gov/study/NCT07709910",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07709910",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07709910"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-07-17",
+      "sourceUpdatedAt": "2026-07-17",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07709910",
+        "title": "A Trial of Ribupatide Injection in Participants With Obesity and Knee Osteoarthritis",
+        "sponsor": "Fujian Shengdi Pharmaceutical Co., Ltd.",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": {
+          "count": 382,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-07",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2028-11",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-12",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-07-17",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-07-17",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "ribupatide-injection"
+      ],
+      "reviewedFingerprint": "caf3d7ad2166d5222747f4723fbfa4f6fb1c012ffbf294663592e0f70dae0f5d"
+    },
+    {
+      "id": "registry-nct07528027",
+      "nctId": "NCT07528027",
+      "title": "ClinicalTrials.gov NCT07528027",
+      "url": "https://clinicaltrials.gov/study/NCT07528027",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07528027",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07528027"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-04-14",
+      "sourceUpdatedAt": "2026-09-24",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07528027",
+        "title": "Phase III Study of HRS-7535 for Hypertension With Overweight or Obesity",
+        "sponsor": "Shandong Suncadia Medicine Co., Ltd.",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": {
+          "count": 648,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-05-29",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-12",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-01",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-04-14",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-24",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "kai7535"
+      ],
+      "reviewedFingerprint": "ea4909e63a8fbf9e82820313e0f291c55ff66c0ae96eca3f33b00554cacfa5ec"
+    },
+    {
+      "id": "registry-nct07841860",
+      "nctId": "NCT07841860",
+      "title": "ClinicalTrials.gov NCT07841860",
+      "url": "https://clinicaltrials.gov/study/NCT07841860",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07841860",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07841860"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-09-25",
+      "sourceUpdatedAt": "2026-09-25",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07841860",
+        "title": "A Study on the Safety, Tolerability, Pharmacokinetics and Pharmacodynamics of HRS-1596 Tablets in Healthy Participants With a Single Dose and in Obese Participants With Multiple Doses",
+        "sponsor": "Fujian Shengdi Pharmaceutical Co., Ltd.",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 122,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-09",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2026-12",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-05",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-09-25",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-25",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "hrs1596"
+      ],
+      "reviewedFingerprint": "25b3d3974caeaf93b9017e7e8e1ab64d84fbc6024350e820ad0c3ef90a10561a"
+    },
+    {
+      "id": "registry-nct06965413",
+      "nctId": "NCT06965413",
+      "title": "ClinicalTrials.gov NCT06965413",
+      "url": "https://clinicaltrials.gov/study/NCT06965413",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06965413",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06965413"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2025-05-11",
+      "sourceUpdatedAt": "2026-09-09",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT06965413",
+        "title": "A Study to Assess Efficacy, Safety, Tolerability, Pharmacokinetics (PK) and Pharmacodynamics (PD) of RO7204239 in Combination With Tirzepatide in Participants With Obesity or Overweight With At Least One Weight-related Comorbidity",
+        "sponsor": "Hoffmann-La Roche",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 285,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2025-05-05",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-09-03",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2027-03-31",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2025-05-11",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-09",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "emugrobart"
+      ],
+      "reviewedFingerprint": "b3a62f73f44bc14202abfccb270f80b6d1b8c2bbb2dd42bb5db70ca4a8637629"
+    },
+    {
+      "id": "registry-nct07662122",
+      "nctId": "NCT07662122",
+      "title": "ClinicalTrials.gov NCT07662122",
+      "url": "https://clinicaltrials.gov/study/NCT07662122",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07662122",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07662122"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-06-23",
+      "sourceUpdatedAt": "2026-09-29",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07662122",
+        "title": "A Study to Test Whether BI 3034701 Helps People to Lose Weight Who Live With Obesity or Overweight",
+        "sponsor": "Boehringer Ingelheim",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 344,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2026-06-30",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-06-26",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-07-10",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-06-23",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-29",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "bi3034701"
+      ],
+      "reviewedFingerprint": "a50d7bbf17da1233562151050dc5dd1cc8b8e0f7c705f09bcc53a0b30394d0ee"
+    },
+    {
+      "id": "registry-nct07754474",
+      "nctId": "NCT07754474",
+      "title": "ClinicalTrials.gov NCT07754474",
+      "url": "https://clinicaltrials.gov/study/NCT07754474",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07754474",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07754474"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-08-10",
+      "sourceUpdatedAt": "2026-09-23",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07754474",
+        "title": "A Study to Test How Well Different and Multiple Doses of BI 3034701 Are Tolerated in People Living With Overweight or Obesity",
+        "sponsor": "Boehringer Ingelheim",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 70,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-09-01",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-06-21",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-06-21",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-08-10",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-23",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "bi3034701"
+      ],
+      "reviewedFingerprint": "2dd1f481d5eebed893a1153631083eff5a2ce03bae4986daea957146037bd442"
+    },
+    {
+      "id": "registry-nct07215559",
+      "nctId": "NCT07215559",
+      "title": "ClinicalTrials.gov NCT07215559",
+      "url": "https://clinicaltrials.gov/study/NCT07215559",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07215559",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07215559"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2025-10-10",
+      "sourceUpdatedAt": "2026-09-08",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07215559",
+        "title": "A Study of Macupatide (LY3532226) and Eloralintide (LY3841136), Alone or in Combination, in Adults With Obesity or Overweight and With Type 2 Diabetes",
+        "sponsor": "Eli Lilly and Company",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 200,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2025-10-16",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-03",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-05",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2025-10-10",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-08",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "macupatide"
+      ],
+      "reviewedFingerprint": "21a555a589360067bf2802e01f6794d7c69f8b0dcdfbf9bcd174d605654e88a2"
+    },
+    {
+      "id": "registry-nct07765511",
+      "nctId": "NCT07765511",
+      "title": "ClinicalTrials.gov NCT07765511",
+      "url": "https://clinicaltrials.gov/study/NCT07765511",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07765511",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07765511"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-08-14",
+      "sourceUpdatedAt": "2026-08-14",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07765511",
+        "title": "A Study of Macupatide (LY3532226) in Participants With Obesity or Overweight Without Type 2 Diabetes",
+        "sponsor": "Eli Lilly and Company",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 60,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-10",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2027-06",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-06",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-08-14",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-14",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "macupatide"
+      ],
+      "reviewedFingerprint": "4811d2505d7e3d344702e63e0e653387eca499e4ca9e7a865295d85aea7bb7c0"
+    },
+    {
+      "id": "registry-nct07487376",
+      "nctId": "NCT07487376",
+      "title": "ClinicalTrials.gov NCT07487376",
+      "url": "https://clinicaltrials.gov/study/NCT07487376",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07487376",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07487376"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-03-23",
+      "sourceUpdatedAt": "2026-05-29",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07487376",
+        "title": "A Study to Evaluate the Safety, Tolerability, Pharmacokinetics, and Pharmacodynamics of a Single Dose of IBIO-600 in Overweight or Obese Adults",
+        "sponsor": "iBio, Inc.",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 32,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-05-24",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-05",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-05",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-03-23",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-05-29",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "ibio600"
+      ],
+      "reviewedFingerprint": "3d20b0aed44b3cf74ac6c96d17b68b147a34ad8923677223615d435cd1405548"
+    },
+    {
+      "id": "registry-nct07142707",
+      "nctId": "NCT07142707",
+      "title": "ClinicalTrials.gov NCT07142707",
+      "url": "https://clinicaltrials.gov/study/NCT07142707",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07142707",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07142707"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2025-08-27",
+      "sourceUpdatedAt": "2026-06-09",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07142707",
+        "title": "A Study to Evaluate the Safety, Tolerability, Pharmacokinetics, and Pharmacodynamics of MBX 4291 in Adult Participants With Obesity",
+        "sponsor": "MBX Biosciences",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 124,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2025-09-03",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-10-30",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2026-10-30",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2025-08-27",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-06-09",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "mbx4291"
+      ],
+      "reviewedFingerprint": "7abb81f0d6c36ee1bc30b327050bbc1a9d9f97f7cb6254dc1673daf1f46163cf"
+    },
+    {
+      "id": "registry-nct06700538",
+      "nctId": "NCT06700538",
+      "title": "ClinicalTrials.gov NCT06700538",
+      "url": "https://clinicaltrials.gov/study/NCT06700538",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06700538",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06700538"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2024-11-22",
+      "sourceUpdatedAt": "2026-09-25",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT06700538",
+        "title": "A First-In-Human Study of ARO-INHBE in Adults With Obesity With and Without Type 2 Diabetes Mellitus",
+        "sponsor": "Arrowhead Pharmaceuticals",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1",
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 180,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2024-12-04",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-09-17",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-01-17",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2024-11-22",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-25",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "aroinhbe"
+      ],
+      "reviewedFingerprint": "247f4b098616b0f2f8945b6563c5987737065e2b1d450ee8f955df7d8e278aab"
+    },
+    {
+      "id": "registry-nct07310901",
+      "nctId": "NCT07310901",
+      "title": "ClinicalTrials.gov NCT07310901",
+      "url": "https://clinicaltrials.gov/study/NCT07310901",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07310901",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07310901"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2025-12-30",
+      "sourceUpdatedAt": "2026-05-29",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07310901",
+        "title": "A 2-part, Phase 1b Clinical Study Designed to Evaluate the Safety, PK, and Efficacy of CRB-913 in Participants With Obesity",
+        "sponsor": "Corbus Pharmaceuticals Inc.",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 252,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2025-12-04",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-07-02",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2026-07-31",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2025-12-30",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-05-29",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "crb913"
+      ],
+      "reviewedFingerprint": "c3d2e17b320ff8459cb6b45ac0a02aa68222855f291197441182a8c77824d45d"
+    },
+    {
+      "id": "registry-nct07837973",
+      "nctId": "NCT07837973",
+      "title": "ClinicalTrials.gov NCT07837973",
+      "url": "https://clinicaltrials.gov/study/NCT07837973",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07837973",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07837973"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-09-24",
+      "sourceUpdatedAt": "2026-09-28",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07837973",
+        "title": "Study to Assess the Effect and Safety of ALV-100 on Maintenance of Weight Loss",
+        "sponsor": "Alveus Therapeutics, Inc.",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 220,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-08-10",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-08-24",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-08-24",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-09-24",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-28",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "alv100"
+      ],
+      "reviewedFingerprint": "e8956e378408d1b0f88c1cf30a9c9723041efe453f4d7487baf688dfb47bf212"
+    },
+    {
+      "id": "registry-nct07734311",
+      "nctId": "NCT07734311",
+      "title": "ClinicalTrials.gov NCT07734311",
+      "url": "https://clinicaltrials.gov/study/NCT07734311",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07734311",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07734311"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-07-29",
+      "sourceUpdatedAt": "2026-08-31",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07734311",
+        "title": "A Study of Econoglutide Injection in Obese Participants With Knee Osteoarthritis (KOA)",
+        "sponsor": "Hangzhou Sciwind Biosciences Co., Ltd.",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": {
+          "count": 360,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-08-03",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2028-05-31",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-06-30",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-07-29",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-31",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "ecnoglutide"
+      ],
+      "reviewedFingerprint": "4bb341aa79133d6d6f01c61c58b34a70410ffb8fb8c925489272e440136dbba1"
+    },
+    {
+      "id": "registry-nct07842640",
+      "nctId": "NCT07842640",
+      "title": "ClinicalTrials.gov NCT07842640",
+      "url": "https://clinicaltrials.gov/study/NCT07842640",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07842640",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07842640"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-09-25",
+      "sourceUpdatedAt": "2026-09-25",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07842640",
+        "title": "A Study to Evaluate the Safety, Tolerability, Pharmacokinetics, and Pharmacodynamics of ASC35 Injection in Participants With Obesity or Overweight",
+        "sponsor": "Ascletis Pharma (China) Co., Limited",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 84,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-08-27",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-06",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-06",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-09-25",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-25",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "asc35-injection"
+      ],
+      "reviewedFingerprint": "8169de3ba9591fa4fed4e81f09391022c9afa850bea17360e9df8183a4c71408"
+    },
+    {
+      "id": "registry-nct06937203",
+      "nctId": "NCT06937203",
+      "title": "ClinicalTrials.gov NCT06937203",
+      "url": "https://clinicaltrials.gov/study/NCT06937203",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06937203",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06937203"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2025-04-22",
+      "sourceUpdatedAt": "2026-07-08",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT06937203",
+        "title": "A First-In-Human Study of ARO-ALK7 in Adults With Obesity With and Without Type 2 Diabetes Mellitus",
+        "sponsor": "Arrowhead Pharmaceuticals",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1",
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 150,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2025-05-09",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-02",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-02",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2025-04-22",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-07-08",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "aroalk7"
+      ],
+      "reviewedFingerprint": "6ec4af0c65f4f1672639363802bdad58af189762d44650d2f20e29996bdf5e10"
+    },
+    {
+      "id": "registry-nct07804810",
+      "nctId": "NCT07804810",
+      "title": "ClinicalTrials.gov NCT07804810",
+      "url": "https://clinicaltrials.gov/study/NCT07804810",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07804810",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07804810"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-09-04",
+      "sourceUpdatedAt": "2026-09-04",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07804810",
+        "title": "Phase 2 Clinical Study of MWN105 Injection in Participants With Overweight or Obesity",
+        "sponsor": "Shanghai Minwei Biotechnology Co., Ltd",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 120,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2025-09-03",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-03-21",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2026-04-16",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2026-09-04",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-04",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "mwn105"
+      ],
+      "reviewedFingerprint": "e745bb05f61736a2018526aa20817f592647c4c4934786cafa8709ef2d7bc90e"
+    },
+    {
+      "id": "registry-nct07160400",
+      "nctId": "NCT07160400",
+      "title": "ClinicalTrials.gov NCT07160400",
+      "url": "https://clinicaltrials.gov/study/NCT07160400",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07160400",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07160400"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2025-09-08",
+      "sourceUpdatedAt": "2026-09-11",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07160400",
+        "title": "A Study of IBI3032 in Chinese Healthy Participants and Participants With Overweight or Obesity",
+        "sponsor": "Innovent Biologics Technology Limited (Shanghai R&D Center)",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 80,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2025-09-04",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-08-06",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2026-08-10",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2025-09-08",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-11",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "ibi3032"
+      ],
+      "reviewedFingerprint": "eebf47e32301a6329c7641ea77f656c7dcdaaf7d5033daebf1bccc6ab4fb551c"
+    },
+    {
+      "id": "registry-nct07521631",
+      "nctId": "NCT07521631",
+      "title": "ClinicalTrials.gov NCT07521631",
+      "url": "https://clinicaltrials.gov/study/NCT07521631",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07521631",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07521631"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-04-13",
+      "sourceUpdatedAt": "2026-04-13",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07521631",
+        "title": "Efficacy and Safety of HDM1005 Compared to Tirzepatide in Obese Adults Without Diabetes",
+        "sponsor": "Hangzhou Zhongmei Huadong Pharmaceutical Co., Ltd.",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 372,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-03-31",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-02-04",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-07-23",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-04-13",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-04-13",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "hdm1005"
+      ],
+      "reviewedFingerprint": "0ee734e1ab9eb2bb512a4967fad5cff2ea982ffd7508abf84de8054496f42ab4"
+    },
+    {
+      "id": "registry-nct07430059",
+      "nctId": "NCT07430059",
+      "title": "ClinicalTrials.gov NCT07430059",
+      "url": "https://clinicaltrials.gov/study/NCT07430059",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07430059",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07430059"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-02-24",
+      "sourceUpdatedAt": "2026-06-30",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07430059",
+        "title": "Safety, Tolerability and Pharmacokinetics of a Subcutaneous Semaglutide Implant",
+        "sponsor": "Vivani Medical, Inc",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 20,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-07",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2026-12",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-01",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-02-24",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-06-30",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "npm139-semaglutide-implant"
+      ],
+      "reviewedFingerprint": "71666237ca2192b8634acaeb7af04571de9c2b4733fc54d14707d45fba42bc25"
+    },
+    {
+      "id": "registry-nct07177469",
+      "nctId": "NCT07177469",
+      "title": "ClinicalTrials.gov NCT07177469",
+      "url": "https://clinicaltrials.gov/study/NCT07177469",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07177469",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07177469"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2025-09-17",
+      "sourceUpdatedAt": "2026-09-24",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07177469",
+        "title": "UBT251 Injection Phase II Study (Overweight or Obesity)",
+        "sponsor": "The United Bio-Technology (Hengqin) Co., Ltd.",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 205,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2025-03-14",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2025-10-22",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2025-11-19",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2025-09-17",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-24",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "ubt251"
+      ],
+      "reviewedFingerprint": "cdf837f8ad58398dfd063feda88c1f66c3fb3376a68ee96113449d0a5e593d83"
+    },
+    {
+      "id": "registry-nct07324850",
+      "nctId": "NCT07324850",
+      "title": "ClinicalTrials.gov NCT07324850",
+      "url": "https://clinicaltrials.gov/study/NCT07324850",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07324850",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07324850"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-01-08",
+      "sourceUpdatedAt": "2026-01-09",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07324850",
+        "title": "A Study of SGB-7342 in Subjects With Obesity or Overweight",
+        "sponsor": "Suzhou Sanegene Bio Inc.",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 45,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-01-12",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2026-10-28",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-04-14",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-01-08",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-01-09",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "sgb7342"
+      ],
+      "reviewedFingerprint": "742ed8546c2d072d673bc55a30801c1b2c1e3c0ef874e6da2512dd81b2f8b729"
+    },
+    {
+      "id": "registry-nct06144684",
+      "nctId": "NCT06144684",
+      "title": "ClinicalTrials.gov NCT06144684",
+      "url": "https://clinicaltrials.gov/study/NCT06144684",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06144684",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06144684"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2023-11-22",
+      "sourceUpdatedAt": "2026-01-15",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT06144684",
+        "title": "A Two-Part First-In-Human Study to Assess the Safety, Tolerability, Pharmacokinetics and Pharmacodynamics of GUB014295",
+        "sponsor": "AbbVie",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 76,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2023-11-29",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-01-05",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2026-01-05",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2023-11-22",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-01-15",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "abbv295"
+      ],
+      "reviewedFingerprint": "a56c6f64d6356e368bbac6de3f2d38140d235649ec2d7fb0a14be69ca1136b2a"
+    },
+    {
+      "id": "registry-nct07752979",
+      "nctId": "NCT07752979",
+      "title": "ClinicalTrials.gov NCT07752979",
+      "url": "https://clinicaltrials.gov/study/NCT07752979",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07752979",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07752979"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-08-07",
+      "sourceUpdatedAt": "2026-10-02",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07752979",
+        "title": "Safety and Efficacy of ABBV-295 in Adults With Obesity or Overweight With Weight-Related Comorbidities",
+        "sponsor": "AbbVie",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 360,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-08-04",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2028-03",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-03",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-08-07",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-10-02",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "abbv295"
+      ],
+      "reviewedFingerprint": "dd4e69cb32b414d70eb5f2093894714f3f710b522911efc5b4a9c702059022c6"
+    },
+    {
+      "id": "registry-nct07002905",
+      "nctId": "NCT07002905",
+      "title": "ClinicalTrials.gov NCT07002905",
+      "url": "https://clinicaltrials.gov/study/NCT07002905",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07002905",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07002905"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2025-06-04",
+      "sourceUpdatedAt": "2025-12-15",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07002905",
+        "title": "A Study to Evaluate the Efficacy, Safety, and Tolerability in Participants With Obesity or Overweight With Weight-Related Comorbidities",
+        "sponsor": "Ascletis Pharma (China) Co., Limited",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 125,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2025-07-03",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2025-12-08",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2025-12-08",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2025-06-04",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2025-12-15",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "asc30-oral"
+      ],
+      "reviewedFingerprint": "d5c84932f96f7fa73b60a040c46700aa682a022c3e637e5d3936f7bfb9e2aa67"
+    },
+    {
+      "id": "registry-nct06679959",
+      "nctId": "NCT06679959",
+      "title": "ClinicalTrials.gov NCT06679959",
+      "url": "https://clinicaltrials.gov/study/NCT06679959",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06679959",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06679959"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2024-11-08",
+      "sourceUpdatedAt": "2026-06-26",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT06679959",
+        "title": "A Study to Evaluate the Safety, Tolerability, Pharmacokinetics, and Efficacy of ASC30 Injection in Participants With Obesity",
+        "sponsor": "Ascletis Pharma (China) Co., Limited",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1",
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 115,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2024-09-16",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-03-26",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2026-03-26",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2024-11-08",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-06-26",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "asc30-depot"
+      ],
+      "reviewedFingerprint": "4a41352e9dce5597854321a6f01b46c248f9d659c2848220e709e288eb529c60"
+    },
+    {
+      "id": "registry-nct06854952",
+      "nctId": "NCT06854952",
+      "title": "ClinicalTrials.gov NCT06854952",
+      "url": "https://clinicaltrials.gov/study/NCT06854952",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06854952",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06854952"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2025-03-03",
+      "sourceUpdatedAt": "2026-08-10",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT06854952",
+        "title": "A Clinical Study to Evaluate the Efficacy, Safety, and Tolerability of TERN-601 in Adults With Overweight or Obesity",
+        "sponsor": "Terns, Inc., a subsidiary of Merck & Co., Inc. (Rahway, New Jersey USA)",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 167,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2025-03-07",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2025-08-19",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2025-09-19",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2025-03-03",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-10",
+          "type": "ACTUAL"
+        },
+        "hasResults": true,
+        "resultsFirstPosted": {
+          "date": "2026-08-10",
+          "type": "ACTUAL"
+        },
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "tern601"
+      ],
+      "reviewedFingerprint": "4ea3e6124169d0bf8e4b4fbd83202c6b5a39a8a79418a623f165662789bcf2de"
+    },
+    {
+      "id": "registry-nct06643728",
+      "nctId": "NCT06643728",
+      "title": "ClinicalTrials.gov NCT06643728",
+      "url": "https://clinicaltrials.gov/study/NCT06643728",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06643728",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06643728"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2024-10-16",
+      "sourceUpdatedAt": "2026-05-26",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT06643728",
+        "title": "A Study to Investigate Weight Management With Bimagrumab (LY3985863) and Tirzepatide (LY3298176), Alone or in Combination, in Adults With Obesity or Overweight",
+        "sponsor": "Eli Lilly and Company",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 252,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2024-10-21",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-01-16",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2027-01",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2024-10-16",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-05-26",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "bimagrumab-tirzepatide"
+      ],
+      "reviewedFingerprint": "280312a0a79b824fe97c099aec002870614150a15a3794becec3eb7c80a93841"
+    },
+    {
+      "id": "registry-nct07629544",
+      "nctId": "NCT07629544",
+      "title": "ClinicalTrials.gov NCT07629544",
+      "url": "https://clinicaltrials.gov/study/NCT07629544",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07629544",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07629544"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-06-05",
+      "sourceUpdatedAt": "2026-08-06",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07629544",
+        "title": "A Study of DA-302168S in Participants With Overweight/Obesity",
+        "sponsor": "Chendu DIAO Pharmaceutical Group CO., LTD.",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": {
+          "count": 840,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-06-19",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-07-09",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-10-19",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-06-05",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-06",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "da302168s"
+      ],
+      "reviewedFingerprint": "abd2a54f08911255bb22baac12c0b10cc9e59f504fb88cb9e491e6b13187588e"
+    },
+    {
+      "id": "registry-nct06737536",
+      "nctId": "NCT06737536",
+      "title": "ClinicalTrials.gov NCT06737536",
+      "url": "https://clinicaltrials.gov/study/NCT06737536",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06737536",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06737536"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2024-12-17",
+      "sourceUpdatedAt": "2025-09-19",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT06737536",
+        "title": "A First-in-human Research Study on How NNC0662-0419 Works in People Living With Overweight or Obesity",
+        "sponsor": "Novo Nordisk A/S",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 100,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2024-12-18",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2025-07-26",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2025-07-26",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2024-12-17",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2025-09-19",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "nnc06620419"
+      ],
+      "reviewedFingerprint": "91e3de0d5187492331d4e9a793fbbbfe9cd21c3390e92079775616b2958ebb78"
+    },
+    {
+      "id": "registry-nct05378893",
+      "nctId": "NCT05378893",
+      "title": "ClinicalTrials.gov NCT05378893",
+      "url": "https://clinicaltrials.gov/study/NCT05378893",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT05378893",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT05378893"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2022-05-18",
+      "sourceUpdatedAt": "2025-02-04",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT05378893",
+        "title": "A First in Human (FIH) Study to Evaluate the Safety, Tolerability, Pharmacokinetics, and Pharmacodynamics of DR10624",
+        "sponsor": "Zhejiang Doer Biologics Co., Ltd.",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 153,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2022-06-22",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2024-10-10",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2025-01-31",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2022-05-18",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2025-02-04",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "dr10624"
+      ],
+      "reviewedFingerprint": "f0eae46c18feb2b42f46fc99f92f10d84cf4dd84f46193e9fd8ac6e4fa5aee5e"
+    },
+    {
+      "id": "registry-nct07518589",
+      "nctId": "NCT07518589",
+      "title": "ClinicalTrials.gov NCT07518589",
+      "url": "https://clinicaltrials.gov/study/NCT07518589",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07518589",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07518589"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-04-08",
+      "sourceUpdatedAt": "2026-04-08",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07518589",
+        "title": "Phase 1 Study of Ascending Doses of CMS-D008 in Healthy and Overweight/Obese Adults",
+        "sponsor": "Shenzhen Kangzhe Biotechnology Co., Ltd.",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 110,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-04-02",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2027-11-24",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-12-10",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-04-08",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-04-08",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "cmsd008"
+      ],
+      "reviewedFingerprint": "c3a1657726e3806dbaa1f3e98f2268ced67f953f06a75c6bfafe12c43acea214"
+    },
+    {
+      "id": "registry-nct07446998",
+      "nctId": "NCT07446998",
+      "title": "ClinicalTrials.gov NCT07446998",
+      "url": "https://clinicaltrials.gov/study/NCT07446998",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07446998",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07446998"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-03-03",
+      "sourceUpdatedAt": "2026-09-04",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07446998",
+        "title": "Proof-of-Concept Study Evaluating Total Body Weight, Physical Function & Safety of Enobosarm in Patients Treated With GLP-1 Receptor Agonist, for Weight Loss",
+        "sponsor": "Veru Inc.",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 239,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2026-03-26",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-10",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-12",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-03-03",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-04",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "enobosarm-semaglutide"
+      ],
+      "reviewedFingerprint": "feaac259cadc547ceaba40bbd7f3b9800a885a749594a7bb4ffbcb91f13981dd"
+    },
+    {
+      "id": "registry-nct06282458",
+      "nctId": "NCT06282458",
+      "title": "ClinicalTrials.gov NCT06282458",
+      "url": "https://clinicaltrials.gov/study/NCT06282458",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06282458",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06282458"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2024-02-28",
+      "sourceUpdatedAt": "2025-09-17",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT06282458",
+        "title": "Dose-Finding Study Evaluating Effect on Body Composition of Enobosarm in Patients Taking a GLP-1 for Chronic Weight Mgmt",
+        "sponsor": "Veru Inc.",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 168,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2024-04-29",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2025-04-11",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2025-08-22",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2024-02-28",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2025-09-17",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "enobosarm-semaglutide"
+      ],
+      "reviewedFingerprint": "4aa53257144cdd6809f9849e0fe02768aa1b03d433cc20e37b2838d6187ac615"
+    },
+    {
+      "id": "registry-nct07778693",
+      "nctId": "NCT07778693",
+      "title": "ClinicalTrials.gov NCT07778693",
+      "url": "https://clinicaltrials.gov/study/NCT07778693",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07778693",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07778693"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-08-21",
+      "sourceUpdatedAt": "2026-08-21",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07778693",
+        "title": "Phase 3 Study of MWN109 Injection in Participants With Overweight or Obesity",
+        "sponsor": "Shanghai Minwei Biotechnology Co., Ltd",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": {
+          "count": 760,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-09-01",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2027-09",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-11",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-08-21",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-21",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "mwn109-injection"
+      ],
+      "reviewedFingerprint": "26442b0f1b56ed0292a858f5e230b16923f26d731d4bf7f9719ff6a9abc14e10"
+    },
+    {
+      "id": "registry-nct07791654",
+      "nctId": "NCT07791654",
+      "title": "ClinicalTrials.gov NCT07791654",
+      "url": "https://clinicaltrials.gov/study/NCT07791654",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07791654",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07791654"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-08-28",
+      "sourceUpdatedAt": "2026-08-28",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07791654",
+        "title": "A Multicenter, Randomized, Double-Blind, Placebo-Controlled Phase 2 Study to Evaluate the Efficacy and Safety of MWN109 Injection in Non-Diabetic Participants With Overweight or Obesity",
+        "sponsor": "Shanghai Minwei Biotechnology Co., Ltd",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 120,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2025-08-23",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-03-21",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2026-03-21",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2026-08-28",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-28",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "mwn109-injection"
+      ],
+      "reviewedFingerprint": "eeb5d3e069129985bf45c239b411de7a96d84c710b399efc8189f5742a161d2b"
+    },
+    {
+      "id": "registry-nct07791524",
+      "nctId": "NCT07791524",
+      "title": "ClinicalTrials.gov NCT07791524",
+      "url": "https://clinicaltrials.gov/study/NCT07791524",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07791524",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07791524"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-08-28",
+      "sourceUpdatedAt": "2026-08-28",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07791524",
+        "title": "Phase 2 Study of MWN109 Tablet in Participants With Overweight or Obesity",
+        "sponsor": "Shanghai Minwei Biotechnology Co., Ltd",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 255,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2026-01-05",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-07-09",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2026-07-09",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2026-08-28",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-28",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "mwn109-tablets"
+      ],
+      "reviewedFingerprint": "6cb6b581ccff6457b429219214e134bb311b0a0debf85b0a391eeb1e880bddb2"
+    },
+    {
+      "id": "registry-nct07804797",
+      "nctId": "NCT07804797",
+      "title": "ClinicalTrials.gov NCT07804797",
+      "url": "https://clinicaltrials.gov/study/NCT07804797",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07804797",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07804797"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-09-04",
+      "sourceUpdatedAt": "2026-09-04",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07804797",
+        "title": "Phase 2 Study of MWN109 Tablet for Weight-Loss Maintenance in Participants With Overweight or Obesity",
+        "sponsor": "Shanghai Minwei Biotechnology Co., Ltd",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 71,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2026-03-02",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-09",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2026-09",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-09-04",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-04",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "mwn109-tablets"
+      ],
+      "reviewedFingerprint": "d2276396a3ce5b6226d4d12f2de66e028d4f19e33ce26e5c5b9c2ca757fcb8c7"
+    },
+    {
+      "id": "registry-nct07779980",
+      "nctId": "NCT07779980",
+      "title": "ClinicalTrials.gov NCT07779980",
+      "url": "https://clinicaltrials.gov/study/NCT07779980",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07779980",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07779980"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-08-21",
+      "sourceUpdatedAt": "2026-08-24",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07779980",
+        "title": "Phase 1 Clinical Study of MWN110 Injection in Healthy Participants and Overweight or Obese Participants",
+        "sponsor": "Shanghai Minwei Biotechnology Co., Ltd",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 103,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-08-26",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2027-08",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-08",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-08-21",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-24",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "mwn110"
+      ],
+      "reviewedFingerprint": "bfae5e35336a9c86df792ca6ffadebdef89d57917c3cf5a0ae1fa5d2afb23462"
+    },
+    {
+      "id": "registry-nct07747857",
+      "nctId": "NCT07747857",
+      "title": "ClinicalTrials.gov NCT07747857",
+      "url": "https://clinicaltrials.gov/study/NCT07747857",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07747857",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07747857"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-08-05",
+      "sourceUpdatedAt": "2026-08-28",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07747857",
+        "title": "A Clinical Trial Evaluating TQF3250 Capsules in Patients With Type 2 Diabetes Mellitus and Overweight/Obesity",
+        "sponsor": "Chia Tai Tianqing Pharmaceutical Group Co., Ltd.",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 72,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-08-25",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-06",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-07",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-08-05",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-28",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "tqf3250"
+      ],
+      "reviewedFingerprint": "df916c5f6fb091ad251bd9496acbdb2f1ec421dfd69b212bc226ccf878ad17cf"
+    },
+    {
+      "id": "registry-nct07798284",
+      "nctId": "NCT07798284",
+      "title": "ClinicalTrials.gov NCT07798284",
+      "url": "https://clinicaltrials.gov/study/NCT07798284",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07798284",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07798284"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-09-01",
+      "sourceUpdatedAt": "2026-09-01",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07798284",
+        "title": "A Clinical Trial of TQF3250 Capsules in Overweight/Obese Trial Participants With Poor Weight Control Through Simple Lifestyle Intervention",
+        "sponsor": "Chia Tai Tianqing Pharmaceutical Group Co., Ltd.",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 80,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-09",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2027-04",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-04",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-09-01",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-01",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "tqf3250"
+      ],
+      "reviewedFingerprint": "14025be9254cd4d17bd42e811b2667b2b415c72e92f90de8d8ec5e3460dde16d"
+    },
+    {
+      "id": "registry-nct07009171",
+      "nctId": "NCT07009171",
+      "title": "ClinicalTrials.gov NCT07009171",
+      "url": "https://clinicaltrials.gov/study/NCT07009171",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07009171",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07009171"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2025-06-06",
+      "sourceUpdatedAt": "2026-06-24",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07009171",
+        "title": "Study to Evaluate the Efficacy and Safety of KDS2010 in Overweight or Obese Patients",
+        "sponsor": "NeuroBiogen Co., Ltd",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 75,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2025-07-29",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-01-31",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-06-30",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2025-06-06",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-06-24",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "kds2010"
+      ],
+      "reviewedFingerprint": "faa11cd67ba94b4722c3f5d1a26fd10a1b81629c6135f3273a16b97242709e20"
+    },
+    {
+      "id": "registry-nct05822544",
+      "nctId": "NCT05822544",
+      "title": "ClinicalTrials.gov NCT05822544",
+      "url": "https://clinicaltrials.gov/study/NCT05822544",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT05822544",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT05822544"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2023-04-20",
+      "sourceUpdatedAt": "2026-08-21",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT05822544",
+        "title": "Phase 1/1b Study of TLC-6740 in Healthy Subjects and Subjects With Obesity, With or Without Diabetes",
+        "sponsor": "OrsoBio, Inc",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 564,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2023-04-22",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-09",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-01",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2023-04-20",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-21",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "tlc6740-tirzepatide"
+      ],
+      "reviewedFingerprint": "022f4a29a54e4d944f6bfcd39ae6835874031daf69fc70528dcff49035837ada"
+    },
+    {
+      "id": "registry-nct07411378",
+      "nctId": "NCT07411378",
+      "title": "ClinicalTrials.gov NCT07411378",
+      "url": "https://clinicaltrials.gov/study/NCT07411378",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07411378",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07411378"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-02-13",
+      "sourceUpdatedAt": "2026-02-13",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07411378",
+        "title": "Testing the Efficacy, Safety, and PK of 20E in Patients With Obesity Who Are Starting Treatment With the GLP-1 Agonist Semaglutide for Weight Loss.",
+        "sponsor": "Biophytis",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 164,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-07",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2027-06",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-08",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-02-13",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-02-13",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "bio101-semaglutide"
+      ],
+      "reviewedFingerprint": "718121b9bb1f81d69744f259f5e4fca577b3d2c46ceedf25ebc2c0a0b945d32a"
+    },
+    {
+      "id": "registry-nct07731256",
+      "nctId": "NCT07731256",
+      "title": "ClinicalTrials.gov NCT07731256",
+      "url": "https://clinicaltrials.gov/study/NCT07731256",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07731256",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07731256"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-07-28",
+      "sourceUpdatedAt": "2026-07-28",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07731256",
+        "title": "Semaglutide for Low Back Pain",
+        "sponsor": "Washington University School of Medicine",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 250,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2027-02-01",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2031-01-01",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2031-09-01",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-07-28",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-07-28",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "semaglutide-specialist-trials"
+      ],
+      "reviewedFingerprint": "dbedfdde83638977951cda8cae89c60e534ab8a8552685068c6590ce0b8ac98b"
+    },
+    {
+      "id": "registry-nct07755085",
+      "nctId": "NCT07755085",
+      "title": "ClinicalTrials.gov NCT07755085",
+      "url": "https://clinicaltrials.gov/study/NCT07755085",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07755085",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07755085"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-08-10",
+      "sourceUpdatedAt": "2026-08-10",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07755085",
+        "title": "GLP-1s in Hip and Knee Arthroplasty",
+        "sponsor": "Nova Scotia Health Authority",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE4"
+        ],
+        "enrollment": {
+          "count": 100,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-10-01",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2028-06-01",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-12",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-08-10",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-10",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "semaglutide-specialist-trials"
+      ],
+      "reviewedFingerprint": "fc88c19b5d29df7fc736b8e4c1581cc5e5bdf9bb6ad543f56ee73a1a48fcd14a"
+    },
+    {
+      "id": "registry-nct07820358",
+      "nctId": "NCT07820358",
+      "title": "ClinicalTrials.gov NCT07820358",
+      "url": "https://clinicaltrials.gov/study/NCT07820358",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07820358",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07820358"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-09-15",
+      "sourceUpdatedAt": "2026-10-01",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07820358",
+        "title": "Semaglutide, Weight Loss, and LNG-IUD for Conservative Treatment of Endometrial Atypical Hyperplasia and Grade 1 Endometrial Cancer",
+        "sponsor": "The Methodist Hospital Research Institute",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 48,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2027-01-01",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2028-12-31",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2031-12-31",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-09-15",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-10-01",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "semaglutide-specialist-trials"
+      ],
+      "reviewedFingerprint": "38f5b7d65d1b5e5f19d2418d13e159625fdf5a278f26cf34d6a1ffac19081869"
+    },
+    {
+      "id": "registry-nct07747805",
+      "nctId": "NCT07747805",
+      "title": "ClinicalTrials.gov NCT07747805",
+      "url": "https://clinicaltrials.gov/study/NCT07747805",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07747805",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07747805"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-08-05",
+      "sourceUpdatedAt": "2026-08-05",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07747805",
+        "title": "GLP-1 Agonists for Lung Function Improvement and Muscle Restoration in COPD",
+        "sponsor": "The Cleveland Clinic",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 30,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-08-28",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2028-08-15",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2029-08-15",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-08-05",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-05",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "glimr-copd-tirzepatide"
+      ],
+      "reviewedFingerprint": "af537eea31667799cc2a3d7ae142de43086fcd7c6e14c0bad9babe140e072edf"
+    },
+    {
+      "id": "registry-nct07065552",
+      "nctId": "NCT07065552",
+      "title": "ClinicalTrials.gov NCT07065552",
+      "url": "https://clinicaltrials.gov/study/NCT07065552",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07065552",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07065552"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2025-07-15",
+      "sourceUpdatedAt": "2026-10-02",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07065552",
+        "title": "Tirzepatide in Obesity-Driven Endometrial Cancer",
+        "sponsor": "UNC Lineberger Comprehensive Cancer Center",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "EARLY_PHASE1"
+        ],
+        "enrollment": {
+          "count": 20,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-04-27",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2028-07",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-07",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2025-07-15",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-10-02",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "tirzepatide-endometrial-research"
+      ],
+      "reviewedFingerprint": "48bc32b97082f1f63e77d881b7595e62921297ac01b3e1a29efd2c78a1943b91"
+    },
+    {
+      "id": "registry-nct07078838",
+      "nctId": "NCT07078838",
+      "title": "ClinicalTrials.gov NCT07078838",
+      "url": "https://clinicaltrials.gov/study/NCT07078838",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07078838",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07078838"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2025-07-22",
+      "sourceUpdatedAt": "2026-09-28",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07078838",
+        "title": "Tirzepatide in Women With Obesity and Endometrial Intra-epithelial Neoplasia or Grade 1 Endometrial Cancer",
+        "sponsor": "UNC Lineberger Comprehensive Cancer Center",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 40,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2027-01",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2029-03",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2029-03",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2025-07-22",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-28",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "tirzepatide-endometrial-research"
+      ],
+      "reviewedFingerprint": "c178bb223569916bdb741332d0bd544b9941e1b6ee14568903b58dc825aa8e3e"
+    },
+    {
+      "id": "registry-nct06732245",
+      "nctId": "NCT06732245",
+      "title": "ClinicalTrials.gov NCT06732245",
+      "url": "https://clinicaltrials.gov/study/NCT06732245",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06732245",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06732245"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2024-12-13",
+      "sourceUpdatedAt": "2026-03-27",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT06732245",
+        "title": "Safety and Efficacy of NA-931 and Tirzepatide in Adults Who Are Overweight or Obese",
+        "sponsor": "Biomed Industries, Inc.",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 224,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-08-15",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2027-08-15",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-12-15",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2024-12-13",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-03-27",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "na931-tirzepatide"
+      ],
+      "reviewedFingerprint": "c802c3771fb87517e56c804cc4e490d4550176a1990e4901b45781b85b840921"
+    },
+    {
+      "id": "registry-nct06595238",
+      "nctId": "NCT06595238",
+      "title": "ClinicalTrials.gov NCT06595238",
+      "url": "https://clinicaltrials.gov/study/NCT06595238",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06595238",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06595238"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2024-09-19",
+      "sourceUpdatedAt": "2026-10-02",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT06595238",
+        "title": "A Study in Participants With Obesity or Overweight With at Least One Weight-related Comorbidity",
+        "sponsor": "AstraZeneca",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 262,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2024-10-01",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2025-12-03",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2025-12-03",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2024-09-19",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-10-02",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "azd6234"
+      ],
+      "reviewedFingerprint": "e1f86efb0e32019f28041322fc5b1499b57c1457204c26d9cb7542ea936dd84b"
+    },
+    {
+      "id": "registry-nct07784725",
+      "nctId": "NCT07784725",
+      "title": "ClinicalTrials.gov NCT07784725",
+      "url": "https://clinicaltrials.gov/study/NCT07784725",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07784725",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07784725"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-08-25",
+      "sourceUpdatedAt": "2026-08-25",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07784725",
+        "title": "A Study to Evaluate Effect of AZD6234 in Adult Participants With Obesity or Overweight With Weight-related Comorbidity Without Type 2 Diabetes Mellitus",
+        "sponsor": "AstraZeneca",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": {
+          "count": 2500,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-08-19",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2028-08-11",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2029-05-21",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-08-25",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-25",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "azd6234"
+      ],
+      "reviewedFingerprint": "281ca188c640a56350c956d6a3083f689826e60f4949f0a1dd316e0de449f4e4"
+    },
+    {
+      "id": "registry-nct05713799",
+      "nctId": "NCT05713799",
+      "title": "ClinicalTrials.gov NCT05713799",
+      "url": "https://clinicaltrials.gov/study/NCT05713799",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT05713799",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT05713799"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2023-02-06",
+      "sourceUpdatedAt": "2026-10-02",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT05713799",
+        "title": "Trial of the Combination of Alpha-Lipoic Acid and Mirabegron in Women and in Men With Obesity",
+        "sponsor": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 60,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-10-07",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2030-03-01",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2030-03-01",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2023-02-06",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-10-02",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "mirabegron-alpha-lipoic-acid"
+      ],
+      "reviewedFingerprint": "1c55f2ce7999de4cac4487b035ae6dfab87f1c19b3ada25b83d909651cfa0a8d"
+    },
+    {
+      "id": "registry-nct07511205",
+      "nctId": "NCT07511205",
+      "title": "ClinicalTrials.gov NCT07511205",
+      "url": "https://clinicaltrials.gov/study/NCT07511205",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07511205",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07511205"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-04-06",
+      "sourceUpdatedAt": "2026-09-09",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07511205",
+        "title": "A Study to Investigate Safety, Tolerability, Pharmacokinetics and Pharmacodynamics of AZD1043 in Healthy Adult Participants Living With Overweight and/or Obesity.",
+        "sponsor": "AstraZeneca",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 104,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-03-30",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-04-09",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-11-17",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-04-06",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-09",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "azd1043"
+      ],
+      "reviewedFingerprint": "24c251a0258c58769171cce907ed756278925229e0ae6061d3120666537d0f16"
+    },
+    {
+      "id": "registry-nct06842186",
+      "nctId": "NCT06842186",
+      "title": "ClinicalTrials.gov NCT06842186",
+      "url": "https://clinicaltrials.gov/study/NCT06842186",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06842186",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06842186"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2025-02-24",
+      "sourceUpdatedAt": "2026-06-02",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT06842186",
+        "title": "A Phase 1/2a Study of WVE-007 in Adults Living With Overweight or Obesity",
+        "sponsor": "Wave Life Sciences USA, Inc.",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1",
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 296,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2025-01-31",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-12",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-12",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2025-02-24",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-06-02",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "wve007"
+      ],
+      "reviewedFingerprint": "9a90b0c94eb2ddf8b5b2d822ac58c68b1417f81845f0ede8bdc2e4d3d19f3f03"
+    },
+    {
+      "id": "registry-nct06577766",
+      "nctId": "NCT06577766",
+      "title": "ClinicalTrials.gov NCT06577766",
+      "url": "https://clinicaltrials.gov/study/NCT06577766",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06577766",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06577766"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2024-08-29",
+      "sourceUpdatedAt": "2026-09-30",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT06577766",
+        "title": "A Research Study on How NNC0638-0355, a New Medicine, Works in People Living With Overweight or Obesity",
+        "sponsor": "Novo Nordisk A/S",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 63,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2024-09-03",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-10-11",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-10-11",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2024-08-29",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-30",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "nnc0638-0355"
+      ],
+      "reviewedFingerprint": "2b4bcab27d332e91f867468af25393baf58c6399938b6a9785757a6f10a74a03"
+    },
+    {
+      "id": "registry-nct07495904",
+      "nctId": "NCT07495904",
+      "title": "ClinicalTrials.gov NCT07495904",
+      "url": "https://clinicaltrials.gov/study/NCT07495904",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07495904",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07495904"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-03-27",
+      "sourceUpdatedAt": "2026-04-02",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07495904",
+        "title": "Effect of GLP-1 Receptor Agonists on Body Composition in Obesity: The Role of Dietary Protein Consumption in Muscle Mass Maintenance",
+        "sponsor": "Hellenic Mediterranean University",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "NA"
+        ],
+        "enrollment": {
+          "count": 130,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-03-30",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2028-03-30",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2029-01-30",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-03-27",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-04-02",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "lean-pro-glp1-protein"
+      ],
+      "reviewedFingerprint": "398558fd08aca505125681e858d056846af0b798e043ec79c852045c2d0f7ec8"
+    },
+    {
+      "id": "registry-nct07846033",
+      "nctId": "NCT07846033",
+      "title": "ClinicalTrials.gov NCT07846033",
+      "url": "https://clinicaltrials.gov/study/NCT07846033",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07846033",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07846033"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-09-29",
+      "sourceUpdatedAt": "2026-09-29",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07846033",
+        "title": "A Phase 1 Study of VK3019 in Overweight and Obese Adults Without Comorbidities",
+        "sponsor": "Viking Therapeutics, Inc.",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 56,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-07-06",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-10-02",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2026-11",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-09-29",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-29",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "vk3019"
+      ],
+      "reviewedFingerprint": "ac9c66473e38b4753a7bc2dbff0eb1f0d9d58973cfcd9f182017537b927c5c22"
+    },
+    {
+      "id": "registry-nct07724340",
+      "nctId": "NCT07724340",
+      "title": "ClinicalTrials.gov NCT07724340",
+      "url": "https://clinicaltrials.gov/study/NCT07724340",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07724340",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07724340"
+      ],
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "sourcePublishedAt": "2026-07-24",
+      "sourceUpdatedAt": "2026-09-29",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07724340",
+        "title": "A Study to Assess the Efficacy, Safety and Tolerability of AT673 Co-administered With Semaglutide in Adult Participants With Type 2 Diabetes (T2D) and Overweight or Obesity",
+        "sponsor": "Antag Therapeutics",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 150,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-06-19",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-02",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-03",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-07-24",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-29",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "at673-semaglutide"
+      ],
+      "reviewedFingerprint": "8777c36b0103a357c2c8b7b07f7f3d156d91be06f9ea3fb0937f670692479f32"
+    }
+  ],
+  "supportSources": [
+    {
+      "id": "mhra-glp1-pancreatitis-20260129",
+      "title": "MHRA: strengthened pancreatitis warnings",
+      "url": "https://www.gov.uk/drug-safety-update/glp-1-receptor-agonists-and-dual-glp-1-slash-gip-receptor-agonists-strengthened-warnings-on-acute-pancreatitis-including-necrotising-and-fatal-cases",
+      "format": "govuk-json",
+      "sourcePublishedAt": "2026-01-29",
+      "requiredTerms": [
+        "pancreatitis",
+        "Yellow Card",
+        "GLP-1"
+      ],
+      "checkUrl": "https://www.gov.uk/api/content/drug-safety-update/glp-1-receptor-agonists-and-dual-glp-1-slash-gip-receptor-agonists-strengthened-warnings-on-acute-pancreatitis-including-necrotising-and-fatal-cases",
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "reviewedFingerprint": "14ad61a771cb8958dc8114fcbdfa9e3fb9f2001f7e754932a2a2b175ff1816d0",
+      "evidenceType": "Regulator safety communication"
+    },
+    {
+      "id": "scotland-tirzepatide-access",
+      "title": "SMC: tirzepatide weight-management public summary",
+      "url": "https://scottishmedicines.org.uk/medicines-advice/tirzepatide-mounjaro-obesity-full-smc2653/public-summary/",
+      "format": "html",
+      "sourcePublishedAt": "2024-06-10",
+      "requiredTerms": [
+        "tirzepatide",
+        "restricted use",
+        "NHSScotland"
+      ],
+      "checkUrl": "https://scottishmedicines.org.uk/medicines-advice/tirzepatide-mounjaro-obesity-full-smc2653/public-summary/",
+      "contentSelector": "#main-content",
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "reviewedFingerprint": "f038f2b7371ae5f7384c9e32def5c0323c8bc4bb54d2f683c5e11ec76e6e3611",
+      "evidenceType": "National NHS access policy / announcement"
+    },
+    {
+      "id": "wales-weight-access",
+      "title": "Welsh Government: weight-management clinical pathway",
+      "url": "https://www.gov.wales/new-clinical-pathway-treating-and-managing-obesity-whc2025043-html",
+      "format": "html",
+      "sourcePublishedAt": "2025-10-23",
+      "sourceUpdatedAt": "2026-07-07",
+      "requiredTerms": [
+        "WHC/2025/043",
+        "tirzepatide",
+        "7 July 2026"
+      ],
+      "checkUrl": "https://www.gov.wales/new-clinical-pathway-treating-and-managing-obesity-whc2025043-html",
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "reviewedFingerprint": "fb7a3affef045cbdddad966d7725c32f16b58ff8c11017c87c38a1d125d383cf",
+      "evidenceType": "National NHS access policy / announcement"
+    },
+    {
+      "id": "ni-weight-access",
+      "title": "Department of Health NI: first phase of ROMS",
+      "url": "https://www.health-ni.gov.uk/news/health-minister-announces-first-phase-nis-first-obesity-management-service",
+      "format": "html",
+      "sourcePublishedAt": "2026-06-29",
+      "requiredTerms": [
+        "ROMS",
+        "Autumn 2026",
+        "45"
+      ],
+      "checkUrl": "https://www.health-ni.gov.uk/news/health-minister-announces-first-phase-nis-first-obesity-management-service",
+      "reviewedAt": "2026-10-03T18:59:53.508Z",
+      "reviewedFingerprint": "603c8b1b586505fb44083a7b9a6dc1d4e89ac2ea0e31a1e4f7b767f18540edde",
+      "evidenceType": "National NHS access policy / announcement"
+    }
+  ],
+  "registryRetrievals": [
+    {
+      "nctId": "NCT07855133",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07855133",
+      "retrievedAt": "2026-10-03T18:54:12.037Z",
+      "httpStatus": 200,
+      "responseBytes": 9001,
+      "responseSha256": "357011660e7f4688300934f9ba36c9dc2d3167007c8d9b6238db132c3d6d5c86",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-switching-studies.json",
+          "reviewedAt": "2026-10-02T20:05:00Z",
+          "responseSha256": "99e9d83ba5052575b0465d6d8fc6bd1d24b5f73f5aade6f3abca0a395e5ecacc"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07757087",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07757087",
+      "retrievedAt": "2026-10-03T18:54:12.010Z",
+      "httpStatus": 200,
+      "responseBytes": 7685,
+      "responseSha256": "7e3009cd42cf9478dfbfd1a4919050472d9d76286dfc49211f1a271e81ad25e9",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-03-authorised-lean-mass-energy-followup.json",
+          "reviewedAt": "2026-10-03T13:01:59Z",
+          "responseSha256": "be6ce24afa35ffde596d0191a773d30969a990f1af71713953c4b1e1aaa8c264"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT06066528",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06066528",
+      "retrievedAt": "2026-10-03T18:54:11.987Z",
+      "httpStatus": 200,
+      "responseBytes": 33794,
+      "responseSha256": "6b513cc8a084fcf66ed4a405bb35fa49c986757a986967812e656606346221cf",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07850050",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07850050",
+      "retrievedAt": "2026-10-03T18:54:12.184Z",
+      "httpStatus": 200,
+      "responseBytes": 12939,
+      "responseSha256": "1d7bad4ea22c2fec372075a86d5cf68d498ccd2c02b294ab5352b08df16fa8ca",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-specialist-registry-followup.json",
+          "reviewedAt": "2026-10-02T18:55:00Z",
+          "responseSha256": "1f7ed98d2bd7ed951765b187692e94132199d570677a0070148761b276af235a"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07855900",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07855900",
+      "retrievedAt": "2026-10-03T18:54:12.189Z",
+      "httpStatus": 200,
+      "responseBytes": 12958,
+      "responseSha256": "b43ee91a3cb5c6082f9676227b33d8486e6fc053e9412cf2e909b2d5790fc289",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-switching-studies.json",
+          "reviewedAt": "2026-10-02T20:05:00Z",
+          "responseSha256": "2f9b6cc4f25d6eca661448a812f4d360e29f8c7c8a669d7342d1443d19e5fe59"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07595549",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07595549",
+      "retrievedAt": "2026-10-03T18:54:12.223Z",
+      "httpStatus": 200,
+      "responseBytes": 21963,
+      "responseSha256": "067c12f9054136d3309ecede8d8b42cdcb4e9f6ec933bf11894fba9e8baf6c64",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07285902",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07285902",
+      "retrievedAt": "2026-10-03T18:54:12.306Z",
+      "httpStatus": 200,
+      "responseBytes": 8666,
+      "responseSha256": "171e0851ef75113fa0bedc8ce49bf1aa0f65e265056cc616d0d974e93bd76dd4",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-03-authorised-specialist-registry-wave.json",
+          "reviewedAt": "2026-10-03T11:29:25Z",
+          "responseSha256": "29492c4f4e0e26321b51303ab271c61608c749b520afb4395f79c4c5251518b1"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07709910",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07709910",
+      "retrievedAt": "2026-10-03T18:54:12.366Z",
+      "httpStatus": 200,
+      "responseBytes": 7653,
+      "responseSha256": "28b8e4902da3bb63a9c3fd6a62167e197349e44bf39383474ddb5a9842227433",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-03-authorised-specialist-registry-wave.json",
+          "reviewedAt": "2026-10-03T11:29:25Z",
+          "responseSha256": "6c3e48c45896f50e6997d35a3dfe0a7a832f29795e481c71a9fe0468b943b98a"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07528027",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07528027",
+      "retrievedAt": "2026-10-03T18:54:12.366Z",
+      "httpStatus": 200,
+      "responseBytes": 6054,
+      "responseSha256": "d4eb4087eca03e140c5cde08a321907eb056080ef0423dbcb7578e11eeea8180",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-03-authorised-specialist-registry-wave.json",
+          "reviewedAt": "2026-10-03T11:29:25Z",
+          "responseSha256": "6644e5538542e9cbe90e83be417a71aab85baf86624c2cec68ce004fab04ff84"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07841860",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07841860",
+      "retrievedAt": "2026-10-03T18:54:12.436Z",
+      "httpStatus": 200,
+      "responseBytes": 7456,
+      "responseSha256": "ac415ff3ac4617f72c114bc3fd7015b2452717fd8e5ca0080d2f49a3c27b2186",
+      "priorReceipts": [
+        {
+          "receipt": "2026-09-30-hrs1596-discovery.json",
+          "reviewedAt": "2026-09-30T10:32:33Z",
+          "responseSha256": "ffad8c047bd359545db295101edcd54a461dfc7e287d7082e089af20cdc10864"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT06965413",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06965413",
+      "retrievedAt": "2026-10-03T18:54:12.493Z",
+      "httpStatus": 200,
+      "responseBytes": 18621,
+      "responseSha256": "b518c23c7659c3b2486073a4517c2e8e57885a80cbd4268e0a1672b8c56f6c78",
+      "priorReceipts": [
+        {
+          "receipt": "2026-09-30-emugrobart-petrelintide-discovery.json",
+          "reviewedAt": "2026-09-30T11:44:48Z",
+          "responseSha256": "d65d68320e1da89f08c652c153bff55931ec3a93187097161f6c000fe6322450"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07662122",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07662122",
+      "retrievedAt": "2026-10-03T18:54:12.517Z",
+      "httpStatus": 200,
+      "responseBytes": 21001,
+      "responseSha256": "069e258139b9121a6a5f9325ee4cc919bf3d21ae54c9aee63465f78c93a497ae",
+      "priorReceipts": [
+        {
+          "receipt": "2026-09-30-bi3034701-discovery.json",
+          "reviewedAt": "2026-09-30T20:23:00Z",
+          "responseSha256": "0127f374353ba510820a861f02fec0d8cab69ec1b59052a0d13302e4b4a036e9"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07754474",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07754474",
+      "retrievedAt": "2026-10-03T18:54:12.559Z",
+      "httpStatus": 200,
+      "responseBytes": 7127,
+      "responseSha256": "3d5c6e10fa573e264e1df1e832f4b3f9927bb59b69a3832c8b72ad27b396f2c5",
+      "priorReceipts": [
+        {
+          "receipt": "2026-09-30-bi3034701-discovery.json",
+          "reviewedAt": "2026-09-30T20:23:00Z",
+          "responseSha256": "bcdaab440bd7c5093178e4595677c86cb3643d996f53de1a1ddc2ffa2780be96"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07215559",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07215559",
+      "retrievedAt": "2026-10-03T18:54:12.620Z",
+      "httpStatus": 200,
+      "responseBytes": 20458,
+      "responseSha256": "b5afa90dc6e7508613cf08b282cd60f59deab8b2a1e724cf476157ff9916bc99",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-01-macupatide-discovery.json",
+          "reviewedAt": "2026-10-01T05:37:00Z",
+          "responseSha256": "fe12c62cf165ff7df639779fa7c858184d08992ca5d4c3b16cb70800fe7bad8f"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07765511",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07765511",
+      "retrievedAt": "2026-10-03T18:54:12.678Z",
+      "httpStatus": 200,
+      "responseBytes": 8916,
+      "responseSha256": "d4b307455502565fe5f1e85625ff4920c472d1c60e0c2d93da88bee892130165",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-01-macupatide-discovery.json",
+          "reviewedAt": "2026-10-01T05:37:00Z",
+          "responseSha256": "b715b617cac97b70ed1f531f12c276542c489fbe0ff7a87e335425cf124c7e72"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07487376",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07487376",
+      "retrievedAt": "2026-10-03T18:54:12.695Z",
+      "httpStatus": 200,
+      "responseBytes": 8879,
+      "responseSha256": "0df08d915428bb6263c5dcb55784530dd0bfd98dc9643378f97095820c593a00",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07142707",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07142707",
+      "retrievedAt": "2026-10-03T18:54:12.753Z",
+      "httpStatus": 200,
+      "responseBytes": 6378,
+      "responseSha256": "87063b03f8d7233bf487f725ec69310ef90697a8e6acd00be3d87ab3778de4f1",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT06700538",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06700538",
+      "retrievedAt": "2026-10-03T18:54:12.847Z",
+      "httpStatus": 200,
+      "responseBytes": 14254,
+      "responseSha256": "2948cb8a003bfdaf16425cdc9e4e3a062d9c3a8c6f31e7531723f7551277d611",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07310901",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07310901",
+      "retrievedAt": "2026-10-03T18:54:12.823Z",
+      "httpStatus": 200,
+      "responseBytes": 13368,
+      "responseSha256": "e16381971f6df8093428b728aee6d30888d2f8d58d088c7eb4c1c2d4383b3f1d",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07837973",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07837973",
+      "retrievedAt": "2026-10-03T18:54:12.878Z",
+      "httpStatus": 200,
+      "responseBytes": 12830,
+      "responseSha256": "ebd6fdab7dbb696771b7a5e17236fba42e70b7a8c3f5578b1aef25d58ecd291b",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07734311",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07734311",
+      "retrievedAt": "2026-10-03T18:54:12.942Z",
+      "httpStatus": 200,
+      "responseBytes": 11529,
+      "responseSha256": "cab60307888f67b3257b46ab5b7fe965d0ff2077e2ad2fe7fdcebe493628e9e9",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-expanded-registry-wave.json",
+          "reviewedAt": "2026-10-02T12:58:22Z",
+          "responseSha256": "1e5ff4d43b6a4543eb631879628931f811c4367b2cbf7f16dfdc43104544ad07"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07842640",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07842640",
+      "retrievedAt": "2026-10-03T18:54:13.008Z",
+      "httpStatus": 200,
+      "responseBytes": 8227,
+      "responseSha256": "53d4c42a46e9f817e74e022a9b05b5440d2b95df913c289ae7dd26b0c890154d",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-01-ascletis-injectable-discovery.json",
+          "reviewedAt": "2026-10-01T06:30:54Z",
+          "responseSha256": "7cee462831926c845f507e87afd793be3e42685acc7f5f35693f3e1662772fef"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT06937203",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06937203",
+      "retrievedAt": "2026-10-03T18:54:13.023Z",
+      "httpStatus": 200,
+      "responseBytes": 10837,
+      "responseSha256": "0741eb31eed02541ac4e1dc72a7e44024cfad7a18cc97285a8104085b4af3bbf",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07804810",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07804810",
+      "retrievedAt": "2026-10-03T18:54:13.074Z",
+      "httpStatus": 200,
+      "responseBytes": 10080,
+      "responseSha256": "80e9851b915a96da1d801fbf6b153fe5719fed8580253eac26022703444168a9",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07160400",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07160400",
+      "retrievedAt": "2026-10-03T18:54:13.131Z",
+      "httpStatus": 200,
+      "responseBytes": 9937,
+      "responseSha256": "9da9e21d68a37801ee248503f4db2bfe25ec094dd7dcbb397309009666bcc212",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07521631",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07521631",
+      "retrievedAt": "2026-10-03T18:54:13.189Z",
+      "httpStatus": 200,
+      "responseBytes": 12109,
+      "responseSha256": "07b450b44f0247266001f4589eabfe2a178a6133743aa36eb61ef4926b8fbcec",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07430059",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07430059",
+      "retrievedAt": "2026-10-03T18:54:13.246Z",
+      "httpStatus": 200,
+      "responseBytes": 6689,
+      "responseSha256": "7b03991c172c36f7eed8d3ed74ea750b010324cd35ea59c0862aefbae90a1810",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07177469",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07177469",
+      "retrievedAt": "2026-10-03T18:54:13.310Z",
+      "httpStatus": 200,
+      "responseBytes": 15625,
+      "responseSha256": "fdaf7bed1d048ffa2359ea595c9d69c11fdf35038a6b5bcee93073dd83c80bf5",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07324850",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07324850",
+      "retrievedAt": "2026-10-03T18:54:13.322Z",
+      "httpStatus": 200,
+      "responseBytes": 4783,
+      "responseSha256": "62135e8243ff5a07b354a638499cff1f1c7f6c31e6baec502e261d0cbf4f5521",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT06144684",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06144684",
+      "retrievedAt": "2026-10-03T18:54:13.391Z",
+      "httpStatus": 200,
+      "responseBytes": 16278,
+      "responseSha256": "a5c57c4d8aa8d7b50d74ff758f13848814dd8e6f68fc3a9a9ea96f2d53ad9b91",
+      "priorReceipts": [
+        {
+          "receipt": "2026-09-30-abbv295-discovery.json",
+          "reviewedAt": "2026-09-30T15:33:53Z",
+          "responseSha256": "98551b1eb54ff66a2a1e11b83b13a42e001872b2ce6bf301492cb8e452bec9aa"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07752979",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07752979",
+      "retrievedAt": "2026-10-03T18:54:13.470Z",
+      "httpStatus": 200,
+      "responseBytes": 22166,
+      "responseSha256": "bda8336fd9c2dfcbb60df8d20fafe4edbfda05022f8dc1ca7afe93b9538f1c96",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-03-authorised-amylin-metabolic-followup.json",
+          "reviewedAt": "2026-10-03T07:14:46Z",
+          "responseSha256": "40f3a71c097df61236057d13d9decea412aeac3a9d98d14ef85c584ba6d984c7"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07002905",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07002905",
+      "retrievedAt": "2026-10-03T18:54:13.461Z",
+      "httpStatus": 200,
+      "responseBytes": 6999,
+      "responseSha256": "b40778b58d47b5f7baca3da5e2df42dd2d719902469467f1fc67868ff0fe94a7",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT06679959",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06679959",
+      "retrievedAt": "2026-10-03T18:54:13.526Z",
+      "httpStatus": 200,
+      "responseBytes": 6243,
+      "responseSha256": "f7c8a865407b6f17d599b3805945f2a27ba5718a669d2088fc1362638e386ec7",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT06854952",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06854952",
+      "retrievedAt": "2026-10-03T18:54:13.612Z",
+      "httpStatus": 200,
+      "responseBytes": 63592,
+      "responseSha256": "d2e25c6b55cc37d32eac15667cb4256554e1eee917b2c69e368499995f2f4601",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT06643728",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06643728",
+      "retrievedAt": "2026-10-03T18:54:13.650Z",
+      "httpStatus": 200,
+      "responseBytes": 14594,
+      "responseSha256": "4295e61963c851f860b95b788c4f45e0f0d6afdfc814bdcb9dbc39f4ed4b4505",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07629544",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07629544",
+      "retrievedAt": "2026-10-03T18:54:13.662Z",
+      "httpStatus": 200,
+      "responseBytes": 9401,
+      "responseSha256": "164a88f70bbf149665d9b18d7ebedcc7bb780bfaeda4e5b05da5ba50b5b1d196",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT06737536",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06737536",
+      "retrievedAt": "2026-10-03T18:54:13.782Z",
+      "httpStatus": 200,
+      "responseBytes": 7647,
+      "responseSha256": "12a4b3c3d505c98714f9a1088939ca3021682ef03416b6e05d58c20eb809273e",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT05378893",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT05378893",
+      "retrievedAt": "2026-10-03T18:54:13.802Z",
+      "httpStatus": 200,
+      "responseBytes": 17924,
+      "responseSha256": "f2feae065fa2e9f64a01679c4c139bc51bbfd2bebcd26bf30f449f9c2209579d",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07518589",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07518589",
+      "retrievedAt": "2026-10-03T18:54:13.786Z",
+      "httpStatus": 200,
+      "responseBytes": 9408,
+      "responseSha256": "8e5f0d06871bcaf0b69ba5b3349e354c84bbc5a40b81125e3b413ef231b871a9",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07446998",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07446998",
+      "retrievedAt": "2026-10-03T18:54:13.908Z",
+      "httpStatus": 200,
+      "responseBytes": 16940,
+      "responseSha256": "2a1f1f6a92452f051e883e0d271ad7b506a66cef9fc53ae82dfbb18889294d2f",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT06282458",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06282458",
+      "retrievedAt": "2026-10-03T18:54:13.976Z",
+      "httpStatus": 200,
+      "responseBytes": 18151,
+      "responseSha256": "4a62d78bad28fcec68cbcd3094bcafe610b7492c4b89c142e76c243e0b082946",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07778693",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07778693",
+      "retrievedAt": "2026-10-03T18:54:13.963Z",
+      "httpStatus": 200,
+      "responseBytes": 11480,
+      "responseSha256": "d9b2e53314a0d1a29ef3ea392ff620ce4be6fea76983688f703e105589dbb61a",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-expanded-registry-wave.json",
+          "reviewedAt": "2026-10-02T12:58:22Z",
+          "responseSha256": "52ee2c18d94622d14b54022092bf0a932715e1f2ea069f5ce80e259bcbc06f36"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07791654",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07791654",
+      "retrievedAt": "2026-10-03T18:54:14.030Z",
+      "httpStatus": 200,
+      "responseBytes": 12448,
+      "responseSha256": "858134266b847f85874466a1348744593b55e5659fa8a12064179115ac01e40d",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-expanded-registry-wave.json",
+          "reviewedAt": "2026-10-02T12:58:22Z",
+          "responseSha256": "3ce234d96939f1bc97b11d89b2a277f7257588e263586602492ef5af9eb40dd8"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07791524",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07791524",
+      "retrievedAt": "2026-10-03T18:54:14.105Z",
+      "httpStatus": 200,
+      "responseBytes": 12571,
+      "responseSha256": "3496e0e42938235f1ddd25ac2d647d37ffd8252319d95c98e52546d29bc9d564",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-expanded-registry-wave.json",
+          "reviewedAt": "2026-10-02T12:58:22Z",
+          "responseSha256": "9d3d4f4072019c55f3cc07bc2c1dc0d582dfe675fc629db4267060b819315cdf"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07804797",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07804797",
+      "retrievedAt": "2026-10-03T18:54:14.146Z",
+      "httpStatus": 200,
+      "responseBytes": 8089,
+      "responseSha256": "a0eef51214d2e132e0eeeff9ab3f6863b182fa9634202954c635e66d4a583f00",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-expanded-registry-wave.json",
+          "reviewedAt": "2026-10-02T12:58:22Z",
+          "responseSha256": "564807fd5b4b52f6c8bb212f2a56bf4b1310995ae361eb7f9dfc240598317adb"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07779980",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07779980",
+      "retrievedAt": "2026-10-03T18:54:14.181Z",
+      "httpStatus": 200,
+      "responseBytes": 12524,
+      "responseSha256": "03020253aa70d7120c111dad5ba0509fbe7ea4ace4aa90aa640d4c1f0332972c",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-expanded-registry-wave.json",
+          "reviewedAt": "2026-10-02T12:58:22Z",
+          "responseSha256": "07dba18ca41912c82ce7c7328cee1802c5b6f68202bfd67f6203a80469130126"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07747857",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07747857",
+      "retrievedAt": "2026-10-03T18:54:14.235Z",
+      "httpStatus": 200,
+      "responseBytes": 25688,
+      "responseSha256": "96780c5df965b99483b65b732325f778d975bc29922be7614d46a225910803b5",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-expanded-registry-wave.json",
+          "reviewedAt": "2026-10-02T12:58:22Z",
+          "responseSha256": "2775d31e83eb17b73d9f73effa7c0f0c5e9007c143f6ec89ec730ae8290ede6b"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07798284",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07798284",
+      "retrievedAt": "2026-10-03T18:54:14.270Z",
+      "httpStatus": 200,
+      "responseBytes": 27342,
+      "responseSha256": "f4bc24fe8b971b8ba5dce99921833fa7da2909c189bc9274d9ca812d3469ffc6",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-expanded-registry-wave.json",
+          "reviewedAt": "2026-10-02T12:58:22Z",
+          "responseSha256": "649ae9e0239a7e488b581eebc1f5c6b49ddf7e58a461a8cc7e4ac062275c1472"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07009171",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07009171",
+      "retrievedAt": "2026-10-03T18:54:14.381Z",
+      "httpStatus": 200,
+      "responseBytes": 28508,
+      "responseSha256": "b13ad14d4a1c7962c15ca59eedf674f20a204ac931daa32a8e95cd29949e3c20",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-expanded-registry-wave.json",
+          "reviewedAt": "2026-10-02T12:58:22Z",
+          "responseSha256": "570d0b48f8c9cc31e8feccbd46a4fdfb22d3bceb22ae31dceae5d63f00112da0"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT05822544",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT05822544",
+      "retrievedAt": "2026-10-03T18:54:14.370Z",
+      "httpStatus": 200,
+      "responseBytes": 13893,
+      "responseSha256": "dce11a035e817ee57d317467ec0b315c2ee3a643d1eeea72bce1549c9b4e6f6c",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-expanded-registry-wave.json",
+          "reviewedAt": "2026-10-02T12:58:22Z",
+          "responseSha256": "8bd5f98b3bfff98e45cb6eded331e8f57588bbe75648d144f0c6ae231b576839"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07411378",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07411378",
+      "retrievedAt": "2026-10-03T18:54:14.390Z",
+      "httpStatus": 200,
+      "responseBytes": 15898,
+      "responseSha256": "d409f756418fbcd308a783fded97ca844cbc4675909db01cdd897b6e1c07bab0",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-expanded-registry-wave.json",
+          "reviewedAt": "2026-10-02T12:58:22Z",
+          "responseSha256": "1e4feb79fffe151999fc17b07086232f8c61cc2f2b45db95e4f7fa32e132f7dd"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07731256",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07731256",
+      "retrievedAt": "2026-10-03T18:54:14.499Z",
+      "httpStatus": 200,
+      "responseBytes": 19817,
+      "responseSha256": "e0f2ccfdc5486e0663fac0af54b577e8e21dd3fc11f8774da43364cbc866a46b",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-semaglutide-specialist-trials.json",
+          "reviewedAt": "2026-10-02T15:21:20Z",
+          "responseSha256": "ab8d75a583d789d4e584005b68f71c6218e94cedc18f83a473343fa47943cbbc"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07755085",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07755085",
+      "retrievedAt": "2026-10-03T18:54:14.598Z",
+      "httpStatus": 200,
+      "responseBytes": 14006,
+      "responseSha256": "d27f4ea08de1b61007ca8ca0b9d85af4775e0730d86be814add74147882bd350",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-semaglutide-specialist-trials.json",
+          "reviewedAt": "2026-10-02T15:21:20Z",
+          "responseSha256": "40c39473726aa0089e3b5b8d8167b622eeae3743d872ffe0c1bebcfee58932e0"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07820358",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07820358",
+      "retrievedAt": "2026-10-03T18:54:14.555Z",
+      "httpStatus": 200,
+      "responseBytes": 21643,
+      "responseSha256": "7dd7e6b5d6cf533a86f39b369d3af01faac614df2f7cde028ebb7d760a8f140d",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-semaglutide-specialist-trials.json",
+          "reviewedAt": "2026-10-02T15:21:20Z",
+          "responseSha256": "1c37c556818aa2ff97ba742e3327da371b262c3f2a46a9e74af93ad1a60e0528"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07747805",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07747805",
+      "retrievedAt": "2026-10-03T18:54:14.625Z",
+      "httpStatus": 200,
+      "responseBytes": 18770,
+      "responseSha256": "1ebb3584a73aad0f6be3970acc1a8a39e658569eb0682fa6d16bec3c9a000dde",
+      "priorReceipts": [],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07065552",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07065552",
+      "retrievedAt": "2026-10-03T18:54:14.686Z",
+      "httpStatus": 200,
+      "responseBytes": 12042,
+      "responseSha256": "f0e9957e22f816f02930b5c4ac216d18f4c540dbec3b69b3e44deee87b5b1d19",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-specialist-registry-followup.json",
+          "reviewedAt": "2026-10-02T18:55:00Z",
+          "responseSha256": "fd1fa42bd4ef8667b3e2a9d76ca0cacbce82f0fe42b953a6252ac7997aef5948"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07078838",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07078838",
+      "retrievedAt": "2026-10-03T18:54:14.726Z",
+      "httpStatus": 200,
+      "responseBytes": 10298,
+      "responseSha256": "48a18ee50943eb65c803b1662bbf00460fbef0ed94335fdb9512e8f5ba08a668",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-02-authorised-specialist-registry-followup.json",
+          "reviewedAt": "2026-10-02T18:55:00Z",
+          "responseSha256": "a107a4dbbb9396bde92383416de0bb34b603e24a1ec5c8cb524251f311319eaa"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT06732245",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06732245",
+      "retrievedAt": "2026-10-03T18:54:14.786Z",
+      "httpStatus": 200,
+      "responseBytes": 26243,
+      "responseSha256": "53d7a241c7c2fa749f169d638f895bd48794cc4c59ea51666aa40f14113e014e",
+      "priorReceipts": [
+        {
+          "receipt": "2026-09-30-eloratzp-na931-discovery.json",
+          "reviewedAt": "2026-09-30T19:06:00Z",
+          "responseSha256": "4d28d0f2a40fdc3b78fc16289cad9aeee7d67cc36750d1beaad79a95625f5ca6"
+        },
+        {
+          "receipt": "2026-10-02-authorised-na931.json",
+          "reviewedAt": "2026-10-02T23:05:00Z",
+          "responseSha256": "214e1ea8a2638be959940f093f7576a0a77046fe65476c654f837ed14f7bfbb5"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT06595238",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06595238",
+      "retrievedAt": "2026-10-03T18:54:14.805Z",
+      "httpStatus": 200,
+      "responseBytes": 13256,
+      "responseSha256": "d2ff1b356b6cb29af407a2b57688f25506531c1fc3a9bb37ad1b9221351d15e6",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-03-authorised-amylin-metabolic-followup.json",
+          "reviewedAt": "2026-10-03T07:14:46Z",
+          "responseSha256": "3c67c41a28d27775380f119c90bea50a75b6b6a84a99aed0d93df941b8a9e67d"
+        },
+        {
+          "receipt": "2026-10-03-authorised-azd6234-selene.json",
+          "reviewedAt": "2026-10-03T08:55:00Z",
+          "responseSha256": "d2ff1b356b6cb29af407a2b57688f25506531c1fc3a9bb37ad1b9221351d15e6"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": true,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07784725",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07784725",
+      "retrievedAt": "2026-10-03T18:54:14.875Z",
+      "httpStatus": 200,
+      "responseBytes": 42377,
+      "responseSha256": "a26ad96cb2a9be3f8d0e218c541115cfdd4b6adaa61beb0147d5efb609cab97d",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-03-authorised-azd6234-selene.json",
+          "reviewedAt": "2026-10-03T08:55:00Z",
+          "responseSha256": "a26ad96cb2a9be3f8d0e218c541115cfdd4b6adaa61beb0147d5efb609cab97d"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": true,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT05713799",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT05713799",
+      "retrievedAt": "2026-10-03T18:54:14.938Z",
+      "httpStatus": 200,
+      "responseBytes": 16913,
+      "responseSha256": "60cf24b2bafb10155f21ee9312f773c5b97413d12d3ee66ce207f371ecc0a550",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-03-authorised-amylin-metabolic-followup.json",
+          "reviewedAt": "2026-10-03T07:14:46Z",
+          "responseSha256": "3a1360d63017f9d751fd1a02b373457b7762117db8e8c1239fbfb1fef61cc29c"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07511205",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07511205",
+      "retrievedAt": "2026-10-03T18:54:14.935Z",
+      "httpStatus": 200,
+      "responseBytes": 14233,
+      "responseSha256": "0b74d4bdd1cc6f7b36a1da9594faf73d568ef605dbb4fdb13f16d067130de2a7",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-03-authorised-azd1043.json",
+          "reviewedAt": "2026-10-03T08:20:02Z",
+          "responseSha256": "d0a53bb5eed54be8b84e1a8c16088d5c5565f0a3b3aed701848bf0983b09e145"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT06842186",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06842186",
+      "retrievedAt": "2026-10-03T18:54:15.045Z",
+      "httpStatus": 200,
+      "responseBytes": 9693,
+      "responseSha256": "6202e4dd5238843fc2a1d08d35ada5ec5f8d1e46a5daa8b7ab9ec769939ba02d",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-03-authorised-wve007.json",
+          "reviewedAt": "2026-10-03T09:28:00Z",
+          "responseSha256": "6202e4dd5238843fc2a1d08d35ada5ec5f8d1e46a5daa8b7ab9ec769939ba02d"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": true,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT06577766",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06577766",
+      "retrievedAt": "2026-10-03T18:54:15.062Z",
+      "httpStatus": 200,
+      "responseBytes": 7850,
+      "responseSha256": "696902599a9b792f063ea95614410d7227ccbe04949efe14acb0bd180990761c",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-03-authorised-specialist-registry-wave.json",
+          "reviewedAt": "2026-10-03T11:29:25Z",
+          "responseSha256": "a20c73dcf92f4f128637fe090b66d8ec2cc896be3f8b1564facc937d6b9a4ed8"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07495904",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07495904",
+      "retrievedAt": "2026-10-03T18:54:15.126Z",
+      "httpStatus": 200,
+      "responseBytes": 14914,
+      "responseSha256": "440de0ba484f29fa9768c324dc247c20e34b6810db4d18d76a058596d9074c63",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-03-authorised-lean-mass-energy-followup.json",
+          "reviewedAt": "2026-10-03T13:01:59Z",
+          "responseSha256": "3e64bc50c11be36503719aca3ed7d454e758ca8f76d22366fc225ca22e181b8c"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07846033",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07846033",
+      "retrievedAt": "2026-10-03T18:54:15.174Z",
+      "httpStatus": 200,
+      "responseBytes": 8132,
+      "responseSha256": "6e552a1024f2c4effe3cf35ecaae5e473457a8d2d2227bf85e8897b652ee5df2",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-03-authorised-vk3019-at673.json",
+          "reviewedAt": "2026-10-03T17:41:36Z",
+          "responseSha256": "f3e4d9273ed3466bf763d17f231eada140960088e17e162dba18a79a69c179da"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    },
+    {
+      "nctId": "NCT07724340",
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07724340",
+      "retrievedAt": "2026-10-03T18:54:15.198Z",
+      "httpStatus": 200,
+      "responseBytes": 14190,
+      "responseSha256": "1943ae464092b11553ae9454edd9ca0663d0bdeddcc4b6c10a0d17dd70f45389",
+      "priorReceipts": [
+        {
+          "receipt": "2026-10-03-authorised-vk3019-at673.json",
+          "reviewedAt": "2026-10-03T17:41:36Z",
+          "responseSha256": "102c414a09d99eac7dae6c13b2acf4668fbda2f89d6f09ac43e8c0f20a5feb40"
+        }
+      ],
+      "rawResponseMatchesEarlierReceipt": false,
+      "assessment": "Record-status fields reviewed against current registry. A differing raw response hash is not asserted to be unchanged full medical evidence. Summary wording is not automatically rewritten."
+    }
+  ],
+  "supportRetrievals": [
+    {
+      "id": "mhra-glp1-pancreatitis-20260129",
+      "title": "MHRA: strengthened pancreatitis warnings",
+      "url": "https://www.gov.uk/drug-safety-update/glp-1-receptor-agonists-and-dual-glp-1-slash-gip-receptor-agonists-strengthened-warnings-on-acute-pancreatitis-including-necrotising-and-fatal-cases",
+      "format": "govuk-json",
+      "sourcePublishedAt": "2026-01-29",
+      "requiredTerms": [
+        "pancreatitis",
+        "Yellow Card",
+        "GLP-1"
+      ],
+      "checkUrl": "https://www.gov.uk/api/content/drug-safety-update/glp-1-receptor-agonists-and-dual-glp-1-slash-gip-receptor-agonists-strengthened-warnings-on-acute-pancreatitis-including-necrotising-and-fatal-cases",
+      "retrievedAt": "2026-10-03T18:54:40.449Z",
+      "httpStatus": 200,
+      "bytes": 21854,
+      "responseSha256": "151b86b43f80c82feff4fa4db33b582f12106be403e61349c1c688104c719e0a",
+      "result": {
+        "fingerprint": "14ad61a771cb8958dc8114fcbdfa9e3fb9f2001f7e754932a2a2b175ff1816d0",
+        "withdrawn": false
+      }
+    },
+    {
+      "id": "scotland-tirzepatide-access",
+      "title": "SMC: tirzepatide weight-management public summary",
+      "url": "https://scottishmedicines.org.uk/medicines-advice/tirzepatide-mounjaro-obesity-full-smc2653/public-summary/",
+      "format": "html",
+      "sourcePublishedAt": "2024-06-10",
+      "requiredTerms": [
+        "tirzepatide",
+        "restricted use",
+        "NHSScotland"
+      ],
+      "checkUrl": "https://scottishmedicines.org.uk/medicines-advice/tirzepatide-mounjaro-obesity-full-smc2653/public-summary/",
+      "retrievedAt": "2026-10-03T18:54:46.409Z",
+      "httpStatus": 200,
+      "bytes": 38403,
+      "responseSha256": "91f266ff1af4443ed4d714daa89e9b84d473a1a8b4b1a4e2b25c6c8e0a391c74",
+      "contentSelector": "#main-content",
+      "result": {
+        "fingerprint": "f038f2b7371ae5f7384c9e32def5c0323c8bc4bb54d2f683c5e11ec76e6e3611",
+        "withdrawn": false
+      },
+      "previousRetrievalLimitation": "missing_html_document"
+    },
+    {
+      "id": "wales-weight-access",
+      "title": "Welsh Government: weight-management clinical pathway",
+      "url": "https://www.gov.wales/new-clinical-pathway-treating-and-managing-obesity-whc2025043-html",
+      "format": "html",
+      "sourcePublishedAt": "2025-10-23",
+      "sourceUpdatedAt": "2026-07-07",
+      "requiredTerms": [
+        "WHC/2025/043",
+        "tirzepatide",
+        "7 July 2026"
+      ],
+      "checkUrl": "https://www.gov.wales/new-clinical-pathway-treating-and-managing-obesity-whc2025043-html",
+      "retrievedAt": "2026-10-03T18:54:52.580Z",
+      "httpStatus": 200,
+      "bytes": 32797,
+      "responseSha256": "a0bea62e443c87ca89ecf2b8ca1ae8cb38a710a42f1327d54c6fbc397b538069",
+      "result": {
+        "fingerprint": "fb7a3affef045cbdddad966d7725c32f16b58ff8c11017c87c38a1d125d383cf",
+        "withdrawn": false
+      }
+    },
+    {
+      "id": "ni-weight-access",
+      "title": "Department of Health NI: first phase of ROMS",
+      "url": "https://www.health-ni.gov.uk/news/health-minister-announces-first-phase-nis-first-obesity-management-service",
+      "format": "html",
+      "sourcePublishedAt": "2026-06-29",
+      "requiredTerms": [
+        "ROMS",
+        "Autumn 2026",
+        "45"
+      ],
+      "checkUrl": "https://www.health-ni.gov.uk/news/health-minister-announces-first-phase-nis-first-obesity-management-service",
+      "retrievedAt": "2026-10-03T18:54:59.301Z",
+      "httpStatus": 200,
+      "bytes": 41117,
+      "responseSha256": "6cc877edeb9be04a962229f2779301ea8f7d3b90d721c15e8c11852ee88a682a",
+      "result": {
+        "fingerprint": "603c8b1b586505fb44083a7b9a6dc1d4e89ac2ea0e31a1e4f7b767f18540edde",
+        "withdrawn": false
+      }
+    }
+  ],
+  "wegovyValidationRepair": {
+    "url": "https://www.medicines.org.uk/emc/product/13803/smpc",
+    "httpStatus": 200,
+    "responseSha256": "bdf4ff7c3896d734c7bb24b99d8baab2aa486a2ed8102469498ff8159eacaf29",
+    "previousReviewedFingerprint": "2d47d8fcebc5f78afe4fa4834970434d327c9731ecd2efbfc4ec85e649059ca6",
+    "reviewDateRenewed": false,
+    "baselineChanged": false,
+    "assessment": "Complete emc response and extracted document checked. MASH indication remains present. Validation incorrectly parsed already-extracted text as HTML a second time; a less-than BMI threshold removed subsequent text. Fix required-term validation without changing the claim-bearing fingerprint, medical wording or review date."
+  },
+  "accessLimits": {
+    "scotland": "SMC recommendation is not local service access or pharmacy stock.",
+    "wales": "Use current WHC/2025/043 updated 7 July 2026 rather than expired earlier WHC/2025/018. Specialist pathway and specific exceptions, not universal GP access.",
+    "northernIreland": "29 June announcement plans autumn 2026 rollout. No independently verified operational opening or present availability in this review."
+  },
+  "limitations": [
+    "Trial record-status monitoring does not cover every sentence, outcome analysis, registry worldwide or sponsor document.",
+    "Other manually reviewed evidence remains outside automatic monitoring and is labelled.",
+    "No UK licence, NHS access or supply inferred from research records.",
+    "Clinical approval remains null.",
+    "Search-service retrieval of the live Watch and health endpoint failed; direct HTTP retrieval succeeded.",
+    "SMC default HTML selector initially failed; complete #main-content selected and reread before baseline approval."
+  ]
+}

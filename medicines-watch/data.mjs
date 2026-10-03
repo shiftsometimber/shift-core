@@ -1,4 +1,5 @@
 import {industrySources} from './industry.mjs';
+import {credibilitySources} from './credibility.mjs';
 // Editorial evidence snapshot, not a clinical recommendation or a stock feed.
 // A source check never advances this date or approves changed medical wording.
 export const REVIEWED_AT = '2026-09-15T21:28:30Z';
@@ -78,6 +79,7 @@ const smpc = (id, title, product, updatedAt, requiredTerms) => source(
 // not evidence of unchanged content, even if a researcher could read the page.
 export const sources = [
   ...industrySources,
+  ...credibilitySources,
   govuk('mounjaro-mhra', 'MHRA: tirzepatide weight-management authorisation',
     '/government/news/mhra-authorises-diabetes-drug-mounjaro-tirzepatide-for-weight-management-and-weight-loss',
     '2023-11-08', ['Mounjaro', 'tirzepatide', 'weight management']),

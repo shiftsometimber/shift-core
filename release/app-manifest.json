@@ -11,18 +11,18 @@
     "frontend/member/member-my-timber-problem-v1.js": "e86d1b18840e947fc833a4c3181347302c5622e5c1157fad2f95aca1429dcb2b",
     "frontend/member/whole-man-intent-os-v1.js": "3a5e5d722412eca2c8b92b70d3d39a1030564af84a43a88ecea8e0b0d3d623c7",
     "growth-member-public.mjs": "60a7e4007f25ee91be3e9b4e1c34dc8baffee1346ff5e1ccf7333f6aab0aa2a6",
-    "medicines-watch/README.md": "d369666badd171d0efbdb222f7f209a684afd8daeb7f54ac0bdeb315b4625ebf",
-    "medicines-watch/data.mjs": "85e945c78bf7d9f4f6a47219bf33788db0893beaa7de7ee180c21c52973b4a47",
+    "medicines-watch/README.md": "9eeda2a506c4ec7629e1535bd0013aa737618037b0db0d3d3876ddf362aa4ec0",
+    "medicines-watch/data.mjs": "d77ae2daccc40afcbc0ae7e1e54226dc5340ad53f017ae27d3d73429fa979d1f",
     "medicines-watch/discovery.mjs": "ffac92411a3b12e44659d55e19f6ce9d92d55097b86112b982c83b6f246942c3",
-    "medicines-watch/industry-page.mjs": "2dbd0ecc9c4825c4a461efce9a0460e1cfbc69bfcd392206ac6248df35a806c4",
+    "medicines-watch/industry-page.mjs": "5b198c1c9be837ab7034db07c0617e32665714563339c1c9119e4207e88b694b",
     "medicines-watch/industry.mjs": "e2867e541f8caa6cbc4d13ecf5f5791141ff873f0f9785b77efc50613b47b639",
-    "medicines-watch/industry.test.mjs": "4d94f19cc21aeeb0fc174ae18382072b65fbb5f61096b988b8a67b326b3ea3ea",
-    "medicines-watch/page.mjs": "8e90e4796ffa134c89b47047f72389bbbf57ece467caab36d7b2a517e8b1af44",
+    "medicines-watch/industry.test.mjs": "c1a82549b780e6eb74aab140b17725bcdcca1bb7a3ce9d136fe8602965bb4166",
+    "medicines-watch/page.mjs": "18c8c2d2ee8873bf29080c46a12823c570b759e36eebca192b6ac6ed8e0d3272",
     "medicines-watch/reviews/2026-09-29-foundayo-nice-schedule.json": "ac8a2089636a3e2ab22a05762a3b32558b7575064a05ec5c36e0a9d8d1d61d10",
     "medicines-watch/reviews/2026-09-29-industry-expansion.json": "546b39cd7347138a4772909aa300d102690e291254e593c8feaf64aa60e5a640",
     "medicines-watch/source-review.test.mjs": "79e41c2d5948ce28924df19e7f57901feade2f9f181ba71e4c2c722538276056",
     "medicines-watch/verify-live-sources.test.mjs": "1aae798683aa5e8b9057ee00763616db753d7a764dbb8ddbc5eb269b4f4d40c0",
-    "medicines-watch/verify-live.mjs": "38f6a10d204b4738271c8ab070f5ae4c63167070faf303b5a4c1f0fbb73c8348",
+    "medicines-watch/verify-live.mjs": "edb88d6e11da705b70ab56a7280637ba8f5bbf145085b5c60ad6e9a567251f08",
     "member-experience/checkin-followup-client.mjs": "41c89ff74d976809961155d968ca66d4d99381d1222fd14b0cbd31f2cbf68c4c",
     "member-experience/chrome.mjs": "842e80408c00464c3cec28d1d800c1abe575ecb49808d8ee2d558831875b27df",
     "member-experience/grub-runtime.mjs": "fc30a98faa61cc29afacd364b6d184117c376c0ff0dbf6f60cb0fe33737142fc",
@@ -171,7 +171,7 @@
     "g2-014-progress-picture-premium-production.mjs": "8b05b304b7c02c299a5d7739fc82bd196cfe17ffbebbcddc6df10bc847f9ca9c",
     "release/member-acceptance-scope.mjs": "8b9ef9f55d29fc9605b0477ab4cfbbd664bc74c87ec57fc258e54a5c6ca7d088",
     "my-timber-final-source-gate.mjs": "0e642c69787fa108ad72acf2fd00f0caae1dd10f6aeb0c46880c2bd0d14c37b1",
-    "medicines-watch/monitor.mjs": "93021ef955ffa677c7b73f69a78b4ffcbc4e62a62541f2a1ddb7724b1dd8d608",
+    "medicines-watch/monitor.mjs": "4fc6a584915e10c790cd322f9942dd5788962a3f821680d2099be9f0247ff33a",
     "medicines-watch/monitor.test.mjs": "d8156a9238dc84feb84e1cf5561b4dfe4c050f04e3feb036c9b249ddde10b278",
     "medicines-watch/reviews/2026-10-02-source-monitor-repairs.json": "bb69b3c5d348c75801585cfec5108b070842c01561ca3e23d6a0816445323494",
     "medicines-watch/reviews/2026-10-02-authorised-registry-omissions.json": "e5c5352bfacee2b811ec860a6b55cfa41f9d6b827791d9119e74bce7924f92e7",
@@ -227,7 +227,11 @@
     "tests/public-ticker-contrast-safety.test.mjs": "2ae4b5a3e59e064e5c95707e471796a87115d8a0e2eb66e9d29b2cc5de565125",
     "shift-health-public-content.mjs": "4ecfeec3e774fa7501d0bdcd9ad4554dce33d66e1bc66c5d60b6cff4f9de895c",
     "frontend/member/shift-health-catalogue-v1.js": "d5b799098caa0b9a59844ea8bbde9cc71162b984c0b5d3bb5d40f786fa742720",
-    "tests/testosterone-public.test.mjs": "369035bb9d5e1197fbc30d1cc5da1ddb916f4771164fa9d99f353876d75da5cb"
+    "tests/testosterone-public.test.mjs": "369035bb9d5e1197fbc30d1cc5da1ddb916f4771164fa9d99f353876d75da5cb",
+    "medicines-watch/credibility.mjs": "0e1ab3c152d16b5cacf14701d3067037ed59c33271dcd8cb368b8e9fb71fd2ed",
+    "medicines-watch/credibility.test.mjs": "d08a127aebb0b90bf7bdd4378212d6f20299dd0c5dfb6222e4b0bb04624fdb36",
+    "medicines-watch/registry-lifecycle.mjs": "955b9f70a22fe17246867a8098f7bae89204cedc3d2055dbb6ba8b84e714870e",
+    "medicines-watch/reviews/2026-10-03-credibility-improvements.json": "f883eac426fc35e258902e898f49bc098f7d38ab0ba514b75da59466bb986e05"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
@@ -310,5 +314,72 @@
     "previewRun": 36987513488,
     "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404–IMG_2406 and the 07:57 screen recording.",
     "scope": "Three exact presentation/preview files; existing records, controls and clinical/commercial gates preserved."
+  },
+  "watchCredibility": {
+    "contentCommit": "56b04f9ffb847621a5a670a8ee921a83e529761e",
+    "evidenceRun": 37146866061,
+    "editorialAuthority": "Matt agreed to five improvements on 3 October 2026; standing supported factual publication authority. No clinical approval inferred.",
+    "catalogueCount": 86,
+    "configuredSources": 122,
+    "medicalSummaryReviewDatesChanged": false,
+    "retainedMain": "7bd5fb37d7bbce66fa5e728f59304843817128bf",
+    "lastFullyVerifiedProductionRun": 37147855486,
+    "lastFullyVerifiedProductionSource": "71383ce716abc9c8c937e48c87f59a2e9fe2d618",
+    "deploymentRequirement": "Actual owned deployment and rollback capture must be reconciled at promotion; this metadata does not claim the new payload is live.",
+    "availabilityAttempt": {
+      "attemptedAt": "2026-10-03T19:12:31.195Z",
+      "checked": 116,
+      "failed": 6,
+      "failures": [
+        {
+          "id": "structure-sep2026",
+          "error": "check_timeout",
+          "httpStatus": null,
+          "lastFailureAt": "2026-10-03T19:12:31.195Z"
+        },
+        {
+          "id": "apitegromab-embraze-paper",
+          "error": "check_timeout",
+          "httpStatus": 200,
+          "lastFailureAt": "2026-10-03T19:12:31.195Z"
+        },
+        {
+          "id": "emugrobart-chugai-20260928",
+          "error": "check_timeout",
+          "httpStatus": null,
+          "lastFailureAt": "2026-10-03T19:12:31.195Z"
+        },
+        {
+          "id": "registry-nct07855133",
+          "error": "check_timeout",
+          "httpStatus": null,
+          "lastFailureAt": "2026-10-03T19:12:31.195Z"
+        },
+        {
+          "id": "registry-nct07757087",
+          "error": "check_timeout",
+          "httpStatus": null,
+          "lastFailureAt": "2026-10-03T19:12:31.195Z"
+        },
+        {
+          "id": "wegovy-tablet-smpc",
+          "error": "check_timeout",
+          "httpStatus": null,
+          "lastFailureAt": "2026-10-03T19:12:31.195Z"
+        }
+      ],
+      "scope": "Availability/content check, not renewal of medical reviews. Transient timeouts remain failed; no green baseline is invented."
+    },
+    "verifiedArticleRuntime": {
+      "run": 37147521854,
+      "source": "f5184e4ffefd6bc2eb105e86e7107e5c61f00327",
+      "version": "b25b6adb-1fc3-473e-97b7-88bfe3c27a48",
+      "scope": "Article-only runtime proof; complete guarded combined release still required."
+    },
+    "discoveryAttempt": {
+      "reviewDate": "2026-10-03",
+      "method": "Separate fresh dated/topic searches and broader undated developer, early trial, specialist, lean-mass and discontinued-programme searches. Primary leads compared with the compiled catalogue.",
+      "scope": "Known Regeneron COURAGE, EMBRAZE, sponsor and registry announcements already tracked; ZP6590 and additional sponsor/registry leads remain unassessed pending actual primary review. Search results are not factual review or industry completeness."
+    }
   }
 }
