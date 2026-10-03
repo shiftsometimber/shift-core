@@ -1,4 +1,5 @@
 import { sources as catalogueSources, medicines as catalogueMedicines } from './data.mjs';
+import {registryLifecycle} from './registry-lifecycle.mjs';
 
 export const CHECK_INTERVAL_MS = 60 * 60 * 1000;
 export const REVIEW_INTERVAL_MS = 7 * 24 * CHECK_INTERVAL_MS;
@@ -191,9 +192,15 @@ export async function fingerprintSource(source, body, contentType = '') {
     normalized = jatsDocument(body, source);
     withdrawn = normalized.withdrawn_notice;
     claimText = `${normalized.title} ${normalized.front} ${normalized.body}`;
+  } else if (source.format === 'ctgov-lifecycle') {
+    if (contentType && !/\bjson\b/i.test(contentType)) throw new Error('unexpected_content_type');
+    let data;
+    try { data = JSON.parse(body); } catch { throw new Error('invalid_json'); }
+    normalized = registryLifecycle(data, source.nctId);
+    claimText = JSON.stringify(normalized);
   } else throw new Error('unsupported_source_format');
   if (!Array.isArray(source.requiredTerms) || !source.requiredTerms.length ||
-      !source.requiredTerms.every(term => typeof term === 'string' && term.trim() && plainText(claimText).toLowerCase().includes(plainText(term).toLowerCase()))) {
+      !source.requiredTerms.every(term => typeof term === 'string' && term.trim() && claimText.toLowerCase().includes(plainText(term).toLowerCase()))) {
     throw new Error('source_identity_not_verified');
   }
   const encoded = new TextEncoder().encode(JSON.stringify(normalized));
@@ -244,7 +251,7 @@ async function retrieve(source, fetchImpl, timeoutMs, maxBytes) {
         const response = await fetchImpl(source.checkUrl || source.url, {
           // Workers supports manual redirects; the status guard below rejects every 3xx.
           signal: controller.signal, redirect: 'manual',
-          headers: { Accept: source.format === 'govuk-json' ? 'application/json' : source.format === 'jats-xml' ? 'application/xml' : source.format === 'pdf' ? 'application/pdf' : 'text/html',
+          headers: { Accept: ['govuk-json','ctgov-lifecycle'].includes(source.format) ? 'application/json' : source.format === 'jats-xml' ? 'application/xml' : source.format === 'pdf' ? 'application/pdf' : 'text/html',
             'User-Agent': 'ShiftMedicinesWatch/1.0 (source availability and change checks)' }
         });
         httpStatus = response.status;
