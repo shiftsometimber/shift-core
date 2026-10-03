@@ -30,7 +30,8 @@ function normaliseTreatments(body,required){
 // Exact source-reviewed pre/post blocks. This is a preservation allowlist, not a wildcard.
 export const TREATMENT_RELATED_LEGACY="<section data-shift-link-repair aria-label=\"Related existing guides\"><h2>Planning around treatment</h2><ul><li><a href=\"/articles/travelling-with-weight-loss-medication\">Travelling with weight-loss medication: sort the boring bits before the airport</a></li></ul></section>";
 export const TREATMENT_RELATED_CURRENT="<section data-shift-link-repair aria-label=\"Related existing guides\"><h2>Compare common treatment questions</h2><ul><li><a href=\"/comparisons/medications/mounjaro-vs-saxenda\">Mounjaro vs Saxenda</a></li><li><a href=\"/comparisons/medications/mounjaro-vs-orlistat\">Mounjaro vs Orlistat</a></li><li><a href=\"/comparisons/medications/wegovy-vs-saxenda\">Wegovy vs Saxenda</a></li><li><a href=\"/guides/nhs-weight-loss-medication-pathways\">NHS weight-loss medication pathways</a></li></ul><h2>Planning around treatment</h2><ul><li><a href=\"/articles/travelling-with-weight-loss-medication\">Travelling with weight-loss medication: sort the boring bits before the airport</a></li></ul></section>";
-function normaliseTreatmentRelatedGuide(body){
+export const TREATMENT_RELATED_PREVIOUS_COPY=TREATMENT_RELATED_CURRENT.replace('<h2>Compare common treatment questions</h2>','<h2>Compare the options Google is already finding</h2>');
+function normaliseTreatmentRelatedGuide(body,required=false){
  const html=body.toString('utf8');
  requireThat(Buffer.from(html).equals(body),'Treatment Centre related guides must be valid UTF-8');
  // CSS selectors may mention this attribute many times; count section elements only.
@@ -39,7 +40,7 @@ function normaliseTreatmentRelatedGuide(body){
  const start=markers[0].index,close=html.indexOf('</section>',start);
  requireThat(close>start,'Treatment Centre related-guide section is malformed');
  const end=close+'</section>'.length,block=html.slice(start,end);
- requireThat(block===TREATMENT_RELATED_LEGACY||block===TREATMENT_RELATED_CURRENT,'Treatment Centre related-guide section differs from exact approved source');
+ requireThat(block===TREATMENT_RELATED_LEGACY||block===TREATMENT_RELATED_CURRENT||(block===TREATMENT_RELATED_PREVIOUS_COPY&&!required),'Treatment Centre related-guide section differs from exact approved source');
  // Retain a fixed block at the same location; moving it changes the fingerprint.
  return {body:Buffer.from(html.slice(0,start)+TREATMENT_RELATED_LEGACY+html.slice(end)),relatedGuide:true,revision:block===TREATMENT_RELATED_CURRENT?'current':'legacy'};
 }
@@ -83,7 +84,7 @@ export function publicPageEvidence(path,status,input,{requireTreatmentsEntry=fal
  const body=Buffer.isBuffer(input)?input:Buffer.from(input);
  let preserved;
  if(path==='/treatment-centre'){
-  const related=normaliseTreatmentRelatedGuide(body);
+  const related=normaliseTreatmentRelatedGuide(body,requireTreatmentsEntry);
   const treatments=normaliseTreatments(related.body,requireTreatmentsEntry);
   preserved={body:treatments.body,entry:treatments.entry,relatedGuide:true,revision:related.revision,authoritySha256:hash(treatments.authorityBody||related.body),authorityBytes:(treatments.authorityBody||related.body).length};
  }else preserved=path==='/'?normaliseHomeStigmaAlt(body):path==='/programme'?normaliseProgrammeSeo(body):path==='/shift-health'?normaliseShiftHealthTwitterImage(body):{body,entry:false};
