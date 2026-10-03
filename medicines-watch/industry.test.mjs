@@ -57,7 +57,7 @@ test('WVE-007 separates monotherapy registry, sponsor combination and planned ma
  assert.ok(wve007Publication.discoveryPass.failedChecks.length);
  const html=industryMarkup({},new URLSearchParams({q:'WVE-007'}));
  assert.equal((html.match(/data-industry-card/g)||[]).length,1);
- assert.match(html,/not automatically content-monitored/);
+ assert.match(html,/Status checks do not assess clinical outcomes/);
 });
 test('Viking and Antag follow-up separates actual starts, registry status and unproven outcomes',()=>{
  assert.equal(vikingAntagFollowup.publicationStatus,'owner_authorised_factual_publication');
@@ -82,7 +82,7 @@ test('Viking and Antag follow-up separates actual starts, registry status and un
   assert.equal(e.clinicalApproval,null);
   assert.equal(e.reviewedAt,vikingAntagFollowup.reviewedAt);
   for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k]);
-  assert.match(industryMarkup({},new URLSearchParams({q:e.name})),/not automatically content-monitored/);
+  assert.match(industryMarkup({},new URLSearchParams({q:e.name})),/Status checks do not assess clinical outcomes/);
  }
  assert.ok(vikingAntagFollowup.registryEvidence.every(record=>record.hasResults===false));
  assert.ok(vikingAntagFollowup.registryEvidence.every(record=>/^[a-f0-9]{64}$/.test(record.responseSha256)));
@@ -182,7 +182,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
   assert.equal(e.sourceIds.length,0);
   for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k]);
   const html=industryMarkup({},new URLSearchParams({q:e.name}));
-  assert.match(html,/not automatically content-monitored/);
+  assert.match(html,/Status checks do not assess clinical outcomes/);
  }
  assert.equal(amylinMetabolicFollowup.automatedMonitorChanges,false);
  assert.equal(amylinMetabolicFollowup.clinicalApproval,null);
@@ -194,7 +194,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,80);assert.equal(sources.length,51);
+ assert.equal(medicines.length,6);assert.equal(industry.length,80);assert.equal(sources.length,122);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,86);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
@@ -300,7 +300,7 @@ test('unverified source baselines stay visible even if a caller supplies current
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
  assert.equal((html.match(/data-industry-card/g)||[]).length,industry.length);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
- assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
+ assert.match(html,/not clinical approval/);assert.match(html,/Status checks do not assess clinical outcomes/);
 });
 test('paused and discontinued programmes remain distinct and searchable',()=>{
  const paused=industryMarkup({},new URLSearchParams({industry:'paused'}));
