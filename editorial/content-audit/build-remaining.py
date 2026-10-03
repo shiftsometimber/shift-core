@@ -38,7 +38,7 @@ def build(source,out):
                 elif isinstance(o,dict):
                     if o.get('@type') in ['Article','MedicalWebPage','WebPage']:
                         o['name']=a['title'];o['headline']=a['title'];o['description']=a['intro'];o['dateModified']='2026-10-03';o.pop('reviewedBy',None)
-                        if 'author' in o:o['author']={'@type':'Organization','name':'Shift Some Timber Editorial Team','url':'https://shiftsometimber.co.uk/authors/shift-some-timber-editorial-team'}
+                        if 'author' in o:o['author']={'@type':'Organization','name':'Shift Some Timber Editorial Team','url':'https://shiftsometimber.co.uk/authors/shift-some-timber-editorial-team','logo':{'@type':'ImageObject','url':'https://shiftsometimber.co.uk/assets/shift-wordmark.png'}}
                     for v in list(o.values()):visit(v)
             visit(data)
             return '<script type="application/ld+json">'+json.dumps(data,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+'</script>'
