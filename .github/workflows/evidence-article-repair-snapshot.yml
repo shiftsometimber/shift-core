@@ -1,0 +1,33 @@
+name: Validate bounded evidence-article repair
+on:
+  push:
+    branches: [fix/evidence-based-article-20261003-v2]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Verify exact remote source and reviewed transformation without writing
+        run: node babylove/repair-evidence-based-article.mjs --check
+      - name: Test renderer and existing publication regressions
+        run: node --test babylove/dynamic-public.test.mjs babylove/public-article.test.mjs tests/public-shell-contract.test.mjs tests/public-seo-closeout.test.mjs
+      - name: Compile exact Worker candidate without deployment
+        run: npx wrangler deploy --dry-run --config wrangler.jsonc
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evidence-article-repair-check-${{ github.sha }}
+          path: babylove-proof/
+          retention-days: 7
