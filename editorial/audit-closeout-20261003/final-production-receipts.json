@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-03T16:42:34.972Z",
+  "runtime": {
+    "privacyPR": 1017,
+    "privacyRun": 37135991871,
+    "redactionPR": 1018,
+    "redactionRun": 37137044547,
+    "conclusion": "success",
+    "redactionReadback": {
+      "at": "2026-10-03T16:41:14.223117+00:00",
+      "redact_query_string": true
+    }
+  },
+  "pages": {
+    "source": "cf9ff2e9ece6211c8e70225b18abb365d7497dcb",
+    "before": "bf06567f-f38e-4e79-889e-10ce736736d1",
+    "after": "972599e3-62bd-4d3d-b58c-2e5bc2630a27",
+    "fingerprint": "e54133661ab9ffb8961adbd0a1e8e8a3687b3fb17a014856c2daf5b74485791a",
+    "preservedFiles": 864,
+    "previewChecks": 24,
+    "productionChecks": 24,
+    "passed": true
+  },
+  "noNewPaidInference": true,
+  "noRaisedSpendCap": true,
+  "noMessagesSent": true,
+  "noCustomerErasure": true,
+  "scope": "Bounded repairs verified; not full estate or qualified clinical sign-off."
+}
