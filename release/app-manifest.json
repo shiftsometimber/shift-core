@@ -322,9 +322,53 @@
     "catalogueCount": 86,
     "configuredSources": 122,
     "medicalSummaryReviewDatesChanged": false,
-    "retainedMain": "0b4d996c",
+    "retainedMain": "1c202910059b3ee8c107355d75379ab84226942b",
     "lastFullyVerifiedProductionRun": 37143126514,
     "lastFullyVerifiedProductionSource": "0ac19d018cbd3d6f47d3e2f06cba90f7726ef6d8",
-    "deploymentRequirement": "Actual owned deployment and rollback capture must be reconciled at promotion; this metadata does not claim the new payload is live."
+    "deploymentRequirement": "Actual owned deployment and rollback capture must be reconciled at promotion; this metadata does not claim the new payload is live.",
+    "availabilityAttempt": {
+      "attemptedAt": "2026-10-03T19:12:31.195Z",
+      "checked": 116,
+      "failed": 6,
+      "failures": [
+        {
+          "id": "structure-sep2026",
+          "error": "check_timeout",
+          "httpStatus": null,
+          "lastFailureAt": "2026-10-03T19:12:31.195Z"
+        },
+        {
+          "id": "apitegromab-embraze-paper",
+          "error": "check_timeout",
+          "httpStatus": 200,
+          "lastFailureAt": "2026-10-03T19:12:31.195Z"
+        },
+        {
+          "id": "emugrobart-chugai-20260928",
+          "error": "check_timeout",
+          "httpStatus": null,
+          "lastFailureAt": "2026-10-03T19:12:31.195Z"
+        },
+        {
+          "id": "registry-nct07855133",
+          "error": "check_timeout",
+          "httpStatus": null,
+          "lastFailureAt": "2026-10-03T19:12:31.195Z"
+        },
+        {
+          "id": "registry-nct07757087",
+          "error": "check_timeout",
+          "httpStatus": null,
+          "lastFailureAt": "2026-10-03T19:12:31.195Z"
+        },
+        {
+          "id": "wegovy-tablet-smpc",
+          "error": "check_timeout",
+          "httpStatus": null,
+          "lastFailureAt": "2026-10-03T19:12:31.195Z"
+        }
+      ],
+      "scope": "Availability/content check, not renewal of medical reviews. Transient timeouts remain failed; no green baseline is invented."
+    }
   }
 }
