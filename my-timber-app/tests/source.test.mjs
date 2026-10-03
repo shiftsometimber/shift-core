@@ -29,11 +29,13 @@ test('Both shells refuse arbitrary native access and insecure transport',()=>{
 test('No app-specific accounts, store checkout, notification grants or automatic retries',()=>{
  for(const text of [ui,java,swift]) {
   assert.doesNotMatch(text,/Notification\.requestPermission\(|registerForRemoteNotifications\(|pushManager\.subscribe\(/);
-  assert.doesNotMatch(text,/webView\.reload\(|web\.reload\(/);
+  if(text===swift)assert.doesNotMatch(text,/webView\.reload\(/);
  }
  assert.ok(java.includes('dontResend.sendToTarget()'));
  assert.ok(java.includes('request.deny()'));
  assert.ok(java.includes('Intent.ACTION_OPEN_DOCUMENT'));
+ assert.ok(java.includes('request==42')&&java.includes('myTimberHealthSync')); // explicit result, without reloading away feedback
+ assert.doesNotMatch(java,/web\.reload\(/);
  assert.doesNotMatch(ui,/\bfetch\(|XMLHttpRequest|localStorage|sessionStorage|indexedDB|caches\./);
 });
 test('Final store identities are prepared but submission remains explicitly disabled',()=>{

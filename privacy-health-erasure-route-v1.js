@@ -17,7 +17,7 @@ export async function privacyHealthErasureRoute(request,env,ctx,coreFetch){
   if(!userId)return json({ok:false,error:'unauthorised'},401);
 
   const required=['progress_entries','check_ins'];
-  const optional=['shift_ai_conversations','shift_ai_memory_v2','daily_checkin_actions','health_passport_records','health_mot_entries','health_mots','progress_photos','my_journey_weekly_checkins','shift_today_checkins','shift_progress_photos_v2','member_pen_day_notes'];
+  const optional=['shift_ai_conversations','shift_ai_memory_v2','daily_checkin_actions','health_passport_records','health_mot_entries','health_mots','progress_photos','my_journey_weekly_checkins','shift_today_checkins','shift_progress_photos_v2','member_pen_day_notes','device_health_readings','device_health_connections'];
   const present=await existingTables(env.DB,[...required,...optional]);
   const missingRequired=required.filter(name=>!present.has(name));
   if(missingRequired.length)return json({ok:false,error:'health_erasure_schema_incomplete',missing:missingRequired},503);

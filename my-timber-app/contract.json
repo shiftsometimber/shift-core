@@ -1,6 +1,6 @@
 {
   "name": "My Timber",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "build": 2,
   "origin": "https://shiftsometimber.co.uk",
   "startPath": "/member/dashboard#today",
@@ -9,12 +9,41 @@
   "legalEntity": "SHIFT SOME TIMBER LTD",
   "sourceCommit": "f3a98e20dc7e26981f46e1cba7de6ab569234ef1",
   "iconUrl": "https://shiftsometimber.co.uk/assets/apple-touch-icon.png",
-  "backend": "existing production service; NOT an isolated test database",
+  "backend": "release member UI uses existing production service; health uploads disabled in release and in unconfigured development builds",
+  "healthDevelopmentTesting": {
+    "isolatedOriginRequired": true,
+    "isolatedServiceProvisioned": false,
+    "productionHealthUploadsAllowed": false,
+    "testHarness": "my-timber-app/health-test/worker.mjs",
+    "androidBuildProperty": "myTimberHealthTestOrigin",
+    "iosBuildSetting": "MY_TIMBER_HEALTH_TEST_ORIGIN"
+  },
   "dunsAvailable": true,
   "nativePushReady": false,
   "storeAccountsVerified": false,
   "storeSubmissionAllowed": false,
   "v1NativeNotifications": false,
   "v1Scope": "store app mirrors My Timber member experience; PWA-only install/reminder controls omitted",
-  "developmentApplicationId": "uk.co.shiftsometimber.mytimber.dev"
+  "developmentApplicationId": "uk.co.shiftsometimber.mytimber.dev",
+  "connectedHealth": {
+    "appleHealth": true,
+    "healthConnect": true,
+    "readOnly": true,
+    "deviceProof": false,
+    "types": [
+      "weight",
+      "body_fat",
+      "blood_pressure",
+      "heart_rate",
+      "resting_heart_rate",
+      "oxygen_saturation",
+      "respiratory_rate",
+      "body_temperature",
+      "steps",
+      "active_energy",
+      "distance",
+      "sleep",
+      "exercise"
+    ]
+  }
 }

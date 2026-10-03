@@ -7,8 +7,9 @@ settings:
     SWIFT_VERSION: '5.0'
     TARGETED_DEVICE_FAMILY: '1'
     CURRENT_PROJECT_VERSION: 2
-    MARKETING_VERSION: 1.0.0
+    MARKETING_VERSION: 1.1.0
     ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    CODE_SIGN_ENTITLEMENTS: MyTimber.entitlements
 targets:
   MyTimber:
     type: application
@@ -21,12 +22,15 @@ targets:
         CODE_SIGN_STYLE: Automatic
         TARGETED_DEVICE_FAMILY: '1'
         CURRENT_PROJECT_VERSION: 2
-        MARKETING_VERSION: 1.0.0
+        MARKETING_VERSION: 1.1.0
       configs:
         Debug:
           PRODUCT_BUNDLE_IDENTIFIER: uk.co.shiftsometimber.mytimber.dev
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+          MY_TIMBER_HEALTH_TEST_ORIGIN: ""
         Release:
           PRODUCT_BUNDLE_IDENTIFIER: uk.co.shiftsometimber.mytimber
+          MY_TIMBER_HEALTH_TEST_ORIGIN: ""
     info:
       path: GeneratedInfo.plist
       properties:
@@ -34,9 +38,11 @@ targets:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         ITSAppUsesNonExemptEncryption: false
+        MyTimberHealthTestOrigin: $(MY_TIMBER_HEALTH_TEST_ORIGIN)
         UILaunchScreen:
           UIColorName: LaunchBackground
         NSCameraUsageDescription: Take a photo you choose to upload to your My Timber account.
+        NSHealthShareUsageDescription: My Timber reads health and activity data you choose to share so your weight, blood pressure, heart rate, activity, sleep and supported vitals can appear in your private My Timber progress.
         NSAppTransportSecurity:
           NSAllowsArbitraryLoads: false
         UISupportedInterfaceOrientations:

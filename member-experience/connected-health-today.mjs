@@ -1,0 +1,13 @@
+export const connectedHealthTodayMarkup=`<section id="connectedHealthToday" class="ch-today" hidden aria-labelledby="connectedHealthTodayTitle"><div><p class="eyebrow">FROM YOUR PHONE</p><h2 id="connectedHealthTodayTitle">Your latest health picture.</h2><p id="connectedHealthTodayMeta">Synced from a health source you connected.</p></div><dl id="connectedHealthTodayReadings"></dl><a href="/member/settings#connectedHealthPanel">Connected health settings →</a></section>`;
+export const connectedHealthTodayStyles=String.raw`
+#connectedHealthToday{box-sizing:border-box;margin:0 0 24px;padding:22px;border:1px solid #707762;border-radius:14px;background:#11140f;color:#e7e3da}
+#connectedHealthToday :is(h2,p,dt,dd,a){color:#e7e3da!important;-webkit-text-fill-color:currentColor}#connectedHealthToday .eyebrow{font-size:11px;letter-spacing:.12em;font-weight:800;color:#c5cdb3!important}
+#connectedHealthToday h2{margin:5px 0 8px;font-size:26px}#connectedHealthToday dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
+#connectedHealthToday dl>div{padding:12px;border:1px solid #707762;border-radius:10px}#connectedHealthToday dt{font-size:12px;opacity:.82}#connectedHealthToday dd{margin:5px 0 0;font-size:21px;font-weight:800}
+#connectedHealthToday a{font-weight:700}@media(max-width:700px){#connectedHealthToday dl{grid-template-columns:repeat(2,minmax(0,1fr))}}
+`;
+export const connectedHealthTodayRuntime=String.raw`(()=>{'use strict';const box=document.getElementById('connectedHealthToday'),list=document.getElementById('connectedHealthTodayReadings');if(!box||!list)return;
+const labels={weight_kg:['Weight','kg'],systolic_mmhg:['BP','mmHg'],heart_rate_bpm:['Heart rate','bpm'],resting_heart_rate_bpm:['Resting HR','bpm'],steps:['Steps',''],sleep_minutes:['Sleep','h'],oxygen_saturation_pct:['Oxygen','%']};
+fetch('/v1/device-health/readings',{credentials:'include',cache:'no-store',signal:AbortSignal.timeout(8000)}).then(r=>r.ok?r.json():null).then(data=>{if(!data?.trackingEnabled)return;const latest=data.latest||{},order=['weight_kg','systolic_mmhg','heart_rate_bpm','resting_heart_rate_bpm','steps','sleep_minutes','oxygen_saturation_pct'];let shown=0;
+for(const type of order){const r=latest[type],meta=labels[type];if(!r||!meta||shown>=4)continue;let v=Number(r.value);if(type==='sleep_minutes')v=Math.round(v/6)/10;else if(!Number.isInteger(v))v=Math.round(v*10)/10;const wrap=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=meta[0];dd.textContent=String(v)+(meta[1]?' '+meta[1]:'');wrap.append(dt,dd);list.append(wrap);shown++}
+if(shown)box.hidden=false}).catch(()=>{});})();`;

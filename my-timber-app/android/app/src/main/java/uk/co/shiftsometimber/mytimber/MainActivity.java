@@ -31,6 +31,7 @@ public final class MainActivity extends Activity {
 
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);
+        if(BuildConfig.DEBUG)NavigationPolicy.configureHealthTestOrigin(BuildConfig.HEALTH_TEST_ORIGIN);
         if ((getApplicationInfo().flags & android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) == 0)
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         LinearLayout root = new LinearLayout(this);
@@ -63,6 +64,7 @@ public final class MainActivity extends Activity {
             byte[] block = new byte[4096]; int n;
             while ((n=stream.read(block)) != -1) bytes.write(block,0,n);
             presentation = bytes.toString(StandardCharsets.UTF_8.name());
+            if(NavigationPolicy.healthTestingEnabled)presentation=presentation.replace(NavigationPolicy.PRODUCTION_ORIGIN,NavigationPolicy.ORIGIN);
         } catch (Exception e) { showFailure("My Timber could not start securely. Please close the app and try again."); return; }
         WebView.setWebContentsDebuggingEnabled(false);
         WebSettings settings = web.getSettings();
@@ -77,11 +79,16 @@ public final class MainActivity extends Activity {
         settings.setMediaPlaybackRequiresUserGesture(true);
         settings.setJavaScriptCanOpenWindowsAutomatically(false);
         settings.setSupportMultipleWindows(false);
-        settings.setUserAgentString(settings.getUserAgentString()+" MyTimber/1.0.0");
+        settings.setUserAgentString(settings.getUserAgentString()+" MyTimber/1.1.0");
         CookieManager.getInstance().setAcceptCookie(true);
         CookieManager.getInstance().setAcceptThirdPartyCookies(web,true); // Required for Cloudflare Turnstile challenge state in WebView.
         web.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                if ("mytimber-health".equalsIgnoreCase(request.getUrl().getScheme()) && "sync".equalsIgnoreCase(request.getUrl().getHost()) && request.isForMainFrame()) {
+                    if(request.hasGesture()&&NavigationPolicy.classify(view.getUrl())==NavigationPolicy.Decision.INTERNAL)
+                        startActivityForResult(new Intent(MainActivity.this,HealthConnectActivity.class),42);
+                    return true;
+                }
                 NavigationPolicy.Decision decision = NavigationPolicy.classify(request.getUrl().toString());
                 if (!request.isForMainFrame()) {
                     // Turnstile requires about:blank/about:srcdoc in embedded challenge frames.
@@ -181,6 +188,16 @@ public final class MainActivity extends Activity {
     }
     @Override protected void onActivityResult(int request,int result,Intent data) {
         super.onActivityResult(request,result,data);
+        if(request==42){
+            if(NavigationPolicy.classify(web.getUrl())==NavigationPolicy.Decision.INTERNAL){
+                String message=data==null?"Health setup was closed. No successful save is confirmed. You can try again.":data.getStringExtra("healthSyncMessage");
+                if(message!=null){
+                    String detail="{\"message\":"+org.json.JSONObject.quote(message)+",\"success\":"+(result==RESULT_OK)+"}";
+                    web.evaluateJavascript("window.dispatchEvent(new CustomEvent('myTimberHealthSync',{detail:"+detail+"}));",null);
+                    new AlertDialog.Builder(this).setTitle("Connected health").setMessage(message).setPositiveButton("OK",null).show();
+                }
+            }return;
+        }
         if(request!=41||fileResult==null)return;
         Uri[] values=WebChromeClient.FileChooserParams.parseResult(result,data);
         if(values!=null)for(Uri uri:values)if(uri==null||!"content".equals(uri.getScheme())){values=null;break;}
