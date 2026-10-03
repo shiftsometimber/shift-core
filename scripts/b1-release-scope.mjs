@@ -108,7 +108,7 @@ export function validateNiceTimeout(read){
 export const MEDICINES_REVIEW_COMMIT='6e62b63b17c16a416e73e1e8589f0366437a5c11';
 export const MEDICINES_REVIEW_PATHS=["medicines-watch/data.mjs", "medicines-watch/provider-review.test.mjs", "medicines-watch/source-review.test.mjs", "medicines-watch/product-renewal.test.mjs", "medicines-watch/reviews/2026-09-23-product-information-renewal.json", "medicines-watch/reviews/2026-09-24-mounjaro-nhs-renewal.json", "medicines-watch/reviews/2026-09-25-wegovy-tablet-provider-pending.json", "medicines-watch/reviews/2026-09-27-wegovy-tablet-provider.json", "medicines-watch/reviews/2026-09-29-foundayo-nice-schedule.json"];
 export function validateMedicinesReview(read){
- for(const path of MEDICINES_REVIEW_PATHS)assert.equal(read('HEAD',path),read(WATCH_EXPANSION_PATHS.includes(path)?WATCH_EXPANSION_COMMIT:MEDICINES_REVIEW_COMMIT,path),'Medicines evidence source drift: '+path);
+ for(const path of MEDICINES_REVIEW_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_EXPANSION_PATHS.includes(path)?WATCH_EXPANSION_COMMIT:MEDICINES_REVIEW_COMMIT),path),'Medicines evidence source drift: '+path);
 }
 export function validateScope(manifest,changed){
  assert.equal(manifest.mode,'runtime-only');
