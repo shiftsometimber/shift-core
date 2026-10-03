@@ -1,0 +1,32 @@
+name: Closeout measured AI inference evidence
+on:
+  push:
+    branches: ['codex/closeout-account-evidence-20261003']
+    paths: ['.github/workflows/closeout-ai-actual.yml']
+permissions:
+  contents: read
+jobs:
+  inference-telemetry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      CF_ACCOUNT: '9e5386dcf455be34c582d93f8bfc79e6'
+      CF_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';import {mkdirSync,writeFileSync} from 'node:fs';
+          const at=new Date().toISOString(),start=at.slice(0,10)+'T00:00:00Z';
+          const query='{viewer{accounts(filter:{accountTag:"'+process.env.CF_ACCOUNT+'"}){aiInferenceAdaptiveGroups(limit:10000,filter:{datetime_geq:"'+start+'",datetime_leq:"'+at+'"}){count dimensions{datetimeMinute modelId errorCode inferenceTimeMs requestSource} sum{totalNeurons}}}}}';
+          const r=await fetch('https://api.cloudflare.com/client/v4/graphql',{method:'POST',headers:{Authorization:'Bearer '+process.env.CF_TOKEN,'Content-Type':'application/json'},body:JSON.stringify({query}),signal:AbortSignal.timeout(20000)});
+          const d=await r.json();assert(!d.errors,JSON.stringify(d.errors?.map(e=>e.message)));const rows=d.data.viewer.accounts[0].aiInferenceAdaptiveGroups;
+          const report={at,start,modelCallsCreated:0,readOnly:true,scope:'Account-side inference timing; not browser end-to-end timing, prompt quality or member usefulness.',rows,byModel:{}};
+          for(const row of rows){const m=row.dimensions.modelId,v=report.byModel[m]||={calls:0,errors:0,over3000ms:0,firstMinute:row.dimensions.datetimeMinute,lastMinute:row.dimensions.datetimeMinute,times:[]};v.calls+=row.count;v.errors+=row.dimensions.errorCode?row.count:0;v.over3000ms+=row.dimensions.inferenceTimeMs>3000?row.count:0;v.firstMinute=[v.firstMinute,row.dimensions.datetimeMinute].sort()[0];v.lastMinute=[v.lastMinute,row.dimensions.datetimeMinute].sort().at(-1);for(let i=0;i<row.count;i++)v.times.push(row.dimensions.inferenceTimeMs)}
+          for(const v of Object.values(report.byModel)){v.times.sort((a,b)=>a-b);v.p50Ms=v.times[Math.ceil(v.calls*.5)-1];v.p95Ms=v.times[Math.ceil(v.calls*.95)-1];v.maxMs=v.times.at(-1);delete v.times}
+          mkdirSync('evidence',{recursive:true});writeFileSync('evidence/actual-inference.json',JSON.stringify(report,null,2));console.log(JSON.stringify({...report,rows:undefined}));
+          JS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: closeout-ai-actual
+          path: evidence/actual-inference.json
+          retention-days: 14
