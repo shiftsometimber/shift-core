@@ -312,7 +312,7 @@
   "memberPanelLayout": {
     "candidate": "72f0796f7de9ccfc42f46ec203a6c00b04d17aba",
     "previewRun": 36987513488,
-    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404\u2013IMG_2406 and the 07:57 screen recording.",
+    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404–IMG_2406 and the 07:57 screen recording.",
     "scope": "Three exact presentation/preview files; existing records, controls and clinical/commercial gates preserved."
   },
   "watchCredibility": {
@@ -322,7 +322,7 @@
     "catalogueCount": 86,
     "configuredSources": 122,
     "medicalSummaryReviewDatesChanged": false,
-    "retainedMain": "1c202910059b3ee8c107355d75379ab84226942b",
+    "retainedMain": "71383ce716abc9c8c937e48c87f59a2e9fe2d618",
     "lastFullyVerifiedProductionRun": 37143126514,
     "lastFullyVerifiedProductionSource": "0ac19d018cbd3d6f47d3e2f06cba90f7726ef6d8",
     "deploymentRequirement": "Actual owned deployment and rollback capture must be reconciled at promotion; this metadata does not claim the new payload is live.",
@@ -369,6 +369,17 @@
         }
       ],
       "scope": "Availability/content check, not renewal of medical reviews. Transient timeouts remain failed; no green baseline is invented."
+    },
+    "verifiedArticleRuntime": {
+      "run": 37147521854,
+      "source": "f5184e4ffefd6bc2eb105e86e7107e5c61f00327",
+      "version": "b25b6adb-1fc3-473e-97b7-88bfe3c27a48",
+      "scope": "Article-only runtime proof; complete guarded combined release still required."
+    },
+    "discoveryAttempt": {
+      "reviewDate": "2026-10-03",
+      "method": "Separate fresh dated/topic searches and broader undated developer, early trial, specialist, lean-mass and discontinued-programme searches. Primary leads compared with the compiled catalogue.",
+      "scope": "Known Regeneron COURAGE, EMBRAZE, sponsor and registry announcements already tracked; ZP6590 and additional sponsor/registry leads remain unassessed pending actual primary review. Search results are not factual review or industry completeness."
     }
   }
 }
