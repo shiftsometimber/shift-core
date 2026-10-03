@@ -71,3 +71,21 @@ test('merged health safety corrections and their evidence remain independently p
  const m={...manifest,applicationCommit:'a'.repeat(40)};
  for(const p of ['docs/content-review/2026-10-03-health-safety.json','frontend/member/shift-health-catalogue-v1.js','shift-health-public-content.mjs','tests/testosterone-public.test.mjs'])assert.throws(()=>validateCoachingSource((ref,path)=>ref==='7bd5fb37d7bbce66fa5e728f59304843817128bf'&&path===p?'prior-safety':path,m),/Merged health-safety source drift/);
 });
+
+test('merged public audit records reject drift even when the application is repinned',()=>{
+ const m={...manifest,applicationCommit:'a'.repeat(40)};
+ for(const p of ['docs/content-review/2026-10-03-public-copy-preview.json','docs/content-review/2026-10-03-public-copy-residual.json']){
+  assert.doesNotThrow(()=>assertCoachingChangedPath('A',p));
+  for(const status of ['M','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
+  assert.throws(()=>validateCoachingSource((ref,path)=>ref==='6578113c754a60e75d0cd9b3cd94f2d546444409'&&path===p?'changed-record':path,m),/Merged public audit record source drift/);
+ }
+});
+
+test('merged Health Plan dashboard mount stays independently pinned',()=>{
+ const m={...manifest,applicationCommit:'a'.repeat(40)};
+ for(const p of ['member-experience/dashboard-tools.mjs','member-experience/tests/dashboard-tools.test.mjs']){
+  assert.doesNotThrow(()=>assertCoachingChangedPath('M',p));
+  for(const status of ['A','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
+  assert.throws(()=>validateCoachingSource((ref,path)=>ref==='6f97feeccaecbede94082d41ecc7ceb53a2ce15b'&&path===p?'changed-mount':path,m),/Merged Health Plan mount source drift/);
+ }
+});
