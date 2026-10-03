@@ -220,7 +220,7 @@
     "editorial/book-voice/live.cjs": "1b43c3a7dcf25aa4e3bf33024d3d5fa3bb961f280d0eaceb9dad349f089e2e9f",
     ".github/workflows/book-voice-live-audit.yml": "240e023a53d4af1cbd53ff2e04d5a929d71eb98679d13c847f6f96c8f64a6da2",
     "scripts/article-image-policy.mjs": "6b4b6161495d83e7f2b1d2d4ac0e22f5a78ad5d38d14f3f95dc8e1397f038fa0",
-    "scripts/verify-article-quality.mjs": "d5d3c38f73360e4e4917f3818586d8f020dccb0f31abe07b1921c8f9c0b9bb04",
+    "scripts/verify-article-quality.mjs": "21e0167410fb970684109c98f913b54a501af72e8fd3db5ef03c50f67e08dadc",
     "tests/article-image-policy.test.mjs": "b2c4b8797524fecc99f45398926e8cabfb50db453426891a63fd5012220bdc5b"
   },
   "homepageRelease": {
