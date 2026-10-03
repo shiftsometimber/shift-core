@@ -19,10 +19,15 @@ test('only bounded labels and explicit versioned consent are accepted',()=>{
 test('actual registration, email-token verification, password login and saved Journey join to one source',async t=>{
  const f=fixture(t),m=await member(f);
  f.db.prepare("INSERT INTO consents(user_id,consent_type,granted) VALUES(?,'my_shift_health_tracking',1)").run(m.id);
- assert.equal((await f.save(m.cookie)).status,200);const report=await read(f.DB);
+ assert.equal((await f.save(m.cookie)).status,200);
+ // Exercise a legitimate timestamp containing the private fixture's number.
+ const report=await activationScorecard(f.DB,{now:Math.ceil(Date.now()/1000)*1000+299,days:30});
+ assert.match(report.asOf,/\.299Z$/);
  assert.deepEqual(report.stages.map(x=>x.members),[1,1,1,1]);
  assert.deepEqual(report.acquisition.sources,[{source:'google',medium:'organic',registered:1,verified:1,signedIn:1,activated:1,activationRatePct:100}]);
- assert.doesNotMatch(JSON.stringify(report),/attribution.invalid|currentKg|99|password|token_hash/);
+ // Timestamps are public report metadata; fixture health values must remain absent elsewhere.
+ const payload=JSON.stringify(report,(key,value)=>['asOf','since'].includes(key)?'[report timestamp]':value);
+ assert.doesNotMatch(payload,/attribution.invalid|currentKg|99|password|token_hash/);
 });
 test('verification without login and login without save are not activation',async t=>{
  const f=fixture(t);await f.register('first@attribution.invalid',input());await f.verify('first@attribution.invalid');const r=await read(f.DB);assert.deepEqual(r.stages.map(x=>x.members),[1,1,0,0]);assert.equal(r.acquisition.sources[0].activated,0);
