@@ -13,9 +13,9 @@ export const COACH_COMPOSED_BOOK_CHANGES=new Set(["member-experience/public-pres
 export const COACH_AUDIT_CHANGES=new Set(["member-experience/dashboard-tools.mjs","member-experience/tests/dashboard-tools.test.mjs","frontend/member/whole-man-intent-os-v1.js", "tests/testosterone-public.test.mjs", "public-navigation-policy.mjs", "tests/public-ticker-contrast-safety.test.mjs", "shift-health-public-content.mjs", "frontend/member/shift-health-catalogue-v1.js", "public-continuity.mjs"]);
 // Preserve the already merged five-file article repair exactly, including its
 // separate publication workflows. This is not permission for other article edits.
-export const COACH_ARTICLE_BASE='71383ce716abc9c8c937e48c87f59a2e9fe2d618';
+export const COACH_ARTICLE_BASE='0d084f00cf6c4593dd0c11dfd047daf4e5103295';
 export const COACH_ARTICLE_ADDITIONS=new Set(['.github/workflows/evidence-article-repair-snapshot.yml','.github/workflows/evidence-based-article-live-release.yml','babylove/repair-evidence-based-article.mjs']);
-export const COACH_ARTICLE_CHANGES=new Set(['babylove/dynamic-public.mjs','babylove/dynamic-public.test.mjs']);
+export const COACH_ARTICLE_CHANGES=new Set(['babylove/dynamic-public.mjs','babylove/dynamic-public.test.mjs','medicines-watch/preservation.mjs','medicines-watch/preservation.test.mjs','public-shell-contract.mjs']);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]);
 export function assertCoachingChangedPath(status,path){
  if(COACH_ARTICLE_ADDITIONS.has(path)||COACH_ARTICLE_CHANGES.has(path)){assert.equal(status,COACH_ARTICLE_ADDITIONS.has(path)?'A':'M','Unexpected article repair composition status: '+path);return;}
