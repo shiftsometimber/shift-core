@@ -1,0 +1,29 @@
+name: Closeout daily AI allocation
+on:
+  push:
+    branches: ['codex/closeout-account-evidence-20261003']
+    paths: ['.github/workflows/closeout-ai-allocation.yml']
+permissions:
+  contents: read
+jobs:
+  usage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      CF_ACCOUNT: '9e5386dcf455be34c582d93f8bfc79e6'
+      CF_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - run: |
+          node --input-type=module <<'JS'
+          import {mkdirSync,writeFileSync} from 'node:fs';
+          const at=new Date().toISOString(),start=at.slice(0,10)+'T00:00:00Z';
+          const query='{viewer{accounts(filter:{accountTag:"'+process.env.CF_ACCOUNT+'"}){aiInferenceAdaptiveGroups(limit:10,filter:{datetime_geq:"'+start+'",datetime_leq:"'+at+'"}){count sum{totalNeurons totalInputTokens totalOutputTokens}}}}}';
+          const r=await fetch('https://api.cloudflare.com/client/v4/graphql',{method:'POST',headers:{Authorization:'Bearer '+process.env.CF_TOKEN,'Content-Type':'application/json'},body:JSON.stringify({query}),signal:AbortSignal.timeout(20000)});
+          const d=await r.json(),report={at,start,status:r.status,modelCalls:0,data:d.data,errors:d.errors?.map(x=>x.message)};
+          mkdirSync('evidence',{recursive:true});writeFileSync('evidence/allocation.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
+          JS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: closeout-ai-allocation
+          path: evidence/allocation.json
+          retention-days: 14
