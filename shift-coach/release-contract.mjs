@@ -20,10 +20,10 @@ export function assertCoachingChangedPath(status,path){
  assert(added||COACH_BACKEND_PATHS.has(path)||COACH_COMPOSED_BOOK_CHANGES.has(path)||COACH_AUDIT_CHANGES.has(path),'Unlisted coaching release change: '+path);
  assert.equal(status,added?'A':'M','Unexpected change status: '+path);
 }
-// Preserve the exact reviewed specialist-registry Watch update alongside current coaching.
-export const WATCH_CURRENT_BASE='65f6aa3756fe0a9f2860e81d352995812b79c732';
+// Preserve the exact reviewed lean-mass and energy Watch update alongside current coaching.
+export const WATCH_CURRENT_BASE='b6618229556e2830b150232ce9e12e7da00ad93f';
 export const WATCH_COMPOSED_CHANGES=new Set(['medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs']);
-export const WATCH_COMPOSED_ADDITIONS=new Set(['medicines-watch/reviews/2026-10-02-authorised-glimr-copd.json','medicines-watch/reviews/2026-10-02-authorised-specialist-registry-followup.json','medicines-watch/reviews/2026-10-02-authorised-switching-studies.json','medicines-watch/reviews/2026-10-02-authorised-na931.json','medicines-watch/reviews/2026-10-03-authorised-amylin-metabolic-followup.json','medicines-watch/reviews/2026-10-03-authorised-azd1043.json','medicines-watch/reviews/2026-10-03-authorised-azd6234-selene.json','medicines-watch/reviews/2026-10-03-authorised-wve007.json','medicines-watch/reviews/2026-10-03-authorised-specialist-registry-wave.json']);
+export const WATCH_COMPOSED_ADDITIONS=new Set(['medicines-watch/reviews/2026-10-02-authorised-glimr-copd.json','medicines-watch/reviews/2026-10-02-authorised-specialist-registry-followup.json','medicines-watch/reviews/2026-10-02-authorised-switching-studies.json','medicines-watch/reviews/2026-10-02-authorised-na931.json','medicines-watch/reviews/2026-10-03-authorised-amylin-metabolic-followup.json','medicines-watch/reviews/2026-10-03-authorised-azd1043.json','medicines-watch/reviews/2026-10-03-authorised-azd6234-selene.json','medicines-watch/reviews/2026-10-03-authorised-wve007.json','medicines-watch/reviews/2026-10-03-authorised-specialist-registry-wave.json','medicines-watch/reviews/2026-10-03-authorised-lean-mass-energy-followup.json']);
 export const WATCH_CURRENT_PATHS=new Set(['medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
 export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
