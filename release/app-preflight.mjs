@@ -1,5 +1,5 @@
 import {DEVICE_HEALTH_PATHS,historicalDeviceHealthRef,validateDeviceHealthSource,verifyDeviceHealthProof} from './device-health-scope.mjs';
-import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,WATCH_CURRENT_BASE,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
+import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,WATCH_CURRENT_BASE,watchCurrentSource,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 import {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,verifyWatchRegistryWaveProof} from './watch-registry-wave-scope.mjs';
 import {TREATMENT_GUIDANCE_PREVIEW,TREATMENT_GUIDANCE_PATHS,treatmentGuidanceRef,verifyTreatmentGuidanceProof} from './treatment-guidance-scope.mjs';
 import {PUBLIC_WORDING_PREVIEW,PUBLIC_WORDING_PATHS,verifyPublicWordingProof} from './public-wording-scope.mjs';
