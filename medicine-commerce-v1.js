@@ -225,6 +225,22 @@ export function bmiEligibility(item, assessment = {}) {
   if(bmi<standard && assessment.weightRelatedCondition!=='yes')return {error:'weight_related_condition_required',status:400,message:'Confirm whether you have a diagnosed weight-related condition. A prescriber must check whether it qualifies.'};
   return null;
 }
+// SHIFT's adult service boundary, not a medicine-specific prescribing decision.
+// Validate the calendar date itself: Date.parse alone silently rolls invalid days.
+export function adultServiceEligibility(dateOfBirth, referenceTime = new Date()) {
+  const value = typeof dateOfBirth === 'string' ? dateOfBirth : '';
+  const invalid = {error:'date_of_birth_invalid',status:400,message:'Enter a valid date of birth in the past.'};
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return invalid;
+  const birth = new Date(value + 'T00:00:00Z');
+  if (!Number.isFinite(birth.getTime()) || birth.toISOString().slice(0,10) !== value || value.slice(0,4) === '0000') return invalid;
+  const parts = new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(referenceTime);
+  const part = type => parts.find(p => p.type === type).value;
+  const today = `${part('year')}-${part('month')}-${part('day')}`;
+  if (value >= today) return invalid;
+  const age = Number(today.slice(0,4)) - Number(value.slice(0,4)) - (today.slice(5) < value.slice(5) ? 1 : 0);
+  if (age < 18) return {error:'adult_service_required',status:422,message:'SHIFT’s treatment assessment service is for adults aged 18 or over. Speak to your GP about appropriate support.'};
+  return null;
+}
 async function clinicalIntake(request, env) {
   const user = await member(request, env);
   if (!user) return json({ok:false,error:"account_required"},401,cors(request));
@@ -240,6 +256,8 @@ async function clinicalIntake(request, env) {
   if (eligibility) return json({ok:false,error:eligibility.error,message:eligibility.message},eligibility.status,cors(request));
   const itemTruth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;
   if (!itemTruth?.canBuy) return json({ok:false,error:"out_of_stock",message:"Currently out of stock. No clinical evidence has been sent."},409,cors(request));
+  const ageEligibility = adultServiceEligibility(form.get('dateOfBirth'));
+  if (ageEligibility) return json({ok:false,error:ageEligibility.error,message:ageEligibility.message},ageEligibility.status,cors(request));
   const required = ["dateOfBirth","heightCm","weightKg","weightRelatedCondition","conditions","medicines","gpName","gpPractice","gpAddress","gpPostcode"];
   if (required.some((key) => !formText(form,key))) return json({ok:false,error:"incomplete_clinical_form",message:"Complete every required clinical and GP field."},400,cors(request));
   const gpConsent = form.get("gpContactConsent") === "on";
@@ -308,6 +326,8 @@ async function prepayVerification(request, env) {
   if (eligibility) return json({ok:false,error:eligibility.error,message:eligibility.message},eligibility.status,cors(request));
   const itemTruth=item?authoritativePurchaseability({product:{status:item.medicine_status,sellable:item.medicine_sellable,partner:item.medicine_partner,availability_state:item.medicine_availability},variant:{status:item.variant_status,sellable:item.variant_sellable,partner:item.variant_partner,availability_state:item.variant_availability},inventory:{stock_on_hand:item.stock_on_hand,reserved:item.reserved}}):null;
   if (!itemTruth?.canBuy) return json({ok:false,error:"out_of_stock",message:"Currently out of stock."},409,cors(request));
+  const ageEligibility = adultServiceEligibility(input.assessment.dateOfBirth);
+  if (ageEligibility) return json({ok:false,error:ageEligibility.error,message:ageEligibility.message},ageEligibility.status,cors(request));
   const partnerResponse=await fetch(String(env.PHARMACY_PREPAY_VERIFICATION_URL),{method:"POST",headers:{"content-type":"application/json",authorization:`Bearer ${env.PHARMACY_INTEGRATION_SECRET}`},body:JSON.stringify({memberReference:String(user.id),variantId,assessment:input.assessment})});
   const partner=await partnerResponse.json().catch(()=>({}));
   if (!partnerResponse.ok||partner.verified!==true||!partner.reference)

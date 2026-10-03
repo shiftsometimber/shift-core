@@ -1,7 +1,20 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import test from 'node:test';
-import {medicineCommerceRoutes,medicineCommerceInternals} from '../medicine-commerce-v1.js';
+import {medicineCommerceRoutes,medicineCommerceInternals,adultServiceEligibility} from '../medicine-commerce-v1.js';
+
+test('adult intake validates real dates and uses the UK birthday boundary',()=>{
+  const today = new Date('2026-10-03T12:00:00Z');
+  for (const value of ['',undefined,null,'not-a-date','2008-2-01','2008-02-30','2007-02-29','0000-01-01','2026-10-03','2099-01-01']) {
+    assert.equal(adultServiceEligibility(value,today).error,'date_of_birth_invalid',String(value));
+  }
+  assert.equal(adultServiceEligibility('2008-10-04',today).error,'adult_service_required');
+  assert.equal(adultServiceEligibility('2008-10-03',today),null);
+  assert.equal(adultServiceEligibility('1981-08-03',today),null);
+  assert.equal(adultServiceEligibility('2008-10-04',new Date('2026-10-03T23:30:00Z')),null,'UK date has reached the birthday during BST');
+  assert.equal(adultServiceEligibility('2008-02-29',new Date('2026-02-28T12:00:00Z')).error,'adult_service_required');
+  assert.equal(adultServiceEligibility('2008-02-29',new Date('2026-03-01T12:00:00Z')),null);
+});
 
 test('public medicine catalogue remains harmless without a database',async()=>{
   const response=await medicineCommerceRoutes(new Request('https://api.shiftsometimber.co.uk/v1/catalogue/medicines'),{},{});

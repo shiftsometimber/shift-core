@@ -214,3 +214,25 @@ test('SHIFT eligibility blocks insulin, missing answers and low BMI before new, 
     assert.equal(DB.database.prepare('SELECT reserved FROM medicine_inventory WHERE variant_id=11').get().reserved,0);
   }finally{globalThis.fetch=outbound;DB.close()}
 });
+
+test('invalid or underage intake cannot forward images or obtain prepayment verification',async()=>{
+  const DB=await setup(),outbound=globalThis.fetch;let sent=0;
+  globalThis.fetch=async()=>{sent++;throw Error('Rejected birth dates must not contact a partner or Stripe')};
+  const env={DB,PHARMACY_PREPAY_VERIFICATION_URL:'https://pharmacy.example.test/verify',PHARMACY_CLINICAL_INTAKE_URL:'https://pharmacy.example.test/intake',PHARMACY_INTEGRATION_SECRET:'test'};
+  try{
+    for(const [dateOfBirth,error,status] of [['','date_of_birth_invalid',400],['2008-02-30','date_of_birth_invalid',400],['2099-01-01','date_of_birth_invalid',400],['2015-01-01','adult_service_required',422]]){
+      const assessment={dateOfBirth,heightCm:173,weightKg:92.4,weightRelatedCondition:'no',insulinUse:'no'};
+      const form=new FormData();form.set('variantId','11');
+      for(const [key,value] of Object.entries(assessment))form.set(key,String(value));
+      form.set('photoId',new File(['fictional evidence'],'test.jpg',{type:'image/jpeg'}));
+      const intake=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-clinical-intake',{method:'POST',body:form}),env,{});
+      assert.equal(intake.status,status);assert.equal((await intake.json()).error,error);
+      const verification=await medicineCommerceRoutes(memberRequest('/v1/commerce/medicine-prepay-verification',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({variantId:11,assessment})}),env,{});
+      assert.equal(verification.status,status);assert.equal((await verification.json()).error,error);
+    }
+    assert.equal(sent,0);
+    assert.equal(DB.database.prepare('SELECT count(*) n FROM medicine_clinical_intakes').get().n,0);
+    assert.equal(DB.database.prepare('SELECT count(*) n FROM medicine_prepay_verifications').get().n,0);
+    assert.equal(DB.database.prepare('SELECT reserved FROM medicine_inventory WHERE variant_id=11').get().reserved,0);
+  }finally{globalThis.fetch=outbound;DB.close()}
+});
