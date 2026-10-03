@@ -22,6 +22,7 @@ jobs:
           node --test tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs tests/discovery-repairs.test.mjs shift-coach/integration.test.mjs shift-coach/release.test.mjs shift-coach/public-font-delivery.test.mjs shift-coach/cancelled-release-recovery.test.mjs tests/b1-release-scope.test.mjs tests/member-details-release.test.mjs > online-privacy-recovery-proof/tests.txt
       - name: Run every production unit-test command before promotion
         run: |
+          node grub-expansion-review-pack.mjs > online-privacy-recovery-proof/fixture-preparation.txt
           python3 - <<'PYTEST'
           import re, glob, subprocess
           from pathlib import Path
