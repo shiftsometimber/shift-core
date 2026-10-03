@@ -1,0 +1,62 @@
+import {gzipSync,gunzipSync} from 'node:zlib';
+import {createServer} from 'node:http';
+import {readFileSync,existsSync,mkdirSync,writeFileSync} from 'node:fs';
+import {createRequire} from 'node:module';
+import worker from '../shift-coach/worker.mjs';
+import {fixture} from '../shift-coach/test-fixture.mjs';
+import assert from 'node:assert/strict';
+const transport=process.env.COACHING_PROOF_TRANSPORT||'identity',wire=[];
+const root=process.cwd(),out=process.env.COACHING_PROOF_DIR||'/tmp/shift-coach-full-page-proof';mkdirSync(out,{recursive:true});const DB=fixture();DB.exec=async sql=>{DB.sqlite.exec(sql);return {success:true}};DB.sqlite.exec("DROP TABLE progress_entries;DROP TABLE check_ins;DROP TABLE audit_log;CREATE TABLE cases(id INTEGER PRIMARY KEY,user_id INTEGER);CREATE TABLE pharmacy_orders(id INTEGER PRIMARY KEY,user_id INTEGER);");for(const c of ['email','first_name','last_name','phone','postcode','created_at','updated_at'])DB.sqlite.exec('ALTER TABLE users ADD COLUMN '+c+' TEXT');for(const c of ['lifecycle_stage','membership_status','source'])DB.sqlite.exec('ALTER TABLE member_status ADD COLUMN '+c+' TEXT');DB.sqlite.exec("CREATE TABLE user_auth(user_id INTEGER PRIMARY KEY,email_verified INTEGER,last_login_at TEXT,password_hash TEXT);INSERT INTO user_auth(user_id,email_verified) VALUES(1,1),(2,1);UPDATE users SET email='synthetic-'||id||'@example.invalid',first_name='Synthetic',last_name='Member',created_at='2026-10-02',updated_at='2026-10-02';");DB.sqlite.exec(readFileSync(root+'/member-experience/checkin-followup.sql','utf8'));DB.sqlite.exec(readFileSync(root+'/migrations/002_personal_knowledge_radar.sql','utf8'));const env={DB,MEMBER_EXPERIENCE_V1_ENABLED:'true',MY_TIMBER_PWA_ENABLED:'true',MEMBER_ASSETS:{fetch:async req=>{let p=new URL(req.url).pathname;let f=root+'/frontend/member'+p;if(!existsSync(f))f+='.html';if(!existsSync(f))return new Response('Not found',{status:404});return new Response(readFileSync(f),{headers:{'Content-Type':f.endsWith('.html')?'text/html':f.endsWith('.css')?'text/css':f.endsWith('.js')||f.endsWith('.mjs')?'text/javascript':'application/octet-stream'}})}}};
+const server=createServer(async(req,res)=>{try{let url=new URL(req.url,'https://shiftsometimber.co.uk');const chunks=[];for await(const c of req)chunks.push(c);const h=new Headers(req.headers);if(h.get('Origin')==='http://'+req.headers.host)h.set('Origin',url.origin);const r=await worker.fetch(new Request(url,{method:req.method,headers:h,...(!['GET','HEAD'].includes(req.method)?{body:Buffer.concat(chunks)}:{})}),env,{waitUntil(){}});const raw=Buffer.from(await r.arrayBuffer()),rh=Object.fromEntries(r.headers),compress=!rh['content-encoding']&&transport==='gzip'&&String(req.headers['accept-encoding']||'').includes('gzip')&&/text\/|application\/(?:json|javascript)/.test(rh['content-type']||'');const body=compress?gzipSync(raw):raw;if(compress){rh['content-encoding']='gzip';rh['content-length']=body.length;}wire.push({path:url.pathname,decodedBytes:rh['content-encoding']==='gzip'?gunzipSync(body).length:raw.length,wireBytes:body.length,encoding:rh['content-encoding']||'identity'});res.writeHead(r.status,rh);res.end(body);}catch(e){console.error(req.url,e.message);res.writeHead(500);res.end('synthetic failure')}});await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+server.address().port;
+
+const require=createRequire(import.meta.url);const {chromium}=process.env.PLAYWRIGHT_MODULE?require(process.env.PLAYWRIGHT_MODULE):await import('playwright');
+const browser=await chromium.launch({headless:true,...(process.env.COACHING_CHROMIUM?{executablePath:process.env.COACHING_CHROMIUM}:{}),args:['--no-sandbox','--disable-dev-shm-usage']});
+const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+await context.addInitScript(()=>{const tick=()=>{const button=document.querySelector('#shiftCoach [data-coach-action=accept]');if(button&&performance.getEntriesByName('shift-coach-ready').length&&button.checkVisibility({checkVisibilityCSS:true})){window.__shiftCoachVisibleReady=performance.now();return;}requestAnimationFrame(tick);};requestAnimationFrame(tick);});
+await context.addCookies([{name:'sst_session',value:'fixture-token-1',url:origin,httpOnly:true}]);
+await context.route('**/*',async route=>{if(new URL(route.request().url()).origin===origin)return route.continue();await route.fulfill({status:404,body:'External network disabled in synthetic proof'});});
+const page=await context.newPage(),errors=[],fixtureResponses=[],checks=[];
+page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)fixtureResponses.push({path:new URL(r.url()).pathname,status:r.status()});});
+const snapshot=name=>writeFileSync(out+'/full-'+name+'-store.json',JSON.stringify(DB.sqlite.prepare('SELECT user_id,preferences FROM member_state ORDER BY user_id').all(),null,2));
+try{
+ await page.goto(origin+'/member/dashboard?view=app#today');
+ const host=page.locator('#tabletRoutine');await host.waitFor({state:'visible',timeout:30000});
+ if(await page.locator('[data-consent="necessary"]').isVisible())await page.locator('[data-consent="necessary"]').click();
+ await host.locator(':scope > summary').click();
+ const setup=host.locator('[data-tablet-setup]');
+ await setup.getByLabel('My prescribed medicine').selectOption('foundayo');
+ await setup.getByLabel('When I started').fill('2026-09-01');
+ await setup.getByLabel('My routine time').fill('07:30');
+ await setup.getByLabel('These tablets have been prescribed').check();
+ await setup.getByRole('button',{name:'Save my routine'}).click();
+ await host.getByRole('heading',{name:'Foundayo tablets'}).waitFor();
+ assert.match(await host.textContent(),/without food or water timing restrictions/);
+ checks.push('real mobile dashboard stores chosen medicine, start date and routine time');
+ const review=host.locator('[data-tablet-review]');
+ await review.getByLabel('Can you manage').selectOption('difficult');
+ await review.getByLabel('What is getting').selectOption('forgetting');
+ await review.getByRole('button',{name:'Save my check-in'}).click();
+ await host.getByRole('heading',{name:'Choose one quiet reminder'}).waitFor();
+ await host.getByRole('button',{name:'It did not help',exact:true}).click();
+ await host.getByRole('heading',{name:'Use a simple tick-off'}).waitFor();
+ checks.push('did not help changes kind, from reminder to paper checklist');
+ await page.reload();await host.waitFor({state:'visible'});await host.locator(':scope > summary').click();
+ await host.getByRole('heading',{name:'Use a simple tick-off'}).waitFor();
+ assert.equal(await host.getByText('first-week check-in ready').count(),0);
+ for(const width of [390,1280]){await page.setViewportSize({width,height:900});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await host.scrollIntoViewIfNeeded();await page.screenshot({path:out+'/tablet-routine-'+width+'.png',fullPage:false})}
+ checks.push('saved step returns after refresh; mobile and desktop have no horizontal overflow');
+ const downloadPromise=page.waitForEvent('download');await host.getByRole('button',{name:'Add optional phone calendar reminder'}).click();const download=await downloadPromise;assert.equal(download.suggestedFilename(),'my-timber-routine.ics');
+ checks.push('optional generic calendar file downloads from member dashboard');
+ const rev=host.locator('[data-tablet-review]');if(!await rev.isVisible())await host.getByText('How is the tablet routine going?',{exact:true}).click();
+ await rev.getByLabel('What is getting').selectOption('sideeffects');await rev.getByRole('button',{name:'Save my check-in'}).click();await host.getByRole('heading',{name:'Contact your prescriber',exact:true}).waitFor();
+ checks.push('symptoms route to prescriber without inventing a sent clinical message');
+ DB.sqlite.exec("INSERT INTO consents(user_id,consent_type,granted) VALUES(1,'my_shift_health_tracking',0)");
+ await page.reload();await host.waitFor({state:'visible'});await host.locator(':scope > summary').click();assert.equal(await host.getByRole('heading',{name:'Foundayo tablets'}).count(),0);
+ DB.sqlite.exec("INSERT INTO consents(user_id,consent_type,granted) VALUES(1,'my_shift_health_tracking',1)");
+ await page.reload();await host.waitFor({state:'visible'});await host.locator(':scope > summary').click();assert.equal(await host.getByRole('heading',{name:'Foundayo tablets'}).count(),0);
+ checks.push('withdrawal and regrant cannot revive old personal tablet records');
+ await context.clearCookies();await context.addCookies([{name:'sst_session',value:'fixture-token-2',url:origin,httpOnly:true}]);await page.reload();await host.waitFor({state:'visible'});await host.locator(':scope > summary').click();assert.equal(await host.getByRole('heading',{name:'Foundayo tablets'}).count(),0);
+ checks.push('another account cannot see the saved routine');
+ assert.equal(errors.length,0,JSON.stringify(errors));writeFileSync(out+'/tablet-routine-browser.json',JSON.stringify({scope:'Current complete My Timber dashboard, composed Worker and synthetic SQLite accounts; no production writes or clinical review',checks,errors},null,2));console.log(JSON.stringify({checks:checks.length,errors:errors.length}));
+}catch(e){await page.screenshot({path:out+'/tablet-routine-failure.png',fullPage:true});console.error(await page.locator('#tabletRoutine').textContent().catch(()=>''));throw e}
+finally{await browser.close();await new Promise(r=>server.close(r));DB.close()}
