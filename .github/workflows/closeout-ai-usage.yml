@@ -1,0 +1,39 @@
+name: Closeout AI usage evidence
+on:
+  push:
+    branches: ['codex/closeout-account-evidence-20261003']
+    paths: ['.github/workflows/closeout-ai-usage.yml']
+permissions:
+  contents: read
+jobs:
+  usage-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      CF_ACCOUNT: '9e5386dcf455be34c582d93f8bfc79e6'
+      CF_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - name: Discover account usage schema and existing plan without inference
+        run: |
+          node --input-type=module <<'JS'
+          import {mkdirSync,writeFileSync} from 'node:fs';
+          const headers={Authorization:'Bearer '+process.env.CF_TOKEN,'Content-Type':'application/json'},report={at:new Date().toISOString(),modelCalls:0,readOnly:true};
+          async function graphql(query){const r=await fetch('https://api.cloudflare.com/client/v4/graphql',{method:'POST',headers,body:JSON.stringify({query}),signal:AbortSignal.timeout(20000)});const d=await r.json();if(d.errors)return{status:r.status,errors:d.errors.map(x=>x.message)};return d.data}
+          const schema=await graphql('{__schema{types{name}}}');
+          if(schema.__schema){
+            const names=schema.__schema.types.map(x=>x.name).filter(n=>/Account$|AiInferenceAdaptiveGroups(?:Sum|Dimensions|Filter_InputObject)?$|AiInferenceAdaptiveGroups.*Sum/.test(n)).slice(0,12);
+            report.types={};for(const n of names){const d=await graphql('{__type(name:"'+n+'"){fields{name args{name type{kind name ofType{name kind}}} type{kind name ofType{name kind}}} inputFields{name type{kind name ofType{name kind}}}}}');if(d.__type?.fields&&/Account$/.test(n))d.__type.fields=d.__type.fields.filter(x=>/aiInference/i.test(x.name));report.types[n]=d}
+          }else report.schema=schema;
+          for(const [name,path]of [['billingUsage','/ai-gateway/billing/usage-history?value_grouping_window=day&start_time='+Date.parse(new Date().toISOString().slice(0,10)+'T00:00:00Z')+'&end_time='+Date.now()],['subscriptions','/subscriptions']]){
+            const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CF_ACCOUNT+path,{headers,signal:AbortSignal.timeout(20000)}),d=await r.json();
+            report[name]={status:r.status,success:d.success===true};
+            if(d.success)report[name].data=name==='subscriptions'?d.result.map(x=>({state:x.state,ratePlan:x.rate_plan?.id})):d.result;
+          }
+          mkdirSync('evidence',{recursive:true});writeFileSync('evidence/ai-usage.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: closeout-ai-usage
+          path: evidence/ai-usage.json
+          retention-days: 14
