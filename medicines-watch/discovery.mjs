@@ -4,6 +4,8 @@ export const discoveryTopics = [
  'obesity overweight weight management medicine approval safety withdrawal',
  'obesity GLP-1 GIP glucagon amylin incretin phase trial initiation results discontinued paused',
  'obesity muscle preservation body composition combination oral long acting treatment',
+ 'obesity specialist indication knee osteoarthritis sleep apnoea MASH COPD menopause trial',
+ 'obesity medicine peptide early phase first-in-human smaller international developer',
 ];
 export const discoveryDomains = [
  'gov.uk','nice.org.uk','england.nhs.uk','nhs.uk','medicines.org.uk','clinicaltrials.gov',
@@ -32,4 +34,19 @@ export function summariseDiscovery(results,checkedAt=new Date().toISOString()) {
   missingDomains:missing,failedDomains:failed,scanComplete:missing.length===0&&failed.length===0,
   industryComplete:false,evidenceReviewRequired:true,clinicalApproval:null,
   candidates:results.flatMap(r=>r.status==='searched'?(r.candidates||[]):[])};
+}
+// Unrestricted topic queries catch unknown developers. Dated AND undated
+// attempts stay accountable; selected domains are only an additional aid.
+export function topicQueriesForDate(date=new Date()) {
+ const day=date.toISOString().slice(0,10);
+ return discoveryTopics.flatMap((topic,i)=>[
+  {id:`topic-${i}-dated`,topic,date:day,q:`${topic} ${day}`},
+  {id:`topic-${i}-undated`,topic,date:null,q:topic},
+ ]);
+}
+export function summariseTopicDiscovery(results,date=new Date()) {
+ const plan=topicQueriesForDate(date),byId=new Map(results.map(r=>[r.id,r]));
+ const missing=plan.filter(q=>!byId.has(q.id)).map(q=>q.id);
+ const failed=plan.filter(q=>byId.has(q.id)&&byId.get(q.id).status!=='searched').map(q=>({id:q.id,outcome:byId.get(q.id).status,error:byId.get(q.id).error||null}));
+ return {checkedAt:date.toISOString(),scope:'Topic discovery across unrestricted primary sources; not exhaustive industry coverage',queries:plan.map(q=>({...q,status:byId.get(q.id)?.status||'not_performed'})),missing,failed,scanComplete:!missing.length&&!failed.length,industryComplete:false,clinicalApproval:null,evidenceReviewRequired:true};
 }
