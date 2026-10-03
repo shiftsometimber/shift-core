@@ -1,0 +1,49 @@
+name: Closeout read-only account evidence
+on:
+  push:
+    branches: ['codex/closeout-account-evidence-20261003']
+    paths: ['.github/workflows/closeout-account-evidence.yml']
+permissions:
+  contents: read
+jobs:
+  account-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      CF_ACCOUNT: '9e5386dcf455be34c582d93f8bfc79e6'
+      CF_READ_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - name: Read existing gateway and infrastructure configuration without inference
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import {writeFileSync,mkdirSync} from 'node:fs';
+          const account=process.env.CF_ACCOUNT,token=process.env.CF_READ_TOKEN;
+          if(!token)throw Error('Existing preview credential unavailable');
+          const checks=[];
+          async function get(name,path,select){
+            const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+account+path,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(20000)});
+            const data=await r.json().catch(()=>({}));
+            const row={name,status:r.status,success:r.ok&&data.success===true};
+            if(row.success)row.configuration=select(data.result);
+            else row.errorCodes=(data.errors||[]).map(e=>e.code);
+            checks.push(row);
+          }
+          await get('gateway','/ai-gateway/gateways/shift-ai',g=>({id:g.id,authentication:g.authentication,collectLogs:g.collect_logs,logpush:!!g.logpush,otelConfigured:!!g.otel?.length,retryMaxAttempts:g.retry_max_attempts??null,billing:g.workers_ai_billing_mode??'postpaid',rateLimit:{limit:g.rate_limiting_limit,interval:g.rate_limiting_interval,technique:g.rate_limiting_technique},spendLimits:{enabled:g.spend_limits?.enabled,rules:(g.spend_limits?.rules||[]).map(r=>({limit:r.limit,window:r.window,technique:r.technique,enabled:r.enabled!==false,type:r.limitType,scoped:!!(r.model||r.provider||Object.keys(r.metadata||{}).length)}))}}));
+          await get('mainDatabase','/d1/database/88f40aed-cb23-4372-8c94-8a73f48bc847',d=>({name:d.name,version:d.version,readReplication:d.read_replication??null,jurisdiction:d.jurisdiction??null,fileSize:d.file_size??null}));
+          await get('workerSettings','/workers/scripts/shift-core/settings',d=>({compatibilityDate:d.compatibility_date,logpush:!!d.logpush,observability:d.observability??null,bindings:(d.bindings||[]).map(b=>({name:b.name,type:b.type}))}));
+          await get('accountAccess','/members',rows=>({memberCount:rows.length,statusCounts:rows.reduce((a,m)=>(a[m.status]=(a[m.status]||0)+1,a),{}),roleCounts:rows.flatMap(m=>(m.roles||[]).map(r=>r.name)).reduce((a,n)=>(a[n]=(a[n]||0)+1,a),{})}));
+          const report={at:new Date().toISOString(),source:process.env.GITHUB_SHA,run:process.env.GITHUB_RUN_ID,readOnly:true,modelCalls:0,productionDataWrites:0,secretsDisclosed:false,checks};
+          mkdirSync('evidence',{recursive:true});writeFileSync('evidence/account-controls.json',JSON.stringify(report,null,2));
+          console.log(JSON.stringify(report));
+          const g=checks.find(x=>x.name==='gateway');
+          if(!g.success)throw Error('Gateway settings remain inaccessible; no inference performed');
+          const c=g.configuration;
+          if(c.collectLogs!==false||c.logpush||c.otelConfigured)throw Error('Gateway logging/export privacy checks did not pass');
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: closeout-account-controls
+          path: evidence/account-controls.json
+          retention-days: 14
