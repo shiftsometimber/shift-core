@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {TREATMENTS_ENTRY,TREATMENTS_ENTRY_LEGACY,TREATMENTS_ENTRY_START,TREATMENTS_ENTRY_END,TREATMENT_RELATED_LEGACY as oldGuide,TREATMENT_RELATED_CURRENT as newGuide,publicPageEvidence,assertPublicPagesPreserved} from './preservation.mjs';
+import {TREATMENTS_ENTRY,TREATMENTS_ENTRY_LEGACY,TREATMENTS_ENTRY_START,TREATMENTS_ENTRY_END,TREATMENT_RELATED_LEGACY as oldGuide,TREATMENT_RELATED_CURRENT as newGuide,TREATMENT_RELATED_PREVIOUS_COPY as previousCopy,publicPageEvidence,assertPublicPagesPreserved} from './preservation.mjs';
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const fp=(body,required=true)=>publicPageEvidence('/treatment-centre',200,body,{hash,requireTreatmentsEntry:required});
 const page=(guide=oldGuide,entry=TREATMENTS_ENTRY)=>'<html><head><style>section[data-shift-link-repair]{color:#E7E3DA}section[data-shift-link-repair] a{color:inherit}</style></head><body><main><h1>Treatments</h1><p>Existing approved content.</p>'+guide+entry+'</main></body></html>';
@@ -48,4 +48,14 @@ test('exact legacy Watch wording is accepted only as a baseline and other bytes 
  assert.throws(()=>fp(page(oldGuide,TREATMENTS_ENTRY_LEGACY)),/differs/);
  assert.throws(()=>fp(page(oldGuide,TREATMENTS_ENTRY_LEGACY.replace('Peptides Watch','Unknown Watch')),false),/differs/);
  assert.throws(()=>assertPublicPagesPreserved([fp(page().replace('Existing approved content.','Changed'))],[before]),/changed outside/);
+});
+
+
+test('previous editorial heading is baseline-only and arbitrary guide changes still fail',()=>{
+ const before=fp(page(previousCopy),false),after=fp(page(newGuide));
+ assert.equal(assertPublicPagesPreserved([after],[before]),'preserved_with_exact_authority_links');
+ assert.notEqual(before.sha256,after.sha256);
+ assert.throws(()=>fp(page(previousCopy)),/differs/);
+ assert.throws(()=>fp(page(previousCopy.replace('Google','Another service')),false),/differs/);
+ assert.throws(()=>fp(page(previousCopy.replace('href="/comparisons/medications/mounjaro-vs-saxenda"','href="https://unapproved.example"')),false),/differs/);
 });

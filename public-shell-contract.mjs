@@ -193,7 +193,7 @@ export const relatedGuideGroups={
   ],
   "/treatment-centre": [
     {
-      "title": "Compare the options Google is already finding",
+      "title": "Compare common treatment questions",
       "links": [
         {
           "path": "/comparisons/medications/mounjaro-vs-saxenda",
