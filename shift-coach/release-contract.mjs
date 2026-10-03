@@ -10,10 +10,10 @@ export const COACH_BACKEND_PATHS=new Set(["ask-timber-v1.js","tests/ai-fast-stre
 export const COACH_COMPOSED_BOOK_ADDITIONS=new Set([".github/workflows/book-voice-live-audit.yml", ".github/workflows/book-voice-preview.yml", "book-voice.mjs", "editorial/book-voice/SAMPLES.md", "editorial/book-voice/VOICE.md", "editorial/book-voice/edits.json", "editorial/book-voice/live.cjs", "editorial/book-voice/payload.json", "preview/book-voice/host.mjs", "preview/book-voice/member-host.mjs", "preview/book-voice/provision.mjs", "preview/book-voice/verify.cjs", "preview/book-voice/worker.mjs", "release/book-voice-scope.mjs", "tests/book-voice-release.test.mjs", "tests/book-voice.test.mjs"]);
 export const COACH_COMPOSED_BOOK_CHANGES=new Set(["member-experience/public-preservation.mjs", "member-experience/verify-production-member.mjs", "public-startup-stability.mjs", "release/growth-preflight.mjs"]);
 // Exact audit corrections, pinned by the release manifest and app hashes.
-export const COACH_AUDIT_CHANGES=new Set(['tests/testosterone-public.test.mjs','public-navigation-policy.mjs','tests/public-ticker-contrast-safety.test.mjs','shift-health-public-content.mjs','frontend/member/shift-health-catalogue-v1.js','frontend/member/whole-man-intent-os-v1.js']);
+export const COACH_AUDIT_CHANGES=new Set(['tests/testosterone-public.test.mjs','public-navigation-policy.mjs','tests/public-ticker-contrast-safety.test.mjs','shift-health-public-content.mjs','frontend/member/shift-health-catalogue-v1.js','frontend/member/whole-man-intent-os-v1.js','public-continuity.mjs']);
 // Preserve the already merged five-file article repair exactly, including its
 // separate publication workflows. This is not permission for other article edits.
-export const COACH_ARTICLE_BASE='ba9f11ff43dc727dd69c1c35008e18db29128bba';
+export const COACH_ARTICLE_BASE='71383ce716abc9c8c937e48c87f59a2e9fe2d618';
 export const COACH_ARTICLE_ADDITIONS=new Set(['.github/workflows/evidence-article-repair-snapshot.yml','.github/workflows/evidence-based-article-live-release.yml','babylove/repair-evidence-based-article.mjs']);
 export const COACH_ARTICLE_CHANGES=new Set(['babylove/dynamic-public.mjs','babylove/dynamic-public.test.mjs']);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]);
@@ -52,6 +52,7 @@ export function validateCoachingSource(read,manifest){
  assert.deepEqual(manifest.pinnedPaths,[...COACH_PATHS].filter(p=>p!=='shift-coach/release-manifest.json').sort(),'Exact coaching path list required');
  for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(manifest.applicationCommit,p),'Coaching release source drift: '+p);
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
+ assert.equal(read('HEAD','public-continuity.mjs'),read('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
  assert.equal(read('HEAD','frontend/member/whole-man-intent-os-v1.js'),read('656a7b857539be29af2e43cef45803d010cc7758','frontend/member/whole-man-intent-os-v1.js'),'Merged My Health Plan asset source drift');
  for(const p of WATCH_CURRENT_PATHS)assert.equal(read('HEAD',p),read(WATCH_CURRENT_BASE,p),'Current Watch source drift: '+p);
  return {recordedMain:COACH_BASE,applicationCommit:manifest.applicationCommit,paths:manifest.pinnedPaths.length};
@@ -73,7 +74,17 @@ export function assertLaunchDecisions(manifest){
  assert.equal(manifest.completeV2,false,'This contract covers the bounded in-app coach; full v2 needs its own evidence');
  return true;
 }
+// Reviewed preview commits can become unreachable from branch refs after merge.
+// Fetch only these fixed identities when absent; never substitute current HEAD.
+export const REVIEWED_HISTORY_REFS=Object.freeze(['2a26480aaadcbd7177d2671d21de35b4028de2d8','a3e2ebb4c585b0731e12511bf0325e6425ddc7b2']);
+export function ensureReviewedHistory(run=execFileSync){
+ for(const ref of REVIEWED_HISTORY_REFS){
+  try{run('git',['cat-file','-e',ref+'^{commit}'],{stdio:'ignore'});}
+  catch{run('git',['fetch','--no-tags','origin',ref],{stdio:'pipe'});run('git',['cat-file','-e',ref+'^{commit}'],{stdio:'ignore'});}
+ }
+}
 export function verifyCoachingRelease({requireLaunch=false}={}){
+ ensureReviewedHistory();
  validateDeviceHealthSource();
  const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
  const manifest=JSON.parse(readFileSync(new URL('./release-manifest.json',import.meta.url),'utf8'));

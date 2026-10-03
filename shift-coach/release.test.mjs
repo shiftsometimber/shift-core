@@ -1,4 +1,4 @@
-import {COACH_ARTICLE_BASE,COACH_ARTICLE_ADDITIONS,COACH_ARTICLE_CHANGES} from './release-contract.mjs';
+import {ensureReviewedHistory,REVIEWED_HISTORY_REFS,COACH_ARTICLE_BASE,COACH_ARTICLE_ADDITIONS,COACH_ARTICLE_CHANGES} from './release-contract.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -52,4 +52,17 @@ test('latest registry-wave proof and exact composed Watch bytes remain mandatory
  assert(calls.some(c=>c.path==='medicines-watch/discovery.mjs'&&c.ref===WATCH_REGISTRY_WAVE_COMMIT));
  for(const path of WATCH_COMPOSED_CHANGES){assert.doesNotThrow(()=>assertCoachingChangedPath('M',path));assert.throws(()=>assertCoachingChangedPath('D',path));}
  for(const path of WATCH_COMPOSED_ADDITIONS){assert.doesNotThrow(()=>assertCoachingChangedPath('A',path));assert.throws(()=>assertCoachingChangedPath('M',path));}
+});
+
+test('missing reviewed preview history is fetched by its exact immutable identity and still fails if unavailable',()=>{
+ const calls=[],present=new Set([REVIEWED_HISTORY_REFS[0]]);
+ ensureReviewedHistory((bin,args)=>{calls.push(args);if(args[0]==='cat-file'&&!present.has(args[2].replace('^{commit}','')))throw Error('missing');if(args[0]==='fetch')present.add(args[3]);});
+ assert.deepEqual(calls.filter(a=>a[0]==='fetch'),[['fetch','--no-tags','origin',REVIEWED_HISTORY_REFS[1]]]);
+ assert.throws(()=>ensureReviewedHistory((bin,args)=>{throw Error(args[0]==='fetch'?'fetch unavailable':'missing')}),/fetch unavailable/);
+});
+test('retained current-main continuity alias cannot be silently widened by repinning',()=>{
+ const p='public-continuity.mjs',m={...manifest,applicationCommit:'a'.repeat(40)};
+ assert.doesNotThrow(()=>assertCoachingChangedPath('M',p));
+ for(const status of ['A','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
+ assert.throws(()=>validateCoachingSource((ref,path)=>ref==='71383ce716abc9c8c937e48c87f59a2e9fe2d618'&&path===p?'prior-alias':path,m),/Merged continuity alias source drift/);
 });

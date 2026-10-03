@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 export const recovery=Object.freeze({run:37047576206,source:'32a51925c6a7676887a3a59b042c15a8272ccc3c',unverified:'7204ee91-dc82-4f3f-90ce-ead305baf9ae',verified:'dee23ccf-be93-4aed-be76-02b724a4c470',verifiedRun:37081219787,verifiedSource:'4350e9a51fece40f5a260da0a847af2a7829c764'});
+export const articleRuntime=Object.freeze({run:37147521854,source:'f5184e4ffefd6bc2eb105e86e7107e5c61f00327',version:'b25b6adb-1fc3-473e-97b7-88bfe3c27a48',workflow:'.github/workflows/evidence-based-article-live-release.yml'});
 export function recoveryDecision(active,failed,verified){
  assert.equal(active.versions?.length,1);assert.equal(active.versions[0].percentage,100);
  assert.equal(verified.id,recovery.verifiedRun);assert.equal(verified.head_sha,recovery.verifiedSource);assert.equal(verified.conclusion,'success');
@@ -18,6 +19,13 @@ export function verifiedOwnedRuntime(active,run,job,receipt){
  if(!/^[a-f0-9]{40}$/.test(run.head_sha||'')||receipt?.kind!=='owned_runtime_deployment'||receipt?.source!==run.head_sha||String(receipt?.run)!==String(run.id))return false;
  if(active?.versions?.length!==1||active.versions[0].percentage!==100||receipt.versionId!==active.versions[0].version_id)return false;
  return /^[a-f0-9-]{36}$/.test(receipt.versionId)&&/^[a-f0-9-]{36}$/.test(receipt.deploymentId);
+}
+
+// The bounded evidence-article workflow also deploys the complete Worker. Its
+// successful run is finite and exact, so recognise only that recorded runtime.
+export function verifiedArticleRuntime(active,run,job){
+ if(active?.versions?.length!==1||active.versions[0].percentage!==100||active.versions[0].version_id!==articleRuntime.version)return false;
+ return run?.id===articleRuntime.run&&run?.head_sha===articleRuntime.source&&run?.status==='completed'&&run?.conclusion==='success'&&run?.event==='push'&&run?.head_branch==='main'&&run?.path===articleRuntime.workflow&&job?.name==='release'&&job?.conclusion==='success'&&job?.run_id===run.id;
 }
 
 // Carry the earlier same-job recovery proof forward without reverting its

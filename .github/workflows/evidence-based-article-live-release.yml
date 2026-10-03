@@ -6,11 +6,12 @@ on:
       - 'babylove/dynamic-public.mjs'
       - 'babylove/dynamic-public.test.mjs'
       - 'babylove/repair-evidence-based-article.mjs'
+      - 'public-continuity.mjs'
       - '.github/workflows/evidence-based-article-live-release.yml'
 permissions:
   contents: read
 concurrency:
-  group: cloudflare-production-promote
+  group: evidence-article-repair-production
   cancel-in-progress: false
 jobs:
   release:
@@ -33,7 +34,7 @@ jobs:
       - name: Verify exact remote source and reviewed transformation without writing
         run: node babylove/repair-evidence-based-article.mjs --check
       - name: Test renderer and existing publication regressions
-        run: node --test babylove/dynamic-public.test.mjs babylove/public-article.test.mjs tests/public-shell-contract.test.mjs tests/public-seo-closeout.test.mjs
+        run: node --test babylove/dynamic-public.test.mjs babylove/public-article.test.mjs tests/public-shell-contract.test.mjs tests/public-seo-closeout.test.mjs tests/public-continuity.test.mjs
       - name: Compile and deploy the exact reviewed Worker
         run: |
           npx wrangler deploy --dry-run --config wrangler.jsonc
@@ -61,7 +62,10 @@ jobs:
           const links=[...html.matchAll(/href="(#[a-z0-9_-]+)"/gi)].map(match=>match[1].slice(1));
           assert(links.length>=14,'Expected rendered table-of-contents links');
           for(const id of links)assert(html.includes('id="'+id+'"'),'Missing contents target '+id);
-          console.log(JSON.stringify({ok:true,url,contentsLinks:links.length}));
+          const urgent=await fetch('https://shiftsometimber.co.uk/mental-health/urgent-help',{redirect:'manual'});
+          assert.equal(urgent.status,301);
+          assert.equal(urgent.headers.get('location'),'https://shiftsometimber.co.uk/mental-health/when-to-get-help');
+          console.log(JSON.stringify({ok:true,url,contentsLinks:links.length,urgentRedirect:urgent.headers.get('location')}));
           NODE
       - uses: actions/upload-artifact@v4
         if: always()
