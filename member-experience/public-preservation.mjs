@@ -7,7 +7,6 @@ import {preserveSeo794} from '../release/seo794-preservation.mjs';
 import {preserveCalculatorsNavigation} from '../public-calculators-preservation.mjs';
 import {preserveNutritionSignposting} from '../public-nutrition-mytimber.mjs';
 import {preservePwaPresentation} from '../my-timber-pwa/preservation.mjs';
-import {preserveTreatmentCentreAccuracy} from '../public-promise-preservation.mjs';
 import {preserveServiceBridgePaint} from '../public-service-bridge-preservation.mjs';
 import {preserveOralKnowledge} from '../babylove/oral-public.mjs';
 import {preserveLoginSession} from './session-preservation.mjs';
@@ -30,6 +29,16 @@ const priorBackground="function background(el){let n=el;while(n){const s=getComp
 const currentBackground="function background(el){const layers=[];let n=el;while(n){const s=getComputedStyle(n);if(s.backgroundImage&&s.backgroundImage!=='none')return null;const c=rgb(s.backgroundColor);if(c&&c.a>0){layers.push(c);if(c.a>=1)break}n=n.parentElement}let result={r:255,g:255,b:255,a:1};for(let i=layers.length-1;i>=0;i--)result=blend(layers[i],result);return result}";
 assert.equal(contrastSafetyClient.split(currentBackground).length-1,1,'Current contrast guard signature changed');
 export const priorContrastSafetyClient=contrastSafetyClient.replace(currentBackground,priorBackground);
+const centreResearchBefore='Retatrutide, CagriSema, Orforglipron, Amycretin, MariTide and the next generation of weight-management treatments.';
+const centreResearchAfter='Retatrutide, CagriSema, Amycretin, MariTide and the next generation of weight-management treatments.';
+function preserveCurrentTreatmentCentre(path,input,{required=false}={}){
+ if(path!=='/treatment-centre')return input;
+ const text=input.toString('utf8'),after=text.split(centreResearchAfter).length-1,before=text.split(centreResearchBefore).length-1;
+ if(required){assert.equal(after,1,'Live Centre must contain the reviewed research correction');assert.equal(before,0,'Live Centre mixes corrected and Pages research copy');}
+ else if(after===0)return input;
+ assert.equal(after,1,'Expected one exact current Centre research correction');assert.equal(before,0,'Mixed old and corrected Centre research copy');
+ return Buffer.from(text.replace(centreResearchAfter,centreResearchBefore));
+}
 export function preserveReviewedContrastGuard(path,input,{required=false}={}){
  if(path==='/turnstile-auth-v1.js?v=timeout-20260912')return input;
  const html=input.toString('utf8');
