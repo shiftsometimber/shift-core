@@ -1,3 +1,4 @@
+import {ensureQueryRedaction} from './query-log-redaction.mjs';
 // Record the version returned by this exact CLI invocation. A subsequent
 // deployment must never be mistaken for this release's failed runtime.
 import assert from 'node:assert/strict';
@@ -22,3 +23,7 @@ const receipt={kind:'owned_runtime_deployment',at:new Date().toISOString(),sourc
 writeFileSync('b1-runtime-release/owned-runtime-deployment.json',JSON.stringify(receipt,null,2));
 assert.equal(latestDeployment(list).id,receipt.deploymentId,'Another deployment followed this release; stop verification');
 console.log(JSON.stringify(receipt));
+
+const logPrivacy=await ensureQueryRedaction({accountId:process.env.CLOUDFLARE_ACCOUNT_ID,token:process.env.CLOUDFLARE_API_TOKEN});
+writeFileSync('b1-runtime-release/query-log-redaction.json',JSON.stringify(logPrivacy,null,2));
+console.log(JSON.stringify(logPrivacy));
