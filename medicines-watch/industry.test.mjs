@@ -33,6 +33,7 @@ import seleneCorrection from './reviews/2026-10-03-authorised-azd6234-selene.jso
 import wve007Publication from './reviews/2026-10-03-authorised-wve007.json' with {type:'json'};
 import specialistRegistryWave from './reviews/2026-10-03-authorised-specialist-registry-wave.json' with {type:'json'};
 import leanMassEnergyFollowup from './reviews/2026-10-03-authorised-lean-mass-energy-followup.json' with {type:'json'};
+import vikingAntagFollowup from './reviews/2026-10-03-authorised-vk3019-at673.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('WVE-007 separates monotherapy registry, sponsor combination and planned maintenance',()=>{
  const e=industry.find(e=>e.id==='wve007');
@@ -57,6 +58,35 @@ test('WVE-007 separates monotherapy registry, sponsor combination and planned ma
  const html=industryMarkup({},new URLSearchParams({q:'WVE-007'}));
  assert.equal((html.match(/data-industry-card/g)||[]).length,1);
  assert.match(html,/not automatically content-monitored/);
+});
+test('Viking and Antag follow-up separates actual starts, registry status and unproven outcomes',()=>{
+ assert.equal(vikingAntagFollowup.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(vikingAntagFollowup.clinicalApproval,null);
+ assert.equal(vikingAntagFollowup.industryComplete,false);
+ assert.equal(vikingAntagFollowup.automatedMonitorChanges,false);
+ assert.equal(vikingAntagFollowup.configuredSourcePass.configuredSources,51);
+ const vk=industry.find(e=>e.id==='vk3019');
+ assert.match(vk.stage,/Recruiting Phase 1/);
+ assert.match(vk.summary,/actual 6 July 2026 start/);
+ assert.match(vk.summary,/56 estimated participants/);
+ assert.match(vk.limitations,/no posted results/);
+ assert.match(vk.limitations,/24 June announcement preceded the registry's actual start/);
+ const at=industry.find(e=>e.id==='at673-semaglutide');
+ assert.match(at.stage,/Active, not recruiting Phase 2/);
+ assert.match(at.summary,/actual 19 June 2026 start/);
+ assert.match(at.summary,/150 estimated participants/);
+ assert.match(at.limitations,/does not identify AT673's mechanism/);
+ assert.match(at.limitations,/do not establish additional weight loss/);
+ for(const e of [vk,at]){
+  assert.equal(e.sourceIds.length,0);
+  assert.equal(e.clinicalApproval,null);
+  assert.equal(e.reviewedAt,vikingAntagFollowup.reviewedAt);
+  for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k]);
+  assert.match(industryMarkup({},new URLSearchParams({q:e.name})),/not automatically content-monitored/);
+ }
+ assert.ok(vikingAntagFollowup.registryEvidence.every(record=>record.hasResults===false));
+ assert.ok(vikingAntagFollowup.registryEvidence.every(record=>/^[a-f0-9]{64}$/.test(record.responseSha256)));
+ assert.equal(vikingAntagFollowup.discoveryPass.currentDateRegistryMatches,0);
 });
 test('specialist registry wave adds one programme and updates existing indications without implying results',()=>{
  assert.equal(specialistRegistryWave.publicationStatus,'owner_authorised_factual_publication');
@@ -164,8 +194,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,78);assert.equal(sources.length,51);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,84);
+ assert.equal(medicines.length,6);assert.equal(industry.length,80);assert.equal(sources.length,51);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,86);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -672,7 +702,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,78);
+ assert.equal(industry.length,80);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);

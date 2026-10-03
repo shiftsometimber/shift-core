@@ -1,0 +1,166 @@
+{
+  "reviewedAt": "2026-10-03T17:41:36Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Promote the previously deferred VK3019 candidate and add one bounded AT673-with-semaglutide smaller-developer combination summary after full primary registry review. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "vk3019",
+      "name": "VK3019",
+      "developer": "Viking Therapeutics",
+      "group": "research",
+      "stage": "Recruiting Phase 1; no posted results",
+      "summary": "Viking's sponsor-submitted NCT07846033 record studies single subcutaneous doses of VK3019 in adults with overweight or obesity. It records a recruiting Phase 1 study, an actual 6 July 2026 start and 56 estimated participants. Viking's 24 June announcement identifies VK3019 as an investigational dual amylin and calcitonin receptor agonist and describes the single-ascending-dose study.",
+      "ukAuthorisation": "The reviewed research sources do not establish UK marketing authorisation for VK3019.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by these research sources.",
+      "supply": "A recruiting US research study does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "This promotes a candidate deferred on 30 September after the later registry record was read; it is not a new October trial start. The 24 June announcement preceded the registry's actual start and is not treated as proof of dosing on that announcement date. The study assesses safety, tolerability, pharmacokinetics and pharmacodynamics after single doses, has no posted results and does not establish weight-loss efficacy, maintenance benefit, combination benefit or long-term safety. Primary completion was estimated for 2 October 2026, but the record remains recruiting and is not treated as completed. Enrolment and November 2026 completion remain estimates.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-03T17:41:36Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07846033: VK3019",
+          "url": "https://clinicaltrials.gov/study/NCT07846033",
+          "sourcePublishedAt": "2026-09-29",
+          "sourceUpdatedAt": "2026-09-29",
+          "reviewedAt": "2026-10-03T17:41:36Z",
+          "checkScope": "Complete sponsor-submitted API record read for identity, formulation, Phase 1 design, recruiting status, actual start, estimated enrolment/completion and absence of posted results; not automatically content-monitored."
+        },
+        {
+          "title": "Viking Therapeutics: Phase 1 VK3019 study initiation",
+          "url": "https://ir.vikingtherapeutics.com/2026-06-24-Viking-Therapeutics-Announces-Initiation-of-Phase-1-Study-to-Evaluate-Novel-Amylin-Receptor-Agonist-VK3019-in-Healthy-Adults",
+          "sourcePublishedAt": "2026-06-24",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-03T17:41:36Z",
+          "checkScope": "Complete original sponsor announcement read for the investigational DACRA description and announced single-ascending-dose Phase 1 study; the later registry controls actual start and current recruitment status; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "at673-semaglutide",
+      "name": "AT673 with semaglutide",
+      "developer": "Antag Therapeutics",
+      "group": "research",
+      "stage": "Active, not recruiting Phase 2; no posted results",
+      "summary": "Antag Therapeutics' sponsor-submitted NCT07724340 record studies two once-weekly subcutaneous AT673 doses or placebo alongside semaglutide in adults with type 2 diabetes and overweight or obesity. It records an actual 19 June 2026 start, active-not-recruiting status, eight US locations and 150 estimated participants.",
+      "ukAuthorisation": "The reviewed registry record does not establish UK marketing authorisation for AT673, the investigational combination or a new semaglutide indication.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by this research record.",
+      "supply": "Use of semaglutide within a US clinical trial does not establish lawful UK retail supply of AT673, combination availability, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "This is an older combination-programme omission, not a newly started October trial. The registry does not identify AT673's mechanism, so none is inferred and it is not equated with a differently coded sponsor asset. Active-not-recruiting status and an actual start do not establish additional weight loss, glycaemic benefit, safety, superiority or successful co-administration; the record has no posted results. The eight listed locations are all in the United States. February/March 2027 completion and 150 participants remain estimates, and semaglutide use in the protocol is not sponsor endorsement or evidence of UK access.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-03T17:41:36Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07724340: AT673 with semaglutide",
+          "url": "https://clinicaltrials.gov/study/NCT07724340",
+          "sourcePublishedAt": "2026-07-24",
+          "sourceUpdatedAt": "2026-09-29",
+          "reviewedAt": "2026-10-03T17:41:36Z",
+          "checkScope": "Complete sponsor-submitted API record read for intervention identity, co-administration design, Phase 2 status, actual start, estimated enrolment/completion, location countries and absence of posted results; not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "registryEvidence": [
+    {
+      "nctId": "NCT07846033",
+      "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07846033",
+      "retrievedAt": "2026-10-03T17:41:36Z",
+      "httpStatus": 200,
+      "responseSha256": "f3e4d9273ed3466bf763d17f231eada140960088e17e162dba18a79a69c179da",
+      "responseBytes": 8131,
+      "overallStatus": "RECRUITING",
+      "phase": "PHASE1",
+      "actualStart": "2026-07-06",
+      "estimatedEnrollment": 56,
+      "estimatedPrimaryCompletion": "2026-10-02",
+      "estimatedCompletion": "2026-11",
+      "firstPosted": "2026-09-29",
+      "lastUpdatePosted": "2026-09-29",
+      "hasResults": false,
+      "locationCountries": ["United States"]
+    },
+    {
+      "nctId": "NCT07724340",
+      "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07724340",
+      "retrievedAt": "2026-10-03T17:41:36Z",
+      "httpStatus": 200,
+      "responseSha256": "102c414a09d99eac7dae6c13b2acf4668fbda2f89d6f09ac43e8c0f20a5feb40",
+      "responseBytes": 14189,
+      "overallStatus": "ACTIVE_NOT_RECRUITING",
+      "phase": "PHASE2",
+      "actualStart": "2026-06-19",
+      "estimatedEnrollment": 150,
+      "estimatedPrimaryCompletion": "2027-02",
+      "estimatedCompletion": "2027-03",
+      "firstPosted": "2026-07-24",
+      "lastUpdatePosted": "2026-09-29",
+      "hasResults": false,
+      "locationCountries": ["United States"]
+    }
+  ],
+  "sponsorEvidence": {
+    "url": "https://ir.vikingtherapeutics.com/2026-06-24-Viking-Therapeutics-Announces-Initiation-of-Phase-1-Study-to-Evaluate-Novel-Amylin-Receptor-Agonist-VK3019-in-Healthy-Adults",
+    "sourcePublishedAt": "2026-06-24",
+    "sourceUpdatedAt": null,
+    "retrievedAt": "2026-10-03T17:41:36Z",
+    "httpStatus": 200,
+    "responseSha256": "a4496666fe7c7cd5b1afad9f2466a8b53df48014a95b2df3087219442d51ea41",
+    "responseBytes": 81981,
+    "automaticBaselineApproved": false
+  },
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-03T17:41:36Z",
+    "checkedAt": "2026-10-03T17:00:18.693Z",
+    "lastAttemptAt": "2026-10-03T17:04:17.447Z",
+    "available": true,
+    "status": "current",
+    "configuredSources": 51,
+    "attention": [],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "A successful SELECT-only health observation checks configured-source availability, changed-content flags, withdrawals, review expiry and monitor operation. It does not renew a factual review, approve changed copy or establish industry completeness."
+  },
+  "discoveryPass": {
+    "method": "A separate current-date/current-month pass checked regulator, NHS/NICE, product-information, registry and named sponsor changes. A broader undated mechanism, combination, body-composition, specialist-indication, international, smaller-developer and stopped-programme pass was compared with all live entries, dated receipts, merged PR851 and open review PRs before selecting these two programmes.",
+    "currentDateRegistryQuery": "https://clinicaltrials.gov/api/v2/studies?query.cond=Obesity&format=json&pageSize=100&filter.advanced=AREA%5BLastUpdatePostDate%5DRANGE%5B2026-10-03%2C%20MAX%5D",
+    "currentDateRegistryCheckedAt": "2026-10-03T17:41:36Z",
+    "currentDateRegistryMatches": 0,
+    "currentDateRegistryResponseSha256": "e5660ca1fb1bc482c0112c159084af7c325461ac1624b4de41dd67edef2981b9",
+    "included": "VK3019 is promoted from the 30 September deferred candidate after the later full registry record became available. AT673 with semaglutide is a distinct smaller-developer Phase 2 combination programme absent from the live catalogue and prior receipts.",
+    "incompleteChecks": [
+      "Current-date registry results cannot exclude indexing delay, older omissions or international evidence; zero matches do not establish no changes.",
+      "The current Antag sponsor site did not expose a matched AT673 programme page in the search pass. The sponsor-submitted registry supports the bounded entry, but no mechanism or alias is inferred.",
+      "GZC8072, ALN-CIDEB and other newly surfaced records remain outside this release pending programme-relevance and sponsor-context review. A match in an obesity query is not by itself a publication decision.",
+      "Selected domains, developers, result counts and the 86-entry catalogue do not establish industry completeness."
+    ],
+    "failedChecks": [],
+    "preservedKnownFailures": "Earlier receipts retain unchanged Aardvark primary-source retrieval failures and incomplete nutrition/Neurocrine checks; they were not silently cleared or repeated as new alerts.",
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailed": 6,
+    "widerBefore": 78,
+    "widerAfter": 80,
+    "totalBefore": 84,
+    "totalAfter": 86,
+    "configuredSources": 51
+  },
+  "openReviewPrCheck": {
+    "checkedAt": "2026-10-03T17:41:36Z",
+    "pr851": "merged historical expansion",
+    "pr1009": "draft audit and recovery work; it changes only the historical Roche evidence URL in industry.mjs and does not contain VK3019 or AT673",
+    "otherOpenWatchReviews": [815, 874],
+    "duplicationFound": false
+  },
+  "nextAction": "Publish the independently supported bounded summaries through exact-source checks and guarded production/live verification. Continue open-ended discovery and retain incomplete and failed checks without inferring programme status."
+}
