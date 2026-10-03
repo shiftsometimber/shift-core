@@ -1,4 +1,4 @@
-import {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS} from '../release/watch-registry-wave-scope.mjs';
+import {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,WATCH_SOURCE_LINK_SOURCE} from '../release/watch-registry-wave-scope.mjs';
 import {PUBLIC_WORDING_PREVIEW,PUBLIC_WORDING_PATHS,validatePublicWording} from '../release/public-wording-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
