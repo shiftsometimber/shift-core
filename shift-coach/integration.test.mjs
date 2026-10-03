@@ -341,7 +341,7 @@ test('known changed constraints and unhelpful feedback prevent a routine being s
  await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'helped'});a=await read(DB);
  await save(DB,{kind:'working-detail',outcomeId:a.memory.outcomes.at(-1).id,text:'My cooked meal before work'});a=await read(DB);const id=a.memory.workingRoutines[0].id;
  await save(DB,{kind:'constraints',constraints:{kitchen:'no-cook'}});a=await read(DB);assert.equal(a.action.routineSuggestion,null);assert.equal((await save(DB,{kind:'working-use',id})).status,409);assert.equal(a.memory.workingRoutines.length,1);
- await save(DB,{kind:'constraints',constraints:{kitchen:'cook'}});await save(DB,{kind:'working-use',id});a=await read(DB);await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'didnt-help'});a=await read(DB);assert.equal(a.action.routineSuggestion,null);assert.notEqual(a.action.workingRoutineId,id);
+ await save(DB,{kind:'constraints',constraints:{kitchen:'cook'}});await save(DB,{kind:'working-use',id});a=await read(DB);await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'didnt-help'});a=await read(DB);assert.equal(a.action.routineSuggestion,null);assert.notEqual(a.action.workingRoutineId,id);assert.match(a.action.reason,/didn’t help.*different approach/);assert.doesNotMatch(a.action.reason,/last step helped/);
 });
 
 test('coaching detail is erased with source deletion and hidden on withdrawal or a new consent grant',async t=>{
@@ -350,6 +350,36 @@ test('coaching detail is erased with source deletion and hidden on withdrawal or
  await start(DB);a=await read(DB);await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'helped'});a=await read(DB);await save(DB,{kind:'working-detail',outcomeId:a.memory.outcomes.at(-1).id,text:'My new lunch routine'});
  DB.sqlite.exec("INSERT INTO consents(user_id,consent_type,granted,created_at) VALUES(1,'my_shift_health_tracking',0,'2026-10-03')");assert.equal((await read(DB)).memory,null);
  DB.sqlite.exec("INSERT INTO consents(user_id,consent_type,granted,created_at) VALUES(1,'my_shift_health_tracking',1,'2026-10-03')");await start(DB);assert.equal((await read(DB)).memory.workingRoutines.length,0);
+});
+
+test('changed weeks and treatment situations require explicit fresh fit confirmation before routine reuse',async t=>{
+ const DB=fixture(t);let a=await start(DB);await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'helped'});a=await read(DB);
+ await save(DB,{kind:'working-detail',outcomeId:a.memory.outcomes.at(-1).id,text:'My lunch before the late shift'});a=await read(DB);const id=a.memory.workingRoutines[0].id;
+ await save(DB,{kind:'circumstances',change:'routine',week:'My shifts moved to early mornings',followup:false});a=await read(DB);assert.equal(a.action.routineSuggestion.needsFitReview,true);
+ let before=await load(DB,1);assert.equal((await save(DB,{kind:'working-use',id})).status,409);assert.deepEqual(await load(DB,1),before);
+ assert.equal((await save(DB,{kind:'working-use',id,confirmFit:true})).status,201);a=await read(DB);assert.equal(a.action.workingRoutineId,id);assert.equal(a.memory.workingRoutines[0].fit.weekId,a.memory.facts.find(f=>f.key==='week').id);
+ await save(DB,{kind:'mode',mode:'stopped'});a=await read(DB);assert.equal(a.action.routineSuggestion.needsFitReview,true);assert.equal((await save(DB,{kind:'working-use',id})).status,409);
+ assert.equal((await save(DB,{kind:'working-use',id,confirmFit:true})).status,201);a=await read(DB);assert.equal(a.memory.workingRoutines[0].fit.mode,'stopped');assert.equal(a.memory.outcomes.length,1);
+ const weekId=a.memory.facts.find(f=>f.key==='week').id;await save(DB,{kind:'delete-item',id:weekId});assert(!JSON.stringify((await load(DB,1)).state).includes('My lunch before the late shift'));
+});
+
+test('two failed fits stop repeating a routine and ask for the actual obstacle; restoring an approach does not revive it',async t=>{
+ const DB=fixture(t);let a=await start(DB);await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'helped'});a=await read(DB);
+ await save(DB,{kind:'working-detail',outcomeId:a.memory.outcomes.at(-1).id,text:'My saved breakfast timing'});a=await read(DB);const id=a.memory.workingRoutines[0].id;await save(DB,{kind:'working-use',id});
+ for(let i=0;i<2;i++){a=await read(DB);await save(DB,{kind:'accept',id:a.action.id});assert.equal((await save(DB,{kind:'outcome',id:a.action.id,value:'didnt-fit'})).status,201);}
+ a=await read(DB);assert.equal(a.action.type,'member-choice');assert(a.memory.pendingBlocker);assert.equal(a.memory.workingRoutines[0].status,'needs-change');assert.equal(a.memory.outcomes.filter(o=>o.value==='didnt-fit').length,2);assert.match(a.journey.text,/routine did not fit twice/);
+ assert.equal((await save(DB,{kind:'working-use',id,confirmFit:true})).status,409);await save(DB,{kind:'blocker',blocker:'time'});a=await read(DB);assert.equal(a.action.routineSuggestion,null);assert.notEqual(a.action.workingRoutineId,id);
+ const outcomeId=a.memory.workingRoutines[0].outcomeId;await save(DB,{kind:'working-detail',outcomeId,text:'My revised quick breakfast'});a=await read(DB);assert.equal(a.memory.workingRoutines[0].status,'active');assert.equal(a.action.routineSuggestion.needsFitReview,true);
+});
+
+test('a member can retire a routine without losing reported history or replacing an unrelated accepted step',async t=>{
+ const DB=fixture(t);let a=await start(DB);await start(DB,2);await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'helped'});a=await read(DB);
+ await save(DB,{kind:'working-detail',outcomeId:a.memory.outcomes.at(-1).id,text:'My earlier meal routine'});a=await read(DB);const id=a.memory.workingRoutines[0].id,current=a.action.id,history=a.memory.outcomes;await save(DB,{kind:'accept',id:current});
+ assert.equal((await save(DB,{kind:'working-pause',id},2)).status,404);assert.equal((await save(DB,{kind:'working-pause',id})).status,201);a=await read(DB);assert.equal(a.action.id,current);assert.equal(a.action.status,'accepted');assert.deepEqual(a.memory.outcomes,history);assert.equal(a.memory.workingRoutines[0].status,'needs-change');
+ await save(DB,{kind:'focus',focus:'food',restore:true});a=await read(DB);assert.equal(a.action.routineSuggestion,null);assert.equal((await save(DB,{kind:'working-use',id,confirmFit:true})).status,409);
+ const original=a.memory.workingRoutines[0].outcomeId;await save(DB,{kind:'working-detail',outcomeId:original,text:'My corrected meal routine'});a=await read(DB);const corrected=a.memory.workingRoutines[0].id;
+ await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'didnt-try'});a=await read(DB);const wanted=a.memory.pendingWant,wantedAction=a.action.id;assert(a.action.awaitingWant);
+ await save(DB,{kind:'working-pause',id:corrected});a=await read(DB);assert.equal(a.action.id,wantedAction);assert.deepEqual(a.memory.pendingWant,wanted);assert.equal((await save(DB,{kind:'wanted',yes:true})).status,201);
 });
 
 test('HQ coaching replies retain existing support role and session boundaries',async t=>{

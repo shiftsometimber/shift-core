@@ -1,5 +1,5 @@
 import {constraintOptions,blockerOptions,saveConstraints,chooseBlocker,journeyView} from './progression.mjs';
-import {saveWorkingRoutine,forgetWorkingRoutine,eligibleWorkingRoutines} from './working-routines.mjs';
+import {saveWorkingRoutine,forgetWorkingRoutine,workingRoutineOptions,routineContext,pauseWorkingRoutine} from './working-routines.mjs';
 import {supportView,requestSupport,reopenSupport,confirmSupport} from './support.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {load,mutate,activeConsent,usable,statePath} from './store.mjs';
@@ -75,9 +75,12 @@ export async function coachingRoutes(request,env){
     case 'different-step':{const a=readToday(s);if(!a||a.status!=='prepared')throw Object.assign(Error('action_unavailable'),{status:409});s.pendingBlocker=null;result=prepareToday(s,at,{different:true,previousType:a.type});break;}
     case 'working-detail':result=saveWorkingRoutine(s,input.outcomeId,input.text,at);if(!readToday(s))prepareToday(s,at);break;
     case 'working-delete':result=forgetWorkingRoutine(s,input.id);prepareToday(s,at);break;
+    case 'working-pause':{const current=readToday(s);result=pauseWorkingRoutine(s,input.id);if(current?.workingRoutineId===input.id||!readToday(s))prepareToday(s,at,{different:true,previousType:result.previousType});break;}
     case 'working-use':{
      if(readToday(s)?.status==='accepted')throw Object.assign(Error('finish_saved_action_first'),{status:409});
-     const r=eligibleWorkingRoutines(s).find(r=>r.id===input.id);if(!r)throw Object.assign(Error('working_routine_no_longer_fits'),{status:409});
+     const r=workingRoutineOptions(s).find(r=>r.id===input.id);if(!r)throw Object.assign(Error('working_routine_no_longer_fits'),{status:409});
+     if(r.needsFitReview&&input.confirmFit!==true)throw Object.assign(Error('confirm_routine_still_fits'),{status:409});
+     s.workingRoutines.find(x=>x.id===r.id).fit=routineContext(s);
      s.pendingBlocker=null;result=prepareToday(s,at,{repeat:r.type,routineId:r.id});break;
     }
     case 'delete-item':result=deleteItem(s,input.id);prepareToday(s,at);break;

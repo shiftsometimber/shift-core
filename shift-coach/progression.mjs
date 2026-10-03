@@ -21,7 +21,7 @@ export function journeyView(state,now=Date.now()){
  const accepted=state.actions.some(a=>a.status==='accepted');
  let title='One useful step to start',text='Choose a step that fits your day. You can make it smaller or change it.';
  if(accepted){title='Pick up your saved step';text='Your action stays here. After you try it, tell us whether it helped. A weekly review will not replace it.';}
- else if(state.pendingBlocker){title='Let’s change what is getting in the way';text='Two approaches did not help. Choose the obstacle before we suggest another.';}
+ else if(state.pendingBlocker){title='Let’s change what is getting in the way';text=state.pendingBlocker.reason==='routine-fit'?'Your routine did not fit twice, even as a smaller step. Choose what is getting in the way before we suggest another.':'Two approaches did not help. Choose the obstacle before we suggest another.';}
  else if(helpful.length){title='Keep what worked, then choose the next step';text='Your feedback matters more than the date. Repeat the useful version or choose a different step when you are ready.';}
  else if(outcomes.length){title='Use what you learnt';text='A step that did not fit is useful feedback. Change the approach or choose a smaller commitment.';}
  if(day>=7&&!accepted&&!state.pendingBlocker)text+=' Use your weekly review to record how the week felt. Missing days are not failed days.';
