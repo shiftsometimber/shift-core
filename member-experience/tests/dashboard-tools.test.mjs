@@ -171,7 +171,7 @@ test('finishing delayed tool loading keeps a member-opened More menu open until 
    history.replaceState(null,'','#today');
    assert.equal(more.open,true,'Journey initialisation itself has not closed More');
   }
-  for(let index=0;index<4;index++){
+  for(let index=0;index<5;index++){
    assert.equal(pending.length,index+1,'tool scripts must still load sequentially');
    pending[index].onload();await new Promise(setImmediate);
    assert.equal(more.open,true,'background script completion must not dismiss an open menu');
