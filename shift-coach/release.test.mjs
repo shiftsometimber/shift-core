@@ -66,3 +66,8 @@ test('retained current-main continuity alias cannot be silently widened by repin
  for(const status of ['A','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
  assert.throws(()=>validateCoachingSource((ref,path)=>ref==='71383ce716abc9c8c937e48c87f59a2e9fe2d618'&&path===p?'prior-alias':path,m),/Merged continuity alias source drift/);
 });
+
+test('merged health safety corrections and their evidence remain independently pinned',()=>{
+ const m={...manifest,applicationCommit:'a'.repeat(40)};
+ for(const p of ['docs/content-review/2026-10-03-health-safety.json','frontend/member/shift-health-catalogue-v1.js','shift-health-public-content.mjs','tests/testosterone-public.test.mjs'])assert.throws(()=>validateCoachingSource((ref,path)=>ref==='7bd5fb37d7bbce66fa5e728f59304843817128bf'&&path===p?'prior-safety':path,m),/Merged health-safety source drift/);
+});

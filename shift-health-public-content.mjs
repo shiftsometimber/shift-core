@@ -80,7 +80,7 @@ const PRODUCTS = {
     steps: [
       "Choose the correct cuff size",
       "Follow the measurement guide",
-      "Record three morning readings",
+      "Follow the agreed repeat-reading schedule",
       "Track the pattern in My Timber",
     ],
   },
@@ -294,7 +294,7 @@ const JOURNEY = {
   "blood-pressure-monitor": [
     "Under the bonnet",
     "Stores a useful run of readings beside weight, waist and metabolic markers.",
-    "Log three properly taken morning readings, then use the appropriate health door if the pattern is high.",
+    "If your doctor or nurse asks you to monitor at home, take two readings a minute apart, usually morning and evening. Follow their advice on how many days to record and arrange for the complete record to be reviewed.",
   ],
   "digital-scales": [
     "Lose it → Keep it off",
@@ -716,7 +716,7 @@ const DETAILS = {
       "Use review rather than silently repeating an option that is not working",
     ],
     redFlags:
-      "Chest pain during sex, an erection lasting four hours, penile injury, severe pain or sudden neurological symptoms need urgent medical help.",
+      "Call 999 or go to A&E for an erection lasting more than 3 to 4 hours. With sickle cell disease, a painful erection lasting more than one hour needs emergency help. Chest pain or sudden stroke-like symptoms also need emergency help; penile injury or severe pain needs urgent assessment.",
     decision:
       "Start here for persistent erection difficulty or related confidence concerns. This is a private health pathway, not a one-click tablet shelf.",
   },
