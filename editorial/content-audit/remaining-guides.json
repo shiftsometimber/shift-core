@@ -1,0 +1,50 @@
+{
+  "reviewDate": "2026-10-03",
+  "articles": [
+    {
+      "path": "orlistat-definitive-uk-guide.html",
+      "title": "Orlistat: a practical UK guide",
+      "intro": "Orlistat is a weight-management capsule that reduces absorption of some of the fat in food. The practical question is whether its benefits, bowel side effects and meal routine suit you—not whether a capsule sounds easier than an injection.",
+      "sections": [
+        ["Which product are we talking about?", "This guide concerns prescription orlistat 120 mg. Lower-dose orlistat 60 mg is a separate pharmacy medicine, with its own eligibility checks and instructions. Do not swap doses or assume that all orlistat is prescription-only."],
+        ["Who can be considered?", "The Xenical 120 mg licence covers BMI of at least 30, or at least 28 with associated risk factors, alongside a reduced-calorie diet. Meeting a BMI threshold does not establish individual suitability. A prescriber or pharmacist needs your medical history and current medicines."],
+        ["What does taking it involve?", "The product information links doses to main meals containing fat. A missed meal or a meal without fat means omitting that dose. Use the instructions supplied with your own prescription. More capsules are not a way to cancel out a large meal."],
+        ["Side effects and other medicines", "Oily stools, wind with discharge and urgent bowel movements can occur, particularly with higher-fat meals. Tell the clinician about bowel, liver or kidney conditions and all medicines, including warfarin, ciclosporin, thyroid or epilepsy treatment. Ask whether vitamin supplementation or additional monitoring is needed. Persistent or severe symptoms need medical advice."],
+        ["How will you know whether it is worth continuing?", "The 120 mg product information sets a review point: stop treatment if at least 5% of starting body weight has not been lost after 12 weeks. Arrange that review with your prescriber rather than repeatedly buying without checking benefit and tolerability."],
+        ["Questions before paying", ["Which strength and brand are you supplying, and what is included in the price?", "Who checks my other medicines and answers a side-effect question?", "When is my progress review, and what happens if treatment is not helping?", "What would a realistic meal pattern look like around my working day?"]],
+        ["Make the routine workable", "Write down your usual meals before the consultation. Be honest about takeaway nights, shift work and days when you skip lunch. The aim is a plan you can actually follow. In My Timber, you can save meals, choose manageable movement and check in on progress whether or not you buy treatment through SHIFT. Medicine decisions stay with your prescriber."]
+      ],
+      "sources": [["Xenical 120 mg: UK product information", "https://www.medicines.org.uk/emc/product/2592/smpc"], ["MHRA: prescription and pharmacy orlistat", "https://www.gov.uk/drug-safety-update/orlistat-safety-update"]]
+    },
+    {
+      "path": "saxenda-definitive-uk-guide.html",
+      "title": "Saxenda (liraglutide): a practical UK guide",
+      "intro": "Saxenda is a daily prescription injection for weight management. Understanding the daily routine, side effects and review point matters more than treating it as an older version of a weekly jab.",
+      "sections": [
+        ["What is Saxenda?", "Saxenda contains liraglutide, a GLP-1 receptor agonist. It is used with reduced-calorie eating and increased physical activity. It is injected daily, unlike weekly products. This page covers adults; it does not assess suitability for a child or teenager."],
+        ["Who can be considered?", "The adult licence covers BMI of at least 30, or BMI from 27 to below 30 with a weight-related condition. The prescriber must assess the whole medical picture. A licence threshold does not guarantee NHS access, private acceptance or available stock."],
+        ["Starting and reviewing treatment", "The dose is increased gradually under the prescribed schedule. The adult continuation rule is measured after 12 weeks at 3 mg daily: treatment should stop if less than 5% of initial body weight has been lost. That is not simply 12 weeks from the first injection. Agree the review date with your prescriber."],
+        ["Side effects need a plan", "Nausea, vomiting, diarrhoea and constipation can occur. Persistent severe abdominal pain needs urgent medical assessment because pancreatitis is a recognised risk. Seek advice if vomiting prevents adequate drinking. Tell the prescriber about other medicines, especially diabetes treatment; do not change insulin yourself. Read the leaflet for the full warnings."],
+        ["Questions that make a comparison useful", ["Can I manage a daily injection and the storage instructions around work or travel?", "Who will advise me if a dose increase is difficult?", "What do I do if supply is interrupted or I miss several days?", "What is the cost at my prescribed maintenance dose, including reviews and supplies?", "If this does not help enough, who reviews the alternatives?"]],
+        ["Do not improvise a switch", "Ask the prescriber for written instructions if changing medicine or restarting after a gap. Products are not interchangeable simply because they belong to the same family. Do not combine treatments or copy another person's schedule."],
+        ["Keep support after the prescription", "Before starting, decide where practical food and movement help will come from and who answers treatment questions. Keep those routes somewhere easy to find. My Timber offers everyday planning and check-ins without a treatment purchase; it does not prescribe, change doses or monitor clinical safety."]
+      ],
+      "sources": [["Saxenda: UK product information", "https://www.medicines.org.uk/emc/product/2313/smpc"], ["MHRA: GLP-1 medicines for weight loss and diabetes", "https://www.gov.uk/government/publications/glp-1-medicines-for-weight-loss-and-diabetes-what-you-need-to-know/glp-1-medicines-for-weight-loss-and-diabetes-what-you-need-to-know"]]
+    },
+    {
+      "path": "ozempic-definitive-uk-guide.html",
+      "title": "Ozempic and weight loss: the UK distinction",
+      "intro": "Ozempic is a diabetes medicine. Its name has become shorthand for weight-loss injections, but the brand, licence and prescribing purpose still matter. Start with what you need treatment for, rather than the name you have heard most often.",
+      "sections": [
+        ["What is Ozempic licensed for?", "Ozempic contains semaglutide and is licensed for adults with insufficiently controlled type 2 diabetes, alongside diet and exercise. Weight loss can occur during treatment, but Ozempic does not have a UK weight-management indication."],
+        ["Is it the same as Wegovy?", "The brands share semaglutide as an active ingredient, but have different licensed uses and product instructions. Wegovy is a weight-management brand. Sharing an ingredient does not make pens, doses or prescribing plans interchangeable."],
+        ["Can my GP prescribe it?", "A clinician can assess diabetes treatment and decide what is appropriate. Asking for Ozempic for weight loss alone is a different question from treating type 2 diabetes. NHS access also depends on the relevant pathway. This page cannot confirm an individual entitlement or prescription."],
+        ["What should I know about side effects?", "Digestive effects such as nausea, vomiting and diarrhoea can occur. Persistent severe abdominal pain needs urgent medical assessment; sudden loss of vision or rapidly worsening eyesight also needs urgent help. Discuss other medicines and any planned anaesthetic with your clinical team. Do not stop or adjust diabetes treatment because of a comparison page."],
+        ["What if I already take it?", "Keep following your own prescription. If you are concerned about weight, side effects, supply or whether treatment is working, take those questions to the clinician managing it. Record the product name, prescribed dose, dates and problem before making contact. Avoid sharing unnecessary medical details in public comments or general website enquiries."],
+        ["What should I ask if weight management is my main aim?", ["Which licensed options fit my health history, rather than just my BMI?", "Who is responsible for prescribing and ongoing review?", "What is included in the full cost and what happens if I need to stop?", "Where can I get practical food and movement support during and after treatment?"]],
+        ["Your next useful step", "If you are exploring options, use the treatment comparison as preparation for a clinical conversation. If you are already being treated, My Timber can support ordinary routines and check-ins without asking you to change provider. It does not replace your diabetes team or prescriber."]
+      ],
+      "sources": [["Ozempic: UK product information", "https://www.medicines.org.uk/emc/product/9749/smpc"], ["MHRA: GLP-1 medicines for weight loss and diabetes", "https://www.gov.uk/government/publications/glp-1-medicines-for-weight-loss-and-diabetes-what-you-need-to-know/glp-1-medicines-for-weight-loss-and-diabetes-what-you-need-to-know"]]
+    }
+  ]
+}

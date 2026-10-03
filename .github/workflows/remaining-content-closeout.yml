@@ -1,0 +1,83 @@
+name: Remaining medicine guides and privacy accuracy
+on:
+  push:
+    branches: [codex/nondevice-completion-20261003]
+    paths: [editorial/content-audit/remaining-*.json, editorial/content-audit/remaining-*.mjs, editorial/content-audit/build-remaining.py, .github/workflows/remaining-content-closeout.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: verified-public-pages-repair
+  cancel-in-progress: false
+jobs:
+  preview:
+    if: github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          ref: 9bdcc2f7f69dc7950b90011f47e83a34fd5a64a1
+          path: pages-authority
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37083550829
+          name: faq-release-0487df907f3921b6d61c546357d4c7658725b66a
+          path: exact-baseline
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - run: npm ci --no-audit --no-fund
+      - name: Build exact scoped corrections
+        run: |
+          python3 editorial/content-audit/build-remaining.py --source exact-baseline/source.json.gz --out remaining-release
+          cp remaining-release/source.json.gz remaining-release/control.json pages-authority/release/public-pages-20260911/
+          python3 pages-authority/release/public-pages-20260911/assemble-pages.py
+      - run: mv "$SST_RELEASE_DIR" remaining-release/site
+      - name: Publish isolated preview
+        run: |
+          mkdir -p "$RUNNER_TEMP/remaining-command"
+          cd "$RUNNER_TEMP/remaining-command"
+          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$GITHUB_WORKSPACE/remaining-release/site" --project-name projectshift --branch reviewed-remaining-20261003 --commit-hash "$GITHUB_SHA" 2>&1 | tee "$GITHUB_WORKSPACE/remaining-release/preview-deploy.log"
+          python3 - <<'PY'
+          import re,pathlib,os
+          log=pathlib.Path(os.environ['GITHUB_WORKSPACE']+'/remaining-release/preview-deploy.log').read_text()
+          url=re.findall(r'https://[a-f0-9]{8}\.projectshift\.pages\.dev',log)[-1]
+          with open(os.environ['GITHUB_ENV'],'a') as f:f.write('REMAINING_PREVIEW_URL='+url+'\n')
+          PY
+      - run: npm install --prefix "$RUNNER_TEMP/content-tools" --no-audit --no-fund playwright@1.58.2
+      - run: '"$RUNNER_TEMP/content-tools/node_modules/.bin/playwright" install --with-deps chromium'
+      - run: PLAYWRIGHT_MODULE="$RUNNER_TEMP/content-tools/node_modules/playwright" node editorial/content-audit/remaining-browser-proof.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'remaining-browser-proof-${{ github.sha }}', path: remaining-browser-proof/}
+      - uses: actions/upload-artifact@v4
+        with: {name: 'remaining-release-${{ github.sha }}', path: remaining-release/}
+  publish:
+    needs: preview
+    if: github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - run: npm ci --no-audit --no-fund
+      - uses: actions/download-artifact@v4
+        with: {name: 'remaining-release-${{ github.sha }}', path: remaining-release}
+      - uses: actions/download-artifact@v4
+        with: {name: 'remaining-browser-proof-${{ github.sha }}', path: remaining-browser-proof}
+      - run: node editorial/content-audit/remaining-release.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'remaining-live-proof-${{ github.sha }}', path: remaining-live-proof/}
