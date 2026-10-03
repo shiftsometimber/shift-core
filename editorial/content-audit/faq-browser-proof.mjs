@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {createRequire} from 'node:module';
+import {createHash} from 'node:crypto';
 const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE);
 const origin=process.env.FAQ_PREVIEW_URL;assert(/^https:\/\/[a-f0-9]{8}\.projectshift\.pages\.dev$/.test(origin));
 const data=JSON.parse(readFileSync('editorial/content-audit/faq-copy.json'));
@@ -17,7 +18,8 @@ try{for(const spec of data.articles){for(const width of [390,1440]){
  reports.push({slug:spec.slug,width,h1:result.h1,overflow:result.overflow,brokenFragments:result.brokenFragments,header:result.header,footer:result.footer,brokenImages:result.brokenImages});await page.close();
 }}
  await checkMot(browser,origin,reports);
- writeFileSync('faq-browser-proof/receipt.json',JSON.stringify({at:new Date().toISOString(),sha:process.env.GITHUB_SHA,origin,reports,syntheticLocalHealthMotFormsSubmitted:true,accountFormsSubmitted:false,customerAccountsAccessed:false,clinicalReviewClaimed:false},null,2));
+ const response=await fetch(origin+'/assets/fit/shift-fit-batch2.svg');assert(response.ok);assert.match(response.headers.get('content-type'),/^image\/svg/);const svg=await response.text(),sha256=createHash('sha256').update(svg).digest('hex');assert.equal(sha256,'0ae9686743e2b98e6837fbfeab6d1ad06e44e86ebd3d243c341a590c9c3a68bc');for(const fragment of ['bird-dog','goblet-squat','floor-press'])assert(svg.includes('id="'+fragment+'"'));
+ writeFileSync('faq-browser-proof/receipt.json',JSON.stringify({at:new Date().toISOString(),sha:process.env.GITHUB_SHA,origin,reports,restoredLegacySprite:{sha256,fragments:['bird-dog','goblet-squat','floor-press'],originalRepositoryAsset:true},syntheticLocalHealthMotFormsSubmitted:true,accountFormsSubmitted:false,customerAccountsAccessed:false,clinicalReviewClaimed:false},null,2));
 }finally{await browser.close();}
 
 async function checkMot(browser,origin,reports){

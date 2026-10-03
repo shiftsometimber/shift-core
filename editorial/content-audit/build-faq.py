@@ -86,6 +86,14 @@ def build(source,out):
   original=out/'before'/name;original.parent.mkdir(parents=True,exist_ok=True);original.write_text(old)
   reports.append(dict(path=name,before=entries[name]['sha256'],after=entry(name,new)['sha256'],sectionCount=len(a['sections']),clinicalReviewClaimed=False,headerFooterAndBehaviourScriptsPreserved=True))
  amend_mot(p,entries,updates,out,reports)
+ # Restore the exact existing approved legacy sprite; no catalogue/review mutation.
+ sprite='assets/fit/shift-fit-batch2.svg'
+ assert sprite not in entries,'Legacy sprite now exists in the reviewed baseline'
+ original=pathlib.Path(sprite).read_text()
+ assert digest(original.encode())=='0ae9686743e2b98e6837fbfeab6d1ad06e44e86ebd3d243c341a590c9c3a68bc'
+ for fragment in ['bird-dog','goblet-squat','floor-press']:assert 'id="'+fragment+'"' in original
+ updates[sprite]=original;target=out/'after'/sprite;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(original)
+ reports.append(dict(path=sprite,before=None,after=digest(original.encode()),reason='Restore original repository asset referenced by three published legacy exercises; no new review attestation'))
  integrity=json.loads(p['overrides']['release-body-integrity.json'])
  for n,s in updates.items():
   if n.endswith('.html'):integrity[n]=digest(s.split('</head>',1)[1].encode())
@@ -95,8 +103,8 @@ def build(source,out):
  fp['files']=[fpe[n] for n in sorted(fpe,key=pathlib.PurePosixPath)];fp['file_count']=len(fp['files']);fp['aggregate_sha256']=digest(''.join(f"{e['sha256']}  {e['path']}\n" for e in fp['files']).encode())
  updates['DEPLOYMENT-FINGERPRINT.json']=json.dumps(fp,indent=2)+'\n'
  for n,s in updates.items():p['overrides'][n]=s;entries[n]=entry(n,s)
- assert set(updates)=={'faq/'+a['slug']+'.html' for a in data['articles']}|{'health-mot.html','health-mot.js','health-mot-methodology.html','DEPLOYMENT-FINGERPRINT.json','release-body-integrity.json'}
- assert set(entries)=={e['path'] for e in base['files']}
+ assert set(updates)=={'faq/'+a['slug']+'.html' for a in data['articles']}|{'health-mot.html','health-mot.js','health-mot-methodology.html',sprite,'DEPLOYMENT-FINGERPRINT.json','release-body-integrity.json'}
+ assert set(entries)=={e['path'] for e in base['files']}|{sprite}
  assert all(entries[e['path']]==e for e in base['files'] if e['path'] not in updates)
  p['files']=[entries[n] for n in sorted(entries)];p['baseline_fingerprint']=BASE;p['source_fingerprint']=fp['aggregate_sha256']
  packed=gzip.compress(json.dumps(p,ensure_ascii=False,separators=(',',':')).encode(),mtime=0);out.mkdir(parents=True,exist_ok=True)
