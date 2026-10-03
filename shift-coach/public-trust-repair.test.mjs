@@ -29,3 +29,13 @@ test('release comparison admits only the exact treatment repair and retains unre
  assert.notEqual(restoreTrustCentre('/treatment-centre',current.replace('<main>','<main>UNRELATED CHANGE')),prior);
  assert.equal(restoreTrustCentre('/',current,{required:true}),current);
 });
+
+test('release comparison recognises only exact reviewed MOT guide wording',()=>{
+ const before='<main>Explore the SHIFT Health MOT home blood test and what it covers.<a>Explore the Health MOT</a>Payment does not guarantee prescribing. Payment does not guarantee prescribing.</main>';
+ const current=before.replace('Explore the SHIFT Health MOT home blood test and what it covers.','The Health MOT guide explains a proposed blood-test route and how it differs from the older browser questionnaire. No test or clinical review is booked by reading it.').replace('>Explore the Health MOT</a>','>Read the Health MOT guide</a>');
+ assert.equal(restoreTrustCentre('/treatment-centre',current),before);
+ assert.equal(restoreTrustCentre('/treatment-centre',repairHtml(current,'/treatment-centre'),{required:true}),before);
+ assert.throws(()=>restoreTrustCentre('/treatment-centre',current.replace('>Read the Health MOT guide</a>','>Other</a>')));
+ assert.throws(()=>restoreTrustCentre('/treatment-centre',current+'<a>Read the Health MOT guide</a>'));
+ assert.notEqual(restoreTrustCentre('/treatment-centre',current.replace('<main>','<main>UNRELATED')),before);
+});
