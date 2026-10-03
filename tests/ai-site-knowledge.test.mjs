@@ -36,3 +36,11 @@ test('long unpunctuated sections and short trailing warnings are retained',()=>{
 test('sources exceeding the bounded extraction budget are rejected instead of silently clipped',()=>{
  assert.equal(extractPublicPage('<h1>Evidence</h1><main>'+('Source context. '.repeat(6000))+'Critical ending.</main>',url),null);
 });
+
+test('an age qualifier selects its dedicated weight page rather than generic weight matches',async t=>{
+ const {DB}=db(t);
+ for(let i=0;i<110;i++)await storePublicPage(DB,{url:'https://shiftsometimber.co.uk/articles/weight-'+i,title:'Weight management',chunks:['Weight management can include practical routines.']});
+ const dedicated='https://shiftsometimber.co.uk/articles/men-weight-loss-after-40';
+ await storePublicPage(DB,{url:dedicated,title:'Weight loss after 40 for men',chunks:['Weight management after 40 starts with a practical routine that fits work and family.']});
+ const rows=await retrievePublishedSite(DB,'weight after 40');assert.equal(rows[0]?.citation,dedicated);assert.equal(rows.length,1);
+});
