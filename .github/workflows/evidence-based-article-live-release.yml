@@ -6,6 +6,7 @@ on:
       - 'babylove/dynamic-public.mjs'
       - 'babylove/dynamic-public.test.mjs'
       - 'babylove/repair-evidence-based-article.mjs'
+      - 'public-continuity.mjs'
       - '.github/workflows/evidence-based-article-live-release.yml'
 permissions:
   contents: read
@@ -33,7 +34,7 @@ jobs:
       - name: Verify exact remote source and reviewed transformation without writing
         run: node babylove/repair-evidence-based-article.mjs --check
       - name: Test renderer and existing publication regressions
-        run: node --test babylove/dynamic-public.test.mjs babylove/public-article.test.mjs tests/public-shell-contract.test.mjs tests/public-seo-closeout.test.mjs
+        run: node --test babylove/dynamic-public.test.mjs babylove/public-article.test.mjs tests/public-shell-contract.test.mjs tests/public-seo-closeout.test.mjs tests/public-continuity.test.mjs
       - name: Compile and deploy the exact reviewed Worker
         run: |
           npx wrangler deploy --dry-run --config wrangler.jsonc
