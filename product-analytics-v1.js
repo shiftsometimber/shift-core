@@ -18,6 +18,39 @@ const ALLOWED_EVENTS=new Set([
   'plan_viewed','error_presented','feature_completed','treatment_checkin','member_returned',
   'daily_shift_rebuilt','daily_recovery_completed','daily_meal_accepted','daily_meal_swapped','daily_meal_rejected','daily_recommendation_feedback',
 ]);
+// Default-deny properties for every registered event. Usage reporting must not
+// become a second copy of member answers, symptoms, identifiers or free text.
+const bool=value=>typeof value==='boolean';
+const integer=(min,max)=>value=>Number.isInteger(value)&&value>=min&&value<=max;
+const oneOf=(...values)=>value=>typeof value==='string'&&values.includes(value);
+const PRIVATE_PROPERTY_KEYS=/password|token|secret|email|phone|address|symptom|diagnos|medication/i;
+const GENERAL_USAGE_PROPERTIES=new Map([
+ ['registration_started',{path:oneOf('fast-v2','core')}],
+ ['registration_completed',{path:oneOf('fast-v2','core')}],
+ ['login_succeeded',{verified:bool}],
+ ['onboarding_completed',{profileContext:bool}],
+ ['member_returned',{via:oneOf('login')}],
+ ['today_viewed',{page:oneOf('today'),count:integer(0,100),enabled:bool}],
+ ['grub_plan_generated',{retainedPlan:bool,composer:oneOf('v8'),recording:oneOf('authenticated_request'),oneShiftBrain:bool,preferencesApplied:bool,qualityReview:bool}],
+ ['fit_plan_generated',{retainedPlan:bool,composer:oneOf('v8'),recording:oneOf('authenticated_request'),oneShiftBrain:bool,preferencesApplied:bool,qualityReview:bool}],
+ ['shift_ai_message',{oneShiftBrain:bool,memoryUsed:bool,feedbackUsed:bool,knowledgeSources:integer(0,100)}],
+ ['progress_logged',{retained:bool}],
+ ['error_presented',{status:integer(400,599),reason:oneOf('semantic_quality_floor','invalid_credentials','unauthorised','unauthorized','rate_limited')}],
+ ['daily_recommendation_feedback',{target:oneOf('today','grub','fit','recovery'),feedback:oneOf('love','not_again','effort','expensive','wrong_today')}]
+]);
+const DAILY_USAGE_EVENTS=new Set(['daily_shift_rebuilt','daily_recovery_completed','daily_meal_accepted','daily_meal_swapped','daily_meal_rejected','daily_recommendation_feedback']);
+const USAGE_SURFACES=new Set(['unknown','registration','auth','onboarding','today','dashboard','grub','fit','progress','shift_ai','shift_grub','shift_fit','my_timber_today','my_timber_problem_first','grub_programme','fit_programme_uk','daily_shift_front_door','daily_shift_today']);
+const USAGE_SOURCES=new Set(['server','member','member_client']);
+function sanitiseGeneralUsage(name,properties){
+ if(!properties||typeof properties!=='object'||Array.isArray(properties))return{};
+ const out={},rules=GENERAL_USAGE_PROPERTIES.get(name)||{};
+ for(const[key,accept]of Object.entries(rules))if(!PRIVATE_PROPERTY_KEYS.test(key)&&Object.hasOwn(properties,key)&&accept(properties[key]))out[key]=properties[key];
+ if(DAILY_USAGE_EVENTS.has(name)&&Object.hasOwn(properties,'date')){
+  const date=sanitiseMyTimberUsage('my_timber_checkin_saved',{date:properties.date}).date;
+  if(date)out.date=date;
+ }
+ return out;
+}
 const ORIGINS=new Set(['https://shiftsometimber.co.uk','https://www.shiftsometimber.co.uk','https://shiftsometimber.com','https://www.shiftsometimber.com']);
 
 export async function analyticsRoutes(request,env,ctx){
@@ -31,10 +64,15 @@ export async function analyticsRoutes(request,env,ctx){
 export async function recordProductEvent(env,{userId=null,eventName,surface='unknown',properties={},sessionId=null,source='server',occurredAt=null}={}){
   const name=String(eventName||'').trim();if(!ALLOWED_EVENTS.has(name))throw new Error(`unsupported event: ${name}`);
   await ensureAnalyticsSchema(env.DB);
-  const cleanProperties=MY_TIMBER_USAGE_PROPERTIES.has(name)?sanitiseMyTimberUsage(name,properties):sanitise(properties);
+  const cleanProperties=MY_TIMBER_USAGE_PROPERTIES.has(name)?sanitiseMyTimberUsage(name,properties):sanitiseGeneralUsage(name,properties);
   const occurred_at=normaliseOccurredAt(occurredAt);
-  const r=await env.DB.prepare(`INSERT INTO product_events(user_id,event_name,surface,session_id,source,properties_json,occurred_at,created_at) VALUES(?,?,?,?,?,?,?,CURRENT_TIMESTAMP)`).bind(userId,name,String(surface||'unknown').slice(0,80),sessionId?String(sessionId).slice(0,120):null,String(source||'server').slice(0,40),JSON.stringify(cleanProperties),occurred_at).run();
-  return{id:Number(r?.meta?.last_row_id||0),event_name:name,surface,occurred_at};
+  const cleanSurface=USAGE_SURFACES.has(surface)?surface:'unknown';
+  const cleanSource=USAGE_SOURCES.has(source)?source:'server';
+  // Client-provided session strings are unnecessary for account-owned usage
+  // counts and can contain private text. Do not retain or echo them.
+
+  const r=await env.DB.prepare(`INSERT INTO product_events(user_id,event_name,surface,session_id,source,properties_json,occurred_at,created_at) VALUES(?,?,?,?,?,?,?,CURRENT_TIMESTAMP)`).bind(userId,name,cleanSurface,null,cleanSource,JSON.stringify(cleanProperties),occurred_at).run();
+  return{id:Number(r?.meta?.last_row_id||0),event_name:name,surface:cleanSurface,occurred_at};
 }
 
 export async function analyticsSnapshot(DB,{hours=24,now=new Date()}={}){
@@ -69,7 +107,6 @@ function sanitiseMyTimberUsage(name,properties){
   }
   return out;
 }
-function sanitise(v){if(!v||typeof v!=='object'||Array.isArray(v))return{};const out={};for(const[k,val]of Object.entries(v).slice(0,40)){if(/password|token|secret|email|phone|address|symptom|diagnos|medication/i.test(k))continue;if(typeof val==='string')out[k]=val.slice(0,300);else if(typeof val==='number'||typeof val==='boolean'||val===null)out[k]=val;else if(Array.isArray(val))out[k]=val.slice(0,20).map(x=>typeof x==='string'?x.slice(0,100):x);}return out}
 async function auth(request,env,ctx){const r=await core.fetch(new Request(new URL('/v1/me',request.url),{method:'GET',headers:request.headers}),env,ctx);if(!r.ok)return{response:r};return{user:(await r.json()).user}}
 async function read(r){try{return await r.json()}catch{return{}}}
 function cors(request){const origin=request.headers.get('Origin')||'',h={'Access-Control-Allow-Credentials':'true','Access-Control-Allow-Methods':'POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type','Vary':'Origin'};if(ORIGINS.has(origin))h['Access-Control-Allow-Origin']=origin;return h}
