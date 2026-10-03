@@ -8,7 +8,7 @@ function env(row){
 const row={id:4,title:'NICE List vs Private Prices: Mounjaro Cost in the UK',slug:'mounjaro-cost-uk',category:'Knowledge',author:'SHIFT Team',status:'published',summary:'A useful summary',body:'# NICE List vs Private Prices: Mounjaro Cost in the UK\n\n![Title card](https://csuxjmfbwmkxiegfpljm.supabase.co/storage/v1/object/public/blog-images/organization-55073/title-card.jpeg)\n\n## Costs\n\n| Dose | Price |\n|---|---|\n| 2.5mg | £133 |\n\n<script>alert(1)</script>\n\n[Official](https://www.nice.org.uk/)',seo_title:'Mounjaro cost UK',publish_at:'2026-09-21T16:00:00Z',source_id:'876303'};
 
 test('safe markdown renderer handles headings tables links and escapes raw html',()=>{
- const html=renderMarkdown(row.body,row.title);assert.match(html,/<h2 id="costs">/);assert.match(html,/<table>/);assert.match(html,/nice\.org\.uk/);assert.doesNotMatch(html,/<script>/);assert.match(html,/&lt;script&gt;/);
+ const html=renderMarkdown(row.body+'\n\n- [Jump to costs](#costs)',row.title);assert.match(html,/<h2 id="costs">/);assert.match(html,/<table>/);assert.match(html,/nice\.org\.uk/);assert.match(html,/href="#costs"/);assert.doesNotMatch(html,/<script>/);assert.match(html,/&lt;script&gt;/);
 });
 test('published BabyLove receipt renders on generic article route',async()=>{
  const r=await dynamicBabyLovePublicRoute(new Request('https://shiftsometimber.co.uk/articles/mounjaro-cost-uk'),env(row));assert.equal(r.status,200);const html=await r.text();assert.match(html,/Mounjaro Cost in the UK/);assert.match(html,/canonical/);assert.match(html,/X-Shift-Article-Source|Published/);
