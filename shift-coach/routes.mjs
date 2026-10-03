@@ -7,7 +7,7 @@ import {prepareToday,readToday} from './today.mjs';
 import {accept,reject,outcome,wanted} from './follow-up.mjs';
 import {setSettings} from './permissions.mjs';
 import {chooseComponents,weeklyReview,reviewView} from './life-back.mjs';
-import {mode as changeMode} from './continue.mjs';
+import {mode as changeMode,circumstances} from './continue.mjs';
 import {deleteItem} from './privacy.mjs';
 import {prepareNight} from './night-job.mjs';
 import {helpPanel,boundary} from './safety.mjs';
@@ -90,6 +90,7 @@ export async function coachingRoutes(request,env){
     case 'stage':if(!stages.includes(input.stage))throw Object.assign(Error('invalid_stage'),{status:400});s.stage=input.stage;result={dataUsed:[]};prepareToday(s,at);break;
     case 'plan-accept':result=acceptPlan(s,input.id);break;
     case 'review':result=weeklyReview(s,input.rating,at);prepareToday(s,at);break;
+    case 'circumstances':result=circumstances(s,input,at);break;
     case 'mode':result=changeMode(s,input.mode);prepareToday(s,at);break;
     case 'restore':if(typeof input.type!=='string'||!s.rejected.includes(input.type))throw Object.assign(Error('rejection_missing'),{status:404});s.rejected=s.rejected.filter(x=>x!==input.type);result={dataUsed:[]};prepareToday(s,at);break;
     case 'refresh':result=prepareNight(s,at);break;
