@@ -20,7 +20,7 @@ test('merged My Health Plan member asset is retained exactly and cannot be widen
  const p='frontend/member/whole-man-intent-os-v1.js',m={...manifest,applicationCommit:'a'.repeat(40)};
  assert.doesNotThrow(()=>assertCoachingChangedPath('M',p));
  for(const status of ['A','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
- assert.throws(()=>validateCoachingSource((ref,path)=>ref==='fcaba509022260112e1a78dbda5eb81cd1a4a078'&&path===p?'prior-asset':path,m),/Merged My Health Plan v2 asset source drift/);
+ assert.throws(()=>validateCoachingSource((ref,path)=>ref==='5bf5a7febae1a6bab3a549507306669456a8aaa6'&&path===p?'prior-asset':path,m),/Merged My Health Plan v2 asset source drift/);
 });
 test('normal production configuration includes the coach with exactly one entrypoint-only change',()=>{assertCoachingConfiguration(config,before);assert.equal(config,readFileSync('wrangler.coaching.jsonc','utf8'));assert.equal(withoutCoachEntrypoint(config),before);});
 test('configuration drift, a lost wrapper, extra bindings and duplicate entrypoints fail closed',()=>{for(const bad of [before,config+'\n',config.replace('"STRIPE_MODE": "test"','"STRIPE_MODE": "live"'),config.replace('"DB"','"OTHER_DB"'),config.replace('"main":','"main": "shift-coach/worker.mjs", "main":')])assert.throws(()=>assertCoachingConfiguration(bad,before));});
@@ -75,5 +75,5 @@ test('merged living Health Plan test is an exact addition and cannot be silently
  const p='tests/my-health-plan-v2.test.mjs',m={...manifest,applicationCommit:'a'.repeat(40)};
  assert.doesNotThrow(()=>assertCoachingChangedPath('A',p));
  for(const status of ['M','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
- assert.throws(()=>validateCoachingSource((ref,path)=>ref==='e30603eaf1afeea4aa6b9f80ccaa2d2cdd2190e3'&&path===p?'changed-test':path,m),/Merged My Health Plan v2 test source drift/);
+ assert.throws(()=>validateCoachingSource((ref,path)=>ref==='5bf5a7febae1a6bab3a549507306669456a8aaa6'&&path===p?'changed-test':path,m),/Merged My Health Plan v2 test source drift/);
 });

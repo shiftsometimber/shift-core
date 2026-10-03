@@ -87,6 +87,32 @@ try{
  await page.setViewportSize({width:1280,height:900});await page.screenshot({path:out+'/today-desktop.png',fullPage:true});
  // Exercise the actual acceptance helper with both documented Fit DOM states.
  // These are synthetic verifier fixtures, not live Fit acceptance.
+ // Quote arithmetic needs no saved health information or health-tracking opt-in.
+ DB.sqlite.prepare("UPDATE consents SET granted=0 WHERE user_id=2 AND consent_type='my_shift_health_tracking'").run();
+ const declinedBefore=JSON.stringify(DB.sqlite.prepare('SELECT * FROM member_state ORDER BY user_id').all());
+ const declinedContext=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+ await declinedContext.addCookies([{name:'sst_session',value:'fixture-token-2',url:origin,httpOnly:true}]);
+ const declinedPage=await declinedContext.newPage(),declinedWrites=[];
+ declinedPage.on('request',r=>{if(!['GET','HEAD'].includes(r.method()))declinedWrites.push(r.url());});
+ await declinedPage.goto(origin+'/member/dashboard');
+ const declinedPanel=declinedPage.locator('[data-coach-quote-panel]');await declinedPanel.waitFor();
+ assert.equal(await declinedPage.locator('[data-coach-setup]').count(),0);
+ assert.equal(await declinedPage.locator('[data-coach-circumstances]').count(),0);
+ await declinedPanel.locator(':scope > summary').click();
+ const declinedQuotes=declinedPage.locator('[data-coach-quote-budget]');await declinedQuotes.locator('[name=quote1]').fill('49.99');
+ await declinedQuotes.getByRole('button',{name:'Add up my quotes'}).click();
+ assert.match(await declinedPage.locator('[data-coach-quote-result]').textContent(),/£49\.99.*2 quotes are missing.*unknown/);
+ assert.deepEqual(declinedWrites,[]);
+ assert.equal(JSON.stringify(DB.sqlite.prepare('SELECT * FROM member_state ORDER BY user_id').all()),declinedBefore);
+ assert.equal(DB.sqlite.prepare("SELECT granted FROM consents WHERE user_id=2 AND consent_type='my_shift_health_tracking'").get().granted,0);
+ assert.equal(await declinedPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+ await declinedPanel.screenshot({path:out+'/quote-without-health-tracking-mobile.png'});
+ await declinedPage.reload();await declinedPage.locator('[data-coach-quote-panel]').waitFor();
+ await declinedPage.locator('[data-coach-quote-panel] > summary').click();
+ assert.equal(await declinedPage.locator('[name=quote1]').inputValue(),'');
+ assert.equal(await declinedPage.locator('[data-coach-setup]').count(),0);
+ proof.checks.push('quote check works with health tracking off, preserves consent and records, transmits nothing and forgets quotes on reload');
+ await declinedContext.close();
  const harnessPage=await browser.newPage();
  for(const [state,markup]of [['fresh','<textarea id="fitPrefs"></textarea>'],['saved','<details data-app-fit-setup><summary>Adjust setup</summary><textarea id="fitPrefs"></textarea></details>'],['nested','<details data-app-fit-setup><summary>Adjust setup</summary><details><summary>Notes</summary><textarea id="fitPrefs"></textarea></details></details>'],['reused-disclosure','<details class="app-screen-details"><summary>Adjust your session</summary><textarea id="fitPrefs"></textarea></details>'],['late-disclosure','<div id="pending" hidden><textarea id="fitPrefs"></textarea></div><script>setTimeout(()=>{const p=document.getElementById("pending"),d=document.createElement("details");d.innerHTML="<summary>Adjust your session</summary>";p.before(d);d.append(p);p.hidden=false},500)</script>']]){
   await harnessPage.setContent('<iframe title="Synthetic Fit verifier"></iframe>');
