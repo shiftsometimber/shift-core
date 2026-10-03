@@ -39,6 +39,7 @@ targets:
           UIColorName: LaunchBackground
         NSCameraUsageDescription: Take a photo you choose to upload to your My Timber account.
         NSHealthShareUsageDescription: Preview your heart rate, blood pressure and weight, then choose the readings to save to your private My Timber account. This is optional and is not clinical monitoring.
+        NSHealthUpdateUsageDescription: My Timber does not write or change Apple Health data. You can choose to save copies of selected readings to your private My Timber account.
         NSAppTransportSecurity:
           NSAllowsArbitraryLoads: false
         UISupportedInterfaceOrientations:
