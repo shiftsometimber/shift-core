@@ -15,7 +15,7 @@ const code=await git('/contents/member-experience/ai-site-knowledge.mjs?ref='+ma
 assert.equal(hash(readFileSync('member-experience/ai-site-knowledge.mjs')),hash(Buffer.from(code.content,'base64')),'Proof parser differs from released parser');
 const account='9e5386dcf455be34c582d93f8bfc79e6',db='88f40aed-cb23-4372-8c94-8a73f48bc847';
 const query=async body=>{const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+account+'/d1/database/'+db+'/query',{method:'POST',headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN,'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(30000)}),j=await r.json();assert(r.ok&&j.success&&j.result.every(x=>x.success));return j.result.flatMap(x=>x.results||[])};
-const select=async(sql,params=[])=>{assert(/^SELECT\b/.test(sql)&&!sql.includes(';'));return query({sql,params})};
+const select=async(sql,params=[])=>{assert(/^(SELECT|WITH)\b/.test(sql)&&!sql.includes(';')&&!/\b(INSERT|UPDATE|DELETE|REPLACE|CREATE|DROP|ALTER|ATTACH|DETACH|VACUUM|PRAGMA)\b/i.test(sql));return query({sql,params})};
 const sitemap=await fetch(origin+'/sitemap.xml');assert(sitemap.ok);const urls=sitemapUrls(await sitemap.text());assert(urls.length>=200);
 const pages=[],skipped=[];
 for(const url of urls){const r=await fetch(url,{redirect:'error',signal:AbortSignal.timeout(15000)});assert(r.ok,'Public source unavailable: '+url);const html=await r.text(),page=extractPublicPage(html,url);
