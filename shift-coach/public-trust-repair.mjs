@@ -16,13 +16,18 @@ export function trustRoute(request){
 }
 export function repairHtml(html,path){
  if(path==='/')return html;
+ html=html.replace(/(<(?:p|nav)\b[^>]*class=["']footer-legal-links["'][^>]*>)/i,'$1<a href="/terms-of-sale">Sale terms</a><a href="/refunds">Cancellations &amp; refunds</a><a href="/accessibility">Accessibility statement</a>');
  if(path.startsWith('/member/')){
   html=html.replace(/<h3>Weight illustrations<\/h3>[\s\S]*?(?=<h3>Saved real progress photos<\/h3>)/,'');
   html=html.replace(/<label class="consent"><input id="visualConsent"[^>]*>[\s\S]*?<\/label>/,'<input id="visualConsent" type="checkbox" hidden disabled aria-hidden="true">');
   html=html.replace('Save a real progress photo privately, then choose whether to create clearly labelled AI illustrations. Nothing here is a prediction or clinical assessment.','Save real progress photos privately. Your progress is personal: no generated weight-change images or predicted results.');
  }
  if(path==='/contact')html=html.replace(/<script\b[^>]*src=["']\/assets\/contact-submit-v4\.js[^"']*["'][^>]*><\/script>/gi,'<script defer src="/assets/contact-reference-init.js"></script>');
- if(path==='/lounge')html=html.replace(/<link\b(?=[^>]*rel=["']canonical["'])[^>]*>/gi,'<link rel="canonical" href="https://shiftsometimber.co.uk/lounge">');
+ if(path==='/lounge')html=html
+  .replace(/<meta\b(?=[^>]*http-equiv=["']refresh["'])[^>]*>/gi,'')
+  .replace(/<script\b[^>]*>\s*window\.location\.replace\(["']\/["']\);?\s*<\/script>/gi,'')
+  .replace(/<link\b(?=[^>]*rel=["']canonical["'])[^>]*>/gi,'')
+  .replace(/<\/head>/i,'<link rel="canonical" href="https://shiftsometimber.co.uk/lounge"></head>');
  html=html.replace(/No paid influence on conclusions\./g,'Commercial relationships disclosed.');
  if(/urgent-help|crisis|suicid/.test(path)&&!html.includes('data-shift-urgent-help'))html=html.replace(/<\/main>/i,crisis+'</main>');
  if(path==='/treatment-centre'){
@@ -54,7 +59,7 @@ export async function withTrustRepair(request,response){
  return new Response(request.method==='HEAD'?null:html,{status:response.status,headers});
 }
 
-const contactInit=String.raw`(()=>{const init=()=>{const form=document.getElementById('shiftContactForm');if(!form)return;const params=new URLSearchParams(location.search),product=params.get('product'),name=params.get('name'),type=params.get('type'),select=document.getElementById('ct-subject'),message=document.getElementById('ct-message');if(type&&select){const option=Array.from(select.options).find(o=>o.text.toLowerCase()===type.toLowerCase());if(option)select.value=option.value;}if(product&&message&&!message.value)message.value='Please tell me about '+(name||product)+'.\n\nSHIFT Health reference: '+product;};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();})();`;
+const contactInit=String.raw`(()=>{const init=()=>{const form=document.getElementById('shiftContactForm');if(!form)return;const params=new URLSearchParams(location.search),product=params.get('product'),name=params.get('name'),type=params.get('type'),select=document.getElementById('ct-subject'),message=document.getElementById('ct-message');if(select){const routeStock=()=>{if(String(select.value).toLowerCase()==='stock update')location.assign('/waiting-list-journey');};select.addEventListener('input',routeStock);select.addEventListener('change',routeStock);}if(type&&select){const option=Array.from(select.options).find(o=>o.text.toLowerCase()===type.toLowerCase());if(option)select.value=option.value;}if(product&&message&&!message.value)message.value='Please tell me about '+(name||product)+'.\n\nSHIFT Health reference: '+product;};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();})();`;
 export async function withContactReference(request){
  if(new URL(request.url).pathname!=='/v1/contact'||request.method!=='POST')return request;
  let ref;try{ref=new URL(request.headers.get('Referer'));}catch{return request;}
