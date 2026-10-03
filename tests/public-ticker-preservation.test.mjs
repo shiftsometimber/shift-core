@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {preserveTickerVersion,previousTickerStyles} from '../public-ticker-preservation.mjs';
-import {withPublicTicker,tickerVersion,tickerStyles} from '../public-navigation-policy.mjs';
+import {preserveTickerVersion,previousTickerStyles,previousContrastClient} from '../public-ticker-preservation.mjs';
+import {withPublicTicker,tickerVersion,tickerStyles,contrastSafetyClient,contrastSafetyVersion} from '../public-navigation-policy.mjs';
 test('only exact old ticker styles and all three version markers are normalised',async()=>{
  const input='<html><head><title>Same page</title></head><body><header>Same header</header><main>Same article</main></body></html>';
  const current=await(await withPublicTicker(new Request('https://shiftsometimber.co.uk/programme'),new Response(input,{headers:{'Content-Type':'text/html'}}))).text();
@@ -16,4 +16,16 @@ test('only exact old ticker styles and all three version markers are normalised'
  assert.throws(()=>preserveTickerVersion(Buffer.from(old+old)));
  assert.throws(()=>preserveTickerVersion(Buffer.from(old.replace('90s linear','10s linear'))));
  }
+});
+
+test('only the byte-exact reviewed contrast client is normalised; surrounding or script drift remains visible',()=>{
+ const tag=client=>'<script data-shift-contrast-guard="'+contrastSafetyVersion+'">'+client+'</script>';
+ const before='<main>Retained content</main>'+tag(previousContrastClient);
+ const after='<main>Retained content</main>'+tag(contrastSafetyClient);
+ assert.notEqual(previousContrastClient,contrastSafetyClient);
+ assert.equal(preserveTickerVersion(Buffer.from(before)).toString(),after);
+ assert.equal(preserveTickerVersion(Buffer.from(after)).toString(),after);
+ assert.notEqual(preserveTickerVersion(Buffer.from(before.replace('Retained content','Unexpected edit'))).toString(),after);
+ assert.notEqual(preserveTickerVersion(Buffer.from(before.replace('function background','function changedBackground'))).toString(),after);
+ assert.throws(()=>preserveTickerVersion(Buffer.from(before+tag(previousContrastClient))),/Duplicate/);
 });
