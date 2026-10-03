@@ -77,7 +77,7 @@ export const dashboardToolsRuntime=String.raw`(()=>{
   'use strict';
   if(document.body.dataset.memberTools!=='v1')return;
   const member=document.getElementById('previewMember');
-  const scripts=['/member-product-v33d.js?v=member-tools-20260921','/member-progress-picture-premium-v1.js?v=2','/member-progress-v1.js?v=1','/member-plans-premium-v1.js?v=1'];
+  const scripts=['/member-product-v33d.js?v=member-tools-20260921','/member-progress-picture-premium-v1.js?v=2','/member-progress-v1.js?v=1','/member-plans-premium-v1.js?v=1','/whole-man-intent-os-v1.js?v=4'];
   let started=false;
   function isReady(){return member?.classList.contains('is-ready')&&!member.hidden;}
   function activate(name,closeMenu=true){
