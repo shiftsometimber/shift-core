@@ -17,3 +17,15 @@ test('product reference survives submission without losing security token',async
 test('foreign referer and unrelated forms do not alter payload',async()=>{const r=req('/v1/contact',{method:'POST',headers:{Referer:'https://example.org/contact?product=abc'},body:'{}'});assert.equal(await withContactReference(r),r)});
 
 test('Lounge stays on its public landing page and emits one canonical',()=>{const source=html.replace('</head>',`<meta http-equiv="refresh" content="0;url=/"><script>window.location.replace('/');</script><link rel="canonical" href="https://shiftsometimber.co.uk/lounge"></head>`);const out=repairHtml(source,'/lounge');assert(!out.includes('http-equiv="refresh"'));assert(!out.includes('window.location.replace'));assert.equal((out.match(/rel="canonical"/g)||[]).length,1);assert(out.includes('href="https://shiftsometimber.co.uk/lounge"'))});
+
+import {restoreTrustCentre} from './public-trust-repair.mjs';
+test('release comparison admits only the exact treatment repair and retains unrelated drift',()=>{
+ const prior='<main>Payment does not guarantee prescribing. Payment does not guarantee prescribing.</main>';
+ const current=repairHtml(prior,'/treatment-centre');
+ assert.equal(restoreTrustCentre('/treatment-centre',current,{required:true}),prior);
+ assert.equal(restoreTrustCentre('/treatment-centre',prior),prior);
+ assert.throws(()=>restoreTrustCentre('/treatment-centre',prior,{required:true}));
+ assert.throws(()=>restoreTrustCentre('/treatment-centre',current.replace('Treatment ordering and payment are not currently open.','')));
+ assert.notEqual(restoreTrustCentre('/treatment-centre',current.replace('<main>','<main>UNRELATED CHANGE')),prior);
+ assert.equal(restoreTrustCentre('/',current,{required:true}),current);
+});

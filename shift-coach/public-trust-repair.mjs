@@ -73,3 +73,16 @@ export async function withContactReference(request){
  const headers=new Headers(request.headers);headers.delete('Content-Length');
  return new Request(request,{headers,body:JSON.stringify(body)});
 }
+
+// Release comparison reverses only the two reviewed notices and one added link row.
+// All remaining content continues through the existing full-page hash comparison.
+export function restoreTrustCentre(path,input,{required=false}={}){
+ if(path!=='/treatment-centre')return input;
+ let html=String(input);
+ const prior='Payment does not guarantee prescribing.',current='Treatment ordering and payment are not currently open.';
+ const links='<p><a href="/terms-of-sale">Treatment ordering status and sale terms</a> · <a href="/refunds">Cancellations and refunds</a></p>';
+ const count=s=>html.split(s).length-1;
+ if(!required&&count(current)===0&&count(links)===0)return input;
+ if(count(current)!==2||count(prior)!==0||count(links)!==1)throw Error('Expected exact treatment trust repair: two notices and one link row');
+ return html.replaceAll(current,prior).replace(links,'');
+}

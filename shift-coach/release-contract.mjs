@@ -53,7 +53,7 @@ export function validateCoachingSource(read,manifest){
  for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(manifest.applicationCommit,p),'Coaching release source drift: '+p);
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
  assert.equal(read('HEAD','public-continuity.mjs'),read('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
- assert.equal(read('HEAD','frontend/member/whole-man-intent-os-v1.js'),read('656a7b857539be29af2e43cef45803d010cc7758','frontend/member/whole-man-intent-os-v1.js'),'Merged My Health Plan asset source drift');
+ assert.equal(read('HEAD','frontend/member/whole-man-intent-os-v1.js'),read('fcaba509022260112e1a78dbda5eb81cd1a4a078','frontend/member/whole-man-intent-os-v1.js'),'Merged My Health Plan v2 asset source drift');
  for(const p of ['docs/content-review/2026-10-03-health-safety.json','frontend/member/shift-health-catalogue-v1.js','shift-health-public-content.mjs','tests/testosterone-public.test.mjs'])assert.equal(read('HEAD',p),read('7bd5fb37d7bbce66fa5e728f59304843817128bf',p),'Merged health-safety source drift: '+p);
  for(const p of WATCH_CURRENT_PATHS)assert.equal(read('HEAD',p),read(WATCH_CURRENT_BASE,p),'Current Watch source drift: '+p);
  return {recordedMain:COACH_BASE,applicationCommit:manifest.applicationCommit,paths:manifest.pinnedPaths.length};
