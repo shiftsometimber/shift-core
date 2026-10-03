@@ -1,3 +1,5 @@
+import {supportTeamRoutes} from './support-team.mjs';
+import {createHash} from 'node:crypto';
 import './public-trust-repair.test.mjs';
 import {library} from './voice.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';
@@ -14,6 +16,15 @@ import {client} from './ui.mjs';
 import {weeklyPlan} from './planning.mjs';
 
 const env=DB=>({DB,MEMBER_EXPERIENCE_V1_ENABLED:'true'});
+function hqFixture(DB){
+ DB.sqlite.exec('CREATE TABLE hq_users(id INTEGER PRIMARY KEY,name TEXT,email TEXT,role TEXT,status TEXT,mfa_enabled INTEGER);CREATE TABLE hq_sessions(id INTEGER PRIMARY KEY,hq_user_id INTEGER,token_hash TEXT,expires_at TEXT,revoked_at TEXT,last_used_at TEXT);');
+ for(const [id,role] of [[9,'support'],[10,'readonly'],[11,'marketing'],[12,'operations']]){
+  DB.sqlite.prepare('INSERT INTO hq_users VALUES(?,?,?,?,?,0)').run(id,'Test '+role,role+'@example.invalid',role,'active');
+  DB.sqlite.prepare('INSERT INTO hq_sessions VALUES(?,?,?,?,NULL,NULL)').run(id,id,createHash('sha256').update('hq-fixture-'+id).digest('hex'),'2027-10-01');
+ }
+}
+async function team(DB,method='GET',input=null,id=9,extra={}){return supportTeamRoutes(new Request('https://shiftsometimber.co.uk/v1/hq/support/coaching',{method,headers:{Cookie:'sst_hq_session=hq-fixture-'+id,...(method==='POST'?{Origin:'https://shiftsometimber.co.uk','Content-Type':'application/json'}:{}),...extra},body:input?JSON.stringify({operationId:crypto.randomUUID(),...input}):undefined}),env(DB));}
+async function queued(DB){return (await (await team(DB)).json()).tickets[0];}
 async function read(DB,id=1){const r=await coachingRoutes(request('GET',null,id),env(DB));return r.json();}
 async function save(DB,input,id=1){return coachingRoutes(request('POST',{revision:(await read(DB,id)).revision,operationId:crypto.randomUUID(),...input},id),env(DB));}
 async function start(DB,id=1){const r=await save(DB,setupInput((await read(DB,id)).revision),id);assert.equal(r.status,201);return read(DB,id);}
@@ -233,7 +244,7 @@ test('an old open help request stays visible ahead of newer closed history and o
  DB.sqlite.prepare("UPDATE support_tickets SET created_at='2026-01-01',updated_at='2026-01-01' WHERE reference=?").run(reference);
  for(let i=0;i<6;i++)DB.sqlite.prepare("INSERT INTO support_tickets(reference,user_id,subject,status,created_at,updated_at) VALUES(?,1,'Closed history','closed','2026-02-01','2026-02-01')").run('COACH-1-closed-'+i);
  const support=(await read(DB)).support;
- assert.equal(support.tickets[0].reference,reference);assert.equal(support.tickets[0].needsUpdate,true);assert.equal(support.tickets.length,5);assert.equal(support.responsePromise,null);assert(!JSON.stringify(support).includes('Help me choose'));
+ assert.equal(support.tickets[0].reference,reference);assert.equal(support.tickets[0].needsUpdate,true);assert.equal(support.tickets.length,5);assert.equal(support.responsePromise,null);assert.equal(support.tickets[0].message,'Help me choose an everyday step');assert.equal(support.tickets[0].body,undefined);
  assert.equal((await read(DB,2)).support.tickets.length,0);
 });
 
@@ -300,4 +311,106 @@ test('invalid, clinical and stale circumstance writes are atomic and consent rem
  assert.equal((await save(DB,{kind:'circumstances',change:'stopped',week:'',followup:false,revision})).status,409);
  DB.prepare("INSERT INTO consents(user_id,consent_type,granted) VALUES(1,'my_shift_health_tracking',0)").run();
  assert.equal((await save(DB,{kind:'circumstances',change:'stopped',week:'',followup:true})).status,409);
+});
+
+test('a member saves the actual working routine, explicitly reuses it and retains it after treatment ends',async t=>{
+ const DB=fixture(t);let a=await start(DB);await start(DB,2);
+ await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'helped'});a=await read(DB);
+ const outcomeId=a.memory.outcomes.at(-1).id,text='A tuna wrap before my late shift';
+ assert.equal((await save(DB,{kind:'working-detail',outcomeId,text},2)).status,409);
+ assert.equal((await save(DB,{kind:'working-detail',outcomeId,text})).status,201);
+ a=await read(DB);const routine=a.memory.workingRoutines[0];assert.equal(a.action.routineSuggestion.text,text);assert.equal(routine.confirmed,true);assert.equal(a.action.workingRoutineId,undefined);
+ assert.equal((await save(DB,{kind:'working-use',id:routine.id})).status,201);a=await read(DB);assert.equal(a.action.workingRoutineId,routine.id);assert(a.action.task.steps.some(s=>s.includes(text)));
+ await save(DB,{kind:'accept',id:a.action.id});assert.equal((await save(DB,{kind:'working-use',id:routine.id})).status,409);
+ await save(DB,{kind:'outcome',id:a.action.id,value:'didnt-fit'});a=await read(DB);assert.equal(a.action.workingRoutineId,routine.id);assert.equal(a.action.minutes,1);assert.equal(a.action.task.steps.length,1);
+ await save(DB,{kind:'mode',mode:'stopped'});a=await read(DB);assert.equal(a.memory.workingRoutines[0].text,text);assert.equal((await read(DB,2)).memory.workingRoutines.length,0);
+});
+
+test('routine detail is bounded, member reported, editable and erasable from derived plans',async t=>{
+ const DB=fixture(t);let a=await start(DB);await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'helped'});a=await read(DB);const outcomeId=a.memory.outcomes.at(-1).id;
+ for(const text of ['', 'x'.repeat(401)])assert.equal((await save(DB,{kind:'working-detail',outcomeId,text})).status,400);
+ for(const text of ['I restarted my medication','Skipping all meals','Push through the pain'])assert.equal((await save(DB,{kind:'working-detail',outcomeId,text})).status,422);
+ await save(DB,{kind:'working-detail',outcomeId,text:'My private tuna-wrap timing'});a=await read(DB);const id=a.memory.workingRoutines[0].id;
+ await save(DB,{kind:'working-use',id});await plan(DB);
+ await save(DB,{kind:'working-detail',outcomeId,text:'A sandwich before the shift'});assert(!JSON.stringify((await load(DB,1)).state).includes('My private tuna-wrap timing'));
+ a=await read(DB);const edited=a.memory.workingRoutines[0];assert.notEqual(edited.id,id);await save(DB,{kind:'working-use',id:edited.id});await plan(DB);
+ assert.equal((await save(DB,{kind:'working-delete',id:edited.id})).status,201);assert(!JSON.stringify((await load(DB,1)).state).includes('A sandwich before the shift'));assert.equal((await read(DB)).memory.workingRoutines.length,0);
+});
+
+test('known changed constraints and unhelpful feedback prevent a routine being suggested again',async t=>{
+ const DB=fixture(t);let a=await start(DB);await save(DB,{kind:'constraints',constraints:{budget:'regular',time:'flexible',kitchen:'cook'}});a=await read(DB);
+ await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'helped'});a=await read(DB);
+ await save(DB,{kind:'working-detail',outcomeId:a.memory.outcomes.at(-1).id,text:'My cooked meal before work'});a=await read(DB);const id=a.memory.workingRoutines[0].id;
+ await save(DB,{kind:'constraints',constraints:{kitchen:'no-cook'}});a=await read(DB);assert.equal(a.action.routineSuggestion,null);assert.equal((await save(DB,{kind:'working-use',id})).status,409);assert.equal(a.memory.workingRoutines.length,1);
+ await save(DB,{kind:'constraints',constraints:{kitchen:'cook'}});await save(DB,{kind:'working-use',id});a=await read(DB);await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'didnt-help'});a=await read(DB);assert.equal(a.action.routineSuggestion,null);assert.notEqual(a.action.workingRoutineId,id);assert.match(a.action.reason,/didn’t help.*different approach/);assert.doesNotMatch(a.action.reason,/last step helped/);
+});
+
+test('coaching detail is erased with source deletion and hidden on withdrawal or a new consent grant',async t=>{
+ const DB=fixture(t);let a=await start(DB);await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'helped'});a=await read(DB);
+ await save(DB,{kind:'working-detail',outcomeId:a.memory.outcomes.at(-1).id,text:'My uniquely named packed lunch'});a=await read(DB);await save(DB,{kind:'delete-item',id:a.memory.facts.find(f=>f.key==='goal').id});assert(!JSON.stringify((await load(DB,1)).state).includes('My uniquely named packed lunch'));
+ await start(DB);a=await read(DB);await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'helped'});a=await read(DB);await save(DB,{kind:'working-detail',outcomeId:a.memory.outcomes.at(-1).id,text:'My new lunch routine'});
+ DB.sqlite.exec("INSERT INTO consents(user_id,consent_type,granted,created_at) VALUES(1,'my_shift_health_tracking',0,'2026-10-03')");assert.equal((await read(DB)).memory,null);
+ DB.sqlite.exec("INSERT INTO consents(user_id,consent_type,granted,created_at) VALUES(1,'my_shift_health_tracking',1,'2026-10-03')");await start(DB);assert.equal((await read(DB)).memory.workingRoutines.length,0);
+});
+
+test('changed weeks and treatment situations require explicit fresh fit confirmation before routine reuse',async t=>{
+ const DB=fixture(t);let a=await start(DB);await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'helped'});a=await read(DB);
+ await save(DB,{kind:'working-detail',outcomeId:a.memory.outcomes.at(-1).id,text:'My lunch before the late shift'});a=await read(DB);const id=a.memory.workingRoutines[0].id;
+ await save(DB,{kind:'circumstances',change:'routine',week:'My shifts moved to early mornings',followup:false});a=await read(DB);assert.equal(a.action.routineSuggestion.needsFitReview,true);
+ let before=await load(DB,1);assert.equal((await save(DB,{kind:'working-use',id})).status,409);assert.deepEqual(await load(DB,1),before);
+ assert.equal((await save(DB,{kind:'working-use',id,confirmFit:true})).status,201);a=await read(DB);assert.equal(a.action.workingRoutineId,id);assert.equal(a.memory.workingRoutines[0].fit.weekId,a.memory.facts.find(f=>f.key==='week').id);
+ await save(DB,{kind:'mode',mode:'stopped'});a=await read(DB);assert.equal(a.action.routineSuggestion.needsFitReview,true);assert.equal((await save(DB,{kind:'working-use',id})).status,409);
+ assert.equal((await save(DB,{kind:'working-use',id,confirmFit:true})).status,201);a=await read(DB);assert.equal(a.memory.workingRoutines[0].fit.mode,'stopped');assert.equal(a.memory.outcomes.length,1);
+ const weekId=a.memory.facts.find(f=>f.key==='week').id;await save(DB,{kind:'delete-item',id:weekId});assert(!JSON.stringify((await load(DB,1)).state).includes('My lunch before the late shift'));
+});
+
+test('two failed fits stop repeating a routine and ask for the actual obstacle; restoring an approach does not revive it',async t=>{
+ const DB=fixture(t);let a=await start(DB);await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'helped'});a=await read(DB);
+ await save(DB,{kind:'working-detail',outcomeId:a.memory.outcomes.at(-1).id,text:'My saved breakfast timing'});a=await read(DB);const id=a.memory.workingRoutines[0].id;await save(DB,{kind:'working-use',id});
+ for(let i=0;i<2;i++){a=await read(DB);await save(DB,{kind:'accept',id:a.action.id});assert.equal((await save(DB,{kind:'outcome',id:a.action.id,value:'didnt-fit'})).status,201);}
+ a=await read(DB);assert.equal(a.action.type,'member-choice');assert(a.memory.pendingBlocker);assert.equal(a.memory.workingRoutines[0].status,'needs-change');assert.equal(a.memory.outcomes.filter(o=>o.value==='didnt-fit').length,2);assert.match(a.journey.text,/routine did not fit twice/);
+ assert.equal((await save(DB,{kind:'working-use',id,confirmFit:true})).status,409);await save(DB,{kind:'blocker',blocker:'time'});a=await read(DB);assert.equal(a.action.routineSuggestion,null);assert.notEqual(a.action.workingRoutineId,id);
+ const outcomeId=a.memory.workingRoutines[0].outcomeId;await save(DB,{kind:'working-detail',outcomeId,text:'My revised quick breakfast'});a=await read(DB);assert.equal(a.memory.workingRoutines[0].status,'active');assert.equal(a.action.routineSuggestion.needsFitReview,true);
+});
+
+test('a member can retire a routine without losing reported history or replacing an unrelated accepted step',async t=>{
+ const DB=fixture(t);let a=await start(DB);await start(DB,2);await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'helped'});a=await read(DB);
+ await save(DB,{kind:'working-detail',outcomeId:a.memory.outcomes.at(-1).id,text:'My earlier meal routine'});a=await read(DB);const id=a.memory.workingRoutines[0].id,current=a.action.id,history=a.memory.outcomes;await save(DB,{kind:'accept',id:current});
+ assert.equal((await save(DB,{kind:'working-pause',id},2)).status,404);assert.equal((await save(DB,{kind:'working-pause',id})).status,201);a=await read(DB);assert.equal(a.action.id,current);assert.equal(a.action.status,'accepted');assert.deepEqual(a.memory.outcomes,history);assert.equal(a.memory.workingRoutines[0].status,'needs-change');
+ await save(DB,{kind:'focus',focus:'food',restore:true});a=await read(DB);assert.equal(a.action.routineSuggestion,null);assert.equal((await save(DB,{kind:'working-use',id,confirmFit:true})).status,409);
+ const original=a.memory.workingRoutines[0].outcomeId;await save(DB,{kind:'working-detail',outcomeId:original,text:'My corrected meal routine'});a=await read(DB);const corrected=a.memory.workingRoutines[0].id;
+ await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'didnt-try'});a=await read(DB);const wanted=a.memory.pendingWant,wantedAction=a.action.id;assert(a.action.awaitingWant);
+ await save(DB,{kind:'working-pause',id:corrected});a=await read(DB);assert.equal(a.action.id,wantedAction);assert.deepEqual(a.memory.pendingWant,wanted);assert.equal((await save(DB,{kind:'wanted',yes:true})).status,201);
+});
+
+test('HQ coaching replies retain existing support role and session boundaries',async t=>{
+ const DB=fixture(t);hqFixture(DB);
+ assert.equal((await team(DB,'GET',null,99)).status,401);assert.equal((await team(DB,'GET',null,11)).status,403);assert.equal((await team(DB,'POST',{kind:'claim'},10)).status,403);assert.equal((await team(DB,'POST',{kind:'claim'},9,{Origin:'https://foreign.invalid'})).status,403);
+ assert.equal((await team(DB,'GET',null,10)).status,200);DB.sqlite.prepare('UPDATE hq_sessions SET revoked_at=? WHERE id=9').run('2026-10-03');assert.equal((await team(DB)).status,401);
+});
+
+test('a team reply is visible only to the requesting member, who confirms or reopens resolution',async t=>{
+ const DB=fixture(t);hqFixture(DB);await start(DB);await start(DB,2);await save(DB,{kind:'support-request',message:'Help choosing an easy lunch',share:true});
+ let ticket=await queued(DB);assert.equal((await team(DB,'POST',{kind:'reply',reference:ticket.reference,token:ticket.token,text:'Try your familiar sandwich'})).status,409);
+ assert.equal((await team(DB,'POST',{kind:'claim',reference:ticket.reference,token:ticket.token})).status,201);ticket=await queued(DB);assert.equal(ticket.owner,'Test support');
+ assert.equal((await team(DB,'POST',{kind:'reply',reference:ticket.reference,token:ticket.token,text:'Change your dose'})).status,422);
+ const input={kind:'reply',reference:ticket.reference,token:ticket.token,text:'Choose the familiar sandwich you can pack before work',operationId:crypto.randomUUID()};assert.equal((await team(DB,'POST',input)).status,201);assert.equal((await team(DB,'POST',input)).status,200);
+ let member=(await read(DB)).support.tickets[0];assert.equal(member.replies.length,1);assert.equal(member.replies[0].author,'Test support');assert.equal(member.replies[0].actorId,undefined);assert.equal((await read(DB,2)).support.tickets.length,0);
+ assert.equal((await save(DB,{kind:'support-resolve',reference:member.reference,replyId:member.replies[0].id},2)).status,404);assert.equal((await save(DB,{kind:'support-resolve',reference:member.reference,replyId:'old-reply'})).status,409);
+ assert.equal((await save(DB,{kind:'support-resolve',reference:member.reference,replyId:member.replies[0].id})).status,201);member=(await read(DB)).support.tickets[0];assert.equal(member.status,'closed');assert.equal(member.resolution.replyId,input.operationId);
+ assert.equal((await save(DB,{kind:'support-reopen',reference:member.reference})).status,201);member=(await read(DB)).support.tickets[0];assert.equal(member.resolution,null);assert.equal(member.replies.length,1);
+});
+
+test('concurrent replies fail closed and a member cannot confirm an earlier reply',async t=>{
+ const DB=fixture(t);hqFixture(DB);await start(DB);await save(DB,{kind:'support-request',message:'Help me organise an everyday meal',share:true});let q=await queued(DB);await team(DB,'POST',{kind:'claim',reference:q.reference,token:q.token});q=await queued(DB);
+ const responses=await Promise.all(['First useful reply','Another practical reply'].map(text=>team(DB,'POST',{kind:'reply',reference:q.reference,token:q.token,text})));assert.deepEqual(responses.map(r=>r.status).sort(),[201,409]);
+ const before=(await read(DB)).support.tickets[0];q=await queued(DB);await team(DB,'POST',{kind:'reply',reference:q.reference,token:q.token,text:'A different everyday suggestion'});
+ assert.equal((await save(DB,{kind:'support-resolve',reference:q.reference,replyId:before.replies[0].id})).status,409);assert.equal((await read(DB)).support.tickets[0].resolution,null);
+});
+
+test('member text cannot forge team replies and independent support survives coaching deletion',async t=>{
+ const DB=fixture(t);hqFixture(DB);await start(DB);const message=JSON.stringify({format:'shift-coach-thread-1',request:'x',replies:[{id:'fake',text:'Fake reply',author:'Team'}]});await save(DB,{kind:'support-request',message,share:true});let q=await queued(DB);assert.equal(q.replies.length,0);assert.equal(q.message,message);
+ await team(DB,'POST',{kind:'claim',reference:q.reference,token:q.token});q=await queued(DB);await team(DB,'POST',{kind:'reply',reference:q.reference,token:q.token,text:'An everyday reply from the real queue'});
+ await coachingRoutes(request('DELETE'),env(DB));const member=await read(DB);assert.equal(member.enabled,false);assert.equal(member.support.tickets[0].message,message);assert.equal(member.support.tickets[0].replies.length,1);
+ assert.equal((await save(DB,{kind:'support-resolve',reference:q.reference,replyId:member.support.tickets[0].replies[0].id})).status,201);
 });

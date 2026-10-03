@@ -71,3 +71,27 @@ test('merged health safety corrections and their evidence remain independently p
  const m={...manifest,applicationCommit:'a'.repeat(40)};
  for(const p of ['docs/content-review/2026-10-03-health-safety.json','frontend/member/shift-health-catalogue-v1.js','shift-health-public-content.mjs','tests/testosterone-public.test.mjs'])assert.throws(()=>validateCoachingSource((ref,path)=>ref==='7bd5fb37d7bbce66fa5e728f59304843817128bf'&&path===p?'prior-safety':path,m),/Merged health-safety source drift/);
 });
+test('merged living Health Plan test is an exact addition and cannot be silently changed by repinning',()=>{
+ const p='tests/my-health-plan-v2.test.mjs',m={...manifest,applicationCommit:'a'.repeat(40)};
+ assert.doesNotThrow(()=>assertCoachingChangedPath('A',p));
+ for(const status of ['M','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
+ assert.throws(()=>validateCoachingSource((ref,path)=>ref==='5bf5a7febae1a6bab3a549507306669456a8aaa6'&&path===p?'changed-test':path,m),/Merged My Health Plan v2 test source drift/);
+});
+
+test('merged public-copy receipts are exact additions with independently immutable bytes',()=>{
+ const m={...manifest,applicationCommit:'a'.repeat(40)};
+ for(const p of ['docs/content-review/2026-10-03-public-copy-preview.json','docs/content-review/2026-10-03-public-copy-residual.json']){
+  assert.doesNotThrow(()=>assertCoachingChangedPath('A',p));
+  for(const status of ['M','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
+  assert.throws(()=>validateCoachingSource((ref,path)=>ref==='6578113c754a60e75d0cd9b3cd94f2d546444409'&&path===p?'changed-receipt':path,m),/Merged public-copy receipt source drift/);
+ }
+});
+
+test('current-shell Health Plan mount preserves only the exact named dashboard changes',()=>{
+ const m={...manifest,applicationCommit:'a'.repeat(40)};
+ for(const p of ['member-experience/dashboard-tools.mjs','member-experience/tests/dashboard-tools.test.mjs']){
+  assert.doesNotThrow(()=>assertCoachingChangedPath('M',p));
+  for(const status of ['A','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
+  assert.throws(()=>validateCoachingSource((ref,path)=>ref==='5bf5a7febae1a6bab3a549507306669456a8aaa6'&&path===p?'changed-mount':path,m),/Merged Health Plan dashboard mount source drift/);
+ }
+});
