@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {nutritionSignposting} from '../../public-nutrition-mytimber.mjs';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
@@ -32,7 +33,7 @@ try{
  for(const {path}of proof.reports){
   const route='/'+path.replace(/\.html$/,''),r=await fetch('https://shiftsometimber.co.uk'+route,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(20000)});assert(r.ok);
   const actual=await r.text(),expected=readFileSync('everyday-release/after/'+path,'utf8');
-  const main=s=>s.match(/<main\b[^>]*>[\s\S]*?<\/main>/i)?.[0];assert(main(expected));assert.equal(main(actual),main(expected),'Serving reading copy differs: '+route);
+  const main=s=>s.match(/<main\b[^>]*>[\s\S]*?<\/main>/i)?.[0];assert(main(expected));assert.equal(main(actual),main(nutritionSignposting(expected,route)),'Serving reading copy differs: '+route);
   checks.push({route,status:r.status,exactMain:true});
  }
  writeFileSync('everyday-live-proof/receipt.json',JSON.stringify({at:new Date().toISOString(),source:process.env.GITHUB_SHA,before:before.id,after:after.id,fingerprint:control.source_fingerprint,checks,preservedFiles:proof.preservedFiles,workerDeployed:false,customerDataChanged:false,clinicalSignoffClaimed:false},null,2));
