@@ -1,0 +1,43 @@
+name: Closeout URL query privacy repair
+on:
+  push:
+    branches: ['codex/closeout-account-evidence-20261003']
+    paths: ['.github/workflows/closeout-query-redaction.yml']
+permissions:
+  contents: read
+jobs:
+  redact-query:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      CF_ACCOUNT: '9e5386dcf455be34c582d93f8bfc79e6'
+      CF_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - name: Preserve logging and redact query strings in Worker observability
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {mkdirSync,writeFileSync} from 'node:fs';
+          const base='https://api.cloudflare.com/client/v4/accounts/'+process.env.CF_ACCOUNT+'/workers/scripts/shift-core';
+          const headers={Authorization:'Bearer '+process.env.CF_TOKEN,'Content-Type':'application/json'};
+          async function get(path){const r=await fetch(base+path,{headers,signal:AbortSignal.timeout(20000)});const d=await r.json();assert(r.ok&&d.success,'read HTTP '+r.status);return d.result}
+          const before=await get('/script-settings'),fullBefore=await get('/settings'),deployBefore=await get('/deployments');
+          assert.equal(before.observability.enabled,true);assert.equal(before.observability.logs.enabled,true);
+          const proposed={...before.observability,redact_query_string:true};
+          const r=await fetch(base+'/script-settings',{method:'PATCH',headers,body:JSON.stringify({observability:proposed}),signal:AbortSignal.timeout(20000)});
+          const response=await r.json();assert(r.ok&&response.success,'settings patch HTTP '+r.status);
+          const after=await get('/script-settings'),fullAfter=await get('/settings'),deployAfter=await get('/deployments');
+          assert.equal(after.observability.redact_query_string,true);
+          const normal=o=>({...o,observability:{...o.observability,redact_query_string:true}});
+          assert.deepEqual(normal(after),normal(before),'Unrelated script settings changed');
+          assert.deepEqual(fullAfter.bindings,fullBefore.bindings,'Bindings must stay identical');
+          assert.deepEqual(deployAfter,deployBefore,'No runtime deployment should change');
+          const report={at:new Date().toISOString(),run:process.env.GITHUB_RUN_ID,queryRedactionEnabled:true,loggingStillEnabled:after.observability.logs.enabled,otherSettingsPreserved:true,bindingsPreserved:true,runtimeDeploymentPreserved:true,productionDataWrites:0,modelCalls:0,retroactiveLogErasure:false};
+          mkdirSync('evidence',{recursive:true});writeFileSync('evidence/query-redaction.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: closeout-query-redaction
+          path: evidence/query-redaction.json
+          retention-days: 14
