@@ -10,7 +10,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: cloudflare-production-promote
+  group: evidence-article-repair-production
   cancel-in-progress: false
 jobs:
   release:
