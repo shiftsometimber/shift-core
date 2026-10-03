@@ -9,13 +9,15 @@ export const COACH_BACKEND_PATHS=new Set(["member-experience/ai-site-knowledge.m
 // Finite, separately approved editorial payload. Every byte is pinned below.
 export const COACH_COMPOSED_BOOK_ADDITIONS=new Set([".github/workflows/book-voice-live-audit.yml", ".github/workflows/book-voice-preview.yml", "book-voice.mjs", "editorial/book-voice/SAMPLES.md", "editorial/book-voice/VOICE.md", "editorial/book-voice/edits.json", "editorial/book-voice/live.cjs", "editorial/book-voice/payload.json", "preview/book-voice/host.mjs", "preview/book-voice/member-host.mjs", "preview/book-voice/provision.mjs", "preview/book-voice/verify.cjs", "preview/book-voice/worker.mjs", "release/book-voice-scope.mjs", "tests/book-voice-release.test.mjs", "tests/book-voice.test.mjs"]);
 export const COACH_COMPOSED_BOOK_CHANGES=new Set(["member-experience/public-preservation.mjs", "member-experience/verify-production-member.mjs", "public-startup-stability.mjs", "release/growth-preflight.mjs"]);
-export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES]);
+// Exact audit corrections, pinned by the release manifest and app hashes.
+export const COACH_AUDIT_CHANGES=new Set(['public-navigation-policy.mjs','tests/public-ticker-contrast-safety.test.mjs','shift-health-public-content.mjs','frontend/member/shift-health-catalogue-v1.js']);
+export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES]);
 export function assertCoachingChangedPath(status,path){
  const health=DEVICE_HEALTH_DELTA.find(([,p])=>p===path);
  if(health){assert.equal(status,health[0],'Unexpected native health composition status: '+path);return;}
  if(WATCH_COMPOSED_CHANGES.has(path)||WATCH_COMPOSED_ADDITIONS.has(path)){assert.equal(status,WATCH_COMPOSED_ADDITIONS.has(path)?'A':'M','Unexpected Watch composition status: '+path);return;}
  const added=COACH_ADDITIONS.has(path)||COACH_COMPOSED_BOOK_ADDITIONS.has(path);
- assert(added||COACH_BACKEND_PATHS.has(path)||COACH_COMPOSED_BOOK_CHANGES.has(path),'Unlisted coaching release change: '+path);
+ assert(added||COACH_BACKEND_PATHS.has(path)||COACH_COMPOSED_BOOK_CHANGES.has(path)||COACH_AUDIT_CHANGES.has(path),'Unlisted coaching release change: '+path);
  assert.equal(status,added?'A':'M','Unexpected change status: '+path);
 }
 // Preserve the exact reviewed specialist-registry Watch update alongside current coaching.
