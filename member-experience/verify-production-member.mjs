@@ -1,3 +1,4 @@
+import {withTrustRepair} from '../shift-coach/public-trust-repair.mjs';
 import {applyBookVoiceCopy,withBookVoice} from '../book-voice.mjs';
 import {dayGuideRuntime,dayGuideStyles} from './day-guide.mjs';
 import {sessionRuntime} from './session-state.mjs';
@@ -55,7 +56,7 @@ for(const [name,asset] of Object.entries(lifeBackAssets)){
   const bookWrapped=await withBookVoice(request,wrapped);
   const memberWrapped=await withGrowthPublicCopy(request,bookWrapped);
   const footerWrapped=await withSharedFooter(request,memberWrapped);
-  expected=Buffer.from(await footerWrapped.arrayBuffer());
+  expected=Buffer.from(await (await withTrustRepair(request,footerWrapped)).arrayBuffer());
  }
  assert.deepEqual(actual,expected,path+' must match exact rendered source');
  evidence.assets.push({path,status:r.status,sha256:createHash('sha256').update(actual).digest('hex'),expectedSha256:createHash('sha256').update(expected).digest('hex'),matchesSource:true});
