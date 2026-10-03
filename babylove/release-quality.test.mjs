@@ -63,5 +63,5 @@ test('publication remains a fresh database check and instrumentation contains no
 test('production deploy cannot skip article quality tests',()=>{
  const workflow=readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8');
  const testAt=workflow.indexOf('node --test babylove/*.test.mjs');
- assert(testAt>0&&testAt<workflow.indexOf('npx wrangler deploy --config wrangler.jsonc'));
+ assert(testAt>0&&testAt<workflow.indexOf('node release/member-runtime-deploy.mjs'));
 });

@@ -52,6 +52,6 @@ test('promotion validates snapshot, imports and verifies exact rows with current
   assert.ok(sql>publish&&verify>sql);
   assert.ok(source.indexOf('node scripts/newsroom-publication-client.mjs')>verify);
   assert.match(source,/--verify-main\s+npx wrangler d1 execute DB --remote/);
-  assert.match(source,/node scripts\/catalogue-publication-client\.mjs --verify-main\s+npx wrangler deploy/);
+  assert.match(source,/node scripts\/catalogue-publication-client\.mjs --verify-main\s+node release\/member-runtime-deploy.mjs/);
   assert.match(source,/ref: \$\{\{ github\.sha \}\}/);assert.match(source,/cancel-in-progress: false/);
 });
