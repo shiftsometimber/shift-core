@@ -79,3 +79,11 @@ Before v1.1 submission:
 5. Confirm Settings and Today remain useful when permissions are denied.
 6. Update Apple App Privacy and Google Data Safety/Health Apps/Health Connect declarations to match the exact permissions above.
 7. Capture evidence from the exact signed candidate; then submit one v1.1 release.
+
+## Current branch proof — 3 October 2026
+
+Connected-health safety CI was refreshed on branch `feat/my-timber-health-platform-v11`
+at commit `ceac7168dcbadbe1d2231fb6fc5496b73654ebc2`. Run `37103774406`
+passed the server import/syntax checks, connected-health validation tests and the
+privacy/consent contract. This is software evidence only; it does not replace the
+signed physical iPhone/Android acceptance gates above.
