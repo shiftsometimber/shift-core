@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {mkdirSync,writeFileSync} from 'node:fs';
-import {recovery,recoveryDecision,verifiedOwnedRuntime} from './cancelled-release-recovery.mjs';import {verifyCoachingRelease} from './release-contract.mjs';
+import {articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime} from './cancelled-release-recovery.mjs';import {verifyCoachingRelease} from './release-contract.mjs';
 assert.equal(process.env.GITHUB_REF,'refs/heads/main');verifyCoachingRelease({requireLaunch:true});
 const get=async path=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json();};
 const main=await get('/git/refs/heads/main');assert.equal(main.object.sha,process.env.GITHUB_SHA,'Do not recover from a stale release');
@@ -9,7 +9,12 @@ const verified=await get('/actions/runs/'+recovery.verifiedRun),failed=await get
 let decision,ownedProof;
 if([recovery.verified,recovery.unverified].includes(before.versions?.[0]?.version_id))decision=recoveryDecision(before,failed,verified);
 else{
- const runs=await get('/actions/runs?branch=main&event=push&status=success&per_page=100');
+ if(before.versions?.[0]?.version_id===articleRuntime.version){
+  const run=await get('/actions/runs/'+articleRuntime.run),jobs=await get('/actions/runs/'+articleRuntime.run+'/jobs');
+  const job=(jobs.jobs||[]).find(j=>j.name==='release'&&j.conclusion==='success');
+  if(verifiedArticleRuntime(before,run,job))ownedProof={run:run.id,source:run.head_sha,version:articleRuntime.version};
+ }
+ const runs=ownedProof?{workflow_runs:[]}:await get('/actions/runs?branch=main&event=push&status=success&per_page=100');
  for(const run of (runs.workflow_runs||[]).filter(r=>r.path==='.github/workflows/cloudflare-production-promote.yml').slice(0,5)){
   if(ownedProof)break;
   const jobs=await get('/actions/runs/'+run.id+'/jobs');
