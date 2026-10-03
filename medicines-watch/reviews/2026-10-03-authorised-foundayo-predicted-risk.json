@@ -1,0 +1,56 @@
+{
+  "reviewedAt": "2026-10-03T15:16:41Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Attach one bounded sponsor-reported ATTAIN-1 post-hoc predicted-risk analysis to the existing Foundayo card. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "primarySource": {
+    "publisher": "Eli Lilly and Company",
+    "title": "Lilly's oral GLP-1 Foundayo (orforglipron) was associated with reductions in predicted 10-year risk of type 2 diabetes and cardiovascular disease in adults with obesity",
+    "url": "https://investor.lilly.com/news-releases/news-release-details/lillys-oral-glp-1-foundayo-orforglipron-was-associated",
+    "sourcePublishedAt": "2026-10-01",
+    "retrievedAt": "2026-10-03T15:14:42Z",
+    "reviewedAt": "2026-10-03T15:16:41Z",
+    "httpStatus": 200,
+    "bytes": 157847,
+    "responseSha256": "20540ab6a89612b2dc137096a7ef4d5e4d4eb5f179204106e4b10c45601d5d7c",
+    "publicationLinkStatus": "The sponsor says the analyses were published in Diabetes, Obesity and Metabolism but does not link or identify the article in the announcement; an exact journal URL or DOI was not verified and is not invented here.",
+    "assessment": "The complete sponsor announcement was read. It describes post-hoc analyses of the 72-week Phase 3 ATTAIN-1 trial (NCT05869903; 3,127 adults with obesity or overweight and a weight-related condition, without diabetes). Type 2 diabetes risk was estimated with the CMDS engine and cardiovascular risk with a BMI-based Framingham engine. Lilly reports modelled relative risk reductions versus placebo at week 72, including 57% and 18% at 17.2 mg. These are predicted risks, not observed diagnoses or cardiovascular events. The trial used an investigational formulation at doses Lilly describes as equivalent to marketed tablets. The announcement's US FDA framing is not used to infer the UK licence, NHS access or UK supply."
+  },
+  "change": {
+    "medicineId": "foundayo",
+    "field": "evidenceLinks",
+    "title": "Lilly ATTAIN-1 post-hoc predicted-risk analysis — 1 October 2026",
+    "boundary": "Supporting evidence link only. No change to the card's benefit, trade-offs, authorisation, NHS access, private-supply wording, medicine review date or configured source list."
+  },
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "checkedAt": "2026-10-03T14:30:18.116Z",
+    "available": true,
+    "status": "current",
+    "configuredSources": 50,
+    "attention": [],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "A SELECT-only live health observation, not a new medical review or industry-completeness claim. The new sponsor link remains outside the 50-source automatic monitor."
+  },
+  "discovery": {
+    "method": "A separate current-date/current-month pass and broader undated topic pass checked primary regulator, NHS/NICE, trial-registry and sponsor evidence across named and additional developers. The Lilly announcement was read directly after search indexing exposed the 1 October post-hoc analysis.",
+    "existingWork": "Merged PR #851, subsequent Watch expansion receipts and current open Watch PR search results were checked before addition. The evidence updates the existing Foundayo card and does not create a duplicate programme.",
+    "retrievalLimitations": "The web-reading service returned HTTP 403 for the Lilly investor page, while a direct full-response retrieval with a standard browser user agent returned HTTP 200 and was read and hashed. The sponsor announcement names the journal but supplies no exact article link or DOI. That publication remains unverified rather than guessed. Search and selected-domain checks do not establish industry completeness.",
+    "industryComplete": false,
+    "clinicalDecisions": "No individual suitability, dosing, comparative benefit, prevention claim or cardiovascular/diabetes outcome claim is made. Any interpretation beyond the bounded modelled prediction remains awaiting qualified clinical review."
+  },
+  "catalogueCounts": {
+    "detailed": 6,
+    "wider": 78,
+    "totalBefore": 84,
+    "totalAfter": 84,
+    "configuredSources": 50
+  }
+}
