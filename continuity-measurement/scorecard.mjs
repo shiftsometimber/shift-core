@@ -13,10 +13,23 @@ export function summariseContinuity({exposures=[],actions=[],episodes=[],asOf=ne
  const returns=(start,end)=>{if(!activityAvailable)return unavailable('Saved-action source unavailable.');let eligible=0,returned=0;for(const [id,day] of cohort){if(today<day+end)continue;eligible++;if(actions.some(a=>a.userId===id&&instant(a.at)<=now&&londonDay(a.at)>=day+start-1&&londonDay(a.at)<=day+end-1))returned++}return ratio(returned,eligible,cohort.size?'not_yet_eligible':'awaiting_first_today_exposure')};
  const distinct=new Map();
  for(const e of episodes){const at=instant(e.at);if(at===null||at>now)continue;const key=e.userId+':'+e.id;const old=distinct.get(key);if(!old)distinct.set(key,{...e,reviews:[...(e.reviews||[])]});else{old.at=instant(old.at)<at?old.at:e.at;old.reviews.push(...(e.reviews||[]))}}
+ let firstWeekEligible=0,firstWeekAnswered=0,firstWeekHelped=0;
+ for(const [id,day] of cohort){
+  if(today<day+7)continue;firstWeekEligible++;
+  let answeredInWeek=false,helpedInWeek=false;
+  for(const e of distinct.values()){
+   const delivered=instant(e.at);
+   if(e.userId!==id||delivered<first.get(id)||londonDay(e.at)>day+6)continue;
+   const last=e.reviews.filter(r=>outcomes.has(r.outcome)&&instant(r.at)!==null&&instant(r.at)>=delivered&&instant(r.at)<=now&&londonDay(r.at)<=day+6).sort((a,b)=>instant(a.at)-instant(b.at)).at(-1);
+   if(last&&answers.has(last.outcome)){answeredInWeek=true;if(last.outcome==='helped')helpedInWeek=true;}
+  }
+  if(answeredInWeek)firstWeekAnswered++;if(helpedInWeek)firstWeekHelped++;
+ }
  let eligibleEpisodes=0,answered=0,helped=0;
  for(const e of distinct.values()){if(instant(e.at)<instant(since))continue;eligibleEpisodes++;const last=(e.reviews||[]).filter(r=>outcomes.has(r.outcome)&&instant(r.at)!==null&&instant(r.at)>=instant(e.at)&&instant(r.at)<=now).sort((a,b)=>instant(a.at)-instant(b.at)).at(-1);if(last&&answers.has(last.outcome)){answered++;if(last.outcome==='helped')helped++}}
  return {version:'continuity-first-today-v1',asOf,timezone:'Europe/London',cohortSince:since,todayStarters:cohort.size,
   day1Loop:unavailable('Meal selection is not evidence of eating. The four completed stages cannot currently be established.'),
+  firstWeekUsefulStep:episodesAvailable?{...ratio(firstWeekHelped,firstWeekEligible,cohort.size?'not_yet_eligible':'awaiting_first_today_exposure'),answeredMembers:firstWeekAnswered,unansweredMembers:firstWeekEligible-firstWeekAnswered,window:'Days 1–7 after first Today exposure; full Day 7 must have ended.',definition:'Eligible Today starters who reported at least one saved help episode helpful within their first seven London calendar days. Each member counts once; missing feedback remains in the denominator. Latest answer per episode within the window is used. This is self-reported usefulness, not treatment effectiveness.'}:unavailable('Help-episode source unavailable.'),
   week1:{...returns(2,7),window:'Days 2–7; full Day 7 must have ended.'},week4:{...returns(22,28),window:'Days 22–28; full Day 28 must have ended.'},
   helped:episodesAvailable?ratio(helped,answered,'no_answered_episodes'):unavailable('Help-episode source unavailable.'),
   feedbackCoverage:episodesAvailable?{...ratio(answered,eligibleEpisodes,'no_eligible_episodes'),unanswered:eligibleEpisodes-answered}:unavailable('Help-episode source unavailable.'),
@@ -57,5 +70,13 @@ export async function continuityScorecard(DB,options={}){
   episodes.push({userId:r.user_id,id:action.loopId?'loop:'+action.loopId:'checkin:'+r.id,at:r.created_at,reviews});
   for(const review of reviews)if(answers.has(review.outcome))actions.push({userId:r.user_id,at:review.at});
  }
- return {available:true,...summariseContinuity({exposures,actions,episodes,asOf:window.asOf,since:window.since,activityAvailable:['check_ins','member_state','daily_checkin_actions'].every(t=>tables.has(t)),episodesAvailable:['check_ins','member_state','daily_checkin_actions'].every(t=>tables.has(t))})};
+ let supportFollowThrough=unavailable('Coaching support queue unavailable.');
+ if(tables.has('support_tickets')){
+  const tickets=(await DB.prepare(`SELECT status,assigned_hq_user_id,created_at,updated_at FROM support_tickets WHERE reference LIKE 'COACH-%' AND user_id IN (${eligible})`).all()).results;
+  const current=tickets.filter(t=>instant(t.created_at)!==null&&instant(t.created_at)<=instant(window.asOf));
+  const open=current.filter(t=>t.status!=='closed');
+  const dated=t=>instant(t.updated_at||t.created_at);
+  supportFollowThrough={status:'observed',openRequests:open.length,unassignedRequests:open.filter(t=>t.assigned_hq_user_id===null).length,withoutUpdate48Hours:open.filter(t=>dated(t)!==null&&dated(t)<=instant(window.asOf)-48*3600000).length,unknownUpdateTime:open.filter(t=>dated(t)===null||dated(t)>instant(window.asOf)).length,teamMarkedClosed:current.filter(t=>t.status==='closed').length,memberConfirmedResolution:unavailable('Member-confirmed resolution and staff replies are not captured by the current queue.'),responsePromise:null,scope:'All retained real-member coaching requests as of the report time, including requests older than the cohort window. Closed status is not proof that help was delivered. The 48-hour marker highlights waiting work; it is not a promised response time.'};
+ }
+ return {available:true,...summariseContinuity({exposures,actions,episodes,asOf:window.asOf,since:window.since,activityAvailable:['check_ins','member_state','daily_checkin_actions'].every(t=>tables.has(t)),episodesAvailable:['check_ins','member_state','daily_checkin_actions'].every(t=>tables.has(t))}),supportFollowThrough};
 }

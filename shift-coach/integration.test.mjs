@@ -224,3 +224,35 @@ test('confirmed practical constraints keep feedback explanations until those con
  next=await read(DB);assert.doesNotMatch(next.action.reason,/didn’t help/);
  assert.equal(next.memory.outcomes.at(-1).title,first.task.title);
 });
+
+test('an old open help request stays visible ahead of newer closed history and offers an honest chase route',async t=>{
+ const DB=fixture(t);await start(DB);
+ await save(DB,{kind:'support-request',message:'Help me choose an everyday step',share:true});
+ const reference=(await read(DB)).support.tickets[0].reference;
+ DB.sqlite.prepare("UPDATE support_tickets SET created_at='2026-01-01',updated_at='2026-01-01' WHERE reference=?").run(reference);
+ for(let i=0;i<6;i++)DB.sqlite.prepare("INSERT INTO support_tickets(reference,user_id,subject,status,created_at,updated_at) VALUES(?,1,'Closed history','closed','2026-02-01','2026-02-01')").run('COACH-1-closed-'+i);
+ const support=(await read(DB)).support;
+ assert.equal(support.tickets[0].reference,reference);assert.equal(support.tickets[0].needsUpdate,true);assert.equal(support.tickets.length,5);assert.equal(support.responsePromise,null);assert(!JSON.stringify(support).includes('Help me choose'));
+ assert.equal((await read(DB,2)).support.tickets.length,0);
+});
+
+test('practical guidance uses confirmed circumstances and survives return without sharing another member’s context',async t=>{
+ const DB=fixture(t);await start(DB);await save(DB,{kind:'constraints',constraints:{budget:'tight',kitchen:'no-cook',time:'short'}});
+ let a=await read(DB);assert.equal(a.action.type,'food-assemble');assert(a.action.guidance.some(g=>g.id==='budget'));assert.match(a.action.guidance.find(g=>g.id==='budget').paragraphs.join(' '),/price per|missing item/);assert(a.action.guidance.every(g=>g.clinicalApproval===false));
+ await save(DB,{kind:'fact',key:'challenge',value:'busy-days'});a=await read(DB);assert(a.action.guidance.some(g=>g.id==='shifts'));assert.match(a.action.guidance.find(g=>g.id==='shifts').paragraphs.join(' '),/fridge|shelf-stable/);
+ assert.deepEqual((await read(DB)).action.guidance,a.action.guidance);assert.equal((await read(DB,2)).memory,null);
+ await save(DB,{kind:'mode',mode:'stopped'});a=await read(DB);assert(a.action.guidance.some(g=>g.id==='afterwards'));assert.equal(a.memory.constraints.budget,'tight');assert.equal(a.memory.facts.find(f=>f.key==='challenge').value,'busy-days');
+});
+test('small-appetite feedback changes the approach and a step that did not fit remains a one-step commitment',async t=>{
+ const DB=fixture(t);await start(DB);await save(DB,{kind:'fact',key:'challenge',value:'low-appetite'});let a=await read(DB);
+ assert.equal(a.action.type,'food-appetite');assert(a.action.guidance.some(g=>g.id==='appetite'));assert.match(a.action.task.steps.join(' '),/not make skipping meals/);
+ await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'didnt-fit'});a=await read(DB);assert.equal(a.action.type,'food-appetite');assert.equal(a.action.task.steps.length,1);
+ const old=a.action;await save(DB,{kind:'accept',id:old.id});await save(DB,{kind:'outcome',id:old.id,value:'didnt-help'});a=await read(DB);assert.equal(a.action.type,'food-appetite-ready');assert.notEqual(a.action.approach,old.approach);assert(a.action.guidance.some(g=>g.id==='appetite'));assert.equal(a.memory.outcomes.at(-1).title,old.task.title);
+});
+test('sore-knee choice does not prescribe movement and a rejected approach cannot fall back to a generic workout',async t=>{
+ const DB=fixture(t);await start(DB);await save(DB,{kind:'focus',focus:'movement',restore:false});await save(DB,{kind:'fact',key:'challenge',value:'sore-knees'});let a=await read(DB);
+ assert.equal(a.action.type,'movement-suitable');assert(a.action.guidance.some(g=>g.id==='knees'));assert.match(a.action.task.steps.join(' '),/GP or physiotherapist/);assert.doesNotMatch(a.action.task.steps.join(' '),/squats|run for|walk for|step target/);
+ await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'didnt-help'});a=await read(DB);assert.equal(a.action.type,'movement-support');assert.notEqual(a.action.approach,'suitability-check');
+ await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'didnt-help'});a=await read(DB);assert(a.memory.pendingBlocker);assert.equal(a.action.type,'member-choice');
+ assert.equal((await save(DB,{kind:'fact',key:'week',value:'My knee hurts and I cannot walk'})).status,422);
+});

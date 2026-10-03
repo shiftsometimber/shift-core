@@ -1,3 +1,4 @@
+import {knowledgeFor} from './knowledge.mjs';
 import {library,tone,knowledgePolicy,everydayTask,treatmentSupport,challengeLabels,availableActions} from './voice.mjs';import {fact,uid} from './store.mjs';import {canExecute} from './permissions.mjs';import {boundary} from './safety.mjs';
 export function prepareToday(state,now=Date.now(),variation=null){
  const current=readToday(state);
@@ -11,6 +12,7 @@ export function prepareToday(state,now=Date.now(),variation=null){
  if([goal,week].some(f=>f&&!boundary(f.value).coaching))return null;
  const c=state.constraints?.value||{};
  let candidates=availableActions(state);
+ if(challenge?.value==='sore-knees'&&focus?.value==='movement')candidates=candidates.filter(a=>a.challenges.includes('sore-knees'));
  if(c.kitchen==='no-cook')candidates=candidates.filter(a=>!['food-plan','food-prepare'].includes(a.type));
  const priority=c.kitchen==='no-cook'?['food-assemble','food-backup','food-cupboard']:c.budget==='tight'?['food-cupboard','food-backup']:c.time==='short'?['food-backup','movement-anchor']:[];
  candidates.sort((a,b)=>Number(b.challenges.includes(challenge?.value||'everyday'))-Number(a.challenges.includes(challenge?.value||'everyday')));
@@ -30,7 +32,7 @@ export function prepareToday(state,now=Date.now(),variation=null){
  const remembered=feedback?(feedback.value==='didnt-help'&&card&&card.approach!==(feedback.approach||library.find(a=>a.type===feedback.type)?.approach)?` You said “${feedback.title||'your earlier step'}” didn’t help. This tries a different approach.`:feedback.value==='didnt-fit'?` Your last step didn’t fit. This keeps the aim and makes the first step smaller.`:feedback.value==='helped'?` You said your last step helped. Keep that useful bit.`:feedback.value==='didnt-try'?` You haven’t tried the last step; you can keep it or choose something else.`:''):'';
  const reason=(goal&&week?`You chose “${goal.value}” and saved “${week.value}”.${calendarFact?' Your calendar has changed; this plan leaves room for it.':''}`:goal?`You chose “${goal.value}”.`:'General starter: choose something manageable for this week.')+(challenge?` You chose “${challengeLabels[challenge.value]}” as what is hardest right now.`:'')+remembered+' '+treatmentSupport(state.mode).title+'.';
  const action={id:uid(),type:card?.type||'member-choice',approach:card?.approach||null,challenge:challenge?.value||'everyday',component:state.components.includes(card?.component)?card.component:state.components[0],title,reason,general:!goal,tone:variation?.welcome?'Good to have you back. Start with today.':state.mode==='stopped'?'Your support carries on after treatment. Keep the routine useful and the next step manageable.':tone(state.stage),minutes:variation?.smaller?1:smaller?2:state.stage==='Just starting'?Math.min(3,card?.minutes||2):card?.minutes||2,dataUsed,sources:calendarFact?['calendar']:[],status:'prepared',preparedAt:now,knowledge:knowledgePolicy,awaitingWant:!!state.pendingWant};
- action.task=task;action.repeatOf=variation?.repeatOf||null;action.keepSuccessful=!!variation?.repeat;state.startedAt=state.startedAt||now;state.actions.push(action);return action;
+ action.task=task;action.guidance=knowledgeFor({focus:focus?.value,challenge:challenge?.value,constraints:c,mode:state.mode});action.repeatOf=variation?.repeatOf||null;action.keepSuccessful=!!variation?.repeat;state.startedAt=state.startedAt||now;state.actions.push(action);return action;
 }
 // Read-only path: never calls a model and never regenerates an invalid action.
-export function readToday(state){const action=[...state.actions].reverse().find(a=>['prepared','accepted'].includes(a.status)&&canExecute(state,a));return action?{...action,task:action.task||everydayTask(action.type,action.minutes===1,state.mode,fact(state,'week')?.value||'')}:null;}
+export function readToday(state){const action=[...state.actions].reverse().find(a=>['prepared','accepted'].includes(a.status)&&canExecute(state,a));return action?{...action,guidance:action.guidance||knowledgeFor({focus:fact(state,'focus')?.value,challenge:fact(state,'challenge')?.value,constraints:state.constraints?.value,mode:state.mode}),task:action.task||everydayTask(action.type,action.minutes===1,state.mode,fact(state,'week')?.value||'')}:null;}
