@@ -186,7 +186,7 @@ test('enobosarm and semaglutide release binds its exact reviewed commit',async()
 });
 
 test('public wording/menu release accepts only the exact browser-tested source',()=>{
- const reviewed=(ref,path)=>ref==='HEAD'?PUBLIC_WORDING_PREVIEW+':'+path:ref+':'+path;
+ const reviewed=(ref,path)=>ref==='HEAD'?(path==='medicines-watch/page.mjs'?WATCH_REGISTRY_WAVE_COMMIT:PUBLIC_WORDING_PREVIEW)+':'+path:ref+':'+path;
  validatePublicWording(reviewed);
  for(const changed of PUBLIC_WORDING_PATHS)assert.throws(()=>validatePublicWording((ref,path)=>ref==='HEAD'&&path===changed?'drift':reviewed(ref,path)),/source drift/);
 });
