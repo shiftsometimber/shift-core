@@ -23,10 +23,14 @@ test('every legacy publication, seed and migration step is unreachable for runti
  assert.ok(source.indexOf("if(process.env.PASSPORT_SCHEMA_READ_ONLY==='true')assertSchema(existing,source)")<source.indexOf("if(!existing.length)cli("));
 });
 test('gates, fresh source check, rollback capture and exactly one deploy remain ordered',()=>{
- const scope=workflow.indexOf('id: scope'),deploy=workflow.indexOf('npx wrangler deploy --config wrangler.jsonc');
- assert.equal(workflow.match(/npx wrangler deploy --config wrangler.jsonc/g)?.length,1);
+ const scope=workflow.indexOf('id: scope'),deploy=workflow.indexOf('node release/member-runtime-deploy.mjs');
+ assert.equal(workflow.match(/node release\/member-runtime-deploy.mjs/g)?.length,1);
+ const deployWrapper=readFileSync(new URL('../release/member-runtime-deploy.mjs',import.meta.url),'utf8');
+ assert.equal(deployWrapper.match(/cli\('deploy'\)/g)?.length,1);
+ assert.ok(deployWrapper.indexOf("assert.equal(active.id,before.id")<deployWrapper.indexOf("cli('deploy')"));
+ assert.ok(deployWrapper.indexOf("cli('deploy')")<deployWrapper.indexOf("owned-runtime-deployment.json"));
  for(const gate of ['Verify exact current main before production mutations','Verify security-check timeouts and retry before promotion','Capture current Worker deployment for rollback','Capture protected catalogue and stock without customer records']){const index=workflow.indexOf('name: '+gate);assert.ok(index>scope&&index<deploy,gate)}
- assert.match(workflow,/node scripts\/b1-release-scope.mjs\n          node scripts\/catalogue-publication-client.mjs --verify-main\n          npx wrangler deploy/);
+ assert.match(workflow,/node scripts\/b1-release-scope.mjs\n          node scripts\/catalogue-publication-client.mjs --verify-main\n          node release\/member-runtime-deploy.mjs/);
  assert.ok(workflow.indexOf('Verify B1 protected catalogue and stock remain identical')>deploy);
  for(const step of steps.filter(s=>/name: (Verify|Prove|Block) /.test(s)))assert.ok(!step.includes("runtime_only != 'true'"),'Verification must not be skipped: '+step.split('\n')[0]);
 });
