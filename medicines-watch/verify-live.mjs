@@ -22,12 +22,16 @@ assert.equal(health.sources.length,sources.length);assert.equal(health.medicines
 assert.ok(health.lastAttemptAt,'Monitor must have executed');
 assert.ok(Date.now()-Date.parse(health.lastAttemptAt)<75*60*1000,'Monitor attempts must be recent');
 verifyLiveSourceReviews(health.sources,sources);
-for(const id of ['watch-changes','watch-safety','watch-uk-access'])assert.ok(document.includes('id="'+id+'"'),id);
+for(const id of ['watch-changes','watch-safety','watch-uk-access','watch-evidence-desk','watch-coverage-gaps'])assert.ok(document.includes('id="'+id+'"'),id);
 assert.ok(document.includes('Current operational access remains unverified'));
 assert.ok(document.includes('Status checks do not assess clinical outcomes.'));
 for(const s of registrySources)assert.ok(document.includes(s.url),'Trial registry evidence '+s.nctId);
 assert.ok(document.includes('https://yellowcard.mhra.gov.uk/'));
 assert.ok(document.includes('What changed?'));
+assert.ok(document.includes('Last reviewed record: Recruiting'));
+const searched=await get(WATCH_PATH+'?q=Zealand%20GIP').then(r=>r.text());assert.ok(searched.includes('id="industry-zp6590"'));assert.ok(!searched.includes('id="industry-vk3019"'));
+assert.ok(document.includes('Co-formulation is a development aim'));
+
 const publicMain=document.match(/<main\b[\s\S]*?<\/main>/i)[0];
 assert.doesNotMatch(publicMain,/\/member\/|clinically reviewed|buy now/i);
 const post=await fetch(origin+HEALTH_PATH,{method:'POST',signal:AbortSignal.timeout(15000)});assert.equal(post.status,405);

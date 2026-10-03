@@ -1,0 +1,182 @@
+{
+  "reviewedAt": "2026-10-03T20:05:13.956Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt asked on 3 October 2026 to raise the Watch standard. Standing editorial authority permits evidence-backed informational publication through passing checks.",
+    "clinicalApproval": null
+  },
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "zp6590",
+      "name": "ZP6590",
+      "developer": "Zealand Pharma",
+      "group": "research",
+      "stage": "Recruiting Early Phase 1; first-in-human injection study",
+      "summary": "ZP6590 is an investigational long-acting GIP receptor agonist designed for co-formulation with other peptides. A sponsor-submitted record describes an 88-participant (estimated) first-in-human study of ZP6590 injections versus placebo, with an actual 9 July 2026 start. The record lists recruitment in Germany and no posted results.",
+      "ukAuthorisation": "The reviewed research sources do not establish UK marketing authorisation for ZP6590.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by these research sources.",
+      "supply": "Recruitment at a German research site does not establish lawful UK retail supply, pharmacy stock or sale by SHIFT.",
+      "limitations": "The pipeline page still calls first-in-human initiation the next step, although its Phase 1 label, the registry and Zealand’s 13 August 2026 announcement show the trial has started. The September 2027 completion and enrolment are estimates. This dose-escalation study assesses safety, tolerability, pharmacokinetics and pharmacodynamics; recruitment is not proof of efficacy or safety. Co-formulation is a development aim, and preclinical combination and antiemetic findings are not human combination benefits.",
+      "sourceIds": [
+        "zealand-zp6590-pipeline"
+      ],
+      "reviewedAt": "2026-10-03T20:05:13.956Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07721597: ZP6590",
+          "url": "https://clinicaltrials.gov/study/NCT07721597",
+          "sourcePublishedAt": "2026-07-23",
+          "sourceUpdatedAt": "2026-08-13",
+          "reviewedAt": "2026-10-03T20:05:13.956Z",
+          "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+        },
+        {
+          "title": "Zealand Pharma H1 2026: first-in-human ZP6590 trial initiated",
+          "url": "https://www.globenewswire.com/news-release/2026/08/13/3344209/0/en/zealand-pharma-announces-financial-results-for-the-first-half-of-2026.html",
+          "sourcePublishedAt": "2026-08-13",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-03T20:05:13.956Z",
+          "checkScope": "Complete original sponsor announcement read; initiation statement corroborates the registry. Not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "zealand-zp6590-pipeline",
+      "title": "Zealand Pharma ZP6590 pipeline",
+      "url": "https://www.zealandpharma.com/pipeline/zp6590/",
+      "format": "html",
+      "contentSelector": "#maincontent",
+      "requiredTerms": [
+        "ZP6590",
+        "GIP",
+        "first-in-human"
+      ],
+      "reviewedAt": "2026-10-03T20:05:13.956Z",
+      "sourcePublishedAt": null,
+      "sourceUpdatedAt": null,
+      "evidenceType": "Sponsor pipeline; preclinical aims and outdated trial-start narrative",
+      "rawResponseSha256": "a63d94388f6dbcdfe509ec7dcef479d369fc432a7b052e7c7dac6a77766c66f3",
+      "reviewedFingerprint": "f329bcaeb902a9146326ffa3066ec8d4395e6a5fdfaa9d2ee14dcc8d5fb2a6d4"
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct07721597",
+      "nctId": "NCT07721597",
+      "title": "ClinicalTrials.gov NCT07721597: ZP6590",
+      "url": "https://clinicaltrials.gov/study/NCT07721597",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07721597",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07721597",
+        "Zealand"
+      ],
+      "reviewedAt": "2026-10-03T20:05:13.956Z",
+      "sourcePublishedAt": "2026-07-23",
+      "sourceUpdatedAt": "2026-08-13",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07721597",
+        "title": "A Single and Multiple Ascending Dose Trial Assessing Safety, Tolerability, Pharmacokinetics and Pharmacodynamics of ZP6590 in Participants With Normal Weight, Overweight and Obesity",
+        "sponsor": "Zealand Pharma",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "EARLY_PHASE1"
+        ],
+        "enrollment": {
+          "count": 88,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-07-09",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-09-06",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-09-06",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-07-23",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-08-13",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "zp6590"
+      ],
+      "rawResponseSha256": "9ee05084cea27653c5694dbb98a5b9bf476ea1af644aa80d63b5fabadf2b8641",
+      "reviewedFingerprint": "1a1d1af27cb2308667b0adcf2cffe782f506f5d91fbcb3c3861dac4ca7956788"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://www.zealandpharma.com/pipeline/zp6590/",
+      "publicationDate": null,
+      "updateDate": null,
+      "reviewedAt": "2026-10-03T20:05:13.956Z",
+      "outcome": "Complete pipeline body read; outdated prospective initiation narrative retained as a conflict, not used to override the trial."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07721597",
+      "publicationDate": "2026-07-23",
+      "updateDate": "2026-08-13",
+      "reviewedAt": "2026-10-03T20:05:13.956Z",
+      "outcome": "Complete primary API body read: exact identity, design, dates, recruitment, location and absence of posted results."
+    },
+    {
+      "url": "https://www.globenewswire.com/news-release/2026/08/13/3344209/0/en/zealand-pharma-announces-financial-results-for-the-first-half-of-2026.html",
+      "publicationDate": "2026-08-13",
+      "updateDate": null,
+      "reviewedAt": "2026-10-03T20:05:13.956Z",
+      "rawResponseSha256": "5131f4953db99a1b8b2c072e9c9361c2616993cb5081375681bce7e28dc271e7",
+      "outcome": "Complete sponsor corporate announcement read; first-in-human initiation corroborated."
+    }
+  ],
+  "discovery": {
+    "scope": "Targeted older omission follow-up, not a completed whole-industry scan",
+    "queries": [
+      "obesity GIP combination first-in-human Zealand ZP6590",
+      "ZP6590 October 2026 trial"
+    ],
+    "failures": [
+      {
+        "url": "https://clinicaltrials.gov/study/NCT07721597",
+        "outcome": "HTML was a dynamic shell; factual review used the complete primary API instead."
+      }
+    ],
+    "rejectedLeads": [
+      {
+        "url": "https://clinicaltrials.gov/api/v2/studies/NCT07665879",
+        "outcome": "Complete primary record identifies Lilly eloralintide, not ZP6590; secondary lead rejected."
+      }
+    ],
+    "notReviewed": [
+      {
+        "url": "https://euclinicaltrials.eu/ctis-public/view/2026-525978-19-00",
+        "outcome": "Search lead only; complete CTIS record not reviewed, no claim taken from it."
+      }
+    ],
+    "remaining": "Broader developer and topic passes remain ongoing; this receipt does not mark unperformed searches as complete."
+  },
+  "medicalSummaryReviewDatesChanged": [
+    "zp6590"
+  ],
+  "monitorObservationsSeeded": false
+}
