@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-03T17:31:36.785Z",
+  "calculator": {
+    "deployment": "dcb07abd-a44f-47c1-b1d1-69844aede415",
+    "checksPreview": 20,
+    "checksProduction": 20,
+    "source": "26cf19fd1e715db3c9997e0ada467b5a09030509",
+    "fingerprint": "30d7b89113782b1df6a770d62f1874133385d0a16c93e9f29ca8a0ecac6d1240"
+  },
+  "mentalHealth": {
+    "deployment": "b68d0a6e-4950-41a1-8cad-bd5e9393d7aa",
+    "pagesRead": 102,
+    "pagesChanged": 101,
+    "checksPreview": 202,
+    "checksProduction": 202,
+    "source": "406fde2a19aa11298cb17dfd15e525f7366d84fa",
+    "fingerprint": "27c1329b4f8fc9df98004901e67baa64afaf6b96ca99e35f11c1f1e05e335e24",
+    "preservedFiles": 775,
+    "firstProductionAttemptRolledBackForPropagation": true
+  },
+  "knowledge": {
+    "pages": 101,
+    "chunks": 110,
+    "allStoredPassagesMatch": true,
+    "paidInferenceCalls": 0,
+    "customerRecordsChanged": 0,
+    "sqlSha256": "4382e146c5599761f19ae8d3f10cacc1797811b548e1f99cc636fdfe3f9f9c9f"
+  },
+  "recovery": {
+    "pendingMedicineCallbacks": 1,
+    "eventType": "checkout.session.expired",
+    "receivedAt": "2026-09-04T06:31:14.185Z",
+    "error": "D1_EXEC_ERROR: Error in line 1: CREATE TABLE IF NOT EXISTS order_reference_registry (: incomplete input: SQLITE_ERROR",
+    "replayed": false,
+    "providerVerificationRequired": true,
+    "stripeConnectionConfirmed": false
+  },
+  "limits": {
+    "fullEstateReviewComplete": false,
+    "clinicalAcceptance": false,
+    "freshModelPerformancePassed": false,
+    "physicalDeviceStoreAcceptance": false,
+    "credentialProviderRecoveryComplete": false
+  }
+}
