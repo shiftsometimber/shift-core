@@ -23,6 +23,7 @@ const ALLOWED_EVENTS=new Set([
 const bool=value=>typeof value==='boolean';
 const integer=(min,max)=>value=>Number.isInteger(value)&&value>=min&&value<=max;
 const oneOf=(...values)=>value=>typeof value==='string'&&values.includes(value);
+const PRIVATE_PROPERTY_KEYS=/password|token|secret|email|phone|address|symptom|diagnos|medication/i;
 const GENERAL_USAGE_PROPERTIES=new Map([
  ['registration_started',{path:oneOf('fast-v2','core')}],
  ['registration_completed',{path:oneOf('fast-v2','core')}],
@@ -43,7 +44,7 @@ const USAGE_SOURCES=new Set(['server','member','member_client']);
 function sanitiseGeneralUsage(name,properties){
  if(!properties||typeof properties!=='object'||Array.isArray(properties))return{};
  const out={},rules=GENERAL_USAGE_PROPERTIES.get(name)||{};
- for(const[key,accept]of Object.entries(rules))if(Object.hasOwn(properties,key)&&accept(properties[key]))out[key]=properties[key];
+ for(const[key,accept]of Object.entries(rules))if(!PRIVATE_PROPERTY_KEYS.test(key)&&Object.hasOwn(properties,key)&&accept(properties[key]))out[key]=properties[key];
  if(DAILY_USAGE_EVENTS.has(name)&&Object.hasOwn(properties,'date')){
   const date=sanitiseMyTimberUsage('my_timber_checkin_saved',{date:properties.date}).date;
   if(date)out.date=date;
