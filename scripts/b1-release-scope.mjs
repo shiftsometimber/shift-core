@@ -1,4 +1,4 @@
-import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
+import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,watchCurrentSource,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 import {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,validateWatchRegistryWave} from '../release/watch-registry-wave-scope.mjs';
 import {validateTreatmentGuidance} from '../release/treatment-guidance-scope.mjs';
 import {PUBLIC_WORDING_PREVIEW,PUBLIC_WORDING_PATHS,validatePublicWording} from '../release/public-wording-scope.mjs';
@@ -99,6 +99,7 @@ export function validateWatchEnobosarm(read){
  for(const path of WATCH_ENOBOSARM_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_ENOBOSARM_COMMIT),path),'Watch enobosarm/semaglutide source drift: '+path);
 }
 function currentWatchRef(path,fallback){
+ if(path==='medicines-watch/industry.mjs')return watchCurrentSource(path);
  return WATCH_REGISTRY_WAVE_PATHS.includes(path)?WATCH_REGISTRY_WAVE_COMMIT:PUBLIC_WORDING_PATHS.includes(path)?PUBLIC_WORDING_PREVIEW:WATCH_ENOBOSARM_PATHS.includes(path)?WATCH_ENOBOSARM_COMMIT:WATCH_PFIZER_PDF_REPAIR_PATHS.includes(path)?WATCH_PFIZER_PDF_REPAIR_COMMIT:WATCH_REGISTRY_PATHS.includes(path)?WATCH_REGISTRY_COMMIT:WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:fallback;
 }
 export function validateNiceTimeout(read){
