@@ -29,7 +29,8 @@ const priorBackground="function background(el){let n=el;while(n){const s=getComp
 const currentBackground="function background(el){const layers=[];let n=el;while(n){const s=getComputedStyle(n);if(s.backgroundImage&&s.backgroundImage!=='none')return null;const c=rgb(s.backgroundColor);if(c&&c.a>0){layers.push(c);if(c.a>=1)break}n=n.parentElement}let result={r:255,g:255,b:255,a:1};for(let i=layers.length-1;i>=0;i--)result=blend(layers[i],result);return result}";
 assert.equal(contrastSafetyClient.split(currentBackground).length-1,1,'Current contrast guard signature changed');
 export const priorContrastSafetyClient=contrastSafetyClient.replace(currentBackground,priorBackground);
-export function preserveReviewedContrastGuard(input,{required=false}={}){
+export function preserveReviewedContrastGuard(path,input,{required=false}={}){
+ if(path==='/turnstile-auth-v1.js?v=timeout-20260912')return input;
  const html=input.toString('utf8');
  const tag=client=>`<script data-shift-contrast-guard="${contrastSafetyVersion}">${client}</script>`;
  const prior=tag(priorContrastSafetyClient),current=tag(contrastSafetyClient);
@@ -58,7 +59,7 @@ for(const path of paths){
  preserved=preserveCalculatorsNavigation(path,preserved,{required:Boolean(before)});
  // Includes only the two exact shared support links on the public login page.
  preserved=preserveSeo794(path,preserved,{required:Boolean(before)});
- preserved=preserveReviewedContrastGuard(preserved,{required:Boolean(before)});
+ preserved=preserveReviewedContrastGuard(path,preserved,{required:Boolean(before)});
  pages.push({...publicPageEvidence(path,r.status,preserved,{requireTreatmentsEntry:Boolean(before),hash}),actualSha256:hash(body),actualBytes:body.length,continuityAdditionRemoved:!preserved.equals(body)});
 }
 let comparison='baseline';
