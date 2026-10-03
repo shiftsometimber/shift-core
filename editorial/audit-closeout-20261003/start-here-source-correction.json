@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-03",
+  "baseline": "9a9f505e7140bc00e5dce2855349af8d7d67d240275bdd8d175d8562e2b5b862",
+  "candidate": "6f5e68a40bacf2e161842b7349ae8b575f7d82b71c2fda12adcea5eed1e8d3e1",
+  "corrections": [
+    {
+      "path": "start-here.html",
+      "before": "https://www.medicines.org/emc/product/2592/smpc",
+      "after": "https://www.medicines.org.uk/emc/product/2592/smpc"
+    }
+  ],
+  "reason": "Correct the missing .uk in the existing Xenical product-information source. Official target reached and read; no clinical, eligibility, stock or price wording changed.",
+  "preservedFiles": 875,
+  "preview": "https://eab467f6.projectshift.pages.dev",
+  "publication": "Guarded production promotion required after exact candidate and rendered checks."
+}
