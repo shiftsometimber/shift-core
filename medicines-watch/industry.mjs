@@ -30,6 +30,7 @@ import switchingStudies from './reviews/2026-10-02-authorised-switching-studies.
 import na931Publication from './reviews/2026-10-02-authorised-na931.json' with {type:'json'};
 import amylinMetabolicFollowup from './reviews/2026-10-03-authorised-amylin-metabolic-followup.json' with {type:'json'};
 import azd1043Publication from './reviews/2026-10-03-authorised-azd1043.json' with {type:'json'};
+import seleneCorrection from './reviews/2026-10-03-authorised-azd6234-selene.json' with {type:'json'};
 export const INDUSTRY_REVIEWED_AT = evidence.reviewedAt;
 export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources,kainetic.source].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===eloraTZP.source.id?eloraTZP.source:s).map(s => monitorRepairs.sources.find(r=>r.id===s.id)||s).map(s => pfizerPdfRepair.sources.find(r=>r.id===s.id)||s).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
@@ -159,4 +160,7 @@ export const industry = [...originalIndustry.map(e => {
   const change=amylinMetabolicFollowup.changes.find(c=>c.id===e.id);
   return change?{...e,...change.fields,reviewedAt:amylinMetabolicFollowup.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]}:e;
- });
+ })
+ .map(e=>e.id===seleneCorrection.change.id?{...e,...seleneCorrection.change.fields,
+  reviewedAt:seleneCorrection.reviewedAt,
+  additionalEvidence:[...(e.additionalEvidence||[]),...seleneCorrection.change.additionalEvidence]}:e);
