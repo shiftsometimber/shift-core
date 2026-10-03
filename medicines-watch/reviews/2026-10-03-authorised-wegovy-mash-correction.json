@@ -1,0 +1,105 @@
+{
+  "reviewedAt": "2026-10-03T16:42:06Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Correct the existing Wegovy injection card to include the separately authorised UK MASH indication, distinguish the still-developing NICE appraisal from NHS access, and attach one bounded sponsor-reported STEP UP post-hoc analysis. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "configuredSourceChange": {
+    "before": 50,
+    "after": 51,
+    "newSourceId": "wegovy-mash-nice",
+    "boundary": "One exact NICE appraisal-status page is added to automatic monitoring. This count does not demonstrate industry completeness."
+  },
+  "sources": [
+    {
+      "id": "wegovy-injection-smpc",
+      "publisher": "electronic medicines compendium / Novo Nordisk Limited",
+      "title": "Wegovy 2.4 mg FlexTouch solution for injection: Summary of Product Characteristics",
+      "url": "https://www.medicines.org.uk/emc/product/13803/smpc",
+      "checkUrl": "https://www.medicines.org.uk/emc/product/13803/smpc",
+      "format": "html",
+      "sourcePublishedAt": "2026-09-22",
+      "retrievedAt": "2026-10-03T16:42:06Z",
+      "reviewedAt": "2026-10-03T16:42:06Z",
+      "previousReviewedAt": "2026-09-30T16:55:00Z",
+      "httpStatus": 200,
+      "bytes": 695771,
+      "responseSha256": "8c95defda875564e25a98a093672f8764f359c7e480a8bef3fa0fd98b3536bc9",
+      "reviewedFingerprint": "2d47d8fcebc5f78afe4fa4834970434d327c9731ecd2efbfc4ec85e649059ca6",
+      "previousReviewedFingerprint": "2d47d8fcebc5f78afe4fa4834970434d327c9731ecd2efbfc4ec85e649059ca6",
+      "withdrawn": false,
+      "wordingChanged": false,
+      "assessment": "The complete current product information was reread and its claim-bearing fingerprint is unchanged. Section 4.1 separately authorises Wegovy injection for weight management, cardiovascular-risk reduction in eligible adults, and non-cirrhotic MASH in adults with F2 to F3 fibrosis. This is UK product-authorisation evidence, not an NHS funding decision or proof of individual suitability."
+    },
+    {
+      "id": "wegovy-mash-nice",
+      "publisher": "National Institute for Health and Care Excellence",
+      "title": "Semaglutide for treating moderate to advanced liver fibrosis without cirrhosis caused by MASH [ID6458]",
+      "url": "https://www.nice.org.uk/guidance/indevelopment/gid-ta11477",
+      "checkUrl": "https://www.nice.org.uk/guidance/indevelopment/gid-ta11477",
+      "format": "html",
+      "sourcePublishedAt": null,
+      "retrievedAt": "2026-10-03T16:42:06Z",
+      "reviewedAt": "2026-10-03T16:42:06Z",
+      "httpStatus": 200,
+      "bytes": 17413,
+      "responseSha256": "7de1145a121fe61eae4b3432eb02ce315b0927b46c3ef982b1e871b319f5ed8a",
+      "reviewedFingerprint": "5d75c09f811f61c16bb0b7d857582253b4e434855acaf802aa2962d6dfcf37e8",
+      "withdrawn": false,
+      "assessment": "The complete NICE project page was read. It says the appraisal is in progress, records a provisional 15 October 2026 committee meeting and expects publication on 7 January 2027. An appraisal in development is not a recommendation and does not establish NHS England access."
+    },
+    {
+      "id": "novo-step-up-liver-20261001",
+      "publisher": "Novo Nordisk",
+      "title": "Wegovy STEP UP post-hoc liver-fat analysis",
+      "url": "https://www.novonordisk.com/news-and-media/news-and-ir-materials/news-details.html?id=917205",
+      "sourcePublishedAt": "2026-10-01T10:45:00Z",
+      "retrievedAt": "2026-10-03T16:42:06Z",
+      "reviewedAt": "2026-10-03T16:42:06Z",
+      "httpStatus": 200,
+      "bytes": 59565,
+      "responseSha256": "456ac3f3bda58ad5889c6328f05e17bff9e32109c297b259e721cfea8f3c33b9",
+      "automaticMonitoring": false,
+      "assessment": "The complete sponsor announcement was read. It reports an exploratory post-hoc STEP UP analysis and a direct MRI-PDFF subgroup of 55 participants. The 26 participants with liver fat above 5% pooled the semaglutide 7.2 mg and 2.4 mg groups. This does not isolate either dose, establish fibrosis outcomes or determine NHS access."
+    }
+  ],
+  "change": {
+    "medicineId": "wegovy-injection",
+    "fields": [
+      "authorisation",
+      "access.nhsEngland",
+      "sourceIds",
+      "evidenceLinks",
+      "reviewedAt"
+    ],
+    "boundary": "The correction separates UK authorisation, indication-specific NICE appraisal and NHS access. It does not alter private stock, recommend treatment, transfer the MASH indication to oral Wegovy, compare doses, or claim observed fibrosis benefit from the exploratory subgroup."
+  },
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "checkedAt": "2026-10-03T15:45:18.230Z",
+    "available": true,
+    "status": "current",
+    "configuredSourcesBefore": 50,
+    "attention": [],
+    "boundary": "This SELECT-only observation covers the pre-change 50-source production set. It does not approve the new NICE source; that source was separately retrieved, read and fingerprinted above."
+  },
+  "discovery": {
+    "method": "A separate current-date/current-month pass and broader undated topic pass checked primary regulator, product-information, NHS/NICE, registry and sponsor evidence across named and additional developers. The Novo analysis exposed the incomplete indication wording in the existing detailed card; the current SmPC and NICE page were then read directly.",
+    "existingWork": "Merged PR #851, subsequent Watch receipts and current open PR #1009 were checked. PR #1009 is a draft audit/recovery PR and does not contain this MASH correction.",
+    "retrievalLimitations": "The web-reading service returned HTTP 403 for the NICE project page, while direct full-response retrieval returned HTTP 200 and was read and fingerprinted. Search and selected-domain checks do not establish industry completeness.",
+    "industryComplete": false,
+    "clinicalDecisions": "No individual suitability, treatment choice, off-label use, dose comparison or NHS entitlement is inferred. Those remain matters for qualified clinical and commissioning decisions."
+  },
+  "catalogueCounts": {
+    "detailed": 6,
+    "wider": 78,
+    "totalBefore": 84,
+    "totalAfter": 84,
+    "configuredSourcesBefore": 50,
+    "configuredSourcesAfter": 51
+  }
+}
