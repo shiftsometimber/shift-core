@@ -197,9 +197,9 @@ test('treatment release binds every browser-tested eligibility and information f
  for(const drift of TREATMENT_GUIDANCE_PATHS)assert.throws(()=>validateTreatmentGuidance((ref,path)=>ref==='HEAD'&&path===drift?'changed':read(ref,path)),/Treatment service criteria\/source drift/);
 });
 
-test('registry wave retains only exact PR987 reviewed files',async()=>{
+test('registry wave retains only exact PR1008 reviewed files',async()=>{
  const {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,validateWatchRegistryWave}=await import('../release/watch-registry-wave-scope.mjs');
- assert.equal(WATCH_REGISTRY_WAVE_COMMIT,'b8ff9da79ffb0822a5c84f60bb4e80037a7eb157');assert.equal(WATCH_REGISTRY_WAVE_PATHS.length,14);
+ assert.equal(WATCH_REGISTRY_WAVE_COMMIT,'65f6aa3756fe0a9f2860e81d352995812b79c732');assert.equal(WATCH_REGISTRY_WAVE_PATHS.length,15);
  validateWatchRegistryWave((ref,path)=>path);
  for(const drift of WATCH_REGISTRY_WAVE_PATHS)assert.throws(()=>validateWatchRegistryWave((ref,path)=>ref==='HEAD'&&path===drift?'changed':path),/registry-wave source drift/);
 });
