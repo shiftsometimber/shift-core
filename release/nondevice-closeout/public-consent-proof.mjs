@@ -15,7 +15,7 @@ try{
     for(const s of payloads){const params=new URLSearchParams(s.replace(/^\?/,''));if(params.get('en'))collector.push(Object.fromEntries(params));}
     return route.fulfill({status:204,body:''});
    }
-   if(u.hostname==='www.googletagmanager.com'&&u.pathname==='/gtm.js')gtm.push(u.pathname);
+   if(u.hostname==='www.googletagmanager.com'&&u.pathname==='/gtm.js')gtm.push(req.url());
    // Intercept generated acquisition measurement; no production fixture writes.
    if(!['GET','HEAD'].includes(req.method()))return route.fulfill({status:200,contentType:'application/json',body:'{"ok":true}'});
    return route.continue();
@@ -28,6 +28,7 @@ try{
   await page.locator('#sstCookieSettings').click();await page.locator('[data-consent="analytics"]').click();
   await page.waitForFunction(()=>document.querySelector('#sst-consented-gtm'),{timeout:15000});
   for(let i=0;i<20&&!collector.some(p=>p.en==='page_view');i++)await page.waitForTimeout(500);
+  writeFileSync('nondevice-proof/consent-diagnostic-'+width+'.json',JSON.stringify({gtm,collector,scripts:await page.locator('script[src*="googletagmanager"]').evaluateAll(s=>s.map(x=>x.src))},null,2));
   assert.equal(gtm.length,1,'Consent must load one GTM container');
   const views=collector.filter(p=>p.en==='page_view');assert.equal(views.length,1,'One permitted page view must be generated');
   for(const p of collector){assert(!JSON.stringify(p).includes('fictional-private'));if(p.dl){const u=new URL(p.dl);assert.equal(u.origin,origin);assert.equal(u.pathname,'/about');assert.equal(u.search,'');assert.equal(u.hash,'');}assert(!p.uid,'No account identifier in public analytics');}
