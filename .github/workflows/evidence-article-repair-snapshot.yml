@@ -1,7 +1,7 @@
 name: Validate bounded evidence-article repair
 on:
   push:
-    branches: [fix/evidence-based-article-20261003-v2]
+    branches: [fix/evidence-based-article-20261003-v2, fix/evidence-article-release-isolation-20261003]
 permissions:
   contents: read
 jobs:
@@ -22,7 +22,7 @@ jobs:
       - name: Verify exact remote source and reviewed transformation without writing
         run: node babylove/repair-evidence-based-article.mjs --check
       - name: Test renderer and existing publication regressions
-        run: node --test babylove/dynamic-public.test.mjs babylove/public-article.test.mjs tests/public-shell-contract.test.mjs tests/public-seo-closeout.test.mjs
+        run: node --test babylove/dynamic-public.test.mjs babylove/public-article.test.mjs tests/public-shell-contract.test.mjs tests/public-seo-closeout.test.mjs tests/public-continuity.test.mjs
       - name: Compile exact Worker candidate without deployment
         run: npx wrangler deploy --dry-run --config wrangler.jsonc
       - uses: actions/upload-artifact@v4
