@@ -2,7 +2,7 @@ import {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS} from '../release/w
 import {PUBLIC_WORDING_PREVIEW,PUBLIC_WORDING_PATHS,validatePublicWording} from '../release/public-wording-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {TREATMENT_GUIDANCE_PREVIEW,TREATMENT_GUIDANCE_PATHS,validateTreatmentGuidance} from '../release/treatment-guidance-scope.mjs';
+import {TREATMENT_GUIDANCE_PREVIEW,TREATMENT_GUIDANCE_PATHS,ADULT_INTAKE_SOURCE,ADULT_INTAKE_PATHS,validateTreatmentGuidance} from '../release/treatment-guidance-scope.mjs';
 import {readFileSync} from 'node:fs';
 import {validateScope,assertPreserved,RELEASE_PATHS,APPROVED_ORDER_FILES,validateNiceTimeout,NICE_TIMEOUT_PATHS} from '../scripts/b1-release-scope.mjs';
 const manifest=JSON.parse(readFileSync(new URL('../release/b1-runtime-only.json',import.meta.url)));
@@ -192,7 +192,9 @@ test('public wording/menu release accepts only the exact browser-tested source',
 });
 
 test('treatment release binds every browser-tested eligibility and information file',()=>{
- const read=(ref,path)=>ref==='HEAD'||ref===TREATMENT_GUIDANCE_PREVIEW?'exact:'+path:'other';
+ const repaired=['medicine-commerce-v1.js','tests/medicine-purchase-e2e.test.mjs'];
+ assert.deepEqual([...ADULT_INTAKE_PATHS],repaired);
+ const read=(ref,path)=>ref==='HEAD'||ref===(repaired.includes(path)?ADULT_INTAKE_SOURCE:TREATMENT_GUIDANCE_PREVIEW)?'exact:'+path:'other';
  validateTreatmentGuidance(read);
  for(const drift of TREATMENT_GUIDANCE_PATHS)assert.throws(()=>validateTreatmentGuidance((ref,path)=>ref==='HEAD'&&path===drift?'changed':read(ref,path)),/Treatment service criteria\/source drift/);
 });
