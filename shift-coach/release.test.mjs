@@ -95,3 +95,21 @@ test('current-shell Health Plan mount preserves only the exact named dashboard c
   assert.throws(()=>validateCoachingSource((ref,path)=>ref==='5bf5a7febae1a6bab3a549507306669456a8aaa6'&&path===p?'changed-mount':path,m),/Merged Health Plan dashboard mount source drift/);
  }
 });
+
+test('approved article dates and exact wording preservation cannot be replaced by repinning',()=>{
+ const m={...manifest,applicationCommit:'a'.repeat(40)};
+ for(const p of ['medicines-watch/preservation.mjs','medicines-watch/preservation.test.mjs','public-shell-contract.mjs']){
+  assert.doesNotThrow(()=>assertCoachingChangedPath('M',p));
+  for(const status of ['A','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
+  assert.throws(()=>validateCoachingSource((ref,path)=>ref==='0d084f00cf6c4593dd0c11dfd047daf4e5103295'&&path===p?'changed-proof':path,m),/Merged article-date and wording proof source drift/);
+ }
+});
+test('public wording retains original menu pins and only composes exact approved preservation sources',async()=>{
+ const{validatePublicWording,PUBLIC_WORDING_PREVIEW}=await import('../release/public-wording-scope.mjs');
+ const calls=[];validatePublicWording((ref,path)=>{calls.push({ref,path});return path;});
+ for(const p of ['medicines-watch/preservation.mjs','medicines-watch/preservation.test.mjs']){
+  assert(calls.some(c=>c.ref==='0d084f00cf6c4593dd0c11dfd047daf4e5103295'&&c.path===p));
+  assert.throws(()=>validatePublicWording((ref,path)=>ref==='HEAD'&&path===p?'drift':path),/Public wording\/menu source drift/);
+ }
+ for(const p of ['medicines-watch/page.test.mjs','cream-navigation.mjs'])assert(calls.some(c=>c.ref===PUBLIC_WORDING_PREVIEW&&c.path===p));
+});

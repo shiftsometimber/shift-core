@@ -10,10 +10,10 @@ export const COACH_BACKEND_PATHS=new Set(["public-continuity.mjs", "babylove/dyn
 export const COACH_COMPOSED_BOOK_ADDITIONS=new Set([".github/workflows/book-voice-live-audit.yml", ".github/workflows/book-voice-preview.yml", "book-voice.mjs", "editorial/book-voice/SAMPLES.md", "editorial/book-voice/VOICE.md", "editorial/book-voice/edits.json", "editorial/book-voice/live.cjs", "editorial/book-voice/payload.json", "preview/book-voice/host.mjs", "preview/book-voice/member-host.mjs", "preview/book-voice/provision.mjs", "preview/book-voice/verify.cjs", "preview/book-voice/worker.mjs", "release/book-voice-scope.mjs", "tests/book-voice-release.test.mjs", "tests/book-voice.test.mjs"]);
 export const COACH_COMPOSED_BOOK_CHANGES=new Set(["member-experience/public-preservation.mjs", "member-experience/verify-production-member.mjs", "public-startup-stability.mjs", "release/growth-preflight.mjs"]);
 // Exact audit corrections, pinned by the release manifest and app hashes.
-export const COACH_AUDIT_CHANGES=new Set(["member-experience/dashboard-tools.mjs","member-experience/tests/dashboard-tools.test.mjs","frontend/member/whole-man-intent-os-v1.js", "tests/testosterone-public.test.mjs", "public-navigation-policy.mjs", "tests/public-ticker-contrast-safety.test.mjs", "shift-health-public-content.mjs", "frontend/member/shift-health-catalogue-v1.js", "public-continuity.mjs"]);
+export const COACH_AUDIT_CHANGES=new Set(["medicines-watch/preservation.mjs","medicines-watch/preservation.test.mjs","public-shell-contract.mjs","member-experience/dashboard-tools.mjs","member-experience/tests/dashboard-tools.test.mjs","frontend/member/whole-man-intent-os-v1.js", "tests/testosterone-public.test.mjs", "public-navigation-policy.mjs", "tests/public-ticker-contrast-safety.test.mjs", "shift-health-public-content.mjs", "frontend/member/shift-health-catalogue-v1.js", "public-continuity.mjs"]);
 // Preserve the already merged five-file article repair exactly, including its
 // separate publication workflows. This is not permission for other article edits.
-export const COACH_ARTICLE_BASE='71383ce716abc9c8c937e48c87f59a2e9fe2d618';
+export const COACH_ARTICLE_BASE='0d084f00cf6c4593dd0c11dfd047daf4e5103295';
 export const COACH_ARTICLE_ADDITIONS=new Set(['.github/workflows/evidence-article-repair-snapshot.yml','.github/workflows/evidence-based-article-live-release.yml','babylove/repair-evidence-based-article.mjs']);
 export const COACH_ARTICLE_CHANGES=new Set(['babylove/dynamic-public.mjs','babylove/dynamic-public.test.mjs']);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]);
@@ -58,6 +58,7 @@ export function validateCoachingSource(read,manifest){
  assert.equal(read('HEAD','frontend/member/whole-man-intent-os-v1.js'),read('5bf5a7febae1a6bab3a549507306669456a8aaa6','frontend/member/whole-man-intent-os-v1.js'),'Merged My Health Plan v2 asset source drift');
  for(const p of ['docs/content-review/2026-10-03-health-safety.json','frontend/member/shift-health-catalogue-v1.js','shift-health-public-content.mjs','tests/testosterone-public.test.mjs'])assert.equal(read('HEAD',p),read('7bd5fb37d7bbce66fa5e728f59304843817128bf',p),'Merged health-safety source drift: '+p);
  for(const p of ['docs/content-review/2026-10-03-public-copy-preview.json','docs/content-review/2026-10-03-public-copy-residual.json'])assert.equal(read('HEAD',p),read('6578113c754a60e75d0cd9b3cd94f2d546444409',p),'Merged public-copy receipt source drift: '+p);
+ for(const p of ['medicines-watch/preservation.mjs','medicines-watch/preservation.test.mjs','public-shell-contract.mjs'])assert.equal(read('HEAD',p),read('0d084f00cf6c4593dd0c11dfd047daf4e5103295',p),'Merged article-date and wording proof source drift: '+p);
  for(const p of WATCH_CURRENT_PATHS)assert.equal(read('HEAD',p),read(WATCH_CURRENT_BASE,p),'Current Watch source drift: '+p);
  return {recordedMain:COACH_BASE,applicationCommit:manifest.applicationCommit,paths:manifest.pinnedPaths.length};
 }
