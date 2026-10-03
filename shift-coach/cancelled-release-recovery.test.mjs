@@ -38,3 +38,15 @@ test('promotion carries the exact verified later runtime forward and rejects mov
  assert.equal(verifiedStartingPoint(old,active(recovery.verified)).version,recovery.verified);
  assert.equal(verifiedStartingPoint({...old,decision:'restore',from:recovery.unverified},active(recovery.verified)).version,recovery.verified);
 });
+
+import {recentSuccessfulPromotions} from './cancelled-release-recovery.mjs';
+test('successful deployment evidence remains discoverable behind unrelated workflow traffic',async()=>{
+ const requests=[],production={id:37150287373,path:'.github/workflows/cloudflare-production-promote.yml'};
+ const result=await recentSuccessfulPromotions(async path=>{requests.push(path);return {workflow_runs:path.endsWith('page=1')?Array.from({length:100},()=>({path:'.github/workflows/other.yml'})):[production]}});
+ assert.deepEqual(result,[production]);assert.equal(requests.length,2);
+ assert(requests.every(path=>path.includes('branch=main&event=push&status=success')));
+});
+test('history search is bounded and never invents an ownership receipt',async()=>{
+ let calls=0;assert.deepEqual(await recentSuccessfulPromotions(async()=>{calls++;return {workflow_runs:Array.from({length:100},()=>({path:'other.yml'}))}}),[]);assert.equal(calls,10);
+ calls=0;assert.deepEqual(await recentSuccessfulPromotions(async()=>{calls++;return {workflow_runs:[]}}),[]);assert.equal(calls,1);
+});
