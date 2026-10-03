@@ -21,7 +21,7 @@ Public preservation accepts only the exact marked Treatments entry. The other te
 
 The live catalogue contains 6 detailed references plus 72 concise industry summaries in `industry.mjs`: 78 medicines/programmes, with 50 configured source documents. These are different denominators. A 50/50 source check would not mean the industry is fully covered. Wider summaries separate established/specialist, authorised-outside-the-UK, research, paused and discontinued programmes and do not inherit the detailed cards' review or clinical status.
 
-`reviews/2026-10-02-authorised-switching-studies.json` records the latest owner-authorised factual updates, with exact primary URLs, registry dates, response hashes, research status and explicit UK-access boundaries. It creates no new automatic baseline. Earlier review receipts remain the evidence trail.
+`reviews/2026-10-03-authorised-amylin-metabolic-followup.json` records the latest owner-authorised factual updates, with exact primary URLs, registry dates, response hashes, research status and explicit UK-access boundaries. It creates no new automatic baseline. Earlier review receipts remain the evidence trail.
 
 `reviews/2026-10-02-authorised-na931.json` promotes the existing `na931-tirzepatide` candidate from the 30 September proposal rather than duplicating it. The Watch preserves the discrepancy between Biomed Industries' sponsor-reported Phase 3 programme and NCT06732245, which remains a not-yet-recruiting Phase 2 record with an already-past estimated start and no posted results. Neither is evidence of UK authorisation, NHS access, supply, sale by SHIFT or clinical approval.
 
@@ -160,7 +160,13 @@ The study remains not yet recruiting and has no posted results. Its August 2026 
 
 The same receipt adds sponsor-submitted SYNCHRONIZE-HERA evidence to the existing survodutide programme rather than counting it as a new medicine. That estimated 600-participant Phase 3 study remains not yet recruiting and lists 31 October 2026 as an estimated start. A semaglutide-finerenone chronic-kidney-disease combination record is preserved for follow-up but not published as an active programme because it remains not yet recruiting, reports no applicable phase or locations, and retains an already-past estimated start.
 
-The catalogue now contains 77 entries (6 detailed and 71 wider summaries); the automated-source denominator remains 50. Established weight-management positions are not transferred to oncology or menopause-specific research questions, and no new UK authorisation, NICE/NHS England access, lawful supply for these uses, SHIFT sale or clinical approval is inferred.
+The catalogue at that review contained 77 entries (6 detailed and 71 wider summaries); the automated-source denominator remained 50. Established weight-management positions are not transferred to oncology or menopause-specific research questions, and no new UK authorisation, NICE/NHS England access, lawful supply for these uses, SHIFT sale or clinical approval is inferred.
+
+## 3 October amylin and metabolic follow-up
+
+The latest receipt corrects ABBV-295 from planned Phase 2 to a recruiting sponsor-submitted Phase 2 record with an actual 4 August 2026 start. It preserves the 30 September sponsor announcement's prospective wording and distinguishes its separate Phase 1 findings. It also closes older omissions for completed AZD6234 Phase 2b APRICUS research and a not-yet-recruiting NIDDK mirabegron/alpha-lipoic-acid metabolic pilot. None of these registry records has posted results; estimated dates and enrolment discrepancies remain explicit.
+
+The catalogue now contains 80 entries (6 detailed and 74 wider summaries), with 50 configured automatic sources. New registry links remain visibly outside automatic monitoring. TIX100 is recorded for follow-up without a public weight-management efficacy listing on safety/pharmacokinetic evidence alone. Discovery limitations and incomplete sponsor searches remain recorded. Standing owner authorisation is editorial only; no clinical approval, UK indication, NHS access, supply or completeness is inferred.
 
 ## 2 October switching-study follow-up
 

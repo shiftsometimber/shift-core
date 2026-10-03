@@ -28,6 +28,7 @@ import glimrCopd from './reviews/2026-10-02-authorised-glimr-copd.json' with {ty
 import specialistRegistryFollowup from './reviews/2026-10-02-authorised-specialist-registry-followup.json' with {type:'json'};
 import switchingStudies from './reviews/2026-10-02-authorised-switching-studies.json' with {type:'json'};
 import na931Publication from './reviews/2026-10-02-authorised-na931.json' with {type:'json'};
+import amylinMetabolicFollowup from './reviews/2026-10-03-authorised-amylin-metabolic-followup.json' with {type:'json'};
 export const INDUSTRY_REVIEWED_AT = evidence.reviewedAt;
 export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources,kainetic.source].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===eloraTZP.source.id?eloraTZP.source:s).map(s => monitorRepairs.sources.find(r=>r.id===s.id)||s).map(s => pfizerPdfRepair.sources.find(r=>r.id===s.id)||s).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
@@ -106,6 +107,7 @@ export const industry = [...originalIndustry.map(e => {
  const update=followup.updates.find(u=>u.id===e.id);
  return update ? {...e,...update.fields,reviewedAt:followup.reviewedAt,sourceIds:[...e.sourceIds,...update.sourceIdsToAdd]} : e;
 }),...followup.entries,...continuing.entries,...biPublication.entries,...macupatide.entries,...evening.entries,...broaderDiscovery.entries,...internationalOmissions.entries,...expandedDiscovery.entries,...ubt251Publication.entries,...sgb7342Publication.entries,...abbvAsc30TernBimagrumab.entries,...registryOmissions.entries,...enobosarmSemaglutide.entries,...expandedRegistryWave.entries,...semaglutideSpecialistTrials.entries,...glimrCopd.entries,...specialistRegistryFollowup.entries,...na931Publication.entries]
+ .concat(amylinMetabolicFollowup.entries)
  .map(e=>{const update=repairs.updates.find(u=>u.id===e.id);return update?{...e,...update,reviewedAt:repairs.reviewedAt}:e;})
  .map(e=>e.id===berobenatide.change.id?{...e,...berobenatide.change.fields,reviewedAt:berobenatide.reviewedAt,
   sourceIds:[...e.sourceIds,...berobenatide.change.sourceIdsToAdd],additionalEvidence:berobenatide.change.additionalEvidence}:e)
@@ -151,4 +153,9 @@ export const industry = [...originalIndustry.map(e => {
    ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
    reviewedAt:switchingStudies.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
+ })
+ .map(e=>{
+  const change=amylinMetabolicFollowup.changes.find(c=>c.id===e.id);
+  return change?{...e,...change.fields,reviewedAt:amylinMetabolicFollowup.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]}:e;
  });

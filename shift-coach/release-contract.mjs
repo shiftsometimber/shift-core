@@ -15,10 +15,10 @@ export function assertCoachingChangedPath(status,path){
  assert(added||COACH_BACKEND_PATHS.has(path)||COACH_COMPOSED_BOOK_CHANGES.has(path),'Unlisted coaching release change: '+path);
  assert.equal(status,added?'A':'M','Unexpected change status: '+path);
 }
-// Preserve the exact newer, already-merged NA-931 Watch release alongside coaching.
-export const WATCH_CURRENT_BASE='5470bee6d9519923efc3a88dee9291b0d4c8aca9';
+// Preserve the exact reviewed amylin/metabolic Watch update alongside current coaching.
+export const WATCH_CURRENT_BASE='e689d89a4be41749efe82a1f9efe346a9bae3b39';
 export const WATCH_COMPOSED_CHANGES=new Set(['medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs']);
-export const WATCH_COMPOSED_ADDITIONS=new Set(['medicines-watch/reviews/2026-10-02-authorised-glimr-copd.json','medicines-watch/reviews/2026-10-02-authorised-specialist-registry-followup.json','medicines-watch/reviews/2026-10-02-authorised-switching-studies.json','medicines-watch/reviews/2026-10-02-authorised-na931.json']);
+export const WATCH_COMPOSED_ADDITIONS=new Set(['medicines-watch/reviews/2026-10-02-authorised-glimr-copd.json','medicines-watch/reviews/2026-10-02-authorised-specialist-registry-followup.json','medicines-watch/reviews/2026-10-02-authorised-switching-studies.json','medicines-watch/reviews/2026-10-02-authorised-na931.json','medicines-watch/reviews/2026-10-03-authorised-amylin-metabolic-followup.json']);
 export const WATCH_CURRENT_PATHS=new Set(['medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
 export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
