@@ -1,3 +1,4 @@
+import {COACH_ARTICLE_BASE,COACH_ARTICLE_ADDITIONS,COACH_ARTICLE_CHANGES} from './release-contract.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -5,6 +6,16 @@ import {execFileSync} from 'node:child_process';
 import {COACH_BASE,COACH_PATHS,COACH_COMPOSED_BOOK_ADDITIONS,COACH_COMPOSED_BOOK_CHANGES,assertCoachingChangedPath,WATCH_CURRENT_PATHS,assertCoachingConfiguration,withoutCoachEntrypoint,coachingHistoricalRef,validateCoachingSource,assertLaunchDecisions} from './release-contract.mjs';
 const config=readFileSync('wrangler.jsonc','utf8'),before=execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'});
 const manifest=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8'));
+test('merged article composition preserves exact baseline bytes and rejects unexpected statuses',()=>{
+ for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]){
+  const status=COACH_ARTICLE_ADDITIONS.has(p)?'A':'M';
+  assert.doesNotThrow(()=>assertCoachingChangedPath(status,p));
+  for(const bad of ['D','R',status==='A'?'M':'A'])assert.throws(()=>assertCoachingChangedPath(bad,p));
+  const m={...manifest,applicationCommit:'a'.repeat(40)};
+  // Even a matching application pin cannot silently re-authorise changed article bytes.
+  assert.throws(()=>validateCoachingSource((ref,path)=>ref===COACH_ARTICLE_BASE&&path===p?'prior-article':path,m),/Merged article repair source drift/);
+ }
+});
 test('normal production configuration includes the coach with exactly one entrypoint-only change',()=>{assertCoachingConfiguration(config,before);assert.equal(config,readFileSync('wrangler.coaching.jsonc','utf8'));assert.equal(withoutCoachEntrypoint(config),before);});
 test('configuration drift, a lost wrapper, extra bindings and duplicate entrypoints fail closed',()=>{for(const bad of [before,config+'\n',config.replace('"STRIPE_MODE": "test"','"STRIPE_MODE": "live"'),config.replace('"DB"','"OTHER_DB"'),config.replace('"main":','"main": "shift-coach/worker.mjs", "main":')])assert.throws(()=>assertCoachingConfiguration(bad,before));});
 test('every coaching and release integration source has an exact pin; any drift fails',()=>{const m={...manifest,applicationCommit:'a'.repeat(40)},read=(ref,p)=>p;assert.doesNotThrow(()=>validateCoachingSource(read,m));for(const p of m.pinnedPaths)assert.throws(()=>validateCoachingSource((ref,path)=>ref==='HEAD'&&path===p?'drift':path,m),/Coaching release source drift/);assert.throws(()=>validateCoachingSource(read,{...m,pinnedPaths:m.pinnedPaths.slice(1)}));});
