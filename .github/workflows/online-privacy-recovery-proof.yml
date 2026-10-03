@@ -3,7 +3,7 @@ on:
   push:
     branches: [codex/privacy-recovery-closeout-20261003]
   pull_request:
-    paths: [product-analytics-v1.js, tests/general-analytics-privacy.test.mjs, release/runtime-rollback-guard.mjs, release/member-runtime-deploy.mjs, release/member-details-rollback.mjs]
+    paths: [product-analytics-v1.js, tests/general-analytics-privacy.test.mjs, release/runtime-rollback-guard.mjs, release/member-runtime-deploy.mjs, release/member-details-rollback.mjs, tests/b1-release-scope.test.mjs, tests/member-details-release.test.mjs, shift-coach/release-contract.mjs]
 permissions:
   contents: read
 jobs:
@@ -19,7 +19,7 @@ jobs:
       - name: Execute private-payload and recovery race regressions
         run: |
           mkdir -p online-privacy-recovery-proof
-          node --test tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs tests/discovery-repairs.test.mjs shift-coach/integration.test.mjs shift-coach/release.test.mjs shift-coach/public-font-delivery.test.mjs shift-coach/cancelled-release-recovery.test.mjs > online-privacy-recovery-proof/tests.txt
+          node --test tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs tests/discovery-repairs.test.mjs shift-coach/integration.test.mjs shift-coach/release.test.mjs shift-coach/public-font-delivery.test.mjs shift-coach/cancelled-release-recovery.test.mjs tests/b1-release-scope.test.mjs tests/member-details-release.test.mjs > online-privacy-recovery-proof/tests.txt
       - run: node gate1-release-security-privacy-gate.mjs
       - name: Compile exact production entrypoint without credentials or deployment
         run: npx wrangler deploy --dry-run --outdir online-privacy-recovery-proof/bundle > online-privacy-recovery-proof/compile.txt
