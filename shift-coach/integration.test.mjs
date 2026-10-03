@@ -1,3 +1,4 @@
+import './public-trust-repair.test.mjs';
 import {library} from './voice.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';
 import {fixture,request,setupInput} from './test-fixture.mjs';
