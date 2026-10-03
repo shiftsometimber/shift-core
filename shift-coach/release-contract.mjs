@@ -1,3 +1,4 @@
+import {DEVICE_HEALTH_DELTA,validateDeviceHealthSource} from '../release/device-health-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
@@ -10,6 +11,8 @@ export const COACH_COMPOSED_BOOK_ADDITIONS=new Set([".github/workflows/book-voic
 export const COACH_COMPOSED_BOOK_CHANGES=new Set(["member-experience/public-preservation.mjs", "member-experience/verify-production-member.mjs", "public-startup-stability.mjs", "release/growth-preflight.mjs"]);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES]);
 export function assertCoachingChangedPath(status,path){
+ const health=DEVICE_HEALTH_DELTA.find(([,p])=>p===path);
+ if(health){assert.equal(status,health[0],'Unexpected native health composition status: '+path);return;}
  if(WATCH_COMPOSED_CHANGES.has(path)||WATCH_COMPOSED_ADDITIONS.has(path)){assert.equal(status,WATCH_COMPOSED_ADDITIONS.has(path)?'A':'M','Unexpected Watch composition status: '+path);return;}
  const added=COACH_ADDITIONS.has(path)||COACH_COMPOSED_BOOK_ADDITIONS.has(path);
  assert(added||COACH_BACKEND_PATHS.has(path)||COACH_COMPOSED_BOOK_CHANGES.has(path),'Unlisted coaching release change: '+path);
@@ -61,6 +64,7 @@ export function assertLaunchDecisions(manifest){
  return true;
 }
 export function verifyCoachingRelease({requireLaunch=false}={}){
+ validateDeviceHealthSource();
  const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
  const manifest=JSON.parse(readFileSync(new URL('./release-manifest.json',import.meta.url),'utf8'));
  git('merge-base','--is-ancestor',COACH_BASE,'HEAD');git('merge-base','--is-ancestor',WATCH_CURRENT_BASE,'HEAD');git('merge-base','--is-ancestor',manifest.applicationCommit,'HEAD');
