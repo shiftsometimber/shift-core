@@ -3,6 +3,7 @@ import {trustRoute,withTrustRepair,pages,withContactReference} from './public-tr
 import core from '../worker-entry-v6.js';
 import {withPublicFontDelivery} from './public-font-delivery.mjs';
 export * from '../worker-entry-v6.js';
+import {supportTeamRoutes,withSupportTeamLink} from './support-team.mjs';
 import {coachingRoutes} from './routes.mjs';
 import {coachingAsset,withCoaching} from './presentation.mjs';
 import {runCoachingNight} from './night-job.mjs';
@@ -17,8 +18,9 @@ export default {
   const pagePath=new URL(request.url).pathname.replace(/\.html$/,'').replace(/\/+$/,'');
   if(pages[pagePath]&&['GET','HEAD'].includes(request.method)){const u=new URL(request.url);u.pathname='/terms';u.search='';return withTrustRepair(request,await core.fetch(new Request(u,{method:'GET',headers:request.headers}),env,ctx));}
   const asset=coachingAsset(request);if(asset)return asset;
+  const team=await supportTeamRoutes(request,env);if(team)return team;
   const coaching=await coachingRoutes(request,env);if(coaching)return coaching;
-  const response=await withPublicFontDelivery(request,await withTrustRepair(request,await core.fetch(request,env,ctx)));
+  const response=await withSupportTeamLink(request,await withPublicFontDelivery(request,await withTrustRepair(request,await core.fetch(request,env,ctx))));
   let seed=null;const url=new URL(request.url);
   if(request.method==='GET'&&/^\/member\/dashboard(?:\.html)?$/.test(url.pathname)&&response.status===200&&response.headers.get('Content-Type')?.includes('text/html')){
    url.pathname='/v1/shift-coach';url.search='';

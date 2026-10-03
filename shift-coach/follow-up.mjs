@@ -16,7 +16,7 @@ export function outcome(state,id,value,now=Date.now()){
  if(!['helped','didnt-help','didnt-fit','didnt-try'].includes(value))throw Object.assign(Error('invalid_outcome'),{status:400});
  const a=state.actions.find(a=>a.id===id&&a.status==='accepted');
  if(!a||!canExecute(state,a))throw Object.assign(Error('accepted_action_required'),{status:409});
- a.status='completed';state.outcomes.push({id:uid(),actionId:id,type:a.type,title:a.task?.title||a.title,minutes:a.minutes,approach:a.approach,value,at:now,dataUsed:a.dataUsed});state.queue=state.queue.filter(q=>q.actionId!==id);for(const t of state.touches)if(t.actionId===id)t.answered=true;state.lastActivity=now;
+ a.status='completed';state.outcomes.push({id:uid(),actionId:id,type:a.type,title:a.task?.title||a.title,minutes:a.minutes,approach:a.approach,practicalContext:{...(a.practicalContext||{})},routineContext:a.routineContext||null,workingRoutineId:a.workingRoutineId||null,value,at:now,dataUsed:a.dataUsed});state.queue=state.queue.filter(q=>q.actionId!==id);for(const t of state.touches)if(t.actionId===id)t.answered=true;state.lastActivity=now;
  const next=adapt(state,a,value,now);return{dataUsed:next?.dataUsed||[],action:next};
 }
 export function wanted(state,yes,now=Date.now()){
