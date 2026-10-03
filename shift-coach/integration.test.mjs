@@ -256,3 +256,47 @@ test('sore-knee choice does not prescribe movement and a rejected approach canno
  await save(DB,{kind:'accept',id:a.action.id});await save(DB,{kind:'outcome',id:a.action.id,value:'didnt-help'});a=await read(DB);assert(a.memory.pendingBlocker);assert.equal(a.action.type,'member-choice');
  assert.equal((await save(DB,{kind:'fact',key:'week',value:'My knee hurts and I cannot walk'})).status,422);
 });
+
+test('Something changed keeps feedback, retires the old step and persists after a fresh session',async t=>{
+ const DB=fixture(t);let d=await start(DB);await save(DB,{kind:'accept',id:d.action.id});await save(DB,{kind:'outcome',id:d.action.id,value:'helped'});d=await read(DB);const old=d.action.id,history=d.memory.outcomes;
+ const result=await save(DB,{kind:'circumstances',change:'stopped',week:'',followup:true});assert.equal(result.status,201);
+ const next=await read(DB);assert.equal(next.memory.mode,'stopped');assert.notEqual(next.action.id,old);assert.deepEqual(next.memory.outcomes,history);assert.equal(next.followup,null);
+ assert.equal((await save(DB,{kind:'accept',id:old})).status,409);
+ await save(DB,{kind:'accept',id:next.action.id});const stored=(await load(DB,1)).state;assert.equal(stored.queue.length,1);assert.equal(stored.queue[0].actionId,next.action.id);
+ const again=await coachingRoutes(request('GET',null,1),env(DB));assert.equal((await again.json()).action.id,next.action.id);
+ assert.equal((await read(DB,2)).enabled,false);
+});
+test('a budget or provider change uses explicit choices and never infers stopping treatment',async t=>{
+ const DB=fixture(t);await start(DB);const before=await read(DB);
+ assert.equal((await save(DB,{kind:'circumstances',change:'cost',week:'',followup:false})).status,201);
+ let d=await read(DB);assert.equal(d.memory.constraints.budget,'tight');assert.equal(d.memory.mode,before.memory.mode);assert.equal(d.memory.settings.followup,false);
+ assert.equal((await save(DB,{kind:'circumstances',change:'provider',mode:'elsewhere',week:'',followup:false})).status,201);
+ d=await read(DB);assert.equal(d.memory.mode,'elsewhere');assert.match(d.treatment.clinical,/prescriber|prescribing/);
+});
+test('an appetite change selects the confirmed difficulty and a failed step changes approach',async t=>{
+ const DB=fixture(t);await start(DB);
+ assert.equal((await save(DB,{kind:'circumstances',change:'appetite',challenge:'returning-food-noise',week:'Evenings are difficult',followup:false})).status,201);
+ let d=await read(DB);assert.equal(d.action.challenge,'returning-food-noise');assert.equal(d.memory.facts.find(f=>f.key==='focus').value,'food');
+ const approach=d.action.approach;await save(DB,{kind:'accept',id:d.action.id});await save(DB,{kind:'outcome',id:d.action.id,value:'didnt-help'});
+ d=await read(DB);assert.notEqual(d.action.approach,approach);assert.equal(d.memory.outcomes.at(-1).value,'didnt-help');
+});
+test('a changed routine becomes smaller without overriding a saved knee difficulty or rejected approach',async t=>{
+ const DB=fixture(t);await start(DB);await save(DB,{kind:'fact',key:'focus',value:'movement'});await save(DB,{kind:'fact',key:'challenge',value:'sore-knees'});
+ let d=await read(DB);await save(DB,{kind:'accept',id:d.action.id});await save(DB,{kind:'outcome',id:d.action.id,value:'didnt-help'});const rejected=(await read(DB)).memory.rejections;
+ assert.equal((await save(DB,{kind:'circumstances',change:'routine',week:'Working mornings now',followup:false})).status,201);
+ d=await read(DB);assert.equal(d.action.minutes,1);assert.equal(d.action.challenge,'sore-knees');assert.deepEqual(d.memory.rejections,rejected);assert.match(d.action.task.steps.join(' '),/no exercise/);
+});
+test('invalid, clinical and stale circumstance writes are atomic and consent remains required',async t=>{
+ const DB=fixture(t);await start(DB);const before=await load(DB,1);
+ for(const input of [
+  {change:'unknown',week:'',followup:false},
+  {change:'routine',week:'',followup:false},
+  {change:'provider',mode:'guess',week:'New week',followup:false},
+  {change:'appetite',challenge:'guess',week:'New week',followup:false},
+  {change:'stopped',week:'I cannot keep water down',followup:true}
+ ]){assert([400,422].includes((await save(DB,{kind:'circumstances',...input})).status));assert.deepEqual(await load(DB,1),before);}
+ const revision=(await read(DB)).revision;await save(DB,{kind:'review',rating:3});
+ assert.equal((await save(DB,{kind:'circumstances',change:'stopped',week:'',followup:false,revision})).status,409);
+ DB.prepare("INSERT INTO consents(user_id,consent_type,granted) VALUES(1,'my_shift_health_tracking',0)").run();
+ assert.equal((await save(DB,{kind:'circumstances',change:'stopped',week:'',followup:true})).status,409);
+});
