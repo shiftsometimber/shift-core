@@ -1,0 +1,47 @@
+{
+  "baseline_production": "487baac2-b2c1-43a3-b2e2-7a0f9545f626",
+  "baseline_fingerprint": "a4ff9a66b1323f7c502e557b17430cc1180c390eaf68c9785ce931045863ecd8",
+  "candidate_fingerprint": "a3d5c32d8cfe4b14b444e72fafea8524e85d187111e45f759605ef945737c48e",
+  "changed": [
+    "mounjaro.html",
+    "wegovy.html",
+    "foundayo.html"
+  ],
+  "exact_edits": [
+    {
+      "path": "mounjaro.html",
+      "old": "<h2>Side effects and safety</h2>",
+      "new": "<h2>Side effects and safety</h2><p><strong>Get urgent medical help for severe stomach pain that does not go away, especially if it spreads to your back, with or without vomiting.</strong> This can indicate pancreatitis. Do not wait for a routine review or company reply. A clinician must assess it; if pancreatitis is confirmed, the medicine must not be restarted.</p><p>Read the instructions for your exact product and discuss side effects with your prescriber or pharmacist: <a href=\"https://www.medicines.org.uk/emc/product/15481/smpc\" rel=\"noopener noreferrer\">Mounjaro UK product information</a>. Safety information checked 3 October 2026.</p>",
+      "occurrences": 1,
+      "verification": "new_present"
+    },
+    {
+      "path": "wegovy.html",
+      "old": "<h2>Side effects and muscle retention</h2>",
+      "new": "<h2>Side effects and muscle retention</h2><p><strong>Get urgent medical help for severe stomach pain that does not go away, especially if it spreads to your back, with or without vomiting.</strong> This can indicate pancreatitis. Do not wait for a routine review or company reply. A clinician must assess it; if pancreatitis is confirmed, the medicine must not be restarted.</p><p>Sudden loss of vision, including loss of part of your vision, also needs urgent medical assessment.</p><p>Read the instructions for your exact product and discuss side effects with your prescriber or pharmacist: <a href=\"https://www.medicines.org.uk/emc/product/13800/smpc\" rel=\"noopener noreferrer\">Wegovy injection product information</a> \u00b7 <a href=\"https://www.medicines.org.uk/emc/product/102347/smpc\" rel=\"noopener noreferrer\">Wegovy tablet product information</a>. Safety information checked 3 October 2026.</p>",
+      "occurrences": 1,
+      "verification": "new_present"
+    },
+    {
+      "path": "wegovy.html",
+      "old": "with a sip of water, followed by at least 30 minutes without food or drink.",
+      "new": "with a sip of water (no more than 120 mL), followed by at least 30 minutes before food, drink or other oral medicines.",
+      "occurrences": 1
+    },
+    {
+      "path": "foundayo.html",
+      "old": "<h2>Side effects and assessment</h2>",
+      "new": "<h2>Side effects and assessment</h2><p><strong>Get urgent medical help for severe stomach pain that does not go away, especially if it spreads to your back, with or without vomiting.</strong> This can indicate pancreatitis. Do not wait for a routine review or company reply. A clinician must assess it; if pancreatitis is confirmed, the medicine must not be restarted.</p><p>Read the instructions for your exact product and discuss side effects with your prescriber or pharmacist: <a href=\"https://www.medicines.org.uk/emc/product/102531/smpc\" rel=\"noopener noreferrer\">Foundayo UK product information</a>. Safety information checked 3 October 2026.</p>",
+      "occurrences": 1,
+      "verification": "new_present"
+    }
+  ],
+  "preserved_files": 873,
+  "price_stock_ordering_unchanged": true,
+  "sources": [
+    "https://www.medicines.org.uk/emc/product/15481/smpc",
+    "https://www.medicines.org.uk/emc/product/13800/smpc",
+    "https://www.medicines.org.uk/emc/product/102347/smpc",
+    "https://www.medicines.org.uk/emc/product/102531/smpc"
+  ]
+}
