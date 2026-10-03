@@ -56,8 +56,10 @@ test('contrast guard composites translucent panels over real ancestors',()=>{
 test('public preservation admits only the exact reviewed contrast-client repair',()=>{
   const tag=client=>`<script data-shift-contrast-guard="${contrastSafetyVersion}">${client}</script>`;
   const shell=client=>Buffer.from('<html><body><main>Keep every byte.</main>'+tag(client)+'</body></html>');
-  assert.deepEqual(preserveReviewedContrastGuard(shell(priorContrastSafetyClient)),preserveReviewedContrastGuard(shell(contrastSafetyClient),{required:true}));
-  assert.throws(()=>preserveReviewedContrastGuard(shell(priorContrastSafetyClient),{required:true}),/missing the reviewed/);
-  assert.throws(()=>preserveReviewedContrastGuard(Buffer.from('<html><body>Keep every byte.</body></html>'),{required:true}),/exactly one/);
-  assert.notDeepEqual(preserveReviewedContrastGuard(shell(priorContrastSafetyClient)),preserveReviewedContrastGuard(Buffer.from('<html><body><main>Changed.</main>'+tag(contrastSafetyClient)+'</body></html>'),{required:true}));
+  const page='/mens-mental-health';
+  assert.deepEqual(preserveReviewedContrastGuard(page,shell(priorContrastSafetyClient)),preserveReviewedContrastGuard(page,shell(contrastSafetyClient),{required:true}));
+  assert.throws(()=>preserveReviewedContrastGuard(page,shell(priorContrastSafetyClient),{required:true}),/missing the reviewed/);
+  assert.throws(()=>preserveReviewedContrastGuard(page,Buffer.from('<html><body>Keep every byte.</body></html>'),{required:true}),/exactly one/);
+  assert.deepEqual(preserveReviewedContrastGuard('/turnstile-auth-v1.js?v=timeout-20260912',Buffer.from('const untouched=true;')),Buffer.from('const untouched=true;'));
+  assert.notDeepEqual(preserveReviewedContrastGuard(page,shell(priorContrastSafetyClient)),preserveReviewedContrastGuard(page,Buffer.from('<html><body><main>Changed.</main>'+tag(contrastSafetyClient)+'</body></html>'),{required:true}));
 });
