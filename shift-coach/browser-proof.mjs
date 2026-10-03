@@ -45,6 +45,30 @@ try{
  await page.reload();await page.locator('[data-coach-action="accept"]').waitFor();assert.match(await page.locator('.coach-reason').textContent(),/Mornings/);proof.checks.push('correction persists after reload');
  assert(await page.locator('#sst-footer-c').count()===1);assert(await page.locator('#todayActions').count()===1);proof.checks.push('original footer and tools remain');
  const foreign=await browser.newContext();await foreign.addCookies([{name:'sst_session',value:'fixture-token-2',url:origin,httpOnly:true}]);const p3=await foreign.newPage();await p3.goto(origin+'/member/dashboard');await p3.locator('[data-coach-setup]').waitFor();assert(!await p3.getByText('Mornings are free now',{exact:false}).count());proof.checks.push('another account does not see member context');
+ // Exercise every member-selected change through the same UI used by the PWA and native web view.
+ for(const change of ['stopped','cost','provider','appetite','routine']){
+  await page.locator('[data-coach-change-panel] > summary').click();
+  const form=page.locator('[data-coach-circumstances]');await form.locator('select[name="change"]').selectOption(change);
+  if(change==='provider')await form.locator('select[name="mode"]').selectOption('elsewhere');
+  if(change==='appetite')await form.locator('select[name="challenge"]').selectOption('returning-food-noise');
+  await form.locator('input[name="week"]').fill(change==='routine'?'Early shifts now; lunch is easier':'');
+  await form.locator('input[name="followup"]').uncheck();
+  await form.getByRole('button',{name:'Update my next step'}).click();
+  await page.getByText('Saved.',{exact:true}).waitFor();
+  const saved=await page.evaluate(async()=>fetch('/v1/shift-coach').then(r=>r.json()));
+  assert(saved.enabled);assert.equal(saved.memory.settings.followup,false);assert.equal(saved.followup,null);
+  if(change==='stopped')assert.equal(saved.memory.mode,'stopped');
+  if(change==='cost')assert.equal(saved.memory.constraints.budget,'tight');
+  if(change==='provider')assert.equal(saved.memory.mode,'elsewhere');
+  if(change==='appetite')assert.equal(saved.action.challenge,'returning-food-noise');
+  if(change==='routine'){assert.equal(saved.action.minutes,1);assert.match(saved.action.reason,/Early shifts now/);}
+  await page.reload();await page.locator('[data-coach-action="accept"]').waitFor();
+  const reread=await page.evaluate(async()=>fetch('/v1/shift-coach').then(r=>r.json()));assert.equal(reread.action.id,saved.action.id);
+  proof.checks.push('Something changed '+change+' updates the plan and survives reload without enabling external contact');
+ }
+ await page.locator('[data-coach-change-panel] > summary').click();
+ await page.screenshot({path:out+'/something-changed-mobile.png',fullPage:true});
+ await page.locator('[data-coach-change-panel] > summary').click();
  const cdp=await context.newCDPSession(page);await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});await cdp.send('Network.enable');await cdp.send('Network.emulateNetworkConditions',{offline:false,latency:150,downloadThroughput:1600000/8,uploadThroughput:750000/8});
  for(let i=0;i<20;i++){await page.goto(origin+'/member/dashboard');await page.locator('[data-coach-action="accept"]').waitFor();proof.timings.push(await page.evaluate(()=>performance.getEntriesByName('shift-coach-ready').at(-1).startTime));}
  const sorted=[...proof.timings].sort((a,b)=>a-b);proof.timing={device:'Chromium 390×844 touch, CPU 4× slowdown',network:'150ms/request latency, 1.6Mbps down, 750kbps up',origin:'local Node HTTP server and synthetic native SQLite',measure:'navigation start to rendered action and bound controls',p95:sorted[Math.ceil(.95*sorted.length)-1]};
