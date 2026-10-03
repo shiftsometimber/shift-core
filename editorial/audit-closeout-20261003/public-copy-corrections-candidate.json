@@ -1,0 +1,144 @@
+{
+  "as_of": "2026-10-03",
+  "status": "prepared_not_published",
+  "static_exact_replacements": [
+    {
+      "path": "programme.html",
+      "old": "Our clinical partner handles assessment, prescribing and clinical monitoring; a registered pharmacy handles dispensing.",
+      "new": "The proposed clinical partner service is not open for booking. When available, an appropriately regulated provider would handle assessment, prescribing and clinical monitoring, with a registered pharmacy responsible for dispensing.",
+      "reason": "Current-service claim conflicts with confirmed closed partner pathway.",
+      "source": "User-confirmed operating status; /partner-with-us"
+    },
+    {
+      "path": "decision-centre-methodology.html",
+      "old": "The national Shift Programme generally requires",
+      "new": "The NHS Digital Weight Management Programme in England generally requires",
+      "reason": "Incorrect SHIFT branding and missing geography.",
+      "source": "https://www.england.nhs.uk/digital-weight-management/"
+    },
+    {
+      "path": "decision-centre-methodology.html",
+      "old": "The tool treats this as <strong>current rollout context</strong>, not a permanent national eligibility rule.",
+      "new": "This describes the initial cohort, not a complete current eligibility check. Later phases and local implementation can widen access; check your ICB’s current route.",
+      "reason": "Initial cohort presented as complete current rollout.",
+      "source": "https://www.england.nhs.uk/long-read/interim-commissioning-guidance-nice-ta1026-tirzepatide/"
+    },
+    {
+      "path": "treatments/emerging.html",
+      "old": "Amgen's Phase 3 MARITIME Shift Programme",
+      "new": "Amgen's Phase 3 MARITIME research programme",
+      "reason": "Incorrect SHIFT branding of external trial programme.",
+      "source": "https://www.amgen.com/newsroom/press-releases/2025/06/results-from-amgens-phase-2-obesity-study-of-monthly-maritide-presented-at-the-american-diabetes-association-85th-scientific-sessions"
+    },
+    {
+      "path": "mens-mental-health.html",
+      "old": "If you need urgent mental-health help but it is not an emergency, use NHS 111 online or call 111 and select the mental-health option.",
+      "new": "In England, for urgent mental-health help without immediate danger, use NHS 111 online or call 111 and select the mental-health option. Elsewhere in the UK, use the <a href=\"/mental-health/urgent-help\">urgent support guide for your nation</a>.",
+      "reason": "England-specific service presented as UK-wide.",
+      "source": "https://www.nhs.uk/nhs-services/mental-health-services/where-to-get-urgent-help-for-mental-health/"
+    },
+    {
+      "path": "mens-mental-health.html",
+      "old": "What this section will grow into",
+      "new": "Explore the full Good to Talk library",
+      "reason": "Existing content described as unreleased.",
+      "source": "102 captured live mental-health pages"
+    },
+    {
+      "path": "mens-mental-health.html",
+      "old": "This first release builds the understanding layer. The next Good to Talk releases will go much further into life's pressure points, practical self-help, getting professional help, helping a mate, urgent support and a large question-led resource library.",
+      "new": "Explore guidance on life’s pressure points, practical self-help, getting professional help, supporting someone else and finding urgent support. Choose the question closest to what is happening for you.",
+      "reason": "Remove obsolete future-release promise.",
+      "source": "102 captured live mental-health pages"
+    },
+    {
+      "path": "waiting-list-journey.html",
+      "old": "Be first to hear when stock returns.",
+      "new": "Hear when treatment becomes available.",
+      "reason": "No verified previous stock or queue priority.",
+      "source": "Current no-orders operating status"
+    },
+    {
+      "path": "privacy-centre.html",
+      "old": "Optional analytics and marketing stay off unless your cookie choice allows them.",
+      "new": "Optional analytics stay off unless you consent. Advertising storage and marketing cookies remain off.",
+      "reason": "Align with current cookie policy; do not imply marketing consent control exists.",
+      "source": "/cookies"
+    },
+    {
+      "path": "treatment-centre.html",
+      "old": "Compare the options Google is already finding",
+      "new": "Compare common treatment questions",
+      "reason": "Reader-facing copy should not describe SEO strategy.",
+      "source": "Editorial correction"
+    },
+    {
+      "path": "downloads/maintenance-plan-template.html",
+      "old": "What I will do after regain of 2–3 kg",
+      "new": "What change would prompt me to review my plan, and with whom",
+      "reason": "Avoid universal regain threshold as clinical rule.",
+      "source": "Individual maintenance planning; no validated universal threshold claimed"
+    },
+    {
+      "path": "start-here.html",
+      "old": "The strength does not climb; customers select the required pack size.",
+      "new": "Follow the prescribed strength and meal-linked instructions. A pharmacist or prescriber checks suitability and supply.",
+      "reason": "Avoid retail choice implying clinical approval.",
+      "source": "https://www.medicines.org.uk/emc/product/2592/smpc"
+    }
+  ],
+  "dynamic_exact_replacements": [
+    {
+      "path": "/shift-health/blood-pressure-monitor",
+      "old": "Log three properly taken morning readings, then use the appropriate health door if the pattern is high.",
+      "new": "If home monitoring has been advised, follow the agreed schedule and arrange for the complete record to be reviewed. For diagnostic monitoring, NICE describes two seated readings at least one minute apart, morning and evening, for at least four days and ideally seven; exclude day one when calculating the average.",
+      "source": "https://www.nice.org.uk/guidance/ng136/chapter/recommendations",
+      "reason": "Three morning readings do not implement cited diagnostic schedule."
+    },
+    {
+      "path": "/shift-health/blood-pressure-monitor",
+      "old": "Record three morning readings",
+      "new": "Follow the agreed repeat-reading schedule",
+      "source": "https://www.nice.org.uk/guidance/ng136/chapter/recommendations",
+      "reason": "Remove contradictory short schedule."
+    },
+    {
+      "path": "/shift-health/erectile-dysfunction",
+      "old": "Chest pain during sex, an erection lasting four hours, penile injury, severe pain or sudden neurological symptoms need urgent medical help.",
+      "new": "For an erection lasting more than 3 to 4 hours, call 999 or go to A&E. If you have sickle cell disease and a painful erection lasts more than one hour, get emergency help. Chest pain or sudden stroke-like symptoms also need emergency help; penile injury or severe pain needs urgent assessment.",
+      "source": "https://www.nhs.uk/symptoms/priapism-painful-erections/",
+      "reason": "Include earlier sickle-cell emergency threshold and explicit emergency route."
+    },
+    {
+      "path": "/articles/eating-out-weight-management-men",
+      "old": "The takeaway page owns cuisine-by-cuisine decisions; the BBQ page owns grills, sides and drinks. They support this owner rather than competing with the broader eating-out intent.",
+      "new": "For more meal ideas, explore the takeaway and BBQ guides. Choose the advice that fits the meal you are planning.",
+      "source": "Editorial correction",
+      "reason": "Internal content strategy leaked into reader copy."
+    },
+    {
+      "path": "/articles/protein-for-men-weight-management",
+      "old": "The tool provides selectable planning levels. It must name the multiplier, show that the result is an estimate and refuse to call it a treatment target.",
+      "new": "The calculator shows the planning multiplier and an estimated result. It is not an individual treatment target.",
+      "source": "Existing calculator methodology",
+      "reason": "Internal implementation instruction exposed."
+    },
+    {
+      "path": "/articles/waist-size-men",
+      "old": "The calculator must say that beside the number.",
+      "new": "Read the limitations beside the result before using it to plan a next step.",
+      "source": "Editorial correction",
+      "reason": "Internal implementation instruction exposed."
+    }
+  ],
+  "additional_required_work": [
+    "Update long-article titles/descriptions everywhere they appear, including Explore Knowledge and news cards",
+    "Fix Health MOT questionnaire promises and links across Decision Centre, Finder, Tools, Treatment Centre and lifestyle routes; confirm actual accessible legacy questionnaire before choosing destination",
+    "Deduplicate repeated introductions in article/short-guide templates without losing distinct summary metadata",
+    "Add drug-specific direct product-information links and urgent safety context to Mounjaro/Wegovy/Foundayo hubs",
+    "Recheck RO7204239 news against later Chugai discontinuation announcement; registry alone may lag",
+    "Reconcile newsroom total 168 versus 167 captured news routes; no captured medicine-news link was missing",
+    "Verify remaining primary sources, CSV/downloads and signed-in screen content before claiming full audit"
+  ],
+  "publication_block": "Cloudflare error 10000; no writes to production"
+}
