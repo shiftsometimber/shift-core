@@ -140,6 +140,8 @@ export async function askTimberRoutes(request,env){
     };
     await publicCache?.write(completed);return json(completed,200,request);
   }catch(error){
+    // Provider failures must honour the same consent boundary as successful answers.
+    if(!await memoryStillAllowed(access))return json({ok:true,requestId,mode:'grounded',confidence:'low',journeyUsed:false,answer:'Your privacy settings changed while I was answering. Please ask again so I can use your current choice.',keyPoints:[],nextSteps:[],followUps:[],sources:[],limitations:'No personalised answer was returned after the change.'},200,request);
     console.error('ask_timber_generation_failed',JSON.stringify({requestId,error:String(error?.message||error).slice(0,160)}));
     const direct=evidence[0];
     if(!direct)return json({ok:true,requestId,mode:'saved_journey',confidence:'low',journeyUsed:true,
