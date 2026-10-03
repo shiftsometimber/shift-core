@@ -28,6 +28,29 @@ import switchingStudies from './reviews/2026-10-02-authorised-switching-studies.
 import na931Publication from './reviews/2026-10-02-authorised-na931.json' with {type:'json'};
 import earlierEloraNa931Proposal from './reviews/2026-09-30-eloratzp-na931-discovery.json' with {type:'json'};
 import amylinMetabolicFollowup from './reviews/2026-10-03-authorised-amylin-metabolic-followup.json' with {type:'json'};
+import azd1043Publication from './reviews/2026-10-03-authorised-azd1043.json' with {type:'json'};
+import {readFileSync} from 'node:fs';
+test('AZD1043 remains bounded Phase 1 research with site and access distinctions',()=>{
+ const entry=industry.find(e=>e.id==='azd1043');
+ assert.match(entry.stage,/Recruiting Phase 1/);
+ assert.match(entry.summary,/actual 30 March 2026 start/);
+ assert.match(entry.summary,/104 estimated participants/);
+ assert.match(entry.limitations,/UK site remained not yet recruiting/);
+ assert.match(entry.limitations,/does not establish weight-loss efficacy/);
+ assert.equal(entry.clinicalApproval,null);
+ assert.equal(entry.sourceIds.length,0);
+ assert.equal(entry.reviewedAt,azd1043Publication.reviewedAt);
+ assert.equal(azd1043Publication.registryEvidence.overallStatus,'RECRUITING');
+ assert.equal(azd1043Publication.registryEvidence.ukSiteStatus,'NOT_YET_RECRUITING');
+ assert.equal(azd1043Publication.registryEvidence.hasResults,false);
+ assert.equal(azd1043Publication.automatedMonitorChanges,false);
+ assert.equal(azd1043Publication.industryComplete,false);
+});
+test('authoritative README catalogue totals match exported entries',()=>{
+ const readme=readFileSync(new URL('./README.md',import.meta.url),'utf8');
+ assert.match(readme,new RegExp(`6 detailed references plus ${industry.length} concise industry summaries`));
+ assert.match(readme,new RegExp(`${medicines.length+industry.length} medicines/programmes, with ${sources.length} configured source documents`));
+});
 test('amylin follow-up corrects actual research stage while retaining dated discrepancies',()=>{
  const abbv=industry.find(e=>e.id==='abbv295');
  assert.match(abbv.stage,/Phase 2 recruiting/);
@@ -60,8 +83,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,74);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,80);
+ assert.equal(medicines.length,6);assert.equal(industry.length,75);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,81);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -142,7 +165,7 @@ test('KaiNETIC update records completed Phase 3 enrolment without implying resul
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,74);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,industry.length);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
@@ -546,7 +569,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,74);
+ assert.equal(industry.length,75);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);

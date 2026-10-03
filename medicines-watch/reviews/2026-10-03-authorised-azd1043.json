@@ -1,0 +1,95 @@
+{
+  "reviewedAt": "2026-10-03T08:20:02Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Publish one bounded older AstraZeneca Phase 1 omission and correct the authoritative catalogue totals. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [{
+    "id": "azd1043",
+    "name": "AZD1043",
+    "developer": "AstraZeneca",
+    "group": "research",
+    "stage": "Recruiting Phase 1; no posted results",
+    "summary": "AstraZeneca's sponsor-submitted NCT07511205 record describes a Phase 1 single- and multiple-ascending-dose study of subcutaneous or intravenous AZD1043 in healthy adults living with overweight or obesity. It records recruiting overall status, an actual 30 March 2026 start and 104 estimated participants. AstraZeneca's pipeline identifies AZD1043 as an ActRII monoclonal antibody in Phase 1 obesity research.",
+    "ukAuthorisation": "The reviewed research sources do not establish UK marketing authorisation for AZD1043.",
+    "nhsEngland": "No NICE recommendation or NHS England access is established by these sources.",
+    "supply": "A recruiting research study does not establish lawful UK retail supply, pharmacy stock or a product sold by Shift Some Timber.",
+    "limitations": "An older coverage omission, not a newly started October trial. This early study assesses safety, tolerability, pharmacokinetics and pharmacodynamics; it has no posted results and does not establish weight-loss efficacy, long-term safety or clinical benefit. The overall record is recruiting, but its listed UK site remained not yet recruiting at the 9 September update. A UK research site is not NHS access, marketing authorisation or supply. Completion dates and enrolment remain estimates.",
+    "sourceIds": [],
+    "reviewedAt": "2026-10-03T08:20:02Z",
+    "clinicalApproval": null,
+    "additionalEvidence": [{
+      "title": "ClinicalTrials.gov NCT07511205",
+      "url": "https://clinicaltrials.gov/study/NCT07511205",
+      "sourcePublishedAt": "2026-04-06",
+      "sourceUpdatedAt": "2026-09-09",
+      "reviewedAt": "2026-10-03T08:20:02Z",
+      "checkScope": "Complete sponsor-submitted API record read for Phase 1 design, actual start, recruiting status, site-level status, estimated enrolment/completion and absence of posted results; not automatically content-monitored."
+    }, {
+      "title": "AstraZeneca clinical study D9740C00001",
+      "url": "https://www.astrazenecaclinicaltrials.com/study/D9740C00001/",
+      "sourcePublishedAt": null,
+      "sourceUpdatedAt": "2026-09-20",
+      "reviewedAt": "2026-10-03T08:20:02Z",
+      "checkScope": "Original sponsor study page read for study purpose and formulation; publication date unverified and page update date shown by the source; not automatically content-monitored."
+    }, {
+      "title": "AstraZeneca pipeline",
+      "url": "https://www.astrazeneca.com/our-therapy-areas/pipeline.html",
+      "sourcePublishedAt": "2026-07-27",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-03T08:20:02Z",
+      "checkScope": "Original sponsor pipeline read for the ActRII monoclonal-antibody description and Phase 1 obesity placement as of 27 July 2026; page publication/update date otherwise unverified; not automatically content-monitored."
+    }]
+  }],
+  "registryEvidence": {
+    "nctId": "NCT07511205",
+    "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07511205",
+    "responseSha256": "d0a53bb5eed54be8b84e1a8c16088d5c5565f0a3b3aed701848bf0983b09e145",
+    "overallStatus": "RECRUITING",
+    "phase": "PHASE1",
+    "startDate": "2026-03-30",
+    "startDateType": "ACTUAL",
+    "enrolment": 104,
+    "enrolmentType": "ESTIMATED",
+    "primaryCompletionDate": "2027-04-09",
+    "completionDate": "2027-11-17",
+    "hasResults": false,
+    "ukSiteStatus": "NOT_YET_RECRUITING"
+  },
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "checkedAt": "2026-10-03T07:30:43.542Z",
+    "available": true,
+    "status": "current",
+    "configuredSources": 50,
+    "attention": [],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "A SELECT-only health observation of configured checks, not a new medical review or industry-completeness claim. Unmonitored evidence remains outside this denominator."
+  },
+  "discoveryPass": {
+    "currentDateRegistryQuery": "https://clinicaltrials.gov/api/v2/studies?query.cond=Obesity&format=json&pageSize=100&filter.advanced=AREA%5BLastUpdatePostDate%5DRANGE%5B2026-10-03%2C%20MAX%5D",
+    "currentDateRegistryResultCount": 0,
+    "currentDateRegistryResponseSha256": "e5660ca1fb1bc482c0112c159084af7c325461ac1624b4de41dd67edef2981b9",
+    "broaderCandidate": "AZD1043 was found through a broader undated mechanism/sponsor search and was absent from the live catalogue. Its primary sponsor and registry records were read before publication.",
+    "failedChecks": [],
+    "incompleteChecks": [
+      "The current-date registry query is bounded to obesity records posted or updated on 3 October 2026; zero matches do not establish no industry changes elsewhere.",
+      "Search indexing, selected domains and one reviewed candidate do not establish exhaustive industry coverage."
+    ]
+  },
+  "catalogueCounts": {
+    "detailed": 6,
+    "widerBefore": 74,
+    "widerAfter": 75,
+    "totalBefore": 80,
+    "totalAfter": 81,
+    "configuredSources": 50
+  },
+  "nextAction": "Continue separate configured-source monitoring and open-ended topic discovery. Do not treat this research listing, the clean 50-source health observation or the corrected catalogue count as clinical approval, UK access, supply or industry completeness."
+}
