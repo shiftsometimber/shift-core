@@ -1,0 +1,165 @@
+{
+  "reviewedAt": "2026-10-03T11:29:25Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add one bounded older Novo Nordisk Phase 1 omission and append three sponsor-submitted Phase 3 records to the existing ribupatide and safiglipron programmes. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-03T11:25:57Z",
+    "checkedAt": "2026-10-03T11:00:43.466Z",
+    "lastAttemptAt": "2026-10-03T11:00:43.466Z",
+    "available": true,
+    "status": "current",
+    "configuredSources": 50,
+    "attention": [],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "A successful SELECT-only health observation checks configured-source availability and monitoring operation. It does not renew a factual review, approve changed copy or establish industry completeness."
+  },
+  "entries": [{
+    "id": "nnc0638-0355",
+    "name": "NNC0638-0355",
+    "developer": "Novo Nordisk",
+    "group": "research",
+    "stage": "Active, not recruiting Phase 1; no posted results",
+    "summary": "Novo Nordisk's sponsor-submitted NCT06577766 record studies subcutaneous single and multiple ascending doses of NNC0638-0355 in adults with overweight or obesity. It records an actual 3 September 2024 start, active-not-recruiting status and 63 actual participants; completion remains estimated for 11 October 2027.",
+    "ukAuthorisation": "The reviewed registry record does not establish UK marketing authorisation for NNC0638-0355.",
+    "nhsEngland": "No NICE recommendation or NHS England access is established by this research record.",
+    "supply": "Clinical research does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+    "limitations": "This is an older coverage omission, not a newly started October study. The Phase 1 record evaluates safety, tolerability and pharmacokinetics, has no posted results and does not establish weight-loss efficacy, long-term safety or clinical benefit. The record does not identify a mechanism, so none is inferred. Estimated completion is not a completed event.",
+    "sourceIds": [],
+    "reviewedAt": "2026-10-03T11:29:25Z",
+    "clinicalApproval": null,
+    "additionalEvidence": [{
+      "title": "ClinicalTrials.gov NCT06577766: NNC0638-0355",
+      "url": "https://clinicaltrials.gov/study/NCT06577766",
+      "sourcePublishedAt": "2024-08-29",
+      "sourceUpdatedAt": "2026-09-30",
+      "reviewedAt": "2026-10-03T11:29:25Z",
+      "checkScope": "Complete sponsor-submitted API record read for intervention identity, formulation, Phase 1 design, actual start, active-not-recruiting status, actual enrolment, estimated completion and absence of posted results; not automatically content-monitored."
+    }]
+  }],
+  "changes": [{
+    "id": "ribupatide-injection",
+    "fields": {
+      "summaryToAppend": "Two separate Chinese sponsor-submitted Phase 3 records add specialist and comparator contexts: NCT07285902 is active, not recruiting after an actual 25 December 2025 start and compares HRS9531 injection with semaglutide in 572 actual participants; NCT07709910 studies ribupatide in people with obesity and knee osteoarthritis but remains not yet recruiting with an estimated July 2026 start and 382 estimated participants.",
+      "limitationsToAppend": "Neither Chinese record has posted results. Active-not-recruiting status and actual enrolment in the comparator study are not comparative results, while the knee-osteoarthritis start remains an estimate. These studies do not establish an authorised osteoarthritis indication, symptom benefit, superiority, UK access or supply."
+    },
+    "additionalEvidence": [{
+      "title": "ClinicalTrials.gov NCT07285902: HRS9531 versus semaglutide",
+      "url": "https://clinicaltrials.gov/study/NCT07285902",
+      "sourcePublishedAt": "2025-12-16",
+      "sourceUpdatedAt": "2026-02-27",
+      "reviewedAt": "2026-10-03T11:29:25Z",
+      "checkScope": "Complete sponsor-submitted API record read for Phase 3 comparator design, actual start, active-not-recruiting status, actual enrolment and absence of posted results; not automatically content-monitored."
+    }, {
+      "title": "ClinicalTrials.gov NCT07709910: ribupatide in obesity and knee osteoarthritis",
+      "url": "https://clinicaltrials.gov/study/NCT07709910",
+      "sourcePublishedAt": "2026-07-17",
+      "sourceUpdatedAt": "2026-07-17",
+      "reviewedAt": "2026-10-03T11:29:25Z",
+      "checkScope": "Complete sponsor-submitted API record read for specialist Phase 3 design, not-yet-recruiting status, estimated dates and enrolment, location and absence of posted results; not automatically content-monitored."
+    }]
+  }, {
+    "id": "kai7535",
+    "fields": {
+      "stage": "Global Phase II ongoing; separate China Phase III results and recruiting hypertension Phase III",
+      "summaryToAppend": "A separate Chinese sponsor-submitted Phase 3 record, NCT07528027, studies HRS-7535 for blood-pressure control in people with hypertension and overweight or obesity. It is recruiting after an actual 29 May 2026 start with 648 estimated participants.",
+      "limitationsToAppend": "The hypertension study has no posted results. Recruitment and an actual start do not establish blood-pressure benefit, a new authorised indication, UK access or supply."
+    },
+    "additionalEvidence": [{
+      "title": "ClinicalTrials.gov NCT07528027: HRS-7535 in hypertension with overweight or obesity",
+      "url": "https://clinicaltrials.gov/study/NCT07528027",
+      "sourcePublishedAt": "2026-04-14",
+      "sourceUpdatedAt": "2026-09-24",
+      "reviewedAt": "2026-10-03T11:29:25Z",
+      "checkScope": "Complete sponsor-submitted API record read for specialist Phase 3 design, recruiting status, actual start, estimated enrolment and absence of posted results; not automatically content-monitored."
+    }]
+  }],
+  "registryEvidence": [{
+    "nctId": "NCT06577766",
+    "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06577766",
+    "responseSha256": "a20c73dcf92f4f128637fe090b66d8ec2cc896be3f8b1564facc937d6b9a4ed8",
+    "overallStatus": "ACTIVE_NOT_RECRUITING",
+    "phase": "PHASE1",
+    "actualStart": "2024-09-03",
+    "actualEnrollment": 63,
+    "estimatedCompletion": "2027-10-11",
+    "firstPosted": "2024-08-29",
+    "lastUpdatePosted": "2026-09-30",
+    "hasResults": false
+  }, {
+    "nctId": "NCT07285902",
+    "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07285902",
+    "responseSha256": "29492c4f4e0e26321b51303ab271c61608c749b520afb4395f79c4c5251518b1",
+    "overallStatus": "ACTIVE_NOT_RECRUITING",
+    "phase": "PHASE3",
+    "actualStart": "2025-12-25",
+    "actualEnrollment": 572,
+    "firstPosted": "2025-12-16",
+    "lastUpdatePosted": "2026-02-27",
+    "hasResults": false
+  }, {
+    "nctId": "NCT07709910",
+    "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07709910",
+    "responseSha256": "6c3e48c45896f50e6997d35a3dfe0a7a832f29795e481c71a9fe0468b943b98a",
+    "overallStatus": "NOT_YET_RECRUITING",
+    "phase": "PHASE3",
+    "estimatedStart": "2026-07",
+    "estimatedEnrollment": 382,
+    "firstPosted": "2026-07-17",
+    "lastUpdatePosted": "2026-07-17",
+    "hasResults": false
+  }, {
+    "nctId": "NCT07528027",
+    "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07528027",
+    "responseSha256": "6644e5538542e9cbe90e83be417a71aab85baf86624c2cec68ce004fab04ff84",
+    "overallStatus": "RECRUITING",
+    "phase": "PHASE3",
+    "actualStart": "2026-05-29",
+    "estimatedEnrollment": 648,
+    "firstPosted": "2026-04-14",
+    "lastUpdatePosted": "2026-09-24",
+    "hasResults": false
+  }],
+  "discoveryPass": {
+    "method": "A separate current-date pass checked regulator, NHS, product-information and selected sponsor changes. A broader undated mechanism, specialist-indication, international and stopped-programme pass was compared with the live catalogue and dated receipts before these records were selected.",
+    "currentDateRegistryQuery": "https://clinicaltrials.gov/api/v2/studies?query.cond=Obesity&format=json&pageSize=100&filter.advanced=AREA%5BLastUpdatePostDate%5DRANGE%5B2026-10-03%2C%20MAX%5D",
+    "currentDateRegistryCheckedAt": "2026-10-03T10:39:27.478Z",
+    "currentDateRegistryMatches": 0,
+    "currentDateRegistryResponseSha256": "e5660ca1fb1bc482c0112c159084af7c325461ac1624b4de41dd67edef2981b9",
+    "included": "NNC0638-0355 is a distinct older programme absent from the live catalogue. The three Phase 3 records update existing ribupatide and safiglipron programmes rather than being counted as new medicines.",
+    "incompleteChecks": [
+      "Current-date registry results cannot exclude older omissions, indexing delay or international evidence; zero matches do not establish no changes.",
+      "Selected developers, domains, search results and catalogue counts do not establish industry completeness.",
+      "Older or newly indexed candidates found in the same broad search were already represented by live entries or dated receipts; matching a name did not renew their factual reviews."
+    ],
+    "failedChecks": [{
+      "url": "https://ir.aardvarktherapeutics.com/news-releases/news-release-details/aardvark-therapeutics-reports-second-quarter-2026-financial",
+      "status": "web_open_internal_error",
+      "sourcePublishedAt": "2026-08-11",
+      "nextAction": "Retrieve and read complete later primary evidence before publishing a changed ARD-101 or ARD-201 programme status."
+    }, {
+      "url": "https://ir.aardvarktherapeutics.com/news-releases/news-release-details/aardvark-therapeutics-plans-unblind-hero-and-ole-data-inform",
+      "status": "web_open_internal_error",
+      "sourcePublishedAt": "2026-05-14",
+      "nextAction": "Complete primary-source review; do not infer resumed, paused or permanently discontinued development."
+    }],
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailed": 6,
+    "widerBefore": 76,
+    "widerAfter": 77,
+    "totalBefore": 82,
+    "totalAfter": 83,
+    "configuredSources": 50
+  },
+  "nextAction": "Publish the independently supported registry update through exact-source checks and guarded production/live verification. Continue open-ended discovery and retain unresolved primary-source failures without inferring programme status."
+}
