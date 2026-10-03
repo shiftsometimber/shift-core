@@ -7,7 +7,8 @@ import {deviceHealthRuntime,deviceHealthStyles} from '../../member-experience/de
 const {chromium,webkit}=createRequire(import.meta.url)('playwright');
 const out=process.env.HEALTH_PROOF_OUT||'/tmp/shift-health-browser-proof';mkdirSync(out,{recursive:true});
 const results=[];
-for(const [engine,width] of [[chromium,390],[chromium,1440],[webkit,390]]){
+const matrix=[[chromium,390],[chromium,1440],[webkit,390]].filter(([engine])=>!process.env.HEALTH_PROOF_ENGINE||engine.name()===process.env.HEALTH_PROOF_ENGINE);
+for(const [engine,width] of matrix){
  const f=fixture(),browser=await engine.launch({headless:true});
  const context=await browser.newContext({viewport:{width,height:900}});const page=await context.newPage();
  const readings=[{id:'fake-heart',kind:'heart_rate',at:new Date().toISOString(),heartRate:78,source:'Fictional watch'},{id:'fake-bp',kind:'blood_pressure',at:new Date().toISOString(),systolic:128,diastolic:82,source:'Fictional cuff'},{id:'fake-weight',kind:'weight',at:new Date().toISOString(),weightKg:93.2,source:'Fictional scales'}];
