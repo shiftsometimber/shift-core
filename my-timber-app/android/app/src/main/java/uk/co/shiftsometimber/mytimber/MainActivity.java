@@ -19,7 +19,7 @@ import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
 
-/** Native client for the existing hosted My Timber service. No privileged JS bridge. */
+/** Native client for the existing hosted My Timber service. Bounded origin-scoped health previews only. */
 public final class MainActivity extends androidx.activity.ComponentActivity {
     private WebView web;
     private LinearLayout failure;

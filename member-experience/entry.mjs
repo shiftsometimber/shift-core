@@ -1,5 +1,5 @@
 import {ingredientStyles} from './grub-ingredients.mjs';
-import {deviceHealthRuntime} from './device-health-client.mjs';
+import {deviceHealthRuntime,deviceHealthStyles} from './device-health-client.mjs';
 import {continuityExposureRuntime} from '../continuity-measurement/client.mjs';
 import {withUnitSettings,unitSettingsRuntime} from './unit-settings.mjs';
 import {withAccountDeletion,accountDeletionRuntime} from './account-deletion.mjs';
@@ -83,7 +83,7 @@ export async function memberExperienceEntry(request, env, response) {
   html = html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/v1.css"><script type="module" src="/assets/member-experience/v1.mjs"></script></body>');
   if(name === 'dashboard') html = html.replace(/(<input\b[^>]*name="firstName"[^>]*?)\s+value="Matt"/,'$1');
   if(name === 'dashboard')html=restoreDashboardTools(html);
-  if(name==='settings')html=html.replace('</main>','<section id="deviceHealth" class="member-tool-card" aria-label="Your device health readings"></section></main>').replace('</body>','<script defer src="/assets/member-experience/device-health.mjs"></script></body>');
+  if(name==='settings')html=html.replace('</main>','<section id="deviceHealth" aria-label="Your device health readings"></section></main>').replace('</body>','<style>'+deviceHealthStyles+'</style><script defer src="/assets/member-experience/device-health.mjs"></script></body>');
   if(name === 'dashboard')html=html.replace(/\/member-my-timber-problem-v1\.js(?:\?[^"'<>\\\s]*)?/g,'/member-my-timber-problem-v1.js?v=member-walk-20260920').replace(/\/member-my-journey-v2\.js(?:\?[^"'<>\\\s]*)?/g,'/member-my-journey-v2.js?v=member-walk-20260920').replace('</body>','<link rel="stylesheet" href="/assets/member-experience/home.css"></body>');
   if(name === 'grub') html = upgradeGrubHTML(html).replace(/(<main\b[^>]*>)<header>/,'$1<header class="member-tool-hero">');
   if(name === 'fit') html = html.replace('class="sf-hero"','class="sf-hero member-tool-hero"');

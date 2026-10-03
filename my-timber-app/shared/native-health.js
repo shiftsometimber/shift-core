@@ -1,6 +1,7 @@
 (() => {
  'use strict';
  if(window.top!==window||location.origin!=='https://shiftsometimber.co.uk')return;
+ if(window.SST_NATIVE_HEALTH)return;
  const platform=window.webkit?.messageHandlers?.sstHealth?'apple_health':window.sstHealth?'health_connect':null;
  if(!platform)return;
  const pending=new Map();

@@ -53,6 +53,7 @@ export async function deviceHealthRoutes(request,env){
    const sql=`INSERT INTO consents(user_id,consent_type,consent_version,granted,granted_at,withdrawn_at,created_at) SELECT ?,?,?,?,?,?,?${grant?' WHERE '+tracking:''}`;
    const result=await DB.prepare(sql).bind(uid,type,VERSION,grant?1:0,grant?now:null,grant?null:now,now,...(grant?[uid]:[])).run();
    if(result.meta?.changes!==1)throw fail('Switch on optional health tracking before connecting.',409);
+   if(grant)await DB.prepare("INSERT INTO member_state(user_id,preferences,updated_at) VALUES(?,'{}',?) ON CONFLICT(user_id) DO NOTHING").bind(uid,now).run();
    return json(await readDeviceHealth(DB,uid));
   }
   const row=await DB.prepare("SELECT json_extract(preferences,'$.deviceHealth') state FROM member_state WHERE user_id=?").bind(uid).first();
