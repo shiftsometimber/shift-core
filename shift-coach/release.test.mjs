@@ -71,3 +71,9 @@ test('merged health safety corrections and their evidence remain independently p
  const m={...manifest,applicationCommit:'a'.repeat(40)};
  for(const p of ['docs/content-review/2026-10-03-health-safety.json','frontend/member/shift-health-catalogue-v1.js','shift-health-public-content.mjs','tests/testosterone-public.test.mjs'])assert.throws(()=>validateCoachingSource((ref,path)=>ref==='7bd5fb37d7bbce66fa5e728f59304843817128bf'&&path===p?'prior-safety':path,m),/Merged health-safety source drift/);
 });
+test('merged living Health Plan test is an exact addition and cannot be silently changed by repinning',()=>{
+ const p='tests/my-health-plan-v2.test.mjs',m={...manifest,applicationCommit:'a'.repeat(40)};
+ assert.doesNotThrow(()=>assertCoachingChangedPath('A',p));
+ for(const status of ['M','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
+ assert.throws(()=>validateCoachingSource((ref,path)=>ref==='e30603eaf1afeea4aa6b9f80ccaa2d2cdd2190e3'&&path===p?'changed-test':path,m),/Merged My Health Plan v2 test source drift/);
+});
