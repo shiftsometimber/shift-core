@@ -1,0 +1,30 @@
+{
+  "baseline_production": "ef92ea54-ab0c-409f-aa9f-afcb14dc4b5e",
+  "baseline_fingerprint": "172c36896e7c86f183187ce98584449a0290214bc455a0d0aaef57b1bf28f538",
+  "candidate_fingerprint": "a4ff9a66b1323f7c502e557b17430cc1180c390eaf68c9785ce931045863ecd8",
+  "changed": [
+    "waiting-list-journey.html"
+  ],
+  "exact_edits": [
+    {
+      "path": "waiting-list-journey.html",
+      "old": "Put your name down to hear first when Shift weight-management treatment stock returns.",
+      "new": "Sign up for email updates about SHIFT treatment availability. Joining is not an order, reservation or guarantee.",
+      "occurrences": 1
+    },
+    {
+      "path": "waiting-list-journey.html",
+      "old": "Be first to hear when stock returns | Shift Some Timber",
+      "new": "Treatment availability updates | Shift Some Timber",
+      "occurrences": 2
+    },
+    {
+      "path": "waiting-list-journey.html",
+      "old": "Be first to hear when <span>stock returns.</span>",
+      "new": "Get updates about <span>treatment availability.</span>",
+      "occurrences": 1
+    }
+  ],
+  "preserved_files": 875,
+  "forms_and_scripts_unchanged": true
+}
