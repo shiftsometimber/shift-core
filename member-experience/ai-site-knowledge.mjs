@@ -12,9 +12,28 @@ export function extractPublicPage(html,url){
  const main=html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1];if(!main||!title||!heading)return null;
  const text=plainText(main);if(text.length<150)return null;
  // Keep consecutive sections together; never infer clinical approval from publication.
- const sentences=text.match(/[^.!?]+[.!?]+(?:\s|$)|[^.!?]+$/g)||[text];const chunks=[];let chunk='';
- for(const sentence of sentences){if(chunk.length+sentence.length>1800&&chunk){chunks.push(chunk.trim());chunk=''}chunk+=sentence;if(chunks.length>=35)break;}if(chunk&&chunks.length<36)chunks.push(chunk.trim().slice(0,2200));
- return{url,title:title.slice(0,240),chunks:chunks.filter(x=>x.length>40)};
+ const sentences=text.match(/[\s\S]+?(?:[.!?](?=\s|$)|$)/g)||[text];const chunks=[];let chunk='';
+ const flush=()=>{if(chunk){chunks.push(chunk);chunk=''}};
+ for(const raw of sentences){
+  let sentence=raw.trim();if(!sentence)continue;
+  if(sentence.length>1800){
+   flush();
+   while(sentence.length>1800){
+    const at=sentence.lastIndexOf(' ',1800);if(at<1)return null;
+    chunks.push(sentence.slice(0,at));sentence=sentence.slice(at+1);
+    if(chunks.length>36)return null;
+   }
+  }
+  if(chunk&&chunk.length+1+sentence.length>1800)flush();
+  chunk+=(chunk?' ':'')+sentence;
+  if(chunks.length>36)return null;
+ }
+ flush();if(chunks.length>36)return null;
+ // Keep short endings (including warnings and source links) rather than
+ // silently dropping them. Reject over-budget sources instead of clipping.
+ if(chunks.length>1&&chunks.at(-1).length<40&&chunks.at(-2).length+1+chunks.at(-1).length<=2200){const tail=chunks.pop();chunks[chunks.length-1]+=' '+tail;}
+ if(chunks.join(' ')!==text)return null;
+ return{url,title:title.slice(0,240),chunks};
 }
 export function sitemapUrls(xml){return [...new Set([...xml.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/g)].map(m=>publicKnowledgeUrl(entities(m[1].trim()))).filter(Boolean))].slice(0,700)}
 export async function storePublicPage(DB,page){

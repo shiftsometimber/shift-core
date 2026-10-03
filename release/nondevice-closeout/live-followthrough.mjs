@@ -17,7 +17,7 @@ for(let i=0;i<24;i++){
  assert(i<23,'Publication did not complete');await new Promise(r=>setTimeout(r,15000));
 }
 const project=await cf('/pages/projects/projectshift');assert.equal(project.canonical_deployment.deployment_trigger.metadata.commit_hash,expected,'Public release changed; refresh scope needs review');
-const fp=await fetch(origin+'/DEPLOYMENT-FINGERPRINT.json');assert(fp.ok);assert.equal((await fp.json()).aggregate_sha256,'9609c0f3ff51fc4cef0acbbe11ead76c4d50d3ce69641477a53f80efbdb88b85');
+const fp=await fetch(origin+'/DEPLOYMENT-FINGERPRINT.json');assert(fp.ok);assert.equal((await fp.json()).aggregate_sha256,'173acd3123ba68ea39f30af5744986e0bc5da24ab41977a3e5a9e86872834c79');
 const implementation=readFileSync('member-experience/ai-site-knowledge.mjs'),hash=createHash('sha256').update(implementation).digest('hex');
 const current=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/contents/member-experience/ai-site-knowledge.mjs?ref=main',{headers:gitHeaders});assert(current.ok);const code=await current.json();assert.equal(createHash('sha256').update(Buffer.from(code.content,'base64')).digest('hex'),hash);
 const sm=await fetch(origin+'/sitemap.xml');assert(sm.ok);const allowed=new Set(sitemapUrls(await sm.text()));const specs=JSON.parse(readFileSync('editorial/content-audit/everyday-articles.json')).articles,pages=[];
