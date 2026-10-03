@@ -16,7 +16,7 @@ test('members can park and restore concerns without deleting history',()=>{
   assert.ok(source.includes("source:'health_plan'"));
   assert.ok(source.includes("health_plan_item_parked"));
   assert.ok(source.includes("health_plan_item_brought_forward"));
-  assert.ok(!source.includes('intentSortHistory:[]'));
+  assert.ok(source.includes("history=Array.isArray(wholeMan.intentSortHistory)?wholeMan.intentSortHistory.slice(-49):[]"));
 });
 
 test('Something changed reuses the saved coaching transition route',()=>{
