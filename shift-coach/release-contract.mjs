@@ -18,10 +18,10 @@ export function assertCoachingChangedPath(status,path){
  assert(added||COACH_BACKEND_PATHS.has(path)||COACH_COMPOSED_BOOK_CHANGES.has(path),'Unlisted coaching release change: '+path);
  assert.equal(status,added?'A':'M','Unexpected change status: '+path);
 }
-// Preserve the exact reviewed AZD1043 Watch update alongside current coaching.
-export const WATCH_CURRENT_BASE='3fcad567bcfa7c79e682eafa965c7a24fc0a277e';
+// Preserve the exact reviewed SELENE 1 Watch correction alongside current coaching.
+export const WATCH_CURRENT_BASE='c85266a4d43f299c7db7d6fc26cd28a1c96082ae';
 export const WATCH_COMPOSED_CHANGES=new Set(['medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs']);
-export const WATCH_COMPOSED_ADDITIONS=new Set(['medicines-watch/reviews/2026-10-02-authorised-glimr-copd.json','medicines-watch/reviews/2026-10-02-authorised-specialist-registry-followup.json','medicines-watch/reviews/2026-10-02-authorised-switching-studies.json','medicines-watch/reviews/2026-10-02-authorised-na931.json','medicines-watch/reviews/2026-10-03-authorised-amylin-metabolic-followup.json','medicines-watch/reviews/2026-10-03-authorised-azd1043.json']);
+export const WATCH_COMPOSED_ADDITIONS=new Set(['medicines-watch/reviews/2026-10-02-authorised-glimr-copd.json','medicines-watch/reviews/2026-10-02-authorised-specialist-registry-followup.json','medicines-watch/reviews/2026-10-02-authorised-switching-studies.json','medicines-watch/reviews/2026-10-02-authorised-na931.json','medicines-watch/reviews/2026-10-03-authorised-amylin-metabolic-followup.json','medicines-watch/reviews/2026-10-03-authorised-azd1043.json','medicines-watch/reviews/2026-10-03-authorised-azd6234-selene.json']);
 export const WATCH_CURRENT_PATHS=new Set(['medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
 export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
