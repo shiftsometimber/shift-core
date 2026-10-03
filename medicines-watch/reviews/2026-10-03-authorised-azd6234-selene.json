@@ -1,0 +1,96 @@
+{
+  "reviewedAt": "2026-10-03T08:55:00Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Correct the existing AZD6234 monotherapy research stage using reviewed sponsor and registry evidence, retaining its earlier Phase 2b receipt. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "change": {
+    "id": "azd6234",
+    "fields": {
+      "stage": "Phase 3 SELENE 1 recruiting; Phase 2b APRICUS completed; no registry-posted results",
+      "summary": "AZD6234 is a weekly injectable selective amylin receptor agonist in AstraZeneca's research programme. The sponsor-submitted SELENE 1 record lists recruiting Phase 3 monotherapy research in adults with obesity or overweight and a weight-related condition without type 2 diabetes, with an actual 19 August 2026 start and 2,500 estimated participants. Its separate completed Phase 2b APRICUS record retains 262 actual participants and actual 3 December 2025 completion. Neither registry record has posted results.",
+      "limitations": "This corrects an older late-stage coverage omission, not a new October trial start. SELENE 1's registry was first posted and last updated on 25 August 2026; its primary and final completion dates remain estimates in August 2028 and May 2029. Overall recruiting status does not mean every site is recruiting: listed sites also include not yet recruiting, suspended and withdrawn statuses, and no UK location is listed in this record. The sponsor study page still displays ClinicalTrials.gov identifier N/A despite the matching registry record; the study identifier D8750C00014 and SELENE 1 title establish the match. APRICUS's earlier approximate design target of 231 differs from its 262 actual enrolment. Recruitment and study completion do not establish efficacy, safety, superiority or an authorised regimen. Separate combination programmes require their own evidence review."
+    },
+    "additionalEvidence": [{
+      "title": "ClinicalTrials.gov NCT07784725: SELENE 1",
+      "url": "https://clinicaltrials.gov/study/NCT07784725",
+      "sourcePublishedAt": "2026-08-25",
+      "sourceUpdatedAt": "2026-08-25",
+      "reviewedAt": "2026-10-03T08:55:00Z",
+      "checkScope": "Complete sponsor-submitted API record read for matched study identity, Phase 3 monotherapy design, formulation, recruiting status, actual start, estimated enrolment/completion, site-status distinctions and absence of posted results; not automatically content-monitored."
+    }, {
+      "title": "AstraZeneca SELENE 1 study D8750C00014",
+      "url": "https://www.astrazenecaclinicaltrials.com/study/D8750C00014/",
+      "sourcePublishedAt": null,
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-03T08:55:00Z",
+      "checkScope": "Original sponsor study page read for recruiting Phase 3, weekly subcutaneous formulation, study identity, estimated enrolment and completion dates. It says verified 1 August 2026; this is not treated as publication/update date. Its N/A registry identifier and absent locations remain explicit; not automatically content-monitored."
+    }]
+  },
+  "registryEvidence": [{
+    "nctId": "NCT07784725",
+    "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07784725",
+    "responseSha256": "a26ad96cb2a9be3f8d0e218c541115cfdd4b6adaa61beb0147d5efb609cab97d",
+    "overallStatus": "RECRUITING",
+    "phase": "PHASE3",
+    "startDate": "2026-08-19",
+    "startDateType": "ACTUAL",
+    "enrolment": 2500,
+    "enrolmentType": "ESTIMATED",
+    "primaryCompletionDate": "2028-08-11",
+    "completionDate": "2029-05-21",
+    "completionDateType": "ESTIMATED",
+    "hasResults": false,
+    "siteStatuses": {"NOT_YET_RECRUITING":203,"WITHDRAWN":3,"RECRUITING":4,"SUSPENDED":2},
+    "ukLocationsListed": 0
+  }, {
+    "nctId": "NCT06595238",
+    "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06595238",
+    "responseSha256": "d2ff1b356b6cb29af407a2b57688f25506531c1fc3a9bb37ad1b9221351d15e6",
+    "overallStatus": "COMPLETED",
+    "phase": "PHASE2",
+    "enrolment": 262,
+    "enrolmentType": "ACTUAL",
+    "completionDate": "2025-12-03",
+    "completionDateType": "ACTUAL",
+    "sourcePublishedAt": "2024-09-19",
+    "sourceUpdatedAt": "2026-10-02",
+    "hasResults": false
+  }],
+  "priorReceipt": "medicines-watch/reviews/2026-10-03-authorised-amylin-metabolic-followup.json",
+  "ukPosition": {
+    "authorisation": "No UK marketing authorisation is established by these research sources; existing access wording is retained.",
+    "nhsEngland": "No NICE recommendation or NHS England access is established.",
+    "supply": "No UK retail supply, stock or sale by SHIFT is established. A research site is not an access or supply claim."
+  },
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "checkedAt": "2026-10-03T08:30:43.545Z",
+    "available": true,
+    "status": "current",
+    "configuredSources": 50,
+    "attention": [],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "SELECT-only health observation; not a medical review renewal or industry-completeness claim."
+  },
+  "discoveryPass": {
+    "method": "Separate current-date/current-month and broader undated topic searches for approvals, obesity trials, amylin/incretin, peptides, body composition, combinations and stopped programmes; compared primary evidence with live entries and review receipts. PR851 is merged; open PRs815/874/997 retain separate qualified-review/public-guide scopes and are not bypassed or duplicated.",
+    "currentDateRegistryQuery": "https://clinicaltrials.gov/api/v2/studies?query.cond=Obesity&format=json&pageSize=100&filter.advanced=AREA%5BLastUpdatePostDate%5DRANGE%5B2026-10-03%2C%20MAX%5D",
+    "incompleteChecks": [
+      "Grouped sponsor searches across Novo Nordisk, Lilly, Amgen, Zealand/Roche, Boehringer Ingelheim, Pfizer, Viking, Structure, Hansoh/Merck and Kailera returned mixed, irrelevant or already-covered results; successful search calls do not establish each developer was fully checked.",
+      "MHRA/NICE searches surfaced existing guidance and 2 October advertising material, not a verified new UK-access change. NHS and official product-information availability/content/expiry were assessed through configured monitoring only; no factual review date was renewed.",
+      "Broader muscle-preservation searches surfaced Neurocrine NBIP-2118, including an original sponsor clinical-studies page. Its separate monotherapy registry and complete evidence review remain incomplete; no standalone entry or human muscle-preservation claim is published in this correction.",
+      "The bounded current-date registry pass cannot exclude older omissions or unindexed/international evidence. Selected domains and catalogue counts cannot establish exhaustive industry coverage."
+    ],
+    "failedChecks": [],
+    "industryComplete": false
+  },
+  "catalogueCounts": {"detailed":6,"wider":75,"total":81,"configuredSources":50},
+  "nextAction": "Publish the supported stage correction through exact-source checks and guarded production/live verification. Continue broader discovery, including the incomplete smaller-developer candidate review, without inferring clinical approval or UK access."
+}

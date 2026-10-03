@@ -29,6 +29,7 @@ import na931Publication from './reviews/2026-10-02-authorised-na931.json' with {
 import earlierEloraNa931Proposal from './reviews/2026-09-30-eloratzp-na931-discovery.json' with {type:'json'};
 import amylinMetabolicFollowup from './reviews/2026-10-03-authorised-amylin-metabolic-followup.json' with {type:'json'};
 import azd1043Publication from './reviews/2026-10-03-authorised-azd1043.json' with {type:'json'};
+import seleneCorrection from './reviews/2026-10-03-authorised-azd6234-selene.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('AZD1043 remains bounded Phase 1 research with site and access distinctions',()=>{
  const entry=industry.find(e=>e.id==='azd1043');
@@ -67,7 +68,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.match(pilot.limitations,/48-person target.*estimates 60/);
  for(const e of [abbv,azd,pilot]){
   assert.equal(e.clinicalApproval,null);
-  assert.equal(e.reviewedAt,amylinMetabolicFollowup.reviewedAt);
+  assert.equal(e.reviewedAt,e.id==='azd6234'?seleneCorrection.reviewedAt:amylinMetabolicFollowup.reviewedAt);
   assert.equal(e.sourceIds.length,0);
   for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k]);
   const html=industryMarkup({},new URLSearchParams({q:e.name}));
@@ -87,6 +88,28 @@ test('expanded registry distinguishes depth, clinical approval and access and jo
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,81);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
+});
+test('AZD6234 correction retains APRICUS and distinguishes recruiting SELENE 1 from results and access',()=>{
+ const e=industry.find(e=>e.id==='azd6234');
+ assert.match(e.stage,/Phase 3 SELENE 1 recruiting/);
+ assert.match(e.stage,/Phase 2b APRICUS completed/);
+ assert.match(e.summary,/actual 19 August 2026 start/);
+ assert.match(e.summary,/2,500 estimated participants/);
+ assert.match(e.summary,/Neither registry record has posted results/);
+ assert.match(e.limitations,/suspended and withdrawn/);
+ assert.match(e.limitations,/no UK location is listed/);
+ assert.match(e.limitations,/identifier N\/A/);
+ assert.equal(e.additionalEvidence.length,4);
+ assert.equal(e.sourceIds.length,0);
+ assert.equal(e.clinicalApproval,null);
+ assert.equal(e.reviewedAt,seleneCorrection.reviewedAt);
+ assert.equal(seleneCorrection.automatedMonitorChanges,false);
+ assert.equal(seleneCorrection.industryComplete,false);
+ assert.equal(seleneCorrection.registryEvidence[0].phase,'PHASE3');
+ assert.equal(seleneCorrection.registryEvidence[0].hasResults,false);
+ assert.equal(seleneCorrection.registryEvidence[0].ukLocationsListed,0);
+ assert.match(e.ukAuthorisation,/do not establish UK marketing authorisation/);
+ assert.match(industryMarkup({},new URLSearchParams({q:'SELENE'})),/not automatically content-monitored/);
 });
 test('macupatide discovery distinguishes recruiting Phase 2 from planned Phase 1',()=>{
  const entry=industry.find(item=>item.id==='macupatide');
