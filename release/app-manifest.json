@@ -221,7 +221,11 @@
     ".github/workflows/book-voice-live-audit.yml": "240e023a53d4af1cbd53ff2e04d5a929d71eb98679d13c847f6f96c8f64a6da2",
     "scripts/article-image-policy.mjs": "6b4b6161495d83e7f2b1d2d4ac0e22f5a78ad5d38d14f3f95dc8e1397f038fa0",
     "scripts/verify-article-quality.mjs": "21e0167410fb970684109c98f913b54a501af72e8fd3db5ef03c50f67e08dadc",
-    "tests/article-image-policy.test.mjs": "b2c4b8797524fecc99f45398926e8cabfb50db453426891a63fd5012220bdc5b"
+    "tests/article-image-policy.test.mjs": "b2c4b8797524fecc99f45398926e8cabfb50db453426891a63fd5012220bdc5b",
+    "public-navigation-policy.mjs": "ff439ed6fe0f13c633f97f1e9e8da5486b2456b72d826d61caccc4999061ca58",
+    "tests/public-ticker-contrast-safety.test.mjs": "c35ff545685a9c23a2c605edfc7511bcedc7e677b70f9194e32f95386c682cd1",
+    "shift-health-public-content.mjs": "7c4bf579c462a7188b3b16cae75b961d89e0b0736f2062e4bf5012ea5b7e5c03",
+    "frontend/member/shift-health-catalogue-v1.js": "45e3cf60f287e6753c2528512ac5855d4db05b3646c4c8794231a61735e15462"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
