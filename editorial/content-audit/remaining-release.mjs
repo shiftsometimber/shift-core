@@ -1,10 +1,14 @@
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 assert.equal(process.env.GITHUB_ACTIONS,'true');assert.equal(process.env.GITHUB_ACTOR_ID,'315011648');
 assert.equal(process.env.GITHUB_REF,'refs/heads/codex/nondevice-completion-20261003');
 const control=JSON.parse(readFileSync('remaining-release/control.json')),proof=JSON.parse(readFileSync('remaining-release/proof.json')),browser=JSON.parse(readFileSync('remaining-browser-proof/receipt.json'));
 assert.equal(browser.source,process.env.GITHUB_SHA);assert.equal(browser.reports.length,14);
+const manifest=JSON.parse(readFileSync('remaining-release/site/DEPLOYMENT-FINGERPRINT.json'));
+assert.equal(manifest.aggregate_sha256,control.source_fingerprint);
+for(const file of manifest.files){const bytes=readFileSync('remaining-release/site/'+file.path);assert.equal(bytes.length,file.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),file.sha256,'Candidate file differs: '+file.path);}
 const account=process.env.CLOUDFLARE_ACCOUNT_ID;
 const cf=async(path,method='GET')=>{const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+account+path,{method,headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(30000)}),j=await r.json();assert(r.ok&&j.success);return j.result;};
 const project=await cf('/pages/projects/projectshift');assert.equal(project.production_branch,'main');

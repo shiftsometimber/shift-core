@@ -8,7 +8,7 @@ permissions:
   actions: read
 concurrency:
   group: verified-public-pages-repair
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   preview:
     if: github.actor_id == '315011648'
@@ -58,7 +58,7 @@ jobs:
         if: always()
         with: {name: 'remaining-browser-proof-${{ github.sha }}', path: remaining-browser-proof/}
       - uses: actions/upload-artifact@v4
-        with: {name: 'remaining-release-${{ github.sha }}', path: remaining-release/}
+        with: {name: 'remaining-release-${{ github.sha }}', path: remaining-release/, include-hidden-files: true}
   publish:
     needs: preview
     if: github.actor_id == '315011648'
