@@ -4,8 +4,14 @@
   "finding": "Email input submitted by GET to /programme, placing email in URL and offering general updates through a stock-specific consent flow.",
   "replacement": "<div class=\"newsletter-v2223\"><h2>Treatment stock updates</h2><p>Want to hear when treatment stock becomes available? Use our stock-update form to choose those emails. Joining is not an order, reservation or guarantee.</p><a class=\"btn btn-primary\" href=\"/waiting-list-journey\">Get stock updates</a><p><small>For new guides, research and everyday SHIFT updates, follow the social channels above.</small></p></div>",
   "baseline": "6f5e68a40bacf2e161842b7349ae8b575f7d82b71c2fda12adcea5eed1e8d3e1",
-  "candidate": "76ab86015ebfb0796a4148a64661e15c0d38debdd184f04b5596cae062c1d5b4",
-  "preservedPublicFiles": 875,
+  "candidate": "85c64a2c4514383517932398100a3659998da0808ad1f7ac51a5fa810787a2a3",
+  "preservedPublicFiles": 872,
   "noSubscriptionsCreated": true,
-  "noCustomerDataChanged": true
+  "noCustomerDataChanged": true,
+  "commercialRoutes": [
+    "/advertise-with-us",
+    "/corporate-wellbeing",
+    "/product-reviews"
+  ],
+  "commercialRepair": "Replace email-client-dependent enquiry forms with contextual links to the existing secure /contact form. No enquiry submitted."
 }
