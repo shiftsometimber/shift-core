@@ -16,7 +16,10 @@ try{
  for(const [path,required]of checks)for(const width of [390,1440]){
   const page=await browser.newPage({viewport:{width,height:900}}),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
-  const response=await page.goto(origin+path,{waitUntil:'networkidle',timeout:45000});assert(response.ok());assert.equal(new URL(page.url()).pathname,path);
+  const response=await page.goto(origin+path,{waitUntil:'domcontentloaded',timeout:45000});assert(response.ok());assert.equal(new URL(page.url()).pathname,path);
+  await page.locator('main h1').waitFor({state:'visible',timeout:15000});
+  await page.evaluate(()=>Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,10000))]));
+  await page.waitForTimeout(2000);
   const r=await page.evaluate(()=>({h1:document.querySelectorAll('h1').length,text:document.querySelector('main')?.innerText.replace(/\s+/g,' '),overflow:document.documentElement.scrollWidth>innerWidth,header:!!document.querySelector('header'),footer:!!document.querySelector('footer')}));
   assert.equal(r.h1,1);assert.equal(r.overflow,false);assert(r.header&&r.footer);assert.deepEqual(errors,[]);
   for(const phrase of required)assert(r.text.includes(phrase),path+': '+phrase);
