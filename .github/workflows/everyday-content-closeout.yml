@@ -29,7 +29,7 @@ jobs:
         with:
           github-token: ${{ github.token }}
           run-id: 37101518800
-          name: everyday-release-d652d6e058694d21aa54cf539cd4d24aec6db6c5
+          name: remaining-release-d652d6e058694d21aa54cf539cd4d24aec6db6c5
           path: exact-baseline
       - uses: actions/setup-node@v4
         with: {node-version: '24'}
