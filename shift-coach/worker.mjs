@@ -2,6 +2,7 @@ import {tabletRoutineRoutes} from '../member-experience/tablet-routine.mjs';
 import core from '../worker-entry-v6.js';
 import {withPublicFontDelivery} from './public-font-delivery.mjs';
 export * from '../worker-entry-v6.js';
+import {supportTeamRoutes,withSupportTeamLink} from './support-team.mjs';
 import {coachingRoutes} from './routes.mjs';
 import {coachingAsset,withCoaching} from './presentation.mjs';
 import {runCoachingNight} from './night-job.mjs';
@@ -12,8 +13,9 @@ export default {
  async fetch(request,env,ctx){
   const tablet=await tabletRoutineRoutes(request,env);if(tablet)return tablet;
   const asset=coachingAsset(request);if(asset)return asset;
+  const team=await supportTeamRoutes(request,env);if(team)return team;
   const coaching=await coachingRoutes(request,env);if(coaching)return coaching;
-  const response=await withPublicFontDelivery(request,await core.fetch(request,env,ctx));
+  const response=await withSupportTeamLink(request,await withPublicFontDelivery(request,await core.fetch(request,env,ctx)));
   let seed=null;const url=new URL(request.url);
   if(request.method==='GET'&&/^\/member\/dashboard(?:\.html)?$/.test(url.pathname)&&response.status===200&&response.headers.get('Content-Type')?.includes('text/html')){
    url.pathname='/v1/shift-coach';url.search='';
