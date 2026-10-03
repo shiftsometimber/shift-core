@@ -9,6 +9,7 @@ const nhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-24-mounjar
 const latestNhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-01-mounjaro-nhs-renewal.json', import.meta.url)));
 const foundayoReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-29-foundayo-nice-schedule.json', import.meta.url)));
 const overdueReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-30-overdue-source-renewal.json', import.meta.url)));
+const foundayoPredictedRiskReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-03-authorised-foundayo-predicted-risk.json', import.meta.url)));
 const reviewTime = Date.parse(receipt.reviewedAt);
 const rowFor = (source, now = reviewTime) => ({
   source_url: source.url, check_url: source.checkUrl,
@@ -128,4 +129,21 @@ test('changed SmPC metadata preserves the medicine catalogue and separately evid
   }
   assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, JSON.parse(readFileSync(new URL('./reviews/2026-09-27-wegovy-tablet-provider.json', import.meta.url))).reviewedAt);
   assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, latestNhsReceipt.reviewedAt);
+});
+
+test('Foundayo predicted-risk evidence is bounded to post-hoc modelling, not observed outcomes', () => {
+  const foundayo = medicines.find(medicine => medicine.id === 'foundayo');
+  const evidence = foundayo.evidenceLinks.find(link => link.url === foundayoPredictedRiskReceipt.primarySource.url);
+  assert.equal(foundayoPredictedRiskReceipt.reviewType, 'AI-assisted primary-source factual review; not clinical approval');
+  assert.equal(foundayoPredictedRiskReceipt.clinicalApproval, null);
+  assert.equal(foundayoPredictedRiskReceipt.automatedMonitorChanges, false);
+  assert.equal(evidence.sourcePublishedAt, '2026-10-01');
+  assert.equal(evidence.reviewedAt, foundayoPredictedRiskReceipt.reviewedAt);
+  assert.match(evidence.checkScope, /predicted risks, not observed diabetes diagnoses or cardiovascular events/i);
+  assert.match(evidence.checkScope, /investigational formulation/i);
+  assert.match(evidence.checkScope, /does not change the separate UK authorisation, NHS access or actual-supply statements/i);
+  assert.doesNotMatch(foundayo.benefit, /diabetes|cardiovascular|risk/i);
+  assert.equal(foundayoPredictedRiskReceipt.catalogueCounts.totalBefore, foundayoPredictedRiskReceipt.catalogueCounts.totalAfter);
+  assert.equal(foundayoPredictedRiskReceipt.configuredSourcePass.reviewRenewals, false);
+  assert.equal(foundayoPredictedRiskReceipt.configuredSourcePass.baselineChanges, false);
 });

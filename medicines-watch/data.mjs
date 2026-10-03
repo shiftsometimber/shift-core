@@ -202,6 +202,11 @@ export const medicines = [
       url: 'https://delivery-p137454-e1438138.adobeaemcloud.com/adobe/assets/urn:aaid:aem:e8f3cd70-4476-4be0-a039-9796935d5579/renditions/original/as/Foundayo_supply_press_release.pdf?assetname=Foundayo_supply_press_release.pdf',
       reviewedAt: REVIEWED_AT, sourcePublishedAt: '2026-08-24',
       checkScope: 'Document reviewed; PDF content is not covered by the automatic HTML/JSON monitor.',
+    }, {
+      title: 'Lilly ATTAIN-1 post-hoc predicted-risk analysis — 1 October 2026',
+      url: 'https://investor.lilly.com/news-releases/news-release-details/lillys-oral-glp-1-foundayo-orforglipron-was-associated',
+      reviewedAt: '2026-10-03T15:16:41Z', sourcePublishedAt: '2026-10-01',
+      checkScope: 'Sponsor-reported post-hoc modelling with CMDS and BMI-based Framingham risk engines. These are predicted risks, not observed diabetes diagnoses or cardiovascular events. ATTAIN-1 used an investigational formulation at doses Lilly describes as equivalent to marketed tablets. This source does not change the separate UK authorisation, NHS access or actual-supply statements and is not automatically content-monitored.',
     }],
   },
   {
