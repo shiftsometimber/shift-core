@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-03",
+  "baseline": "85c64a2c4514383517932398100a3659998da0808ad1f7ac51a5fa810787a2a3",
+  "candidate": "6827c165d2d8a8e29687b65878c18669bbc741df040db4c1749e60613a30df68",
+  "preservedFiles": 873,
+  "reviewedFaqs": 14,
+  "corrections": [
+    {
+      "path": "/faq/bbq-and-weight-loss",
+      "source": "https://www.gov.uk/government/publications/bbq-food-safety/bbq-food-safety",
+      "basis": "FSA 31 July 2026 guidance read: raw/cooked separation and safe cooking."
+    },
+    {
+      "path": "/faq/how-often-weigh",
+      "source": "https://www.england.nhs.uk/wp-content/uploads/2021/06/PRN00916-how-to-record-your-weight.pdf",
+      "basis": "NHS England one-page leaflet read: consistent time, scales, floor, clothing, regular intervals."
+    },
+    {
+      "path": "/faq/need-breakfast-weight-loss",
+      "source": "https://research.monash.edu/en/publications/effect-of-breakfast-on-weight-and-energy-intake-systematic-review/",
+      "basis": "Authors' publication record and abstract read; BMJ 2019 l42. Short-term low-quality evidence; does not establish best individual eating pattern."
+    }
+  ],
+  "independentClinicalReview": false
+}
