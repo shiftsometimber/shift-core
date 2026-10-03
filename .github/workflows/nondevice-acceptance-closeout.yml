@@ -47,7 +47,7 @@ jobs:
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       GITHUB_TOKEN: ${{ github.token }}
-      LOSSLESS_MAIN_SOURCE: e1cdcd17cc9a65aa5443cd0a9eb2842d9f4459f7
+      LOSSLESS_MAIN_SOURCE: 0a0521dfee2e3560cd75e0dc17578b99ecafc4e8
     steps:
       - uses: actions/checkout@v4
         with: {persist-credentials: false}

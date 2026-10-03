@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import {extractPublicPage,plainText,sitemapUrls,storePublicPage} from '../../member-experience/ai-site-knowledge.mjs';
+import {extractPublicPage,plainText,sitemapUrls,storePublicPage,publishedSiteQuery} from '../../member-experience/ai-site-knowledge.mjs';
 assert.equal(process.env.GITHUB_ACTIONS,'true');assert.equal(process.env.GITHUB_ACTOR_ID,'315011648');
 assert.equal(process.env.GITHUB_REF,'refs/heads/codex/nondevice-completion-20261003');
 const main=process.env.LOSSLESS_MAIN_SOURCE;assert.match(main||'',/^[a-f0-9]{40}$/);
@@ -29,6 +29,8 @@ let updated=0;const receipts=[];
 for(const page of pages){const old=before.filter(r=>r.source_uri===page.url&&r.content!==null);if(JSON.stringify(old.map(r=>r.content))!==JSON.stringify(page.chunks)||old.some(r=>r.status!=='published_site')){await storePublicPage(DB,page);updated++;}
  const rows=await select('SELECT c.chunk_index,c.content FROM ai_knowledge_documents d JOIN ai_knowledge_chunks c ON c.document_id=d.id WHERE d.checksum=? AND d.status=? ORDER BY c.chunk_index',['shift-public:'+page.url,'published_site']);assert.deepEqual(rows.map(r=>r.content),page.chunks);receipts.push({url:page.url,chunks:rows.length,sourceTextSha256:hash(page.chunks.join(' ')),exactCopy:true});
 }
+const request=publishedSiteQuery('weight after 40'),results=await select(request.sql,request.args);assert.equal(results[0]?.source_uri,origin+'/articles/men-weight-loss-after-40');
+writeFileSync(dir+'/age-retrieval.json',JSON.stringify({at:new Date().toISOString(),query:'weight after 40',citations:results.map(r=>r.source_uri),dedicatedPageFirst:true,modelsCalled:0,scope:'Read-only production SQL using the exact deployed implementation'}));
 const expiry=await select("SELECT COUNT(*) expiredOrInvalid FROM audit_log WHERE action='auth.register' AND CASE WHEN json_valid(metadata) THEN json_type(metadata,'$.acquisition') IS NOT NULL AND (julianday(json_extract(metadata,'$.acquisition.expiresAt'))<=julianday('now') OR julianday(json_extract(metadata,'$.acquisition.expiresAt')) IS NULL) ELSE 0 END");
 writeFileSync(dir+'/acquisition-expiry.json',JSON.stringify({at:new Date().toISOString(),aggregate:expiry,scope:'Read-only expiry backlog count; no account identifiers or metadata exported'}));
 assert.equal(Number(expiry[0]?.expiredOrInvalid),0,'Expired acquisition metadata remains; retained expiry job needs repair');
