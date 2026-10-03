@@ -1,4 +1,4 @@
-import {ensureReviewedHistory,REVIEWED_HISTORY_REFS,COACH_ARTICLE_BASE,COACH_ARTICLE_ADDITIONS,COACH_ARTICLE_CHANGES} from './release-contract.mjs';
+import {ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH,ensureReviewedHistory,REVIEWED_HISTORY_REFS,COACH_ARTICLE_BASE,COACH_ARTICLE_ADDITIONS,COACH_ARTICLE_CHANGES} from './release-contract.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -6,6 +6,13 @@ import {execFileSync} from 'node:child_process';
 import {COACH_BASE,COACH_PATHS,COACH_COMPOSED_BOOK_ADDITIONS,COACH_COMPOSED_BOOK_CHANGES,assertCoachingChangedPath,WATCH_CURRENT_PATHS,assertCoachingConfiguration,withoutCoachEntrypoint,coachingHistoricalRef,validateCoachingSource,assertLaunchDecisions} from './release-contract.mjs';
 const config=readFileSync('wrangler.jsonc','utf8'),before=execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'});
 const manifest=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8'));
+test('read-only article closeout cannot be changed, deleted or widened by repinning',()=>{
+ const m={...manifest,applicationCommit:'a'.repeat(40)};
+ assert.doesNotThrow(()=>assertCoachingChangedPath('M',ARTICLE_CLOSEOUT_PATH));
+ for(const status of ['A','D','R'])assert.throws(()=>assertCoachingChangedPath(status,ARTICLE_CLOSEOUT_PATH));
+ assert.throws(()=>assertCoachingChangedPath('M','.github/workflows/other-article-writer.yml'),/Unlisted/);
+ assert.throws(()=>validateCoachingSource((ref,path)=>ref===ARTICLE_CLOSEOUT_SOURCE&&path===ARTICLE_CLOSEOUT_PATH?'reviewed-check':path,m),/Read-only article closeout source drift/);
+});
 test('merged article composition preserves exact baseline bytes and rejects unexpected statuses',()=>{
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]){
   const status=COACH_ARTICLE_ADDITIONS.has(p)?'A':'M';

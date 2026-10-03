@@ -18,7 +18,11 @@ export const COACH_ARTICLE_BASE='0d084f00cf6c4593dd0c11dfd047daf4e5103295';
 export const COACH_ARTICLE_ADDITIONS=new Set(['.github/workflows/evidence-article-repair-snapshot.yml','.github/workflows/evidence-based-article-live-release.yml','babylove/repair-evidence-based-article.mjs']);
 export const COACH_ARTICLE_CHANGES=new Set(['babylove/dynamic-public.mjs','babylove/dynamic-public.test.mjs','medicines-watch/preservation.mjs','medicines-watch/preservation.test.mjs','public-shell-contract.mjs']);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]);
+// Finite read-only release maintenance; not permission for more publication jobs.
+export const ARTICLE_CLOSEOUT_SOURCE='69886cec987aed15a1a7e6340953cd7a5372dfee';
+export const ARTICLE_CLOSEOUT_PATH='.github/workflows/babylove-mounjaro-876303-live.yml';
 export function assertCoachingChangedPath(status,path){
+ if(path===ARTICLE_CLOSEOUT_PATH){assert.equal(status,'M','Unexpected article closeout status');return;}
  if(COACH_ARTICLE_ADDITIONS.has(path)||COACH_ARTICLE_CHANGES.has(path)){assert.equal(status,COACH_ARTICLE_ADDITIONS.has(path)?'A':'M','Unexpected article repair composition status: '+path);return;}
  const health=DEVICE_HEALTH_DELTA.find(([,p])=>p===path);
  if(health){assert.equal(status,health[0],'Unexpected native health composition status: '+path);return;}
@@ -53,6 +57,7 @@ export function validateCoachingSource(read,manifest){
  assert.match(manifest.applicationCommit,/^[a-f0-9]{40}$/,'Recorded coaching application source required');
  assert.deepEqual(manifest.pinnedPaths,[...COACH_PATHS].filter(p=>p!=='shift-coach/release-manifest.json').sort(),'Exact coaching path list required');
  for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(manifest.applicationCommit,p),'Coaching release source drift: '+p);
+ assert.equal(read('HEAD',ARTICLE_CLOSEOUT_PATH),read(ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH),'Read-only article closeout source drift');
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
  assert.equal(read('HEAD','public-continuity.mjs'),read('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
  assert.equal(read('HEAD','tests/my-health-plan-v2.test.mjs'),read('5bf5a7febae1a6bab3a549507306669456a8aaa6','tests/my-health-plan-v2.test.mjs'),'Merged My Health Plan v2 test source drift');
