@@ -53,7 +53,40 @@ test('side effects and medication concerns retain clinical destination',()=>{
  for(const difficulty of ['sideeffects','hunger']){let s=applyRoutine(null,setup);s=applyRoutine(s,{kind:'review',routine:'difficult',difficulty,prescriberHelp:false});assert.match(s.step.detail,/prescriber/);s=applyRoutine(s,{kind:'feedback',stepId:s.step.id,outcome:'didnt-help'});assert.match(s.step.detail,/prescriber/)}
  let s=applyRoutine(null,setup);s=applyRoutine(s,{kind:'review',routine:'manageable',difficulty:'none',prescriberHelp:true});assert.match(s.step.detail,/prescriber/);
 });
-test('first week becomes due only with saved start date; review satisfies prompt',()=>{const s=applyRoutine(null,setup);const start=Date.parse(s.startDate+'T12:00:00Z');assert.equal(viewRoutine(s,start+5*86400000).firstWeekDue,false);assert.equal(viewRoutine(s,start+6*86400000).firstWeekDue,true);s.review={};assert.equal(viewRoutine(s,start+7*86400000).firstWeekDue,false)});
+test('day-one help and early review do not suppress the first-week check',()=>{
+ let s=applyRoutine(null,setup,'2026-09-01T10:00:00Z');
+ assert(s.step?.title);assert.equal(s.nextCheckDate,'2026-09-03');
+ assert.equal(viewRoutine(s,Date.parse('2026-09-06T20:00:00Z')).firstWeekDue,false);
+ s=applyRoutine(s,{kind:'review',routine:'manageable',difficulty:'none',prescriberHelp:false},'2026-09-02T10:00:00Z');
+ assert.equal(viewRoutine(s,Date.parse('2026-09-07T00:30:00Z')).firstWeekDue,true);
+ s=applyRoutine(s,{kind:'review',routine:'manageable',difficulty:'none',prescriberHelp:false},'2026-09-07T10:00:00Z');
+ assert.equal(viewRoutine(s,Date.parse('2026-09-08T10:00:00Z')).firstWeekDue,false);
+ assert.equal(viewRoutine({...s,firstWeekReviewedAt:null},Date.parse('2026-09-08T10:00:00Z')).firstWeekDue,false,'legacy dated week-one reviews stay complete');
+});
+test('helped returns for another usefulness check and not-tried leaves the step open',()=>{
+ let s=applyRoutine(null,setup,'2026-09-01T10:00:00Z');const id=s.step.id;
+ s=applyRoutine(s,{kind:'feedback',stepId:id,outcome:'not-tried'},'2026-09-01T11:00:00Z');
+ assert.equal(s.step.id,id);assert.equal(s.nextCheckDate,'2026-09-02');
+ assert.equal(viewRoutine(s,Date.parse('2026-09-02T10:00:00Z')).feedbackDue,true);
+ s=applyRoutine(s,{kind:'feedback',stepId:id,outcome:'helped'},'2026-09-02T11:00:00Z');
+ assert.equal(viewRoutine(s,Date.parse('2026-09-03T10:00:00Z')).feedbackDue,false);
+ assert.equal(viewRoutine(s,Date.parse('2026-09-04T10:00:00Z')).feedbackDue,true);
+ assert.equal(viewRoutine(s).helpfulSteps,1);
+ s=applyRoutine(s,{kind:'feedback',stepId:id,outcome:'helped'},'2026-09-02T12:00:00Z');
+ assert.equal(s.outcomes.length,2,'duplicate same-day answer does not inflate progress');
+});
+test('every practical obstacle changes in kind; repeat reviews cannot restart failed approaches',()=>{
+ for(const difficulty of ['none','timing','forgetting','food']){
+  let s=applyRoutine(null,setup);s=applyRoutine(s,{kind:'review',routine:'difficult',difficulty,prescriberHelp:false});
+  const first=s.step.kind;
+  s=applyRoutine(s,{kind:'feedback',stepId:s.step.id,outcome:'didnt-help'});
+  assert.notEqual(s.step.kind,first,difficulty);const alternative=s.step.id;
+  s=applyRoutine(s,{kind:'review',routine:'difficult',difficulty,prescriberHelp:false});assert.equal(s.step.id,alternative);
+  s=applyRoutine(s,{kind:'feedback',stepId:s.step.id,outcome:'didnt-fit'});assert.match(s.step.title,/support/);
+  s=applyRoutine(s,{kind:'review',routine:'difficult',difficulty:difficulty==='food'?'forgetting':'food',prescriberHelp:false});
+  s=applyRoutine(s,{kind:'review',routine:'difficult',difficulty,prescriberHelp:false});assert.match(s.step.title,/support/);
+ }
+});
 test('current dashboard and public responses remain intact; embedded client parses',async()=>{
  new Function(tabletClient);
  const html='<html><head></head><body><header>existing</header><div id="todayActions"><p>existing action</p></div></body></html>';
