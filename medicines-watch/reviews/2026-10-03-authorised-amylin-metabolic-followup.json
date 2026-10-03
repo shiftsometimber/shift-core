@@ -1,0 +1,100 @@
+{
+  "reviewedAt": "2026-10-03T07:14:46Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Correct ABBV-295 research stage and publish two bounded older research omissions through the existing guarded workflow. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "changes": [{
+    "id": "abbv295",
+    "fields": {
+      "stage": "Phase 2 recruiting; separate Phase 1 sponsor results",
+      "summary": "AbbVie's sponsor-submitted NCT07752979 record, updated 2 October 2026, records a recruiting Phase 2 dose-finding study of subcutaneous ABBV-295 versus placebo in adults with obesity or overweight and weight-related conditions. It reports an actual 4 August 2026 start, an estimated 360 participants and estimated March 2028 completion. The 30 September sponsor announcement reports separate Phase 1 findings.",
+      "limitations": "The sponsor's 30 September announcement described Phase 2 advancement prospectively, while the registry records an actual earlier start; both dated accounts are retained. The Phase 2 record has no posted results. Recruitment does not establish efficacy, long-term safety, superiority or an approved dosing interval. The reported Phase 1 cohorts were small and 88% male. No clinical approval is claimed."
+    },
+    "additionalEvidence": [{
+      "title": "ClinicalTrials.gov NCT07752979: ABBV-295 Phase 2",
+      "url": "https://clinicaltrials.gov/study/NCT07752979",
+      "sourcePublishedAt": "2026-08-07",
+      "sourceUpdatedAt": "2026-10-02",
+      "reviewedAt": "2026-10-03T07:14:46Z",
+      "checkScope": "Complete sponsor-submitted API record read for recruiting Phase 2 status, actual start, estimated enrolment/completion, design and absence of posted results; not automatically content-monitored."
+    }]
+  }],
+  "entries": [{
+    "id": "azd6234",
+    "name": "AZD6234",
+    "developer": "AstraZeneca",
+    "group": "research",
+    "stage": "Phase 2b APRICUS completed; no registry-posted results",
+    "summary": "AstraZeneca describes AZD6234 as a weekly injectable selective amylin receptor agonist. Its sponsor-submitted APRICUS registry records a completed Phase 2b study in adults with obesity or overweight and a weight-related condition, with 262 actual participants and actual 3 December 2025 completion. The record was updated on 2 October 2026 and has no posted results.",
+    "ukAuthorisation": "The reviewed research sources do not establish UK marketing authorisation for AZD6234.",
+    "nhsEngland": "No NICE recommendation or NHS England access is established by these sources.",
+    "supply": "Completed research does not establish lawful UK retail supply, pharmacy stock or a product sold by Shift Some Timber.",
+    "limitations": "An older coverage omission, not a newly started October trial. Study completion does not establish successful weight loss or safety. The design description retained an earlier approximate target of 231, while the enrolment field records 262 actual participants. This summary covers AZD6234 alone; separate combination programmes and later development stages require their own evidence review.",
+    "sourceIds": [],
+    "reviewedAt": "2026-10-03T07:14:46Z",
+    "clinicalApproval": null,
+    "additionalEvidence": [{
+      "title": "ClinicalTrials.gov NCT06595238: APRICUS",
+      "url": "https://clinicaltrials.gov/study/NCT06595238",
+      "sourcePublishedAt": "2024-09-19",
+      "sourceUpdatedAt": "2026-10-02",
+      "reviewedAt": "2026-10-03T07:14:46Z",
+      "checkScope": "Complete sponsor-submitted API record read for Phase 2b design, actual enrolment/completion, formulation and absence of posted results; not automatically content-monitored."
+    }, {
+      "title": "AstraZeneca portfolio announcement",
+      "url": "https://www.astrazeneca.com/media-centre/press-releases/2026/astrazeneca-agrees-obesity-and-t2d-deal-with-cspc.html",
+      "sourcePublishedAt": "2026-01-30",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-03T07:14:46Z",
+      "checkScope": "Original sponsor text read for AZD6234 mechanism and injectable formulation. No agreement-closing event or later trial stage is inferred; update date unverified; not automatically content-monitored."
+    }]
+  }, {
+    "id": "mirabegron-alpha-lipoic-acid",
+    "name": "Mirabegron with alpha-lipoic acid",
+    "developer": "NIDDK / NIH investigator-led research",
+    "group": "research",
+    "stage": "Phase 2 metabolic pilot; not yet recruiting",
+    "summary": "NIDDK's NCT05713799 record describes an oral mirabegron and alpha-lipoic acid crossover pilot in adults with obesity, comparing the combination with mirabegron plus placebo. The 2 October 2026 update remains not yet recruiting, with an estimated 7 October 2026 start, 60 estimated participants and estimated March 2030 completion. Its primary endpoint is insulin sensitivity, with metabolic and exploratory body-composition outcomes.",
+    "ukAuthorisation": "The reviewed research record does not establish UK authorisation of this combination for obesity or weight management.",
+    "nhsEngland": "No NICE recommendation or NHS England access for this research combination is established.",
+    "supply": "A trial listing does not establish lawful UK supply or pharmacy stock for this combination and use, or a product sold by Shift Some Timber.",
+    "limitations": "First posted in February 2023: an older omission, not an October medicine launch. The estimated start is not actual dosing. No results are posted. The detailed protocol retains a 48-person target while the enrolment field estimates 60; this discrepancy is preserved. Metabolic study aims are not demonstrated weight-loss benefit, a prescribing recommendation or approval of this combination.",
+    "sourceIds": [],
+    "reviewedAt": "2026-10-03T07:14:46Z",
+    "clinicalApproval": null,
+    "additionalEvidence": [{
+      "title": "ClinicalTrials.gov NCT05713799",
+      "url": "https://clinicaltrials.gov/study/NCT05713799",
+      "sourcePublishedAt": "2023-02-06",
+      "sourceUpdatedAt": "2026-10-02",
+      "reviewedAt": "2026-10-03T07:14:46Z",
+      "checkScope": "Complete investigator-submitted API record read for Phase 2 design, not-yet-recruiting status, estimated dates, enrolment discrepancy, endpoints and absence of posted results; not automatically content-monitored."
+    }]
+  }],
+  "registryEvidence": [
+    {"nctId":"NCT07752979","apiUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07752979","responseSha256":"40f3a71c097df61236057d13d9decea412aeac3a9d98d14ef85c584ba6d984c7","overallStatus":"RECRUITING","phase":"PHASE2","startDate":"2026-08-04","startDateType":"ACTUAL","enrolment":360,"enrolmentType":"ESTIMATED","hasResults":false},
+    {"nctId":"NCT06595238","apiUrl":"https://clinicaltrials.gov/api/v2/studies/NCT06595238","responseSha256":"3c67c41a28d27775380f119c90bea50a75b6b6a84a99aed0d93df941b8a9e67d","overallStatus":"COMPLETED","phase":"PHASE2","completionDate":"2025-12-03","completionDateType":"ACTUAL","enrolment":262,"enrolmentType":"ACTUAL","hasResults":false},
+    {"nctId":"NCT05713799","apiUrl":"https://clinicaltrials.gov/api/v2/studies/NCT05713799","responseSha256":"3a1360d63017f9d751fd1a02b373457b7762117db8e8c1239fbfb1fef61cc29c","overallStatus":"NOT_YET_RECRUITING","phase":"PHASE2","startDate":"2026-10-07","startDateType":"ESTIMATED","enrolment":60,"enrolmentType":"ESTIMATED","hasResults":false}
+  ],
+  "configuredSourcePass": {
+    "healthUrl":"https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "checkedAt":"2026-10-03T06:15:48.110Z",
+    "available":true,"status":"current","configuredSources":50,"attention":[],
+    "reviewRenewals":false,"baselineChanges":false,
+    "boundary":"A SELECT-only health observation of configured checks, not a new medical review or industry-completeness claim. Unmonitored evidence remains outside this denominator."
+  },
+  "discovery": {
+    "method":"Separate current-month/current-date and undated topic-based searches for weight management, incretin/amylin, peptide trials, muscle preservation and stopped programmes; a broad obesity-condition ClinicalTrials.gov API pass for updates since 2 October returned 46 records, then drug/biologic candidates were read and compared with live catalogue and dated receipts.",
+    "existingWork":"PR851 is merged. Current open PRs were inspected, including review-only retatrutide PRs815/874 and public medicine-guide draft997; their qualified-review decisions are not bypassed. Olatorepatide, KaiNETIC, SYNCHRONIZE-2, emugrobart discontinuation and other already-published summaries were not duplicated.",
+    "retrievalLimitations":"Several grouped sponsor searches returned irrelevant or incomplete results; a successful search call is not proof of sponsor coverage. Targeted Hansoh and AstraZeneca evidence was read separately. No exhaustive sponsor-universe claim is made; Pfizer, Viking, Structure, Merck and smaller developers still need continuing discovery beyond returned results. Regulator searches surfaced existing MHRA approvals and safety material but did not establish a new UK-access change for these three programmes. Official product-information sources were assessed through configured health only; their editorial dates were not renewed.",
+    "heldCandidates":[{"name":"TIX100","url":"https://clinicaltrials.gov/study/NCT07675590","sourcePublishedAt":"2026-06-30","sourceUpdatedAt":"2026-10-02","reviewedAt":"2026-10-03T07:14:46Z","reason":"Recruiting Phase 1 safety/pharmacokinetic study in otherwise healthy overweight/obese participants; T1D/TXNIP development context and no weight-loss endpoint or posted results. Not published as a weight-management efficacy programme on this evidence."}],
+    "industryComplete":false,
+    "clinicalDecisions":"No suitability, dosing, comparative benefit or safety decision is made. Unsupported clinical conclusions remain awaiting qualified review."
+  }
+}

@@ -27,9 +27,41 @@ import specialistRegistryFollowup from './reviews/2026-10-02-authorised-speciali
 import switchingStudies from './reviews/2026-10-02-authorised-switching-studies.json' with {type:'json'};
 import na931Publication from './reviews/2026-10-02-authorised-na931.json' with {type:'json'};
 import earlierEloraNa931Proposal from './reviews/2026-09-30-eloratzp-na931-discovery.json' with {type:'json'};
+import amylinMetabolicFollowup from './reviews/2026-10-03-authorised-amylin-metabolic-followup.json' with {type:'json'};
+test('amylin follow-up corrects actual research stage while retaining dated discrepancies',()=>{
+ const abbv=industry.find(e=>e.id==='abbv295');
+ assert.match(abbv.stage,/Phase 2 recruiting/);
+ assert.match(abbv.summary,/actual 4 August 2026 start/);
+ assert.match(abbv.limitations,/prospectively/);
+ assert.match(abbv.limitations,/no posted results/);
+ const azd=industry.find(e=>e.id==='azd6234');
+ assert.match(azd.stage,/completed; no registry-posted results/);
+ assert.match(azd.summary,/262 actual participants/);
+ const pilot=industry.find(e=>e.id==='mirabegron-alpha-lipoic-acid');
+ assert.match(pilot.stage,/not yet recruiting/);
+ assert.match(pilot.summary,/estimated 7 October 2026 start/);
+ assert.match(pilot.summary,/primary endpoint is insulin sensitivity/);
+ assert.match(pilot.limitations,/48-person target.*estimates 60/);
+ for(const e of [abbv,azd,pilot]){
+  assert.equal(e.clinicalApproval,null);
+  assert.equal(e.reviewedAt,amylinMetabolicFollowup.reviewedAt);
+  assert.equal(e.sourceIds.length,0);
+  for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k]);
+  const html=industryMarkup({},new URLSearchParams({q:e.name}));
+  assert.match(html,/not automatically content-monitored/);
+ }
+ assert.equal(amylinMetabolicFollowup.automatedMonitorChanges,false);
+ assert.equal(amylinMetabolicFollowup.clinicalApproval,null);
+ assert.equal(amylinMetabolicFollowup.industryComplete,false);
+ for(const record of amylinMetabolicFollowup.registryEvidence){
+  assert.equal(record.hasResults,false);
+  assert.match(record.responseSha256,/^[a-f0-9]{64}$/);
+ }
+ assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
+});
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,72);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,78);
+ assert.equal(medicines.length,6);assert.equal(industry.length,74);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,80);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -110,7 +142,7 @@ test('KaiNETIC update records completed Phase 3 enrolment without implying resul
 });
 test('unverified source baselines stay visible even if a caller supplies current status',()=>{
  const html=industryMarkup({sources:industrySources.map(s=>({id:s.id,status:'current'}))});
- assert.equal((html.match(/data-industry-card/g)||[]).length,72);
+ assert.equal((html.match(/data-industry-card/g)||[]).length,74);
  assert.equal((html.match(/Complete-response baseline not yet verified/g)||[]).length,industry.flatMap(e=>e.sourceIds).filter(id=>!industrySources.find(s=>s.id===id).reviewedFingerprint).length);
  assert.match(html,/not clinical approval/);assert.match(html,/not automatically content-monitored/);
 });
@@ -336,7 +368,7 @@ test('latest wider discovery keeps formulations, plans and stopped programmes di
   assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/,id);
   assert.match(item.supply,/do(?:es)? not establish lawful UK retail supply/,id);
  }
- assert.match(industry.find(entry=>entry.id==='abbv295').stage,/Phase 2 planned/);
+ assert.match(industry.find(entry=>entry.id==='abbv295').stage,/Phase 2 recruiting/);
  assert.match(industry.find(entry=>entry.id==='asc30-oral').stage,/Completed Phase 2/);
  assert.match(industry.find(entry=>entry.id==='asc30-depot').limitations,/not approved regimens/);
  assert.equal(industry.find(entry=>entry.id==='tern601').group,'discontinued');
@@ -514,7 +546,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,72);
+ assert.equal(industry.length,74);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
