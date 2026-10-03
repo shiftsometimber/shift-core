@@ -1,0 +1,108 @@
+{
+  "reviewedAt": "2026-10-03T09:28:00Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add a bounded WVE-007 research summary from actual primary evidence. Editorial authorisation is not clinical approval; exact passing PR, guarded production and live verification remain required."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [{
+    "id": "wve007",
+    "name": "WVE-007",
+    "developer": "Wave Life Sciences",
+    "group": "research",
+    "stage": "Recruiting Phase 1/2a monotherapy; Phase 2a combination initiation sponsor-reported",
+    "summary": "An investigational subcutaneous INHBE-targeting GalNAc-siRNA. The INLIGHT monotherapy registry lists recruiting Phase 1/2a research with 296 estimated participants and no posted results. Wave's 23 September 2026 announcement separately reports Phase 2a initiation with tirzepatide in adults with obesity and type 2 diabetes. A post-incretin weight-maintenance trial remains planned for the second half of 2026.",
+    "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for WVE-007 or the investigational combination.",
+    "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+    "supply": "Clinical development and listed UK research sites do not establish lawful UK retail supply or pharmacy stock. WVE-007 is not offered for sale by SHIFT.",
+    "limitations": "This closes an older coverage omission, not a new October trial start. The monotherapy record was last updated on 2 June 2026 and does not describe the later tirzepatide combination; the exact-name registry search returned only that monotherapy record. Combination initiation is therefore attributed to the sponsor, not independently corroborated by a matched combination registry. December 2027 monotherapy completion remains estimated. Earlier body-composition observations are sponsor-reported; the combination synergy cited in the September announcement is preclinical, not completed human combination evidence. Imaging and lean mass do not establish strength or function, clinical benefit or tolerability superiority. Proposed once- or twice-yearly dosing is not an authorised regimen, and the maintenance trial is not treated as started.",
+    "sourceIds": [],
+    "reviewedAt": "2026-10-03T09:28:00Z",
+    "clinicalApproval": null,
+    "additionalEvidence": [{
+      "title": "Wave: WVE-007 with tirzepatide Phase 2a initiation",
+      "url": "https://wavelifesciences.gcs-web.com/news-releases/news-release-details/wave-life-sciences-initiates-phase-2a-combination-trial-wve-007",
+      "sourcePublishedAt": "2026-09-23",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-03T09:28:00Z",
+      "checkScope": "Original sponsor announcement read for INHBE mechanism, subcutaneous formulation, separate Phase 2a combination initiation, monotherapy, planned maintenance and preclinical-versus-human distinction; not automatically content-monitored."
+    }, {
+      "title": "ClinicalTrials.gov NCT06842186: INLIGHT monotherapy",
+      "url": "https://clinicaltrials.gov/study/NCT06842186",
+      "sourcePublishedAt": "2025-02-24",
+      "sourceUpdatedAt": "2026-06-02",
+      "reviewedAt": "2026-10-03T09:28:00Z",
+      "checkScope": "Complete sponsor-submitted API record read for matched identity, monotherapy design, formulation, recruiting Phase 1/2a, actual start, estimated enrolment/completion, UK sites and absence of posted results; not automatically content-monitored."
+    }]
+  }],
+  "registryEvidence": {
+    "apiUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06842186",
+    "retrievedAt": "2026-10-03T09:25:12.125Z",
+    "httpStatus": 200,
+    "responseSha256": "6202e4dd5238843fc2a1d08d35ada5ec5f8d1e46a5daa8b7ab9ec769939ba02d",
+    "overallStatus": "RECRUITING",
+    "phases": ["PHASE1", "PHASE2"],
+    "startDate": "2025-01-31",
+    "startDateType": "ACTUAL",
+    "enrolment": 296,
+    "enrolmentType": "ESTIMATED",
+    "completionDate": "2027-12",
+    "completionDateType": "ESTIMATED",
+    "hasResults": false,
+    "ukLocationsListed": 2,
+    "combinationRegistryMatched": false
+  },
+  "sponsorRetrieval": {
+    "httpStatus": 200,
+    "responseSha256": "10702bfe1d087ad87520a18c3966582394b4261f810542ba912945fa60e7853f",
+    "bodyCharacters": 55118,
+    "automaticBaselineApproved": false,
+    "sourceUpdatedAt": null
+  },
+  "configuredSourcePass": {
+    "url": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-03T09:22:50.594Z",
+    "lastAttemptAt": "2026-10-03T08:30:43.545Z",
+    "httpStatus": 200,
+    "status": "current",
+    "configuredSources": 50,
+    "attention": [],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "Source availability/content/withdrawal/expiry and monitor operation assessed through SELECT-only health observations; no factual-review renewal follows from a successful HTTP response."
+  },
+  "discoveryPass": {
+    "method": "Separate current-date/current-month and broader undated topic searches for regulator/access changes, obesity peptides, non-incretins, combinations, body composition, maintenance, specialist indications and paused/discontinued development. Compared actual primary evidence with all exported live entries and dated receipts. PR851 and PR1006 are merged; open PR815/874/997 are distinct review scopes and not duplicated or bypassed.",
+    "currentDateRegistryQuery": "https://clinicaltrials.gov/api/v2/studies?query.cond=Obesity&format=json&pageSize=100&filter.advanced=AREA%5BLastUpdatePostDate%5DRANGE%5B2026-10-03%2C%20MAX%5D",
+    "currentDateRegistryCheckedAt": "2026-10-03T09:24:01.182Z",
+    "currentDateRegistryMatches": 0,
+    "wveRegistryQuery": "https://clinicaltrials.gov/api/v2/studies?query.intr=WVE-007&pageSize=20&format=json",
+    "wveRegistryMatches": ["NCT06842186"],
+    "selectedDeveloperSearches": ["Novo Nordisk", "Lilly", "Amgen", "Zealand/Roche", "Pfizer", "Viking", "Structure", "Boehringer Ingelheim", "AstraZeneca", "Hansoh/Merck", "Kailera", "Wave", "Neurocrine", "Aardvark"],
+    "incompleteChecks": [
+      "Grouped sponsor queries returned mixed, irrelevant and already-covered results; no complete individual developer or exhaustive industry review is claimed.",
+      "No verified new MHRA/NICE/NHS access change was established. The 2 October MHRA advertising guidance is not a new authorisation or access decision.",
+      "NBIP-2118 remains mentioned within the existing NBIP-1968 entry. Original sponsor Phase 1 announcement and clinical-studies page were read, but exact-name NBIP-02118 registry query returned no records; no standalone registry-confirmed stage or human muscle-benefit claim is added.",
+      "LEAN-PREP NCT06885736 and MYO-PRESERVE NCT07393360 were surfaced by discovery, but full primary review is incomplete; no nutrition/exercise efficacy claim or new product category is published.",
+      "Current-date registry results cannot exclude older omissions, indexing delay or international evidence. Selected domains, search counts and catalogue size do not establish completeness."
+    ],
+    "failedChecks": [{
+      "url": "https://ir.aardvarktherapeutics.com/news-releases/news-release-details/aardvark-therapeutics-reports-second-quarter-2026-financial",
+      "status": "web_open_internal_error",
+      "sourcePublishedAt": "2026-08-11",
+      "nextAction": "Retrieve and read complete later primary evidence before a paused/clinical-hold ARD-101/ARD-201 summary is published. Search excerpts and the older 23 March release do not establish the current programme position."
+    }, {
+      "url": "https://ir.aardvarktherapeutics.com/news-releases/news-release-details/aardvark-therapeutics-plans-unblind-hero-and-ole-data-inform",
+      "status": "web_open_internal_error",
+      "sourcePublishedAt": "2026-05-14",
+      "nextAction": "Complete primary-source review; do not infer resumed or permanently discontinued development."
+    }],
+    "industryComplete": false
+  },
+  "catalogueCounts": {"detailed":6,"wider":76,"total":82,"configuredSources":50},
+  "nextAction": "Publish the independently supported WVE-007 summary through exact-source checks and guarded production/live verification; retain incomplete and failed discovery candidates for subsequent review."
+}
