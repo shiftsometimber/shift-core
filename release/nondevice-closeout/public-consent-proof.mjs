@@ -7,8 +7,8 @@ mkdirSync('nondevice-proof',{recursive:true});
 const browser=await chromium.launch({headless:true});
 try{
  for(const width of [390,1440]){
-  const context=await browser.newContext({viewport:{width,height:900}}),collector=[],gtm=[];
-  await context.route('**/*',async route=>{
+  let context=await browser.newContext({viewport:{width,height:900}}),collector=[],gtm=[];
+  const intercept=async route=>{
    const req=route.request(),u=new URL(req.url());
    if(/google-analytics\.com$|analytics\.google\.com$|doubleclick\.net$/.test(u.hostname)||/\/collect(?:\?|$|\/)/.test(u.pathname)){
     const payloads=[u.search,req.postData()||''].filter(Boolean).flatMap(s=>s.split('\n'));
@@ -19,8 +19,8 @@ try{
    // Intercept generated acquisition measurement; no production fixture writes.
    if(!['GET','HEAD'].includes(req.method()))return route.fulfill({status:200,contentType:'application/json',body:'{"ok":true}'});
    return route.continue();
-  });
-  const page=await context.newPage();await page.goto(origin+'/about',{waitUntil:'domcontentloaded'});
+  };await context.route('**/*',intercept);
+  let page=await context.newPage();await page.goto(origin+'/about',{waitUntil:'domcontentloaded'});
   await page.locator('[data-consent="necessary"]').waitFor({state:'visible'});await page.waitForTimeout(1500);
   assert.equal(gtm.length,0,'GTM requested before consent');assert.equal(collector.length,0,'Collection before consent');
   await page.locator('[data-consent="necessary"]').click();await page.waitForTimeout(1500);
@@ -35,7 +35,10 @@ try{
   await page.locator('#sstCookieSettings').click();await page.locator('[data-consent="necessary"]').click();
   assert.equal(await page.evaluate(()=>window['ga-disable-G-Y7BV5KY6RR']),true);
   // A browser carrying accepted consent must still exclude sensitive URLs.
-  await page.evaluate(()=>localStorage.setItem('sstConsentV3',JSON.stringify({analytics:true,necessary:true})));
+  await context.close();
+  context=await browser.newContext({viewport:{width,height:900}});await context.route('**/*',intercept);
+  await context.addInitScript(()=>localStorage.setItem('sstConsentV3',JSON.stringify({analytics:true,necessary:true})));
+  page=await context.newPage();
   const before=gtm.length,events=collector.length;
   await page.goto(origin+'/about?email=fictional-private@example.invalid',{waitUntil:'domcontentloaded'});await page.waitForTimeout(1500);
   assert.equal(await page.evaluate(()=>window.SST_ANALYTICS_SUPPRESSED),true);assert.equal(gtm.length,before);assert.equal(collector.length,events);
