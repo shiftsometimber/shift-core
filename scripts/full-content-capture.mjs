@@ -24,6 +24,25 @@ while(queue.length&&pages.length<1400){
  pages.push(...records);console.log('Captured '+pages.length+'; remaining '+queue.length);
  await fs.writeFile(out+'/pages.json',JSON.stringify(pages));
 }
-const proof={capturedAt:new Date().toISOString(),sourceSha:process.env.GITHUB_SHA||null,sitemapCount,uniqueDiscovered:seen.size,captured:pages.length,html:pages.filter(p=>!p.notHtml&&!p.error).length,remaining:queue.length,errors,httpFailures:pages.filter(p=>p.status>=400).map(p=>({url:p.url,status:p.status})),substantiveReviewComplete:false};
+const normaliseVisible=value=>String(value||'').replace(/\s+/g,' ').trim();
+const disposition=pages.map(p=>{
+ const html=!p.notHtml&&!p.error, h1Count=(p.headings||[]).filter(h=>h.level===1).length, flags=p.flags||[];
+ let status='no_issue_detected',reason='Captured HTML passed automated structural/content triage.';
+ if(!html){status='non_html_asset';reason='Discovered public route is not HTML content.';}
+ else if(Number(p.status)>=400){status='capture_failure';reason='HTTP capture failed.';}
+ else if(h1Count!==1){status='repair_required';reason='Rendered HTML has '+h1Count+' H1 headings; expected exactly one.';}
+ else if(flags.length){status='review_queue';reason='Automated copy triage found claims needing editorial and/or qualified review: '+flags.join(', ')+'.';}
+ return {url:p.url,final:p.final||p.url,httpStatus:p.status,title:p.title||null,words:p.words??null,h1Count:html?h1Count:null,externalSourceCount:(p.externalSources||[]).length,flags,status,reason};
+});
+const dispositionCounts=Object.fromEntries([...new Set(disposition.map(x=>x.status))].sort().map(status=>[status,disposition.filter(x=>x.status===status).length]));
+const exactTextGroups=new Map();
+for(const p of pages.filter(p=>!p.notHtml&&!p.error)){
+ const key=createHash('sha256').update(normaliseVisible(p.text)).digest('hex'),group=exactTextGroups.get(key)||[];group.push(p.url);exactTextGroups.set(key,group);
+}
+const exactVisibleTextDuplicateGroups=[...exactTextGroups.values()].filter(group=>group.length>1);
+const placeholderRoutes=pages.filter(p=>!p.notHtml&&!p.error&&/\b(?:TODO|TBD|lorem ipsum|coming soon|placeholder)\b/i.test(p.text||'')).map(p=>p.url);
+const triageSummary={routes:pages.length,html:pages.filter(p=>!p.notHtml&&!p.error).length,counts:dispositionCounts,exactVisibleTextDuplicateGroups,placeholderRoutes,routeDispositionComplete:pages.length===seen.size&&queue.length===0&&errors.length===0};
+await fs.writeFile(out+'/disposition.json',JSON.stringify({generatedAt:new Date().toISOString(),summary:triageSummary,routes:disposition},null,2));
+const proof={capturedAt:new Date().toISOString(),sourceSha:process.env.GITHUB_SHA||null,sitemapCount,uniqueDiscovered:seen.size,captured:pages.length,html:pages.filter(p=>!p.notHtml&&!p.error).length,remaining:queue.length,errors,httpFailures:pages.filter(p=>p.status>=400).map(p=>({url:p.url,status:p.status})),routeDispositionComplete:triageSummary.routeDispositionComplete,dispositionCounts,placeholderRoutes,exactVisibleTextDuplicateGroups,substantiveReviewComplete:false};
 await fs.writeFile(out+'/proof.json',JSON.stringify(proof,null,2));console.log(JSON.stringify(proof));
-if(queue.length||errors.length||proof.httpFailures.length)process.exitCode=1;
+if(queue.length||errors.length||proof.httpFailures.length||!proof.routeDispositionComplete)process.exitCode=1;
