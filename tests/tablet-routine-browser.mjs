@@ -30,6 +30,15 @@ try{
  await setup.getByLabel('These tablets have been prescribed').check();
  await setup.getByRole('button',{name:'Save my routine'}).click();
  await host.getByRole('heading',{name:'Foundayo tablets'}).waitFor();
+ await host.getByRole('heading',{name:'Keep one useful anchor'}).waitFor();
+ await host.getByRole('button',{name:'Not tried yet',exact:true}).click();
+ await host.getByText('No rush. The step stays here for when you can try it.').waitFor();
+ assert(await host.getByRole('button',{name:'It helped',exact:true}).isVisible());
+ await host.getByRole('button',{name:'It did not help',exact:true}).click();
+ await host.getByRole('heading',{name:'Make a pocket routine card'}).waitFor();
+ assert(await host.getByText(/Come back/).isVisible());
+ checks.push('saving gives an immediate useful step; not tried remains answerable and default failure changes kind');
+
  assert.match(await host.textContent(),/without food or water timing restrictions/);
  checks.push('real mobile dashboard stores chosen medicine, start date and routine time');
  const review=host.locator('[data-tablet-review]');
@@ -39,12 +48,23 @@ try{
  await host.getByRole('heading',{name:'Choose one quiet reminder'}).waitFor();
  await host.getByRole('button',{name:'It did not help',exact:true}).click();
  await host.getByRole('heading',{name:'Use a simple tick-off'}).waitFor();
+ await host.getByText('How is the tablet routine going?',{exact:true}).click();
+ const repeated=host.locator('[data-tablet-review]');
+ await repeated.getByRole('button',{name:'Save my check-in'}).click();
+ await host.getByRole('heading',{name:'Use a simple tick-off'}).waitFor();
+
  checks.push('did not help changes kind, from reminder to paper checklist');
  await page.reload();await host.waitFor({state:'visible'});await host.locator(':scope > summary').click();
  await host.getByRole('heading',{name:'Use a simple tick-off'}).waitFor();
  assert.equal(await host.getByText('first-week check-in ready').count(),0);
  for(const width of [390,1280]){await page.setViewportSize({width,height:900});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await host.scrollIntoViewIfNeeded();await page.screenshot({path:out+'/tablet-routine-'+width+'.png',fullPage:false})}
  checks.push('saved step returns after refresh; mobile and desktop have no horizontal overflow');
+ await host.getByRole('button',{name:'It helped',exact:true}).click();
+ await host.getByText('You said this helped. Keep what works; we will ask again when you return.').waitFor();
+ const realNow=Date.now;Date.now=()=>realNow()+3*86400000;
+ try{await page.reload();await host.waitFor({state:'visible'});await host.locator(':scope > summary').click();await host.getByText('Time to check: is this still helping?',{exact:true}).waitFor();assert(await host.getByRole('button',{name:'It did not help',exact:true}).isVisible())}finally{Date.now=realNow}
+ checks.push('a helpful step comes back for a real later usefulness check, retaining the saved attempt');
+
  const downloadPromise=page.waitForEvent('download');await host.getByRole('button',{name:'Add optional phone calendar reminder'}).click();const download=await downloadPromise;assert.equal(download.suggestedFilename(),'my-timber-routine.ics');
  checks.push('optional generic calendar file downloads from member dashboard');
  const rev=host.locator('[data-tablet-review]');if(!await rev.isVisible())await host.getByText('How is the tablet routine going?',{exact:true}).click();
