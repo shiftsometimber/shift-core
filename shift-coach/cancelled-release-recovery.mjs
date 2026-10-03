@@ -19,3 +19,21 @@ export function verifiedOwnedRuntime(active,run,job,receipt){
  if(active?.versions?.length!==1||active.versions[0].percentage!==100||receipt.versionId!==active.versions[0].version_id)return false;
  return /^[a-f0-9-]{36}$/.test(receipt.versionId)&&/^[a-f0-9-]{36}$/.test(receipt.deploymentId);
 }
+
+// Carry the earlier same-job recovery proof forward without reverting its
+// verified newer runtime to the historical fallback pointer.
+export function verifiedStartingPoint(record,active){
+ assert(['retain','restore'].includes(record?.decision),'Recovery decision absent');
+ assert.equal(record.run,recovery.run);assert.equal(record.dataChanged,false);
+ assert.equal(active?.versions?.length,1);assert.equal(active.versions[0].percentage,100);
+ assert.equal(active.versions[0].version_id,record.to,'Runtime moved since recovery verification');
+ if(record.ownedProof){
+  const p=record.ownedProof;assert.equal(record.decision,'retain');assert.equal(record.from,record.to);
+  assert.equal(p.version,record.to);assert.equal(p.run,record.verifiedRun);
+  assert.match(p.source,/^[a-f0-9]{40}$/);assert.match(p.version,/^[a-f0-9-]{36}$/);assert(Number.isSafeInteger(p.run)&&p.run>0);
+  return{source:p.source,version:p.version,run:p.run};
+ }
+ assert.equal(record.to,recovery.verified);assert.equal(record.verifiedRun,recovery.verifiedRun);
+ assert.equal(record.from,record.decision==='restore'?recovery.unverified:recovery.verified);
+ return{source:recovery.verifiedSource,version:recovery.verified,run:recovery.verifiedRun};
+}
