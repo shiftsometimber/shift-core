@@ -13,7 +13,7 @@ test('merged article composition preserves exact baseline bytes and rejects unex
   for(const bad of ['D','R',status==='A'?'M':'A'])assert.throws(()=>assertCoachingChangedPath(bad,p));
   const m={...manifest,applicationCommit:'a'.repeat(40)};
   // Even a matching application pin cannot silently re-authorise changed article bytes.
-  assert.throws(()=>validateCoachingSource((ref,path)=>ref===COACH_ARTICLE_BASE&&path===p?'prior-article':path,m),/Merged article repair source drift/);
+  assert.throws(()=>validateCoachingSource((ref,path)=>ref===(COACH_ARTICLE_CHANGES.has(p)?'0d084f00cf6c4593dd0c11dfd047daf4e5103295':COACH_ARTICLE_BASE)&&path===p?'prior-article':path,m),/Merged article repair source drift/);
  }
 });
 test('merged My Health Plan member asset is retained exactly and cannot be widened by repinning',()=>{
