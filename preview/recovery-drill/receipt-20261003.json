@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-03T09:51:31.791Z",
+  "elapsedMs": 40975,
+  "productionWrites": 0,
+  "syntheticOnly": true,
+  "sourceRevision": "6c9a8ac8f54dde34eaae4f027bc24be0dc9cc7c3",
+  "mainAndEvidenceD1Restored": true,
+  "workerAnd455MemberAssetsRedeployed": true,
+  "durableObjectClearedAndRestored": true,
+  "testCredentialRestored": true,
+  "deletionIntakeAndQueueVerified": true,
+  "postBackupDeletionPreserved": true,
+  "oldSessionsInvalidated": true,
+  "state": {
+    "pending_deletions": 1,
+    "open_tasks": 1,
+    "active_sessions": 0
+  },
+  "limitations": [
+    "Uses fictional data and a canary credential; production secret escrow and credential rotation are not verified.",
+    "Payments, emails and external callbacks were disabled, not replayed or reconciled against real providers.",
+    "Public Pages restored separately; all service routing/configuration still needs combined cutover acceptance.",
+    "Recovery owner, retention/processor contracts and operating acknowledgement are not established by this drill."
+  ],
+  "fullServiceRecoveryVerified": false
+}

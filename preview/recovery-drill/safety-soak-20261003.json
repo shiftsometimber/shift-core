@@ -1,0 +1,1519 @@
+{
+  "startedAt": "2026-10-03T09:37:04.835Z",
+  "scope": "Live deterministic emergency guard only; zero model requests",
+  "durationTargetMs": 300000,
+  "concurrency": 2,
+  "intervalMs": 4000,
+  "productionMemberWrites": 0,
+  "rows": [
+    {
+      "round": 0,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 83,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 0,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 118,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 1,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 28,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 1,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 33,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 2,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 100,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 2,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 101,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 3,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 33,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 3,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 35,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 4,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 33,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 4,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 34,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 5,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 23,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 5,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 25,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 6,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 32,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 6,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 42,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 7,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 37,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 7,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 44,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 8,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 25,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 8,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 26,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 9,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 33,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 9,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 36,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 10,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 103,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 10,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 105,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 11,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 31,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 11,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 36,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 12,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 30,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 12,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 35,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 13,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 22,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 13,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 23,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 14,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 30,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 14,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 30,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 15,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 25,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 15,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 27,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 16,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 23,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 16,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 26,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 17,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 29,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 17,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 31,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 18,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 77,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 18,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 79,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 19,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 22,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 19,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 26,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 20,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 22,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 20,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 27,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 21,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 22,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 21,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 27,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 22,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 32,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 22,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 38,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 23,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 23,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 23,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 30,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 24,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 24,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 24,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 29,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 25,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 29,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 25,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 30,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 26,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 64,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 26,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 72,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 27,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 40,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 27,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 43,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 28,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 24,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 28,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 27,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 29,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 103,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 29,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 106,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 30,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 26,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 30,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 28,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 31,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 37,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 31,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 36,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 32,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 23,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 32,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 26,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 33,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 23,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 33,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 25,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 34,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 46,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 34,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 48,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 35,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 220,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 35,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 294,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 36,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 29,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 36,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 34,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 37,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 106,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 37,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 107,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 38,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 21,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 38,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 24,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 39,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 20,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 39,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 22,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 40,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 23,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 40,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 24,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 41,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 30,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 41,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 31,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 42,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 30,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 42,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 33,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 43,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 25,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 43,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 30,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 44,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 23,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 44,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 25,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 45,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 82,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 45,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 83,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 46,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 31,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 46,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 31,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 47,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 24,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 47,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 26,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 48,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 25,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 48,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 26,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 49,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 34,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 49,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 36,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 50,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 28,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 50,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 29,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 51,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 25,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 51,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 26,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 52,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 21,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 52,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 30,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 53,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 67,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 53,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 70,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 54,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 25,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 54,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 28,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 55,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 26,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 55,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 30,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 56,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 107,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 56,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 108,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 57,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 28,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 57,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 30,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 58,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 36,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 58,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 37,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 59,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 24,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 59,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 25,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 60,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 22,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 60,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 32,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 61,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 44,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 61,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 46,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 62,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 25,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 62,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 25,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 63,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 24,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 63,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 23,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 64,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 108,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 64,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 109,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 65,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 23,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 65,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 25,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 66,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 24,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 66,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 26,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 67,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 27,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 67,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 26,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 68,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 26,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 68,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 30,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 69,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 33,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 69,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 34,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 70,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 26,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 70,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 26,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 71,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 33,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 71,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 36,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 72,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 87,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 72,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 88,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 73,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 23,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 73,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 24,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 74,
+      "lane": 1,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 24,
+      "pass": true,
+      "edge": "LHR"
+    },
+    {
+      "round": 74,
+      "lane": 0,
+      "status": 200,
+      "mode": "safety",
+      "category": "medical_emergency",
+      "elapsedMs": 27,
+      "pass": true,
+      "edge": "LHR"
+    }
+  ],
+  "completedAt": "2026-10-03T09:42:04.839Z",
+  "elapsedMs": 300005,
+  "requests": 150,
+  "failures": 0,
+  "p50Ms": 30,
+  "p95Ms": 107,
+  "p99Ms": 220,
+  "maxMs": 294,
+  "freshModelCapacityVerified": false
+}
