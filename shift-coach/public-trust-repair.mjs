@@ -79,10 +79,22 @@ export async function withContactReference(request){
 export function restoreTrustCentre(path,input,{required=false}={}){
  if(path!=='/treatment-centre')return input;
  let html=String(input);
+ // PR #1039 reviewed these two public-source MOT corrections. Restore their
+ // exact predecessor only for the existing release fingerprint, never for users.
+ const mot=[
+  ['The Health MOT guide explains a proposed blood-test route and how it differs from the older browser questionnaire. No test or clinical review is booked by reading it.','Explore the SHIFT Health MOT home blood test and what it covers.'],
+  ['>Read the Health MOT guide</a>','>Explore the Health MOT</a>']
+ ];
+ if(mot.some(([current])=>html.includes(current))){
+  for(const [current,prior]of mot){
+   if(html.split(current).length-1!==1||html.includes(prior))throw Error('Expected exactly one of each reviewed Health MOT correction');
+   html=html.replace(current,prior);
+  }
+ }
  const prior='Payment does not guarantee prescribing.',current='Treatment ordering and payment are not currently open.';
  const links='<p><a href="/terms-of-sale">Treatment ordering status and sale terms</a> · <a href="/refunds">Cancellations and refunds</a></p>';
  const count=s=>html.split(s).length-1;
- if(!required&&count(current)===0&&count(links)===0)return input;
+ if(!required&&count(current)===0&&count(links)===0)return html;
  if(count(current)!==2||count(prior)!==0||count(links)!==1)throw Error('Expected exact treatment trust repair: two notices and one link row');
  return html.replaceAll(current,prior).replace(links,'');
 }
