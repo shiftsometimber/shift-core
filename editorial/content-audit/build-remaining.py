@@ -71,7 +71,7 @@ def build(source,out):
     updates['release-body-integrity.json']=json.dumps({n:integrity[n] for n in sorted(integrity)},indent=2)+'\n'
     fp=json.loads(p['overrides']['DEPLOYMENT-FINGERPRINT.json']);fpe={e['path']:e for e in fp['files']}
     for n,s in updates.items():fpe[n]=entry(n,s)
-    fp['files']=[fpe[n] for n in sorted(fpe)];fp['file_count']=len(fp['files']);fp['aggregate_sha256']=digest(''.join(f"{e['sha256']}  {e['path']}\n" for e in fp['files']).encode())
+    fp['files']=[fpe[n] for n in sorted(fpe,key=pathlib.PurePosixPath)];fp['file_count']=len(fp['files']);fp['aggregate_sha256']=digest(''.join(f"{e['sha256']}  {e['path']}\n" for e in fp['files']).encode())
     updates['DEPLOYMENT-FINGERPRINT.json']=json.dumps(fp,indent=2)+'\n'
     for n,s in updates.items():p['overrides'][n]=s;entries[n]=entry(n,s)
     expected={a['path'] for a in specs}|set(changes)|{'release-body-integrity.json','DEPLOYMENT-FINGERPRINT.json'}
