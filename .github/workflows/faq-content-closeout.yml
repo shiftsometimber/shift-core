@@ -1,8 +1,8 @@
-name: Reviewed FAQ and Health MOT release
+name: Reviewed FAQ, guide and legacy Health MOT release
 on:
   push:
     branches: [codex/full-website-content-20261002]
-    paths: [editorial/content-audit/faq-copy.json, editorial/content-audit/build-faq.py, editorial/content-audit/faq-*.mjs, .github/workflows/faq-content-closeout.yml]
+    paths: [editorial/content-audit/faq-copy.json, editorial/content-audit/core-guides.json, editorial/content-audit/build-faq.py, editorial/content-audit/faq-*.mjs, .github/workflows/faq-content-closeout.yml]
 permissions:
   contents: read
   actions: read

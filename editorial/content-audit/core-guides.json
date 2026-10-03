@@ -1,0 +1,220 @@
+{
+  "articles": [
+    {
+      "slug": "blood-pressure-guide",
+      "intro": "A blood pressure reading is useful when you know how it was taken, what the two numbers mean and who will review it. Use this guide to prepare for that conversation, rather than trying to diagnose or treat yourself from one reading.",
+      "sections": [
+        [
+          "Know what you are looking at",
+          "The first number describes pressure as the heart pumps; the second describes pressure between beats. Keep both numbers and the measurement date. A useful note might say where you were measured, whether you had rested and whether this was an isolated reading or part of a series. A cropped screenshot without that context is harder to interpret."
+        ],
+        [
+          "Clinic and home thresholds differ",
+          "The NHS describes high blood pressure as usually 140/90 mmHg or above when measured by a healthcare professional, or 135/85 mmHg or above at home. These are assessment thresholds, not instructions to start or change medicines. Repeat or ambulatory measurements may be needed. Your clinician sets any personal treatment target."
+        ],
+        [
+          "Make the next check easier",
+          [
+            "Ask your pharmacist or practice whether you need a repeat check, a home series or a 24-hour monitor.",
+            "If home monitoring is recommended, ask which monitor and cuff size are suitable and how to use them.",
+            "Take the complete readings and your current medicine list to the review. Include missed doses honestly.",
+            "Agree when the results will be reviewed and whom to contact if you are concerned before then."
+          ]
+        ],
+        [
+          "Choose a practical habit alongside clinical care",
+          "Pick one part of your usual week to improve: compare salt on two foods you often buy, plan a short walk you can repeat, or look honestly at the drinks you have most evenings. Choose something measurable and affordable. Lifestyle changes can help, but feeling fitter or losing weight does not prove your blood pressure is controlled."
+        ],
+        [
+          "Do not wait for a calculator if you are unwell",
+          "Sudden persistent chest pain, especially with pain spreading or sweating, sickness or breathlessness, needs emergency help through 999. The NHS advises 111 for other concerning symptoms such as recurring headaches, blurred vision or chest pain that comes and goes. Do not use this page or the Health MOT to decide that serious symptoms are safe."
+        ],
+        [
+          "Keep the medicine decision with your clinician",
+          "Record the name and dose you actually take, any difficulties taking it and questions about side effects. Do not stop or adjust prescribed treatment because one reading looks better. At the appointment, ask: what do my readings show, what is the next action, and when do we check again? Leave with those three answers rather than another unexplained number."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS — high blood pressure, thresholds and urgent advice",
+          "https://www.nhs.uk/conditions/high-blood-pressure/"
+        ],
+        [
+          "NHS — blood pressure testing",
+          "https://www.nhs.uk/tests-and-treatments/blood-pressure-test/"
+        ]
+      ],
+      "next": [
+        "Read the weight and blood pressure guide",
+        "/articles/weight-and-blood-pressure-men"
+      ]
+    },
+    {
+      "slug": "mens-health-mot-guide",
+      "intro": "SHIFT Health MOT now names a home blood-test information route. An older browser questionnaire also used the name. They are separate from each other and from the NHS Health Check. Start by checking which service or tool you mean, and what is actually available.",
+      "sections": [
+        [
+          "Check the current route first",
+          "The main Health MOT link leads to the SHIFT Health home blood-test information page. Read its availability notice, what the proposed service includes and who would interpret results. A catalogue description does not establish that ordering or results integration is enabled. The older browser questionnaire is not a substitute for that service."
+        ],
+        [
+          "What the legacy questionnaire can tell you",
+          "Where the older questionnaire is used, its report groups information and questions worth discussing. The priority counts are not a validated health score or a percentage risk of disease. A low number of highlighted areas cannot rule out a problem. Symptoms, history and professional assessment can change what matters most. Do not change treatment because of its report."
+        ],
+        [
+          "Keep the different records separate",
+          "The legacy questionnaire stores its answers in the browser where it runs; it does not upload them into My Timber. A shared browser profile can retain sensitive information. Clearing the site’s browser data removes that local copy, not separate account-backed records. Opening a home-test information page does not import earlier answers or a laboratory result."
+        ],
+        [
+          "The NHS Health Check is a different service",
+          "The NHS Health Check assesses cardiovascular health through professional measurements and discussion. Eligibility depends on age and existing conditions; people with established conditions may need their existing care team's reviews instead. Ask your practice or local service what applies to you. A completed SHIFT form is not proof that you have attended a professional check."
+        ],
+        [
+          "Turn the result into an appointment note",
+          [
+            "Write the one concern you most want help with, in your own words.",
+            "List recent measurements, medicines and changes you have noticed, including when they began.",
+            "Ask what needs assessment, which action comes first and when to review it.",
+            "Record the agreed next step somewhere private. Do not assume opening another SHIFT tool transfers the MOT answers."
+          ]
+        ],
+        [
+          "Take one manageable step afterwards",
+          "Agree the next action with the appropriate professional. If advice is to build a routine, choose something that fits a real day: book a follow-up, prepare an easy meal or plan suitable movement. Use My Timber to record what you choose there. If symptoms concern you, seek medical help rather than waiting for a postal test or a progress trend."
+        ]
+      ],
+      "sources": [
+        [
+          "SHIFT Health — current home blood-test information and availability",
+          "/shift-health/health-mot"
+        ],
+        [
+          "NHS — NHS Health Check and eligibility",
+          "https://www.nhs.uk/tests-and-treatments/nhs-health-check/"
+        ],
+        [
+          "SHIFT — public Health MOT methodology and browser storage",
+          "/health-mot-methodology"
+        ],
+        [
+          "SHIFT — account privacy controls",
+          "/privacy-centre"
+        ]
+      ],
+      "next": [
+        "Read the current SHIFT Health MOT information",
+        "/shift-health/health-mot"
+      ]
+    },
+    {
+      "slug": "nutrition-guide",
+      "intro": "Eating well starts with meals you can afford, prepare and repeat. Use the overall pattern of your week to improve variety and balance, then make one change to the shopping or cooking that keeps getting in the way. You do not need a perfect menu or an expensive supplement routine.",
+      "sections": [
+        [
+          "Balance the week, not every mouthful",
+          "The NHS Eatwell Guide describes an overall eating pattern. Fruit and vegetables, higher-fibre starchy foods, protein foods and dairy or suitable alternatives each have a place. Balance can be built across the day or week. A meal that is less varied can be followed by another that supplies what was missing; it does not require punishment or starting again."
+        ],
+        [
+          "Build three reliable meal options",
+          "Choose a breakfast, a packed lunch and an evening meal you genuinely like. For example, try porridge with fruit; a wholemeal sandwich with a filling and salad; or potatoes, beans or chicken and vegetables. These are adaptable meal ideas, not prescribed portions. Check ingredients against your allergies, dietary needs and any professional advice."
+        ],
+        [
+          "Use carbohydrates deliberately",
+          "Bread, rice, pasta and potatoes can be part of a balanced diet. Higher-fibre versions are useful options where you enjoy them. Look at the complete meal, including butter, oil, sauces and drinks, rather than treating one food as the entire problem. A portion that suits one person may not suit another."
+        ],
+        [
+          "Make the shopping list do some work",
+          [
+            "Choose the meals before adding extras to the basket.",
+            "Use frozen vegetables and suitable tinned foods when they make preparation and cost easier.",
+            "Keep one quick option for a late finish, with ingredients you can safely store.",
+            "Check the total price, usable portions and food you are likely to waste rather than buying a health claim on the label."
+          ]
+        ],
+        [
+          "Handle takeaways and busy days",
+          "Decide what you actually want before ordering. Compare the full meal: main, sides, sauce, drink and likely leftovers. If a large portion is usual, sharing or saving some safely may be a practical option. Make tomorrow's ordinary meal easier rather than compensating through fasting or a punishing workout."
+        ],
+        [
+          "When you need individual nutrition advice",
+          "General meal ideas do not cover every situation. Allergies, kidney disease, an eating disorder, diabetes medicines, surgery or difficulty eating enough can change what is suitable. Tell the appropriate clinician or dietitian what is happening. If a weight-loss medicine makes regular eating difficult, ask the prescribing team for advice instead of assuming less food is always better."
+        ],
+        [
+          "Review the obstacle after a week",
+          "Ask which meal kept failing and why: time, cost, appetite, taste or preparation. Change that part of the plan. Keep the options that worked. Shift Grub in My Timber can help you save choices, but a recipe collection cannot confirm that a menu meets your individual clinical needs."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS — the Eatwell Guide",
+          "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/"
+        ],
+        [
+          "NHS — starchy foods and carbohydrates",
+          "https://www.nhs.uk/live-well/eat-well/food-types/starchy-foods-and-carbohydrates/"
+        ]
+      ],
+      "next": [
+        "Plan meals around a busy week",
+        "/articles/meal-prep-busy-men"
+      ]
+    },
+    {
+      "slug": "walking-guide",
+      "intro": "A useful walking plan starts from what you can comfortably do now. Make the route, timing and pace repeatable before chasing a step total. Walking can support fitness and wellbeing; the scales are not the only way to tell whether the routine is helping.",
+      "sections": [
+        [
+          "Find a starting route",
+          "Choose a familiar route with a safe surface, an easy way home and somewhere to pause if needed. Try a manageable outing and notice how you feel during it and afterwards. If walking is limited by an injury, illness, balance problem or breathlessness you are concerned about, ask for individual advice about suitable activity."
+        ],
+        [
+          "Understand pace without buying a gadget",
+          "The NHS describes brisk walking as a pace where you can still talk but cannot sing. You do not have to start there. Begin at a comfortable pace and build as appropriate. A watch's calorie estimate or an arbitrary step target should not dictate what is safe or useful for your body."
+        ],
+        [
+          "Use a small plan you can actually repeat",
+          [
+            "Choose a realistic slot, such as after lunch on three days this week.",
+            "Keep the first route short enough that a busy day does not make it impossible.",
+            "Record whether you went and how the outing felt, rather than only the distance.",
+            "If the routine feels manageable, increase one part gradually. There is no need to add speed, hills and distance together."
+          ]
+        ],
+        [
+          "Know the broader activity guidance",
+          "The updated UK Chief Medical Officers' guidance recommends adults work towards at least 150 minutes of moderate activity a week, or an appropriate equivalent, and muscle-strengthening activity on at least two days. Some activity is better than none. Walking is one part of that picture; it does not automatically cover strength or balance needs."
+        ],
+        [
+          "Make room for real life",
+          "Use the route for something you already do: a short errand, a break from your desk or a chat with a friend. Plan an alternative for darkness or poor weather. Comfortable footwear and a route you trust are more useful than buying equipment that never leaves the cupboard. Adapt the routine to your access and circumstances."
+        ],
+        [
+          "Do not push through warning symptoms",
+          "Stop if movement brings concerning symptoms or significant pain, and get appropriate medical advice. Sudden persistent chest pain or a medical emergency needs 999. A walking plan is not an assessment of heart or lung disease, and this guide does not replace advice about restrictions after illness, injury or an operation."
+        ],
+        [
+          "Look for progress you can notice",
+          "After a few weeks, compare how repeatable the routine has become, whether the same route feels easier and what gets in the way. If the plan keeps failing, shorten it or change the timing. If symptoms are worsening, seek assessment. Progress is a workable routine you can return to, rather than one impressive day followed by nothing."
+        ]
+      ],
+      "sources": [
+        [
+          "NHS — walking for health",
+          "https://www.nhs.uk/live-well/exercise/walking-for-health/"
+        ],
+        [
+          "UK Chief Medical Officers — physical activity guidance, updated July 2026",
+          "https://www.gov.uk/government/publications/physical-activity-guidelines-uk-chief-medical-officers-report/uk-chief-medical-officers-physical-activity-guidelines"
+        ],
+        [
+          "NHS — chest pain and urgent advice",
+          "https://www.nhs.uk/symptoms/chest-pain/"
+        ]
+      ],
+      "next": [
+        "Choose a beginner walking plan",
+        "/articles/beginner-walking-plan-men"
+      ]
+    }
+  ]
+}

@@ -2,7 +2,7 @@ name: Reviewed article correction
 on:
   push:
     branches: [codex/full-website-content-20261002]
-    paths: [editorial/content-audit/**, .github/workflows/content-correction.yml]
+    paths: [editorial/content-audit/approved-corrections.json, editorial/content-audit/*.md, editorial/content-audit/publish-corrections.mjs, editorial/content-audit/preview.mjs, editorial/content-audit/corrections.test.mjs]
 permissions:
   contents: read
 jobs:

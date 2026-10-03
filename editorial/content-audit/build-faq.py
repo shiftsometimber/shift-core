@@ -29,8 +29,8 @@ def amend_mot(p,entries,updates,out,reports):
  before='The static MOT stores a structured profile in the browser using <code>localStorage</code> so later Progress Centre releases can reuse it on the same device. It does not itself send those answers to Shift Some Timber or a server.'
  if before not in oldmethod:
   match=re.search(r'<p>The static MOT stores a structured profile.*?</p>',oldmethod);assert match;before=match[0]
-  after='<p>The public Health MOT stores its answers and report data in this browser’s local storage on this device. It does not upload them to SHIFT or into My Timber. A shared browser can retain sensitive answers after the page closes. Clear this site’s browser data to remove the local copy; that does not erase separate account-backed information.</p>'
- else:after='The public Health MOT stores its answers and report data in this browser’s local storage on this device. It does not upload them to SHIFT or into My Timber. A shared browser can retain sensitive answers after the page closes. Clear this site’s browser data to remove the local copy; that does not erase separate account-backed information.'
+  after='<p>The legacy browser Health MOT questionnaire stores its answers and report data in local storage on the device where it runs. It does not upload them to SHIFT or into My Timber. A shared browser can retain sensitive answers after the page closes. Clear this site’s browser data to remove the local copy; that does not erase separate account-backed information. The main Health MOT link now leads to the separate SHIFT Health home blood-test information page. This methodology describes the older questionnaire, not a laboratory service or enabled results integration.</p>'
+ else:after='The legacy browser Health MOT questionnaire stores its answers and report data in local storage on the device where it runs. It does not upload them to SHIFT or into My Timber. A shared browser can retain sensitive answers after the page closes. Clear this site’s browser data to remove the local copy; that does not erase separate account-backed information. The main Health MOT link now leads to the separate SHIFT Health home blood-test information page. This methodology describes the older questionnaire, not a laboratory service or enabled results integration.'
  updates[n]=oldmethod.replace(before,after,1)
  for n in ['health-mot.html','health-mot.js','health-mot-methodology.html']:
   before=p['overrides'][n];after=updates[n]
@@ -38,6 +38,44 @@ def amend_mot(p,entries,updates,out,reports):
   if n.endswith('.html'):
    for tag in ['header','footer','h1']:assert re.findall(r'<'+tag+r'\b.*?</'+tag+'>',after,re.S)==re.findall(r'<'+tag+r'\b.*?</'+tag+'>',before,re.S)
   reports.append(dict(path=n,before=entries[n]['sha256'],after=entry(n,after)['sha256'],reason='Correct local-storage and unvalidated-score claims; retain form and thresholds'))
+def amend_guides(p,entries,updates,out,reports):
+ data=json.loads(pathlib.Path(__file__).with_name('core-guides.json').read_text());assert len(data['articles'])==4
+ for a in data['articles']:
+  n='guides/'+a['slug']+'.html';old=p['overrides'][n];assert entry(n,old)==entries[n]
+  assert 'Use recognised health guidance as the framework' in old
+  escape=lambda s:html.escape(s,quote=True)
+  body='<div class="sst-reading-lead-v31"><p class="standfirst">'+escape(a['intro'])+'</p></div>'
+  for i,(heading,text) in enumerate(a['sections'],1):
+   body+='<h2 id="'+section_id(i)+'">'+escape(heading)+'</h2>'
+   body+=('<ul>'+''.join('<li>'+escape(t)+'</li>' for t in text)+'</ul>') if isinstance(text,list) else '<p>'+escape(text)+'</p>'
+  body+='<h2 id="sources">Sources and further reading</h2><ul>'+''.join('<li><a href="'+escape(url)+'">'+escape(label)+'</a></li>' for label,url in a['sources'])+'</ul>'
+  body+='<h2 id="next-step">Your next step</h2><p><a href="'+escape(a['next'][1])+'">'+escape(a['next'][0])+' →</a></p>'
+  start=re.search(r'<article\b[^>]*class="sst-reading-article-v31"[^>]*>',old);assert start
+  new=once(old,r'<article\b[^>]*class="sst-reading-article-v31"[^>]*>.*?</article>',start.group()+body+'</article>')
+  new=once(new,r'<div class="review-block">.*?</div>','<div class="review-block"><strong>Editorial review</strong><p>Reading copy and listed sources checked 3 October 2026. General information does not replace individual advice. Independent clinical review is separate.</p></div>')
+  hero=re.search(r'<section\b[^>]*>(?:(?!</section>).)*?<h1\b.*?</section>',new,re.S);assert hero
+  paragraphs=list(re.finditer(r'<p(?:\s[^>]*)?>.*?</p>',hero[0],re.S));assert paragraphs
+  last=paragraphs[-1];newhero=hero[0][:last.start()]+'<p>'+escape(a['intro'])+'</p>'+hero[0][last.end():]
+  new=new.replace(hero[0],newhero,1)
+  def meta(m):
+   s=m[0]
+   if re.search(r'(?:name|property)="(?:description|twitter:description|og:description)"',s):s=re.sub(r'content="[^"]*"','content="'+escape(a['intro'])+'"',s)
+   return s
+  new=re.sub(r'<meta\b[^>]*>',meta,new)
+  def schema(m):
+   obj=json.loads(m[1])
+   if obj.get('@type') in ['Article','MedicalWebPage']:
+    obj['description']=a['intro'];obj['dateModified']='2026-10-03';obj.pop('reviewedBy',None)
+    if obj.get('@type')=='Article':obj['author']={'@type':'Organization','@id':'https://shiftsometimber.co.uk/#organization','name':'Shift Some Timber','url':'https://shiftsometimber.co.uk/','logo':obj['publisher']['logo']}
+    return '<script type="application/ld+json">'+json.dumps(obj,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+'</script>'
+   return m[0]
+  new=re.sub(r'<script\b[^>]*type="application/ld\+json"[^>]*>(.*?)</script>',schema,new,flags=re.S)
+  new=new.replace('Evidence reviewed August 2026','Sources checked 3 October 2026; clinical review separate')
+  for tag in ['header','footer','h1']:assert re.findall(r'<'+tag+r'\b.*?</'+tag+'>',new,re.S)==re.findall(r'<'+tag+r'\b.*?</'+tag+'>',old,re.S)
+  assert 'Use recognised health guidance as the framework' not in new and 'Written and researched by Matt' not in new
+  updates[n]=new
+  for folder,s in [('before',old),('after',new)]:target=out/folder/n;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(s)
+  reports.append(dict(path=n,before=entries[n]['sha256'],after=entry(n,new)['sha256'],reason='Replace repeated generic guide with topic-specific sourced guidance',clinicalReviewClaimed=False))
 def build(source,out):
  p=json.loads(gzip.decompress(source.read_bytes()));assert p['source_fingerprint']==BASE,'Stale Pages source'
  base=copy.deepcopy(p);entries={e['path']:e for e in p['files']};updates={};reports=[]
@@ -86,6 +124,7 @@ def build(source,out):
   original=out/'before'/name;original.parent.mkdir(parents=True,exist_ok=True);original.write_text(old)
   reports.append(dict(path=name,before=entries[name]['sha256'],after=entry(name,new)['sha256'],sectionCount=len(a['sections']),clinicalReviewClaimed=False,headerFooterAndBehaviourScriptsPreserved=True))
  amend_mot(p,entries,updates,out,reports)
+ amend_guides(p,entries,updates,out,reports)
  # Restore the exact existing approved legacy sprite; no catalogue/review mutation.
  sprite='assets/fit/shift-fit-batch2.svg'
  assert sprite not in entries,'Legacy sprite now exists in the reviewed baseline'
@@ -103,7 +142,7 @@ def build(source,out):
  fp['files']=[fpe[n] for n in sorted(fpe,key=pathlib.PurePosixPath)];fp['file_count']=len(fp['files']);fp['aggregate_sha256']=digest(''.join(f"{e['sha256']}  {e['path']}\n" for e in fp['files']).encode())
  updates['DEPLOYMENT-FINGERPRINT.json']=json.dumps(fp,indent=2)+'\n'
  for n,s in updates.items():p['overrides'][n]=s;entries[n]=entry(n,s)
- assert set(updates)=={'faq/'+a['slug']+'.html' for a in data['articles']}|{'health-mot.html','health-mot.js','health-mot-methodology.html',sprite,'DEPLOYMENT-FINGERPRINT.json','release-body-integrity.json'}
+ assert set(updates)=={'faq/'+a['slug']+'.html' for a in data['articles']}|{'guides/'+a['slug']+'.html' for a in json.loads(pathlib.Path(__file__).with_name('core-guides.json').read_text())['articles']}|{'health-mot.html','health-mot.js','health-mot-methodology.html',sprite,'DEPLOYMENT-FINGERPRINT.json','release-body-integrity.json'}
  assert set(entries)=={e['path'] for e in base['files']}|{sprite}
  assert all(entries[e['path']]==e for e in base['files'] if e['path'] not in updates)
  p['files']=[entries[n] for n in sorted(entries)];p['baseline_fingerprint']=BASE;p['source_fingerprint']=fp['aggregate_sha256']

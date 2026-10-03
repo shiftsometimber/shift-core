@@ -671,39 +671,43 @@
     },
     {
       "slug": "is-health-mot-medical",
-      "intro": "No. The public Health MOT is an informational self-check. It does not diagnose a condition or establish treatment eligibility.",
+      "intro": "The name is used for two different things. SHIFT Health describes a home blood-test route; the older browser questionnaire is educational decision support. Neither a questionnaire nor a single blood test can diagnose every condition or establish treatment suitability.",
       "sections": [
         [
-          "Its outputs are prompts",
-          "Some inputs use established measurement thresholds; others describe routines or reported symptoms. A priority label is a reason to look more closely, not a clinical finding. The tool has not established your personal risk of a heart attack or which medicine you should take."
+          "Check which route you mean",
+          "The main Health MOT link now leads to the SHIFT Health home blood-test information page. Check its availability notice and the actual clinical service arrangements before making assumptions about ordering, results or follow-up. The legacy browser questionnaire has not become an account-backed clinical assessment."
         ],
         [
-          "What you can do next",
-          "Print or save the report if it helps you prepare questions for an appointment. Take worrying symptoms to a clinician regardless of the tool’s output."
+          "Use professional interpretation",
+          "Symptoms, medical history and appropriate measurements matter together. The older questionnaire produces prompts, not a validated health score or a personal disease-risk estimate. Take concerning symptoms to the appropriate healthcare professional regardless of any online result."
         ]
       ],
       "sources": [
         [
           "SHIFT: Health MOT methodology and limitations",
           "/health-mot-methodology"
+        ],
+        [
+          "SHIFT Health: home blood-test information and availability",
+          "/shift-health/health-mot"
         ]
       ],
       "next": [
-        "Explore the relevant guide or tool",
-        "/health-mot"
+        "Read the current SHIFT Health MOT information",
+        "/shift-health/health-mot"
       ]
     },
     {
       "slug": "is-health-mot-saved",
-      "intro": "Yes. The public Health MOT saves its answers and report data in this browser’s local storage on this device. It does not upload them into your My Timber account.",
+      "intro": "The legacy browser questionnaire stores its answers and report locally on the device where it runs. It does not upload them into My Timber. This is separate from the SHIFT Health home blood-test route shown by the main Health MOT link.",
       "sections": [
         [
-          "A shared device needs care",
-          "The saved profile can remain after closing the page and may be visible to somebody using the same browser. Clearing this site’s browser data removes the local copy. Account-backed health information is separate and has its own privacy controls; clearing browser data does not erase that account data."
+          "A shared browser needs care",
+          "A locally saved questionnaire can remain after closing its page and may be accessible to someone using the same browser profile. Clearing this site’s browser data removes that local copy. It does not erase separate account-backed records, which have their own controls."
         ],
         [
-          "What you can do next",
-          "Use a private device for sensitive answers. Print or save the report only where you want a copy, and review the privacy page for account-backed information."
+          "Do not assume a results integration",
+          "Opening the home blood-test information page does not transfer an older questionnaire or prove that a laboratory result has reached your account. Check actual availability and service arrangements. Use the privacy controls for the particular information you want to export or erase."
         ]
       ],
       "sources": [
@@ -714,6 +718,10 @@
         [
           "SHIFT: privacy information",
           "/privacy"
+        ],
+        [
+          "SHIFT Health: home blood-test information and availability",
+          "/shift-health/health-mot"
         ]
       ],
       "next": [
