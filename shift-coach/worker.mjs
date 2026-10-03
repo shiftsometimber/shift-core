@@ -1,3 +1,4 @@
+import {tabletRoutineRoutes} from '../member-experience/tablet-routine.mjs';
 import core from '../worker-entry-v6.js';
 import {withPublicFontDelivery} from './public-font-delivery.mjs';
 export * from '../worker-entry-v6.js';
@@ -9,6 +10,7 @@ import {runCoachingNight} from './night-job.mjs';
 export default {
  ...core,
  async fetch(request,env,ctx){
+  const tablet=await tabletRoutineRoutes(request,env);if(tablet)return tablet;
   const asset=coachingAsset(request);if(asset)return asset;
   const coaching=await coachingRoutes(request,env);if(coaching)return coaching;
   const response=await withPublicFontDelivery(request,await core.fetch(request,env,ctx));

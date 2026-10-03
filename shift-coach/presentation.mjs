@@ -1,3 +1,4 @@
+import {tabletMarkup,tabletStyles,tabletClient} from '../member-experience/tablet-routine-client.mjs';
 import {client} from './ui.mjs';
 export const assetPath='/assets/shift-coach.mjs';
 export const styles=String.raw`
@@ -32,7 +33,7 @@ export async function withCoaching(request,response,seed=null){
  // Expose the authenticated shell immediately; its original session/bootstrap
  // still loads the other tools and every mutation keeps its original checks.
  let prepared=seed?html.replace(/<body\b([^>]*)>/, '<body$1 data-shift-coach-session>').replace(/<section\b[^>]*\bid=["']previewMember["'][^>]*>/i,tag=>tag.replace(/\shidden(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?/i,'')):html;
- const changed=prepared.replace('</head>','<style data-shift-coach-styles>'+styles+'</style></head>').replace(/(<(?:section|div)\b[^>]*id="todayActions"[^>]*>)/,'$1'+markup+initial+'<script data-shift-coach-client>'+client.replace(/<\/script/gi,'<\\/script')+'</script>');
+ const changed=prepared.replace('</head>','<style data-shift-coach-styles>'+styles+tabletStyles+'</style></head>').replace(/(<(?:section|div)\b[^>]*id="todayActions"[^>]*>)/,'$1'+markup+initial+'<script data-shift-coach-client>'+client.replace(/<\/script/gi,'<\\/script')+'</script>'+tabletMarkup+'<script data-tablet-routine-client>'+tabletClient.replace(/<\/script/gi,'<\\/script')+'</script>');
  const headers=new Headers(response.headers);headers.set('Cache-Control','no-store, private');headers.set('Vary','Cookie, Accept-Encoding');
  // Start the same existing stylesheets with the document headers, before the
  // browser reaches parser-blocking scripts. No scripts or tracking are moved.
