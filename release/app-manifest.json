@@ -239,7 +239,8 @@
     "medicines-watch/evidence-desk.test.mjs": "3916918447705d13ba683efdad9dd6c948dec85369fbfd36f0a9be140d9b52bc",
     "medicines-watch/reviews/2026-10-03-evidence-desk-zp6590.json": "f27f6e73cb12a7217f83c740fe975b559d1cf931799c4af5164e29ac0ca9a357",
     "public-shell-contract.mjs": "357dce919f08ea7f96e9e720dde4de43f4192dbba6835c7a2c7b961c954d143d",
-    "tests/medicine-commerce-v1.test.mjs": "1f0f9dbccade11991ad71df3d8a0f8c50a256a07ede019ca57b317983eb72abd"
+    "tests/medicine-commerce-v1.test.mjs": "1f0f9dbccade11991ad71df3d8a0f8c50a256a07ede019ca57b317983eb72abd",
+    ".github/workflows/babylove-mounjaro-876303-live.yml": "7fc1038faf30b7fd688940b499eb44ea34de4ae97e068228caeacefe37ac4dce"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
