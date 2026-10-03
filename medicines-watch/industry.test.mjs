@@ -30,7 +30,32 @@ import earlierEloraNa931Proposal from './reviews/2026-09-30-eloratzp-na931-disco
 import amylinMetabolicFollowup from './reviews/2026-10-03-authorised-amylin-metabolic-followup.json' with {type:'json'};
 import azd1043Publication from './reviews/2026-10-03-authorised-azd1043.json' with {type:'json'};
 import seleneCorrection from './reviews/2026-10-03-authorised-azd6234-selene.json' with {type:'json'};
+import wve007Publication from './reviews/2026-10-03-authorised-wve007.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
+test('WVE-007 separates monotherapy registry, sponsor combination and planned maintenance',()=>{
+ const e=industry.find(e=>e.id==='wve007');
+ assert.match(e.stage,/Recruiting Phase 1\/2a monotherapy/);
+ assert.match(e.stage,/combination initiation sponsor-reported/);
+ assert.match(e.summary,/296 estimated participants and no posted results/);
+ assert.match(e.summary,/maintenance trial remains planned/);
+ assert.match(e.limitations,/2 June 2026/);
+ assert.match(e.limitations,/preclinical, not completed human combination evidence/);
+ assert.match(e.limitations,/do not establish strength or function/);
+ assert.match(e.supply,/UK research sites do not establish lawful UK retail supply/);
+ assert.equal(e.clinicalApproval,null);
+ assert.equal(e.sourceIds.length,0);
+ assert.equal(e.reviewedAt,wve007Publication.reviewedAt);
+ assert.equal(wve007Publication.registryEvidence.hasResults,false);
+ assert.equal(wve007Publication.registryEvidence.combinationRegistryMatched,false);
+ assert.equal(wve007Publication.registryEvidence.ukLocationsListed,2);
+ assert.equal(wve007Publication.automatedMonitorChanges,false);
+ assert.equal(wve007Publication.industryComplete,false);
+ assert.equal(wve007Publication.sponsorRetrieval.automaticBaselineApproved,false);
+ assert.ok(wve007Publication.discoveryPass.failedChecks.length);
+ const html=industryMarkup({},new URLSearchParams({q:'WVE-007'}));
+ assert.equal((html.match(/data-industry-card/g)||[]).length,1);
+ assert.match(html,/not automatically content-monitored/);
+});
 test('AZD1043 remains bounded Phase 1 research with site and access distinctions',()=>{
  const entry=industry.find(e=>e.id==='azd1043');
  assert.match(entry.stage,/Recruiting Phase 1/);
@@ -84,8 +109,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,75);assert.equal(sources.length,50);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,81);
+ assert.equal(medicines.length,6);assert.equal(industry.length,76);assert.equal(sources.length,50);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,82);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -592,7 +617,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,75);
+ assert.equal(industry.length,76);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
