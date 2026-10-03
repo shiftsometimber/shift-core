@@ -46,7 +46,10 @@ test('Final store identities are prepared but submission remains explicitly disa
  assert.match(project,/Debug:\s*\n\s*PRODUCT_BUNDLE_IDENTIFIER: uk\.co\.shiftsometimber\.mytimber\.dev/);
  assert.match(project,/TARGETED_DEVICE_FAMILY: '1'/);
  assert.match(project,/CURRENT_PROJECT_VERSION: 2/);
- assert.match(project,/MARKETING_VERSION: 1\.0\.0/);
+ assert.ok(gradle.includes("versionName '"+contract.version+"'"));
+ assert.ok(project.includes('MARKETING_VERSION: '+contract.version));
+ assert.ok(java.includes('MyTimber/'+contract.version));
+ assert.ok(swift.includes('MyTimber/'+contract.version));
  assert.match(project,/CFBundleShortVersionString: \$\(MARKETING_VERSION\)/);
  assert.match(project,/CFBundleVersion: \$\(CURRENT_PROJECT_VERSION\)/);
  assert.match(project,/ITSAppUsesNonExemptEncryption: false/);
