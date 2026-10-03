@@ -1,0 +1,30 @@
+{
+  "scope": "SST-55 public and member blood-pressure and priapism safety copy",
+  "as_of": "2026-10-03",
+  "sources": [
+    {
+      "url": "https://www.nhs.uk/tests-and-treatments/blood-pressure-test/",
+      "checked": "two readings a minute apart, morning and evening; clinician sets duration"
+    },
+    {
+      "url": "https://www.nhs.uk/symptoms/priapism-painful-erections/",
+      "checked": "emergency at more than 3 to 4 hours; sickle-cell painful erection more than 1 hour"
+    }
+  ],
+  "changes": [
+    [
+      "Record three morning readings",
+      "Follow the agreed repeat-reading schedule"
+    ],
+    [
+      "Log three properly taken morning readings, then use the appropriate health door if the pattern is high.",
+      "If your doctor or nurse asks you to monitor at home, take two readings a minute apart, usually morning and evening. Follow their advice on how many days to record and arrange for the complete record to be reviewed."
+    ],
+    [
+      "Chest pain during sex, an erection lasting four hours, penile injury, severe pain or sudden neurological symptoms need urgent medical help.",
+      "Call 999 or go to A&E for an erection lasting more than 3 to 4 hours. With sickle cell disease, a painful erection lasting more than one hour needs emergency help. Chest pain or sudden stroke-like symptoms also need emergency help; penile injury or severe pain needs urgent assessment."
+    ]
+  ],
+  "clinical_certification": false,
+  "publication": "pending"
+}
