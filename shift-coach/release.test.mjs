@@ -77,3 +77,12 @@ test('merged living Health Plan test is an exact addition and cannot be silently
  for(const status of ['M','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
  assert.throws(()=>validateCoachingSource((ref,path)=>ref==='5bf5a7febae1a6bab3a549507306669456a8aaa6'&&path===p?'changed-test':path,m),/Merged My Health Plan v2 test source drift/);
 });
+
+test('merged public-copy receipts are exact additions with independently immutable bytes',()=>{
+ const m={...manifest,applicationCommit:'a'.repeat(40)};
+ for(const p of ['docs/content-review/2026-10-03-public-copy-preview.json','docs/content-review/2026-10-03-public-copy-residual.json']){
+  assert.doesNotThrow(()=>assertCoachingChangedPath('A',p));
+  for(const status of ['M','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
+  assert.throws(()=>validateCoachingSource((ref,path)=>ref==='6578113c754a60e75d0cd9b3cd94f2d546444409'&&path===p?'changed-receipt':path,m),/Merged public-copy receipt source drift/);
+ }
+});
