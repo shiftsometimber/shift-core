@@ -9,13 +9,13 @@ test('displayed option does not claim all answers are enforced',()=>{const sourc
 import {preserveTreatmentCentreAccuracy} from '../public-promise-preservation.mjs';
 import {repairCentreGuidance,CENTRE_GUIDANCE_REPLACEMENTS,CENTRE_GUIDANCE_COUNTS} from '../public-treatment-guidance.mjs';
 test('release fingerprint permits only exact reviewed Centre corrections',()=>{
- const source=Buffer.from('<p>Retatrutide, CagriSema, Orforglipron, Amycretin, MariTide and the next generation of weight-management treatments.</p><p>The Health MOT guide explains a proposed blood-test route and how it differs from the older browser questionnaire. No test or clinical review is booked by reading it.</p><a href="/shift-health/health-mot">Read the Health MOT guide</a><p>No stock available today · £129.00</p>'+CENTRE_GUIDANCE_REPLACEMENTS.map(([before],index)=>('<p>'+before+'</p>').repeat(CENTRE_GUIDANCE_COUNTS[index])).join(''));
+ const source=Buffer.from('<p>Retatrutide, CagriSema, Orforglipron, Amycretin, MariTide and the next generation of weight-management treatments.</p><p>Use the free Health MOT to organise your current picture and identify sensible priorities.</p><a href="/shift-health/health-mot">Take the Health MOT</a><p>No stock available today · £129.00</p>'+CENTRE_GUIDANCE_REPLACEMENTS.map(([before],index)=>('<p>'+before+'</p>').repeat(CENTRE_GUIDANCE_COUNTS[index])).join(''));
  const changed=Buffer.from(repairCentreGuidance(repairTreatmentCentre(source.toString())));
  assert.deepEqual(preserveTreatmentCentreAccuracy('/treatment-centre',source),source);
  assert.deepEqual(preserveTreatmentCentreAccuracy('/treatment-centre',changed,{required:true}),source);
  assert.equal(preserveTreatmentCentreAccuracy('/other',changed,{required:true}),changed);
  assert.throws(()=>preserveTreatmentCentreAccuracy('/treatment-centre',source,{required:true}));
  assert.throws(()=>preserveTreatmentCentreAccuracy('/treatment-centre',Buffer.concat([changed,changed]),{required:true}));
- assert.throws(()=>preserveTreatmentCentreAccuracy('/treatment-centre',Buffer.from(changed.toString().replace('Retatrutide, CagriSema, Amycretin, MariTide and the next generation of weight-management treatments.','different claim')),{required:true}));
+ assert.throws(()=>preserveTreatmentCentreAccuracy('/treatment-centre',Buffer.from(changed.toString().replace('Explore the SHIFT Health MOT home blood test and what it covers.','different claim')),{required:true}));
  assert.notDeepEqual(preserveTreatmentCentreAccuracy('/treatment-centre',Buffer.from(changed.toString().replace('£129.00','£130.00')),{required:true}),source,'unrelated price drift remains visible to complete-page comparison');
 });
