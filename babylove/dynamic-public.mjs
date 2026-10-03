@@ -9,10 +9,11 @@ function proxiedImage(raw,slug){const u=trustedImage(raw);return u&&slug?'/artic
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const slugify=s=>String(s).toLowerCase().replace(/&amp;/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,100);
 function safeUrl(raw){try{const u=new URL(String(raw),'https://shiftsometimber.co.uk');return ['http:','https:'].includes(u.protocol)?u.href:'#'}catch{return'#'}}
+function safeHref(raw){const value=String(raw);return /^#[a-z0-9_-]+$/i.test(value)?value:safeUrl(value)}
 function inline(raw,slug=''){
  let s=esc(raw);
  s=s.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g,(_,alt,url)=>'<img loading="lazy" src="'+esc(proxiedImage(url,slug))+'" alt="'+alt+'">');
- s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*)\)/g,(_,label,url)=>'<a href="'+esc(safeUrl(url))+'"'+(String(url).startsWith('http')?' rel="noopener noreferrer"':'')+'>'+label+'</a>');
+ s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*|#[a-z0-9_-]+)\)/gi,(_,label,url)=>'<a href="'+esc(safeHref(url))+'"'+(String(url).startsWith('http')?' rel="noopener noreferrer"':'')+'>'+label+'</a>');
  s=s.replace(/`([^`]+)`/g,'<code>$1</code>');
  s=s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
  s=s.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g,'<em>$1</em>');
