@@ -10,7 +10,7 @@ export const COACH_BACKEND_PATHS=new Set(["ask-timber-v1.js","tests/ai-fast-stre
 export const COACH_COMPOSED_BOOK_ADDITIONS=new Set([".github/workflows/book-voice-live-audit.yml", ".github/workflows/book-voice-preview.yml", "book-voice.mjs", "editorial/book-voice/SAMPLES.md", "editorial/book-voice/VOICE.md", "editorial/book-voice/edits.json", "editorial/book-voice/live.cjs", "editorial/book-voice/payload.json", "preview/book-voice/host.mjs", "preview/book-voice/member-host.mjs", "preview/book-voice/provision.mjs", "preview/book-voice/verify.cjs", "preview/book-voice/worker.mjs", "release/book-voice-scope.mjs", "tests/book-voice-release.test.mjs", "tests/book-voice.test.mjs"]);
 export const COACH_COMPOSED_BOOK_CHANGES=new Set(["member-experience/public-preservation.mjs", "member-experience/verify-production-member.mjs", "public-startup-stability.mjs", "release/growth-preflight.mjs"]);
 // Exact audit corrections, pinned by the release manifest and app hashes.
-export const COACH_AUDIT_CHANGES=new Set(['tests/testosterone-public.test.mjs','public-navigation-policy.mjs','tests/public-ticker-contrast-safety.test.mjs','shift-health-public-content.mjs','frontend/member/shift-health-catalogue-v1.js']);
+export const COACH_AUDIT_CHANGES=new Set(['tests/testosterone-public.test.mjs','public-navigation-policy.mjs','tests/public-ticker-contrast-safety.test.mjs','shift-health-public-content.mjs','frontend/member/shift-health-catalogue-v1.js','frontend/member/whole-man-intent-os-v1.js']);
 // Preserve the already merged five-file article repair exactly, including its
 // separate publication workflows. This is not permission for other article edits.
 export const COACH_ARTICLE_BASE='ba9f11ff43dc727dd69c1c35008e18db29128bba';
@@ -52,6 +52,7 @@ export function validateCoachingSource(read,manifest){
  assert.deepEqual(manifest.pinnedPaths,[...COACH_PATHS].filter(p=>p!=='shift-coach/release-manifest.json').sort(),'Exact coaching path list required');
  for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(manifest.applicationCommit,p),'Coaching release source drift: '+p);
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
+ assert.equal(read('HEAD','frontend/member/whole-man-intent-os-v1.js'),read('656a7b857539be29af2e43cef45803d010cc7758','frontend/member/whole-man-intent-os-v1.js'),'Merged My Health Plan asset source drift');
  for(const p of WATCH_CURRENT_PATHS)assert.equal(read('HEAD',p),read(WATCH_CURRENT_BASE,p),'Current Watch source drift: '+p);
  return {recordedMain:COACH_BASE,applicationCommit:manifest.applicationCommit,paths:manifest.pinnedPaths.length};
 }

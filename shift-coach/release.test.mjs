@@ -16,6 +16,12 @@ test('merged article composition preserves exact baseline bytes and rejects unex
   assert.throws(()=>validateCoachingSource((ref,path)=>ref===COACH_ARTICLE_BASE&&path===p?'prior-article':path,m),/Merged article repair source drift/);
  }
 });
+test('merged My Health Plan member asset is retained exactly and cannot be widened by repinning',()=>{
+ const p='frontend/member/whole-man-intent-os-v1.js',m={...manifest,applicationCommit:'a'.repeat(40)};
+ assert.doesNotThrow(()=>assertCoachingChangedPath('M',p));
+ for(const status of ['A','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
+ assert.throws(()=>validateCoachingSource((ref,path)=>ref==='656a7b857539be29af2e43cef45803d010cc7758'&&path===p?'prior-asset':path,m),/Merged My Health Plan asset source drift/);
+});
 test('normal production configuration includes the coach with exactly one entrypoint-only change',()=>{assertCoachingConfiguration(config,before);assert.equal(config,readFileSync('wrangler.coaching.jsonc','utf8'));assert.equal(withoutCoachEntrypoint(config),before);});
 test('configuration drift, a lost wrapper, extra bindings and duplicate entrypoints fail closed',()=>{for(const bad of [before,config+'\n',config.replace('"STRIPE_MODE": "test"','"STRIPE_MODE": "live"'),config.replace('"DB"','"OTHER_DB"'),config.replace('"main":','"main": "shift-coach/worker.mjs", "main":')])assert.throws(()=>assertCoachingConfiguration(bad,before));});
 test('every coaching and release integration source has an exact pin; any drift fails',()=>{const m={...manifest,applicationCommit:'a'.repeat(40)},read=(ref,p)=>p;assert.doesNotThrow(()=>validateCoachingSource(read,m));for(const p of m.pinnedPaths)assert.throws(()=>validateCoachingSource((ref,path)=>ref==='HEAD'&&path===p?'drift':path,m),/Coaching release source drift/);assert.throws(()=>validateCoachingSource(read,{...m,pinnedPaths:m.pinnedPaths.slice(1)}));});
