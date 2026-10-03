@@ -1,0 +1,47 @@
+name: Lossless public AI extraction release checks
+on:
+  push:
+    branches: [codex/ai-lossless-extraction-20261003]
+permissions:
+  contents: read
+jobs:
+  bounded-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - run: npm ci --no-audit --no-fund
+      - name: Execute private-payload and recovery race regressions
+        run: |
+          mkdir -p ai-lossless-proof-proof
+          node --test tests/ai-site-knowledge.test.mjs tests/ai-fast-stream.test.mjs tests/ai-context-safety.test.mjs tests/shift-ai-release.test.mjs tests/general-analytics-privacy.test.mjs tests/my-timber-analytics-privacy.test.mjs tests/runtime-rollback-guard.test.mjs tests/discovery-repairs.test.mjs shift-coach/integration.test.mjs shift-coach/release.test.mjs shift-coach/public-font-delivery.test.mjs shift-coach/cancelled-release-recovery.test.mjs tests/b1-release-scope.test.mjs tests/member-details-release.test.mjs > ai-lossless-proof-proof/tests.txt
+      - name: Run every production unit-test command before promotion
+        run: |
+          node grub-expansion-review-pack.mjs > ai-lossless-proof-proof/fixture-preparation.txt
+          python3 - <<'PYTEST'
+          import re, glob, subprocess
+          from pathlib import Path
+          source=Path('.github/workflows/cloudflare-production-promote.yml').read_text()
+          commands=re.findall(r'^\s*(?:run:\s*)?node --test (.+)$',source,re.M)
+          assert len(commands)>=25
+          with Path('ai-lossless-proof-proof/production-tests.txt').open('w') as out:
+              for command in commands:
+                  assert re.fullmatch(r'[-a-zA-Z0-9_/*?. ]+',command), command
+                  paths=[p for token in command.split() for p in (glob.glob(token) if '*' in token or '?' in token else [token])]
+                  assert paths
+                  out.write('COMMAND: node --test '+command+'\n');out.flush()
+                  result=subprocess.run(['node','--test',*paths],stdout=out,stderr=subprocess.STDOUT)
+                  assert result.returncode==0, command
+          PYTEST
+      - run: node gate1-release-security-privacy-gate.mjs
+      - run: node scripts/b1-release-scope.mjs
+      - name: Compile exact production entrypoint without credentials or deployment
+        run: npx wrangler deploy --dry-run --outdir ai-lossless-proof-proof/bundle > ai-lossless-proof-proof/compile.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ai-lossless-proof-${{ github.sha }}
+          path: ai-lossless-proof-proof/

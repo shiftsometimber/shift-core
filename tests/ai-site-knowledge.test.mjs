@@ -21,3 +21,18 @@ test('database ranking preserves whole-word relevance and returns only useful pa
  assert.deepEqual(evidence.map(s=>s.citation),['https://shiftsometimber.co.uk/life-back']);assert.equal(evidence[0].content,'Life—Back: record useful small wins.');assert.equal(returned.length,1);assert(!('search_text' in returned[0]));assert(JSON.stringify(returned).length<1000);
  await storePublicPage(DB,{url:'https://shiftsometimber.co.uk/life-back',title:'Life Back | SHIFT',chunks:['Life Back: updated source.']});assert.equal((await retrievePublishedSite(DB,'What is Life Back?'))[0].content,'Life Back: updated source.');
 });
+
+
+test('decimal thresholds and quoted punctuation preserve every source word',()=>{
+ const text='BMI 35–39.9 needs context. A ratio of 0.5 is not a diagnosis. Ask “What happens next?” and keep the answer. The trial reported 22.7%, not an individual prediction. '+('Ordinary source context. '.repeat(100))+'A final safety note.';
+ const page=extractPublicPage('<h1>Evidence</h1><main><p>'+text+'</p></main>',url);
+ assert(page);assert.equal(page.chunks.join(' '),text.trim());assert(page.chunks.every(c=>c.length<=2200));
+});
+test('long unpunctuated sections and short trailing warnings are retained',()=>{
+ const text=('A useful table value and its explanatory context '.repeat(100))+'STOP';
+ const page=extractPublicPage('<h1>Evidence</h1><main>'+text+'</main>',url);
+ assert(page);assert.equal(page.chunks.join(' '),text.trim());assert(page.chunks.at(-1).endsWith('STOP'));assert(page.chunks.every(c=>c.length<=2200));
+});
+test('sources exceeding the bounded extraction budget are rejected instead of silently clipped',()=>{
+ assert.equal(extractPublicPage('<h1>Evidence</h1><main>'+('Source context. '.repeat(6000))+'Critical ending.</main>',url),null);
+});
