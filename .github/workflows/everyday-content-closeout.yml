@@ -1,0 +1,83 @@
+name: Everyday content and public acceptance
+on:
+  push:
+    branches: [codex/nondevice-completion-20261003]
+    paths: [editorial/content-audit/everyday-*.json, editorial/content-audit/everyday-*.mjs, editorial/content-audit/build-everyday.py, .github/workflows/everyday-content-closeout.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: verified-public-pages-repair
+  cancel-in-progress: true
+jobs:
+  preview:
+    if: github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/checkout@v4
+        with:
+          ref: 9bdcc2f7f69dc7950b90011f47e83a34fd5a64a1
+          path: pages-authority
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37101518800
+          name: everyday-release-d652d6e058694d21aa54cf539cd4d24aec6db6c5
+          path: exact-baseline
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - run: npm ci --no-audit --no-fund
+      - name: Build exact scoped corrections
+        run: |
+          python3 editorial/content-audit/build-everyday.py --source exact-baseline/source.json.gz --out everyday-release
+          cp everyday-release/source.json.gz everyday-release/control.json pages-authority/release/public-pages-20260911/
+          python3 pages-authority/release/public-pages-20260911/assemble-pages.py
+      - run: mv "$SST_RELEASE_DIR" everyday-release/site
+      - name: Publish isolated preview
+        run: |
+          mkdir -p "$RUNNER_TEMP/everyday-command"
+          cd "$RUNNER_TEMP/everyday-command"
+          node "$GITHUB_WORKSPACE/node_modules/wrangler/bin/wrangler.js" pages deploy "$GITHUB_WORKSPACE/everyday-release/site" --project-name projectshift --branch reviewed-everyday-20261003 --commit-hash "$GITHUB_SHA" 2>&1 | tee "$GITHUB_WORKSPACE/everyday-release/preview-deploy.log"
+          python3 - <<'PY'
+          import re,pathlib,os
+          log=pathlib.Path(os.environ['GITHUB_WORKSPACE']+'/everyday-release/preview-deploy.log').read_text()
+          url=re.findall(r'https://[a-f0-9]{8}\.projectshift\.pages\.dev',log)[-1]
+          with open(os.environ['GITHUB_ENV'],'a') as f:f.write('EVERYDAY_PREVIEW_URL='+url+'\n')
+          PY
+      - run: npm install --prefix "$RUNNER_TEMP/content-tools" --no-audit --no-fund playwright@1.58.2
+      - run: '"$RUNNER_TEMP/content-tools/node_modules/.bin/playwright" install --with-deps chromium'
+      - run: PLAYWRIGHT_MODULE="$RUNNER_TEMP/content-tools/node_modules/playwright" node editorial/content-audit/everyday-browser-proof.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'everyday-browser-proof-${{ github.sha }}', path: everyday-browser-proof/}
+      - uses: actions/upload-artifact@v4
+        with: {name: 'everyday-release-${{ github.sha }}', path: everyday-release/, include-hidden-files: true}
+  publish:
+    needs: preview
+    if: github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - run: npm ci --no-audit --no-fund
+      - uses: actions/download-artifact@v4
+        with: {name: 'everyday-release-${{ github.sha }}', path: everyday-release}
+      - uses: actions/download-artifact@v4
+        with: {name: 'everyday-browser-proof-${{ github.sha }}', path: everyday-browser-proof}
+      - run: node editorial/content-audit/everyday-release.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'everyday-live-proof-${{ github.sha }}', path: everyday-live-proof/}
