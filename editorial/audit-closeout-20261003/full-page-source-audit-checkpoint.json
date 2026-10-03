@@ -1,0 +1,4004 @@
+{
+  "as_of": "2026-10-03",
+  "scope": "Full public website content and source audit. AI work excluded. Independent clinical review is not a prerequisite for completing this editorial task. No clinical certification claimed.",
+  "full_audit_complete": false,
+  "capture": {
+    "public_urls": 559,
+    "all_http_200": true,
+    "note": "HTTP success is not content or source sign-off."
+  },
+  "current_pass_full_read_count": 89,
+  "prior_work": "Previous receipts separately record mental-health, FAQ, tools and general-page reviews. Not silently counted as fresh source checks here.",
+  "production_receipts": [
+    {
+      "at": "2026-10-03T18:04:50.333Z",
+      "source": "c1692fcb09f8b30a348852da0dd0578005d74f47",
+      "before": "b68d0a6e-4950-41a1-8cad-bd5e9393d7aa",
+      "after": "341cb3a4-7fab-4e20-b1fd-bacc08a6c66b",
+      "origin": "https://341cb3a4.projectshift.pages.dev",
+      "fingerprint": "6fef273aa67dca8dad99c0e1f2ea8306ebc2710b74e98ab2cf8e14494c68a352",
+      "publicFilesPreserved": 867,
+      "checks": 18,
+      "workerDeployed": false,
+      "aiModified": false,
+      "noMessagesSent": true,
+      "noCustomerWrites": true
+    },
+    {
+      "at": "2026-10-03T18:10:54.443Z",
+      "source": "982d6c126b2878348a68fb756bdf576c6be97391",
+      "before": "341cb3a4-7fab-4e20-b1fd-bacc08a6c66b",
+      "after": "9163bf82-7158-41d6-855c-82f40ace4f2c",
+      "origin": "https://9163bf82.projectshift.pages.dev",
+      "fingerprint": "fcef924904a0c000f7088f1d75e62fa645394ca10bed22fde1d04008b662d326",
+      "publicFilesPreserved": 871,
+      "checks": 10,
+      "workerDeployed": false,
+      "aiModified": false,
+      "noMessagesSent": true,
+      "noCustomerWrites": true
+    },
+    {
+      "at": "2026-10-03T18:14:44.076Z",
+      "source": "71cf5626db7db25d621cb1f8096ff670d940740a",
+      "before": "9163bf82-7158-41d6-855c-82f40ace4f2c",
+      "after": "1ee9fc24-a1e6-460b-aa8c-cbd9af23f5da",
+      "origin": "https://1ee9fc24.projectshift.pages.dev",
+      "fingerprint": "c3d00fd2609af1fccadaaa342a60e4cca5f5dd29a9e6d55cf2660e95947aeb5a",
+      "publicFilesPreserved": 871,
+      "checks": 10,
+      "workerDeployed": false,
+      "aiModified": false,
+      "noMessagesSent": true,
+      "noCustomerWrites": true
+    },
+    {
+      "at": "2026-10-03T18:23:51.060Z",
+      "source": "f01623d0ed4285dc0e1d5834a1537646de1d65ff",
+      "before": "1ee9fc24-a1e6-460b-aa8c-cbd9af23f5da",
+      "after": "f9d38abd-8589-4af5-af95-4b52b50f2f5a",
+      "origin": "https://f9d38abd.projectshift.pages.dev",
+      "fingerprint": "9ac328a70bd217f226b328e0e0e77941e786c9a5ad9766104beedcc257e2f117",
+      "publicFilesPreserved": 841,
+      "checks": 66,
+      "workerDeployed": false,
+      "aiModified": false,
+      "noMessagesSent": true,
+      "noCustomerWrites": true
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "captured_sha256": "bc3ea14c7faec0b9afc01334800b4c63bc4b3ab2b5b605efda791ab9fe679620",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "about",
+      "captured_sha256": "89290991854b0b1ea8ce0bb8b0803031e19c59312e4891729388024ec8c8a45e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "advertise-with-us",
+      "captured_sha256": "c9e6f604a247be789046623866faea2d91aea9057994e08cbda30b6cb70ad829",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "affiliate-disclosure",
+      "captured_sha256": "b2329d025fe79d70a782ec949e274b1415668a027c56d7a6da52c10af8bcefcb",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/air-fryer-meals-men",
+      "captured_sha256": "32690147007692cb6e6ab45c11e751a07bba30f8d80f013299924d34bede41df",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/alcohol-and-weight-men",
+      "captured_sha256": "b7527d80909c95468c3e6d37e124ff62de3bc296dbf64c22c9ec4dcf755618aa",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/alcohol-on-glp1",
+      "captured_sha256": "981ebce30cc5e7998de236bcbdbf2a13ade9d845680e43d5da19002b008d83ec",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/asking-for-help-men",
+      "captured_sha256": "aa0ef95b2d758d3b669844d1b54a6f71fa9befbb584a0985b71f94f9c7edc27e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/beginner-walking-plan-men",
+      "captured_sha256": "4e54186ef2984165d96c21c09a842bac2045d06ba19973bfd57ee4336177365c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/bmi-men",
+      "captured_sha256": "9481a7345579b41135268b0ca768e90e850e6c3c866576f591bcc6100c3f8e2d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/calories-explained-men",
+      "captured_sha256": "9cf926a8f5d90d91c1b9faa2ffe4235a740937ab81b436353c7375bbd4c3d6d3",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/cholesterol-men",
+      "captured_sha256": "b7227629a9c7069d1eed3b3ce237f2dfa56a0b5aa55e60373a9af360f4ae33b2",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/confidence-and-weight-men",
+      "captured_sha256": "224e815276d2ac69b220595330acf5f49d8b70a8bd7dca5736fff4e501516d1c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/dad-bod-nobody-talks-about",
+      "captured_sha256": "e90ef76a43db3688764e2cac31bb3cab6fcd7d3932cc66c703996f8e05f45af1",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/eating-out-weight-management-men",
+      "captured_sha256": "c4b2cb4dd904f3449e14274fea7953baf35cc35cf9ffd99c846ccf26a21dd465",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/evidence-based-weight-loss",
+      "captured_sha256": "81cbac028af7809e8c8ceec52c5987419b8ed6d90bfc6c38636bec17e6e65002",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/exercise-on-glp1",
+      "captured_sha256": "7b919979cbc93f9a47ccf575b5303911ede392aeaab91e6fd1b4a9bbe698a4f5",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/food-noise-after-stopping-glp1",
+      "captured_sha256": "b2228c81cadfff5fa5b22badee498a578c1ac04bb50ee3132bcc0fc59b75b691",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/football-fitness-after-40",
+      "captured_sha256": "b96ddd5cb6cff8705a58fb1103325a647bf25fcfab6edd97ccc5a02a70dbe1b0",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/glp-1-and-exercise",
+      "captured_sha256": "e9275b15b805172da1a7209e2fd00ba4badeaa9b14033a00d779b2f9e910b493",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/glp-1-binge-eating",
+      "captured_sha256": "8bdf6cb65330180cf5f8503980e295b845600165051dda8ab090a2615be0f343",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/glp-1-coaching",
+      "captured_sha256": "3b2aff0f4081b01dbf5ac8ee0741c141d828ff9a540712de05011160a69b4f2d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/glp-1-for-men",
+      "captured_sha256": "76e448af0f4a3a691ab883f4f0c53ee590cca215c0dde68bfaa748fd7b7b6f2f",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/glp-1-muscle-loss",
+      "captured_sha256": "cdfc2ab0a37da2bc3fb9083e682bd707cc3b3d654e5ee1bf5914d34ce124ccb5",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/glp1-myths",
+      "captured_sha256": "b1ed98424275ba3b9de76e69f6d597704a9f48c081bbf09f682f58f789c915a4",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/glp1-side-effects",
+      "captured_sha256": "428fb8766967614b1ef92c248909e56f54643171bfccd8e43abf2b3e955f0a59",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/health-isnt-about-six-packs",
+      "captured_sha256": "372f7b8763dd22f42694cc0960a64ee798287892e573468e4da7435cf798c797",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/healthy-bbq-men",
+      "captured_sha256": "cf7f0915cb795eef0bbfc24089104eeb22ad51df12148d46c739a5c148730857",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/healthy-habits-that-last-men",
+      "captured_sha256": "9cdc1c1c6fd9b0c766cb864fd54f3b380f1392cf370dfb14edbdb9eac373fd77",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/healthy-takeaways-men",
+      "captured_sha256": "5261963d54c79ac01813c5359d4acabcbe5dd9a3ba0cbd4ec5203a33fe56afaa",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/heart-health-men",
+      "captured_sha256": "23c6641aceeaa6b1b25fed0116c85abcfa525f7099041c03af9c3db886ca870e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/helping-ordinary-blokes-feel-like-themselves-again",
+      "captured_sha256": "617f37bee017c5b5ebb8059abd75a460135a8eb2d91589391a2cc4529391795f",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/home-strength-men",
+      "captured_sha256": "f9d43d6eeab895a076cdbda77b37a72bea4830c5154b5929f76d854849372b78",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/knee-pain-weight-men",
+      "captured_sha256": "0359f41cb00a2541c8461dd638d527da73e39641ede5e0bfb227cf4999ff5f96",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/life-after-ozempic",
+      "captured_sha256": "784b85419dd72fcc19b4b96e41290278086a91f6cba9ae8d5a3cbac96918a865",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/meal-prep-busy-men",
+      "captured_sha256": "f11b2147c035938aaddace35c49241a6d14c389c7adeca8c1f554f18ea3cc1c8",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/men-belly-fat",
+      "captured_sha256": "f8d6fde8b82ec3c621e237af8230ca0602edad0e9dba74fc5c6263856fd8f797",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/men-weight-loss-after-40",
+      "captured_sha256": "23cf7562a1533bbdcdd064d0e6aa0fc68194da5c366b3c87429313aa75508017",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/mens-mental-health-and-weight",
+      "captured_sha256": "77496f3a62b769c22502a0c78ae82f1a4e8c3180305c715299f261210f19c4e6",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/missed-wegovy-dose",
+      "captured_sha256": "5e6fbbbf64f38300fc1393c67a417775df9c90953102b1e5dad1dec5b54f29a0",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/motivation-vs-routine-men",
+      "captured_sha256": "104368310e92c0286b35cf724e75879cb20ceeea8d678b59e002c10e50d0def6",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/mounjaro-cost-uk",
+      "captured_sha256": "5c3617f9dbafb8ca83dd872c97cd401c1991901a7ec137640cf5c12cccc87d38",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/muscle-on-glp1",
+      "captured_sha256": "f1ce9ab072c9b50da7413286533e192ef900eed3293129c79fc43c0b2ccd009e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/nhs-weight-loss-drugs",
+      "captured_sha256": "2896653e3f45cbc56c1c1af51fa36296a098116704848cab0100255116ffa1fb",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/oral-semaglutide-for-weight-loss",
+      "captured_sha256": "8e149a237bf3d1e39d67050c037e67273a0e58d5b9fb2db0af218a5d216c248f",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/prediabetes-men",
+      "captured_sha256": "e399e9434b542210d51f5cd63af298b3200b2c58ab6c645024f5f394dbb6dba6",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/protein-for-men-weight-management",
+      "captured_sha256": "ea8807a6c8698ef0b1d4e704d7f725f1546a6a843c4eba8958bd6f09222d8739",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/return-to-sport-after-weight-loss",
+      "captured_sha256": "b0f86c9b265fb33a381568e8f6558018d5762c3150c683ff450c95de9adf95aa",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/semaglutide-results-timeline",
+      "captured_sha256": "dfdd9a561945373f17fc06e34f3c61980dcf851d0dc6a68c07c156fe6c24f884",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/sleep-and-weight-men",
+      "captured_sha256": "a41b81876e68d437bdf570f59bc5929d59a1a65e15063f4a22b26efa2934d6a7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/sleep-apnoea-weight-men",
+      "captured_sha256": "bb99d3dba86674791e4f6e13aadfcec4d769749552ed042cab58e4bbb8c18a28",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/stopping-glp1",
+      "captured_sha256": "d4de4395be4c4da98ed975430af15cea01c0a85d5b91b277d6bdf52cca015451",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/stress-and-weight-men",
+      "captured_sha256": "6ed33e1b91fd6d5b0ccb9ae8c71303ceff18d8d34ce2804baf60bc24f877dfca",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/testosterone-weight-men",
+      "captured_sha256": "5bb88ea9a6646d99c2a81039a202c805b334db7b1dc71dbfcbe125faeb8ce056",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/travelling-with-weight-loss-medication",
+      "captured_sha256": "366f30a37da1c7aded211744fa8e476a58b188390d3826bd541583b551513428",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/waist-size-men",
+      "captured_sha256": "69f7e3483d841986a8fce88e45c9a7808db627073d0882c8e10a1d33bef6f737",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/walking-for-weight-management-men",
+      "captured_sha256": "889bb505434172e25ee72d738ce61ebd2000b8dd792a52c064910e036b709505",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/wegovy-cost-uk",
+      "captured_sha256": "426e04855e4ecbe38ce4fd846349221c4246307b1e78fabf878227bc71654940",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/wegovy-not-working",
+      "captured_sha256": "ac4f3870fd583b2f6d1153397355e58ea8223336a5367446c28a8a2a649d9c9c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/wegovy-side-effects-timeline",
+      "captured_sha256": "d5ae2663c5a1f11d95b611a0a898edf2133b446b3b4d3b09dbe259d16db1be33",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/weight-and-blood-pressure-men",
+      "captured_sha256": "c3d9412b92723991b5a896c0d35db3cff5f23d5a32ae8a16a83a1fbd0d0c038c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/weight-loss-after-40-men",
+      "captured_sha256": "9276aa92caf76cda5b994db0f57996a30387a3e4a00166c806ba98c918d8b920",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/weight-loss-plateau-men",
+      "captured_sha256": "8b4ecc211bc85f9707bd739a3a5eaad4ea4ddcb0d09fe32a3d8dc78996d2cd94",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/why-blokes-put-everyone-else-first",
+      "captured_sha256": "beaca2bea0ca0c946e983de33646f1eac8d081bd117a3ca3754972de9e4c61d2",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "articles/why-we-built-shift-some-timber",
+      "captured_sha256": "e8a771638f2c4cb3d8a7fd131c9f9f489c3a58f9cffce0e576d40d561824fb33",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "ask-timber",
+      "captured_sha256": "a97ec58b578c29b2b09b2321b0f78d5b139a5b92377debad44403734e4d33062",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "authors/matt-obrien",
+      "captured_sha256": "fa4ced94be09b509626bd34abfc64e52a08429bca677d5363f14fa2edb788d8c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "authors/shift-some-timber-editorial-team",
+      "captured_sha256": "e6f25598eef55a57b7b0e191341891cae87c317b501e34c7d9f360f85ff976ad",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "before-you-decide",
+      "captured_sha256": "48efafb908e9702fde831e389506c9e743c156b202f90b1e0881cc400c0b4dc7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "clinic-gone-quiet",
+      "captured_sha256": "0cb85ec00d9126c57c98fcd633d08e5e2131f54095b590b78c5973b743e5bf39",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "clinical-governance",
+      "captured_sha256": "2ed4c6720c15ada962495582685f4cd5ad176f801b025f0de786d563220f740e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "commercial-principles",
+      "captured_sha256": "3f7928cfbdcdbe6bcededb750dc7383d5f552178f67ef19de507e5bb36377e1a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "community",
+      "captured_sha256": "01710d5cde54e2aba7a5e084ee94529b2f78a4d4a51f3ab788bcbff14b2a32e9",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "compare-weight-loss-treatments",
+      "captured_sha256": "665f609989d55a6b72744281d96034511477577270987573787e14f6036b00ca",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparison-centre",
+      "captured_sha256": "3fb6d1e953253f01ff13d453aa05ec4f05c04a28e4f67ec3024f0a51c486e7d7",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/europe/headline-price-vs-true-cost",
+      "captured_sha256": "81d7f1830b0d4e49698d4ff91d56d653d6584322d1774caf1efbe3763b30cbe8",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/europe/overseas-surgery-complications",
+      "captured_sha256": "63a6666a2ae4d2399909da178043707d258154c1d77cebac1431d17b062dc939",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/europe/uk-vs-czechia-bariatric-surgery",
+      "captured_sha256": "9012fae70f4f3df8ccdefff8fdfdc07be9e82c86cac8620e9bf757e37717df03",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/europe/uk-vs-latvia-bariatric-surgery",
+      "captured_sha256": "b0c09286ed000d78b9f9ee2dcc841a2bc4d931062000cc463026c91cd2f11ae4",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/europe/uk-vs-lithuania-bariatric-surgery",
+      "captured_sha256": "f5f153760f861ee2342ee768d1d8bbd7a36e227d4d112574b70b3f8c4008cc08",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/europe/uk-vs-overseas-aftercare",
+      "captured_sha256": "b458124e3c6d6758f4d41814c79c21b4d53c6e92bb27e88ee7bfaf09461a63ea",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/europe/uk-vs-poland-bariatric-surgery",
+      "captured_sha256": "5c803d88493ad5d4fc432ae1c9294bac14bc558a56bf013d4bbd54b697962b5f",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/europe/uk-vs-turkey-bariatric-surgery",
+      "captured_sha256": "b56445201039a51268ea06581197d5cc35525d5272028e34ba3080f094bd5c1b",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/europe/verify-overseas-bariatric-clinic",
+      "captured_sha256": "e088ca3095791fdca2b1e1f88206a1bb8bce67a3958b55ef269a2d2dacfd3880",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/lifestyle/cardio-vs-strength",
+      "captured_sha256": "c7e5792665e4a280d959e4f53e82c673f4823123fd5a7aba74956b856877b310",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/lifestyle/lifestyle-vs-medication",
+      "captured_sha256": "8c054a902a0823a69ee3bed2ad24a281563eac41c17f007599acca6b8b710afa",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/lifestyle/lifestyle-vs-surgery",
+      "captured_sha256": "c1e14a571b5a12e5482621cb873f409d57518154f9bb8c5d7fdb889966d57280",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/lifestyle/medication-plus-lifestyle",
+      "captured_sha256": "caadc4610e1c6d8f3793990700771ac95233971994823f234e991195206eb653",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/lifestyle/structured-vs-diy",
+      "captured_sha256": "5614a9f9d75951867b7eee84e06e82abe68245ed1a62cf5e404ff5be6351bb87",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/lifestyle/surgery-plus-lifestyle",
+      "captured_sha256": "744256728366a56ad14d8c15e8b3bbe5892f52055d742ad3a1c56aba6dfa8e8b",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/lifestyle/walking-vs-structured-exercise",
+      "captured_sha256": "8ec7326b31abe18f59393517064fee3635f5fbccc17956d787f4d56d05b0a81d",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/medications/mounjaro-vs-orlistat",
+      "captured_sha256": "5d6344e4b622055f977f46a009cebc3c1bdaae28c2a932a8c84ab89c24c3c4e4",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/medications/mounjaro-vs-saxenda",
+      "captured_sha256": "81cca34cb092d4aed2e07671a2ca518af35dbffb4fe93e29895be7dee4b4f915",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/medications/mounjaro-vs-wegovy-tablets",
+      "captured_sha256": "deca98c451f55128a12a03990bc3076b1ad55f4bd93a2552ed2de08ccd93fcbf",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/medications/ozempic-vs-wegovy",
+      "captured_sha256": "94f0e8e73c074bc00fac40921f4c3ecefc835eb8433d6d359276d56d75f77167",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/medications/saxenda-vs-orlistat",
+      "captured_sha256": "b68492a875e56e9dbb0fe59a99f3c7d0b12d9feb98fe349157ef70ebbfcba47f",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/medications/wegovy-injection-vs-tablets",
+      "captured_sha256": "a94d786dcaa8d53c50e8c901c7c091bcae1b8156f693479018ee0d483fb5ad4a",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/medications/wegovy-vs-orlistat",
+      "captured_sha256": "db0978769b6efe7ecf70e4e463864b282328da433cff3b0e9a54d26101a0c31f",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/medications/wegovy-vs-saxenda",
+      "captured_sha256": "f3ed9284553f4e6e79cb425dfea216f7353878cf1293e551fa208c4d6de70073",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/nhs-private/gp-vs-specialist-weight-management",
+      "captured_sha256": "5418c127c8ce1b3a99ddea2e283968e79db10b01da43b306e07f06bff02a1596",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/nhs-private/nhs-vs-private-aftercare",
+      "captured_sha256": "30540db78e8ed3c80a3841fa9f8248151fa3cc82c00ba71d46d2edd993b95bbd",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/nhs-private/nhs-vs-private-medication",
+      "captured_sha256": "f2f8a59025f9798a44caf4eccad340596abec7f279d294d3b522d9d69087c7e7",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/nhs-private/nhs-vs-private-surgery",
+      "captured_sha256": "6a65a7f15994f105e9603ecb260968e774b33c276f8bb1c492b18b26e669546c",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/nhs-private/nice-eligible-but-no-access",
+      "captured_sha256": "418478a8ef9dcd07ca4e09236f15205677fdd2c3695a8dae7063f17cd19394e3",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/nhs-private/online-pharmacy-vs-clinic",
+      "captured_sha256": "08f5e945968ab1a1360454804e7f6dbbf9fdd0d12e3cb7ccda77d7eef5656943",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/nhs-private/wait-vs-pay-private",
+      "captured_sha256": "7337611a16f396ebc3bd198f0e99a2595b69225cb52075dd2b502c9683542397",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/surgery/balloon-vs-esg",
+      "captured_sha256": "bd464e207d50cd760ae05bd48ee289f3a8ea0610c3360d60830735c4f8589440",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/surgery/balloon-vs-sleeve",
+      "captured_sha256": "ef4c05ae66375cfcd2a7447f4047a48389eed82e0f57a90c279fb5e8e5b56894",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/surgery/esg-vs-gastric-sleeve",
+      "captured_sha256": "5d529304f41767c1300f265565fb7e00f0e7361e3601a5c1afde6aa82512910c",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/surgery/gastric-band-vs-bypass",
+      "captured_sha256": "bf474fbe40bbd54ce76f1f28e412443ad22aa44fab2640c6a31b3affd81598a9",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/surgery/gastric-band-vs-sleeve",
+      "captured_sha256": "1d2e81ec0d6826395279d0896e1615cacf31549f323b0bdff939fe075303c7f9",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/surgery/gastric-bypass-vs-mini-bypass",
+      "captured_sha256": "ebd0fd8e9b96066ed5ada5e7d000672151db9bcf6102a5fe496f88044f35a35b",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/surgery/sleeve-vs-gastric-bypass",
+      "captured_sha256": "06c17ed457491e3b5544e398fac4329a5f56343cd3580304ad0f1ecbb4d78fa1",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/surgery/sleeve-vs-mini-bypass",
+      "captured_sha256": "311ace26f2396c84edd9e524a0d7574083c5d7f2018ac795769100dc2bf11623",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/universal/esg-vs-wegovy-tablets",
+      "captured_sha256": "c31209746a19a8a39ec151dc656d09d451498f2bc6b667fd1fdf1b4111465d0b",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/universal/lifestyle-vs-mounjaro",
+      "captured_sha256": "d04d5907a51cf0123d14898c24620419630c79e37427412abe54cfe5fc31979c",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/universal/mounjaro-vs-gastric-sleeve",
+      "captured_sha256": "5fe5a5a47f5687f9771661477ffb814da3859a7d6d7988259e7944b905cfbcab",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/universal/nhs-medication-vs-private-surgery",
+      "captured_sha256": "d5fdf4e249c2f4a4c7e351e259e813fb8c233bf51399540e79a002acc5d8e8b7",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/universal/orlistat-vs-lifestyle",
+      "captured_sha256": "ae7c977cf982bad6efb92e05364621f9c7f8cee49bbecbb810fa23e90a57e5b6",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/universal/private-medication-vs-nhs-surgery",
+      "captured_sha256": "1ecfacbe002381ca922ef8a7a873a66babca396e897620db5dcbcc7d63b6af8a",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/universal/uk-surgery-vs-turkey",
+      "captured_sha256": "34afd9cc0167250eb136bd15df8e478c362ee296289acbcc24bb43fc04eef586",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "comparisons/universal/wegovy-vs-gastric-bypass",
+      "captured_sha256": "49d607b9cbc405bf93533ec6dff611257fad97d7a4806018115a8f960addd16a",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "complaints",
+      "captured_sha256": "93792f20d959a758172130d8473d6599851195e22ff62d55410037a762ce761b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "contact",
+      "captured_sha256": "3a3cdd52be315a1a87fdfb78f58b9b2ae52c6f783568ed0814b8b874ef198a49",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "cookies",
+      "captured_sha256": "8d62565d040406ba4407f4f8f668c1f433c816624241ce2a06aa49bf8e053101",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "corporate-wellbeing",
+      "captured_sha256": "995c9b07eed1e7481f16fbccc62a6c0c72073dffec1d50a4e0b91cfdf183f9e8",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "data-governance",
+      "captured_sha256": "c7eb6a25abc9dfbe2167ae51869ff295fda35487ab98fbff06e99ef52990b0b4",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "decision-centre",
+      "captured_sha256": "bc28f169fef40a5f0bb27228338a6d2dc8e6c868b38617bce496c86e5b13a30b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "decision-centre-methodology",
+      "captured_sha256": "3a927020487e11a29afaae02d32026f6486cdb372084d3df77c63592c087744c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "decision-readiness",
+      "captured_sha256": "6cee52fdac9ff9bd02a0cbb7a122e2db55995a2ada078b25da6a6ded84256c4b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "decision-readiness-methodology",
+      "captured_sha256": "648cd7858ac0f811c7edf1587f9d4af4c00ee9c0faafceac018c244e44018025",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "decision-trees-explained",
+      "captured_sha256": "22e94545d38ec02e06211523df475898336504e49896dcfd20e6fa0a1444d7f6",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "downloads-resources",
+      "captured_sha256": "2968a61a5c54f01a2cf8dc8a9abd528efb5831a601f89e9584f8225681f1e68c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "downloads/bariatric-surgery-checklist",
+      "captured_sha256": "27564edd4695ceaca484a216ad01551c6f4ddd1232c7f6f6bbc8a72946ae72f8",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "downloads/gp-appointment-checklist",
+      "captured_sha256": "fb630590605028b0f55bbeadb6c16c6021b9d39639dbc7c4a49a149828da361b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "downloads/maintenance-plan-template",
+      "captured_sha256": "73821be615f132b40aeef00c57c134bcd2d7c6bc9f678718c43506f5cb0b603a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "downloads/overseas-surgery-checklist",
+      "captured_sha256": "064e2949682f6e0339d6967c2f8cd195aaf48ca752f365209df7b9c8f6b24832",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "downloads/private-provider-checklist",
+      "captured_sha256": "37646cf8f3f17bd840867ef3c05e0fb1588ea3926753774e1975a340ddefeaf7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "downloads/weight-loss-medication-questions",
+      "captured_sha256": "156a1d1818b47f69bdbcf63da0bddd096541d086f6a086f0a959fde4e4ea9b74",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "dpia-summary",
+      "captured_sha256": "0d2bb4c9271405b276f5805d0bbcd8beb351946c847b31ef5bb2d36d8bf559fd",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "editorial-standards",
+      "captured_sha256": "7d1baae59b7ac6d884fb2bc0394628f9d1503094c4f8b4bb1e59db2da7d013ba",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "expert-contributors",
+      "captured_sha256": "017647ef9980f5979cd37215a75d5b58da8f2eafec3d8f3cd058397042e48532",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "explore-knowledge",
+      "captured_sha256": "b015612425916840afc789c76b2ba0919d76afd32c3e273b0765523f2a240f3a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "family-discussion-guide",
+      "captured_sha256": "bbbf78531cf39ed495e72895cf9bc2c4b5d1f91462937cdc59ab8ec313dd6d0a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq",
+      "captured_sha256": "f23ababd83f1f4fa301935f3c16eb436531ce969b3512cd9f69d58834a61335c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/are-carbs-bad",
+      "captured_sha256": "60019a79ac72f99f1932afeb0ca1e8aca3a654a954c89c17da8c4b6172f7e35f",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/bbq-and-weight-loss",
+      "captured_sha256": "d93aa84d09b8fe15a701f6f1432cc4365d520ade8ea1003ef1928452551f9508",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/can-men-take-mounjaro",
+      "captured_sha256": "ad8217bfa6173d4771b162d14923934b19eb81b181d0a0d573fc10336cef0eef",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/can-men-take-wegovy",
+      "captured_sha256": "e38ff226f81c87066ee902a20529404f5a831656fc4cd40960e03a9666ad543c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/can-stress-cause-weight-gain",
+      "captured_sha256": "91c52e40fc67c6ed154a9aa32d18c9e08944bf6b4bd9b1aebb7bea3c27482a8d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/can-walking-help-weight-loss",
+      "captured_sha256": "21f5081a75f2c5f467ab63f083459c404e407ba0f0c5f3ba71f82495e4190286",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/can-women-use-tools",
+      "captured_sha256": "544eb24016fc45173ba6102097400df1400dfdd48aed082b3a2e55e82aeeaa77",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/daily-weight-fluctuation",
+      "captured_sha256": "a1eef120fd44a20a562333498721f4b726eb41fd370616e8437f4f1748d3b83c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/does-alcohol-cause-belly-fat",
+      "captured_sha256": "3fbe6172646a7fbcc494bc0b508bc83ca325e9dc1126a8c2f1c111aeb1106c02",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/does-belly-fat-increase-risk",
+      "captured_sha256": "04eae01f76cd93dcbe28a818fbd4002f89ac90c1a4ebac4e617aa8bb75733905",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/does-sleep-affect-weight",
+      "captured_sha256": "5fb04de060f947346472c4de0163b94ae0cdc30748fef6fc4d5fba44b1078ad4",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/does-sst-prescribe",
+      "captured_sha256": "7b90df2d2e9a1ca314e7c887fef4486b84791a4942bd7eff9e793ec170124926",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/how-much-protein-men",
+      "captured_sha256": "9a9b35fd0693c777b247dadd4075f25a21b80d05995689a683708b81ca1ffb47",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/how-often-weigh",
+      "captured_sha256": "c52b0bff9a9770dcea75328ebf02153bc6a534a23fe08df2d2219849bb2e4a58",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/how-quickly-should-men-lose-weight",
+      "captured_sha256": "544ee27eb302c3d012b57177da1a0ab98b7b987bf2374bff2de79afbf20f4561",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/is-20-percent-realistic",
+      "captured_sha256": "5aa9694cbc32270587a61bb9225e6b3a85e29a90432bc53ad020e7fdc35c4747",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/is-fat-bad",
+      "captured_sha256": "cea84d3adce4932168c2c1b8ee72c9ea042c253d37d2efdea16de24ec21c9e75",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/is-glp1-only-for-women",
+      "captured_sha256": "098a3103013284fa00d82897f47652b17f17b4237529e33901952d16c0b93d52",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/is-health-mot-medical",
+      "captured_sha256": "48ce189655bd204dc645a6136c2cb19e406d3e2b6175281138eca932a6fc1adc",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/is-health-mot-saved",
+      "captured_sha256": "7a535974b1bf54584d5b3e28bbb099a6c797c8a6e217e20c88ea3af3eba734a3",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/is-sst-gp-replacement",
+      "captured_sha256": "4094808d1f37aa5c3136e38f296197fecca0e0f11d6f5a0f1d6a94caac0aae71",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/mounjaro-vs-ozempic",
+      "captured_sha256": "6604f059642f15534f761f0542058e34f8ad81f6eaddbe5c60d621962012223f",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/need-breakfast-weight-loss",
+      "captured_sha256": "147a69c4ab9663862948210ac6a3df9edb7f26e0f768fc74d8c6870f4c70e55f",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/need-gym-to-lose-weight",
+      "captured_sha256": "438f5029ef9b32cc82f378da209dd72ba88c22ad3c49ec1568c107b92acc2587",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/takeaways-and-weight-loss",
+      "captured_sha256": "fc6b0867c32597b6a465fb3a3e16fef0c0df29649e8f4060eadc7554744ef4a0",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/wegovy-vs-ozempic",
+      "captured_sha256": "266607784251b3c03b41a4dd7ffb37bafc5fb191b624f924867c059343381973",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/weight-loss-cholesterol",
+      "captured_sha256": "939e4c37e7e042977a981174511ca8043f04313209303c786a8a568cb4cf4f53",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/weight-loss-diabetes-risk",
+      "captured_sha256": "6d91636babf8a934a47dc25cd6ef80c3b63d9f35d3d4cba5f2b801d6c68bd1d1",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/weight-loss-lower-bp",
+      "captured_sha256": "37ad3550694939d224e24f38f4e2fc55181d715747ca2fbe26cd621c10789d43",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/what-is-20-percent-club",
+      "captured_sha256": "1863956ff920304d86a9d5bc377bd6f0953dd94eaa85daa1789f522bde775a34",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/what-is-founding-shifter",
+      "captured_sha256": "e713cce82ae11a3124ccba8fe755227e9b99bfe4a4cbb33381804db60becaee5",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "faq/what-is-timber-mill",
+      "captured_sha256": "bf24a497e8246a422592c6faec0a1f29d5fed81b1a4c628b96a3d6ac1391bdb8",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "foundayo",
+      "captured_sha256": "585e669c710c028f7d0dd9506a799d465964b41088c75b1fd50e3819455f1626",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "future-medicines-comparison",
+      "captured_sha256": "e5f3ac80d167096fc0fa5955c3b8b1a1e9ccbc0d0610ef2648659c138f8e7db3",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "glp1-knowledge-centre",
+      "captured_sha256": "70efbc1eec691daf67307910210cec0fe8639c940b405da4392f8e1ee764ac36",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "guides",
+      "captured_sha256": "1c789695ee309653e3502f8adb4cf970500caeca7598a1802781fe68584e7b0f",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "guides/amycretin-uk-guide",
+      "captured_sha256": "6c0dc534f73890bab3ef5126c03fcaaa0789c977a74ae02332c80866545a61d6",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/bariatric-surgery-costs-uk-europe",
+      "captured_sha256": "58fdb95cfc8c4601eb82c9078290dafcde86e779b8636b26496391a1c1dfec0b",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/bariatric-surgery-europe-costs-guide",
+      "captured_sha256": "21bcb6ff3e471bfa11d30df984c17a7fd5c95ce4669166bf140a9954d604225d",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/blood-pressure-guide",
+      "captured_sha256": "7f7a202a49938fa156e9b11986ea45d451251e362b8be9306b5f40ff7dc9693c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "guides/cagrisema-uk-guide",
+      "captured_sha256": "a10435859473a2dfd184777c71fbd23a23e9ce17fda5adbf6d8e20ef712f0760",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/endoscopic-sleeve-gastroplasty-esg-uk-guide",
+      "captured_sha256": "95f3cf8a44e8dba8d819385a01f01c4bdc7f1667bf8abe3f37c7769f7d4cd09a",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/exercise-walking-strength-mobility",
+      "captured_sha256": "d2d9a097dd1accf7a8c007e6ce4566b4c38e1015c3b1c391d96889420f50df00",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/gastric-balloon-uk-guide",
+      "captured_sha256": "3d66ea184a10db9014629ccd0fe25fb27a7d844683c4c964b9939bd82f263fff",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/gastric-band-uk-guide",
+      "captured_sha256": "8c6283c8bddcede12788b48a2f711569a0deb0687ceb8518af35d27b2aa79973",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/gastric-bypass-roux-en-y-uk-guide",
+      "captured_sha256": "626afb2bf26d0dda4e27adaff508e153b16b887c25080fd64a3e8feaa1a56493",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/gastric-sleeve-uk-guide",
+      "captured_sha256": "3bbb024ccb5c3c6bc0e860480f61f3b1bb24aea2db2c38ed86cfedbd3ec3434e",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/glp1-guide",
+      "captured_sha256": "70efbc1eec691daf67307910210cec0fe8639c940b405da4392f8e1ee764ac36",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "guides/maritide-uk-guide",
+      "captured_sha256": "ec47dafcad25d995f71342d3a4df44adec3c80e0b7e59c6c38b0f7a9cc9e00f7",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/mens-health-mot-guide",
+      "captured_sha256": "f0bdc692a67decfa24c026d4cc68a80246044a2723db51399a549892eaa2fab2",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "guides/mens-weight-management-guide",
+      "captured_sha256": "f0b4f7a26902c65c37d6c2e103bd0866b8f13e7b5803d10eb7c5c29c45a28481",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "guides/mini-gastric-bypass-oagb-uk-guide",
+      "captured_sha256": "44ace35bd3d63f186c2501686441cccd390f347756e1b568bcf58827a09d2bde",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/nhs-bariatric-surgery-pathways",
+      "captured_sha256": "df3cef39b799799330928f4303aa40e6cb1e44e060dc12a20b6d56ced564b5e5",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/nhs-weight-loss-medication-pathways",
+      "captured_sha256": "5b42499f7b5a93b4d67e47c10786d44082f73565d4aa30990cdf1c2ee591b074",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/nhs-weight-management-uk-guide",
+      "captured_sha256": "f00f9c6ed6730d1908186fd20c703c5d8d2b302763afe52128bfcad0bf1d9d16",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/nutrition-guide",
+      "captured_sha256": "9c8daaf48995dd987f0e1ae268d950ea86a8539d5251334f5068f1eb26f8f06f",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "guides/nutrition-protein-calories-meal-planning",
+      "captured_sha256": "27e5ab432d1202b3a9ff15ca3ea6e255e7f570a12b265ffa6255cae98c4599ac",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/retatrutide-uk-guide",
+      "captured_sha256": "ca516922f74914d7e206d0338279c4786cfe1c2b22da1941ab63389773228cf4",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/sleep-stress-mindset-emotional-eating-maintenance",
+      "captured_sha256": "34e8ab9145a15b049a00c8470884ea2cc11e34c06b2eb06cc5bb309af2baf3f9",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/walking-guide",
+      "captured_sha256": "66ecc5635cc76b1fdcd1140d9b5605130abdeffee64a87dad3e43996d371920b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "guides/weight-loss-surgery-uk-costs-guide",
+      "captured_sha256": "01b1810b247dec005b7cfd9fc8ff3fd8aec5ab9418cb468fee69738e891270fd",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "guides/weight-loss-surgery-uk-guide",
+      "captured_sha256": "50c19a464fd2e2d324900b3cafd093feab8bac16b5fe53fa1b247062c053da88",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "health-mot",
+      "captured_sha256": "b2ef192da45b7e62b2d2ced7224a74f1e80ab92264be7911fdbbe6143e8c4f8e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "health-mot-methodology",
+      "captured_sha256": "3ebf365cb6e2aedfcce15992867f40214620ef85742b662f92f5a1d0f65ed188",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "help",
+      "captured_sha256": "3a471fbbd1467a928aad3161134f68f17dfa6d0e1494170a46d9a9295b4399ac",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "how-are-you-feeling",
+      "captured_sha256": "214ef9f7b03118b50cb9b3192809a30817842e054219a260194b7e85d1cf8c64",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "how-we-review-products",
+      "captured_sha256": "4cf247bb535192d5517b0e3b9d11c69005076f4a9a97f5246332c2bfb0476339",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "husband-help",
+      "captured_sha256": "b5a94b15424019f90256d18f5b95cd8acc37f753061c1187eb95559bbceb3ff7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "knowledge",
+      "captured_sha256": "3f9ca8f5b4e61ab807717c1e73be6ed0d8e7ef62285130863ccbc21463fde160",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "life-back",
+      "captured_sha256": "70955b46676ee3c053091d65c7ee5614ad63fcd9dc3d7fd5e277743bf9883d0a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "lifestyle-treatment-methodology",
+      "captured_sha256": "9fad8432ab62790cdf08fc4f8a126328db3dbaee9f02ed950aee781a0ce0b77b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "lifestyle-vs-treatment",
+      "captured_sha256": "decf0e5188527db3f28ccba41891c1b80aadfb3ea079f7ec283da7bacab510ee",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "lounge",
+      "captured_sha256": "4aa8faea3e4ce19c54e42592c5286380880efe1cbdaf7094f2242f29743becf1",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "media-centre",
+      "captured_sha256": "862ad7f7b3d23316e3a136ded7cb928998c3de6946df5ccfdb06bcef86d6c5b2",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medical-disclaimer",
+      "captured_sha256": "69dc657a0a4bed9a478ceb37113c671e39afbcb240f8794282678b4b3148a45b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medication-comparison-methodology",
+      "captured_sha256": "463e5f9bbbe6dae1c6f4c123add4be69835d28e88c4ea35544f4b48c612ed07b",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/acquired-hypothalamic-obesity-treatment-lifestyle-interventions",
+      "captured_sha256": "2dd7935ca54a0b08c2f88a4e75e57256024f9eaff7dbb222eab3732861453ebe",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/asthma-reliever-overuse-mhra-reminder",
+      "captured_sha256": "6ed26d11869ce9075550ae81081222090175c13e9edc87753b4827e423b01fe9",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/at673-semaglutide-clinical-trial",
+      "captured_sha256": "70f863d919842e5b9d4712a47901c041c3da8147ba25bf67aa4830b0b57947b5",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/bariatric-surgery-vs-semaglutide-and-tirzepatide",
+      "captured_sha256": "de16a2d8dd3b144cea75bfcdda840b13f3e6433f7a2de4c79ae49a8a1066a530",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/bi-456906-semaglutide-trial-obesity",
+      "captured_sha256": "3224cee1d13881487f46656a5df990d617deec4184c3d5cad10beb7f611c4a70",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/bolt-pharmacy-ads-banned-asa",
+      "captured_sha256": "8a073b345a8e1366631bda7ead2527a1819795355f53453362fba6574ba02141",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/bromocriptine-postpartum-blood-pressure-mhra",
+      "captured_sha256": "a4a782ff69c4d63d2aa247a8020b03beeb1db4661debc6b7f49b97b0aa2a3cc4",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/cagrilintide-and-semaglutide-clinical-trial-update",
+      "captured_sha256": "5f1b813822a2f913711a883b44c9f28e8cc7022c97665b3576abad6d8223a90f",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/cagrilintide-bone-metabolism",
+      "captured_sha256": "457758337dda63413b6c5730e9b614712374d7de0d11c92a9b60a1cf9f5019c1",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/cagrilintide-research-study",
+      "captured_sha256": "4232b6d9930ad4054135535a027e33c3ee08d74241974d3092c8db3b532233eb",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/cagrilintide-trial-excess-body-weight",
+      "captured_sha256": "503ffabd510a0130d74bf6bdde91cb21c5ae4d00ea41925a905a58b2b63398a6",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/cagrisema-semaglutide-obesity-weight-loss",
+      "captured_sha256": "71edf86433bb39b41a5e6b73d7d18fc06f80f0888750d779163c2588e64893f3",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/cagrisema-type-2-diabetes-trial",
+      "captured_sha256": "a8acccd08b2ced874700695470359d66e95064c3cb8f06b2580a8c96815a8534",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/cagrisema-weight-loss-trial",
+      "captured_sha256": "ca11861b77f4008bdd669a0ab9faf671c1566c022023f191b5e77a5183410b51",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/diet-glp1-biology-metabolic-health-aging",
+      "captured_sha256": "f1ac59e1e4149abd6c8438e40b4f682cc0b17e588737588c7282184ab9a233bc",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": false,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "medicine-news/digital-behavioral-infrastructure-glucagon-like-peptide-1-pharmacotherapy",
+      "captured_sha256": "139590e71a69bbf13754401364b359583d2770f13fcca95c96ffbad9891db785",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/domperidone-phaeochromocytoma-mhra-warning-2026",
+      "captured_sha256": "07e16867ab308be007b06722d8f2a19de3ef1a6de46f7f7f685a9001c99446b4",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/dual-gip-glp-1-receptor-agonist-clinical-trial",
+      "captured_sha256": "2a5ba907662b9aaea3b1ff09f927a3e3b99549a774119df7ff7b17accd474ae7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/dual-transporter-targeted-oral-semaglutide-nanomicelles",
+      "captured_sha256": "9bde6110d3fc64691af724a32aecb2d270ad06c694070210da25c440f64e18ae",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/enobosarm-weight-loss-study",
+      "captured_sha256": "00ba7c44c71413f48ac4483edb2834a795c4db17daf3a3589ff264fe7dac5a79",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/falsified-mounjaro-kwikpen-15mg-pre-filled-pens",
+      "captured_sha256": "89f78aa5ea9a337c5a08bd9b341e35ede92e5463d592917d0f52b948baea35f9",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/geographical-disparities-pediatric-obesity",
+      "captured_sha256": "c85b198e1c3b4c97bc0463c781077900157fc5af9a6c9c33baef370c418c5a8d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/global-obesity-study-ly900038",
+      "captured_sha256": "5b3982987911a61edf7b6b2a28908a4196437596f83150be28157dd176c4a324",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1-agonists-mash-fibrosis",
+      "captured_sha256": "49dc7948d7715a48897e59255922c843a4dd74fd34e8c8d558d748cb49a82924",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1-analogs-research-update",
+      "captured_sha256": "7d1c0b4562d9380367263e3928cd462322311415a59babc67e54a393738f6547",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1-based-therapies-safety-risks",
+      "captured_sha256": "b6f6c094c36682e6a139c296578e6c9a2af976aacad75b833c70e899ca3af870",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1-nutritional-paradox",
+      "captured_sha256": "fbea695fb8d13a240f5d4c38e00487916d9e2c7f4b5c5934048184085565820a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1-receptor-agonists-adolescent-obesity",
+      "captured_sha256": "95e3a2e9872330dc9ee4266d140c2fb6de16705f17513eccb1d0ec25b3fa5ad0",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1-receptor-agonists-and-intraductal-papillary-mucinous-neoplasms",
+      "captured_sha256": "4e892b66d20c9eada59637a2cec4c7dab2c39b9d26936e68ea9afe7f235b7afd",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1-receptor-agonists-dermatologic-comorbidities",
+      "captured_sha256": "47f559da8b805c0f9a4e7413364eeffe2b2db45b96eeca53b5b1cf9b7764e45e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1-receptor-agonists-dual-glp-1-gip-receptor-agonists-strengthened-warnings",
+      "captured_sha256": "13b274f0da0d316f96ca207cb7c027676dc8328a8200e21a80a6072e5153f6d0",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1-receptor-agonists-eye-condition",
+      "captured_sha256": "1bbd8ce20b832d327009db5aaaaf1e81737291bc51ea90aa50b2055497813727",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1-receptor-agonists-gastroesophageal-reflux-disease",
+      "captured_sha256": "69acb1fa8f06e7f8f64e3b5764cfba0f41550a52b2d5523cefae489ea318a28e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1-receptor-agonists-in-dermatology",
+      "captured_sha256": "a3debcdf826de90664d00604d4dc40ea5ea7c8568ad3d415cf30d5bae49a297c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1-receptor-agonists-rotator-cuff-repair",
+      "captured_sha256": "df1885ef32a51e7ab545330f598b9761ccfd53b8e76273ee7651d9f02fd21699",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1-receptor-agonists-type-2-diabetes-outcomes",
+      "captured_sha256": "0bcc9bf711e7b4070e1d1f08bb48153faf7abfdabc3479f5d385752aad861ce4",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1-therapy-pregnancy-research-update",
+      "captured_sha256": "5e3698761646f913e244c021410d8c10d821772dd970f11fd67ff1f08a1e9320",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp-1r-clinical-trial",
+      "captured_sha256": "e2de10913d4c9530187e6ad79c4f7be271978358b3c595cd867aa0a53fb3c3ed",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp1-anaesthesia-uk-study-what-members-need-to-know",
+      "captured_sha256": "48fd5bf5b68f8784f63fa8a4bc71e227dbbc0b27adc6c908fd734e791a977e44",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glp1-receptor-agonists-lung-cancer-side-effects",
+      "captured_sha256": "e19079431030e084c3c42ea3ba90eceb64f1bc86e6eb013ffd5db86bcf85c466",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glucagon-like-peptide-1-agonists-preoperative-weight-loss-total-joint-arthroplasty",
+      "captured_sha256": "f810ab2d1f5d59faca4da298a5ad7d920e60bf1065356d389d39ec568ce919ed",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glucagon-like-peptide-1-receptor-agonist-injections-side-effects",
+      "captured_sha256": "a6e65bd22b2e9e6c3888eebdccd39ef3d182ba220d9b77feb3bbb11a503ca233",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glucagon-like-peptide-1-receptor-agonists-for-obstructive-sleep-apnea",
+      "captured_sha256": "324ba9a7c8609d0b1efe5b843ee59b8821b33d0ee6ad9531640f1e416696289b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glucagon-like-peptide-1-receptor-agonists-knee-replacement-infection-risk",
+      "captured_sha256": "fc56ce252b2c9436821be3e774b9b562aeef8a54b526a58ee0bf83f133bca02e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glucagon-like-peptide-1-receptor-agonists-lean-mass-reduction",
+      "captured_sha256": "1dde0b194326cb21c44bb5445156517bae34c6c8962027d993636772039d30df",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glucagon-like-peptide-1-receptor-agonists-osteoarthritis-inflammatory-arthritis",
+      "captured_sha256": "8335b92373ecd14befe30f541cfc8afacbd047853f6c52be79c5c2f586a575ab",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glucagon-like-peptide-1-receptor-agonists-research",
+      "captured_sha256": "38e5ab97040c001ffcb025f28d26f757744082691b4c587faeadbacdfe312c8b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glucagon-like-peptide-1-receptor-agonists-vagal-activity",
+      "captured_sha256": "eafefd106c6dbb5319cac7cd38b733d41dffe0b41c4caa11d829b40e6f2ba059",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glucagon-like-peptide-1-receptor-agonists-weight-loss",
+      "captured_sha256": "e49cecadaa216b5844e0d78731a98195b8d5191cab8b2230d6b66f5da7dd88f7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/glucagon-like-peptide-1-receptor-and-melanocortin-4-receptor-agonists-research-update",
+      "captured_sha256": "bf0bbf0fe6b761ecf573ffff0276cb212ae6373c121f5ded49295373027b5b87",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/grabs-trial",
+      "captured_sha256": "219cf9079269e20a485ba9dfb1bf7ace5de486bb72a1444ac71f3182d96bfbab",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/high-potency-incretin-therapy-risks",
+      "captured_sha256": "524d1fbb66dcf3e0f20819b3462f26f63f290e344639f458a5d589f9bde7739b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/hmb-vitamin-d-muscle-preservation-semaglutide",
+      "captured_sha256": "08a8402366bbf397e9e8ec5b3935343996ba75e3fdf6a3ba18d26cea3b0a4749",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/ibi3042-clinical-trial-update",
+      "captured_sha256": "8f85b6ca7407d9ca90206e8ffbdc3ea34eb47d2aab3f78e3ecf14dd8cb9a54f1",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/incretin-therapies-hfpef-clinical-trial",
+      "captured_sha256": "1bf516542a481a582915afd322f77113d59107b1297b586966bb2eab7b9ad24b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/infantile-obesity-therapeutic-strategies",
+      "captured_sha256": "59c3bc5a0c64068ceda9e9006ab9bcda765e7bbee679dfbf16683c86ce9b0662",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/isotretinoin-october-2025-survey-later-guidance",
+      "captured_sha256": "3687f6cb7b8af320349b0e817936607f1399b1d37312caf8bbf703373d386647",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/isotretinoin-prescribing-safeguards-january-2026",
+      "captured_sha256": "5939cdb99897588f557c301ce8d8396be3f8a7ca93060a12c5c7681dfad5edbf",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/ixchiq-2025-pause-superseded-2026-review",
+      "captured_sha256": "88527051c413767050c4faafedffba6a103b8aecbd211afe928f6cbe7ded3e86",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/ixchiq-uk-restrictions-safety-review-2026",
+      "captured_sha256": "d6b322186a4df473e21906372e472e1ee57100a8943586b68a428549eaeaeff9",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/mesalazine-intracranial-hypertension-mhra-warning",
+      "captured_sha256": "f7280f1263cc50741eb67dc50de4557a0f3d418d4b7da1be19510225cf8336cf",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/metabolic-osteoarthritis-gut-joint-axis",
+      "captured_sha256": "e075b90d019b082aa3a941f094ac4c96b368354911b6e7c3aa0b8265a25da6fe",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/mhra-reminder-glp-1-receptor-agonists",
+      "captured_sha256": "c6ad9288a20bda4b3ed34d47cec12d27d70c5685bc175f24a816a5f88f736760",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/mhra-warns-of-potential-risk-of-pulmonary-aspiration-with-glp-1-and-dual-gip-glp-1-receptor-agon",
+      "captured_sha256": "ff9220568ef6b5c2a3a891aed671e68c1633419107a95a50c20c38b074ae4282",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/nnc0174-1213-trial-update",
+      "captured_sha256": "90a53ecd159e719bf7f9e0b4f2e320d6e3cf194fb9f79974cf277211959a5b1c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/obesity-driven-heart-failure-research",
+      "captured_sha256": "e1b02ae1ebfc80106222996e466336de663e1cc1e23045e3f2936fedce31566e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/obesity-glp-1-era-research",
+      "captured_sha256": "2da8f1b1f5e912134bfad63bba412feb4c5fc9f76df0d750d4a1dbd1bfdeca1c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/obesity-management-new-research",
+      "captured_sha256": "265693e3afffe557b8c538a2802246263684951eae77113300e0706ba8556c95",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/obesity-medication-research-update",
+      "captured_sha256": "1afce81016bde56ae6e19f2c02713d46dc22969c4280e8d5da30d80cc99337e9",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/obesity-medicine-association-clinical-practice-statement",
+      "captured_sha256": "23f80803e9e136c69fcb16603e772e0a6b5acf2d5ecea647a04c3340352f0d7a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/obesity-treatment-research",
+      "captured_sha256": "65947c11a80b8568f93437a26963a7dcfb7d3208a32b9f11d34e30da0e30bf19",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/oral-semaglutide-type-2-diabetes-diet-body-composition",
+      "captured_sha256": "a5b6c48f5e56cb8040fe0383d7f1f38f3820216fdc0664c99db46af2b118b18b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/oral-semaglutide-weight-loss-research-study",
+      "captured_sha256": "3d7f392fd4c403fc943d3a8648e9adefdd5ee0f5a0b57f2be675a6e58c7c3940",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/orforglipron-clinical-trial",
+      "captured_sha256": "bdcef7779d33d262d0c411076250ad56ed6fcd51a106df0588c67d0d72db3640",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/orforglipron-ly3502970-trial-adolescent-obesity",
+      "captured_sha256": "2acb170dd867bb10edc58ec6d90fd0cb217882a7904693939671c08ef95ff215",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/orforglipron-weight-loss-maintenance",
+      "captured_sha256": "3199ccbe4d82dc5d87b26a9bf87f793ada744cab0070f0f1c05490e9c9506fff",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/pediatric-obesity-trial-ly900040",
+      "captured_sha256": "e5d2804a2b310676918be578c94f39b6853ba1451b4ff0e16ad132912a0e2eb8",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/pharmacotherapies-for-adolescent-obesity",
+      "captured_sha256": "7722bf2e7b018401554e832f6c29323be6bae9e527240ffda5a9e4d8c9fecbbe",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/pharmacy-first-expansion-england-autumn-2026",
+      "captured_sha256": "314a8f478be6f895b21665c57a63ec0fb918db0049dc401255cb969e924e6707",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/resmetirom-semaglutide-mash-fibrosis-review",
+      "captured_sha256": "e41e4bc0692f3612a106771a2a4c103c3d3a1e774a2035c04dfc612315e7b812",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/ribupatide-clinical-trial",
+      "captured_sha256": "97d4849335efa7ef934d61aaba370639e3a4b058528812c5df838984d41bf0d6",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/ro7204239-tirzepatide-obesity-trial",
+      "captured_sha256": "0121a4bf692e661ccfe035f3fe22845beaaf3ea5099faca17b824a10611a4b30",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/rsv-vaccines-small-gbs-risk-mhra-context",
+      "captured_sha256": "b887fb41d7a6cc83793dbeee8eafdaea09e8fa7b1ac710e8045aeec7ad13a29d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/rybelsus-semaglutide-tablets-formulation-change",
+      "captured_sha256": "fb91efb060125e19ee1922a0823e4c134371a22e41ad969f594b2aa829be0d81",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-ageing",
+      "captured_sha256": "9313dd05d3c6d0904867390e424408e568a525d690495892355679d3a65c4c05",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-alcohol-use-disorder-metabolic-bariatric-surgery",
+      "captured_sha256": "29f43dcaaba4b53c3c77460465d2da357567376c1de8303cc7fdea8c6f37668d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-analytical-methods-review",
+      "captured_sha256": "5105f28aefd9514edf016f93d2d6e24dd12ab7f3c64a79a00cfa915db94da692",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-bioavailability-research",
+      "captured_sha256": "962326c98805be3f970ffa1f22c0b80eac8f2fd0d6dea60691f77101e52582d5",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-diabetic-eye-disease-study",
+      "captured_sha256": "2c8591f20ba108a393f1e5cf5afad63e1dbb921a4e9bfc9e613b68c3dc187f79",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-discontinuation-type-1-diabetes",
+      "captured_sha256": "296b88159dfc24bf2ed239228144376be6ce8194c97742c970ab47ed1e3076db",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-dosage-and-neuropsychiatric-events",
+      "captured_sha256": "c949378407c968403a4932387bf5bfb5dc9c5f809ab7e5e920b83995b191b8da",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-metformin-pcos-weight-loss-fertility",
+      "captured_sha256": "cf1f71d037f004ea74b93e2f8187b4fc9a34a26d0185f6f0633ecc8853ff239f",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-naion-risk",
+      "captured_sha256": "b4439f8150931621ae5d1ba61bc1a56cd637273f7c160e5c67257940b38c5b48",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-nash-research-study",
+      "captured_sha256": "b0ea1f01fb11926626f98a9e7e0f20c2c81ce337beafbe3aceb7ffaf607d3647",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-papillary-thyroid-carcinoma",
+      "captured_sha256": "833e45b7fd5b630f79d7623742c7fcfcc137b2638d0db3e098e6c4192afdbb39",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-polycystic-ovary-syndrome",
+      "captured_sha256": "13846f6847b463124dd60cefc08af8f1cbc44f981b4924c577cc76debdd2c1cf",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-prurigo-nodularis",
+      "captured_sha256": "585cdd2de7fe50fb3fce015d584c8449eb8beaedd53ed35d488ce195b68f5a2c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-reproductive-systems-study",
+      "captured_sha256": "dddb1f6983a9244c52e455c85ae9a28175c496ba430e2e8b0e152348f84fe9af",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-research-females-may-be-resistant-to-muscle-loss",
+      "captured_sha256": "e7c0611a1248f37ddec0b9a579a5e6bf066324536bdc7ba1a96727ab945658b7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-suicidality",
+      "captured_sha256": "9333d19a0d0bbe198df4b15bb020da2ac332b59855202f15771a1564113ce4a4",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-tirzepatide-weight-regain-study",
+      "captured_sha256": "f99b081838d25b4ed5e094e1486b660e9948fcc1460e1f78c1752c93a047fea7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-trial-sleeve-gastrectomy-youth",
+      "captured_sha256": "02380438824e667a0f7b5d1a5428d70f478f06b0c571b10ca47096f08871f275",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/semaglutide-weight-loss-inflammation",
+      "captured_sha256": "42bbe71439272566b9da74fbe957d33f844004617453327552a77b974dfd307e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/shemed-ltd-advert-banned",
+      "captured_sha256": "b5e1818880f794268dd02743eb4f33c41f30bdf45c1b7b35068e4cbed0599436",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/sleeve-gastrectomy-vs-tirzepatide-ckd-survival",
+      "captured_sha256": "0559c0cf062fa2a8f20887e14e84de2aa04a7d7d94136b7fe5b3f95fbb836b9c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/the-evira-study-obesity-treatment",
+      "captured_sha256": "c7f145c4e726f813732c82418159df9635033e3f650fc644e4ee0b2013375ff8",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/tirzepatide-and-levonorgestrel-iud-therapy-for-ein-and-early-stage-endometrial-cancer",
+      "captured_sha256": "291986fb666bf5c9ccd04540115c4ac872a91123e6a262bdddfadd435a58a0b8",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/tirzepatide-and-sglt2-inhibitors-for-heart-failure-and-obesity",
+      "captured_sha256": "ace8c8432e891975afac7396245dddf04318ba850057241f71b378f9b5d8d49c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/tirzepatide-atrial-fibrillation",
+      "captured_sha256": "a38a3ede27143137eac5e3ec1c4f8408317d5fb81030176c4756dc96c13f95e2",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/tirzepatide-binge-eating-disorder-trial",
+      "captured_sha256": "47dcdd78be7ef62ec414dbb10944f4eb532cf6cc8ef65ee58f62e2f1d8927372",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/tirzepatide-confluent-and-reticulated-papillomatosis",
+      "captured_sha256": "147ba08433a09864629ecf9229e5ba0340647d5a9011ab0052be058c061e94f8",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/tirzepatide-endometrial-hyperplasia-cancer-trial",
+      "captured_sha256": "40e65dc72b05f1bd895c815862d36911c42ad78958b39ffdba00a4a52cfa4f7b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/tirzepatide-obesity-endometrial-cancer-trial",
+      "captured_sha256": "94eb9d7388fe56995943686df948daef7e194a45c03beabca38ef3e64dfb7da7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/tirzepatide-prader-willi-syndrome",
+      "captured_sha256": "a2b830d69e3a6a5bcf678a8610f8cedf9094070532f46d78edc8f3ecfeb3ebdd",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/tirzepatide-research-update",
+      "captured_sha256": "91327f9474b2902c2b18f5812128102d3bbac598357d3eb13a031a6c72b6b297",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/tirzepatide-semaglutide-class-2-obesity",
+      "captured_sha256": "6c9d1891920ee1db7793e13d76c0ad4fb3dd2f857a1e4d3290e83a3e29c84640",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/tirzepatide-unilateral-graves-disease",
+      "captured_sha256": "3a90627cc633cfdfd260a9810d1d610b7ada1b150297d22c1b6869f0fc9125b6",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/tirzepatide-weight-loss-mechanism",
+      "captured_sha256": "a767d528fa43299e7e29e14971a3b5a5901258a4a544ccd652758016b8ce1f25",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/trevogrumab-garetosmab-semaglutide-obesity-trial",
+      "captured_sha256": "33a175ebb56cf35ab0e3352929c83078b5e614909281559a1e6aac8fe21006a6",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/trial-investigates-nutritional-supplements",
+      "captured_sha256": "1847686e9f72832c073f20c56f96c6737e30a2a3bfa8a0723596ba3bea876fb9",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/ubt251-injection-phase-1a-1b-trials",
+      "captured_sha256": "39e24038162435d103529d80f119ec8ad4aef697789212fbe95c6dba2116d07d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-adult-adhd-taskforce-final-report",
+      "captured_sha256": "f84a9a040144498061bedd76020c302b6819e19f6bf0d48a390aaee48ede2c58",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-ai-chatbots-mental-health-uk-survey",
+      "captured_sha256": "17386119b5c55572f9ba2c912d6b7fba32362cc21968aab0fab0b5ff51e0516f",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-anxiety-talking-therapies-self-referral",
+      "captured_sha256": "30c3062085615b0250700a315966a7cddcc8d7025833771fe65b39e5600de313",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-blood-pressure-checks-england-access",
+      "captured_sha256": "3d7310c8998463afb89b6bfe298aff81c6b19e68d3d358af1cef7defc641908d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-bowel-screening-fifties-england",
+      "captured_sha256": "5946cfaa8b3f8e6a094348e694b9f6782041139bc9595086ab657cbf5a96f9b6",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-burnout-report-2026-workplace-mental-health",
+      "captured_sha256": "3b8cd68053d42e77ad1b120a02c601f353e2cb95be8da6e976cd7eb0ad913dda",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-england-community-mental-health-expansion-2026",
+      "captured_sha256": "6332b722cfe2b92edcbd7da42f818aecfd50f6fcc5fde3a4c39878c62e88dca1",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-england-first-mens-health-strategy",
+      "captured_sha256": "a7fb9c96a77e440b858eb01493241cb4713498121efbc1c1dfe8136ff6d18acb",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-england-mental-health-survey-2023-2024",
+      "captured_sha256": "5290b01984608ac79ca849a77240b25d184c806ff6b654efba6315a142a4da25",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-foundayo-orforglipron-mhra-approval",
+      "captured_sha256": "d00cced5961005f78296261974efb1c871ee226379a38305d7b748b15e1d1a35",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-game-of-stones-men-weight-loss-followup",
+      "captured_sha256": "e8c0fc88160fb867a7e4a2a4e3e7ffdf583378e4e8207f18bc5711ab1b2d0e2b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-globalminds-mental-health-research-invitations",
+      "captured_sha256": "359c631969cc6db68dd6f762ac31b114635aefc0e14a22d2bbe1ec3656ba7eb7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-glp1-use-britain-men-survey",
+      "captured_sha256": "ad02d8faf2336ed25c744c55ba90f79607674d752654d29151ed55cba5a30775",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-healthier-you-diabetes-prevention-million",
+      "captured_sha256": "9c47095dc09544a382eaf7684f524b10e104cb0c4ae9a869525702c7b657b16a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-heartflow-nhs-coronary-scan-evidence",
+      "captured_sha256": "6b7647d3ea17cc9590ac187217a7897a78cf9b405df44b246d0d13d3e12f9909",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-less-processed-food-ucl-weight-loss-trial",
+      "captured_sha256": "fec540ecbce01169a1544a9dcec8939b05749d555e408ee537a6a3746f9a2565",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-lung-cancer-screening-mobile-scans-england",
+      "captured_sha256": "410c02628dda6abaee53bc2500047941204f4ad2845de3df855c62e831d4b4f2",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-men-talking-therapies-london",
+      "captured_sha256": "3b164ef8421657fbfa09325e2785c7d0a99ea712d31c63c4577f881cd1956530",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-nhs-diabetes-remission-programme-explained",
+      "captured_sha256": "1713f5f6e8ef6aeb65a5d635f701e4b62138ff587c7df8a54e308b90e3a41d83",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-nhs-mounjaro-access-england-2026",
+      "captured_sha256": "2da75052d14d6738ee44ba23fee896aa7d5ba1796f342cb410feb8acefdaee04",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-nice-support-after-weight-loss-treatment",
+      "captured_sha256": "252f9bcc14d192653bbc121b97f28465f087282d37eb47222508d97a732086d4",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-northern-ireland-health-survey-weight-mental-health",
+      "captured_sha256": "82ebfa9d892d733af2cf54cb488ab15bd7b3cb53511c2a080cd6aa27b285e35a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-northern-ireland-obesity-service-first-phase",
+      "captured_sha256": "0dd3ddb14b0115bc93588a4f7870f4c7b62bf032eef1b2e6d9dec9db9490834d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-paxd-pramipexole-depression-uk-trial",
+      "captured_sha256": "5a33eda4b7723e878f86d640a72421b476d0dac68b56f13dea7c6fdbfcaf1d77",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-pharmacy-cholesterol-pilot-england",
+      "captured_sha256": "3b1fedbd6af084e242bfa8353a1d7882b0f4fb0506402eb046699ebaeea36b25",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-prostate-progress-research-invitation",
+      "captured_sha256": "27f689cc18964e8ba696ce9651ad0b66397b95b2415052ab2617fa2aa468f1e6",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-prostate-sabr-radiotherapy-england",
+      "captured_sha256": "09e636162a3e6312fc8bfc5b2d082d034ca33df77a3aafcc353716c0654673cd",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-reduce-antidepressant-review-support",
+      "captured_sha256": "24ee205f9c5204839ba048e1b75eb5cf8034099d52a66c1508dc1b0f884f62ee",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-samh-nook-aberdeen-glasgow-mental-health",
+      "captured_sha256": "ec505fee6894a8281e197458716c8ecb53f6ef25e82587f4aead3a55c99b42f5",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-scotland-gp-walk-in-centres-data",
+      "captured_sha256": "78ce8bd3125e1c824e00ccc0f2c466c93de752b7bb663cf289a1b333ed6dab34",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-scotland-mat-standards-mental-health-support",
+      "captured_sha256": "c7837da11ba3a6d855839ec5d0dcbf39841bc9bd17316b9c86b44941d2871b34",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-scotland-mental-health-progress-2025",
+      "captured_sha256": "c202c69773942139e76af62c99e1cafcd833c03b1357547ce67ffd309ddf7f63",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-scotland-prevention-weight-health-framework",
+      "captured_sha256": "d7832356304ad84348302e7e974ebbf531046c9ff44701edce12701187f66485",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-scotland-young-people-mental-health-transitions",
+      "captured_sha256": "e5e2b07819af7acc61ef9698b21a180d94bc1b74311006b4bad0af7293a0f0e2",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-scottish-health-survey-weight-wellbeing-2024",
+      "captured_sha256": "73fc6ed4aa0710faba399816e11fd48b6da9d6ac91ebc5c2c3a3629352a6255f",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-severe-mental-illness-weight-support-gap",
+      "captured_sha256": "905ecb3a86b81618035bbf79021372ad541bb44e772ece9d65594645bddc55a0",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-stamina-prostate-exercise-support",
+      "captured_sha256": "c43597d77699c2b45068eea0e0e5b560e571af460d5c1e3340c57d40510a2aed",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-suicide-prevention-training-person-centred-care",
+      "captured_sha256": "95ae262d6512e3d4cbaa0370d6bf7be3112d78023d0e74ef537fdd6a39a5b956",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-tower-hamlets-24-hour-mental-health-centre",
+      "captured_sha256": "c247c3b6946da974739fcffde9d5ce815b2cea9ee4e6e52d02cbf2d9429e8e81",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-transform-prostate-screening-black-men",
+      "captured_sha256": "b75ab1ad97df720d33c6a092ce3d7fe42fab0bfaa4ee36325ded7b2365ade6f4",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-wales-gambling-treatment-helpline",
+      "captured_sha256": "d534067778be0f9386360fbddb6e4322cd622d06cb340d48767e963574e09307",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-wales-mental-health-strategy-2025-2035",
+      "captured_sha256": "e0ef2fa0b04ae2da14751570dcbbb7a00950e521f2d78539f88ed82f9a7f9d41",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/uk-archive-young-adults-mental-health-work-report",
+      "captured_sha256": "dbc6e955bc29afcfa5986fa5f3105b942cc7be459f9d782bb965c3022c60e21b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/virtual-glp-1-programme-weight-loss",
+      "captured_sha256": "3bba0b9d2de919ca6f8fb6cb5b6e95f61317d583a5e0d12781a186b0059cfe44",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/weight-loss-and-bone-health-in-people-with-obesity-and-type-1-diabetes",
+      "captured_sha256": "2d4928a8c406e8ea5d5e827809c527ff902abea46a2fc4549627a92e0e56eefc",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "medicine-news/zovaglutide-trial-obesity-treatment",
+      "captured_sha256": "6843df7523e9e729fd706375e18731487884700b0f23229f3f33eba5c18c9298",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mens-mental-health",
+      "captured_sha256": "a10491e9e2854651e8615317cf326346bc575fd5af385d6191397298db412222",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mens-weight-management",
+      "captured_sha256": "f0b4f7a26902c65c37d6c2e103bd0866b8f13e7b5803d10eb7c5c29c45a28481",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/after-a-mental-health-crisis",
+      "captured_sha256": "0b6946c3d42bd47be10d216b2c9e1f6839e593e28948d784530c9a24fe19527b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/alcohol-and-mental-health",
+      "captured_sha256": "ddaae652d98d055481013ed4d3c66fe99393d22c4ff8e370db75e177056f4df8",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/alcohol-coping-check",
+      "captured_sha256": "33d27c0bf7800c768d53e9d5ddc09f918260071b04dc9427a18161b764d3620d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/anger-irritability",
+      "captured_sha256": "33d13110aa5f92ff07bb3bfa80016456e36000fdcb97a51d71079f3ab6ef6ab3",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/antidepressant-side-effects",
+      "captured_sha256": "424aa7a1371f12bd2749de404df52e196fad75f2e59bbfee7c306d22f678529b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/antidepressants-explained",
+      "captured_sha256": "f50e5e0acd03a0071cb0cba69ad6a76e081183aa7f161ca32a377b3e2967c05d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/anxiety-overthinking",
+      "captured_sha256": "10a4b5feaa799d80f7cab9a626e01b7b8741b45b41695d283ec9242cf949e76a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/ask-about-suicide",
+      "captured_sha256": "c86b6a02b6508146c8fc198d1256c72e2c6f3d4891b320e82071715f46bb1ef5",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/bad-week-reset",
+      "captured_sha256": "3899d0530c5f83a362052941277420e774561edeedb60b4bd4cf218131e3bc20",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/bereavement-grief",
+      "captured_sha256": "50d98bf4aff44b1899001e96943256b7f5ffe66d314e1fc9a933fb86c030a53e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/breathing-for-stress",
+      "captured_sha256": "dfe9d5bd0a01158a1ed81683ae9099083f51658f233458fb74c7a04034a087da",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/build-a-support-circle",
+      "captured_sha256": "5b72e24eef152228f4d3222d6e43ca49e5a9b3bf85100a0a41baaea9f576cba4",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/caring-for-someone",
+      "captured_sha256": "a96abd27895a1480cc83cf82278735fe7cfc32c49deded00d0aaad5a961a87e2",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/cbt-explained",
+      "captured_sha256": "11b82316dd36bc6ae6e092b903ad07be67d2bef9aa24b93571f85571ec4ceca0",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/choosing-a-therapist",
+      "captured_sha256": "4d5fac12a7b5c63d1df7756bc71b9197be04b3f12dec365ec01fd843422c83df",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/chronic-illness-pain",
+      "captured_sha256": "9aaf81936b494445724a70cca0092de9c157d08d8bbedba85c835ab0bfd6a8ed",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/confidence-self-worth",
+      "captured_sha256": "4e444734e07ff37403bd82d9de3cbc89791c085250b288c9de13cf11d624b8b4",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/counselling-explained",
+      "captured_sha256": "3917d6f6591388f7364f46318e8cbf2841cf316a3a87dbe40ec594d6ab2041e1",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/dads-mental-health",
+      "captured_sha256": "349ca3ecd980c27f1d0726b61bb225e05fb59ddc02c18ecd20fdbf337cf4bed7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/feeling-low",
+      "captured_sha256": "3740bf02f8b72079c7c7a0937c7ac10ea8b3bef137370a4ebf6b8209f50ad1f3",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/first-therapy-session",
+      "captured_sha256": "4c1f062075f747a79bd36f88b6f1aabf55bc335b9d808298e0a6b96c84f269fd",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/friendships-men",
+      "captured_sha256": "12921b9854c745da29b15949cb52c080eaabfb10a9af3b438476926271aba0cc",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/gambling-mental-health",
+      "captured_sha256": "6b8b7979332407759f85931a50ed1a5f0a830c219ba02f13cb86315235830bd7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/get-outside",
+      "captured_sha256": "4a3e681eabc61511136a38cbe487974479575ab1cc1554b14f11d9675af68be7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/get-through-a-bad-day",
+      "captured_sha256": "1393300e737a754dd947537fb1146045a7032b13e7fe3239729624f46e750b80",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/getting-professional-help",
+      "captured_sha256": "33d50087ab8ba9725a0500229920314f850a35233eadc5207470d1cd92bf20a1",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/gp-mental-health-appointment",
+      "captured_sha256": "6f3430fb2cddc3e056ee404b91c397dec7c23ba638dfeeca959712a473a3ad10",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/grounding",
+      "captured_sha256": "b9bf30a655933ad921d306a3a10fae679fc77288f7754d4637ab47a2fdf4b26c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/help-someone-book-gp",
+      "captured_sha256": "86bbf86d611ce055ee6b136efa3144bdf6681f7091b335f286e88c6c9f95173b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/help-yourself-without-doing-it-alone",
+      "captured_sha256": "cea5fde4cdd6471a1ab6ca1bc17c603db56c9e0b1e03c7704ea523391142806b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/helping-a-mate",
+      "captured_sha256": "cd0cc275ad1834c7f8cd4fa459565165cabcc7a375a1209bc9fcff80f2b4387c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/helping-someone",
+      "captured_sha256": "d4e6a8b09274d47e05c76a91b04caffe5ef700936452ce771848a2abac915a42",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/helping-someone-online",
+      "captured_sha256": "5324e077ffed983e788b2e1abdead2410eb921f547cc92e1ca5f7b74e3843064",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/how-to-ask-are-you-okay",
+      "captured_sha256": "b6eb92ba93269a9d39ea0252b93e5867d3c61f7290f413e047a88b386d5e75cc",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/journalling-without-cringe",
+      "captured_sha256": "211b27147327ac8f92d104951129e15753b66ea08e6bc3eab40a7e66d8111294",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/life-gets-bloody-hard",
+      "captured_sha256": "e25e70760df79e0b6e222f3342b426eb98213262457fd1d4ca536c3f8dd20e43",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/loneliness-isolation",
+      "captured_sha256": "b1eac0cceddca074ca85d6779d7d51af5c64c00a4101badcf8e99fbf3e1e1322",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/look-after-yourself-when-supporting",
+      "captured_sha256": "fa8c86694332826e756f345234785c46d35090e2329f3ca924eaa5d74ff1daef",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/mate-says-hes-depressed",
+      "captured_sha256": "770aa0e28a4454bc4cfc6c407caff42e073f0b4983ca7b516d80a86acd070acc",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/medication-and-weight",
+      "captured_sha256": "f65fc1a57ba1c12e768e9f4856991173c486454d6c8e6192bb8f47cc8f239b94",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/mental-health-and-weight",
+      "captured_sha256": "f47ddc4a59c82275f70d2a3458bf5fe80bf3b463ab3db7df339d6db09e5a79ae",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/mental-health-crisis-plan",
+      "captured_sha256": "b4d922dab5780d3016549579449b64276d7f3cd2aa1412eb2b815f397050599a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/mental-health-medication-myths",
+      "captured_sha256": "7cdefbea7934f5997df89de6fc2983283ee4a06c6f430c42873abcbe44ab3327",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/money-worries",
+      "captured_sha256": "b66424b15d5037d9aaf49392ef6891a51af9c0e2f3ec7c181b9a64fb9648d50d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/movement-for-mood",
+      "captured_sha256": "24a8fb82936fc757724cebea23eea17e23aad7c2d93f0fcbe277735eb9591a60",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/myths-men-mental-health",
+      "captured_sha256": "64e787b45de5638903ba19e17924de01fa52bc91fb7d603df0f0e0136409069d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/nhs-talking-therapies",
+      "captured_sha256": "3ad1679d46dd74c93152d848bce5970bd43f9304ce82eee40dba558c67a31be9",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/not-feeling-yourself",
+      "captured_sha256": "787aa54811fcb8d1bdc2e170c7cad86cd1612a5deed27d7553ed1b05abd29724",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/numb-disconnected",
+      "captured_sha256": "66d7939dcda4b42d6d88254ab34e886a07fa74881e20b51511f5593e1d5e3cd6",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/occupational-health-mental-health",
+      "captured_sha256": "5288d601ff85f6df8a5f0c23aa6d79a630280b3f0a35d786b3d7603212946cef",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/overthinking-tools",
+      "captured_sha256": "470e27c88413564c3645c2349739ee3a5edf15aace9b2b51372dc159db9eb579",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/parenting-pressure",
+      "captured_sha256": "a48a9743dfa4a507a0d733afcf0d597000194028aa7f6addea1440c5e6dfa504",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/personal-mental-health-plan",
+      "captured_sha256": "74666c25c38deecbff6ef67568154113828340e0eaf051ddb945e45959d9f1e4",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/phone-social-media-reset",
+      "captured_sha256": "967e11ea0d0e2499d26e3116c477dd2ef4dcb794922553d4b7a4d9187f4d7e07",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/prepare-for-therapy",
+      "captured_sha256": "1bce24d681f8e1e2d09b130ec0b80ba5e97da03b8d994def58428afd7efeedbc",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/private-therapy",
+      "captured_sha256": "b0133f858fee6c158a16a10466ff8cdc5f84bc8015dce0abe1df3d910f779680",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/reconnect-with-people",
+      "captured_sha256": "ff548c3fd8d21bf47348829f29e893df38bb7d393753ee36bad756148ed85b96",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/redundancy-job-loss",
+      "captured_sha256": "366abcca595dcbddb95387fd2ce623cc1fc9d7d6fdbf0501155ca763fe57234c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/relationship-problems",
+      "captured_sha256": "1968fa643dba76af93021286a1bcfbf02328f4045bf6997d26f1831a0dde8946",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/retirement-purpose",
+      "captured_sha256": "8bac53e012ad0101ae159c27134c3f1b9bf441eaf7e0b413234bcd4f9b979e02",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/routine-when-struggling",
+      "captured_sha256": "b6cbef1105e4845f2b58aa2e0d0af3479ae926ff1a30f3db034da091a617b1e5",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/self-care-that-isnt-bubble-baths",
+      "captured_sha256": "9c2939e6ab945c38a38b9e9c0a4de478e36b71fbda104b80492690c0abc9edda",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/self-refer-talking-therapy",
+      "captured_sha256": "bda67296389cd461644d08499dc7d2d864a5081f2c1ad59379aeeaf7fdb9f474",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/separation-divorce",
+      "captured_sha256": "71233acd0d8858cd57696fac87bcc77a29b8127f287a0b747180bcb464ff7f0c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/sex-intimacy-confidence",
+      "captured_sha256": "b5bdfb1eb6932ed7a21eb538f37b7c410f72478c3cde511553fb8d224b3cdfab",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/sick-note-mental-health",
+      "captured_sha256": "b86f8c546c50ff0a1d4f40981fb46606ec82d5838c7b5ba67eeaeae1a32621a0",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/signs-a-mate-is-struggling",
+      "captured_sha256": "caa1508573b731a6bd117c8dc9962642e6cbd4e902a57c849f93dafbde43af52",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/sleep-mental-health",
+      "captured_sha256": "84644c6e1aa8210f7245c4edc87605e25bd0ea1d67a4b9c175e526cfae8d9463",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/sleep-reset",
+      "captured_sha256": "9fb486dbf8154566be06fca866438de06963837ac413b4b4520f3128390527b5",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/social-media-comparison",
+      "captured_sha256": "f404eec3b5d20cdae501576c3e1ce113753e2c52a6536fced25010a9691dcea6",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/someone-is-suicidal",
+      "captured_sha256": "8b4f1a58aa2cbd43820a6486dae2aab79b63cdbbce356f56752f84b4d45ed1cf",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/someone-says-theyd-be-better-off-dead",
+      "captured_sha256": "ba0dda103baaf28b08ee808a88ac45a67bb533d51b32a42b1643eeb45617e83e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/starting-antidepressants",
+      "captured_sha256": "4c7bc78afe90961a124106a6e5ea686cacef76d0c28504109e7c009e1eb741fe",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/stopping-antidepressants",
+      "captured_sha256": "ab7913a8de30ca471a86e152156403df6551ffa26d7dca6fea1817a62589ca46",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/stress-overwhelm",
+      "captured_sha256": "70e85246e3b9a55ab45d6c98b1655d97ff44df7d9e4c9e8e03da7b20b692da37",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/suicide-warning-signs",
+      "captured_sha256": "5ff8eb4de5e43c75c613a250240a71e2cb39fcf5e9be1f4973952f57120aa5c1",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/supporting-a-dad",
+      "captured_sha256": "bb96c360ed9bb4e0d9dad0277e1adc5bbe751d60ccc1c2b05e9f56e50a6405ca",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/supporting-partner-mental-health",
+      "captured_sha256": "4d7e29ae1971d6f8580008ce37cfc610b875065d680aeab993c077dc12e10630",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/supporting-someone-after-loss",
+      "captured_sha256": "3819ea88c0fc5ee36f4f4ac40655d95c01cd9ddf7c1ec14dbfb9db095110aa1d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/supporting-someone-with-anxiety",
+      "captured_sha256": "424a1831ea2614f5fbcf816c7aaf2580e333e56b1030295b55091a151889a1b3",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/supporting-someone-with-depression",
+      "captured_sha256": "811a2c0d17493917a376b7fcb8ef20f416291daf5e2296c186803fd355e80b44",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/supporting-treatment-at-home",
+      "captured_sha256": "b36e4da9cec7e5615e155455042174daacc57b18318653a152f9789b799e8d52",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/talking-about-it",
+      "captured_sha256": "f15fce90860aa980651c2c5e9c013a0673d99343063f92828fc63cb617ab327b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/talking-to-a-mate",
+      "captured_sha256": "b8f39ab1c3186a410a413dfce867235f2de01149bfe7efe1d99bc859773979fa",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/talking-to-partner",
+      "captured_sha256": "ad8823249ad531b7fb23da17c4315c6746bd9d1acfd7c2f2436f415bbaa0a3dc",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/therapy-confidentiality",
+      "captured_sha256": "66514e4bd30adb42c816b199c0ad579766b5284f2936c590aedcce2fbe32f444",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/therapy-waiting-lists",
+      "captured_sha256": "ab2c5e166a090267da696d1e5fb19b8fdfab95809de4fe4b0ce13df84dccf657",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/things-you-can-do-yourself",
+      "captured_sha256": "7293579b5c74937e7f3fb870c12ea2883d019f2d43df1ba6f97c39ccc0ae150d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/tiny-goals",
+      "captured_sha256": "5256c31e795a7c4cbd164283954430969000af8c370d2f5d5c786629578daeaf",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/types-of-talking-therapy",
+      "captured_sha256": "f51c869c2198d74a19aae2025c16ef8fba66e986a6392de5c1fe5e281fb332a7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/urgent-mental-health-help",
+      "captured_sha256": "6b1c8348bb68580965448b2eca3a78663f756d345f22d178989cb91efc2156ae",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/weight-loss-identity",
+      "captured_sha256": "72144e7d081ea9edbccfd11d4df73d90671b5e523a3ef9c1cfd56408175c2218",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/what-not-to-say",
+      "captured_sha256": "a3e1685b63d9ce8006031e64c4f07b34b0c267c61b5f11883e02d9c6453f3827",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/what-to-say-to-someone-struggling",
+      "captured_sha256": "b1e3a792d332a0e45104c35036bfae414d2b6c8598bbbdee7155012e4da12743",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/what-will-gp-ask",
+      "captured_sha256": "d044660b4189496734933126681238a2459bb755f7b3f78c6fc0d83208cad927",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/when-someone-refuses-help",
+      "captured_sha256": "581b681e98c6ae43ddb0a8cbfbeb577f92029ee6e9e5669a2b0a9f529be18b30",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/when-to-get-help",
+      "captured_sha256": "d45dbaa29ddb4c6c0f0c405fcbb4a6aff13f4f59dd82272e4329c672388a9521",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/when-treatment-isnt-working",
+      "captured_sha256": "6545938ea6349f2c14d0761e68c80dbf9cf81be1509f497a4b697d12b7d1a9a9",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/work-stress-burnout",
+      "captured_sha256": "9da5d1ce37b29a1c6810f17c776b2272558f83e44bd9a410129f944bd86ccc9a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/work-stress-reset",
+      "captured_sha256": "59699d634f36010dbb81dd83eb51dfe00c992d3980e59414f3b40b111f0ca671",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/worried-about-colleague",
+      "captured_sha256": "521b1d5bda90438184a0c93a274174f51bb10b2d978dd469988ed9d21222ef7e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mental-health/worried-about-family-member",
+      "captured_sha256": "5c43e387802d6beaaeece3efa799d2537e411472004ee9d436c53095e4a5d6bc",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "mounjaro",
+      "captured_sha256": "4380e0610aabca68f98348f9021c2bf87a3515329ef1742edfab59259323e4cc",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "my-weight-loss-roadmap",
+      "captured_sha256": "7efe39b03f1bd52e2c00b358d922b2c9e5b8798a6485d4f47f06e42442f240c6",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "nhs-private-methodology",
+      "captured_sha256": "776d14aeb7e24e50a2806f5c8c99bda2402e1b65bd671ed2cbd0f8f36d568b69",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "nhs-vs-private",
+      "captured_sha256": "72bb9bd772bc4511f0798e68f10baaeba78c4d551d2c26c8528b27b7e56637e8",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "orlistat-definitive-uk-guide",
+      "captured_sha256": "1f445426617f5576172916f1f8378c0cb8fc415623048618015b0a07b47a150d",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "ozempic-definitive-uk-guide",
+      "captured_sha256": "13317e3ff55177853d26f013ff6765ad3d88f2b27434e3ea30938ea4ba5f09c2",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "partner-with-us",
+      "captured_sha256": "f0a60635f625592a5dc9d4846cfe240588ac73ae7c0a48d7b1a1d4f8f7cbf749",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "press-centre",
+      "captured_sha256": "861c720b5af77279c20c6190b81b2de3038b45d7850d4a901e4073922b102c08",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "privacy",
+      "captured_sha256": "c85cfb3678962b9616b7066a69ace7de499cc8a45295d262f37084a04b1e3a14",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "privacy-centre",
+      "captured_sha256": "430a33ca5c8eb5cc96c395464dffa7b04a4b830859a1d50f16d523b1f8c6fed5",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "product-reviews",
+      "captured_sha256": "f655839a99e972d32ab1fbd6364d2a836f34c1ae669bd200d879b919c7294138",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "programme",
+      "captured_sha256": "22a6fae1e888522cf965ff2591489fea46fb239959dfed9eb9c5ea14597896c2",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "progress-centre-methodology",
+      "captured_sha256": "23eb978d4b9e71f07cad87e403af39aa175d30560413f5f6ebde650cb3ffd696",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "provider-switch",
+      "captured_sha256": "0ecaaad8f144c23b1a1b9acafc10948da67a5c6e0a3d17690a337f846c5f4a98",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "research/uk-mens-weight-health-statistics",
+      "captured_sha256": "2a5507fa37c8348a5696d15458043490a4a8b5603769e620b857cfa8b3e6c39a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "research/uk-mens-weight-health-statistics/data.csv",
+      "captured_sha256": "557b220249640a30abf51d45a2fc98e696156de2ebe7543e8428b161eaefc8ab",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "roadmap-methodology",
+      "captured_sha256": "eb8d4aeef7bb1d23adc5568622a78c25d6a3a5f12b85f1d46e8322a67ec2fc68",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "saxenda-definitive-uk-guide",
+      "captured_sha256": "3419760238d4fd6a937f7cd3890744c73fbc513ec4b9b071477099133edb3855",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shift-for-work",
+      "captured_sha256": "46a2588d80704bdf6bb7453454836ca620a4d7bf4fbf5537d79aa750d46ab5cd",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shift-health",
+      "captured_sha256": "a32bb7a8a374fc558155ad11176ccf7e802e8b3f4003401ed77b7f11ec439255",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shift-health/blood-pressure-monitor",
+      "captured_sha256": "1c6cccf1bb664c256520169df7e5ff6e6a4f3a524748962d5a373df214ad1325",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shift-health/digital-scales",
+      "captured_sha256": "d570cb7e405f37c7af1b4a65e80ad0cc75200afecdf25badef979181c37dc906",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shift-health/erectile-dysfunction",
+      "captured_sha256": "98085fb1d92120099fd876793ac98aae0e77749811040dea7416de01d7b19dcd",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shift-health/hair-loss",
+      "captured_sha256": "f6569d8a77eceb67ce8b4fe497aa39ddf143c6a31ad0f01f855243b4447d1573",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shift-health/health-mot",
+      "captured_sha256": "b2ef192da45b7e62b2d2ced7224a74f1e80ab92264be7911fdbbe6143e8c4f8e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shift-health/resistance-bands",
+      "captured_sha256": "2284ea09e0f63b06ffb1c4416d4c1cedabca47033da8d167275231064884ce30",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shift-health/shift-measure",
+      "captured_sha256": "db544546cf03dbbc357d1c2b98b541f9ba7bcba4e5dc95ad6603aa88915f2f57",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shift-health/sleep-apnoea",
+      "captured_sha256": "10c46282adff1f79fbc20e96e8cc91124ba3f94e9605d9ce668ecbd2092ea77c",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shift-health/stop-smoking",
+      "captured_sha256": "e9d45d20ebbca398d579d15d19ee5dae7b5d7829be52718dfb66b840fdd851d8",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shift-health/testosterone-energy",
+      "captured_sha256": "48601085c42abfc24b05bddf666cbbd65ff3a2fe5a973b95db980d70a21b0f19",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shift-newsroom",
+      "captured_sha256": "5ac6afe96b6df13e16cfa6f02bf9ae3502126923f1acfdf2f7711b979d26647a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shift-promise",
+      "captured_sha256": "06359ca45d4751dddbe693cc3675d1eff0ea567a977aac2c65c00cfd27e01afe",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "shop",
+      "captured_sha256": "a0dbbb23ac12f874bc0276f2d602737704b8360ae68f7ed11ee4ad57d242c120",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "start-here",
+      "captured_sha256": "c497908c98705660ea2bb12119f68b2faf93cca2dbba48d5a39f28c1ea28bb76",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "surgery-comparison-centre",
+      "captured_sha256": "b7cf575eeb38f2fb708a2f8497555ceae657ceb6915c30b9517ffa9e993adf93",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "surgery-comparison-methodology",
+      "captured_sha256": "ae96b220ff081bf361652440c0015831163f8dbe611c44e81e09731210af8844",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "terms",
+      "captured_sha256": "58e9c57eeb469aa1bad3f2a38d67e586653abc498dda2dda6fb8fdfd0ce70f5e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "tools",
+      "captured_sha256": "50c721bdbefc84b6e6a6e81cd20b90c28222f119c8446d7fcf0cba9d89d7e1ce",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "tools/alcohol",
+      "captured_sha256": "378eb90c1cec981b87e4e241cc5a73147d9faf6013164627724d671c6650896f",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "tools/bmi",
+      "captured_sha256": "be08beac548f9c23188312706d6e0fcb56e47bc2c402c91ffd3a535a3a9f39d0",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "tools/calories",
+      "captured_sha256": "7758bf8243e57f0ddf1ce905dd2d42abba5143d52d7e7cd513e7ccfafad091db",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "tools/healthy-weight",
+      "captured_sha256": "f34ede7eb2cadc22ebe76db15e32a3f208544120dd91d6d7a60c4333e3843a41",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "tools/protein",
+      "captured_sha256": "bd3470a8b3e783caeda7d9daee72f93ccb692861083478ac399366a756f93352",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "tools/sleep",
+      "captured_sha256": "f8c1debe5202e3c5e174feec016c981db6c9851471117b6678c2fa22a0b4b8b7",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "tools/steps",
+      "captured_sha256": "9a8e7ad2144ffc56d81a6cc1ef4e889fd12e854c96365e1b59bd2e2a72e7e87e",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "tools/waist-height",
+      "captured_sha256": "678de85271f1f424fd8d7a43cf8871f80d2f92dfaa0606ec377648e5be8e8f0b",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "tools/walking",
+      "captured_sha256": "0f0553363b6bb7c8256fb56b691d4a0d81fbe7c6b55aea8df2e0fa00e661e308",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "tools/water",
+      "captured_sha256": "97e6e6ca01b25389f0aac9432323e7c2dfd14db5a4bef24e43ad4b9db7a59311",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "treatment-centre",
+      "captured_sha256": "802d04eceea426bf9db1492fa8b18452d8cb4bce1342dedf78f5031814941a47",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "treatment-centre/medicines-watch",
+      "captured_sha256": "0694efc673cf96265d5338cce6e5c4cc77db02a0ce52a69ed1fa21f209af8765",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "treatment-finder",
+      "captured_sha256": "3f856768b31e31dc3fbd0e7f249453c00342328508383c9b7341a3a7ffc3e301",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "treatment-finder-methodology",
+      "captured_sha256": "87244d485fbb19acbb219707dd53c9697fa2677ddc0eee6ef0fa130a4bd1f67a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "treatments/compare",
+      "captured_sha256": "63f6057f466a9dea3a343329f5a5b02b808df06b858b1b0e7e6a14f9764fd129",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "treatments/emerging",
+      "captured_sha256": "c340d541b007eeb02a4f74002a6b461c78922895e0e233d8755b0e5595337451",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "treatments/lifestyle",
+      "captured_sha256": "e6ae55cfe8014e795547dfc8337d4a7a139f34875c37eb11601feb3282c5d756",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "treatments/medication",
+      "captured_sha256": "dfac1961b4c6f4cc2bdb6c50705fae060ecbec787a7de76101e6f76f44403be4",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "treatments/nhs",
+      "captured_sha256": "bfe08ad3c965fc6f46d101a173690c3fb0a3b7579234a4eb0b3be3d9d5cfa770",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "treatments/surgery",
+      "captured_sha256": "c7c26b2ea5b357470008922378aa27e4f61e8e1bc620207aa0a11edf49faacd0",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "trusted-partners",
+      "captured_sha256": "9d5946533c7341efa5e1ba45b6bd94214a9fced296320c13940adfc8411a8fd3",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "uk-europe-methodology",
+      "captured_sha256": "02bca01ba7db953094f2a37d5348107e09f74141c0e46dbd5c7a41a0b2819af1",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "uk-vs-europe-treatment",
+      "captured_sha256": "075f63ab53aefaa38ed2f029a1f7c64728f458b3e35722b605b808b576ddcb54",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "universal-comparison-methodology",
+      "captured_sha256": "c4511728b1ad40d7b993422868c2b3b00f230d3f21e8991cc7ba1d9afedaea34",
+      "full_text_read_this_pass": true,
+      "correction_published_this_pass": true,
+      "source_audit_status": "in_progress"
+    },
+    {
+      "path": "waiting-list-journey",
+      "captured_sha256": "132583f88c521012772d7204bebcbb5c6d8b8b0d90ca3eb7f8acbe707c40b186",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "wegovy",
+      "captured_sha256": "83aa766af6f55395906e5ee287718d8e5393ffdae6454b0e1ade6630834b6b4f",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "weight-loss-injections-for-men",
+      "captured_sha256": "cc10f3ba62cfd6f280e3c76fd9dece4c8b76db3e7278461c0deab54af8672e4a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "weight-loss-tablets-for-men",
+      "captured_sha256": "92d90c3a1456b6608a012a69977bb456a6dad6260d3a5c848b46255da69adc09",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    },
+    {
+      "path": "work-with-us",
+      "captured_sha256": "1d8a4c7b360732f2b03ca6890a08784ba1ab444d358fe2d841c328779a3cb48a",
+      "full_text_read_this_pass": false,
+      "correction_published_this_pass": false,
+      "source_audit_status": "pending_in_this_pass"
+    }
+  ],
+  "material_repairs": [
+    "Ramsay sleeve price and conflicting advertised balloon/bypass prices",
+    "NHS referral criteria and England waiting-time wording",
+    "My Planned Care URL and unfinished published-guide links",
+    "OAGB specialist follow-up",
+    "Incorrect SHIFT branding in external clinical programmes",
+    "CagriSema REDEFINE 4 results and missing research-dose numbers",
+    "Retatrutide September TRIUMPH-2 update",
+    "Missing exercise durations and movement planner text",
+    "NICE low-energy-diet support",
+    "Unvalidated comparison scores and score-derived preferences",
+    "Incorrect not-applicable comparison cells and route headings"
+  ],
+  "next": [
+    "Finish medicine-news and article full reads and source checks",
+    "Verify remaining secondary claims and country registers",
+    "Audit remaining treatment-centre and public hubs",
+    "Repair findings and verify live before whole-site sign-off"
+  ]
+}
