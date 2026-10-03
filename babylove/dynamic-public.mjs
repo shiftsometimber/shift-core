@@ -39,7 +39,7 @@ export function renderMarkdown(markdown,title='',slug=''){
 }
 export async function dynamicBabyLovePublication(env,slug){
  if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)||!env.DB)return null;
- try{return await env.DB.prepare(`SELECT a.id,a.title,a.slug,a.category,a.author,a.status,a.summary,a.body,a.seo_title,a.publish_at,b.source_id FROM knowledge_articles a JOIN babylove_receipts b ON b.slug=a.slug WHERE a.slug=? AND a.status='published' AND a.publish_at IS NOT NULL`).bind(slug).first()}catch{return null}
+ try{return await env.DB.prepare(`SELECT a.id,a.title,a.slug,a.category,a.author,a.status,a.summary,a.body,a.seo_title,a.publish_at,a.updated_at,b.source_id FROM knowledge_articles a JOIN babylove_receipts b ON b.slug=a.slug WHERE a.slug=? AND a.status='published' AND a.publish_at IS NOT NULL`).bind(slug).first()}catch{return null}
 }
 export function representativeImage(row){
  // Use an image already in the published copy, never a fabricated article image.
@@ -48,11 +48,17 @@ export function representativeImage(row){
  }
  return null;
 }
+export function articleModifiedDate(row){
+ const raw=String(row.updated_at||'');
+ const candidate=/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(raw)?raw.replace(' ','T')+'Z':raw;
+ const modified=Date.parse(candidate),published=Date.parse(row.publish_at);
+ return Number.isFinite(modified)&&Number.isFinite(published)&&modified>=published?new Date(modified).toISOString():row.publish_at;
+}
 export function articleHTML(row){
  const canonical='https://shiftsometimber.co.uk/articles/'+row.slug;
  const title=row.title,summary=row.summary||'SHIFT Some Timber knowledge article.',author=row.author||'SHIFT Team';
  const published=new Date(row.publish_at).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'Europe/London'});
- const schema={'@context':'https://schema.org','@type':'Article',headline:title,description:summary,datePublished:row.publish_at,dateModified:row.publish_at,mainEntityOfPage:canonical,url:canonical,inLanguage:'en-GB',articleSection:row.category||'Knowledge',author:{'@type':'Organization',name:author},publisher:{'@type':'Organization',name:'SHIFT Some Timber',url:'https://shiftsometimber.co.uk/'}};
+ const schema={'@context':'https://schema.org','@type':'Article',headline:title,description:summary,datePublished:row.publish_at,dateModified:articleModifiedDate(row),mainEntityOfPage:canonical,url:canonical,inLanguage:'en-GB',articleSection:row.category||'Knowledge',author:{'@type':'Organization',name:author},publisher:{'@type':'Organization',name:'SHIFT Some Timber',url:'https://shiftsometimber.co.uk/'}};
  const lead=representativeImage(row);
  const logo={'@type':'ImageObject',url:'https://shiftsometimber.co.uk/assets/shift-wordmark.png'};
  schema.publisher.logo=logo;
@@ -94,9 +100,9 @@ export async function dynamicBabyLovePublicRoute(request,env){
 }
 export async function withDynamicBabyLoveDiscovery(response,request,env){
  const u=new URL(request.url),path=u.pathname.replace(/\.html$/,'').replace(/\/$/,'');if(!HOSTS.has(u.hostname)||request.method!=='GET'||!response.ok||!['/explore-knowledge','/sitemap.xml'].includes(path)||!env.DB)return response;
- let rows=[];try{({results:rows=[]}=await env.DB.prepare(`SELECT a.title,a.slug,a.summary,a.publish_at FROM knowledge_articles a JOIN babylove_receipts b ON b.slug=a.slug WHERE a.status='published' AND a.publish_at IS NOT NULL AND a.slug NOT IN ('wegovy-cost-uk','oral-semaglutide-for-weight-loss') ORDER BY a.publish_at DESC LIMIT 100`).all())}catch{return response}
+ let rows=[];try{({results:rows=[]}=await env.DB.prepare(`SELECT a.title,a.slug,a.summary,a.publish_at,a.updated_at FROM knowledge_articles a JOIN babylove_receipts b ON b.slug=a.slug WHERE a.status='published' AND a.publish_at IS NOT NULL AND a.slug NOT IN ('wegovy-cost-uk','oral-semaglutide-for-weight-loss') ORDER BY a.publish_at DESC LIMIT 100`).all())}catch{return response}
  if(!rows.length)return response;let text=await response.text();
- if(path==='/sitemap.xml'){for(const row of rows){const loc='https://shiftsometimber.co.uk/articles/'+row.slug;if(!text.includes('<loc>'+loc+'</loc>'))text=text.replace('</urlset>','<url><loc>'+loc+'</loc><lastmod>'+String(row.publish_at).slice(0,10)+'</lastmod></url></urlset>')}}
+ if(path==='/sitemap.xml'){for(const row of rows){const loc='https://shiftsometimber.co.uk/articles/'+row.slug;if(!text.includes('<loc>'+loc+'</loc>'))text=text.replace('</urlset>','<url><loc>'+loc+'</loc><lastmod>'+String(articleModifiedDate(row)).slice(0,10)+'</lastmod></url></urlset>')}}
  else{const marker=/<div\b(?=[^>]*\bid=["']knowledgeResults["'])[^>]*>/;if(marker.test(text)){const cards=rows.filter(r=>!text.includes('data-babylove-dynamic="'+r.slug+'"')).map(r=>'<article class="knowledge-card" data-babylove-dynamic="'+esc(r.slug)+'"><h3><a href="/articles/'+esc(r.slug)+'">'+esc(r.title)+'</a></h3><p>'+esc(r.summary||'SHIFT knowledge article.')+'</p></article>').join('');text=text.replace(marker,m=>m+cards)}}
  const headers=new Headers(response.headers);for(const k of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(k);headers.set('Cache-Control','no-store, must-revalidate');return new Response(text,{status:response.status,headers});
 }

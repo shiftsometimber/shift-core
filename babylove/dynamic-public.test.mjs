@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {renderMarkdown,dynamicBabyLovePublicRoute,withDynamicBabyLoveDiscovery} from './dynamic-public.mjs';
+import {renderMarkdown,dynamicBabyLovePublicRoute,withDynamicBabyLoveDiscovery,articleModifiedDate} from './dynamic-public.mjs';
 
 function env(row){
  return {DB:{prepare(sql){return{args:[],bind(...v){this.args=v;return this},async first(){return sql.includes("a.status='published'")&&row?.status==='published'?row:null},async all(){return{results:row?.status==='published'?[row]:[]}}}}}};
@@ -29,4 +29,14 @@ test('trusted BabyLove images are rewritten to a same-origin proxy',async()=>{
 test('image proxy rejects arbitrary sources before fetching',async()=>{
  const r=await dynamicBabyLovePublicRoute(new Request('https://shiftsometimber.co.uk/articles/mounjaro-cost-uk/image?src=https%3A%2F%2Fevil.example%2Fx.jpg'),env(row));
  assert.equal(r.status,404);
+});
+
+
+test('editorial updates preserve publication date and use the real later modification date',async()=>{
+ const revised={...row,updated_at:'2026-10-03 19:00:00'};
+ const response=await dynamicBabyLovePublicRoute(new Request('https://shiftsometimber.co.uk/articles/'+row.slug),env(revised));
+ const html=await response.text();const schema=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+ assert.equal(schema.datePublished,row.publish_at);assert.equal(schema.dateModified,'2026-10-03T19:00:00.000Z');
+ for(const updated_at of [null,'invalid','2020-01-01T00:00:00Z'])assert.equal(articleModifiedDate({...row,updated_at}),row.publish_at);
+ const xml=await (await withDynamicBabyLoveDiscovery(new Response('<urlset></urlset>'),new Request('https://shiftsometimber.co.uk/sitemap.xml'),env(revised))).text();assert.match(xml,/<lastmod>2026-10-03<\/lastmod>/);
 });
