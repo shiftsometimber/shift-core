@@ -4,7 +4,8 @@ import {execFileSync} from 'node:child_process';
 export const DEVICE_HEALTH_BASE='3a427a6883d25c10b7dd807f505d4b3e7432b8ae';
 export const DEVICE_HEALTH_CANDIDATE='ff5f570b9e80856b558ee1e28a9db33ebda5d505';
 // PR1005: exact required App Store purpose-string addition, not a permission change.
-export const DEVICE_HEALTH_PURPOSE_SOURCE='a5e6fe631ef621ffe9768cf93ae2bfcf03e440a1';
+export const DEVICE_HEALTH_PURPOSE_SOURCE='f10c3bd047b721ec91d22ab5f1beb2e29daa95b2';
+export const DEVICE_HEALTH_PURPOSE_PROOF_SOURCE='a5e6fe631ef621ffe9768cf93ae2bfcf03e440a1';
 export const DEVICE_HEALTH_DELTA=[
   [
     "A",
@@ -144,7 +145,7 @@ export async function verifyDeviceHealthProof(get){
  for(const name of ['integration-gate','preservation','route-sweep'])assert(checks.some(c=>c.name===name&&c.conclusion==='success'),'Missing health candidate check '+name);
  assert(checks.length>0&&checks.every(c=>c.status==='completed'&&['success','skipped','neutral'].includes(c.conclusion)),'Unpassed native health candidate checks');
  for(const [path,id] of [['.github/workflows/native-health-bridge-proof.yml',37111296181],['.github/workflows/my-timber-app-preview.yml',37111296102]]){
-  const run=await get('/actions/runs/'+id);assert.equal(run.head_sha,DEVICE_HEALTH_PURPOSE_SOURCE);assert.equal(run.path,path);assert.equal(run.status,'completed');assert.equal(run.conclusion,'success','Purpose-string composition proof must pass');receipts.push({id,path,head:run.head_sha});
+  const run=await get('/actions/runs/'+id);assert.equal(run.head_sha,DEVICE_HEALTH_PURPOSE_PROOF_SOURCE);assert.equal(run.path,path);assert.equal(run.status,'completed');assert.equal(run.conclusion,'success','Purpose-string composition proof must pass');receipts.push({id,path,head:run.head_sha});
  }
  return {candidate:DEVICE_HEALTH_CANDIDATE,receipts,physicalAcceptance:false};
 }
