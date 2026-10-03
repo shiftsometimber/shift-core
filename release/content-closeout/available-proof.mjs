@@ -13,9 +13,9 @@ const settings=await cf('/workers/scripts/shift-core/settings');
 save('live-binding-inventory.json',{at:new Date().toISOString(),readOnly:true,bindings:(settings.bindings||[]).map(b=>({name:b.name,type:b.type,databaseId:b.id??b.database_id??null,bucketName:b.bucket_name??null,className:b.class_name??null,namespaceId:b.namespace_id??null})),contractOrProcessorCertification:false});
 // Wait for publication before inspecting restored public assets or refreshing
 // derived copies. A failed publisher must never be treated as a live release.
-const runUrl='https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/37081829248';let release;
+const runUrl='https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/37083550829';let release;
 for(let i=0;i<24;i++){const r=await fetch(runUrl,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(15000)});assert(r.ok);release=await r.json();if(release.status==='completed')break;await new Promise(resolve=>setTimeout(resolve,15000));}
-assert.equal(release.head_sha,'d3ffb04c9578ed73c959f56e4acac7ac428d7a8e');assert.equal(release.conclusion,'success','FAQ/guide release did not complete; no derived-copy writes');
+assert.equal(release.head_sha,'0487df907f3921b6d61c546357d4c7658725b66a');assert.equal(release.conclusion,'success','FAQ/guide release did not complete; no derived-copy writes');
 const legacyChecks=[];
 for(const path of ['/tools','/my-weight-loss-roadmap','/programme']){
  const r=await fetch(origin+path,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(25000)});assert(r.ok);const html=await r.text(),visible=html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
