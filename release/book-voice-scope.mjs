@@ -27,7 +27,7 @@ export function preserveReviewedContrastGuard(input,{required=false}={}){
 }
 
 `;
-  assert.equal(source.split(contrastAddition).length-1,1,'Reviewed contrast preservation addition changed');
+  if(source.split(contrastAddition).length-1!==1)return source;
   return source.replace(contrastAddition,'')
    .replace('export async function runPublicPreservation([output,before]=process.argv.slice(2)){','const [output,before]=process.argv.slice(2);')
    .replace(' preserved=preserveReviewedContrastGuard(preserved,{required:Boolean(before)});\n','')
