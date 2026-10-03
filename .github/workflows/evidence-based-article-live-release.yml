@@ -1,0 +1,71 @@
+name: Release bounded evidence-article repair
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'babylove/dynamic-public.mjs'
+      - 'babylove/dynamic-public.test.mjs'
+      - 'babylove/repair-evidence-based-article.mjs'
+      - '.github/workflows/evidence-based-article-live-release.yml'
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  release:
+    if: github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Verify exact remote source and reviewed transformation without writing
+        run: node babylove/repair-evidence-based-article.mjs --check
+      - name: Test renderer and existing publication regressions
+        run: node --test babylove/dynamic-public.test.mjs babylove/public-article.test.mjs tests/public-shell-contract.test.mjs tests/public-seo-closeout.test.mjs
+      - name: Compile and deploy the exact reviewed Worker
+        run: |
+          npx wrangler deploy --dry-run --config wrangler.jsonc
+          npx wrangler deploy --config wrangler.jsonc
+      - name: Apply the bounded article correction
+        run: node babylove/repair-evidence-based-article.mjs --apply
+      - name: Verify live article and same-page contents navigation
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          const url='https://shiftsometimber.co.uk/articles/evidence-based-weight-loss';
+          let html='';
+          for(let attempt=0;attempt<18;attempt++){
+            const response=await fetch(url,{redirect:'manual'});
+            html=await response.text();
+            if(response.status===200&&html.includes('href="#dietary-strategies-supported-by-evidence"')&&html.includes("medicine-ordering pathway is currently closed"))break;
+            await new Promise(resolve=>setTimeout(resolve,5000));
+          }
+          assert(html.includes('<link rel="canonical" href="'+url+'">'));
+          assert(html.includes('name="robots" content="index,follow'));
+          assert(html.includes('after 6 months on the highest tolerated dose'));
+          assert(html.includes('Supplements are not required for weight loss'));
+          assert(!html.includes('Kikaboni'));
+          assert(!html.includes('book a consultation'));
+          const links=[...html.matchAll(/href="(#[a-z0-9_-]+)"/gi)].map(match=>match[1].slice(1));
+          assert(links.length>=14,'Expected rendered table-of-contents links');
+          for(const id of links)assert(html.includes('id="'+id+'"'),'Missing contents target '+id);
+          console.log(JSON.stringify({ok:true,url,contentsLinks:links.length}));
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evidence-article-live-proof-${{ github.sha }}
+          path: babylove-proof/
+          retention-days: 30
