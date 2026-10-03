@@ -70,3 +70,12 @@ test('release refuses missing, partitioned or disabled budgets and unsafe gatewa
  assert(validateGateway(valid));
  for(const change of [{authentication:false},{collect_logs:true},{logpush:true},{otel:[{}]},{retry_max_attempts:2},{workers_ai_billing_mode:'unified'},{rate_limiting_limit:0},{spend_limits:{...valid.spend_limits,enabled:false}},{spend_limits:{enabled:true,rules:[]}},{spend_limits:{enabled:true,rules:valid.spend_limits.rules.map(r=>({...r,metadata:{user:{mode:'partition'}}}))}}])assert.throws(()=>validateGateway({...valid,...change}));
 });
+
+for(const stream of [false,true])test('provider failure after consent withdrawal suppresses saved fallback, stream='+stream,async t=>{
+ const {env,DB}=fixture(t);env.SHIFT_AI_PRACTICAL_CONTEXT='true';env.SHIFT_AI_CONVERSATION_MEMORY='true';
+ env.AI.run=async()=>{consent(DB,1,false);throw Error('provider unavailable')};
+ const data=await(await ask(env,{message:'Help me plan my evening with my saved context',useJourney:false,stream})).json();
+ assert.equal(data.journeyUsed,false);assert.match(data.answer,/privacy settings changed/i);
+ assert.doesNotMatch(JSON.stringify(data),/Enjoying weekend walks|Synthetic Lentil Bowl|Synthetic purpose/);
+ assert.equal(DB.sqlite.prepare("SELECT COUNT(*) n FROM shift_ai_conversations WHERE direction='assistant'").get().n,0);
+});
