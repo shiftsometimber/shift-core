@@ -14,6 +14,20 @@ on:
       - 'worker-entry-v6.js'
       - 'migrations/021_device_health_sync.sql'
       - '.github/workflows/my-timber-health-v11.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'member-experience/device-health-sync.mjs'
+      - 'member-experience/connected-health.mjs'
+      - 'member-experience/entry.mjs'
+      - 'member-experience/tests/device-health-sync.test.mjs'
+      - 'member-experience/tests/device-health-route.integration.test.mjs'
+      - 'member-experience/tests/connected-health-feedback.test.mjs'
+      - 'my-timber-app/**'
+      - 'privacy-health-erasure-route-v1.js'
+      - 'worker-entry-v6.js'
+      - 'migrations/021_device_health_sync.sql'
+      - '.github/workflows/my-timber-health-v11.yml'
 permissions:
   contents: read
 jobs:
