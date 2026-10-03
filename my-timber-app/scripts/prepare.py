@@ -35,10 +35,12 @@ if a.platform=='android':
     (res/'my_timber_icon.png').write_bytes(data)
     shutil.copyfile(ROOT/'shared/sst-logo-official.png',res/'sst_logo_official.png')
     shutil.copyfile(ROOT/'shared/native-presentation.js',assets/'native-presentation.js')
+    shutil.copyfile(ROOT/'shared/native-health.js',assets/'native-health.js')
 else:
     if sys.platform!='darwin': raise SystemExit('iOS resource generation requires macOS sips (no replacement icon).')
     resources=ROOT/'ios/Resources';resources.mkdir(parents=True,exist_ok=True)
     shutil.copyfile(ROOT/'shared/native-presentation.js',resources/'native-presentation.js')
+    shutil.copyfile(ROOT/'shared/native-health.js',resources/'native-health.js')
     shutil.copyfile(ROOT/'shared/sst-logo-official.png',resources/'sst-logo-official.png')
     (resources/'my-timber-icon.png').write_bytes(data)
     catalog=resources/'Assets.xcassets';catalog.mkdir(exist_ok=True)
