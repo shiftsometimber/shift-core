@@ -53,3 +53,12 @@ test('explicit SHIFT Health interests join the plan without becoming diagnoses',
   assert.ok(source.includes("document.addEventListener('sst:health-interest-saved'"));
   assert.ok(source.includes('data-health-bring'));
 });
+
+test('current authenticated member shell loads the Health Plan asset',()=>{
+  const tools=readFileSync(new URL('../member-experience/dashboard-tools.mjs',import.meta.url),'utf8');
+  assert.ok(tools.includes("whole-man-intent-os-v1.js?v=4"));
+  assert.ok(source.includes("myHealthPlanV2"));
+  assert.ok(source.includes("primary.after(host)"));
+  assert.ok(source.includes("master?healthPlanMarkup"));
+  assert.ok(source.includes("sst:today-rendered"));
+});
