@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {Script} from 'node:vm';
 import {contrastSafetyStyles,contrastSafetyVersion,contrastSafetyClient,withPublicTicker} from '../public-navigation-policy.mjs';
+import {preserveReviewedContrastGuard,priorContrastSafetyClient} from '../member-experience/public-preservation.mjs';
 
 test('audited public contrast safety stays brand-only and covers the shared collision roots',()=>{
   assert.match(contrastSafetyVersion,/^public-contrast-20260917-r\d+$/);
@@ -50,4 +51,13 @@ test('contrast guard composites translucent panels over real ancestors',()=>{
   assert.deepEqual(run(['rgb(255,255,255)','rgba(0,0,0,0.055)','rgba(0,0,0,0)'],'rgb(5,5,5)'),{});
   assert.equal(run(['rgb(255,255,255)','rgba(0,0,0,0.055)','rgba(0,0,0,0)'],'rgb(231,227,218)').color,'#050505');
   assert.deepEqual(run(['rgb(23,38,29)','rgba(255,255,255,0.03)','rgba(255,255,255,0.03)'],'rgb(231,227,218)'),{});
+});
+
+test('public preservation admits only the exact reviewed contrast-client repair',()=>{
+  const tag=client=>`<script data-shift-contrast-guard="${contrastSafetyVersion}">${client}</script>`;
+  const shell=client=>Buffer.from('<html><body><main>Keep every byte.</main>'+tag(client)+'</body></html>');
+  assert.deepEqual(preserveReviewedContrastGuard(shell(priorContrastSafetyClient)),preserveReviewedContrastGuard(shell(contrastSafetyClient),{required:true}));
+  assert.throws(()=>preserveReviewedContrastGuard(shell(priorContrastSafetyClient),{required:true}),/missing the reviewed/);
+  assert.throws(()=>preserveReviewedContrastGuard(Buffer.from('<html><body>Keep every byte.</body></html>'),{required:true}),/exactly one/);
+  assert.notDeepEqual(preserveReviewedContrastGuard(shell(priorContrastSafetyClient)),preserveReviewedContrastGuard(Buffer.from('<html><body><main>Changed.</main>'+tag(contrastSafetyClient)+'</body></html>'),{required:true}));
 });
