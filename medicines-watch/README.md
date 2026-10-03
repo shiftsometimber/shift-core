@@ -19,9 +19,9 @@ Public preservation accepts only the exact marked Treatments entry. The other te
 
 ## Coverage expansion and discovery
 
-The live catalogue contains 6 detailed references plus 72 concise industry summaries in `industry.mjs`: 78 medicines/programmes, with 50 configured source documents. These are different denominators. A 50/50 source check would not mean the industry is fully covered. Wider summaries separate established/specialist, authorised-outside-the-UK, research, paused and discontinued programmes and do not inherit the detailed cards' review or clinical status.
+The live catalogue contains 6 detailed references plus 75 concise industry summaries in `industry.mjs`: 81 medicines/programmes, with 50 configured source documents. These are different denominators. A 50/50 source check would not mean the industry is fully covered. Wider summaries separate established/specialist, authorised-outside-the-UK, research, paused and discontinued programmes and do not inherit the detailed cards' review or clinical status.
 
-`reviews/2026-10-03-authorised-amylin-metabolic-followup.json` records the latest owner-authorised factual updates, with exact primary URLs, registry dates, response hashes, research status and explicit UK-access boundaries. It creates no new automatic baseline. Earlier review receipts remain the evidence trail.
+`reviews/2026-10-03-authorised-azd1043.json` records the latest owner-authorised factual addition and catalogue-count correction, with exact primary URLs, registry dates, response hash, site-level recruitment distinction, research status and explicit UK-access boundaries. It creates no new automatic baseline. Earlier review receipts remain the evidence trail.
 
 `reviews/2026-10-02-authorised-na931.json` promotes the existing `na931-tirzepatide` candidate from the 30 September proposal rather than duplicating it. The Watch preserves the discrepancy between Biomed Industries' sponsor-reported Phase 3 programme and NCT06732245, which remains a not-yet-recruiting Phase 2 record with an already-past estimated start and no posted results. Neither is evidence of UK authorisation, NHS access, supply, sale by SHIFT or clinical approval.
 
