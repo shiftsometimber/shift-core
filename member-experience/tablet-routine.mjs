@@ -8,18 +8,31 @@ const fail=(message,status=400)=>{throw Object.assign(Error(message),{status})};
 const today=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 export function routineStep(difficulty,alternative=false){
  const steps={
- none:['Keep one useful anchor','Choose one part of your existing day that already works, and keep your routine alongside it.'],
+ none:alternative?['Make a pocket routine card','Write your own leaflet instructions and prescriber contact details on one small card or phone note. Keep it where you can find it; use it to prepare questions if your day does not fit.']:['Keep one useful anchor','Choose one part of your existing day that already works, and keep your routine alongside it.'],
  timing:alternative?['Ask your pharmacist to review the timing','Take your shift pattern and other medicine timings to your pharmacist or prescriber. Do not improvise a different medication schedule.']:['Map tomorrow’s waking routine','Write down when you wake and when food, drinks and other tablets usually happen. Compare this with your patient leaflet; ask your pharmacist if they conflict.'],
  forgetting:alternative?['Use a simple tick-off','Choose a paper checklist for the next three days. Tick only after taking the medicine; if unsure whether you took it, check your patient leaflet or ask your pharmacist.']:['Choose one quiet reminder','Set one generic reminder at the time agreed with your prescriber. A reminder is a prompt, not evidence that a dose was taken.'],
  food:alternative?['Make one familiar meal easier','Choose a familiar meal with fewer preparation steps. Keep the next shopping list short.']:['Plan one easy food option','Choose one familiar food option for your next busy day and put it on your shopping list.'],
  sideeffects:['Contact your prescriber','Contact your prescriber using the details on your prescription or treatment confirmation for symptoms or side effects. Do not wait for this check-in.'],
  hunger:['Arrange a treatment review','Tell your prescriber when hunger changed and what is difficult. My Timber cannot decide whether treatment or dose should change.']
  };
- return {id:crypto.randomUUID(),difficulty,alternative,title:steps[difficulty][0],detail:steps[difficulty][1]};
+ return {id:crypto.randomUUID(),kind:difficulty+':'+(alternative?'alternative':'first'),difficulty,alternative,title:steps[difficulty][0],detail:steps[difficulty][1]};
+}
+const dayUK=at=>new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(at));
+const laterDay=(at,days)=>new Date(Date.parse(dayUK(at)+'T12:00:00Z')+days*86400000).toISOString().slice(0,10);
+const weekDate=state=>new Date(Date.parse(state.startDate+'T12:00:00Z')+6*86400000).toISOString().slice(0,10);
+function nextStep(difficulty,outcomes=[]){
+ const first=routineStep(difficulty),alternate=routineStep(difficulty,true);
+ if(['sideeffects','hunger'].includes(difficulty))return first;
+ const failed=step=>outcomes.some(o=>['didnt-help','didnt-fit'].includes(o.outcome)&&(o.kind===step.kind||o.title===step.title));
+ if(!failed(first))return first;if(!failed(alternate))return alternate;
+ return {id:crypto.randomUUID(),kind:difficulty+':support',difficulty,alternative:true,title:'Choose a different approach with support',detail:'Two approaches have not fitted. Choose another obstacle in the check-in, or ask SHIFT for practical help at /contact. Medication questions belong to your prescriber.'};
 }
 export function viewRoutine(raw,now=Date.now()){
- const state=raw?.enabled?raw:null;
- return {state,revision:raw?.revision||0,firstWeekDue:!!state&&!state.review&&now-Date.parse(state.startDate+'T12:00:00Z')>=6*86400000,medicines,difficulties};
+ const state=raw?.enabled?raw:null,day=dayUK(now),firstWeekDate=state?weekDate(state):null;
+ const weekDone=!!state&&(!!state.firstWeekReviewedAt||!!state.review?.at&&dayUK(state.review.at)>=firstWeekDate);
+ const nextCheckDate=state?.step?(state.nextCheckDate||laterDay(state.updatedAt||now,2)):null;
+ const helpedKinds=new Set((state?.outcomes||[]).filter(o=>o.outcome==='helped').map(o=>o.title));
+ return {state,revision:raw?.revision||0,firstWeekDate,firstWeekComplete:weekDone,firstWeekDue:!!state&&!weekDone&&day>=firstWeekDate,nextCheckDate,feedbackDue:!!state?.step&&!!nextCheckDate&&day>=nextCheckDate,helpfulSteps:helpedKinds.size,medicines,difficulties};
 }
 export function applyRoutine(old,input,at=new Date().toISOString()){
  if(input.kind==='erase')return {revision:(old?.revision||0)+1,enabled:false};
@@ -27,21 +40,25 @@ export function applyRoutine(old,input,at=new Date().toISOString()){
  if(input.kind==='setup'){
   if(!medicines[input.medicine]||input.prescribed!==true||!/^\d{4}-\d{2}-\d{2}$/.test(input.startDate||'')||!Number.isFinite(Date.parse(input.startDate))||new Date(input.startDate).toISOString().slice(0,10)!==input.startDate||input.startDate<'2020-01-01'||input.startDate>today()||!(input.time===''||/^([01]\d|2[0-3]):[0-5]\d$/.test(input.time||'')))fail('Check the medicine, start date and optional routine time.');
   const reset=next.medicine!==input.medicine||next.startDate!==input.startDate;
-  next={...next,enabled:true,medicine:input.medicine,startDate:input.startDate,time:input.time,updatedAt:at,...(reset?{review:null,step:null,outcomes:[]}:{} )};
+  next={...next,enabled:true,medicine:input.medicine,startDate:input.startDate,time:input.time,updatedAt:at,...(reset?{review:null,firstWeekReviewedAt:null,step:routineStep('none'),outcomes:[],nextCheckDate:laterDay(at,2)}:{})};
+  if(!next.step){next.step=routineStep('none');next.nextCheckDate=laterDay(at,2)}
  }else{
   if(!next.enabled)fail('Save your tablet routine first.',409);
   if(input.kind==='review'){
    if(!['manageable','difficult','not-started'].includes(input.routine)||!Object.hasOwn(difficulties,input.difficulty)||typeof input.prescriberHelp!=='boolean')fail('Choose your routine and difficulty.');
+   const difficulty=input.prescriberHelp?'sideeffects':input.difficulty;
    next.review={routine:input.routine,difficulty:input.difficulty,prescriberHelp:input.prescriberHelp,at};
-   next.step=routineStep(input.prescriberHelp?'sideeffects':input.difficulty);next.updatedAt=at;
+   if(dayUK(at)>=weekDate(next))next.firstWeekReviewedAt=at;
+   if(next.step?.difficulty!==difficulty)next.step=nextStep(difficulty,next.outcomes);
+   next.updatedAt=at;next.nextCheckDate=laterDay(at,2);
   }else if(input.kind==='feedback'){
    if(!next.step||input.stepId!==next.step.id||!['helped','didnt-help','didnt-fit','not-tried'].includes(input.outcome))fail('This step changed. Reload before answering.',409);
-   next.outcomes=[...(next.outcomes||[]),{title:next.step.title,outcome:input.outcome,at}].slice(-12);
-   if(['didnt-help','didnt-fit'].includes(input.outcome)){
-    if(['sideeffects','hunger'].includes(next.step.difficulty))next.step=routineStep(next.step.difficulty);
-    else if(next.step.alternative)next.step={id:crypto.randomUUID(),difficulty:next.step.difficulty,alternative:true,title:'Choose a different approach with support',detail:'Two approaches have not fitted. Choose another obstacle in the check-in, or ask SHIFT for practical help at /contact. Medication questions belong to your prescriber.'};
-    else next.step=routineStep(next.step.difficulty,true);
-   }else next.step={...next.step,answered:input.outcome};
+   const answer={stepId:next.step.id,kind:next.step.kind||next.step.difficulty+':'+(next.step.alternative?'alternative':'first'),difficulty:next.step.difficulty,title:next.step.title,outcome:input.outcome,at};
+   const last=next.outcomes?.at(-1);
+   if(!(last?.stepId===answer.stepId&&last.outcome===answer.outcome&&dayUK(last.at)===dayUK(at)))next.outcomes=[...(next.outcomes||[]),answer].slice(-12);
+   if(['didnt-help','didnt-fit'].includes(input.outcome))next.step=nextStep(next.step.difficulty,next.outcomes);
+   else next.step={...next.step,answered:input.outcome,answeredAt:at};
+   next.updatedAt=at;next.nextCheckDate=laterDay(at,input.outcome==='not-tried'?1:2);
   }else fail('Unsupported routine action.');
  }
  next.revision=(old?.revision||0)+1;return next;
