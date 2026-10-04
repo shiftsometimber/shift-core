@@ -2,7 +2,7 @@ name: My Timber Final Production Candidate
 
 on:
   push:
-    branches: [main, verification/member-design-20261002, verification/member-finish-20261002, release/internal-closeout-20261004]
+    branches: [main, verification/member-design-20261002, verification/member-finish-20261002]
     paths:
       - 'my-timber-final-production.mjs'
       - 'release/app-member-live.mjs'

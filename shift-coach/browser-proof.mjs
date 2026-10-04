@@ -7,6 +7,8 @@ import {brotliDecompressSync} from 'node:zlib';
 import {fixture} from './test-fixture.mjs';
 import {coachingRoutes} from './routes.mjs';
 import {withCoaching,coachingAsset} from './presentation.mjs';
+import {liveAppClient} from '../app-layout-live.mjs';
+import {fitActiveEditAsset} from './fit-active-edit.mjs';
 const out=process.env.COACHING_PROOF_DIR||'/tmp/shift-coach-proof';mkdirSync(out,{recursive:true});
 const DB=fixture(null,out+'/synthetic.sqlite');
 const env={DB,MEMBER_EXPERIENCE_V1_ENABLED:'true'};
@@ -114,6 +116,18 @@ try{
  proof.checks.push('quote check works with health tracking off, preserves consent and records, transmits nothing and forgets quotes on reload');
  await declinedContext.close();
  const harnessPage=await browser.newPage();
+ for(const width of [390,1440])for(const active of [false,true]){
+  await harnessPage.setViewportSize({width,height:900});
+  await harnessPage.setContent('<body data-member-page="fit"><main><div class="sf-builder"><label>Notes<textarea id="fitPrefs"></textarea></label></div></main></body>');
+  await harnessPage.addScriptTag({content:fitActiveEditAsset(liveAppClient)});
+  const note=harnessPage.locator('#fitPrefs');if(active){await note.fill('Synthetic active draft');await note.focus();await note.evaluate(e=>e.setSelectionRange(4,8));}
+  await harnessPage.evaluate(()=>{const s=document.createElement('section');s.className='sf-session';document.querySelector('main').append(s)});
+  await harnessPage.waitForFunction(()=>!!document.querySelector('[data-app-fit-setup]'));
+  const state=await note.evaluate(e=>({visible:!!e.getClientRects().length,focused:document.activeElement===e,value:e.value,start:e.selectionStart,end:e.selectionEnd,open:e.closest('details').open}));
+  assert.equal(state.open,active);assert.equal(state.visible,active);assert.equal(state.focused,active);if(active){assert.equal(state.value,'Synthetic active draft');assert.equal(state.start,4);assert.equal(state.end,8);}
+  assert.equal(await harnessPage.locator('.app-screen-details>summary').textContent(),'Adjust your session');
+  proof.checks.push('Late saved Fit session at '+width+' px '+(active?'preserves draft, focus and selection':'retains initially collapsed setup'));
+ }
  for(const [state,markup]of [['fresh','<textarea id="fitPrefs"></textarea>'],['saved','<details data-app-fit-setup><summary>Adjust setup</summary><textarea id="fitPrefs"></textarea></details>'],['nested','<details data-app-fit-setup><summary>Adjust setup</summary><details><summary>Notes</summary><textarea id="fitPrefs"></textarea></details></details>'],['reused-disclosure','<details class="app-screen-details"><summary>Adjust your session</summary><textarea id="fitPrefs"></textarea></details>'],['late-disclosure','<div id="pending" hidden><textarea id="fitPrefs"></textarea></div><script>setTimeout(()=>{const p=document.getElementById("pending"),d=document.createElement("details");d.innerHTML="<summary>Adjust your session</summary>";p.before(d);d.append(p);p.hidden=false},500)</script>']]){
   await harnessPage.setContent('<iframe title="Synthetic Fit verifier"></iframe>');
   await harnessPage.locator('iframe').evaluate((e,html)=>{e.srcdoc=html;},markup);
