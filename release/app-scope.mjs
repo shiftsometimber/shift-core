@@ -1,7 +1,8 @@
 import {DEVICE_HEALTH_PATHS,historicalDeviceHealthRef,validateDeviceHealthSource,verifyDeviceHealthProof} from './device-health-scope.mjs';
 import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 import {MEMBER_DESIGN_PATHS,MEMBER_LAYOUT_PATHS,validateMemberDesignSource} from './member-design-scope.mjs';
-import {FOOTER_PATHS,FOOTER_RUNTIME_PATHS,historicalFooterRef,validateFooterSource} from './footer-scope.mjs';
+import {FOOTER_BASE,FOOTER_CANDIDATE,FOOTER_PATHS,FOOTER_PAYLOAD_PATHS,FOOTER_RUNTIME_PATHS,historicalFooterRef,originalFooterEntry} from './footer-scope.mjs';
+import {WATCH_REGISTRY_WAVE_COMMIT} from './watch-registry-wave-scope.mjs';
 import {validateHomeBanner} from './home-banner-scope.mjs';
 import {MEMBER_FOCUS_APPROVED,MEMBER_FOCUS_PATHS,validateMemberFocus} from './member-focus-scope.mjs';
 import assert from 'node:assert/strict';
@@ -21,7 +22,9 @@ export function validateAppSource(){
  validateDeviceHealthSource();
  const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
  git('merge-base','--is-ancestor',APP_BASE,'HEAD');
- validateFooterSource();
+ git('merge-base','--is-ancestor',FOOTER_BASE,FOOTER_CANDIDATE);git('merge-base','--is-ancestor',FOOTER_CANDIDATE,'HEAD');
+ for(const path of FOOTER_PAYLOAD_PATHS){const source=path==='worker-entry-v6.js'?WATCH_REGISTRY_WAVE_COMMIT:FOOTER_CANDIDATE;assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',source+':'+path),'Footer payload differs from its exact reviewed source: '+path);}
+ assert.equal(originalFooterEntry(execFileSync('git',['show','HEAD:worker-entry-v6.js'],{encoding:'utf8'})),originalFooterEntry(execFileSync('git',['show',WATCH_REGISTRY_WAVE_COMMIT+':worker-entry-v6.js'],{encoding:'utf8'})),'Unrelated Worker change');
  validateMemberDesignSource();
  validateHomeBanner();
  for(const p of PWA_DISMISS_PATHS)assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',PWA_DISMISS_APPROVED+':'+p),'Reviewed PWA install dismissal drift: '+p);
@@ -30,6 +33,6 @@ export function validateAppSource(){
  assert(changed.every(p=>APP_PATHS.has(p)),'Unapproved files in app release: '+changed.filter(p=>!APP_PATHS.has(p)).join(','));
  for(const [p,sha]of Object.entries(APP_HASHES))assert.equal(createHash('sha256').update(execFileSync('git',['show',historicalDeviceHealthRef(coachingHistoricalRef(historicalFooterRef('HEAD',p),p),p)+':'+p])).digest('hex'),sha,'App release drift: '+p);
  for(const p of ['presentation.mjs','screens.mjs','tabs.mjs','refinement.mjs','verify.cjs'])assert.equal(git('rev-parse',historicalFooterRef('HEAD','preview/app-layout/'+p)+':preview/app-layout/'+p),git('rev-parse',APP_APPROVED+':preview/app-layout/'+p),'Approved app design changed: '+p);
- assert.equal(git('diff',APP_BASE,'HEAD','--','worker-entry-v6.js','member-experience','my-timber-pwa','migrations',':(exclude)member-experience/orders.mjs',':(exclude)member-experience/tablet-routine.mjs',':(exclude)member-experience/tablet-routine-client.mjs',':(exclude)member-experience/ai-site-knowledge.mjs',':(exclude)member-experience/ai-stream.mjs',':(exclude)member-experience/tests/lookup-continuation.test.mjs',':(exclude)member-experience/tests/continuity-measurement.test.mjs',':(exclude)member-experience/public-preservation.mjs',':(exclude)member-experience/verify-production-member.mjs',':(exclude)member-experience/dashboard-tools.mjs',':(exclude)member-experience/tests/dashboard-tools.test.mjs',...[...DEVICE_HEALTH_PATHS].map(p=>':(exclude)'+p),...[...FOOTER_RUNTIME_PATHS].map(p=>':(exclude)'+p),...PWA_DISMISS_PATHS.map(p=>':(exclude)'+p),...MEMBER_FOCUS_PATHS.map(p=>':(exclude)'+p)),'','Protected runtime, data and PWA source changed');
+ assert.equal(git('diff',APP_BASE,'HEAD','--','worker-entry-v6.js','member-experience','my-timber-pwa','migrations',':(exclude)worker-entry-v6.js',':(exclude)member-experience/orders.mjs',':(exclude)member-experience/tablet-routine.mjs',':(exclude)member-experience/tablet-routine-client.mjs',':(exclude)member-experience/ai-site-knowledge.mjs',':(exclude)member-experience/ai-stream.mjs',':(exclude)member-experience/tests/lookup-continuation.test.mjs',':(exclude)member-experience/tests/continuity-measurement.test.mjs',':(exclude)member-experience/public-preservation.mjs',':(exclude)member-experience/verify-production-member.mjs',':(exclude)member-experience/dashboard-tools.mjs',':(exclude)member-experience/tests/dashboard-tools.test.mjs',...[...DEVICE_HEALTH_PATHS].map(p=>':(exclude)'+p),...[...FOOTER_RUNTIME_PATHS].map(p=>':(exclude)'+p),...PWA_DISMISS_PATHS.map(p=>':(exclude)'+p),...MEMBER_FOCUS_PATHS.map(p=>':(exclude)'+p)),'','Protected runtime, data and PWA source changed');
  assert.equal(withoutCoachEntrypoint(readFileSync('wrangler.jsonc','utf8')),execFileSync('git',['show',APP_BASE+':wrangler.jsonc'],{encoding:'utf8'}),'Protected configuration changed outside the separately pinned coaching entrypoint');
 }

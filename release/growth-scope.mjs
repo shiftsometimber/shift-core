@@ -52,7 +52,8 @@ export const GROWTH_PINNED_PATHS=Object.keys(hashes);
 export const GROWTH_PATHS=new Set([...GROWTH_PINNED_PATHS,...APP_PATHS,'release/growth-scope.mjs']);
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 export function validateGrowthEntry(before,after){
- const expected="import {withGrowthPublicCopy} from './growth-member-public.mjs';\n"+before.replace("return withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final));","return withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final)));");
+ const growth="import {withGrowthPublicCopy} from './growth-member-public.mjs';\n"+before.replace("return withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final));","return withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final)));");
+ const expected=growth.replace('      const medicinesWatch = await checkSources(env).catch((error) => ({','      // Production promotion seeds reviewed URL replacements before the new\n      // runtime is exposed.  An invocation already in flight on the previous\n      // runtime must not switch that row back to its older configuration.\n      const medicinesWatch = await checkSources(env, { allowSourceReplacement: false }).catch((error) => ({');
  assert.equal(originalFooterEntry(after),expected,'Entry changed outside the exact growth response adapter');
 }
 export function validateGrowthSource(){
