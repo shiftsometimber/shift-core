@@ -17,6 +17,7 @@ export const discoveryDomains = [
  'corbuspharma.com','syntis.bio','alveustx.com',
  'siriusrna.com','fractyl.com',
  'artelobio.com',
+ 'regor.com',
  'abbvie.com','ascletis.com','ternspharma.com',
  'biophytis.com','orsobio.com','neurobiogen.com','sbpgroup.com','lepumedical.com',
  'biomedind.com',
