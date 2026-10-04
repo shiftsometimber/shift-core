@@ -42,6 +42,7 @@ import vct220Publication from './reviews/2026-10-04-authorised-vct220.json' with
 import vk2735Maintenance from './reviews/2026-10-04-authorised-vk2735-maintenance.json' with {type:'json'};
 import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-discontinuation.json' with {type:'json'};
 import taldefgrobepRv8451 from './reviews/2026-10-04-authorised-taldefgrobep-rv8451.json' with {type:'json'};
+import internationalMaintenanceWave from './reviews/2026-10-04-authorised-international-maintenance-wave.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('VK2735 maintenance evidence stays sponsor-reported and does not create an approved regimen',()=>{
  const e=industry.find(e=>e.id==='vk2735');
@@ -362,8 +363,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,89);assert.equal(sources.length,136);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,95);
+ assert.equal(medicines.length,6);assert.equal(industry.length,90);assert.equal(sources.length,139);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,96);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -476,7 +477,7 @@ test('paused and discontinued programmes remain distinct and searchable',()=>{
  const stopped=industryMarkup({},new URLSearchParams({industry:'discontinued'}));
  assert.match(stopped,/industry-danuglipron/);assert.match(stopped,/industry-amg513/);
  const query=industryMarkup({},new URLSearchParams({q:'petrelintide'}));
- assert.equal((query.match(/data-industry-card/g)||[]).length,1);assert.match(query,/Phase 3 ZUPREME/);
+ assert.equal((query.match(/data-industry-card/g)||[]).length,2);assert.match(query,/Phase 3 ZUPREME/);assert.match(query,/ZYNERGY/);
  assert.doesNotMatch(industryMarkup({},new URLSearchParams({q:'<script>evil</script>'})),/<script>/);
 });
 test('discovery can surface an untracked name and incomplete searches cannot imply coverage',()=>{
@@ -870,7 +871,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,89);
+ assert.equal(industry.length,90);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -1000,4 +1001,34 @@ test('taldefgrobep and RV-8451 preserve clinical-stage and evidence boundaries',
  assert.match(rv8451.ukAuthorisation,/does not establish UK marketing authorisation/);
  assert.match(rv8451.nhsEngland,/No NICE recommendation or NHS England access/);
  assert.match(rv8451.supply,/do not establish lawful UK retail supply/);
+});
+
+test('international maintenance wave preserves separate programme, stage and results boundaries',()=>{
+ assert.equal(internationalMaintenanceWave.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(internationalMaintenanceWave.clinicalApproval,null);
+ assert.equal(internationalMaintenanceWave.industryComplete,false);
+ assert.equal(internationalMaintenanceWave.catalogueCounts.totalAfter,96);
+ assert.equal(internationalMaintenanceWave.catalogueCounts.configuredSourcesAfter,139);
+ const zynergy=industry.find(item=>item.id==='zynergy-petrelintide-enicepatide');
+ assert.ok(zynergy);
+ assert.match(zynergy.stage,/not yet recruiting/);
+ assert.match(zynergy.summary,/estimated 30 September 2026 start date has passed/);
+ assert.match(zynergy.limitations,/no posted results/i);
+ assert.match(zynergy.limitations,/separate from both monotherapy programmes/i);
+ const mazdutide=industry.find(item=>item.id==='mazdutide');
+ assert.match(mazdutide.stage,/recruiting weight-maintenance research/);
+ assert.match(mazdutide.summary,/NCT07517042/);
+ assert.match(mazdutide.limitations,/no posted results/i);
+ const aleniglipron=industry.find(item=>item.id==='aleniglipron');
+ assert.match(aleniglipron.stage,/ACCOMPLISH-2 recruiting/);
+ assert.match(aleniglipron.summary,/NCT07654374/);
+ assert.match(aleniglipron.limitations,/no posted results/i);
+ for(const registry of internationalMaintenanceWave.registrySources){
+  assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
+  assert.equal(registry.lifecycle.hasResults,false);
+  assert.ok(registry.entryIds.length===1);
+ }
+ assert.equal(internationalMaintenanceWave.registrySources.find(s=>s.nctId==='NCT07589686').lifecycle.start.type,'ESTIMATED');
+ assert.equal(internationalMaintenanceWave.registrySources.find(s=>s.nctId==='NCT07517042').lifecycle.start.type,'ACTUAL');
+ assert.equal(internationalMaintenanceWave.registrySources.find(s=>s.nctId==='NCT07654374').lifecycle.status,'RECRUITING');
 });

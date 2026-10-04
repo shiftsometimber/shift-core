@@ -8,6 +8,7 @@ import vk2735Maintenance from './reviews/2026-10-04-authorised-vk2735-maintenanc
 import survodutidePaper from './reviews/2026-10-04-authorised-survodutide-paper.json' with {type:'json'};
 import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-discontinuation.json' with {type:'json'};
 import taldefgrobepRv8451 from './reviews/2026-10-04-authorised-taldefgrobep-rv8451.json' with {type:'json'};
+import internationalMaintenanceWave from './reviews/2026-10-04-authorised-international-maintenance-wave.json' with {type:'json'};
 import evening from './reviews/2026-10-01-authorised-evening-updates.json' with {type:'json'};
 import broaderDiscovery from './reviews/2026-10-01-authorised-broader-discovery.json' with {type:'json'};
 import synt101Correction from './reviews/2026-10-01-synt101-mad-correction.json' with {type:'json'};
@@ -123,7 +124,7 @@ export const industry = [...originalIndustry.map(e => {
  const update=followup.updates.find(u=>u.id===e.id);
  return update ? {...e,...update.fields,reviewedAt:followup.reviewedAt,sourceIds:[...e.sourceIds,...update.sourceIdsToAdd]} : e;
 }),...followup.entries,...continuing.entries,...biPublication.entries,...macupatide.entries,...evening.entries,...broaderDiscovery.entries,...internationalOmissions.entries,...expandedDiscovery.entries,...ubt251Publication.entries,...sgb7342Publication.entries,...abbvAsc30TernBimagrumab.entries,...registryOmissions.entries,...enobosarmSemaglutide.entries,...expandedRegistryWave.entries,...semaglutideSpecialistTrials.entries,...glimrCopd.entries,...specialistRegistryFollowup.entries,...na931Publication.entries]
- .concat(amylinMetabolicFollowup.entries,azd1043Publication.entries,wve007Publication.entries,specialistRegistryWave.entries,leanMassEnergyFollowup.entries,vikingAntagFollowup.entries,evidenceDesk.entries,srsd384Publication.entries,fractylModalityGap.entries,arteloMuscleGap.entries,rgt075Publication.entries,vct220Publication.entries,azelapragDiscontinuation.entries,taldefgrobepRv8451.entries)
+ .concat(amylinMetabolicFollowup.entries,azd1043Publication.entries,wve007Publication.entries,specialistRegistryWave.entries,leanMassEnergyFollowup.entries,vikingAntagFollowup.entries,evidenceDesk.entries,srsd384Publication.entries,fractylModalityGap.entries,arteloMuscleGap.entries,rgt075Publication.entries,vct220Publication.entries,azelapragDiscontinuation.entries,taldefgrobepRv8451.entries,internationalMaintenanceWave.entries)
  .map(e=>{const update=repairs.updates.find(u=>u.id===e.id);return update?{...e,...update,reviewedAt:repairs.reviewedAt}:e;})
  .map(e=>e.id===berobenatide.change.id?{...e,...berobenatide.change.fields,reviewedAt:berobenatide.reviewedAt,
   sourceIds:[...e.sourceIds,...berobenatide.change.sourceIdsToAdd],additionalEvidence:berobenatide.change.additionalEvidence}:e)
@@ -212,5 +213,15 @@ export const industry = [...originalIndustry.map(e => {
    ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
    ...(limitationsTextToReplace&&limitationsReplacement?{limitations:e.limitations.replace(limitationsTextToReplace,limitationsReplacement)+(limitationsToAppend?' '+limitationsToAppend:'')}:(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{})),
    reviewedAt:survodutidePaper.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
+ })
+ .map(e=>{
+  const change=internationalMaintenanceWave.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  const {summaryToAppend,limitationsToAppend,...fields}=change.fields;
+  return {...e,...fields,
+   ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
+   ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
+   reviewedAt:internationalMaintenanceWave.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
  });
