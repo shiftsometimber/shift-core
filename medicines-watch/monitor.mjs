@@ -5,13 +5,20 @@ export const CHECK_INTERVAL_MS = 60 * 60 * 1000;
 export const REVIEW_INTERVAL_MS = 7 * 24 * CHECK_INTERVAL_MS;
 const DEADLINE_MS = 8000;
 const NICE_DEADLINE_MS = 20000;
+// Ordinary complete reads of these exact sponsor documents took 9.95 and
+// 11.32 seconds on 4 October. One bounded attempt; no access-denial retry.
+const SPONSOR_DEADLINES = new Map([
+  ['hansoh-olatorepatide-20260604', 'https://www.hansoh.cn/en/news/news-detail-514034.htm'],
+  ['hrs1596-hengrui-20260929', 'https://www.hengrui.com/en/media/detail-1042.html']
+]);
 // NICE guidance responses have taken 6.3–7.6 seconds on successful reads.
 // Allow bounded headroom without extending other origins or retrying denials.
 export function sourceDeadlineMs(source, requested) {
   const url = new URL(source.checkUrl || source.url);
-  const limit = url.protocol === 'https:' && url.hostname === 'www.nice.org.uk'
+  const sponsor = source.format === 'html' && SPONSOR_DEADLINES.get(source.id) === url.href;
+  const limit = sponsor || (url.protocol === 'https:' && url.hostname === 'www.nice.org.uk'
     && !url.port && url.pathname.startsWith('/guidance/') && source.format === 'html'
-    ? NICE_DEADLINE_MS : DEADLINE_MS;
+    ) ? NICE_DEADLINE_MS : DEADLINE_MS;
   return Math.max(1, Math.min(limit, Number.isFinite(requested) ? requested : limit));
 }
 // The complete Mounjaro emc SmPC exceeds 1 MiB (1,258,162 bytes observed

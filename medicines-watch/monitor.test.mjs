@@ -393,6 +393,51 @@ test('NICE deadline is bounded to exact HTTPS guidance origin; ongoing checks us
   assert.equal(projectSourceHealth(nice, row, NOW + 20001).checkStatus, 'check_delayed');
 });
 
+test('slow sponsor deadline requires the exact source ID, approved URL and HTML format', () => {
+  for (const [id, checkUrl] of [
+    ['hansoh-olatorepatide-20260604', 'https://www.hansoh.cn/en/news/news-detail-514034.htm'],
+    ['hrs1596-hengrui-20260929', 'https://www.hengrui.com/en/media/detail-1042.html']
+  ]) {
+    const sponsor = {...source, id, checkUrl, format:'html'};
+    assert.equal(sourceDeadlineMs(sponsor), 20000);
+    assert.equal(sourceDeadlineMs(sponsor, 60000), 20000);
+    assert.equal(sourceDeadlineMs(sponsor, 10), 10);
+    for (const change of [{id:'other'}, {format:'pdf'}, {checkUrl:checkUrl+'?other=1'},
+      {checkUrl:checkUrl.replace('https:', 'http:')}, {checkUrl:checkUrl.replace('.com/', '.com.evil.example/')},
+      {checkUrl:checkUrl.replace('.cn/', '.cn.evil.example/')}, {checkUrl:checkUrl.replace('/en/', ':8443/en/')}]) {
+      if (change.checkUrl === checkUrl) continue;
+      assert.equal(sourceDeadlineMs({...sponsor,...change}), 8000);
+    }
+    const row = {source_url:sponsor.url, check_url:sponsor.checkUrl, attempt_status:'checking', last_attempt_at:new Date(NOW).toISOString()};
+    assert.equal(projectSourceHealth(sponsor,row,NOW+9000).checkStatus,'checking');
+    assert.equal(projectSourceHealth(sponsor,row,NOW+20001).checkStatus,'check_delayed');
+  }
+});
+
+test('slow approved sponsor read completes once after eight seconds without renewing its review', async t => {
+  const env = setup(t);
+  const sponsor = {...source,id:'hrs1596-hengrui-20260929',format:'html',checkUrl:'https://www.hengrui.com/en/media/detail-1042.html'};
+  let requests=0;
+  const result=await scan(env,sponsor,{fetchImpl:async()=>{
+    requests++;
+    await new Promise(resolve=>setTimeout(resolve,8500));
+    return new Response('<html><title>Example medicine</title><main>Example medicine authorised for a specific indication. Eligibility and individual assessment remain essential.</main></html>',{headers:{'content-type':'text/html'}});
+  }});
+  assert.equal(result.checked,1);assert.equal(requests,1);
+  const state=(await health(env,sponsor)).sources[0];
+  assert.equal(state.reviewedAt,sponsor.reviewedAt);
+  assert.equal(state.reviewStatus,'verification_pending');
+});
+
+test('sponsor timeout and access refusal remain failed without a second attempt', async t => {
+  const sponsor={...source,id:'hansoh-olatorepatide-20260604',format:'html',checkUrl:'https://www.hansoh.cn/en/news/news-detail-514034.htm'};
+  let requests=0;
+  const denied=await scan(setup(t),sponsor,{fetchImpl:async()=>{requests++;return new Response('Denied',{status:403});}});
+  assert.equal(denied.outcomes[0].error,'http_403');assert.equal(requests,1);
+  const timed=await scan(setup(t),sponsor,{timeoutMs:10,fetchImpl:()=>new Promise(()=>{})});
+  assert.equal(timed.outcomes[0].error,'check_timeout');
+});
+
 test('complete NICE response after the old deadline is retrieved without renewing review', async t => {
   const env = setup(t);
   const nice = {...source, format: 'html', checkUrl: 'https://www.nice.org.uk/guidance/ta875'};
