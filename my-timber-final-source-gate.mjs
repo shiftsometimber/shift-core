@@ -13,7 +13,8 @@ need(promotion.includes('frontend/member/member-progress-v1.js'),'Progress runti
 need(workflow.includes('workflow_run:')&&workflow.includes("workflows: ['Cloudflare Production Promote']")&&workflow.includes("github.event.workflow_run.conclusion == 'success'"),'Final production journey must run after successful promotion');
 need(workflow.includes('ref: ${{ github.event.workflow_run.head_sha || github.sha }}'),'Final production journey must use the promoted source revision');
 const push=workflow.match(/^  push:\n([\s\S]*?)(?=^  workflow_run:)/m)?.[1];
-const reviewedVerificationPush="    branches: [main, verification/member-design-20261002, verification/member-finish-20261002]\n    paths:\n      - 'my-timber-final-production.mjs'\n      - 'release/app-member-live.mjs'\n      - 'rendered-member-acceptance-support.mjs'\n      - 'health-passport/production-browser.mjs'\n      - 'my-timber-google-play-screenshots.mjs'\n      - '.github/workflows/my-timber-final-production.yml'\n";
+const reviewedVerificationPush="    branches: [main, verification/member-design-20261002, verification/member-finish-20261002, release/internal-closeout-20261004]\n    paths:\n      - 'my-timber-final-production.mjs'\n      - 'release/app-member-live.mjs'\n      - 'rendered-member-acceptance-support.mjs'\n      - 'health-passport/production-browser.mjs'\n      - 'my-timber-google-play-screenshots.mjs'\n      - '.github/workflows/my-timber-final-production.yml'\n";
+need(workflow.includes("internal?'33f5233e2a032afef8608eef7dfe2f9aac2eb306'")&&workflow.includes("internal?'37189424626'"),'Internal diagnostics must bind to the exact successful serving-runtime receipt');
 need(!push||(
   push===reviewedVerificationPush &&
   workflow.includes("if: github.event_name == 'push' && github.ref == 'refs/heads/main'") &&
