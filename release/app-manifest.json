@@ -257,7 +257,10 @@
     "medicines-watch/reviews/2026-10-04-authorised-azelaprag-discontinuation.json": "f962174fb9026b2e916cce1f676e7dbb6e0f13247cbac1ad19ed72cdc5d82448",
     "shift-coach/member-record-fixture.mjs": "69f0bbd12994bc4587b832c219055cee46df90da0a3f7d59b9b2620271ef310a",
     "shift-coach/member-record-browser.mjs": "5010cfb8aa46bfd8fde6c82f1519162f7ac5c4c3b195c18a35f10cda732f6598",
-    "tests/member-record-reliability.test.mjs": "e42fe3c45bcd9cd8ba122eea0b731e2eee64b88ee666aa7c7c05cf7d6cafbefb"
+    "tests/member-record-reliability.test.mjs": "e42fe3c45bcd9cd8ba122eea0b731e2eee64b88ee666aa7c7c05cf7d6cafbefb",
+    "transactional-email-v1.js": "7655330ea7364a6051b3b18299dc14d05ee45b067382cef077d15116fb9d6b0a",
+    "tests/transactional-mail-reliability.test.mjs": "3ee22a82377633f04765a533ad2a7b39a65ad63e032ab34a3877c01d8d09c454",
+    "shift-coach/acceptance-current-20261004.json": "e6c2f667e241c2c933e1ce6109e2451094a0520cae16f78d3f65379651e6df22"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
@@ -338,7 +341,7 @@
   "memberPanelLayout": {
     "candidate": "72f0796f7de9ccfc42f46ec203a6c00b04d17aba",
     "previewRun": 36987513488,
-    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404\u2013IMG_2406 and the 07:57 screen recording.",
+    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404–IMG_2406 and the 07:57 screen recording.",
     "scope": "Three exact presentation/preview files; existing records, controls and clinical/commercial gates preserved."
   },
   "watchCredibility": {

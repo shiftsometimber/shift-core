@@ -1,0 +1,68 @@
+{
+  "recordedAt": "2026-10-04T13:42:29Z",
+  "register": "SST-56 / #1065",
+  "scope": "Current bounded everyday coaching and retained member functions",
+  "completeV2": false,
+  "independentAcceptance": {
+    "approved": false,
+    "reason": "No new independent reviewer receipt exists for the current composed payload. Builder tests and owner-authorised deployment are distinct evidence."
+  },
+  "engineeringEvidence": {
+    "memberRecordRepair": "PR1077, production37203903301, rendered37204503339, full37204503314",
+    "freshStreamRepair": "Finalized payload run37185717167; three complete uncached replies, zero retries. Sustained capacity is not established."
+  },
+  "remaining": [
+    {
+      "id": "SST-10",
+      "acceptance": "Run an agreed sustained concurrency window with latency, full completion, cost/cap and rejection counts; a three-request proof cannot close capacity."
+    },
+    {
+      "id": "SST-09",
+      "acceptance": "Account-specific attribution checked against real consent/exclusion rules without exposing member records."
+    },
+    {
+      "id": "SST-08",
+      "acceptance": "Actual controller, processor, purpose, retention and supplier agreements recorded; no signature inferred from code."
+    },
+    {
+      "id": "SST-22",
+      "acceptance": "Named support queue owner, coverage and an observed human reply. Existing ticket code is not a staffed service."
+    },
+    {
+      "id": "SST-24",
+      "acceptance": "Deletion drill with explicit disposition of coaching, support, account, analytics and backup data; retain legally required records only under an actual agreed policy."
+    },
+    {
+      "id": "SST-25",
+      "acceptance": "Operator executes restore/rollback using the current runbook, then proves read-back and permissions. Same-job automated rollback is not full disaster recovery."
+    },
+    {
+      "id": "SST-44",
+      "acceptance": "Physical iPhone and supported Android grant/deny/revoke/import/account-switch and disconnect/delete evidence."
+    },
+    {
+      "id": "SST-56",
+      "acceptance": "Independent reviewer tests current frozen payload for relevance, voice, first useful step, difficult weeks, stopping treatment, did-it-help changes and isolation. Record reviewer identity, source SHA, scenario outcomes and corrections."
+    }
+  ],
+  "reviewPack": {
+    "testEntryPoints": [
+      "shift-coach/phantom-members.mjs",
+      "shift-coach/full-page-proof.mjs",
+      "shift-coach/workerd-proof.cjs",
+      "shift-coach/member-record-browser.mjs"
+    ],
+    "scenarios": [
+      "New member reaches one useful step without supplying medication details",
+      "Changed working week invalidates obsolete plans",
+      "Two unhelpful steps lead to a different approach",
+      "Stopping medicine retains coaching and saved history",
+      "Withdrawal of tracking consent removes personalised access",
+      "Account switch exposes no other member context",
+      "Help displays real ticket status without promising a response time",
+      "Missing measurements remain unknown and actual zero remains zero"
+    ],
+    "passRule": "Reviewer records each observed outcome against the frozen application SHA. Any failed functional or safety-boundary scenario remains open; synthetic timing is labelled separately."
+  },
+  "historicalAssessment": "launch-assessment.json remains the dated pre-launch candidate snapshot. Its BLOCKED deployment fields do not describe the subsequently deployed bounded release."
+}
