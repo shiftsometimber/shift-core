@@ -254,7 +254,7 @@
     "editorial/source-review-20261004/publish.mjs": "f19fa74f56daaf004ef0e6a2fd2351d062335204779b30a76d9aedb5b4dd7159",
     "medicines-watch/reviews/2026-10-04-authorised-survodutide-paper.json": "d7df992314d6f402eec73bfe3de500890e4b6ce96d3f3f8946330d50ca0749d6",
     "medicines-watch/industry.mjs": "0d4427cf6adb007dc3c1525d92ce38958a27f624a67ce8dbceacb2bbe1a9b874",
-    "medicines-watch/reviews/2026-10-04-authorised-azelaprag-discontinuation.json": "3ec9f8f5ea589c98ffdbfce22876af5ffd9229f250fbf6768e6f05119ebbcbaf",
+    "medicines-watch/reviews/2026-10-04-authorised-azelaprag-discontinuation.json": "f962174fb9026b2e916cce1f676e7dbb6e0f13247cbac1ad19ed72cdc5d82448",
     "shift-coach/member-record-fixture.mjs": "69f0bbd12994bc4587b832c219055cee46df90da0a3f7d59b9b2620271ef310a",
     "shift-coach/member-record-browser.mjs": "5010cfb8aa46bfd8fde6c82f1519162f7ac5c4c3b195c18a35f10cda732f6598",
     "tests/member-record-reliability.test.mjs": "e42fe3c45bcd9cd8ba122eea0b731e2eee64b88ee666aa7c7c05cf7d6cafbefb"
