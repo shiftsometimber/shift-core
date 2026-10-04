@@ -1,0 +1,215 @@
+{
+  "reviewedAt": "2026-10-04T04:43:49Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add one bounded smaller-developer oral GLP-1 programme after complete review of two sponsor-submitted registry records and the original sponsor announcement. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "rgt075",
+      "name": "RGT-075 / RGT001-075",
+      "developer": "Regor Therapeutics",
+      "group": "research",
+      "stage": "Completed Phase 2a and Phase 2b registry records; no registry-posted results",
+      "summary": "RGT-075 is Regor's investigational once-daily oral small-molecule GLP-1 receptor agonist. Regor reported Phase 2a topline observations from a 73-participant, 12-week study. The sponsor-submitted registry also records the separate 267-participant COMO-1 Phase 2b study as completed on 6 November 2025; neither registry record has posted results.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for RGT-075 for weight management or another indication.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed research evidence.",
+      "supply": "Completed US research and sponsor announcements do not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The Phase 2a weight, adverse-event and discontinuation figures are sponsor-reported topline observations; ClinicalTrials.gov has no posted results for that record. Regor's January 2025 announcement expected COMO-1 topline data by the end of 2025, but the reviewed sponsor-submitted Phase 2b record only establishes completion and has no posted results. Regor's current public pipeline still labels Phase II trials in progress, so the dated registry completion and undated pipeline wording are retained without inferring a Phase 3 start, positive Phase 2b outcome, clinical benefit, comparative tolerability, UK authorisation, NHS access or supply.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-04T04:43:49Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT06277934: RGT001-075 Phase 2a",
+          "url": "https://clinicaltrials.gov/study/NCT06277934",
+          "sourcePublishedAt": "2024-02-26",
+          "sourceUpdatedAt": "2025-08-07",
+          "reviewedAt": "2026-10-04T04:43:49Z",
+          "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT06867718: COMO-1 Phase 2b",
+          "url": "https://clinicaltrials.gov/study/NCT06867718",
+          "sourcePublishedAt": "2025-03-10",
+          "sourceUpdatedAt": "2026-05-28",
+          "reviewedAt": "2026-10-04T04:43:49Z",
+          "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+        },
+        {
+          "title": "Regor: Phase 2a topline announcement and COMO-1 initiation",
+          "url": "https://www.prnewswire.com/news-releases/regor-releases-phase-2a-topline-results-for-rgt-075-an-oral-once-daily-small-molecule-glp-1r-agonist-and-begins-phase-2b-study-in-the-us-for-the-treatment-of-obesity-302348153.html",
+          "sourcePublishedAt": "2025-01-10",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T04:43:49Z",
+          "checkScope": "Complete original sponsor announcement read for reported Phase 2a topline observations, planned Phase 2b design and the then-prospective end-2025 result timing. Not automatically content-monitored."
+        },
+        {
+          "title": "Regor Therapeutics pipeline page",
+          "url": "https://www.regor.com/",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T04:43:49Z",
+          "checkScope": "Complete current sponsor page read for identity, oral GLP-1 mechanism and its undated Phase II-trials-in-progress label. Publication and update dates were not displayed. Not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct06277934",
+      "nctId": "NCT06277934",
+      "title": "ClinicalTrials.gov NCT06277934: RGT001-075 Phase 2a",
+      "url": "https://clinicaltrials.gov/study/NCT06277934",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06277934",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT06277934", "Regor Pharmaceuticals Inc."],
+      "reviewedAt": "2026-10-04T04:43:49Z",
+      "sourcePublishedAt": "2024-02-26",
+      "sourceUpdatedAt": "2025-08-07",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT06277934",
+        "title": "A Phase 2, Multicenter, Randomized, Double-Blind, Placebo-Controlled Study of RGT001-075 Compared With Placebo in Adult Patients With Obesity or Overweight With Weight-Related Comorbidities",
+        "sponsor": "Regor Pharmaceuticals Inc.",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": ["PHASE2"],
+        "enrollment": {"count": 73, "type": "ACTUAL"},
+        "start": {"date": "2024-03-08", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2024-08-13", "type": "ACTUAL"},
+        "completion": {"date": "2024-08-13", "type": "ACTUAL"},
+        "firstPosted": {"date": "2024-02-26", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2025-08-07", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["rgt075"],
+      "rawResponseSha256": "94e5920caa9542bcaa96ca76856cfb0a8e00b1bbf5acf9c702b8126d59b5c4ae",
+      "reviewedFingerprint": "bd4998d577e5849a19bab77d429623f073a3947d26a3c04d3847d3040a65dfe4"
+    },
+    {
+      "id": "registry-nct06867718",
+      "nctId": "NCT06867718",
+      "title": "ClinicalTrials.gov NCT06867718: COMO-1 Phase 2b",
+      "url": "https://clinicaltrials.gov/study/NCT06867718",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06867718",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT06867718", "Regor Pharmaceuticals Inc."],
+      "reviewedAt": "2026-10-04T04:43:49Z",
+      "sourcePublishedAt": "2025-03-10",
+      "sourceUpdatedAt": "2026-05-28",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT06867718",
+        "title": "A Phase 2 Study of Once-Daily RGT001-075 Compared With Placebo in Participants Who Have Obesity or Are Overweight With Weight-Related Comorbidities (COMO-1)",
+        "sponsor": "Regor Pharmaceuticals Inc.",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": ["PHASE2"],
+        "enrollment": {"count": 267, "type": "ACTUAL"},
+        "start": {"date": "2025-01-24", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2025-11-06", "type": "ACTUAL"},
+        "completion": {"date": "2025-11-06", "type": "ACTUAL"},
+        "firstPosted": {"date": "2025-03-10", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-05-28", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["rgt075"],
+      "rawResponseSha256": "ebd043a3484f773ef8b06235c44d6e16079085fd577ab6222e8931a25fa25383",
+      "reviewedFingerprint": "72ea8badc24a101765b77716967041820d22a25de50742dd3e10de3c55bbf3aa"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06277934",
+      "publicationDate": "2024-02-26",
+      "updateDate": "2025-08-07",
+      "reviewedAt": "2026-10-04T04:43:49Z",
+      "outcome": "Complete primary API body read for exact identity, completed Phase 2 status, actual 73-participant enrolment, actual dates and absence of posted results."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06867718",
+      "publicationDate": "2025-03-10",
+      "updateDate": "2026-05-28",
+      "reviewedAt": "2026-10-04T04:43:49Z",
+      "outcome": "Complete primary API body read for the distinct COMO-1 record, completed Phase 2 status, actual 267-participant enrolment, actual dates and absence of posted results."
+    },
+    {
+      "url": "https://www.prnewswire.com/news-releases/regor-releases-phase-2a-topline-results-for-rgt-075-an-oral-once-daily-small-molecule-glp-1r-agonist-and-begins-phase-2b-study-in-the-us-for-the-treatment-of-obesity-302348153.html",
+      "publicationDate": "2025-01-10",
+      "updateDate": null,
+      "reviewedAt": "2026-10-04T04:43:49Z",
+      "outcome": "Complete original sponsor announcement read. Sponsor-reported Phase 2a observations are kept separate from the later Phase 2b registry completion, and the announcement's future result timing is not treated as a completed event."
+    },
+    {
+      "url": "https://www.regor.com/",
+      "publicationDate": null,
+      "updateDate": null,
+      "reviewedAt": "2026-10-04T04:43:49Z",
+      "outcome": "Complete current sponsor pipeline page read. Its undated Phase II-in-progress wording is retained as a source limitation rather than overriding dated registry completion records."
+    }
+  ],
+  "retrievals": {
+    "registryNct06277934": {"httpStatus": 200, "bytes": 7567, "responseSha256": "94e5920caa9542bcaa96ca76856cfb0a8e00b1bbf5acf9c702b8126d59b5c4ae"},
+    "registryNct06867718": {"httpStatus": 200, "bytes": 14225, "responseSha256": "ebd043a3484f773ef8b06235c44d6e16079085fd577ab6222e8931a25fa25383"},
+    "sponsorAnnouncement": {"httpStatus": 200, "responseSha256": "dfcb4e02c6f01b62bd7776415027a980190ed5232ee59c06ade86e2064809a76", "automaticBaselineApproved": false},
+    "sponsorPipeline": {"httpStatus": 200, "responseSha256": "abe5bf69b999e68375495ffd165c95a0379d78f4e8b60108b14f55abf2a5ce3f", "automaticBaselineApproved": false}
+  },
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-04T04:43:49Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 125,
+    "currentSources": 124,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "error": "http_403",
+        "httpStatus": 403,
+        "lastAttemptAt": "2026-10-04T04:01:31.212Z",
+        "lastSuccessAt": null,
+        "nextCheckAt": "2026-10-04T05:01:31.212Z"
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only health response verifies configured-source availability and monitor operation. It does not renew factual reviews, approve changed wording or establish complete industry coverage. The unchanged Zealand 403 remains visible and is not repeated as a new alert."
+  },
+  "discoveryPass": {
+    "method": "Separate current-date and broader undated topic searches covered regulator, NHS, registry and original sponsor sources, smaller developers, oral treatments, combinations, muscle preservation and specialist indications. Results were reconciled with current main and all open pull requests before publication selection.",
+    "included": "RGT-075 is a distinct smaller-developer oral GLP-1 programme absent from the live catalogue and dated publication receipts. The Phase 2a and COMO-1 Phase 2b records are separate studies and are not counted as separate medicines.",
+    "rejectedLead": "NCT07204171/MG001 was excluded after primary-context review: it concerns mitragynine research for opioid use disorder, not weight management; a search result's phrase 'oral MG001' was not treated as obesity evidence.",
+    "notDuplicated": "DA-302168S, NNC0662-0419, CMS-D008, ALV-100, aleniglipron, RGT-075-adjacent oral GLP-1 programmes, COURAGE and bimagrumab were checked against live entries and receipts. Draft PR 874 remains separate retatrutide review work.",
+    "incompleteChecks": [
+      "No public sponsor Phase 2b topline announcement or registry-posted COMO-1 results were located; completion is not treated as a positive outcome.",
+      "The sponsor pipeline page displays no publication or update date and appears less current than the dated registry completion records.",
+      "Search indexing can lag and selected results cannot exclude older omissions, unannounced programmes or additional international developers. Catalogue and configured-source counts do not establish industry completeness."
+    ],
+    "failedChecks": []
+  },
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "widerBefore": 84,
+    "widerAfter": 85,
+    "totalBefore": 90,
+    "totalAfter": 91,
+    "configuredSourcesBefore": 125,
+    "configuredSourcesAfter": 127,
+    "trialRecordsBefore": 69,
+    "trialRecordsAfter": 71
+  },
+  "nextAction": "Run the full Watch tests and exact-head release gates, publish through the guarded production workflow, then verify the live RGT-075 card, both trial lifecycles, Treatments entry and SELECT-only health endpoint."
+}
