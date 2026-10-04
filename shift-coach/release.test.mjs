@@ -6,6 +6,21 @@ import {execFileSync} from 'node:child_process';
 import {COACH_BASE,COACH_PATHS,COACH_COMPOSED_BOOK_ADDITIONS,COACH_COMPOSED_BOOK_CHANGES,assertCoachingChangedPath,WATCH_CURRENT_PATHS,assertCoachingConfiguration,withoutCoachEntrypoint,coachingHistoricalRef,validateCoachingSource,assertLaunchDecisions} from './release-contract.mjs';
 const config=readFileSync('wrangler.jsonc','utf8'),before=execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'});
 const manifest=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8'));
+test('bounded member evidence rejects drift of every proven file, extra paths and a temporary production workflow',async()=>{
+ const {MEMBER_DIAGNOSTICS_PATHS, MEMBER_DIAGNOSTICS_WORKFLOW, MEMBER_DIAGNOSTICS_SOURCE, MEMBER_DIAGNOSTICS_BASE, validateMemberDiagnosticsSource}=await import('../release/member-acceptance-scope.mjs');
+ const paths=[...MEMBER_DIAGNOSTICS_PATHS,MEMBER_DIAGNOSTICS_WORKFLOW],read=(ref,p)=>p;
+ assert.doesNotThrow(()=>validateMemberDiagnosticsSource(read,paths));
+ for(const path of MEMBER_DIAGNOSTICS_PATHS)assert.throws(()=>validateMemberDiagnosticsSource((ref,p)=>ref===MEMBER_DIAGNOSTICS_SOURCE&&p===path?'changed':p,paths),/source drift/);
+ assert.throws(()=>validateMemberDiagnosticsSource((ref,p)=>ref===MEMBER_DIAGNOSTICS_BASE&&p===MEMBER_DIAGNOSTICS_WORKFLOW?'temporary':p,paths),/must not enter production/);
+ assert.throws(()=>validateMemberDiagnosticsSource(read,[...paths,'worker.js']),/exact five-file/);
+ assert.throws(()=>validateMemberDiagnosticsSource(read,paths.slice(1)),/exact five-file/);
+});
+test('bounded member evidence requires the exact successful run, source, workflow, branch and event',async()=>{
+ const {MEMBER_DIAGNOSTICS_SOURCE,MEMBER_DIAGNOSTICS_WORKFLOW,assertMemberDiagnosticsReceipt}=await import('../release/member-acceptance-scope.mjs');
+ const receipt={id:37216938436,head_sha:MEMBER_DIAGNOSTICS_SOURCE,path:MEMBER_DIAGNOSTICS_WORKFLOW,head_branch:'codex/member-acceptance-diagnostics-20261004',event:'push',status:'completed',conclusion:'success'};
+ assert.doesNotThrow(()=>assertMemberDiagnosticsReceipt(receipt));
+ for(const change of [{id:37216938437},{head_sha:'a'.repeat(40)},{path:'.github/workflows/other.yml'},{head_branch:'main'},{event:'pull_request'},{status:'in_progress'},{conclusion:'failure'}])assert.throws(()=>assertMemberDiagnosticsReceipt({...receipt,...change}));
+});
 test('read-only article closeout cannot be changed, deleted or widened by repinning',()=>{
  const m={...manifest,applicationCommit:'a'.repeat(40)};
  assert.doesNotThrow(()=>assertCoachingChangedPath('M',ARTICLE_CLOSEOUT_PATH));
