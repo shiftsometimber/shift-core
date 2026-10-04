@@ -123,6 +123,7 @@ try{
   const note=harnessPage.locator('#fitPrefs');if(active){await note.fill('Synthetic active draft');await note.focus();await note.evaluate(e=>e.setSelectionRange(4,8));}
   await harnessPage.evaluate(()=>{const s=document.createElement('section');s.className='sf-session';document.querySelector('main').append(s)});
   await harnessPage.waitForFunction(()=>!!document.querySelector('[data-app-fit-setup]'));
+  await note.waitFor({state:active?'visible':'hidden'});
   const state=await note.evaluate(e=>({visible:!!e.getClientRects().length,focused:document.activeElement===e,value:e.value,start:e.selectionStart,end:e.selectionEnd,open:e.closest('details').open}));
   assert.equal(state.open,active);assert.equal(state.visible,active);assert.equal(state.focused,active);if(active){assert.equal(state.value,'Synthetic active draft');assert.equal(state.start,4);assert.equal(state.end,8);}
   assert.equal(await harnessPage.locator('.app-screen-details>summary').textContent(),'Adjust your session');
