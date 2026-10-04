@@ -1,0 +1,51 @@
+{
+  "reviewedAt": "2026-10-04T11:12:02Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Correct the Survodutide evidence note after reviewing the newly available peer-reviewed SYNCHRONIZE-2 abstract. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-evidence factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "changes": [
+    {
+      "id": "survodutide",
+      "fields": {
+        "summaryToAppend": "The peer-reviewed SYNCHRONIZE-2 abstract reports the treatment-regimen estimand at week 76: mean body-weight change was -9.8% with 6.0 mg, -8.2% with 3.6 mg and -3.9% with placebo; the corresponding HbA1c changes were -0.8, -0.9 and -0.2 percentage points.",
+        "limitationsTextToReplace": "The linked NEJM paper was unavailable in this review.",
+        "limitationsReplacement": "The PubMed abstract of the peer-reviewed NEJM paper has now been reviewed; the full NEJM article returned HTTP 403 and was not reviewed.",
+        "limitationsToAppend": "The treatment-regimen estimates are not interchangeable with the sponsor's 13.1% efficacy-estimand figure. The trial enrolled adults with type 2 diabetes and BMI at least 27 kg/m² and was funded by Boehringer Ingelheim, so these results should not be generalised to all people with obesity or treated as sponsor-independent evidence."
+      },
+      "additionalEvidence": [
+        {
+          "title": "Survodutide Once Weekly in Adults with Obesity and Type 2 Diabetes",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42820639/",
+          "sourcePublishedAt": "2026-10-01",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T11:12:02Z",
+          "checkScope": "Peer-reviewed PubMed abstract read for design, population, treatment-regimen estimand, body-weight and HbA1c results, adverse-event context and funding. The full NEJM article returned HTTP 403 and was not reviewed; this evidence URL is not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "retrieval": {
+    "retrievedAt": "2026-10-04T11:12:02Z",
+    "pubmedHttpStatus": 200,
+    "nejmFullArticleHttpStatus": 403,
+    "withdrawn": false,
+    "completeResponseReviewed": false,
+    "scope": "The complete PubMed bibliographic record and abstract were reviewed. The full publisher article was inaccessible, so tables, appendices and full methods were not reviewed."
+  },
+  "discovery": {
+    "method": "Separate configured-source and topic-based passes. A current-date and broader undated search surfaced the 1 October peer-reviewed SYNCHRONIZE-2 publication after the earlier sponsor and registry review.",
+    "existingWork": "The live catalogue, dated receipts and open Watch PRs were checked before selection. This updates the existing Survodutide entry rather than adding a duplicate programme.",
+    "limitations": "This bounded evidence correction does not establish complete sponsor or industry coverage and does not renew unrelated source reviews.",
+    "clinicalDecisions": "No suitability, dosing, comparative-benefit or safety decision is made. Unsupported clinical conclusions remain awaiting qualified review."
+  },
+  "catalogueCounts": {
+    "totalAfter": 92,
+    "configuredSourcesAfter": 132,
+    "additionalEvidenceUrlsAfter": 61
+  }
+}

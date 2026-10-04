@@ -921,3 +921,19 @@ test('NA-931 preserves the sponsor and registry discrepancy without implying acc
  assert.ok(entry.additionalEvidence.some(source=>source.url==='https://www.biomedind.com/NA-931.html'));
  assert.ok(discoveryDomains.includes('biomedind.com'));
 });
+test('Survodutide distinguishes peer-reviewed treatment-regimen results from sponsor efficacy estimates',()=>{
+ const entry=industry.find(item=>item.id==='survodutide');
+ assert.ok(entry);
+ assert.match(entry.summary,/treatment-regimen estimand/);
+ assert.match(entry.summary,/-9\.8% with 6\.0 mg/);
+ assert.match(entry.summary,/-3\.9% with placebo/);
+ assert.match(entry.limitations,/not interchangeable with the sponsor's 13\.1% efficacy-estimand figure/);
+ assert.match(entry.limitations,/full NEJM article returned HTTP 403 and was not reviewed/);
+ assert.doesNotMatch(entry.limitations,/linked NEJM paper was unavailable in this review/);
+ assert.equal(entry.clinicalApproval,null);
+ const paper=entry.additionalEvidence.find(source=>source.url==='https://pubmed.ncbi.nlm.nih.gov/42820639/');
+ assert.ok(paper);
+ assert.equal(paper.sourcePublishedAt,'2026-10-01');
+ assert.match(paper.checkScope,/complete PubMed bibliographic record and abstract|PubMed abstract read/);
+ assert.match(paper.checkScope,/not automatically content-monitored/);
+});

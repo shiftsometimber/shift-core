@@ -5,6 +5,7 @@ import arteloMuscleGap from './reviews/2026-10-04-authorised-art2713-muscle-gap.
 import rgt075Publication from './reviews/2026-10-04-authorised-rgt075.json' with {type:'json'};
 import vct220Publication from './reviews/2026-10-04-authorised-vct220.json' with {type:'json'};
 import vk2735Maintenance from './reviews/2026-10-04-authorised-vk2735-maintenance.json' with {type:'json'};
+import survodutidePaper from './reviews/2026-10-04-authorised-survodutide-paper.json' with {type:'json'};
 import evening from './reviews/2026-10-01-authorised-evening-updates.json' with {type:'json'};
 import broaderDiscovery from './reviews/2026-10-01-authorised-broader-discovery.json' with {type:'json'};
 import synt101Correction from './reviews/2026-10-01-synt101-mad-correction.json' with {type:'json'};
@@ -200,4 +201,14 @@ export const industry = [...originalIndustry.map(e => {
   return change?{...e,...change.fields,reviewedAt:vk2735Maintenance.reviewedAt,
    sourceIds:[...e.sourceIds,...change.sourceIdsToAdd],
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]}:e;
+ })
+ .map(e=>{
+  const change=survodutidePaper.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  const {summaryToAppend,limitationsTextToReplace,limitationsReplacement,limitationsToAppend,...fields}=change.fields;
+  return {...e,...fields,
+   ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
+   ...(limitationsTextToReplace&&limitationsReplacement?{limitations:e.limitations.replace(limitationsTextToReplace,limitationsReplacement)+(limitationsToAppend?' '+limitationsToAppend:'')}:(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{})),
+   reviewedAt:survodutidePaper.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
  });
