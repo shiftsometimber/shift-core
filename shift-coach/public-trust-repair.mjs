@@ -6,6 +6,21 @@ export const pages = {
  '/accessibility': ['Accessibility', '<p>We want SHIFT and My Timber to be usable with a keyboard, screen reader, enlarged text and reduced motion. Accessibility work is ongoing; we have not completed an independent WCAG conformance audit and do not claim full conformance.</p><h2>Using the site</h2><p>You can zoom using your browser and use the larger-text and reduced-motion controls in the footer. Interactive features, forms and member tools may still have barriers.</p><h2>Report a barrier or request another format</h2><p><a href="/contact?type=accessibility">Contact us</a> or email <a href="mailto:hello@shiftsometimber.co.uk">hello@shiftsometimber.co.uk</a>. Tell us which page or task is affected, what went wrong, and which device or assistive technology you use if you are comfortable sharing it. Do not include private health information.</p><p>Statement updated 3 October 2026.</p>']
 };
 const pathOf=r=>new URL(r.url).pathname.replace(/\.html$/,'').replace(/\/+$/,'')||'/';
+// 4 October: publisher full text reviewed (37 studies, 9341 participants).
+// Repair the sole broken source anchor; retain the existing cautious summary,
+// historical review date, wording, scripts, layout and all other sources.
+export const STOPPING_BMJ_OLD='https://www.bmj.com/content/390/bmj-2025-083108';
+export const STOPPING_BMJ_CURRENT='https://www.bmj.com/content/392/bmj-2025-085304';
+const sourceAnchors=(html,from,to)=>html.replace(/<(script|style|textarea)\b[^>]*>[\s\S]*?<\/\1\s*>|<!--[\s\S]*?-->|<a\b[^>]*>/gi,tag=>!/^<a\b/i.test(tag)?tag:tag.replace(/(\s)href\s*=\s*(["'])(.*?)\2/i,(attribute,space,quote,url)=>url===from?space+'href='+quote+to+quote:attribute));
+export function repairStoppingCitation(html){return sourceAnchors(html,STOPPING_BMJ_OLD,STOPPING_BMJ_CURRENT);}
+export function restoreStoppingCitation(path,input,{required=false}={}){
+ if(path!=='/articles/stopping-glp1')return input;
+ const html=input.toString('utf8'),restored=sourceAnchors(html,STOPPING_BMJ_CURRENT,STOPPING_BMJ_OLD);
+ const current=(html.match(new RegExp(STOPPING_BMJ_CURRENT.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'))||[]).length;
+ if(required&&current!==1)throw Error('Expected exactly one reviewed stopping-treatment BMJ source');
+ if(current>1)throw Error('Duplicate stopping-treatment BMJ source');
+ return Buffer.from(restored);
+}
 export function trustRoute(request){
  const p=pathOf(request);
  if(p==='/assets/contact-reference-init.js')return new Response(contactInit,{headers:{'Content-Type':'text/javascript; charset=utf-8','Cache-Control':'no-store'}});
@@ -16,6 +31,7 @@ export function trustRoute(request){
 }
 export function repairHtml(html,path){
  if(path==='/')return html;
+ if(path==='/articles/stopping-glp1')return repairStoppingCitation(html);
  html=html.replace(/(<(?:p|nav)\b[^>]*class=["']footer-legal-links["'][^>]*>)/i,'$1<a href="/terms-of-sale">Sale terms</a><a href="/refunds">Cancellations &amp; refunds</a><a href="/accessibility">Accessibility statement</a>');
  if(path.startsWith('/member/')){
   html=html.replace(/<h3>Weight illustrations<\/h3>[\s\S]*?(?=<h3>Saved real progress photos<\/h3>)/,'');
@@ -39,7 +55,7 @@ export function repairHtml(html,path){
 }
 export async function withTrustRepair(request,response){
  const path=pathOf(request);if(path==='/')return response;
- const relevant=pages[path]||path.startsWith('/member/')||/^\/(?:medicine-news|newsroom)(?:\/|$)/.test(path)||/urgent-help|crisis|suicid/.test(path)||['/robots.txt','/lounge','/contact','/treatment-centre','/advertise-with-us','/commercial-principles'].includes(path);
+ const relevant=pages[path]||path.startsWith('/member/')||/^\/(?:medicine-news|newsroom)(?:\/|$)/.test(path)||/urgent-help|crisis|suicid/.test(path)||['/robots.txt','/lounge','/contact','/treatment-centre','/advertise-with-us','/commercial-principles','/articles/stopping-glp1'].includes(path);
  if(!relevant)return response;
  const headers=new Headers(response.headers);
  if(path==='/robots.txt'&&response.ok){let body=await response.text();body=body.replace(/^.*clinician-dashboard-v3d.*\n?/gm,'');headers.delete('Content-Length');headers.delete('ETag');return new Response(body,{status:200,headers});}

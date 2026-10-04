@@ -1,4 +1,4 @@
-import {restoreTrustCentre} from '../shift-coach/public-trust-repair.mjs';
+import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';
 import {restoreBookVoiceCopy} from '../book-voice.mjs';
 import {applySharedFooter} from '../shared-footer.mjs';
 import {preserveGrowthCopy} from '../release/growth-preservation.mjs';
@@ -51,7 +51,8 @@ for(const path of paths){
  const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,path+' must return HTTP 200');
  const body=Buffer.from(await r.arrayBuffer());
- const footerPreserved=Buffer.from(applySharedFooter(restoreBookVoiceCopy(path,restoreTrustCentre(path,body.toString('utf8'),{required:Boolean(before)}))));
+ const reviewedSource=restoreStoppingCitation(path,body,{required:Boolean(before)});
+ const footerPreserved=Buffer.from(applySharedFooter(restoreBookVoiceCopy(path,restoreTrustCentre(path,reviewedSource.toString('utf8'),{required:Boolean(before)}))));
  const pwaPreserved=preservePwaPresentation(path,preserveApprovedStartup(path,preserveGrowthCopy(path,footerPreserved,{required:Boolean(before)})),{required:Boolean(before)});
  let preserved=preservePassportHead(path,preserveContinuityContent(path,preserveHealthCardOrder(path,preserveTickerVersion(preserveBabyLoveKnowledge(path,preserveOralKnowledge(path,pwaPreserved),{required:Boolean(before)}))),{required:Boolean(before)}),{required:Boolean(before)&&passportEnabled});
  preserved=preserveServiceBridgePaint(preserveLoginSession(path,preserved),{required:Boolean(before)});
