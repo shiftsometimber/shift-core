@@ -13,7 +13,9 @@ export async function revealSetupField(frame,selector){
    if(await control.isVisible()){await control.click();opened=true;break;}
   }
   if(opened)continue;
-  try{await field.waitFor({state:'visible',timeout:Math.min(250,Math.max(1,deadline-Date.now()))});return field;}
+  // A late composer can collapse an inactive field after a visibility check.
+  // Start through its ordinary visible click before returning it for typing.
+  try{await field.click({timeout:Math.min(250,Math.max(1,deadline-Date.now()))});assert(await field.isVisible(),'Fit control must remain visible after its ordinary click');return field;}
   catch(error){if(error.name!=='TimeoutError')throw error;}
  }
  await field.waitFor({state:'visible',timeout:1});return field;
