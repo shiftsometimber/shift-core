@@ -36,6 +36,7 @@ export function industryReviewFlag(entry,health,now=Date.now()) {
   return '';
 }
 export const changes=[
+ {date:'2026-10-04',kind:'Muscle-preservation discovery',text:'Added ART27.13 as a non-clinical GLP-1 companion exploration. Its separate Phase 1/2 cancer-cachexia programme is retained only as context, not as human obesity or muscle-preservation evidence. The catalogue now contains 90 programmes.',anchor:'industry-art2713'},
  {date:'2026-10-04',kind:'Modality discovery',text:'Added preclinical RJVA-002 as an obesity gene-therapy programme, explicitly limited to mouse evidence. The separate Revita device procedure and type 2 diabetes RJVA-001 programme are not silently counted as medicines coverage. The catalogue now contains 89 programmes.',anchor:'industry-rjva002'},
  {date:'2026-10-04',kind:'Smaller-developer discovery',text:'Added SRSD384 with the sponsor-reported first participant and the older conflicting not-yet-recruiting registry status both retained. No human muscle-preservation benefit is claimed. The catalogue now contains 88 programmes.',anchor:'industry-srsd384'},
  {date:'2026-10-03',kind:'Evidence and discovery',text:'Added ZP6590 with its conflicting pipeline narrative retained, dated trial lifecycle details, developer and mechanism search, a source-review queue and manual-monitoring gaps. The catalogue now contains 87 programmes.',anchor:'watch-evidence-desk'},
