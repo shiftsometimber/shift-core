@@ -39,5 +39,5 @@ test('public status distinguishes record review, summary review, results and unc
  const s=registrySources[0];const markup=registryEvidenceMarkup({url:s.url,title:'A <record>',reviewedAt:'2026-09-01'},{});
  assert.match(markup,/A &lt;record&gt;/);assert.match(markup,/Medical evidence summary reviewed 1 September 2026/);assert.match(markup,/Record status reviewed 3 October 2026/);assert.match(markup,/Verification pending/);
  const entry=industry.find(e=>s.entryIds.includes(e.id));assert.match(industryReviewFlag(entry,{},Date.parse('2026-10-12')),/due for factual review/);
- const html=credibilityMarkup({});for(const id of ['watch-changes','watch-safety','watch-uk-access'])assert.match(html,new RegExp(id));assert.match(html,/Current operational access remains unverified/);assert.match(html,/Reporting does not replace urgent medical care/);
+ const html=credibilityMarkup({});for(const id of ['watch-changes','watch-safety','watch-uk-access'])assert.match(html,new RegExp(id));assert.match(html,/Current operational access remains unverified/);assert.match(html,/Reporting does not replace urgent medical care/);assert.match(html,/Added ART27\.13 as a non-clinical GLP-1 companion exploration/);assert.match(html,/catalogue now contains 90 programmes/);assert.match(html,/industry-art2713/);
 });
