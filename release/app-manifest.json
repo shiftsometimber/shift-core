@@ -409,21 +409,21 @@
     }
   },
   "watchEvidenceDesk": {
-    "contentCommit": "464ef9fb116ac8332c2df3c7c55087929bca32e2",
-    "evidenceRun": 37198113898,
-    "pr": 1073,
+    "contentCommit": "ef4ce9d463ee7543733c205ee1e3c2331ba358dc",
+    "evidenceRun": 37202081294,
+    "pr": 1076,
     "editorialAuthority": "Matt requested a higher Watch standard on 3 October 2026; standing supported informational publication authority retained. No clinical approval.",
     "clinicalApproval": null,
-    "catalogueEntries": 92,
-    "configuredSources": 132,
-    "registryRecords": 75,
-    "tests": "144 Watch tests pass in exact-source hosted run37198113898; mobile/desktop Chromium rendering passes.",
+    "catalogueEntries": 93,
+    "configuredSources": 134,
+    "registryRecords": 76,
+    "tests": "145 Watch tests pass in exact-source hosted run37202081294; mobile/desktop Chromium rendering passes.",
     "lastVerifiedWatchProduction": {
-      "run": 37186039552,
-      "source": "9385511682f38814dcfd83ad64e1d63619f14759",
-      "deploymentId": "9539f547-71bf-4a5f-85ec-cbe12b0faa51",
-      "versionId": "e51b41c0-232b-4289-9880-be3d91a36031",
-      "rollbackVersionId": "0129929c-845d-4b39-a2af-0ac0e4bf1d9b"
+      "run": 37199359322,
+      "source": "accfaefece3c9fb834d9a6f5232d27a9e46db0bf",
+      "deploymentId": "67d25820-e0a0-4966-be00-581266e0a376",
+      "versionId": "4a5eca99-2ac6-472c-b56c-144299e0246b",
+      "rollbackVersionId": "ee4d0594-bf77-4792-a2d1-c68f577b6bd5"
     },
     "requirements": "Current actual runtime must be independently reconciled by the existing ownership/rollback guard. Full combined-head checks, guarded production and actual live verification remain required. No scheduler observation or unrelated factual review date is reset."
   }
