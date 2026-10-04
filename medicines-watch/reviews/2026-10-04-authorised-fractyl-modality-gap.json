@@ -1,0 +1,115 @@
+{
+  "reviewedAt": "2026-10-04T02:55:47Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add one bounded preclinical obesity gene-therapy programme and record, without publishing, the separately reviewed non-drug Revita procedure and the type 2 diabetes RJVA-001 programme. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "rjva002",
+      "name": "RJVA-002",
+      "developer": "Fractyl Health",
+      "group": "research",
+      "stage": "Preclinical dual GIP/GLP-1 gene-therapy programme; no human study",
+      "summary": "Fractyl describes RJVA-002 as an AAV-based, locally delivered gene-therapy candidate intended to make pancreatic beta cells express GIP and GLP-1 in response to nutrients. The sponsor reported body-weight changes after a single administration in a diet-induced-obesity mouse model; its August 2026 update still called RJVA-002 preclinical.",
+      "ukAuthorisation": "The reviewed sponsor sources do not establish UK marketing authorisation or a UK clinical-trial authorisation for RJVA-002.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by these preclinical sources.",
+      "supply": "Preclinical research does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The reported approximately 30% change was observed over five weeks in an ongoing mouse study with seven animals per group, not in people. It does not establish human weight loss, durability, safety, tolerability, remission, superiority to medicines or a one-time clinical regimen. RJVA-001 is a different candidate entering human research for inadequately controlled type 2 diabetes; its Netherlands authorisation does not advance RJVA-002 or establish an obesity trial. Revita is a separate endoscopic device procedure and is not silently counted as a medicine or peptide.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-04T02:55:47Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Fractyl Health: preclinical RJVA-002 results",
+          "url": "https://ir.fractyl.com/news-releases/news-release-details/fractyl-health-announces-potent-preclinical-results-rjva-002",
+          "sourcePublishedAt": "2025-10-07",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T02:55:47Z",
+          "checkScope": "Complete sponsor announcement read for programme identity, mechanism, animal-model design and preclinical result. Not automatically content-monitored."
+        },
+        {
+          "title": "Fractyl Health Q2 2026 business update",
+          "url": "https://ir.fractyl.com/news-releases/news-release-details/fractyl-health-reports-second-quarter-2026-financial-results-and",
+          "sourcePublishedAt": "2026-08-10",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T02:55:47Z",
+          "checkScope": "Complete sponsor update read to verify that RJVA-002 remained preclinical and distinct from RJVA-001 and Revita. Not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "reviewedButNotPublished": [
+    {
+      "id": "revita-remain1",
+      "reason": "Revita is an endoscopic duodenal-ablation device procedure, not a medicine or peptide. The sponsor's 15 July 2026 midpoint-cohort report is useful adjacent evidence but does not belong in the present catalogue without an explicit public scope expansion. The full modified intention-to-treat cohort contained 45 participants and was not powered for formal significance; the prominently reported 84% versus 46% figures came from a prespecified exploratory subgroup of 10 versus 8 participants. The pivotal-cohort readout and US De Novo submission were still planned, not completed.",
+      "source": {
+        "url": "https://ir.fractyl.com/news-releases/news-release-details/fractyl-health-reports-positive-randomized-data-remain-1",
+        "publicationDate": "2026-07-15",
+        "updateDate": null,
+        "reviewedAt": "2026-10-04T02:55:47Z"
+      }
+    },
+    {
+      "id": "rjva001",
+      "reason": "The Netherlands authorised a Phase 1/2 study for inadequately controlled type 2 diabetes, not obesity. Planned first dosing and preliminary data were not treated as completed, and the programme is not used as human evidence for RJVA-002.",
+      "source": {
+        "url": "https://ir.fractyl.com/news-releases/news-release-details/fractyl-health-authorized-initiate-first-human-trial-rjva-001",
+        "publicationDate": "2026-05-11",
+        "updateDate": null,
+        "reviewedAt": "2026-10-04T02:55:47Z"
+      }
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-04T02:51:04Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 125,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "error": "http_403",
+        "lastAttemptAt": "2026-10-04T01:46:16.683Z",
+        "nextCheckAt": "2026-10-04T02:46:16.683Z"
+      }
+    ],
+    "confirmedCurrent": {
+      "id": "registry-nct07557355",
+      "lastAttemptAt": "2026-10-04T02:46:10.994Z",
+      "httpStatus": 200
+    },
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "A successful SELECT-only health response checks configured-source availability and monitor operation. It does not renew factual reviews, approve changed wording or establish complete industry coverage. The unchanged Zealand 403 remains visible and is not repeated as a new alert."
+  },
+  "discoveryPass": {
+    "method": "A current-date pass and a separate broader undated topic pass checked known and unknown developers, late-stage updates, post-GLP-1 maintenance, muscle preservation, gene and RNA therapies, devices and smaller international programmes. Results were reconciled with the live catalogue, current main, dated receipts and open Watch PRs.",
+    "included": "RJVA-002 is an older modality omission: an obesity-specific dual GIP/GLP-1 gene-therapy programme that the latest reviewed sponsor update still described as preclinical.",
+    "notDuplicated": "Regeneron's 1 October 2026 COURAGE findings are already live with the lower-dose 52-week DXA result, MRI distinction, prior triplet safety signal and no strength/function claim. Open PRs 874 and 875 remain separate review-only work.",
+    "incompleteChecks": [
+      "No ClinicalTrials.gov study for RJVA-002 was located; the programme remains preclinical in the latest readable sponsor update.",
+      "The sponsor's REMAIN-1 page contains stale internal wording that says both completed recruitment and currently enrolling; the dated sponsor releases control the bounded review and no device-status claim is published in the catalogue.",
+      "Search indexing can lag and selected results cannot exclude older omissions, unannounced programmes or additional international developers. Catalogue and configured-source counts do not establish industry completeness."
+    ],
+    "failedChecks": [],
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailed": 6,
+    "widerBefore": 82,
+    "widerAfter": 83,
+    "totalBefore": 88,
+    "totalAfter": 89,
+    "configuredSources": 125
+  },
+  "nextAction": "Publish the bounded RJVA-002 addition through exact passing checks and guarded production, verify the live card, Treatments entry and SELECT-only health endpoint, and continue open-ended modality discovery without converting adjacent procedures into medicines coverage."
+}

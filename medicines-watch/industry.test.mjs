@@ -35,6 +35,7 @@ import specialistRegistryWave from './reviews/2026-10-03-authorised-specialist-r
 import leanMassEnergyFollowup from './reviews/2026-10-03-authorised-lean-mass-energy-followup.json' with {type:'json'};
 import vikingAntagFollowup from './reviews/2026-10-03-authorised-vk3019-at673.json' with {type:'json'};
 import srsd384Publication from './reviews/2026-10-04-authorised-srsd384.json' with {type:'json'};
+import fractylModalityGap from './reviews/2026-10-04-authorised-fractyl-modality-gap.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('WVE-007 separates monotherapy registry, sponsor combination and planned maintenance',()=>{
  const e=industry.find(e=>e.id==='wve007');
@@ -86,6 +87,31 @@ test('SRSD384 retains sponsor initiation and the older conflicting registry stat
  const html=industryMarkup({},new URLSearchParams({q:'Sirius INHBE'}));
  assert.equal((html.match(/data-industry-card/g)||[]).length,1);
  assert.match(html,/Status checks do not assess clinical outcomes/);
+});
+test('RJVA-002 stays preclinical and adjacent procedures do not blur catalogue scope',()=>{
+ const e=industry.find(e=>e.id==='rjva002');
+ assert.equal(fractylModalityGap.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(fractylModalityGap.clinicalApproval,null);
+ assert.equal(fractylModalityGap.industryComplete,false);
+ assert.equal(fractylModalityGap.automatedMonitorChanges,false);
+ assert.ok(e);
+ assert.equal(e.group,'research');
+ assert.equal(e.clinicalApproval,null);
+ assert.match(e.stage,/Preclinical dual GIP\/GLP-1 gene-therapy/);
+ assert.match(e.summary,/diet-induced-obesity mouse model/);
+ assert.match(e.limitations,/seven animals per group/);
+ assert.match(e.limitations,/not in people/);
+ assert.match(e.limitations,/RJVA-001 is a different candidate/);
+ assert.match(e.limitations,/Revita is a separate endoscopic device procedure/);
+ assert.match(e.ukAuthorisation,/do not establish UK marketing authorisation/);
+ assert.match(e.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(e.supply,/does not establish lawful UK retail supply/);
+ assert.equal(e.sourceIds.length,0);
+ assert.equal(e.additionalEvidence.length,2);
+ assert.equal(fractylModalityGap.reviewedButNotPublished.length,2);
+ assert.ok(fractylModalityGap.reviewedButNotPublished.some(item=>item.id==='revita-remain1'));
+ assert.ok(fractylModalityGap.reviewedButNotPublished.some(item=>item.id==='rjva001'));
+ assert.ok(discoveryDomains.includes('fractyl.com'));
 });
 test('Viking and Antag follow-up separates actual starts, registry status and unproven outcomes',()=>{
  assert.equal(vikingAntagFollowup.publicationStatus,'owner_authorised_factual_publication');
@@ -222,8 +248,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,82);assert.equal(sources.length,125);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,88);
+ assert.equal(medicines.length,6);assert.equal(industry.length,83);assert.equal(sources.length,125);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,89);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -730,7 +756,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,82);
+ assert.equal(industry.length,83);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
