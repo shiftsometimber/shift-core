@@ -1,0 +1,33 @@
+{
+  "reviewedAt": "2026-10-04T07:06:53Z",
+  "reviewType": "AI-assisted factual source review; not clinical approval",
+  "scope": "Scheduled factual re-review of the Asda Online Doctor oral Wegovy provider page. This does not approve clinical claims, confirm SHIFT stock or establish NHS access.",
+  "source": {
+    "id": "wegovy-tablet-private",
+    "url": "https://onlinedoctor.asda.com/uk/wegovy-pill.html",
+    "sourcePageLastReviewed": "2026-08-05",
+    "retrievedAt": "2026-10-04T07:06:53Z",
+    "httpStatus": 200,
+    "bytes": 317195,
+    "responseSha256": "ad62a9af373e84d37d1490d9b27b337ec2f40c6d10ed3c318a62d3bb1bf8db8c",
+    "reviewedFingerprint": "42ac4017bdc14d4e089d32eb3e2c5014af1fab98d55dc434fc5475a0984c080e",
+    "previousReviewedFingerprint": "42ac4017bdc14d4e089d32eb3e2c5014af1fab98d55dc434fc5475a0984c080e",
+    "withdrawn": false,
+    "reviewedSections": [
+      "Where can I buy the Wegovy pill?",
+      "Can I get the Wegovy pill on the NHS?",
+      "Are Wegovy pills available in the UK right now?",
+      "Provider stock and price panel"
+    ],
+    "observedClaims": {
+      "privateProvision": "The provider continues to offer a private prescription route after an online questionnaire and doctor review.",
+      "nhsAccess": "The provider continues to state that oral Wegovy is not currently available on the NHS.",
+      "providerStock": "The provider labels its own service in stock and lists prices from £87.97. This is time-sensitive provider stock, not SHIFT stock or a general UK supply guarantee."
+    },
+    "changeAssessment": "The complete monitored claim document matches the 27 September approved fingerprint. The provider page still says it was last reviewed on 5 August 2026. Provider speculation about future NHS approval and cross-trial efficacy comparisons remains excluded from the Watch.",
+    "catalogueImpact": "No catalogue wording, UK authorisation, NHS-access statement, SHIFT stock flag or purchaseability flag changes. Only this source-specific factual review date is renewed.",
+    "wordingChanged": false,
+    "uncertainty": "Provider availability and prices can change without notice. The Watch does not treat this page as proof of individual pharmacy or SHIFT supply."
+  },
+  "baselineReceipt": "2026-09-27-wegovy-tablet-provider.json"
+}

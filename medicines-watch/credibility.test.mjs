@@ -11,7 +11,7 @@ test('registry monitoring covers all exact linked records, with bounded reviewed
  const links=[...medicines.flatMap(e=>e.evidenceLinks||[]),...industry.flatMap(e=>e.additionalEvidence||[])];
  const urls=new Set(links.filter(l=>/^https:\/\/clinicaltrials.gov\/study\/NCT\d{8}$/.test(l.url)).map(l=>l.url));
  assert.equal(urls.size,75);assert.deepEqual(new Set(registrySources.map(s=>s.url)),urls);
- assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);assert.equal(sources.length,131);
+ assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);assert.equal(sources.length,132);
  for(const s of registrySources){assert.match(s.reviewedFingerprint,/^[a-f0-9]{64}$/);assert.equal(s.nctId,s.lifecycle.nctId);assert.ok(s.reviewedAt);}
  assert.equal(supportSources.length,4);
 });
@@ -39,5 +39,5 @@ test('public status distinguishes record review, summary review, results and unc
  const s=registrySources[0];const markup=registryEvidenceMarkup({url:s.url,title:'A <record>',reviewedAt:'2026-09-01'},{});
  assert.match(markup,/A &lt;record&gt;/);assert.match(markup,/Medical evidence summary reviewed 1 September 2026/);assert.match(markup,/Record status reviewed 3 October 2026/);assert.match(markup,/Verification pending/);
  const entry=industry.find(e=>s.entryIds.includes(e.id));assert.match(industryReviewFlag(entry,{},Date.parse('2026-10-12')),/due for factual review/);
- const html=credibilityMarkup({});for(const id of ['watch-changes','watch-safety','watch-uk-access'])assert.match(html,new RegExp(id));assert.match(html,/Current operational access remains unverified/);assert.match(html,/Reporting does not replace urgent medical care/);assert.match(html,/Added CX11\/VCT220 after primary review/);assert.match(html,/catalogue now contains 92 programmes/);assert.match(html,/industry-vct220/);
+ const html=credibilityMarkup({});for(const id of ['watch-changes','watch-safety','watch-uk-access'])assert.match(html,new RegExp(id));assert.match(html,/Current operational access remains unverified/);assert.match(html,/Reporting does not replace urgent medical care/);assert.match(html,/Added CX11\/VCT220 after primary review/);assert.match(html,/catalogue now contains 92 programmes/);assert.match(html,/industry-vct220/);assert.match(html,/VK2735 maintenance study/);assert.match(html,/industry-vk2735/);
 });

@@ -4,6 +4,7 @@ import fractylModalityGap from './reviews/2026-10-04-authorised-fractyl-modality
 import arteloMuscleGap from './reviews/2026-10-04-authorised-art2713-muscle-gap.json' with {type:'json'};
 import rgt075Publication from './reviews/2026-10-04-authorised-rgt075.json' with {type:'json'};
 import vct220Publication from './reviews/2026-10-04-authorised-vct220.json' with {type:'json'};
+import vk2735Maintenance from './reviews/2026-10-04-authorised-vk2735-maintenance.json' with {type:'json'};
 import evening from './reviews/2026-10-01-authorised-evening-updates.json' with {type:'json'};
 import broaderDiscovery from './reviews/2026-10-01-authorised-broader-discovery.json' with {type:'json'};
 import synt101Correction from './reviews/2026-10-01-synt101-mad-correction.json' with {type:'json'};
@@ -42,7 +43,7 @@ import specialistRegistryWave from './reviews/2026-10-03-authorised-specialist-r
 import leanMassEnergyFollowup from './reviews/2026-10-03-authorised-lean-mass-energy-followup.json' with {type:'json'};
 import vikingAntagFollowup from './reviews/2026-10-03-authorised-vk3019-at673.json' with {type:'json'};
 export const INDUSTRY_REVIEWED_AT = evidence.reviewedAt;
-export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources,kainetic.source,...evidenceDesk.sources].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===eloraTZP.source.id?eloraTZP.source:s).map(s => monitorRepairs.sources.find(r=>r.id===s.id)||s).map(s => pfizerPdfRepair.sources.find(r=>r.id===s.id)||s).map(s => ({
+export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources,kainetic.source,...evidenceDesk.sources,...vk2735Maintenance.sources].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===eloraTZP.source.id?eloraTZP.source:s).map(s => monitorRepairs.sources.find(r=>r.id===s.id)||s).map(s => pfizerPdfRepair.sources.find(r=>r.id===s.id)||s).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.sourceDateLabel||(s.id.endsWith('-smpc')?'Product information updated':'Source publication date'),
  reviewedAt:s.reviewedAt,requiredTerms:s.requiredTerms,
@@ -193,4 +194,10 @@ export const industry = [...originalIndustry.map(e => {
    ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
    reviewedAt:leanMassEnergyFollowup.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
+ })
+ .map(e=>{
+  const change=vk2735Maintenance.changes.find(c=>c.id===e.id);
+  return change?{...e,...change.fields,reviewedAt:vk2735Maintenance.reviewedAt,
+   sourceIds:[...e.sourceIds,...change.sourceIdsToAdd],
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]}:e;
  });

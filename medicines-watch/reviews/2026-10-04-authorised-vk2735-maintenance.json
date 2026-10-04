@@ -1,0 +1,60 @@
+{
+  "reviewedAt": "2026-10-04T07:06:53Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add a bounded sponsor-reported VK2735 maintenance-study update after reading the complete original announcement. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "sources": [{
+    "id": "vk2735-maintenance-viking",
+    "title": "Viking: VK2735 maintenance-study topline results",
+    "url": "https://ir.vikingtherapeutics.com/2026-09-22-Viking-Therapeutics-Announces-Positive-Topline-Results-from-Maintenance-Study-of-GLP-1-GIP-Agonist-VK2735-Demonstrating-the-Promise-of-Multiple-Maintenance-Dosing-Regimens",
+    "checkUrl": "https://ir.vikingtherapeutics.com/2026-09-22-Viking-Therapeutics-Announces-Positive-Topline-Results-from-Maintenance-Study-of-GLP-1-GIP-Agonist-VK2735-Demonstrating-the-Promise-of-Multiple-Maintenance-Dosing-Regimens",
+    "format": "html",
+    "sourcePublishedAt": "2026-09-22",
+    "sourceDateLabel": "Sponsor announcement date",
+    "reviewedAt": "2026-10-04T07:06:53Z",
+    "requiredTerms": ["VK2735", "maintenance", "monthly", "every-other-week"],
+    "reviewedFingerprint": "76baac7175aaf87f6d6389759356bb3a6f58e228565b895626ca84bac4dc80cc",
+    "evidenceType": "Original sponsor announcement; topline results, not regulatory approval"
+  }],
+  "changes": [{
+    "id": "vk2735",
+    "fields": {
+      "stage": "Injectable Phase 3; sponsor-reported maintenance study completed; oral Phase 3 planned",
+      "summary": "Viking's 22 September 2026 announcement reports a completed randomized maintenance study in approximately 180 adults with obesity. After 21 weeks of weekly subcutaneous VK2735 induction, selected participants received 12 weeks of weekly, every-other-week or monthly maintenance dosing, or placebo. Injectable VANQUISH Phase 3 studies are ongoing; oral Phase 3 initiation remains planned rather than completed.",
+      "limitations": "The maintenance results are sponsor-reported topline observations from a 33-week study, not peer-reviewed results, UK authorisation or an approved dosing regimen. Maintenance followed VK2735 induction in otherwise healthy adults with BMI at least 30, so the findings do not establish switching from another medicine, long-term durability, cardiovascular benefit, superiority or routine monthly dosing. The sponsor plans a separate oral-maintenance part; it is not treated as completed."
+    },
+    "sourceIdsToAdd": ["vk2735-maintenance-viking"],
+    "additionalEvidence": [{
+      "title": "Viking: VK2735 maintenance-study topline results",
+      "url": "https://ir.vikingtherapeutics.com/2026-09-22-Viking-Therapeutics-Announces-Positive-Topline-Results-from-Maintenance-Study-of-GLP-1-GIP-Agonist-VK2735-Demonstrating-the-Promise-of-Multiple-Maintenance-Dosing-Regimens",
+      "sourcePublishedAt": "2026-09-22",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-04T07:06:53Z",
+      "checkScope": "Complete original sponsor announcement reviewed for study population, induction and maintenance periods, randomized regimens, topline-result status and planned oral-maintenance work."
+    }]
+  }],
+  "retrieval": {
+    "retrievedAt": "2026-10-04T07:06:53Z",
+    "httpStatus": 200,
+    "bytes": 128545,
+    "responseSha256": "844fcedda2ba216c6e762a2b695bb9e3e0dfeef44f9e50fd4b239f8888545a78",
+    "withdrawn": false,
+    "completeResponseReviewed": true
+  },
+  "discovery": {
+    "method": "Separate configured-source and topic-based passes. Current-date and broader undated searches covered regulators, access, novel medicines, maintenance, combinations, muscle preservation, specialist indications and paused or discontinued programmes across named and smaller developers.",
+    "existingWork": "The live catalogue, dated receipts and open Watch PR search were checked before selection. This closes the unresolved VK2735 maintenance lead recorded on 1 October rather than adding a duplicate programme.",
+    "limitations": "Search retrieval was uneven and does not establish complete sponsor or industry coverage. HRS-1596 licensing and EloraTZP evidence were already represented. No new UK authorisation, NICE/NHS access or supply change was established.",
+    "clinicalDecisions": "No suitability, dosing, comparative-benefit or safety decision is made. Unsupported clinical conclusions remain awaiting qualified review."
+  },
+  "catalogueCounts": {
+    "totalAfter": 92,
+    "configuredSourcesAfter": 132,
+    "trialRecordsAfter": 75
+  }
+}

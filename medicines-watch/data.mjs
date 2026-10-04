@@ -50,7 +50,7 @@ const sourceReviewedDates = {
   'retatrutide-mhra': '2026-09-30T16:55:00Z',
   'retatrutide-lilly': '2026-09-30T16:55:00Z',
   'mounjaro-nhs': '2026-10-01T06:30:54Z',
-  'wegovy-tablet-private': '2026-09-27T06:57:00Z',
+  'wegovy-tablet-private': '2026-10-04T07:06:53Z',
   'mounjaro-smpc': '2026-09-30T18:55:00Z',
   'wegovy-injection-smpc': '2026-10-03T16:42:06Z',
   'wegovy-tablet-smpc': '2026-09-30T18:55:00Z',
