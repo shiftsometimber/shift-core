@@ -1,0 +1,127 @@
+{
+  "reviewedAt": "2026-10-04T23:40:55Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Publish one newly identified Novo Nordisk Phase 1 programme, correct NNC0662-0419 to its complete current registry stage and add one bounded survodutide specialist-indication study. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "nnc07218060",
+      "name": "NNC0721-8060 injection",
+      "developer": "Novo Nordisk",
+      "group": "research",
+      "stage": "Recruiting first-in-human Phase 1",
+      "summary": "The sponsor-submitted NCT07767175 record describes a first-in-human study of subcutaneous NNC0721-8060 in adults with overweight or obesity. It is recruiting after an actual 12 August 2026 start and includes semaglutide and placebo arms.",
+      "ukAuthorisation": "The reviewed registry evidence does not establish UK marketing authorisation for NNC0721-8060.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed registry evidence.",
+      "supply": "A recruiting early-stage trial does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The registry does not state a mechanism and has no posted results. Estimated enrolment of 142 and September 2027 completion are not completed evidence. A semaglutide arm does not establish equivalence, superiority or an authorised combination.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-04T23:40:55Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {"title":"ClinicalTrials.gov NCT07767175: NNC0721-8060 first-in-human study","url":"https://clinicaltrials.gov/study/NCT07767175","sourcePublishedAt":"2026-08-17","sourceUpdatedAt":"2026-09-04","reviewedAt":"2026-10-04T23:40:55Z","checkScope":"Automatic record-status checks; no assessment of clinical outcomes."}
+      ]
+    }
+  ],
+  "changes": [
+    {
+      "id": "nnc06620419",
+      "fields": {
+        "stage": "Phase 2 obesity and type 2 diabetes studies; no posted results",
+        "summaryToAppend": "The complete current registry search also finds two active, not-recruiting Phase 2 obesity studies: NCT07184632 is a 224-participant dose-finding study and NCT07639021 is a 233-participant dose-escalation study. A separate recruiting 270-participant Phase 2 study, NCT07415954, evaluates glycaemic control in type 2 diabetes. Two additional Phase 1 records cover single-dose pharmacokinetics across Japanese, Chinese and non-Asian participants and oral-contraceptive pharmacokinetics and gastric emptying.",
+        "limitationsToAppend": "None of the six identified NNC0662-0419 records has posted results. Active, not-recruiting status does not mean completion or efficacy. The type 2 diabetes study must not be presented as weight-management evidence; supportive pharmacokinetic studies do not establish treatment benefit. Estimated completions, comparator arms and enrolment do not establish superiority, authorisation, access or supply."
+      },
+      "additionalEvidence": [
+        {"title":"ClinicalTrials.gov NCT07101783: NNC0662-0419 pharmacokinetic study","url":"https://clinicaltrials.gov/study/NCT07101783","sourcePublishedAt":"2025-08-03","sourceUpdatedAt":"2025-12-23","reviewedAt":"2026-10-04T23:40:55Z","checkScope":"Automatic record-status checks; no assessment of clinical outcomes."},
+        {"title":"ClinicalTrials.gov NCT07184632: NNC0662-0419 obesity dose-finding study","url":"https://clinicaltrials.gov/study/NCT07184632","sourcePublishedAt":"2025-09-22","sourceUpdatedAt":"2026-05-07","reviewedAt":"2026-10-04T23:40:55Z","checkScope":"Automatic record-status checks; no assessment of clinical outcomes."},
+        {"title":"ClinicalTrials.gov NCT07415954: NNC0662-0419 type 2 diabetes study","url":"https://clinicaltrials.gov/study/NCT07415954","sourcePublishedAt":"2026-02-17","sourceUpdatedAt":"2026-09-11","reviewedAt":"2026-10-04T23:40:55Z","checkScope":"Automatic record-status checks; no assessment of clinical outcomes."},
+        {"title":"ClinicalTrials.gov NCT07525791: NNC0662-0419 supportive Phase 1 study","url":"https://clinicaltrials.gov/study/NCT07525791","sourcePublishedAt":"2026-04-13","sourceUpdatedAt":"2026-09-30","reviewedAt":"2026-10-04T23:40:55Z","checkScope":"Automatic record-status checks; no assessment of clinical outcomes."},
+        {"title":"ClinicalTrials.gov NCT07639021: NNC0662-0419 dose-escalation study","url":"https://clinicaltrials.gov/study/NCT07639021","sourcePublishedAt":"2026-06-10","sourceUpdatedAt":"2026-09-16","reviewedAt":"2026-10-04T23:40:55Z","checkScope":"Automatic record-status checks; no assessment of clinical outcomes."}
+      ]
+    },
+    {
+      "id": "survodutide",
+      "fields": {
+        "stage": "Phase 3 obesity, MASH and type 2 diabetes programmes",
+        "summaryToAppend": "Separately, NCT07754461 records a recruiting 56-week Phase 3 study of survodutide versus placebo for glycaemic control in people with type 2 diabetes, after an actual 24 August 2026 start. Its estimated enrolment is 600.",
+        "limitationsToAppend": "The type 2 diabetes study has no posted results. Recruitment and an actual start are not completion or evidence of improved glycaemic control, and this specialist-indication study must not be presented as a completed weight-management result or a new authorised indication."
+      },
+      "additionalEvidence": [
+        {"title":"ClinicalTrials.gov NCT07754461: survodutide type 2 diabetes Phase 3 study","url":"https://clinicaltrials.gov/study/NCT07754461","sourcePublishedAt":"2026-08-10","sourceUpdatedAt":"2026-09-30","reviewedAt":"2026-10-04T23:40:55Z","checkScope":"Automatic record-status checks; no assessment of clinical outcomes."}
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id":"registry-nct07101783","nctId":"NCT07101783","title":"ClinicalTrials.gov NCT07101783: NNC0662-0419 pharmacokinetic study","url":"https://clinicaltrials.gov/study/NCT07101783","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07101783","format":"ctgov-lifecycle","requiredTerms":["NCT07101783","Novo Nordisk A/S"],"reviewedAt":"2026-10-04T23:40:55Z","sourcePublishedAt":"2025-08-03","sourceUpdatedAt":"2025-12-23","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle":{"nctId":"NCT07101783","title":"A Research Study on How a Dose of NNC0662-0419 Works in Japanese, Chinese and Non-Asian Participants Living With Overweight or Obesity","sponsor":"Novo Nordisk A/S","status":"COMPLETED","whyStopped":null,"phases":["PHASE1"],"enrollment":{"count":100,"type":"ACTUAL"},"start":{"date":"2025-08-01","type":"ACTUAL"},"primaryCompletion":{"date":"2025-10-31","type":"ACTUAL"},"completion":{"date":"2025-10-31","type":"ACTUAL"},"firstPosted":{"date":"2025-08-03","type":"ACTUAL"},"lastUpdated":{"date":"2025-12-23","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},
+      "entryIds":["nnc06620419"],"rawResponseSha256":"53ea3f37017c05bbf0f896766726b19aba6dda563d323c7426cb8a9e57244e34","reviewedFingerprint":"54be7a6010c945d0abe2441e86a8b82a748bcceb5af7cae79678c9c81ca27b35"
+    },
+    {
+      "id":"registry-nct07184632","nctId":"NCT07184632","title":"ClinicalTrials.gov NCT07184632: NNC0662-0419 obesity dose-finding study","url":"https://clinicaltrials.gov/study/NCT07184632","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07184632","format":"ctgov-lifecycle","requiredTerms":["NCT07184632","Novo Nordisk A/S"],"reviewedAt":"2026-10-04T23:40:55Z","sourcePublishedAt":"2025-09-22","sourceUpdatedAt":"2026-05-07","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle":{"nctId":"NCT07184632","title":"A Research Study on How Well Different Doses of the Medicine NNC0662-0419 Help People Living With Overweight or Obesity","sponsor":"Novo Nordisk A/S","status":"ACTIVE_NOT_RECRUITING","whyStopped":null,"phases":["PHASE2"],"enrollment":{"count":224,"type":"ACTUAL"},"start":{"date":"2025-10-01","type":"ACTUAL"},"primaryCompletion":{"date":"2026-12-14","type":"ESTIMATED"},"completion":{"date":"2026-12-14","type":"ESTIMATED"},"firstPosted":{"date":"2025-09-22","type":"ACTUAL"},"lastUpdated":{"date":"2026-05-07","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},
+      "entryIds":["nnc06620419"],"rawResponseSha256":"5c78e65098b3cdbd0fa157de2387bac4ba064a2f2fc6eaaacfff4d895a02da26","reviewedFingerprint":"07e01ac6dcb507a235dbffc9bf092c72b196a230a1a9096806989a4d843d5185"
+    },
+    {
+      "id":"registry-nct07415954","nctId":"NCT07415954","title":"ClinicalTrials.gov NCT07415954: NNC0662-0419 type 2 diabetes study","url":"https://clinicaltrials.gov/study/NCT07415954","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07415954","format":"ctgov-lifecycle","requiredTerms":["NCT07415954","Novo Nordisk A/S"],"reviewedAt":"2026-10-04T23:40:55Z","sourcePublishedAt":"2026-02-17","sourceUpdatedAt":"2026-09-11","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle":{"nctId":"NCT07415954","title":"A Research Study Comparing How Well Different Doses of the Medicine NNC0662-0419 Lower Blood Sugar in People With Type 2 Diabetes","sponsor":"Novo Nordisk A/S","status":"RECRUITING","whyStopped":null,"phases":["PHASE2"],"enrollment":{"count":270,"type":"ESTIMATED"},"start":{"date":"2026-04-17","type":"ACTUAL"},"primaryCompletion":{"date":"2027-09-03","type":"ESTIMATED"},"completion":{"date":"2027-10-01","type":"ESTIMATED"},"firstPosted":{"date":"2026-02-17","type":"ACTUAL"},"lastUpdated":{"date":"2026-09-11","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},
+      "entryIds":["nnc06620419"],"rawResponseSha256":"74aa99827e34efdf7e6eebc70e53916d3ff7c74ccc6dabf8471193c627af6fe9","reviewedFingerprint":"d254cb3be21a9e8fa07aeb524c5843675c7b35375f81051f6844925b121e7be4"
+    },
+    {
+      "id":"registry-nct07525791","nctId":"NCT07525791","title":"ClinicalTrials.gov NCT07525791: NNC0662-0419 supportive Phase 1 study","url":"https://clinicaltrials.gov/study/NCT07525791","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07525791","format":"ctgov-lifecycle","requiredTerms":["NCT07525791","Novo Nordisk A/S"],"reviewedAt":"2026-10-04T23:40:55Z","sourcePublishedAt":"2026-04-13","sourceUpdatedAt":"2026-09-30","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle":{"nctId":"NCT07525791","title":"A Research Study Looking Into How NNC0662-0419 Works With Birth Control Pills and Emptying of the Stomach in Women Not Able to Become Pregnant With Excess Body Weight","sponsor":"Novo Nordisk A/S","status":"ACTIVE_NOT_RECRUITING","whyStopped":null,"phases":["PHASE1"],"enrollment":{"count":41,"type":"ACTUAL"},"start":{"date":"2026-04-07","type":"ACTUAL"},"primaryCompletion":{"date":"2027-05-02","type":"ESTIMATED"},"completion":{"date":"2027-06-18","type":"ESTIMATED"},"firstPosted":{"date":"2026-04-13","type":"ACTUAL"},"lastUpdated":{"date":"2026-09-30","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},
+      "entryIds":["nnc06620419"],"rawResponseSha256":"67099eb42864767132a53544b626f0a4efc464657aae4867c3704a714ce0f81f","reviewedFingerprint":"9de33b2ebf249e96b4ef101569b47eb002fbaf1f4610311e80396346b360fedd"
+    },
+    {
+      "id":"registry-nct07639021","nctId":"NCT07639021","title":"ClinicalTrials.gov NCT07639021: NNC0662-0419 dose-escalation study","url":"https://clinicaltrials.gov/study/NCT07639021","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07639021","format":"ctgov-lifecycle","requiredTerms":["NCT07639021","Novo Nordisk A/S"],"reviewedAt":"2026-10-04T23:40:55Z","sourcePublishedAt":"2026-06-10","sourceUpdatedAt":"2026-09-16","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle":{"nctId":"NCT07639021","title":"A Research Study Comparing Different Ways of Increasing the Dose of NNC0662-0419 in Participants With Obesity","sponsor":"Novo Nordisk A/S","status":"ACTIVE_NOT_RECRUITING","whyStopped":null,"phases":["PHASE2"],"enrollment":{"count":233,"type":"ACTUAL"},"start":{"date":"2026-06-09","type":"ACTUAL"},"primaryCompletion":{"date":"2027-06-14","type":"ESTIMATED"},"completion":{"date":"2027-06-14","type":"ESTIMATED"},"firstPosted":{"date":"2026-06-10","type":"ACTUAL"},"lastUpdated":{"date":"2026-09-16","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},
+      "entryIds":["nnc06620419"],"rawResponseSha256":"6786fa731ff245386f3e129db78d87f2322637011bbb4f391cd497fc723a1326","reviewedFingerprint":"907113149dd3923d0b9bf6e06aadec4148ed6c340f44e610c49eea42ccc3f26a"
+    },
+    {
+      "id":"registry-nct07767175","nctId":"NCT07767175","title":"ClinicalTrials.gov NCT07767175: NNC0721-8060 first-in-human study","url":"https://clinicaltrials.gov/study/NCT07767175","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07767175","format":"ctgov-lifecycle","requiredTerms":["NCT07767175","Novo Nordisk A/S"],"reviewedAt":"2026-10-04T23:40:55Z","sourcePublishedAt":"2026-08-17","sourceUpdatedAt":"2026-09-04","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle":{"nctId":"NCT07767175","title":"A First-in-human Research Study on How NNC0721-8060 Works in People Living With Overweight or Obesity","sponsor":"Novo Nordisk A/S","status":"RECRUITING","whyStopped":null,"phases":["PHASE1"],"enrollment":{"count":142,"type":"ESTIMATED"},"start":{"date":"2026-08-12","type":"ACTUAL"},"primaryCompletion":{"date":"2027-09-23","type":"ESTIMATED"},"completion":{"date":"2027-09-23","type":"ESTIMATED"},"firstPosted":{"date":"2026-08-17","type":"ACTUAL"},"lastUpdated":{"date":"2026-09-04","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},
+      "entryIds":["nnc07218060"],"rawResponseSha256":"5def5fd7ee1df638fab659a00ec1213a86cae00bb99bc7d801277858219a1741","reviewedFingerprint":"d79047e397e78e0effb0b34e6f207d608d2f46dd705d0e9808806d75943636ab"
+    },
+    {
+      "id":"registry-nct07754461","nctId":"NCT07754461","title":"ClinicalTrials.gov NCT07754461: survodutide type 2 diabetes Phase 3 study","url":"https://clinicaltrials.gov/study/NCT07754461","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07754461","format":"ctgov-lifecycle","requiredTerms":["NCT07754461","Boehringer Ingelheim"],"reviewedAt":"2026-10-04T23:40:55Z","sourcePublishedAt":"2026-08-10","sourceUpdatedAt":"2026-09-30","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle":{"nctId":"NCT07754461","title":"A Study to Test Whether Survodutide Helps People With Type 2 Diabetes Control Their Blood Sugar","sponsor":"Boehringer Ingelheim","status":"RECRUITING","whyStopped":null,"phases":["PHASE3"],"enrollment":{"count":600,"type":"ESTIMATED"},"start":{"date":"2026-08-24","type":"ACTUAL"},"primaryCompletion":{"date":"2028-01-17","type":"ESTIMATED"},"completion":{"date":"2028-05-01","type":"ESTIMATED"},"firstPosted":{"date":"2026-08-10","type":"ACTUAL"},"lastUpdated":{"date":"2026-09-30","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},
+      "entryIds":["survodutide"],"rawResponseSha256":"c70a821a9ff71000a0d7ce9484331b48ba3135e3119dcd96658b9d015476fad9","reviewedFingerprint":"d4a70059ff926a61abd70366de0d1b30ef3b565d8b1137341395e66f23945300"
+    }
+  ],
+  "sourceReviews": [
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07101783","publicationDate":"2025-08-03","updateDate":"2025-12-23","reviewedAt":"2026-10-04T23:40:55Z","outcome":"Complete primary API body read; completed Phase 1, actual enrolment and dates, no posted results."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07184632","publicationDate":"2025-09-22","updateDate":"2026-05-07","reviewedAt":"2026-10-04T23:40:55Z","outcome":"Complete primary API body read; active, not-recruiting Phase 2 obesity study, no posted results."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07415954","publicationDate":"2026-02-17","updateDate":"2026-09-11","reviewedAt":"2026-10-04T23:40:55Z","outcome":"Complete primary API body read; recruiting Phase 2 type 2 diabetes study, no posted results."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07525791","publicationDate":"2026-04-13","updateDate":"2026-09-30","reviewedAt":"2026-10-04T23:40:55Z","outcome":"Complete primary API body read; active, not-recruiting supportive Phase 1 study, no posted results."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07639021","publicationDate":"2026-06-10","updateDate":"2026-09-16","reviewedAt":"2026-10-04T23:40:55Z","outcome":"Complete primary API body read; active, not-recruiting Phase 2 obesity dose-escalation study, no posted results."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07767175","publicationDate":"2026-08-17","updateDate":"2026-09-04","reviewedAt":"2026-10-04T23:40:55Z","outcome":"Complete primary API body read; recruiting first-in-human Phase 1 study, no posted results."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07754461","publicationDate":"2026-08-10","updateDate":"2026-09-30","reviewedAt":"2026-10-04T23:40:55Z","outcome":"Complete primary API body read; recruiting Phase 3 type 2 diabetes study, no posted results."}
+  ],
+  "configuredSourcePass": {
+    "healthUrl":"https://shiftsometimber.co.uk/v1/medicines-watch/health","observedAt":"2026-10-04T23:41:14Z","httpStatus":200,"available":true,"status":"check_delayed","configuredSources":139,"currentSources":137,
+    "attention":[
+      {"id":"zealand-zp6590-pipeline","status":"check_delayed","error":"http_403","lastAttemptAt":"2026-10-04T22:45:59.795Z","reviewStatus":"verification_pending"},
+      {"id":"scotland-tirzepatide-access","status":"check_delayed","error":"check_timeout","lastAttemptAt":"2026-10-04T22:45:59.795Z","lastSuccessAt":"2026-10-04T21:45:53.704Z","reviewStatus":"reviewed"}
+    ],
+    "reviewRenewals":false,"baselineChanges":false,
+    "boundary":"The SELECT-only response verifies configured-source monitoring only. It does not renew factual reviews, approve changed wording or prove complete industry coverage. Both delayed checks remain visible."
+  },
+  "discoveryPass": {
+    "method":"Current-date and broader undated registry, mechanism, specialist-indication and developer passes were reconciled with current main, dated receipts and open Watch PRs.",
+    "programmeLevelCheck":"A ClinicalTrials.gov API search for NNC0662-0419 returned six records. The existing Watch already linked the first-in-human record; all five additional records were read before correcting the stage. A separate NNC0721-8060 API search returned one record.",
+    "included":"NNC0721-8060 was absent. NNC0662-0419 was stale at completed Phase 1 despite current Phase 2 obesity and diabetes studies. The survodutide diabetes Phase 3 record is attached to the existing programme.",
+    "notDuplicated":"No open Medicines Watch review PR was present. Existing NNC0662-0419 Phase 1 and survodutide obesity, MASH and publication evidence remain intact.",
+    "incompleteChecks":["Search indexing can lag and selected searches cannot exclude unannounced programmes, older omissions or additional international developers.","None of the reviewed records has posted results; automatic lifecycle checks do not assess outcomes.","No new MHRA authorisation, NICE recommendation, NHS access decision or verified UK supply change was established."]
+  },
+  "failedChecks": [
+    {"url":"https://scottishmedicines.org.uk/medicines-advice/tirzepatide-mounjaro-obesity-full-smc2653/public-summary/","attemptedAt":"2026-10-04T23:31:07.601Z","outcome":"The scheduled monitor timed out. A separate 30-second direct retrieval also returned no body.","impact":"The source remains check delayed; the previous factual review is not renewed or withdrawn."},
+    {"url":"https://scottishmedicines.org.uk/media/8389/tirzepatide-mounjaro-final-may-2024-amended-050624-for-website.pdf","attemptedAt":"2026-10-04T23:39:00Z","outcome":"The exact primary detailed-advice PDF also timed out during a separate 30-second retrieval.","impact":"No replacement baseline was created. An indexed result is not a complete source response."}
+  ],
+  "catalogueCounts":{"detailed":6,"widerBefore":90,"widerAfter":91,"totalBefore":96,"totalAfter":97,"configuredSourcesBefore":139,"configuredSourcesAfter":146},
+  "nextAction":"Run the full Watch and release gates, publish the exact passing head through the guarded workflow, verify the live entries, Treatments link and SELECT-only health endpoint, and retain the Scottish timeout until a complete primary response can be captured."
+}
