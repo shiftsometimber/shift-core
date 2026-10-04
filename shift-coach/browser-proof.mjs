@@ -7,7 +7,7 @@ import {brotliDecompressSync} from 'node:zlib';
 import {fixture} from './test-fixture.mjs';
 import {coachingRoutes} from './routes.mjs';
 import {withCoaching,coachingAsset} from './presentation.mjs';
-import {liveAppClient} from '../app-layout-live.mjs';
+import {screenClient} from '../preview/app-layout/screens.mjs';
 import {fitActiveEditAsset} from './fit-active-edit.mjs';
 const out=process.env.COACHING_PROOF_DIR||'/tmp/shift-coach-proof';mkdirSync(out,{recursive:true});
 const DB=fixture(null,out+'/synthetic.sqlite');
@@ -119,7 +119,7 @@ try{
  for(const width of [390,1440])for(const active of [false,true]){
   await harnessPage.setViewportSize({width,height:900});
   await harnessPage.setContent('<body data-member-page="fit"><main><div class="sf-builder"><label>Notes<textarea id="fitPrefs"></textarea></label></div></main></body>');
-  await harnessPage.addScriptTag({content:fitActiveEditAsset(liveAppClient)});
+  await harnessPage.addScriptTag({content:fitActiveEditAsset(screenClient)});
   const note=harnessPage.locator('#fitPrefs');if(active){await note.fill('Synthetic active draft');await note.focus();await note.evaluate(e=>e.setSelectionRange(4,8));}
   await harnessPage.evaluate(()=>{const s=document.createElement('section');s.className='sf-session';document.querySelector('main').append(s)});
   await harnessPage.waitForFunction(()=>!!document.querySelector('[data-app-fit-setup]'));
