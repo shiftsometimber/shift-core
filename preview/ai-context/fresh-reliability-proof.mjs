@@ -25,13 +25,13 @@ async function probe(message,token,scenario){
  assert(firstTextMs<=3200,scenario+' first useful text exceeded the model opening budget plus test transport allowance');
  assert.doesNotMatch(done.answer,/OTHER_MEMBER_PRIVATE|PRIVATE_EMAIL|PRIVATE_DOB|PRIVATE_POSTCODE/);
  if(!token){assert.equal(done.journeyUsed,false);assert.match(done.answer,/\[1\]/);assert.equal(done.sources.length,1)}
- else{assert.equal(done.journeyUsed,true);assert.match(done.answer,/weekend walks/i);assert.doesNotMatch(done.answer,/completed.*walk|ate.*Lentil/i)}
+ else{assert.equal(done.journeyUsed,true);assert.match(done.answer,/weekend[ -]walks?/i);assert.doesNotMatch(done.answer,/completed.*walk|ate.*Lentil/i)}
  return receipt;
 }
 const report={source:process.env.GITHUB_SHA,at:new Date().toISOString(),model:'@cf/meta/llama-3.3-70b-instruct-fp8-fast',maximumConcurrency:2,retries:0,customerReads:0,customerWrites:0,results:[],scope:'One cold public question, then two simultaneous fictional-member questions. A bounded acceptance sample, not a capacity or clinical certification.'};
 try{
  report.results.push(await probe('What is Life Back?',null,'fresh-public'));
- report.results.push(...await Promise.all([probe('What does my saved weekend-walk goal mean for a busy evening?','synthetic-1','fresh-member-a'),probe('How can I keep my saved weekend-walk goal in mind on a rainy day?','synthetic-1','fresh-member-b')]));
+ report.results.push(...await Promise.all([probe('Help me make time for my saved personal goal on a busy evening.','synthetic-1','fresh-member-a'),probe('Help me work towards my saved personal goal on a rainy day.','synthetic-1','fresh-member-b')]));
  report.passed=true;
 }catch(error){report.passed=false;report.error=error.message;throw error}
 finally{report.calls=calls;mkdirSync('evidence/priority-closeout',{recursive:true});writeFileSync('evidence/priority-closeout/fresh-ai.json',JSON.stringify(report,null,2));for(const fn of cleanups)fn()}
