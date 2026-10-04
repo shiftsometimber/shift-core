@@ -21,6 +21,10 @@ export const COACH_ARTICLE_CHANGES=new Set(['babylove/dynamic-public.mjs','babyl
 for(const path of ['shift-coach/fit-active-edit.mjs','shift-coach/fit-active-edit.test.mjs','.github/workflows/source-editorial-20261004.yml','editorial/source-review-20261004/build.mjs','editorial/source-review-20261004/build.test.mjs','editorial/source-review-20261004/corrections.json','editorial/source-review-20261004/publish.mjs'])COACH_ADDITIONS.add(path);
 for(const path of ['.github/workflows/calculators-navigation.yml','scripts/verify-calculators-navigation.mjs','.github/workflows/my-timber-final-production.yml','my-timber-final-source-gate.mjs','release/app-live-http.mjs'])COACH_BACKEND_PATHS.add(path);
 COACH_BACKEND_PATHS.add('transactional-email-v1.js');
+// Exact bounded test evidence; old comparisons retain the reviewed originals.
+// Current harness bytes additionally require the named successful live proof.
+for(const path of ['health-passport/production-browser.mjs','my-timber-final-production.mjs'])COACH_BACKEND_PATHS.add(path);
+for(const path of ['health-passport/acceptance-diagnostics.mjs','tests/acceptance-diagnostics.test.mjs'])COACH_ADDITIONS.add(path);
 for(const path of ['auth-delivery-v1.js','auth-recovery-v1.js','auth-email-verification-v1.js','gate1-email-verification-e2e.mjs','tests/member-signup-alert.test.mjs'])COACH_BACKEND_PATHS.add(path);
 COACH_ADDITIONS.add('tests/auth-mail-delivery-reliability.test.mjs');
 COACH_ADDITIONS.add('preview/ai-context/sustained-reliability-proof.mjs');

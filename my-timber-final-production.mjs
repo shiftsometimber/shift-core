@@ -1,4 +1,5 @@
 import {chromium} from 'playwright';
+import {boundedEvidence,attachDiagnostics} from './health-passport/acceptance-diagnostics.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
@@ -31,6 +32,8 @@ await register();
 const browser=await chromium.launch({headless:true});
 const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
 const page=await context.newPage();
+const navigation=attachDiagnostics(page,report,write);
+const watchdog=setTimeout(()=>{fail('verification termination','Browser verification did not terminate within eight minutes');write();process.exit(1)},480000);watchdog.unref();
 try{
   await login(page);
   // PR790: real new fictional-account contact save on production; no customer
@@ -154,8 +157,8 @@ try{
   await page.goto(SITE+'/member/life-back',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(7,'life-back','Life Back — goals and wins');
   await page.goto(SITE+'/member/settings',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(8,'settings','Settings — member details and privacy');
   pass('Eight Google Play phone screenshots captured from production My Timber','Synthetic member only; 9:16 portrait UI; no real member data.');
-}catch(error){fail('journey exception',clean(error?.message||error).slice(0,1800));await page.screenshot({path:path.join(OUT,'journey-failure.png'),fullPage:false,timeout:10000}).catch(()=>{})}finally{
-  const video=page.video();await context.close();if(video)await video.saveAs(path.join(OUT,'my-timber-billy-iphone.webm')).catch(error=>fail('video save',clean(error.message)));await browser.close();write();
+}catch(error){fail('journey exception',clean(error?.message||error).slice(0,1800));report.navigation=navigation();write();await boundedEvidence('failure screenshot',()=>page.screenshot({path:path.join(OUT,'journey-failure.png'),fullPage:false,timeout:10000}),11000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message);write()})}finally{
+  const video=page.video();write();await boundedEvidence('context close',()=>context.close(),15000).catch(error=>fail('context close',clean(error.message)));if(video)await boundedEvidence('video save',()=>video.saveAs(path.join(OUT,'my-timber-billy-iphone.webm')),15000).catch(error=>fail('video save',clean(error.message)));await boundedEvidence('browser close',()=>browser.close(),10000).catch(error=>fail('browser close',clean(error.message)));write();clearTimeout(watchdog);setTimeout(()=>process.exit(report.failures.length?1:0),1000).unref();
 }
 console.log(JSON.stringify(report,null,2));
 if(report.failures.length)throw new Error(`My Timber final production candidate failed ${report.failures.length} check(s)`);

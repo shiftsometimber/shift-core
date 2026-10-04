@@ -3,6 +3,7 @@
 // email verification, account roles, or real customer records. This is NOT
 // proof of an unassisted public CAPTCHA/email-signup journey.
 import {chromium} from 'playwright';
+import {boundedEvidence,attachDiagnostics} from './acceptance-diagnostics.mjs';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {randomUUID} from 'node:crypto';
 import assert from 'node:assert/strict';
@@ -11,6 +12,8 @@ const site='https://shiftsometimber.co.uk',apiRoot='https://api.shiftsometimber.
 assert.ok(oidc,'Existing authorised commissioning identity required');
 const out='passport-production-evidence';mkdirSync(out,{recursive:true});
 const report={release:process.env.PASSPORT_RELEASE_SHA||process.env.GITHUB_SHA,scope:'synthetic production application acceptance; existing audited test authentication; public CAPTCHA and email delivery unchanged and not claimed tested',checks:[],errors:[],customerRecordsAccessed:false};
+const write=()=>writeFileSync(out+'/report.json',JSON.stringify(report,null,2));
+const watchdog=setTimeout(()=>{report.error ??= 'Browser verification did not terminate within eight minutes';report.pass=false;write();process.exit(1)},480000);watchdog.unref();
 async function account(i){const email=`shiftsometimber+structured-authrender-passport-${Date.now()}-${i}@gmail.com`,password='Sst-'+randomUUID()+'-Aa1!';const r=await fetch(apiRoot+'/v1/auth/register',{method:'POST',headers:{Origin:site,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':oidc},signal:AbortSignal.timeout(30000),body:JSON.stringify({email,password,firstName:'Passport test',source:'commissioning-health-passport'})});assert.equal(r.status,201,'Synthetic registration rejected');return {email,password};}
 async function call(page,path,method='GET',body){return page.evaluate(async({path,method,body})=>{const r=await fetch(path,{method,signal:AbortSignal.timeout(30000),credentials:'include',cache:'no-store',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});return {status:r.status,body:await r.json()}},{path,method,body});}
 async function openJourney(page){await requireMemberPanel(page,'journey');const summary=page.locator('.hp-card>summary');await summary.waitFor({state:'visible'});if(!await page.locator('.hp-card').evaluate(e=>e.open))await summary.click();}
@@ -19,8 +22,8 @@ try{
  for(const [device,width]of [['mobile',390],['desktop',1440]]){
   const ids=[await account(device+'-a'),await account(device+'-b')];
   const context=await browser.newContext({viewport:{width,height:900},recordVideo:{dir:out+'/'+device,size:{width,height:900}}});
-  const page=await context.newPage();page.setDefaultTimeout(30000);page.setDefaultNavigationTimeout(30000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  const check=async(name,fn)=>{console.log('START '+device+': '+name);let deadline;try{await Promise.race([fn(),new Promise((_,reject)=>{deadline=setTimeout(()=>reject(new Error('Acceptance step timed out after 90 seconds: '+name)),90000)})]);report.checks.push({device,name,pass:true});console.log('PASS '+device+': '+name)}catch(e){report.checks.push({device,name,pass:false,error:e.message});console.error('FAIL '+device+': '+name+' — '+e.message);await page.screenshot({path:out+'/'+device+'-failure.png',timeout:10000}).catch(()=>{});throw e}finally{clearTimeout(deadline)}};
+  const page=await context.newPage();page.setDefaultTimeout(30000);page.setDefaultNavigationTimeout(30000);const errors=[];page.on('pageerror',e=>errors.push(e.message));const navigation=attachDiagnostics(page,report,write);
+  const check=async(name,fn)=>{console.log('START '+device+': '+name);let deadline;try{await Promise.race([fn(),new Promise((_,reject)=>{deadline=setTimeout(()=>reject(new Error('Acceptance step timed out after 90 seconds: '+name)),90000)})]);report.checks.push({device,name,pass:true});console.log('PASS '+device+': '+name);write()}catch(e){report.checks.push({device,name,pass:false,error:e.message});console.error('FAIL '+device+': '+name+' — '+e.message);report.error=e.message;report.navigation=navigation();write();await boundedEvidence('failure screenshot',()=>page.screenshot({path:out+'/'+device+'-failure.png',timeout:10000}),11000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message);write()});throw e}finally{clearTimeout(deadline)}};
   let id,firstRecord;
   try{
    await check('Live Start Here opts in without changing the no-medication result',async()=>{
@@ -45,10 +48,10 @@ try{
   }finally{
    // Best-effort removal of optional synthetic data and session revocation.
    // Retain ordinary audited test-account records; never delete customer data.
-   await call(page,'/v1/privacy/health-tracking','DELETE').catch(()=>{});
+   await boundedEvidence('synthetic privacy cleanup',()=>context.request.delete(site+'/v1/privacy/health-tracking',{headers:{Origin:site},timeout:10000}),11000).then(response=>{(report.cleanup??=[]).push({device,operation:'optional_health_erasure',status:response.status()})}).catch(error=>{(report.evidenceWarnings??=[]).push(error.message)});
    await context.request.post(site+'/v1/auth/logout',{headers:{Origin:site},timeout:30000}).catch(()=>{});
-   report.errors.push({device,errors});await context.close();
+   report.errors.push({device,errors});write();await boundedEvidence('context close',()=>context.close(),15000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message);write()});
   }
  }
 }catch(e){report.error=e.message;process.exitCode=1}
-finally{await browser.close();report.pass=report.checks.length===14&&report.checks.every(x=>x.pass)&&!report.error;writeFileSync(out+'/report.json',JSON.stringify(report,null,2));console.log(JSON.stringify({pass:report.pass,checks:report.checks,scope:report.scope,error:report.error},null,2));if(!report.pass)process.exitCode=1;}
+finally{await boundedEvidence('browser close',()=>browser.close(),10000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message)});report.pass=report.checks.length===14&&report.checks.every(x=>x.pass)&&!report.error;writeFileSync(out+'/report.json',JSON.stringify(report,null,2));console.log(JSON.stringify({pass:report.pass,checks:report.checks,scope:report.scope,error:report.error},null,2));if(!report.pass)process.exitCode=1;clearTimeout(watchdog);setTimeout(()=>process.exit(process.exitCode||0),1000).unref();}
