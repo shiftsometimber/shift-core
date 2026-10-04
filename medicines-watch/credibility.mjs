@@ -2,7 +2,8 @@ import receipt from './reviews/2026-10-03-credibility-improvements.json' with {t
 import evidenceDesk from './reviews/2026-10-03-evidence-desk-zp6590.json' with {type:'json'};
 import srsd384Publication from './reviews/2026-10-04-authorised-srsd384.json' with {type:'json'};
 import rgt075Publication from './reviews/2026-10-04-authorised-rgt075.json' with {type:'json'};
-export const registrySources=[...receipt.registrySources,...evidenceDesk.registrySources,...srsd384Publication.registrySources,...rgt075Publication.registrySources];
+import vct220Publication from './reviews/2026-10-04-authorised-vct220.json' with {type:'json'};
+export const registrySources=[...receipt.registrySources,...evidenceDesk.registrySources,...srsd384Publication.registrySources,...rgt075Publication.registrySources,...vct220Publication.registrySources];
 export const supportSources=receipt.supportSources;
 export const credibilitySources=[...registrySources,...supportSources];
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -37,6 +38,7 @@ export function industryReviewFlag(entry,health,now=Date.now()) {
   return '';
 }
 export const changes=[
+ {date:'2026-10-04',kind:'International omission corrected',text:'Added CX11/VCT220 after primary review of completed Chinese Phase II and III records, a completed US Phase II record and a separate active hypertension study. Sponsor-reported topline results, the 246-versus-250 US enrolment discrepancy and planned global Phase III remain explicit. The catalogue now contains 92 programmes.',anchor:'industry-vct220'},
  {date:'2026-10-04',kind:'Older omission corrected',text:'Added RGT-075 after primary review of its completed Phase 2a and COMO-1 Phase 2b records. Neither registry has posted results, and no Phase 3 start is inferred. The catalogue now contains 91 programmes.',anchor:'industry-rgt075'},
  {date:'2026-10-04',kind:'Muscle-preservation discovery',text:'Added ART27.13 as a non-clinical GLP-1 companion exploration. Its separate Phase 1/2 cancer-cachexia programme is retained only as context, not as human obesity or muscle-preservation evidence. The catalogue now contains 90 programmes.',anchor:'industry-art2713'},
  {date:'2026-10-04',kind:'Modality discovery',text:'Added preclinical RJVA-002 as an obesity gene-therapy programme, explicitly limited to mouse evidence. The separate Revita device procedure and type 2 diabetes RJVA-001 programme are not silently counted as medicines coverage. The catalogue now contains 89 programmes.',anchor:'industry-rjva002'},

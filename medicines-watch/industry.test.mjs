@@ -38,6 +38,7 @@ import srsd384Publication from './reviews/2026-10-04-authorised-srsd384.json' wi
 import fractylModalityGap from './reviews/2026-10-04-authorised-fractyl-modality-gap.json' with {type:'json'};
 import arteloMuscleGap from './reviews/2026-10-04-authorised-art2713-muscle-gap.json' with {type:'json'};
 import rgt075Publication from './reviews/2026-10-04-authorised-rgt075.json' with {type:'json'};
+import vct220Publication from './reviews/2026-10-04-authorised-vct220.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('WVE-007 separates monotherapy registry, sponsor combination and planned maintenance',()=>{
  const e=industry.find(e=>e.id==='wve007');
@@ -168,6 +169,42 @@ test('RGT-075 separates sponsor-reported Phase 2a topline evidence from complete
  assert.equal((html.match(/data-industry-card/g)||[]).length,1);
  assert.match(html,/Last reviewed record: Completed/);
  assert.match(html,/No results posted at record-status review/);
+});
+test('CX11/VCT220 separates published, sponsor-reported and result-free registry evidence',()=>{
+ const e=industry.find(e=>e.id==='vct220');
+ assert.equal(vct220Publication.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(vct220Publication.clinicalApproval,null);
+ assert.equal(vct220Publication.industryComplete,false);
+ assert.ok(e);
+ assert.equal(e.group,'research');
+ assert.equal(e.clinicalApproval,null);
+ assert.match(e.stage,/Completed China Phase III and US Phase II records/);
+ assert.match(e.stage,/hypertension Phase II active, not recruiting/);
+ assert.match(e.summary,/peer-reviewed publication/);
+ assert.match(e.summary,/840-participant Chinese Phase III/);
+ assert.match(e.limitations,/sponsor-reported topline observations/);
+ assert.match(e.limitations,/246 adults were enrolled while its registry records 250/);
+ assert.match(e.limitations,/planned global Phase III programme is not treated as started/);
+ assert.match(e.limitations,/planned China NDA submission is not an NMPA approval/);
+ assert.match(e.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.match(e.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(e.supply,/do not establish lawful UK retail supply/);
+ assert.equal(e.sourceIds.length,0);
+ assert.equal(e.additionalEvidence.length,8);
+ assert.equal(vct220Publication.registrySources.length,4);
+ assert.deepEqual(vct220Publication.registrySources.map(s=>s.lifecycle.status),['COMPLETED','COMPLETED','COMPLETED','ACTIVE_NOT_RECRUITING']);
+ assert.deepEqual(vct220Publication.registrySources.map(s=>s.lifecycle.enrollment.count),[250,840,250,160]);
+ assert.ok(vct220Publication.registrySources.every(s=>!s.lifecycle.hasResults&&/^[a-f0-9]{64}$/.test(s.reviewedFingerprint)));
+ assert.ok(discoveryDomains.includes('corxelbio.com'));
+ assert.equal(vct220Publication.catalogueCounts.totalAfter,92);
+ assert.equal(vct220Publication.catalogueCounts.configuredSourcesAfter,131);
+ assert.equal(vct220Publication.catalogueCounts.trialRecordsAfter,75);
+ assert.ok(vct220Publication.discoveryPass.failedChecks.length>=2);
+ const html=industryMarkup({},new URLSearchParams({q:'Corxel VCT220 hypertension'}));
+ assert.equal((html.match(/data-industry-card/g)||[]).length,1);
+ assert.match(html,/Last reviewed record: Active, not recruiting/);
+ assert.match(html,/No results posted at record-status review/);
+ assert.match(html,/Peer-reviewed Phase II publication/);
 });
 test('Viking and Antag follow-up separates actual starts, registry status and unproven outcomes',()=>{
  assert.equal(vikingAntagFollowup.publicationStatus,'owner_authorised_factual_publication');
@@ -304,8 +341,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,85);assert.equal(sources.length,127);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,91);
+ assert.equal(medicines.length,6);assert.equal(industry.length,86);assert.equal(sources.length,131);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,92);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -812,7 +849,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,85);
+ assert.equal(industry.length,86);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);

@@ -1,0 +1,354 @@
+{
+  "reviewedAt": "2026-10-04T05:46:58Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add one bounded international oral GLP-1 programme after complete review of four sponsor-submitted registry records, original sponsor announcements and a peer-reviewed Phase II publication. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "vct220",
+      "name": "CX11 / VCT220",
+      "developer": "Corxel Pharmaceuticals / Vincentage Pharma",
+      "group": "research",
+      "stage": "Completed China Phase III and US Phase II records; hypertension Phase II active, not recruiting",
+      "summary": "CX11/VCT220 is an investigational once-daily oral non-peptide small-molecule GLP-1 receptor agonist. A 250-participant Chinese Phase II study has a peer-reviewed publication, while the 840-participant Chinese Phase III and 250-participant US Phase II registry records are completed but have no posted results. A separate 160-participant hypertension study in people with obesity or overweight is active, not recruiting.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for CX11/VCT220 for weight management, hypertension or another indication.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed international research evidence.",
+      "supply": "Completed Chinese and US studies, development rights and sponsor announcements do not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The Chinese Phase III and US Phase II outcome figures are sponsor-reported topline observations; neither ClinicalTrials.gov record has posted results. The US announcement says 246 adults were enrolled while its registry records 250 actual participants, so both dated accounts remain visible. A planned global Phase III programme is not treated as started because no matching start record was located. The hypertension study has no posted results and its October and December 2026 completion dates remain estimates. A planned China NDA submission is not an NMPA approval, and no UK authorisation, NHS access, actual UK supply, comparative superiority or clinical benefit is inferred.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-04T05:46:58Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT06569355: VCT220 China Phase II",
+          "url": "https://clinicaltrials.gov/study/NCT06569355",
+          "sourcePublishedAt": "2024-08-26",
+          "sourceUpdatedAt": "2025-07-01",
+          "reviewedAt": "2026-10-04T05:46:58Z",
+          "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT06939296: VCT220 China Phase III",
+          "url": "https://clinicaltrials.gov/study/NCT06939296",
+          "sourcePublishedAt": "2025-04-22",
+          "sourceUpdatedAt": "2026-09-16",
+          "reviewedAt": "2026-10-04T05:46:58Z",
+          "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07011797: CX11 US Phase II",
+          "url": "https://clinicaltrials.gov/study/NCT07011797",
+          "sourcePublishedAt": "2025-06-10",
+          "sourceUpdatedAt": "2026-05-28",
+          "reviewedAt": "2026-10-04T05:46:58Z",
+          "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07360275: VCT220 hypertension Phase II",
+          "url": "https://clinicaltrials.gov/study/NCT07360275",
+          "sourcePublishedAt": "2026-01-22",
+          "sourceUpdatedAt": "2026-09-21",
+          "reviewedAt": "2026-10-04T05:46:58Z",
+          "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+        },
+        {
+          "title": "Peer-reviewed VCT220 Chinese Phase II publication",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42595749/",
+          "sourcePublishedAt": "2026-08-14",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T05:46:58Z",
+          "evidenceType": "Peer-reviewed Phase II publication",
+          "checkScope": "Complete abstract and study metadata reviewed, including the 250-person randomized design, sponsor funding and employee conflicts. Not automatically content-monitored."
+        },
+        {
+          "title": "Vincentage: VCT220 China Phase III topline announcement",
+          "url": "https://www.corxelbio.com/en/press-releases/vincentage-pharma-reports-positive-top-line-results-from-pivotal-phase-3-trial-of-vct220-in-obese-or-overweight-chinese-adults/",
+          "sourcePublishedAt": "2026-05-18",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T05:46:58Z",
+          "evidenceType": "Original sponsor announcement",
+          "checkScope": "Complete announcement reviewed for sponsor-reported Phase III topline observations and planned China NDA submission. Not automatically content-monitored."
+        },
+        {
+          "title": "Corxel: CX11 US Phase II topline announcement",
+          "url": "https://www.corxelbio.com/en/press-releases/corxel-pharmaceuticals-reports-positive-top-line-results-from-phase-2-trial-of-cx11-in-obese-and-overweight-us-adults/",
+          "sourcePublishedAt": "2026-06-23",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T05:46:58Z",
+          "evidenceType": "Original sponsor announcement",
+          "checkScope": "Complete announcement reviewed for sponsor-reported Phase II topline observations, the 246-person announcement count and planned global Phase III development. Not automatically content-monitored."
+        },
+        {
+          "title": "Corxel: worldwide ex-Greater China rights to CX11/VCT220",
+          "url": "https://www.corxelbio.com/en/press-releases/corxel-acquires-worldwide-excluding-greater-china-rights-to-an-oral-small-molecule-glp-1-ra-for-the-treatment-of-obesity-and-diabetes/",
+          "sourcePublishedAt": "2024-12-23",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T05:46:58Z",
+          "evidenceType": "Original sponsor announcement",
+          "checkScope": "Complete announcement reviewed for candidate identity and territorial development rights. Rights are not marketing authorisation or supply. Not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct06569355",
+      "nctId": "NCT06569355",
+      "title": "ClinicalTrials.gov NCT06569355: VCT220 China Phase II",
+      "url": "https://clinicaltrials.gov/study/NCT06569355",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06569355",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT06569355", "Vincentage Pharma Co., Ltd"],
+      "reviewedAt": "2026-10-04T05:46:58Z",
+      "sourcePublishedAt": "2024-08-26",
+      "sourceUpdatedAt": "2025-07-01",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT06569355",
+        "title": "A Study to Evaluate the Efficacy and Safety of VCT220 in Obesity Chinese Population",
+        "sponsor": "Vincentage Pharma Co., Ltd",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": ["PHASE2"],
+        "enrollment": {"count": 250, "type": "ACTUAL"},
+        "start": {"date": "2023-12-27", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2024-07-13", "type": "ACTUAL"},
+        "completion": {"date": "2024-08-01", "type": "ACTUAL"},
+        "firstPosted": {"date": "2024-08-26", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2025-07-01", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["vct220"],
+      "rawResponseSha256": "84c2b33a0ebd5ecad84b674604d241c0bec2fe3a5ab2344499126f9b8a4d0f9a",
+      "reviewedFingerprint": "9188ddf11f62a22fa87697c8dd4e4e3f157103c90d19f0e6701cb534b0f71e14"
+    },
+    {
+      "id": "registry-nct06939296",
+      "nctId": "NCT06939296",
+      "title": "ClinicalTrials.gov NCT06939296: VCT220 China Phase III",
+      "url": "https://clinicaltrials.gov/study/NCT06939296",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06939296",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT06939296", "Vincentage Pharma Co., Ltd"],
+      "reviewedAt": "2026-10-04T05:46:58Z",
+      "sourcePublishedAt": "2025-04-22",
+      "sourceUpdatedAt": "2026-09-16",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT06939296",
+        "title": "A Research Study of VCT220 in Adult Chinese Participants With Obesity",
+        "sponsor": "Vincentage Pharma Co., Ltd",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": ["PHASE3"],
+        "enrollment": {"count": 840, "type": "ACTUAL"},
+        "start": {"date": "2024-12-24", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2025-11-25", "type": "ACTUAL"},
+        "completion": {"date": "2026-03-31", "type": "ACTUAL"},
+        "firstPosted": {"date": "2025-04-22", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-09-16", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["vct220"],
+      "rawResponseSha256": "b69d920c8a1e598e260a694debf2efdc87a57551df1801a046d3262255dbb739",
+      "reviewedFingerprint": "9a4791e34d286bdbb5951736e7e9a23672165c7850fc607397708c771fee335d"
+    },
+    {
+      "id": "registry-nct07011797",
+      "nctId": "NCT07011797",
+      "title": "ClinicalTrials.gov NCT07011797: CX11 US Phase II",
+      "url": "https://clinicaltrials.gov/study/NCT07011797",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07011797",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07011797", "Corxel Pharmaceuticals"],
+      "reviewedAt": "2026-10-04T05:46:58Z",
+      "sourcePublishedAt": "2025-06-10",
+      "sourceUpdatedAt": "2026-05-28",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07011797",
+        "title": "A Study to Evaluate the Efficacy and Safety of CX11 Tablets in Overweight/Obese Participants",
+        "sponsor": "Corxel Pharmaceuticals",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": ["PHASE2"],
+        "enrollment": {"count": 250, "type": "ACTUAL"},
+        "start": {"date": "2025-06-17", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2026-03-23", "type": "ACTUAL"},
+        "completion": {"date": "2026-04-09", "type": "ACTUAL"},
+        "firstPosted": {"date": "2025-06-10", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-05-28", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["vct220"],
+      "rawResponseSha256": "9fc23f3517cfd700854206ba1ea145e01aecbbffd831477c411e4b6bb97272f4",
+      "reviewedFingerprint": "037c208e9a3c2731a99b3cd7802027dac5cbb81857e1c21a7ff2e60aa4704f8d"
+    },
+    {
+      "id": "registry-nct07360275",
+      "nctId": "NCT07360275",
+      "title": "ClinicalTrials.gov NCT07360275: VCT220 hypertension Phase II",
+      "url": "https://clinicaltrials.gov/study/NCT07360275",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07360275",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07360275", "Vincentage Pharma Co., Ltd"],
+      "reviewedAt": "2026-10-04T05:46:58Z",
+      "sourcePublishedAt": "2026-01-22",
+      "sourceUpdatedAt": "2026-09-21",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07360275",
+        "title": "A Study of VCT220 in Participants With Hypertension and Obesity or Overweight",
+        "sponsor": "Vincentage Pharma Co., Ltd",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE2"],
+        "enrollment": {"count": 160, "type": "ESTIMATED"},
+        "start": {"date": "2026-03-01", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2026-10-30", "type": "ESTIMATED"},
+        "completion": {"date": "2026-12-20", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2026-01-22", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-09-21", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["vct220"],
+      "rawResponseSha256": "4145ab38e1700e33f23bee357bad5c3078933bb215d7840351c51c589da8b2da",
+      "reviewedFingerprint": "2bc711be3870f45a8ab518c303f7e45da377be22ade22dc7ba48b0ec46272b20"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06569355",
+      "publicationDate": "2024-08-26",
+      "updateDate": "2025-07-01",
+      "reviewedAt": "2026-10-04T05:46:58Z",
+      "outcome": "Complete primary API body read for completed Chinese Phase II status, actual 250-person enrolment, actual dates and absence of posted registry results."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06939296",
+      "publicationDate": "2025-04-22",
+      "updateDate": "2026-09-16",
+      "reviewedAt": "2026-10-04T05:46:58Z",
+      "outcome": "Complete primary API body read for completed Chinese Phase III status, actual 840-person enrolment, actual dates and absence of posted registry results."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07011797",
+      "publicationDate": "2025-06-10",
+      "updateDate": "2026-05-28",
+      "reviewedAt": "2026-10-04T05:46:58Z",
+      "outcome": "Complete primary API body read for completed US Phase II status, actual 250-person enrolment, actual dates and absence of posted registry results."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07360275",
+      "publicationDate": "2026-01-22",
+      "updateDate": "2026-09-21",
+      "reviewedAt": "2026-10-04T05:46:58Z",
+      "outcome": "Complete primary API body read for active-not-recruiting hypertension Phase II status, actual start, estimated 160-person enrolment and completion dates, and absence of posted results."
+    },
+    {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42595749/",
+      "publicationDate": "2026-08-14",
+      "updateDate": null,
+      "reviewedAt": "2026-10-04T05:46:58Z",
+      "outcome": "Complete PubMed abstract and study metadata read for the randomized 250-person Chinese Phase II study. Sponsor funding and employee conflicts are retained; the publication is not generalized beyond its design."
+    },
+    {
+      "url": "https://www.corxelbio.com/en/press-releases/vincentage-pharma-reports-positive-top-line-results-from-pivotal-phase-3-trial-of-vct220-in-obese-or-overweight-chinese-adults/",
+      "publicationDate": "2026-05-18",
+      "updateDate": null,
+      "reviewedAt": "2026-10-04T05:46:58Z",
+      "outcome": "Complete original sponsor announcement read. Phase III outcome figures remain sponsor-reported and the planned China NDA submission is not treated as approval."
+    },
+    {
+      "url": "https://www.corxelbio.com/en/press-releases/corxel-pharmaceuticals-reports-positive-top-line-results-from-phase-2-trial-of-cx11-in-obese-and-overweight-us-adults/",
+      "publicationDate": "2026-06-23",
+      "updateDate": null,
+      "reviewedAt": "2026-10-04T05:46:58Z",
+      "outcome": "Complete original sponsor announcement read. Phase II outcome figures remain sponsor-reported, the 246-person count remains distinct from the registry's 250, and planned global Phase III is not treated as started."
+    },
+    {
+      "url": "https://www.corxelbio.com/en/press-releases/corxel-acquires-worldwide-excluding-greater-china-rights-to-an-oral-small-molecule-glp-1-ra-for-the-treatment-of-obesity-and-diabetes/",
+      "publicationDate": "2024-12-23",
+      "updateDate": null,
+      "reviewedAt": "2026-10-04T05:46:58Z",
+      "outcome": "Complete original sponsor announcement read for CX11/VCT220 identity and territorial rights. Rights are not marketing authorisation, access or supply."
+    }
+  ],
+  "retrievals": {
+    "registryNct06569355": {"httpStatus": 200, "bytes": 16094, "responseSha256": "84c2b33a0ebd5ecad84b674604d241c0bec2fe3a5ab2344499126f9b8a4d0f9a"},
+    "registryNct06939296": {"httpStatus": 200, "bytes": 9596, "responseSha256": "b69d920c8a1e598e260a694debf2efdc87a57551df1801a046d3262255dbb739"},
+    "registryNct07011797": {"httpStatus": 200, "bytes": 14414, "responseSha256": "9fc23f3517cfd700854206ba1ea145e01aecbbffd831477c411e4b6bb97272f4"},
+    "registryNct07360275": {"httpStatus": 200, "bytes": 8423, "responseSha256": "4145ab38e1700e33f23bee357bad5c3078933bb215d7840351c51c589da8b2da"},
+    "phase3Sponsor": {"httpStatus": 200, "bytes": 34294, "responseSha256": "00b6d35a030362c58a612d303436e43bc40e33c6135505974a1eba1aab22b493", "automaticBaselineApproved": false},
+    "usPhase2Sponsor": {"httpStatus": 200, "bytes": 29951, "responseSha256": "e62cf949b7e6d8f6d53f4eb54656799d929fee3716a2472d30b089e20d5c529c", "automaticBaselineApproved": false},
+    "rightsSponsor": {"httpStatus": 200, "bytes": 28009, "responseSha256": "f7a45cbb468e3a205f3f32be7b45bf94ad826b954eb19ac5b5fa6c261ea52f35", "automaticBaselineApproved": false},
+    "pubmed": {"browserReadable": true, "directHttpStatus": 203, "automaticBaselineApproved": false, "note": "The primary abstract and metadata were readable through the indexed page; direct scripted retrieval returned a 203 access page, so no automated baseline was approved."}
+  },
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-04T05:46:58Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 127,
+    "currentSources": 126,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "error": "http_403",
+        "httpStatus": 403,
+        "lastAttemptAt": "2026-10-04T05:01:31.776Z",
+        "lastSuccessAt": null,
+        "nextCheckAt": "2026-10-04T06:01:31.776Z"
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only health response verifies configured-source availability and monitor operation. It does not renew factual reviews, approve changed wording or establish complete industry coverage. The unchanged Zealand 403 remains visible and is not repeated as a new alert."
+  },
+  "discoveryPass": {
+    "method": "Separate current-date and broader undated topic searches covered regulator, NHS, registry, published research and original sponsor sources across oral treatments, combinations, muscle preservation, specialist indications and smaller or international developers. Results were reconciled with current main and all open pull requests before publication selection.",
+    "included": "CX11/VCT220 is a distinct international oral GLP-1 programme absent from the live catalogue and dated receipts. Four relevant study records are attached to one medicine programme rather than counted as separate medicines.",
+    "notDuplicated": "HRS-1596, EloraTZP, RGT-075, orforglipron, aleniglipron, DA-302168S and the existing Chinese GLP-1 programmes were checked against live entries and receipts. Draft PR 874 remains separate retatrutide review work.",
+    "incompleteChecks": [
+      "No ClinicalTrials.gov record establishing the sponsor-planned global Phase III start was located; the plan remains prospective.",
+      "No reviewed primary source established a completed China NMPA submission or decision; a planned NDA is not presented as filed or approved.",
+      "The PubMed primary abstract was readable, but direct scripted retrieval returned an HTTP 203 access page and the PMC full-text route presented a browser challenge; neither was assigned an automated baseline.",
+      "Search indexing can lag and selected results cannot exclude older omissions, unannounced programmes or additional international developers. Catalogue and configured-source counts do not establish industry completeness."
+    ],
+    "failedChecks": [
+      {"source": "PubMed direct scripted retrieval", "outcome": "HTTP 203 access page", "impact": "Manual primary abstract review completed; automatic monitoring baseline not approved."},
+      {"source": "PubMed Central full text", "outcome": "Browser challenge", "impact": "Not used to support claims beyond the readable PubMed abstract and metadata."}
+    ]
+  },
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "widerBefore": 85,
+    "widerAfter": 86,
+    "totalBefore": 91,
+    "totalAfter": 92,
+    "configuredSourcesBefore": 127,
+    "configuredSourcesAfter": 131,
+    "trialRecordsBefore": 71,
+    "trialRecordsAfter": 75
+  },
+  "nextAction": "Run the full Watch tests and exact-head release gates, publish through the guarded production workflow, then verify the live CX11/VCT220 card, four trial lifecycles, Treatments entry and SELECT-only health endpoint."
+}
