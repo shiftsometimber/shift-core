@@ -16,10 +16,6 @@ fs.mkdirSync(OUT,{recursive:true});
 const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+structured-authrender-final-billy-${Date.now()}@gmail.com`;
 const report={proof:'MY_TIMBER_FINAL_PRODUCTION_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
 const resourcePath=value=>{try{const u=new URL(value);return u.origin+u.pathname}catch{return '[no resource URL]'}};
-// This suite uses only its own fictional member. Keep diagnostic receipts small:
-// no cookies, headers, account fields or complete workspace payloads.
-report.mealDiagnostics={requests:[],render:null};
-const mealReads=[];
 const pass=(name,detail='')=>report.checks.push({name,status:'PASS',detail});
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=My Timber final::${name} — ${detail}`)};
 const clean=value=>String(value||'').replace(/\s+/g,' ').trim();
@@ -35,13 +31,6 @@ await register();
 const browser=await chromium.launch({headless:true});
 const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
 const page=await context.newPage();
-page.on('response',response=>{
- if(new URL(response.url()).pathname!=='/v1/grub/workspace')return;
- const receipt={status:response.status(),path:resourcePath(response.url()),timing:response.request().timing()};
- report.mealDiagnostics.requests.push(receipt);
- mealReads.push(response.json().then(data=>{receipt.savedDate=data.today?.date||null;receipt.recipeId=data.today?.recipeId||null;receipt.recipePresent=!!data.recipes?.some(r=>r.id===data.today?.recipeId)}).catch(()=>{receipt.jsonReadable=false}));
-});
-page.on('requestfailed',request=>{if(new URL(request.url()).pathname==='/v1/grub/workspace')report.mealDiagnostics.requests.push({path:resourcePath(request.url()),error:clean(request.failure()?.errorText)})});
 try{
   await login(page);
   // PR790: real new fictional-account contact save on production; no customer
@@ -94,8 +83,7 @@ try{
   await memberReady(page,{site:SITE});
   await page.waitForFunction(()=>document.querySelector('#panel-today')?.classList.contains('active'),null,{timeout:10000});
   await page.locator('.today-layout').waitFor({state:'visible',timeout:30000});
-  try{await page.locator('.today-meal[data-meal-state="chosen"]').waitFor({state:'visible',timeout:30000})}
-  finally{report.mealDiagnostics.render=await page.locator('.today-meal').evaluateAll(cards=>cards.map(card=>({connected:card.isConnected,state:card.dataset.mealState||null,recipeId:card.dataset.recipeId||null,text:card.innerText.slice(0,1000),width:Math.round(card.getBoundingClientRect().width),height:Math.round(card.getBoundingClientRect().height)})));await Promise.allSettled(mealReads)}
+  await page.locator('.today-meal[data-meal-state="chosen"]').waitFor({state:'visible',timeout:30000});
   assert.equal(await page.locator('.today-meal').getAttribute('data-recipe-id'),chosen.id,'Today must render the exact explicitly saved recipe');assert((await page.locator('.today-meal-meta').innerText()).includes(chosen.name),'The actual chosen recipe name must be visible in the meal card');
   assert.equal(await page.locator('#todayBrand .member-design-mark').count(),1);
   assert.equal(await page.locator('#appBottomNav>*').count(),5);
