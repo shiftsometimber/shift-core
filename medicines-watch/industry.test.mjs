@@ -43,6 +43,7 @@ import vk2735Maintenance from './reviews/2026-10-04-authorised-vk2735-maintenanc
 import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-discontinuation.json' with {type:'json'};
 import taldefgrobepRv8451 from './reviews/2026-10-04-authorised-taldefgrobep-rv8451.json' with {type:'json'};
 import internationalMaintenanceWave from './reviews/2026-10-04-authorised-international-maintenance-wave.json' with {type:'json'};
+import novoSpecialistWave from './reviews/2026-10-05-authorised-novo-specialist-wave.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('VK2735 maintenance evidence stays sponsor-reported and does not create an approved regimen',()=>{
  const e=industry.find(e=>e.id==='vk2735');
@@ -363,8 +364,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,90);assert.equal(sources.length,139);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,96);
+ assert.equal(medicines.length,6);assert.equal(industry.length,91);assert.equal(sources.length,146);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,97);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -711,15 +712,15 @@ test('international registry omissions preserve live, completed and delayed stat
   assert.ok(item,id);
   assert.equal(item.clinicalApproval,null,id);
   assert.equal(item.sourceIds.length,0,id);
-  assert.equal(item.additionalEvidence.length,1,id);
+  assert.equal(item.additionalEvidence.length,id==='nnc06620419'?6:1,id);
   assert.match(item.ukAuthorisation,/does not establish UK marketing authorisation/,id);
   assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/,id);
   assert.match(item.supply,/does not establish lawful UK retail supply/,id);
  }
  assert.match(industry.find(entry=>entry.id==='da302168s').stage,/Recruiting Chinese Phase 3/);
  assert.match(industry.find(entry=>entry.id==='da302168s').limitations,/No results are posted/);
- assert.match(industry.find(entry=>entry.id==='nnc06620419').stage,/Completed Phase 1/);
- assert.match(industry.find(entry=>entry.id==='nnc06620419').limitations,/does not state a mechanism/);
+ assert.match(industry.find(entry=>entry.id==='nnc06620419').stage,/Phase 2 obesity and type 2 diabetes/);
+ assert.match(industry.find(entry=>entry.id==='nnc06620419').limitations,/None of the six identified/);
  assert.match(industry.find(entry=>entry.id==='dr10624').summary,/GLP-1, glucagon and FGF21/);
  assert.match(industry.find(entry=>entry.id==='cmsd008').stage,/not yet recruiting/i);
  assert.match(industry.find(entry=>entry.id==='cmsd008').limitations,/estimated start was 2 April 2026/);
@@ -871,7 +872,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,90);
+ assert.equal(industry.length,91);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -1031,4 +1032,33 @@ test('international maintenance wave preserves separate programme, stage and res
  assert.equal(internationalMaintenanceWave.registrySources.find(s=>s.nctId==='NCT07589686').lifecycle.start.type,'ESTIMATED');
  assert.equal(internationalMaintenanceWave.registrySources.find(s=>s.nctId==='NCT07517042').lifecycle.start.type,'ACTUAL');
  assert.equal(internationalMaintenanceWave.registrySources.find(s=>s.nctId==='NCT07654374').lifecycle.status,'RECRUITING');
+});
+
+test('programme-level Novo and specialist discovery preserves indication and evidence boundaries',()=>{
+ assert.equal(novoSpecialistWave.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(novoSpecialistWave.clinicalApproval,null);
+ assert.equal(novoSpecialistWave.industryComplete,false);
+ assert.equal(novoSpecialistWave.catalogueCounts.totalAfter,97);
+ assert.equal(novoSpecialistWave.catalogueCounts.configuredSourcesAfter,146);
+ const nnc0721=industry.find(item=>item.id==='nnc07218060');
+ assert.ok(nnc0721);
+ assert.match(nnc0721.stage,/Recruiting first-in-human Phase 1/);
+ assert.match(nnc0721.limitations,/does not state a mechanism/);
+ assert.match(nnc0721.limitations,/no posted results/);
+ const nnc0662=industry.find(item=>item.id==='nnc06620419');
+ assert.match(nnc0662.stage,/Phase 2 obesity and type 2 diabetes/);
+ assert.match(nnc0662.summary,/NCT07184632/);
+ assert.match(nnc0662.summary,/NCT07639021/);
+ assert.match(nnc0662.limitations,/must not be presented as weight-management evidence/);
+ const survodutide=industry.find(item=>item.id==='survodutide');
+ assert.match(survodutide.stage,/type 2 diabetes programmes/);
+ assert.match(survodutide.summary,/NCT07754461/);
+ assert.match(survodutide.limitations,/must not be presented as a completed weight-management result/);
+ assert.equal(novoSpecialistWave.registrySources.length,7);
+ for(const registry of novoSpecialistWave.registrySources){
+  assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
+  assert.equal(registry.lifecycle.hasResults,false);
+ }
+ assert.equal(novoSpecialistWave.failedChecks.length,2);
+ assert.match(novoSpecialistWave.failedChecks[0].outcome,/timed out/);
 });
