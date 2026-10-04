@@ -330,6 +330,18 @@ test('changed source URLs invalidate historical checks and source hashes', async
   assert.equal(env.DB.db.prepare('SELECT last_fingerprint FROM medicines_watch_checks').get().last_fingerprint, null);
 });
 
+test('an in-flight previous runtime cannot replace a promoted source URL', async t => {
+  const env = setup(t), approved = await approvedSource();
+  await scan(env, approved);
+  const promoted = { ...approved, checkUrl: approved.checkUrl + '-promoted' };
+  await scan(env, promoted);
+  const previousRuntime = await scan(env, approved, { allowSourceReplacement: false });
+  assert.equal(previousRuntime.skipped, 1);
+  assert.equal(env.DB.db.prepare('SELECT check_url FROM medicines_watch_checks').get().check_url, promoted.checkUrl);
+  assert.equal((await health(env, promoted)).sources[0].lastSuccessAt, new Date(NOW).toISOString());
+  assert.equal((await health(env, approved)).sources[0].lastSuccessAt, null);
+});
+
 test('GovUK fingerprint ignores page furniture and whitespace but tracks content date', async () => {
   const original = await fingerprintSource(source, body());
   const equivalent = await fingerprintSource(source, body({ ...document, links: { irrelevant: 'navigation' },

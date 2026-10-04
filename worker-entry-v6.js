@@ -1002,7 +1002,10 @@ const worker = {
     const job = (async () => {
       // Reserve and run the bounded evidence checks before the shared D1-heavy
       // jobs. A sibling failure or contention must not silently starve the Watch.
-      const medicinesWatch = await checkSources(env).catch((error) => ({
+      // Production promotion seeds reviewed URL replacements before the new
+      // runtime is exposed.  An invocation already in flight on the previous
+      // runtime must not switch that row back to its older configuration.
+      const medicinesWatch = await checkSources(env, { allowSourceReplacement: false }).catch((error) => ({
         medicinesWatch: "check_failed",
         message: error?.message || "scheduled_job_failed",
       }));
@@ -1192,4 +1195,3 @@ export default {
     return withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final))));
   },
 };
-

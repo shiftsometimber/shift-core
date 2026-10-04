@@ -367,12 +367,16 @@ export async function checkSources(env, options = {}) {
       const index = cursor++, source = sourceList[index], checkUrl = source.checkUrl || source.url;
       // A URL change invalidates earlier observations. No previous source can
       // lend its successful timestamp or fingerprint to a replacement.
-      await env.DB.prepare(`INSERT INTO medicines_watch_checks(source_id,source_url,check_url)
-        VALUES (?,?,?) ON CONFLICT(source_id) DO UPDATE SET
-        source_url=excluded.source_url,check_url=excluded.check_url,last_attempt_at=NULL,
-        last_success_at=NULL,last_failure_at=NULL,attempt_status='never',next_check_at=NULL,
-        last_http_status=NULL,last_error=NULL,last_fingerprint=NULL,last_withdrawn=0
-        WHERE source_url<>excluded.source_url OR check_url<>excluded.check_url`)
+      const initialise = options.allowSourceReplacement === false
+        ? `INSERT INTO medicines_watch_checks(source_id,source_url,check_url)
+          VALUES (?,?,?) ON CONFLICT(source_id) DO NOTHING`
+        : `INSERT INTO medicines_watch_checks(source_id,source_url,check_url)
+          VALUES (?,?,?) ON CONFLICT(source_id) DO UPDATE SET
+          source_url=excluded.source_url,check_url=excluded.check_url,last_attempt_at=NULL,
+          last_success_at=NULL,last_failure_at=NULL,attempt_status='never',next_check_at=NULL,
+          last_http_status=NULL,last_error=NULL,last_fingerprint=NULL,last_withdrawn=0
+          WHERE source_url<>excluded.source_url OR check_url<>excluded.check_url`;
+      await env.DB.prepare(initialise)
         .bind(source.id, source.url, checkUrl).run();
       // Atomic hourly reservation prevents overlapping cron invocations from
       // both checking and then overwriting the same source result.
