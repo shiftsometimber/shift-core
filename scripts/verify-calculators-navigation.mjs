@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import {createRequire} from 'node:module';
 import {chromium,webkit} from 'playwright';
 import {reconcilePublicDocument} from '../public-shell-contract.mjs';
 import {CALCULATORS_MENU_SCRIPT} from '../public-calculators-menu.mjs';
@@ -13,7 +14,7 @@ const live=process.env.CALCULATORS_MODE==='live';
 const out='calculators-navigation-evidence';
 const paths=['/','/tools','/programme','/shift-health','/treatment-centre','/articles/mounjaro-cost-uk','/about','/privacy'];
 const pages=new Map();
-const report={mode:live?'live':'captured-production-preview',source:process.env.GITHUB_SHA||null,startedAt:new Date().toISOString(),pages:[],browsers:[]};
+const report={mode:live?'live':'captured-production-preview',source:process.env.GITHUB_SHA||null,playwrightVersion:createRequire(import.meta.url)('playwright/package.json').version,startedAt:new Date().toISOString(),pages:[],browsers:[]};
 await mkdir(out,{recursive:true});
 const slug=path=>path==='/'?'home':path.slice(1).replaceAll('/','-');
 const digest=text=>createHash('sha256').update(text).digest('hex');
@@ -78,6 +79,7 @@ try{
  report.navigationAsset={path:'/assets/v42.js',originalSHA256:digest(originalAsset),verifiedSHA256:digest(candidateAsset),candidateApplied:!live};
  for(const [name,engine,viewport] of [['desktop-chromium',chromium,{width:1440,height:1000}],['phone-chromium',chromium,{width:375,height:812}],['phone-webkit',webkit,{width:390,height:844}]]){
   const browser=await engine.launch({headless:true});
+  report.browserVersions??={};report.browserVersions[name]=browser.version();
   let page;
   try{
    const context=await browser.newContext({viewport});
@@ -95,7 +97,13 @@ try{
    });
    page=await context.newPage();
    page.setDefaultTimeout(15000);
-   const checks=[];
+   const checks=[],events=[];report.navigationEvents??={};report.navigationEvents[name]=events;
+   const record=(event,detail)=>{if(events.length<300)events.push({at:new Date().toISOString(),event,...detail})};
+   page.on('request',request=>{if(request.isNavigationRequest())record('request',{url:request.url(),redirectedFrom:request.redirectedFrom()?.url()||null})});
+   page.on('response',response=>{if(response.request().isNavigationRequest())record('response',{url:response.url(),status:response.status()})});
+   page.on('requestfailed',request=>{if(request.isNavigationRequest())record('requestfailed',{url:request.url(),error:request.failure()?.errorText})});
+   page.on('framenavigated',frame=>{if(frame===page.mainFrame())record('framenavigated',{url:frame.url()})});
+   page.on('domcontentloaded',()=>record('domcontentloaded',{url:page.url()}));
    for(const path of ['/','/tools','/programme','/shift-health','/articles/mounjaro-cost-uk']){
     console.log('Checking '+name+' '+path);
     await page.goto(origin+path,{waitUntil:'domcontentloaded',timeout:60000});

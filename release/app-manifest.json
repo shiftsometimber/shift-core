@@ -245,7 +245,14 @@
     "medicines-watch/reviews/2026-10-04-authorised-vct220.json": "d39784d4981ba232f70d2d64a3a6e6a24f7876ee10c609a0e71a917b7eade7dd",
     "public-shell-contract.mjs": "357dce919f08ea7f96e9e720dde4de43f4192dbba6835c7a2c7b961c954d143d",
     "tests/medicine-commerce-v1.test.mjs": "1f0f9dbccade11991ad71df3d8a0f8c50a256a07ede019ca57b317983eb72abd",
-    ".github/workflows/babylove-mounjaro-876303-live.yml": "7fc1038faf30b7fd688940b499eb44ea34de4ae97e068228caeacefe37ac4dce"
+    ".github/workflows/babylove-mounjaro-876303-live.yml": "7fc1038faf30b7fd688940b499eb44ea34de4ae97e068228caeacefe37ac4dce",
+    "shift-coach/fit-active-edit.mjs": "3bee56c07532aec2a4447b8b2b31a4c4ca64a833dd41bd0c1bd42e0e9e3f72f2",
+    "shift-coach/fit-active-edit.test.mjs": "4914c0a78141a939197bb35e20344255283e8bc56c5c2d974ae3d2f52d562b00",
+    ".github/workflows/source-editorial-20261004.yml": "540ccb19e81d26ddfa3caa5af270bd242dc20721f6ce37199801c3616d22116e",
+    "editorial/source-review-20261004/build.mjs": "b8626122f51976392c796608eaf8891d4c4afe331daa2aa98ebb792ff9df1678",
+    "editorial/source-review-20261004/build.test.mjs": "e2b7447dd25d0eb96cd7a6820c8fc1f6760537e5f7e1036b42011b1f4c81e7ef",
+    "editorial/source-review-20261004/corrections.json": "79cfab35b75e3030b1959d57495281519bb1c611077c953200398db6f64208d0",
+    "editorial/source-review-20261004/publish.mjs": "f19fa74f56daaf004ef0e6a2fd2351d062335204779b30a76d9aedb5b4dd7159"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
@@ -326,7 +333,7 @@
   "memberPanelLayout": {
     "candidate": "72f0796f7de9ccfc42f46ec203a6c00b04d17aba",
     "previewRun": 36987513488,
-    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404–IMG_2406 and the 07:57 screen recording.",
+    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404\u2013IMG_2406 and the 07:57 screen recording.",
     "scope": "Three exact presentation/preview files; existing records, controls and clinical/commercial gates preserved."
   },
   "watchCredibility": {

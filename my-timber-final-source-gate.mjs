@@ -14,6 +14,7 @@ need(workflow.includes('workflow_run:')&&workflow.includes("workflows: ['Cloudfl
 need(workflow.includes('ref: ${{ github.event.workflow_run.head_sha || github.sha }}'),'Final production journey must use the promoted source revision');
 const push=workflow.match(/^  push:\n([\s\S]*?)(?=^  workflow_run:)/m)?.[1];
 const reviewedVerificationPush="    branches: [main, verification/member-design-20261002, verification/member-finish-20261002]\n    paths:\n      - 'my-timber-final-production.mjs'\n      - 'release/app-member-live.mjs'\n      - 'rendered-member-acceptance-support.mjs'\n      - 'health-passport/production-browser.mjs'\n      - 'my-timber-google-play-screenshots.mjs'\n      - '.github/workflows/my-timber-final-production.yml'\n";
+need(workflow.includes("internal?'33f5233e2a032afef8608eef7dfe2f9aac2eb306'")&&workflow.includes("internal?'37189424626'"),'Internal diagnostics must bind to the exact successful serving-runtime receipt');
 need(!push||(
   push===reviewedVerificationPush &&
   workflow.includes("if: github.event_name == 'push' && github.ref == 'refs/heads/main'") &&

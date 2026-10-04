@@ -7,6 +7,7 @@ import {supportTeamRoutes,withSupportTeamLink} from './support-team.mjs';
 import {coachingRoutes} from './routes.mjs';
 import {coachingAsset,withCoaching} from './presentation.mjs';
 import {runCoachingNight} from './night-job.mjs';
+import {withFitActiveEdit} from './fit-active-edit.mjs';
 // Every original handler, binding, cron and public response passes through.
 // Only the member-owned coaching API, its assets and dashboard wrapper are new.
 export default {
@@ -26,7 +27,7 @@ export default {
    url.pathname='/v1/shift-coach';url.search='';
    try{const initial=await coachingRoutes(new Request(url,{method:'GET',headers:request.headers}),env);if(initial?.ok)seed=await initial.json();}catch{/* Client keeps its normal retry path; no unchecked snapshot is used. */}
   }
-  return withCoaching(request,response,seed);
+  return withCoaching(request,await withFitActiveEdit(request,response),seed);
  },
  async scheduled(controller,env,ctx){
   await core.scheduled(controller,env,ctx);

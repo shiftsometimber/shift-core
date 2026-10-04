@@ -23,7 +23,17 @@ export async function verifyLiveTools(page,site,dir,report){
  await page.goto(site+'/member/dashboard?view='+view+'#today',{waitUntil:'domcontentloaded'});await page.locator('#appTab-grub').waitFor({timeout:45000});
  let navigations=0;const count=r=>{if(r.isNavigationRequest()&&r.frame()===page.mainFrame())navigations++};page.on('request',count);
  await page.locator('#appTab-grub').click();const grub=page.frameLocator('#appTool-grub iframe');await grub.locator('#grubSearch').waitFor({timeout:45000});await grub.locator('#grubSearch').fill('Synthetic unsaved meal search');
- await page.locator('#appTab-fit').click();const fit=page.frameLocator('#appTool-fit iframe');const fitNote=await revealSetupField(fit,'#fitPrefs');await fitNote.fill('Synthetic unsaved session note');
+ await page.locator('#appTab-fit').click();const fit=page.frameLocator('#appTool-fit iframe');
+ const fitNote=await revealSetupField(fit,'#fitPrefs');
+ await fitNote.evaluate(field=>{
+  const describe=()=>({at:performance.now(),readyState:document.readyState,visible:!!field.getClientRects().length,disclosures:[...document.querySelectorAll('details')].filter(d=>d.contains(field)).map(d=>({open:d.open,marker:d.hasAttribute('data-app-fit-setup'),summary:d.querySelector(':scope > summary')?.textContent?.trim()}))});
+  window.__fitAcceptanceTrace=[{event:'before-fill',...describe()}];
+  new MutationObserver(records=>{if(window.__fitAcceptanceTrace.length<100)window.__fitAcceptanceTrace.push({event:'mutation',changes:records.map(r=>({kind:r.type,attribute:r.attributeName})),...describe()})}).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['open','hidden','style','class']});
+ });
+ try{await fitNote.fill('Synthetic unsaved session note');}finally{
+  const trace=await fitNote.evaluate(()=>window.__fitAcceptanceTrace).catch(()=>[]);
+  report.checks.push({view,width,fitDisclosureTrace:trace});console.log('FIT DISCLOSURE TRACE '+JSON.stringify({view,width,trace}));
+ }
  await page.locator('#appTab-life-back').click();const life=page.frameLocator('#appTool-life-back iframe');await life.locator('#journeyView:not([hidden])').waitFor({timeout:45000});await life.locator('.area-card').first().click();assert(await life.locator('dialog[open]').isVisible());await life.locator('dialog[open] [data-close]').first().click();
  await page.locator('#appTab-grub').click();assert.equal(await grub.locator('#grubSearch').inputValue(),'Synthetic unsaved meal search');await page.locator('#appTab-fit').click();assert.equal(await fit.locator('#fitPrefs').inputValue(),'Synthetic unsaved session note','Fit notes must survive leaving and reopening the panel');await page.locator('#appTab-life-back').click();await page.locator('#appTab-grub').click();await page.goBack();assert.equal(await page.locator('#appTab-life-back').getAttribute('aria-selected'),'true');await page.goForward();assert.equal(await page.locator('#appTab-grub').getAttribute('aria-selected'),'true');assert.equal(navigations,0);page.off('request',count);
  assert.equal(await page.locator('[data-app-layout]').count(),1);assert.equal(await page.locator('#appPreviewBar').count(),0);assert.equal(await page.locator('#todayBrand .member-design-mark').count(),1);assert.equal(await page.locator('#appBottomNav>*').count(),5);assert(!(await page.locator('#todayActions>.mtm-hero').isVisible()));assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));

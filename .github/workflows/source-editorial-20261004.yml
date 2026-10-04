@@ -1,0 +1,30 @@
+name: Source editorial correction proof
+on:
+  push:
+    branches: [release/internal-closeout-20261004]
+    paths: ['editorial/source-review-20261004/**', '.github/workflows/source-editorial-20261004.yml']
+permissions:
+  contents: read
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Verify guarded source corrections and existing article rendering
+        run: node --test editorial/source-review-20261004/build.test.mjs tests/radar-newsroom-page-v1.test.mjs
+      - name: Reproduce exact guarded SQL
+        run: |
+          node --check editorial/source-review-20261004/publish.mjs
+          node editorial/source-review-20261004/build.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: guarded-source-corrections-${{ github.sha }}
+          path: |
+            editorial/source-review-20261004/guarded-update.sql
+            editorial/source-review-20261004/guarded-update.json
+            editorial/source-review-20261004/guarded-audit.sql
+            editorial/source-review-20261004/prepared.json
+          retention-days: 30

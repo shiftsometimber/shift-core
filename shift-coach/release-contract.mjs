@@ -17,6 +17,9 @@ export const COACH_AUDIT_CHANGES=new Set(["medicine-commerce-v1.js","tests/medic
 export const COACH_ARTICLE_BASE='0d084f00cf6c4593dd0c11dfd047daf4e5103295';
 export const COACH_ARTICLE_ADDITIONS=new Set(['.github/workflows/evidence-article-repair-snapshot.yml','.github/workflows/evidence-based-article-live-release.yml','babylove/repair-evidence-based-article.mjs']);
 export const COACH_ARTICLE_CHANGES=new Set(['babylove/dynamic-public.mjs','babylove/dynamic-public.test.mjs','medicines-watch/preservation.mjs','medicines-watch/preservation.test.mjs','public-shell-contract.mjs']);
+// Exact 4 October source corrections and active Fit editing repair, in #1065.
+for(const path of ['shift-coach/fit-active-edit.mjs','shift-coach/fit-active-edit.test.mjs','.github/workflows/source-editorial-20261004.yml','editorial/source-review-20261004/build.mjs','editorial/source-review-20261004/build.test.mjs','editorial/source-review-20261004/corrections.json','editorial/source-review-20261004/publish.mjs'])COACH_ADDITIONS.add(path);
+for(const path of ['.github/workflows/calculators-navigation.yml','scripts/verify-calculators-navigation.mjs','.github/workflows/my-timber-final-production.yml','my-timber-final-source-gate.mjs','release/app-live-http.mjs'])COACH_BACKEND_PATHS.add(path);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]);
 // Finite read-only release maintenance; not permission for more publication jobs.
 export const ARTICLE_CLOSEOUT_SOURCE='69886cec987aed15a1a7e6340953cd7a5372dfee';
