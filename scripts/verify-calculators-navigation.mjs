@@ -95,7 +95,13 @@ try{
    });
    page=await context.newPage();
    page.setDefaultTimeout(15000);
-   const checks=[];
+   const checks=[],events=[];report.navigationEvents??={};report.navigationEvents[name]=events;
+   const record=(event,detail)=>{if(events.length<300)events.push({at:new Date().toISOString(),event,...detail})};
+   page.on('request',request=>{if(request.isNavigationRequest())record('request',{url:request.url(),redirectedFrom:request.redirectedFrom()?.url()||null})});
+   page.on('response',response=>{if(response.request().isNavigationRequest())record('response',{url:response.url(),status:response.status()})});
+   page.on('requestfailed',request=>{if(request.isNavigationRequest())record('requestfailed',{url:request.url(),error:request.failure()?.errorText})});
+   page.on('framenavigated',frame=>{if(frame===page.mainFrame())record('framenavigated',{url:frame.url()})});
+   page.on('domcontentloaded',()=>record('domcontentloaded',{url:page.url()}));
    for(const path of ['/','/tools','/programme','/shift-health','/articles/mounjaro-cost-uk']){
     console.log('Checking '+name+' '+path);
     await page.goto(origin+path,{waitUntil:'domcontentloaded',timeout:60000});
