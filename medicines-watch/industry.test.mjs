@@ -34,6 +34,7 @@ import wve007Publication from './reviews/2026-10-03-authorised-wve007.json' with
 import specialistRegistryWave from './reviews/2026-10-03-authorised-specialist-registry-wave.json' with {type:'json'};
 import leanMassEnergyFollowup from './reviews/2026-10-03-authorised-lean-mass-energy-followup.json' with {type:'json'};
 import vikingAntagFollowup from './reviews/2026-10-03-authorised-vk3019-at673.json' with {type:'json'};
+import srsd384Publication from './reviews/2026-10-04-authorised-srsd384.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('WVE-007 separates monotherapy registry, sponsor combination and planned maintenance',()=>{
  const e=industry.find(e=>e.id==='wve007');
@@ -56,6 +57,33 @@ test('WVE-007 separates monotherapy registry, sponsor combination and planned ma
  assert.equal(wve007Publication.sponsorRetrieval.automaticBaselineApproved,false);
  assert.ok(wve007Publication.discoveryPass.failedChecks.length);
  const html=industryMarkup({},new URLSearchParams({q:'WVE-007'}));
+ assert.equal((html.match(/data-industry-card/g)||[]).length,1);
+ assert.match(html,/Status checks do not assess clinical outcomes/);
+});
+test('SRSD384 retains sponsor initiation and the older conflicting registry status',()=>{
+ const e=industry.find(e=>e.id==='srsd384');
+ assert.equal(srsd384Publication.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(srsd384Publication.clinicalApproval,null);
+ assert.equal(srsd384Publication.industryComplete,false);
+ assert.match(e.stage,/Sponsor-reported first participant dosed/);
+ assert.match(e.stage,/registry still not yet recruiting/);
+ assert.match(e.summary,/Part A studies SRSD384 alone/);
+ assert.match(e.summary,/Part B studies SRSD384 with tirzepatide/);
+ assert.match(e.limitations,/last updated 5 June 2026/);
+ assert.match(e.limitations,/no posted results/);
+ assert.match(e.limitations,/not demonstrated human outcomes/);
+ assert.equal(e.clinicalApproval,null);
+ assert.equal(e.sourceIds.length,0);
+ const registry=srsd384Publication.registrySources[0];
+ assert.equal(registry.lifecycle.status,'NOT_YET_RECRUITING');
+ assert.deepEqual(registry.lifecycle.start,{date:'2026-06',type:'ESTIMATED'});
+ assert.equal(registry.lifecycle.hasResults,false);
+ assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ assert.equal(srsd384Publication.configuredSourcePass.configuredSources,124);
+ assert.equal(srsd384Publication.configuredSourcePass.attention[0].error,'http_403');
+ assert.equal(srsd384Publication.catalogueCounts.totalAfter,88);
+ assert.equal(srsd384Publication.catalogueCounts.trialRecordsAfter,69);
+ const html=industryMarkup({},new URLSearchParams({q:'Sirius INHBE'}));
  assert.equal((html.match(/data-industry-card/g)||[]).length,1);
  assert.match(html,/Status checks do not assess clinical outcomes/);
 });
@@ -194,8 +222,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,81);assert.equal(sources.length,124);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,87);
+ assert.equal(medicines.length,6);assert.equal(industry.length,82);assert.equal(sources.length,125);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,88);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -702,7 +730,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,81);
+ assert.equal(industry.length,82);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
