@@ -24,7 +24,7 @@ class FakeDB{
     this.sessions=[];this.tokens=[];this.delivery=[];this.audit=[];this.nextTokenId=1;
   }
   prepare(sql){return new Statement(this,sql)}
-  async exec(){return{success:true}}
+  async exec(sql){if(process.env.AUTH_DELIVERY_AUDIT_FAILURE==='1'&&sql.includes('auth_delivery_events'))throw Error('fictional audit outage');return{success:true}}
   async batch(statements){for(const s of statements)await s.run();return statements.map(()=>({success:true}))}
   normal(sql){return String(sql).replace(/\s+/g,' ').trim().toLowerCase()}
   async run(sql,args){
@@ -73,7 +73,7 @@ const registeredBody=await registered.json();
 assert(registeredBody.verificationRequired===true&&registeredBody.emailVerified===false,'Registration must explicitly require verification');
 assert((registered.headers.get('set-cookie')||'').includes('Max-Age=0'),'Registration session must be cleared before verification');
 assert(DB.sessions[0].revoked_at,'Registration-created session must be revoked');
-assert(messages.length===1&&messages[0].subject==='Verify your My Shift email','Registration must send verification email, not silently auto-verify');
+assert(messages.length===1&&messages[0].subject==='Verify your My Timber email','Registration must send verification email, not silently auto-verify');
 assert(DB.tokens.filter(x=>!x.used_at).length===1,'Exactly one live verification token expected after registration');
 const firstLink=messages[0].text.match(/https:\/\/[^\s]+/i)?.[0];assert(firstLink,'Verification email must contain an actionable link');
 
@@ -92,9 +92,12 @@ const oldTokenAttempt=await handleEmailVerification(new Request(firstLink),env,{
 const verified=await handleEmailVerification(new Request(secondLink),env,{},next);assert(verified.status===302&&verified.headers.get('location')==='https://shiftsometimber.co.uk/member-login.html?verified=1','Valid verification link must return member to sign-in');
 assert(DB.auth.get(1).email_verified===1,'Verified state must persist in auth record');
 assert(DB.tokens[1].used_at,'Verification token must be single-use');
-assert(messages.length===3&&messages[2].subject==='Welcome to My Shift','Welcome must follow successful verification');
+assert(messages.length===3&&messages[2].subject==='Welcome to My Timber','Welcome must follow successful verification');
+if(process.env.AUTH_DELIVERY_AUDIT_FAILURE!=='1'){
 assert(DB.delivery.filter(x=>x.event_type==='email_verification'&&x.status==='sent').length===2,'Verification delivery must be observable');
 assert(DB.delivery.some(x=>x.event_type==='welcome'&&x.status==='sent'),'Post-verification welcome delivery must be observable');
+}else assert(DB.delivery.length===0,'Audit outage must not fabricate persisted observations');
+assert(messages.every(m=>m.replyTo==='support@shiftsometimber.co.uk'),'All auth replies must use the existing support mailbox');
 
 const replay=await handleEmailVerification(new Request(secondLink),env,{},next);assert(replay.status===302&&String(replay.headers.get('location')).includes('verification_expired'),'Verification link replay must fail closed');
 const loginAfter=new Request('https://api.shiftsometimber.co.uk/v1/auth/login',{method:'POST',headers,body:JSON.stringify({email:DB.users[0].email,password:'a-long-password'})});

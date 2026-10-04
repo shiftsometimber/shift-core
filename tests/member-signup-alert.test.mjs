@@ -32,7 +32,7 @@ test('actual fast registration emails hello once and preserves verification, ses
  const f=fixture(t),r=await f.register(),body=await r.json();assert.equal(r.status,201);assert.equal(body.verificationRequired,true);assert.equal(body.emailVerified,false);assert.match(r.headers.get('set-cookie'),/Max-Age=0/);
  assert.equal(f.sql.prepare('SELECT COUNT(*) AS n FROM user_sessions WHERE revoked_at IS NULL').get().n,0);
  const alert=f.messages.filter(m=>m.to==='hello@shiftsometimber.co.uk');assert.equal(alert.length,1);assert.match(alert[0].subject,/New My Timber member/);assert.match(alert[0].text,/fictional-member@example.test/);assert.doesNotMatch(JSON.stringify(alert[0]),/password|dateOfBirth|token|phone|consents/i);
- assert.equal(f.messages.filter(m=>m.subject==='Verify your My Shift email').length,1);
+ assert.equal(f.messages.filter(m=>m.subject==='Verify your My Timber email').length,1);
  assert.equal((await f.register()).status,409);await retryPendingSignupAlerts(f.env);assert.equal(f.messages.length,2);
  if(process.env.ALERT_PROOF_DIR){mkdirSync(process.env.ALERT_PROOF_DIR,{recursive:true});writeFileSync(process.env.ALERT_PROOF_DIR+'/signup-preview.json',JSON.stringify(alert[0],null,2));writeFileSync(process.env.ALERT_PROOF_DIR+'/signup-preview.html',alert[0].html)}
 });
