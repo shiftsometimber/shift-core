@@ -10,7 +10,7 @@ let calls=0;
 env.AI.run=async(model,input,options)=>{
  calls++;assert.equal(model,'@cf/meta/llama-3.3-70b-instruct-fp8-fast');assert.deepEqual(options,{gateway:{id:'shift-ai',skipCache:true}});
  const r=await fetch(process.env.SHIFT_EVAL_URL+'/run',{method:'POST',headers:{Authorization:'Bearer '+process.env.SHIFT_EVAL_KEY,'Content-Type':'application/json'},body:JSON.stringify(input),signal:AbortSignal.timeout(16000)});
- assert(r.ok,'Evaluator HTTP '+r.status);return r.body;
+ if(!r.ok){const detail=(await r.text()).slice(0,500);throw Error('Evaluator HTTP '+r.status+' '+detail)}return r.body;
 };
 async function probe(message,token,scenario){
  const start=performance.now(),r=await ask(env,{message,useJourney:false,stream:true},token);let firstTextMs,done,pending='';const decoder=new TextDecoder();
@@ -19,7 +19,7 @@ async function probe(message,token,scenario){
    while((end=pending.indexOf('\n\n'))>=0){const frame=pending.slice(0,end);pending=pending.slice(end+2);const event=frame.match(/^event: (.+)$/m)?.[1],raw=frame.match(/^data: (.+)$/m)?.[1];if(!raw)continue;const value=JSON.parse(raw);assert.notEqual(event,'error');if(event==='delta'&&value.text.trim()&&firstTextMs===undefined)firstTextMs=Math.round(performance.now()-start);if(event==='done')done=value}
   }
  }else done=await r.json();
- const receipt={scenario,firstTextMs,elapsedMs:Math.round(performance.now()-start),...done};
+ const receipt={scenario,firstTextMs,elapsedMs:Math.round(performance.now()-start),...done};report.results.push(receipt);
  // A reviewed fallback is useful failure handling, never fresh-model acceptance.
  assert.equal(done?.delivery,'streamed',scenario+' did not complete a fresh model answer');assert(done.answer.length>60);
  assert(firstTextMs<=3200,scenario+' first useful text exceeded the model opening budget plus test transport allowance');
@@ -30,8 +30,9 @@ async function probe(message,token,scenario){
 }
 const report={source:process.env.GITHUB_SHA,at:new Date().toISOString(),model:'@cf/meta/llama-3.3-70b-instruct-fp8-fast',maximumConcurrency:2,retries:0,customerReads:0,customerWrites:0,results:[],scope:'One cold public question, then two simultaneous fictional-member questions. A bounded acceptance sample, not a capacity or clinical certification.'};
 try{
- report.results.push(await probe('What is Life Back?',null,'fresh-public'));
- report.results.push(...await Promise.all([probe('Help me make time for my saved personal goal on a busy evening.','synthetic-1','fresh-member-a'),probe('Help me work towards my saved personal goal on a rainy day.','synthetic-1','fresh-member-b')]));
+ await probe('What is Life Back?',null,'fresh-public');
+ const parallel=await Promise.allSettled([probe('Help me make time for my saved personal goal on a busy evening.','synthetic-1','fresh-member-a'),probe('Help me work towards my saved personal goal on a rainy day.','synthetic-1','fresh-member-b')]);
+ for(const result of parallel)if(result.status==='rejected')throw result.reason;
  report.passed=true;
 }catch(error){report.passed=false;report.error=error.message;throw error}
 finally{report.calls=calls;mkdirSync('evidence/priority-closeout',{recursive:true});writeFileSync('evidence/priority-closeout/fresh-ai.json',JSON.stringify(report,null,2));for(const fn of cleanups)fn()}

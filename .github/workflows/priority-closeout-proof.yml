@@ -2,6 +2,13 @@ name: Priority source reliability closeout proof
 on:
   push:
     branches: [codex/priority-source-reliability-market-20261004]
+    paths:
+      - ask-timber-v1.js
+      - member-experience/ai-stream.mjs
+      - tests/ai-fast-stream.test.mjs
+      - tests/ai-stream-reliability.test.mjs
+      - preview/ai-context/fresh-reliability-proof.mjs
+      - .github/workflows/priority-closeout-proof.yml
 permissions:
   contents: read
 concurrency:
