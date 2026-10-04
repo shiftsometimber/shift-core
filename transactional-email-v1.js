@@ -44,7 +44,7 @@ function internalRecipients(eventType,includeMatt=false){
 // encourage a duplicate resend. "sent" retains its historical provider meaning;
 // an inbox receipt is separate evidence, never inferred here.
 async function auditDelivery(env,detail){
-  try{await recordAuthDelivery(env.DB,detail);return true}
+  try{return (await recordAuthDelivery(env.DB,detail)).recorded===true}
   catch{console.error('transactional_email_audit_unavailable',detail.eventType,detail.status);return false}
 }
 const escapeHtml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

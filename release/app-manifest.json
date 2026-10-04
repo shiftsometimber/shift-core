@@ -262,7 +262,15 @@
     "tests/transactional-mail-reliability.test.mjs": "3ee22a82377633f04765a533ad2a7b39a65ad63e032ab34a3877c01d8d09c454",
     "shift-coach/acceptance-current-20261004.json": "e6c2f667e241c2c933e1ce6109e2451094a0520cae16f78d3f65379651e6df22",
     "tests/watch-ownership-release.test.mjs": "0c7b6d84b0409bca244005114d1c516ad47926d60ad49f1060b8447e6f9aeafa",
-    "medicines-watch/scheduler.test.mjs": "6ccf1e387380ad0aa711d992078d67768fc6dc6d8048de24522296367644626d"
+    "medicines-watch/scheduler.test.mjs": "6ccf1e387380ad0aa711d992078d67768fc6dc6d8048de24522296367644626d",
+    "auth-delivery-v1.js": "f37390bd9bb529a9a352693792cbc0af83ef3d370d93b86f24f7382acd5d02e6",
+    "auth-recovery-v1.js": "5c457a6e7082d6327352890f41f59d2b82d987f6a210e1461eb2164776695aad",
+    "auth-email-verification-v1.js": "d53c52c4a125fd1b9a282437f7dad239f95787ab3443f5b0031196c311118ed9",
+    "gate1-email-verification-e2e.mjs": "72e6de14866c002c41382094646ecd6a3665171a493124428ac06a31d08addac",
+    "tests/member-signup-alert.test.mjs": "9389457783cbcd5f909c4dfa1287ade81cc2938d257fbfd85a70d655868c1622",
+    "tests/auth-mail-delivery-reliability.test.mjs": "d6bcf8794c47dd80ed82b4979c5fce7eb67735820f0f1aefff86293baa455f80",
+    "preview/ai-context/sustained-reliability-proof.mjs": "3d4aab07f44839ef734e1cdb3d94f2f93524af64e3de4f53a4590c852a33d571",
+    ".github/workflows/sustained-ai-closeout-proof.yml": "335c8199e4b323d189232cd1d3f8d500fb251e04c63877a7f55c88a0aa18cf88"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
@@ -343,7 +351,7 @@
   "memberPanelLayout": {
     "candidate": "72f0796f7de9ccfc42f46ec203a6c00b04d17aba",
     "previewRun": 36987513488,
-    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404–IMG_2406 and the 07:57 screen recording.",
+    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404\u2013IMG_2406 and the 07:57 screen recording.",
     "scope": "Three exact presentation/preview files; existing records, controls and clinical/commercial gates preserved."
   },
   "watchCredibility": {
