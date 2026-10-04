@@ -1,0 +1,503 @@
+[
+  {
+    "generationMode": "generate",
+    "originalPath": "/workspace/scratch/f0446dd2001c/generated_images/exec-e51bfe58-b3cb-40b7-be1a-431736cc7497.png",
+    "prompt": {
+      "name": "egg-pepper-wrap",
+      "prompt": "Create one premium food editorial photograph for SHIFT My Timber recipe library. Landscape composition, 4:3, natural window light, cream ceramic plate on matte black table, realistic ordinary home-cooked UK meal, warm inviting high-end food photography, no text, no logo, no decorative food props. Exact dish: a toasted WHOLEMEAL breakfast wrap cut in half showing softly cooked scrambled eggs, RED KIDNEY BEANS, small cooked RED PEPPER pieces and tomato salsa. Only those five ingredients. No spinach, lettuce, cheese, avocado or herbs. One normal single-serving wrap. Sharp realistic ingredient texture, both halves fully in frame, sufficient plate margin for responsive cropping. This illustrates the exact Egg Kidney Beans Red Pepper Breakfast Wrap; never add garnish absent from recipe."
+    },
+    "recipeId": "industrial-breakfast-breakfast-wrap-banana-cocoa-1",
+    "title": "Egg Kidney Beans Red Pepper Breakfast Wrap",
+    "asset": "frontend/member/assets/member-experience/food/catalogue-egg-kidney-red-pepper-wrap.webp",
+    "sha256": "e515bc00da8cb3935b575f0f8072a7cefdc3ba2ec35bd048735d364aa16ca7a9",
+    "bytes": 79934,
+    "review": "Builder visual inspection: ingredient and preparation identity only. AI-generated illustrative food image; not verified quantities, nutrition or allergen evidence."
+  },
+  {
+    "generationMode": "generate",
+    "originalPath": "/workspace/scratch/f0446dd2001c/generated_images/exec-c4df9529-2cb8-4a09-a123-9d6da1e63551.png",
+    "prompt": {
+      "name": "classic-chickpea-wrap",
+      "prompt": "Create one premium food editorial photograph for SHIFT My Timber recipe library. Landscape 4:3 composition, warm natural window light, cream ceramic plate on matte black table, ordinary appealing home-cooked UK food, professional realistic food photograph, no text, no logo, no people. Exact dish: one toasted WHOLEMEAL wrap cut into two halves, with lightly pan-warmed CHICKPEAS, fresh LETTUCE, TOMATO and a light MAYONNAISE dressing, small amount OLIVE OIL used in cooking. Only those ingredients. No chicken, tuna, cheese, onion, sauce other than pale mayonnaise, herbs or extra garnish. Clear cross-section revealing chickpeas, lettuce and tomato. Whole single serving in frame with room around plate. Credible appetising texture, not a restaurant portion or health advert."
+    },
+    "recipeId": "industrial-v3-wrap-classic-chickpea",
+    "title": "Shift Classic Chickpea Loaded Wrap",
+    "asset": "frontend/member/assets/member-experience/food/catalogue-classic-chickpea-wrap.webp",
+    "sha256": "69d1e5352f45043dcf55f3280678d957c20738ae8413e36e5ccc46a62cbf8019",
+    "bytes": 100880,
+    "review": "Builder visual inspection: ingredient and preparation identity only. AI-generated illustrative food image; not verified quantities, nutrition or allergen evidence."
+  },
+  {
+    "generationMode": "generate",
+    "originalPath": "/workspace/scratch/f0446dd2001c/generated_images/exec-5f5e1d10-62d4-4018-b37c-ba7b0d8c9ef7.png",
+    "prompt": {
+      "name": "salmon-traybake",
+      "prompt": "Create one premium food editorial photograph for SHIFT My Timber recipe library. Landscape 4:3, warm natural window lighting, cream ceramic dinner plate on a matte black table, editorial food photography with realistic ordinary UK home-cooked meal, no text, no logo, no decorative ingredients. Exact Salmon Traybake: one cooked SALMON FILLET about a normal 150g portion, roasted BABY POTATO pieces about 250g, roasted BROCCOLI florets and RED PEPPER chunks, lightly roasted with OLIVE OIL. Only those ingredients, NO lemon, herbs, sauces, garlic, asparagus or garnish. Salmon is cooked opaque pale pink with slightly browned surface and a small flaked edge, potatoes golden and vegetables lightly roasted. Full plate visible with generous crop margin. Appetising believable portions, no health claims."
+    },
+    "recipeId": "industrial-dinner-salmon-traybake",
+    "title": "Salmon Traybake",
+    "asset": "frontend/member/assets/member-experience/food/catalogue-salmon-traybake.webp",
+    "sha256": "416c3f457c54a5353ef09d0f1bf145f5bf677952f88d6dbd43fc3ce0ee0e8b75",
+    "bytes": 99078,
+    "review": "Builder visual inspection: ingredient and preparation identity only. AI-generated illustrative food image; not verified quantities, nutrition or allergen evidence."
+  },
+  {
+    "generationMode": "generate",
+    "originalPath": "/workspace/scratch/f0446dd2001c/generated_images/exec-0596d170-30a9-4ea3-b847-d7724fdb3359.png",
+    "prompt": {
+      "name": "oat-crunch-pot",
+      "prompt": "Create one premium food editorial photograph for SHIFT My Timber exact recipe Shift Classic Oat Crunch Snack Pot. Landscape 4:3, cream/ash-green kitchen surface and soft natural light, professional realistic food photography, no text or logo. A small transparent snack container holding dry toasted ROLLED OAT FLAKES and PUMPKIN SEEDS with a slight dusting of CINNAMON; a separate small compartment or adjacent simple bowl holding a modest 25g MIXED BERRIES portion, raspberries and blueberries. Whole assembly visible with crop margin. Crunch stays DRY and separate from berries until eating. NO milk, yoghurt, cream, overnight-oats texture, protein pudding, honey, nuts, granola clusters or banana. This is a dry oat crunch snack with fruit, not a creamy breakfast pot. Honest single serving, no embellished garnish."
+    },
+    "recipeId": "industrial-v4-protein-pot-classic-overnight-oats",
+    "title": "Shift Classic Oat Crunch Snack Pot",
+    "asset": "frontend/member/assets/member-experience/food/catalogue-oat-crunch-pot.webp",
+    "sha256": "a5884bea752ee1762e2095199df6897413e5fafce9ea5b6440c6d18bf9cfec40",
+    "bytes": 93146,
+    "review": "Builder visual inspection: ingredient and preparation identity only. AI-generated illustrative food image; not verified quantities, nutrition or allergen evidence."
+  },
+  {
+    "groupId": "ce3900af5767a257af8c86973a99c6230c2bf222497ffae9dbd551a8cac3571a",
+    "recipeId": "industrial-breakfast-overnight-oats-apple-cinnamon-0",
+    "title": "Apple Cinnamon Overnight Oats",
+    "sourcePath": "/workspace/scratch/f0446dd2001c/generated_images/exec-003f660f-bb99-479c-97ad-82927c668a49.png",
+    "asset": "frontend/member/assets/member-experience/food/catalogue-ce3900af5767a257af8c.webp",
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Apple Cinnamon Overnight Oats. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"150ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"120g\",\"item\":\"apple, diced\"},{\"amount\":\"1/2 tsp\",\"item\":\"ground cinnamon\"}]. Preparation: [\"Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 100g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 120g apple, diced, 1/2 tsp ground cinnamon. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+    "elapsed_ms": 70989,
+    "review": "Builder visual inspection of all eight returned images: listed fruit/oats/yoghurt/seeds and preparation presentation match each exact recipe; no added garnish observed. Illustrative image, not verified quantities or nutritional/allergen evidence.",
+    "generationMode": "built-in",
+    "alt": "Apple Cinnamon Overnight Oats, served in a cream bowl.",
+    "ingredients": [
+      {
+        "amount": "50g",
+        "item": "rolled oats",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "150ml",
+        "item": "semi-skimmed milk",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "100g",
+        "item": "0% Greek yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "120g",
+        "item": "apple, diced"
+      },
+      {
+        "amount": "1/2 tsp",
+        "item": "ground cinnamon"
+      }
+    ],
+    "method": [
+      "Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+      "Stir in 100g 0% Greek yoghurt until evenly mixed.",
+      "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 120g apple, diced, 1/2 tsp ground cinnamon. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+      "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+      "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+    ],
+    "sha256": "fc33e867f4877340e61ceae3188643004b67573bb133c300fd518900634cb4f7",
+    "bytes": 98468,
+    "dimensions": [
+      1200,
+      900
+    ],
+    "original_sha256": "f9aedd4f4e9596befc8a6e8fd3596beaf98b2c1f5ed3a57f10da53d855386ed7"
+  },
+  {
+    "groupId": "58c2bb131e87465937d46c6e09568e9a03b9b912e340387bdf42cc7b120173a8",
+    "recipeId": "industrial-breakfast-protein-oats-apple-cinnamon-0",
+    "title": "Apple Cinnamon Protein Oats",
+    "sourcePath": "/workspace/scratch/f0446dd2001c/generated_images/exec-dafdcf78-98bc-44c6-8615-c63ebce3fbac.png",
+    "asset": "frontend/member/assets/member-experience/food/catalogue-58c2bb131e87465937d4.webp",
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Apple Cinnamon Protein Oats. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"porridge oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"200ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"120g\",\"item\":\"apple, diced\"},{\"amount\":\"1/2 tsp\",\"item\":\"ground cinnamon\"}]. Preparation: [\"Add oats, milk and fruit to a saucepan.\",\"Cook gently for 5\u20136 minutes, stirring until thick.\",\"Take off the heat and stir through the yoghurt.\",\"Finish with the measured flavouring and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+    "elapsed_ms": 23321,
+    "review": "Builder visual inspection of all eight returned images: listed fruit/oats/yoghurt/seeds and preparation presentation match each exact recipe; no added garnish observed. Illustrative image, not verified quantities or nutritional/allergen evidence.",
+    "generationMode": "built-in",
+    "alt": "Apple Cinnamon Protein Oats, served in a cream bowl.",
+    "ingredients": [
+      {
+        "amount": "50g",
+        "item": "porridge oats",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "200ml",
+        "item": "semi-skimmed milk",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "100g",
+        "item": "0% Greek yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "120g",
+        "item": "apple, diced"
+      },
+      {
+        "amount": "1/2 tsp",
+        "item": "ground cinnamon"
+      }
+    ],
+    "method": [
+      "Add oats, milk and fruit to a saucepan.",
+      "Cook gently for 5\u20136 minutes, stirring until thick.",
+      "Take off the heat and stir through the yoghurt.",
+      "Finish with the measured flavouring and serve."
+    ],
+    "sha256": "0c13efd06a30c5fb4218b56ebec14240d0d3ddff1c110e0abc2b08646dae0937",
+    "bytes": 112578,
+    "dimensions": [
+      1200,
+      900
+    ],
+    "original_sha256": "4f8a139a3caba7de18f57ba604b5f889b52104ed5ee47bb3a86dddaf8ed1dd54"
+  },
+  {
+    "groupId": "d48b04516071738b20b7b440db213335f5333afe0d279dc1fc4973dde184f8e3",
+    "recipeId": "industrial-breakfast-yoghurt-pot-apple-cinnamon-0",
+    "title": "Apple Cinnamon Yoghurt Crunch Pot",
+    "sourcePath": "/workspace/scratch/f0446dd2001c/generated_images/exec-e6d483a5-3d11-4862-923a-e6e95b1210cd.png",
+    "asset": "frontend/member/assets/member-experience/food/catalogue-d48b04516071738b20b7.webp",
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Apple Cinnamon Yoghurt Crunch Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"apple, diced\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"1/2 tsp\",\"item\":\"ground cinnamon\"}]. Preparation: [\"Spoon the yoghurt into a bowl or lidded pot.\",\"Wash and prepare the fruit, removing any stones, cores or inedible peel, then weigh the edible portion and add it to the yoghurt.\",\"Top with oats and pumpkin seeds.\",\"Finish with the flavouring just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+    "elapsed_ms": 45103,
+    "review": "Builder visual inspection of all eight returned images: listed fruit/oats/yoghurt/seeds and preparation presentation match each exact recipe; no added garnish observed. Illustrative image, not verified quantities or nutritional/allergen evidence.",
+    "generationMode": "built-in",
+    "alt": "Apple Cinnamon Yoghurt Crunch Pot, served in a cream bowl.",
+    "ingredients": [
+      {
+        "amount": "200g",
+        "item": "0% Greek yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "100g",
+        "item": "apple, diced"
+      },
+      {
+        "amount": "30g",
+        "item": "rolled oats",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "15g",
+        "item": "pumpkin seeds"
+      },
+      {
+        "amount": "1/2 tsp",
+        "item": "ground cinnamon"
+      }
+    ],
+    "method": [
+      "Spoon the yoghurt into a bowl or lidded pot.",
+      "Wash and prepare the fruit, removing any stones, cores or inedible peel, then weigh the edible portion and add it to the yoghurt.",
+      "Top with oats and pumpkin seeds.",
+      "Finish with the flavouring just before eating."
+    ],
+    "sha256": "9051c872030fb01d80bcba8e1a826612e151e649bd8e88c5a1653f80db2f7fbc",
+    "bytes": 123320,
+    "dimensions": [
+      1200,
+      900
+    ],
+    "original_sha256": "cf53c2183beac939db5beeff242dd73f8baf7ab7190eddcbe46d609a915c586d"
+  },
+  {
+    "groupId": "475e2de692a386721f85b71090970dee5c92dbdf6cb394370611413a4f06ccd8",
+    "recipeId": "industrial-breakfast-overnight-oats-banana-cocoa-1",
+    "title": "Banana Cocoa Overnight Oats",
+    "sourcePath": "/workspace/scratch/f0446dd2001c/generated_images/exec-7e61a849-b528-4310-8320-f5dc6b91f1e5.png",
+    "asset": "frontend/member/assets/member-experience/food/catalogue-475e2de692a386721f85.webp",
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Banana Cocoa Overnight Oats. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"150ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"120g\",\"item\":\"banana\"},{\"amount\":\"1/2 tsp\",\"item\":\"cocoa powder\"}]. Preparation: [\"Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 100g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 120g banana, 1/2 tsp cocoa powder. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+    "elapsed_ms": 91846,
+    "review": "Builder visual inspection of all eight returned images: listed fruit/oats/yoghurt/seeds and preparation presentation match each exact recipe; no added garnish observed. Illustrative image, not verified quantities or nutritional/allergen evidence.",
+    "generationMode": "built-in",
+    "alt": "Banana Cocoa Overnight Oats, served in a cream bowl.",
+    "ingredients": [
+      {
+        "amount": "50g",
+        "item": "rolled oats",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "150ml",
+        "item": "semi-skimmed milk",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "100g",
+        "item": "0% Greek yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "120g",
+        "item": "banana"
+      },
+      {
+        "amount": "1/2 tsp",
+        "item": "cocoa powder"
+      }
+    ],
+    "method": [
+      "Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+      "Stir in 100g 0% Greek yoghurt until evenly mixed.",
+      "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 120g banana, 1/2 tsp cocoa powder. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+      "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+      "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+    ],
+    "sha256": "85aca81646c7b5c6535bef5b09cdb98b5f3b4be6f3c4bb871cb06d36a937372d",
+    "bytes": 93270,
+    "dimensions": [
+      1200,
+      900
+    ],
+    "original_sha256": "b05a40fbf526d56d531246c2ad3a017a22d5fe95ae6903432b898313f360f53f"
+  },
+  {
+    "groupId": "d88568ab89f01646f2487ada3c5625039d5b86e0b7f4501b8b8c8f3432855a15",
+    "recipeId": "industrial-breakfast-protein-oats-banana-cocoa-1",
+    "title": "Banana Cocoa Protein Oats",
+    "sourcePath": "/workspace/scratch/f0446dd2001c/generated_images/exec-454755a1-b029-4960-b992-fc12448ed6e2.png",
+    "asset": "frontend/member/assets/member-experience/food/catalogue-d88568ab89f01646f248.webp",
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Banana Cocoa Protein Oats. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"porridge oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"200ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"120g\",\"item\":\"banana\"},{\"amount\":\"1/2 tsp\",\"item\":\"cocoa powder\"}]. Preparation: [\"Add oats, milk and fruit to a saucepan.\",\"Cook gently for 5\u20136 minutes, stirring until thick.\",\"Take off the heat and stir through the yoghurt.\",\"Finish with the measured flavouring and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+    "elapsed_ms": 115504,
+    "review": "Builder visual inspection of all eight returned images: listed fruit/oats/yoghurt/seeds and preparation presentation match each exact recipe; no added garnish observed. Illustrative image, not verified quantities or nutritional/allergen evidence.",
+    "generationMode": "built-in",
+    "alt": "Banana Cocoa Protein Oats, served in a cream bowl.",
+    "ingredients": [
+      {
+        "amount": "50g",
+        "item": "porridge oats",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "200ml",
+        "item": "semi-skimmed milk",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "100g",
+        "item": "0% Greek yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "120g",
+        "item": "banana"
+      },
+      {
+        "amount": "1/2 tsp",
+        "item": "cocoa powder"
+      }
+    ],
+    "method": [
+      "Add oats, milk and fruit to a saucepan.",
+      "Cook gently for 5\u20136 minutes, stirring until thick.",
+      "Take off the heat and stir through the yoghurt.",
+      "Finish with the measured flavouring and serve."
+    ],
+    "sha256": "7719bc3100b3e9bf9977d1f486db1ff951188bb9d557b74dcb9be46ef936a322",
+    "bytes": 111028,
+    "dimensions": [
+      1200,
+      900
+    ],
+    "original_sha256": "a30251a3b1da7c5ab37dfc6de881cc42a265928aeb6f94b7356c346aec45c969"
+  },
+  {
+    "groupId": "9a703dc54507acd9df5186cfa2864b35ccb7ffca61ed3935a456925aae4e0211",
+    "recipeId": "industrial-breakfast-yoghurt-pot-banana-cocoa-1",
+    "title": "Banana Cocoa Yoghurt Crunch Pot",
+    "sourcePath": "/workspace/scratch/f0446dd2001c/generated_images/exec-ca8b46f6-dc5f-45de-b4fd-518bece1743c.png",
+    "asset": "frontend/member/assets/member-experience/food/catalogue-9a703dc54507acd9df51.webp",
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Banana Cocoa Yoghurt Crunch Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"banana\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"1/2 tsp\",\"item\":\"cocoa powder\"}]. Preparation: [\"Spoon the yoghurt into a bowl or lidded pot.\",\"Wash and prepare the fruit, removing any stones, cores or inedible peel, then weigh the edible portion and add it to the yoghurt.\",\"Top with oats and pumpkin seeds.\",\"Finish with the flavouring just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+    "elapsed_ms": 139780,
+    "review": "Builder visual inspection of all eight returned images: listed fruit/oats/yoghurt/seeds and preparation presentation match each exact recipe; no added garnish observed. Illustrative image, not verified quantities or nutritional/allergen evidence.",
+    "generationMode": "built-in",
+    "alt": "Banana Cocoa Yoghurt Crunch Pot, served in a cream bowl.",
+    "ingredients": [
+      {
+        "amount": "200g",
+        "item": "0% Greek yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "100g",
+        "item": "banana"
+      },
+      {
+        "amount": "30g",
+        "item": "rolled oats",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "15g",
+        "item": "pumpkin seeds"
+      },
+      {
+        "amount": "1/2 tsp",
+        "item": "cocoa powder"
+      }
+    ],
+    "method": [
+      "Spoon the yoghurt into a bowl or lidded pot.",
+      "Wash and prepare the fruit, removing any stones, cores or inedible peel, then weigh the edible portion and add it to the yoghurt.",
+      "Top with oats and pumpkin seeds.",
+      "Finish with the flavouring just before eating."
+    ],
+    "sha256": "4b8f195ae2802decf6d942c0c814ee537eabdea95a973a37ebd036a771fc524b",
+    "bytes": 143240,
+    "dimensions": [
+      1200,
+      900
+    ],
+    "original_sha256": "60e7590e6392f109f3072470049dd7968bd406e336eb227d05ca9e53d65d9c7b"
+  },
+  {
+    "groupId": "50773602a4edb1353d0ebf56cbbf927b191e97c0d199f4dd0ffa4f8cfffb0e07",
+    "recipeId": "industrial-breakfast-overnight-oats-berry-vanilla-2",
+    "title": "Berry Cinnamon Overnight Oats",
+    "sourcePath": "/workspace/scratch/f0446dd2001c/generated_images/exec-d0befe64-e475-4226-aa9d-a17f375e8030.png",
+    "asset": "frontend/member/assets/member-experience/food/catalogue-50773602a4edb1353d0e.webp",
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Berry Cinnamon Overnight Oats. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"150ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"120g\",\"item\":\"mixed berries\"},{\"amount\":\"1/2 tsp\",\"item\":\"ground cinnamon\"}]. Preparation: [\"Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 100g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 120g mixed berries, 1/2 tsp ground cinnamon. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+    "elapsed_ms": 171975,
+    "review": "Builder visual inspection of all eight returned images: listed fruit/oats/yoghurt/seeds and preparation presentation match each exact recipe; no added garnish observed. Illustrative image, not verified quantities or nutritional/allergen evidence.",
+    "generationMode": "built-in",
+    "alt": "Berry Cinnamon Overnight Oats, served in a cream bowl.",
+    "ingredients": [
+      {
+        "amount": "50g",
+        "item": "rolled oats",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "150ml",
+        "item": "semi-skimmed milk",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "100g",
+        "item": "0% Greek yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "120g",
+        "item": "mixed berries"
+      },
+      {
+        "amount": "1/2 tsp",
+        "item": "ground cinnamon"
+      }
+    ],
+    "method": [
+      "Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+      "Stir in 100g 0% Greek yoghurt until evenly mixed.",
+      "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 120g mixed berries, 1/2 tsp ground cinnamon. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+      "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+      "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+    ],
+    "sha256": "c8a6bb9f0a64bbfdf595ce3e7d9937d016201a64f02f55f0bd6825ec50e8650b",
+    "bytes": 98398,
+    "dimensions": [
+      1200,
+      900
+    ],
+    "original_sha256": "fad2d64ae94cbbe633e71a0244623456ca7e2be630bbb8fb19015bdba14c6df3"
+  },
+  {
+    "groupId": "a7d5cdcaf67d12b74b8ea9c8a2a6bba78437c0efec9d65c2dcb69e4c5ff66e7c",
+    "recipeId": "industrial-breakfast-protein-oats-berry-vanilla-2",
+    "title": "Berry Cinnamon Protein Oats",
+    "sourcePath": "/workspace/scratch/f0446dd2001c/generated_images/exec-dda952fe-b23d-438d-bea8-12fc6251b847.png",
+    "asset": "frontend/member/assets/member-experience/food/catalogue-a7d5cdcaf67d12b74b8e.webp",
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Berry Cinnamon Protein Oats. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"porridge oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"200ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"120g\",\"item\":\"mixed berries\"},{\"amount\":\"1/2 tsp\",\"item\":\"ground cinnamon\"}]. Preparation: [\"Add oats, milk and fruit to a saucepan.\",\"Cook gently for 5\u20136 minutes, stirring until thick.\",\"Take off the heat and stir through the yoghurt.\",\"Finish with the measured flavouring and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+    "elapsed_ms": 195198,
+    "review": "Builder visual inspection of all eight returned images: listed fruit/oats/yoghurt/seeds and preparation presentation match each exact recipe; no added garnish observed. Illustrative image, not verified quantities or nutritional/allergen evidence.",
+    "generationMode": "built-in",
+    "alt": "Berry Cinnamon Protein Oats, served in a cream bowl.",
+    "ingredients": [
+      {
+        "amount": "50g",
+        "item": "porridge oats",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "200ml",
+        "item": "semi-skimmed milk",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "100g",
+        "item": "0% Greek yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "120g",
+        "item": "mixed berries"
+      },
+      {
+        "amount": "1/2 tsp",
+        "item": "ground cinnamon"
+      }
+    ],
+    "method": [
+      "Add oats, milk and fruit to a saucepan.",
+      "Cook gently for 5\u20136 minutes, stirring until thick.",
+      "Take off the heat and stir through the yoghurt.",
+      "Finish with the measured flavouring and serve."
+    ],
+    "sha256": "0af3b39227dbe49f5ee0f7e48c55a9b4502aff68250b3e005bde09dbce214e2c",
+    "bytes": 117086,
+    "dimensions": [
+      1200,
+      900
+    ],
+    "original_sha256": "69f942fa3ad79ba0722e37f0f1cd504c6eb945243a5f3d629663464660c00abf"
+  }
+]

@@ -1,0 +1,90 @@
+{
+  "groupId": "96a5e8ba7880e8361decf107cbf1f2ced075cd783498bcb5283876b19caa1366",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-classic-egg"
+  ],
+  "titles": [
+    "Shift Classic Egg Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Egg Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"30g\",\"item\":\"brown sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Beat the measured eggs in a clean bowl and set them aside while cooking the vegetables.\",\"Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the beaten eggs to the cooked vegetables and stir until fully set.\",\"Stir in the listed flavour ingredients (30g brown sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "30g",
+      "item": "brown sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Beat the measured eggs in a clean bowl and set them aside while cooking the vegetables.",
+    "Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the beaten eggs to the cooked vegetables and stir until fully set.",
+    "Stir in the listed flavour ingredients (30g brown sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f2f70a63-e3d2-44d0-8243-ebcde33a962c.png",
+  "source_sha256": "7394f9ca07e24123d56edb35716b21eb74a8e38600dc6fc44ee46a7f14b9f5dd",
+  "generated_at": "2026-10-04T21:32:27.890Z",
+  "elapsed_ms": 191550,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-96a5e8ba7880e8361dec-480.webp",
+      "sha256": "49e9e60b28dcad4feaf4a7138276929a73d3e6f9da8e8d49c30586d3ef5b4c70",
+      "bytes": 33110
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-96a5e8ba7880e8361dec.webp",
+      "sha256": "c916f100d84566a78c345e64a527f3ab7a47f469b4bc7a65c0bc3ef2bfd7d205",
+      "bytes": 105116
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-classic-egg"
+    ],
+    "titles": [
+      "Shift Classic Egg Breakfast Toastie"
+    ],
+    "notes": "Plain crisp wholemeal toastie filled with set egg, softened tomato, wilted spinach and brown sauce. Side repeats measured filling allowed by method; no cheese or garnish.",
+    "alt": "Egg, tomato and spinach toastie with brown sauce and remaining filling alongside.",
+    "reviewed_at": "2026-10-04T21:34:03.030720+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/150.json",
+    "source_sha256": "7394f9ca07e24123d56edb35716b21eb74a8e38600dc6fc44ee46a7f14b9f5dd"
+  },
+  "integrated": true,
+  "live": false
+}

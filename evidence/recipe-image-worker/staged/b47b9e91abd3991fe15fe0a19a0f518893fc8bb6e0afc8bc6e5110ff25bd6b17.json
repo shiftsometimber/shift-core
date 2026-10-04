@@ -1,0 +1,97 @@
+{
+  "groupId": "b47b9e91abd3991fe15fe0a19a0f518893fc8bb6e0afc8bc6e5110ff25bd6b17",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-garlic-herb-egg"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Egg Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Egg Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"35g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "35g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5cc031dc-6cdc-470b-942c-378d0f7000fb.png",
+  "source_sha256": "eb377456aeccce3a49279f057015c1c357d09457cdb9dd02e769c1925d1adb51",
+  "generated_at": "2026-10-04T21:44:17.733Z",
+  "elapsed_ms": 422429,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b47b9e91abd3991fe15f-480.webp",
+      "sha256": "b59c97e8a70e2e949e75cb85307eeb149189887ec6267dc9d8a738a9789191de",
+      "bytes": 18208
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b47b9e91abd3991fe15f.webp",
+      "sha256": "92b72cdc946d91a28d1b0568ba90f41c8253a2c1be679a8d43d25f7d83c78245",
+      "bytes": 51642
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-garlic-herb-egg"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Egg Breakfast Wrap"
+    ],
+    "notes": "Set egg curds, cooked mixed peppers and wilted spinach with creamy yoghurt and dried parsley in a plain lightly crisped wholemeal wrap. No cheese or fresh garnish.",
+    "alt": "Wholemeal wrap with scrambled egg, peppers, spinach and garlic-herb yoghurt.",
+    "reviewed_at": "2026-10-04T21:45:27.648688+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/175.json",
+    "source_sha256": "eb377456aeccce3a49279f057015c1c357d09457cdb9dd02e769c1925d1adb51"
+  },
+  "integrated": true,
+  "live": false
+}

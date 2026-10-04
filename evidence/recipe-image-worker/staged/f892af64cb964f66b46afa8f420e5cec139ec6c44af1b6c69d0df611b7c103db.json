@@ -1,0 +1,83 @@
+{
+  "groupId": "f892af64cb964f66b46afa8f420e5cec139ec6c44af1b6c69d0df611b7c103db",
+  "recipe_ids": [
+    "industrial-v3-roast-bbq-turkey"
+  ],
+  "titles": [
+    "Shift BBQ Turkey Sunday-Style Roast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Turkey Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ glaze\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the reduced-sugar BBQ glaze in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot reduced-sugar BBQ glaze over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ glaze"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the reduced-sugar BBQ glaze in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot reduced-sugar BBQ glaze over the cooked protein."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-62ba5121-3abc-4972-9825-5b62bf43063d.png",
+  "source_sha256": "9505a21d5682775de5ed5c053ad48f444303832998d1dee4a6f106861428db72",
+  "generated_at": null,
+  "elapsed_ms": 344501.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f892af64cb964f66b46a-480.webp",
+      "sha256": "41bca2813034ef92446b1ebc2307a7083cd4e7629e9dba371c52c5284bd735d7",
+      "bytes": 29852
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f892af64cb964f66b46a.webp",
+      "sha256": "c25b7048bbf3dea8d34e4792dbb8815598864c0eb1818f0fdb63fc4a3258b8da",
+      "bytes": 87198
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-roast-bbq-turkey"
+    ],
+    "titles": [
+      "Shift BBQ Turkey Sunday-Style Roast"
+    ],
+    "notes": "Exactly two compact cooked turkey-mince patties with BBQ glaze alongside peeled golden roast potatoes, carrot batons and broccoli; no roasting-joint substitution. Exact ingredient identity/preparation and all member titles checked; plausible single serving with central responsive crop.",
+    "alt": "Two BBQ-glazed turkey patties with roast potatoes, carrots and broccoli.",
+    "reviewed_at": "2026-10-04T21:47:42.797Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-576-592.json",
+    "source_sha256": "9505a21d5682775de5ed5c053ad48f444303832998d1dee4a6f106861428db72"
+  },
+  "integrated": true,
+  "live": false
+}

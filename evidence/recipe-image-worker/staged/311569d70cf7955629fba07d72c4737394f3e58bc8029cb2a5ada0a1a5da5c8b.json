@@ -1,0 +1,86 @@
+{
+  "groupId": "311569d70cf7955629fba07d72c4737394f3e58bc8029cb2a5ada0a1a5da5c8b",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-cheesy-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Cheesy Chicken Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Chicken Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-153a1887-e779-4dc2-b9ac-fd2993066013.png",
+  "source_sha256": "3d7b71374774f03b45d4139a862a9d2ec210aae712b38624886e2e2ae6df8357",
+  "generated_at": "2026-10-04T21:17:29.417Z",
+  "elapsed_ms": 276246,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-311569d70cf7955629fb-480.webp",
+      "sha256": "f65a1143c36765bcaac0e50d50d1e4ff19ea762be07344f89696286b019a90d4",
+      "bytes": 21346
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-311569d70cf7955629fb.webp",
+      "sha256": "2e4e7040a6df8d68e21a53bf0fdad37469afbf4d5965d2a58235daac5b4b43fa",
+      "bytes": 62716
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-cheesy-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Cheesy Chicken Breakfast Wrap"
+    ],
+    "notes": "Cooked browned chicken breast, softened mixed peppers, wilted spinach and melted cheddar in plain lightly crisped wholemeal wrap. No unlisted foods or garnish.",
+    "alt": "Wholemeal wrap filled with chicken, peppers, spinach and melted cheddar.",
+    "reviewed_at": "2026-10-04T21:20:43.246638+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/123.json",
+    "source_sha256": "3d7b71374774f03b45d4139a862a9d2ec210aae712b38624886e2e2ae6df8357"
+  },
+  "integrated": true,
+  "live": false
+}

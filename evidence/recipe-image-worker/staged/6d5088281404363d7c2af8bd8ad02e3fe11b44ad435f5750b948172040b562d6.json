@@ -1,0 +1,95 @@
+{
+  "groupId": "6d5088281404363d7c2af8bd8ad02e3fe11b44ad435f5750b948172040b562d6",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-cajun-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Cajun Chicken Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Chicken Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"1g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried oregano\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "1g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried oregano"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8f6e6c87-a7a0-48cc-b9c8-fbbec8d6f5ec.png",
+  "source_sha256": "d205deb036e78bc09f50dc22171b632f7b95d05ca1e2476925d6e0127f29583a",
+  "generated_at": "2026-10-04T21:11:37.166Z",
+  "elapsed_ms": 19688,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6d5088281404363d7c2a-480.webp",
+      "sha256": "01ed974caf16fe0f557ce8d2e10ef6fe2dff5238c5f123a1f2e6a0c4c9f5a8b8",
+      "bytes": 26858
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6d5088281404363d7c2a.webp",
+      "sha256": "955b2a3a64c7330f0947deaa839d80811cb10499dd2b567f453fb6eef5035f5f",
+      "bytes": 89250
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-cajun-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Cajun Chicken Breakfast Buttie"
+    ],
+    "notes": "Wholemeal bap contains browned chicken breast pieces, cooked tomato and wilted spinach with dry Cajun spice coating; no sausage despite legacy recipe id. No unlisted garnish.",
+    "alt": "Cajun chicken breakfast bap with tomato and spinach",
+    "reviewed_at": "2026-10-04T21:18:42.969464+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/6d5088281404363d7c2af8bd8ad02e3fe11b44ad435f5750b948172040b562d6.json",
+    "source_sha256": "d205deb036e78bc09f50dc22171b632f7b95d05ca1e2476925d6e0127f29583a"
+  },
+  "integrated": true,
+  "live": false
+}

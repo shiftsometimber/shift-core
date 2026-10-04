@@ -1,0 +1,82 @@
+{
+  "groupId": "2662c9c765d8813e454dfc544682b580922b571a9c14208bc0fc90b76a1c2c8b",
+  "recipe_ids": [
+    "industrial-breakfast-egg-toast-banana-cocoa-1"
+  ],
+  "titles": [
+    "Egg Mushrooms Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Mushrooms Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"mushrooms\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Wash the vegetables and slice or finely chop them before cooking.\",\"Toast the bread.\",\"Heat the oil and cook the vegetables until softened.\",\"Add the eggs and scramble until fully set.\",\"Serve the eggs and vegetables on the toast and season with the measured black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "mushrooms"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Wash the vegetables and slice or finely chop them before cooking.",
+    "Toast the bread.",
+    "Heat the oil and cook the vegetables until softened.",
+    "Add the eggs and scramble until fully set.",
+    "Serve the eggs and vegetables on the toast and season with the measured black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4db0d3e0-11a3-440f-9271-6866e4db9e0e.png",
+  "source_sha256": "beaf8517aefa63dbd2b4da376725d1162b230c4d4ca8054e45fbc1ef74121b9b",
+  "generated_at": "2026-10-04T21:12:49.181Z",
+  "elapsed_ms": 649873,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2662c9c765d8813e454d-480.webp",
+      "sha256": "841cc2038a3020a381e93f900a2fdaea08e28d8228ee86a994951dfb178c0a4b",
+      "bytes": 26822
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2662c9c765d8813e454d.webp",
+      "sha256": "d29638337659b751fb8045b112574120e29d7d2cfe74d8c2f1d922bf90fe72ed",
+      "bytes": 76568
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-egg-toast-banana-cocoa-1"
+    ],
+    "titles": [
+      "Egg Mushrooms Wholemeal Toast"
+    ],
+    "notes": "Two wholemeal toast slices with set scrambled egg and sliced browned mushrooms; pepper only, no green herbs or garnish. Single credible serving with full food visible in phone/desktop 4:3 framing. Quantities, hidden temperature and nutrition cannot be verified visually.",
+    "alt": "Scrambled egg and browned mushrooms on wholemeal toast.",
+    "reviewed_at": "2026-10-04T21:21:38.767159+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "beaf8517aefa63dbd2b4da376725d1162b230c4d4ca8054e45fbc1ef74121b9b"
+  }
+}

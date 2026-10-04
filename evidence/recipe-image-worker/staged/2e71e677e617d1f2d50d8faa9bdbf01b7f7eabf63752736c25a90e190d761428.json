@@ -1,0 +1,80 @@
+{
+  "groupId": "2e71e677e617d1f2d50d8faa9bdbf01b7f7eabf63752736c25a90e190d761428",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-tikka-beef"
+  ],
+  "titles": [
+    "Shift Tikka Beef Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Beef Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"tikka masala sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the 5% beef mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and 5% beef mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the 5% beef mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No spring onions, coriander, parsley, sesame or decorative garnish unless the exact ingredient list includes them.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka masala sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the 5% beef mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and 5% beef mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the 5% beef mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c40f16ba-f919-4b9e-978f-41904e78980f.png",
+  "source_sha256": "510794025c20f1d3b3d39fea8dea8d8c6476ca110c05158a2cc6a5657fd9bf38",
+  "generated_at": "2026-10-04T21:32:26.259Z",
+  "elapsed_ms": 320902.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2e71e677e617d1f2d50d-480.webp",
+      "sha256": "cc7badc3ea8d3a3e303a7707182e557b9e6b728dcbf63571129c42d2a51fa4aa",
+      "bytes": 28968
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2e71e677e617d1f2d50d.webp",
+      "sha256": "35bbbccee32f58c51ea037c1d95c795e245dd65828e6614931839b406e72e6da",
+      "bytes": 94648
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-tikka-beef"
+    ],
+    "titles": [
+      "Shift Tikka Beef Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked beef mince, tender baby potatoes, carrots and onion in tikka masala sauce; no unlisted vegetables.",
+    "alt": "Slow-cooked tikka beef mince with potatoes, carrots and onion.",
+    "reviewed_at": "2026-10-04T21:34:41.524971+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1389-review.json",
+    "source_sha256": "510794025c20f1d3b3d39fea8dea8d8c6476ca110c05158a2cc6a5657fd9bf38"
+  },
+  "integrated": true,
+  "live": false
+}

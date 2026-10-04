@@ -1,0 +1,88 @@
+{
+  "groupId": "32294ffa9a382cf6d9ba072df41a971c5e2f61eb537cb5815cae0d5acfa704c9",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-bbq-bacon"
+  ],
+  "titles": [
+    "Shift BBQ Bacon Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Bacon Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Trim visible fat from the back-bacon rashers and weigh the listed portion raw before cooking.\",\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use half the measured olive oil in a frying pan. Cut the bacon into bite-size pieces. Cook the lean back bacon thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked lean back bacon to the pan and heat through.\",\"Stir in the listed flavour ingredients (40g reduced-sugar BBQ sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Trim visible fat from the back-bacon rashers and weigh the listed portion raw before cooking.",
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use half the measured olive oil in a frying pan. Cut the bacon into bite-size pieces. Cook the lean back bacon thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked lean back bacon to the pan and heat through.",
+    "Stir in the listed flavour ingredients (40g reduced-sugar BBQ sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-76727dcb-584d-4b93-8c71-f8e502c7c97d.png",
+  "source_sha256": "08e96516e70aed52916e999d4017acefc227ed7ed97ee553813111326fc60ffb",
+  "generated_at": null,
+  "elapsed_ms": 145118.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-32294ffa9a382cf6d9ba-480.webp",
+      "sha256": "2817172aebb5316aec28301d54629e84aa3e439d9c49e47d31029287baeceb96",
+      "bytes": 31706
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-32294ffa9a382cf6d9ba.webp",
+      "sha256": "b298d48485c7317e6cd6d01364977a855092ce34df93c32f225465b8da04d018",
+      "bytes": 104048
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-bbq-bacon"
+    ],
+    "titles": [
+      "Shift BBQ Bacon Breakfast Toastie"
+    ],
+    "notes": "Crisp wholemeal sandwich is cut to reveal cooked bacon, softened tomato and wilted spinach in reddish BBQ sauce. Remaining matching cooked filling is served alongside, explicitly permitted by method. No melted cheese or invented garnish. Title, ingredients and finished state agree. Central crop must keep side filling on left; object-position 45% 50% recommended.",
+    "alt": "Toasted wholemeal bacon, tomato and spinach sandwich with BBQ sauce and extra filling alongside.",
+    "reviewed_at": "2026-10-04T21:12:01.688Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews.json",
+    "source_sha256": "08e96516e70aed52916e999d4017acefc227ed7ed97ee553813111326fc60ffb"
+  },
+  "integrated": true,
+  "live": false
+}

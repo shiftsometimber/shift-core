@@ -1,0 +1,85 @@
+{
+  "groupId": "57049920fc939de4e337cb621622f04b25dde9b89ee8a304303442656da9a8d1",
+  "recipe_ids": [
+    "industrial-v3-burger-tikka-beef"
+  ],
+  "titles": [
+    "Shift Tikka Beef Fakeaway Burger"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Beef Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"tikka sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.\",\"Press the 5% beef mince into a patty about 1.5cm thick, slightly wider than the bun; no binder is needed. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the beef patty over a medium heat for about 5\u20136 minutes on each side. Turn it carefully and leave it intact rather than repeatedly pressing it flat. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the measured tikka sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Put the lettuce and tomato in the toasted bun, add the cooked beef patty and the warm sauce, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No spring onions, coriander, parsley, sesame or decorative garnish unless the exact ingredient list includes them.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal burger bun",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.",
+    "Press the 5% beef mince into a patty about 1.5cm thick, slightly wider than the bun; no binder is needed. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the beef patty over a medium heat for about 5\u20136 minutes on each side. Turn it carefully and leave it intact rather than repeatedly pressing it flat. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the measured tikka sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Put the lettuce and tomato in the toasted bun, add the cooked beef patty and the warm sauce, then close the bun and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fa762285-c90e-4f44-8d3d-b2611e154a61.png",
+  "source_sha256": "393eaad7a96b998daf1dea3a7138e579ff021588120c19c0033b1600d7a03b4b",
+  "generated_at": "2026-10-04T21:29:55.972Z",
+  "elapsed_ms": 170614.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-57049920fc939de4e337-480.webp",
+      "sha256": "568fd6e1b768d93a09ea2ad4f218efb7ec267e640cd3c1ced0c4f2aa6ebf9f7b",
+      "bytes": 22468
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-57049920fc939de4e337.webp",
+      "sha256": "c8e893042d9e455179a20b86078ee6cab757267b0e1c805342d34d193430231b",
+      "bytes": 69538
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-burger-tikka-beef"
+    ],
+    "titles": [
+      "Shift Tikka Beef Fakeaway Burger"
+    ],
+    "notes": "Single cooked beef patty, shredded lettuce, sliced raw tomato and warm orange tikka sauce in plain wholemeal bun; no seeds, cheese or sides.",
+    "alt": "Wholemeal tikka beef burger with lettuce and tomato.",
+    "reviewed_at": "2026-10-04T21:32:00.682066+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1383-review.json",
+    "source_sha256": "393eaad7a96b998daf1dea3a7138e579ff021588120c19c0033b1600d7a03b4b"
+  },
+  "integrated": true,
+  "live": false
+}

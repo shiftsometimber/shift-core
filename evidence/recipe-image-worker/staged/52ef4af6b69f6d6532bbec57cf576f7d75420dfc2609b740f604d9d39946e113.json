@@ -1,0 +1,90 @@
+{
+  "groupId": "52ef4af6b69f6d6532bbec57cf576f7d75420dfc2609b740f604d9d39946e113",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-cheesy-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Cheesy Chicken Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Chicken Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked chicken breast to the pan and heat through.\",\"Scatter over the 30g reduced-fat cheddar and let it melt over the hot filling.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked chicken breast to the pan and heat through.",
+    "Scatter over the 30g reduced-fat cheddar and let it melt over the hot filling.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-67332c55-f0a4-4db5-8204-8e7694f44bd9.png",
+  "source_sha256": "257da7a1ed79009f8264622bcee94374fa5a592d0ea8d7a41983705cd29a8bef",
+  "generated_at": "2026-10-04T21:17:53.351Z",
+  "elapsed_ms": 300180,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-52ef4af6b69f6d6532bb-480.webp",
+      "sha256": "c2e3c94c707c06fd09d22373e16a753ea1b96a5a263057ba6c747b29443a3954",
+      "bytes": 26414
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-52ef4af6b69f6d6532bb.webp",
+      "sha256": "9eacf694c4d6d26188d416f645d78453c771b95bfef7126aa87e51afa3043bb2",
+      "bytes": 85046
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-cheesy-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Cheesy Chicken Breakfast Toastie"
+    ],
+    "notes": "Plain crisp wholemeal toastie with white fully cooked diced chicken breast, softened tomato, wilted spinach and melted cheddar. No additional sides or garnish; useful margins.",
+    "alt": "Chicken, tomato, spinach and cheddar wholemeal toastie.",
+    "reviewed_at": "2026-10-04T21:20:43.053706+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/122.json",
+    "source_sha256": "257da7a1ed79009f8264622bcee94374fa5a592d0ea8d7a41983705cd29a8bef"
+  },
+  "integrated": true,
+  "live": false
+}

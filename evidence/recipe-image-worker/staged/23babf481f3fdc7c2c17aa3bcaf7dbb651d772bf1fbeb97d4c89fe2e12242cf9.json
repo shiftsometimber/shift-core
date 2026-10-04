@@ -1,0 +1,83 @@
+{
+  "groupId": "23babf481f3fdc7c2c17aa3bcaf7dbb651d772bf1fbeb97d4c89fe2e12242cf9",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-bean-loaded-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Bean Loaded Chicken Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Bean Loaded Chicken Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"baked beans\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked chicken breast to the pan and heat through.\",\"Stir in the listed flavour ingredients (40g baked beans), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Show the listed cooked ingredients mixed together as a pan-fried breakfast hash, with 1 cm potato cubes. NO garnish or fried egg placed on top.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked chicken breast to the pan and heat through.",
+    "Stir in the listed flavour ingredients (40g baked beans), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-292a8d33-38a2-4b16-926d-b0748bc3befe.png",
+  "source_sha256": "5465a4f1de39695630e722c58bbc6effd520c9cecf48ae53de8f6d5c0be50d8e",
+  "generated_at": "2026-10-04T21:14:50.511Z",
+  "elapsed_ms": 247220.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-23babf481f3fdc7c2c17-480.webp",
+      "sha256": "a9dd5e97556a7907cad9a441e13b888a495f15a397fde7dd2f848710e3774d04",
+      "bytes": 26156
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-23babf481f3fdc7c2c17.webp",
+      "sha256": "93a8fcc4be773007097110922ee97b2e681b11c7655928785b00c2d900365114",
+      "bytes": 80196
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-bean-loaded-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Bean Loaded Chicken Breakfast Hash"
+    ],
+    "notes": "Diced cooked white chicken breast, golden potato cubes, onion, mixed peppers and baked beans; no garnish or sausage.",
+    "alt": "Chicken breakfast hash with golden potatoes, peppers, onion and baked beans.",
+    "reviewed_at": "2026-10-04T21:16:11.431962+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/73-review.json",
+    "source_sha256": "5465a4f1de39695630e722c58bbc6effd520c9cecf48ae53de8f6d5c0be50d8e"
+  },
+  "integrated": true,
+  "live": false
+}

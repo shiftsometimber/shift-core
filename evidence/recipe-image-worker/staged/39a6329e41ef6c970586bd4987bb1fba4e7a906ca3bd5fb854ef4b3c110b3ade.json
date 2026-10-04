@@ -1,0 +1,83 @@
+{
+  "groupId": "39a6329e41ef6c970586bd4987bb1fba4e7a906ca3bd5fb854ef4b3c110b3ade",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-bean-loaded-turkey"
+  ],
+  "titles": [
+    "Shift Bean Loaded Turkey Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Bean Loaded Turkey Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"baked beans\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-979ac7de-25d6-497b-8926-6fb4119740f9.png",
+  "source_sha256": "705a8166d75208562cbf5f54c46f3d45829b6e06e23c0a4e44674743ade68030",
+  "generated_at": "2026-10-04T21:13:26.723Z",
+  "elapsed_ms": 142805.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-39a6329e41ef6c970586-480.webp",
+      "sha256": "d0449ca04f708d1bdb304ec0b5874fa894811dde676761336c4666e6664feebb",
+      "bytes": 24300
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-39a6329e41ef6c970586.webp",
+      "sha256": "948c07777f1533479dcb201d7067583f29b261ce4df09c5dfe1247622277de6d",
+      "bytes": 75466
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-bean-loaded-turkey"
+    ],
+    "titles": [
+      "Shift Bean Loaded Turkey Breakfast Buttie"
+    ],
+    "notes": "Plain wholemeal bap with reheated turkey breast, cooked tomato, wilted spinach and beans; no added garnish.",
+    "alt": "Wholemeal bap with turkey breast, baked beans, spinach and tomato",
+    "reviewed_at": "2026-10-04T21:19:12.686099+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/84.json",
+    "source_sha256": "705a8166d75208562cbf5f54c46f3d45829b6e06e23c0a4e44674743ade68030"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,89 @@
+{
+  "groupId": "13d3b63999c895ff744e832d013dae0a2b382ce6e1e406ae08c96257f10fce00",
+  "recipe_ids": [
+    "industrial-v3-toastie-peri-peri-chickpea"
+  ],
+  "titles": [
+    "Shift Peri-Peri Chickpea Hot Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Chickpea Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"peri-peri yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.\",\"Use the measured peri-peri yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the measured peri-peri yoghurt between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Mexican/peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish, tortilla chips or extra ingredients. Listed yoghurt sauces are ready-to-eat dressings, not melted cheese.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.",
+    "Use the measured peri-peri yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+    "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the measured peri-peri yoghurt between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+    "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+    "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-images/evidence/recipe-image-worker/worker-f/1948.recovered.png",
+  "source_sha256": "e62f6802b03361810b6b75143814a712301f518a10609297455d19d6defbb13e",
+  "generated_at": "2026-10-04T22:47:30.993Z",
+  "elapsed_ms": 391046.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-13d3b63999c895ff744e-480-85197d182b86.webp",
+      "sha256": "85197d182b865db2dd2e3ccd5cde3c67fa7c4aa467e01e60581154bae1ab0905",
+      "bytes": 32476
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-13d3b63999c895ff744e-020441efc52a.webp",
+      "sha256": "020441efc52ad038e3f56a9a6c0d9310af842ce6a1782587ee17aead330909ff",
+      "bytes": 96364
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "e62f6802b03361810b6b75143814a712301f518a10609297455d19d6defbb13e",
+    "recipe_ids": [
+      "industrial-v3-toastie-peri-peri-chickpea"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chickpea Hot Toastie"
+    ],
+    "notes": "Crisp wholemeal toastie with roughly mashed chickpeas, tomato/spinach and peri-peri yoghurt; raw spinach/tomato side salad. No unlisted garnish, cheese, seeds or substitutions. Dressing placement matches method.",
+    "alt": "Peri-Peri Chickpea Hot Toastie with tomato, spinach",
+    "reviewed_at": "2026-10-04T22:50:59.464464+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1948.json"
+  },
+  "integrated": true,
+  "live": false
+}

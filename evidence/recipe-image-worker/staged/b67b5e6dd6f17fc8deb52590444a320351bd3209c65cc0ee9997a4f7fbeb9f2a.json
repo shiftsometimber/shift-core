@@ -1,0 +1,81 @@
+{
+  "groupId": "b67b5e6dd6f17fc8deb52590444a320351bd3209c65cc0ee9997a4f7fbeb9f2a",
+  "recipe_ids": [
+    "industrial-breakfast-breakfast-wrap-plum-ginger-7"
+  ],
+  "titles": [
+    "Egg Chickpeas Rocket Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Chickpeas Rocket Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g drained\",\"item\":\"chickpeas\"},{\"amount\":\"1 / 65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"rocket\"},{\"amount\":\"50g\",\"item\":\"tomato salsa\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g drained",
+      "item": "chickpeas"
+    },
+    {
+      "amount": "1 / 65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "rocket"
+    },
+    {
+      "amount": "50g",
+      "item": "tomato salsa"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f2e485db-4a49-402e-bde7-56b0a8749d0a.png",
+  "source_sha256": "93976e194564999ed5e3660c894ce3a090a28b2d3b143c9a497577c9479aed19",
+  "generated_at": "2026-10-04T21:09:56.780Z",
+  "elapsed_ms": 477472,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b67b5e6dd6f17fc8deb5-480.webp",
+      "sha256": "faa40e31f3e13b56c31592cb89b22913a70006a4ce7aa5a7e3a20eefcdda8aa2",
+      "bytes": 25038
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b67b5e6dd6f17fc8deb5.webp",
+      "sha256": "ec7eaec339be8ca94440551a27ef5a51bb6695e66d46a046095748ae5e750046",
+      "bytes": 71516
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-breakfast-wrap-plum-ginger-7"
+    ],
+    "titles": [
+      "Egg Chickpeas Rocket Breakfast Wrap"
+    ],
+    "notes": "Toasted wholemeal wrap reveals cooked egg, chickpeas, rocket and salsa; no kidney bean substitution or cheese. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Toasted wholemeal wrap filled with cooked egg, chickpeas, rocket and salsa.",
+    "reviewed_at": "2026-10-04T21:13:56.961537+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "93976e194564999ed5e3660c894ce3a090a28b2d3b143c9a497577c9479aed19"
+  }
+}

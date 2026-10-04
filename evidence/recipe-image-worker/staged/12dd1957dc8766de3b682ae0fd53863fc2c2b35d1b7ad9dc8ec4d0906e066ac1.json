@@ -1,0 +1,95 @@
+{
+  "groupId": "12dd1957dc8766de3b682ae0fd53863fc2c2b35d1b7ad9dc8ec4d0906e066ac1",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-garlic-herb-beans"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Beans Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Beans Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"35g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.\",\"Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the baked beans and heat gently until steaming hot throughout.\",\"Stir in the listed flavour ingredients (1g garlic powder, 1g dried parsley), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Take the pan off the heat before stirring through the 35g 0% Greek yoghurt.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "35g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.",
+    "Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the baked beans and heat gently until steaming hot throughout.",
+    "Stir in the listed flavour ingredients (1g garlic powder, 1g dried parsley), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Take the pan off the heat before stirring through the 35g 0% Greek yoghurt.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-77ac1dcc-6816-460e-a832-0dbe1216a719.png",
+  "source_sha256": "d0a861f41af866f02b542a816afb268256d4c89d831ab3d79181a23b9a6d097b",
+  "generated_at": "2026-10-04T21:39:49.299Z",
+  "elapsed_ms": 153995,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-12dd1957dc8766de3b68-480.webp",
+      "sha256": "9826995109c6089c97783d21a9d83b686c5cb1550c3ce366a94d2cd5120c09fb",
+      "bytes": 23396
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-12dd1957dc8766de3b68.webp",
+      "sha256": "f357b560952621767a1cd8a0a15960dfe9144ba8ff0ee4ac1c2694c96f3754e7",
+      "bytes": 67812
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-garlic-herb-beans"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beans Breakfast Hash"
+    ],
+    "notes": "Golden potatoes, hot baked beans, cooked onion and peppers coated in yoghurt with fine dried parsley flecks. Matches yoghurt stirred-through hash method; no fresh garnish or cheese.",
+    "alt": "Potato and baked bean hash with onion, peppers and garlic-herb yoghurt.",
+    "reviewed_at": "2026-10-04T21:42:36.440394+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/165.json",
+    "source_sha256": "d0a861f41af866f02b542a816afb268256d4c89d831ab3d79181a23b9a6d097b"
+  },
+  "integrated": true,
+  "live": false
+}

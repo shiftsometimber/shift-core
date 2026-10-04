@@ -1,0 +1,95 @@
+{
+  "groupId": "e1070b0997490c64cc6e78af2321942992dcd570185ab6bd5717e298fdcc9a0e",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-cajun-beans"
+  ],
+  "titles": [
+    "Shift Cajun Beans Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Beans Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"1g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried oregano\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "1g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried oregano"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-09a16fc6-cb14-49f3-be03-037f7bb21a8f.png",
+  "source_sha256": "f63640098f4a8f79dd4b097ebcd9ea457fbb38994abce2399f3b7cfb251e9eb1",
+  "generated_at": "2026-10-04T21:16:56.771Z",
+  "elapsed_ms": 352852.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e1070b0997490c64cc6e-480.webp",
+      "sha256": "4e8a0e9f1ce1ded5d510c5539eb5c335604e6a87dc4d7c1a757ee48f96f097c9",
+      "bytes": 25610
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e1070b0997490c64cc6e.webp",
+      "sha256": "81e3b92106d1cea764636cbdfa16ed89788958ed79b74a40167f932582c05da5",
+      "bytes": 80138
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-cajun-beans"
+    ],
+    "titles": [
+      "Shift Cajun Beans Breakfast Buttie"
+    ],
+    "notes": "Plain wholemeal bap filled with hot beans, cooked tomato and wilted spinach; no protein substitutions or garnish.",
+    "alt": "Cajun baked bean wholemeal bap with tomato and spinach",
+    "reviewed_at": "2026-10-04T21:19:14.633620+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/92.json",
+    "source_sha256": "f63640098f4a8f79dd4b097ebcd9ea457fbb38994abce2399f3b7cfb251e9eb1"
+  },
+  "integrated": true,
+  "live": false
+}

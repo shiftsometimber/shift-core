@@ -1,0 +1,80 @@
+{
+  "groupId": "1dc1938b19378d9768cb02160c76b4383d05cfc4d0131da21392caa996ad3060",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-bbq-turkey"
+  ],
+  "titles": [
+    "Shift BBQ Turkey Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Turkey Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ glaze\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the turkey mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and turkey mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the turkey mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ glaze"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the turkey mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and turkey mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the turkey mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e755625d-2118-4fbf-b8e6-79c90dfc2b12.png",
+  "source_sha256": "141c2b7f772415ae0967a18d2f5100e68874b4467718451d03254ae765fe4c2a",
+  "generated_at": null,
+  "elapsed_ms": 320980.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1dc1938b19378d9768cb-480.webp",
+      "sha256": "65ab64fba9ff308d538c98379856644d920b486e63ecfc0f302aa5a39cc3622e",
+      "bytes": 29518
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1dc1938b19378d9768cb.webp",
+      "sha256": "8d5524363c685e5258e7b2d7177c208ab27471816cc05d7e2251828cb32782a5",
+      "bytes": 94822
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-bbq-turkey"
+    ],
+    "titles": [
+      "Shift BBQ Turkey Slow-Cooker Big Pot"
+    ],
+    "notes": "Loose cooked turkey mince, tender baby-potato pieces, carrot chunks and translucent onions in moist BBQ glaze; no breast chunks or extra garnish. Exact ingredient identity/preparation and all member titles checked; plausible single serving with central responsive crop.",
+    "alt": "Slow-cooked turkey mince with baby potatoes, carrots, onion and BBQ glaze.",
+    "reviewed_at": "2026-10-04T21:47:42.797Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-576-592.json",
+    "source_sha256": "141c2b7f772415ae0967a18d2f5100e68874b4467718451d03254ae765fe4c2a"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,83 @@
+{
+  "groupId": "6270bf6bf708ab5dac9186f3661aaf34fcd8925e57e7c7e1be4aba44fc6c5dea",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-katsu-pork"
+  ],
+  "titles": [
+    "Shift Katsu Pork Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Katsu Pork Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"katsu-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Cut the lean pork loin across the grain into strips about 1cm thick. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the pork strips over a medium-high heat for about 7\u20139 minutes, turning regularly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.\",\"Put the measured katsu-style sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Pile the crisp oven chips onto a plate and spoon over the cooked pork strips, the red onion and peppers, followed by the warm sauce. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "katsu-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Cut the lean pork loin across the grain into strips about 1cm thick. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the pork strips over a medium-high heat for about 7\u20139 minutes, turning regularly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.",
+    "Put the measured katsu-style sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Pile the crisp oven chips onto a plate and spoon over the cooked pork strips, the red onion and peppers, followed by the warm sauce. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-acdbef52-d2de-470c-ad35-7bbc72c297b2.png",
+  "source_sha256": "9fa31c3fbf2dd2aa1d7758e2359ffab56682b9b30b138d93f128070fe244c912",
+  "generated_at": "2026-10-04T21:32:02.548Z",
+  "elapsed_ms": 354542.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6270bf6bf708ab5dac91-480.webp",
+      "sha256": "028ca2723bf5c1ced8bd91a5c9ad73e54a4e39ce8db3d7be531fbff25541c79f",
+      "bytes": 30634
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6270bf6bf708ab5dac91.webp",
+      "sha256": "448eff4dca00e5d95bb7991ba685112cdce8dc220d119537a274f54709e26d08",
+      "bytes": 99154
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-katsu-pork"
+    ],
+    "titles": [
+      "Shift Katsu Pork Loaded Fries"
+    ],
+    "notes": "Plain golden oven chips topped with cooked browned lean pork strips, softened red onion and mixed peppers under katsu-style sauce. White cooked pork interiors visible, no breadcrumb coating, cheese or garnish. Correct loaded assembly; single plate with margin.",
+    "alt": "Katsu pork loaded fries with red onion and mixed peppers",
+    "reviewed_at": "2026-10-04T21:32:41.283773+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/973.json",
+    "source_sha256": "9fa31c3fbf2dd2aa1d7758e2359ffab56682b9b30b138d93f128070fe244c912"
+  },
+  "integrated": true,
+  "live": false
+}

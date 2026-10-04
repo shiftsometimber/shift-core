@@ -1,0 +1,86 @@
+{
+  "groupId": "09dfa0ded6770e27b8f34f39a4a91633b04076ff86cc614864f602589c58e0da",
+  "recipe_ids": [
+    "industrial-v3-meal-prep-bowl-greek-chickpea"
+  ],
+  "titles": [
+    "Shift Greek Chickpea Meal-Prep Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Greek Chickpea Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"amount\":\"40g\",\"item\":\"lemon herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Use the measured lemon herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured lemon herb yoghurt and olive oil dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Never add a lemon wedge just because the sauce is lemon herb yoghurt.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "40g",
+      "item": "lemon herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+    "Use the measured lemon herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured lemon herb yoghurt and olive oil dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0fccfd7c-976f-4128-8620-d4185bad3f2d.png",
+  "source_sha256": "4d5395d931b9b37b6300a8014073ec75fc7d011d9b25aee8cb5becadaac9beac",
+  "generated_at": "2026-10-04T21:36:35.327Z",
+  "elapsed_ms": 43087.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-09dfa0ded6770e27b8f3-480.webp",
+      "sha256": "3901b3eebf2f27395dd2d53bf17453badaa13c3d67b0948b3f4e619c5b6d4bc0",
+      "bytes": 26006
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-09dfa0ded6770e27b8f3.webp",
+      "sha256": "afe2b8863762fd4d9e867b3f6435398cca43ffd4647394fa0e25b58250f8a611",
+      "bytes": 73328
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-greek-chickpea"
+    ],
+    "titles": [
+      "Shift Greek Chickpea Meal-Prep Bowl"
+    ],
+    "notes": "Cooked brown rice with chickpeas, diced mixed peppers, sweetcorn and lemon herb yoghurt mixed through; no unlisted garnish.",
+    "alt": "Greek Chickpea Meal-Prep Bowl with mixed peppers, sweetcorn",
+    "reviewed_at": "2026-10-04T21:43:20.910226+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1809.json",
+    "source_sha256": "4d5395d931b9b37b6300a8014073ec75fc7d011d9b25aee8cb5becadaac9beac"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,83 @@
+{
+  "groupId": "558f467249f56a2df6b9436dbd214a88ae47bfac665a2dca7c188dfdb9d49b6f",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-banana-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Banana Cottage Cheese Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Banana Cottage Cheese Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"sliced banana\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow every dry/separate and soaked/prepared instruction exactly.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sliced banana"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7f4a8914-b380-4bc8-a4e4-64adc48e368d.png",
+  "source_sha256": "ce72ed2ee6a7dc6753cb54132c8f3dcb2cecaabe94c2e1c6abcba97dba8eff21",
+  "generated_at": "2026-10-04T21:37:26.055Z",
+  "elapsed_ms": 28423,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-558f467249f56a2df6b9-480.webp",
+      "sha256": "08cd045105d94dd036fda37c00853dcd4bb6bfbef65ed64d4a36ff3ddbe017c6",
+      "bytes": 23618
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-558f467249f56a2df6b9.webp",
+      "sha256": "6640304626e3919c27f0265e99ef482d260f8a1b55aaa132a75f241e21a1c097",
+      "bytes": 69880
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-banana-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Banana Cottage Cheese Protein Pot"
+    ],
+    "notes": "Cottage cheese curds with banana and mixed berries; oats and pumpkin seeds added as crunchy serving topping; no yoghurt or chocolate.",
+    "alt": "Cottage cheese protein pot with banana, berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:44:57.246269+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/558f467249f56a2df6b9436dbd214a88ae47bfac665a2dca7c188dfdb9d49b6f.json",
+    "source_sha256": "ce72ed2ee6a7dc6753cb54132c8f3dcb2cecaabe94c2e1c6abcba97dba8eff21"
+  },
+  "integrated": true,
+  "live": false
+}

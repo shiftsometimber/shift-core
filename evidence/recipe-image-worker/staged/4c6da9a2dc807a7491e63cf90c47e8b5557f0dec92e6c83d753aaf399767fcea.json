@@ -1,0 +1,85 @@
+{
+  "groupId": "4c6da9a2dc807a7491e63cf90c47e8b5557f0dec92e6c83d753aaf399767fcea",
+  "recipe_ids": [
+    "industrial-v3-kebab-katsu-beef"
+  ],
+  "titles": [
+    "Shift Katsu Beef Fakeaway Kebab"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Katsu Beef Fakeaway Kebab. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"80g\",\"item\":\"wholemeal flatbread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"katsu-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.\",\"Press the 5% beef mince firmly into three short koftas, each no thicker than 1.5cm; no skewers or binder are needed. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the beef koftas over a medium heat for about 10\u201312 minutes, turning them onto every side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the measured katsu-style sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Put the lettuce and tomato on the warm flatbread. Add the cooked beef koftas and the warm sauce, fold the bread around the filling and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal flatbread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "katsu-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.",
+    "Press the 5% beef mince firmly into three short koftas, each no thicker than 1.5cm; no skewers or binder are needed. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the beef koftas over a medium heat for about 10\u201312 minutes, turning them onto every side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the measured katsu-style sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Put the lettuce and tomato on the warm flatbread. Add the cooked beef koftas and the warm sauce, fold the bread around the filling and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9fc04fba-b823-40a3-a944-c41eda1bcbca.png",
+  "source_sha256": "dc7c82e7d1ec44c0857f175ca4286bd738b1c93c0dd065223c158abd4c84d187",
+  "generated_at": "2026-10-04T21:28:09.348Z",
+  "elapsed_ms": 121342.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4c6da9a2dc807a7491e6-480.webp",
+      "sha256": "649be582d244d2889c549a8191497c70f3673c3a23b2c1b75638f1d860cb41ad",
+      "bytes": 21904
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4c6da9a2dc807a7491e6.webp",
+      "sha256": "d9163b9e107cfdfdf2debda664011e02fe87e55e3d546ecd85ea73b7679efba4",
+      "bytes": 65568
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-kebab-katsu-beef"
+    ],
+    "titles": [
+      "Shift Katsu Beef Fakeaway Kebab"
+    ],
+    "notes": "Three cooked browned beef koftas in folded unseeded wholemeal flatbread with shredded lettuce, sliced tomato and katsu-style sauce. Correct three short kofta shape, no cheese, onion, herbs or side foods. Single serving with margin.",
+    "alt": "Wholemeal flatbread with katsu beef koftas, lettuce and tomato",
+    "reviewed_at": "2026-10-04T21:29:03.035467+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/964.json",
+    "source_sha256": "dc7c82e7d1ec44c0857f175ca4286bd738b1c93c0dd065223c158abd4c84d187"
+  },
+  "integrated": true,
+  "live": false
+}

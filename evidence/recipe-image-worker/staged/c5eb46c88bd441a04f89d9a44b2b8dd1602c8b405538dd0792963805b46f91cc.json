@@ -1,0 +1,83 @@
+{
+  "groupId": "c5eb46c88bd441a04f89d9a44b2b8dd1602c8b405538dd0792963805b46f91cc",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-bbq-sausage"
+  ],
+  "titles": [
+    "Shift BBQ Sausage Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Sausage Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8053fbaa-0dd8-4fd7-8d01-650d566cce7d.png",
+  "source_sha256": "18135c62cb712372525e5070738f19a12ce46dd552f474e811d34064b4bf7bc1",
+  "generated_at": "2026-10-04T21:15:03.362Z",
+  "elapsed_ms": 291345.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c5eb46c88bd441a04f89-480.webp",
+      "sha256": "86317b45bf7325fdb9a255be0def993350e472345e6a113c634532b9d0e92bc6",
+      "bytes": 27856
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c5eb46c88bd441a04f89.webp",
+      "sha256": "a846e1fb55d28e1f21234e8116d06820266fe0df1e351899eaa61501881a2004",
+      "bytes": 88272
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-bbq-sausage"
+    ],
+    "titles": [
+      "Shift BBQ Sausage Breakfast Buttie"
+    ],
+    "notes": "Two browned cooked pork sausages in a wholemeal bap with softened tomato and wilted spinach, barbecue sauce coats filling. No egg, cheese or garnish. Single realistic sandwich with margin.",
+    "alt": "Wholemeal bap with barbecue pork sausages, tomato and spinach",
+    "reviewed_at": "2026-10-04T21:16:04.038359+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/60.json",
+    "source_sha256": "18135c62cb712372525e5070738f19a12ce46dd552f474e811d34064b4bf7bc1"
+  },
+  "integrated": true,
+  "live": false
+}

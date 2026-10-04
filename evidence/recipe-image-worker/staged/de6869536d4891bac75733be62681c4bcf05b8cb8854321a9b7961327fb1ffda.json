@@ -1,0 +1,89 @@
+{
+  "groupId": "de6869536d4891bac75733be62681c4bcf05b8cb8854321a9b7961327fb1ffda",
+  "recipe_ids": [
+    "industrial-v3-wrap-garlic-herb-tuna"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Tuna Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Tuna Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the tuna in spring water, drained; if the filling is being served hot, reduce only the sauce-coated tuna in spring water, drained until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the tuna in spring water, drained; if the filling is being served hot, reduce only the sauce-coated tuna in spring water, drained until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c61ab95b-b782-40e4-9a24-d4f48cc8516e.png",
+  "source_sha256": "4556f2f39792d9ad8408753b0cd90270b9eb03462c00035977b1cb058d205b80",
+  "generated_at": "2026-10-04T21:25:52.372Z",
+  "elapsed_ms": 372907.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-de6869536d4891bac757-480.webp",
+      "sha256": "9f7b5de730d3726a837e24cccc2aebfd0ee82a393809a4798fb07ed18980a3ba",
+      "bytes": 22712
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-de6869536d4891bac757.webp",
+      "sha256": "2a51524145ca806cde42b00e717fd56a5f2537e96ab50cb6b8bee50231daee0f",
+      "bytes": 66692
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-wrap-garlic-herb-tuna"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tuna Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with tuna flakes, fresh lettuce/tomato and garlic herb yoghurt; no unlisted garnish.",
+    "alt": "Garlic & Herb Tuna Loaded Wrap with tuna and garlic herb yoghurt",
+    "reviewed_at": "2026-10-04T21:27:33.048081+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1790.json",
+    "source_sha256": "4556f2f39792d9ad8408753b0cd90270b9eb03462c00035977b1cb058d205b80"
+  },
+  "integrated": true,
+  "live": false
+}

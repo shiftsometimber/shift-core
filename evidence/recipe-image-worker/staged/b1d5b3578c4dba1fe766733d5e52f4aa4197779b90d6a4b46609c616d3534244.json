@@ -1,0 +1,95 @@
+{
+  "groupId": "b1d5b3578c4dba1fe766733d5e52f4aa4197779b90d6a4b46609c616d3534244",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-cajun-turkey"
+  ],
+  "titles": [
+    "Shift Cajun Turkey Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Turkey Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"1g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried oregano\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "1g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried oregano"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4357a91f-0988-42db-863f-6ca9c9befdc3.png",
+  "source_sha256": "32da41e13ab7f1c593f2a6b8f54ea287d804b4243355e29e1cadafda39242424",
+  "generated_at": "2026-10-04T21:16:11.119Z",
+  "elapsed_ms": 293640,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b1d5b3578c4dba1fe766-480.webp",
+      "sha256": "77d576e3d5c0a1c694d65cd177e72c48c43071b04e1bc6df3c841d34620303d4",
+      "bytes": 30370
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b1d5b3578c4dba1fe766.webp",
+      "sha256": "7c4a91e350e71623d6f42b0828ec01cbe95b2f7b275ea02ece168987ca053c3f",
+      "bytes": 98456
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-cajun-turkey"
+    ],
+    "titles": [
+      "Shift Cajun Turkey Breakfast Buttie"
+    ],
+    "notes": "Wholemeal bap with lightly browned cooked turkey breast pieces, cooked tomato and wilted spinach; no extra protein, sauce or garnish.",
+    "alt": "Cajun turkey breakfast bap with tomato and spinach",
+    "reviewed_at": "2026-10-04T21:17:51.977686+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/b1d5b3578c4dba1fe766733d5e52f4aa4197779b90d6a4b46609c616d3534244.json",
+    "source_sha256": "32da41e13ab7f1c593f2a6b8f54ea287d804b4243355e29e1cadafda39242424"
+  },
+  "integrated": true,
+  "live": false
+}

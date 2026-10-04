@@ -1,0 +1,83 @@
+{
+  "groupId": "488fac7ffd2ff321049cd58228800cbf5796e8f6219f3f7e34453fe369a95fdb",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-apple-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Apple Greek Yoghurt Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Greek Yoghurt Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"diced apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "diced apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b7d27855-a733-4247-999c-cb6fe0d075e5.png",
+  "source_sha256": "4170b4e34b2eb91b177ac726c82bfe516dd8f47a23c5d7abe1e61c3f1899125f",
+  "generated_at": "2026-10-04T21:30:02.275Z",
+  "elapsed_ms": 117730,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-488fac7ffd2ff321049c-480.webp",
+      "sha256": "8f6d72941ce517612c692539fc7db5d66b9a6214735716a0c68bf5d6d55b961f",
+      "bytes": 22124
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-488fac7ffd2ff321049c.webp",
+      "sha256": "b023acdad2dc57f993987000cacb9223ba3aaa7318c165c34f4fe863968e7d10",
+      "bytes": 68916
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-apple-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Apple Greek Yoghurt Protein Pot"
+    ],
+    "notes": "Smooth Greek yoghurt topped at serving with apple, berries, rolled oats and pumpkin seeds; no chocolate or extra sweetener.",
+    "alt": "Greek yoghurt protein pot with apple, berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:36:23.929400+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/488fac7ffd2ff321049cd58228800cbf5796e8f6219f3f7e34453fe369a95fdb.json",
+    "source_sha256": "4170b4e34b2eb91b177ac726c82bfe516dd8f47a23c5d7abe1e61c3f1899125f"
+  },
+  "integrated": true,
+  "live": false
+}

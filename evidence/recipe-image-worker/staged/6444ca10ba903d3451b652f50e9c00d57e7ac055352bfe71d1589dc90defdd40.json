@@ -1,0 +1,93 @@
+{
+  "groupId": "6444ca10ba903d3451b652f50e9c00d57e7ac055352bfe71d1589dc90defdd40",
+  "recipe_ids": [
+    "industrial-v3-roast-lemon-herb-beef"
+  ],
+  "titles": [
+    "Shift Lemon Herb Beef Sunday-Style Roast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Beef Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Shape the 5% beef mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Stir together the measured light mayonnaise, lemon juice, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Serve the cooked 5% beef mince, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, lemon juice, dried parsley dressing alongside after cooking.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Shape the 5% beef mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Stir together the measured light mayonnaise, lemon juice, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Serve the cooked 5% beef mince, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, lemon juice, dried parsley dressing alongside after cooking."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a49d93ed-5f07-4cba-9816-54e19179f773.png",
+  "source_sha256": "31813cd56fbb4c4b36edd3605f65061d11efea88c91c866458452eabd9a9c580",
+  "generated_at": "2026-10-04T21:40:50.293Z",
+  "elapsed_ms": 392377.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6444ca10ba903d3451b6-480.webp",
+      "sha256": "70ddbdf04697bd511a8b231e0353d3263b18add402a1aae7b2a0b89c76d4e97d",
+      "bytes": 27192
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6444ca10ba903d3451b6.webp",
+      "sha256": "d864514c2e5c7448ebe8511f4a1435e5d122342b984f4bc13d099c6a381c97cb",
+      "bytes": 81952
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-roast-lemon-herb-beef"
+    ],
+    "titles": [
+      "Shift Lemon Herb Beef Sunday-Style Roast"
+    ],
+    "notes": "Exactly two compact browned beef mince portions, roast peeled potato chunks and carrot batons with boiled broccoli; cold mayonnaise lemon and dried parsley dressing separate in ramekin. No roast joint, gravy or garnish.",
+    "alt": "Two beef mince portions with roast potatoes, carrots, broccoli and lemon herb dressing",
+    "reviewed_at": "2026-10-04T21:42:25.367847+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/991.json",
+    "source_sha256": "31813cd56fbb4c4b36edd3605f65061d11efea88c91c866458452eabd9a9c580"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,82 @@
+{
+  "groupId": "b83d1bf16bc24b412d52de55aa6bb475fa95d55227bf5c39e56c27a3fb14f16b",
+  "recipe_ids": [
+    "industrial-v3-traybake-lemon-herb-chicken"
+  ],
+  "titles": [
+    "Shift Lemon Herb Chicken Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Chicken Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Dried parsley is small rehydrated flecks in the dressing, never fresh leaves as garnish. No lemon wedges. Depict the named protein in the exact cut and cooked form specified; pie topping is potato, not pastry.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.",
+    "Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b641e619-6d9a-403d-a44b-3d864f7633ab.png",
+  "source_sha256": "732a8426d64a0f8baf9e6bd1ebaadd3b56442b7bd139e081071b31f39c70eb00",
+  "generated_at": "2026-10-04T21:45:49.290Z",
+  "elapsed_ms": 185770.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b83d1bf16bc24b412d52-480.webp",
+      "sha256": "e70d9e8e3922ef3209c915eb92b754357a2fcbe67a97f1f4ec982cb95f27e035",
+      "bytes": 30958
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b83d1bf16bc24b412d52.webp",
+      "sha256": "390c472e6a39c0210b1da011dff7bd9d2cbc90046b790303593d47167111ce57",
+      "bytes": 98464
+    }
+  ],
+  "review_status": "reject",
+  "review": {
+    "decision": "reject",
+    "source_sha256": "732a8426d64a0f8baf9e6bd1ebaadd3b56442b7bd139e081071b31f39c70eb00",
+    "notes": "Recovered older checkpoint: later visual inspection rejected herb placement, dressing is specified cold/separate. Regeneration required.",
+    "reviewed_at": "2026-10-04T22:52:14.306257+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

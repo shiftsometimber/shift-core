@@ -1,0 +1,94 @@
+{
+  "groupId": "c2d904bc6f38666f74c32a3b8d9ee509fb0f159150645a5698b81b4299cfdd92",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-garlic-herb-beans"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Beans Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Beans Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"35g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "35g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-63272e0e-7196-40ac-bf42-35795e84c4fd.png",
+  "source_sha256": "687f32ddde2bb04a0ee550f6eedf37f8612cf96a8a4f193c1e24015dd63211b6",
+  "generated_at": "2026-10-04T21:40:42.646Z",
+  "elapsed_ms": 207342,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c2d904bc6f38666f74c3-480.webp",
+      "sha256": "02a3f4dc19929c3fbb7d9965cd7f4b93d0cbab1e4bd974feb1547cb07089f1ee",
+      "bytes": 17204
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c2d904bc6f38666f74c3.webp",
+      "sha256": "a6a1866e7d7e4c1c8ca504247a6ada3e73b74042698c5b84e5ae49e60613c507",
+      "bytes": 48742
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-garlic-herb-beans"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beans Breakfast Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with baked beans, softened mixed peppers, wilted spinach and creamy yoghurt-herb coating. No cheese, fresh garnish or extra side; cooked serving form matches.",
+    "alt": "Wholemeal wrap with baked beans, peppers, spinach and garlic-herb yoghurt.",
+    "reviewed_at": "2026-10-04T21:42:36.845926+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/167.json",
+    "source_sha256": "687f32ddde2bb04a0ee550f6eedf37f8612cf96a8a4f193c1e24015dd63211b6"
+  },
+  "integrated": true,
+  "live": false
+}

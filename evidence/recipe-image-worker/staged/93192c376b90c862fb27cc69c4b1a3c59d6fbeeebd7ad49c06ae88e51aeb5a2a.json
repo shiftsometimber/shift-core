@@ -1,0 +1,86 @@
+{
+  "groupId": "93192c376b90c862fb27cc69c4b1a3c59d6fbeeebd7ad49c06ae88e51aeb5a2a",
+  "recipe_ids": [
+    "industrial-v3-sandwich-garlic-herb-ham"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Ham Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Ham Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the garlic & herb flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the garlic & herb flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fdd2d349-d05d-4b11-bbbf-56f97043ca59.png",
+  "source_sha256": "d182f07075aaff98f1aea7db35aa57f4f08a4fd655bedee41d9a78dc95169b37",
+  "generated_at": "2026-10-04T21:24:10.887Z",
+  "elapsed_ms": 271422.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-93192c376b90c862fb27-480.webp",
+      "sha256": "aa3b85e2243f99882636f281c691ba19b5fcc990cf578cd5409716396ec0e83c",
+      "bytes": 22266
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-93192c376b90c862fb27.webp",
+      "sha256": "61021d78e526229471eae489930e4a7ae32495235e3b6b5e2fc7f04989208553",
+      "bytes": 65780
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-sandwich-garlic-herb-ham"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Ham Proper Sandwich"
+    ],
+    "notes": "Plain wholemeal sandwich with lightly coloured lean ham, fresh lettuce/tomato and garlic herb yoghurt; no added cheese or seeds.",
+    "alt": "Garlic & Herb Ham Proper Sandwich with lean ham and garlic herb yoghurt",
+    "reviewed_at": "2026-10-04T21:27:31.994125+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1786.json",
+    "source_sha256": "d182f07075aaff98f1aea7db35aa57f4f08a4fd655bedee41d9a78dc95169b37"
+  },
+  "integrated": true,
+  "live": false
+}

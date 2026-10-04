@@ -1,0 +1,80 @@
+{
+  "groupId": "0bbf7f239e931b082290a0fa22d495a7cbaeeea0e08786f46909fb53efcf8ea3",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-teriyaki-pork"
+  ],
+  "titles": [
+    "Shift Teriyaki Pork Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Teriyaki Pork Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"reduced-salt teriyaki sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No spring onions, coriander, parsley, sesame or decorative garnish unless the exact ingredient list includes them.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-salt teriyaki sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c2f8f0fe-332e-42a3-8476-6b28a01e6085.png",
+  "source_sha256": "1b80bf30345d5478577f0be5e9b4319963eeb02c703b54b35e520b81b7770813",
+  "generated_at": "2026-10-04T21:24:10.361Z",
+  "elapsed_ms": 301865.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0bbf7f239e931b082290-480.webp",
+      "sha256": "c832d496dea6004c048a80307a3fff1e5b42a2a3d423c0faf280992a2d488ac2",
+      "bytes": 23772
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0bbf7f239e931b082290.webp",
+      "sha256": "c5b53d858190b0180cbfa9105641e9beab2ec41289826003521fd18ad7b96052",
+      "bytes": 75054
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-teriyaki-pork"
+    ],
+    "titles": [
+      "Shift Teriyaki Pork Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked lean pork loin pieces with tender potatoes, carrots and softened onion in teriyaki juices; no garnish.",
+    "alt": "Slow-cooked teriyaki pork loin with potatoes, carrots and onion.",
+    "reviewed_at": "2026-10-04T21:26:40.293677+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1371-review.json",
+    "source_sha256": "1b80bf30345d5478577f0be5e9b4319963eeb02c703b54b35e520b81b7770813"
+  },
+  "integrated": true,
+  "live": false
+}

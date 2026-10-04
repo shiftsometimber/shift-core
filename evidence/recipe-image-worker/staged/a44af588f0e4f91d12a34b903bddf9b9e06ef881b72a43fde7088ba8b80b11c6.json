@@ -1,0 +1,87 @@
+{
+  "groupId": "a44af588f0e4f91d12a34b903bddf9b9e06ef881b72a43fde7088ba8b80b11c6",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-banana-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Banana Cottage Cheese Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Banana Cottage Cheese Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"sliced banana\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow every dry/separate and soaked/prepared instruction exactly.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sliced banana"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8d54f421-b0a7-4abc-94bb-1004310430e0.png",
+  "source_sha256": "78794a4fb6ac022f747b8441e8ff905074761312bf136859b1ae9b6efb0b6143",
+  "generated_at": "2026-10-04T21:37:57.107Z",
+  "elapsed_ms": 59475,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a44af588f0e4f91d12a3-480.webp",
+      "sha256": "50046dc4e7a6faee655ab3b72e341bf85cfe83720748f4d0c319803d3c8c9314",
+      "bytes": 20008
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a44af588f0e4f91d12a3.webp",
+      "sha256": "0fe98a63eb2325ef52c28a55d33317e5b16446b8be0f40fa4f0844c14df8b532",
+      "bytes": 60312
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-banana-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Banana Cottage Cheese Dessert Pot"
+    ],
+    "notes": "Cottage cheese curds with sliced banana, mixed berries, oats and pumpkin seeds with light yoghurt swirl; no apple or chocolate.",
+    "alt": "Cottage cheese dessert pot with banana, berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:44:56.579252+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/a44af588f0e4f91d12a34b903bddf9b9e06ef881b72a43fde7088ba8b80b11c6.json",
+    "source_sha256": "78794a4fb6ac022f747b8441e8ff905074761312bf136859b1ae9b6efb0b6143"
+  },
+  "integrated": true,
+  "live": false
+}

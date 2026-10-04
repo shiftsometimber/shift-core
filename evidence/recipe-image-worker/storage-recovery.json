@@ -1,0 +1,32 @@
+{
+  "observed_at": "2026-10-04T22:55:08.266770+00:00",
+  "historical_pre_reset": {
+    "reviewed_integrated_new_groups": 1125,
+    "integrated_recipe_bindings": 1188,
+    "remaining_recipe_bindings": 1483
+  },
+  "recovered_uploaded_objects": 1373,
+  "recovery_commit": "bb830c3f553c60d42497f238599a51a74ae452f3",
+  "rejected_old_checkpoint_sources": [
+    992,
+    997,
+    998
+  ],
+  "currently_verified": {
+    "catalogue_recipes": 2671,
+    "distinct_groups": 2623,
+    "generated_new": 465,
+    "reviewed_pass_new": 465,
+    "reviewed_reject_new": 0,
+    "integrated_new": 465,
+    "integrated_recipe_bindings_total": 485,
+    "remaining_recipe_bindings": 2186,
+    "live_new": 0,
+    "remaining_groups_without_prepared_asset": 2139,
+    "remaining_groups_without_usable_new_asset": 2139,
+    "complete": false
+  },
+  "not_complete": true,
+  "live_new": 0,
+  "future_durability": "Full generator bytes retained per worker; both optimised WebP variants and exact review receipt uploaded and SHA-verified before counting new pass. Root alone updates feature checkpoint."
+}

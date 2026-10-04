@@ -1,0 +1,82 @@
+{
+  "groupId": "f1f1b44bf00ea25fcdaf304d968b3a0804063c1fc40b2cf92aa9f7bd55575840",
+  "recipe_ids": [
+    "industrial-breakfast-egg-toast-plum-ginger-7"
+  ],
+  "titles": [
+    "Egg Rocket Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Rocket Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"rocket\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Wash the vegetables and slice or finely chop them before cooking.\",\"Toast the bread.\",\"Heat the oil and cook the vegetables until softened.\",\"Add the eggs and scramble until fully set.\",\"Serve the eggs and vegetables on the toast and season with the measured black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "rocket"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Wash the vegetables and slice or finely chop them before cooking.",
+    "Toast the bread.",
+    "Heat the oil and cook the vegetables until softened.",
+    "Add the eggs and scramble until fully set.",
+    "Serve the eggs and vegetables on the toast and season with the measured black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b43df0aa-a4c8-4dcf-baee-33f943cd41db.png",
+  "source_sha256": "bcea08aa6a33a4a253f29fc2609755d67c91228ed10dc5d37b9845e1b3d57103",
+  "generated_at": "2026-10-04T21:15:09.368Z",
+  "elapsed_ms": 790060,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f1f1b44bf00ea25fcdaf-480.webp",
+      "sha256": "45527de98f4f527fb331292aaa2c6ee60ecb84d4dd6ff93ad7bba0c1dd7fab76",
+      "bytes": 27366
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f1f1b44bf00ea25fcdaf.webp",
+      "sha256": "0d81050931da111a2fdefa598dcfe65092de6b7578eeca1704a7fed1ea84ea31",
+      "bytes": 82752
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-egg-toast-plum-ginger-7"
+    ],
+    "titles": [
+      "Egg Rocket Wholemeal Toast"
+    ],
+    "notes": "Two wholemeal toast slices with set egg and wilted rocket integrated with egg; no cottage cheese or garnish. Single credible serving with full food visible in phone/desktop 4:3 framing. Quantities, hidden temperature and nutrition cannot be verified visually.",
+    "alt": "Scrambled egg and rocket on two slices of wholemeal toast.",
+    "reviewed_at": "2026-10-04T21:21:38.765737+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "bcea08aa6a33a4a253f29fc2609755d67c91228ed10dc5d37b9845e1b3d57103"
+  }
+}

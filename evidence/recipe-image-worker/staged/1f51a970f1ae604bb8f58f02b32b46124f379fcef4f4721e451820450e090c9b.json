@@ -1,0 +1,80 @@
+{
+  "groupId": "1f51a970f1ae604bb8f58f02b32b46124f379fcef4f4721e451820450e090c9b",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-bbq-chicken"
+  ],
+  "titles": [
+    "Shift BBQ Chicken Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Chicken Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ glaze\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ glaze"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d36d65be-885e-4577-8a4a-cd592efbe034.png",
+  "source_sha256": "3427cde7b59a84c3ad14d8c790d366868c6cf07398730e9c40b90a4bd9962af5",
+  "generated_at": null,
+  "elapsed_ms": 41508.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1f51a970f1ae604bb8f5-480.webp",
+      "sha256": "658fe8398f0c26895ebf15976f32cbbc3bf063840d229720672dead4477b1070",
+      "bytes": 29590
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1f51a970f1ae604bb8f5.webp",
+      "sha256": "faaacccb86fd35c0bcd85ef0ef2645527c6927098c542f6d2b00992392f3e50b",
+      "bytes": 98952
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-bbq-chicken"
+    ],
+    "titles": [
+      "Shift BBQ Chicken Slow-Cooker Big Pot"
+    ],
+    "notes": "A cooked chicken breast sits among tender skin-on baby potatoes, carrot chunks and translucent onions with BBQ glaze and natural cooking moisture. No herb garnish or additional sides; plausible slow-cooked bowl. Plausible single serving with central food retained by responsive crop; title checked against actual listed recipe.",
+    "alt": "Slow-cooked BBQ chicken breast with baby potatoes, carrots and onion.",
+    "reviewed_at": "2026-10-04T21:30:17.439Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-544-560.json",
+    "source_sha256": "3427cde7b59a84c3ad14d8c790d366868c6cf07398730e9c40b90a4bd9962af5"
+  },
+  "integrated": true,
+  "live": false
+}

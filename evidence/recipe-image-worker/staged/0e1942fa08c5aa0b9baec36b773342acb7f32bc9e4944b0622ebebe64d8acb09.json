@@ -1,0 +1,77 @@
+{
+  "groupId": "0e1942fa08c5aa0b9baec36b773342acb7f32bc9e4944b0622ebebe64d8acb09",
+  "recipe_ids": [
+    "industrial-breakfast-potato-hash-plum-ginger-7"
+  ],
+  "titles": [
+    "Mixed-Beans Kale Breakfast Potato Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Mixed-Beans Kale Breakfast Potato Hash. Ingredients, quantities and allergens: [{\"amount\":\"220g\",\"item\":\"baby potatoes\"},{\"amount\":\"120g\",\"item\":\"mixed beans, drained\"},{\"amount\":\"80g\",\"item\":\"kale\"},{\"amount\":\"60g\",\"item\":\"onion\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.\",\"Chop the onion and kale. Heat the measured olive oil in a wide non-stick frying pan; cook the onion over medium heat for 4\u20135 minutes.\",\"Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.\",\"Stir in the kale and cook for 2\u20133 minutes until wilted and hot. Use ready-cooked canned mixed beans, drained before weighing. Heat for 3\u20134 minutes, stirring until steaming hot throughout.\",\"Serve the mixed beans, potatoes and vegetables immediately. For another portion, follow the chilled-storage and single-reheat instructions.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "220g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "120g",
+      "item": "mixed beans, drained"
+    },
+    {
+      "amount": "80g",
+      "item": "kale"
+    },
+    {
+      "amount": "60g",
+      "item": "onion"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.",
+    "Chop the onion and kale. Heat the measured olive oil in a wide non-stick frying pan; cook the onion over medium heat for 4\u20135 minutes.",
+    "Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.",
+    "Stir in the kale and cook for 2\u20133 minutes until wilted and hot. Use ready-cooked canned mixed beans, drained before weighing. Heat for 3\u20134 minutes, stirring until steaming hot throughout.",
+    "Serve the mixed beans, potatoes and vegetables immediately. For another portion, follow the chilled-storage and single-reheat instructions."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1b80616f-1e40-4e4f-b3e7-0523e00f4c95.png",
+  "source_sha256": "3a16534755f62f67adeb14cb3bb1037573e53f31432b79bffde6b01c6bf56c24",
+  "generated_at": "2026-10-04T21:07:52.853Z",
+  "elapsed_ms": 45148,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0e1942fa08c5aa0b9bae-480.webp",
+      "sha256": "303a9871445d6d7fdee7f55d887947337d83aa30c185a16dab3941b0c09b9fa3",
+      "bytes": 27086
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0e1942fa08c5aa0b9bae.webp",
+      "sha256": "69227285b403e5d4bafff212c3c1a9faad2bbaaac6594457df634cf05e6d1385",
+      "bytes": 82748
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-potato-hash-plum-ginger-7"
+    ],
+    "titles": [
+      "Mixed-Beans Kale Breakfast Potato Hash"
+    ],
+    "notes": "Golden skin-on potato pieces, mixed cooked beans, wilted curly kale and softened onion match the hash method; no garnish or extra food; credible single bowl with cropping margin.",
+    "alt": "Golden potato hash with mixed beans, wilted kale and softened onion.",
+    "reviewed_at": "2026-10-04T21:11:30.604811+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/batch.json",
+    "source_sha256": "3a16534755f62f67adeb14cb3bb1037573e53f31432b79bffde6b01c6bf56c24"
+  },
+  "integrated": true,
+  "live": false
+}

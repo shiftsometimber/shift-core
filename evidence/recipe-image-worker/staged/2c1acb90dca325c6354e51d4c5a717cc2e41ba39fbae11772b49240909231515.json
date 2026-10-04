@@ -1,0 +1,80 @@
+{
+  "groupId": "2c1acb90dca325c6354e51d4c5a717cc2e41ba39fbae11772b49240909231515",
+  "recipe_ids": [
+    "industrial-v3-traybake-jalfrezi-pork"
+  ],
+  "titles": [
+    "Shift Jalfrezi Pork Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Jalfrezi Pork Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"pepper and tomato masala\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and lean pork loin. Get the pan properly hot first. Cook the lean pork loin until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.\",\"Check the lean pork loin is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "pepper and tomato masala"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and lean pork loin. Get the pan properly hot first. Cook the lean pork loin until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.",
+    "Check the lean pork loin is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-965d46ab-a0cf-464b-b14f-7a2c3d052677.png",
+  "source_sha256": "3cf6cb5dd836ee38ff15c723b8e0aaca278d110b39592904b809d575f77d5c49",
+  "generated_at": "2026-10-04T21:19:08.643Z",
+  "elapsed_ms": 56452.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2c1acb90dca325c6354e-480.webp",
+      "sha256": "4ee6f691e8e23486e32bfb50727865ff8fea0b97f801358bebbda862cfdb94bf",
+      "bytes": 35732
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2c1acb90dca325c6354e.webp",
+      "sha256": "c2bd6fe209cabf96236a0769954ee3701ed8dfb3653d28bee5c98e8a8050d6a0",
+      "bytes": 109116
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-traybake-jalfrezi-pork"
+    ],
+    "titles": [
+      "Shift Jalfrezi Pork Traybake"
+    ],
+    "notes": "Browned cooked lean pork pieces, golden skin-on baby potato pieces, roasted broccoli and red pepper coated lightly in pepper-tomato masala. Roasted edges and separate ingredients match traybake state. No noodles, rice, herb garnish or other foods. Single plate with safe margin.",
+    "alt": "Jalfrezi pork traybake with golden baby potatoes, broccoli and red pepper",
+    "reviewed_at": "2026-10-04T21:19:32.815221+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/945.json",
+    "source_sha256": "3cf6cb5dd836ee38ff15c723b8e0aaca278d110b39592904b809d575f77d5c49"
+  },
+  "integrated": true,
+  "live": false
+}

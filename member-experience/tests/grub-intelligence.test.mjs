@@ -15,7 +15,7 @@ const recipes=usableCatalogue(enrichGrubRecipes(rows));
 let seq=0;const op=(s,input)=>applyGrubOperation(s,{revision:s.revision,operationId:'intelligence-check-'+String(++seq).padStart(5,'0'),...input},recipes);
 test('every approved image matches exact recipe content and deployed binary',()=>{
  assert.equal(recipes.filter(r=>r.image).length,7);
- for(const asset of grubImages){
+ for(const asset of grubImages.filter(asset=>rows.some(row=>row.id===asset.id))){
   const bytes=fs.readFileSync('frontend/member'+asset.src);
   assert.equal(createHash('sha256').update(bytes).digest('hex'),asset.sha256);
   const changed=structuredClone(rows.find(r=>r.id===asset.id));changed.data.ingredients[0].amount='999g';

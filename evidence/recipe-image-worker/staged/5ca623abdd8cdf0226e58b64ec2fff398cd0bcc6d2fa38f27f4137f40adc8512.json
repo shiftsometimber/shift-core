@@ -1,0 +1,81 @@
+{
+  "groupId": "5ca623abdd8cdf0226e58b64ec2fff398cd0bcc6d2fa38f27f4137f40adc8512",
+  "recipe_ids": [
+    "industrial-breakfast-yoghurt-pot-blueberry-lemon-6"
+  ],
+  "titles": [
+    "Blueberry Lemon Yoghurt Crunch Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Blueberry Lemon Yoghurt Crunch Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"blueberries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"1g\",\"item\":\"lemon zest\"}]. Preparation: [\"Spoon the yoghurt into a bowl or lidded pot.\",\"Wash and prepare the fruit, removing any stones, cores or inedible peel, then weigh the edible portion and add it to the yoghurt.\",\"Top with oats and pumpkin seeds.\",\"Finish with the flavouring just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "blueberries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "1g",
+      "item": "lemon zest"
+    }
+  ],
+  "method": [
+    "Spoon the yoghurt into a bowl or lidded pot.",
+    "Wash and prepare the fruit, removing any stones, cores or inedible peel, then weigh the edible portion and add it to the yoghurt.",
+    "Top with oats and pumpkin seeds.",
+    "Finish with the flavouring just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c9f32359-5f4e-47b3-bbe7-bc8c15f917a6.png",
+  "source_sha256": "0640836745021cef7ba943b05d44456bb24d146d3a62babe624c562a5efd93f1",
+  "generated_at": "2026-10-04T21:03:50.616Z",
+  "elapsed_ms": 111308,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5ca623abdd8cdf0226e5-480.webp",
+      "sha256": "073d44c1fba06c7dfbfcd3ec6265c78a09604b34cf97a67f0ad75aa0712f6907",
+      "bytes": 21850
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5ca623abdd8cdf0226e5.webp",
+      "sha256": "cb44644edb1d2cd1896bc6101eb6c469c4ec4ebda1467549e258f78ed26ea4a2",
+      "bytes": 66664
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-yoghurt-pot-blueberry-lemon-6"
+    ],
+    "titles": [
+      "Blueberry Lemon Yoghurt Crunch Pot"
+    ],
+    "notes": "Raw blueberries over plain yoghurt with rolled oat flakes, pumpkin seeds and visible lemon zest; no lemon slices or extra garnish. Single credible serving with full food visible in phone/desktop 4:3 framing. Quantities, hidden temperature and nutrition cannot be verified visually.",
+    "alt": "Greek yoghurt topped with blueberries, rolled oats, pumpkin seeds and lemon zest.",
+    "reviewed_at": "2026-10-04T21:21:38.766630+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "0640836745021cef7ba943b05d44456bb24d146d3a62babe624c562a5efd93f1"
+  }
+}

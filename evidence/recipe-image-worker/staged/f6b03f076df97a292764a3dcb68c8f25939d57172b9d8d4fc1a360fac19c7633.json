@@ -1,0 +1,102 @@
+{
+  "groupId": "f6b03f076df97a292764a3dcb68c8f25939d57172b9d8d4fc1a360fac19c7633",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-garlic-herb-egg"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Egg Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Egg Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"35g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Beat the measured eggs in a clean bowl and set them aside while cooking the vegetables.\",\"Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the beaten eggs to the cooked vegetables and stir until fully set.\",\"Stir in the listed flavour ingredients (1g garlic powder, 1g dried parsley), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Keep the 35g 0% Greek yoghurt chilled and serve it alongside the finished toastie as a dip; it is included in the listed meal quantities.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "35g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Beat the measured eggs in a clean bowl and set them aside while cooking the vegetables.",
+    "Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the beaten eggs to the cooked vegetables and stir until fully set.",
+    "Stir in the listed flavour ingredients (1g garlic powder, 1g dried parsley), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Keep the 35g 0% Greek yoghurt chilled and serve it alongside the finished toastie as a dip; it is included in the listed meal quantities.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3785c1c1-547c-4c8b-ac5f-58b633ec6b27.png",
+  "source_sha256": "3cf6ab0b784a1064719d5297339fbdcf732323e595abd92e919d7066365fbf92",
+  "generated_at": "2026-10-04T21:43:50.032Z",
+  "elapsed_ms": 394728,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f6b03f076df97a292764-480.webp",
+      "sha256": "cc2c7954273aa22c6951853c81b114ac2b455ae722ac78d929f1282c38f6c5e3",
+      "bytes": 21986
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f6b03f076df97a292764.webp",
+      "sha256": "5d2e1cf53c7d0a44221c8338c3a9fb7fdc3be4dbe841e9c547853896b32e26f5",
+      "bytes": 68394
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-garlic-herb-egg"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Egg Breakfast Toastie"
+    ],
+    "notes": "Plain crisp wholemeal toastie filled with set egg, softened tomato and wilted spinach, with dried parsley seasoning; yoghurt correctly separate as dip. No cheese or garnish.",
+    "alt": "Egg, tomato and spinach toastie with garlic-herb seasoning and Greek yoghurt dip.",
+    "reviewed_at": "2026-10-04T21:45:27.473897+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/174.json",
+    "source_sha256": "3cf6ab0b784a1064719d5297339fbdcf732323e595abd92e919d7066365fbf92"
+  },
+  "integrated": true,
+  "live": false
+}

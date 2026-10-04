@@ -1,0 +1,82 @@
+{
+  "groupId": "ab498113d18c771bd6f8954f1c177ad574f4896725c711232968d185cddd62b9",
+  "recipe_ids": [
+    "industrial-v3-roast-bbq-chicken"
+  ],
+  "titles": [
+    "Shift BBQ Chicken Sunday-Style Roast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Chicken Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ glaze\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Place the chicken breast on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the reduced-sugar BBQ glaze in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked chicken breast, roast potatoes, carrots and broccoli together. Spoon the hot reduced-sugar BBQ glaze over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ glaze"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Place the chicken breast on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the reduced-sugar BBQ glaze in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked chicken breast, roast potatoes, carrots and broccoli together. Spoon the hot reduced-sugar BBQ glaze over the cooked protein."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e93c84f8-bb4d-490c-8098-a50aff131eb4.png",
+  "source_sha256": "ae3945e92951c11763d9eb264d10b4268b9f6523bcb486552727e88171033ca4",
+  "generated_at": null,
+  "elapsed_ms": 67028.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ab498113d18c771bd6f8-480.webp",
+      "sha256": "630161176efcb93eb435395bd6e95232bcfeee854149e2f720dad7925e141583",
+      "bytes": 33508
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ab498113d18c771bd6f8.webp",
+      "sha256": "1b6da747a00ee114328d6d3a23350246df7f9451f1a620764d896f015251239b",
+      "bytes": 98038
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-roast-bbq-chicken"
+    ],
+    "titles": [
+      "Shift BBQ Chicken Sunday-Style Roast"
+    ],
+    "notes": "One browned glazed chicken breast with golden peeled roast potato chunks, carrot batons and broccoli florets. No gravy beyond listed BBQ glaze; complete roast plate matches method. Plausible single serving with central food retained by responsive crop; title checked against actual listed recipe.",
+    "alt": "BBQ-glazed chicken breast with roast potatoes, carrots and broccoli.",
+    "reviewed_at": "2026-10-04T21:30:17.439Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-544-560.json",
+    "source_sha256": "ae3945e92951c11763d9eb264d10b4268b9f6523bcb486552727e88171033ca4"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,97 @@
+{
+  "groupId": "5d54b076bd3c75e8f4363fdab352b71e04a510f35ac5f9213eee8b3e24288742",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-garlic-herb-egg"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Egg Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Egg Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"35g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "35g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-053b2929-c0f8-4a61-99d0-1188f5aa026e.png",
+  "source_sha256": "e0c99f1704ec085e4b6932fd47b008c756546f9f2da5f27c9f66735e6bc7305b",
+  "generated_at": "2026-10-04T21:43:01.593Z",
+  "elapsed_ms": 346289,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5d54b076bd3c75e8f436-480.webp",
+      "sha256": "96e5edf028e01a8f04c9f387b50f3ee617243d8a3f6f977055c0c855cbc29fb2",
+      "bytes": 22666
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5d54b076bd3c75e8f436.webp",
+      "sha256": "8700fc5c09526c8b731efaf5f856d82e4c9572af768a3350643e53fd98829efa",
+      "bytes": 71388
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-garlic-herb-egg"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Egg Breakfast Buttie"
+    ],
+    "notes": "Tender set egg, softened tomato and wilted spinach with garlic-yoghurt sauce and dried parsley in plain wholemeal bap. No cheese or fresh garnish; exact ingredient set.",
+    "alt": "Wholemeal bap with scrambled egg, tomato, spinach and garlic-herb yoghurt.",
+    "reviewed_at": "2026-10-04T21:45:27.073006+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/172.json",
+    "source_sha256": "e0c99f1704ec085e4b6932fd47b008c756546f9f2da5f27c9f66735e6bc7305b"
+  },
+  "integrated": true,
+  "live": false
+}

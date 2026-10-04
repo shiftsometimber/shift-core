@@ -1,0 +1,82 @@
+{
+  "groupId": "b10e837bb7789aa16110e2215372acdedf63836e72b92c3b03d0cc36d6d0d558",
+  "recipe_ids": [
+    "industrial-snack-egg-snack-box-cinnamon"
+  ],
+  "titles": [
+    "Rocket Egg Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Rocket Egg Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"2\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"80g\",\"item\":\"cucumber\"},{\"amount\":\"25g\",\"item\":\"wholegrain crackers\",\"allergens\":[\"gluten\"]},{\"amount\":\"50g\",\"item\":\"rocket\"}]. Preparation: [\"Measure everything before assembling the snack so the portion stays intentional.\",\"Halve the eggs and pack them with the vegetables, crackers and measured savoury add-on.\",\"Keep chilled protein and vegetables refrigerated until you are ready to eat.\",\"Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.\nCRITICAL egg quantity: exactly TWO whole boiled eggs cut into halves, therefore FOUR clearly visible egg halves with yellow yolks, alongside rocket, cherry tomatoes, cucumber and plain wholegrain crackers. No fewer than four halves.",
+  "ingredients": [
+    {
+      "amount": "2",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "80g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "25g",
+      "item": "wholegrain crackers",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "50g",
+      "item": "rocket"
+    }
+  ],
+  "method": [
+    "Measure everything before assembling the snack so the portion stays intentional.",
+    "Halve the eggs and pack them with the vegetables, crackers and measured savoury add-on.",
+    "Keep chilled protein and vegetables refrigerated until you are ready to eat.",
+    "Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-64500bff-e298-46b1-af97-2cbbdb04e5cd.png",
+  "source_sha256": "dcc66f66024a39f5f7aba7e89fe9f92991da875271a2f4fe18bc8157d1de43e8",
+  "generated_at": "2026-10-04T21:28:29.299Z",
+  "elapsed_ms": 24754,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b10e837bb7789aa16110-480.webp",
+      "sha256": "7c705cc516db5c77e359ba6c98241ad97aabb782e577d651d0f7cd6422169758",
+      "bytes": 30592
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b10e837bb7789aa16110.webp",
+      "sha256": "45e6cc341204e0b02eb5298da6192796cecb39076f8bfa15bb87621541f99183",
+      "bytes": 85744
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-snack-egg-snack-box-cinnamon"
+    ],
+    "titles": [
+      "Rocket Egg Snack Box"
+    ],
+    "notes": "Four visible boiled egg halves represent two whole eggs, alongside rocket, cherry tomatoes, cucumber and plain crackers; previous count rejection corrected.",
+    "alt": "Two boiled eggs halved with rocket, cherry tomatoes, cucumber and wholegrain crackers",
+    "reviewed_at": "2026-10-04T21:36:20.424332+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/b10e837bb7789aa16110e2215372acdedf63836e72b92c3b03d0cc36d6d0d558-retry1.json",
+    "source_sha256": "dcc66f66024a39f5f7aba7e89fe9f92991da875271a2f4fe18bc8157d1de43e8"
+  },
+  "integrated": true,
+  "live": false
+}

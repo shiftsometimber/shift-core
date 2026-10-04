@@ -1,0 +1,99 @@
+{
+  "groupId": "5f49af3de81ea93a9971b72381b6c07641fa21b2945852f3f008fddc88c376e2",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-garlic-herb-beans"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Beans Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Beans Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"35g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.\",\"Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the baked beans and heat gently until steaming hot throughout.\",\"Stir in the listed flavour ingredients (1g garlic powder, 1g dried parsley), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Keep the 35g 0% Greek yoghurt chilled and serve it alongside the finished toastie as a dip; it is included in the listed meal quantities.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "35g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.",
+    "Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the baked beans and heat gently until steaming hot throughout.",
+    "Stir in the listed flavour ingredients (1g garlic powder, 1g dried parsley), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Keep the 35g 0% Greek yoghurt chilled and serve it alongside the finished toastie as a dip; it is included in the listed meal quantities.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f5767739-d9f7-4cb0-80f3-18bb6448453e.png",
+  "source_sha256": "60a72f856b5805f8068d75411030f49aa38ddf6ca325d429db48381364262134",
+  "generated_at": "2026-10-04T21:40:19.858Z",
+  "elapsed_ms": 184554,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5f49af3de81ea93a9971-480.webp",
+      "sha256": "874a41f92d0688a9ee70b6f45326c1a41f572a6c69b804fe2637fef4e0e8039f",
+      "bytes": 28308
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5f49af3de81ea93a9971.webp",
+      "sha256": "3e86118ac9cfa2242d631804d3a20aa7387b22d43c6654dccc59cbeb738cdd2b",
+      "bytes": 91380
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-garlic-herb-beans"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beans Breakfast Toastie"
+    ],
+    "notes": "Plain crisp wholemeal toastie with beans, softened tomato and wilted spinach; yoghurt correctly separate in dip bowl, with remaining measured filling alongside. No cheese or garnish.",
+    "alt": "Baked bean, tomato and spinach toastie with garlic-herb seasoning and Greek yoghurt dip.",
+    "reviewed_at": "2026-10-04T21:42:36.639679+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/166.json",
+    "source_sha256": "60a72f856b5805f8068d75411030f49aa38ddf6ca325d429db48381364262134"
+  },
+  "integrated": true,
+  "live": false
+}

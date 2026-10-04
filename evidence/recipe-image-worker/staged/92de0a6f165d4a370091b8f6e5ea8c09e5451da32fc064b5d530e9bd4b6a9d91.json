@@ -1,0 +1,81 @@
+{
+  "groupId": "92de0a6f165d4a370091b8f6e5ea8c09e5451da32fc064b5d530e9bd4b6a9d91",
+  "recipe_ids": [
+    "industrial-breakfast-cottage-cheese-toast-apple-cinnamon-0"
+  ],
+  "titles": [
+    "Cottage Cheese Tomatoes Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cottage Cheese Tomatoes Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"tomatoes\"},{\"amount\":\"1 tsp\",\"item\":\"lemon juice\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Toast the bread.\",\"Prepare the vegetables.\",\"Spoon cottage cheese over the toast.\",\"Top with vegetables, lemon juice and black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "tomatoes"
+    },
+    {
+      "amount": "1 tsp",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Toast the bread.",
+    "Prepare the vegetables.",
+    "Spoon cottage cheese over the toast.",
+    "Top with vegetables, lemon juice and black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ee00a8d0-ce8d-4850-a4cd-d7eb2b03ce6c.png",
+  "source_sha256": "e6a69cd74cae890b6799128d85efebaf4260dbd315dde1967b57a6cfee6f3173",
+  "generated_at": "2026-10-04T21:09:28.198Z",
+  "elapsed_ms": 448890,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-92de0a6f165d4a370091-480.webp",
+      "sha256": "6ef5983b96ab262b81eb82ad13688cad59be5217840afb99ffcaa1f388879f60",
+      "bytes": 26624
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-92de0a6f165d4a370091.webp",
+      "sha256": "e022c5edf0243cc23c0da065dde4ee79389df238e1c14a73fcf93a9be3ec2f6e",
+      "bytes": 79518
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-cottage-cheese-toast-apple-cinnamon-0"
+    ],
+    "titles": [
+      "Cottage Cheese Tomatoes Wholemeal Toast"
+    ],
+    "notes": "Two toasted wholemeal slices, cottage cheese, fresh diced tomato and black pepper; no basil or herbs. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Cottage cheese on wholemeal toast topped with diced tomato and black pepper.",
+    "reviewed_at": "2026-10-04T21:13:56.961096+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "e6a69cd74cae890b6799128d85efebaf4260dbd315dde1967b57a6cfee6f3173"
+  }
+}

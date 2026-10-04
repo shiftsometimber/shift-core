@@ -1,0 +1,85 @@
+{
+  "groupId": "719f244a2f5341ded11b765a52277531c32c626f9c0df3981d3a90a8ce9f4dcf",
+  "recipe_ids": [
+    "industrial-breakfast-overnight-oats-blueberry-lemon-6"
+  ],
+  "titles": [
+    "Blueberry Lemon Overnight Oats"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Blueberry Lemon Overnight Oats. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"150ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"120g\",\"item\":\"blueberries\"},{\"amount\":\"1g\",\"item\":\"lemon zest\"}]. Preparation: [\"Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 100g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 120g blueberries, 1g lemon zest. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "50g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "150ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "120g",
+      "item": "blueberries"
+    },
+    {
+      "amount": "1g",
+      "item": "lemon zest"
+    }
+  ],
+  "method": [
+    "Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Stir in 100g 0% Greek yoghurt until evenly mixed.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 120g blueberries, 1g lemon zest. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f60d21f9-760f-4eb1-a8de-502fa1810402.png",
+  "source_sha256": "e40354834f2ced781588aee803b94d0b464fa093d7b584c057f92226cc6c5259",
+  "generated_at": "2026-10-04T21:02:55.333Z",
+  "elapsed_ms": 56025,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-719f244a2f5341ded11b-480.webp",
+      "sha256": "c19151ed72df5dfa1efd1479b4c5284e971a9f37e0450b4e037f076ef2f3a426",
+      "bytes": 20380
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-719f244a2f5341ded11b.webp",
+      "sha256": "10efbab70328a3f956bd8e0b85837a78816f0a0357e6d188b3f81d7fa9b23830",
+      "bytes": 58048
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-overnight-oats-blueberry-lemon-6"
+    ],
+    "titles": [
+      "Blueberry Lemon Overnight Oats"
+    ],
+    "notes": "Soft soaked oats and milk-yoghurt base with blueberries mixed through; lemon zest incorporated; no granola, seeds or unlisted topping. Single credible serving with full food visible in phone/desktop 4:3 framing. Quantities, hidden temperature and nutrition cannot be verified visually.",
+    "alt": "Creamy overnight oats with blueberries and lemon zest mixed through.",
+    "reviewed_at": "2026-10-04T21:21:38.766437+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "e40354834f2ced781588aee803b94d0b464fa093d7b584c057f92226cc6c5259"
+  }
+}

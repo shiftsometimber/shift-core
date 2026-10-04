@@ -1,0 +1,76 @@
+{
+  "groupId": "5463052923df70b910b9dd244b0a19ffe7344b446a4f55d281f3c482486063de",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-banana-overnight-oats"
+  ],
+  "titles": [
+    "Shift Banana Oat Crunch Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Banana Oat Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"85g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"sliced banana\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Toast the rolled oats and seeds in a dry frying pan over a medium heat for 4\u20135 minutes, stirring until they smell nutty and take on a little colour.\",\"Tip the toasted crunch onto a plate and let it cool completely while you prepare the sliced banana and other measured fruit.\",\"Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.\",\"Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow every dry/separate and soaked/prepared instruction exactly.",
+  "ingredients": [
+    {
+      "amount": "85g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sliced banana"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Toast the rolled oats and seeds in a dry frying pan over a medium heat for 4\u20135 minutes, stirring until they smell nutty and take on a little colour.",
+    "Tip the toasted crunch onto a plate and let it cool completely while you prepare the sliced banana and other measured fruit.",
+    "Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.",
+    "Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ec476c36-2335-44ee-b872-71af46e0cb3b.png",
+  "source_sha256": "0acc79d501fabf66f31f9b701189538023c7933e5b04590dfbe71260c5cc568d",
+  "generated_at": "2026-10-04T21:41:54.474Z",
+  "elapsed_ms": 296842,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5463052923df70b910b9-480.webp",
+      "sha256": "054ffe9e59e415ae37e6f343509b2be33883a7573498cb0e4b08f583d34e751b",
+      "bytes": 23368
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5463052923df70b910b9.webp",
+      "sha256": "e21747c0d42a47cdaba7f4ae7d1afbbea7ba46eeb723136666736c340e2138a4",
+      "bytes": 72894
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-banana-overnight-oats"
+    ],
+    "titles": [
+      "Shift Banana Oat Crunch Snack Pot"
+    ],
+    "notes": "Dry toasted rolled oat and pumpkin-seed crunch served separately from banana and mixed berries; no milk, nuts or honey.",
+    "alt": "Toasted oat and pumpkin-seed crunch with separate banana and berry fruit pot",
+    "reviewed_at": "2026-10-04T21:44:55.172652+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/5463052923df70b910b9dd244b0a19ffe7344b446a4f55d281f3c482486063de.json",
+    "source_sha256": "0acc79d501fabf66f31f9b701189538023c7933e5b04590dfbe71260c5cc568d"
+  },
+  "integrated": true,
+  "live": false
+}

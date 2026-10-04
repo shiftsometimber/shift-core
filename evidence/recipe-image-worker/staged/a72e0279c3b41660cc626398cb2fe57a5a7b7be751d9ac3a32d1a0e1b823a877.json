@@ -1,0 +1,83 @@
+{
+  "groupId": "a72e0279c3b41660cc626398cb2fe57a5a7b7be751d9ac3a32d1a0e1b823a877",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-apple-savory-box"
+  ],
+  "titles": [
+    "Shift Apple Banana Split Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Banana Split Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"80g\",\"item\":\"diced apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.\",\"Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.\",\"Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.\",\"Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "80g",
+      "item": "diced apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.",
+    "Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.",
+    "Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.",
+    "Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ed3ef8b4-24dc-4fa1-b4ff-e72bfaae7970.png",
+  "source_sha256": "5edd517adc7626e7546af1e02aca57a567f43236efe0abda21b981bb8a32a72d",
+  "generated_at": "2026-10-04T21:22:08.584Z",
+  "elapsed_ms": 163420,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a72e0279c3b41660cc62-480.webp",
+      "sha256": "09d81bbacbf28543f05d9b5bf4a2bb1a30e303d5a3a1eb7d987b70f20f5afc49",
+      "bytes": 28560
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a72e0279c3b41660cc62.webp",
+      "sha256": "39236580a2f398184faa3bfb6faaa20e2d1b38128718e6c4ec3e4a01aa56603e",
+      "bytes": 88148
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-apple-savory-box"
+    ],
+    "titles": [
+      "Shift Apple Banana Split Work Snack Box"
+    ],
+    "notes": "Banana slices, apple and mixed berries with plain crackers, rolled oats and pumpkin seeds in separate dry sections; no dairy.",
+    "alt": "Banana and apple snack box with berries, plain crackers, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:27:28.092025+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/a72e0279c3b41660cc626398cb2fe57a5a7b7be751d9ac3a32d1a0e1b823a877.json",
+    "source_sha256": "5edd517adc7626e7546af1e02aca57a567f43236efe0abda21b981bb8a32a72d"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,83 @@
+{
+  "groupId": "417d6f1c8471cdd0bad9bbb71609ecdf33766e24d1995d25f82965ae01950115",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-banana-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Banana Greek Yoghurt Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Banana Greek Yoghurt Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"sliced banana\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow every dry/separate and soaked/prepared instruction exactly.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sliced banana"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-59fa573f-9da8-4b0e-b487-2510b64a3231.png",
+  "source_sha256": "e2073627407533203a425c2199095a03fcf9b70784b97fedac773ae0c749f96d",
+  "generated_at": "2026-10-04T21:41:08.651Z",
+  "elapsed_ms": 251019,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-417d6f1c8471cdd0bad9-480.webp",
+      "sha256": "5cb60728023eb35ff7cc347031bc857aa605e3b800cd4fc9074b59448d3603a8",
+      "bytes": 19208
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-417d6f1c8471cdd0bad9.webp",
+      "sha256": "0029eba9faf4479802ea37e2d1f2b96d9cab129ca951252a0ba6d33d83d91725",
+      "bytes": 57946
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-banana-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Banana Greek Yoghurt Protein Pot"
+    ],
+    "notes": "Greek yoghurt with banana and berries and separate sections of dry oats and pumpkin seeds added at serving; no chocolate.",
+    "alt": "Greek yoghurt protein pot with banana, berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:44:56.801294+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/417d6f1c8471cdd0bad9bbb71609ecdf33766e24d1995d25f82965ae01950115.json",
+    "source_sha256": "e2073627407533203a425c2199095a03fcf9b70784b97fedac773ae0c749f96d"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,76 @@
+{
+  "groupId": "ba9bb5c1358f71c2f313ae0abca38b6d6e3a6082d25e51346be4820cab7026f5",
+  "recipe_ids": [
+    "industrial-breakfast-potato-hash-berry-vanilla-2"
+  ],
+  "titles": [
+    "Chicken Mushrooms Breakfast Potato Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Chicken Mushrooms Breakfast Potato Hash. Ingredients, quantities and allergens: [{\"amount\":\"220g\",\"item\":\"baby potatoes\"},{\"amount\":\"100g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"80g\",\"item\":\"mushrooms\"},{\"amount\":\"60g\",\"item\":\"onion\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.\",\"Chop the onion and mushrooms. Heat the measured olive oil in a wide non-stick frying pan; cook the onion and mushrooms over medium heat for 4\u20135 minutes.\",\"Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.\",\"Add the cooked chicken breast in bite-size pieces and heat for 3\u20135 minutes, turning until steaming hot right through. It is already cooked; do not treat it as raw meat.\",\"Serve the chicken breast, potatoes and vegetables immediately. Do not cool and reheat this assembled hash again.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "220g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "mushrooms"
+    },
+    {
+      "amount": "60g",
+      "item": "onion"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.",
+    "Chop the onion and mushrooms. Heat the measured olive oil in a wide non-stick frying pan; cook the onion and mushrooms over medium heat for 4\u20135 minutes.",
+    "Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.",
+    "Add the cooked chicken breast in bite-size pieces and heat for 3\u20135 minutes, turning until steaming hot right through. It is already cooked; do not treat it as raw meat.",
+    "Serve the chicken breast, potatoes and vegetables immediately. Do not cool and reheat this assembled hash again."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a6e8ee38-70f7-41b9-b3b6-bfacbef0567f.png",
+  "source_sha256": "378795f51414392b954c9f7f3eb69ec30ef6ce1072c22cb7b55fea30693ddeeb",
+  "generated_at": "2026-10-04T21:05:55.000Z",
+  "elapsed_ms": 235692,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ba9bb5c1358f71c2f313-480.webp",
+      "sha256": "432906bf2d2c3c797ee6de272fa536b28786d2d06b3e2704d83d8cbf45bcd1ba",
+      "bytes": 29816
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ba9bb5c1358f71c2f313.webp",
+      "sha256": "b98d0f4d257b25dc441776af6e3fd23461ab96fbfe37b84b1c56a3be84162424",
+      "bytes": 96820
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-potato-hash-berry-vanilla-2"
+    ],
+    "titles": [
+      "Chicken Mushrooms Breakfast Potato Hash"
+    ],
+    "notes": "Pan-browned potato pieces, cooked chicken chunks, mushrooms and softened onion; no mixed peppers or extra herbs. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Golden potato hash with cooked chicken, mushrooms and onion.",
+    "reviewed_at": "2026-10-04T21:13:56.961347+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "378795f51414392b954c9f7f3eb69ec30ef6ce1072c22cb7b55fea30693ddeeb"
+  }
+}

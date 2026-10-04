@@ -1,0 +1,81 @@
+{
+  "groupId": "11bc4e4eeaeb99546609f70f6c92fc22e57082de27109dab4f96c454d51d2375",
+  "recipe_ids": [
+    "industrial-breakfast-breakfast-wrap-pear-ginger-3"
+  ],
+  "titles": [
+    "Egg Chickpeas Tomatoes Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Chickpeas Tomatoes Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g drained\",\"item\":\"chickpeas\"},{\"amount\":\"1 / 65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"tomatoes\"},{\"amount\":\"50g\",\"item\":\"tomato salsa\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g drained",
+      "item": "chickpeas"
+    },
+    {
+      "amount": "1 / 65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "tomatoes"
+    },
+    {
+      "amount": "50g",
+      "item": "tomato salsa"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7a57abe1-4b0e-4a2d-be43-eb75d89c1d03.png",
+  "source_sha256": "edd638b4c60a9308b015e446fe715e93ac5d057df238fec9817d12e758fd0cfd",
+  "generated_at": "2026-10-04T21:10:19.704Z",
+  "elapsed_ms": 500396,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-11bc4e4eeaeb99546609-480.webp",
+      "sha256": "5cdcb81bd9cf9e522bf9499752e7b332b64c0ca71839cdde23a782c5c055e6b0",
+      "bytes": 22252
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-11bc4e4eeaeb99546609.webp",
+      "sha256": "44a10832454688a348b7e0b2e812cac58cfdca0d938339f7f96ba323c0e838d7",
+      "bytes": 68366
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-breakfast-wrap-pear-ginger-3"
+    ],
+    "titles": [
+      "Egg Chickpeas Tomatoes Breakfast Wrap"
+    ],
+    "notes": "Toasted wholemeal wrap, cooked egg pieces, chickpeas, cooked tomato and salsa; no beans substitution, leaves, cheese or herb garnish. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Toasted wholemeal wrap filled with cooked egg, chickpeas, tomatoes and salsa.",
+    "reviewed_at": "2026-10-04T21:13:56.961484+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "edd638b4c60a9308b015e446fe715e93ac5d057df238fec9817d12e758fd0cfd"
+  }
+}

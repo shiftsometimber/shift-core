@@ -1,0 +1,90 @@
+{
+  "groupId": "f4f78e448db46099c110d816374cd8b3f3dda7a58c1221868174fbf25573721c",
+  "recipe_ids": [
+    "industrial-v3-pizza-bbq-salmon"
+  ],
+  "titles": [
+    "Shift BBQ Salmon Proper Pizza"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Salmon Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Transfer large flakes of the cooked salmon to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Put the measured reduced-sugar BBQ sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and large flakes of the cooked salmon evenly on top, then spoon over the warm sauce. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Transfer large flakes of the cooked salmon to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Put the measured reduced-sugar BBQ sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and large flakes of the cooked salmon evenly on top, then spoon over the warm sauce. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Rest for one minute, cut and serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-72df97fb-bf93-4f8e-9728-143d0380da4d.png",
+  "source_sha256": "0974f1788c6b8e95432c8ddad6b1d0cf7e4fa1934d28be2501df0f0cf54d506a",
+  "generated_at": null,
+  "elapsed_ms": 183296.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f4f78e448db46099c110-480.webp",
+      "sha256": "3183d38327f14f0c212bb3329c318ee89b356ec399e9e4768635ea6b432b6f13",
+      "bytes": 33076
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f4f78e448db46099c110.webp",
+      "sha256": "3a209255c70f12012585c3d3657857b124a1660b17c7577008fe98fd66fc3823",
+      "bytes": 96970
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-pizza-bbq-salmon"
+    ],
+    "titles": [
+      "Shift BBQ Salmon Proper Pizza"
+    ],
+    "notes": "Crisp individual pizza base with tomato passata, large cooked salmon flakes, sliced mixed peppers and BBQ sauce. No cheese or other toppings. Ingredients and finished state match actual method and title; plausible single serving, central responsive crop retains dish.",
+    "alt": "Pizza with salmon flakes, peppers, tomato passata and BBQ sauce.",
+    "reviewed_at": "2026-10-04T21:39:05.896Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-560-576.json",
+    "source_sha256": "0974f1788c6b8e95432c8ddad6b1d0cf7e4fa1934d28be2501df0f0cf54d506a"
+  },
+  "integrated": true,
+  "live": false
+}

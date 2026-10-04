@@ -1,0 +1,10 @@
+{
+  "checks": 111,
+  "local_exact_mappings": 19,
+  "live_mappings": 7,
+  "prepared_not_live": 12,
+  "remaining_groups_without_asset": 2604,
+  "exact_match_fail_closed": true,
+  "original_seven_unchanged": true,
+  "publication_performed": false
+}

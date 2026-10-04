@@ -1,0 +1,83 @@
+{
+  "groupId": "a198ce621cefbfadd35b3d00b14a54cb2ace56525fd604d057e75fa0b424e350",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-banana-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Banana Greek Yoghurt Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Banana Greek Yoghurt Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"240g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"sliced banana\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow every dry/separate and soaked/prepared instruction exactly.",
+  "ingredients": [
+    {
+      "amount": "240g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sliced banana"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1eea0ce1-9423-4771-9cf4-ac6b48bb884e.png",
+  "source_sha256": "c2f5d7b2af61271d9715a52a77d8ea86691e3461e53fb4ed2215425e8d589c5f",
+  "generated_at": "2026-10-04T21:41:32.401Z",
+  "elapsed_ms": 274769,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a198ce621cefbfadd35b-480.webp",
+      "sha256": "24c969cb45eaa1423075f968eb5f00d60b8682a7baddf5a22dad1f689294bce3",
+      "bytes": 22464
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a198ce621cefbfadd35b.webp",
+      "sha256": "06d6c5fb06bb77d50594376ee31842a212e3e253082d11693fe9cf794af49a4b",
+      "bytes": 61038
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-banana-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Banana Greek Yoghurt Dessert Pot"
+    ],
+    "notes": "Smooth Greek yoghurt combined with banana, mixed berries, rolled oats and pumpkin seeds; no apple, chocolate or curdled cheese.",
+    "alt": "Greek yoghurt dessert pot with banana, berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:44:55.900603+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/a198ce621cefbfadd35b3d00b14a54cb2ace56525fd604d057e75fa0b424e350.json",
+    "source_sha256": "c2f5d7b2af61271d9715a52a77d8ea86691e3461e53fb4ed2215425e8d589c5f"
+  },
+  "integrated": true,
+  "live": false
+}

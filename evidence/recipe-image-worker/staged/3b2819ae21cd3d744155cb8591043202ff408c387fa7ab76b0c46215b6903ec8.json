@@ -1,0 +1,81 @@
+{
+  "groupId": "3b2819ae21cd3d744155cb8591043202ff408c387fa7ab76b0c46215b6903ec8",
+  "recipe_ids": [
+    "industrial-breakfast-breakfast-wrap-blueberry-lemon-6"
+  ],
+  "titles": [
+    "Egg Kidney Beans Mixed Peppers Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Kidney Beans Mixed Peppers Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g drained\",\"item\":\"kidney beans\"},{\"amount\":\"1 / 65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"mixed peppers\"},{\"amount\":\"50g\",\"item\":\"tomato salsa\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g drained",
+      "item": "kidney beans"
+    },
+    {
+      "amount": "1 / 65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "50g",
+      "item": "tomato salsa"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0003e6e5-2748-4f6a-9b32-167fb0deb2a7.png",
+  "source_sha256": "0b61950deb5a1763fd77c93f83938bea297168d9d91341ea74e1d079d481c96b",
+  "generated_at": "2026-10-04T21:11:45.106Z",
+  "elapsed_ms": 585798,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3b2819ae21cd3d744155-480.webp",
+      "sha256": "7ac7ee503565ab2f4becc824feba4b00f56256f9670d3d6390c5e42071544f99",
+      "bytes": 25480
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3b2819ae21cd3d744155.webp",
+      "sha256": "b45df77b939709588acb052e9fc93bc77139f2f1ffbc1753455abd06d86b4132",
+      "bytes": 76448
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-breakfast-wrap-blueberry-lemon-6"
+    ],
+    "titles": [
+      "Egg Kidney Beans Mixed Peppers Breakfast Wrap"
+    ],
+    "notes": "Toasted wholemeal wrap reveals cooked egg, red kidney beans, mixed pepper pieces and tomato salsa; no invented garnish. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Toasted wholemeal wrap filled with egg, kidney beans, mixed peppers and tomato salsa.",
+    "reviewed_at": "2026-10-04T21:13:56.961510+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "0b61950deb5a1763fd77c93f83938bea297168d9d91341ea74e1d079d481c96b"
+  }
+}

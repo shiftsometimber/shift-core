@@ -1,0 +1,87 @@
+{
+  "groupId": "eedc88ae6179683b8cac9edd9eaa8fd2761fdff7f8e027dbb828fd7f00849c87",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-apple-overnight-oats"
+  ],
+  "titles": [
+    "Shift Apple Overnight Oats Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Overnight Oats Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"diced apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g diced apple, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds, 15g dark chocolate, chopped separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "diced apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g diced apple, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds, 15g dark chocolate, chopped separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d889e223-12e9-4da4-a64a-19471d28debb.png",
+  "source_sha256": "dbc75b3297c4a6b4c966d01224984dc3c01f9764396ba2040a625e827beae6c0",
+  "generated_at": "2026-10-04T21:30:57.715Z",
+  "elapsed_ms": 173170,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-eedc88ae6179683b8cac-480.webp",
+      "sha256": "b538826117200ad1717a1f15cd8237c3d150a20bbd1bd9b45b8e3ff7bac751fb",
+      "bytes": 27656
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-eedc88ae6179683b8cac.webp",
+      "sha256": "7d1030e806fe48d3da700a617790bc1759e85d9c12dc8de3335224493133a107",
+      "bytes": 86024
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-apple-overnight-oats"
+    ],
+    "titles": [
+      "Shift Apple Overnight Oats Big Feed Dessert"
+    ],
+    "notes": "Milk-soaked soft overnight oats with diced apple and mixed berries; pumpkin seeds and chopped dark chocolate added at serving.",
+    "alt": "Apple and berry overnight oats topped with pumpkin seeds and chopped dark chocolate",
+    "reviewed_at": "2026-10-04T21:36:22.783153+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/eedc88ae6179683b8cac9edd9eaa8fd2761fdff7f8e027dbb828fd7f00849c87.json",
+    "source_sha256": "dbc75b3297c4a6b4c966d01224984dc3c01f9764396ba2040a625e827beae6c0"
+  },
+  "integrated": true,
+  "live": false
+}

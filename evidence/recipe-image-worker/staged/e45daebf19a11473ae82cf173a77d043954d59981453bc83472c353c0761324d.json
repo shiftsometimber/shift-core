@@ -1,0 +1,82 @@
+{
+  "groupId": "e45daebf19a11473ae82cf173a77d043954d59981453bc83472c353c0761324d",
+  "recipe_ids": [
+    "industrial-breakfast-egg-toast-cherry-cocoa-5"
+  ],
+  "titles": [
+    "Egg Spring Onion Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Spring Onion Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"spring onion\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Wash the vegetables and slice or finely chop them before cooking.\",\"Toast the bread.\",\"Heat the oil and cook the vegetables until softened.\",\"Add the eggs and scramble until fully set.\",\"Serve the eggs and vegetables on the toast and season with the measured black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Wash the vegetables and slice or finely chop them before cooking.",
+    "Toast the bread.",
+    "Heat the oil and cook the vegetables until softened.",
+    "Add the eggs and scramble until fully set.",
+    "Serve the eggs and vegetables on the toast and season with the measured black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6baacf36-8238-45ed-8a4b-45e7c4a4735c.png",
+  "source_sha256": "0d476df813606a801d796136271638581b0cc954f03babf77d12955db30e9219",
+  "generated_at": "2026-10-04T21:15:38.405Z",
+  "elapsed_ms": 819097,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e45daebf19a11473ae82-480.webp",
+      "sha256": "fcd099317349d68edddfd95779692139b58f9fb3496fbd078145d91295087e58",
+      "bytes": 24672
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e45daebf19a11473ae82.webp",
+      "sha256": "9b8d15cc090e5d11433a331de946862470bbf00da796affcf0eabe1376a26d0c",
+      "bytes": 73330
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-egg-toast-cherry-cocoa-5"
+    ],
+    "titles": [
+      "Egg Spring Onion Wholemeal Toast"
+    ],
+    "notes": "Two wholemeal toast slices with set egg and chopped spring onion; no cheese or leafy substitution. Single credible serving with full food visible in phone/desktop 4:3 framing. Quantities, hidden temperature and nutrition cannot be verified visually.",
+    "alt": "Scrambled egg and chopped spring onion on wholemeal toast.",
+    "reviewed_at": "2026-10-04T21:21:38.764593+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "0d476df813606a801d796136271638581b0cc954f03babf77d12955db30e9219"
+  }
+}

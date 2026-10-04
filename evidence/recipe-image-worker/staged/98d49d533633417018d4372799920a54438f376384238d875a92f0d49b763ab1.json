@@ -1,0 +1,82 @@
+{
+  "groupId": "98d49d533633417018d4372799920a54438f376384238d875a92f0d49b763ab1",
+  "recipe_ids": [
+    "industrial-v3-roast-bbq-tofu"
+  ],
+  "titles": [
+    "Shift BBQ Tofu Sunday-Style Roast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Tofu Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ glaze\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Pat the firm tofu dry, cut it into 2cm slabs and roast on a separate lined tray for 20\u201325 minutes, turning halfway, until the edges are golden and the centre is hot.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the reduced-sugar BBQ glaze in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked firm tofu, roast potatoes, carrots and broccoli together. Spoon the hot reduced-sugar BBQ glaze over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ glaze"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Pat the firm tofu dry, cut it into 2cm slabs and roast on a separate lined tray for 20\u201325 minutes, turning halfway, until the edges are golden and the centre is hot.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the reduced-sugar BBQ glaze in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked firm tofu, roast potatoes, carrots and broccoli together. Spoon the hot reduced-sugar BBQ glaze over the cooked protein."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1012a853-d490-4d97-b5bb-94d83b283a0a.png",
+  "source_sha256": "5dc968338d77b6d19fb197051dee42fa69a004f2087bd12aafb078122591bd62",
+  "generated_at": null,
+  "elapsed_ms": 77224.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-98d49d533633417018d4-480.webp",
+      "sha256": "221eebaf336cbe8186d979b2780dc792f4526031bbc8dffd5332b8b38a7da285",
+      "bytes": 37040
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-98d49d533633417018d4.webp",
+      "sha256": "fe8dddbe23b3456adf13f37f69074125b42dc80680473f59122a037ad270a07d",
+      "bytes": 118738
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-roast-bbq-tofu"
+    ],
+    "titles": [
+      "Shift BBQ Tofu Sunday-Style Roast"
+    ],
+    "notes": "Golden firm tofu slabs with BBQ glaze alongside peeled golden roast potatoes, carrot batons and broccoli. No minced patty or extra sauce. Exact ingredient identity/preparation and all member titles checked; plausible single serving with central responsive crop.",
+    "alt": "BBQ-glazed tofu slabs with roast potatoes, carrots and broccoli.",
+    "reviewed_at": "2026-10-04T21:47:42.797Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-576-592.json",
+    "source_sha256": "5dc968338d77b6d19fb197051dee42fa69a004f2087bd12aafb078122591bd62"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,83 @@
+{
+  "groupId": "7d1f29aac42ef8676eb0aa72eb0640b59e56fb09f4ce0cdaefd52122ae28bc65",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-apple-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Apple Cottage Cheese Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Cottage Cheese Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"diced apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "diced apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7cffb4cc-cc74-488d-9036-4fe552b9d7af.png",
+  "source_sha256": "5950bb6059ed7334a63a7851e5c012109319ff2466151bf44d76bfea78ff2ea9",
+  "generated_at": "2026-10-04T21:23:51.185Z",
+  "elapsed_ms": 266021,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7d1f29aac42ef8676eb0-480.webp",
+      "sha256": "af05ce77bfd0791c8ea365a2f0649e0c76f3ae4af218376332271f567027e9db",
+      "bytes": 21942
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7d1f29aac42ef8676eb0.webp",
+      "sha256": "2becbd48d79d119d1fbb92555c8a8bac9d35e04ab7ed92f52e6c078eebb66cb2",
+      "bytes": 64578
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-apple-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Apple Cottage Cheese Protein Pot"
+    ],
+    "notes": "Cottage cheese fruit pot topped with rolled oats and pumpkin seeds immediately before serving; no extra yoghurt or chocolate.",
+    "alt": "Cottage cheese protein pot with apple, berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:27:27.308345+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/7d1f29aac42ef8676eb0aa72eb0640b59e56fb09f4ce0cdaefd52122ae28bc65.json",
+    "source_sha256": "5950bb6059ed7334a63a7851e5c012109319ff2466151bf44d76bfea78ff2ea9"
+  },
+  "integrated": true,
+  "live": false
+}

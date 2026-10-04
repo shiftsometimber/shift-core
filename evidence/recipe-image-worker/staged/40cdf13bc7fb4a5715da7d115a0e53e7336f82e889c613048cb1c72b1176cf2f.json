@@ -1,0 +1,89 @@
+{
+  "groupId": "40cdf13bc7fb4a5715da7d115a0e53e7336f82e889c613048cb1c72b1176cf2f",
+  "recipe_ids": [
+    "industrial-v3-toastie-garlic-herb-turkey"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Turkey Hot Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Turkey Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the measured garlic herb yoghurt between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Never add a lemon wedge just because the sauce is lemon herb yoghurt.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+    "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the measured garlic herb yoghurt between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+    "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+    "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-12a4ddea-c807-47a5-81dc-00f845e4a18c.png",
+  "source_sha256": "8250cd79899631a71991d86319bb9bdc75ac9d9038ff550c698513e0b8086056",
+  "generated_at": "2026-10-04T21:29:25.929Z",
+  "elapsed_ms": 85692.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-40cdf13bc7fb4a5715da-480.webp",
+      "sha256": "5631502f2265f7bb6eb4d6f4985510f4f46697b475820c45a29cb8c3f73323eb",
+      "bytes": 32320
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-40cdf13bc7fb4a5715da.webp",
+      "sha256": "ac6570c3c5602fd469adace66265c4f46dbb358f6997617c176742a225afc35c",
+      "bytes": 100406
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-toastie-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Hot Toastie"
+    ],
+    "notes": "Crisp wholemeal toastie containing cooked turkey slices, spinach, tomato and garlic herb yoghurt; reserved raw spinach/tomato side salad.",
+    "alt": "Garlic & Herb Turkey Hot Toastie with tomato, spinach",
+    "reviewed_at": "2026-10-04T21:35:28.394739+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1793.json",
+    "source_sha256": "8250cd79899631a71991d86319bb9bdc75ac9d9038ff550c698513e0b8086056"
+  },
+  "integrated": true,
+  "live": false
+}

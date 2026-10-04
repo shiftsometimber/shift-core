@@ -1,0 +1,85 @@
+{
+  "groupId": "143d3e77bafa2548180259a2eb086e635e79908b75383fdb6dbee3fe249b9858",
+  "recipe_ids": [
+    "industrial-breakfast-protein-oats-plum-ginger-7"
+  ],
+  "titles": [
+    "Plum Ginger Protein Oats"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Plum Ginger Protein Oats. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"porridge oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"200ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"120g\",\"item\":\"plum, diced\"},{\"amount\":\"1/2 tsp\",\"item\":\"ground ginger\"}]. Preparation: [\"Add oats, milk and fruit to a saucepan.\",\"Cook gently for 5\u20136 minutes, stirring until thick.\",\"Take off the heat and stir through the yoghurt.\",\"Finish with the measured flavouring and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "50g",
+      "item": "porridge oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "200ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "120g",
+      "item": "plum, diced"
+    },
+    {
+      "amount": "1/2 tsp",
+      "item": "ground ginger"
+    }
+  ],
+  "method": [
+    "Add oats, milk and fruit to a saucepan.",
+    "Cook gently for 5\u20136 minutes, stirring until thick.",
+    "Take off the heat and stir through the yoghurt.",
+    "Finish with the measured flavouring and serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-01bbfd95-bc2a-4557-8aea-e158374d9424.png",
+  "source_sha256": "a9945a61556b2d79cd7d78aa293d403e54922f65d1838a5f35d41632865543f4",
+  "generated_at": null,
+  "elapsed_ms": 29108.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-143d3e77bafa25481802-480.webp",
+      "sha256": "e348ed60161855b3f1c325018cdaaaa9c8b2f78d5a4b5329a49614e39d05f9f9",
+      "bytes": 20174
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-143d3e77bafa25481802.webp",
+      "sha256": "5f868ec1633de5b829e26384a39baa5d543434a4250da15b47cf01a069993309",
+      "bytes": 63612
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-protein-oats-plum-ginger-7"
+    ],
+    "titles": [
+      "Plum Ginger Protein Oats"
+    ],
+    "notes": "Soft thick porridge contains purple-skinned plum chunks softened into the mixture; yoghurt appears incorporated rather than sitting as an unlisted topping. No raw dry oats, seeds, nuts or garnish. Image agrees with cooked protein-oats method and title; plausible serving and useful central framing.",
+    "alt": "Warm creamy porridge with softened diced plum, Greek yoghurt and ginger.",
+    "reviewed_at": "2026-10-04T21:12:01.688Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews.json",
+    "source_sha256": "a9945a61556b2d79cd7d78aa293d403e54922f65d1838a5f35d41632865543f4"
+  },
+  "integrated": true,
+  "live": false
+}

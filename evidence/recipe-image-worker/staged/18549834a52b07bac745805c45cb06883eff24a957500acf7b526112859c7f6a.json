@@ -1,0 +1,76 @@
+{
+  "groupId": "18549834a52b07bac745805c45cb06883eff24a957500acf7b526112859c7f6a",
+  "recipe_ids": [
+    "industrial-breakfast-potato-hash-blueberry-lemon-6"
+  ],
+  "titles": [
+    "Chicken Mixed Peppers Breakfast Potato Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Chicken Mixed Peppers Breakfast Potato Hash. Ingredients, quantities and allergens: [{\"amount\":\"220g\",\"item\":\"baby potatoes\"},{\"amount\":\"100g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"80g\",\"item\":\"mixed peppers\"},{\"amount\":\"60g\",\"item\":\"onion\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.\",\"Chop the onion and mixed peppers. Heat the measured olive oil in a wide non-stick frying pan; cook the onion and mixed peppers over medium heat for 4\u20135 minutes.\",\"Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.\",\"Add the cooked chicken breast in bite-size pieces and heat for 3\u20135 minutes, turning until steaming hot right through. It is already cooked; do not treat it as raw meat.\",\"Serve the chicken breast, potatoes and vegetables immediately. Do not cool and reheat this assembled hash again.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "220g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "60g",
+      "item": "onion"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.",
+    "Chop the onion and mixed peppers. Heat the measured olive oil in a wide non-stick frying pan; cook the onion and mixed peppers over medium heat for 4\u20135 minutes.",
+    "Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.",
+    "Add the cooked chicken breast in bite-size pieces and heat for 3\u20135 minutes, turning until steaming hot right through. It is already cooked; do not treat it as raw meat.",
+    "Serve the chicken breast, potatoes and vegetables immediately. Do not cool and reheat this assembled hash again."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-294d1acc-b073-491c-927c-5dfcf0140121.png",
+  "source_sha256": "8b55ff737c6750a190c1d0a1be655a0e65f06f748abc1a89be157a4996a126c3",
+  "generated_at": "2026-10-04T21:05:28.261Z",
+  "elapsed_ms": 208953,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-18549834a52b07bac745-480.webp",
+      "sha256": "04aeaf42023001d962d749fe18b390459b86bdcc291d555cbc313a59e2ef0b16",
+      "bytes": 29528
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-18549834a52b07bac745.webp",
+      "sha256": "fa27489dc32ddbc2406eef6b02267ab936dda452a2f0bb124994aa4756648c34",
+      "bytes": 92938
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-potato-hash-blueberry-lemon-6"
+    ],
+    "titles": [
+      "Chicken Mixed Peppers Breakfast Potato Hash"
+    ],
+    "notes": "Pan-browned potato cubes, bite-size cooked chicken, red/yellow/green peppers and softened onion; no herbs or extra sides. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Golden potato hash with cooked chicken, mixed peppers and onion.",
+    "reviewed_at": "2026-10-04T21:13:56.961068+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "8b55ff737c6750a190c1d0a1be655a0e65f06f748abc1a89be157a4996a126c3"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "groupId": "04923f64ca267d0a5d89941c0d6599b1d9c15bb6654517099ea5c0b9f3b0065d",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-bbq-egg"
+  ],
+  "titles": [
+    "Shift BBQ Egg Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Egg Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-710e0a13-71d1-4329-b7db-5b6bf6c38144.png",
+  "source_sha256": "1bdd0b9632d30ff2ed9351590a313d7b9d8d1d0ee7520b27e47f7fceb17f09b2",
+  "generated_at": "2026-10-04T21:13:50.456Z",
+  "elapsed_ms": 218439.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-04923f64ca267d0a5d89-480.webp",
+      "sha256": "9dd8681bcf77e6fe35b9aba0c157b946c4c081c74067aed08a7941116dfc95a7",
+      "bytes": 28120
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-04923f64ca267d0a5d89.webp",
+      "sha256": "73c354ab3af84a55efb7e2efad68e2f867443a99db6ed18ac05d13f9c9054847",
+      "bytes": 92692
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-bbq-egg"
+    ],
+    "titles": [
+      "Shift BBQ Egg Breakfast Buttie"
+    ],
+    "notes": "Wholemeal bap shows tender set scrambled eggs, softened cooked tomato and wilted spinach coated in barbecue sauce. Egg preparation compatible with just-set method. No meat, cheese or garnish. Single sandwich centred with margin.",
+    "alt": "Wholemeal bap filled with tender eggs, barbecue sauce, tomato and spinach",
+    "reviewed_at": "2026-10-04T21:14:19.784067+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/56.json",
+    "source_sha256": "1bdd0b9632d30ff2ed9351590a313d7b9d8d1d0ee7520b27e47f7fceb17f09b2"
+  },
+  "integrated": true,
+  "live": false
+}

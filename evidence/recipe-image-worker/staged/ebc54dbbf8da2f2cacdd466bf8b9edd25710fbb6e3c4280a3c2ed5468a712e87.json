@@ -1,0 +1,83 @@
+{
+  "groupId": "ebc54dbbf8da2f2cacdd466bf8b9edd25710fbb6e3c4280a3c2ed5468a712e87",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-classic-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Classic Chicken Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Chicken Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"brown sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "brown sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-340cb39d-cf34-445e-a310-21e5e1e6488e.png",
+  "source_sha256": "424fcd04ffe9732b67f21c3cdeef5b952784cce8a584d37ae8fea2c0fb8643dc",
+  "generated_at": "2026-10-04T21:29:41.958Z",
+  "elapsed_ms": 25618,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ebc54dbbf8da2f2cacdd-480.webp",
+      "sha256": "eb593387114ee3f87c756605b3cf7bf04976e06d69d3dd22e38807cc82f748d0",
+      "bytes": 26118
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ebc54dbbf8da2f2cacdd.webp",
+      "sha256": "82eda377912e998d25410d0ae194d4e9ae8e0d5ff5a75d01f412a1c4f27dfc14",
+      "bytes": 84774
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-classic-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Classic Chicken Breakfast Buttie"
+    ],
+    "notes": "Cooked browned chicken with softened tomato, wilted spinach and brown sauce in a plain wholemeal bap. No cheese, seeds or garnish; recipe and serving form match.",
+    "alt": "Wholemeal bap with chicken, tomato, spinach and brown sauce.",
+    "reviewed_at": "2026-10-04T21:36:45.369727+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/144.json",
+    "source_sha256": "424fcd04ffe9732b67f21c3cdeef5b952784cce8a584d37ae8fea2c0fb8643dc"
+  },
+  "integrated": true,
+  "live": false
+}

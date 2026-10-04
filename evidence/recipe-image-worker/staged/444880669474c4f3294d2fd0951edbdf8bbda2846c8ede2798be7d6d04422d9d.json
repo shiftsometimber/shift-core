@@ -1,0 +1,87 @@
+{
+  "groupId": "444880669474c4f3294d2fd0951edbdf8bbda2846c8ede2798be7d6d04422d9d",
+  "recipe_ids": [
+    "industrial-v3-pizza-tikka-beef"
+  ],
+  "titles": [
+    "Shift Tikka Beef Proper Pizza"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Beef Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"tikka sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.\",\"Keep the 5% beef mince ready to break into small pieces in the pan. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the beef mince over a medium-high heat for about 8\u201310 minutes, breaking up clumps and stirring until browned. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Transfer the cooked beef mince to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Put the measured tikka sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked beef mince evenly on top, then spoon over the warm sauce. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No spring onions, coriander, parsley, sesame or decorative garnish unless the exact ingredient list includes them.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.",
+    "Keep the 5% beef mince ready to break into small pieces in the pan. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the beef mince over a medium-high heat for about 8\u201310 minutes, breaking up clumps and stirring until browned. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Transfer the cooked beef mince to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Put the measured tikka sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked beef mince evenly on top, then spoon over the warm sauce. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Rest for one minute, cut and serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6fd1a07f-7e84-467c-9604-2785e3855431.png",
+  "source_sha256": "7fe947fe337454fd63ffc23de21b4315322ca5947c405efd397bd6ce965dd2dd",
+  "generated_at": "2026-10-04T21:32:50.329Z",
+  "elapsed_ms": 344971.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-444880669474c4f3294d-480.webp",
+      "sha256": "cadd9008fd201ed6f8d091eff584bf29b311c8bf716871639f47f52e11643286",
+      "bytes": 29408
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-444880669474c4f3294d.webp",
+      "sha256": "cbe6a3b598b35d8616deef66eefef882d32b828474e5ad855ecbf1159ce5746c",
+      "bytes": 87874
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-pizza-tikka-beef"
+    ],
+    "titles": [
+      "Shift Tikka Beef Proper Pizza"
+    ],
+    "notes": "Individual baked pizza base with passata, browned beef mince, mixed peppers and spooned orange tikka sauce; no cheese or garnish.",
+    "alt": "Tikka beef pizza with tomato passata and mixed peppers.",
+    "reviewed_at": "2026-10-04T21:34:41.267586+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1388-review.json",
+    "source_sha256": "7fe947fe337454fd63ffc23de21b4315322ca5947c405efd397bd6ce965dd2dd"
+  },
+  "integrated": true,
+  "live": false
+}

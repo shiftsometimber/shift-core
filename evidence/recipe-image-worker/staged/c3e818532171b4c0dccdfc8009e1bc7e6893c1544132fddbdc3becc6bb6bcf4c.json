@@ -1,0 +1,82 @@
+{
+  "groupId": "c3e818532171b4c0dccdfc8009e1bc7e6893c1544132fddbdc3becc6bb6bcf4c",
+  "recipe_ids": [
+    "industrial-breakfast-egg-toast-blueberry-lemon-6"
+  ],
+  "titles": [
+    "Egg Mixed Peppers Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Mixed Peppers Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"mixed peppers\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Wash the vegetables and slice or finely chop them before cooking.\",\"Toast the bread.\",\"Heat the oil and cook the vegetables until softened.\",\"Add the eggs and scramble until fully set.\",\"Serve the eggs and vegetables on the toast and season with the measured black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Wash the vegetables and slice or finely chop them before cooking.",
+    "Toast the bread.",
+    "Heat the oil and cook the vegetables until softened.",
+    "Add the eggs and scramble until fully set.",
+    "Serve the eggs and vegetables on the toast and season with the measured black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d89b1157-ad67-49e4-9d58-efe8b3bed3a7.png",
+  "source_sha256": "d55f2d4dde7ae1d37b95ec05d15b6a0e3334e5075e7d14950f2f28181113b460",
+  "generated_at": "2026-10-04T21:13:18.903Z",
+  "elapsed_ms": 679595,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c3e818532171b4c0dccd-480.webp",
+      "sha256": "454a18ecd915091271e1b67c94db8bb98e2a8bff8311be19f6e5bde0d6b3dd4d",
+      "bytes": 26650
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c3e818532171b4c0dccd.webp",
+      "sha256": "76d6c30dceaa4443f4fa1751b94e48afef60da4789973168ed10d8c60b838b5d",
+      "bytes": 81286
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-egg-toast-blueberry-lemon-6"
+    ],
+    "titles": [
+      "Egg Mixed Peppers Wholemeal Toast"
+    ],
+    "notes": "Two toasted wholemeal slices with softly cooked egg and softened red/green/yellow peppers; no cheese or herbs. Single credible serving with full food visible in phone/desktop 4:3 framing. Quantities, hidden temperature and nutrition cannot be verified visually.",
+    "alt": "Scrambled egg and mixed peppers on two slices of wholemeal toast.",
+    "reviewed_at": "2026-10-04T21:21:38.767306+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "d55f2d4dde7ae1d37b95ec05d15b6a0e3334e5075e7d14950f2f28181113b460"
+  }
+}
