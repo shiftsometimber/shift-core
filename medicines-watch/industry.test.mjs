@@ -41,6 +41,7 @@ import rgt075Publication from './reviews/2026-10-04-authorised-rgt075.json' with
 import vct220Publication from './reviews/2026-10-04-authorised-vct220.json' with {type:'json'};
 import vk2735Maintenance from './reviews/2026-10-04-authorised-vk2735-maintenance.json' with {type:'json'};
 import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-discontinuation.json' with {type:'json'};
+import taldefgrobepRv8451 from './reviews/2026-10-04-authorised-taldefgrobep-rv8451.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('VK2735 maintenance evidence stays sponsor-reported and does not create an approved regimen',()=>{
  const e=industry.find(e=>e.id==='vk2735');
@@ -361,8 +362,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,87);assert.equal(sources.length,134);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,93);
+ assert.equal(medicines.length,6);assert.equal(industry.length,89);assert.equal(sources.length,135);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,95);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -869,7 +870,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,87);
+ assert.equal(industry.length,89);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -968,4 +969,35 @@ test('Azelaprag stays discontinued and preserves the registry and sponsor safety
  assert.equal(registry.lifecycle.hasResults,false);
  assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
  assert.ok(discoveryDomains.includes('bioagelabs.com'));
+});
+
+test('taldefgrobep and RV-8451 preserve clinical-stage and evidence boundaries',()=>{
+ assert.equal(taldefgrobepRv8451.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(taldefgrobepRv8451.clinicalApproval,null);
+ assert.equal(taldefgrobepRv8451.industryComplete,false);
+ const taldefgrobep=industry.find(item=>item.id==='taldefgrobep-alfa');
+ assert.ok(taldefgrobep);
+ assert.match(taldefgrobep.stage,/Phase 2 active, not recruiting/);
+ assert.match(taldefgrobep.summary,/estimated September 2026 completion/);
+ assert.match(taldefgrobep.limitations,/no posted results/i);
+ assert.match(taldefgrobep.limitations,/no efficacy, muscle-preservation, strength, function, durability, safety, superiority or combination benefit/i);
+ assert.match(taldefgrobep.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.match(taldefgrobep.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(taldefgrobep.supply,/does not establish lawful UK retail supply/);
+ const registry=taldefgrobepRv8451.registrySources[0];
+ assert.equal(registry.nctId,'NCT07281495');
+ assert.equal(registry.lifecycle.status,'ACTIVE_NOT_RECRUITING');
+ assert.equal(registry.lifecycle.enrollment.type,'ESTIMATED');
+ assert.equal(registry.lifecycle.completion.type,'ESTIMATED');
+ assert.equal(registry.lifecycle.hasResults,false);
+ assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ const rv8451=industry.find(item=>item.id==='rv8451');
+ assert.ok(rv8451);
+ assert.match(rv8451.stage,/Preclinical/);
+ assert.match(rv8451.summary,/plans a US IND submission for Q1 2027/);
+ assert.match(rv8451.limitations,/do not establish human efficacy/);
+ assert.match(rv8451.limitations,/not a completed filing or a started human trial/);
+ assert.match(rv8451.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.match(rv8451.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(rv8451.supply,/do not establish lawful UK retail supply/);
 });
