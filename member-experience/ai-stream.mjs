@@ -13,7 +13,7 @@ function bounded(promise,ms,signal){
  });
 }
 
-export async function* inferenceText(stream,{signal,firstTextTimeoutMs=3000,idleTimeoutMs=5000,totalTimeoutMs=15000}={}){
+export async function* inferenceText(stream,{signal,firstTextTimeoutMs=3000,idleTimeoutMs=5000,totalTimeoutMs=15000,requireTerminal=false}={}){
  const reader=stream.getReader(),decoder=new TextDecoder(),started=Date.now();
  let pending='',first=true,lastText=started,terminal=false;
  const parse=line=>{
@@ -42,9 +42,9 @@ export async function* inferenceText(stream,{signal,firstTextTimeoutMs=3000,idle
     const text=parse(line);if(text){first=false;lastText=Date.now();yield text}
     if(terminal)break;
    }
-   if(done){const text=parse(pending.trim());if(text)yield text;break}
+   if(done){const text=parse(pending.trim());if(text)yield text;if(requireTerminal&&!terminal)throw Error('incomplete_answer');break}
   }
- }finally{signal?.removeEventListener('abort',cancel);await reader.cancel().catch(()=>{});reader.releaseLock()}
+ }finally{signal?.removeEventListener('abort',cancel);await bounded(reader.cancel().catch(()=>{}),1000).catch(()=>{});reader.releaseLock()}
 }
 
 export async function openInference(run,{signal,timeoutMs=3000}={}){
@@ -57,7 +57,7 @@ export async function openInference(run,{signal,timeoutMs=3000}={}){
  try{
   const upstream=await bounded(pending,timeoutMs,abort.signal);
   if(!upstream?.getReader)throw Error('stream_unavailable');
-  tokens=inferenceText(upstream,{signal:abort.signal,firstTextTimeoutMs:Math.max(0,timeoutMs-(Date.now()-started))});
+  tokens=inferenceText(upstream,{signal:abort.signal,firstTextTimeoutMs:Math.max(0,timeoutMs-(Date.now()-started)),requireTerminal:true});
   const first=await tokens.next();if(first.done)throw Error('empty_answer');
   return {async *[Symbol.asyncIterator](){try{yield first.value;yield* tokens}finally{cleanup();await tokens.return()}},cancel:()=>{abort.abort();cleanup();return tokens.return()}};
  }catch(error){abandoned=true;abort.abort();cleanup();await tokens?.return();throw error}
@@ -79,6 +79,7 @@ export function answerStream(upstream,{headers,requestId,access,meta,request,onC
    }
    if(cancelled||request.signal.aborted)throw Error('cancelled');
    if(!answer.trim())throw Error('empty_answer');if(!await memoryStillAllowed(access))throw Error('privacy_changed');
+   if(cancelled||request.signal.aborted)throw Error('cancelled');
    if(pending)emit('delta',{text:pending});await saveConversationTurn(access,'assistant',answer);
    if(!await memoryStillAllowed(access))throw Error('privacy_changed');
    const completed={ok:true,requestId,mode:'grounded',...meta,answer:answer.replace(/\[\s*\]/g,'').trim(),keyPoints:[],nextSteps:[],followUps:[],delivery:'streamed'};

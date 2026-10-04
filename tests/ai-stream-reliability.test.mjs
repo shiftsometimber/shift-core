@@ -16,6 +16,12 @@ test('explicit truncation, provider errors and malformed tails reject partial an
   await assert.rejects(()=>collect(stream));
  }
 });
+test('transport EOF without a completion marker cannot become a completed model answer',async()=>{
+ const raw=new ReadableStream({start(c){c.enqueue(chunk({response:'Plausible but cut short.'}));c.close()}});
+ await assert.rejects(()=>collect(raw,{requireTerminal:true}),/incomplete_answer/);
+ const complete=new ReadableStream({start(c){c.enqueue(chunk({response:'Complete.'}));c.enqueue(encoder.encode('data: [DONE]'));c.close()}});
+ assert.equal(await collect(complete,{requireTerminal:true}),'Complete.');
+});
 test('heartbeats cannot extend first-text deadline; stalled reader is cancelled',async()=>{
  let cancelled=false,timer;
  const stream=new ReadableStream({start(c){timer=setInterval(()=>c.enqueue(encoder.encode(': ping\n\n')),2)},cancel(){cancelled=true;clearInterval(timer)}});
