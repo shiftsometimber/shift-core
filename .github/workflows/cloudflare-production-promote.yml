@@ -201,8 +201,32 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  select-current:
+    runs-on: ubuntu-latest
+    outputs:
+      current: ${{ steps.current.outputs.current }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: current
+        name: Classify stale queued release without weakening deploy guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin main
+          latest="$(git rev-parse origin/main)"
+          if [ "$latest" = "$GITHUB_SHA" ]; then
+            echo "current=true" >> "$GITHUB_OUTPUT"
+            echo "Release candidate is current main: $GITHUB_SHA"
+          else
+            echo "current=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Release $GITHUB_SHA was superseded by $latest before promotion; skipping this stale queued run."
+          fi
+
   promote:
-    if: ${{ github.event_name == 'push' || inputs.confirm == 'PROMOTE_CURRENT_MAIN' }}
+    needs: select-current
+    if: ${{ needs.select-current.outputs.current == 'true' && (github.event_name == 'push' || inputs.confirm == 'PROMOTE_CURRENT_MAIN') }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
