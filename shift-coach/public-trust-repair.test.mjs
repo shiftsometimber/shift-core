@@ -19,6 +19,18 @@ test('foreign referer and unrelated forms do not alter payload',async()=>{const 
 test('Lounge stays on its public landing page and emits one canonical',()=>{const source=html.replace('</head>',`<meta http-equiv="refresh" content="0;url=/"><script>window.location.replace('/');</script><link rel="canonical" href="https://shiftsometimber.co.uk/lounge"></head>`);const out=repairHtml(source,'/lounge');assert(!out.includes('http-equiv="refresh"'));assert(!out.includes('window.location.replace'));assert.equal((out.match(/rel="canonical"/g)||[]).length,1);assert(out.includes('href="https://shiftsometimber.co.uk/lounge"'))});
 
 import {restoreTrustCentre} from './public-trust-repair.mjs';
+import {STOPPING_BMJ_OLD,STOPPING_BMJ_CURRENT,restoreStoppingCitation} from './public-trust-repair.mjs';
+test('stopping-treatment citation repair changes only the exact source anchor',async()=>{
+ const prior=`<html><head><script>const historical='${STOPPING_BMJ_OLD}'</script></head><body><main><p>Study averages do not predict an individual outcome.</p><a href="${STOPPING_BMJ_OLD}">BMJ</a><a href="https://www.nice.org.uk/guidance/ng246">NICE</a></main></body></html>`;
+ const expected=prior.replace(`href="${STOPPING_BMJ_OLD}"`,`href="${STOPPING_BMJ_CURRENT}"`);
+ const response=await withTrustRepair(req('/articles/stopping-glp1'),new Response(prior,{headers:{'Content-Type':'text/html'}}));
+ const actual=await response.text();assert.equal(actual,expected);
+ assert.equal(restoreStoppingCitation('/articles/stopping-glp1',Buffer.from(actual),{required:true}).toString(),prior);
+ assert.equal(repairHtml(prior,'/'),prior);assert.equal(repairHtml(prior,'/about'),prior);
+ assert.throws(()=>restoreStoppingCitation('/articles/stopping-glp1',Buffer.from(prior),{required:true}));
+ assert.throws(()=>restoreStoppingCitation('/articles/stopping-glp1',Buffer.from(actual+`<a href="${STOPPING_BMJ_CURRENT}">duplicate</a>`),{required:true}));
+ assert.notEqual(restoreStoppingCitation('/articles/stopping-glp1',Buffer.from(actual.replace('Study averages','Unrelated changed wording')),{required:true}).toString(),prior);
+});
 test('release comparison admits only the exact treatment repair and retains unrelated drift',()=>{
  const prior='<main>Payment does not guarantee prescribing. Payment does not guarantee prescribing.</main>';
  const current=repairHtml(prior,'/treatment-centre');
