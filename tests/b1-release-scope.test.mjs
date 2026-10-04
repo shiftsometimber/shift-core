@@ -1,4 +1,4 @@
-import {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,WATCH_SOURCE_LINK_SOURCE} from '../release/watch-registry-wave-scope.mjs';
+import {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,WATCH_SOURCE_LINK_SOURCE,watchWaveRef} from '../release/watch-registry-wave-scope.mjs';
 import {PUBLIC_WORDING_PREVIEW,PUBLIC_WORDING_PATHS,validatePublicWording} from '../release/public-wording-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -75,7 +75,7 @@ test('Grub publication is disabled after the authorised expansion; only runtime 
  test('industry release binds every reviewed file and preserves the observation-only boundary',async()=>{
   const {validateWatchExpansion,WATCH_EXPANSION_COMMIT,WATCH_EXPANSION_PATHS,WATCH_BROADER_COMMIT,WATCH_BROADER_PATHS,WATCH_SYNT101_COMMIT,WATCH_SYNT101_PATHS,WATCH_INTERNATIONAL_COMMIT,WATCH_INTERNATIONAL_PATHS,WATCH_EXPANDED_COMMIT,WATCH_EXPANDED_PATHS,WATCH_UBT251_COMMIT,WATCH_UBT251_PATHS,WATCH_SGB7342_COMMIT,WATCH_SGB7342_PATHS,WATCH_ABBV_ASC30_COMMIT,WATCH_ABBV_ASC30_PATHS,WATCH_SOURCE_REPAIR_COMMIT,WATCH_SOURCE_REPAIR_PATHS,WATCH_REGISTRY_COMMIT,WATCH_REGISTRY_PATHS,WATCH_PFIZER_PDF_REPAIR_COMMIT,WATCH_PFIZER_PDF_REPAIR_PATHS,WATCH_ENOBOSARM_COMMIT,WATCH_ENOBOSARM_PATHS}=await import('../scripts/b1-release-scope.mjs');
   assert.equal(WATCH_EXPANSION_PATHS.length,42);
-  const expectedRef=path=>path==='medicines-watch/industry.mjs'?WATCH_SOURCE_LINK_SOURCE:WATCH_REGISTRY_WAVE_PATHS.includes(path)?WATCH_REGISTRY_WAVE_COMMIT:PUBLIC_WORDING_PATHS.includes(path)?PUBLIC_WORDING_PREVIEW:WATCH_ENOBOSARM_PATHS.includes(path)?WATCH_ENOBOSARM_COMMIT:WATCH_PFIZER_PDF_REPAIR_PATHS.includes(path)?WATCH_PFIZER_PDF_REPAIR_COMMIT:WATCH_REGISTRY_PATHS.includes(path)?WATCH_REGISTRY_COMMIT:WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:WATCH_EXPANSION_COMMIT;
+  const expectedRef=path=>path==='medicines-watch/industry.mjs'?WATCH_SOURCE_LINK_SOURCE:WATCH_REGISTRY_WAVE_PATHS.includes(path)?watchWaveRef(path):PUBLIC_WORDING_PATHS.includes(path)?PUBLIC_WORDING_PREVIEW:WATCH_ENOBOSARM_PATHS.includes(path)?WATCH_ENOBOSARM_COMMIT:WATCH_PFIZER_PDF_REPAIR_PATHS.includes(path)?WATCH_PFIZER_PDF_REPAIR_COMMIT:WATCH_REGISTRY_PATHS.includes(path)?WATCH_REGISTRY_COMMIT:WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:WATCH_EXPANSION_COMMIT;
   const reviewed=(ref,path)=>(ref==='HEAD'?expectedRef(path):ref)+':'+path;
   validateWatchExpansion(reviewed);
   for(const changed of WATCH_EXPANSION_PATHS)assert.throws(()=>validateWatchExpansion((ref,path)=>ref==='HEAD'&&path===changed?'drift':reviewed(ref,path)),/source drift/);
@@ -172,7 +172,7 @@ test('Pfizer PDF monitor repair binds its exact reviewed commit',async()=>{
  const reads=[];
  validateWatchPfizerPdfRepair((ref,path)=>{reads.push([ref,path]);return path});
  assert.ok(reads.some(([ref,path])=>ref===WATCH_REGISTRY_WAVE_COMMIT&&path==='medicines-watch/README.md'));
- assert.ok(reads.some(([ref,path])=>ref===WATCH_REGISTRY_WAVE_COMMIT&&path==='medicines-watch/monitor.mjs'));
+ assert.ok(reads.some(([ref,path])=>ref===watchWaveRef(path)&&path==='medicines-watch/monitor.mjs'));
  for(const changed of WATCH_PFIZER_PDF_REPAIR_PATHS)assert.throws(()=>validateWatchPfizerPdfRepair((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/Pfizer PDF monitor repair drift/);
 });
 
@@ -201,7 +201,7 @@ test('treatment release binds every browser-tested eligibility and information f
 
 test('registry wave retains exact reviewed Watch credibility files',async()=>{
  const {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,WATCH_SOURCE_LINK_SOURCE,validateWatchRegistryWave}=await import('../release/watch-registry-wave-scope.mjs');
- assert.equal(WATCH_REGISTRY_WAVE_COMMIT,'50a57d1526edc06a8b3aa013b20615772f487f68');assert.equal(WATCH_REGISTRY_WAVE_PATHS.length,43);
+ assert.equal(WATCH_REGISTRY_WAVE_COMMIT,'50a57d1526edc06a8b3aa013b20615772f487f68');assert.equal(WATCH_REGISTRY_WAVE_PATHS.length,46);
  validateWatchRegistryWave((ref,path)=>path);
  for(const drift of WATCH_REGISTRY_WAVE_PATHS)assert.throws(()=>validateWatchRegistryWave((ref,path)=>ref==='HEAD'&&path===drift?'changed':path),/registry-wave source drift/);
 });

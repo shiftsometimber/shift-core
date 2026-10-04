@@ -40,30 +40,40 @@ function internalRecipients(eventType,includeMatt=false){
   return recipients;
 }
 
+// Delivery logging must never turn an accepted email into a failed send or
+// encourage a duplicate resend. "sent" retains its historical provider meaning;
+// an inbox receipt is separate evidence, never inferred here.
+async function auditDelivery(env,detail){
+  try{await recordAuthDelivery(env.DB,detail);return true}
+  catch{console.error('transactional_email_audit_unavailable',detail.eventType,detail.status);return false}
+}
+const escapeHtml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
 export async function sendTransactionalEmail(env,{to,subject,text,html,eventType,userId=null,internalNotify=false,includeMatt=false}){
   const recipients=[to,...(internalNotify?internalRecipients(eventType,includeMatt):[])].filter(Boolean);
   const unique=[...new Set(recipients.map(x=>String(x).trim().toLowerCase()))];
   const results=[];
   for(const email of unique){
     if(!env.EMAIL){
-      await recordAuthDelivery(env.DB,{userId,email,eventType,status:'binding_missing'});
-      results.push({email,status:'binding_missing'});
+      const auditRecorded=await auditDelivery(env,{userId,email,eventType,status:'binding_missing'});
+      results.push({email,status:'binding_missing',auditRecorded,receiptVerified:false});
       continue;
     }
     try{
       const result=await env.EMAIL.send({
         from:{email:String(env.TRANSACTIONAL_EMAIL_FROM||DEFAULT_FROM),name:'Shift Some Timber'},
-        to:email,subject:String(subject||'SHIFT update').slice(0,180),
+        to:email,replyTo:(ROUTING[eventType]||[DEFAULT_FROM])[0],
+        subject:String(subject||'SHIFT update').replace(/[\r\n]+/g,' ').slice(0,180),
         text:String(text||''),html:String(html||'')
       });
       const providerId=result?.id||result?.messageId||null;
-      await recordAuthDelivery(env.DB,{userId,email,eventType,status:'sent',providerId});
-      results.push({email,status:'sent',providerId});
+      const auditRecorded=await auditDelivery(env,{userId,email,eventType,status:'sent',providerId});
+      results.push({email,status:'sent',providerId,auditRecorded,receiptVerified:false});
     }catch(e){
-      const errorCode=String(e?.code||e?.name||e?.message||'delivery_error').replace(/[^a-zA-Z0-9_.:-]/g,'_').slice(0,120);
-      await recordAuthDelivery(env.DB,{userId,email,eventType,status:'failed',errorCode});
-      console.error('transactional_email_failed',eventType,email,errorCode);
-      results.push({email,status:'failed',errorCode});
+      const errorCode=String(e?.code||e?.name||'delivery_error').replace(/[^a-zA-Z0-9_.:-]/g,'_').slice(0,120);
+      const auditRecorded=await auditDelivery(env,{userId,email,eventType,status:'failed',errorCode});
+      console.error('transactional_email_failed',eventType,errorCode);
+      results.push({email,status:'failed',errorCode,auditRecorded,receiptVerified:false});
     }
   }
   return results;
@@ -71,6 +81,6 @@ export async function sendTransactionalEmail(env,{to,subject,text,html,eventType
 
 export const medicineEmailTemplates={
   orderConfirmation:o=>({eventType:'order_confirmation',subject:`SHIFT order ${o.orderNumber||''} received`,text:`Your SHIFT order has been received and is moving to clinical checks.`,html:`<h1>Order received</h1><p>Your order has been received and is moving to clinical checks.</p>`}),
-  clinicalStatus:o=>({eventType:'clinical_status',subject:`SHIFT clinical status update`,text:`Your clinical status is now: ${o.status||'updated'}.`,html:`<h1>Clinical status update</h1><p>Your status is now: <strong>${o.status||'updated'}</strong>.</p>`}),
+  clinicalStatus:o=>({eventType:'clinical_status',subject:`SHIFT clinical status update`,text:`Your clinical status is now: ${o.status||'updated'}.`,html:`<h1>Clinical status update</h1><p>Your status is now: <strong>${escapeHtml(o.status||'updated')}</strong>.</p>`}),
   interestNotify:o=>({eventType:'interest_notify',subject:`SHIFT interest registered`,text:`We have registered your interest and will update you when this route is genuinely available.`,html:`<h1>Interest registered</h1><p>We’ll update you when this route is genuinely available.</p>`})
 };
