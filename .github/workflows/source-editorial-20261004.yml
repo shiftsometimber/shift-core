@@ -16,12 +16,15 @@ jobs:
       - name: Verify guarded source corrections and existing article rendering
         run: node --test editorial/source-review-20261004/build.test.mjs tests/radar-newsroom-page-v1.test.mjs
       - name: Reproduce exact guarded SQL
-        run: node editorial/source-review-20261004/build.mjs
+        run: |
+          node --check editorial/source-review-20261004/publish.mjs
+          node editorial/source-review-20261004/build.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: guarded-source-corrections-${{ github.sha }}
           path: |
             editorial/source-review-20261004/guarded-update.sql
+            editorial/source-review-20261004/guarded-update.json
             editorial/source-review-20261004/guarded-audit.sql
             editorial/source-review-20261004/prepared.json
           retention-days: 30

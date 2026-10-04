@@ -30,14 +30,20 @@ export function correctionSql(items){
  // Every selected identity and complete payload must match in this one SQL
  // statement. json(invalid text) aborts the entire UPDATE if any target drifted.
  // This includes missing rows, status changes and a concurrent editorial update.
- const guard=prepared.map(a=>'('+equality(a.before,keys)+')').join(' OR ');
- const choose=key=>'CASE id '+prepared.map(a=>'WHEN '+a.id+' THEN '+literal(a.after[key])).join(' ')+' ELSE '+key+' END';
- const sql='UPDATE radar_events SET content_package_json=CASE WHEN (SELECT COUNT(*) FROM radar_events WHERE '+guard+')=19 THEN '+choose('content_package_json')+" ELSE json('SOURCE_CORRECTION_SNAPSHOT_CHANGED') END,source_evidence_json="+choose('source_evidence_json')+',headline='+choose('headline')+',updated_at='+literal(STAMP)+' WHERE id IN ('+prepared.map(a=>a.id).join(',')+') RETURNING id;';
- const audits=prepared.map(a=>"INSERT INTO radar_audit(event_id,action,actor,detail_json,created_at) SELECT "+a.id+",'source_limited_editorial_correction','Matt-authorised AI editorial',"+literal(JSON.stringify(a.audit))+','+literal(STAMP)+' WHERE EXISTS(SELECT 1 FROM radar_events WHERE '+equality(a.after,keys)+") AND NOT EXISTS(SELECT 1 FROM radar_audit WHERE event_id="+a.id+" AND action='source_limited_editorial_correction' AND json_extract(detail_json,'$.release_id')="+literal(RELEASE)+');').join('\n');
- return {prepared,sql,audits};
+ // One JSON binding keeps the SQL below D1's 100 KB statement limit without
+ // weakening the exact old-row comparison or dividing the atomic UPDATE.
+ const guard=keys.map(key=>'e.'+key+" IS json_extract(d.value,'$.before."+key+"')").join(' AND ');
+ const choose=key=>"(SELECT json_extract(d.value,'$.after."+key+"') FROM desired d WHERE json_extract(d.value,'$.before.id')=radar_events.id)";
+ const sql='WITH desired AS (SELECT value FROM json_each(?)) UPDATE radar_events SET content_package_json=CASE WHEN (SELECT COUNT(*) FROM radar_events e JOIN desired d ON e.id=json_extract(d.value,\'$.before.id\') WHERE '+guard+')=19 THEN '+choose('content_package_json')+" ELSE json('SOURCE_CORRECTION_SNAPSHOT_CHANGED') END,source_evidence_json="+choose('source_evidence_json')+',headline='+choose('headline')+',updated_at='+literal(STAMP)+" WHERE id IN (SELECT json_extract(value,'$.before.id') FROM desired) RETURNING id;";
+ const params=[JSON.stringify(prepared.map(a=>({before:a.before,after:a.after})))];
+ assert(Buffer.byteLength(sql)<100000);assert(params.length<=100);
+ const auditQueries=prepared.map(a=>({sql:"INSERT INTO radar_audit(event_id,action,actor,detail_json,created_at) SELECT "+a.id+",'source_limited_editorial_correction','Matt-authorised AI editorial',"+literal(JSON.stringify(a.audit))+','+literal(STAMP)+' WHERE EXISTS(SELECT 1 FROM radar_events WHERE '+equality(a.after,keys)+") AND NOT EXISTS(SELECT 1 FROM radar_audit WHERE event_id="+a.id+" AND action='source_limited_editorial_correction' AND json_extract(detail_json,'$.release_id')="+literal(RELEASE)+');'}));
+ const audits=auditQueries.map(q=>q.sql).join('\n');
+ assert(auditQueries.every(q=>Buffer.byteLength(q.sql)<100000));
+ return {prepared,sql,params,audits,auditQueries};
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){
  const dir=fileURLToPath(new URL('.',import.meta.url)),items=JSON.parse(readFileSync(dir+'corrections.json','utf8')),result=correctionSql(items);
- writeFileSync(dir+'guarded-update.sql',result.sql+'\n');writeFileSync(dir+'guarded-audit.sql',result.audits+'\n');writeFileSync(dir+'prepared.json',JSON.stringify(result.prepared,null,2)+'\n');
+ writeFileSync(dir+'guarded-update.sql',result.sql+'\n');writeFileSync(dir+'guarded-update.json',JSON.stringify({sql:result.sql,params:result.params})+'\n');writeFileSync(dir+'guarded-audit.sql',result.audits+'\n');writeFileSync(dir+'prepared.json',JSON.stringify(result.prepared,null,2)+'\n');
  console.log(JSON.stringify({release:RELEASE,targets:result.prepared.map(a=>a.id),update_sha256:sha(result.sql),audit_sha256:sha(result.audits),productionWrites:0}));
 }
