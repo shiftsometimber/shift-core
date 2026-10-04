@@ -1,0 +1,133 @@
+{
+  "reviewedAt": "2026-10-04T18:18:00Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add two previously untracked muscle-preservation programmes after primary-source review: clinical-stage taldefgrobep alfa and preclinical RV-8451. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "taldefgrobep-alfa",
+      "name": "Taldefgrobep alfa / BHV-2000",
+      "developer": "Biohaven Therapeutics",
+      "group": "research",
+      "stage": "Phase 2 active, not recruiting; no results posted",
+      "summary": "Biohaven completed enrolment in a US Phase 2 dose-ranging monotherapy study of weekly and four-weekly taldefgrobep alfa in adults with overweight or obesity. The registry records an actual 24 November 2025 start, an estimated September 2026 completion and no posted results.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for taldefgrobep alfa in obesity.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed sources.",
+      "supply": "An investigational US study does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The sponsor's lean-mass and metabolic statements are development aims, not demonstrated Phase 2 outcomes. Enrolment completion and a past estimated study-completion month do not prove the trial is complete or that topline results exist. The registry has no posted results. Weekly and four-weekly regimens remain investigational; no efficacy, muscle-preservation, strength, function, durability, safety, superiority or combination benefit is established.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-04T18:18:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Biohaven: Phase 2 taldefgrobep obesity study completes enrolment",
+          "url": "https://ir.biohaven.com/news-releases/news-release-details/biohavens-phase-2-obesity-study-taldefgrobep-alfa-novel",
+          "sourcePublishedAt": "2026-03-19",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T18:18:00Z",
+          "checkScope": "Complete sponsor announcement read for enrolment, study design, planned dose schedules and planned endpoints. Sponsor descriptions of potential benefit are not treated as results. Not automatically content-monitored."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07281495: taldefgrobep alfa in adults with overweight and obesity",
+          "url": "https://clinicaltrials.gov/study/NCT07281495",
+          "sourcePublishedAt": "2025-12-15",
+          "sourceUpdatedAt": "2026-03-20",
+          "reviewedAt": "2026-10-04T18:18:00Z",
+          "checkScope": "Full registry record read. Active, not recruiting; actual start 24 November 2025; estimated September 2026 completion; estimated enrolment 150; no posted results. Not automatically content-monitored."
+        },
+        {
+          "title": "Biohaven second-quarter 2026 business update",
+          "url": "https://ir.biohaven.com/news-releases/news-release-details/biohaven-reports-recent-business-developments-and-second-quarter",
+          "sourcePublishedAt": "2026-08-10",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T18:18:00Z",
+          "checkScope": "Sponsor update read to confirm enrolment remained complete and that topline timing was still forward-looking. Not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "rv8451",
+      "name": "RV-8451",
+      "developer": "Rivus Pharmaceuticals",
+      "group": "research",
+      "stage": "Preclinical oral GLP-1 programme; IND submission planned",
+      "summary": "Rivus is developing RV-8451 as an oral non-peptide GLP-1 receptor agonist for obesity. The reviewed evidence is limited to diet-induced-obesity non-human-primate studies; the sponsor says IND-enabling work is under way and plans a US IND submission for Q1 2027.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation or a UK clinical-trial authorisation for RV-8451.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed sources.",
+      "supply": "Preclinical development and a planned US IND submission do not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "All reported weight, fat, lean-mass and tolerability findings are sponsor-reported preclinical non-human-primate data. They do not establish human efficacy, muscle preservation, strength, function, safety, gastrointestinal tolerability, superiority to orforglipron, durability or an approved regimen. A planned Q1 2027 IND submission is not a completed filing or a started human trial.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-04T18:18:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Rivus: preclinical RV-8451 data at ADA 2026",
+          "url": "https://www.rivuspharma.com/news/press-releases/060526/",
+          "sourcePublishedAt": "2026-06-05",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T18:18:00Z",
+          "checkScope": "Complete sponsor announcement read for modality, preclinical species, study durations, reported endpoints and planned IND timing. Preclinical comparisons are not presented as human benefit or superiority. Not automatically content-monitored."
+        },
+        {
+          "title": "Rivus oral-medicines pipeline",
+          "url": "https://www.rivuspharma.com/our-pipeline/",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T18:18:00Z",
+          "checkScope": "Full readable sponsor pipeline page reviewed to confirm RV-8451 remains in IND-enabling studies. Publication and update dates were not displayed and remain unknown. Not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-04T18:00:47.514Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 134,
+    "currentSources": 133,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "error": "http_403",
+        "lastAttemptAt": "2026-10-04T17:15:47.269Z",
+        "nextCheckAt": "2026-10-04T18:15:47.269Z"
+      }
+    ],
+    "recovered": [
+      "hrs1596-hengrui-20260929",
+      "registry-nct07765511",
+      "registry-nct07487376"
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only health response verifies configured-source availability and monitor operation. It does not renew factual reviews, approve changed wording or establish complete industry coverage. The unchanged Zealand 403 remains visible and is not repeated as a new alert."
+  },
+  "discoveryPass": {
+    "method": "A current-date search and a broader undated mechanism-and-stage pass checked regulator, registry and sponsor sources, including smaller developers, muscle-preservation approaches, preclinical programmes, active trials and stopped programmes. Results were reconciled with current main and open review PRs.",
+    "included": "Taldefgrobep alfa is a previously untracked active Phase 2 myostatin/activin programme. RV-8451 is a previously untracked preclinical oral non-peptide GLP-1 programme. Their clinical stages and evidence limits remain separate.",
+    "notDuplicated": "COURAGE trevogrumab, apitegromab, bimagrumab, enobosarm, WVE-007, SRSD384, ART27.13 and RJVA-002 are already represented. GitHub reported no open review PRs at review time.",
+    "incompleteChecks": [
+      "ClinicalTrials.gov returned a complete record for taldefgrobep but no human RV-8451 record was expected or located because the sponsor describes IND-enabling preclinical work.",
+      "Search indexing can lag and selected results cannot exclude older omissions, unannounced programmes or additional international developers. Catalogue and configured-source counts do not establish industry completeness."
+    ]
+  },
+  "failedChecks": [],
+  "catalogueCounts": {
+    "detailed": 6,
+    "widerBefore": 87,
+    "widerAfter": 89,
+    "totalBefore": 93,
+    "totalAfter": 95,
+    "configuredSources": 134
+  },
+  "nextAction": "Run the full Watch tests and exact-head release gates, publish through the guarded production workflow, then verify the live programme wording, Treatments entry and SELECT-only health endpoint."
+}
