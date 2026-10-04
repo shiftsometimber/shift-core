@@ -39,7 +39,7 @@
           "sourcePublishedAt": "2025-12-15",
           "sourceUpdatedAt": "2026-03-20",
           "reviewedAt": "2026-10-04T18:18:00Z",
-          "checkScope": "Full registry record read. Active, not recruiting; actual start 24 November 2025; estimated September 2026 completion; estimated enrolment 150; no posted results. Not automatically content-monitored."
+          "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
         },
         {
           "title": "Biohaven second-quarter 2026 business update",
@@ -127,7 +127,113 @@
     "widerAfter": 89,
     "totalBefore": 93,
     "totalAfter": 95,
-    "configuredSources": 134
+    "configuredSourcesBefore": 134,
+    "configuredSourcesAfter": 135
   },
-  "nextAction": "Run the full Watch tests and exact-head release gates, publish through the guarded production workflow, then verify the live programme wording, Treatments entry and SELECT-only health endpoint."
+  "nextAction": "Run the full Watch tests and exact-head release gates, publish through the guarded production workflow, then verify the live programme wording, Treatments entry and SELECT-only health endpoint.",
+  "registrySources": [
+    {
+      "id": "registry-nct07281495",
+      "nctId": "NCT07281495",
+      "title": "ClinicalTrials.gov NCT07281495: taldefgrobep alfa in adults with overweight and obesity",
+      "url": "https://clinicaltrials.gov/study/NCT07281495",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07281495",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07281495",
+        "Biohaven Therapeutics Ltd."
+      ],
+      "reviewedAt": "2026-10-04T18:18:00Z",
+      "sourcePublishedAt": "2025-12-15",
+      "sourceUpdatedAt": "2026-03-20",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07281495",
+        "title": "Taldefgrobep Alfa in Adults With Overweight and Obesity",
+        "sponsor": "Biohaven Therapeutics Ltd.",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 150,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2025-11-24",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-09",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2026-09",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2025-12-15",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-03-20",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "taldefgrobep-alfa"
+      ],
+      "rawResponseSha256": "73038b745cfe64aace3e41e38fce00dd22e22edf230dc9a3178ee21365c7961a",
+      "reviewedFingerprint": "1bdb60c0234e5e7babea960bea4a448ef7c51e8dbf81ee70d91a60362e9d7f2c"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07281495",
+      "publicationDate": "2025-12-15",
+      "updateDate": "2026-03-20",
+      "reviewedAt": "2026-10-04T18:18:00Z",
+      "outcome": "Complete primary API body read for exact identity, active-not-recruiting Phase 2 status, estimated 150-participant enrolment, actual start, estimated completion dates and absence of posted results."
+    },
+    {
+      "url": "https://ir.biohaven.com/news-releases/news-release-details/biohavens-phase-2-obesity-study-taldefgrobep-alfa-novel",
+      "publicationDate": "2026-03-19",
+      "updateDate": null,
+      "reviewedAt": "2026-10-04T18:18:00Z",
+      "outcome": "Complete sponsor announcement read for enrolment, study design, planned dose schedules and planned endpoints. Sponsor descriptions of potential benefit are not treated as results. Not automatically content-monitored."
+    },
+    {
+      "url": "https://ir.biohaven.com/news-releases/news-release-details/biohaven-reports-recent-business-developments-and-second-quarter",
+      "publicationDate": "2026-08-10",
+      "updateDate": null,
+      "reviewedAt": "2026-10-04T18:18:00Z",
+      "outcome": "Sponsor update read to confirm enrolment remained complete and that topline timing was still forward-looking. Not automatically content-monitored."
+    },
+    {
+      "url": "https://www.rivuspharma.com/news/press-releases/060526/",
+      "publicationDate": "2026-06-05",
+      "updateDate": null,
+      "reviewedAt": "2026-10-04T18:18:00Z",
+      "outcome": "Complete sponsor announcement read for modality, preclinical species, study durations, reported endpoints and planned IND timing. Preclinical comparisons are not presented as human benefit or superiority. Not automatically content-monitored."
+    },
+    {
+      "url": "https://www.rivuspharma.com/our-pipeline/",
+      "publicationDate": null,
+      "updateDate": null,
+      "reviewedAt": "2026-10-04T18:18:00Z",
+      "outcome": "Full readable sponsor pipeline page reviewed to confirm RV-8451 remains in IND-enabling studies. Publication and update dates were not displayed and remain unknown. Not automatically content-monitored."
+    }
+  ],
+  "retrievals": {
+    "registryNct07281495": {
+      "httpStatus": 200,
+      "bytes": 8327,
+      "responseSha256": "73038b745cfe64aace3e41e38fce00dd22e22edf230dc9a3178ee21365c7961a"
+    }
+  }
 }
