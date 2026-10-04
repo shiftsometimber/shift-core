@@ -10,11 +10,14 @@ const fingerprint=data=>fingerprintSource(source,JSON.stringify(data),'applicati
 test('registry monitoring covers all exact linked records, with bounded reviewed identities',()=>{
  const links=[...medicines.flatMap(e=>e.evidenceLinks||[]),...industry.flatMap(e=>e.additionalEvidence||[])];
  const urls=new Set(links.filter(l=>/^https:\/\/clinicaltrials.gov\/study\/NCT\d{8}$/.test(l.url)).map(l=>l.url));
- assert.equal(urls.size,78);assert.deepEqual(new Set(registrySources.map(s=>s.url)),urls);
- assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);assert.equal(sources.length,136);
+ assert.equal(urls.size,81);assert.deepEqual(new Set(registrySources.map(s=>s.url)),urls);
+ assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);assert.equal(sources.length,139);
  for(const s of registrySources){assert.match(s.reviewedFingerprint,/^[a-f0-9]{64}$/);assert.equal(s.nctId,s.lifecycle.nctId);assert.ok(s.reviewedAt);}
  const taldefgrobep=registrySources.find(s=>s.id==='registry-nct07281495');assert.ok(taldefgrobep);assert.equal(taldefgrobep.lifecycle.status,'ACTIVE_NOT_RECRUITING');assert.equal(taldefgrobep.lifecycle.completion.type,'ESTIMATED');assert.equal(taldefgrobep.lifecycle.hasResults,false);
  const attainMaintain=registrySources.find(s=>s.id==='registry-nct06584916');assert.ok(attainMaintain);assert.equal(attainMaintain.lifecycle.status,'COMPLETED');assert.equal(attainMaintain.lifecycle.completion.type,'ACTUAL');assert.equal(attainMaintain.lifecycle.hasResults,false);
+ const ascend=registrySources.find(s=>s.id==='registry-nct07517042');assert.ok(ascend);assert.equal(ascend.lifecycle.status,'RECRUITING');assert.equal(ascend.lifecycle.start.type,'ACTUAL');assert.equal(ascend.lifecycle.hasResults,false);
+ const accomplish=registrySources.find(s=>s.id==='registry-nct07654374');assert.ok(accomplish);assert.equal(accomplish.lifecycle.status,'RECRUITING');assert.equal(accomplish.lifecycle.start.type,'ACTUAL');assert.equal(accomplish.lifecycle.hasResults,false);
+ const zynergy=registrySources.find(s=>s.id==='registry-nct07589686');assert.ok(zynergy);assert.equal(zynergy.lifecycle.status,'NOT_YET_RECRUITING');assert.equal(zynergy.lifecycle.start.type,'ESTIMATED');assert.equal(zynergy.lifecycle.hasResults,false);
  assert.equal(supportSources.length,4);
 });
 test('registry lifecycle preserves actual/estimated dates and flags meaningful changes',async()=>{
@@ -41,5 +44,5 @@ test('public status distinguishes record review, summary review, results and unc
  const s=registrySources[0];const markup=registryEvidenceMarkup({url:s.url,title:'A <record>',reviewedAt:'2026-09-01'},{});
  assert.match(markup,/A &lt;record&gt;/);assert.match(markup,/Medical evidence summary reviewed 1 September 2026/);assert.match(markup,/Record status reviewed 3 October 2026/);assert.match(markup,/Verification pending/);
  const entry=industry.find(e=>s.entryIds.includes(e.id));assert.match(industryReviewFlag(entry,{},Date.parse('2026-10-12')),/due for factual review/);
- const html=credibilityMarkup({});for(const id of ['watch-changes','watch-safety','watch-uk-access'])assert.match(html,new RegExp(id));assert.match(html,/Current operational access remains unverified/);assert.match(html,/Reporting does not replace urgent medical care/);assert.match(html,/Added CX11\/VCT220 after primary review/);assert.match(html,/catalogue now contains 92 programmes/);assert.match(html,/industry-vct220/);assert.match(html,/VK2735 maintenance study/);assert.match(html,/industry-vk2735/);
+ const html=credibilityMarkup({});for(const id of ['watch-changes','watch-safety','watch-uk-access'])assert.match(html,new RegExp(id));assert.match(html,/Current operational access remains unverified/);assert.match(html,/Reporting does not replace urgent medical care/);assert.match(html,/International maintenance and combination evidence/);assert.match(html,/catalogue now contains 96 programmes/);assert.match(html,/industry-zynergy-petrelintide-enicepatide/);assert.match(html,/VK2735 maintenance study/);assert.match(html,/industry-vk2735/);
 });

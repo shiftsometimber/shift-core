@@ -1,0 +1,245 @@
+{
+  "reviewedAt": "2026-10-04T21:37:32Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Publish one previously proposed but still absent combination programme and two newly found registry-stage additions after complete primary registry review. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "zynergy-petrelintide-enicepatide",
+      "name": "ZYNERGY / petrelintide plus enicepatide",
+      "developer": "Hoffmann-La Roche",
+      "group": "research",
+      "stage": "Phase 2 not yet recruiting; estimated start date has passed",
+      "summary": "The sponsor-submitted NCT07589686 record describes a Phase 2 dose-finding study of weekly petrelintide co-administered with weekly enicepatide in adults with obesity or overweight. The study remains not yet recruiting even though its estimated 30 September 2026 start date has passed; enrolment of 486 and the January 2028 completion remain estimates.",
+      "ukAuthorisation": "The reviewed registry evidence does not establish UK marketing authorisation for the combination or either investigational regimen.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed registry evidence.",
+      "supply": "A not-yet-recruiting trial does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The combination is separate from both monotherapy programmes and cannot inherit either medicine's evidence or development stage. The registry has no posted results. An estimated start date is not proof of first dosing, recruitment or study initiation, and planned weight, metabolic and safety outcomes are not completed evidence.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-04T21:37:32Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07589686: ZYNERGY",
+          "url": "https://clinicaltrials.gov/study/NCT07589686",
+          "sourcePublishedAt": "2026-05-15",
+          "sourceUpdatedAt": "2026-09-09",
+          "reviewedAt": "2026-10-04T21:37:32Z",
+          "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+        }
+      ]
+    }
+  ],
+  "changes": [
+    {
+      "id": "mazdutide",
+      "fields": {
+        "stage": "China-authorised; recruiting weight-maintenance research",
+        "summaryToAppend": "Separately, the investigator-sponsored NCT07517042 record describes a recruiting Chinese maintenance study after an actual 10 June 2026 start. It compares reduced-dose weekly mazdutide, intensive lifestyle support, their combination and standard health education after initial mazdutide-assisted weight loss.",
+        "limitationsToAppend": "The maintenance study has no posted results. Its 420-participant enrolment and December 2028 completion remain estimates, and it does not establish that reduced-dose mazdutide, lifestyle support or their combination maintains weight loss. China authorisation does not establish UK authorisation, NHS access or UK supply."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07517042: ASCEND-1 mazdutide maintenance study",
+          "url": "https://clinicaltrials.gov/study/NCT07517042",
+          "sourcePublishedAt": "2026-04-08",
+          "sourceUpdatedAt": "2026-09-15",
+          "reviewedAt": "2026-10-04T21:37:32Z",
+          "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+        }
+      ]
+    },
+    {
+      "id": "aleniglipron",
+      "fields": {
+        "stage": "Phase 3 ACCOMPLISH programme; ACCOMPLISH-2 recruiting",
+        "summaryToAppend": "The sponsor-submitted NCT07654374 record now shows ACCOMPLISH-2 recruiting after an actual 17 July 2026 start. The Phase 3 study evaluates oral once-daily aleniglipron in adults with obesity or overweight and type 2 diabetes, with 1,100 estimated participants and a week-76 body-weight endpoint.",
+        "limitationsToAppend": "Recruitment and an actual start are not results or completion. The registry has no posted results; September 2028 primary completion and November 2028 study completion remain estimates. The type 2 diabetes population and maintenance-dose design must not be silently generalized to every aleniglipron study or indication."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07654374: ACCOMPLISH-2",
+          "url": "https://clinicaltrials.gov/study/NCT07654374",
+          "sourcePublishedAt": "2026-06-17",
+          "sourceUpdatedAt": "2026-09-11",
+          "reviewedAt": "2026-10-04T21:37:32Z",
+          "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+        }
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct07589686",
+      "nctId": "NCT07589686",
+      "title": "ClinicalTrials.gov NCT07589686: ZYNERGY",
+      "url": "https://clinicaltrials.gov/study/NCT07589686",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07589686",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07589686", "Hoffmann-La Roche"],
+      "reviewedAt": "2026-10-04T21:37:32Z",
+      "sourcePublishedAt": "2026-05-15",
+      "sourceUpdatedAt": "2026-09-09",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07589686",
+        "title": "A Phase II, Randomized, Double-Blind, Placebo-Controlled, Dose-Finding Study to Evaluate the Efficacy and Safety of Petrelintide Co-Administered With RO7795068 in Adults With Obesity or Overweight",
+        "sponsor": "Hoffmann-La Roche",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE2"],
+        "enrollment": {"count": 486, "type": "ESTIMATED"},
+        "start": {"date": "2026-09-30", "type": "ESTIMATED"},
+        "primaryCompletion": {"date": "2027-11-12", "type": "ESTIMATED"},
+        "completion": {"date": "2028-01-31", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2026-05-15", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-09-09", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["zynergy-petrelintide-enicepatide"],
+      "rawResponseSha256": "250bf4653702673d3eca19e8ebc0857f3922f60c8845a102156a0150e951403f",
+      "reviewedFingerprint": "7472d8e9ff7bfc674013a3a2e5ba291f2b5d4fe8e08257cb2c984d2337d0a24f"
+    },
+    {
+      "id": "registry-nct07517042",
+      "nctId": "NCT07517042",
+      "title": "ClinicalTrials.gov NCT07517042: ASCEND-1 mazdutide maintenance study",
+      "url": "https://clinicaltrials.gov/study/NCT07517042",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07517042",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07517042", "Shanghai Zhongshan Hospital"],
+      "reviewedAt": "2026-10-04T21:37:32Z",
+      "sourcePublishedAt": "2026-04-08",
+      "sourceUpdatedAt": "2026-09-15",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07517042",
+        "title": "Achieving Sustained Weight Control Via Exercise, Nutrition & Drugs (Mazdutide) (ASCEND- 1 Trial)",
+        "sponsor": "Shanghai Zhongshan Hospital",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": ["NA"],
+        "enrollment": {"count": 420, "type": "ESTIMATED"},
+        "start": {"date": "2026-06-10", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2028-12", "type": "ESTIMATED"},
+        "completion": {"date": "2028-12", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2026-04-08", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-09-15", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["mazdutide"],
+      "rawResponseSha256": "0f1a71d9cc7c30ad1496db9313d1b887e4e4c930e36c512ce28a6ee526133bd6",
+      "reviewedFingerprint": "d30d414c70aaa7b589ea815eda7790e94097f02fceb56a9df8eac84fd3380ce5"
+    },
+    {
+      "id": "registry-nct07654374",
+      "nctId": "NCT07654374",
+      "title": "ClinicalTrials.gov NCT07654374: ACCOMPLISH-2",
+      "url": "https://clinicaltrials.gov/study/NCT07654374",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07654374",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07654374", "Gasherbrum Bio, Inc."],
+      "reviewedAt": "2026-10-04T21:37:32Z",
+      "sourcePublishedAt": "2026-06-17",
+      "sourceUpdatedAt": "2026-09-11",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07654374",
+        "title": "A Long-Term Randomized, Double-Blind, Placebo-Controlled, Phase 3 Study to Evaluate the Efficacy and Safety of Multiple Maintenance Doses of Oral Once Daily Aleniglipron for Chronic Weight Management in Adults With Obesity or Overweight and Type 2 Diabetes Mellitus (ACCOMPLISH-2)",
+        "sponsor": "Gasherbrum Bio, Inc., a wholly owned subsidiary of Structure Therapeutics",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE3"],
+        "enrollment": {"count": 1100, "type": "ESTIMATED"},
+        "start": {"date": "2026-07-17", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2028-09", "type": "ESTIMATED"},
+        "completion": {"date": "2028-11", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2026-06-17", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-09-11", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["aleniglipron"],
+      "rawResponseSha256": "90abd7bc09463c1014e39bd02994dad18161780884f421a7928738bd67f07f93",
+      "reviewedFingerprint": "cfb65a5aa51575912b057b1119883f3f898416432d3b121d85e92ad10d95cf28"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07589686",
+      "publicationDate": "2026-05-15",
+      "updateDate": "2026-09-09",
+      "reviewedAt": "2026-10-04T21:37:32Z",
+      "outcome": "Complete primary API body read. The combination remains not yet recruiting; estimated start, enrolment and completion dates and the absence of posted results are preserved."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07517042",
+      "publicationDate": "2026-04-08",
+      "updateDate": "2026-09-15",
+      "reviewedAt": "2026-10-04T21:37:32Z",
+      "outcome": "Complete primary API body read for recruiting status, actual start, estimated enrolment and completion, intervention arms and absence of posted results."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07654374",
+      "publicationDate": "2026-06-17",
+      "updateDate": "2026-09-11",
+      "reviewedAt": "2026-10-04T21:37:32Z",
+      "outcome": "Complete primary API body read for Phase 3 status, recruiting state, actual start, estimated enrolment and completion and absence of posted results."
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-04T21:15:53.721Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 136,
+    "currentSources": 135,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "error": "http_403",
+        "lastAttemptAt": "2026-10-04T20:45:47.209Z",
+        "reviewStatus": "verification_pending"
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only response verifies configured-source monitoring only. It does not renew factual reviews, approve changed wording or prove complete industry coverage. The unchanged Zealand access failure remains visible and is not treated as a new alert."
+  },
+  "discoveryPass": {
+    "method": "A current-date pass and a broader undated mechanism, combination, maintenance, specialist-indication and smaller/international-developer pass were reconciled with current main, all dated receipts and open Watch PRs.",
+    "included": "ZYNERGY was retained in a 30 September proposal but never published. ASCEND-1 and ACCOMPLISH-2 were absent from current main and dated publication receipts. Mazdutide and aleniglipron remain existing programme entries; only the combination adds a programme.",
+    "notDuplicated": "The existing mazdutide China authorisation, aleniglipron monotherapy summary and petrelintide and enicepatide monotherapy entries remain separate. GitHub reported no open Medicines Watch review PRs at review time.",
+    "incompleteChecks": [
+      "Search indexing can lag and selected results cannot exclude older omissions, unannounced programmes or additional international developers.",
+      "The registry records contain no posted results; automatic lifecycle checks do not assess clinical outcomes.",
+      "No new MHRA authorisation, NICE recommendation, NHS access decision or verified UK supply change was established for these programmes."
+    ]
+  },
+  "failedChecks": [],
+  "catalogueCounts": {
+    "detailed": 6,
+    "widerBefore": 89,
+    "widerAfter": 90,
+    "totalBefore": 95,
+    "totalAfter": 96,
+    "configuredSourcesBefore": 136,
+    "configuredSourcesAfter": 139
+  },
+  "nextAction": "Run the full Watch and release gates, publish the exact passing head through the guarded production workflow, and verify the live entries, Treatments link and SELECT-only health endpoint."
+}
