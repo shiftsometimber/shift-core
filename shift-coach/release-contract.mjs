@@ -1,4 +1,4 @@
-import {WATCH_SOURCE_LINK_SOURCE} from '../release/watch-registry-wave-scope.mjs';
+import {WATCH_SOURCE_LINK_SOURCE,WATCH_OWNERSHIP_PATHS,watchWaveRef} from '../release/watch-registry-wave-scope.mjs';
 import {DEVICE_HEALTH_DELTA,validateDeviceHealthSource} from '../release/device-health-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -23,6 +23,8 @@ for(const path of ['.github/workflows/calculators-navigation.yml','scripts/verif
 COACH_BACKEND_PATHS.add('transactional-email-v1.js');
 COACH_ADDITIONS.add('tests/transactional-mail-reliability.test.mjs');
 COACH_ADDITIONS.add('shift-coach/acceptance-current-20261004.json');
+COACH_BACKEND_PATHS.add('release/footer-scope.mjs');
+COACH_ADDITIONS.add('tests/watch-ownership-release.test.mjs');
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]);
 // Finite read-only release maintenance; not permission for more publication jobs.
 export const ARTICLE_CLOSEOUT_SOURCE='69886cec987aed15a1a7e6340953cd7a5372dfee';
@@ -39,10 +41,10 @@ export function assertCoachingChangedPath(status,path){
 }
 // Preserve the exact reviewed Survodutide abstract correction alongside current coaching.
 export const WATCH_CURRENT_BASE='4a03116197de34f9001f1f99968f75cbb9ee75df';
-export function watchCurrentSource(){return WATCH_SOURCE_LINK_SOURCE;}
+export function watchCurrentSource(path){return WATCH_OWNERSHIP_PATHS.includes(path)?watchWaveRef(path):WATCH_SOURCE_LINK_SOURCE;}
 export const WATCH_COMPOSED_CHANGES=new Set(['medicines-watch/industry-page.mjs','medicines-watch/monitor.mjs','medicines-watch/page.mjs','medicines-watch/verify-live.mjs','medicines-watch/README.md','medicines-watch/data.mjs','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/product-renewal.test.mjs','medicines-watch/provider-review.test.mjs','medicines-watch/source-review.test.mjs']);
 export const WATCH_COMPOSED_ADDITIONS=new Set(['medicines-watch/evidence-desk.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/reviews/2026-10-03-evidence-desk-zp6590.json','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/registry-lifecycle.mjs','medicines-watch/reviews/2026-10-03-credibility-improvements.json','medicines-watch/reviews/2026-10-02-authorised-glimr-copd.json','medicines-watch/reviews/2026-10-02-authorised-specialist-registry-followup.json','medicines-watch/reviews/2026-10-02-authorised-switching-studies.json','medicines-watch/reviews/2026-10-02-authorised-na931.json','medicines-watch/reviews/2026-10-03-authorised-amylin-metabolic-followup.json','medicines-watch/reviews/2026-10-03-authorised-azd1043.json','medicines-watch/reviews/2026-10-03-authorised-azd6234-selene.json','medicines-watch/reviews/2026-10-03-authorised-wve007.json','medicines-watch/reviews/2026-10-03-authorised-specialist-registry-wave.json','medicines-watch/reviews/2026-10-03-authorised-lean-mass-energy-followup.json','medicines-watch/reviews/2026-10-03-authorised-foundayo-predicted-risk.json','medicines-watch/reviews/2026-10-03-authorised-wegovy-mash-correction.json','medicines-watch/reviews/2026-10-03-authorised-vk3019-at673.json','medicines-watch/reviews/2026-10-04-authorised-srsd384.json','medicines-watch/reviews/2026-10-04-authorised-fractyl-modality-gap.json','medicines-watch/reviews/2026-10-04-authorised-art2713-muscle-gap.json','medicines-watch/reviews/2026-10-04-authorised-rgt075.json','medicines-watch/reviews/2026-10-04-authorised-vct220.json','medicines-watch/reviews/2026-10-04-authorised-vk2735-maintenance.json','medicines-watch/reviews/2026-10-04-wegovy-tablet-provider-renewal.json','medicines-watch/reviews/2026-10-04-authorised-survodutide-paper.json','medicines-watch/reviews/2026-10-04-authorised-azelaprag-discontinuation.json']);
-export const WATCH_CURRENT_PATHS=new Set([...WATCH_COMPOSED_CHANGES,'medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
+export const WATCH_CURRENT_PATHS=new Set([...WATCH_OWNERSHIP_PATHS,...WATCH_COMPOSED_CHANGES,'medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
 export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
 export function assertCoachingConfiguration(current,previous){

@@ -1,3 +1,4 @@
+import {WATCH_OWNERSHIP_SOURCE,originalWatchOwnershipEntry} from './watch-registry-wave-scope.mjs';
 // Matt's explicit 1 October instruction: approved footer on every website/PWA/app page.
 // Exact footer payload only. Historical runtime comparisons still check pre-footer bytes.
 import assert from 'node:assert/strict';
@@ -10,10 +11,10 @@ export const FOOTER_PAYLOAD_PATHS=new Set([...FOOTER_RUNTIME_PATHS,'shared-foote
 export const FOOTER_PATHS=new Set([...FOOTER_PAYLOAD_PATHS,'release/footer-scope.mjs','.github/workflows/shared-footer-release-proof.yml','.github/workflows/shared-footer-preview.yml']);
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 export function historicalFooterRef(ref,path){return ref==='HEAD'&&FOOTER_RUNTIME_PATHS.has(path)?FOOTER_BASE:ref;}
-export function originalFooterEntry(source){return source.replace("import {withSharedFooter} from './shared-footer.mjs';\n",'').replace('if(appStorePublic)return withSharedFooter(request,appStorePublic);','if(appStorePublic)return appStorePublic;').replace("return withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final))));","return withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final)));").replace(/\n\n$/,'\n');}
+export function originalFooterEntry(source){return originalWatchOwnershipEntry(source).replace("import {withSharedFooter} from './shared-footer.mjs';\n",'').replace('if(appStorePublic)return withSharedFooter(request,appStorePublic);','if(appStorePublic)return appStorePublic;').replace("return withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final))));","return withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final)));").replace(/\n\n$/,'\n');}
 export function validateFooterSource(){
  git('merge-base','--is-ancestor',FOOTER_BASE,FOOTER_CANDIDATE);git('merge-base','--is-ancestor',FOOTER_CANDIDATE,'HEAD');
- for(const path of FOOTER_PAYLOAD_PATHS)assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',FOOTER_CANDIDATE+':'+path),'Footer payload differs from the browser-tested candidate: '+path);
+ for(const path of FOOTER_PAYLOAD_PATHS)assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',(path==='worker-entry-v6.js'?WATCH_OWNERSHIP_SOURCE:FOOTER_CANDIDATE)+':'+path),'Footer payload differs from the browser-tested candidate: '+path);
  assert.equal(originalFooterEntry(execFileSync('git',['show','HEAD:worker-entry-v6.js'],{encoding:'utf8'})),execFileSync('git',['show',FOOTER_BASE+':worker-entry-v6.js'],{encoding:'utf8'}),'Unrelated Worker change');
 }
 export async function verifyFooterProof(get){

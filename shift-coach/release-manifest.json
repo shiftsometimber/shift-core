@@ -74,6 +74,7 @@
     "release/app-scope.mjs",
     "release/book-voice-scope.mjs",
     "release/device-health-scope.mjs",
+    "release/footer-scope.mjs",
     "release/growth-adopt-deployment.mjs",
     "release/growth-preflight.mjs",
     "release/growth-scope.mjs",
@@ -171,6 +172,7 @@
     "tests/tablet-routine.test.mjs",
     "tests/testosterone-public.test.mjs",
     "tests/transactional-mail-reliability.test.mjs",
+    "tests/watch-ownership-release.test.mjs",
     "transactional-email-v1.js",
     "wrangler.coaching.jsonc",
     "wrangler.jsonc"
