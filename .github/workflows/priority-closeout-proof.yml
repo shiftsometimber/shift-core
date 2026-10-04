@@ -1,0 +1,86 @@
+name: Priority source reliability closeout proof
+on:
+  push:
+    branches: [codex/priority-source-reliability-market-20261004]
+permissions:
+  contents: read
+concurrency:
+  group: shift-priority-closeout-evaluation
+  cancel-in-progress: false
+jobs:
+  synthetic-real-model:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    env:
+      CLOUDFLARE_ACCOUNT_ID: '9e5386dcf455be34c582d93f8bfc79e6'
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Backend context and preservation regressions
+        run: node --test tests/ai-fast-stream.test.mjs tests/ai-stream-reliability.test.mjs tests/ai-site-knowledge.test.mjs tests/ai-external-knowledge.test.mjs tests/ai-foundation.test.mjs tests/ai-practical-context.test.mjs tests/ai-connected*.test.mjs tests/ask-timber-public.test.mjs tests/ask-timber-cors-v1.test.mjs ask-timber-multi-intent-gate.mjs tests/discovery-repairs.test.mjs tests/public-shell-contract.test.mjs tests/public-continuity.test.mjs tests/b1-reliability.test.mjs tests/member-auth-regression.test.mjs tests/scheduled-intelligence-delivery.test.mjs
+      - name: Verify owner-configured AI budgets and privacy before any inference
+        run: node preview/ai-context/gateway-settings.mjs
+      - name: Prepare temporary evaluator with public-index-only diagnostic binding
+        run: |
+          node --input-type=module <<'NODE'
+          import {writeFileSync,appendFileSync} from 'node:fs';
+          import {randomBytes} from 'node:crypto';
+          const key=randomBytes(32).toString('hex');
+          console.log('::add-mask::'+key);
+          appendFileSync(process.env.GITHUB_ENV,'SHIFT_EVAL_KEY='+key+'\n');
+          writeFileSync('preview/ai-context/generated.json',JSON.stringify({name:'shift-ai-priority-eval',main:'inference.mjs',compatibility_date:'2026-08-09',workers_dev:true,preview_urls:false,ai:{binding:'AI'},d1_databases:[{binding:'PUBLIC_KNOWLEDGE_DB',database_name:'shift-core-db',database_id:'88f40aed-cb23-4372-8c94-8a73f48bc847'}],vars:{PROFILE_ID:process.env.GITHUB_RUN_ID,EVAL_KEY:key,EXPIRES_AT:String(Date.now()+15*60000)}}));
+          NODE
+      - name: Deploy only temporary inference evaluator with existing preview credential
+        run: |
+          npx wrangler deploy --config preview/ai-context/generated.json > "$RUNNER_TEMP/shift-eval-deploy.txt" 2>&1 || { cat "$RUNNER_TEMP/shift-eval-deploy.txt"; exit 1; }
+          node --input-type=module <<'NODE'
+          import {readFileSync,appendFileSync} from 'node:fs';
+          const log=readFileSync(process.env.RUNNER_TEMP+'/shift-eval-deploy.txt','utf8');
+          const url=log.match(/https:\/\/shift-ai-priority-eval\.[a-z0-9-]+\.workers\.dev/);
+          if(!url)throw Error('Isolated evaluator URL not returned');
+          appendFileSync(process.env.GITHUB_ENV,'SHIFT_EVAL_URL='+url[0]+'\n');
+          NODE
+      - name: Wait for authenticated preview propagation
+        run: |
+          node --input-type=module <<'NODE'
+          let ready=false;
+          const retryable=new Set([404,500,502,503,504]);
+          for(let i=0;i<20;i++){
+            const headers={Authorization:'Bearer '+process.env.SHIFT_EVAL_KEY};
+            const r=await fetch(process.env.SHIFT_EVAL_URL+'/health',{headers,signal:AbortSignal.timeout(10000)});
+            if(r.ok&&(await r.json()).ready){
+              const probe=await fetch(process.env.SHIFT_EVAL_URL+'/run',{method:'POST',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:'Reply with the single word READY.'}],max_tokens:16,temperature:0}),signal:AbortSignal.timeout(15000)});
+              if(probe.ok){
+                const result=await probe.json();
+                if(typeof result.response==='string'&&result.response.trim()){ready=true;break}
+                throw Error('Preview inference returned no usable response');
+              }
+              if(!retryable.has(probe.status))throw Error('Preview inference readiness HTTP '+probe.status);
+            }else if(!retryable.has(r.status))throw Error('Preview readiness HTTP '+r.status);
+            await new Promise(resolve=>setTimeout(resolve,3000));
+          }
+          if(!ready)throw Error('Preview inference did not become ready within the bounded startup attempts');
+          NODE
+      - name: Three fresh answers including two simultaneous fictional member questions
+        run: node preview/ai-context/fresh-reliability-proof.mjs
+      - name: Remove only the temporary evaluator
+        if: always() && env.SHIFT_EVAL_URL != ''
+        run: |
+          node --input-type=module <<'NODE'
+          const r=await fetch('https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/shift-ai-priority-eval',{method:'DELETE',headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN}});
+          if(!r.ok)throw Error('Temporary evaluator cleanup HTTP '+r.status);
+          console.log('Temporary evaluator removed');
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: priority-closeout-${{ github.sha }}
+          path: |
+            evidence/priority-closeout/
+          retention-days: 14
