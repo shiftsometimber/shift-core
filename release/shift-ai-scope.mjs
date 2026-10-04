@@ -26,7 +26,7 @@ export const LOSSLESS_PATHS=new Set(['member-experience/ai-site-knowledge.mjs','
 export const PRIVACY_FALLBACK_CANDIDATE='1ce04c88c9493ee18b0cd1a1d991d76f04ba51cf';
 export const PRIVACY_FALLBACK_PATHS=new Set(['ask-timber-v1.js','tests/ai-fast-stream.test.mjs']);
 // Owner-authorised fresh-stream repair, proved with real hosted inference.
-export const STREAM_RELIABILITY_CANDIDATE='e1ec93298fb60ae1868f5595a5126387687fed77';
+export const STREAM_RELIABILITY_CANDIDATE='e501cf536a07c34975d98b621b36c5978e1d9250';
 export const STREAM_RELIABILITY_PATHS=new Set(['ask-timber-v1.js','member-experience/ai-stream.mjs','tests/ai-fast-stream.test.mjs','tests/ai-stream-reliability.test.mjs','preview/ai-context/fresh-reliability-proof.mjs','.github/workflows/priority-closeout-proof.yml']);
 FOUNDATION_PATHS.push('tests/ai-stream-reliability.test.mjs','preview/ai-context/fresh-reliability-proof.mjs','.github/workflows/priority-closeout-proof.yml');
 export function validateFoundation(read){for(const path of FOUNDATION_PATHS)assert.equal(read('HEAD',path),read(STREAM_RELIABILITY_PATHS.has(path)?STREAM_RELIABILITY_CANDIDATE:PRIVACY_FALLBACK_PATHS.has(path)?PRIVACY_FALLBACK_CANDIDATE:LOSSLESS_PATHS.has(path)?LOSSLESS_CANDIDATE:FOUNDATION_CANDIDATE,path),'Foundation source drift: '+path)}
