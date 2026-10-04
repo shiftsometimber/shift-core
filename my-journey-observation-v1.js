@@ -12,7 +12,7 @@ export const JOURNEY_EVIDENCE = Object.freeze({
   stallWeeks: 4
 });
 
-const finite = value => Number.isFinite(Number(value)) ? Number(value) : null;
+const finite = value => (typeof value === 'number' || typeof value === 'string' && value.trim() !== '') && Number.isFinite(Number(value)) ? Number(value) : null;
 const dated = rows => [...(Array.isArray(rows) ? rows : [])]
   .filter(row => row?.confirmed === true && !Number.isNaN(Date.parse(row.date)))
   .sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
@@ -97,7 +97,7 @@ export function journeyExport(records, {weeks = 12, mode = 'loss', holdBandKg = 
     holdBandKg: mode === 'maintenance' && Array.isArray(holdBandKg) ? holdBandKg.map(finite) : null,
     records: confirmed,
     observation: buildJourneyObservation(confirmed, {mode}),
-    missing: ['weightKg','waistCm','clothesFit','feeling'].filter(key => !confirmed.some(row => row[key] != null)),
+    missing: ['weightKg','waistCm','clothesFit','feeling'].filter(key => !confirmed.some(row => ['weightKg','waistCm'].includes(key) ? finite(row[key]) !== null : row[key] != null)),
     disclaimer: 'A private record of confirmed entries. It does not diagnose, prove cause or assess whether treatment is working.'
   };
 }
