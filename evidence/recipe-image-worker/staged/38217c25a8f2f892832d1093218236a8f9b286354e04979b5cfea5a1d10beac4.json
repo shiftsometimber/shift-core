@@ -1,0 +1,90 @@
+{
+  "groupId": "38217c25a8f2f892832d1093218236a8f9b286354e04979b5cfea5a1d10beac4",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-hash-brown-sausage"
+  ],
+  "titles": [
+    "Shift Hash Brown Sausage Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hash Brown Sausage Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"120g\",\"item\":\"baby potatoes\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10ml\",\"item\":\"olive oil\"}]. Preparation: [\"Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g tomato, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.\",\"Put the diced potatoes into a saucepan of boiling water. Simmer for about 8\u201310 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.\",\"Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6\u20138 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.\",\"In the second frying pan, use 2ml of the measured olive oil and cook the listed sausages following their packet time, usually about 15\u201320 minutes, turning regularly so they cook through without burning. Check the thickest part with a clean food thermometer: it must reach 70\u00b0C and remain there for 2 minutes. Slice after cooking and transfer to a clean plate while the vegetables cook.\",\"In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped tomato for 3\u20134 minutes until softened, then add the spinach and stir until wilted. Return the cooked protein and its juices to the vegetables just before assembling, keeping everything hot.\",\"Split and toast the measured 80g wholemeal bap. Put one crisp potato patty and a manageable amount of hot protein and vegetables inside. Serve the second patty and all remaining filling alongside; the nutrition includes the complete listed portion.\",\"Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.undefined Exactly TWO sausages total, and BOTH must be fully sliced into rounds before assembling. Show some browned sausage rounds in the bap and only the remaining rounds alongside. NO intact or whole sausage links anywhere in the image. One potato patty inside the bap and one potato patty alongside.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "120g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g tomato, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+    "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8\u201310 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+    "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6\u20138 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+    "In the second frying pan, use 2ml of the measured olive oil and cook the listed sausages following their packet time, usually about 15\u201320 minutes, turning regularly so they cook through without burning. Check the thickest part with a clean food thermometer: it must reach 70\u00b0C and remain there for 2 minutes. Slice after cooking and transfer to a clean plate while the vegetables cook.",
+    "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped tomato for 3\u20134 minutes until softened, then add the spinach and stir until wilted. Return the cooked protein and its juices to the vegetables just before assembling, keeping everything hot.",
+    "Split and toast the measured 80g wholemeal bap. Put one crisp potato patty and a manageable amount of hot protein and vegetables inside. Serve the second patty and all remaining filling alongside; the nutrition includes the complete listed portion.",
+    "Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4828f30e-7761-4f9f-9855-75b75fda6deb.png",
+  "source_sha256": "793ca858873ddd82d1c3cfe642988aba0d3177acb28f2ac88fe852283e1fd7ac",
+  "generated_at": "2026-10-04T23:16:18.160Z",
+  "elapsed_ms": 19465,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-38217c25a8f2f892832d-480.webp",
+      "sha256": "1210d3c8b42a74ef822679e994daaa3ae81736347bac02cd74dbe5104d61b376",
+      "bytes": 30846
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-38217c25a8f2f892832d-retry3-bda9a5b5516d.webp",
+      "sha256": "bda9a5b5516d1f84bc0a274f2a7fb19b5525976461e8389ed3843c465efc3334",
+      "bytes": 96164
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "793ca858873ddd82d1c3cfe642988aba0d3177acb28f2ac88fe852283e1fd7ac",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-hash-brown-sausage"
+    ],
+    "titles": [
+      "Shift Hash Brown Sausage Breakfast Buttie"
+    ],
+    "notes": "Both sausages are now sliced into cooked browned rounds, divided between bap and remaining filling. One potato onion patty inside and one alongside with softened tomato and wilted spinach. No whole sausage links or extra portion.",
+    "alt": "Hash brown sausage breakfast buttie with tomato, spinach and a patty alongside.",
+    "reviewed_at": "2026-10-04T23:16:51.410709+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/200.json"
+  },
+  "integrated": true,
+  "live": false
+}

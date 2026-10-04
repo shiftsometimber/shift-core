@@ -1,0 +1,82 @@
+{
+  "groupId": "8b386f80f519e4eb5cac00359587cc164644b2945763e358f1c879a53a94b856",
+  "recipe_ids": [
+    "industrial-v3-roast-cajun-chicken"
+  ],
+  "titles": [
+    "Shift Cajun Chicken Sunday-Style Roast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Chicken Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"Cajun tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Place the chicken breast on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the Cajun tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked chicken breast, roast potatoes, carrots and broccoli together. Spoon the hot Cajun tomato sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; dried oregano cooked into protein only if listed, never fresh garnish. Roast potatoes are peeled, plain golden chunks with ZERO pepper, herbs, green flecks or spices. Carrot batons and boiled broccoli equally plain: oil/oven only, no garnish. Tomato sauce ONLY spooned over the cooked protein. For beef mince EXACTLY TWO compact flattened portions, not a joint or steak.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Place the chicken breast on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the Cajun tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked chicken breast, roast potatoes, carrots and broccoli together. Spoon the hot Cajun tomato sauce over the cooked protein."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-abdcd115-f9a5-4022-af4c-537e7ddbf85a.png",
+  "source_sha256": "75f75c162e04d37f82f2981e3f69116a21337adef40e1b4a7084113f1dbc0dea",
+  "generated_at": null,
+  "elapsed_ms": 347517.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8b386f80f519e4eb5cac-480.webp",
+      "sha256": "55a0eff4261524cc17931a970fd06c251335ee0ad337e965a099796057aa9e7f",
+      "bytes": 29156
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8b386f80f519e4eb5cac-14e91254d450.webp",
+      "sha256": "14e91254d45015c1995077ac6e5a21cec66e34a2c34ee6e7e84cbdc9eb51c9ce",
+      "bytes": 90714
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "75f75c162e04d37f82f2981e3f69116a21337adef40e1b4a7084113f1dbc0dea",
+    "recipe_ids": [
+      "industrial-v3-roast-cajun-chicken"
+    ],
+    "titles": [
+      "Shift Cajun Chicken Sunday-Style Roast"
+    ],
+    "notes": "One cooked chicken breast carries red Cajun tomato sauce while peeled golden roast potato chunks, carrot batons and boiled broccoli remain plain and separate; no vegetable garnish. One plausible serving with central food retained by responsive cropping.",
+    "alt": "Chicken breast with tomato sauce, roast potatoes, carrot batons and broccoli.",
+    "reviewed_at": "2026-10-04T23:28:44.652Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-637.json"
+  },
+  "integrated": true,
+  "live": false
+}

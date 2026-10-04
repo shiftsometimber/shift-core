@@ -38,7 +38,7 @@ def main():
                 resized=im.resize((width,round(im.height*width/im.width)),Image.Resampling.LANCZOS)
                 dest=staged/(name+('' if width==960 else '-480')+'.webp');temp=dest.with_suffix('.tmp.webp');resized.save(temp,'WEBP',quality=82,method=6);Image.open(temp).verify();os.replace(temp,dest)
                 variants.append({'width':resized.width,'height':resized.height,'asset':dest.relative_to(ROOT).as_posix(),'sha256':sha(dest),'bytes':dest.stat().st_size})
-            write(target,{'groupId':gid,'recipe_ids':g['recipe_ids'],'titles':g['titles'],'prompt':g['prompt'],'ingredients':g['ingredients'],'method':g['method'],'sourcePath':str(source),'source_sha256':sha(source),'generated_at':returned['generated_at'],'elapsed_ms':returned['elapsed_ms'],'variants':variants,'review_status':'pending','integrated':False,'live':False})
+            write(target,{'groupId':gid,'recipe_ids':g['recipe_ids'],'titles':g['titles'],'prompt':returned.get('prompt',g['prompt']),'ingredients':g['ingredients'],'method':g['method'],'sourcePath':str(source),'source_sha256':sha(source),'generated_at':returned['generated_at'],'elapsed_ms':returned['elapsed_ms'],'variants':variants,'review_status':'pending','integrated':False,'live':False})
             # Keep the durable receipt compact; original bytes remain at sourcePath.
             write(f,{k:v for k,v in returned.items() if k!='result'} | {'result':{'output_hint':result['output_hint']}})
     elif args.command=='bind':
@@ -65,6 +65,8 @@ def main():
                 if dest.exists(): assert sha(dest)==v['sha256']
                 else:
                     tmp=dest.with_suffix('.tmp.webp');tmp.write_bytes(src.read_bytes());assert sha(tmp)==v['sha256'];os.replace(tmp,dest)
+            record['variants']=sorted(record['variants'],key=lambda v:v['width'])
+            assert [v['width'] for v in record['variants']]==[480,960]
             small,large=record['variants'];src='/assets/member-experience/food/'+Path(large['asset']).name
             for rid in g['recipe_ids']:
                 r=recipes[rid];binding={'id':rid,'title':r['title'],'ingredients':r['ingredients'],'method':r['method'],'src':src,'alt':review['alt'],'sha256':large['sha256'],'width':large['width'],'height':large['height'],'srcSet':'/assets/member-experience/food/'+Path(small['asset']).name+' 480w, '+src+' 960w'}
@@ -82,7 +84,7 @@ def main():
     staged=[json.loads(f.read_text()) for f in records.glob('*.json')]
     mapper=(ROOT/'member-experience/grub-image-map.mjs').read_text();bindings,_=json.JSONDecoder().raw_decode(mapper[mapper.index('export const grubImages=')+len('export const grubImages='):]);boundids={r['id'] for r in bindings}
     byid={r['id']:r for r in bindings}
-    integrated=sum(all(rid in byid and byid[rid]['sha256']==r['variants'][-1]['sha256'] for rid in r['recipe_ids']) for r in staged)
+    integrated=sum(all(rid in byid and byid[rid]['sha256']==next(v['sha256'] for v in r['variants'] if v['width']==960) for rid in r['recipe_ids']) for r in staged)
     summary={'catalogue_recipes':len(recipes),'distinct_groups':len(groups),'generated_new':len(staged),'reviewed_pass_new':sum(r['review_status']=='pass' for r in staged),'reviewed_reject_new':sum(r['review_status']=='reject' for r in staged),'integrated_new':integrated,'integrated_recipe_bindings_total':len(boundids),'remaining_recipe_bindings':len(recipes)-len(boundids),'live_new':0,'remaining_groups_without_prepared_asset':2604-len(staged),'remaining_groups_without_usable_new_asset':2604-sum(r['review_status']=='pass' for r in staged),'complete':len(boundids)==len(recipes)}
     write(STATE/'summary.json',summary);print(json.dumps(summary))
 if __name__=='__main__': main()

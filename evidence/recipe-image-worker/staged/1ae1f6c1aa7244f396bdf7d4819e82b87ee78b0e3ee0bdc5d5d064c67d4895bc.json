@@ -1,0 +1,80 @@
+{
+  "groupId": "1ae1f6c1aa7244f396bdf7d4819e82b87ee78b0e3ee0bdc5d5d064c67d4895bc",
+  "index": 2355,
+  "recipe_ids": [
+    "industrial-v4-protein-pot-chocolate-overnight-oats"
+  ],
+  "titles": [
+    "Shift Chocolate Oat Crunch Snack Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "85g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Toast the rolled oats and seeds in a dry frying pan over a medium heat for 4\u20135 minutes, stirring until they smell nutty and take on a little colour.",
+    "Tip the toasted crunch onto a plate and let it cool completely while you prepare the mixed berries and other measured fruit.",
+    "Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.",
+    "Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Oat Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"85g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Toast the rolled oats and seeds in a dry frying pan over a medium heat for 4\u20135 minutes, stirring until they smell nutty and take on a little colour.\",\"Tip the toasted crunch onto a plate and let it cool completely while you prepare the mixed berries and other measured fruit.\",\"Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.\",\"Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: generic method references to food apply only when that food appears in the exact ingredient list. Plain wholegrain crackers unseeded, no seed garnish unless listed. No cheese unless listed. No extra sauce, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow dry/separate and soaked/prepared instructions exactly. Cocoa means measured cocoa powder folded or dusted on food, never liquid chocolate syrup or extra chocolate chunks unless chopped dark chocolate listed. Overnight oats cocoa must be fully mixed in milk, visibly soft soaked brown oats without dry cocoa pockets. Cinnamon means fine powder, no decorative cinnamon sticks.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5be16f8f-6a59-485e-b732-485e9a526196.png",
+  "source_sha256": "dcd53ab517f392327f0064f842569388ae9d59cabcdce06abe74d8b6de504434",
+  "dispatched_at": "2026-10-04T22:43:35.292Z",
+  "generated_at": "2026-10-04T22:46:09.772Z",
+  "elapsed_ms": 154480,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1ae1f6c1aa7244f396bd-480.webp",
+      "sha256": "773e15f890b95df8995c068b8e53791f2a43c8b00b3070286894e54289e9b5bb",
+      "bytes": 27456,
+      "git_blob_sha": "b89d97c6ea4459db8dcb48f742b785c9cca8858d"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1ae1f6c1aa7244f396bd.webp",
+      "sha256": "3b0b017a577f816f1ba6cb039a6fdb3d43a611e26e05ae41ac2a2080049a1cf6",
+      "bytes": 88130,
+      "git_blob_sha": "2ec5f9f203e6ff028682864ca59d1fce6b55c86c"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-chocolate-overnight-oats"
+    ],
+    "titles": [
+      "Shift Chocolate Oat Crunch Snack Pot"
+    ],
+    "notes": "Dry toasted rolled oats and pumpkin seeds with measured cocoa powder, separate from mixed berries; no milk, honey or chocolate pieces.",
+    "alt": "Cocoa toasted oat and pumpkin-seed crunch with a separate mixed berry pot",
+    "reviewed_at": "2026-10-04T22:52:28.439315+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/1ae1f6c1aa7244f396bdf7d4819e82b87ee78b0e3ee0bdc5d5d064c67d4895bc.json",
+    "source_sha256": "dcd53ab517f392327f0064f842569388ae9d59cabcdce06abe74d8b6de504434"
+  },
+  "integrated": true,
+  "live": false
+}

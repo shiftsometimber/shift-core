@@ -1,0 +1,84 @@
+{
+  "groupId": "a44149a3557b8d5eaba233f5f18b617bbbacfebff49337fbbd84dab91f1b8a1c",
+  "index": 2243,
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-berry-savory-box"
+  ],
+  "titles": [
+    "Shift Berry Banana Split Big Feed Dessert"
+  ],
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Banana Split Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"105g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy: use only listed foods. Plain unseeded wholegrain crackers: no sesame/poppy seeds, two clearly visible crackers when2listed. No cheese unless listed; no honey, nuts, mint or extra sauces. Follow preparation precisely: dry crunchy components in separate compartments/ramekins when method says kept separate; soft soaked oats only when milk listed. Protein pot crunchy topping can be freshly added just before eating. Single believable serving with food safely inside frame.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-image-rescue/raw-a44149a3557b8d5eaba233f5f18b617bbbacfebff49337fbbd84dab91f1b8a1c.png",
+  "source_sha256": "48db4cb62bdad0b8c5cc0f8b03fbb9c9bef45660e17591d8fbac86abb98a5c62",
+  "dispatched_at": "2026-10-04T22:58:40.044Z",
+  "generated_at": "2026-10-04T23:02:37.732Z",
+  "elapsed_ms": 237688,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a44149a3557b8d5eaba2-480-ee9182d4eca1.webp",
+      "sha256": "ee9182d4eca11269ed5c831f8ea389197630d6c1252c415bc9065778381ee92d",
+      "bytes": 23926,
+      "git_blob_sha": "3c628f6e5f7ac2a5e8e2bcae2ec9c0c15a67dabc"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a44149a3557b8d5eaba2-84fb1ec6cabb.webp",
+      "sha256": "84fb1ec6cabb2b5fb9b25b49d4ec906d0c85f3a5c30ec81c618882505f375bde",
+      "bytes": 70466,
+      "git_blob_sha": "c5d6ea641b75066e87ce498fb1fe4205cd1b2109"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-berry-savory-box"
+    ],
+    "titles": [
+      "Shift Berry Banana Split Big Feed Dessert"
+    ],
+    "notes": "Banana and mixed berries with rolled oats, pumpkin seeds and chopped dark chocolate; no dairy or apple. Fullsize exactPNG recovered from stored generator bytes after transport omitted output_hint.",
+    "alt": "Banana and berry dessert with oats, pumpkin seeds and dark chocolate",
+    "reviewed_at": "2026-10-04T23:08:46.153096+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/a44149a3557b8d5eaba233f5f18b617bbbacfebff49337fbbd84dab91f1b8a1c.json",
+    "source_sha256": "48db4cb62bdad0b8c5cc0f8b03fbb9c9bef45660e17591d8fbac86abb98a5c62"
+  },
+  "integrated": true,
+  "live": false
+}

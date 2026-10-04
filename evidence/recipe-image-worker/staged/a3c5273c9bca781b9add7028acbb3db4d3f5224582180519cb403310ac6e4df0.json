@@ -1,0 +1,87 @@
+{
+  "groupId": "a3c5273c9bca781b9add7028acbb3db4d3f5224582180519cb403310ac6e4df0",
+  "index": 2248,
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-berry-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Berry Cottage Cheese Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Cottage Cheese Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"105g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed food; no honey, nuts, mint, syrup or decorative garnish. Plain unseeded crackers: exactly two visible crackers when listed, no sesame or poppy seeds. All food inside the serving margins. Finished combined dessert in ONE bowl: cottage cheese or yoghurt base, fruit, oats and seeds combined in this bowl, yoghurt visibly swirled through. No separate yoghurt or crunch ramekins.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0ec7e5de-99db-404d-a828-06d43ec67c95.png",
+  "source_sha256": "de286eb3846f51f54086e3b5c92d94c8673b84cb41e66729d9d698bbfe2416af",
+  "dispatched_at": "2026-10-04T23:14:16.136Z",
+  "generated_at": "2026-10-04T23:14:45.937Z",
+  "elapsed_ms": 29801,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a3c5273c9bca781b9add-480.webp",
+      "sha256": "1346c78505f94f1cb4ab27ccde2f5284b2845c1b257b6194f8c49c2c6b942869",
+      "bytes": 24822,
+      "git_blob_sha": "88791d8f47dba0fa0a3ee785dbc6ff7844df6d3b"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a3c5273c9bca781b9add.webp",
+      "sha256": "a1c216a46b968d7e1947e62361c44790fea0868883705d1be27f42a47c09c8e3",
+      "bytes": 74590,
+      "git_blob_sha": "dd7c5e49e50af30d247cb686e9a6b4ba6d9226cb"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-berry-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Berry Cottage Cheese Dessert Pot"
+    ],
+    "notes": "Targeted retry corrected preparation: lumpy cottage cheese, mixed berries, measured oats and pumpkin seeds combined in one bowl with Greek yoghurt visibly swirled through. No separate components or added garnish. Exact title and recipe checked.",
+    "alt": "Berry cottage cheese dessert with Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:22:01.021095+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/a3c5273c9bca781b9add7028acbb3db4d3f5224582180519cb403310ac6e4df0.json",
+    "source_sha256": "de286eb3846f51f54086e3b5c92d94c8673b84cb41e66729d9d698bbfe2416af"
+  },
+  "integrated": true,
+  "live": false
+}

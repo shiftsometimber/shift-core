@@ -1,0 +1,81 @@
+{
+  "groupId": "da26ef0bb9256660635be4967012ec9a18c03c493a0297f6d16e386912c1f5da",
+  "index": 2245,
+  "recipe_ids": [
+    "industrial-v4-protein-pot-berry-savory-box"
+  ],
+  "titles": [
+    "Shift Berry Banana Split Snack Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries",
+      "allergens": []
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the banana in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Banana Split Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"105g\",\"item\":\"mixed berries\",\"allergens\":[]},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the banana in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy: use only listed foods. Plain unseeded wholegrain crackers: no sesame/poppy seeds, two clearly visible crackers when2listed. No cheese unless listed; no honey, nuts, mint or extra sauces. Follow preparation precisely: dry crunchy components in separate compartments/ramekins when method says kept separate; soft soaked oats only when milk listed. Protein pot crunchy topping can be freshly added just before eating. Single believable serving with food safely inside frame.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-image-rescue/raw-da26ef0bb9256660635be4967012ec9a18c03c493a0297f6d16e386912c1f5da.png",
+  "source_sha256": "4ca4cc4e057b6a13f8d619ec674494474cfcc5d32cebcaa2ac08a60dcb8e096e",
+  "dispatched_at": "2026-10-04T22:58:40.044Z",
+  "generated_at": "2026-10-04T23:03:02.720Z",
+  "elapsed_ms": 262676,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-da26ef0bb9256660635b-480-aaa9a59834b1.webp",
+      "sha256": "aaa9a59834b1e05944acb4b359dd82895406ff8aff64ed4b1226ad1e397816c1",
+      "bytes": 24406,
+      "git_blob_sha": "aa5440c4f9ed544b39d4c92b915293fd1ecde846"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-da26ef0bb9256660635b-ecd0d768ed84.webp",
+      "sha256": "ecd0d768ed845c3cb55efc95866e1552f432f461632ca8d63e608295e5328c91",
+      "bytes": 75218,
+      "git_blob_sha": "02a60ff43dea15f696c0e4ebf165e393f01f5f18"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-berry-savory-box"
+    ],
+    "titles": [
+      "Shift Berry Banana Split Snack Pot"
+    ],
+    "notes": "Banana and mixed berries in fruit pot, dry oats and pumpkin seeds separate; no creamy base. Fullsize exactPNG recovered from stored generator bytes after transport omitted output_hint.",
+    "alt": "Banana and berry snack pot with separate oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T23:08:45.904464+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/da26ef0bb9256660635be4967012ec9a18c03c493a0297f6d16e386912c1f5da.json",
+    "source_sha256": "4ca4cc4e057b6a13f8d619ec674494474cfcc5d32cebcaa2ac08a60dcb8e096e"
+  },
+  "integrated": true,
+  "live": false
+}

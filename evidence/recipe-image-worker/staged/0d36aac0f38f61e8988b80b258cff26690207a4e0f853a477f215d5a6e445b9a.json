@@ -1,0 +1,91 @@
+{
+  "groupId": "0d36aac0f38f61e8988b80b258cff26690207a4e0f853a477f215d5a6e445b9a",
+  "recipe_ids": [
+    "industrial-v3-traybake-lemon-herb-pork"
+  ],
+  "titles": [
+    "Shift Lemon Herb Pork Traybake"
+  ],
+  "prompt": "Edit this exact dish photograph. Remove EVERY green, black or brown herb/pepper/seasoning fleck from ALL HOT FOOD: protein, potato, pepper, carrot and pie filling surfaces. Keep natural browned crust and roast colour, but smooth plain clean surfaces WITHOUT tiny scattered seasoning specks. The listed dried parsley belongs ONLY in the cold white mayonnaise dressing in side ramekin; keep its green flecks there. Keep natural broccoli florets and whole peas where listed, these vegetables are not garnish. No invented ingredients, no lemon wedges, no cheese. Exact source recipe: Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Pork Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and lean pork loin. Get the pan properly hot first. Cook the lean pork loin until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the lean pork loin is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and lean pork loin. Get the pan properly hot first. Cook the lean pork loin until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.",
+    "Check the lean pork loin is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-330ae246-a4f5-4f29-9493-99aa0f7020dd.png",
+  "source_sha256": "99680523f9d6ed9a04254b00694f2b26dc12a1a15607a584792a8a0317114e3d",
+  "generated_at": "2026-10-04T23:01:17.984Z",
+  "elapsed_ms": 96643.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0d36aac0f38f61e8988b-retry5-480-7c41313cc7fa.webp",
+      "sha256": "7c41313cc7fa378528cde8f7066488cefcc2c9c51b7a8a3f8add2354f920a4cd",
+      "bytes": 31478
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0d36aac0f38f61e8988b-retry5-4898f3d08be8.webp",
+      "sha256": "4898f3d08be83953a50f996c4195b24b545f0dbe2cb16fb741b30279793333ad",
+      "bytes": 98918
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "99680523f9d6ed9a04254b00694f2b26dc12a1a15607a584792a8a0317114e3d",
+    "recipe_ids": [
+      "industrial-v3-traybake-lemon-herb-pork"
+    ],
+    "titles": [
+      "Shift Lemon Herb Pork Traybake"
+    ],
+    "notes": "Corrected image: sliced cooked opaque pork loin, plain golden baby potatoes, roast red pepper/broccoli; parsley only cold white side dressing.",
+    "alt": "Pork traybake with baby potatoes, broccoli, red pepper and cold lemon parsley dressing",
+    "reviewed_at": "2026-10-04T23:05:59.574612+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1004.json"
+  },
+  "integrated": true,
+  "live": false
+}

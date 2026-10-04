@@ -17,6 +17,10 @@ def walk(x):
   if 'groupId' in x:yield x
   else:
    for y in x.values():yield from walk(y)
+def elapsed(r):
+ if 'elapsed_ms' in r:return r['elapsed_ms']
+ seconds=r.get('elapsedSeconds',r.get('elapsed_seconds'))
+ return seconds*1000 if seconds is not None else None
 reviews=json.loads((STATE/'visual-reviews.json').read_text()) if (STATE/'visual-reviews.json').exists() else {}
 added=0;blocked=[]
 rejected_sources={(r['groupId'],r['source_sha256']) for p in (STATE/'rejected').glob('*.json') for r in [json.loads(p.read_text())]}
@@ -68,6 +72,6 @@ for folder in sorted(STATE.glob('worker-*')):
     variants[480]={'width':small.width,'height':small.height,'asset':path.relative_to(ROOT).as_posix(),'sha256':sha(path),'bytes':path.stat().st_size}
    timestamp=review.get('reviewed_at',r.get('reviewedAt',r.get('reviewed_at')))
    decision={'decision':'pass','source_sha256':sourcehash,'recipe_ids':ids,'titles':titles,'notes':notes,'alt':alt,'reviewed_at':timestamp,'reviewer':r.get('reviewer',review.get('reviewer',folder.name)),'receipt':file.relative_to(ROOT).as_posix()}
-   write(target,{'groupId':gid,'recipe_ids':ids,'titles':titles,'prompt':prompt,'ingredients':g['ingredients'],'method':g['method'],'sourcePath':str(source),'source_sha256':sourcehash,'generated_at':r.get('completed_at',r.get('generated_at')),'elapsed_ms':r.get('elapsed_ms',r.get('elapsedSeconds',r.get('elapsed_seconds',0))*1000),'variants':[variants[480],variants[960]],'review_status':'pass','review':decision,'integrated':False,'live':False})
+   write(target,{'groupId':gid,'recipe_ids':ids,'titles':titles,'prompt':prompt,'ingredients':g['ingredients'],'method':g['method'],'sourcePath':str(source),'source_sha256':sourcehash,'generated_at':r.get('completed_at',r.get('generated_at')),'elapsed_ms':elapsed(r),'variants':[variants[480],variants[960]],'review_status':'pass','review':decision,'integrated':False,'live':False})
    reviews[gid]=decision;added+=1
 write(STATE/'visual-reviews.json',reviews);write(STATE/'blocked-integrity.json',blocked);print(json.dumps({'collected_reviewed_groups':added,'total_reviewed_receipts':len(reviews),'blocked_integrity':len(blocked)}))

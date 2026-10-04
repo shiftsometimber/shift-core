@@ -1,0 +1,78 @@
+{
+  "groupId": "42349203a08b754cfde8e27ca8b7b2e4ca69b29f8b83d87699724e8df1d20730",
+  "recipe_ids": [
+    "industrial-dinner-pork-pasta-bake"
+  ],
+  "titles": [
+    "Pork Pasta Bake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Pork Pasta Bake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"70g dry\",\"item\":\"wholewheat pasta, dry\"},{\"amount\":\"120g\",\"item\":\"chopped tomatoes\"},{\"amount\":\"100g\",\"item\":\"courgette\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Heat the oven to 200\u00b0C fan. Cook the measured dry wholewheat pasta in boiling water for 2 minutes less than its packet time. Drain, saving a small cup of cooking water.\",\"Dice the courgette. Heat a non-stick frying pan over medium heat with 2 tablespoons of water; no oil is listed for this recipe. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Add another spoonful of water if needed to prevent sticking, then transfer the cooked filling to a clean plate.\",\"Add the courgette, chopped tomatoes and 3 tablespoons of pasta cooking water to the pan. Cover and simmer for 6\u20138 minutes until the courgette softens, then remove the lid.\",\"Fold in the drained pasta and cooked lean pork loin. Transfer to a small ovenproof dish and scatter over the measured reduced-fat cheddar.\",\"Bake for 12\u201315 minutes until the cheese melts and the centre is bubbling and steaming hot. Rest for 2 minutes before serving.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Photorealistic appetising food; all ingredients exactly match. No garnish or extra food. Keep any listed brown rice distinctly wholegrain tan/brown with visible bran texture; no polished white grains. Match portion and method, natural warm light and generous framing.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "70g dry",
+      "item": "wholewheat pasta, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "chopped tomatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "courgette"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Heat the oven to 200\u00b0C fan. Cook the measured dry wholewheat pasta in boiling water for 2 minutes less than its packet time. Drain, saving a small cup of cooking water.",
+    "Dice the courgette. Heat a non-stick frying pan over medium heat with 2 tablespoons of water; no oil is listed for this recipe. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Add another spoonful of water if needed to prevent sticking, then transfer the cooked filling to a clean plate.",
+    "Add the courgette, chopped tomatoes and 3 tablespoons of pasta cooking water to the pan. Cover and simmer for 6\u20138 minutes until the courgette softens, then remove the lid.",
+    "Fold in the drained pasta and cooked lean pork loin. Transfer to a small ovenproof dish and scatter over the measured reduced-fat cheddar.",
+    "Bake for 12\u201315 minutes until the cheese melts and the centre is bubbling and steaming hot. Rest for 2 minutes before serving."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f1eeb40e-5526-4b7a-b46d-b64852cc0db4.png",
+  "source_sha256": "a90951426bcb1492831c8d72da105f5fb7ed0024016817944c9711ed3d99efcd",
+  "generated_at": "2026-10-04T22:59:12.841Z",
+  "elapsed_ms": 294830,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-42349203a08b754cfde8-480.webp",
+      "sha256": "7c085f6cf1b9a8c94acb5398e8a789d0f41e620f4246966f4ccc166d0149693a",
+      "bytes": 25554
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-42349203a08b754cfde8.webp",
+      "sha256": "3c369e42b3cb962160853c5c6f76864869160deb8509dbddf6e13317208efe96",
+      "bytes": 84286
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "index": 475,
+    "decision": "pass",
+    "notes": "Full source inspected: opaque cooked pork loin cubes, tan wholewheat pasta, courgette cubes and tomato sauce under a light melted cheddar layer in a small ovenproof dish. No leafy garnish or extra ingredients.",
+    "alt": "Wholewheat pasta bake with pork loin, courgette, tomato and melted cheddar.",
+    "source_sha256": "a90951426bcb1492831c8d72da105f5fb7ed0024016817944c9711ed3d99efcd",
+    "recipe_ids": [
+      "industrial-dinner-pork-pasta-bake"
+    ],
+    "titles": [
+      "Pork Pasta Bake"
+    ],
+    "reviewer": "root full source image inspection",
+    "reviewed_at": "2026-10-04T23:09:36.309799+00:00"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "groupId": "e041f732f144471ab220c3ccf0bc6e11ea6f87f82f6d8d452d92099f5f5653ec",
+  "recipe_ids": [
+    "industrial-v3-wrap-peri-peri-ham"
+  ],
+  "titles": [
+    "Shift Peri-Peri Ham Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Ham Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the lean ham; if the filling is being served hot, reduce only the sauce-coated lean ham until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Mexican/peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish, tortilla chips or extra ingredients. Listed yoghurt sauces are ready-to-eat dressings, not melted cheese.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the lean ham; if the filling is being served hot, reduce only the sauce-coated lean ham until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8e650de3-43bd-4d1d-b7d0-510247cb93d0.png",
+  "source_sha256": "7dbc4ef2cafaca1d306230bba0547102abb11554e6c8124d697890e36f072cce",
+  "generated_at": "2026-10-04T23:23:02.163Z",
+  "elapsed_ms": 287985.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e041f732f144471ab220-480-a6d1e154b984.webp",
+      "sha256": "a6d1e154b984b9fbb5df6402913b2c56356d806703680f2dea47fa4ca075014d",
+      "bytes": 23070
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e041f732f144471ab220-24bfc6352df6.webp",
+      "sha256": "24bfc6352df65de8c9c31a5275da904690cd85f644c9c6119a8a3f8684ca4c2a",
+      "bytes": 64456
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "7dbc4ef2cafaca1d306230bba0547102abb11554e6c8124d697890e36f072cce",
+    "recipe_ids": [
+      "industrial-v3-wrap-peri-peri-ham"
+    ],
+    "titles": [
+      "Shift Peri-Peri Ham Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap containing lightly coloured cooked ham coated in peri-peri yoghurt, fresh lettuce and tomato. No unlisted sides or garnish. Filling is warmed and vegetables kept fresh as method requires.",
+    "alt": "Peri-peri ham wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:24:59.917548+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1963.json"
+  },
+  "integrated": true,
+  "live": false
+}

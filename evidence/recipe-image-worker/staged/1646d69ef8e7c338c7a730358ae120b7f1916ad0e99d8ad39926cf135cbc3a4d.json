@@ -1,0 +1,91 @@
+{
+  "groupId": "1646d69ef8e7c338c7a730358ae120b7f1916ad0e99d8ad39926cf135cbc3a4d",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-hot-sauce-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Hot Sauce Chicken Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hot Sauce Chicken Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a848266d-55f3-44fb-b204-11672b448872.png",
+  "source_sha256": "2c10a9289507dad4b85e861d478f96b5c47d537807a88a387d6540643764a406",
+  "generated_at": "2026-10-04T23:28:34.356Z",
+  "elapsed_ms": 231834,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1646d69ef8e7c338c7a7-480.webp",
+      "sha256": "4370b173327b18134e78787bf4faf01c0c9259e9c5b6139346195ccedc7238f6",
+      "bytes": 27342
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1646d69ef8e7c338c7a7-retry2-62eb59cc7e6f.webp",
+      "sha256": "62eb59cc7e6fdc4507ba328c6b11ecbd23b2390c90a41f9f017e964436320e21",
+      "bytes": 91734
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2c10a9289507dad4b85e861d478f96b5c47d537807a88a387d6540643764a406",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-hot-sauce-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Hot Sauce Chicken Breakfast Buttie"
+    ],
+    "notes": "Unseeded wholemeal bap contains browned white chicken breast, softened tomato and wilted spinach with tomato-chilli sauce; no unlisted ingredients.",
+    "alt": "Wholemeal hot sauce chicken bap with tomato and spinach",
+    "reviewed_at": "2026-10-04T23:30:01.326975+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/216.json"
+  },
+  "integrated": true,
+  "live": false
+}

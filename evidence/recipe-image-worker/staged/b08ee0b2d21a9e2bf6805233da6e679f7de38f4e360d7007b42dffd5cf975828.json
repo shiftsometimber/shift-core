@@ -1,0 +1,91 @@
+{
+  "groupId": "b08ee0b2d21a9e2bf6805233da6e679f7de38f4e360d7007b42dffd5cf975828",
+  "recipe_ids": [
+    "industrial-v3-traybake-lemon-herb-beef"
+  ],
+  "titles": [
+    "Shift Lemon Herb Beef Traybake"
+  ],
+  "prompt": "Edit this exact beef traybake photo. Remove EVERY tiny black, brown or green herb/seasoning fleck from all potato surfaces, pepper surfaces and beef mince surfaces. Keep natural browned crust and golden roast colour but utterly smooth clean potato faces without speckled seasoning. Plain beef mince browned only in olive oil, plain red pepper and broccoli. The cold white mayonnaise dressing in separate ramekin is the ONLY place for the listed dried parsley; keep its tiny green flecks. Do not add anything else, keep composition appetising and all food identities correct. Exact ingredients and method: Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Beef Traybake. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and 5% beef mince. Get the pan properly hot first. Cook the 5% beef mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the 5% beef mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and 5% beef mince. Get the pan properly hot first. Cook the 5% beef mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.",
+    "Check the 5% beef mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fc317a15-ea13-4a46-b25e-e1f82121e966.png",
+  "source_sha256": "82743ebe55e571570c51cb8e140ddb6ceb480d13c5648d021ed9cca32ea9f225",
+  "generated_at": "2026-10-04T22:56:26.216Z",
+  "elapsed_ms": 29074.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b08ee0b2d21a9e2bf680-retry5-480-5f7febeee89f.webp",
+      "sha256": "5f7febeee89f41ca9b239825549dbb93e390b678827510256e8cc2f60e55148e",
+      "bytes": 28026
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b08ee0b2d21a9e2bf680-retry5-918ca17f367b.webp",
+      "sha256": "918ca17f367b1a703c8069381ff5b90371672755c8820b9ee2bcd606baa2fb16",
+      "bytes": 86222
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "82743ebe55e571570c51cb8e140ddb6ceb480d13c5648d021ed9cca32ea9f225",
+    "recipe_ids": [
+      "industrial-v3-traybake-lemon-herb-beef"
+    ],
+    "titles": [
+      "Shift Lemon Herb Beef Traybake"
+    ],
+    "notes": "Full-resolution corrected review: browned loose beef mince, smooth plain golden baby potatoes, roast red pepper and broccoli. All parsley flecks exclusively in cold white side dressing; no herb flecks on hot food, cheese or extra garnish.",
+    "alt": "Beef traybake with baby potatoes, broccoli, red pepper and cold lemon parsley dressing",
+    "reviewed_at": "2026-10-04T22:57:19.636557+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/992.json"
+  },
+  "integrated": true,
+  "live": false
+}

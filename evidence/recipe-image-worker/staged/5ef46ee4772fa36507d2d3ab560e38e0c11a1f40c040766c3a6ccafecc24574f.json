@@ -1,0 +1,76 @@
+{
+  "groupId": "5ef46ee4772fa36507d2d3ab560e38e0c11a1f40c040766c3a6ccafecc24574f",
+  "recipe_ids": [
+    "industrial-dinner-lentil-traybake"
+  ],
+  "titles": [
+    "Lentil Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Lentil Traybake. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"cooked green lentils\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"120g\",\"item\":\"broccoli\"},{\"amount\":\"100g\",\"item\":\"red pepper\"},{\"amount\":\"5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and the filling. Get the pan properly hot first. Cook cooked green lentils until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.\",\"Check cooked green lentils is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Photorealistic appetising food; all ingredients exactly match. No garnish or extra food. Keep any listed brown rice distinctly wholegrain tan/brown with visible bran texture; no polished white grains. Match portion and method, natural warm light and generous framing.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "cooked green lentils"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "120g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "100g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and the filling. Get the pan properly hot first. Cook cooked green lentils until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.",
+    "Check cooked green lentils is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-08fb7fe6-a796-456c-abbf-390dff9a41bd.png",
+  "source_sha256": "079c830ffe45de41d1adffa71eefa9c1e6af82bcb88d2b2194561559201a7494",
+  "generated_at": "2026-10-04T22:58:41.513Z",
+  "elapsed_ms": 263502,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5ef46ee4772fa36507d2-480.webp",
+      "sha256": "7afb7d53364d555bd9244714793226e6894eba5590daa8054423ac8f28bc4614",
+      "bytes": 31918
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5ef46ee4772fa36507d2.webp",
+      "sha256": "006c8b99261b2f4d5cc3ef773c7d489611a06813ec62a58f1a162749c347bc1c",
+      "bytes": 101624
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "index": 472,
+    "decision": "pass",
+    "notes": "Full source inspected: cooked green lentils with golden baby potato pieces, roasted broccoli and red pepper; no added sauce or leafy garnish. Dark marks follow roasted surfaces, with actual broccoli crumbs.",
+    "alt": "Green lentils with roasted baby potatoes, broccoli and red pepper.",
+    "source_sha256": "079c830ffe45de41d1adffa71eefa9c1e6af82bcb88d2b2194561559201a7494",
+    "recipe_ids": [
+      "industrial-dinner-lentil-traybake"
+    ],
+    "titles": [
+      "Lentil Traybake"
+    ],
+    "reviewer": "root full source image inspection",
+    "reviewed_at": "2026-10-04T23:09:36.309707+00:00"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "groupId": "a287a52e8557a878a806a0f19a1691545f8b2e14ae4c9c227f33b3d067e372df",
+  "index": 2258,
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-berry-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Berry Greek Yoghurt Work Snack Box"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the 0% Greek yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the 0% Greek yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Greek Yoghurt Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"105g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the 0% Greek yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the 0% Greek yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed food; no honey, nuts, mint, syrup or decorative garnish. Plain unseeded crackers: exactly two visible crackers when listed, no sesame or poppy seeds. All food inside the serving margins. Realistic portioned snack container: crunchy oats, seeds and crackers kept dry in separate compartments from fruit and any creamy base. Exactly two entire plain crackers if listed.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f38d6937-9886-40e8-b25a-0dbc67c7f1d3.png",
+  "source_sha256": "dc8248e23be0cfbe8f7e18b67c54e4908846ab569e589a08a627176271c80b6a",
+  "dispatched_at": "2026-10-04T23:14:16.136Z",
+  "generated_at": "2026-10-04T23:17:12.670Z",
+  "elapsed_ms": 176534,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a287a52e8557a878a806-480.webp",
+      "sha256": "4f8a7822a0a5155a4c631846e85526ff5d5443487d6f43972913896d552f4eb7",
+      "bytes": 23838,
+      "git_blob_sha": "39371d368d6dbbd62fe895d26effdb94c0fef5ff"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a287a52e8557a878a806.webp",
+      "sha256": "0b36e0ccfac85d8ae96b4062f75e4956ca3d87dca0ba87f7b8bb950fa48548b1",
+      "bytes": 71810,
+      "git_blob_sha": "193369cce353e24459a2ac2c90fe28ed3cc26358"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-berry-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Berry Greek Yoghurt Work Snack Box"
+    ],
+    "notes": "Greek yoghurt and bite-size berries with dry oats/seeds kept apart. Full-size inspection confirms two plain unseeded crackers. No extra garnish.",
+    "alt": "Berry Greek yoghurt snack box with oats, pumpkin seeds and two wholegrain crackers.",
+    "reviewed_at": "2026-10-04T23:22:00.515698+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/a287a52e8557a878a806a0f19a1691545f8b2e14ae4c9c227f33b3d067e372df.json",
+    "source_sha256": "dc8248e23be0cfbe8f7e18b67c54e4908846ab569e589a08a627176271c80b6a"
+  },
+  "integrated": true,
+  "live": false
+}

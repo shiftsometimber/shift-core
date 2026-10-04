@@ -1,0 +1,93 @@
+{
+  "groupId": "a1abb808bf185a7a3347e9d48fcb845c55efb6d2cb295615d3b709ba216be75e",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-hash-brown-egg"
+  ],
+  "titles": [
+    "Shift Hash Brown Egg Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hash Brown Egg Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"100g without shell (about 2 eggs)\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"120g\",\"item\":\"baby potatoes\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10ml\",\"item\":\"olive oil\"}]. Preparation: [\"Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g mixed peppers, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.\",\"Put the diced potatoes into a saucepan of boiling water. Simmer for about 8\u201310 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.\",\"Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6\u20138 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.\",\"In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped mixed peppers for 5\u20137 minutes until softened, then add the spinach and stir until wilted. Finish the protein as described in the next step.\",\"Crack the eggs, discard the shells and weigh 100g of edible egg into a clean bowl, then beat it. The gram amount governs the portion; two eggs is only an approximation. After cooking the vegetables as described above, add the reserved 2ml olive oil and the beaten eggs to that pan. Stir gently over a medium heat until both white and yolk are fully set, keeping the mixture moist rather than browned.\",\"Warm the measured 65g wholemeal wrap in a clean dry pan for 20\u201330 seconds so it bends easily. Add a manageable amount of the hot filling and crumbled crisp potato, fold the sides in and roll firmly. Briefly place it seam-side down in the dry pan to seal. Serve all remaining potato and filling alongside; the nutrition includes the complete listed portion.\",\"Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. There are exactly TWO small potato patties in the complete portion. Crumble ONE patty into the wrap; show ONLY ONE remaining intact patty alongside. Never show two intact patties alongside a wrap that already contains crumbled potato.",
+  "ingredients": [
+    {
+      "amount": "100g without shell (about 2 eggs)",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "120g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g mixed peppers, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+    "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8\u201310 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+    "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6\u20138 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+    "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped mixed peppers for 5\u20137 minutes until softened, then add the spinach and stir until wilted. Finish the protein as described in the next step.",
+    "Crack the eggs, discard the shells and weigh 100g of edible egg into a clean bowl, then beat it. The gram amount governs the portion; two eggs is only an approximation. After cooking the vegetables as described above, add the reserved 2ml olive oil and the beaten eggs to that pan. Stir gently over a medium heat until both white and yolk are fully set, keeping the mixture moist rather than browned.",
+    "Warm the measured 65g wholemeal wrap in a clean dry pan for 20\u201330 seconds so it bends easily. Add a manageable amount of the hot filling and crumbled crisp potato, fold the sides in and roll firmly. Briefly place it seam-side down in the dry pan to seal. Serve all remaining potato and filling alongside; the nutrition includes the complete listed portion.",
+    "Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0fe44fdd-ac3a-47e6-a4d6-f05b335b7f79.png",
+  "source_sha256": "0f89415dd6f81a5a1353815e11943b4123ac767152faa2bc64092200500b5711",
+  "generated_at": "2026-10-04T23:13:19.209Z",
+  "elapsed_ms": 203321,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a1abb808bf185a7a3347-480.webp",
+      "sha256": "457aa819d8cfca9a964869850a896221ec683d1ed61c15cbdf21d20466946d28",
+      "bytes": 27768
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a1abb808bf185a7a3347-retry2-48007ba3c34e.webp",
+      "sha256": "48007ba3c34e2afab427e5ad9b3ab1fea1043010e7309e54cd0857d0f3182e4b",
+      "bytes": 85488
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "0f89415dd6f81a5a1353815e11943b4123ac767152faa2bc64092200500b5711",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-hash-brown-egg"
+    ],
+    "titles": [
+      "Shift Hash Brown Egg Breakfast Wrap"
+    ],
+    "notes": "Plain crisped wrap contains moist fully set scrambled egg, softened mixed peppers and wilted spinach with crumbled crisp potato. One remaining potato onion patty alongside matches two patties total.",
+    "alt": "Hash brown egg breakfast wrap with peppers, spinach and a patty alongside.",
+    "reviewed_at": "2026-10-04T23:13:51.533412+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/199.json"
+  },
+  "integrated": true,
+  "live": false
+}

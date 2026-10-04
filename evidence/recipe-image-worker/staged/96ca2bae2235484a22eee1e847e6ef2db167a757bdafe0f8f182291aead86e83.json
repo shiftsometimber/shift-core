@@ -1,0 +1,91 @@
+{
+  "groupId": "96ca2bae2235484a22eee1e847e6ef2db167a757bdafe0f8f182291aead86e83",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-hot-sauce-bacon"
+  ],
+  "titles": [
+    "Shift Hot Sauce Bacon Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hot Sauce Bacon Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3e46544c-b7d3-4624-a66c-70e14097ca0d.png",
+  "source_sha256": "c09fd6af3104e95797b82738c343df4180799a944719cdf158b1a5d52b14e1f6",
+  "generated_at": "2026-10-04T23:25:05.082Z",
+  "elapsed_ms": 22560,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-96ca2bae2235484a22ee-480.webp",
+      "sha256": "2ae2ee33c3039e09b43e90e2890e08b50ba578ee94c818ada94d65e2deac4bf7",
+      "bytes": 24440
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-96ca2bae2235484a22ee-retry2-a981b40d1926.webp",
+      "sha256": "a981b40d1926938e52fa586813b4c1530c800df03d8ae316827c0df3dd037c46",
+      "bytes": 81930
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c09fd6af3104e95797b82738c343df4180799a944719cdf158b1a5d52b14e1f6",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-hot-sauce-bacon"
+    ],
+    "titles": [
+      "Shift Hot Sauce Bacon Breakfast Buttie"
+    ],
+    "notes": "Broad back-bacon medallions rather than streaky strips in unseeded bap with cooked tomato and wilted spinach; listed tomato-chilli sauce retained in filling. No extra garnish.",
+    "alt": "Hot sauce back bacon bap with tomato and spinach",
+    "reviewed_at": "2026-10-04T23:31:52.842436+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/208.json"
+  },
+  "integrated": true,
+  "live": false
+}

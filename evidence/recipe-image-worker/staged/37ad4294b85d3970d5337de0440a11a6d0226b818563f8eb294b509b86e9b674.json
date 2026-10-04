@@ -1,0 +1,87 @@
+{
+  "groupId": "37ad4294b85d3970d5337de0440a11a6d0226b818563f8eb294b509b86e9b674",
+  "recipe_ids": [
+    "industrial-v3-wrap-katsu-egg"
+  ],
+  "titles": [
+    "Shift Katsu Egg Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Katsu Egg Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"katsu-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the boiled eggs with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Katsu-style sauce does NOT mean breaded chicken: use plain already-cooked breast, no breadcrumbs/flour/batter absent from recipe.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "katsu-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the boiled eggs with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1f7bcafb-81b6-43d6-9626-ffa5bcb55ac1.png",
+  "source_sha256": "9254f26578c2f87263f353515d561be0cc94521505d17486256aba1756ba7260",
+  "generated_at": null,
+  "elapsed_ms": null,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-37ad4294b85d3970d533-480-2d4b2d74e087.webp",
+      "sha256": "2d4b2d74e087af3ecd48adc8d2212905e781e9bba17be284c18ccdea0c162d4e",
+      "bytes": 21630
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-37ad4294b85d3970d533-efe7d687739d.webp",
+      "sha256": "efe7d687739d01568f5c83d1ec179bf2252a8697f88446840a967b5d5a5f787b",
+      "bytes": 62882
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "9254f26578c2f87263f353515d561be0cc94521505d17486256aba1756ba7260",
+    "recipe_ids": [
+      "industrial-v3-wrap-katsu-egg"
+    ],
+    "titles": [
+      "Shift Katsu Egg Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with boiled eggs, fresh lettuce and tomato, and katsu-style sauce. Every member title checked against exact ingredients/method. No cheese, seeds, invented side or scatter garnish; protein preparation and dressing placement match method.",
+    "alt": "Katsu Egg Loaded Wrap with lettuce, tomato",
+    "reviewed_at": "2026-10-04T23:14:25.520688+00:00",
+    "reviewer": "worker-f visual reinspection of exact recovered original",
+    "receipt": "evidence/recipe-image-worker/worker-f/1886.json",
+    "recovery_reinspection": true
+  },
+  "integrated": true,
+  "live": false
+}

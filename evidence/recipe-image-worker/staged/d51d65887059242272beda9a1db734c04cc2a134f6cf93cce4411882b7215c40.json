@@ -1,0 +1,78 @@
+{
+  "groupId": "d51d65887059242272beda9a1db734c04cc2a134f6cf93cce4411882b7215c40",
+  "recipe_ids": [
+    "industrial-dinner-lean-beef-chilli"
+  ],
+  "titles": [
+    "Lean Beef Chilli"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Lean Beef Chilli. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"70g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"120g\",\"item\":\"chopped tomatoes\"},{\"amount\":\"100g\",\"item\":\"kidney beans\"},{\"amount\":\"5g\",\"item\":\"smoked paprika\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 70g dry brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Drain and rinse canned, ready-cooked kidney beans, then weigh out 100g; raw or dried kidney beans cannot be used in this method. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.\",\"Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Put the 120g chopped tomatoes and 5g smoked paprika into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.\",\"Add the drained kidney beans, cover and simmer for 5 minutes, stirring halfway, until the beans are hot through.\",\"Return the cooked 5% beef mince and its juices to the pan and stir through. Heat everything together over a low heat for 2\u20133 minutes, stirring gently, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nTargeted accuracy correction: the exact recipe specifies WHOLEGRAIN BROWN RICE. Show ordinary cooked medium-brown/tan wholegrain rice with clear intact bran texture on its grains. No polished white or pearly/glossy risotto rice. Keep the rice naturally appetising, with every other ingredient and preparation exactly as specified. No fresh herb garnish, extra vegetables, cheese, cream, unlisted oil or sides. Keep the specified protein form and all food within plate margins.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "70g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "chopped tomatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "kidney beans"
+    },
+    {
+      "amount": "5g",
+      "item": "smoked paprika"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 70g dry brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Drain and rinse canned, ready-cooked kidney beans, then weigh out 100g; raw or dried kidney beans cannot be used in this method. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.",
+    "Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Put the 120g chopped tomatoes and 5g smoked paprika into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.",
+    "Add the drained kidney beans, cover and simmer for 5 minutes, stirring halfway, until the beans are hot through.",
+    "Return the cooked 5% beef mince and its juices to the pan and stir through. Heat everything together over a low heat for 2\u20133 minutes, stirring gently, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-66c89ad5-fd7f-48e2-8053-e4d8ca9ddf68.png",
+  "source_sha256": "6d670c59c21a8939fbe09ce8e5a2dd2733bf14832e33bf8b112867d31800f198",
+  "generated_at": "2026-10-04T22:46:47.479Z",
+  "elapsed_ms": 253366,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d51d65887059242272be-retry2-480.webp",
+      "sha256": "107b6edab28f5d13f58f038e76260e3dd1ae8fcf026acc59845f67b4894184bd",
+      "bytes": 34040
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d51d65887059242272be-retry2.webp",
+      "sha256": "f671317c98f1809d897838e75058cc5e960d1d302618c63e994db0f30c541fbc",
+      "bytes": 110184
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6d670c59c21a8939fbe09ce8e5a2dd2733bf14832e33bf8b112867d31800f198",
+    "recipe_ids": [
+      "industrial-dinner-lean-beef-chilli"
+    ],
+    "titles": [
+      "Lean Beef Chilli"
+    ],
+    "notes": "Full-resolution image inspected. Small browned beef mince crumbles with red kidney beans and tomato paprika sauce over tan wholegrain rice with visible bran texture. No unlisted garnish or sides.",
+    "alt": "Lean beef and kidney bean tomato chilli spooned over wholegrain brown rice.",
+    "reviewed_at": "2026-10-04T22:59:37.231017+00:00",
+    "reviewer": "root full-resolution source inspection"
+  }
+}

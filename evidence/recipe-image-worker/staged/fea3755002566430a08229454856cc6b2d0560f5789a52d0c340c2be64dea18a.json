@@ -1,0 +1,93 @@
+{
+  "groupId": "fea3755002566430a08229454856cc6b2d0560f5789a52d0c340c2be64dea18a",
+  "recipe_ids": [
+    "industrial-v3-roast-lemon-herb-tofu"
+  ],
+  "titles": [
+    "Shift Lemon Herb Tofu Sunday-Style Roast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Tofu Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Pat the firm tofu dry, cut it into 2cm slabs and roast on a separate lined tray for 20\u201325 minutes, turning halfway, until the edges are golden and the centre is hot.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Stir together the measured light mayonnaise, lemon juice, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Serve the cooked firm tofu, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, lemon juice, dried parsley dressing alongside after cooking.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist accuracy hard gates: All parsley ONLY in cold white dressing in separate side ramekin. Hot food smooth plain surfaces with golden browning, absolutely NO tiny black/brown/green seasoning or herb flecks, NO black pepper. Mash plain fork-roughened. Turkey breast mince loose cooked pale-brown crumbles except roast EXACTLY TWO compact flattened plain portions 2cmthick; no herb inclusions. Tofu roast 2cm thick SLABS; otherwise2cm browned cubes. Madras beef loose browned mince not chunks; Madras chicken2cm cooked cubes not mince. No cheese, cream, extra butter, lemon wedges, seeds or garnish. Listed broccoli/peas/courgette only green vegetables as relevant. Plain hotpot slowcooked tender potatoes/carrots/onion no roast edges; tray potatoes golden. Preserve exact preparation and ingredient amounts visually credible single serving.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Pat the firm tofu dry, cut it into 2cm slabs and roast on a separate lined tray for 20\u201325 minutes, turning halfway, until the edges are golden and the centre is hot.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Stir together the measured light mayonnaise, lemon juice, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Serve the cooked firm tofu, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, lemon juice, dried parsley dressing alongside after cooking."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1a907484-2149-4e07-8875-5cff54f160e6.png",
+  "source_sha256": "61cfe17c90283c99daf1840d3c8a6b500bebcca24af4ae3a29723eeb4056db37",
+  "generated_at": "2026-10-04T23:10:42.580Z",
+  "elapsed_ms": 28259.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fea3755002566430a082-retry4-480-3ad0abc32d6e.webp",
+      "sha256": "3ad0abc32d6e187b9c804ad3a9bf2cbe3181840395bb36f3ad35e879060294f5",
+      "bytes": 24362
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fea3755002566430a082-retry4-f3a99c543b88.webp",
+      "sha256": "f3a99c543b88224d23c67df9d9f1b0f6d0628d3fa40503ee56f4dcaf39ff364d",
+      "bytes": 73810
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "61cfe17c90283c99daf1840d3c8a6b500bebcca24af4ae3a29723eeb4056db37",
+    "recipe_ids": [
+      "industrial-v3-roast-lemon-herb-tofu"
+    ],
+    "titles": [
+      "Shift Lemon Herb Tofu Sunday-Style Roast"
+    ],
+    "notes": "Full-resolution review: browned tofu slabs, golden peeled roast potato chunks, roast carrot batons and broccoli. Hot surfaces plain with natural browning; parsley only in cold white side dressing. No seeds, cheese or invented garnish.",
+    "alt": "Tofu roast with potatoes, carrots, broccoli and cold lemon parsley dressing",
+    "reviewed_at": "2026-10-04T23:11:43.362301+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1015.json"
+  },
+  "integrated": true,
+  "live": false
+}

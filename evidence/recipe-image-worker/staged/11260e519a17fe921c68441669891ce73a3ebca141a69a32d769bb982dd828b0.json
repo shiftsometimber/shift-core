@@ -1,0 +1,79 @@
+{
+  "groupId": "11260e519a17fe921c68441669891ce73a3ebca141a69a32d769bb982dd828b0",
+  "recipe_ids": [
+    "industrial-dinner-pork-curry"
+  ],
+  "titles": [
+    "Pork Curry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Pork Curry. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"70g dry\",\"item\":\"basmati rice, dry\"},{\"amount\":\"120g\",\"item\":\"chopped tomatoes\"},{\"amount\":\"100g\",\"item\":\"spinach\"},{\"amount\":\"25g\",\"item\":\"medium curry paste\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 70g dry basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Wash and drain the 100g spinach. Cut the 170g lean pork loin into pieces no larger than 2cm on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.\",\"Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the lean pork loin in one layer and cook for 10\u201312 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Put the 120g chopped tomatoes and 25g medium curry paste into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.\",\"Add the washed spinach in two handfuls, cover for 1 minute, then stir. Cook for another 2\u20133 minutes until wilted throughout.\",\"Return the cooked lean pork loin and its juices to the pan and stir through. Heat everything together over a low heat for 2\u20133 minutes, stirring gently, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Photorealistic appetising food; all ingredients exactly match. No garnish or extra food. Keep any listed brown rice distinctly wholegrain tan/brown with visible bran texture; no polished white grains. Match portion and method, natural warm light and generous framing.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "70g dry",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "chopped tomatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "spinach"
+    },
+    {
+      "amount": "25g",
+      "item": "medium curry paste"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 70g dry basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Wash and drain the 100g spinach. Cut the 170g lean pork loin into pieces no larger than 2cm on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.",
+    "Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the lean pork loin in one layer and cook for 10\u201312 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Put the 120g chopped tomatoes and 25g medium curry paste into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.",
+    "Add the washed spinach in two handfuls, cover for 1 minute, then stir. Cook for another 2\u20133 minutes until wilted throughout.",
+    "Return the cooked lean pork loin and its juices to the pan and stir through. Heat everything together over a low heat for 2\u20133 minutes, stirring gently, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-91a5777e-a648-4ee5-bd5a-f599af18fbdd.png",
+  "source_sha256": "815ea5ac84d840319e1a252043cd092f98165a4139a6ddfd9a8399a0c4bcd539",
+  "generated_at": "2026-10-04T22:59:37.165Z",
+  "elapsed_ms": 319154,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-11260e519a17fe921c68-480.webp",
+      "sha256": "cf41524c102b2106a7ebcd549b0be991fd4f65c8e2faaf6802da096066abc21f",
+      "bytes": 27842
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-11260e519a17fe921c68.webp",
+      "sha256": "376a5f9a2596e57241ad48113eeaa83f03775a0faa8e1dedc724ddaab09155c1",
+      "bytes": 90780
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "index": 474,
+    "decision": "pass",
+    "notes": "Full source inspected: small opaque cooked pork loin pieces with wilted spinach and chopped tomatoes in curry sauce, spooned over white long-grain basmati rice. No added garnish, cream or sides.",
+    "alt": "Pork loin, spinach and tomato curry over basmati rice.",
+    "source_sha256": "815ea5ac84d840319e1a252043cd092f98165a4139a6ddfd9a8399a0c4bcd539",
+    "recipe_ids": [
+      "industrial-dinner-pork-curry"
+    ],
+    "titles": [
+      "Pork Curry"
+    ],
+    "reviewer": "root full source image inspection",
+    "reviewed_at": "2026-10-04T23:09:36.309769+00:00"
+  }
+}

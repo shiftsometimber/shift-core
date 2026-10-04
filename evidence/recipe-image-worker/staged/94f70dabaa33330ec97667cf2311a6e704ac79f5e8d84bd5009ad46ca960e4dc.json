@@ -1,0 +1,104 @@
+{
+  "groupId": "94f70dabaa33330ec97667cf2311a6e704ac79f5e8d84bd5009ad46ca960e4dc",
+  "recipe_ids": [
+    "industrial-v3-kebab-buffalo-salmon",
+    "industrial-v3-kebab-smoky-salmon"
+  ],
+  "titles": [
+    "Shift Buffalo Salmon Fakeaway Kebab",
+    "Shift Smoky Salmon Fakeaway Kebab"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Buffalo Salmon Fakeaway Kebab. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"wholemeal flatbread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.\",\"Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured chilli powder and paprika. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Put the lettuce and tomato on the warm flatbread. Add large flakes of the cooked salmon and the cold finishing sauce, fold the bread around the filling and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; no fresh garnish. Cold ketchup and cider vinegar finishing sauce is red and lightly drizzled only on food as method directs; no creamy sauce. Exactly three short beef koftas where specified; proteins retain exact listed form.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal flatbread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.",
+    "Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured chilli powder and paprika. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Put the lettuce and tomato on the warm flatbread. Add large flakes of the cooked salmon and the cold finishing sauce, fold the bread around the filling and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-691dd97a-964b-47a5-a714-8d48458ceb6b.png",
+  "source_sha256": "3422882f8615b51184ea4d43e498126dea6afdf4a2467705c6ab0c6a4a7f22ef",
+  "generated_at": null,
+  "elapsed_ms": 297082.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-94f70dabaa33330ec976-480.webp",
+      "sha256": "483e74b95698959d2eb07c71c7ba0f5cd20ad6694bfb3d519629aa45a851e886",
+      "bytes": 26862
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-94f70dabaa33330ec976-899634ff8c76.webp",
+      "sha256": "899634ff8c769f57eaa9cbb126a4b95d5ff29c422ed5be6794191050887fdf35",
+      "bytes": 77480
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3422882f8615b51184ea4d43e498126dea6afdf4a2467705c6ab0c6a4a7f22ef",
+    "recipe_ids": [
+      "industrial-v3-kebab-buffalo-salmon",
+      "industrial-v3-kebab-smoky-salmon"
+    ],
+    "titles": [
+      "Shift Buffalo Salmon Fakeaway Kebab",
+      "Shift Smoky Salmon Fakeaway Kebab"
+    ],
+    "notes": "Large cooked salmon flakes retain pink fish structure in plain wholemeal flatbread with lettuce, tomato and red finishing sauce. One plausible serving, with central dish retained by responsive crops.",
+    "alt": "Salmon flakes with lettuce, tomato and red finishing sauce in wholemeal flatbread.",
+    "reviewed_at": "2026-10-04T23:01:45.783Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-604.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,90 @@
+{
+  "groupId": "4e5a13ebec6930f3da6124f5fe0b2986ea3d79f9615b7d7d216278f5a9a07e0d",
+  "index": 2362,
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-chocolate-protein-pudding"
+  ],
+  "titles": [
+    "Shift Chocolate Protein Pudding Work Snack Box"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Protein Pudding Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: generic method references to food apply only when that food appears in the exact ingredient list. Plain wholegrain crackers unseeded, no seed garnish unless listed. No cheese unless listed. No extra sauce, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow dry/separate and soaked/prepared instructions exactly. Cocoa means measured cocoa powder folded or dusted on food, never liquid chocolate syrup or extra chocolate chunks unless chopped dark chocolate listed. Overnight oats cocoa must be fully mixed in milk, visibly soft soaked brown oats without dry cocoa pockets. Cinnamon means fine powder, no decorative cinnamon sticks.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4f4f175c-0924-45a5-b492-bd3efb02d7f8.png",
+  "source_sha256": "4a18213eb06482b7fb8f75a1c36e1236bfd4bd217ca9e30c050250a61df3404a",
+  "dispatched_at": "2026-10-04T22:43:35.292Z",
+  "generated_at": "2026-10-04T22:49:16.922Z",
+  "elapsed_ms": 341630,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4e5a13ebec6930f3da61-480.webp",
+      "sha256": "3a5c5987b432fccbb4f4e53b93e31056aa5b379e03370eaded29d740007a4559",
+      "bytes": 29630,
+      "git_blob_sha": "82919952fe223364798c5a800e850a191d667a04"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4e5a13ebec6930f3da61.webp",
+      "sha256": "41b338c3b8b1cf14fb71ec9e3aac483ce81503d72a07ab193763b3511c06660c",
+      "bytes": 95588,
+      "git_blob_sha": "222e105ef29c48ccf8c3f5aa80e11bbff0e144c4"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-chocolate-protein-pudding"
+    ],
+    "titles": [
+      "Shift Chocolate Protein Pudding Work Snack Box"
+    ],
+    "notes": "Protein yoghurt with cocoa folded through and berries in snack box, dry oats and pumpkin seeds and two plain crackers separate.",
+    "alt": "Cocoa protein yoghurt snack box with berries, crackers, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T22:52:29.756240+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/4e5a13ebec6930f3da6124f5fe0b2986ea3d79f9615b7d7d216278f5a9a07e0d.json",
+    "source_sha256": "4a18213eb06482b7fb8f75a1c36e1236bfd4bd217ca9e30c050250a61df3404a"
+  },
+  "integrated": true,
+  "live": false
+}

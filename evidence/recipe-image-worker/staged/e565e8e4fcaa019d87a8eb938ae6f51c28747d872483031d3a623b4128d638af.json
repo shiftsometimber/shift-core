@@ -1,0 +1,80 @@
+{
+  "groupId": "e565e8e4fcaa019d87a8eb938ae6f51c28747d872483031d3a623b4128d638af",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-hash-brown-sausage"
+  ],
+  "titles": [
+    "Shift Hash Brown Sausage Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hash Brown Sausage Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"370g\",\"item\":\"baby potatoes\",\"allergens\":[]},{\"amount\":\"110g\",\"item\":\"onion\",\"allergens\":[]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"10ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 370g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Use half the measured olive oil in a frying pan. Follow the sausage packet cooking guidance. Cook the reduced-fat pork sausages thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate. Slice the cooked sausages before returning to the hash.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked reduced-fat pork sausages to the pan and heat through.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "370g",
+      "item": "baby potatoes",
+      "allergens": []
+    },
+    {
+      "amount": "110g",
+      "item": "onion",
+      "allergens": []
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "10ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 370g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Use half the measured olive oil in a frying pan. Follow the sausage packet cooking guidance. Cook the reduced-fat pork sausages thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate. Slice the cooked sausages before returning to the hash.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked reduced-fat pork sausages to the pan and heat through.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-07c1db4f-b8c0-4186-80f8-71d19b7d70b4.png",
+  "source_sha256": "c33f6c0ad9fe87dd43a114913fd30c55bed80f12e993764e34cc6b32e7feba1f",
+  "generated_at": "2026-10-04T23:13:51.461Z",
+  "elapsed_ms": 235573,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e565e8e4fcaa019d87a8-480.webp",
+      "sha256": "9810c05b616d07b092c232b548cccecf2843f37878815dc49c115157716d0897",
+      "bytes": 33632
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e565e8e4fcaa019d87a8-retry2-baf83a5f76d6.webp",
+      "sha256": "baf83a5f76d647b4453c1021ecde374148464872ccf2eb80094cfa2e9291faf6",
+      "bytes": 102942
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c33f6c0ad9fe87dd43a114913fd30c55bed80f12e993764e34cc6b32e7feba1f",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-hash-brown-sausage"
+    ],
+    "titles": [
+      "Shift Hash Brown Sausage Breakfast Hash"
+    ],
+    "notes": "Browned sliced cooked pork sausage, golden potato cubes, softened onion and mixed peppers match the hash method. No patties, sauces or unlisted garnish.",
+    "alt": "Hash brown sausage breakfast hash with potatoes, onion and peppers.",
+    "reviewed_at": "2026-10-04T23:15:11.304424+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/201.json"
+  },
+  "integrated": true,
+  "live": false
+}

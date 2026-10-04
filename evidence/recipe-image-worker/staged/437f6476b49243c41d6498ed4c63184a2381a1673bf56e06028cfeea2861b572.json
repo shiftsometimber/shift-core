@@ -1,0 +1,91 @@
+{
+  "groupId": "437f6476b49243c41d6498ed4c63184a2381a1673bf56e06028cfeea2861b572",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-hot-sauce-beans"
+  ],
+  "titles": [
+    "Shift Hot Sauce Beans Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hot Sauce Beans Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9e39906e-1d92-416e-97c2-c318952ed661.png",
+  "source_sha256": "643dff9cd8915905e510a1f090bec5ef9d774605c745ec88a41512fa148604b7",
+  "generated_at": "2026-10-04T23:26:59.677Z",
+  "elapsed_ms": 137155,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-437f6476b49243c41d64-480.webp",
+      "sha256": "df6fd346a90433c12281e713fe88bb4acfd78a4d08a57a0be5497e4ad35c75d6",
+      "bytes": 29004
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-437f6476b49243c41d64-retry2-529c944d7d06.webp",
+      "sha256": "529c944d7d062f65810494ce98e503dd4ca357468307cb22213f16e400eeb564",
+      "bytes": 93010
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "643dff9cd8915905e510a1f090bec5ef9d774605c745ec88a41512fa148604b7",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-hot-sauce-beans"
+    ],
+    "titles": [
+      "Shift Hot Sauce Beans Breakfast Buttie"
+    ],
+    "notes": "Unseeded wholemeal bap holds hot baked beans, softened tomato and wilted spinach in listed tomato-chilli sauce; no extra garnish.",
+    "alt": "Wholemeal bap with hot sauce baked beans, tomato and spinach",
+    "reviewed_at": "2026-10-04T23:29:19.895113+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/212.json"
+  },
+  "integrated": true,
+  "live": false
+}

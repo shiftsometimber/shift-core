@@ -7,3 +7,4 @@ qa/
 *.tmp*
 
 .checkpoint.lock
+remote-blob-cache.json

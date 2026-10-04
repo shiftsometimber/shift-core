@@ -1,0 +1,76 @@
+{
+  "groupId": "b20b12dc132d404a70ed18bdd696fabc148bd838579482e9052ce754ada786c4",
+  "recipe_ids": [
+    "industrial-dinner-lean-beef-traybake"
+  ],
+  "titles": [
+    "Lean Beef Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Lean Beef Traybake. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"120g\",\"item\":\"broccoli\"},{\"amount\":\"100g\",\"item\":\"red pepper\"},{\"amount\":\"5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and 5% beef mince. Get the pan properly hot first. Cook the 5% beef mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.\",\"Check the 5% beef mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Photorealistic appetising food; all ingredients exactly match. No garnish or extra food. Keep any listed brown rice distinctly wholegrain tan/brown with visible bran texture; no polished white grains. Match portion and method, natural warm light and generous framing.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "120g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "100g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and 5% beef mince. Get the pan properly hot first. Cook the 5% beef mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.",
+    "Check the 5% beef mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-55ebc1c5-5af8-4987-bfcb-eb7faf4b09a4.png",
+  "source_sha256": "0dd149df0e1a1efb2fd67898ba2eb78f4c326081b0af247166594d28caa30099",
+  "generated_at": "2026-10-04T22:55:30.632Z",
+  "elapsed_ms": 72621,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b20b12dc132d404a70ed-480.webp",
+      "sha256": "18271bbcb817bafeeb8154b8075684241d3a13dd7fcecabe8684b56d6a76a52a",
+      "bytes": 34338
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b20b12dc132d404a70ed.webp",
+      "sha256": "d9bfb06428a81a342a0891d61b55986fdde467c1c3806ee46e7f11641dc75379",
+      "bytes": 110824
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "index": 466,
+    "decision": "pass",
+    "notes": "Full source inspected: small browned mince crumbles with halved golden baby potatoes, roasted broccoli and red pepper. Dark marks are browned roast surfaces; no fresh leaf garnish or extra sauce. Fits listed pan-cooked mince and roasted vegetables.",
+    "alt": "Browned beef mince with golden baby potatoes, roasted broccoli and red pepper.",
+    "source_sha256": "0dd149df0e1a1efb2fd67898ba2eb78f4c326081b0af247166594d28caa30099",
+    "recipe_ids": [
+      "industrial-dinner-lean-beef-traybake"
+    ],
+    "titles": [
+      "Lean Beef Traybake"
+    ],
+    "reviewer": "root full source image inspection",
+    "reviewed_at": "2026-10-04T23:09:36.309523+00:00"
+  }
+}

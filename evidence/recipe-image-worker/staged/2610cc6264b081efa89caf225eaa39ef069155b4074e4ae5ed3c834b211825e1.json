@@ -1,0 +1,84 @@
+{
+  "groupId": "2610cc6264b081efa89caf225eaa39ef069155b4074e4ae5ed3c834b211825e1",
+  "index": 2251,
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-berry-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Berry Fruit Crunch Big Feed Dessert"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Fruit Crunch Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"105g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy: use only listed foods. Plain unseeded wholegrain crackers: no sesame/poppy seeds, two clearly visible crackers when2listed. No cheese unless listed; no honey, nuts, mint or extra sauces. Follow preparation precisely: dry crunchy components in separate compartments/ramekins when method says kept separate; soft soaked oats only when milk listed. Protein pot crunchy topping can be freshly added just before eating. Single believable serving with food safely inside frame.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d9082445-8fb4-4526-aa76-212895ccdb90.png",
+  "source_sha256": "026e6376ab758ea7259075a2b5521451630b1fc367990604d914d3f5db037f88",
+  "dispatched_at": "2026-10-04T22:58:40.044Z",
+  "generated_at": "2026-10-04T23:06:03.069Z",
+  "elapsed_ms": 443025,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2610cc6264b081efa89c-480-ae6eb4129ed9.webp",
+      "sha256": "ae6eb4129ed93fb5e853690c91f8efc8421ef96fd2748592721e33d30d215f66",
+      "bytes": 25690,
+      "git_blob_sha": "6d4f38ae87b31d370681687aedc86c1ab1c60fe3"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2610cc6264b081efa89c-c368abe991ba.webp",
+      "sha256": "c368abe991ba40481ad6abf3a33153b4811454b86fb962101f587314387d17c8",
+      "bytes": 76114,
+      "git_blob_sha": "ff6f86ff1b9250ced9d89a2c67cbb21ea88065fe"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-berry-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Berry Fruit Crunch Big Feed Dessert"
+    ],
+    "notes": "Apple and mixed berries with oats and pumpkin seeds finished with chopped dark chocolate; no dairy or banana.",
+    "alt": "Apple and berry fruit dessert with oats, pumpkin seeds and dark chocolate",
+    "reviewed_at": "2026-10-04T23:08:46.879929+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/2610cc6264b081efa89caf225eaa39ef069155b4074e4ae5ed3c834b211825e1.json",
+    "source_sha256": "026e6376ab758ea7259075a2b5521451630b1fc367990604d914d3f5db037f88"
+  },
+  "integrated": true,
+  "live": false
+}

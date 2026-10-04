@@ -1,0 +1,84 @@
+{
+  "groupId": "19a631e508146bd5e9d55dd90728c8930a3c7cc82402676ec6dbcc2a33ba5998",
+  "index": 2365,
+  "recipe_ids": [
+    "industrial-v4-protein-pot-classic-savory-box"
+  ],
+  "titles": [
+    "Shift Classic Banana Split Snack Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the banana in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Banana Split Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the banana in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: generic method references to food apply only when that food appears in the exact ingredient list. Plain wholegrain crackers unseeded, no seed garnish unless listed. No cheese unless listed. No extra sauce, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow dry/separate and soaked/prepared instructions exactly. Cocoa means measured cocoa powder folded or dusted on food, never liquid chocolate syrup or extra chocolate chunks unless chopped dark chocolate listed. Overnight oats cocoa must be fully mixed in milk, visibly soft soaked brown oats without dry cocoa pockets. Cinnamon means fine powder, no decorative cinnamon sticks.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-cc4b506d-c099-42ce-b170-2fb7d49344d5.png",
+  "source_sha256": "e94bd6f8bb24ee7c2b47de6a80e49e387db48a208108fb7284ebbe7b1dfa6366",
+  "dispatched_at": "2026-10-04T22:43:35.292Z",
+  "generated_at": "2026-10-04T22:50:46.175Z",
+  "elapsed_ms": 430883,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-19a631e508146bd5e9d5-480.webp",
+      "sha256": "34dbb5a5f94de614a9d54c3198b0986b19d769448abeb0c2754a2f8df120ba01",
+      "bytes": 23008,
+      "git_blob_sha": "bd81c693c4b56afeda404a2313b9bba32c451c6f"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-19a631e508146bd5e9d5.webp",
+      "sha256": "6dbfe4cfa3dbc34ba9e6d887b310dd898e804948428a1c978c93582abe33a749",
+      "bytes": 71878,
+      "git_blob_sha": "35933bfc7c98b53f74f3c68653ed912839ceedbf"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-classic-savory-box"
+    ],
+    "titles": [
+      "Shift Classic Banana Split Snack Pot"
+    ],
+    "notes": "Banana and berries lightly dusted with cinnamon powder, dry rolled oats and pumpkin seeds separate; no dairy or cinnamon sticks.",
+    "alt": "Cinnamon banana and berry snack pot with separate oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T22:52:28.735421+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/19a631e508146bd5e9d55dd90728c8930a3c7cc82402676ec6dbcc2a33ba5998.json",
+    "source_sha256": "e94bd6f8bb24ee7c2b47de6a80e49e387db48a208108fb7284ebbe7b1dfa6366"
+  },
+  "integrated": true,
+  "live": false
+}

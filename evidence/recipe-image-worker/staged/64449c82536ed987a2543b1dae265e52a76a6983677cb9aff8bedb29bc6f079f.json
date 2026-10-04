@@ -1,0 +1,61 @@
+{
+  "groupId": "64449c82536ed987a2543b1dae265e52a76a6983677cb9aff8bedb29bc6f079f",
+  "recipe_ids": [
+    "industrial-dinner-prawn-traybake"
+  ],
+  "titles": [
+    "Prawn Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Prawn Traybake. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"raw king prawns\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"120g\",\"item\":\"broccoli\"},{\"amount\":\"100g\",\"item\":\"red pepper\"},{\"amount\":\"5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and the filling. Get the pan properly hot first. Cook raw king prawns until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.\",\"Check raw king prawns is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Appetising faithful editorial food photography, warm side light, generous framing. Follow exact method and protein form. No unlisted garnish or food. For listed brown rice, depict ordinary cooked WHOLEGRAIN BROWN RICE with distinctly medium-tan to light-brown intact bran on every grain; natural earthy brown rice, never polished white rice, risotto or pale glossy short grains. For basmati, retain its listed long-grain appearance. Show all ingredients in their specified placement and cooked/raw state.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "raw king prawns"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "120g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "100g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and the filling. Get the pan properly hot first. Cook raw king prawns until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.",
+    "Check raw king prawns is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a4561f6f-4d37-430e-83d8-9bd026579d70.png",
+  "source_sha256": "ea1859eb61eed9341382d0702c13d1c0191fd1f94b7c64903d817850484c7548",
+  "generated_at": "2026-10-04T23:19:07.983Z",
+  "elapsed_ms": 252508,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "evidence/recipe-image-worker/assets/catalogue-64449c82536ed987a254-480.webp",
+      "sha256": "5da6dcbe51ffe849a67ebf53459a51754fcf1442e395c508acbe2d3a12780372",
+      "bytes": 35000
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "evidence/recipe-image-worker/assets/catalogue-64449c82536ed987a254.webp",
+      "sha256": "c307e099c901506be02b651ff77844c80bb60e1245f5814d74a6f405f6aae23a",
+      "bytes": 111784
+    }
+  ],
+  "review_status": "pending",
+  "integrated": false,
+  "live": false
+}

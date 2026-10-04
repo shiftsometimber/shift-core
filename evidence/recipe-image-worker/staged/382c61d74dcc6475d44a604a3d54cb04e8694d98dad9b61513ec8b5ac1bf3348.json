@@ -1,0 +1,92 @@
+{
+  "groupId": "382c61d74dcc6475d44a604a3d54cb04e8694d98dad9b61513ec8b5ac1bf3348",
+  "index": 2357,
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-chocolate-overnight-oats"
+  ],
+  "titles": [
+    "Shift Chocolate Overnight Oats Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Stir in 40g 0% Greek yoghurt until evenly mixed.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 5g unsweetened cocoa, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Overnight Oats Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 40g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 5g unsweetened cocoa, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: generic method references to food apply only when that food appears in the exact ingredient list. Plain wholegrain crackers unseeded, no seed garnish unless listed. No cheese unless listed. No extra sauce, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow dry/separate and soaked/prepared instructions exactly. Cocoa means measured cocoa powder folded or dusted on food, never liquid chocolate syrup or extra chocolate chunks unless chopped dark chocolate listed. Overnight oats cocoa must be fully mixed in milk, visibly soft soaked brown oats without dry cocoa pockets. Cinnamon means fine powder, no decorative cinnamon sticks.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-42f5924f-c7bc-47fb-82e9-c45794ae97e9.png",
+  "source_sha256": "4eae7c3903dcdfba639858f0a33dd2120ef5ac9a48fece0ecf1ae86c0cac7944",
+  "dispatched_at": "2026-10-04T22:43:35.292Z",
+  "generated_at": "2026-10-04T22:46:34.491Z",
+  "elapsed_ms": 179199,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-382c61d74dcc6475d44a-480.webp",
+      "sha256": "74d5fbdc855901da6475ecdb7be4dbc1d88dfb439ecc8dbdb8a80301d9034e2b",
+      "bytes": 24434,
+      "git_blob_sha": "df56c83fb261de8368bfa10ec68efbad27c7e49f"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-382c61d74dcc6475d44a.webp",
+      "sha256": "22b42d23600e66259cbefd3645032023667324cf80f32245b45b46e56a04f765",
+      "bytes": 74414,
+      "git_blob_sha": "50fe98330ef4027d4c88f2319940ebb5c1824f19"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-chocolate-overnight-oats"
+    ],
+    "titles": [
+      "Shift Chocolate Overnight Oats Dessert Pot"
+    ],
+    "notes": "Soft oats soaked in milk and yoghurt with cocoa fully mixed, berries and pumpkin seeds; no chopped dark chocolate.",
+    "alt": "Cocoa and berry overnight oats with yoghurt and pumpkin seeds",
+    "reviewed_at": "2026-10-04T22:52:30.326656+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/382c61d74dcc6475d44a604a3d54cb04e8694d98dad9b61513ec8b5ac1bf3348.json",
+    "source_sha256": "4eae7c3903dcdfba639858f0a33dd2120ef5ac9a48fece0ecf1ae86c0cac7944"
+  },
+  "integrated": true,
+  "live": false
+}

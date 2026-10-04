@@ -1,0 +1,87 @@
+{
+  "groupId": "2eb508cebffb4bb943f66900eb33f7c1b183aa7f6e4aa50b5dbc31adc6055b6f",
+  "index": 2263,
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-berry-protein-pudding"
+  ],
+  "titles": [
+    "Shift Berry Protein Pudding Big Feed Dessert"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Protein Pudding Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"105g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed food; no honey, nuts, mint, syrup or decorative garnish. Plain unseeded crackers: exactly two visible crackers when listed, no sesame or poppy seeds. All food inside the serving margins. Single finished combined dessert bowl; listed chopped chocolate topping only, no melted chocolate sauce.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-52dcb8c1-4707-4d77-9705-acee64b4ca8a.png",
+  "source_sha256": "40be9fc5f73c8a90c98038afa64d755769626962396ce46f70cb03b599ad5e98",
+  "dispatched_at": "2026-10-04T23:14:16.136Z",
+  "generated_at": "2026-10-04T23:18:55.662Z",
+  "elapsed_ms": 279526,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2eb508cebffb4bb943f6-480.webp",
+      "sha256": "ba07a0ce5b98fb6a267fd93d5a6298c48643c4b283028f643cade7737eef8ba2",
+      "bytes": 23292,
+      "git_blob_sha": "15f5988c599beb3a4cf41c6e285afc1099886aaf"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2eb508cebffb4bb943f6.webp",
+      "sha256": "85a249aa9980a251040ebd6c9763efb8c10cedfd3ff6d97924616a45223caf6f",
+      "bytes": 70164,
+      "git_blob_sha": "1fc41b8d2e8d6bafcc8eeba86a218932c3b5512f"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-berry-protein-pudding"
+    ],
+    "titles": [
+      "Shift Berry Protein Pudding Big Feed Dessert"
+    ],
+    "notes": "High-protein yoghurt, berries, oats and seeds combined with chopped dark chocolate finishing; no extra sauce.",
+    "alt": "Berry yoghurt dessert with oats, pumpkin seeds and chopped dark chocolate.",
+    "reviewed_at": "2026-10-04T23:22:01.279769+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/2eb508cebffb4bb943f66900eb33f7c1b183aa7f6e4aa50b5dbc31adc6055b6f.json",
+    "source_sha256": "40be9fc5f73c8a90c98038afa64d755769626962396ce46f70cb03b599ad5e98"
+  },
+  "integrated": true,
+  "live": false
+}

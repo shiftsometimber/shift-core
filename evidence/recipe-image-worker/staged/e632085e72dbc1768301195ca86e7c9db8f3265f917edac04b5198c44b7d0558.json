@@ -1,0 +1,86 @@
+{
+  "groupId": "e632085e72dbc1768301195ca86e7c9db8f3265f917edac04b5198c44b7d0558",
+  "recipe_ids": [
+    "industrial-v3-sandwich-peri-peri-chickpea"
+  ],
+  "titles": [
+    "Shift Peri-Peri Chickpea Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Chickpea Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the chickpeas, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Build the peri-peri flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the chickpeas, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Mexican/peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish, tortilla chips or extra ingredients. Listed yoghurt sauces are ready-to-eat dressings, not melted cheese.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the chickpeas, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+    "Build the peri-peri flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the chickpeas, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d0d56bad-7a56-423b-aee8-4556835c5e72.png",
+  "source_sha256": "cb06e365e41de71b20ace46f0774df0355f65635924a5a97ca9c0b05b47ad0c1",
+  "generated_at": "2026-10-04T23:19:08.836Z",
+  "elapsed_ms": 54658.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e632085e72dbc1768301-480-3d01b17dea31.webp",
+      "sha256": "3d01b17dea31d3f4aa0b5c82d8d10fc3fe0aba9af7370b796f2c8677d662253e",
+      "bytes": 27300
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e632085e72dbc1768301-ac7820f1c5bb.webp",
+      "sha256": "ac7820f1c5bbb65e8919b28829f0afda278902b4862997b6e41f4e06e81e860f",
+      "bytes": 87196
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "cb06e365e41de71b20ace46f0774df0355f65635924a5a97ca9c0b05b47ad0c1",
+    "recipe_ids": [
+      "industrial-v3-sandwich-peri-peri-chickpea"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chickpea Proper Sandwich"
+    ],
+    "notes": "Lightly browned chickpeas and peri-peri yoghurt in two plain wholemeal bread slices with fresh lettuce and tomato. No cheese, seeds, extra side or garnish; sandwich preparation matches method.",
+    "alt": "Peri-peri chickpea sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:24:57.509555+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1953.json"
+  },
+  "integrated": true,
+  "live": false
+}

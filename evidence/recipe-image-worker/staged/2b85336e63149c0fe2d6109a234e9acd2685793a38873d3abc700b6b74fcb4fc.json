@@ -1,0 +1,100 @@
+{
+  "groupId": "2b85336e63149c0fe2d6109a234e9acd2685793a38873d3abc700b6b74fcb4fc",
+  "recipe_ids": [
+    "industrial-v3-burger-weekend-pork"
+  ],
+  "titles": [
+    "Shift Weekend Big Feed Pork Fakeaway Burger"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Big Feed Pork Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"lean pork loin\"},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"15g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.\",\"Mix the measured light mayonnaise and tomato ketchup in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Slice the lean pork loin across the grain into cutlets about 1cm thick. Coat with all the measured paprika and garlic powder. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the pork cutlets over a medium heat for about 4\u20135 minutes on each side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the lettuce and tomato in the toasted bun, add the cooked pork cutlets and the cold finishing sauce, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal burger bun",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "15g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.",
+    "Mix the measured light mayonnaise and tomato ketchup in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Slice the lean pork loin across the grain into cutlets about 1cm thick. Coat with all the measured paprika and garlic powder. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the pork cutlets over a medium heat for about 4\u20135 minutes on each side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the lettuce and tomato in the toasted bun, add the cooked pork cutlets and the cold finishing sauce, then close the bun and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b3cef02b-89df-447b-9cc3-60f2a4686e67.png",
+  "source_sha256": "db8a23d867a9daa677d939c2ead215c6c9834cad5f00172c009b303d0ac1b5f7",
+  "generated_at": "2026-10-04T23:19:27.876Z",
+  "elapsed_ms": 51719.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2b85336e63149c0fe2d6-480-1467262f7381.webp",
+      "sha256": "1467262f738129c24a0505378ff654fbddc9ef0233a83c342f534eeb620bcfe5",
+      "bytes": 20748
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2b85336e63149c0fe2d6-95540269b7a2.webp",
+      "sha256": "95540269b7a248bb53b03e7058e768ded6c39e2cb3379ee3ed416b87cc25643a",
+      "bytes": 66162
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "db8a23d867a9daa677d939c2ead215c6c9834cad5f00172c009b303d0ac1b5f7",
+    "recipe_ids": [
+      "industrial-v3-burger-weekend-pork"
+    ],
+    "titles": [
+      "Shift Weekend Big Feed Pork Fakeaway Burger"
+    ],
+    "notes": "Opaque browned pork cutlets, lettuce, tomato and cold mayonnaise ketchup sauce in plain unseeded wholemeal bun.",
+    "alt": "Pork burger with lettuce, tomato and burger sauce",
+    "reviewed_at": "2026-10-04T23:26:55.735245+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1449-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,87 @@
+{
+  "groupId": "780c61914dbc9ce94cafd6766955ff8c05b3f11eb50e592b445390ff44ad02cd",
+  "index": 2247,
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-berry-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Berry Cottage Cheese Big Feed Dessert"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Cottage Cheese Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"105g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy: use only listed foods. Plain unseeded wholegrain crackers: no sesame/poppy seeds, two clearly visible crackers when2listed. No cheese unless listed; no honey, nuts, mint or extra sauces. Follow preparation precisely: dry crunchy components in separate compartments/ramekins when method says kept separate; soft soaked oats only when milk listed. Protein pot crunchy topping can be freshly added just before eating. Single believable serving with food safely inside frame.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-01bbfd02-39a9-4ce4-a13d-e5f95c48a2fe.png",
+  "source_sha256": "e2d1bd998a211232d891b5c8dc75f6d96f27f50e44130602e739bd063a3808a2",
+  "dispatched_at": "2026-10-04T22:58:40.044Z",
+  "generated_at": "2026-10-04T23:03:51.739Z",
+  "elapsed_ms": 311695,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-780c61914dbc9ce94caf-480-02adaa869ff5.webp",
+      "sha256": "02adaa869ff5078509a8bcaac8bc6fbcb7819494cccdce864850d3bf55ed39c9",
+      "bytes": 21480,
+      "git_blob_sha": "5b8bfd330b2a2e73e3d2c9e428f7b66241e00c16"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-780c61914dbc9ce94caf-6b7ec8356834.webp",
+      "sha256": "6b7ec835683478bcc6eafb0dc412e3cc5af2ddb22eedc66fed81ebb8fac8d3ee",
+      "bytes": 62830,
+      "git_blob_sha": "6ea55b288c91933a7cf8ebb7a86e6af99d307d86"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-berry-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Berry Cottage Cheese Big Feed Dessert"
+    ],
+    "notes": "Cottage cheese curds with mixed berries, oats and pumpkin seeds finished with chopped dark chocolate; no apple/banana.",
+    "alt": "Berry cottage cheese dessert with oats, pumpkin seeds and dark chocolate",
+    "reviewed_at": "2026-10-04T23:08:43.648599+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/780c61914dbc9ce94cafd6766955ff8c05b3f11eb50e592b445390ff44ad02cd.json",
+    "source_sha256": "e2d1bd998a211232d891b5c8dc75f6d96f27f50e44130602e739bd063a3808a2"
+  },
+  "integrated": true,
+  "live": false
+}

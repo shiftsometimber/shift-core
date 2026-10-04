@@ -1,0 +1,80 @@
+{
+  "groupId": "3cce4976229a2ccbbc76e6c73ce7ae141cddf7abbfa55ca897bc7f904b6d3900",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-madras-pork"
+  ],
+  "titles": [
+    "Shift Madras Pork Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Madras Pork Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"madras-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, seeds, cheese, cream, fresh green herbs, coriander, parsley, lemon wedges, side dishes or dipping sauce. Madras sauce lightly coats food, no separate sauce ramekin. Pie: plain water-mashed potato top fork roughened, visibly expose exact cooked filling at one edge; no buttery or cheese topping. Chicken/pork curry and chilli: fully opaque 2cm cubes; stir fry: thin 1cm cooked strips. Salmon: opaque cooked large flakes where method flakes; traybake may keep opaque fillet. Tofu: 2cm firm cubes. Slow cooker potatoes/carrot/onion tender and glossy, no crispy roasted edges. Rice exact brown or basmati per recipe. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "madras-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6606ee94-f736-4f94-b885-d061e23c6bd9.png",
+  "source_sha256": "fdc09ac799e36d28af44a5fce86f0221f24a5c6db29e01f77cf20215af95c4a7",
+  "generated_at": "2026-10-04T23:25:19.802Z",
+  "elapsed_ms": 198327.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3cce4976229a2ccbbc76-retry4-480-a5abbd7b0e41.webp",
+      "sha256": "a5abbd7b0e41e23dac43ef6a504355f58a0440153a93a21caa1c5da3526372e8",
+      "bytes": 23150
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3cce4976229a2ccbbc76-retry4-39048f97161d.webp",
+      "sha256": "39048f97161df3cbc76eff7d1e1280eccc785a9ff37d54e5146e7376b23cc67c",
+      "bytes": 76716
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fdc09ac799e36d28af44a5fce86f0221f24a5c6db29e01f77cf20215af95c4a7",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-madras-pork"
+    ],
+    "titles": [
+      "Shift Madras Pork Slow-Cooker Big Pot"
+    ],
+    "notes": "Pass: cooked opaque lean pork pieces, soft baby potatoes, carrot and translucent onion glossy with Madras cooking juices. Tender slow-cooked appearance, no roast broccoli or pepper, fresh herbs, cream or extra ingredients. Good single bowl crop.",
+    "alt": "Slow-cooked Madras pork with baby potatoes, carrots and onion",
+    "reviewed_at": "2026-10-04T23:25:59.111737+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1038.json"
+  },
+  "integrated": true,
+  "live": false
+}

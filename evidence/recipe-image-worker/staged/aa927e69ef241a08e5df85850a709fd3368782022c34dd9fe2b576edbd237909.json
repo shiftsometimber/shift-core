@@ -1,0 +1,87 @@
+{
+  "groupId": "aa927e69ef241a08e5df85850a709fd3368782022c34dd9fe2b576edbd237909",
+  "recipe_ids": [
+    "industrial-v3-wrap-house-egg"
+  ],
+  "titles": [
+    "Shift House Egg Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift House Egg Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"tomato pepper relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the boiled eggs with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "tomato pepper relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the boiled eggs with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2b866579-4229-48fc-beb8-2d40dfcdac09.png",
+  "source_sha256": "3f709f1f0a7648394bc0daa478f73f22f80b97e4290fcbc002f2e2b0df02bd22",
+  "generated_at": null,
+  "elapsed_ms": null,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-aa927e69ef241a08e5df-480-eee646712819.webp",
+      "sha256": "eee64671281960534621df86851330ee79674211a50c2739bf3fbbc4f1a59e14",
+      "bytes": 21288
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-aa927e69ef241a08e5df-20d49a032208.webp",
+      "sha256": "20d49a0322087a5d54752d837e2f406809676d1a9fca69dd0ef1d45550c2b952",
+      "bytes": 63050
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3f709f1f0a7648394bc0daa478f73f22f80b97e4290fcbc002f2e2b0df02bd22",
+    "recipe_ids": [
+      "industrial-v3-wrap-house-egg"
+    ],
+    "titles": [
+      "Shift House Egg Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with boiled eggs, fresh lettuce and tomato, and tomato pepper relish. Every member title checked against exact ingredients/method. No cheese, seeds, invented side or scatter garnish; protein preparation and dressing placement match method.",
+    "alt": "House Egg Loaded Wrap with lettuce, tomato",
+    "reviewed_at": "2026-10-04T23:14:25.520688+00:00",
+    "reviewer": "worker-f visual reinspection of exact recovered original",
+    "receipt": "evidence/recipe-image-worker/worker-f/1850.json",
+    "recovery_reinspection": true
+  },
+  "integrated": true,
+  "live": false
+}

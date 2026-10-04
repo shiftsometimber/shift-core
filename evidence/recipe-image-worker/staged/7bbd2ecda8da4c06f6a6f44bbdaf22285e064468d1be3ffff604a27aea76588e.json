@@ -1,0 +1,83 @@
+{
+  "groupId": "7bbd2ecda8da4c06f6a6f44bbdaf22285e064468d1be3ffff604a27aea76588e",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-hash-brown-egg"
+  ],
+  "titles": [
+    "Shift Hash Brown Egg Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hash Brown Egg Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"370g\",\"item\":\"baby potatoes\",\"allergens\":[]},{\"amount\":\"110g\",\"item\":\"onion\",\"allergens\":[]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"10ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 370g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Beat the measured eggs in a clean bowl and set them aside while cooking the vegetables.\",\"Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the beaten eggs to the cooked vegetables and stir until fully set.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "370g",
+      "item": "baby potatoes",
+      "allergens": []
+    },
+    {
+      "amount": "110g",
+      "item": "onion",
+      "allergens": []
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "10ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 370g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Beat the measured eggs in a clean bowl and set them aside while cooking the vegetables.",
+    "Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the beaten eggs to the cooked vegetables and stir until fully set.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e306bc82-87d7-4fe9-aceb-d7e40c976deb.png",
+  "source_sha256": "fdd8356a910876b9c3f9093bc3bc90c923d87fb680108478b57023a191411f10",
+  "generated_at": "2026-10-04T23:12:55.639Z",
+  "elapsed_ms": 179751,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7bbd2ecda8da4c06f6a6-480.webp",
+      "sha256": "3da5e4c4d8702a070b28d19262caa807b443acbc31ac3136df96ab7be4266b08",
+      "bytes": 25840
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7bbd2ecda8da4c06f6a6-retry2-6d1dedede999.webp",
+      "sha256": "6d1dedede999624a97724e60addb41507a3a6748748a62406c1c55ab02a4d6dd",
+      "bytes": 78272
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fdd8356a910876b9c3f9093bc3bc90c923d87fb680108478b57023a191411f10",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-hash-brown-egg"
+    ],
+    "titles": [
+      "Shift Hash Brown Egg Breakfast Hash"
+    ],
+    "notes": "Fully set scrambled egg throughout golden potato cubes, softened onion and mixed peppers. No patties, cheese, fresh herb garnish or extra ingredients.",
+    "alt": "Hash brown egg breakfast hash with potatoes, onion and peppers.",
+    "reviewed_at": "2026-10-04T23:13:51.225996+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/197.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,69 @@
+{
+  "groupId": "38c65390889dca49af0594f552327bb825bb4a43b43795e61034555a1017b2fb",
+  "recipe_ids": [
+    "industrial-dinner-pork-taco-bowl"
+  ],
+  "titles": [
+    "Pork Taco Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Pork Taco Bowl. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"70g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"120g\",\"item\":\"sweetcorn\"},{\"amount\":\"100g\",\"item\":\"tomato salsa\"},{\"amount\":\"50g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Cook the measured dry brown rice in boiling water according to its packet instructions, then drain if needed. Keep the yoghurt refrigerated while the hot components cook.\",\"Heat a non-stick frying pan over medium heat with 2 tablespoons of water; this recipe has no added oil. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Add a spoonful of water if the pan starts sticking.\",\"Add the sweetcorn and tomato salsa to the pan. Cook for 3\u20135 minutes, stirring until hot; if using frozen sweetcorn, follow its packet cooking time. Stir the cooked filling through and check it is steaming hot.\",\"Spoon the cooked rice into a bowl, add the hot filling and take it away from the heat before adding the measured Greek yoghurt as a cool topping.\",\"Eat immediately, or portion and cool leftovers promptly following the rice-storage instructions. Keep the yoghurt topping separate when packing a portion for reheating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Photorealistic appetising food; all ingredients exactly match. No garnish or extra food. Keep any listed brown rice distinctly wholegrain tan/brown with visible bran texture; no polished white grains. Match portion and method, natural warm light and generous framing.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "70g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "100g",
+      "item": "tomato salsa"
+    },
+    {
+      "amount": "50g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Cook the measured dry brown rice in boiling water according to its packet instructions, then drain if needed. Keep the yoghurt refrigerated while the hot components cook.",
+    "Heat a non-stick frying pan over medium heat with 2 tablespoons of water; this recipe has no added oil. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Add a spoonful of water if the pan starts sticking.",
+    "Add the sweetcorn and tomato salsa to the pan. Cook for 3\u20135 minutes, stirring until hot; if using frozen sweetcorn, follow its packet cooking time. Stir the cooked filling through and check it is steaming hot.",
+    "Spoon the cooked rice into a bowl, add the hot filling and take it away from the heat before adding the measured Greek yoghurt as a cool topping.",
+    "Eat immediately, or portion and cool leftovers promptly following the rice-storage instructions. Keep the yoghurt topping separate when packing a portion for reheating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5607ad51-7570-40a8-b487-5786964bfd59.png",
+  "source_sha256": "8eccf7659e7cfe349eef5876e823243a43cf733098a1da24d34c535350b81bfe",
+  "generated_at": "2026-10-04T23:00:54.889Z",
+  "elapsed_ms": 396878,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "evidence/recipe-image-worker/assets/catalogue-38c65390889dca49af05-480.webp",
+      "sha256": "960b983ff724a77ad5b481477aeaa97157c6901fb3d4008ba3014a099cc3eb5a",
+      "bytes": 20762
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "evidence/recipe-image-worker/assets/catalogue-38c65390889dca49af05.webp",
+      "sha256": "217e6fe576a97a751ab175205723c24a8f6b034b2af6f43d48348918fac25539",
+      "bytes": 64586
+    }
+  ],
+  "review_status": "reject",
+  "integrated": false,
+  "live": false,
+  "review": {
+    "decision": "reject",
+    "source_sha256": "8eccf7659e7cfe349eef5876e823243a43cf733098a1da24d34c535350b81bfe",
+    "notes": "Required wholegrain brown rice is not credibly depicted: pale/polished appearance. Regenerate with visible medium-tan intact bran.",
+    "reviewed_at": "2026-10-04T23:14:18.927219+00:00"
+  }
+}

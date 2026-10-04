@@ -1,0 +1,84 @@
+{
+  "groupId": "79ef3330848b25cfe6e2bcef4ac773db49d8e075149a743d3f9a839671d41d4a",
+  "index": 2242,
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-banana-savory-box"
+  ],
+  "titles": [
+    "Shift Banana Split Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "220g",
+      "item": "banana"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Banana Split Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"220g\",\"item\":\"banana\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy: use only listed foods. Plain unseeded wholegrain crackers: no sesame/poppy seeds, two clearly visible crackers when2listed. No cheese unless listed; no honey, nuts, mint or extra sauces. Follow preparation precisely: dry crunchy components in separate compartments/ramekins when method says kept separate; soft soaked oats only when milk listed. Protein pot crunchy topping can be freshly added just before eating. Single believable serving with food safely inside frame.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-eac58fe4-b0c3-41d1-9ad8-202d247a1958.png",
+  "source_sha256": "9f53dfbd8087da4729330cea2f8356016780a327d46c971a7f262eecd3d0d5ad",
+  "dispatched_at": "2026-10-04T22:58:40.044Z",
+  "generated_at": "2026-10-04T23:00:56.775Z",
+  "elapsed_ms": 136732,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-79ef3330848b25cfe6e2-480-0efaa97d5cd4.webp",
+      "sha256": "0efaa97d5cd497b56fdbab6ed8bd45e99cb9bb4a2d6eaf73e22f9248e4cf65fe",
+      "bytes": 19030,
+      "git_blob_sha": "8699330357e8e4fbc141cbd0a8563fb1aa40d4df"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-79ef3330848b25cfe6e2-ea33ed74a6dd.webp",
+      "sha256": "ea33ed74a6dd11bd042139de97766361a6c26f63b52ba01c9c1cf9fd72b55540",
+      "bytes": 56340,
+      "git_blob_sha": "bd6e8c5f6674e674adf96ffa310598ecc1034ee3"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-banana-savory-box"
+    ],
+    "titles": [
+      "Shift Banana Split Dessert Pot"
+    ],
+    "notes": "Banana and berries combined with oats and pumpkin seeds, yoghurt swirled through; no chocolate or apple.",
+    "alt": "Banana split dessert pot with berries, oats, pumpkin seeds and yoghurt",
+    "reviewed_at": "2026-10-04T23:08:46.425323+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/79ef3330848b25cfe6e2bcef4ac773db49d8e075149a743d3f9a839671d41d4a.json",
+    "source_sha256": "9f53dfbd8087da4729330cea2f8356016780a327d46c971a7f262eecd3d0d5ad"
+  },
+  "integrated": true,
+  "live": false
+}

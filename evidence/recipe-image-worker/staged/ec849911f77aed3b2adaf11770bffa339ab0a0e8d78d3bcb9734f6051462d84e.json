@@ -1,0 +1,86 @@
+{
+  "groupId": "ec849911f77aed3b2adaf11770bffa339ab0a0e8d78d3bcb9734f6051462d84e",
+  "recipe_ids": [
+    "industrial-v3-sandwich-bbq-egg"
+  ],
+  "titles": [
+    "Shift BBQ Egg Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Egg Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the boiled eggs are meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.\",\"Build the bbq flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the boiled eggs, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Follow exact ingredient placement and method. No decorative garnish. If method cuts a pitta into two halves, show TWO separately distinguishable filled half-pitta pockets, with remaining salad alongside.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the boiled eggs are meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.",
+    "Build the bbq flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the boiled eggs, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e7beddf7-88a0-4586-8528-d5ebd880bfbd.png",
+  "source_sha256": "2ea17451be1d2c45692add3fcdba7c4b2e685013f8a5c69ad5272d3044a200a1",
+  "generated_at": "2026-10-04T22:48:33.145Z",
+  "elapsed_ms": 262383.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ec849911f77aed3b2ada-480-7a6d21a8772c.webp",
+      "sha256": "7a6d21a8772cc01a6da7c78b2b932828f656b6182955bbea465d2c01ccd43241",
+      "bytes": 26078
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ec849911f77aed3b2ada-585f0e53cac4.webp",
+      "sha256": "585f0e53cac4ae0bb6b24cf77329bdc164ec25174a8a65bfd0b92a0b88de75ac",
+      "bytes": 80562
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2ea17451be1d2c45692add3fcdba7c4b2e685013f8a5c69ad5272d3044a200a1",
+    "recipe_ids": [
+      "industrial-v3-sandwich-bbq-egg"
+    ],
+    "titles": [
+      "Shift BBQ Egg Proper Sandwich"
+    ],
+    "notes": "Two wholemeal slices filled with boiled egg slices, BBQ sauce, lettuce and tomato; exact sandwich ingredients.",
+    "alt": "BBQ egg wholemeal sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-04T22:52:33.308284+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1530-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

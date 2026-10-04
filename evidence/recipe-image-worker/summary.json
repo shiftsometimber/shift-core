@@ -1,14 +1,14 @@
 {
   "catalogue_recipes": 2671,
   "distinct_groups": 2623,
-  "generated_new": 465,
-  "reviewed_pass_new": 465,
+  "generated_new": 862,
+  "reviewed_pass_new": 862,
   "reviewed_reject_new": 0,
-  "integrated_new": 465,
-  "integrated_recipe_bindings_total": 485,
-  "remaining_recipe_bindings": 2186,
+  "integrated_new": 862,
+  "integrated_recipe_bindings_total": 913,
+  "remaining_recipe_bindings": 1758,
   "live_new": 0,
-  "remaining_groups_without_prepared_asset": 2139,
-  "remaining_groups_without_usable_new_asset": 2139,
+  "remaining_groups_without_prepared_asset": 1742,
+  "remaining_groups_without_usable_new_asset": 1742,
   "complete": false
 }

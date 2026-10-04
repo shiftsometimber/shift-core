@@ -1,0 +1,90 @@
+{
+  "groupId": "08742faa372381db9d9188f1f03dc716dc46868359a9f74e9eddb0d1b8c41ba9",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-hash-brown-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Hash Brown Chicken Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hash Brown Chicken Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"120g\",\"item\":\"baby potatoes\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10ml\",\"item\":\"olive oil\"}]. Preparation: [\"Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g tomato, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.\",\"Put the diced potatoes into a saucepan of boiling water. Simmer for about 8\u201310 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.\",\"Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6\u20138 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.\",\"Cut the listed 100g raw chicken breast into thin strips on a separate board. Wash hands and utensils after handling it. In the second frying pan, use 2ml of the measured olive oil and cook over a medium heat for about 8\u201310 minutes, turning regularly. Check the thickest part with a clean food thermometer: it must reach 70\u00b0C and remain there for 2 minutes. The centre should have no pink flesh and the juices should be clear. Transfer to a clean plate while the vegetables cook.\",\"In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped tomato for 3\u20134 minutes until softened, then add the spinach and stir until wilted. Return the cooked protein and its juices to the vegetables just before assembling, keeping everything hot.\",\"Split and toast the measured 80g wholemeal bap. Put one crisp potato patty and a manageable amount of hot protein and vegetables inside. Serve the second patty and all remaining filling alongside; the nutrition includes the complete listed portion.\",\"Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "120g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g tomato, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+    "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8\u201310 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+    "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6\u20138 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+    "Cut the listed 100g raw chicken breast into thin strips on a separate board. Wash hands and utensils after handling it. In the second frying pan, use 2ml of the measured olive oil and cook over a medium heat for about 8\u201310 minutes, turning regularly. Check the thickest part with a clean food thermometer: it must reach 70\u00b0C and remain there for 2 minutes. The centre should have no pink flesh and the juices should be clear. Transfer to a clean plate while the vegetables cook.",
+    "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped tomato for 3\u20134 minutes until softened, then add the spinach and stir until wilted. Return the cooked protein and its juices to the vegetables just before assembling, keeping everything hot.",
+    "Split and toast the measured 80g wholemeal bap. Put one crisp potato patty and a manageable amount of hot protein and vegetables inside. Serve the second patty and all remaining filling alongside; the nutrition includes the complete listed portion.",
+    "Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b611d9b7-0e3d-4a2b-acd5-1c50c8943983.png",
+  "source_sha256": "36adc59e62d1f42e6ebfe1541cf4db244785ca386e969f94b26a73319d06cf1b",
+  "generated_at": "2026-10-04T23:10:18.074Z",
+  "elapsed_ms": 22186,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-08742faa372381db9d91-480.webp",
+      "sha256": "4a0ae1050defc76b13d5ef6646c91d7d589e10f0d57b40174ec65012f8dcc574",
+      "bytes": 32456
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-08742faa372381db9d91-retry2-80739e2c9fa5.webp",
+      "sha256": "80739e2c9fa54a427c6ffe3dcaa4af035e5ffd572adedab37d750f8c50c219d4",
+      "bytes": 104758
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "36adc59e62d1f42e6ebfe1541cf4db244785ca386e969f94b26a73319d06cf1b",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-hash-brown-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Hash Brown Chicken Breakfast Buttie"
+    ],
+    "notes": "Plain wholemeal bap contains fully cooked chicken breast strips, softened tomato and wilted spinach over one golden potato onion patty. One remaining patty and filling alongside match exact two-patty method.",
+    "alt": "Hash brown chicken breakfast buttie with tomato, spinach and a patty alongside.",
+    "reviewed_at": "2026-10-04T23:18:08.052030+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/192.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "01c78d90fec37fb0cd0bab70cdd6028409b496fdcea47aafca4830ffd7df283a",
+  "index": 2257,
+  "recipe_ids": [
+    "industrial-v4-protein-pot-berry-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Berry Greek Yoghurt Protein Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries",
+      "allergens": []
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Greek Yoghurt Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"105g\",\"item\":\"mixed berries\",\"allergens\":[]},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed food; no honey, nuts, mint, syrup or decorative garnish. Plain unseeded crackers: exactly two visible crackers when listed, no sesame or poppy seeds. All food inside the serving margins. Finished yoghurt protein pot with berries and listed crunchy oats and seeds freshly added just before eating.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c2bd989f-e37a-48a8-b6ec-d7a9970cda85.png",
+  "source_sha256": "525c8c4aeaf9922f7775c33170c3984cde168193ec856528a6f78b5314b3c57e",
+  "dispatched_at": "2026-10-04T23:14:16.136Z",
+  "generated_at": "2026-10-04T23:16:30.531Z",
+  "elapsed_ms": 134396,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-01c78d90fec37fb0cd0b-480.webp",
+      "sha256": "5f4d2a761d6c0b5d65c7c4947fcacee09cceaa6104bf2a1f8d8ca25b027b00ee",
+      "bytes": 25204,
+      "git_blob_sha": "6ee4211c1d44df06514304c3d166dde93fb62736"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-01c78d90fec37fb0cd0b.webp",
+      "sha256": "1befe659c089d640a9829ae91c6b15b703909f6b9c1fb6bbb0ebe0360c507d37",
+      "bytes": 75150,
+      "git_blob_sha": "8757e21289f0e61decef3ac1b18fb2f1d3a5ba2d"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-berry-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Berry Greek Yoghurt Protein Pot"
+    ],
+    "notes": "Smooth Greek yoghurt base, mixed berries, dry oats and pumpkin seeds newly topped at serving. No additions.",
+    "alt": "Greek yoghurt protein pot topped with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:21:58.530361+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/01c78d90fec37fb0cd0bab70cdd6028409b496fdcea47aafca4830ffd7df283a.json",
+    "source_sha256": "525c8c4aeaf9922f7775c33170c3984cde168193ec856528a6f78b5314b3c57e"
+  },
+  "integrated": true,
+  "live": false
+}

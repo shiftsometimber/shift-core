@@ -1,0 +1,84 @@
+{
+  "groupId": "bbc27201587c749f0848dd8c77b9a6f780f81376714f7bd1212d0e33dd7fdacb",
+  "index": 2249,
+  "recipe_ids": [
+    "industrial-v4-protein-pot-berry-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Berry Cottage Cheese Protein Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries",
+      "allergens": []
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Cottage Cheese Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"105g\",\"item\":\"mixed berries\",\"allergens\":[]},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy: use only listed foods. Plain unseeded wholegrain crackers: no sesame/poppy seeds, two clearly visible crackers when2listed. No cheese unless listed; no honey, nuts, mint or extra sauces. Follow preparation precisely: dry crunchy components in separate compartments/ramekins when method says kept separate; soft soaked oats only when milk listed. Protein pot crunchy topping can be freshly added just before eating. Single believable serving with food safely inside frame.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9ea92e2d-412c-4142-9641-a54b3b7b87bc.png",
+  "source_sha256": "15c87183f9aef3e106655aa1070c208705ca95a2bd36d968ccc9280908080f98",
+  "dispatched_at": "2026-10-04T22:58:40.044Z",
+  "generated_at": "2026-10-04T23:05:13.744Z",
+  "elapsed_ms": 393700,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bbc27201587c749f0848-480-c5e05c1cadb1.webp",
+      "sha256": "c5e05c1cadb1dd6b02d2c24102e3b87ab1f99d13ee514d2254c55003f9c7da19",
+      "bytes": 23546,
+      "git_blob_sha": "b73b175149d1869f06426ff469d6ac6bd0f47467"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bbc27201587c749f0848-fa61f00ca418.webp",
+      "sha256": "fa61f00ca41831378f344aa19d34527d61f55b70312cb5103db7864b269d7828",
+      "bytes": 71168,
+      "git_blob_sha": "46d7b4506a958f90b5bb87c30046217d0b7715a9"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-berry-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Berry Cottage Cheese Protein Pot"
+    ],
+    "notes": "Cottage cheese curds with mixed berries and dry oats and pumpkin seeds separate until eating; no yoghurt or chocolate.",
+    "alt": "Berry cottage cheese protein pot with separate oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T23:08:44.597971+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/bbc27201587c749f0848dd8c77b9a6f780f81376714f7bd1212d0e33dd7fdacb.json",
+    "source_sha256": "15c87183f9aef3e106655aa1070c208705ca95a2bd36d968ccc9280908080f98"
+  },
+  "integrated": true,
+  "live": false
+}

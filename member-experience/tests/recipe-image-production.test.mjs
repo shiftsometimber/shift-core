@@ -35,7 +35,11 @@ test('every staged accepted group has a source-specific review, both verified va
   const r=JSON.parse(fs.readFileSync(new URL('rejected/'+name,state)));return r.groupId+':'+r.source_sha256;
  }));
  for(const name of fs.readdirSync(new URL('staged/',state))){
-  const r=JSON.parse(fs.readFileSync(new URL('staged/'+name,state)));if(!r.integrated)continue;
+  const r=JSON.parse(fs.readFileSync(new URL('staged/'+name,state)));
+  assert.deepEqual(r.variants.map(v=>v.width),[480,960],r.groupId);
+  const hasBinding=r.recipe_ids.some(id=>grubImages.some(m=>m.id===id));
+  if(!r.integrated&&!hasBinding)continue;
+  assert(r.integrated,'Bound receipt must retain its integration state: '+r.groupId);
   const review=decisions[r.groupId];assert.equal(review.decision,'pass');assert.equal(review.source_sha256,r.source_sha256);assert(!rejected.has(r.groupId+':'+r.source_sha256));
   assert.deepEqual(review.recipe_ids,r.recipe_ids);assert.deepEqual(review.titles,r.titles);assert(review.notes&&review.alt);
   assert.equal(r.variants.length,2);for(const variant of r.variants){const b=fs.readFileSync(new URL(variant.asset,root));assert.equal(crypto.createHash('sha256').update(b).digest('hex'),variant.sha256);}

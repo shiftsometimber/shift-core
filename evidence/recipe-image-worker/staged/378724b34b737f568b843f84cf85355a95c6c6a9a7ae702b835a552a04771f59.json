@@ -1,0 +1,83 @@
+{
+  "groupId": "378724b34b737f568b843f84cf85355a95c6c6a9a7ae702b835a552a04771f59",
+  "recipe_ids": [
+    "industrial-dinner-pork-stir-fry"
+  ],
+  "titles": [
+    "Pork Stir Fry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Pork Stir Fry. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"70g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"120g\",\"item\":\"mixed peppers\"},{\"amount\":\"100g\",\"item\":\"broccoli\"},{\"amount\":\"15ml\",\"item\":\"reduced-salt soy sauce\"}]. Preparation: [\"The listed 70g dry egg noodles is an uncooked weight. Cut the 100g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 120g mixed peppers. Cut the 170g lean pork loin into thin strips about 1cm thick on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.\",\"Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the lean pork loin in one layer and cook for 7\u201310 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Use the non-stick pan over a medium-low heat; no oil is listed for this recipe. Add 120g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Cover between stirs for the first 3 minutes so the peppers soften in their own moisture; lower the heat if they catch.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Turn the heat to low and fold in the 15ml reduced-salt soy sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked lean pork loin and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and lean pork loin between serving bowls. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Photorealistic appetising food; all ingredients exactly match. No garnish or extra food. Keep any listed brown rice distinctly wholegrain tan/brown with visible bran texture; no polished white grains. Match portion and method, natural warm light and generous framing.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "70g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "120g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "100g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "15ml",
+      "item": "reduced-salt soy sauce"
+    }
+  ],
+  "method": [
+    "The listed 70g dry egg noodles is an uncooked weight. Cut the 100g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 120g mixed peppers. Cut the 170g lean pork loin into thin strips about 1cm thick on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.",
+    "Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the lean pork loin in one layer and cook for 7\u201310 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Use the non-stick pan over a medium-low heat; no oil is listed for this recipe. Add 120g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Cover between stirs for the first 3 minutes so the peppers soften in their own moisture; lower the heat if they catch.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Turn the heat to low and fold in the 15ml reduced-salt soy sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked lean pork loin and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and lean pork loin between serving bowls. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ecc5b752-86cb-45b3-b51f-b5fa490d2d1b.png",
+  "source_sha256": "17d31e5bcd3e2a4b19a55e853737e76a20a737da11425306731838a3123f54c1",
+  "generated_at": "2026-10-04T23:00:32.344Z",
+  "elapsed_ms": 374333,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-378724b34b737f568b84-480.webp",
+      "sha256": "0d805ad5ff4deced1964b83af440e1a346e071f2a977a5c0e1e220ed1478c63c",
+      "bytes": 27218
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-378724b34b737f568b84.webp",
+      "sha256": "faf13a9a2c8d6dfbf93acd16f79ea2b0eb5f493c77cf7957242396d2ac26028f",
+      "bytes": 89924
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "index": 477,
+    "decision": "pass",
+    "notes": "Full source inspected: cooked opaque lean pork loin strips about 1cm thick, egg noodles, red/yellow pepper strips and broccoli with a light soy coating; no unlisted garnish or sauce.",
+    "alt": "Pork loin strips and egg noodles with peppers, broccoli and soy sauce.",
+    "source_sha256": "17d31e5bcd3e2a4b19a55e853737e76a20a737da11425306731838a3123f54c1",
+    "recipe_ids": [
+      "industrial-dinner-pork-stir-fry"
+    ],
+    "titles": [
+      "Pork Stir Fry"
+    ],
+    "reviewer": "root full source image inspection",
+    "reviewed_at": "2026-10-04T23:09:36.309859+00:00"
+  }
+}
