@@ -220,7 +220,7 @@
     "preview/book-voice/verify.cjs": "4394c0dfdcfdab28d6356e968bf296b70553651d9d8b045dc17cec20e4e99193",
     "preview/book-voice/worker.mjs": "fb7f7ee465ff15d1b0124c64ec365d6b99a56a12ca89b05812dec546d08e16ff",
     "tests/book-voice.test.mjs": "a92360ef6d7422ef796b83f09c187383424e574fc42ff8b1ce7cb4b7c9d024c0",
-    "release/book-voice-scope.mjs": "74fe9365f162ccf63071e26d9294535f289c5d7ab8432e39024a0d2d8bd21087",
+    "release/book-voice-scope.mjs": "db225641befeb30f3f1aec45101395bedda0b9db1279710086e3766f66961d6e",
     "tests/book-voice-release.test.mjs": "6c05227a1313b414a74893f7e4787db6e22699de0ee32006e8b2067d62e04266",
     "editorial/book-voice/live.cjs": "1b43c3a7dcf25aa4e3bf33024d3d5fa3bb961f280d0eaceb9dad349f089e2e9f",
     ".github/workflows/book-voice-live-audit.yml": "240e023a53d4af1cbd53ff2e04d5a929d71eb98679d13c847f6f96c8f64a6da2",
