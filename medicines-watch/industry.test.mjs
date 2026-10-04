@@ -39,7 +39,26 @@ import fractylModalityGap from './reviews/2026-10-04-authorised-fractyl-modality
 import arteloMuscleGap from './reviews/2026-10-04-authorised-art2713-muscle-gap.json' with {type:'json'};
 import rgt075Publication from './reviews/2026-10-04-authorised-rgt075.json' with {type:'json'};
 import vct220Publication from './reviews/2026-10-04-authorised-vct220.json' with {type:'json'};
+import vk2735Maintenance from './reviews/2026-10-04-authorised-vk2735-maintenance.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
+test('VK2735 maintenance evidence stays sponsor-reported and does not create an approved regimen',()=>{
+ const e=industry.find(e=>e.id==='vk2735');
+ assert.equal(vk2735Maintenance.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(vk2735Maintenance.clinicalApproval,null);
+ assert.equal(vk2735Maintenance.industryComplete,false);
+ assert.match(e.stage,/sponsor-reported maintenance study completed/);
+ assert.match(e.stage,/oral Phase 3 planned/);
+ assert.match(e.summary,/approximately 180 adults/);
+ assert.match(e.summary,/12 weeks/);
+ assert.match(e.limitations,/sponsor-reported topline/);
+ assert.match(e.limitations,/not peer-reviewed results/);
+ assert.match(e.limitations,/do not establish switching from another medicine/);
+ assert.ok(e.sourceIds.includes('vk2735-maintenance-viking'));
+ assert.equal(e.reviewedAt,vk2735Maintenance.reviewedAt);
+ const source=industrySources.find(s=>s.id==='vk2735-maintenance-viking');
+ assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ assert.equal(vk2735Maintenance.catalogueCounts.configuredSourcesAfter,132);
+});
 test('WVE-007 separates monotherapy registry, sponsor combination and planned maintenance',()=>{
  const e=industry.find(e=>e.id==='wve007');
  assert.match(e.stage,/Recruiting Phase 1\/2a monotherapy/);
@@ -341,7 +360,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,86);assert.equal(sources.length,131);
+ assert.equal(medicines.length,6);assert.equal(industry.length,86);assert.equal(sources.length,132);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,92);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}

@@ -69,7 +69,7 @@ test('renewal does not renew the catalogue, medicine claims, NHS or provider rev
   assert.ok(medicines.filter(m => !['mounjaro','retatrutide','wegovy-injection'].includes(m.id)).every(m => m.reviewedAt === undefined));
   assert.equal(medicines.find(m => m.id === 'wegovy-injection').reviewedAt, wegovyMashReceipt.reviewedAt);
   assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, nhsReceipt.reviewedAt);
-  assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, JSON.parse(readFileSync(new URL('./reviews/2026-09-27-wegovy-tablet-provider.json', import.meta.url))).reviewedAt);
+  assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, JSON.parse(readFileSync(new URL('./reviews/2026-10-04-wegovy-tablet-provider-renewal.json', import.meta.url))).reviewedAt);
   assert.equal(sources.find(s => s.id === 'wegovy-injection-smpc').reviewedAt,
     wegovyMashReceipt.reviewedAt);
 });
