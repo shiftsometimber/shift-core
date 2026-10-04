@@ -16,3 +16,9 @@ test('A failed, different or uncompleted preview cannot authorise release',async
  const valid={id:BOOK_VOICE_RUN,head_sha:BOOK_VOICE_PREVIEW,path:'.github/workflows/book-voice-preview.yml',conclusion:'success'};
  for(const wrong of [{conclusion:'failure'},{conclusion:null},{head_sha:'different'},{path:'.github/workflows/other.yml'}])await assert.rejects(verifyBookVoiceProof(async()=>({...valid,...wrong})));
 });
+test('Exact citation preservation composes with the original editorial bytes and rejects drift',()=>{
+ const path='member-experience/public-preservation.mjs',current=readFileSync(path,'utf8'),preview=execFileSync('git',['show',BOOK_VOICE_PREVIEW+':'+path],{encoding:'utf8'});
+ assert.equal(originalBookVoiceGate(path,current),preview);
+ assert.notEqual(originalBookVoiceGate(path,current+'// unexpected\n'),preview);
+ assert.notEqual(originalBookVoiceGate(path,current.replace('path,body,{required:Boolean(before)}','path,body,{required:false}')),preview);
+});
