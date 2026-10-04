@@ -1,0 +1,99 @@
+{
+  "reviewedAt": "2026-10-04T03:33:50Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add one bounded smaller-developer muscle-preservation exploration with explicit separation from the compound's human cancer-cachexia evidence. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "art2713",
+      "name": "ART27.13",
+      "developer": "Artelo Biosciences",
+      "group": "research",
+      "stage": "Non-clinical GLP-1 companion exploration; separate Phase 1/2 cancer-cachexia research",
+      "summary": "Artelo describes ART27.13 as an oral, peripherally restricted cannabinoid receptor agonist and says it initiated a non-clinical study in models relevant to GLP-1-associated muscle preservation. The proposed obesity use remains exploratory and is distinct from the compound's human CAReS programme in cancer anorexia and cachexia.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation or a UK clinical-trial authorisation for ART27.13 as an obesity or GLP-1 companion treatment.",
+      "nhsEngland": "No NICE recommendation or NHS England access for this proposed use is established by the reviewed sources.",
+      "supply": "This non-clinical exploration and patent filing does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "Artelo announced initiation of a non-clinical study and a provisional patent filing, not a human obesity trial or a completed GLP-1-combination study. Interim lean-mass, activity and weight observations came from small human cohorts with cancer anorexia and cachexia; they are not human obesity evidence and cannot establish prevention of GLP-1-associated lean-mass loss. Lean mass is not the same as strength or function, and the cited evidence does not establish preserved muscle strength or function, clinical benefit, safety in this proposed use, superiority or an approved regimen.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-04T03:33:50Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Artelo Biosciences: ART27.13 GLP-1 companion exploration",
+          "url": "https://ir.artelobio.com/news-events/press-releases/detail/181/artelo-biosciences-expands-art27-13-development-as-a",
+          "sourcePublishedAt": "2026-03-25",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T03:33:50Z",
+          "checkScope": "Complete sponsor announcement read for programme status, proposed use, non-clinical study initiation, patent filing and separation from cancer-cachexia evidence. Not automatically content-monitored."
+        },
+        {
+          "title": "Artelo Biosciences ART27.13 pipeline page",
+          "url": "https://artelobio.com/pipeline/art27-13/",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T03:33:50Z",
+          "checkScope": "Full readable sponsor pipeline page reviewed for the distinct Phase 1/2 CAReS indication and interim evidence context. Publication and update dates were not displayed and remain unknown. Not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-04T03:31:32.142Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 125,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "error": "http_403",
+        "lastAttemptAt": "2026-10-04T03:01:25.976Z",
+        "nextCheckAt": "2026-10-04T04:01:25.976Z"
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only health response verifies configured-source availability and monitor operation. It does not renew factual reviews, approve changed wording or establish complete industry coverage. The unchanged Zealand 403 remains visible and is not repeated as a new alert."
+  },
+  "discoveryPass": {
+    "method": "A current-date pass and a separate broader undated topic pass checked primary regulator, registry and sponsor sources, including muscle-preservation approaches and previously untracked smaller developers. Results were reconciled with current main and open review PRs.",
+    "included": "ART27.13 is a previously untracked non-clinical GLP-1 companion exploration from a smaller developer; its human cancer-cachexia programme is retained only as context and not repurposed as obesity evidence.",
+    "notDuplicated": "EloraTZP, COURAGE, bimagrumab, enobosarm, WVE-007, SRSD384 and RJVA-002 are already represented. Draft PR 874 remains separate retatrutide review work.",
+    "incompleteChecks": [
+      "No readable primary registry record for a human obesity or GLP-1-companion study was located; the sponsor describes only non-clinical study initiation for this proposed use.",
+      "Search indexing can lag and selected results cannot exclude older omissions, unannounced programmes or additional international developers. Catalogue and configured-source counts do not establish industry completeness."
+    ]
+  },
+  "failedChecks": [
+    {
+      "source": "ISRCTN15607817",
+      "url": "https://www.isrctn.com/ISRCTN15607817",
+      "outcome": "JavaScript/cookie holding page; full registry record not read in this pass",
+      "effect": "The registry is not used to support the public obesity summary. The sponsor pipeline page controls the bounded distinction that CAReS concerns cancer anorexia and cachexia."
+    },
+    {
+      "source": "Artelo September 2026 investor presentation",
+      "url": "https://ir.artelobio.com/company-information/presentations",
+      "outcome": "Linked PDF returned HTTP 403",
+      "effect": "No claim from the inaccessible presentation is published. The readable March sponsor announcement and pipeline page support the bounded entry."
+    }
+  ],
+  "catalogueCounts": {
+    "detailed": 6,
+    "widerBefore": 83,
+    "widerAfter": 84,
+    "totalBefore": 89,
+    "totalAfter": 90,
+    "configuredSources": 125
+  },
+  "nextAction": "Run the full Watch tests and exact-head release gates, publish through the guarded production workflow, then verify the live ART27.13 wording, Treatments entry and SELECT-only health endpoint."
+}
