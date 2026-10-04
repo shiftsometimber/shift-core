@@ -69,6 +69,7 @@
     "medicines-watch/knowledge.mjs": "c7078053267c8ec36937d6e25a8ca3b2200b476bc8cb570f2a666117abe69ac5",
     "medicines-watch/knowledge.test.mjs": "95d7d1770f23ade771af7d89733b3d3b4b575bdd39b6c024b548ebeffa0ac3c4",
     "medicines-watch/product-renewal.test.mjs": "3a3a1cd8e4e9f479eedeef3cca1997230b1e3ec80c5c213bc5abc9fe859c8887",
+    "medicines-watch/provider-review.test.mjs": "deaed01bfc12aed8725242ea65d609737664337dad6bdc9dc9817cf590f16d50",
     "medicines-watch/reviews/2026-09-30-discovery-proposals.json": "fa4a023ae621de4c77bdef2675d17d121d241fb43f1588d6319c17c9b65f5098",
     "medicines-watch/reviews/2026-09-30-discovery-review.md": "9fde72a71a0dd6059846d335db83806d4e1c152a5d6772f52a8c02863de0f1e5",
     "medicines-watch/reviews/2026-09-30-reviewed-expansion.json": "a92afda9c2e64236b681ebaa954b1863f470df0fed81d12103b65d29bdc4b0ac",
@@ -237,6 +238,8 @@
     "medicines-watch/reviews/2026-10-03-credibility-improvements.json": "f883eac426fc35e258902e898f49bc098f7d38ab0ba514b75da59466bb986e05",
     "medicines-watch/evidence-desk.mjs": "e3c35d471963f01dcfbae61d17edf7ccec9175c25d2e98cc660d0355d4aaf77f",
     "medicines-watch/evidence-desk.test.mjs": "6f17db6ef9b365e270f238e10addd8c8aa675b493f016d673d3f2b554398b545",
+    "medicines-watch/reviews/2026-10-04-authorised-vk2735-maintenance.json": "f29e8afc14f5c1eba0d95327d94df18c200213beca4b9c89a24068ffc254bc10",
+    "medicines-watch/reviews/2026-10-04-wegovy-tablet-provider-renewal.json": "d26f773a3076fec50bf35f2c98c0e0ae094d9f637c81135fe2d0fbf0ac8b8ae0",
     "medicines-watch/reviews/2026-10-03-evidence-desk-zp6590.json": "f27f6e73cb12a7217f83c740fe975b559d1cf931799c4af5164e29ac0ca9a357",
     "medicines-watch/reviews/2026-10-04-authorised-rgt075.json": "1cde62c22f3467e49ab31ca2cd4221f719b5fda8989c672e8d28c68295a54a7f",
     "medicines-watch/reviews/2026-10-04-authorised-vct220.json": "d39784d4981ba232f70d2d64a3a6e6a24f7876ee10c609a0e71a917b7eade7dd",
@@ -394,21 +397,21 @@
     }
   },
   "watchEvidenceDesk": {
-    "contentCommit": "07b205381b0a871476ed8f87fb5c9eeab97eef06",
-    "evidenceRun": 37181293416,
-    "pr": 1059,
+    "contentCommit": "503377e25a2add02fa8baac22d520845177fe309",
+    "evidenceRun": 37185128771,
+    "pr": 1061,
     "editorialAuthority": "Matt requested a higher Watch standard on 3 October 2026; standing supported informational publication authority retained. No clinical approval.",
     "clinicalApproval": null,
     "catalogueEntries": 92,
-    "configuredSources": 131,
+    "configuredSources": 132,
     "registryRecords": 75,
-    "tests": "142 Watch tests pass locally and in exact-source hosted run37181293416; mobile/desktop Chromium rendering passes.",
+    "tests": "143 Watch tests pass locally and in exact-source hosted run37185128771; mobile/desktop Chromium rendering passes.",
     "lastVerifiedWatchProduction": {
-      "run": 37179265363,
-      "source": "b9ac55959a56ff7e46de628ad956e1c27fb39ede",
-      "deploymentId": "c813196f-9179-4be6-af36-d9dcfc23a01a",
-      "versionId": "b52d33ee-f7df-4fa0-b7a9-f0ba1b9be4c5",
-      "rollbackVersionId": "5d829fa2-edd1-42b4-a970-f1d92de39d1a"
+      "run": 37181878729,
+      "source": "1c42756d00fce067c19959c171aa1b5b7b13fa83",
+      "deploymentId": "0129929c-845d-4b39-a2af-0ac0e4bf1d9b",
+      "versionId": "f4272d64-75e7-4709-904d-5bfea76bfb91",
+      "rollbackVersionId": "b52d33ee-f7df-4fa0-b7a9-f0ba1b9be4c5"
     },
     "requirements": "Current actual runtime must be independently reconciled by the existing ownership/rollback guard. Full combined-head checks, guarded production and actual live verification remain required. No scheduler observation or unrelated factual review date is reset."
   }
