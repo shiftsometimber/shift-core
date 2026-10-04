@@ -14,11 +14,11 @@
     "member-experience/dashboard-tools.mjs": "e95b400a013b3f36b6e647a2cf88ed6752b21fa39634867a9222f56491c579dd",
     "member-experience/tests/dashboard-tools.test.mjs": "8d0267bbf2e40a6b492d30c10b2401b6fb04e1728e5c83d9242ffc770a7dee65",
     "growth-member-public.mjs": "60a7e4007f25ee91be3e9b4e1c34dc8baffee1346ff5e1ccf7333f6aab0aa2a6",
-    "medicines-watch/README.md": "d939f7e8fe0ea40bc17863e2507852de86b9717c688b76d1d3295759f0274b91",
+    "medicines-watch/README.md": "3b03656086a9ee68775be8fdee30526a4d9a9ba0a383ebe33754e708fcfb846a",
     "medicines-watch/data.mjs": "47e41a7a0d9fccabb10340d0abb699dd562b061fbb5c4c443d98493e90415362",
-    "medicines-watch/discovery.mjs": "1232b9975907d13a604d437be9aa3afc37292f0b51b1456fd3e8bfdf7d4ca4dc",
+    "medicines-watch/discovery.mjs": "bffb4e1da3d9643766b9c0ab98214c4d3be1c5a7c7138ad9a67c7269f8295040",
     "medicines-watch/industry-page.mjs": "d66a757e1bce246ec5fcd19b18e4c5ee1d236b7b9785c2e7651b53feab17eedb",
-    "medicines-watch/industry.test.mjs": "c7d6d9e2f3bb4ccf55a46e0f7ab34fce3928bc1dc039f67e430f3c1ce1d63171",
+    "medicines-watch/industry.test.mjs": "71cb2e74b21f6fce2647ac55d3f01720a6287333ff97e2ada415d1c31592e397",
     "medicines-watch/page.mjs": "5adc942a0e2ebb248c485ebebca2e54968f8e22dd1b8921dfb1a559f056b1529",
     "medicines-watch/reviews/2026-09-29-foundayo-nice-schedule.json": "ac8a2089636a3e2ab22a05762a3b32558b7575064a05ec5c36e0a9d8d1d61d10",
     "medicines-watch/reviews/2026-09-29-industry-expansion.json": "546b39cd7347138a4772909aa300d102690e291254e593c8feaf64aa60e5a640",
@@ -231,12 +231,12 @@
     "shift-health-public-content.mjs": "4ecfeec3e774fa7501d0bdcd9ad4554dce33d66e1bc66c5d60b6cff4f9de895c",
     "frontend/member/shift-health-catalogue-v1.js": "d5b799098caa0b9a59844ea8bbde9cc71162b984c0b5d3bb5d40f786fa742720",
     "tests/testosterone-public.test.mjs": "369035bb9d5e1197fbc30d1cc5da1ddb916f4771164fa9d99f353876d75da5cb",
-    "medicines-watch/credibility.mjs": "82436667d56f8af8c50da29e5018e1955722f5f93c1fc23774c73c495ab3ba9d",
-    "medicines-watch/credibility.test.mjs": "28d84421a1c15fd5df4965cb5fa3f2ef5ef5427335557201980c09c13c82d072",
+    "medicines-watch/credibility.mjs": "1ebe66fa597f1064fc20464c3059257052ee9237f1963dd5e82a4a64f358ceef",
+    "medicines-watch/credibility.test.mjs": "629bf7ba4873f3891e67ed1c2ffe02643afc83a68bdfbcb6a0616e5d9779c03a",
     "medicines-watch/registry-lifecycle.mjs": "955b9f70a22fe17246867a8098f7bae89204cedc3d2055dbb6ba8b84e714870e",
     "medicines-watch/reviews/2026-10-03-credibility-improvements.json": "f883eac426fc35e258902e898f49bc098f7d38ab0ba514b75da59466bb986e05",
     "medicines-watch/evidence-desk.mjs": "e3c35d471963f01dcfbae61d17edf7ccec9175c25d2e98cc660d0355d4aaf77f",
-    "medicines-watch/evidence-desk.test.mjs": "6f17db6ef9b365e270f238e10addd8c8aa675b493f016d673d3f2b554398b545",
+    "medicines-watch/evidence-desk.test.mjs": "237850795bfac7f28a30f797b6487ee4c969d87d18bf8cc47709c9587e3bd90e",
     "medicines-watch/reviews/2026-10-04-authorised-vk2735-maintenance.json": "f29e8afc14f5c1eba0d95327d94df18c200213beca4b9c89a24068ffc254bc10",
     "medicines-watch/reviews/2026-10-04-wegovy-tablet-provider-renewal.json": "d26f773a3076fec50bf35f2c98c0e0ae094d9f637c81135fe2d0fbf0ac8b8ae0",
     "medicines-watch/reviews/2026-10-03-evidence-desk-zp6590.json": "f27f6e73cb12a7217f83c740fe975b559d1cf931799c4af5164e29ac0ca9a357",
@@ -253,7 +253,11 @@
     "editorial/source-review-20261004/corrections.json": "79cfab35b75e3030b1959d57495281519bb1c611077c953200398db6f64208d0",
     "editorial/source-review-20261004/publish.mjs": "f19fa74f56daaf004ef0e6a2fd2351d062335204779b30a76d9aedb5b4dd7159",
     "medicines-watch/reviews/2026-10-04-authorised-survodutide-paper.json": "d7df992314d6f402eec73bfe3de500890e4b6ce96d3f3f8946330d50ca0749d6",
-    "medicines-watch/industry.mjs": "4812af8c04302cc81e1e3e1099af02ba8a20cb80531f308f92811a51690021c1"
+    "medicines-watch/industry.mjs": "0d4427cf6adb007dc3c1525d92ce38958a27f624a67ce8dbceacb2bbe1a9b874",
+    "medicines-watch/reviews/2026-10-04-authorised-azelaprag-discontinuation.json": "3ec9f8f5ea589c98ffdbfce22876af5ffd9229f250fbf6768e6f05119ebbcbaf",
+    "shift-coach/member-record-fixture.mjs": "69f0bbd12994bc4587b832c219055cee46df90da0a3f7d59b9b2620271ef310a",
+    "shift-coach/member-record-browser.mjs": "5010cfb8aa46bfd8fde6c82f1519162f7ac5c4c3b195c18a35f10cda732f6598",
+    "tests/member-record-reliability.test.mjs": "e42fe3c45bcd9cd8ba122eea0b731e2eee64b88ee666aa7c7c05cf7d6cafbefb"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
@@ -334,7 +338,7 @@
   "memberPanelLayout": {
     "candidate": "72f0796f7de9ccfc42f46ec203a6c00b04d17aba",
     "previewRun": 36987513488,
-    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404–IMG_2406 and the 07:57 screen recording.",
+    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404\u2013IMG_2406 and the 07:57 screen recording.",
     "scope": "Three exact presentation/preview files; existing records, controls and clinical/commercial gates preserved."
   },
   "watchCredibility": {

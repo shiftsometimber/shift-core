@@ -375,11 +375,11 @@ async function orderStatus(request,env){
 async function memberOrders(request,env){
   const member=await requireMember(request,env);if(!member)return json({ok:false,error:'account_required'},401,corsHeaders(request));
   if(Number(member.email_verified||0)===1)await env.DB.prepare(`UPDATE orders SET user_id=?,updated_at=? WHERE user_id IS NULL AND lower(customer_email)=lower(?)`).bind(member.id,now(),member.email).run();
-  const {results}=await env.DB.prepare(`SELECT o.order_number,o.quantity,o.subtotal_pence,o.total_pence,o.currency,o.status,o.payment_status,o.notes,o.created_at,o.updated_at,p.name product_name,p.sku,d.size,d.delivery_pence,d.shipping_name,d.shipping_address_json,d.stripe_payment_intent_id FROM orders o LEFT JOIN products p ON p.id=o.product_id LEFT JOIN commerce_order_details d ON d.order_id=o.id WHERE o.user_id=? ORDER BY o.id DESC LIMIT 100`).bind(member.id).all();
+  const {results}=await env.DB.prepare(`SELECT o.id,o.order_number,o.quantity,o.subtotal_pence,o.total_pence,o.currency,o.status,o.payment_status,o.notes,o.created_at,o.updated_at,p.name product_name,p.sku,d.size,d.delivery_pence,d.shipping_name,d.shipping_address_json,d.stripe_payment_intent_id FROM orders o LEFT JOIN products p ON p.id=o.product_id LEFT JOIN commerce_order_details d ON d.order_id=o.id WHERE o.user_id=? ORDER BY o.id DESC LIMIT 100`).bind(member.id).all();
   const orders=[];
   for(const order of results||[]){
-    const row=await env.DB.prepare(`SELECT sku,product_name,colour,size,quantity,unit_price_pence FROM commerce_order_items WHERE order_id=(SELECT id FROM orders WHERE order_number=?) ORDER BY id`).bind(order.order_number).all();
-    const notes=parseJson(order.notes);orders.push({...order,items:row.results||[],shipping_address:parseJson(order.shipping_address_json),carrier:notes.carrier||'',tracking_reference:notes.trackingReference||'',tracking_url:trackingUrl(notes.carrier,notes.trackingReference)});
+    const row=await env.DB.prepare(`SELECT sku,product_name,colour,size,quantity,unit_price_pence FROM commerce_order_items WHERE order_id=? ORDER BY id`).bind(order.id).all();
+    const parsedNotes=parseJson(order.notes),notes=parsedNotes&&typeof parsedNotes==='object'&&!Array.isArray(parsedNotes)?parsedNotes:{};const {id,...publicOrder}=order;orders.push({...publicOrder,items:row.results||[],shipping_address:parseJson(order.shipping_address_json),carrier:notes.carrier||'',tracking_reference:notes.trackingReference||'',tracking_url:trackingUrl(notes.carrier,notes.trackingReference)});
   }
   return json({ok:true,orders},200,corsHeaders(request));
 }

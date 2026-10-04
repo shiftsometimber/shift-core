@@ -25,13 +25,13 @@ html body[data-member-page="orders"] #orders-retry{padding:12px 18px;border:0;bo
 export const ordersRuntime=String.raw`(()=>{
  'use strict';const list=document.getElementById('orders-list'),status=document.getElementById('orders-status'),retry=document.getElementById('orders-retry');if(!list||!status||!retry)return;
  const node=(tag,value)=>{const el=document.createElement(tag);el.textContent=String(value??'');return el};
- const money=(pence,currency)=>{try{return new Intl.NumberFormat('en-GB',{style:'currency',currency:currency||'GBP'}).format(Number(pence)/100)}catch{return 'Amount unavailable'}};
+ const money=(pence,currency)=>{if(!((typeof pence==='number'||typeof pence==='string'&&pence.trim()!=='')&&Number.isFinite(Number(pence))))return 'Amount unavailable';try{return new Intl.NumberFormat('en-GB',{style:'currency',currency:currency||'GBP'}).format(Number(pence)/100)}catch{return 'Amount unavailable'}};
  function render(orders){list.replaceChildren();if(!orders.length){status.textContent='You have no SHIFT shop orders yet.';return}status.textContent=orders.length===1?'1 order found.':orders.length+' orders found.';
   for(const order of orders){const card=document.createElement('article');card.className='orders-card';card.append(node('h2','Order '+(order.order_number||'—')));
    const date=order.created_at?new Date(order.created_at):null;if(date&&!Number.isNaN(date.getTime()))card.append(node('p','Placed '+new Intl.DateTimeFormat('en-GB',{dateStyle:'medium'}).format(date)));
    card.append(node('p','Status: '+String(order.status||'Pending').replaceAll('_',' ')));
    if(Array.isArray(order.items)&&order.items.length){const ul=document.createElement('ul');for(const item of order.items){const description=[item.product_name||order.product_name,item.colour,item.size&&'Size '+item.size,'Qty '+(item.quantity||1)].filter(Boolean).join(' · ');ul.append(node('li',description))}card.append(ul)}else card.append(node('p',[order.product_name,order.size&&'Size '+order.size,'Qty '+(order.quantity||1)].filter(Boolean).join(' · ')));
-   if(Number.isFinite(Number(order.total_pence)))card.append(node('p','Total: '+money(order.total_pence,order.currency)));
+   card.append(node('p','Total: '+money(order.total_pence,order.currency)));
    if(order.tracking_reference)card.append(node('p','Tracking reference: '+order.tracking_reference));
    if(order.tracking_url){try{const url=new URL(order.tracking_url);if(url.protocol==='https:'){const a=node('a','Track delivery');a.href=url.href;a.rel='noopener noreferrer';a.target='_blank';card.append(a)}}catch{}}
    list.append(card)}
