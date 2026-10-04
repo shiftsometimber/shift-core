@@ -1,0 +1,140 @@
+{
+  "reviewedAt": "2026-10-04T20:20:59Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Attach the bounded peer-reviewed ATTAIN-MAINTAIN switching and maintenance evidence and its exact monitored registry lifecycle to the existing Foundayo card. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "primarySource": {
+    "publisher": "Nature Medicine",
+    "title": "Orforglipron for maintenance of body weight reduction: the double-blind, randomized phase 3b ATTAIN-MAINTAIN trial",
+    "url": "https://www.nature.com/articles/s41591-026-04386-7",
+    "doi": "10.1038/s41591-026-04386-7",
+    "sourcePublishedAt": "2026-05-13",
+    "retrievedAt": "2026-10-04T20:20:59Z",
+    "reviewedAt": "2026-10-04T20:20:59Z",
+    "httpStatus": 200,
+    "bytes": 380139,
+    "responseSha256": "bf7c501bcb0d629e2213320b6f860126dcdd33bcd3d06164360310bf39eeb9ce",
+    "assessment": "The complete open-access peer-reviewed paper was read. ATTAIN-MAINTAIN was a 52-week double-blind US placebo-controlled study at 29 sites in 376 participants who completed SURMOUNT-5: 205 previously treated with tirzepatide and 171 previously treated with semaglutide. Among participants meeting the prespecified plateau definition, the primary modified treatment-regimen estimand at week 52 was 74.7% maintained weight reduction with orforglipron versus 49.2% with placebo after tirzepatide, and 79.3% versus 37.6% after semaglutide. The most common adverse events were gastrointestinal and mostly mild or moderate. These trial findings are not a recommendation to switch or a claim that every participant will have those outcomes.",
+    "limitations": "The study had no continued-injectable comparator, lasted one year, ran only in the United States and enrolled a predominantly white population. Placebo participants could receive rescue orforglipron from week 24, limiting longer-term placebo comparison. Lilly funded the study and was involved in design, data collection, analysis, interpretation and writing; several authors were employees/shareholders. The study used investigational orforglipron capsules and a trial titration schedule, not the authorised UK Foundayo tablet regimen."
+  },
+  "sponsorSource": {
+    "publisher": "Eli Lilly and Company",
+    "title": "Lilly's orforglipron helped people maintain weight loss after switching from injectable GLP-1 medicines in first-of-its-kind Phase 3 trial",
+    "url": "https://investor.lilly.com/news-releases/news-release-details/lillys-orforglipron-helped-people-maintain-weight-loss-after",
+    "sourcePublishedAt": "2025-12-18",
+    "retrievedAt": "2026-10-04T20:20:59Z",
+    "httpStatus": 200,
+    "bytes": 140833,
+    "responseSha256": "2313a2592ebe6de8a0ffb3e72ec5824318c5ce25adbdd7b199ed28917324694e",
+    "assessment": "The original sponsor announcement was read as the earlier topline account. It identifies NCT06584916, the 376 participants, the 52-week design, previous semaglutide or tirzepatide treatment and rescue eligibility. The later peer-reviewed paper is used for outcome interpretation rather than silently treating the sponsor release as independent corroboration."
+  },
+  "registrySources": [
+    {
+      "id": "registry-nct06584916",
+      "nctId": "NCT06584916",
+      "title": "ClinicalTrials.gov NCT06584916: ATTAIN-MAINTAIN",
+      "url": "https://clinicaltrials.gov/study/NCT06584916",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06584916",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06584916",
+        "Eli Lilly and Company"
+      ],
+      "reviewedAt": "2026-10-04T20:20:59Z",
+      "sourcePublishedAt": "2024-09-05",
+      "sourceUpdatedAt": "2026-06-04",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT06584916",
+        "title": "A Study of Orforglipron for the Maintenance of Body Weight Reduction in Participants Who Have Obesity or Overweight With Weight-Related Comorbidities (ATTAIN-MAINTAIN)",
+        "sponsor": "Eli Lilly and Company",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE3"
+        ],
+        "enrollment": {
+          "count": 376,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2024-09-13",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2025-11-21",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2025-11-21",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2024-09-05",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-06-04",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "foundayo"
+      ],
+      "rawResponseSha256": "2cd38b3035c6e066a5b8447cc4c1f7276e5cbdb19771cb450876e8c040f89a5f",
+      "reviewedFingerprint": "504a69920fee24c6c1465d8e387b9632a17dd7850212e7d2c15fcff643490357"
+    }
+  ],
+  "change": {
+    "medicineId": "foundayo",
+    "field": "evidenceLinks",
+    "boundary": "Supporting peer-reviewed outcome evidence and exact trial lifecycle only. No change to the card's benefit, trade-offs, authorisation, NHS access, private-supply wording, medicine review date or prescribed regimen."
+  },
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "checkedAt": "2026-10-04T20:15:47.208Z",
+    "available": true,
+    "status": "verification_pending",
+    "configuredSources": 135,
+    "currentSources": 134,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "verification_pending",
+        "error": "http_403"
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "A SELECT-only live health observation, not a medical review, approval or completeness claim. The unchanged Zealand retrieval failure remains visible. The new NCT06584916 lifecycle becomes the 136th configured source only after publication and must establish its own production observation; no green result is pre-seeded."
+  },
+  "discoveryPass": {
+    "method": "A separate broader undated switching, maintenance and post-injectable topic pass found the May 2026 peer-reviewed article after current-date monitoring had not surfaced it. The Nature paper, exact ClinicalTrials.gov API record and original sponsor announcement were read directly.",
+    "existingWork": "Merged expansion PR #851, subsequent dated receipts, current main and open Watch PR search results were checked before publication. The evidence updates the existing Foundayo card and does not create a duplicate medicine programme.",
+    "failedOrIncompleteChecks": "Search-index and sponsor-selected-domain coverage had not surfaced this older peer-reviewed article. ClinicalTrials.gov has no posted results despite the completed lifecycle; the peer-reviewed paper is therefore the outcome evidence. Search coverage and selected domains remain non-exhaustive.",
+    "industryComplete": false
+  },
+  "uncertainty": {
+    "dosing": "The trial's capsule strengths, titration and maintenance doses are investigational study procedures and are not copied into the public summary as a UK Foundayo dosing instruction.",
+    "switching": "The study does not establish an individual switching protocol, suitability decision or comparison with continued injectable treatment.",
+    "regulatoryAndAccess": "Publication and trial completion do not change the separate UK-authorisation, NICE/NHS England access, actual-supply or prescribing statements.",
+    "clinicalDecision": "Any treatment or switching decision remains for a qualified prescriber. No clinical approval is recorded."
+  },
+  "catalogueCounts": {
+    "detailed": 6,
+    "wider": 89,
+    "totalBefore": 95,
+    "totalAfter": 95,
+    "configuredSourcesBefore": 135,
+    "configuredSourcesAfter": 136
+  }
+}

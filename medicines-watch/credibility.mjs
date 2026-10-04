@@ -6,7 +6,8 @@ import vct220Publication from './reviews/2026-10-04-authorised-vct220.json' with
 import vk2735Maintenance from './reviews/2026-10-04-authorised-vk2735-maintenance.json' with {type:'json'};
 import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-discontinuation.json' with {type:'json'};
 import taldefgrobepRv8451 from './reviews/2026-10-04-authorised-taldefgrobep-rv8451.json' with {type:'json'};
-export const registrySources=[...receipt.registrySources,...evidenceDesk.registrySources,...srsd384Publication.registrySources,...rgt075Publication.registrySources,...vct220Publication.registrySources,...azelapragDiscontinuation.registrySources,...taldefgrobepRv8451.registrySources];
+import foundayoAttainMaintain from './reviews/2026-10-04-authorised-foundayo-attain-maintain.json' with {type:'json'};
+export const registrySources=[...receipt.registrySources,...evidenceDesk.registrySources,...srsd384Publication.registrySources,...rgt075Publication.registrySources,...vct220Publication.registrySources,...azelapragDiscontinuation.registrySources,...taldefgrobepRv8451.registrySources,...foundayoAttainMaintain.registrySources];
 export const supportSources=receipt.supportSources;
 export const credibilitySources=[...registrySources,...supportSources];
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -41,6 +42,7 @@ export function industryReviewFlag(entry,health,now=Date.now()) {
   return '';
 }
 export const changes=[
+ {date:'2026-10-04',kind:'Switching and maintenance evidence',text:'Added the peer-reviewed ATTAIN-MAINTAIN study and its monitored registry lifecycle to Foundayo. The US trial used an investigational capsule and placebo rescue design after injectable tirzepatide or semaglutide; it is not a UK dosing or switching recommendation.',anchor:'foundayo'},
  {date:'2026-10-04',kind:'Muscle-preservation and oral discovery',text:'Added taldefgrobep alfa as active, not-recruiting Phase 2 research with an automatically monitored registry lifecycle, and RV-8451 as a separate preclinical oral GLP-1 programme. Estimated completion and planned IND timing are not treated as completed results. The catalogue now contains 95 programmes.',anchor:'industry-taldefgrobep-alfa'},
  {date:'2026-10-04',kind:'Discontinued programme added',text:'Added azelaprag after primary review of the terminated STRIDES Phase 2 study and BioAge’s later programme termination. The registry has no posted results; no efficacy or muscle-preservation outcome is claimed. The catalogue now contains 93 programmes.',anchor:'industry-azelaprag'},
  {date:'2026-10-04',kind:'Maintenance evidence added',text:'Added Viking’s sponsor-reported VK2735 maintenance study after full primary-source review. Monthly and every-other-week regimens remain investigational; the 12-week maintenance period does not establish long-term durability or an approved dosing schedule.',anchor:'industry-vk2735'},
