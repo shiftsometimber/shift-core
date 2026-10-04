@@ -231,8 +231,8 @@
     "shift-health-public-content.mjs": "4ecfeec3e774fa7501d0bdcd9ad4554dce33d66e1bc66c5d60b6cff4f9de895c",
     "frontend/member/shift-health-catalogue-v1.js": "d5b799098caa0b9a59844ea8bbde9cc71162b984c0b5d3bb5d40f786fa742720",
     "tests/testosterone-public.test.mjs": "369035bb9d5e1197fbc30d1cc5da1ddb916f4771164fa9d99f353876d75da5cb",
-    "medicines-watch/credibility.mjs": "5be0c4da7f66979d0a345baf65a60e7f4b76cb1befabfb89a033a0e8b50a8d3e",
-    "medicines-watch/credibility.test.mjs": "babdfee19989f408df7b4f6f91de2c02ac1eba26b30f932117369cf9ecde955a",
+    "medicines-watch/credibility.mjs": "292e3edf7726356b59077032680e8aef7168211d0648ef86a11f7552968bc6bf",
+    "medicines-watch/credibility.test.mjs": "bd37b6c6f5e3821bf8776d2172823b3bdc2b5f1f1a5666e45413a2f4a6747bba",
     "medicines-watch/registry-lifecycle.mjs": "955b9f70a22fe17246867a8098f7bae89204cedc3d2055dbb6ba8b84e714870e",
     "medicines-watch/reviews/2026-10-03-credibility-improvements.json": "f883eac426fc35e258902e898f49bc098f7d38ab0ba514b75da59466bb986e05",
     "medicines-watch/evidence-desk.mjs": "e3c35d471963f01dcfbae61d17edf7ccec9175c25d2e98cc660d0355d4aaf77f",
@@ -392,21 +392,21 @@
     }
   },
   "watchEvidenceDesk": {
-    "contentCommit": "3d73e4cd5b78496d114ba5b07f827deae9d49965",
-    "evidenceRun": 37174655874,
-    "pr": 1053,
+    "contentCommit": "db405a30255d6855fcf932a03aa4ae6ae138080d",
+    "evidenceRun": 37176240622,
+    "pr": 1055,
     "editorialAuthority": "Matt requested a higher Watch standard on 3 October 2026; standing supported informational publication authority retained. No clinical approval.",
     "clinicalApproval": null,
     "catalogueEntries": 90,
     "configuredSources": 125,
     "registryRecords": 69,
-    "tests": "140 Watch tests pass locally and in exact-source hosted run37174655874; mobile/desktop Chromium rendering passes.",
+    "tests": "140 Watch tests pass locally and in exact-source hosted run37176240622; mobile/desktop Chromium rendering passes.",
     "lastVerifiedWatchProduction": {
-      "run": 37173716436,
-      "source": "38bbee33779a099f49302fa7a0e08be0c6708cfe",
-      "deploymentId": "0b858224-a6ef-4063-b043-a97670a2cd11",
-      "versionId": "a57acb6e-6680-4ef9-8110-84daafa1",
-      "rollbackVersionId": "188f2678-b524-42c6-b248-1754a26bf6c4"
+      "run": 37175526714,
+      "source": "187949bb3df9ebcc8f4dea735e1f73e4e25145bc",
+      "deploymentId": "b7f17bdd-f7af-4953-8be9-f179750a08b5",
+      "versionId": "a2ebf2aa-13f6-4bae-9725-d8b673e2f797",
+      "rollbackVersionId": "a57acb6e-6680-4ef9-8110-84daafa1a91c"
     },
     "requirements": "Current actual runtime must be independently reconciled by the existing ownership/rollback guard. Full combined-head checks, guarded production and actual live verification remain required. No scheduler observation or unrelated factual review date is reset."
   }
