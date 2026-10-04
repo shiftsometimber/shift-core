@@ -1,0 +1,190 @@
+{
+  "reviewedAt": "2026-10-04T01:18:16Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add a bounded SRSD384 research summary and registry lifecycle check after a broader smaller-developer and muscle-preservation discovery pass. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "srsd384",
+      "name": "SRSD384",
+      "developer": "Sirius Therapeutics",
+      "group": "research",
+      "stage": "Sponsor-reported first participant dosed in Phase 1/2a; registry still not yet recruiting",
+      "summary": "SRSD384 is an investigational subcutaneous GalNAc-conjugated siRNA targeting INHBE. Sirius reported on 1 July 2026 that the first participant had been dosed in a two-part Phase 1/2a study in Australia. Part A studies SRSD384 alone in people with overweight or obesity; Part B studies SRSD384 with tirzepatide in participants who also have type 2 diabetes. The sponsor-submitted registry record still says not yet recruiting, has an estimated June 2026 start and 78 estimated participants, and has no posted results.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for SRSD384 or its investigational combination with tirzepatide.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed research evidence.",
+      "supply": "Research in Australia does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The sponsor's 1 July first-participant statement conflicts with the registry's older not-yet-recruiting status, last updated 5 June 2026; both dated accounts are retained and the registry is not silently treated as current recruitment evidence. The October 2027 completion and 78-participant enrolment remain estimates. The trial evaluates safety, tolerability, pharmacokinetics and pharmacodynamics and has no posted results. Fat reduction, lean-mass preservation and cardiometabolic benefit are development aims informed by genetics and preclinical work, not demonstrated human outcomes. Part B is investigational combination research, not evidence of added benefit, safety, an authorised regimen, UK access or supply.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-04T01:18:16Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07557355: SRSD384",
+          "url": "https://clinicaltrials.gov/study/NCT07557355",
+          "sourcePublishedAt": "2026-04-29",
+          "sourceUpdatedAt": "2026-06-05",
+          "reviewedAt": "2026-10-04T01:18:16Z",
+          "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+        },
+        {
+          "title": "Sirius Therapeutics: first participant dosed in SRSD384 Phase 1/2a",
+          "url": "https://siriusrna.com/html/companynews/119.html",
+          "sourcePublishedAt": "2026-07-01",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T01:18:16Z",
+          "checkScope": "Complete original sponsor announcement read for reported first dosing, two-part design, Australian research and mechanism claims. Not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct07557355",
+      "nctId": "NCT07557355",
+      "title": "ClinicalTrials.gov NCT07557355: SRSD384",
+      "url": "https://clinicaltrials.gov/study/NCT07557355",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07557355",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07557355",
+        "Sirius Therapeutics"
+      ],
+      "reviewedAt": "2026-10-04T01:18:16Z",
+      "sourcePublishedAt": "2026-04-29",
+      "sourceUpdatedAt": "2026-06-05",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07557355",
+        "title": "A Phase 1/2a, Randomized, Double Blind, Placebo Controlled, Dose-Escalation Study to Evaluate the Safety, Tolerability, Pharmacokinetics, and Pharmacodynamics of Subcutaneously Administered SRSD384 in Overweight or Obese Participants",
+        "sponsor": "Sirius Therapeutics Co., Ltd.",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1",
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 78,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-06",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2027-10",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-10",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-04-29",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-06-05",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "srsd384"
+      ],
+      "rawResponseSha256": "831471c0ab62ec4a40a4e4c9b3734dd0072811f612efb151039f582cff491ceb",
+      "reviewedFingerprint": "e4b8ca47dacfa96f9538950cbaba9400b913ea1a32f34dcae1e01d7c679f7d64"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07557355",
+      "publicationDate": "2026-04-29",
+      "updateDate": "2026-06-05",
+      "reviewedAt": "2026-10-04T01:18:16Z",
+      "outcome": "Complete primary API body read for exact identity, study design, status, estimated dates and enrolment, Australian location and absence of posted results."
+    },
+    {
+      "url": "https://siriusrna.com/html/companynews/119.html",
+      "publicationDate": "2026-07-01",
+      "updateDate": null,
+      "reviewedAt": "2026-10-04T01:18:16Z",
+      "outcome": "Complete sponsor announcement read. The first-participant statement is retained alongside, not substituted for, the older conflicting registry status."
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-04T01:12:07Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 124,
+    "currentSources": 123,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "error": "http_403",
+        "lastAttemptAt": "2026-10-04T00:46:15.985Z",
+        "lastSuccessAt": null,
+        "nextCheckAt": "2026-10-04T01:46:15.985Z"
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "A successful SELECT-only health response checks configured-source availability and monitor operation. It does not renew factual reviews, approve changed wording or establish complete industry coverage."
+  },
+  "discoveryPass": {
+    "method": "Separate current-date/current-month and broader undated topic searches covered regulators, access, early and late trials, peptides, non-incretins, combinations, maintenance and muscle-preservation approaches. Results were reconciled with the live page, current main, dated receipts and open Watch PRs before publication selection.",
+    "included": "SRSD384 is a distinct smaller-developer INHBE programme absent from the live catalogue and dated publication receipts. ALV-100 and IBIO-600 were already live; WVE-007, enobosarm, SYNT-101, HRS-1596, emugrobart and other resurfaced leads were not duplicated.",
+    "primarySearches": [
+      "obesity drug trial sponsor announcement September 2026 phase 1 phase 2 combination muscle preservation",
+      "site:clinicaltrials.gov obesity recruiting 2026 Phase 1 peptide",
+      "site:gov.uk MHRA weight loss medicine September 2026",
+      "site:nice.org.uk obesity medicines September 2026 guidance",
+      "SRSD384 Phase 1/2a ClinicalTrials.gov Sirius Therapeutics official"
+    ],
+    "incompleteChecks": [
+      "No new MHRA authorisation, NICE access decision or verified supply change was established. The September MHRA advertising actions concern promotional compliance, not a medicine authorisation or NHS access decision.",
+      "The registry record was last updated before the sponsor's first-participant announcement. Automated lifecycle checks will expose a later registry status change, but the present conflict remains unresolved.",
+      "Search results, selected domains and catalogue counts cannot exclude indexing delay, older omissions or additional international developers and do not establish complete industry coverage."
+    ],
+    "failedChecks": [
+      {
+        "url": "https://siriusrna.com/html/companynews/119.html",
+        "status": "direct_fetch_tls_502",
+        "outcome": "A direct terminal retrieval failed through the network path, while the complete public sponsor page was readable through the web index. No automatic baseline was approved for this announcement.",
+        "nextAction": "Keep the sponsor announcement in the manual evidence directory and use the independently monitored registry lifecycle for status changes."
+      }
+    ],
+    "openPullRequests": [
+      {
+        "number": 874,
+        "status": "draft review-only",
+        "outcome": "Retatrutide evergreen evidence review remains a separate clinically gated scope and was not duplicated or treated as live."
+      }
+    ],
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "widerBefore": 81,
+    "widerAfter": 82,
+    "totalBefore": 87,
+    "totalAfter": 88,
+    "configuredSourcesBefore": 124,
+    "configuredSourcesAfter": 125,
+    "trialRecordsBefore": 68,
+    "trialRecordsAfter": 69
+  },
+  "nextAction": "Publish the bounded SRSD384 addition through exact passing checks and guarded production, then verify the live card, trial lifecycle, Treatments entry and SELECT-only health endpoint. Continue open-ended discovery without claiming completeness."
+}

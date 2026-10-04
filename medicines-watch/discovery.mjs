@@ -15,6 +15,7 @@ export const discoveryDomains = [
  'regeneron.com','scholarrock.com','merck.com','chugai-pharm.co.jp','enveda.com',
  'mbxbio.com','arrowheadpharma.com','lexpharma.com','neurocrine.com',
  'corbuspharma.com','syntis.bio','alveustx.com',
+ 'siriusrna.com',
  'abbvie.com','ascletis.com','ternspharma.com',
  'biophytis.com','orsobio.com','neurobiogen.com','sbpgroup.com','lepumedical.com',
  'biomedind.com',
