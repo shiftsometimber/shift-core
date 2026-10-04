@@ -36,6 +36,7 @@ export function industryReviewFlag(entry,health,now=Date.now()) {
   return '';
 }
 export const changes=[
+ {date:'2026-10-04',kind:'Modality discovery',text:'Added preclinical RJVA-002 as an obesity gene-therapy programme, explicitly limited to mouse evidence. The separate Revita device procedure and type 2 diabetes RJVA-001 programme are not silently counted as medicines coverage. The catalogue now contains 89 programmes.',anchor:'industry-rjva002'},
  {date:'2026-10-04',kind:'Smaller-developer discovery',text:'Added SRSD384 with the sponsor-reported first participant and the older conflicting not-yet-recruiting registry status both retained. No human muscle-preservation benefit is claimed. The catalogue now contains 88 programmes.',anchor:'industry-srsd384'},
  {date:'2026-10-03',kind:'Evidence and discovery',text:'Added ZP6590 with its conflicting pipeline narrative retained, dated trial lifecycle details, developer and mechanism search, a source-review queue and manual-monitoring gaps. The catalogue now contains 87 programmes.',anchor:'watch-evidence-desk'},
  {date:'2026-10-03',kind:'Coverage and usability',text:'Added checks for 67 linked trial records, a regulator safety notice, UK nation access context, evidence labels and this change history. The catalogue remains 86 programmes.',anchor:'how-we-check'},
