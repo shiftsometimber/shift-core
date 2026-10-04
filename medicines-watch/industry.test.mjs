@@ -40,6 +40,7 @@ import arteloMuscleGap from './reviews/2026-10-04-authorised-art2713-muscle-gap.
 import rgt075Publication from './reviews/2026-10-04-authorised-rgt075.json' with {type:'json'};
 import vct220Publication from './reviews/2026-10-04-authorised-vct220.json' with {type:'json'};
 import vk2735Maintenance from './reviews/2026-10-04-authorised-vk2735-maintenance.json' with {type:'json'};
+import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-discontinuation.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('VK2735 maintenance evidence stays sponsor-reported and does not create an approved regimen',()=>{
  const e=industry.find(e=>e.id==='vk2735');
@@ -360,8 +361,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,86);assert.equal(sources.length,132);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,92);
+ assert.equal(medicines.length,6);assert.equal(industry.length,87);assert.equal(sources.length,134);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,93);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -868,7 +869,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,86);
+ assert.equal(industry.length,87);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -936,4 +937,35 @@ test('Survodutide distinguishes peer-reviewed treatment-regimen results from spo
  assert.equal(paper.sourcePublishedAt,'2026-10-01');
  assert.match(paper.checkScope,/complete PubMed bibliographic record and abstract|PubMed abstract read/);
  assert.match(paper.checkScope,/not automatically content-monitored/);
+});
+test('Azelaprag stays discontinued and preserves the registry and sponsor safety boundaries',()=>{
+ assert.equal(azelapragDiscontinuation.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(azelapragDiscontinuation.clinicalApproval,null);
+ assert.equal(azelapragDiscontinuation.industryComplete,false);
+ const entry=industry.find(item=>item.id==='azelaprag');
+ assert.ok(entry);
+ assert.equal(entry.group,'discontinued');
+ assert.equal(entry.clinicalApproval,null);
+ assert.match(entry.stage,/Phase 2 STRIDES terminated/);
+ assert.match(entry.stage,/development discontinued/);
+ assert.match(entry.summary,/11 of 204 enrolled participants/);
+ assert.match(entry.summary,/actual 12 February 2025 completion/);
+ assert.match(entry.summary,/development of azelaprag was terminated/);
+ assert.match(entry.limitations,/does not independently determine causation/);
+ assert.match(entry.limitations,/registry has no posted results/);
+ assert.match(entry.limitations,/does not make the laboratory finding clinically unimportant/);
+ assert.match(entry.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.match(entry.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(entry.supply,/does not establish lawful UK retail supply/);
+ assert.ok(entry.sourceIds.includes('azelaprag-bioage-discontinuation'));
+ assert.ok(entry.additionalEvidence.some(source=>source.url==='https://clinicaltrials.gov/study/NCT06515418'));
+ assert.ok(entry.additionalEvidence.some(source=>source.url.includes('sec.gov/Archives/edgar')));
+ const registry=azelapragDiscontinuation.registrySources[0];
+ assert.equal(registry.lifecycle.status,'TERMINATED');
+ assert.equal(registry.lifecycle.enrollment.count,204);
+ assert.equal(registry.lifecycle.enrollment.type,'ACTUAL');
+ assert.equal(registry.lifecycle.completion.type,'ACTUAL');
+ assert.equal(registry.lifecycle.hasResults,false);
+ assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ assert.ok(discoveryDomains.includes('bioagelabs.com'));
 });

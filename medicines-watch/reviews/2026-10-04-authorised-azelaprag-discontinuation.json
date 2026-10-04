@@ -1,0 +1,198 @@
+{
+  "reviewedAt": "2026-10-04T12:21:42Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add the previously untracked azelaprag obesity and muscle-preservation programme as discontinued after reading the sponsor announcement, registry record and later SEC filing. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "azelaprag",
+      "name": "Azelaprag / BGE-105",
+      "developer": "BioAge Labs",
+      "group": "discontinued",
+      "stage": "Phase 2 STRIDES terminated; azelaprag development discontinued",
+      "summary": "BioAge discontinued dosing and enrolment in the STRIDES Phase 2 obesity study on 6 December 2024 after liver transaminitis without clinically significant symptoms was observed in 11 of 204 enrolled participants in azelaprag groups. The sponsor-submitted registry records the study as terminated with an actual 12 February 2025 completion, and BioAge's later annual filing says development of azelaprag was terminated in January 2025.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for azelaprag, alone or with tirzepatide.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established. A terminated research programme is not an NHS treatment option.",
+      "supply": "The reviewed evidence does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The safety observation and counts are sponsor and sponsor-submitted registry reports; this summary does not independently determine causation, incidence beyond the studied regimens or risk for other APJ agonists. The registry has no posted results, so efficacy, body-composition and muscle-preservation outcomes are not claimed. The absence of clinically significant symptoms in the sponsor report does not make the laboratory finding clinically unimportant. Azelaprag's termination must not be presented as an active programme, approved medicine, recommended combination or evidence about tirzepatide used alone.",
+      "sourceIds": [
+        "azelaprag-bioage-discontinuation"
+      ],
+      "reviewedAt": "2026-10-04T12:21:42Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT06515418: STRIDES",
+          "url": "https://clinicaltrials.gov/study/NCT06515418",
+          "sourcePublishedAt": "2024-07-23",
+          "sourceUpdatedAt": "2025-03-13",
+          "reviewedAt": "2026-10-04T12:21:42Z",
+          "checkScope": "Automatic record-status checks; no assessment of clinical outcomes."
+        },
+        {
+          "title": "BioAge Labs 2024 Form 10-K",
+          "url": "https://www.sec.gov/Archives/edgar/data/1709941/000095017025042759/bioa-20241231.htm",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-04T12:21:42Z",
+          "checkScope": "Complete SEC filing section read for the later statement that azelaprag development was terminated in January 2025. Filing publication date was not independently verified and remains unknown. Not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "azelaprag-bioage-discontinuation",
+      "title": "BioAge Labs: STRIDES Phase 2 discontinuation",
+      "url": "https://ir.bioagelabs.com/news-releases/news-release-details/bioage-labs-announces-discontinuation-strides-phase-2-clinical/",
+      "checkUrl": "https://ir.bioagelabs.com/news-releases/news-release-details/bioage-labs-announces-discontinuation-strides-phase-2-clinical/",
+      "format": "html",
+      "sourcePublishedAt": "2024-12-06",
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-10-04T12:21:42Z",
+      "requiredTerms": [
+        "Azelaprag",
+        "STRIDES",
+        "discontinuation",
+        "liver transaminitis"
+      ],
+      "reviewedFingerprint": "0080170ec76c06b5c251ad17226440a7807402e108d6ed1c995fe9fc0c07aba5",
+      "evidenceType": "Original sponsor discontinuation announcement"
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct06515418",
+      "nctId": "NCT06515418",
+      "title": "ClinicalTrials.gov NCT06515418: STRIDES",
+      "url": "https://clinicaltrials.gov/study/NCT06515418",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06515418",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT06515418",
+        "BioAge Labs, Inc."
+      ],
+      "reviewedAt": "2026-10-04T12:21:42Z",
+      "sourcePublishedAt": "2024-07-23",
+      "sourceUpdatedAt": "2025-03-13",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT06515418",
+        "title": "A Phase 2, Randomized, Double-Blind, Placebo-Controlled, Parallel-Arm Proof-of-Concept Study to Investigate Efficacy and Safety of Oral Azelaprag Plus Once Weekly Tirzepatide Compared with Tirzepatide Alone in Participants with Obesity Aged 55 Years and Over (STRIDES)",
+        "sponsor": "BioAge Labs, Inc.",
+        "status": "TERMINATED",
+        "whyStopped": "Dosing of both study drugs has been discontinued due to observation of liver transaminitis without clinically significant symptoms in some subjects receiving azelaprag. All participant visits have been completed.",
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 204,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2024-06-27",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2025-02-06",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2025-02-12",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2024-07-23",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2025-03-13",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "azelaprag"
+      ],
+      "rawResponseSha256": "5ec42e3a1714a9b7ce01fc78a2f62a589833429f62f6e581d2b33e60c3aff56e",
+      "reviewedFingerprint": "c7e60ac3b739c60de594cfaae6772d270457b3749e561c92ee777353d04093f1"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://ir.bioagelabs.com/news-releases/news-release-details/bioage-labs-announces-discontinuation-strides-phase-2-clinical/",
+      "publicationDate": "2024-12-06",
+      "updateDate": null,
+      "reviewedAt": "2026-10-04T12:21:42Z",
+      "outcome": "Complete sponsor announcement read for the discontinued study, 204 enrolled participants, 11 azelaprag-group laboratory observations, stopped dosing and enrolment, and ongoing off-drug follow-up at the announcement date."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06515418",
+      "publicationDate": "2024-07-23",
+      "updateDate": "2025-03-13",
+      "reviewedAt": "2026-10-04T12:21:42Z",
+      "outcome": "Complete primary API body read for exact identity, terminated status, stopping reason, actual dates, actual enrolment and absence of posted results."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1709941/000095017025042759/bioa-20241231.htm",
+      "publicationDate": null,
+      "updateDate": null,
+      "reviewedAt": "2026-10-04T12:21:42Z",
+      "outcome": "The primary annual filing was read for BioAge's later statement that azelaprag development was terminated in January 2025; publication date remains unverified."
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-04T12:15:47.269Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 132,
+    "currentSources": 131,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "error": "http_403",
+        "lastAttemptAt": "2026-10-04T11:45:37.496Z",
+        "lastSuccessAt": null,
+        "nextCheckAt": "2026-10-04T12:45:37.496Z"
+      }
+    ],
+    "overdueReviews": 0,
+    "withdrawnSources": 0,
+    "baselineChanges": false,
+    "reviewRenewals": false,
+    "boundary": "The SELECT-only health response verifies configured-source availability and monitor operation. It does not renew factual reviews, approve changed wording or establish complete industry coverage. The unchanged Zealand 403 remains visible and is not repeated as a new alert."
+  },
+  "discoveryPass": {
+    "method": "A separate broader undated pass searched discontinued obesity combinations and muscle-preservation approaches after the current-date regulator, access, sponsor and trial searches. Results were reconciled with the live page, current main, dated receipts and open Watch PRs.",
+    "included": "Azelaprag is a previously untracked discontinued obesity and proposed muscle-preservation programme from BioAge. Its terminated Phase 2 combination study and later programme termination are retained together rather than silently dropping a failed candidate.",
+    "notDuplicated": "Bimagrumab, enobosarm, WVE-007, SRSD384, ART27.13, trevogrumab, HRS-1596 and other resurfaced programmes were already live or represented in dated review work.",
+    "incompleteChecks": [
+      "The registry has no posted results. No efficacy, body-composition or muscle-function outcome from STRIDES is published here.",
+      "Search indexing can lag, and selected results cannot exclude older omissions, unannounced programmes or additional international developers. Catalogue and configured-source counts do not establish industry completeness."
+    ],
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "widerBefore": 86,
+    "widerAfter": 87,
+    "totalBefore": 92,
+    "totalAfter": 93,
+    "configuredSourcesBefore": 132,
+    "configuredSourcesAfter": 134,
+    "trialRecordsBefore": 75,
+    "trialRecordsAfter": 76
+  },
+  "nextAction": "Run the full Watch tests and exact-head release gates, publish through the guarded production workflow, then verify the live azelaprag wording, Treatments entry and SELECT-only health endpoint."
+}
