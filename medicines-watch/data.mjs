@@ -222,6 +222,16 @@ export const medicines = [
       url: 'https://investor.lilly.com/news-releases/news-release-details/lillys-oral-glp-1-foundayo-orforglipron-was-associated',
       reviewedAt: '2026-10-03T15:16:41Z', sourcePublishedAt: '2026-10-01',
       checkScope: 'Sponsor-reported post-hoc modelling with CMDS and BMI-based Framingham risk engines. These are predicted risks, not observed diabetes diagnoses or cardiovascular events. ATTAIN-1 used an investigational formulation at doses Lilly describes as equivalent to marketed tablets. This source does not change the separate UK authorisation, NHS access or actual-supply statements and is not automatically content-monitored.',
+    }, {
+      title: 'Peer-reviewed ATTAIN-MAINTAIN Phase 3b switching and maintenance study — 13 May 2026',
+      url: 'https://www.nature.com/articles/s41591-026-04386-7',
+      reviewedAt: '2026-10-04T20:20:59Z', sourcePublishedAt: '2026-05-13',
+      evidenceType: 'Peer-reviewed randomized trial — see design and limitations',
+      checkScope: 'A 52-week US placebo-controlled study in 376 SURMOUNT-5 participants previously treated with injectable tirzepatide or semaglutide. It used investigational orforglipron capsules and a trial titration schedule, not the authorised UK Foundayo tablet regimen or a prescribing/switching recommendation. The placebo rescue design, no continued-injectable comparator, one-year duration, population limits and Lilly funding/involvement constrain interpretation. This evidence does not change UK authorisation, NHS access or actual-supply statements and is not automatically content-monitored.',
+    }, {
+      title: 'ClinicalTrials.gov NCT06584916: ATTAIN-MAINTAIN',
+      url: 'https://clinicaltrials.gov/study/NCT06584916',
+      reviewedAt: '2026-10-04T20:20:59Z', sourcePublishedAt: '2024-09-05',
     }],
   },
   {

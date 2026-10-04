@@ -10,6 +10,7 @@ const latestNhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-01-m
 const foundayoReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-29-foundayo-nice-schedule.json', import.meta.url)));
 const overdueReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-30-overdue-source-renewal.json', import.meta.url)));
 const foundayoPredictedRiskReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-03-authorised-foundayo-predicted-risk.json', import.meta.url)));
+const foundayoAttainMaintainReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-04-authorised-foundayo-attain-maintain.json', import.meta.url)));
 const wegovyMashReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-03-authorised-wegovy-mash-correction.json', import.meta.url)));
 const reviewTime = Date.parse(receipt.reviewedAt);
 const rowFor = (source, now = reviewTime) => ({
@@ -150,6 +151,26 @@ test('Foundayo predicted-risk evidence is bounded to post-hoc modelling, not obs
   assert.equal(foundayoPredictedRiskReceipt.catalogueCounts.totalBefore, foundayoPredictedRiskReceipt.catalogueCounts.totalAfter);
   assert.equal(foundayoPredictedRiskReceipt.configuredSourcePass.reviewRenewals, false);
   assert.equal(foundayoPredictedRiskReceipt.configuredSourcePass.baselineChanges, false);
+});
+
+test('Foundayo ATTAIN-MAINTAIN evidence separates trial switching from the authorised UK regimen', () => {
+  const foundayo = medicines.find(medicine => medicine.id === 'foundayo');
+  const paper = foundayo.evidenceLinks.find(link => link.url === foundayoAttainMaintainReceipt.primarySource.url);
+  const registry = foundayo.evidenceLinks.find(link => link.url === foundayoAttainMaintainReceipt.registrySources[0].url);
+  assert.equal(foundayoAttainMaintainReceipt.reviewType, 'AI-assisted primary-source factual review; not clinical approval');
+  assert.equal(foundayoAttainMaintainReceipt.clinicalApproval, null);
+  assert.equal(foundayoAttainMaintainReceipt.primarySource.sourcePublishedAt, '2026-05-13');
+  assert.equal(paper.reviewedAt, foundayoAttainMaintainReceipt.reviewedAt);
+  assert.match(paper.checkScope, /investigational orforglipron capsules/i);
+  assert.match(paper.checkScope, /not the authorised UK Foundayo tablet regimen/i);
+  assert.match(paper.checkScope, /placebo rescue design/i);
+  assert.match(paper.checkScope, /Lilly funding\/involvement/i);
+  assert.equal(registry.reviewedAt, foundayoAttainMaintainReceipt.reviewedAt);
+  assert.equal(foundayoAttainMaintainReceipt.registrySources[0].lifecycle.status, 'COMPLETED');
+  assert.equal(foundayoAttainMaintainReceipt.registrySources[0].lifecycle.hasResults, false);
+  assert.equal(foundayoAttainMaintainReceipt.catalogueCounts.totalBefore, foundayoAttainMaintainReceipt.catalogueCounts.totalAfter);
+  assert.equal(foundayoAttainMaintainReceipt.configuredSourcePass.reviewRenewals, false);
+  assert.equal(foundayoAttainMaintainReceipt.configuredSourcePass.baselineChanges, false);
 });
 
 test('Wegovy MASH correction separates UK authorisation, NICE appraisal and NHS access', () => {
