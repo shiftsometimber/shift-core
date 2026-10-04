@@ -4,7 +4,8 @@ import srsd384Publication from './reviews/2026-10-04-authorised-srsd384.json' wi
 import rgt075Publication from './reviews/2026-10-04-authorised-rgt075.json' with {type:'json'};
 import vct220Publication from './reviews/2026-10-04-authorised-vct220.json' with {type:'json'};
 import vk2735Maintenance from './reviews/2026-10-04-authorised-vk2735-maintenance.json' with {type:'json'};
-export const registrySources=[...receipt.registrySources,...evidenceDesk.registrySources,...srsd384Publication.registrySources,...rgt075Publication.registrySources,...vct220Publication.registrySources];
+import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-discontinuation.json' with {type:'json'};
+export const registrySources=[...receipt.registrySources,...evidenceDesk.registrySources,...srsd384Publication.registrySources,...rgt075Publication.registrySources,...vct220Publication.registrySources,...azelapragDiscontinuation.registrySources];
 export const supportSources=receipt.supportSources;
 export const credibilitySources=[...registrySources,...supportSources];
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -39,6 +40,7 @@ export function industryReviewFlag(entry,health,now=Date.now()) {
   return '';
 }
 export const changes=[
+ {date:'2026-10-04',kind:'Discontinued programme added',text:'Added azelaprag after primary review of the terminated STRIDES Phase 2 study and BioAge’s later programme termination. The registry has no posted results; no efficacy or muscle-preservation outcome is claimed. The catalogue now contains 93 programmes.',anchor:'industry-azelaprag'},
  {date:'2026-10-04',kind:'Maintenance evidence added',text:'Added Viking’s sponsor-reported VK2735 maintenance study after full primary-source review. Monthly and every-other-week regimens remain investigational; the 12-week maintenance period does not establish long-term durability or an approved dosing schedule.',anchor:'industry-vk2735'},
  {date:'2026-10-04',kind:'International omission corrected',text:'Added CX11/VCT220 after primary review of completed Chinese Phase II and III records, a completed US Phase II record and a separate active hypertension study. Sponsor-reported topline results, the 246-versus-250 US enrolment discrepancy and planned global Phase III remain explicit. The catalogue now contains 92 programmes.',anchor:'industry-vct220'},
  {date:'2026-10-04',kind:'Older omission corrected',text:'Added RGT-075 after primary review of its completed Phase 2a and COMO-1 Phase 2b records. Neither registry has posted results, and no Phase 3 start is inferred. The catalogue now contains 91 programmes.',anchor:'industry-rgt075'},

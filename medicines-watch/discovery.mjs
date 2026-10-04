@@ -23,6 +23,7 @@ export const discoveryDomains = [
  'biophytis.com','orsobio.com','neurobiogen.com','sbpgroup.com','lepumedical.com',
  'biomedind.com',
  'antagtherapeutics.com','ganlee.com',
+ 'bioagelabs.com',
 ];
 // Supply a current date when running; never leave a review month fixed.
 export function queriesForDate(date=new Date()) {
