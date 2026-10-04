@@ -2,7 +2,7 @@ name: My Timber Final Production Candidate
 
 on:
   push:
-    branches: [main, verification/member-design-20261002, verification/member-finish-20261002]
+    branches: [main, verification/member-design-20261002, verification/member-finish-20261002, verification/member-diagnostics-20261004]
     paths:
       - 'my-timber-final-production.mjs'
       - 'release/app-member-live.mjs'
@@ -57,7 +57,7 @@ jobs:
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
       - name: Install MP4 evidence encoder
-        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002')
+        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/verification/member-diagnostics-20261004')
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Acquire short-lived Shift commissioning identity
         id: oidc
@@ -68,7 +68,7 @@ jobs:
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: Prove activated Passport with synthetic production accounts
-        if: ${{ (github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002')) && hashFiles('health-passport/production-browser.mjs') != '' }}
+        if: ${{ (github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/verification/member-diagnostics-20261004')) && hashFiles('health-passport/production-browser.mjs') != '' }}
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           PASSPORT_RELEASE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
@@ -90,7 +90,7 @@ jobs:
           MY_TIMBER_FINAL_EVIDENCE_DIR: my-timber-final-evidence
         run: node my-timber-google-play-screenshots.mjs
       - name: Record and prove Billy's live production journey
-        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002')
+        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/verification/member-diagnostics-20261004')
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
@@ -98,7 +98,7 @@ jobs:
           MY_TIMBER_FINAL_EVIDENCE_DIR: my-timber-final-evidence
         run: node my-timber-final-production.mjs
       - name: Encode walkthrough video
-        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002')
+        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/verification/member-diagnostics-20261004')
         run: ffmpeg -y -i my-timber-final-evidence/my-timber-billy-iphone.webm -movflags +faststart -pix_fmt yuv420p my-timber-final-evidence/my-timber-billy-iphone.mp4
       - name: Upload production candidate and phone video
         if: always()
