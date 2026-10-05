@@ -41,3 +41,27 @@ test('link repair preserves external anchors, scripts, form actions and unrelate
  const html=`<a href="https://example.org/member/progress">External</a><a data-href="/member/progress">Data</a><script>const example='<a href="/member/journey">';</script><form action="/member/progress"></form><!-- <a href="/member/progress"> -->`;
  assert.equal(repairPublicSeoLinks(html),html);
 });
+
+const {SIX_TOPIC_SEO,withSixTopicGuides}=await import('../public-seo-closeout.mjs');
+const topicShell='<html><head><title>Original</title><meta content="original" name="description"><meta property="og:title" content="Original"><link rel="canonical" href="https://shiftsometimber.co.uk/example"><script type="application/ld+json">{"dateModified":"2026-08-26"}</script></head><body><header>Original menu</header><main><h1>Original heading</h1><p>Original safety advice</p></main><footer>Original footer</footer></body></html>';
+test('six topic guides preserve article, clinical review dates, schema and shell',()=>{
+ for(const path of Object.keys(SIX_TOPIC_SEO)){
+  const html=withSixTopicGuides(topicShell,path);
+  assert.match(html,/Original safety advice/);assert.match(html,/<h1>Original heading<\/h1>/);assert.match(html,/"dateModified":"2026-08-26"/);assert.match(html,/<header>Original menu<\/header>/);assert.match(html,/<footer>Original footer<\/footer>/);
+  assert.equal((html.match(/data-six-topic-seo=/g)||[]).length,1);assert.equal((html.match(/name="description"/g)||[]).length,1);assert.equal(withSixTopicGuides(html,path),html);
+ }
+});
+test('homepage, Start Here, member, API, checkout and Watch documents remain identical',()=>{
+ for(const path of ['/','/start-here','/member/dashboard','/v1/medicines-watch/health','/checkout','/treatment-centre/medicines-watch'])assert.equal(withSixTopicGuides(topicShell,path),topicShell);
+});
+test('mental-health routes keep a standalone support path and research keeps supply boundaries',()=>{
+ const mental=withSixTopicGuides(topicShell,'/mens-mental-health').match(/<section class="shift-topic-guides"[\s\S]*?<\/section>/)[0];
+ assert.match(mental,/without joining SHIFT/);assert.match(mental,/urgent-mental-health-help/);assert.doesNotMatch(mental,/href="\/(mounjaro|wegovy|start-here|member)/);
+ const hub=withSixTopicGuides(topicShell,'/explore-knowledge');assert.match(hub,/not an offer of supply/);assert.match(hub,/Retatrutide \(Reta\)/);
+});
+test('failed and non-HTML responses and mutations are not rewritten',async()=>{
+ for(const [status,type,method] of [[404,'text/html','GET'],[200,'application/json','GET'],[200,'text/html','POST']]){
+  const response=new Response(topicShell,{status,headers:{'content-type':type}});
+  assert.equal(await withPublicSeoCloseout(response,new Request('https://shiftsometimber.co.uk/mounjaro',{method})),response);
+ }
+});

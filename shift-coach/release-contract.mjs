@@ -1,5 +1,6 @@
 import {WATCH_SOURCE_LINK_SOURCE,WATCH_OWNERSHIP_PATHS,watchWaveRef} from '../release/watch-registry-wave-scope.mjs';
 import {DEVICE_HEALTH_DELTA,validateDeviceHealthSource} from '../release/device-health-scope.mjs';
+import {validateSeoFitComposition} from '../release/fit-300-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
@@ -35,6 +36,9 @@ COACH_BACKEND_PATHS.add('release/footer-scope.mjs');
 COACH_ADDITIONS.add('tests/watch-ownership-release.test.mjs');
 // Exact operating-document reconciliation; all current bytes remain pinned.
 COACH_AUDIT_CHANGES.add('docs/DATA-GOVERNANCE-OPERATING-PACK-2026-09-02.md');
+// Finite six-topic SEO composition; all bytes retain manifest pins.
+for(const path of ['scripts/verify-six-topic-seo.mjs','docs/seo/2026-10-05-six-priorities.md','.github/workflows/six-topic-seo-proof.yml','release/six-topic-seo-scope.mjs','release/six-topic-seo-preservation.mjs','tests/six-topic-seo-release.test.mjs'])COACH_ADDITIONS.add(path);
+for(const path of ['public-seo-closeout.mjs','tests/public-seo-closeout.test.mjs'])COACH_BACKEND_PATHS.add(path);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]);
 // Finite read-only release maintenance; not permission for more publication jobs.
 export const ARTICLE_CLOSEOUT_SOURCE='69886cec987aed15a1a7e6340953cd7a5372dfee';
@@ -70,7 +74,7 @@ export function assertCoachingConfiguration(current,previous){
 // are independently pinned by validateCoachingSource below. No generic exclusion.
 export function coachingHistoricalRef(ref,path){
  if(ref==='HEAD'&&['shift-coach/fit-active-edit.mjs','shift-coach/fit-active-edit.test.mjs'].includes(path))return '4afdd2686d5a74dfeea9ca2d86aba71e62ed2320';
- if(ref==='HEAD'&&path==='shift-coach/release-contract.mjs')return 'eecd31ba0f3eb06e8de829d3415d7f86e954a162';
+ if(ref==='HEAD'&&path==='shift-coach/release-contract.mjs')return '36749bd7c3e728ceb09a443366a7e2b933b7c144';
  // These two metadata files compose the separately approved book-copy gate.
  // Their complete current bytes remain required by the coaching pin and app hashes.
  const composedBookGates=new Set(['release/growth-scope.mjs','release/home-banner-scope.mjs','release/watch-registry-wave-scope.mjs','tests/b1-release-scope.test.mjs']);
@@ -89,7 +93,9 @@ export function validateCoachingSource(read,manifest){
  }
  const viewer=manifest.imageViewerComposition;
  if(viewer){assert.equal(viewer.proof,'MEMBER_IMAGE_VIEWER_RELEASE_V1');assert.deepEqual(viewer.paths,['shift-coach/fit-active-edit.mjs','shift-coach/fit-active-edit.test.mjs','shift-coach/release-contract.mjs']);assert.match(viewer.source,/^[a-f0-9]{40}$/);execFileSync('git',['merge-base','--is-ancestor',viewer.source,'HEAD']);}
- for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit,p),'Coaching release source drift: '+p);
+ const composition=manifest.seoFitComposition;
+ if(composition)validateSeoFitComposition(composition,read);
+ for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit,p),'Coaching release source drift: '+p);
  assert.equal(read('HEAD',ARTICLE_CLOSEOUT_PATH),read(ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH),'Read-only article closeout source drift');
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
  assert.equal(read('HEAD','public-continuity.mjs'),read('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
