@@ -1,0 +1,182 @@
+{
+  "reviewedAt": "2026-10-05T16:23:01Z",
+  "publicationStatus": "owner_authorised_factual_correction",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Correct NCT05713799's estimated start date and reviewed registry baseline after the 5 October 2026 record update. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "changes": [
+    {
+      "id": "mirabegron-alpha-lipoic-acid",
+      "fields": {
+        "summary": "NIDDK's NCT05713799 record describes an oral mirabegron and alpha-lipoic acid crossover pilot in adults with obesity, comparing the combination with mirabegron plus placebo. The 5 October 2026 update remains not yet recruiting, with an estimated 8 October 2026 start, 60 estimated participants and estimated March 2030 completion. Its primary endpoint is insulin sensitivity, with metabolic and exploratory body-composition outcomes.",
+        "limitations": "First posted in February 2023: an older omission, not an October medicine launch. The 8 October start remains estimated, not actual dosing. No results are posted. The detailed protocol retains a 48-person target while the enrolment field estimates 60; this discrepancy is preserved. Metabolic study aims are not demonstrated weight-loss benefit, a prescribing recommendation or approval of this combination."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT05713799",
+          "url": "https://clinicaltrials.gov/study/NCT05713799",
+          "sourcePublishedAt": "2023-02-06",
+          "sourceUpdatedAt": "2026-10-05",
+          "reviewedAt": "2026-10-05T16:23:01Z",
+          "checkScope": "Complete sponsor/investigator-submitted API record read for identity, Phase 2 design, not-yet-recruiting status, typed estimated dates, enrolment discrepancy, endpoints, location and absence of posted results; no assessment of efficacy, safety outcomes or clinical suitability."
+        }
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct05713799",
+      "nctId": "NCT05713799",
+      "title": "ClinicalTrials.gov NCT05713799",
+      "url": "https://clinicaltrials.gov/study/NCT05713799",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT05713799",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT05713799"
+      ],
+      "reviewedAt": "2026-10-05T16:23:01Z",
+      "sourcePublishedAt": "2023-02-06",
+      "sourceUpdatedAt": "2026-10-05",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT05713799",
+        "title": "Trial of the Combination of Alpha-Lipoic Acid and Mirabegron in Women and in Men With Obesity",
+        "sponsor": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 60,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-10-08",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2030-03-01",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2030-03-01",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2023-02-06",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-10-05",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "mirabegron-alpha-lipoic-acid"
+      ],
+      "rawResponseSha256": "f16a909cf202b1a0812d809c8b5ae55393a7ef84b22d94b96bffdcd38fce73ea",
+      "reviewedFingerprint": "f1f1502b85ec20feb6fa3aaa46b023e7a42a2a2c0ecba7f775b4bd77ff83471d"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT05713799",
+      "publicationDate": "2023-02-06",
+      "updateDate": "2026-10-05",
+      "reviewedAt": "2026-10-05T16:23:01Z",
+      "outcome": "Complete API body read. The record remains not yet recruiting Phase 2 with 60 estimated participants, an estimated 8 October 2026 start, estimated March 2030 completion and no posted results. This is a one-day change to an estimated start, not evidence that dosing began."
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-05T16:23:01Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "awaiting_review",
+    "configuredSources": 164,
+    "currentSources": 157,
+    "overdueReviews": 0,
+    "changedSources": [
+      {
+        "id": "registry-nct05713799",
+        "status": "awaiting_review",
+        "reason": "source_changed"
+      }
+    ],
+    "delayedSources": [
+      {
+        "id": "kailera-kainetic-20260930",
+        "reason": "check_incomplete",
+        "httpStatus": 200
+      },
+      {
+        "id": "zealand-zp6590-pipeline",
+        "reason": "source_not_verified/last_check_failed",
+        "httpStatus": 403
+      },
+      {
+        "id": "vk2735-maintenance-viking",
+        "reason": "check_incomplete",
+        "httpStatus": 200
+      },
+      {
+        "id": "registry-nct07521631",
+        "reason": "check_incomplete",
+        "httpStatus": 200
+      },
+      {
+        "id": "registry-nct07857473",
+        "reason": "check_overdue",
+        "httpStatus": 200
+      },
+      {
+        "id": "wales-weight-access",
+        "reason": "last_check_failed",
+        "httpStatus": 403
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": true,
+    "boundary": "The SELECT-only response identified one changed registry baseline and six separate delayed checks. A successful response does not renew unrelated factual reviews, approve medical claims or prove complete industry coverage."
+  },
+  "discoveryPass": {
+    "method": "Separate configured-source review followed by a focused primary ClinicalTrials.gov record read for the changed source. The broader current-date and undated discovery pass remains represented by the same-day TE-8105 receipt; this correction does not claim a fresh exhaustive sponsor-universe search.",
+    "included": "NCT05713799's last update was posted 5 October 2026. The only public catalogue fact requiring correction is the estimated start changing from 7 October to 8 October; status, phase, estimated enrolment, estimated completion and absence of results remain unchanged.",
+    "incompleteChecks": [
+      "The registry does not establish that dosing began, efficacy, safety outcomes, UK marketing authorisation, NICE/NHS access or UK supply.",
+      "The one-day estimated-date change does not establish a substantive programme-stage change.",
+      "Current-date searches and configured-source counts do not establish industry completeness."
+    ],
+    "failedChecks": [],
+    "preservedKnownFailures": "The unchanged Zealand ZP6590 HTTP 403 and the other five delayed checks observed in the same monitor cycle remain explicit; none is cleared by reviewing NCT05713799.",
+    "openReviewPrCheck": {
+      "checkedAt": "2026-10-05T16:23:01Z",
+      "openWatchPullRequests": [],
+      "duplicationFound": false
+    },
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailed": 6,
+    "wider": 95,
+    "total": 101,
+    "configuredSources": 164
+  },
+  "retrievalEvidence": {
+    "registry": {
+      "retrievedAt": "2026-10-05T16:23:01Z",
+      "httpStatus": 200,
+      "responseSha256": "f16a909cf202b1a0812d809c8b5ae55393a7ef84b22d94b96bffdcd38fce73ea",
+      "responseBytes": 16912
+    }
+  }
+}

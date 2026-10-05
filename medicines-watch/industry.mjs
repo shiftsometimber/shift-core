@@ -18,6 +18,7 @@ import asc30AuroraCorrection from './reviews/2026-10-05-authorised-asc30-aurora-
 import ard201Pause from './reviews/2026-10-05-authorised-ard201-pause.json' with {type:'json'};
 import asc36OralPublication from './reviews/2026-10-05-authorised-asc36-oral.json' with {type:'json'};
 import te8105Phase2b from './reviews/2026-10-05-authorised-te8105-phase2b.json' with {type:'json'};
+import nct05713799Correction from './reviews/2026-10-05-authorised-nct05713799-start-correction.json' with {type:'json'};
 import evening from './reviews/2026-10-01-authorised-evening-updates.json' with {type:'json'};
 import broaderDiscovery from './reviews/2026-10-01-authorised-broader-discovery.json' with {type:'json'};
 import synt101Correction from './reviews/2026-10-01-synt101-mad-correction.json' with {type:'json'};
@@ -274,4 +275,9 @@ export const industry = [...originalIndustry.map(e => {
   return {...e,...change.fields,reviewedAt:asc30AuroraCorrection.reviewedAt,
    sourceIds:[...e.sourceIds,...asc30AuroraCorrection.sources.map(source=>source.id)],
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
+ })
+ .map(e=>{
+  const change=nct05713799Correction.changes.find(c=>c.id===e.id);
+  return change?{...e,...change.fields,reviewedAt:nct05713799Correction.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]}:e;
  });
