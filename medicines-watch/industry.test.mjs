@@ -51,7 +51,33 @@ import petrelintideZupreme from './reviews/2026-10-05-authorised-petrelintide-zu
 import ribupatideSpecialistWave from './reviews/2026-10-05-authorised-ribupatide-specialist-wave.json' with {type:'json'};
 import hansohOlatorepatideReview from './reviews/2026-10-05-authorised-hansoh-olatorepatide-source-review.json' with {type:'json'};
 import gzc8072Publication from './reviews/2026-10-05-authorised-gzc8072.json' with {type:'json'};
+import te8105Phase2b from './reviews/2026-10-05-authorised-te8105-phase2b.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
+test('TE-8105 preserves not-yet-recruiting status and estimated Phase 2b plans',()=>{
+ assert.equal(te8105Phase2b.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(te8105Phase2b.clinicalApproval,null);
+ assert.equal(te8105Phase2b.industryComplete,false);
+ assert.equal(te8105Phase2b.catalogueCounts.totalAfter,101);
+ assert.equal(te8105Phase2b.catalogueCounts.configuredSourcesAfter,164);
+ const e=industry.find(e=>e.id==='te8105');
+ assert.ok(e);assert.equal(e.group,'research');
+ assert.match(e.stage,/not yet recruiting/);
+ assert.match(e.summary,/injectable GLP-1 receptor agonist/);
+ assert.match(e.summary,/up to 204 participants/);
+ assert.match(e.limitations,/October 2026 start.*204-participant enrolment.*February 2028 completion are estimates/);
+ assert.match(e.limitations,/No results are posted/);
+ assert.match(e.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.match(e.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(e.supply,/does not establish lawful UK retail supply/);
+ assert.deepEqual(e.sourceIds,[]);
+ assert.ok(e.additionalEvidence.some(s=>s.url==='https://clinicaltrials.gov/study/NCT07857473'));
+ const registry=te8105Phase2b.registrySources[0];
+ assert.equal(registry.lifecycle.status,'NOT_YET_RECRUITING');
+ assert.deepEqual(registry.lifecycle.enrollment,{count:204,type:'ESTIMATED'});
+ assert.equal(registry.lifecycle.start.type,'ESTIMATED');
+ assert.equal(registry.lifecycle.hasResults,false);
+ assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
+});
 test('VK2735 maintenance evidence stays sponsor-reported and does not create an approved regimen',()=>{
  const e=industry.find(e=>e.id==='vk2735');
  assert.equal(vk2735Maintenance.publicationStatus,'owner_authorised_factual_publication');
@@ -371,8 +397,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,94);assert.equal(sources.length,163);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,100);
+ assert.equal(medicines.length,6);assert.equal(industry.length,95);assert.equal(sources.length,164);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,101);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -879,7 +905,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,94);
+ assert.equal(industry.length,95);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);

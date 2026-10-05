@@ -10,8 +10,8 @@ const fingerprint=data=>fingerprintSource(source,JSON.stringify(data),'applicati
 test('registry monitoring covers all exact linked records, with bounded reviewed identities',()=>{
  const links=[...medicines.flatMap(e=>e.evidenceLinks||[]),...industry.flatMap(e=>e.additionalEvidence||[])];
  const urls=new Set(links.filter(l=>/^https:\/\/clinicaltrials.gov\/study\/NCT\d{8}$/.test(l.url)).map(l=>l.url));
- assert.equal(urls.size,101);assert.deepEqual(new Set(registrySources.map(s=>s.url)),urls);
- assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);assert.equal(sources.length,163);
+ assert.equal(urls.size,102);assert.deepEqual(new Set(registrySources.map(s=>s.url)),urls);
+ assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);assert.equal(sources.length,164);
  for(const s of registrySources){assert.match(s.reviewedFingerprint,/^[a-f0-9]{64}$/);assert.equal(s.nctId,s.lifecycle.nctId);assert.ok(s.reviewedAt);}
  const taldefgrobep=registrySources.find(s=>s.id==='registry-nct07281495');assert.ok(taldefgrobep);assert.equal(taldefgrobep.lifecycle.status,'ACTIVE_NOT_RECRUITING');assert.equal(taldefgrobep.lifecycle.completion.type,'ESTIMATED');assert.equal(taldefgrobep.lifecycle.hasResults,false);
  const attainMaintain=registrySources.find(s=>s.id==='registry-nct06584916');assert.ok(attainMaintain);assert.equal(attainMaintain.lifecycle.status,'COMPLETED');assert.equal(attainMaintain.lifecycle.completion.type,'ACTUAL');assert.equal(attainMaintain.lifecycle.hasResults,false);
@@ -28,6 +28,7 @@ test('registry monitoring covers all exact linked records, with bounded reviewed
  const pcos=registrySources.find(s=>s.nctId==='NCT06595797');assert.equal(pcos.lifecycle.status,'UNKNOWN');assert.equal(pcos.lifecycle.enrollment.type,'ESTIMATED');assert.equal(pcos.lifecycle.hasResults,false);
  const gzc8072=registrySources.find(s=>s.nctId==='NCT07784699');assert.ok(gzc8072);assert.equal(gzc8072.lifecycle.status,'RECRUITING');assert.equal(gzc8072.lifecycle.start.type,'ACTUAL');assert.equal(gzc8072.lifecycle.enrollment.count,126);assert.equal(gzc8072.lifecycle.hasResults,false);
  for(const id of ['NCT07743463','NCT07743450']){const aurora=registrySources.find(s=>s.nctId===id);assert.ok(aurora);assert.equal(aurora.lifecycle.status,'RECRUITING');assert.equal(aurora.lifecycle.start.type,'ACTUAL');assert.equal(aurora.lifecycle.completion.type,'ESTIMATED');assert.equal(aurora.lifecycle.hasResults,false);}
+ const te8105=registrySources.find(s=>s.nctId==='NCT07857473');assert.ok(te8105);assert.equal(te8105.lifecycle.status,'NOT_YET_RECRUITING');assert.equal(te8105.lifecycle.start.type,'ESTIMATED');assert.equal(te8105.lifecycle.enrollment.count,204);assert.equal(te8105.lifecycle.hasResults,false);
  assert.equal(supportSources.length,4);
 });
 test('registry lifecycle preserves actual/estimated dates and flags meaningful changes',async()=>{

@@ -1,0 +1,169 @@
+{
+  "reviewedAt": "2026-10-05T12:35:34Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add a newly posted, previously untracked Phase 2b TE-8105 obesity programme after complete primary registry review. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "te8105",
+      "name": "TE-8105",
+      "developer": "Immunwork",
+      "group": "research",
+      "stage": "Phase 2b record posted; not yet recruiting; estimated October 2026 start",
+      "summary": "Immunwork's sponsor-submitted NCT07857473 record describes TE-8105 as an injectable GLP-1 receptor agonist in a randomized, placebo-controlled Phase 2b study for adults with overweight or obesity. The record plans three subcutaneous dose-escalation cohorts, 25 weeks of treatment and up to 204 participants at two listed Australian locations.",
+      "ukAuthorisation": "The reviewed registry evidence does not establish UK marketing authorisation or UK clinical-trial authorisation for TE-8105.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed research evidence.",
+      "supply": "A planned Australian clinical study does not establish lawful UK retail supply, pharmacy stock, expanded access or sale by Shift Some Timber.",
+      "limitations": "The record was first posted on 5 October 2026 and remains not yet recruiting. Its October 2026 start, 204-participant enrolment and February 2028 completion are estimates, not completed dosing, actual enrolment or results. Two Australian facilities are listed, but the record does not establish that either is actively recruiting. No results are posted. The study's safety, tolerability, pharmacokinetic, body-weight, body-composition and metabolic assessments do not establish efficacy, safety, an approved dose, a less-frequent regimen, superiority or clinical benefit. This entry does not transfer evidence from earlier TE-8105 research or sponsor announcements to this Phase 2b study.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-05T12:35:34Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07857473: TE-8105 Phase 2b",
+          "url": "https://clinicaltrials.gov/study/NCT07857473",
+          "sourcePublishedAt": "2026-10-05",
+          "sourceUpdatedAt": "2026-10-05",
+          "reviewedAt": "2026-10-05T12:35:34Z",
+          "checkScope": "Automatic record-status checks for identity, design, recruitment, typed dates, estimated enrolment and posted-results state; no assessment of clinical outcomes."
+        }
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct07857473",
+      "nctId": "NCT07857473",
+      "title": "ClinicalTrials.gov NCT07857473: TE-8105 Phase 2b",
+      "url": "https://clinicaltrials.gov/study/NCT07857473",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07857473",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07857473",
+        "Immunwork, Inc."
+      ],
+      "reviewedAt": "2026-10-05T12:35:34Z",
+      "sourcePublishedAt": "2026-10-05",
+      "sourceUpdatedAt": "2026-10-05",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07857473",
+        "title": "A Study to Investigate the Safety and Efficacy of TE-8105 in Overweight or Obesity Participants",
+        "sponsor": "Immunwork, Inc.",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 204,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-10",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2028-02",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-02",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-10-05",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-10-05",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "te8105"
+      ],
+      "rawResponseSha256": "eb8df829888cfdaba17fb50951f58ae02f49ed56c00b5ea37898f1e26f58e3af",
+      "reviewedFingerprint": "ab03de21379df00829649331da78513f1a6a7b46770fcf1f92026739d473222f"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07857473",
+      "publicationDate": "2026-10-05",
+      "updateDate": "2026-10-05",
+      "reviewedAt": "2026-10-05T12:35:34Z",
+      "outcome": "Complete sponsor-submitted API body read for identity, injectable formulation, GLP-1 mechanism, Phase 2b design, not-yet-recruiting status, estimated dates and enrolment, Australian locations, outcome hierarchy and absence of posted results."
+    }
+  ],
+  "retrievalEvidence": {
+    "registry": {
+      "retrievedAt": "2026-10-05T12:32:00Z",
+      "httpStatus": 200,
+      "responseSha256": "eb8df829888cfdaba17fb50951f58ae02f49ed56c00b5ea37898f1e26f58e3af",
+      "responseBytes": 13830
+    }
+  },
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-05T12:35:34Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 163,
+    "currentSources": 162,
+    "overdueReviews": 0,
+    "lastAttemptAt": "2026-10-05T12:15:55.295Z",
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "reviewStatus": "verification_pending",
+        "error": "http_403",
+        "lastAttemptAt": "2026-10-05T11:30:56.610Z",
+        "lastSuccessAt": null
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only health response verifies configured-source monitoring only. It does not renew factual reviews, approve changed wording or prove complete industry coverage. The unchanged Zealand 403 remains explicit and is not repeated as a new alert."
+  },
+  "discoveryPass": {
+    "method": "A separate first pass checked the live configured-source monitor, overdue reviews and open review work. A current-date ClinicalTrials.gov pass then searched obesity and overweight records updated on 4-5 October, followed by current-date and broader sponsor/topic searches across named and additional developers.",
+    "included": "NCT07857473 was first posted on 5 October 2026 and was absent from the 100-programme live catalogue and dated receipts. The complete registry body supports one bounded TE-8105 Phase 2b entry and lifecycle monitor.",
+    "notDuplicated": "No open Medicines Watch pull request or live entry contains TE-8105. Existing GLP-1 programmes and earlier-stage studies remain separate evidence and are not used to inflate this entry.",
+    "incompleteChecks": [
+      "The registry does not establish recruitment, first dosing, actual enrolment, results, UK marketing authorisation, NICE/NHS access or UK supply; no such fact is inferred.",
+      "Current-date registry and web searches cannot exclude indexing delay, older omissions or additional international developers. Programme and source counts do not establish industry completeness."
+    ],
+    "failedChecks": [],
+    "preservedKnownFailures": "The unchanged Zealand ZP6590 HTTP 403 remains visible in health. Earlier receipts retain other blocked and incomplete discovery checks; none is silently cleared by this addition.",
+    "openReviewPrCheck": {
+      "checkedAt": "2026-10-05T12:35:34Z",
+      "openWatchPullRequests": [],
+      "duplicationFound": false
+    },
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "widerBefore": 94,
+    "widerAfter": 95,
+    "totalBefore": 100,
+    "totalAfter": 101,
+    "configuredSourcesBefore": 163,
+    "configuredSourcesAfter": 164,
+    "trialRecordsBefore": 101,
+    "trialRecordsAfter": 102
+  },
+  "nextAction": "Run the full Watch tests and exact-head release gates, publish through the guarded production workflow, then verify the live TE-8105 card, Treatments entry, trial lifecycle and SELECT-only health endpoint. Continue open-ended discovery without claiming completeness."
+}
