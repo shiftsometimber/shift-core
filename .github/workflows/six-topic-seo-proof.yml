@@ -1,0 +1,33 @@
+name: Six-topic SEO proof
+on:
+  pull_request:
+    paths:
+      - 'public-seo-closeout.mjs'
+      - 'tests/public-seo-closeout.test.mjs'
+      - 'scripts/verify-six-topic-seo.mjs'
+      - '.github/workflows/six-topic-seo-proof.yml'
+      - 'release/six-topic-seo-scope.mjs'
+permissions:
+  contents: read
+jobs:
+  seo-content-and-preservation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - name: Metadata, clinical-copy isolation and existing public contracts
+        run: node --test tests/public-seo-closeout.test.mjs tests/public-shell-contract.test.mjs tests/seo-release-integrity.test.mjs tests/public-continuity.test.mjs
+      - name: Compile exact full Worker without deployment
+        run: npx wrangler deploy --dry-run --outdir /tmp/six-topic-worker
+      - name: Check proposed documents against actual live content and link targets
+        run: node scripts/verify-six-topic-seo.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: six-topic-seo-${{ github.sha }}
+          path: six-topic-seo-proof/
+          retention-days: 30
