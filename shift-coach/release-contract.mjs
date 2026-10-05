@@ -35,6 +35,9 @@ COACH_BACKEND_PATHS.add('release/footer-scope.mjs');
 COACH_ADDITIONS.add('tests/watch-ownership-release.test.mjs');
 // Exact operating-document reconciliation; all current bytes remain pinned.
 COACH_AUDIT_CHANGES.add('docs/DATA-GOVERNANCE-OPERATING-PACK-2026-09-02.md');
+// Finite six-topic SEO composition; all bytes retain manifest pins.
+for(const path of ['scripts/verify-six-topic-seo.mjs','docs/seo/2026-10-05-six-priorities.md','.github/workflows/six-topic-seo-proof.yml','release/six-topic-seo-scope.mjs','release/six-topic-seo-preservation.mjs','tests/six-topic-seo-release.test.mjs'])COACH_ADDITIONS.add(path);
+for(const path of ['public-seo-closeout.mjs','tests/public-seo-closeout.test.mjs'])COACH_BACKEND_PATHS.add(path);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]);
 // Finite read-only release maintenance; not permission for more publication jobs.
 export const ARTICLE_CLOSEOUT_SOURCE='69886cec987aed15a1a7e6340953cd7a5372dfee';

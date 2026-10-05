@@ -1,3 +1,4 @@
+import {preserveSixTopicSeo} from '../release/six-topic-seo-preservation.mjs';
 import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';
 import {restoreBookVoiceCopy} from '../book-voice.mjs';
 import {applySharedFooter} from '../shared-footer.mjs';
@@ -62,6 +63,7 @@ for(const path of paths){
  // Includes only the two exact shared support links on the public login page.
  preserved=preserveSeo794(path,preserved,{required:Boolean(before)});
  preserved=preserveReviewedContrastGuard(path,preserved,{required:Boolean(before)});
+ preserved=preserveSixTopicSeo(path,preserved,{required:Boolean(before)});
  pages.push({...publicPageEvidence(path,r.status,preserved,{requireTreatmentsEntry:Boolean(before),hash}),actualSha256:hash(body),actualBytes:body.length,continuityAdditionRemoved:!preserved.equals(body)});
 }
 let comparison='baseline';

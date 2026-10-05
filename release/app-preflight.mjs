@@ -1,3 +1,4 @@
+import {verifySixTopicSeoProof} from './six-topic-seo-scope.mjs';
 import {RECIPE_IMAGE_PATHS,validateRecipeImages} from './recipe-image-scope.mjs';
 import {DEVICE_HEALTH_PATHS,historicalDeviceHealthRef,validateDeviceHealthSource,verifyDeviceHealthProof} from './device-health-scope.mjs';
 import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,WATCH_CURRENT_BASE,watchCurrentSource,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
@@ -14,6 +15,7 @@ validateAppSource();
 validateRecipeImages();
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 async function get(path){const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json()}
+await verifySixTopicSeoProof(get);
 await verifyDeviceHealthProof(get);
 await verifyPublicWordingProof(get);
 await verifyWatchRegistryWaveProof(get);

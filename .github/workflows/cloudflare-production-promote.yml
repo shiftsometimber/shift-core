@@ -608,6 +608,14 @@ jobs:
         env:
           WATCH_ACCESS_ORDERS_DISPLAY_ONLY: ${{ steps.scope.outputs.runtime_only }}
         run: node scripts/verify-watch-access-closeout.mjs
+      - name: Verify the six reviewed SEO pages and their linked destinations live
+        run: node scripts/verify-six-topic-seo.mjs --live
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: six-topic-seo-live-${{ github.sha }}
+          path: six-topic-seo-proof/
+          retention-days: 30
       - name: Prove the complete SEO closeout on live traffic
         run: node scripts/verify-seo-closeout-live.mjs
       - name: Prove repaired templates, sharing cards, direct links and real FAQ destinations
