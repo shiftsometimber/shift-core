@@ -1,0 +1,38 @@
+name: Finite paper and mail proof
+on:
+  push:
+    branches: [proof/mail-provider-readonly-20261005]
+    paths: [.github/workflows/finite-paper-mail-proof.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Verify current recovery message passes the isolated mail guard without sending
+        run: node --test tests/b1-mail-guard.test.mjs tests/b1-reset-page.test.mjs tests/auth-mail-delivery-reliability.test.mjs tests/transactional-mail-reliability.test.mjs
+      - name: One lawful primary index lookup for each identified missing paper
+        run: |
+          node --input-type=module <<'JS'
+          import {writeFileSync} from 'node:fs';import {createHash} from 'node:crypto';
+          const papers=[{key:'TRIUMPH2',doi:'10.1016/S0140-6736(26)01861-1',priorPublisherRefused:true},{key:'PCOS-comment',doi:'10.1016/j.clnesp.2026.105077'},{key:'PCOS-pilot',doi:'10.1016/j.clnesp.2025.102885'}];
+          const report={at:new Date().toISOString(),source:process.env.GITHUB_SHA,scope:'Three finite primary index lookups; no publisher/refused URL, proxy, supplier outreach or publication',papers:[]};
+          for(const paper of papers){
+            const url='https://www.ebi.ac.uk/europepmc/webservices/rest/search?'+new URLSearchParams({query:'DOI:'+paper.doi,format:'json',resultType:'core'});
+            const r=await fetch(url,{redirect:'error',signal:AbortSignal.timeout(20000),headers:{Accept:'application/json','User-Agent':'Shift-Radar/1.0'}});
+            const raw=await r.text();let j={};try{j=JSON.parse(raw)}catch{}
+            report.papers.push({...paper,url,at:new Date().toISOString(),status:r.status,sha256:createHash('sha256').update(raw).digest('hex'),records:(j.resultList?.result||[]).map(x=>({pmid:x.pmid,pmcid:x.pmcid,doi:x.doi,title:x.title,isOpenAccess:x.isOpenAccess,inPMC:x.inPMC,inEPMC:x.inEPMC,hasPDF:x.hasPDF,hasSuppl:x.hasSuppl,publicationTypes:x.pubTypeList,fullTextUrls:x.fullTextUrlList})),fullPaperObtained:false,limitation:r.ok?'Metadata availability only; no full paper reviewed.':'Lookup failed; no retry or alternate route.'});
+          }
+          writeFileSync('finite-paper-mail-proof.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: finite-paper-mail-proof
+          path: finite-paper-mail-proof.json
+          retention-days: 30
