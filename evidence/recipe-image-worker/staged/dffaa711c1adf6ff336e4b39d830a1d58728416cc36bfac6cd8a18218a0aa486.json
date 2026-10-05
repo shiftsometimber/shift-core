@@ -1,0 +1,89 @@
+{
+  "groupId": "dffaa711c1adf6ff336e4b39d830a1d58728416cc36bfac6cd8a18218a0aa486",
+  "recipe_ids": [
+    "industrial-v3-bagel-pickle-tuna"
+  ],
+  "titles": [
+    "Shift Pickle Tuna Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pickle Tuna Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"pickle mustard relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Use the measured pickle mustard relish as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured pickle mustard relish and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nCritical accurate remake: plain unseeded wholemeal bagel. Show loose drained tuna flakes with translucent yellow-green chunky pickle mustard relish and olive oil. Absolutely no mayonnaise, yoghurt, cream, creamy white sauce, cheese, white coating, lemon wedge or whole pickle side. Fresh rocket and tomato, with most rocket/tomato reserved as separate raw side salad as method requires. Tuna flakes remain visibly fibrous and uncoated by creamy sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "pickle mustard relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.",
+    "Use the measured pickle mustard relish as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the measured pickle mustard relish and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2eda450e-48cd-4b2d-a15e-c2a736da2311.png",
+  "source_sha256": "75a533ad6e9594f62a03d86df3a935963545d7432ee4efc987cae7fd537d7a32",
+  "generated_at": "2026-10-04T23:48:05.501Z",
+  "elapsed_ms": 19295.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-dffaa711c1adf6ff336e-480-76ec599e2959.webp",
+      "sha256": "76ec599e29598238afc70f2f4749c78a8b2248e6f70d031110a8768e9519236d",
+      "bytes": 30950
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-dffaa711c1adf6ff336e-586f889ea842.webp",
+      "sha256": "586f889ea842297260ebd4015c5c4a8ee71977fd9e3641c71971b9636c4a6ef3",
+      "bytes": 92662
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "75a533ad6e9594f62a03d86df3a935963545d7432ee4efc987cae7fd537d7a32",
+    "recipe_ids": [
+      "industrial-v3-bagel-pickle-tuna"
+    ],
+    "titles": [
+      "Shift Pickle Tuna Loaded Bagel"
+    ],
+    "notes": "Replacement inspected at full resolution: loose fibrous drained tuna flakes with yellow-green pickle mustard relish, no creamy white coating. Plain wholemeal bagel with rocket/tomato inside; reserved raw rocket/tomato salad alongside. No mayo, yoghurt, cheese or whole pickle side.",
+    "alt": "Pickle tuna bagel with rocket and tomato salad",
+    "reviewed_at": "2026-10-04T23:51:37.937374+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2003.json"
+  },
+  "integrated": true,
+  "live": false
+}

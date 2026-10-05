@@ -1,0 +1,85 @@
+{
+  "groupId": "61ada66f32d339d1a9844b7d001e828ed86bb2319cf60057b71a69be2dcc4fe6",
+  "recipe_ids": [
+    "industrial-v3-pasta-mediterranean-pork"
+  ],
+  "titles": [
+    "Shift Mediterranean Pork Proper Pasta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mediterranean Pork Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"tomato olive herb sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the tomato olive herb sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured tomato olive herb sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, seeds, cheese, cream, fresh green herbs scattered on top, coriander, parsley leaves, lemon wedges, side dishes or dipping sauce. Tomato olive herb sauce must appear as a light reddish tomato coating with tiny olive and herb pieces only within sauce, no separate whole olives or fresh leaf garnish. Pie: plain water-mashed potato top fork roughened, visibly expose exact cooked filling at one edge; no buttery or cheese topping. Beef mince is loose cooked crumbles EXCEPT Sunday roast shapes exactly TWO compact flattened 2cm portions, never steak joint. Chicken/pork curry chilli pie pasta: fully opaque 2cm cubes, stir-fry thin1cm strips; slow pot tender opaque pieces. Slow cooker potatoes/carrot/onion tender and glossy, no crispy roasted edges. Rice exact brown or basmati per recipe. Listed sauce lightly coats finished dish per method, no sauce ramekin. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "tomato olive herb sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the tomato olive herb sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured tomato olive herb sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-da9e1990-3e10-4875-a272-4d7440ade15c.png",
+  "source_sha256": "2d5fb215101cf2c2c9bbe4ab2d90c8e23d197a628c822bc36c73a33c82827dd2",
+  "generated_at": "2026-10-04T23:45:58.513Z",
+  "elapsed_ms": 350120.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-61ada66f32d339d1a984-retry4-480-100ae68e31a7.webp",
+      "sha256": "100ae68e31a7e894603cb4852e614c92e990768181e4706de288976b7e901c9d",
+      "bytes": 27000
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-61ada66f32d339d1a984-retry4-0f2e33c37231.webp",
+      "sha256": "0f2e33c37231682c7222a17f38c2e9ea424d921dcdaffca3b016dc60e5603696",
+      "bytes": 82480
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2d5fb215101cf2c2c9bbe4ab2d90c8e23d197a628c822bc36c73a33c82827dd2",
+    "recipe_ids": [
+      "industrial-v3-pasta-mediterranean-pork"
+    ],
+    "titles": [
+      "Shift Mediterranean Pork Proper Pasta"
+    ],
+    "notes": "Pass: brown wholewheat penne, cooked opaque lean pork cubes with fibrous texture, bite-size courgette and cherry tomato pieces lightly coated in tomato olive herb sauce. No cheese, cream, fresh leaf garnish or additional food. Exact hot pasta preparation and centred crop.",
+    "alt": "Mediterranean pork wholewheat pasta with courgette, cherry tomatoes and tomato olive herb sauce",
+    "reviewed_at": "2026-10-04T23:47:36.145987+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1076.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,82 @@
+{
+  "groupId": "04423a53c12652fa3a7954b96958efb61c5a587d1974503c3db622f6e0e87b9b",
+  "recipe_ids": [
+    "industrial-v3-roast-cajun-pork"
+  ],
+  "titles": [
+    "Shift Cajun Pork Sunday-Style Roast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Pork Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"Cajun tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Place the lean pork loin on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the Cajun tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked lean pork loin, roast potatoes, carrots and broccoli together. Spoon the hot Cajun tomato sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; dried oregano cooked into protein only if listed, never fresh garnish. Roast potatoes are peeled, plain golden chunks with ZERO pepper, herbs, green flecks or spices. Carrot batons and boiled broccoli equally plain: oil/oven only, no garnish. Tomato sauce ONLY spooned over the cooked protein.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Place the lean pork loin on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the Cajun tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked lean pork loin, roast potatoes, carrots and broccoli together. Spoon the hot Cajun tomato sauce over the cooked protein."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0a3a479c-ced0-42d4-91ae-7e3821bc1fcf.png",
+  "source_sha256": "b546fe43ce7c26c4a1642c659ec5c7026dee735ebbefef97083724b4592fd7b2",
+  "generated_at": null,
+  "elapsed_ms": 236928.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-04423a53c12652fa3a79-480.webp",
+      "sha256": "e149bae1c5be3358948fd4d4ce38200518f681b86aac274e7b361d4249414e94",
+      "bytes": 27908
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-04423a53c12652fa3a79-cc5db501917f.webp",
+      "sha256": "cc5db501917f80fb7807f71b0ca6129d1d7658af518eebf7ae8a278a3650c5b8",
+      "bytes": 83692
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b546fe43ce7c26c4a1642c659ec5c7026dee735ebbefef97083724b4592fd7b2",
+    "recipe_ids": [
+      "industrial-v3-roast-cajun-pork"
+    ],
+    "titles": [
+      "Shift Cajun Pork Sunday-Style Roast"
+    ],
+    "notes": "Cooked pork loin sliced to show opaque interior and covered in red tomato sauce, with plain peeled golden roast potato chunks, carrot batons and boiled broccoli kept separate. One plausible serving with central food retained by responsive cropping.",
+    "alt": "Roast pork loin with tomato sauce, roast potatoes, carrot batons and broccoli.",
+    "reviewed_at": "2026-10-04T23:38:14.508Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-649.json"
+  },
+  "integrated": true,
+  "live": false
+}

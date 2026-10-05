@@ -1,0 +1,83 @@
+{
+  "groupId": "83095f53b11d951e80f5d0a2cc06de8cf5349c76f3466e8be5f431a84d271bc6",
+  "recipe_ids": [
+    "industrial-v3-sandwich-pickle-chickpea"
+  ],
+  "titles": [
+    "Shift Pickle Chickpea Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pickle Chickpea Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"pickle mustard relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the chickpeas, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Build the pickle flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the chickpeas, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Pickle mustard relish belongs in or on prescribed filling; never invent whole pickle sides. Chickpeas roughly mashed only where method requires; boiled eggs sliced, ham thin strips for toastie/bagel/jacket. No extra ingredients.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "pickle mustard relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the chickpeas, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+    "Build the pickle flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the chickpeas, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-dc5e04c2-d5e8-4bd7-8ad3-0da68315c5df.png",
+  "source_sha256": "a2074cc1b5142a52fa98b6f679429c201f4983bc03d9c3ec5c1855dacbc4621a",
+  "generated_at": "2026-10-04T23:36:54.320Z",
+  "elapsed_ms": 122400.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-83095f53b11d951e80f5-480-77d9ca83542d.webp",
+      "sha256": "77d9ca83542df8009094b5477d2ef534608e91bed6688002724de873cb394b26",
+      "bytes": 24892
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-83095f53b11d951e80f5-f2040c0e7126.webp",
+      "sha256": "f2040c0e7126cbe42e4da7043a91d8e6e78a7d6ac14c2e7b3ea8a9ef4a04c2ab",
+      "bytes": 73694
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a2074cc1b5142a52fa98b6f679429c201f4983bc03d9c3ec5c1855dacbc4621a",
+    "recipe_ids": [
+      "industrial-v3-sandwich-pickle-chickpea"
+    ],
+    "titles": [
+      "Shift Pickle Chickpea Proper Sandwich"
+    ],
+    "notes": "Lightly coloured whole chickpeas with pickle mustard relish in two plain wholemeal bread slices, fresh lettuce and tomato. No cheese, extra pickle side or bread seeds; preparation matches sandwich method.",
+    "alt": "Pickle chickpea sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:41:54.451168+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1989.json"
+  },
+  "integrated": true,
+  "live": false
+}

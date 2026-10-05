@@ -1,0 +1,86 @@
+{
+  "groupId": "5bcaf3275d601cb8f21f43d8b25becc1f57b85a5a56042774e3240ac882c4f9a",
+  "recipe_ids": [
+    "industrial-v3-wrap-peri-peri-turkey"
+  ],
+  "titles": [
+    "Shift Peri-Peri Turkey Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Turkey Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked turkey breast; if the filling is being served hot, reduce only the sauce-coated cooked turkey breast until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish or extra ingredients. Listed yoghurt sauces are dressings, not melted cheese. Pickle mustard relish belongs in or on prescribed filling, never invented whole pickle sides. Chicken/turkey breast plain cooked, no breadcrumb or batter coating.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked turkey breast; if the filling is being served hot, reduce only the sauce-coated cooked turkey breast until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c80f216f-aa88-434a-9084-9bb9ff262779.png",
+  "source_sha256": "f329ad8f1748e355c648571bacd2773e5f718115c8a3e26142fd7672c30f5b1c",
+  "generated_at": "2026-10-04T23:30:18.475Z",
+  "elapsed_ms": 241964.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5bcaf3275d601cb8f21f-480-3bf7cefceaec.webp",
+      "sha256": "3bf7cefceaec0b44a024e9fdc6b9e2365e5fa35c1e3bae0972e1716872beb217",
+      "bytes": 23432
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5bcaf3275d601cb8f21f-1b2de2822a4a.webp",
+      "sha256": "1b2de2822a4a9cc398a3fa02ab540d13bfc78d168eb0a73469f7b15cbc0cebed",
+      "bytes": 69000
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f329ad8f1748e355c648571bacd2773e5f718115c8a3e26142fd7672c30f5b1c",
+    "recipe_ids": [
+      "industrial-v3-wrap-peri-peri-turkey"
+    ],
+    "titles": [
+      "Shift Peri-Peri Turkey Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with lightly coloured cooked turkey breast coated in peri-peri yoghurt and fresh lettuce/tomato. No cheese, seeds, coating or extra sides. Method preserves fresh vegetables.",
+    "alt": "Peri-peri turkey wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:33:34.613836+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1975.json"
+  },
+  "integrated": true,
+  "live": false
+}

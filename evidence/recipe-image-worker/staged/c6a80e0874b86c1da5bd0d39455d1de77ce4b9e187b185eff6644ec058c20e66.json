@@ -1,0 +1,80 @@
+{
+  "groupId": "c6a80e0874b86c1da5bd0d39455d1de77ce4b9e187b185eff6644ec058c20e66",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-cheesecake-style-overnight-oats"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Oat Crunch Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Oat Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"85g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Toast the rolled oats and seeds in a dry frying pan over a medium heat for 4\u20135 minutes, stirring until they smell nutty and take on a little colour.\",\"Tip the toasted crunch onto a plate and let it cool completely while you prepare the mixed berries and other measured fruit.\",\"Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.\",\"Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed foods; no honey, nuts, mint, syrup, garnish, cake or biscuit crust. Mixed berries just the measured25g. All food inside frame.  NO side crackers, whole biscuits or biscuit crumbs anywhere unless exact list explicitly includes crushed wholegrain biscuit. Measured30g light cream cheese smoothly folded through the fruit/base; no giant cream mound, no cake or crust. Dry toasted oats and pumpkin seeds in separate pot from measured berries lightly coated with just30g cream cheese. No big dairy base or milk.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "85g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Toast the rolled oats and seeds in a dry frying pan over a medium heat for 4\u20135 minutes, stirring until they smell nutty and take on a little colour.",
+    "Tip the toasted crunch onto a plate and let it cool completely while you prepare the mixed berries and other measured fruit.",
+    "Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.",
+    "Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6a7bc28d-fd71-413e-aa10-cbfcd99c29e9.png",
+  "source_sha256": "c68dfd99891c38b8676ccd8d74900a6464e2a2cc8e65771b08d08cef3900a60a",
+  "generated_at": "2026-10-04T23:50:58.511Z",
+  "elapsed_ms": 224548,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c6a80e0874b86c1da5bd-480-7af5e7a33c99.webp",
+      "sha256": "7af5e7a33c997c424ae982613d6ac630f2ad62ddff21fc21c8bf8cd64872ec4d",
+      "bytes": 21110
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c6a80e0874b86c1da5bd-2b6696564e28.webp",
+      "sha256": "2b6696564e28fca8969ecbb489bcb1fcdf964abf7cc86a6873cf188156fdb76c",
+      "bytes": 61940
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c68dfd99891c38b8676ccd8d74900a6464e2a2cc8e65771b08d08cef3900a60a",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-cheesecake-style-overnight-oats"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Oat Crunch Snack Pot"
+    ],
+    "notes": "Dry toasted oats and pumpkin seeds separately portioned from small berries coated with the listed30g cream cheese; no large creamy base, milk or biscuit.",
+    "alt": "Toasted oat and pumpkin seed crunch beside berries with cream cheese.",
+    "reviewed_at": "2026-10-04T23:56:15.546682+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/c6a80e0874b86c1da5bd0d39455d1de77ce4b9e187b185eff6644ec058c20e66.json"
+  },
+  "integrated": true,
+  "live": false
+}

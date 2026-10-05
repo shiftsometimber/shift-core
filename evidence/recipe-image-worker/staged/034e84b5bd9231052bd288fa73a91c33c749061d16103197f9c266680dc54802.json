@@ -1,0 +1,91 @@
+{
+  "groupId": "034e84b5bd9231052bd288fa73a91c33c749061d16103197f9c266680dc54802",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-cheesecake-style-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Greek Yoghurt Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Greek Yoghurt Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed foods; no honey, nuts, mint, syrup, garnish, cake or biscuit crust. Mixed berries just the measured25g. All food inside frame.  NO side crackers, whole biscuits or biscuit crumbs anywhere unless exact list explicitly includes crushed wholegrain biscuit. Measured30g light cream cheese smoothly folded through the fruit/base; no giant cream mound, no cake or crust. Yoghurt is SMOOTH and stirred, no cottage-cheese curds or rice-like grains. Finished combined dessert bowl, chopped dark chocolate topping where listed, no melted chocolate sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5526c6ee-0a71-4659-b797-84ad43e27c63.png",
+  "source_sha256": "3843386c97e7a423116d3797535ed2d24b6097e27ac69effcbd98df4c2f8f45e",
+  "generated_at": "2026-10-04T23:49:31.458Z",
+  "elapsed_ms": 137495,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-034e84b5bd9231052bd2-480-1676f1f75b97.webp",
+      "sha256": "1676f1f75b97d12049ba268c61d3c980bd876652cf710a098d3bc0e6f9e2b1f4",
+      "bytes": 24424
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-034e84b5bd9231052bd2-af32cb97a772.webp",
+      "sha256": "af32cb97a772bba8ea4519cacbae669b68965aea50d54a8a860a9a385fffc253",
+      "bytes": 72448
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3843386c97e7a423116d3797535ed2d24b6097e27ac69effcbd98df4c2f8f45e",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-cheesecake-style-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Greek Yoghurt Big Feed Dessert"
+    ],
+    "notes": "Smooth Greek yoghurt and cream cheese combined with small berries, rolled oats and seeds, chopped chocolate finishing. No cake or crust.",
+    "alt": "Greek yoghurt dessert with cream cheese, berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-04T23:56:15.048920+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/034e84b5bd9231052bd288fa73a91c33c749061d16103197f9c266680dc54802.json"
+  },
+  "integrated": true,
+  "live": false
+}

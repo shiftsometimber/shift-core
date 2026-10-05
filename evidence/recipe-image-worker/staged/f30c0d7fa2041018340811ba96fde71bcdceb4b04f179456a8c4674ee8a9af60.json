@@ -1,0 +1,87 @@
+{
+  "groupId": "f30c0d7fa2041018340811ba96fde71bcdceb4b04f179456a8c4674ee8a9af60",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-biscoff-style-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Greek Yoghurt Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Greek Yoghurt Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nUse only listed foods, no honey, nuts, mint, syrup or garnish. Crushed wholegrain biscuit is modest irregular crumb pieces, no caramel spread or cookie butter. Berries just the listed25g, a small portion. All food safely inside frame. Exactly two plain unseeded wholegrain crackers where listed, no sesame/poppy seeds. Combined single dessert bowl with listed chopped dark chocolate topping. Cottage cheese has recognisable small curds where listed; no melted chocolate sauce.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3ed58a78-9d40-4024-957c-213f041263ea.png",
+  "source_sha256": "19356a5c13397c231997f5e9107df49548535031f1d98c0a6a5b56d81ae47992",
+  "generated_at": "2026-10-04T23:29:52.743Z",
+  "elapsed_ms": 270530,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f30c0d7fa20410183408-480-9cc3683d94f0.webp",
+      "sha256": "9cc3683d94f0ec7847cfb453e77c1fda7096658ace0a0ab4614fab637bd705c9",
+      "bytes": 26600
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f30c0d7fa20410183408-5ffc1453dcbd.webp",
+      "sha256": "5ffc1453dcbdbea0247cd33f87d6ae39576ce313707afdb145c8ec90738c2381",
+      "bytes": 81192
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "19356a5c13397c231997f5e9107df49548535031f1d98c0a6a5b56d81ae47992",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-biscoff-style-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Greek Yoghurt Big Feed Dessert"
+    ],
+    "notes": "Greek yoghurt with modest berries, biscuit crumbs, rolled oats and seeds, chopped dark chocolate finishing. No sauce or spread.",
+    "alt": "Greek yoghurt dessert with berries, biscuit crumbs, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-04T23:32:47.661046+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/f30c0d7fa2041018340811ba96fde71bcdceb4b04f179456a8c4674ee8a9af60.json"
+  },
+  "integrated": true,
+  "live": false
+}

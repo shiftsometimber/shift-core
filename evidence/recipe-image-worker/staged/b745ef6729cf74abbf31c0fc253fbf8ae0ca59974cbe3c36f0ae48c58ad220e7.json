@@ -1,0 +1,87 @@
+{
+  "groupId": "b745ef6729cf74abbf31c0fc253fbf8ae0ca59974cbe3c36f0ae48c58ad220e7",
+  "recipe_ids": [
+    "industrial-v3-curry-mediterranean-salmon"
+  ],
+  "titles": [
+    "Shift Mediterranean Salmon Proper Curry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mediterranean Salmon Proper Curry. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"tomato olive herb sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Check the 150g salmon fillet for bones. Keep it as a fillet for pan cooking, then flake it after cooking.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Put in the salmon fillet, skin-side down if it has skin. Cook for 4\u20135 minutes, turn carefully and cook for another 3\u20135 minutes until the centre is opaque, steaming hot and flakes easily; a thicker piece needs longer. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Turn the heat to low and fold in the 40g tomato olive herb sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Flake the cooked salmon into large pieces and fold into the pan at the end; avoid breaking it up with vigorous stirring. Heat gently until the whole pan is steaming hot, folding carefully so the seafood stays intact. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, seeds, cheese, cream, fresh green herbs scattered on top, coriander, parsley leaves, lemon wedges, side dishes or dipping sauce. Tomato olive herb sauce is a light reddish tomato coating with tiny chopped olive and herb pieces ONLY WITHIN SAUCE, no separate whole olives or fresh leaf garnish. PIE HARD GATE: topping is PLAIN WATER-MASHED POTATO, ivory and golden naturally browned fork ridges only. NO HERBS, NO PEPPER, NO dark/green flecks, NO cheese or butter on OR mixed in potato topping. Listed sauce belongs only in exposed cooked filling BELOW potato topping. Salmon fully opaque cooked large flakes wherever method flakes, traybake and roast may keep opaque fillet. Pork stir-fry thin 1cm opaque strips; all other forms follow method. Tofu firm 2cm cubes EXCEPT roast uses 2cm slabs. Slow cooker potatoes/carrot/onion tender glossy not crispy. Rice exact brown or basmati per recipe. Listed sauce lightly coats finished dish per method, no sauce ramekin. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "tomato olive herb sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Check the 150g salmon fillet for bones. Keep it as a fillet for pan cooking, then flake it after cooking.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Put in the salmon fillet, skin-side down if it has skin. Cook for 4\u20135 minutes, turn carefully and cook for another 3\u20135 minutes until the centre is opaque, steaming hot and flakes easily; a thicker piece needs longer. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Turn the heat to low and fold in the 40g tomato olive herb sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Flake the cooked salmon into large pieces and fold into the pan at the end; avoid breaking it up with vigorous stirring. Heat gently until the whole pan is steaming hot, folding carefully so the seafood stays intact. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-572b03c3-6ba9-4918-a50d-864f24edfb4e.png",
+  "source_sha256": "53745f2f6781f18657935a109f15b4d3859097a2fd2c1a4a72873609c04c36ce",
+  "generated_at": "2026-10-04T23:53:44.226Z",
+  "elapsed_ms": 122155.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b745ef6729cf74abbf31-retry4-480-439b846e5974.webp",
+      "sha256": "439b846e597440dd75ef82aa9babb8cc3f5c378d846b3407f3b384f47ecf08be",
+      "bytes": 26570
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b745ef6729cf74abbf31-retry4-2ac256ee6682.webp",
+      "sha256": "2ac256ee6682cfa3624af7b2dba2d98c8e2110a913f3ec0469070da4ff2ab415",
+      "bytes": 83988
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "53745f2f6781f18657935a109f15b4d3859097a2fd2c1a4a72873609c04c36ce",
+    "recipe_ids": [
+      "industrial-v3-curry-mediterranean-salmon"
+    ],
+    "titles": [
+      "Shift Mediterranean Salmon Proper Curry"
+    ],
+    "notes": "Pass: opaque cooked salmon large flakes folded with thin onion and mixed pepper strips in tomato olive herb sauce over basmati rice. No raw translucent salmon, whole fillet serving, beans, fresh leaf garnish, cheese, cream or extra food. Exact curry preparation and useful centred crop.",
+    "alt": "Mediterranean salmon curry with onion and mixed peppers over basmati rice",
+    "reviewed_at": "2026-10-04T23:56:12.110520+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1083.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "c23b4dce6e774f8d0814ce44847a6219d0733d27bd24b3fa5bce1df865777372",
+  "recipe_ids": [
+    "industrial-v3-wrap-smoky-chicken"
+  ],
+  "titles": [
+    "Shift Smoky Chicken Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chicken Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"smoked paprika dressing\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the cooked chicken breast with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. All paprika and lemon juice are mixed into yoghurt dressing where method requires, no paprika dust or lemon wedge garnish. Chicken plain cooked breast, no breadcrumb/batter coating. Chickpeas roughly mashed for toastie/bagel only as method specifies; boiled eggs sliced. Show creamy yoghurt dressing, never melted cheese.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "smoked paprika dressing"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the cooked chicken breast with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ea11633b-ad61-4992-8a1a-effe6d4fda99.png",
+  "source_sha256": "b165620f770829290ad37f39de200834700b1f28b36c2cab27a72fdb89f0641e",
+  "generated_at": "2026-10-04T23:55:31.571Z",
+  "elapsed_ms": 127687.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c23b4dce6e774f8d0814-480-47722bdefb4f.webp",
+      "sha256": "47722bdefb4f2812feb84239d32da544db79b2283c2df89b673dfd906c3d19bc",
+      "bytes": 18670
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c23b4dce6e774f8d0814-8cf102ea3140.webp",
+      "sha256": "8cf102ea31402c2a34b422195f6f80b536c5f01de8c9507ded7c79a867e56c1e",
+      "bytes": 56278
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b165620f770829290ad37f39de200834700b1f28b36c2cab27a72fdb89f0641e",
+    "recipe_ids": [
+      "industrial-v3-wrap-smoky-chicken"
+    ],
+    "titles": [
+      "Shift Smoky Chicken Loaded Wrap"
+    ],
+    "notes": "Plain toasted wholemeal wrap with lightly coloured plain cooked chicken, smoked paprika dressing, fresh lettuce and tomato. No breadcrumb coating, invented reduction, extra side or garnish.",
+    "alt": "Smoky chicken wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:02:22.689471+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2017.json"
+  },
+  "integrated": true,
+  "live": false
+}

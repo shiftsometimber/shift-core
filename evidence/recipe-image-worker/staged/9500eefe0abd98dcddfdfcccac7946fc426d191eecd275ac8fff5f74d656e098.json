@@ -1,0 +1,89 @@
+{
+  "groupId": "9500eefe0abd98dcddfdfcccac7946fc426d191eecd275ac8fff5f74d656e098",
+  "recipe_ids": [
+    "industrial-v3-sandwich-peri-peri-tuna"
+  ],
+  "titles": [
+    "Shift Peri-Peri Tuna Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Tuna Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the tuna in spring water, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the peri-peri flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the tuna in spring water, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish or extra ingredients. Listed yoghurt sauces are dressings, not melted cheese. Pickle mustard relish belongs in or on prescribed filling, never invented whole pickle sides. Chicken/turkey breast plain cooked, no breadcrumb or batter coating.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the tuna in spring water, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the peri-peri flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the tuna in spring water, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7c3e07fc-83cc-4276-95d5-ed1361cac140.png",
+  "source_sha256": "702152a1625585d3bde56c8b01e241e7814861d42986a9ca1d33508d0395202d",
+  "generated_at": "2026-10-04T23:27:41.859Z",
+  "elapsed_ms": 85348.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9500eefe0abd98dcddfd-480-bcc64c2b7992.webp",
+      "sha256": "bcc64c2b79928ffc85b0176f59cb98cc0adc913fcf77202776648a51dbdf4369",
+      "bytes": 26736
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9500eefe0abd98dcddfd-842719880c1b.webp",
+      "sha256": "842719880c1b69754d5f487aa2ab7232248c42b225152287c7da633fb46275c7",
+      "bytes": 82164
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "702152a1625585d3bde56c8b01e241e7814861d42986a9ca1d33508d0395202d",
+    "recipe_ids": [
+      "industrial-v3-sandwich-peri-peri-tuna"
+    ],
+    "titles": [
+      "Shift Peri-Peri Tuna Proper Sandwich"
+    ],
+    "notes": "Two plain wholemeal bread slices with tuna flakes combined with peri-peri yoghurt and fresh lettuce/tomato. No cheese, seeds, extra sides or garnish; exact sandwich ingredients and preparation match.",
+    "alt": "Peri-peri tuna sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:33:33.619553+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1971.json"
+  },
+  "integrated": true,
+  "live": false
+}

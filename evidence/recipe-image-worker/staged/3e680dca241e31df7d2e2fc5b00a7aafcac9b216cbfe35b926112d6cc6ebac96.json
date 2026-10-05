@@ -1,0 +1,81 @@
+{
+  "groupId": "3e680dca241e31df7d2e2fc5b00a7aafcac9b216cbfe35b926112d6cc6ebac96",
+  "recipe_ids": [
+    "industrial-v3-traybake-mediterranean-tofu"
+  ],
+  "titles": [
+    "Shift Mediterranean Tofu Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mediterranean Tofu Traybake. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"tomato olive herb sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, sesame/poppy seeds, cheese, cream, fresh green herb leaves, coriander, parsley, lemon wedges, side dishes or dipping sauce. All buns/flatbreads entirely plain unseeded wholemeal. Tomato olive herb sauce is light reddish coating with tiny chopped olive and herb pieces ONLY WITHIN SAUCE, no extra whole olive side or fresh leaf garnish. Turkey mince loose cooked crumbles, never chunks or meatballs, except Sunday roast EXACTLY TWO flattened2cm portions. Tofu2cm cubes except roast2cm slabs. PIE: entirely PLAIN water-mashed potato top, ivory with natural golden fork ridges; NO dark/green flecks, NO herbs/pepper/cheese/butter on or mixed into topping. Sauce and herbs only in filling BELOW mash. Slowpot vegetables tender glossy not crispy. Rice exact brown or basmati. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "tomato olive herb sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8fab7abb-5fc8-476c-979b-fcdb166e8fb0.png",
+  "source_sha256": "fb98dd0cfdb99e49e2f15fc1f57364c1a5b9e461adfe4aacae5c25565f08eefb",
+  "generated_at": "2026-10-05T00:08:29.468Z",
+  "elapsed_ms": 76798.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3e680dca241e31df7d2e-retry4-480-065fc88b2740.webp",
+      "sha256": "065fc88b274071ba36c8baa27de707c72f22d456d56ec1f520b3bae67ea5366c",
+      "bytes": 30280
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3e680dca241e31df7d2e-retry4-1dde9240a86a.webp",
+      "sha256": "1dde9240a86a9d5cbe0dbd751c374fbbcd5494cdb3c43171306b277001718ae8",
+      "bytes": 98286
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fb98dd0cfdb99e49e2f15fc1f57364c1a5b9e461adfe4aacae5c25565f08eefb",
+    "recipe_ids": [
+      "industrial-v3-traybake-mediterranean-tofu"
+    ],
+    "titles": [
+      "Shift Mediterranean Tofu Traybake"
+    ],
+    "notes": "Pass: firm tofu cubes with golden faces, golden baby potato pieces, roasted broccoli and red pepper lightly coated with tomato olive herb sauce. Chopped olive and herb flecks belong within listed sauce coating; no meat, fresh leaf garnish, cream, cheese or extra food. Roasted edges and centred bowl match traybake method.",
+    "alt": "Mediterranean tofu traybake with baby potatoes, broccoli, red pepper and tomato olive herb sauce",
+    "reviewed_at": "2026-10-05T00:09:22.651490+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1096.json"
+  },
+  "integrated": true,
+  "live": false
+}

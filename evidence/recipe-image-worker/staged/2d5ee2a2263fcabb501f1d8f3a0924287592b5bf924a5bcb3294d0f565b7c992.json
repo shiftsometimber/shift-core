@@ -1,0 +1,79 @@
+{
+  "groupId": "2d5ee2a2263fcabb501f1d8f3a0924287592b5bf924a5bcb3294d0f565b7c992",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-bean-loaded-beans"
+  ],
+  "titles": [
+    "Shift Loaded Beans Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Loaded Beans Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"baked beans\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-dc50ed76-39d7-4425-a2b0-e327137aa51c.png",
+  "source_sha256": "d63f0db3b9cebbad70419200f7f3ea82ff261571de72999b3784e24abf041759",
+  "generated_at": "2026-10-04T23:38:25.174Z",
+  "elapsed_ms": 271235,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2d5ee2a2263fcabb501f-480.webp",
+      "sha256": "b824dd79530bd2817aa1f4374c401f8def6d86eece8b50d0703de199b61a4f7e",
+      "bytes": 22334
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2d5ee2a2263fcabb501f-retry2-12adef27477f.webp",
+      "sha256": "12adef27477f286d354eaf1a2b69e9ab1378ad12894ec5c0996a96d219d91340",
+      "bytes": 68030
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "d63f0db3b9cebbad70419200f7f3ea82ff261571de72999b3784e24abf041759",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-bean-loaded-beans"
+    ],
+    "titles": [
+      "Shift Loaded Beans Breakfast Wrap"
+    ],
+    "notes": "Single lightly toasted wholemeal wrap filled with baked beans, cooked mixed peppers and spinach. No extra garnish or side.",
+    "alt": "Loaded baked bean wrap with peppers and spinach",
+    "reviewed_at": "2026-10-04T23:39:16.624625+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/235.json"
+  },
+  "integrated": true,
+  "live": false
+}

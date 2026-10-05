@@ -1,0 +1,88 @@
+{
+  "groupId": "9185f3893806a76fe1135d03a15dd6670c97aefd3ac997413d0e127dc974ae9d",
+  "recipe_ids": [
+    "industrial-lunch-egg-wholemeal-wrap"
+  ],
+  "titles": [
+    "Egg Wholemeal Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Wholemeal Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"salad leaves\"},{\"amount\":\"60g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt dressing\",\"allergens\":[\"milk\"]}]. Preparation: [\"Wash and dry the salad leaves and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal wrap can close.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Use the measured 0% Greek yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Use a ready-to-eat wholemeal wrap and lay it flat on a clean plate.\",\"Combine the prepared filling with the measured 0% Greek yoghurt dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling down the centre, fold in the sides and roll up firmly. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "salad leaves"
+    },
+    {
+      "amount": "60g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt dressing",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Wash and dry the salad leaves and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal wrap can close.",
+    "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+    "Use the measured 0% Greek yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Use a ready-to-eat wholemeal wrap and lay it flat on a clean plate.",
+    "Combine the prepared filling with the measured 0% Greek yoghurt dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling down the centre, fold in the sides and roll up firmly. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-13d68bde-7ef1-4f16-a943-14b761a4a1d8.png",
+  "source_sha256": "fe5c008b0cb8379946c983baaf466d0b22c0a2768c8904abe3c95a5af03f1068",
+  "generated_at": "2026-10-04T23:57:29.345Z",
+  "elapsed_ms": 360749.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9185f3893806a76fe113-480-d2e4d032845a.webp",
+      "sha256": "d2e4d032845ac5bbb7696fc664c640b6d9cfd7a1723f41687acd07f09905e5c7",
+      "bytes": 24032
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9185f3893806a76fe113-99ef7f3a9494.webp",
+      "sha256": "99ef7f3a94946d03ec1c1805009c93d6ffad4ed4af9e157bbd80eeafe7992f2d",
+      "bytes": 64304
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fe5c008b0cb8379946c983baaf466d0b22c0a2768c8904abe3c95a5af03f1068",
+    "recipe_ids": [
+      "industrial-lunch-egg-wholemeal-wrap"
+    ],
+    "titles": [
+      "Egg Wholemeal Wrap"
+    ],
+    "notes": "Rolled plain wholemeal wrap with thin fully boiled egg slices, tomato, salad leaves and Greek yoghurt dressing. Remaining tomato and leaves alongside; no unlisted ingredients. Exact title matches.",
+    "alt": "Egg wholemeal wrap with tomato, salad leaves and Greek yoghurt dressing",
+    "reviewed_at": "2026-10-05T00:00:10.120848+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1506-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,87 @@
+{
+  "groupId": "a3c764ada1f6ddffe530c6e0dbb21eb44a52a8df6f81e4fc0328dafe2d2891ac",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-biscoff-style-protein-pudding"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Protein Pudding Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Protein Pudding Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup or garnish. No cake, pie or biscuit crust. Mixed berries just the listed25g, a small portion. All food safely inside frame. NO side crackers or whole biscuits anywhere. Crushed biscuit ONLY if explicitly listed, small irregular crumbs as topping; no intact biscuits. Finished dessert all combined in ONE bowl with Greek yoghurt visibly swirled through. No separate creamy ramekins.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-85380741-eb3f-480c-8064-d40dbd8ce7b7.png",
+  "source_sha256": "28c77bc59c6c11c4fcbc91c2782e1895ea418c2284378645554d1e47396568d0",
+  "generated_at": "2026-10-04T23:38:36.688Z",
+  "elapsed_ms": 155147,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a3c764ada1f6ddffe530-480-bb5d0e55ab58.webp",
+      "sha256": "bb5d0e55ab58b30ab4c992ee835ec15095a5c4e88290bb12eb76ec5c74148196",
+      "bytes": 20572
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a3c764ada1f6ddffe530-7ab579502b39.webp",
+      "sha256": "7ab579502b3900548f061ca4be08efaecc799d7d79fcd3c02cfcd0d7d1cda625",
+      "bytes": 59218
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "28c77bc59c6c11c4fcbc91c2782e1895ea418c2284378645554d1e47396568d0",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-biscoff-style-protein-pudding"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Protein Pudding Dessert Pot"
+    ],
+    "notes": "Combined high-protein yoghurt dessert with small berries, biscuit crumbs, oats and seeds, Greek yoghurt swirl. No separate creamy components.",
+    "alt": "Berry protein yoghurt dessert with biscuit crumbs, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:44:02.241877+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/a3c764ada1f6ddffe530c6e0dbb21eb44a52a8df6f81e4fc0328dafe2d2891ac.json"
+  },
+  "integrated": true,
+  "live": false
+}

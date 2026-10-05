@@ -43,7 +43,11 @@ for folder in sorted(STATE.glob('worker-*')):
     continue
    ids=r.get('recipe_ids',r.get('recipeIds'));assert ids==g['recipe_ids'],f'Worker changed recipe IDs: {file}'
    titles=r.get('titles',[r.get('title')] if r.get('title') else None)
-   prompt=r.get('exact_prompt',r.get('prompt'));assert g['prompt'] in prompt,f'Untraceable prompt: {file}'
+   prompt=r.get('exact_prompt',r.get('prompt'))
+   lineage=r.get('originalGenerationPrompt',r.get('baseGenerationPrompt'))
+   assert isinstance(prompt,str) and (g['prompt'] in prompt or isinstance(lineage,str) and g['prompt'] in lineage),f'Untraceable prompt: {file}'
+   if g['prompt'] not in prompt:
+    assert r.get('ingredients')==g['ingredients'] and r.get('method')==g['method'],f'Edited image lost exact recipe provenance: {file}'
    if titles is None and len(g['titles'])==1 and ('Exact recipe: '+g['titles'][0]+'.') in prompt:titles=g['titles']
    assert titles==g['titles'],f'Worker must review every shared title: {file}'
    notes=review.get('notes',review.get('reason',r.get('reviewReasons')));alt=review.get('alt',r.get('alt'));assert notes and alt
@@ -72,6 +76,6 @@ for folder in sorted(STATE.glob('worker-*')):
     variants[480]={'width':small.width,'height':small.height,'asset':path.relative_to(ROOT).as_posix(),'sha256':sha(path),'bytes':path.stat().st_size}
    timestamp=review.get('reviewed_at',r.get('reviewedAt',r.get('reviewed_at')))
    decision={'decision':'pass','source_sha256':sourcehash,'recipe_ids':ids,'titles':titles,'notes':notes,'alt':alt,'reviewed_at':timestamp,'reviewer':r.get('reviewer',review.get('reviewer',folder.name)),'receipt':file.relative_to(ROOT).as_posix()}
-   write(target,{'groupId':gid,'recipe_ids':ids,'titles':titles,'prompt':prompt,'ingredients':g['ingredients'],'method':g['method'],'sourcePath':str(source),'source_sha256':sourcehash,'generated_at':r.get('completed_at',r.get('generated_at')),'elapsed_ms':elapsed(r),'variants':[variants[480],variants[960]],'review_status':'pass','review':decision,'integrated':False,'live':False})
+   write(target,{'groupId':gid,'recipe_ids':ids,'titles':titles,'prompt':prompt,'original_generation_prompt':lineage,'ingredients':g['ingredients'],'method':g['method'],'sourcePath':str(source),'source_sha256':sourcehash,'generated_at':r.get('completed_at',r.get('generated_at',r.get('generatedAt'))),'elapsed_ms':elapsed(r),'variants':[variants[480],variants[960]],'review_status':'pass','review':decision,'integrated':False,'live':False})
    reviews[gid]=decision;added+=1
 write(STATE/'visual-reviews.json',reviews);write(STATE/'blocked-integrity.json',blocked);print(json.dumps({'collected_reviewed_groups':added,'total_reviewed_receipts':len(reviews),'blocked_integrity':len(blocked)}))

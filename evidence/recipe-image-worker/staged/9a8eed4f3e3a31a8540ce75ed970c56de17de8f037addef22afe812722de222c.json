@@ -1,0 +1,84 @@
+{
+  "groupId": "9a8eed4f3e3a31a8540ce75ed970c56de17de8f037addef22afe812722de222c",
+  "recipe_ids": [
+    "industrial-v3-wrap-smoky-chickpea"
+  ],
+  "titles": [
+    "Shift Smoky Chickpea Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chickpea Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"smoked paprika dressing\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the chickpeas, drained with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. All paprika and lemon juice are mixed into yoghurt dressing where method requires, no paprika dust or lemon wedge garnish. Chicken plain cooked breast, no breadcrumb/batter coating. Chickpeas roughly mashed for toastie/bagel only as method specifies; boiled eggs sliced. Show creamy yoghurt dressing, never melted cheese.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "smoked paprika dressing"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the chickpeas, drained with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d87b3b40-62a5-4f86-9c00-42ab4b2ba587.png",
+  "source_sha256": "2aa690e78a4ea07fc315c0afac53d8416a6e506a75b7f5c9a08f1f3e25fad887",
+  "generated_at": "2026-10-04T23:57:06.095Z",
+  "elapsed_ms": 222211.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9a8eed4f3e3a31a8540c-480-c41be1acbf26.webp",
+      "sha256": "c41be1acbf26826e523830869e7e7bff18236a5f0e523bb347f78f379ab9c279",
+      "bytes": 21466
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9a8eed4f3e3a31a8540c-7f7f2838b3f1.webp",
+      "sha256": "7f7f2838b3f1172bf48b0ea66a09a61311abf0dbd856dea41df0c7a6f1b4d783",
+      "bytes": 62306
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2aa690e78a4ea07fc315c0afac53d8416a6e506a75b7f5c9a08f1f3e25fad887",
+    "recipe_ids": [
+      "industrial-v3-wrap-smoky-chickpea"
+    ],
+    "titles": [
+      "Shift Smoky Chickpea Loaded Wrap"
+    ],
+    "notes": "Plain toasted wholemeal wrap with lightly coloured whole chickpeas seasoned with listed smoked paprika dressing, fresh lettuce and tomato. No invented sauce reduction, extra side, cheese or garnish.",
+    "alt": "Smoky chickpea wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:02:24.104857+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2023.json"
+  },
+  "integrated": true,
+  "live": false
+}

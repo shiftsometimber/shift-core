@@ -1,0 +1,84 @@
+{
+  "groupId": "1671a73ead7a89e96623143d5792a255c3711f4fbab80164cac4a4276319302c",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-cheesecake-style-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Fruit Crunch Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Fruit Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the apple in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed foods; no honey, nuts, mint, syrup, garnish, cake or biscuit crust. Mixed berries just the measured25g. All food inside frame.  NO side crackers, whole biscuits or biscuit crumbs anywhere unless exact list explicitly includes crushed wholegrain biscuit. Measured30g light cream cheese smoothly folded through the fruit/base; no giant cream mound, no cake or crust. Finished fruit snack pot at eating time, cream cheese folded through fruit, dry oats/seeds just added.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the apple in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-100d0937-79a3-4a2b-8592-b0ee04e76a2d.png",
+  "source_sha256": "62b6ada9e88edd41b47621ca6e81d61fefe3246b29a11a056dcf1344b38ab53b",
+  "generated_at": "2026-10-04T23:48:35.774Z",
+  "elapsed_ms": 81811,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1671a73ead7a89e96623-480-fdd4e91060d7.webp",
+      "sha256": "fdd4e91060d7d13690f6e957d0dacf9528f955d5c5195de62e8d7af8c3152c54",
+      "bytes": 27794
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1671a73ead7a89e96623-11c2d44aac36.webp",
+      "sha256": "11c2d44aac36c961600fa7b650f6d0fa7605ecccf6def740cb00db747940b9af",
+      "bytes": 81358
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "62b6ada9e88edd41b47621ca6e81d61fefe3246b29a11a056dcf1344b38ab53b",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-cheesecake-style-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Fruit Crunch Snack Pot"
+    ],
+    "notes": "Apple and small berries lightly cream-cheese coated, dry rolled oats and pumpkin seeds freshly added at eating time. No extra creamy base.",
+    "alt": "Apple and berry snack pot with cream cheese, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:56:16.279009+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/1671a73ead7a89e96623143d5792a255c3711f4fbab80164cac4a4276319302c.json"
+  },
+  "integrated": true,
+  "live": false
+}

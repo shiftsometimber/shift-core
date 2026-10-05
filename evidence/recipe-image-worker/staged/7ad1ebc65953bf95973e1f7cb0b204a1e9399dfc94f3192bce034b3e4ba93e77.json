@@ -1,0 +1,83 @@
+{
+  "groupId": "7ad1ebc65953bf95973e1f7cb0b204a1e9399dfc94f3192bce034b3e4ba93e77",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-biscoff-style-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Cottage Cheese Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Cottage Cheese Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nUse only listed foods, no honey, nuts, mint, syrup or garnish. Crushed wholegrain biscuit is modest irregular crumb pieces, no caramel spread or cookie butter. Berries just the listed25g, a small portion. All food safely inside frame. Exactly two plain unseeded wholegrain crackers where listed, no sesame/poppy seeds. Creamy base with distinct small curds for cottage cheese only, listed berries, biscuit crumbs, oats and seeds freshly added at serving; no extra ingredients.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f8a88680-cfcd-4d42-9133-948260d06a19.png",
+  "source_sha256": "958782099d700e0b23cbbb8d170d84b1c739814148a20a5212ef7944c41d09a0",
+  "generated_at": "2026-10-04T23:28:19.061Z",
+  "elapsed_ms": 176848,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7ad1ebc65953bf95973e-480-1b8d3a46cbda.webp",
+      "sha256": "1b8d3a46cbdae960a792436002cd7f64e5c96981c240633a50cd6d218901b6a5",
+      "bytes": 26652
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7ad1ebc65953bf95973e-0d739921176a.webp",
+      "sha256": "0d739921176af1b513216954b6ac60e74f7d6a2746418e5c27be72ce0cd5eb74",
+      "bytes": 84068
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "958782099d700e0b23cbbb8d170d84b1c739814148a20a5212ef7944c41d09a0",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-biscoff-style-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Cottage Cheese Protein Pot"
+    ],
+    "notes": "Cottage cheese curds with measured berries and biscuit crumbs, rolled oats and pumpkin seeds newly added at eating time. No extras.",
+    "alt": "Cottage cheese pot with berries, biscuit crumbs, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:32:45.358157+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/7ad1ebc65953bf95973e1f7cb0b204a1e9399dfc94f3192bce034b3e4ba93e77.json"
+  },
+  "integrated": true,
+  "live": false
+}

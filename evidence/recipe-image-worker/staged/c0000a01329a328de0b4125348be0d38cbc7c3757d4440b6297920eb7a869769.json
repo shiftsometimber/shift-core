@@ -1,0 +1,87 @@
+{
+  "groupId": "c0000a01329a328de0b4125348be0d38cbc7c3757d4440b6297920eb7a869769",
+  "recipe_ids": [
+    "industrial-v3-wrap-pickle-tuna"
+  ],
+  "titles": [
+    "Shift Pickle Tuna Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pickle Tuna Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"pickle mustard relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the tuna in spring water, drained; if the filling is being served hot, reduce only the sauce-coated tuna in spring water, drained until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Pickle mustard relish belongs in or on prescribed filling; never invent whole pickle sides. For smoky dressing all paprika and lemon juice are mixed into yoghurt as method requires, no paprika dust or lemon wedge garnish. Chicken and turkey plain cooked breast, no breadcrumb/batter coating.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "pickle mustard relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the tuna in spring water, drained; if the filling is being served hot, reduce only the sauce-coated tuna in spring water, drained until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4bbf1ac0-d7a4-44e2-94ec-2408b114ee8d.png",
+  "source_sha256": "b0cef4f754f258bcd693385588752a22fd6a8847623831ba02bc69816cc0feb1",
+  "generated_at": "2026-10-04T23:46:29.075Z",
+  "elapsed_ms": 153799.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c0000a01329a328de0b4-480-d367249e95e7.webp",
+      "sha256": "d367249e95e7e65d78dec4922137a2049c0f03a3c6a39bd1ce029fb4726b6f12",
+      "bytes": 21750
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c0000a01329a328de0b4-a3ee62e252e7.webp",
+      "sha256": "a3ee62e252e759c576166bccbe6063117ce82ba91fafbee145f5712048e72fb9",
+      "bytes": 63376
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b0cef4f754f258bcd693385588752a22fd6a8847623831ba02bc69816cc0feb1",
+    "recipe_ids": [
+      "industrial-v3-wrap-pickle-tuna"
+    ],
+    "titles": [
+      "Shift Pickle Tuna Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with drained tuna flakes in pickle mustard relish, fresh lettuce and tomato. Tuna remains fibrous, no creamy white sauce or extra food. Method matches warmed filling and fresh vegetables.",
+    "alt": "Pickle tuna wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:51:38.444906+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2005.json"
+  },
+  "integrated": true,
+  "live": false
+}

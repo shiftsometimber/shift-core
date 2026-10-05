@@ -86,5 +86,9 @@ def main():
     byid={r['id']:r for r in bindings}
     integrated=sum(all(rid in byid and byid[rid]['sha256']==next(v['sha256'] for v in r['variants'] if v['width']==960) for rid in r['recipe_ids']) for r in staged)
     summary={'catalogue_recipes':len(recipes),'distinct_groups':len(groups),'generated_new':len(staged),'reviewed_pass_new':sum(r['review_status']=='pass' for r in staged),'reviewed_reject_new':sum(r['review_status']=='reject' for r in staged),'integrated_new':integrated,'integrated_recipe_bindings_total':len(boundids),'remaining_recipe_bindings':len(recipes)-len(boundids),'live_new':0,'remaining_groups_without_prepared_asset':2604-len(staged),'remaining_groups_without_usable_new_asset':2604-sum(r['review_status']=='pass' for r in staged),'complete':len(boundids)==len(recipes)}
+    summary['generated_new']=len(staged) # Distinct currently retained generated assets.
+    ledger=STATE/'attempts.json'
+    if ledger.exists():summary['generation_history']=json.loads(ledger.read_text())['summary']
+    summary['historical_attempts_are_not_current_usable_assets']=True
     write(STATE/'summary.json',summary);print(json.dumps(summary))
 if __name__=='__main__': main()

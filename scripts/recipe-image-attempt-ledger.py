@@ -14,7 +14,7 @@ def walk(value):
 ledger={}
 previous=STATE/'attempts.json'
 if previous.exists():ledger={a['attemptId']:a for a in json.loads(previous.read_text())['attempts']}
-files=list((STATE/'results').glob('*.json'))+list((STATE/'rejected').glob('*.json'))+list((STATE/'staged').glob('*.json'))+list(STATE.glob('*retry.json'))
+files=list((STATE/'results').glob('*.json'))+list((STATE/'results-retries').glob('*.json'))+list((STATE/'rejected').glob('*.json'))+list((STATE/'staged').glob('*.json'))+list(STATE.glob('*retry.json'))
 for folder in STATE.glob('worker-*'):files.extend(folder.rglob('*.json'))
 hashes={}
 for file in sorted(set(files)):
@@ -25,11 +25,14 @@ for file in sorted(set(files)):
   if not source:
    paths=re.findall(r'/workspace/[^\s]+\.png',record.get('output_hint',record.get('result',{}).get('output_hint','')))
    source=paths[0] if paths else None
-  if not source:continue
-  path=Path(source);path=path if path.is_absolute() else SCRATCH/path
-  if not path.is_file():continue
-  if str(path) not in hashes:hashes[str(path)]=hashlib.sha256(path.read_bytes()).hexdigest()
-  digest=hashes[str(path)];key=hashlib.sha256((gid+digest).encode()).hexdigest()
+  path=Path(source) if source else None;path=path if path is None or path.is_absolute() else SCRATCH/path
+  digest=record.get('source_sha256',record.get('sourceSha256'))
+  if path is not None and path.is_file():
+   if str(path) not in hashes:hashes[str(path)]=hashlib.sha256(path.read_bytes()).hexdigest()
+   if digest:assert digest==hashes[str(path)]
+   digest=hashes[str(path)]
+  if not digest:continue
+  key=hashlib.sha256((gid+digest).encode()).hexdigest()
   review=record.get('review',{});review=review if isinstance(review,dict) else {}
   status=review.get('decision',review.get('status',record.get('review_status',record.get('reviewStatus','pending'))))
   if review.get('passed') is True or str(record.get('status','')).startswith('reviewed_pass'):status='pass'
@@ -37,7 +40,7 @@ for file in sorted(set(files)):
   if status=='passed':status='pass'
   if status not in ('pass','reject'):status='pending'
   attempt=ledger.get(key,{})
-  attempt.update(attemptId=key,groupId=gid,recipe_ids=groups[gid]['recipe_ids'],titles=groups[gid]['titles'],source_sha256=digest,sourcePath=str(path))
+  attempt.update(attemptId=key,groupId=gid,recipe_ids=groups[gid]['recipe_ids'],titles=groups[gid]['titles'],source_sha256=digest,sourcePath=str(path) if path else None,source_available=bool(path and path.is_file()))
   prompt=record.get('exact_prompt',record.get('prompt'))
   if prompt:attempt['prompt']=prompt;attempt['prompt_provenance']='submission receipt'
   elif 'prompt' not in attempt:attempt['prompt']=groups[gid]['prompt'];attempt['prompt_provenance']='canonical inventory prompt'
@@ -49,6 +52,9 @@ for file in sorted(set(files)):
   receipt=file.relative_to(ROOT).as_posix()
   if receipt not in attempt['receipts']:attempt['receipts'].append(receipt)
   ledger[key]=attempt
+for p in (STATE/'rejected').glob('*.json'):
+ r=json.loads(p.read_text());key=hashlib.sha256((r['groupId']+r['source_sha256']).encode()).hexdigest()
+ if key in ledger:ledger[key].update(review_status='reject',review=r.get('review',{'notes':r.get('reason')}))
 attempts=sorted(ledger.values(),key=lambda a:(a['groupId'],a['attemptId']))
 summary={'generated_attempts':len(attempts),'generated_distinct_groups':len({a['groupId'] for a in attempts}),'reviewed_pass_attempts':sum(a['review_status']=='pass' for a in attempts),'reviewed_reject_attempts':sum(a['review_status']=='reject' for a in attempts),'awaiting_review_attempts':sum(a['review_status']=='pending' for a in attempts)}
 temp=previous.with_suffix('.tmp.json');temp.write_text(json.dumps({'summary':summary,'attempts':attempts},indent=2)+'\n');os.replace(temp,previous)

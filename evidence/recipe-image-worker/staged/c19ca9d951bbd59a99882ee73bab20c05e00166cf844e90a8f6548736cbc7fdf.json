@@ -1,0 +1,92 @@
+{
+  "groupId": "c19ca9d951bbd59a99882ee73bab20c05e00166cf844e90a8f6548736cbc7fdf",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-cheesecake-style-overnight-oats"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Overnight Oats Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Overnight Oats Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 30g light cream cheese until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds, 15g dark chocolate, chopped separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed foods; no honey, nuts, mint, syrup, garnish, cake or biscuit crust. Mixed berries just the measured25g. All food inside frame.  NO side crackers, whole biscuits or biscuit crumbs anywhere unless exact list explicitly includes crushed wholegrain biscuit. Measured30g light cream cheese smoothly folded through the fruit/base; no giant cream mound, no cake or crust. Fully softened overnight milk oats, cream cheese/yoghurt evenly stirred in where listed, berries mixed through, listed seeds/chocolate freshly topped. No dry oat heap.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Stir in 30g light cream cheese until evenly mixed.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds, 15g dark chocolate, chopped separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8026b54d-71e7-481a-8c15-174002cb2984.png",
+  "source_sha256": "a7339514301e64a0b6d9fe2566b142b0d94911683d48b2cd6bf4c1aab8ea591e",
+  "generated_at": "2026-10-04T23:51:16.305Z",
+  "elapsed_ms": 242342,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c19ca9d951bbd59a9988-480-3995a5dd2a8a.webp",
+      "sha256": "3995a5dd2a8ad8c9853d998c5c87feab2e52632e617527410e266929889325f6",
+      "bytes": 25750
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c19ca9d951bbd59a9988-a709dcf6399f.webp",
+      "sha256": "a709dcf6399f0b2c4c0625f6d70dfa62e592da6d429506a6334f4211e59e81b5",
+      "bytes": 76402
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a7339514301e64a0b6d9fe2566b142b0d94911683d48b2cd6bf4c1aab8ea591e",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-cheesecake-style-overnight-oats"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Overnight Oats Big Feed Dessert"
+    ],
+    "notes": "Fully softened milk overnight oats with cream cheese evenly mixed, small berries stirred through, seeds and chopped chocolate topped. No side crackers.",
+    "alt": "Berry overnight oats with cream cheese, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-04T23:56:15.775339+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/c19ca9d951bbd59a99882ee73bab20c05e00166cf844e90a8f6548736cbc7fdf.json"
+  },
+  "integrated": true,
+  "live": false
+}

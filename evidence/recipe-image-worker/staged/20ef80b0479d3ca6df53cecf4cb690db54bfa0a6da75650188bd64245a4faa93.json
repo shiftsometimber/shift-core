@@ -1,0 +1,79 @@
+{
+  "groupId": "20ef80b0479d3ca6df53cecf4cb690db54bfa0a6da75650188bd64245a4faa93",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-balti-chicken"
+  ],
+  "titles": [
+    "Shift Balti Chicken Slow-Cooker Big Pot"
+  ],
+  "prompt": "Professional appetising close food photograph of this exact actual recipe. Believable home-cooked texture, thoughtful composition and natural light. Show its complete measured dish. Match ingredients, cut and preparation precisely. No invented garnish or side. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Chicken Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-798c3c97-adf5-4e64-b43b-d815e02afc32.png",
+  "source_sha256": "1f8786144923e07f4154c34ac1b612fbe82425dbb201d404eb5eeeac6f70f936",
+  "generated_at": "2026-10-04T23:48:09.079Z",
+  "elapsed_ms": 101922,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-20ef80b0479d3ca6df53-480.webp",
+      "sha256": "e8debfac307cab06018815f5d5ff22a48b10b5ebf9a5afe223f4f14cd7a18f80",
+      "bytes": 28654
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-20ef80b0479d3ca6df53.webp",
+      "sha256": "89c3d7823d8f68b3f3c1653e47a3dd663e97d0cfdd7c088e8494acb0a361face",
+      "bytes": 90366
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1f8786144923e07f4154c34ac1b612fbe82425dbb201d404eb5eeeac6f70f936",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-balti-chicken"
+    ],
+    "titles": [
+      "Shift Balti Chicken Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked chicken breast portions with tender baby potatoes, carrots and onion in a light balti coating; no added garnish.",
+    "alt": "Shift Balti Chicken Slow-Cooker Big Pot: cooked chicken breast portions with tender baby potatoes, carrots and onion in a light balti coating",
+    "reviewed_at": "2026-10-05T00:10:54.747279+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

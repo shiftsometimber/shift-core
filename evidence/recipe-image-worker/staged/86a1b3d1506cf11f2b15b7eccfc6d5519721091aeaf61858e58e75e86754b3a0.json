@@ -1,0 +1,87 @@
+{
+  "groupId": "86a1b3d1506cf11f2b15b7eccfc6d5519721091aeaf61858e58e75e86754b3a0",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-cheesecake-style-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Greek Yoghurt Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Greek Yoghurt Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"240g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed foods; no honey, nuts, mint, syrup, garnish, cake or biscuit crust. Mixed berries just the measured25g. All food inside frame.  NO side crackers, whole biscuits or biscuit crumbs anywhere unless exact list explicitly includes crushed wholegrain biscuit. Measured30g light cream cheese smoothly folded through the fruit/base; no giant cream mound, no cake or crust. Yoghurt is SMOOTH and stirred, no cottage-cheese curds or rice-like grains. Finished dessert all ingredients combined in ONE bowl, measured yoghurt visibly swirled through. No separate creamy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "240g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3e49f131-6995-4741-9c89-80f03d5bf710.png",
+  "source_sha256": "6735d4a01bf8172510b77e91c74c6ce2055f03ade6ebd1f4248826a2957bfccd",
+  "generated_at": "2026-10-04T23:49:55.372Z",
+  "elapsed_ms": 161409,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-86a1b3d1506cf11f2b15-480-f7093c034ea2.webp",
+      "sha256": "f7093c034ea2c7e2d785bcc969c73d4f90890dd3a7371c85b4d39b711aa9b865",
+      "bytes": 21466
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-86a1b3d1506cf11f2b15-98f5dd6fe794.webp",
+      "sha256": "98f5dd6fe794e3f6b296add1609f9e779085cbfd39a6035ee18a1709111eaffa",
+      "bytes": 61494
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6735d4a01bf8172510b77e91c74c6ce2055f03ade6ebd1f4248826a2957bfccd",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-cheesecake-style-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Greek Yoghurt Dessert Pot"
+    ],
+    "notes": "Smooth Greek yoghurt dessert combined with measured cream cheese, modest berries, oats and seeds, visible yoghurt swirl. No chocolate or crust.",
+    "alt": "Greek yoghurt dessert with cream cheese, berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:56:17.296887+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/86a1b3d1506cf11f2b15b7eccfc6d5519721091aeaf61858e58e75e86754b3a0.json"
+  },
+  "integrated": true,
+  "live": false
+}

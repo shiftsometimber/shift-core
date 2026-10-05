@@ -1,0 +1,84 @@
+{
+  "groupId": "3e1cb250b0ca6a2ec9d71a3fb825d8f656314c83421cc5192608d50fb61ceb00",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-biscoff-style-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Fruit Crunch Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Fruit Crunch Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nUse only listed foods, no honey, nuts, mint, syrup or garnish. Crushed wholegrain biscuit is modest irregular crumb pieces, no caramel spread or cookie butter. Berries just the listed25g, a small portion. All food safely inside frame. Exactly two plain unseeded wholegrain crackers where listed, no sesame/poppy seeds. Combined single dessert bowl with listed chopped dark chocolate topping. Cottage cheese has recognisable small curds where listed; no melted chocolate sauce.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2579373c-0d5b-405c-bc63-fddaaef60117.png",
+  "source_sha256": "30db782e8a600f95af213a8a8e8ad5ea17812106c074b00161c525f4a736e0d3",
+  "generated_at": "2026-10-04T23:27:56.197Z",
+  "elapsed_ms": 153984,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3e1cb250b0ca6a2ec9d7-480-20638fa0f429.webp",
+      "sha256": "20638fa0f429b267c99a917174e27dd43a6384173eb0a7dd483869888023a69f",
+      "bytes": 30168
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3e1cb250b0ca6a2ec9d7-f1ccb9e13e98.webp",
+      "sha256": "f1ccb9e13e98ea998641d98f571219df91fa392c4fe03b381cbdacfca3b6fe63",
+      "bytes": 96824
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "30db782e8a600f95af213a8a8e8ad5ea17812106c074b00161c525f4a736e0d3",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-biscoff-style-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Fruit Crunch Big Feed Dessert"
+    ],
+    "notes": "Apple pieces and small berry portion combined with biscuit crumbs, rolled oats, seeds and chopped dark chocolate; no creamy base or sauce.",
+    "alt": "Apple and berry dessert with biscuit crumbs, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-04T23:32:47.905650+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/3e1cb250b0ca6a2ec9d71a3fb825d8f656314c83421cc5192608d50fb61ceb00.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,91 @@
+{
+  "groupId": "9b85c30eaca4284513362d1c8da2ff79f9759e9288d30b3e88c41572a3f17091",
+  "recipe_ids": [
+    "industrial-v3-jacket-potato-smoky-chicken"
+  ],
+  "titles": [
+    "Shift Smoky Chicken Loaded Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chicken Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"27g\"},{\"item\":\"lemon juice\",\"amount\":\"2g\"},{\"item\":\"smoked paprika\",\"amount\":\"1g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Stir together all the measured 0% Greek yoghurt, lemon juice, smoked paprika and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. All paprika and lemon juice are mixed into yoghurt dressing where method requires, no paprika dust or lemon wedge garnish. Chicken plain cooked breast, no breadcrumb/batter coating. Chickpeas roughly mashed for toastie/bagel only as method specifies; boiled eggs sliced. Show creamy yoghurt dressing, never melted cheese.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "90g",
+      "item": "spring onion"
+    },
+    {
+      "item": "0% Greek yoghurt",
+      "amount": "27g"
+    },
+    {
+      "item": "lemon juice",
+      "amount": "2g"
+    },
+    {
+      "item": "smoked paprika",
+      "amount": "1g"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Stir together all the measured 0% Greek yoghurt, lemon juice, smoked paprika and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-568afabe-ddb6-49e4-91f4-ff38cbd04bfa.png",
+  "source_sha256": "aa67982e628cda5932d5287a0579e7c7ae3dbd82c8b041b1897f387864594439",
+  "generated_at": "2026-10-04T23:53:48.396Z",
+  "elapsed_ms": 24512.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9b85c30eaca428451336-480-a84fe3219be8.webp",
+      "sha256": "a84fe3219be83dd109c838ee33cea8a8959471a21811c8cc8b432a55bf901e10",
+      "bytes": 31218
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9b85c30eaca428451336-4d687021c20d.webp",
+      "sha256": "4d687021c20d7c8f881cfd0f1158154a2055c18492e3d5b91dfb043112c8ea4d",
+      "bytes": 84902
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "aa67982e628cda5932d5287a0579e7c7ae3dbd82c8b041b1897f387864594439",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-smoky-chicken"
+    ],
+    "titles": [
+      "Shift Smoky Chicken Loaded Jacket Potato"
+    ],
+    "notes": "Fluffy baked potato with ready-to-eat shredded chicken combined with Greek yoghurt/lemon/paprika dressing. Mixed salad and finely sliced spring onion alongside. No lemon wedge, paprika dust garnish, cheese or extra foods.",
+    "alt": "Smoky chicken jacket potato with salad and spring onion",
+    "reviewed_at": "2026-10-05T00:02:22.390473+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2016.json"
+  },
+  "integrated": true,
+  "live": false
+}

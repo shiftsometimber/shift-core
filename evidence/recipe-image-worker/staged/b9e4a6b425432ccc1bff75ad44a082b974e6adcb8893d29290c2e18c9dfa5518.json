@@ -1,0 +1,83 @@
+{
+  "groupId": "b9e4a6b425432ccc1bff75ad44a082b974e6adcb8893d29290c2e18c9dfa5518",
+  "recipe_ids": [
+    "industrial-lunch-chickpea-rice-bowl"
+  ],
+  "titles": [
+    "Chickpea Rice Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Chickpea Rice Bowl. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"75g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"60g\",\"item\":\"mixed peppers\"},{\"amount\":\"60g\",\"item\":\"sweetcorn\"},{\"amount\":\"40g\",\"item\":\"lime yoghurt dressing\",\"allergens\":[\"milk\"]}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Use the measured lime yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured lime yoghurt dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "75g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "60g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "60g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "40g",
+      "item": "lime yoghurt dressing",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+    "Use the measured lime yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured lime yoghurt dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a5cdbaa8-ea5f-4975-8371-bbd20165a614.png",
+  "source_sha256": "51ca85bc04b6fe9cccd0ec9590829fd81a4e8a241c4b9afa1edba6706a82cb54",
+  "generated_at": "2026-10-04T23:53:03.949Z",
+  "elapsed_ms": 95353.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b9e4a6b425432ccc1bff-480-c4b79b71b81b.webp",
+      "sha256": "c4b79b71b81b1a739bb39383e31d934628ef8d023bba9180c866b34d3e7520ad",
+      "bytes": 23258
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b9e4a6b425432ccc1bff-e2f5ddc5a64b.webp",
+      "sha256": "e2f5ddc5a64b8ebdf1467c0810492806115ea083a3caa636a0a7afdf22410028",
+      "bytes": 62746
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "51ca85bc04b6fe9cccd0ec9590829fd81a4e8a241c4b9afa1edba6706a82cb54",
+    "recipe_ids": [
+      "industrial-lunch-chickpea-rice-bowl"
+    ],
+    "titles": [
+      "Chickpea Rice Bowl"
+    ],
+    "notes": "Chickpeas folded through brown rice with raw diced mixed peppers and sweetcorn, light lime yoghurt coating. No extra vegetables or garnish; exact title matches.",
+    "alt": "Chickpea rice bowl with peppers, sweetcorn and lime yoghurt dressing",
+    "reviewed_at": "2026-10-05T00:00:09.630285+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1497-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

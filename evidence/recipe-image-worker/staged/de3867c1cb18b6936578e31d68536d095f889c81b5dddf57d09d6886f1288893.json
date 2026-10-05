@@ -1,0 +1,86 @@
+{
+  "groupId": "de3867c1cb18b6936578e31d68536d095f889c81b5dddf57d09d6886f1288893",
+  "recipe_ids": [
+    "industrial-v3-sandwich-pickle-egg"
+  ],
+  "titles": [
+    "Shift Pickle Egg Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pickle Egg Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"pickle mustard relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the boiled eggs are meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.\",\"Build the pickle flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the boiled eggs, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Pickle mustard relish belongs in or on prescribed filling; never invent whole pickle sides. Chickpeas roughly mashed only where method requires; boiled eggs sliced, ham thin strips for toastie/bagel/jacket. No extra ingredients.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "pickle mustard relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the boiled eggs are meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.",
+    "Build the pickle flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the boiled eggs, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-902567fd-68ce-4a6f-b77a-5bc02de05e7e.png",
+  "source_sha256": "33eaf2e634c6c27b44a30d3423529a0ceab0002bf1297bf676ceb49affd0faca",
+  "generated_at": "2026-10-04T23:39:50.164Z",
+  "elapsed_ms": 298244.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-de3867c1cb18b6936578-480-61f172d0a674.webp",
+      "sha256": "61f172d0a674bff555d6e1db1d6857300aa99cb42f9ea4f271d3ddb6565f186f",
+      "bytes": 24048
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-de3867c1cb18b6936578-c50da5dc9c29.webp",
+      "sha256": "c50da5dc9c2956c045fce8420a90ee74e622c2e6f0cbe296cd95fc17c4704ee3",
+      "bytes": 73546
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "33eaf2e634c6c27b44a30d3423529a0ceab0002bf1297bf676ceb49affd0faca",
+    "recipe_ids": [
+      "industrial-v3-sandwich-pickle-egg"
+    ],
+    "titles": [
+      "Shift Pickle Egg Proper Sandwich"
+    ],
+    "notes": "Two plain wholemeal bread slices with sliced boiled eggs, chunky pickle mustard relish, fresh lettuce and tomato. No whole pickle side, cheese or bread seeds. Exact sandwich ingredients and preparation match.",
+    "alt": "Pickle egg sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:41:55.894598+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1995.json"
+  },
+  "integrated": true,
+  "live": false
+}

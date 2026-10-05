@@ -1,0 +1,76 @@
+{
+  "groupId": "acadd0555ed900047e8f589e60b203cd715631fb6e657d7d9d0bd40a3bd654f3",
+  "recipe_ids": [
+    "industrial-dinner-turkey-traybake"
+  ],
+  "titles": [
+    "Turkey Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Turkey Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"120g\",\"item\":\"broccoli\"},{\"amount\":\"100g\",\"item\":\"red pepper\"},{\"amount\":\"5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and turkey breast. Get the pan properly hot first. Cook the turkey breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.\",\"Check the turkey breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "120g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "100g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and turkey breast. Get the pan properly hot first. Cook the turkey breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.",
+    "Check the turkey breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-68f0595d-8dd4-44aa-97a3-ec5cac717aae.png",
+  "source_sha256": "3b20edfe35e2ccfb0639973bfa2652296a9cbc46734447e4db72d5ddb8aef7e7",
+  "generated_at": "2026-10-04T23:41:27.235Z",
+  "elapsed_ms": 17855.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-acadd0555ed900047e8f-480-a728f7e6787b.webp",
+      "sha256": "a728f7e6787b0316b53320e1629d2e0573ea1447226cf2e726105546ef29b89b",
+      "bytes": 31338
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-acadd0555ed900047e8f-dccfe3369a3e.webp",
+      "sha256": "dccfe3369a3e204b479711aafe77f9d844545bd0111f8ae1ccf769fbfffdc994",
+      "bytes": 93906
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3b20edfe35e2ccfb0639973bfa2652296a9cbc46734447e4db72d5ddb8aef7e7",
+    "recipe_ids": [
+      "industrial-dinner-turkey-traybake"
+    ],
+    "titles": [
+      "Turkey Traybake"
+    ],
+    "notes": "Fully opaque browned sliced turkey breast, golden roast baby potatoes, broccoli and roasted red pepper. No sauce or herb garnish; exact title matches.",
+    "alt": "Turkey traybake with roast baby potatoes, broccoli and red pepper",
+    "reviewed_at": "2026-10-04T23:48:05.981999+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1478-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

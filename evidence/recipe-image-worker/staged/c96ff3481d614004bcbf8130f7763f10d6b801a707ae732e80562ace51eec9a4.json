@@ -1,0 +1,83 @@
+{
+  "groupId": "c96ff3481d614004bcbf8130f7763f10d6b801a707ae732e80562ace51eec9a4",
+  "recipe_ids": [
+    "industrial-v3-roast-cajun-tofu"
+  ],
+  "titles": [
+    "Shift Cajun Tofu Sunday-Style Roast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Tofu Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"Cajun tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Pat the firm tofu dry, cut it into 2cm slabs and roast on a separate lined tray for 20\u201325 minutes, turning halfway, until the edges are golden and the centre is hot.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the Cajun tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked firm tofu, roast potatoes, carrots and broccoli together. Spoon the hot Cajun tomato sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; dried oregano cooked into protein only if listed, never fresh garnish. Roast potatoes are peeled, plain golden chunks with ZERO pepper, herbs, green flecks or spices. Carrot batons and boiled broccoli equally plain: oil/oven only, no garnish. Sauce ONLY spooned over the cooked protein. Exactly two compact flattened mince portions if specified; never a roasting joint for mince.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Pat the firm tofu dry, cut it into 2cm slabs and roast on a separate lined tray for 20\u201325 minutes, turning halfway, until the edges are golden and the centre is hot.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the Cajun tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked firm tofu, roast potatoes, carrots and broccoli together. Spoon the hot Cajun tomato sauce over the cooked protein."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1130ef76-2b9a-4d76-b396-162460e7c35b.png",
+  "source_sha256": "3f812632bb2cbe7ac910c0f567473e9b559ee300720ab958dc5686e15bfd3f9f",
+  "generated_at": "2026-10-04T23:53:33.802Z",
+  "elapsed_ms": 21284.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c96ff3481d614004bcbf-480.webp",
+      "sha256": "313fadf7967a8058504a7c2645f0e5bce2f75571ca0bcae705343f5d7210da49",
+      "bytes": 31946
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c96ff3481d614004bcbf-79d8cdd13b38.webp",
+      "sha256": "79d8cdd13b38bb6b6cb594200521ffa02b415108fa9da4034ecb065c8303695d",
+      "bytes": 102150
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3f812632bb2cbe7ac910c0f567473e9b559ee300720ab958dc5686e15bfd3f9f",
+    "recipe_ids": [
+      "industrial-v3-roast-cajun-tofu"
+    ],
+    "titles": [
+      "Shift Cajun Tofu Sunday-Style Roast"
+    ],
+    "notes": "Golden tofu slabs with tomato sauce only over protein, plain peeled golden roast-potato chunks, carrot batons and boiled broccoli; no garnish. Believable single serving with central composition and crop margin.",
+    "alt": "Roasted tofu with tomato sauce, potatoes, carrots and broccoli.",
+    "reviewed_at": "2026-10-05T00:09:57.630Z",
+    "reviewer": "worker-c source visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-672-688.json"
+  },
+  "integrated": true,
+  "live": false
+}

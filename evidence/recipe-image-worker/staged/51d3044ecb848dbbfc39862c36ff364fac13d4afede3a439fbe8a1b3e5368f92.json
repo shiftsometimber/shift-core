@@ -1,0 +1,82 @@
+{
+  "groupId": "51d3044ecb848dbbfc39862c36ff364fac13d4afede3a439fbe8a1b3e5368f92",
+  "recipe_ids": [
+    "industrial-v3-traybake-balti-salmon"
+  ],
+  "titles": [
+    "Shift Balti Salmon Traybake"
+  ],
+  "prompt": "Professional appetising close food photograph of this exact actual recipe. Believable home-cooked texture, thoughtful composition and natural light. Show its complete measured dish. Match ingredients, cut and preparation precisely. No invented garnish or side. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Salmon Traybake. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and salmon fillet. Cook the salmon fillet until opaque and just flaking at the thickest point; pull it from the heat before it dries out.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the salmon fillet is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and salmon fillet. Cook the salmon fillet until opaque and just flaking at the thickest point; pull it from the heat before it dries out.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the salmon fillet is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0ecaa72e-b93c-4ba1-a0f5-868762adffef.png",
+  "source_sha256": "a14e8a001f24229d04ce7c9172ac1ea1b69d64f9db001e8df51741c7e19006f2",
+  "generated_at": "2026-10-04T23:52:58.319Z",
+  "elapsed_ms": 391162,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-51d3044ecb848dbbfc39-480.webp",
+      "sha256": "b2bba9f0bd7ec2c667b95f09c0d9ca2ecd527e9d65e4330213d759168be12d99",
+      "bytes": 37090
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-51d3044ecb848dbbfc39.webp",
+      "sha256": "68a27892562762280821074b832cfe025c85319e8b1d031033d1a0620a7191cf",
+      "bytes": 121190
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a14e8a001f24229d04ce7c9172ac1ea1b69d64f9db001e8df51741c7e19006f2",
+    "recipe_ids": [
+      "industrial-v3-traybake-balti-salmon"
+    ],
+    "titles": [
+      "Shift Balti Salmon Traybake"
+    ],
+    "notes": "One cooked opaque salmon fillet, roasted baby potatoes, broccoli and red pepper with measured balti coating; no added garnish.",
+    "alt": "Shift Balti Salmon Traybake: one cooked opaque salmon fillet, roasted baby potatoes, broccoli and red pepper with measured balti coating",
+    "reviewed_at": "2026-10-05T00:07:14.177004+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

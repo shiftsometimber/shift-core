@@ -1,0 +1,87 @@
+{
+  "groupId": "c6a87213662cc9bf40d59416885b53f97a242580cca7d3a7fe2296917c48c136",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-biscoff-style-protein-pudding"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Protein Pudding Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Protein Pudding Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup or garnish. No cake, pie or biscuit crust. Mixed berries just the listed25g, a small portion. All food safely inside frame. NO side crackers or whole biscuits anywhere. Crushed biscuit ONLY if explicitly listed, small irregular crumbs as topping; no intact biscuits. Combined single dessert bowl with chopped dark chocolate topping. Cottage cheese has recognisable small curds where listed. No melted chocolate sauce.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-deae7784-c5bb-4bdb-b6eb-7fc031facfa8.png",
+  "source_sha256": "3d7463a4dfed0744809f63a4b14203d37776151f3b1e9875abf977ee9f48ae9c",
+  "generated_at": "2026-10-04T23:37:40.817Z",
+  "elapsed_ms": 99276,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c6a87213662cc9bf40d5-480-557e569c5cd7.webp",
+      "sha256": "557e569c5cd7c2b2ef2e501895a9373dd1a4ab0296c1d97252756d98495ac54f",
+      "bytes": 25872
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c6a87213662cc9bf40d5-ff93ffb841e3.webp",
+      "sha256": "ff93ffb841e370b3a035920e740f4a8f1e3bda2f2393eee1f8b4c9d96c2be21f",
+      "bytes": 76982
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3d7463a4dfed0744809f63a4b14203d37776151f3b1e9875abf977ee9f48ae9c",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-biscoff-style-protein-pudding"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Protein Pudding Big Feed Dessert"
+    ],
+    "notes": "Smooth high-protein yoghurt combined with small berries, biscuit crumbs, oats and seeds, chopped dark chocolate finishing; no caramel spread.",
+    "alt": "Protein yoghurt dessert with berries, biscuit crumbs, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-04T23:44:03.598042+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/c6a87213662cc9bf40d59416885b53f97a242580cca7d3a7fe2296917c48c136.json"
+  },
+  "integrated": true,
+  "live": false
+}

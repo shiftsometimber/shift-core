@@ -1,0 +1,91 @@
+{
+  "groupId": "d0a517768153862b2f73bd7e5a7ae5a5f1186fda2010beb01c264f3db54d2d63",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-cheesecake-style-protein-pudding"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Protein Pudding Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Protein Pudding Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed foods; no honey, nuts, mint, syrup, garnish, cake or biscuit crust. Mixed berries just the measured25g. All food inside frame.  NO side crackers, whole biscuits or biscuit crumbs anywhere unless exact list explicitly includes crushed wholegrain biscuit. Measured30g light cream cheese smoothly folded through the fruit/base; no giant cream mound, no cake or crust. Yoghurt is SMOOTH and stirred, no cottage-cheese curds or rice-like grains. Finished combined dessert bowl, chopped dark chocolate topping where listed, no melted chocolate sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a427d863-758f-4d22-a5e1-a222371ea30e.png",
+  "source_sha256": "38795360880506bc35201967453c751d956d5b459714a00dd8f58ebdc2811dac",
+  "generated_at": "2026-10-04T23:52:30.652Z",
+  "elapsed_ms": 316689,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d0a517768153862b2f73-480-0068f4586a59.webp",
+      "sha256": "0068f4586a59fefd7d6c7043b88f8a29560d8d2c233a1e5edae88f77be4e4cb4",
+      "bytes": 23014
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d0a517768153862b2f73-3f083d0d8c64.webp",
+      "sha256": "3f083d0d8c64671268c74230ffd857617c9753a3fde39951684e8ab519d74b64",
+      "bytes": 76344
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "38795360880506bc35201967453c751d956d5b459714a00dd8f58ebdc2811dac",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-cheesecake-style-protein-pudding"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Protein Pudding Big Feed Dessert"
+    ],
+    "notes": "Smooth protein yoghurt and measured cream cheese with small berries, oats and seeds, chopped chocolate finishing. No cake or syrup.",
+    "alt": "Protein yoghurt dessert with cream cheese, berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-04T23:56:14.315989+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/d0a517768153862b2f73bd7e5a7ae5a5f1186fda2010beb01c264f3db54d2d63.json"
+  },
+  "integrated": true,
+  "live": false
+}

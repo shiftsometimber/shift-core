@@ -1,0 +1,83 @@
+{
+  "groupId": "3ba9e13d6dd8a871d710a32c5729ab60f9f21d680b45f7a5d1de70afa18bfe8f",
+  "recipe_ids": [
+    "industrial-lunch-chickpea-pasta-pot"
+  ],
+  "titles": [
+    "Chickpea Pasta Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Chickpea Pasta Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"75g dry\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"60g\",\"item\":\"rocket\"},{\"amount\":\"40g\",\"item\":\"tomato pesto\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed wholewheat pasta is a dry weight. Cook it in boiling water for the packet time until tender, then drain well.\",\"Wash and dry the cherry tomatoes and rocket. Halve the tomatoes and roughly chop the rocket.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Use the measured tomato pesto as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Toss the drained cooked pasta with the measured tomato pesto, then fold in the tomatoes, rocket and prepared ready-to-eat filling. Eat immediately.\",\"For a packed lunch, cool the cooked pasta promptly before combining it with the chilled filling. Cover, refrigerate and eat within 24 hours, following any shorter ingredient use-by date. Keep the meal chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "75g dry",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "60g",
+      "item": "rocket"
+    },
+    {
+      "amount": "40g",
+      "item": "tomato pesto"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed wholewheat pasta is a dry weight. Cook it in boiling water for the packet time until tender, then drain well.",
+    "Wash and dry the cherry tomatoes and rocket. Halve the tomatoes and roughly chop the rocket.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+    "Use the measured tomato pesto as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Toss the drained cooked pasta with the measured tomato pesto, then fold in the tomatoes, rocket and prepared ready-to-eat filling. Eat immediately.",
+    "For a packed lunch, cool the cooked pasta promptly before combining it with the chilled filling. Cover, refrigerate and eat within 24 hours, following any shorter ingredient use-by date. Keep the meal chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1bf034ec-043b-4110-bfad-bbe8e88053c4.png",
+  "source_sha256": "9da3c75edb496e7ef4c6434a1b5306f925a642962420f3e1eb1ec7dcff745af6",
+  "generated_at": "2026-10-04T23:52:22.581Z",
+  "elapsed_ms": 53985.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3ba9e13d6dd8a871d710-480-5435020bb848.webp",
+      "sha256": "5435020bb848e1d6e2c4c106d9dc71fe50849eb6c5ebda2166fbf672ad1fc9e9",
+      "bytes": 29276
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3ba9e13d6dd8a871d710-dd0580ef7146.webp",
+      "sha256": "dd0580ef71467c2e43b330d3ce9e209634ed3bee1a6347b624c15e57937fa42e",
+      "bytes": 91266
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "9da3c75edb496e7ef4c6434a1b5306f925a642962420f3e1eb1ec7dcff745af6",
+    "recipe_ids": [
+      "industrial-lunch-chickpea-pasta-pot"
+    ],
+    "titles": [
+      "Chickpea Pasta Pot"
+    ],
+    "notes": "Wholewheat fusilli with chickpeas, halved cherry tomatoes and rocket folded through tomato pesto. No additional cheese or garnish; exact title matches.",
+    "alt": "Chickpea pasta pot with cherry tomatoes, rocket and tomato pesto",
+    "reviewed_at": "2026-10-05T00:00:09.146498+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1495-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

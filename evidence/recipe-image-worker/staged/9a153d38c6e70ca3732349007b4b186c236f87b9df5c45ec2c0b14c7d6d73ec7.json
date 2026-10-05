@@ -1,0 +1,81 @@
+{
+  "groupId": "9a153d38c6e70ca3732349007b4b186c236f87b9df5c45ec2c0b14c7d6d73ec7",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-mediterranean-tofu"
+  ],
+  "titles": [
+    "Shift Mediterranean Tofu Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mediterranean Tofu Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"tomato olive herb sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, seeds, cheese, cream, fresh green herbs scattered on top, coriander, parsley leaves, lemon wedges, side dishes or dipping sauce. Tomato olive herb sauce is a light reddish tomato coating with tiny chopped olive and herb pieces ONLY WITHIN SAUCE, no separate whole olives or fresh leaf garnish. PIE HARD GATE: topping is PLAIN WATER-MASHED POTATO, ivory and golden naturally browned fork ridges only. NO HERBS, NO PEPPER, NO dark/green flecks, NO cheese or butter on OR mixed in potato topping. Listed sauce belongs only in exposed cooked filling BELOW potato topping. Salmon fully opaque cooked large flakes wherever method flakes, traybake and roast may keep opaque fillet. Pork stir-fry thin 1cm opaque strips; all other forms follow method. Tofu firm 2cm cubes EXCEPT roast uses 2cm slabs. Slow cooker potatoes/carrot/onion tender glossy not crispy. Rice exact brown or basmati per recipe. Listed sauce lightly coats finished dish per method, no sauce ramekin. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "tomato olive herb sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fef17ffe-701d-4dbc-b75c-35ce3efaf0ab.png",
+  "source_sha256": "9a75e13c459103ee601f99a311af43518608ff92823e9f79b52ce7e3dd922d80",
+  "generated_at": "2026-10-04T23:58:57.604Z",
+  "elapsed_ms": 435533.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9a153d38c6e70ca37323-retry4-480-86b445260df0.webp",
+      "sha256": "86b445260df0d271a22222c5ce88e9ca7ba45c5bf8c68cc230e34de74cd0fcfd",
+      "bytes": 28978
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9a153d38c6e70ca37323-retry4-63b6ee862404.webp",
+      "sha256": "63b6ee862404e9bfe1050372e680be9a1ef7948351be51f46c589d430456e9a8",
+      "bytes": 94328
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "9a75e13c459103ee601f99a311af43518608ff92823e9f79b52ce7e3dd922d80",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-mediterranean-tofu"
+    ],
+    "titles": [
+      "Shift Mediterranean Tofu Slow-Cooker Big Pot"
+    ],
+    "notes": "Pass: firm tofu cubes with optional pan-browned faces, tender baby potatoes, carrots and translucent onion glossy with tomato olive herb cooking juices. Vegetables appear soft rather than crispy traybake edges. Tiny chopped olive and herbs belong to sauce; no meat, fresh leaf garnish, cheese, cream or extra food. Centred slow-pot serving.",
+    "alt": "Slow-cooked Mediterranean tofu with baby potatoes, carrots, onion and tomato olive herb sauce",
+    "reviewed_at": "2026-10-05T00:00:31.271223+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1093.json"
+  },
+  "integrated": true,
+  "live": false
+}

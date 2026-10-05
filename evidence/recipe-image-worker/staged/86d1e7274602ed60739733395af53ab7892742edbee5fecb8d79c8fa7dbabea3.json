@@ -1,0 +1,79 @@
+{
+  "groupId": "86d1e7274602ed60739733395af53ab7892742edbee5fecb8d79c8fa7dbabea3",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-balti-pork"
+  ],
+  "titles": [
+    "Shift Balti Pork Slow-Cooker Big Pot"
+  ],
+  "prompt": "Professional appetising close food photograph of this exact actual recipe. Believable home-cooked texture, thoughtful composition and natural light. Show its complete measured dish. Match ingredients, cut and preparation precisely. No invented garnish or side. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Pork Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-71833b21-a487-44bc-9bd8-b9ce03eab9de.png",
+  "source_sha256": "0452d498592186f538a3ed33a3f99f3fed1c1ae1c7abf5f4c4e817ec068bc509",
+  "generated_at": "2026-10-04T23:49:43.346Z",
+  "elapsed_ms": 196189,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-86d1e7274602ed607397-480.webp",
+      "sha256": "5d9eabed9c86b989b49ef69e0d87ca51b612715c78dda387095aed13ac38859b",
+      "bytes": 32828
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-86d1e7274602ed607397.webp",
+      "sha256": "de055cc3c2642707dd53c4f68cda0954849efdbe26604af4ff6c7e519dc44abb",
+      "bytes": 108620
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "0452d498592186f538a3ed33a3f99f3fed1c1ae1c7abf5f4c4e817ec068bc509",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-balti-pork"
+    ],
+    "titles": [
+      "Shift Balti Pork Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked pork loin portions with tender baby potatoes, carrots and onion in a measured light balti coating.",
+    "alt": "Shift Balti Pork Slow-Cooker Big Pot: cooked pork loin portions with tender baby potatoes, carrots and onion in a measured light balti coating.",
+    "reviewed_at": "2026-10-05T00:07:14.093947+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

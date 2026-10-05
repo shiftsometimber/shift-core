@@ -1,0 +1,84 @@
+{
+  "groupId": "96f6e15fc7f7d8aa1fd2b6cf6b4cd8736e1537523c9b452122848412d9af4afe",
+  "recipe_ids": [
+    "industrial-v3-wrap-pickle-turkey"
+  ],
+  "titles": [
+    "Shift Pickle Turkey Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pickle Turkey Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"pickle mustard relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked turkey breast; if the filling is being served hot, reduce only the sauce-coated cooked turkey breast until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Pickle mustard relish belongs in or on prescribed filling; never invent whole pickle sides. For smoky dressing all paprika and lemon juice are mixed into yoghurt as method requires, no paprika dust or lemon wedge garnish. Chicken and turkey plain cooked breast, no breadcrumb/batter coating.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "pickle mustard relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked turkey breast; if the filling is being served hot, reduce only the sauce-coated cooked turkey breast until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-cad8764a-0e75-4633-93a9-87bce38dd462.png",
+  "source_sha256": "bf54499db618b02871c042105dd5d17e5afbac898d3fa30d5fdbdc37db5bf403",
+  "generated_at": "2026-10-04T23:48:50.218Z",
+  "elapsed_ms": 294942.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-96f6e15fc7f7d8aa1fd2-480-ee0757b11f0c.webp",
+      "sha256": "ee0757b11f0c3d8c7a8b5fc93d01a0c58cd65c0291a08db12d7a2165486d7845",
+      "bytes": 23734
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-96f6e15fc7f7d8aa1fd2-4d8b1e543770.webp",
+      "sha256": "4d8b1e54377023f43c67a6fb57e1cf40041b02c94f212fc9e93ae011fbebfc18",
+      "bytes": 73322
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "bf54499db618b02871c042105dd5d17e5afbac898d3fa30d5fdbdc37db5bf403",
+    "recipe_ids": [
+      "industrial-v3-wrap-pickle-turkey"
+    ],
+    "titles": [
+      "Shift Pickle Turkey Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap cut in halves, lightly coloured cooked turkey with pickle mustard relish and fresh lettuce/tomato. No breadcrumb coating, cheese, seeds or extra side; fresh vegetables kept fresh as method requires.",
+    "alt": "Pickle turkey wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:51:39.922718+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2011.json"
+  },
+  "integrated": true,
+  "live": false
+}

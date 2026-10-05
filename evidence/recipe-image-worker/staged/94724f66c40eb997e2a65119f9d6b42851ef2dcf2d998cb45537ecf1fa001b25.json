@@ -1,0 +1,79 @@
+{
+  "groupId": "94724f66c40eb997e2a65119f9d6b42851ef2dcf2d998cb45537ecf1fa001b25",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-balti-turkey"
+  ],
+  "titles": [
+    "Shift Balti Turkey Slow-Cooker Big Pot"
+  ],
+  "prompt": "Professional appetising close food photograph of this exact actual recipe. Believable home-cooked texture, thoughtful composition and natural light. Show its complete measured dish. Match ingredients, cut and preparation precisely. No invented garnish or side. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Turkey Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the turkey mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and turkey mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the turkey mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the turkey mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and turkey mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the turkey mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c1f0190e-171c-44a9-a69d-b1e7df3d192f.png",
+  "source_sha256": "9c8b2d1f274f4df3763184681c9bb6dce60cd6dd9e5d6c3eb9fe46240fdfd585",
+  "generated_at": "2026-10-04T23:57:53.818Z",
+  "elapsed_ms": 686661,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-94724f66c40eb997e2a6-480.webp",
+      "sha256": "a08f4649da4b9ecc1ea77727eab3457773322f14dc2a2479c6582f55a81be7a5",
+      "bytes": 31618
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-94724f66c40eb997e2a6.webp",
+      "sha256": "122b5f7a704d6d65cf6a44fe957b4fea8697cb0fcc690d8f0815d7e1c1d837e1",
+      "bytes": 101938
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "9c8b2d1f274f4df3763184681c9bb6dce60cd6dd9e5d6c3eb9fe46240fdfd585",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-balti-turkey"
+    ],
+    "titles": [
+      "Shift Balti Turkey Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked turkey mince crumbles with tender baby potatoes, carrots and onion in a light balti coating.",
+    "alt": "Shift Balti Turkey Slow-Cooker Big Pot: cooked turkey mince crumbles with tender baby potatoes, carrots and onion in a light balti coating.",
+    "reviewed_at": "2026-10-05T00:10:54.760526+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

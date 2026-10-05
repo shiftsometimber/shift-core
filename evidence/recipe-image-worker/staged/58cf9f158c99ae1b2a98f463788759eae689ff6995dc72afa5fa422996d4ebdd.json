@@ -1,0 +1,90 @@
+{
+  "groupId": "58cf9f158c99ae1b2a98f463788759eae689ff6995dc72afa5fa422996d4ebdd",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-weekend-turkey"
+  ],
+  "titles": [
+    "Shift Weekend Turkey Breakfast Buttie"
+  ],
+  "prompt": "Photograph the actual completed recipe with careful food styling, natural side light and believable appetising texture. No added garnish or ingredient. Match protein cut, quantities and preparation exactly. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Turkey Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Exact ingredients and method are authoritative. No food outside these ingredients.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fd6441ce-ca8d-45d4-81c2-2a39f7a0c05b.png",
+  "source_sha256": "6994374fd971f1e2d3f3f15df66bc61ca0b69439635343f1fec512ef88e85021",
+  "generated_at": "2026-10-04T23:34:08.920Z",
+  "elapsed_ms": 45452,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-58cf9f158c99ae1b2a98-480.webp",
+      "sha256": "cba2604aee62285dcfeb699a14b03c294823fd0df0b371b606196312d6e49022",
+      "bytes": 26280
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-58cf9f158c99ae1b2a98.webp",
+      "sha256": "341cf4d3290615a12ef71fc3279c2f9388b0dc433c4800c7a09d381899a06986",
+      "bytes": 81502
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6994374fd971f1e2d3f3f15df66bc61ca0b69439635343f1fec512ef88e85021",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-weekend-turkey"
+    ],
+    "titles": [
+      "Shift Weekend Turkey Breakfast Buttie"
+    ],
+    "notes": "Wholemeal bap filled with warmed cooked turkey, wilted spinach, softened tomatoes and onions with measured ketchup; no cheese or egg.",
+    "alt": "Turkey breakfast bap with spinach, tomato and onion",
+    "reviewed_at": "2026-10-04T23:45:25.951622+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

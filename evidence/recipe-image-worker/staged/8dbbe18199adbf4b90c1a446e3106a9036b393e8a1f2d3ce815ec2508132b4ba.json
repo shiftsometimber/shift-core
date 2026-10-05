@@ -1,0 +1,79 @@
+{
+  "groupId": "8dbbe18199adbf4b90c1a446e3106a9036b393e8a1f2d3ce815ec2508132b4ba",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-bean-loaded-beans"
+  ],
+  "titles": [
+    "Shift Loaded Beans Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Loaded Beans Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b1eda741-fd63-4197-a68a-888a1f75b341.png",
+  "source_sha256": "0e36e583851ae58ed1ad10d0ac49d32ef49997a896826b4863e5d2461647aa6b",
+  "generated_at": "2026-10-04T23:37:16.490Z",
+  "elapsed_ms": 202551,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8dbbe18199adbf4b90c1-480.webp",
+      "sha256": "24e9eb2f640629455db8cfc98aa276f4218955baf0611aa7eec5be3f29820dea",
+      "bytes": 24820
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8dbbe18199adbf4b90c1-retry2-b36f64def0be.webp",
+      "sha256": "b36f64def0be305824328f12f46c7835a09a7ca36683d0beb9f95457205813e0",
+      "bytes": 78926
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "0e36e583851ae58ed1ad10d0ac49d32ef49997a896826b4863e5d2461647aa6b",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-bean-loaded-beans"
+    ],
+    "titles": [
+      "Shift Loaded Beans Breakfast Buttie"
+    ],
+    "notes": "Unseeded wholemeal bap filled with hot baked beans, softened tomato and wilted spinach. Only listed food, without garnish.",
+    "alt": "Loaded baked bean bap with tomato and spinach",
+    "reviewed_at": "2026-10-04T23:38:29.893532+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/232.json"
+  },
+  "integrated": true,
+  "live": false
+}

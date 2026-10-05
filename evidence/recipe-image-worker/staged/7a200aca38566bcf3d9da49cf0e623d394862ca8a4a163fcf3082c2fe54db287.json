@@ -1,0 +1,88 @@
+{
+  "groupId": "7a200aca38566bcf3d9da49cf0e623d394862ca8a4a163fcf3082c2fe54db287",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-cheesecake-style-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Fruit Crunch Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Fruit Crunch Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed foods; no honey, nuts, mint, syrup, garnish, cake or biscuit crust. Mixed berries just the measured25g. All food inside frame.  NO side crackers, whole biscuits or biscuit crumbs anywhere unless exact list explicitly includes crushed wholegrain biscuit. Measured30g light cream cheese smoothly folded through the fruit/base; no giant cream mound, no cake or crust. Yoghurt is SMOOTH and stirred, no cottage-cheese curds or rice-like grains. Finished dessert all ingredients combined in ONE bowl, measured yoghurt visibly swirled through. No separate creamy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-bb57da49-33b2-4e3f-bfa3-de3f9a85e8cf.png",
+  "source_sha256": "8d3a0d5d9a574748d076caa6701ce35e8f1ae56fb81e79009870bfdb2eb2adfe",
+  "generated_at": "2026-10-04T23:48:06.037Z",
+  "elapsed_ms": 52074,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7a200aca38566bcf3d9d-480-76983b757341.webp",
+      "sha256": "76983b75734120a37c596ec96b96ea59ddb0ebfca449c62862253b62cfbf0772",
+      "bytes": 21332
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7a200aca38566bcf3d9d-ee001bd62812.webp",
+      "sha256": "ee001bd62812b297824c50f16bcc1d750c573928640ea3490d95652bd81770a9",
+      "bytes": 61878
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8d3a0d5d9a574748d076caa6701ce35e8f1ae56fb81e79009870bfdb2eb2adfe",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-cheesecake-style-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Fruit Crunch Dessert Pot"
+    ],
+    "notes": "Bite-size apple and modest berries combined with measured cream cheese, oats and seeds, Greek yoghurt swirled through. No cake, crust or chocolate.",
+    "alt": "Apple and berry dessert with cream cheese, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:56:14.815510+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/7a200aca38566bcf3d9da49cf0e623d394862ca8a4a163fcf3082c2fe54db287.json"
+  },
+  "integrated": true,
+  "live": false
+}

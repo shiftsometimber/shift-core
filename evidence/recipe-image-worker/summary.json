@@ -1,14 +1,22 @@
 {
   "catalogue_recipes": 2671,
   "distinct_groups": 2623,
-  "generated_new": 862,
-  "reviewed_pass_new": 862,
+  "generated_new": 1203,
+  "reviewed_pass_new": 1203,
   "reviewed_reject_new": 0,
-  "integrated_new": 862,
-  "integrated_recipe_bindings_total": 913,
-  "remaining_recipe_bindings": 1758,
+  "integrated_new": 1203,
+  "integrated_recipe_bindings_total": 1270,
+  "remaining_recipe_bindings": 1401,
   "live_new": 0,
-  "remaining_groups_without_prepared_asset": 1742,
-  "remaining_groups_without_usable_new_asset": 1742,
-  "complete": false
+  "remaining_groups_without_prepared_asset": 1401,
+  "remaining_groups_without_usable_new_asset": 1401,
+  "complete": false,
+  "generation_history": {
+    "generated_attempts": 1282,
+    "generated_distinct_groups": 1236,
+    "reviewed_pass_attempts": 1180,
+    "reviewed_reject_attempts": 36,
+    "awaiting_review_attempts": 66
+  },
+  "historical_attempts_are_not_current_usable_assets": true
 }
