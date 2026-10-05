@@ -267,9 +267,10 @@
   },
   "fitComposition": {
     "proof": "FIT_300_BOUNDED_RELEASE_COMPOSITION_V1",
-    "source": "0ecb9a248165082f1de3a6ae5de7d5e67016eb31",
+    "source": "5e3ed1d9469cb3087fb51a1a7e4b035924d630c4",
     "paths": [
       "scripts/b1-release-scope.mjs",
+      "release/app-scope.mjs",
       "shift-coach/release-contract.mjs"
     ]
   }
