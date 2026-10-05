@@ -1,3 +1,4 @@
+import {originalSixTopicSeoPreservation} from './six-topic-seo-preservation.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import paths from '../editorial/book-voice/payload.json' with {type:'json'};
@@ -7,6 +8,7 @@ export const BOOK_VOICE_PATHS=paths;
 export function originalBookVoiceGate(path,source){
  if(path==='member-experience/verify-production-member.mjs')return source.replace("import {withTrustRepair} from '../shift-coach/public-trust-repair.mjs';\n",'').replace('expected=Buffer.from(await (await withTrustRepair(request,footerWrapped)).arrayBuffer());','expected=Buffer.from(await footerWrapped.arrayBuffer());');
  if(path==='member-experience/public-preservation.mjs'){
+  source=originalSixTopicSeoPreservation(source);
   source=source
    .replace("import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';\n",'')
    .replace("import {restoreTrustCentre} from '../shift-coach/public-trust-repair.mjs';\n",'')
