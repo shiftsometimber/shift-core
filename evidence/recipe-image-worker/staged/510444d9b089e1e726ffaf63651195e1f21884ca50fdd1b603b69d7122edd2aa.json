@@ -1,0 +1,88 @@
+{
+  "groupId": "510444d9b089e1e726ffaf63651195e1f21884ca50fdd1b603b69d7122edd2aa",
+  "recipe_ids": [
+    "industrial-v3-kebab-dirty-beef"
+  ],
+  "titles": [
+    "Shift Dirty Beef Fakeaway Kebab"
+  ],
+  "prompt": "Remove the background side plate of lettuce and tomato and the separate bowl of relish entirely. Leave only the single assembled wholemeal flatbread kebab on its plate, containing exactly the three cooked beef koftas, shredded lettuce, sliced tomato and cold burger relish already shown. No sides, sauces, herbs, skewers or extra food.",
+  "original_generation_prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Dirty Beef Fakeaway Kebab. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"80g\",\"item\":\"wholemeal flatbread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"burger relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.\",\"Mix the measured burger relish in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.\",\"Press the 5% beef mince firmly into three short koftas, each no thicker than 1.5cm; no skewers or binder are needed. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the beef koftas over a medium heat for about 10\u201312 minutes, turning them onto every side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the lettuce and tomato on the warm flatbread. Add the cooked beef koftas and the cold finishing sauce, fold the bread around the filling and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; any herbs listed in cold finishing sauce stay ONLY inside that sauce. No fresh herb garnish. Absolutely no sauce, dressing, ketchup, mayo or white drizzle; specified dry spice coating alone.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal flatbread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "burger relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.",
+    "Mix the measured burger relish in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.",
+    "Press the 5% beef mince firmly into three short koftas, each no thicker than 1.5cm; no skewers or binder are needed. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the beef koftas over a medium heat for about 10\u201312 minutes, turning them onto every side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the lettuce and tomato on the warm flatbread. Add the cooked beef koftas and the cold finishing sauce, fold the bread around the filling and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1567480e-e9f9-4098-a842-5851db83b2f1.png",
+  "source_sha256": "1fad544a39148483916ec0c61234ba003aac5956a985c0b917d5f7fd63a5131d",
+  "generated_at": "2026-10-05T01:03:20.441Z",
+  "elapsed_ms": 275026.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-510444d9b089e1e726ff-480.webp",
+      "sha256": "947706f83750da201065d395d484c7f6d107b56b94ef11753d5bc8a2c57fc4bb",
+      "bytes": 26416
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-510444d9b089e1e726ff-e41a53dd9cf8.webp",
+      "sha256": "e41a53dd9cf8a5b5ae9431e99793270bedc66d5377e61c0b95d0de9ef1b7c383",
+      "bytes": 87204
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1fad544a39148483916ec0c61234ba003aac5956a985c0b917d5f7fd63a5131d",
+    "recipe_ids": [
+      "industrial-v3-kebab-dirty-beef"
+    ],
+    "titles": [
+      "Shift Dirty Beef Fakeaway Kebab"
+    ],
+    "notes": [
+      "Exactly three intact cooked beef koftas with shredded lettuce, tomato slices and cold burger relish fill one folded plain wholemeal flatbread. Duplicate background sides removed; no skewers or garnish."
+    ],
+    "alt": "Dirty Beef Fakeaway Kebab with wholemeal flatbread, lettuce, tomato",
+    "reviewed_at": "2026-10-05T01:05:33.319Z",
+    "reviewer": "worker-c individual source visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-746.json"
+  },
+  "integrated": true,
+  "live": false
+}

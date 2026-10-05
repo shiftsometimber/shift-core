@@ -1,0 +1,78 @@
+{
+  "groupId": "bddc4e370b977beb066adb2785494785a603b677baa436e7f7eb7101f7fa3b27",
+  "recipe_ids": [
+    "industrial-v3-traybake-chilli-chicken"
+  ],
+  "titles": [
+    "Shift Smoky Chilli Chicken Traybake"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe, appetising through natural window light and truthful texture. No invented garnish or additional ingredients. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Chicken Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e50b7929-9093-4a0a-9f2b-3c9354a9b00c.png",
+  "source_sha256": "fc31301ee6c7229b171c01d57a1717fef3bcb33bdf8cae4c17586c76dd52eb40",
+  "generated_at": "2026-10-05T00:41:37.439Z",
+  "elapsed_ms": 270773,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bddc4e370b977beb066a-480.webp",
+      "sha256": "3e42c276d0a1f45b36ef9af60a75e81dbb3ff5c1aa03125540717b9d688b6d48",
+      "bytes": 37468
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bddc4e370b977beb066a.webp",
+      "sha256": "6b34b61df999b3401c87a73cac704f774356bdec951c8db5402052c822f56396",
+      "bytes": 117344
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Smoky chilli chicken with roasted baby potatoes, broccoli and red pepper",
+    "notes": "Full-resolution individual inspection: browned cooked chicken, golden baby potatoes, roasted broccoli and red pepper with measured smoky tomato coating; no extras; exact method and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-traybake-chilli-chicken"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Chicken Traybake"
+    ],
+    "source_sha256": "fc31301ee6c7229b171c01d57a1717fef3bcb33bdf8cae4c17586c76dd52eb40",
+    "reviewed_at": "2026-10-05T00:54:17.976215+00:00"
+  }
+}

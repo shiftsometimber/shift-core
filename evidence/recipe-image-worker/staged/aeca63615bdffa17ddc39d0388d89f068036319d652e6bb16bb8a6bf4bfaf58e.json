@@ -1,0 +1,87 @@
+{
+  "groupId": "aeca63615bdffa17ddc39d0388d89f068036319d652e6bb16bb8a6bf4bfaf58e",
+  "recipe_ids": [
+    "industrial-v3-wrap-cajun-ham"
+  ],
+  "titles": [
+    "Shift Cajun Ham Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Ham Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"Cajun yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the lean ham; if the filling is being served hot, reduce only the sauce-coated lean ham until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. If spices are mixed into a dressing, all spices remain in the smooth dressing: NO dry spice dust scattered over food, salad or plate. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty; cooked salmon and cooked cured ham retain their natural opaque colour.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the lean ham; if the filling is being served hot, reduce only the sauce-coated lean ham until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d7f81ba1-023f-40af-9758-27cbe1e5829a.png",
+  "source_sha256": "1782bb618ed0cb0f68d1ea6fe31a06e7a7f4fb796b3b263ffb26f4745dfd5b1f",
+  "generated_at": "2026-10-05T01:14:44.931Z",
+  "elapsed_ms": 405546.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-aeca63615bdffa17ddc3-480-b73105934d4e.webp",
+      "sha256": "b73105934d4eba5ee8bbb48062cf5348937adad4eb2564a3048b9b287bddd378",
+      "bytes": 21184
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-aeca63615bdffa17ddc3-1d4ed2b0e23e.webp",
+      "sha256": "1d4ed2b0e23ecbfec2a1e82f6d37a6e3be57e7d37918dfd3af51a81cb570b8c3",
+      "bytes": 60996
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1782bb618ed0cb0f68d1ea6fe31a06e7a7f4fb796b3b263ffb26f4745dfd5b1f",
+    "recipe_ids": [
+      "industrial-v3-wrap-cajun-ham"
+    ],
+    "titles": [
+      "Shift Cajun Ham Loaded Wrap"
+    ],
+    "notes": "Plain toasted wholemeal wrap contains thin cooked lean ham with lightly browned edges and thick Cajun yoghurt coat, fresh lettuce and tomato. No cheese, seeds or garnish; exact title and sauce-coating method match.",
+    "alt": "Cajun ham wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T01:15:55.227700+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1618-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

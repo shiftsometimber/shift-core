@@ -1,0 +1,92 @@
+{
+  "groupId": "4365d048ddde2acfe312f4975beac771b299d491dcb8d54a80c2e321d6874207",
+  "recipe_ids": [
+    "industrial-v3-bagel-tikka-egg"
+  ],
+  "titles": [
+    "Shift Tikka Egg Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Egg Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"tikka yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured tikka yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel. No sesame/poppy seeds, cheese, mayo or extra food/herbs. The listed tikka yoghurt is the only creamy dressing, mixed as exact method specifies; no additional cream or coriander garnish. Chickpeas whole for proper sandwich, not hummus. Eggs sliced hard-boiled, never fried/scrambled. Ham thin cooked strips where required. Tuna small fibrous drained flakes mixed only with listed tikka yoghurt, never different protein. Keep reserved raw spinach/tomato or rocket/tomato side salads separate. Spring onion finely sliced mixed into salad alongside jacket potatoes, not garnish on potato. Rice cooked with raw diced peppers and ready-to-eat corn; dressing folded through rice.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+    "Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the measured tikka yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7d813b31-0253-442f-97c4-fc26b35b5613.png",
+  "source_sha256": "3fc369c470de02d3acd28b2cda6075ea04a1995bcf019b767c4bcf804730867c",
+  "generated_at": "2026-10-05T00:47:08.440Z",
+  "elapsed_ms": 169303.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4365d048ddde2acfe312-480-dff0612556a9.webp",
+      "sha256": "dff0612556a9f0adc9ae7e5b58ddf0b6b3179b1d318339ae5836aceff8173752",
+      "bytes": 31470
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4365d048ddde2acfe312-2bc0477db112.webp",
+      "sha256": "2bc0477db112f2e55f9dabb3441909483b0a0d7c666e65c90eae403d3bf1d3f7",
+      "bytes": 97082
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3fc369c470de02d3acd28b2cda6075ea04a1995bcf019b767c4bcf804730867c",
+    "recipe_ids": [
+      "industrial-v3-bagel-tikka-egg"
+    ],
+    "titles": [
+      "Shift Tikka Egg Loaded Bagel"
+    ],
+    "notes": "Unseeded wholemeal bagel with thin sliced hard-boiled eggs combined with listed tikka yoghurt, rocket/tomato and reserved raw rocket/tomato side salad. No extra herb garnish, cheese or mayonnaise; exact title/method checked.",
+    "alt": "Tikka yoghurt boiled egg bagel with rocket and tomato salad",
+    "reviewed_at": "2026-10-05T00:51:32.506581+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2098.json"
+  },
+  "integrated": true,
+  "live": false
+}

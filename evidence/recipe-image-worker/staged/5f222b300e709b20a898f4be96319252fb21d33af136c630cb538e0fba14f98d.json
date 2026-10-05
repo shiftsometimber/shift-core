@@ -1,0 +1,87 @@
+{
+  "groupId": "5f222b300e709b20a898f4be96319252fb21d33af136c630cb538e0fba14f98d",
+  "recipe_ids": [
+    "industrial-v3-wrap-sweet-chilli-tuna"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Tuna Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Tuna Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the tuna in spring water, drained; if the filling is being served hot, reduce only the sauce-coated tuna in spring water, drained until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel, no sesame/poppy seeds, cheese or food not listed. Sweet chilli sauce is translucent glossy red, never creamy: no mayo/yoghurt/cream. Tuna is loose fibrous drained flakes, never creamy tuna salad; ham thin cooked strips where method specifies. Eggs sliced hard-boiled. Turkey plain cooked breast not breaded. Keep reserved raw spinach/tomato or rocket/tomato side salads separate. Spring onion sliced finely mixed into salad alongside jacket potatoes, never garnish on potato. Cook rice; peppers raw diced, corn ready-to-eat. Sauce incorporated exactly as method states.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the tuna in spring water, drained; if the filling is being served hot, reduce only the sauce-coated tuna in spring water, drained until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5404c944-d135-4436-afde-c517751ea20c.png",
+  "source_sha256": "ccb147b61252323d3e19c3a90485cda9825b49ea4299722702932a224798d2bb",
+  "generated_at": "2026-10-05T00:33:18.874Z",
+  "elapsed_ms": 302291.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5f222b300e709b20a898-480-611e697bfb73.webp",
+      "sha256": "611e697bfb737fe5850c08ea21f8433098d974084c6f133b4ebac7928b4aa64b",
+      "bytes": 22936
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5f222b300e709b20a898-e2496f70f7e6.webp",
+      "sha256": "e2496f70f7e611141d7b9b23f4859cf03f8a1b7a7bcbeca71742eb8525be0cd7",
+      "bytes": 66860
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ccb147b61252323d3e19c3a90485cda9825b49ea4299722702932a224798d2bb",
+    "recipe_ids": [
+      "industrial-v3-wrap-sweet-chilli-tuna"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Tuna Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap halves contain loose fibrous tuna flakes coated in translucent sweet chilli sauce with fresh lettuce/tomato. No opaque creamy tuna coating, cheese, seeds or extra side; exact title/method checked.",
+    "alt": "Sweet chilli tuna wholemeal wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:34:59.569759+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2076.json"
+  },
+  "integrated": true,
+  "live": false
+}

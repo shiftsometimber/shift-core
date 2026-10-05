@@ -1,0 +1,86 @@
+{
+  "groupId": "c613b9b9eeec3975658d14383ae782e7490219aad2201063d72a154769dc6e18",
+  "recipe_ids": [
+    "industrial-v3-jacket-potato-tikka-chicken"
+  ],
+  "titles": [
+    "Shift Tikka Chicken Loaded Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Chicken Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"amount\":\"40g\",\"item\":\"tikka yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured tikka yoghurt and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel. No sesame/poppy seeds, cheese, cream/mayo or unlisted food. Sweet chilli recipes: sauce translucent glossy red, no opaque creamy coating. Tikka recipes: only listed tikka yoghurt dressing, creamy orange-tinted; no additional herbs, coriander, rice sides, curry garnish or tikka grilling char invented. Poultry plain already-cooked breast, no breadcrumb/batter coating. Chickpeas coarse roughly mashed only for toastie/bagel, whole elsewhere. Keep reserved raw spinach/tomato or rocket/tomato salads alongside. Finely sliced spring onion mixed into salad alongside jacket potatoes, never scattered on potato. Rice cooked, peppers diced raw, corn ready-to-eat; measured dressing folded through rice.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "90g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured tikka yoghurt and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-db886aa2-e46f-4415-8be0-a6c1ea9eb520.png",
+  "source_sha256": "835f24f254181782a1fcc69b8fd12bae26b40388f5d8e629ebb892283818006e",
+  "generated_at": "2026-10-05T00:39:58.805Z",
+  "elapsed_ms": 236406.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c613b9b9eeec3975658d-480-2152384b5675.webp",
+      "sha256": "2152384b5675e24ed3b573c7f74f01fea906e78add45285eee0ca9c257dfd97e",
+      "bytes": 33692
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c613b9b9eeec3975658d-8f4b8067ce92.webp",
+      "sha256": "8f4b8067ce92b12e6ef33bda64ee7520a95d6fc4dc45b684b1f71e964757df9e",
+      "bytes": 103190
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "835f24f254181782a1fcc69b8fd12bae26b40388f5d8e629ebb892283818006e",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-tikka-chicken"
+    ],
+    "titles": [
+      "Shift Tikka Chicken Loaded Jacket Potato"
+    ],
+    "notes": "Fluffy split baked potato topped with ready-to-eat shredded chicken and listed tikka yoghurt/oil dressing. Finely sliced spring onion remains in separate mixed salad alongside. No butter, cheese or herb garnish; exact title/method checked.",
+    "alt": "Tikka yoghurt chicken jacket potato with mixed salad and spring onion",
+    "reviewed_at": "2026-10-05T00:43:09.595061+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2087.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,88 @@
+{
+  "groupId": "014b02379ac13e2d21b10896304aa527821813de075e96cda79a5c00668eae42",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-chocolate-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Chocolate Cottage Cheese Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Cottage Cheese Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed food; no honey, nuts, mint, syrup, sauces or decorative garnish. All food inside frame. Berries just small25g portion. NO crackers or biscuits anywhere. Unsweetened cocoa is fine powder measured5g, lightly mixed into fruit/dairy, never chocolate syrup, melted chocolate or extra chocolate chunks. Dark chocolate chunks ONLY where explicitly listed. Cottage cheese recognisable small curds, cocoa evenly mixed into curds when listed. All ingredients combined as finished dessert, chopped dark chocolate finishing ONLY where listed. No melted chocolate sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-56d8bc34-a607-4986-83b2-a97f0ac4fca0.png",
+  "source_sha256": "834da09fe149cd92f14a1dd454df2ffa338813379665ee9e4d8661983b8e256c",
+  "generated_at": "2026-10-05T00:26:40.829Z",
+  "elapsed_ms": 390804,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-014b02379ac13e2d21b1-480-cd6ebecf67a1.webp",
+      "sha256": "cd6ebecf67a19a4b51f9dd8d81072eafcb17b9917b0eea56bd50ab98e8ff2105",
+      "bytes": 26670
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-014b02379ac13e2d21b1-413c7b8bb361.webp",
+      "sha256": "413c7b8bb361a6e650f0e43833ccdc8e4229ab1d29dd2f3c42e6c248cd652a20",
+      "bytes": 81174
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "834da09fe149cd92f14a1dd454df2ffa338813379665ee9e4d8661983b8e256c",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-chocolate-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Chocolate Cottage Cheese Big Feed Dessert"
+    ],
+    "notes": "Recognisable cottage cheese curds evenly cocoa mixed with small berries/oats/seeds, listed chopped dark chocolate finishing. No syrup.",
+    "alt": "Cocoa cottage cheese dessert with berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T00:28:44.931942+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/014b02379ac13e2d21b10896304aa527821813de075e96cda79a5c00668eae42.json"
+  },
+  "integrated": true,
+  "live": false
+}

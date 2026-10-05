@@ -1,0 +1,88 @@
+{
+  "groupId": "7127b1690dd3a845d099077128ded308348d8e8f954fce26ae5b7b6c7c399617",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-classic-protein-pudding"
+  ],
+  "titles": [
+    "Shift Classic Protein Pudding Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Protein Pudding Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only, no honey, nuts, mint, syrup or decorative garnish. Small25g mixed berries. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Cinnamon only light1g powder evenly mixed into food; no decorative cinnamon sticks or dry powder piles. Yoghurt smooth and stirred, no cottage-cheese curds. Finished dessert one bowl all ingredients combined, measured Greek yoghurt visibly swirled through. No separate dairy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-581de978-94fc-4648-ac75-bc6f6e0efab6.png",
+  "source_sha256": "ddd247c271343080110a00e57336d47ef7ace9a58efe8b25d6b2dff7a6b6b4f2",
+  "generated_at": "2026-10-05T00:45:25.294Z",
+  "elapsed_ms": 186930,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7127b1690dd3a845d099-480-49c01a5e06a9.webp",
+      "sha256": "49c01a5e06a9f04ad67381468055f9e44dd096261fcd2ae6d5abfe52aadf5cd9",
+      "bytes": 19036
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7127b1690dd3a845d099-c3425cb0a30b.webp",
+      "sha256": "c3425cb0a30be5d28d7481b68190fe4ecbe85e447a06c8d9c0e1946f5ed22605",
+      "bytes": 57584
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ddd247c271343080110a00e57336d47ef7ace9a58efe8b25d6b2dff7a6b6b4f2",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-classic-protein-pudding"
+    ],
+    "titles": [
+      "Shift Classic Protein Pudding Dessert Pot"
+    ],
+    "notes": "Smooth protein yoghurt with fine cinnamon, small berries/oats/seeds combined and Greek yoghurt swirled through. No sticks or chocolate.",
+    "alt": "Cinnamon protein yoghurt dessert with berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:50:46.848946+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/7127b1690dd3a845d099077128ded308348d8e8f954fce26ae5b7b6c7c399617.json"
+  },
+  "integrated": true,
+  "live": false
+}

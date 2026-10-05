@@ -44,6 +44,9 @@ import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-
 import taldefgrobepRv8451 from './reviews/2026-10-04-authorised-taldefgrobep-rv8451.json' with {type:'json'};
 import internationalMaintenanceWave from './reviews/2026-10-04-authorised-international-maintenance-wave.json' with {type:'json'};
 import novoSpecialistWave from './reviews/2026-10-05-authorised-novo-specialist-wave.json' with {type:'json'};
+import petrelintideZupreme from './reviews/2026-10-05-authorised-petrelintide-zupreme-registry.json' with {type:'json'};
+import ribupatideSpecialistWave from './reviews/2026-10-05-authorised-ribupatide-specialist-wave.json' with {type:'json'};
+import hansohOlatorepatideReview from './reviews/2026-10-05-authorised-hansoh-olatorepatide-source-review.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('VK2735 maintenance evidence stays sponsor-reported and does not create an approved regimen',()=>{
  const e=industry.find(e=>e.id==='vk2735');
@@ -364,7 +367,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,91);assert.equal(sources.length,146);
+ assert.equal(medicines.length,6);assert.equal(industry.length,91);assert.equal(sources.length,157);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,97);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
@@ -1061,4 +1064,77 @@ test('programme-level Novo and specialist discovery preserves indication and evi
  }
  assert.equal(novoSpecialistWave.failedChecks.length,2);
  assert.match(novoSpecialistWave.failedChecks[0].outcome,/timed out/);
+});
+
+test('Petrelintide ZUPREME review distinguishes sponsor initiation from registry recruitment',()=>{
+ assert.equal(petrelintideZupreme.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(petrelintideZupreme.clinicalApproval,null);
+ assert.equal(petrelintideZupreme.industryComplete,false);
+ assert.equal(petrelintideZupreme.catalogueCounts.totalAfter,97);
+ assert.equal(petrelintideZupreme.catalogueCounts.configuredSourcesAfter,149);
+ const petrelintide=industry.find(item=>item.id==='petrelintide');
+ assert.match(petrelintide.stage,/three records not yet recruiting/);
+ assert.match(petrelintide.summary,/ZUPREME-3, ZUPREME-4 and ZUPREME-5/);
+ assert.match(petrelintide.summary,/list no study locations/);
+ assert.match(petrelintide.limitations,/passed estimated start date is not treated as dosing/);
+ assert.match(petrelintide.limitations,/specialist-indication research/);
+ assert.equal(petrelintideZupreme.registrySources.length,3);
+ for(const registry of petrelintideZupreme.registrySources){
+  assert.equal(registry.lifecycle.status,'NOT_YET_RECRUITING');
+  assert.equal(registry.lifecycle.start.type,'ESTIMATED');
+  assert.equal(registry.lifecycle.start.date,'2026-09-30');
+  assert.equal(registry.lifecycle.hasResults,false);
+  assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ }
+ assert.equal(petrelintideZupreme.configuredSourcePass.currentSources,145);
+ assert.equal(petrelintideZupreme.configuredSourcePass.attention[0].id,'zealand-zp6590-pipeline');
+});
+
+test('ribupatide specialist wave keeps formulation, indication and conflicting evidence separate',()=>{
+ assert.equal(ribupatideSpecialistWave.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(ribupatideSpecialistWave.clinicalApproval,null);
+ assert.equal(ribupatideSpecialistWave.industryComplete,false);
+ assert.equal(ribupatideSpecialistWave.catalogueCounts.totalAfter,97);
+ assert.equal(ribupatideSpecialistWave.catalogueCounts.configuredSourcesAfter,157);
+ const injection=industry.find(item=>item.id==='ribupatide-injection');
+ assert.match(injection.stage,/specialist-indication studies active/);
+ assert.match(injection.summary,/9,262-participant Phase 3 cardiovascular-outcomes study/);
+ assert.match(injection.summary,/active-not-recruiting 48-participant Phase 1 adolescent-obesity study/);
+ assert.match(injection.summary,/older registry record remains UNKNOWN/);
+ assert.match(injection.limitations,/sponsor-reported topline results/);
+ assert.match(injection.limitations,/None establishes UK authorisation/);
+ const oral=industry.find(item=>item.id==='ribupatide-oral');
+ assert.match(oral.stage,/Recruiting China Phase III/);
+ assert.match(oral.summary,/NCT07670884/);
+ assert.match(oral.limitations,/does not establish that the separately planned global Phase 3 programme has started/);
+ const hrs4729=industry.find(item=>item.id==='kai4729');
+ assert.match(hrs4729.stage,/recruiting China Phase II MASH study/);
+ assert.match(hrs4729.summary,/separate HRS-4729, ribupatide and matching-placebo arms/);
+ assert.equal(ribupatideSpecialistWave.registrySources.length,7);
+ assert.equal(ribupatideSpecialistWave.registrySources.find(s=>s.nctId==='NCT07551492').lifecycle.enrollment.count,9262);
+ assert.equal(ribupatideSpecialistWave.registrySources.find(s=>s.nctId==='NCT06595797').lifecycle.status,'UNKNOWN');
+ assert.ok(ribupatideSpecialistWave.registrySources.every(s=>!s.lifecycle.hasResults&&/^[a-f0-9]{64}$/.test(s.reviewedFingerprint)));
+ assert.equal(ribupatideSpecialistWave.configuredSourcePass.currentSources,148);
+ assert.equal(ribupatideSpecialistWave.configuredSourcePass.attention[0].id,'zealand-zp6590-pipeline');
+});
+
+test('Hansoh source review renews only the read claim-bearing baseline',()=>{
+ assert.equal(hansohOlatorepatideReview.publicationStatus,'owner_authorised_source_review');
+ assert.equal(hansohOlatorepatideReview.clinicalApproval,null);
+ assert.equal(hansohOlatorepatideReview.industryComplete,false);
+ assert.equal(hansohOlatorepatideReview.medicineWordingChanged,false);
+ assert.equal(hansohOlatorepatideReview.monitoring.thresholdsChanged,false);
+ assert.equal(hansohOlatorepatideReview.monitoring.successesSeeded,false);
+ assert.match(hansohOlatorepatideReview.monitoring.result,/complete primary-source read/);
+ const source=industrySources.find(item=>item.id==='hansoh-olatorepatide-20260604');
+ assert.equal(source.reviewedAt,hansohOlatorepatideReview.reviewedAt);
+ assert.equal(source.reviewedFingerprint,hansohOlatorepatideReview.source.reviewedFingerprint);
+ assert.notEqual(source.reviewedFingerprint,hansohOlatorepatideReview.monitoring.previousReviewedFingerprint);
+ const entry=industry.find(item=>item.id==='olatorepatide');
+ assert.equal(entry.reviewedAt,hansohOlatorepatideReview.reviewedAt);
+ assert.match(entry.stage,/Chinese NDA accepted following Phase III/);
+ assert.match(entry.summary,/Acceptance is not marketing approval/);
+ assert.match(entry.ukAuthorisation,/Not established.*reviewed evidence/);
+ assert.match(entry.nhsEngland,/no routine access claim/i);
+ assert.match(entry.supply,/stock unverified/i);
 });

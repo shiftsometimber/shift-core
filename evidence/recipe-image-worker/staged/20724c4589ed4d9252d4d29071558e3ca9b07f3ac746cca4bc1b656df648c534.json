@@ -1,0 +1,85 @@
+{
+  "groupId": "20724c4589ed4d9252d4d29071558e3ca9b07f3ac746cca4bc1b656df648c534",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-cherry-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Cherry Greek Yoghurt Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Greek Yoghurt Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"240g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"}]. Preparation: [\"Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.\",\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only, no honey, nuts, mint, syrup or garnish. Cherries ALL destoned stemless fresh HALVES with visible EMPTY pit cavities; no whole cherries, cherry stones, stems or glazed maraschino cherries. Small25g berries alongside measured80g cherry flesh. No cake or biscuit crumbs. All food inside frame. NO crackers or biscuits anywhere. Yoghurt base completely smooth, no cottage cheese curds. All ingredients combined as finished dessert in ONE bowl, measured yoghurt visibly swirled through; no separate creamy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "240g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    }
+  ],
+  "method": [
+    "Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.",
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0cadd18f-4596-425b-89d5-99f0c6a50d6b.png",
+  "source_sha256": "184db00b2f59a325c5e5184c7e1f266502b399df361c6bebbe001d5e6fcb8d3e",
+  "generated_at": "2026-10-05T00:13:27.600Z",
+  "elapsed_ms": 357175,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-20724c4589ed4d9252d4-480-1c722d3257b4.webp",
+      "sha256": "1c722d3257b405513872f6894378a730fa5b2c21df613e5eb817a4f76043ed7f",
+      "bytes": 30992
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-20724c4589ed4d9252d4-fd97a7eb0156.webp",
+      "sha256": "fd97a7eb01567dff2a581796017761dc343d03d5ac2b9014ed7b3f7512e80113",
+      "bytes": 90350
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "184db00b2f59a325c5e5184c7e1f266502b399df361c6bebbe001d5e6fcb8d3e",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-cherry-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Cherry Greek Yoghurt Dessert Pot"
+    ],
+    "notes": "Smooth Greek yoghurt dessert with destoned cherry halves and small berries/oats/seeds combined, yoghurt swirl; no chocolate or garnish.",
+    "alt": "Greek yoghurt dessert with pitted cherries, berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:16:58.412359+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/20724c4589ed4d9252d4d29071558e3ca9b07f3ac746cca4bc1b656df648c534.json"
+  },
+  "integrated": true,
+  "live": false
+}

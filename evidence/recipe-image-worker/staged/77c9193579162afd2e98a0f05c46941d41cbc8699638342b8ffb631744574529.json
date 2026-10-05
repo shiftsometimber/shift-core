@@ -1,0 +1,78 @@
+{
+  "groupId": "77c9193579162afd2e98a0f05c46941d41cbc8699638342b8ffb631744574529",
+  "recipe_ids": [
+    "industrial-v3-traybake-chilli-pork"
+  ],
+  "titles": [
+    "Shift Smoky Chilli Pork Traybake"
+  ],
+  "prompt": "Photorealistic appetising exact recipe photography. NO extra garnish. If brown rice is listed, use genuine wholegrain rice with natural tan bran coats and longitudinal bran seams; never polished white rice. If vegetables are diced by the method, depict diced pieces, not whole tomatoes. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Pork Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and lean pork loin. Get the pan properly hot first. Cook the lean pork loin until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the lean pork loin is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and lean pork loin. Get the pan properly hot first. Cook the lean pork loin until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the lean pork loin is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-325a00f1-54a2-42ad-aef3-bfb678bf9e22.png",
+  "source_sha256": "a9325f33929d145a3833932586b3bbe3db1697862b55d961ed1d94c099de3451",
+  "generated_at": "2026-10-05T00:48:39.210Z",
+  "elapsed_ms": 76200,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-77c9193579162afd2e98-480.webp",
+      "sha256": "d16e8eb11c073b961e1ba8ed33a70900bcdc2ae64c795735ee20a868e8a89dc4",
+      "bytes": 35848
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-77c9193579162afd2e98.webp",
+      "sha256": "051e0e0db9b983cece74912e9bfd60ecc9b6900a4c4533d6168c3cebc6941f44",
+      "bytes": 113050
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Smoky chilli pork with roasted baby potatoes, broccoli and red pepper",
+    "notes": "Individual full-resolution inspection: cooked pork chunks with golden baby potatoes, roasted broccoli and red pepper in light smoky tomato coating, exact method and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-traybake-chilli-pork"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Pork Traybake"
+    ],
+    "source_sha256": "a9325f33929d145a3833932586b3bbe3db1697862b55d961ed1d94c099de3451",
+    "reviewed_at": "2026-10-05T01:03:30.420594+00:00"
+  }
+}

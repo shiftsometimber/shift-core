@@ -1,0 +1,84 @@
+{
+  "groupId": "9b6cf92ba4ac0883808c66f527d836ad4f498129f15694b93d95aeffced92da3",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-classic-protein-pudding"
+  ],
+  "titles": [
+    "Shift Classic Protein Pudding Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Protein Pudding Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only, no honey, nuts, mint, syrup or decorative garnish. Small25g mixed berries. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Cinnamon only light1g powder evenly mixed into food; no decorative cinnamon sticks or dry powder piles. Yoghurt smooth and stirred, no cottage-cheese curds. Finished protein pot with berries, powder flavouring evenly mixed into smooth yoghurt and dry oats/seeds newly added at serving.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9f81c8d2-52b1-4c1a-82e0-f3f02918999a.png",
+  "source_sha256": "bfb20ef033c98af770a17d0c2b2067ee9d46ac2a4ebc3dd3b262d01bd8838f33",
+  "generated_at": "2026-10-05T00:46:13.098Z",
+  "elapsed_ms": 234734,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9b6cf92ba4ac0883808c-480-07467b6cd6fc.webp",
+      "sha256": "07467b6cd6fc3425ba858e30897c026bba7008b01472abd72cc109a66dd4dace",
+      "bytes": 18394
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9b6cf92ba4ac0883808c-c7187f6ecda0.webp",
+      "sha256": "c7187f6ecda0c82247c6e79c94d297a7bf7ebea791de4c0de55adcb985bc3354",
+      "bytes": 56560
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "bfb20ef033c98af770a17d0c2b2067ee9d46ac2a4ebc3dd3b262d01bd8838f33",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-classic-protein-pudding"
+    ],
+    "titles": [
+      "Shift Classic Protein Pudding Protein Pot"
+    ],
+    "notes": "Smooth cinnamon protein yoghurt with small berries and dry oats/seeds newly topped at serving. No extras.",
+    "alt": "Cinnamon protein yoghurt pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:50:47.513702+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/9b6cf92ba4ac0883808c66f527d836ad4f498129f15694b93d95aeffced92da3.json"
+  },
+  "integrated": true,
+  "live": false
+}

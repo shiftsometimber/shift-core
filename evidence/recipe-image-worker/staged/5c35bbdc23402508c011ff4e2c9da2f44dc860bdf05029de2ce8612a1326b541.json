@@ -1,0 +1,83 @@
+{
+  "groupId": "5c35bbdc23402508c011ff4e2c9da2f44dc860bdf05029de2ce8612a1326b541",
+  "recipe_ids": [
+    "industrial-v3-pasta-chilli-tofu"
+  ],
+  "titles": [
+    "Shift Smoky Chilli Tofu Proper Pasta"
+  ],
+  "prompt": "One appetising photorealistic finished dish: golden firm tofu 2cm cubes tossed with cooked tan wholewheat penne, diced softened courgette cubes and softened finely DICED cherry tomato pieces in a measured smoky chilli tomato sauce coating. Tomatoes are chopped irregular small pieces, no whole tomatoes, no intact round halves, no circular tomato cross-sections. Only those listed ingredients plus measured olive oil. Cream ceramic bowl on muted neutral table, natural window light, landscape4:3 generous margin, no garnish, text or people.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the smoked chilli tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured smoked chilli tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-af72b44d-8e3d-4f2f-9511-6e68803d4f55.png",
+  "source_sha256": "32e364aec1333a7d6f15dbd278047b8822463bbabbd9176ce28b180d84de115d",
+  "generated_at": "2026-10-05T01:06:12.641Z",
+  "elapsed_ms": 113906,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5c35bbdc23402508c011-retry2-480.webp",
+      "sha256": "442c93db2dc78229016e77568e48ead227a1baa8fb8ed5d68fd2059bf22f20da",
+      "bytes": 35202
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5c35bbdc23402508c011-retry2.webp",
+      "sha256": "16aa430f13adbe8d37767bd7366877ea242034829882a8cdb70d1416938df51a",
+      "bytes": 109042
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Smoky chilli tofu wholewheat pasta with diced courgette and tomatoes",
+    "notes": "Individual full-resolution inspection of corrected attempt2: golden firm tofu cubes, wholewheat penne and softened diced courgette; tomatoes are now small irregular diced pieces in measured tomato coating with no whole tomatoes or circular halves. Exact ingredients, method and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-pasta-chilli-tofu"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Tofu Proper Pasta"
+    ],
+    "source_sha256": "32e364aec1333a7d6f15dbd278047b8822463bbabbd9176ce28b180d84de115d",
+    "reviewed_at": "2026-10-05T01:09:45.580660+00:00"
+  }
+}

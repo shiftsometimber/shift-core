@@ -1,0 +1,78 @@
+{
+  "groupId": "f88ac84e30911f51810e13da8100fc6a174eab04c3fe3f853005a8a2a0bd76eb",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-hoisin-tofu"
+  ],
+  "titles": [
+    "Shift Hoisin Tofu Slow-Cooker Big Pot"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe in natural window light, truthful appetising textures in a plain serving dish. No invented garnish or additions. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hoisin Tofu Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"hoisin-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "hoisin-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d8c23df5-ed5b-4134-9b0a-cda44f1192e5.png",
+  "source_sha256": "b90f1de9a1a4faffa3ea6e3f13432c5703dcc530aede6f82b3b41ce4e7fdc9e4",
+  "generated_at": "2026-10-05T00:27:51.222Z",
+  "elapsed_ms": 25061,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f88ac84e30911f51810e-480.webp",
+      "sha256": "8557ca6b95db7727fa947f7f4e7c03055a7d15fc88813c028fe5d47bd3bda3dd",
+      "bytes": 29952
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f88ac84e30911f51810e.webp",
+      "sha256": "f6a87428cac483083ce3c2efef88e136c7e6f851f9f028bf17baf91c5f4eaecb",
+      "bytes": 92918
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Hoisin tofu cubes with tender baby potatoes, carrots and onion",
+    "notes": "Full-resolution inspection: browned firm tofu cubes, tender baby potatoes, carrots and onion with glossy hoisin cooking juices; no added garnish. Exact ingredients, preparation and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-hoisin-tofu"
+    ],
+    "titles": [
+      "Shift Hoisin Tofu Slow-Cooker Big Pot"
+    ],
+    "source_sha256": "b90f1de9a1a4faffa3ea6e3f13432c5703dcc530aede6f82b3b41ce4e7fdc9e4",
+    "reviewed_at": "2026-10-05T00:50:10.468245+00:00"
+  }
+}

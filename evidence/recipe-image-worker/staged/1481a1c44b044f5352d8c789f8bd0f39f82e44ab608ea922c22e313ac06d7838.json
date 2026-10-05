@@ -1,0 +1,79 @@
+{
+  "groupId": "1481a1c44b044f5352d8c789f8bd0f39f82e44ab608ea922c22e313ac06d7838",
+  "recipe_ids": [
+    "industrial-v3-traybake-balti-turkey"
+  ],
+  "titles": [
+    "Shift Balti Turkey Traybake"
+  ],
+  "prompt": "Photorealistic editorial recipe food photography. Make the actual finished dish appetising through natural window light, truthful cooked texture and a clean plain ceramic serving dish. No decorative garnish or ingredients beyond the exact recipe. If brown rice is listed, show wholegrain rice with unmistakable tan bran on the grains, never ivory polished rice. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Turkey Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and turkey mince. Get the pan properly hot first. Cook the turkey mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the turkey mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and turkey mince. Get the pan properly hot first. Cook the turkey mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the turkey mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d6b3428a-daae-4e54-8e47-e2c2528e9490.png",
+  "source_sha256": "e3cd9c45e800973c401c82fcaf96d5c915c4e12f96a93abdd80557138a830e09",
+  "generated_at": "2026-10-05T00:09:21.126Z",
+  "elapsed_ms": 98619,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1481a1c44b044f5352d8-480.webp",
+      "sha256": "bb1ca017a19f00ba43dbb0b04b765993a8a441aa2776574e7ad7c8d09a023024",
+      "bytes": 39126
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1481a1c44b044f5352d8.webp",
+      "sha256": "4cb9899cdf78ecf51364169732f6aaf123f7cde155e9ae8f6f4587aad928e1e2",
+      "bytes": 127272
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "e3cd9c45e800973c401c82fcaf96d5c915c4e12f96a93abdd80557138a830e09",
+    "recipe_ids": [
+      "industrial-v3-traybake-balti-turkey"
+    ],
+    "titles": [
+      "Shift Balti Turkey Traybake"
+    ],
+    "notes": "Loose cooked turkey mince crumbles, golden baby potatoes, roasted broccoli and red pepper lightly coated in balti sauce; no meatballs or extra garnish.",
+    "alt": "Shift Balti Turkey Traybake: loose cooked turkey mince crumbles, golden baby potatoes, roasted broccoli and red pepper lightly coated in balti sauce",
+    "reviewed_at": "2026-10-05T00:20:23.631422+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

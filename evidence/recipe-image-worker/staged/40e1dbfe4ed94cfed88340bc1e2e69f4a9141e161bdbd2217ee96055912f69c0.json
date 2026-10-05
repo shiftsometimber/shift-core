@@ -1,0 +1,87 @@
+{
+  "groupId": "40e1dbfe4ed94cfed88340bc1e2e69f4a9141e161bdbd2217ee96055912f69c0",
+  "recipe_ids": [
+    "industrial-v3-sandwich-tikka-chicken"
+  ],
+  "titles": [
+    "Shift Tikka Chicken Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Chicken Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"tikka yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the cooked chicken breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the tikka flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the cooked chicken breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel. No sesame/poppy seeds, cheese, cream/mayo or unlisted food. Sweet chilli recipes: sauce translucent glossy red, no opaque creamy coating. Tikka recipes: only listed tikka yoghurt dressing, creamy orange-tinted; no additional herbs, coriander, rice sides, curry garnish or tikka grilling char invented. Poultry plain already-cooked breast, no breadcrumb/batter coating. Chickpeas coarse roughly mashed only for toastie/bagel, whole elsewhere. Keep reserved raw spinach/tomato or rocket/tomato salads alongside. Finely sliced spring onion mixed into salad alongside jacket potatoes, never scattered on potato. Rice cooked, peppers diced raw, corn ready-to-eat; measured dressing folded through rice.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the cooked chicken breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the tikka flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the cooked chicken breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3f973dcf-c743-4184-b46b-081de73f9ce9.png",
+  "source_sha256": "c07fb388116efa9499eabd41e73ead8786f3c297610c24d207179bf71dd8de7f",
+  "generated_at": "2026-10-05T00:40:42.234Z",
+  "elapsed_ms": 279835.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-40e1dbfe4ed94cfed883-480-72925a3423b3.webp",
+      "sha256": "72925a3423b3df971a12830926213dbb566bcddcc7a776018abbd3c20b473f97",
+      "bytes": 23088
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-40e1dbfe4ed94cfed883-e38055d16d55.webp",
+      "sha256": "e38055d16d55490c6ae9c5b0e8aabc79d8adb2ff9071975d434f0c20c18b9cfd",
+      "bytes": 70394
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c07fb388116efa9499eabd41e73ead8786f3c297610c24d207179bf71dd8de7f",
+    "recipe_ids": [
+      "industrial-v3-sandwich-tikka-chicken"
+    ],
+    "titles": [
+      "Shift Tikka Chicken Proper Sandwich"
+    ],
+    "notes": "Two plain wholemeal slices hold plain cooked chicken, fresh lettuce/tomato and listed tikka yoghurt dressing. No bread seeds, cheese, extra herbs or separate side; exact title/method checked.",
+    "alt": "Wholemeal tikka yoghurt chicken sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:43:10.323184+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2090.json"
+  },
+  "integrated": true,
+  "live": false
+}

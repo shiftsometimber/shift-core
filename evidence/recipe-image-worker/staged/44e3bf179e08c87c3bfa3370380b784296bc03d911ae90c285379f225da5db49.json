@@ -1,0 +1,100 @@
+{
+  "groupId": "44e3bf179e08c87c3bfa3370380b784296bc03d911ae90c285379f225da5db49",
+  "recipe_ids": [
+    "industrial-v3-pasta-peppercorn-chicken"
+  ],
+  "titles": [
+    "Shift Peppercorn Chicken Proper Pasta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Chicken Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, wholegrain mustard, black pepper dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph this exact finished recipe, appetising natural daylight, credible ordinary single serving with generous crop margin. No unlisted food, fresh green herb flecks/leaves, seeds on bread, cheese, milk, butter, cream, breading, fried batter, ketchup, gravy or decorative garnish. Wholemeal buns/flatbreads completely plain unseeded. Protein form exact: chicken burger cooked opaque unbreaded1.5cmcutlets; chicken kebab/fries/pizza cooked opaque1.5cm strips; chicken pasta/pie2cm cooked pieces; chicken roast intact plain roasted breast. Pork burger opaque1cmcutlets; pork kebab/fries/pizza opaque1cmstrips; pork pasta/pie2cm cooked pieces; pork roast plain roasted loin, if sliced opaque no pink. Slowpot protein tender opaque, potatoes/carrot/onion glossy tender not crispyroast. Peppercorn uses LIGHT MAYONNAISE + WHOLEGRAIN MUSTARD + BLACK PEPPER, not hot cream sauce. Wholegrain mustard grains permitted only inside ivory dressing, no seed garnish. Exact placement: burger/kebab ivory cold mayo-mustard on cooked protein inside bread; fries/pizza ivory cold finish drizzled ON TOP after cooking; pasta thin mayo-mustard-black pepper dressing folded THROUGH wholewheat pasta offheat with courgette/cherry tomatoes; slowpot light mayo/final mustardpepper stirred through OFFHEAT, lightly ivory-glossy coating not thick cream pool; pie PLAIN browned fork-roughened WATER mash absolutely no black pepper/mustard/herbs/cheese on or in topping, PLAIN chicken/pork-carrot-pea filling, ivory cold mustard-blackpepper dressing in SEPARATE small bowl alongside; Sundayroast protein/potatoes/slimcarrotbatons/boiledbroccoli all PLAIN with NO blackpepper/mustard/herb flecks or dressing, cold ivory dressing separate alongside; traybake baby potatoes/broccoli/redpepper/protein golden roast edges with mayo and final seasoning only AFTER oven, ivory finishing topping. Pizza visibly cheese-free passata base thin mixed peppers correct protein, cold ivory finish on top. Fries golden plain ovenchips thin redonion/mixedpepper strips. No whole peppercorn berry garnish: pepper is finely ground/coarsely crushed specks. No extra foods.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, wholegrain mustard, black pepper dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6f993e9d-0e20-4bde-add1-fa8ed48062a9.png",
+  "source_sha256": "ea1ca7fc157a423295bbcda2f3f0f66c21606fb295e38cb36873692054824aea",
+  "generated_at": "2026-10-05T00:49:18.332Z",
+  "elapsed_ms": 63494.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-44e3bf179e08c87c3bfa-retry4-480-48478c17366a.webp",
+      "sha256": "48478c17366ab556cac1730a321c6413683a54e123b8b3c89879aee63383cac5",
+      "bytes": 32246
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-44e3bf179e08c87c3bfa-retry4-06b77e0ba5e4.webp",
+      "sha256": "06b77e0ba5e450f00faca7b57603d4153b2930d4891ee12b2dcdea8b9c39e22f",
+      "bytes": 102168
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ea1ca7fc157a423295bbcda2f3f0f66c21606fb295e38cb36873692054824aea",
+    "recipe_ids": [
+      "industrial-v3-pasta-peppercorn-chicken"
+    ],
+    "titles": [
+      "Shift Peppercorn Chicken Proper Pasta"
+    ],
+    "notes": "Pass: brown wholewheat penne, opaque cooked approximately2cm chicken breast pieces, bite-size courgette and cherry tomato pieces lightly coated in ivory mayo-wholegrain mustard-black pepper dressing folded THROUGH. No chicken strips substitution, raw pink centre, cheese, cream pool, green garnish or extra foods. Exact pasta form and centred crop.",
+    "alt": "Peppercorn chicken wholewheat pasta with courgette, cherry tomatoes and light mayonnaise-wholegrain mustard dressing",
+    "reviewed_at": "2026-10-05T00:50:09.387775+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1165.json"
+  },
+  "integrated": true,
+  "live": false
+}

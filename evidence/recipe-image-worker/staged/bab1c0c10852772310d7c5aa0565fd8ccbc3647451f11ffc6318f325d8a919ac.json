@@ -1,0 +1,78 @@
+{
+  "groupId": "bab1c0c10852772310d7c5aa0565fd8ccbc3647451f11ffc6318f325d8a919ac",
+  "recipe_ids": [
+    "industrial-v3-traybake-hoisin-turkey"
+  ],
+  "titles": [
+    "Shift Hoisin Turkey Traybake"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe in natural window light, truthful appetising textures in a plain serving dish. No invented garnish or additions. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hoisin Turkey Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"hoisin-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and turkey mince. Get the pan properly hot first. Cook the turkey mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the turkey mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "hoisin-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and turkey mince. Get the pan properly hot first. Cook the turkey mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the turkey mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a9eece02-3f1e-4cde-a81e-f3ee6e82d318.png",
+  "source_sha256": "30f2d324a3841ed88c31f22e568c70a16ae1399be0c9f106885baf84af9878cf",
+  "generated_at": "2026-10-05T00:30:20.288Z",
+  "elapsed_ms": 174127,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bab1c0c10852772310d7-480.webp",
+      "sha256": "bb254186505bb0a17a6dabeb62b4fcb2557ac65cd10edb81e760c17cefaa4a1c",
+      "bytes": 33190
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bab1c0c10852772310d7.webp",
+      "sha256": "6df87451e016eedbb00021fba9c83ad9b0929244272966caffb0745f8bad56e8",
+      "bytes": 107746
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Hoisin turkey mince with roasted baby potatoes, broccoli and red pepper",
+    "notes": "Individually inspected full-resolution: browned turkey mince crumbles, golden baby potatoes, roasted broccoli and red pepper with light hoisin glaze; exact method and all titles checked, no extras.",
+    "recipe_ids": [
+      "industrial-v3-traybake-hoisin-turkey"
+    ],
+    "titles": [
+      "Shift Hoisin Turkey Traybake"
+    ],
+    "source_sha256": "30f2d324a3841ed88c31f22e568c70a16ae1399be0c9f106885baf84af9878cf",
+    "reviewed_at": "2026-10-05T00:50:10.476180+00:00"
+  }
+}

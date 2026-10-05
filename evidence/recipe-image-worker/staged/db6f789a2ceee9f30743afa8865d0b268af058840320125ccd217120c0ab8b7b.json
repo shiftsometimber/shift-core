@@ -1,0 +1,83 @@
+{
+  "groupId": "db6f789a2ceee9f30743afa8865d0b268af058840320125ccd217120c0ab8b7b",
+  "recipe_ids": [
+    "industrial-lunch-turkey-pasta-pot"
+  ],
+  "titles": [
+    "Turkey Pasta Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Turkey Pasta Pot. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"75g dry\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"60g\",\"item\":\"rocket\"},{\"amount\":\"40g\",\"item\":\"tomato pesto\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed wholewheat pasta is a dry weight. Cook it in boiling water for the packet time until tender, then drain well.\",\"Wash and dry the cherry tomatoes and rocket. Halve the tomatoes and roughly chop the rocket.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured tomato pesto as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Toss the drained cooked pasta with the measured tomato pesto, then fold in the tomatoes, rocket and prepared ready-to-eat filling. Eat immediately.\",\"For a packed lunch, cool the cooked pasta promptly before combining it with the chilled filling. Cover, refrigerate and eat within 24 hours, following any shorter ingredient use-by date. Keep the meal chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nBread/wrap/pitta plain unseeded, no sesame/poppy garnish. Cheese ONLY where cheddar is explicitly listed in toastie. Tuna fibrous drained flakes, turkey plain unbreaded cooked breast, no protein substitution. Greek yoghurt only recipes listing yoghurt; grain salads and tomato-pesto pasta have no added mayo/cream/yoghurt. Couscous, brown rice and wholewheat pasta cooked. Lemon/lime dressings incorporated, no citrus wedge. Preserve all reserved raw side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not potato garnish. Pitta shown as TWO distinct filled halves of ONE wholemeal pitta, each visible, with reserved lettuce/cucumber side. Wholemeal wraps here have reserved leaf/tomato side salad. Apple cottage cheese includes diced apple folded through, pineapple chunks, wholegrain crackers and measured black pepper. Overnight oats fruit/berries mixed through softened chilled oats, not dry oats or separate decorative toppings. No added fruit, honey, nuts, herbs or garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "75g dry",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "60g",
+      "item": "rocket"
+    },
+    {
+      "amount": "40g",
+      "item": "tomato pesto"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed wholewheat pasta is a dry weight. Cook it in boiling water for the packet time until tender, then drain well.",
+    "Wash and dry the cherry tomatoes and rocket. Halve the tomatoes and roughly chop the rocket.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured tomato pesto as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Toss the drained cooked pasta with the measured tomato pesto, then fold in the tomatoes, rocket and prepared ready-to-eat filling. Eat immediately.",
+    "For a packed lunch, cool the cooked pasta promptly before combining it with the chilled filling. Cover, refrigerate and eat within 24 hours, following any shorter ingredient use-by date. Keep the meal chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5455fce6-6066-4110-990a-cb1a2526f975.png",
+  "source_sha256": "e2cf9d60d34e84d1b9ee6870bbc0bda177ea1eba0e56663411a857996506d339",
+  "generated_at": "2026-10-05T01:07:29.296Z",
+  "elapsed_ms": 264540.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-db6f789a2ceee9f30743-480-0b77b46fe917.webp",
+      "sha256": "0b77b46fe917a5476093140fedb21509e35b687996dad81d036c635b9cdd1e68",
+      "bytes": 27398
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-db6f789a2ceee9f30743-425632a7c118.webp",
+      "sha256": "425632a7c118b7ad7a3e6a11f420bb08f962f97d5d3e90a34e2ffd307cbdcacd",
+      "bytes": 84396
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "e2cf9d60d34e84d1b9ee6870bbc0bda177ea1eba0e56663411a857996506d339",
+    "recipe_ids": [
+      "industrial-lunch-turkey-pasta-pot"
+    ],
+    "titles": [
+      "Turkey Pasta Pot"
+    ],
+    "notes": "Cooked wholewheat pasta tossed with tomato pesto, plain cooked turkey slices, halved cherry tomatoes and roughly chopped rocket folded through. No cream, cheese garnish, breaded turkey or unlisted food; exact title/method checked.",
+    "alt": "Turkey wholewheat pasta with tomato pesto, cherry tomatoes and rocket",
+    "reviewed_at": "2026-10-05T01:10:20.277464+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2137.json"
+  },
+  "integrated": true,
+  "live": false
+}

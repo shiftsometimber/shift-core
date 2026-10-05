@@ -1,0 +1,84 @@
+{
+  "groupId": "038167c32b1ba75ba475929bbf952bee780d72cc07c91f55f967601c1561a9e3",
+  "recipe_ids": [
+    "industrial-v3-sandwich-smoky-ham"
+  ],
+  "titles": [
+    "Shift Smoky Ham Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Ham Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"smoked paprika dressing\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the smoky flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel: no sesame/poppy seeds, cheese or unlisted food. Keep the raw spinach/tomato or rocket/tomato side salad separate where method reserves it. Spring onion belongs finely sliced in mixed salad beside jacket potatoes. Greek yoghurt/lemon/paprika dressing must be mixed and placed as method requires, no paprika dust or lemon wedge garnish. No mayo or melted cheese. Tuna remains fibrous flakes, ham thin strips where specified, turkey plain cooked breast without breadcrumb/batter coating.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "smoked paprika dressing"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the smoky flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d0cff9b3-c03f-4c9b-91c5-36d1ea8afd01.png",
+  "source_sha256": "62c828b42d81e8d725768c86cc403837c66ec6e69afca4525dcc62bfc0182dcb",
+  "generated_at": "2026-10-05T00:11:42.756Z",
+  "elapsed_ms": 171350.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-038167c32b1ba75ba475-480-e19dc464ba0a.webp",
+      "sha256": "e19dc464ba0a2389422a463a8c0ea279b11782cefbc9faa098f47c1d84d35787",
+      "bytes": 24134
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-038167c32b1ba75ba475-8eb3c82fdbf6.webp",
+      "sha256": "8eb3c82fdbf65e6cce1aaa742746846b32aa8e013a72d553adb8ea0ef35bc04e",
+      "bytes": 76944
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "62c828b42d81e8d725768c86cc403837c66ec6e69afca4525dcc62bfc0182dcb",
+    "recipe_ids": [
+      "industrial-v3-sandwich-smoky-ham"
+    ],
+    "titles": [
+      "Shift Smoky Ham Proper Sandwich"
+    ],
+    "notes": "Lightly coloured cooked ham with smoked paprika dressing between two plain wholemeal bread slices, fresh lettuce and tomato. No cheese, seeds, added side or garnish; exact sandwich ingredients/preparation match.",
+    "alt": "Smoky ham sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:16:22.861806+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2037.json"
+  },
+  "integrated": true,
+  "live": false
+}

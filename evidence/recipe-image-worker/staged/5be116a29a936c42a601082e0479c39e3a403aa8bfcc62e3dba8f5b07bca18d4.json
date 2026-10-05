@@ -1,0 +1,85 @@
+{
+  "groupId": "5be116a29a936c42a601082e0479c39e3a403aa8bfcc62e3dba8f5b07bca18d4",
+  "recipe_ids": [
+    "industrial-lunch-tofu-pitta"
+  ],
+  "titles": [
+    "Tofu Pitta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Tofu Pitta. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"firm tofu\"},{\"amount\":\"80g\",\"item\":\"wholemeal pitta\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"shredded lettuce\"},{\"amount\":\"60g\",\"item\":\"cucumber\"},{\"amount\":\"40g\",\"item\":\"lemon yoghurt dressing\",\"allergens\":[\"milk\"]}]. Preparation: [\"Wash and dry the shredded lettuce and cucumber; shred the leaves and slice the cucumber thinly. Reserve most of the leaves and any excess cucumber for a side salad so the wholemeal pitta can close.\",\"Choose firm tofu labelled ready to eat. Drain and pat it dry, then cut it into thin slices; keep it chilled until assembly.\",\"Use the measured lemon yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Use ready-to-eat wholemeal pitta. Cut it into two halves and carefully open the pockets.\",\"Combine the prepared filling with the measured lemon yoghurt dressing. Add a small handful of the prepared leaves and some sliced cucumber. Spoon a manageable layer of filling into each pitta pocket. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nShow TWO DISTINCT filled pitta halves from ONE 80g plain unseeded wholemeal pitta cut across its centre. Both half pockets must be visible side by side, each containing pale unseared ready-to-eat thin firm tofu slices, small fresh shredded lettuce/cucumber and listed lemon yoghurt dressing. Reserve most shredded lettuce and thin cucumber slices as a separate side salad. No whole uncut pitta, no single-half-only photo, no toasted/grilled tofu, cheese, herbs, sesame or citrus wedge.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal pitta",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "shredded lettuce"
+    },
+    {
+      "amount": "60g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "40g",
+      "item": "lemon yoghurt dressing",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Wash and dry the shredded lettuce and cucumber; shred the leaves and slice the cucumber thinly. Reserve most of the leaves and any excess cucumber for a side salad so the wholemeal pitta can close.",
+    "Choose firm tofu labelled ready to eat. Drain and pat it dry, then cut it into thin slices; keep it chilled until assembly.",
+    "Use the measured lemon yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Use ready-to-eat wholemeal pitta. Cut it into two halves and carefully open the pockets.",
+    "Combine the prepared filling with the measured lemon yoghurt dressing. Add a small handful of the prepared leaves and some sliced cucumber. Spoon a manageable layer of filling into each pitta pocket. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7859291d-4f10-46af-8188-8860776714c3.png",
+  "source_sha256": "6be6349746b3704d7c5b2a0565c283ba0178cef77aec77198fa060a668970bf2",
+  "generated_at": "2026-10-05T01:01:06.168Z",
+  "elapsed_ms": 21640.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5be116a29a936c42a601-480-e384c76ff225.webp",
+      "sha256": "e384c76ff225f4e9bb8db8fd183c537a4acf2b55d3dd906a0ded10ab506df8e5",
+      "bytes": 27998
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5be116a29a936c42a601-f692bea876be.webp",
+      "sha256": "f692bea876beea6b82ce2ccce6e6f7b26355604dcfea4f245c64eb6bdb3f329e",
+      "bytes": 80022
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6be6349746b3704d7c5b2a0565c283ba0178cef77aec77198fa060a668970bf2",
+    "recipe_ids": [
+      "industrial-lunch-tofu-pitta"
+    ],
+    "titles": [
+      "Tofu Pitta"
+    ],
+    "notes": "Replacement full-resolution image shows both distinct halves of one plain wholemeal pitta, each filled with thin pale unseared ready-to-eat tofu slices, shredded lettuce, thin cucumber slices and lemon yoghurt dressing. Reserved lettuce/cucumber side separate. No cheese, herbs, seeds or citrus wedge; exact title/method checked.",
+    "alt": "Two tofu wholemeal pitta pockets with lemon yoghurt and lettuce cucumber salad",
+    "reviewed_at": "2026-10-05T01:01:46.949984+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2124.json"
+  },
+  "integrated": true,
+  "live": false
+}

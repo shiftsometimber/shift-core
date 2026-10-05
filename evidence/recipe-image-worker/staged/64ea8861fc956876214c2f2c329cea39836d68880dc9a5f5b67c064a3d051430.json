@@ -1,0 +1,87 @@
+{
+  "groupId": "64ea8861fc956876214c2f2c329cea39836d68880dc9a5f5b67c064a3d051430",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-classic-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Classic Greek Yoghurt Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Greek Yoghurt Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the 0% Greek yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the 0% Greek yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only, no honey, nuts, mint, syrup or decorative garnish. Small25g mixed berries. Entire serving inside frame. Exactly TWO plain unseeded wholegrain crackers, independently visible offset edges, no sesame/poppy seeds. Cinnamon only light1g powder evenly mixed into food; no decorative cinnamon sticks or dry powder piles. Yoghurt smooth and stirred, no cottage-cheese curds. Real snack box with dry oats/seeds/crackers separate from fruit/dairy. Coffee/cinnamon in fruit/dairy component.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the 0% Greek yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the 0% Greek yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d195c928-913e-4776-96bb-35c83f3d080f.png",
+  "source_sha256": "3e1b1f1e6db1088b4d0cc7c5072821b8bde8ca2300bdd945af1af5afb9cf2b00",
+  "generated_at": "2026-10-05T00:43:33.074Z",
+  "elapsed_ms": 74710,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-64ea8861fc956876214c-480-7de45cd8c339.webp",
+      "sha256": "7de45cd8c339986be8d552fd9c23c85e62b59bf6f6bf77b0e25b4701751401bf",
+      "bytes": 25028
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-64ea8861fc956876214c-8be69135819f.webp",
+      "sha256": "8be69135819f3f42628c58c382a04946120440f59b4a868aed0e103ae169f68a",
+      "bytes": 82864
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3e1b1f1e6db1088b4d0cc7c5072821b8bde8ca2300bdd945af1af5afb9cf2b00",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-classic-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Classic Greek Yoghurt Work Snack Box"
+    ],
+    "notes": "Smooth cinnamon Greek yoghurt with small berries, dry oats/seeds separate and two plain crackers visible. No curds or sticks.",
+    "alt": "Cinnamon Greek yoghurt snack box with berries, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-05T00:50:45.390688+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/64ea8861fc956876214c2f2c329cea39836d68880dc9a5f5b67c064a3d051430.json"
+  },
+  "integrated": true,
+  "live": false
+}

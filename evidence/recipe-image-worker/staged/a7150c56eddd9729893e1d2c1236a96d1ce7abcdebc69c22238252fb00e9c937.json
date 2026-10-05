@@ -1,0 +1,91 @@
+{
+  "groupId": "a7150c56eddd9729893e1d2c1236a96d1ce7abcdebc69c22238252fb00e9c937",
+  "recipe_ids": [
+    "industrial-v3-bagel-caesar-ham"
+  ],
+  "titles": [
+    "Shift Creamy Cheddar Ham Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Ham Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "item": "0% Greek yoghurt",
+      "amount": "18g"
+    },
+    {
+      "item": "light mayonnaise",
+      "amount": "9g"
+    },
+    {
+      "item": "reduced-fat cheddar",
+      "amount": "3g"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.",
+    "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-cb606abc-2286-49a8-89b0-bfd71b0b298c.png",
+  "source_sha256": "79313af3353635c21a4051c8c9ca95dc21f69fe3aef06021cbfa13600e6add2b",
+  "generated_at": "2026-10-05T01:27:19.762Z",
+  "elapsed_ms": 495862,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a7150c56eddd9729893e-480.webp",
+      "sha256": "c60bbbfcebcebf84abdbddc0f3bcdef8bf445e5d5574ddc4597dd7330af60e9a",
+      "bytes": 34174
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a7150c56eddd9729893e.webp",
+      "sha256": "12d2ac570ec8ec1a9d76dd4ec5759fdeffdc1c1ef0f7971aa153d669d2a87a17",
+      "bytes": 101100
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Wholemeal ham bagel with creamy cheddar dressing, rocket and tomato",
+    "notes": "Individual full-resolution inspection against all titles, exact ingredients and method: thin ham strips lightly coated in creamy dressing containing small grated cheddar, rocket and tomato in closed wholemeal bagel, excess rocket/tomato alongside.",
+    "source_sha256": "79313af3353635c21a4051c8c9ca95dc21f69fe3aef06021cbfa13600e6add2b",
+    "recipe_ids": [
+      "industrial-v3-bagel-caesar-ham"
+    ],
+    "titles": [
+      "Shift Creamy Cheddar Ham Loaded Bagel"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

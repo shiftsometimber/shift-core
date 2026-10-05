@@ -1,0 +1,84 @@
+{
+  "groupId": "3d79924d6fe96bcfdd927d95ad93f290ab625a9e41ac4d02c4ee013856aa538d",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-coffee-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Coffee Cottage Cheese Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Cottage Cheese Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact foods. Espresso measured1g fully dissolved, cooled and mixed through dairy/fruit, subtle coffee tint; no whole coffee beans, granules, dry grounds, coffee drinks or syrup. Small25g berries. No honey, mint, nuts or decorative garnish. Entire food inside frame. NO crackers, biscuits or cake anywhere. Cottage cheese retains recognisable small curds, lightly coffee tinted. Finished protein pot, coffee mixed into correct dairy base and small berries, dry oats/seeds just topped at eating time.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1613c31b-2072-46f1-aae2-5ed8281e9319.png",
+  "source_sha256": "8ca650d75c941c0b114a51cbb10c7d2872bb45102f8f44d4669c073dc5d1810a",
+  "generated_at": "2026-10-05T00:54:47.249Z",
+  "elapsed_ms": 52671,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3d79924d6fe96bcfdd92-480-8ba41248cbb9.webp",
+      "sha256": "8ba41248cbb998e3decdd370522fd655b6c432693907012f97e8c42b90aef37e",
+      "bytes": 27758
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3d79924d6fe96bcfdd92-7293ecd50405.webp",
+      "sha256": "7293ecd50405f442e4552472078c4ccce9c3eb8183a0201128f985336aebf0b0",
+      "bytes": 83228
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8ca650d75c941c0b114a51cbb10c7d2872bb45102f8f44d4669c073dc5d1810a",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-coffee-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Coffee Cottage Cheese Protein Pot"
+    ],
+    "notes": "Coffee lightly mixed through cottage cheese curds with small berries, dry oats/seeds newly topped at serving. No beans, grounds or extra dairy.",
+    "alt": "Coffee cottage cheese pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T01:02:15.015643+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/3d79924d6fe96bcfdd927d95ad93f290ab625a9e41ac4d02c4ee013856aa538d.json"
+  },
+  "integrated": true,
+  "live": false
+}

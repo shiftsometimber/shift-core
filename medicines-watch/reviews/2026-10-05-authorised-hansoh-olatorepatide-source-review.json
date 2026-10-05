@@ -1,0 +1,67 @@
+{
+  "reviewedAt": "2026-10-05T00:36:00Z",
+  "publicationStatus": "owner_authorised_source_review",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational corrections to go live without repeat permission.",
+    "scope": "Record the completed factual review of the changed Hansoh olatorepatide source and renew only its claim-bearing fingerprint. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted complete primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "medicineWordingChanged": false,
+  "source": {
+    "id": "hansoh-olatorepatide-20260604",
+    "title": "Olatorepatide Chinese NDA acceptance",
+    "url": "https://www.hansoh.cn/en/news/news-detail-514034.htm",
+    "checkUrl": "https://www.hansoh.cn/en/news/news-detail-514034.htm",
+    "format": "html",
+    "sourcePublishedAt": "2026-06-04",
+    "sourceDateLabel": "Source publication date",
+    "reviewedAt": "2026-10-05T00:36:00Z",
+    "requiredTerms": ["OLATOREPATIDE", "accepted"],
+    "reviewedFingerprint": "047d8ec5f8deb52e418798e4124fc723fab05df97cc87ba6656ffa2f730956d4",
+    "evidenceType": "Original Hansoh sponsor announcement; Chinese application acceptance, not regulatory approval",
+    "contentSelector": ".news_detail01"
+  },
+  "change": {
+    "id": "olatorepatide",
+    "fields": {},
+    "additionalEvidence": []
+  },
+  "monitoring": {
+    "previousReviewedAt": "2026-09-30T08:10:07.915Z",
+    "previousReviewedFingerprint": "5af5e6414405ea67ba1c45b7c23124209ee073cbfc702440b745d05cd8efd676",
+    "observedFingerprint": "047d8ec5f8deb52e418798e4124fc723fab05df97cc87ba6656ffa2f730956d4",
+    "result": "The configured source changed at the monitored content level. A complete primary-source read found no claim-impacting change to the existing summary. The source remains available and is not withdrawn; the changed state must stay amber until this exact reviewed baseline is deployed and retrieved live.",
+    "thresholdsChanged": false,
+    "successesSeeded": false
+  },
+  "retrieval": {
+    "retrievedAt": "2026-10-05T00:36:00Z",
+    "httpStatus": 200,
+    "contentType": "text/html;charset=UTF-8",
+    "finalUrl": "https://www.hansoh.cn/en/news/news-detail-514034.htm",
+    "bytes": 64632,
+    "responseSha256": "afc6afee82861894b5cbc1cdc1c06dd8b81086aeae16f54db1e1de54ca95d025",
+    "withdrawn": false,
+    "completeResponseReviewed": true
+  },
+  "assessment": {
+    "supported": "Hansoh's 4 June 2026 announcement says China's NMPA accepted an NDA for once-weekly injectable olatorepatide for chronic weight management after the cited Chinese Phase III study.",
+    "unchangedLiveBoundary": "Application acceptance is not marketing approval. The announcement does not establish UK authorisation, NICE or NHS access, actual UK supply, individual suitability, comparative benefit or an approved dosing recommendation.",
+    "assetIdentity": "This injectable HS-20094 programme is distinct from Hansoh and Merck's oral GLP-1 asset. Regeneron holds rights outside Chinese mainland, Hong Kong and Macau under the cited territorial agreement."
+  },
+  "discovery": {
+    "configuredSourcePass": "The live 146-source endpoint exposed one changed Hansoh source, one continuing Zealand HTTP 403 and one Scottish Medicines Consortium timeout. The two retrieval failures remain explicit and are not renewed or treated as withdrawals.",
+    "topicPass": "The broader programme discovery completed in the associated 5 October review remains non-exhaustive. This source review adds no new programme and makes no completeness claim.",
+    "failedOrIncomplete": [
+      "Zealand ZP6590 pipeline retrieval remains HTTP 403.",
+      "The Scottish Medicines Consortium tirzepatide page/PDF check remains delayed after timeout."
+    ]
+  },
+  "catalogueCounts": {
+    "totalAfter": 97,
+    "configuredSourcesAfter": 146,
+    "trialRecordsAfter": 88
+  }
+}

@@ -1,0 +1,1098 @@
+[
+  {
+    "index": 1729,
+    "groupId": "0d2a161bcbc0d60acbe18fd29d2cd71148a9f08464189d585d1f8d41703f6bbe",
+    "title": "Shift Club Tuna Loaded Jacket Potato",
+    "ingredients": [
+      {
+        "amount": "120g",
+        "item": "tuna in spring water, drained",
+        "allergens": [
+          "fish"
+        ]
+      },
+      {
+        "amount": "250g",
+        "item": "baking potato"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed salad"
+      },
+      {
+        "amount": "90g",
+        "item": "spring onion"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "24g"
+      },
+      {
+        "item": "wholegrain mustard",
+        "amount": "6g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+      "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+      "Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.",
+      "Stir together all the measured light mayonnaise, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+      "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+    ],
+    "attempt": 2,
+    "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Club Tuna Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"light mayonnaise\",\"amount\":\"24g\"},{\"item\":\"wholegrain mustard\",\"amount\":\"6g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Stir together all the measured light mayonnaise, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Club Tuna Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"light mayonnaise\",\"amount\":\"24g\"},{\"item\":\"wholegrain mustard\",\"amount\":\"6g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Stir together all the measured light mayonnaise, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist correction: all spring onion is sliced finely and mixed through the SIDE SALAD only. The potato carries just tuna and mustard mayonnaise, with absolutely no spring onion or green garnish on the potato or tuna. Show a fluffy baked split potato beside the separate mixed salad and spring onion."
+  },
+  {
+    "index": 1754,
+    "groupId": "ebefa88c6cc8080324f1d2f8cb7f7d07eaf05cf62e0edcf36c2904de88428a65",
+    "title": "Shift Creamy Cheddar Ham Meal-Prep Bowl",
+    "ingredients": [
+      {
+        "amount": "120g",
+        "item": "lean ham"
+      },
+      {
+        "amount": "75g",
+        "item": "brown rice, dry"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed peppers"
+      },
+      {
+        "amount": "90g",
+        "item": "sweetcorn"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+      "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+      "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+      "Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.",
+      "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Ham Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients. Brown rice must be naturally tan, with intact bran coats and longitudinal bran seams visibly present, not ivory white rice with spice flecks."
+  },
+  {
+    "index": 1755,
+    "groupId": "c8a02c87e4201a0051dd5eb53a84d6a60bd5b8dd6cabe84e95608d51f0bf3506",
+    "title": "Shift Creamy Cheddar Tuna Hot Toastie",
+    "ingredients": [
+      {
+        "amount": "120g",
+        "item": "tuna in spring water, drained",
+        "allergens": [
+          "fish"
+        ]
+      },
+      {
+        "amount": "80g",
+        "item": "wholemeal bread",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "90g",
+        "item": "spinach"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+      "Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise and reduced-fat cheddar in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+      "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+      "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+      "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Tuna Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise and reduced-fat cheddar in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1756,
+    "groupId": "d35c1cd9058bf33011cfa027e3887ecf2de544a728740a6a6e5fcab6065a3c34",
+    "title": "Shift Creamy Cheddar Tuna Loaded Bagel",
+    "ingredients": [
+      {
+        "amount": "120g",
+        "item": "tuna in spring water, drained",
+        "allergens": [
+          "fish"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "wholemeal bagel",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "rocket"
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+      "Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+      "Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+      "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Tuna Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1757,
+    "groupId": "b027357cec9b1b0afdff671ab78ba1344f2636db88d54ac924ec4b3e146149b2",
+    "title": "Shift Creamy Cheddar Tuna Loaded Jacket Potato",
+    "ingredients": [
+      {
+        "amount": "120g",
+        "item": "tuna in spring water, drained",
+        "allergens": [
+          "fish"
+        ]
+      },
+      {
+        "amount": "250g",
+        "item": "baking potato"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed salad"
+      },
+      {
+        "amount": "90g",
+        "item": "spring onion"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+      "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+      "Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+      "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Tuna Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1758,
+    "groupId": "ecd332defbeb77b704b450e079051bd91b5b9a8061a52138f3ca17479e0a5f3b",
+    "title": "Shift Creamy Cheddar Tuna Meal-Prep Bowl",
+    "ingredients": [
+      {
+        "amount": "120g",
+        "item": "tuna in spring water, drained",
+        "allergens": [
+          "fish"
+        ]
+      },
+      {
+        "amount": "75g",
+        "item": "brown rice, dry"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed peppers"
+      },
+      {
+        "amount": "90g",
+        "item": "sweetcorn"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+      "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+      "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+      "Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.",
+      "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Tuna Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients. Brown rice must be naturally tan, with intact bran coats and longitudinal bran seams visibly present, not ivory white rice with spice flecks."
+  },
+  {
+    "index": 1759,
+    "groupId": "afbfe284980d01e40e92a6cf7ba05f62531a4473657df09e39806e02747af48a",
+    "title": "Shift Creamy Cheddar Turkey Hot Toastie",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked turkey breast"
+      },
+      {
+        "amount": "80g",
+        "item": "wholemeal bread",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "90g",
+        "item": "spinach"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+      "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise and reduced-fat cheddar in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+      "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+      "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+      "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Turkey Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise and reduced-fat cheddar in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1760,
+    "groupId": "050e1fc07291810b8414a314ce6f8d2ba9a6222160050fd069791b6ce5d0021d",
+    "title": "Shift Creamy Cheddar Turkey Loaded Bagel",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked turkey breast"
+      },
+      {
+        "amount": "90g",
+        "item": "wholemeal bagel",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "rocket"
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+      "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+      "Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+      "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Turkey Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1761,
+    "groupId": "3b657bbc6b2c3933e52163e2f220f22903499381763cc8f203accb8f6001c31a",
+    "title": "Shift Creamy Cheddar Turkey Loaded Jacket Potato",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked turkey breast"
+      },
+      {
+        "amount": "250g",
+        "item": "baking potato"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed salad"
+      },
+      {
+        "amount": "90g",
+        "item": "spring onion"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+      "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+      "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+      "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Turkey Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1762,
+    "groupId": "12941f39a9c541b15e24601383979003fbcadf0550657e92c0e94a88a8d25ce2",
+    "title": "Shift Creamy Cheddar Turkey Meal-Prep Bowl",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked turkey breast"
+      },
+      {
+        "amount": "75g",
+        "item": "brown rice, dry"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed peppers"
+      },
+      {
+        "amount": "90g",
+        "item": "sweetcorn"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+      "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+      "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+      "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.",
+      "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Turkey Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients. Brown rice must be naturally tan, with intact bran coats and longitudinal bran seams visibly present, not ivory white rice with spice flecks."
+  },
+  {
+    "index": 1763,
+    "groupId": "cc75d91334cb72449b472d5073ead2256546d83931360204a51b27e2a798bde2",
+    "title": "Shift Garlic & Herb Chicken Hot Toastie",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked chicken breast"
+      },
+      {
+        "amount": "80g",
+        "item": "wholemeal bread",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "90g",
+        "item": "spinach"
+      },
+      {
+        "amount": "40g",
+        "item": "garlic herb yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+      "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+      "Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+      "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+      "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the measured garlic herb yoghurt between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+      "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+      "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the measured garlic herb yoghurt between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1764,
+    "groupId": "c3ec4f3f257017f9487f3980a49a257dbb9acc7093aa8682c1f66bcb9c7ee7a3",
+    "title": "Shift Garlic & Herb Chicken Loaded Bagel",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked chicken breast"
+      },
+      {
+        "amount": "90g",
+        "item": "wholemeal bagel",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "rocket"
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "40g",
+        "item": "garlic herb yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+      "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+      "Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+      "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+      "Combine the prepared filling with the measured garlic herb yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+      "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured garlic herb yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1765,
+    "groupId": "a7da8fb5b3bc6beccd930d6116d9614c935646c8d983a8b95a956ea53e35b35d",
+    "title": "Shift Garlic & Herb Chicken Loaded Jacket Potato",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked chicken breast"
+      },
+      {
+        "amount": "250g",
+        "item": "baking potato"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed salad"
+      },
+      {
+        "amount": "90g",
+        "item": "spring onion"
+      },
+      {
+        "amount": "40g",
+        "item": "garlic herb yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+      "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+      "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+      "Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+      "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured garlic herb yoghurt and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+      "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured garlic herb yoghurt and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1766,
+    "groupId": "8c64ea07e373cf49eb6005f234cd43bdbf2aeb562f7fdcb8a79b711401720ab8",
+    "title": "Shift Garlic & Herb Chicken Loaded Wrap",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked chicken breast"
+      },
+      {
+        "amount": "65g",
+        "item": "wholemeal wrap",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "lettuce"
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "40g",
+        "item": "garlic herb yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Make the filling first. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+      "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked chicken breast; if the filling is being served hot, reduce only the sauce-coated cooked chicken breast until it is no longer wet enough to soak the wrap.",
+      "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+      "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked chicken breast; if the filling is being served hot, reduce only the sauce-coated cooked chicken breast until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1767,
+    "groupId": "97fd0dd5fcf33cc60e70dcc9ad92958cd7579e9649d6340a728ca0e2cea9132e",
+    "title": "Shift Garlic & Herb Chicken Meal-Prep Bowl",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked chicken breast"
+      },
+      {
+        "amount": "75g",
+        "item": "brown rice, dry"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed peppers"
+      },
+      {
+        "amount": "90g",
+        "item": "sweetcorn"
+      },
+      {
+        "amount": "40g",
+        "item": "garlic herb yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+      "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+      "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+      "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+      "Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+      "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured garlic herb yoghurt and olive oil dressing. Eat immediately.",
+      "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured garlic herb yoghurt and olive oil dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients. Brown rice must be naturally tan, with intact bran coats and longitudinal bran seams visibly present, not ivory white rice with spice flecks."
+  },
+  {
+    "index": 1768,
+    "groupId": "31284d65e1f144afc82b6854d40567ff81276bd9c31f5dfd7b279b6d9f9f2fe4",
+    "title": "Shift Garlic & Herb Chicken Proper Sandwich",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked chicken breast"
+      },
+      {
+        "amount": "80g",
+        "item": "wholemeal bread",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "lettuce"
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "40g",
+        "item": "garlic herb yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "If the cooked chicken breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+      "Build the garlic & herb flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+      "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+      "Pile in the cooked chicken breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the cooked chicken breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the garlic & herb flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the cooked chicken breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1769,
+    "groupId": "ce3bf6296cc4c87db0ab2c6e3b4330e1c062385620f9043a659c005273f403b6",
+    "title": "Shift Garlic & Herb Chickpea Hot Toastie",
+    "ingredients": [
+      {
+        "amount": "150g",
+        "item": "chickpeas, drained"
+      },
+      {
+        "amount": "80g",
+        "item": "wholemeal bread",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "90g",
+        "item": "spinach"
+      },
+      {
+        "amount": "40g",
+        "item": "garlic herb yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+      "Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.",
+      "Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+      "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+      "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the measured garlic herb yoghurt between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+      "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+      "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chickpea Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.\",\"Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the measured garlic herb yoghurt between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1770,
+    "groupId": "7dbd2ab0970d33c2e53575e578fd1d50431f5a64021c19cb2fbd2ce48e1e517b",
+    "title": "Shift Garlic & Herb Chickpea Loaded Bagel",
+    "ingredients": [
+      {
+        "amount": "150g",
+        "item": "chickpeas, drained"
+      },
+      {
+        "amount": "90g",
+        "item": "wholemeal bagel",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "rocket"
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "40g",
+        "item": "garlic herb yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+      "Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.",
+      "Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+      "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+      "Combine the prepared filling with the measured garlic herb yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+      "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chickpea Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.\",\"Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured garlic herb yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1771,
+    "groupId": "fb97ebd1505e217ed4a15f6294d17371c664e056f7fad98ef739fc4c73a4b1ca",
+    "title": "Shift Garlic & Herb Chickpea Loaded Jacket Potato",
+    "ingredients": [
+      {
+        "amount": "150g",
+        "item": "chickpeas, drained"
+      },
+      {
+        "amount": "250g",
+        "item": "baking potato"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed salad"
+      },
+      {
+        "amount": "90g",
+        "item": "spring onion"
+      },
+      {
+        "amount": "40g",
+        "item": "garlic herb yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+      "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+      "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+      "Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+      "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured garlic herb yoghurt and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+      "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chickpea Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured garlic herb yoghurt and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1772,
+    "groupId": "78daedc7824471fcb1330db648d62788c530824c29463d368922bfe2067ed89a",
+    "title": "Shift Garlic & Herb Chickpea Loaded Wrap",
+    "ingredients": [
+      {
+        "amount": "150g",
+        "item": "chickpeas, drained"
+      },
+      {
+        "amount": "65g",
+        "item": "wholemeal wrap",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "lettuce"
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "40g",
+        "item": "garlic herb yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+      "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.",
+      "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+      "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chickpea Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1773,
+    "groupId": "df565bba68d94c5a26758cb9e768e9cfa8a3e1c84195d65a64a65995cdfbf47f",
+    "title": "Shift Garlic & Herb Chickpea Meal-Prep Bowl",
+    "ingredients": [
+      {
+        "amount": "150g",
+        "item": "chickpeas, drained"
+      },
+      {
+        "amount": "75g",
+        "item": "brown rice, dry"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed peppers"
+      },
+      {
+        "amount": "90g",
+        "item": "sweetcorn"
+      },
+      {
+        "amount": "40g",
+        "item": "garlic herb yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+      "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+      "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+      "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+      "Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+      "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured garlic herb yoghurt and olive oil dressing. Eat immediately.",
+      "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chickpea Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured garlic herb yoghurt and olive oil dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients. Brown rice must be naturally tan, with intact bran coats and longitudinal bran seams visibly present, not ivory white rice with spice flecks."
+  },
+  {
+    "index": 1774,
+    "groupId": "e220a52e35ab345247dff651e5cff699761b841f04ae080ef173d2b426cf3fe4",
+    "title": "Shift Garlic & Herb Chickpea Proper Sandwich",
+    "ingredients": [
+      {
+        "amount": "150g",
+        "item": "chickpeas, drained"
+      },
+      {
+        "amount": "80g",
+        "item": "wholemeal bread",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "lettuce"
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "40g",
+        "item": "garlic herb yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "If the chickpeas, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+      "Build the garlic & herb flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+      "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+      "Pile in the chickpeas, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chickpea Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the chickpeas, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Build the garlic & herb flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the chickpeas, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  },
+  {
+    "index": 1775,
+    "groupId": "9f7a57abad45c70a67d27d4f4fa0c142557a88defff245dab391afae203f4756",
+    "title": "Shift Garlic & Herb Egg Hot Toastie",
+    "ingredients": [
+      {
+        "amount": "2 / 100g",
+        "item": "boiled eggs",
+        "allergens": [
+          "egg"
+        ]
+      },
+      {
+        "amount": "80g",
+        "item": "wholemeal bread",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "90g",
+        "item": "spinach"
+      },
+      {
+        "amount": "40g",
+        "item": "garlic herb yoghurt",
+        "allergens": [
+          "milk"
+        ]
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+      "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+      "Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+      "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+      "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the measured garlic herb yoghurt between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+      "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+      "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Egg Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the measured garlic herb yoghurt between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients."
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "groupId": "480c60fba8efea5ec42e3ee392780d3be39bf522f1d0220abded75b63c024e18",
+  "decision": "reject",
+  "source_sha256": "1012df49ef374aa8e2f498619d04f2cf7af7cd10ebba2054bc27c983e5f2d7e8",
+  "recipe_ids": [
+    "industrial-v3-chilli-bbq-beef"
+  ],
+  "titles": [
+    "Shift BBQ Beef Big Chilli"
+  ],
+  "notes": "REJECT: rice is pale ivory and polished-looking rather than credible tan wholegrain brown rice; beef mince, kidney beans and red pepper otherwise match.",
+  "alt": "Shift BBQ Beef Big Chilli: reject: rice is pale ivory and polished-looking rather than credible tan wholegrain brown rice",
+  "reviewed_at": "2026-10-05T00:20:23.632956+00:00",
+  "reviewer": "root-full-resolution-visual-review"
+}

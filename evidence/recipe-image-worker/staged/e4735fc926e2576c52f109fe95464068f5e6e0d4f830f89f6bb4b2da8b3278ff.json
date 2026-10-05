@@ -1,0 +1,77 @@
+{
+  "groupId": "e4735fc926e2576c52f109fe95464068f5e6e0d4f830f89f6bb4b2da8b3278ff",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-crunch-savory-box"
+  ],
+  "titles": [
+    "Shift Crunch Banana Split Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Crunch Banana Split Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"30g\",\"item\":\"pumpkin seeds\",\"allergens\":[]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]}]. Preparation: [\"Start with the banana in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed foods. No honey, nuts, mint, syrup, cinnamon, cocoa or garnish. Small25g berries; generous measured25-30g pumpkin seeds where listed. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Fruit snack pot at eating time with small berries and dry rolled oats/generous pumpkin seeds just added. No dairy base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "30g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    }
+  ],
+  "method": [
+    "Start with the banana in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ca88e1c1-0320-4ab8-a2d3-e16eff768970.png",
+  "source_sha256": "34fcf0a1db8e5a7932e9b50ac5d12c6cabcf25598e17e9fea59bf9dba741edba",
+  "generated_at": "2026-10-05T01:06:30.727Z",
+  "elapsed_ms": 85614,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e4735fc926e2576c52f1-480-10c340c3d2a5.webp",
+      "sha256": "10c340c3d2a5bbc70c7d2f26c133b0ae09930f31bd937c2fdc3a488aff5ebdef",
+      "bytes": 23750
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e4735fc926e2576c52f1-c959d59bb981.webp",
+      "sha256": "c959d59bb9811e68fd2291676acfa2c13028996e9a2e39d60f11b80a9a7f1f99",
+      "bytes": 75266
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "34fcf0a1db8e5a7932e9b50ac5d12c6cabcf25598e17e9fea59bf9dba741edba",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-crunch-savory-box"
+    ],
+    "titles": [
+      "Shift Crunch Banana Split Snack Pot"
+    ],
+    "notes": "Banana and small berries with dry rolled oats and generous pumpkin seeds newly topped at serving. No dairy or extra flavouring.",
+    "alt": "Banana crunch snack pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T01:12:44.947733+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/e4735fc926e2576c52f109fe95464068f5e6e0d4f830f89f6bb4b2da8b3278ff.json"
+  },
+  "integrated": true,
+  "live": false
+}

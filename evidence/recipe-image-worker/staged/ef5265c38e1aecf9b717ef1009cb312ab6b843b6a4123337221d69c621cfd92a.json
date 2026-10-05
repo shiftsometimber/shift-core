@@ -1,0 +1,84 @@
+{
+  "groupId": "ef5265c38e1aecf9b717ef1009cb312ab6b843b6a4123337221d69c621cfd92a",
+  "recipe_ids": [
+    "industrial-v3-wrap-smoky-turkey"
+  ],
+  "titles": [
+    "Shift Smoky Turkey Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Turkey Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"smoked paprika dressing\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the cooked turkey breast with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel: no sesame/poppy seeds, cheese or unlisted food. Keep the raw spinach/tomato or rocket/tomato side salad separate where method reserves it. Spring onion belongs finely sliced in mixed salad beside jacket potatoes. Greek yoghurt/lemon/paprika dressing must be mixed and placed as method requires, no paprika dust or lemon wedge garnish. No mayo or melted cheese. Tuna remains fibrous flakes, ham thin strips where specified, turkey plain cooked breast without breadcrumb/batter coating.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "smoked paprika dressing"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the cooked turkey breast with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d4ccee16-514c-4e34-82d4-a5d88e0c78f9.png",
+  "source_sha256": "09c610e577b3a0603ed9ffbb6d596cc030dc32da5ba2bc8450b4a230a2845ca7",
+  "generated_at": "2026-10-05T00:15:27.762Z",
+  "elapsed_ms": 396356.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ef5265c38e1aecf9b717-480-61c5d15b160b.webp",
+      "sha256": "61c5d15b160b7a5ed370902d863d9ec93963bca853033e09b0fd292bfb80bef4",
+      "bytes": 23812
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ef5265c38e1aecf9b717-7de5a46e80da.webp",
+      "sha256": "7de5a46e80da0b599707dcb472d85b7219b4164912a53b931918fa39f77611ef",
+      "bytes": 69778
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "09c610e577b3a0603ed9ffbb6d596cc030dc32da5ba2bc8450b4a230a2845ca7",
+    "recipe_ids": [
+      "industrial-v3-wrap-smoky-turkey"
+    ],
+    "titles": [
+      "Shift Smoky Turkey Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with lightly coloured cooked turkey breast, smoked paprika dressing, fresh lettuce and tomato. No coating, cheese, bread seeds, invented sauce reduction or extra side.",
+    "alt": "Smoky turkey wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:16:25.298176+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2047.json"
+  },
+  "integrated": true,
+  "live": false
+}

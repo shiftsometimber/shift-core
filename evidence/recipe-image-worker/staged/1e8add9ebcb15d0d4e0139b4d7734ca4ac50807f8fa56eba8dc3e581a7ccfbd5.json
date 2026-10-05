@@ -1,0 +1,88 @@
+{
+  "groupId": "1e8add9ebcb15d0d4e0139b4d7734ca4ac50807f8fa56eba8dc3e581a7ccfbd5",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-classic-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Classic Greek Yoghurt Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Greek Yoghurt Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only, no honey, nuts, mint, syrup or decorative garnish. Small25g mixed berries. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Cinnamon only light1g powder evenly mixed into food; no decorative cinnamon sticks or dry powder piles. Yoghurt smooth and stirred, no cottage-cheese curds. All listed ingredients combined in dessert bowl; chopped dark chocolate finishing only if listed. No melted sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-51c407b2-d78b-4bbc-8c6c-6faf536c8571.png",
+  "source_sha256": "60ff2ae94f99fcc0203a2ca2c9fa3209a841760b44c4f5aa311ca5e8dbe981f4",
+  "generated_at": "2026-10-05T00:42:49.358Z",
+  "elapsed_ms": 30994,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1e8add9ebcb15d0d4e01-480-fdc7922c4fcc.webp",
+      "sha256": "fdc7922c4fcc57a8244c40a27391bb05052faf858619f7831e9a829bb45cb141",
+      "bytes": 20164
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1e8add9ebcb15d0d4e01-70f3b76f074b.webp",
+      "sha256": "70f3b76f074b9d9b331c8a451919f90b8b8489f917560dc7a5259dc8b3102878",
+      "bytes": 56138
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "60ff2ae94f99fcc0203a2ca2c9fa3209a841760b44c4f5aa311ca5e8dbe981f4",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-classic-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Classic Greek Yoghurt Big Feed Dessert"
+    ],
+    "notes": "Smooth Greek yoghurt with fine cinnamon, small berries, oats/seeds and listed chopped chocolate combined. No sticks or extra garnish.",
+    "alt": "Cinnamon Greek yoghurt dessert with berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T00:50:44.327807+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/1e8add9ebcb15d0d4e0139b4d7734ca4ac50807f8fa56eba8dc3e581a7ccfbd5.json"
+  },
+  "integrated": true,
+  "live": false
+}

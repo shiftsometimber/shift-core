@@ -1,0 +1,16 @@
+{
+  "groupId": "e78e2a01d95f1524d2e1985fa198e8e134cc79438c7cfcb5096a06e8bbc3bcc1",
+  "source_sha256": "4e45fee8a86c7ae71cec17761e198e8970262e7a83ec44f8af9f1401d2beb3e9",
+  "review": {
+    "decision": "reject",
+    "notes": "Full-resolution inspection: rice visibly resembles smooth polished ivory/white grains instead of intact bran-coated brown rice. Reject wrong grain depiction; correct brown rice and retain thin boiled egg slices folded through peppers, sweetcorn and prepared dressing.",
+    "source_sha256": "4e45fee8a86c7ae71cec17761e198e8970262e7a83ec44f8af9f1401d2beb3e9",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-caesar-egg"
+    ],
+    "titles": [
+      "Shift Creamy Cheddar Egg Meal-Prep Bowl"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

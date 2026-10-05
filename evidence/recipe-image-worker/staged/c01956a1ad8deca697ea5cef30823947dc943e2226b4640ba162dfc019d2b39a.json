@@ -1,0 +1,91 @@
+{
+  "groupId": "c01956a1ad8deca697ea5cef30823947dc943e2226b4640ba162dfc019d2b39a",
+  "recipe_ids": [
+    "industrial-v3-bagel-caesar-chicken"
+  ],
+  "titles": [
+    "Shift Creamy Cheddar Chicken Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Chicken Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "item": "0% Greek yoghurt",
+      "amount": "18g"
+    },
+    {
+      "item": "light mayonnaise",
+      "amount": "9g"
+    },
+    {
+      "item": "reduced-fat cheddar",
+      "amount": "3g"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ffce6eac-2cb9-408a-9ab7-371a801fa5be.png",
+  "source_sha256": "f7348ca0492a399a65b3fb2ab70610934f7d199a5778ac0ba8553060e77accae",
+  "generated_at": "2026-10-05T01:21:46.912Z",
+  "elapsed_ms": 163011,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c01956a1ad8deca697ea-480.webp",
+      "sha256": "c5ce1d889d9df2e5e3743a156a27553b953d350b5a5fa4ca693d6223b6915e5a",
+      "bytes": 31156
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c01956a1ad8deca697ea.webp",
+      "sha256": "230fdb46f0e46eb411d1ebadd26cfb44bc14d9f9c0077eb9f8bc141ef735f3a8",
+      "bytes": 92026
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Wholemeal bagel with chicken, creamy cheddar dressing, rocket and tomato",
+    "notes": "Individual full-resolution inspection against exact recipe and all titles: cooked chicken breast shreds coated in yoghurt/mayonnaise dressing containing small measured grated cheddar, with sliced tomato and rocket in closed wholemeal bagel; remaining rocket/tomato alongside.",
+    "source_sha256": "f7348ca0492a399a65b3fb2ab70610934f7d199a5778ac0ba8553060e77accae",
+    "recipe_ids": [
+      "industrial-v3-bagel-caesar-chicken"
+    ],
+    "titles": [
+      "Shift Creamy Cheddar Chicken Loaded Bagel"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

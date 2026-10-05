@@ -1,0 +1,86 @@
+{
+  "groupId": "0d2a161bcbc0d60acbe18fd29d2cd71148a9f08464189d585d1f8d41703f6bbe",
+  "recipe_ids": [
+    "industrial-v3-jacket-potato-club-tuna"
+  ],
+  "titles": [
+    "Shift Club Tuna Loaded Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Club Tuna Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"light mayonnaise\",\"amount\":\"24g\"},{\"item\":\"wholegrain mustard\",\"amount\":\"6g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Stir together all the measured light mayonnaise, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist correction: all spring onion is sliced finely and mixed through the SIDE SALAD only. The potato carries just tuna and mustard mayonnaise, with absolutely no spring onion or green garnish on the potato or tuna. Show a fluffy baked split potato beside the separate mixed salad and spring onion.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "90g",
+      "item": "spring onion"
+    },
+    {
+      "item": "light mayonnaise",
+      "amount": "24g"
+    },
+    {
+      "item": "wholegrain mustard",
+      "amount": "6g"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.",
+    "Stir together all the measured light mayonnaise, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-bad68b98-b97e-46eb-9bd0-f3008ccbde21.png",
+  "source_sha256": "1932caade025e5c5963ac5519eec87b31ce82d92f6a61bf41ed703bbdcec130c",
+  "generated_at": "2026-10-05T01:26:20.807Z",
+  "elapsed_ms": 80636,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "evidence/recipe-image-worker/assets/catalogue-0d2a161bcbc0d60acbe1-retry2-480.webp",
+      "sha256": "a4591ccc91284806c3fa7fd29b423ab0a6d5ec3802f71fd894c272b09d312b31",
+      "bytes": 34918
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "evidence/recipe-image-worker/assets/catalogue-0d2a161bcbc0d60acbe1-retry2.webp",
+      "sha256": "d7bc02b4fb34bf238f5fc1a337e0f7cbddc0d905785aff2819109900c1952dc8",
+      "bytes": 100440
+    }
+  ],
+  "review_status": "reject",
+  "integrated": false,
+  "live": false,
+  "review": {
+    "decision": "reject",
+    "notes": "Full-resolution inspection: spring onion is distributed on the tuna and potato although the method explicitly keeps all spring onion in the side salad. Reject incorrect assembly; preserve tuna mayonnaise filling and move all spring onion to side salad.",
+    "source_sha256": "1c6415974026b5a61df8c47544c69855515579bf88c7c94cfdcb26ec29c48372",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-club-tuna"
+    ],
+    "titles": [
+      "Shift Club Tuna Loaded Jacket Potato"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

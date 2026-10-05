@@ -1,0 +1,84 @@
+{
+  "groupId": "f669b3282408528bfaf3f0efb82e8b9116d6cb28bd25daf837d8262b1992b4d0",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-peri-peri-beans"
+  ],
+  "titles": [
+    "Shift Peri-Peri Beans Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Beans Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a425d288-391f-47e9-8ff9-ecc42d111c9a.png",
+  "source_sha256": "66e27849348f844df936f9887a57cb7ec04de4026ce78bc4210a98e6a6aac6c5",
+  "generated_at": "2026-10-05T01:01:16.477Z",
+  "elapsed_ms": 230487,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f669b3282408528bfaf3-480.webp",
+      "sha256": "b247d0425d3a3d53da5aee3facda83ebcf7a388f285447f76ef72aa1a76f3d59",
+      "bytes": 27542
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f669b3282408528bfaf3-5c60dcdc8071.webp",
+      "sha256": "5c60dcdc807110e8940cb473fd0fd742193a732cf60ff0df9591f5bae548ba5f",
+      "bytes": 92738
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "66e27849348f844df936f9887a57cb7ec04de4026ce78bc4210a98e6a6aac6c5",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-peri-peri-beans"
+    ],
+    "titles": [
+      "Shift Peri-Peri Beans Breakfast Buttie"
+    ],
+    "notes": "Hot baked beans, softened tomato and wilted spinach coated in peri-peri sauce in an unseeded wholemeal bap.",
+    "alt": "Peri-peri beans bap with tomato and spinach",
+    "reviewed_at": "2026-10-05T01:04:21.786937+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/360.json"
+  },
+  "integrated": true,
+  "live": false
+}

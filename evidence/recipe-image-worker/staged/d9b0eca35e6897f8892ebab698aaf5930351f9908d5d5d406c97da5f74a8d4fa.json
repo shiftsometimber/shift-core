@@ -1,0 +1,84 @@
+{
+  "groupId": "d9b0eca35e6897f8892ebab698aaf5930351f9908d5d5d406c97da5f74a8d4fa",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-cherry-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Cherry Greek Yoghurt Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Greek Yoghurt Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only, no honey, nuts, mint, syrup or garnish. Cherries ALL destoned stemless fresh HALVES with visible EMPTY pit cavities; no whole cherries, cherry stones, stems or glazed maraschino cherries. Small25g berries alongside measured80g cherry flesh. No cake or biscuit crumbs. All food inside frame. NO crackers or biscuits anywhere. Yoghurt base completely smooth, no cottage cheese curds. Finished protein pot with fruit and dry oats/seeds freshly added at serving.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f4e2bc57-2554-4b9a-b408-bb7098a98377.png",
+  "source_sha256": "2d3de426a335a0f4d0ebff2ce2c376a152453dd4011608a31762552da37d5cd5",
+  "generated_at": "2026-10-05T00:13:57.517Z",
+  "elapsed_ms": 387092,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d9b0eca35e6897f8892e-480-175e6f35ca98.webp",
+      "sha256": "175e6f35ca98ebe3e81586c8d69b429f071b7dfd3af080fff357bb88ac0fa99b",
+      "bytes": 24546
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d9b0eca35e6897f8892e-15520d1f133c.webp",
+      "sha256": "15520d1f133c1089df58abfb5271e60d4f00ebe3c221c12b85faa25e7a4692ad",
+      "bytes": 74374
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2d3de426a335a0f4d0ebff2ce2c376a152453dd4011608a31762552da37d5cd5",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-cherry-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Cherry Greek Yoghurt Protein Pot"
+    ],
+    "notes": "Smooth Greek yoghurt with destoned cherry halves/small berries, dry oats/seeds newly topped at serving. No extra foods.",
+    "alt": "Greek yoghurt protein pot with pitted cherries, berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:16:56.889100+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/d9b0eca35e6897f8892ebab698aaf5930351f9908d5d5d406c97da5f74a8d4fa.json"
+  },
+  "integrated": true,
+  "live": false
+}

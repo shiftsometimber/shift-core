@@ -1,0 +1,86 @@
+{
+  "groupId": "f33d2da2b71a64f75c347e5ecb029a0f1d13cdf770c69c9a027cdea8b6705f49",
+  "recipe_ids": [
+    "industrial-v3-bagel-sweet-chilli-chickpea"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Chickpea Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Chickpea Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.\",\"Use the measured sweet chilli sauce as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured sweet chilli sauce and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel: no sesame/poppy seeds, cheese or unlisted food. Keep the raw spinach/tomato or rocket/tomato side salad separate where method reserves it. Spring onion belongs finely sliced in mixed salad beside jacket potatoes. Greek yoghurt/lemon/paprika dressing must be mixed and placed as method requires, no paprika dust or lemon wedge garnish. No mayo or melted cheese. Chicken/turkey plain cooked breast without breadcrumb/batter coating. Sweet chilli sauce translucent reddish glossy, never creamy. Chickpeas roughly mashed only for toastie/bagel; whole elsewhere. Eggs are sliced hard-boiled eggs.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.",
+    "Use the measured sweet chilli sauce as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the measured sweet chilli sauce and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3eb3b802-f053-414a-9765-31cf5fd51ebb.png",
+  "source_sha256": "e09c59ad47f2da933fbd66821d437441ad232a4969653518530fac7d6ad44087",
+  "generated_at": "2026-10-05T00:24:04.161Z",
+  "elapsed_ms": 232960.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f33d2da2b71a64f75c34-480-10c8a696583f.webp",
+      "sha256": "10c8a696583fea5cf344f67d2c12dfb58cea79ab2c9e36c7201eb39220d52c41",
+      "bytes": 33038
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f33d2da2b71a64f75c34-27c43c9b922f.webp",
+      "sha256": "27c43c9b922f12dec9f1e03abc26d6b871ab62ef3d7418538ae788bccdd3407d",
+      "bytes": 102726
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "e09c59ad47f2da933fbd66821d437441ad232a4969653518530fac7d6ad44087",
+    "recipe_ids": [
+      "industrial-v3-bagel-sweet-chilli-chickpea"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Chickpea Loaded Bagel"
+    ],
+    "notes": "Plain unseeded wholemeal bagel contains roughly mashed chickpeas with retained coarse pieces, translucent sweet chilli sauce, rocket and tomato. Most rocket/tomato reserved alongside; no hummus, creamy spread or extra garnish. Exact title/method checked.",
+    "alt": "Sweet chilli chickpea bagel with rocket and tomato salad",
+    "reviewed_at": "2026-10-05T00:27:03.853215+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2056.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "1059948f7b805018af31b3c366a1ca25d45fd6eba0b6f4ac33e6ba0913530ec8",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-chocolate-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Chocolate Greek Yoghurt Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Greek Yoghurt Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup, cream or decorative garnish. Berries just small25g portion. All food inside frame. NO crackers, biscuits or cake anywhere. Cocoa measured5g fine powder lightly mixed into fruit/dairy, never chocolate syrup or melted chocolate. Chocolate chunks ONLY if explicitly listed. Yoghurt base smooth and stirred, no cottage-cheese curds. Dairy pot with flavour powder evenly mixed through, small berries and dry oats/seeds added freshly just before eating.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f04ad4d7-897d-48b4-9b4d-58fb4c6d3a99.png",
+  "source_sha256": "1badb5894caa4a039ffad0a5f03e62c94758f0e4ffe838fbd5c7353da829c27b",
+  "generated_at": "2026-10-05T00:34:35.568Z",
+  "elapsed_ms": 159934,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1059948f7b805018af31-480-0cb43f574a96.webp",
+      "sha256": "0cb43f574a9618dfbf82bd92128d0f11d4266b5f6f09d206edcb15c796e6ba3b",
+      "bytes": 22022
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1059948f7b805018af31-cd1c89fd418b.webp",
+      "sha256": "cd1c89fd418b7dca79b7ef29cc966dc323ef3ca0847f23eae61cba2b2ace3907",
+      "bytes": 69010
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1badb5894caa4a039ffad0a5f03e62c94758f0e4ffe838fbd5c7353da829c27b",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-chocolate-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Chocolate Greek Yoghurt Protein Pot"
+    ],
+    "notes": "Cocoa evenly mixed into smooth Greek yoghurt, small berries and dry oats/seeds freshly topped at serving. No chocolate chunks.",
+    "alt": "Cocoa Greek yoghurt protein pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:39:14.942741+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/1059948f7b805018af31b3c366a1ca25d45fd6eba0b6f4ac33e6ba0913530ec8.json"
+  },
+  "integrated": true,
+  "live": false
+}

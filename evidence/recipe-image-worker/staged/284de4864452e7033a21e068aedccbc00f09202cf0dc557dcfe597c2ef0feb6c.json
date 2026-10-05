@@ -1,0 +1,81 @@
+{
+  "groupId": "284de4864452e7033a21e068aedccbc00f09202cf0dc557dcfe597c2ef0feb6c",
+  "recipe_ids": [
+    "industrial-v3-wrap-club-turkey"
+  ],
+  "titles": [
+    "Shift Club Turkey Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Club Turkey Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"mustard mayo\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked turkey breast; if the filling is being served hot, reduce only the sauce-coated cooked turkey breast until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "mustard mayo"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked turkey breast; if the filling is being served hot, reduce only the sauce-coated cooked turkey breast until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-74df93df-4202-46c5-b6b9-7570695ebaae.png",
+  "source_sha256": "9c7aec3ffbcf7ee7f74d1479396a78b3d4fe009c08826ac32f0c98f17179f67d",
+  "generated_at": "2026-10-05T01:15:59.557Z",
+  "elapsed_ms": 364143,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-284de4864452e7033a21-480.webp",
+      "sha256": "eed967d19ad4a788e55585d63a6cae4c734d0ba2f02f4415a97506e6015d02fc",
+      "bytes": 17102
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-284de4864452e7033a21.webp",
+      "sha256": "4c4f50cadb1c17065bfba92ba3e43d13d2a53d1a4c29892c6397b143d65dfdaa",
+      "bytes": 50732
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Wholemeal turkey wrap with mustard mayonnaise, lettuce and tomato",
+    "notes": "Individual full-resolution inspection: Lightly toasted wholemeal rolled wrap containing warm sliced turkey breast with mustard mayonnaise and fresh lettuce and tomato. Every mapped title, exact ingredients and preparation reviewed.",
+    "source_sha256": "9c7aec3ffbcf7ee7f74d1479396a78b3d4fe009c08826ac32f0c98f17179f67d",
+    "recipe_ids": [
+      "industrial-v3-wrap-club-turkey"
+    ],
+    "titles": [
+      "Shift Club Turkey Loaded Wrap"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

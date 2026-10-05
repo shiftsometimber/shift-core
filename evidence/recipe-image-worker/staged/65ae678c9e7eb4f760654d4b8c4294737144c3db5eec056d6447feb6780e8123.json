@@ -1,0 +1,82 @@
+{
+  "groupId": "65ae678c9e7eb4f760654d4b8c4294737144c3db5eec056d6447feb6780e8123",
+  "recipe_ids": [
+    "industrial-v3-roast-harissa-turkey"
+  ],
+  "titles": [
+    "Shift Harissa Turkey Sunday-Style Roast"
+  ],
+  "prompt": "Photorealistic editorial food photography. Present the actual finished recipe appetisingly through natural window light and believable cooked texture in a plain dish. No invented garnish or additional ingredients. Wholegrain rice if listed must have naturally tan bran surfaces and visible bran seams, never polished white rice. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Harissa Turkey Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"harissa tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the harissa tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot harissa tomato sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "harissa tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the harissa tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot harissa tomato sauce over the cooked protein."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1b7e77a4-18da-4359-8b47-f50efb68f761.png",
+  "source_sha256": "cb5dab58556ceba6553831ffb0ac8f76750cf85329e559947e8de22338119f5c",
+  "generated_at": "2026-10-05T00:17:32.970Z",
+  "elapsed_ms": 113570,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-65ae678c9e7eb4f76065-480.webp",
+      "sha256": "f39c5fada6559622f7e6c3e2bc6e5976c821592d78df6479637ed49654eb1cf7",
+      "bytes": 33586
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-65ae678c9e7eb4f76065.webp",
+      "sha256": "170e1911b156e7592d9502858c791dc801e04beb3b61b906faaa1937e09cb10c",
+      "bytes": 105768
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "cb5dab58556ceba6553831ffb0ac8f76750cf85329e559947e8de22338119f5c",
+    "recipe_ids": [
+      "industrial-v3-roast-harissa-turkey"
+    ],
+    "titles": [
+      "Shift Harissa Turkey Sunday-Style Roast"
+    ],
+    "notes": "Two compact flattened cooked turkey mince portions with hot harissa tomato sauce on protein, separate plain peeled roast potatoes, roasted carrot batons and boiled broccoli.",
+    "alt": "Shift Harissa Turkey Sunday-Style Roast: two compact flattened cooked turkey mince portions with hot harissa tomato sauce on protein, separate plain peeled roast potatoes, roasted carrot batons and boiled broccoli.",
+    "reviewed_at": "2026-10-05T00:33:13.798156+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

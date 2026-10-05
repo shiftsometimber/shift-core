@@ -1,0 +1,15 @@
+{
+  "groupId": "3ec03183940100e304be7c49aad0c966b1efcbf59f059940784853c0ba6999cd",
+  "decision": "reject",
+  "source_sha256": "30be5997e4098b28ada7e591158a2db34ada535a4b29adc06590bbd3cc5f2b59",
+  "recipe_ids": [
+    "industrial-v3-chilli-harissa-turkey"
+  ],
+  "titles": [
+    "Shift Harissa Turkey Big Chilli"
+  ],
+  "notes": "REJECT: rice appears pale ivory and polished rather than credible bran-covered brown rice; turkey mince, kidney beans and red pepper otherwise match.",
+  "alt": "Shift Harissa Turkey Big Chilli: reject: rice appears pale ivory and polished rather than credible bran-covered brown rice",
+  "reviewed_at": "2026-10-05T00:20:23.647908+00:00",
+  "reviewer": "root-full-resolution-visual-review"
+}

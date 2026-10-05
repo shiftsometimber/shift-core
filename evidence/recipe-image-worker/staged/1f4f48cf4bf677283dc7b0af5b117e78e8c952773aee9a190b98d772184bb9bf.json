@@ -1,0 +1,85 @@
+{
+  "groupId": "1f4f48cf4bf677283dc7b0af5b117e78e8c952773aee9a190b98d772184bb9bf",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-chocolate-savory-box"
+  ],
+  "titles": [
+    "Shift Chocolate Banana Split Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Banana Split Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed food; no honey, nuts, mint, syrup, sauces or decorative garnish. All food inside frame. Berries just small25g portion. NO crackers or biscuits anywhere. Unsweetened cocoa is fine powder measured5g, lightly mixed into fruit/dairy, never chocolate syrup, melted chocolate or extra chocolate chunks. Dark chocolate chunks ONLY where explicitly listed. Yoghurt smooth and stirred, no cottage cheese curds. Finished dessert ONE bowl with all listed ingredients combined and measured Greek yoghurt swirled through, no separate creamy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-49bae822-1468-429e-8c14-22c66104a4eb.png",
+  "source_sha256": "7110a87369226d02e126360db69a0e96f82758f243c551efb67c823ec2c850fb",
+  "generated_at": "2026-10-05T00:24:54.958Z",
+  "elapsed_ms": 284933,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1f4f48cf4bf677283dc7-480-1641262b472d.webp",
+      "sha256": "1641262b472d58e58986e056e91bb1b471c916fa4988306e1c4446ee5616ffc7",
+      "bytes": 20246
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1f4f48cf4bf677283dc7-b9cdd17ccce0.webp",
+      "sha256": "b9cdd17ccce08807e1a6fc391401becfbe1e85ec8fdbcbaa135dfe996dcbb48f",
+      "bytes": 67538
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "7110a87369226d02e126360db69a0e96f82758f243c551efb67c823ec2c850fb",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-chocolate-savory-box"
+    ],
+    "titles": [
+      "Shift Chocolate Banana Split Dessert Pot"
+    ],
+    "notes": "Banana and small berries with fine cocoa, oats/seeds combined in one dessert bowl and Greek yoghurt swirled through. No chocolate chunks or sauce.",
+    "alt": "Cocoa banana dessert with berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:28:47.738976+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/1f4f48cf4bf677283dc7b0af5b117e78e8c952773aee9a190b98d772184bb9bf.json"
+  },
+  "integrated": true,
+  "live": false
+}

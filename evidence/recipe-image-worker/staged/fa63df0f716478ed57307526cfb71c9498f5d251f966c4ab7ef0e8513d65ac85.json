@@ -1,0 +1,95 @@
+{
+  "groupId": "fa63df0f716478ed57307526cfb71c9498f5d251f966c4ab7ef0e8513d65ac85",
+  "recipe_ids": [
+    "industrial-v3-toastie-smoky-turkey"
+  ],
+  "titles": [
+    "Shift Smoky Turkey Hot Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Turkey Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"27g\"},{\"item\":\"lemon juice\",\"amount\":\"2g\"},{\"item\":\"smoked paprika\",\"amount\":\"1g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Stir together all the measured 0% Greek yoghurt, lemon juice and smoked paprika in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel: no sesame/poppy seeds, cheese or unlisted food. Keep the raw spinach/tomato or rocket/tomato side salad separate where method reserves it. Spring onion belongs finely sliced in mixed salad beside jacket potatoes. Greek yoghurt/lemon/paprika dressing must be mixed and placed as method requires, no paprika dust or lemon wedge garnish. No mayo or melted cheese. Tuna remains fibrous flakes, ham thin strips where specified, turkey plain cooked breast without breadcrumb/batter coating.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "item": "0% Greek yoghurt",
+      "amount": "27g"
+    },
+    {
+      "item": "lemon juice",
+      "amount": "2g"
+    },
+    {
+      "item": "smoked paprika",
+      "amount": "1g"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Stir together all the measured 0% Greek yoghurt, lemon juice and smoked paprika in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+    "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+    "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+    "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0577818c-578e-4f90-8297-fed869425187.png",
+  "source_sha256": "69c7e322be1d1e62a8be7bf11e475b1f54551b2701881652579145b081bba102",
+  "generated_at": "2026-10-05T00:15:04.180Z",
+  "elapsed_ms": 372774.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fa63df0f716478ed5730-480-84e95532b221.webp",
+      "sha256": "84e95532b221d4fe0bedbdfe807b8a0e0552d1c5a917333f8f098bc728bdc4d4",
+      "bytes": 28984
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fa63df0f716478ed5730-414b4b3ab4cb.webp",
+      "sha256": "414b4b3ab4cb5b817b3ab7cced0caa3ed6a7152cca042c238812424b6003afd8",
+      "bytes": 89776
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "69c7e322be1d1e62a8be7bf11e475b1f54551b2701881652579145b081bba102",
+    "recipe_ids": [
+      "industrial-v3-toastie-smoky-turkey"
+    ],
+    "titles": [
+      "Shift Smoky Turkey Hot Toastie"
+    ],
+    "notes": "Crisp wholemeal toastie containing thin plain cooked turkey, spinach, tomato and yoghurt/lemon/paprika dressing. Remaining raw spinach/tomato salad alongside. No cheese, coating, seeds, paprika dust or lemon wedge.",
+    "alt": "Smoky turkey toastie with spinach and tomato salad",
+    "reviewed_at": "2026-10-05T00:16:24.559554+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2044.json"
+  },
+  "integrated": true,
+  "live": false
+}

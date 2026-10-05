@@ -1,0 +1,97 @@
+{
+  "groupId": "582e66863494967a06c5f117889b7205670782b2675c8a23afb3282242793073",
+  "recipe_ids": [
+    "industrial-v3-pie-peppercorn-tofu"
+  ],
+  "titles": [
+    "Shift Peppercorn Tofu Proper Pie"
+  ],
+  "prompt": "Premium realistic food photograph landscape4:3 small cream ovenproof dish warmdaylight cropmargin single serving. Plain potato-topped TOFU pie. Top peeled potatoes250g boiled and mashed using HOT WATER ONLY, fork-ridged clean ivory top with golden-browned ridges free of any spice flecks. Frontsmallopening reveals180g firm tofu in2cm cubes PLAIN evenly light golden-browned with SMOOTH uniformly coloured faces and NO BLACK SPECKS;90g finely diced carrots90g peas cooked in clear water. Filling plainwaterjuices with5ml oliveoil, no creamy sauce. Separate small bowl cold lightmayo20g wholegrainmustard4g blackpepper1g alongside: ALL dark seasoning flecks EXCLUSIVELY in bowl. No cheese milk butter cream gravy herbs garnish otherfoods. Tofu cooked6-8min golden, carrot simmered8-10min water60ml peaslast3min, potato top oven200Cfan15-20min. Pie entire filling and top clean speck-free; only side bowl has pepper and mustard grains.",
+  "original_generation_prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Tofu Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, wholegrain mustard, black pepper dressing alongside.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, wholegrain mustard, black pepper dressing alongside."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b2f56d3b-09aa-40d8-9464-933d9f6cf977.png",
+  "source_sha256": "0dd2036ccbd814164e3eb9bfa3869edbe90f376360fdd73076b8ecaa150538fb",
+  "generated_at": "2026-10-05T01:08:33.187Z",
+  "elapsed_ms": 30107.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-582e66863494967a06c5-retry5-480-bc791ce81e39.webp",
+      "sha256": "bc791ce81e39fcfec9294965cc4def7e5033c13af27cbc5461ff1cc9cf379600",
+      "bytes": 34808
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-582e66863494967a06c5-retry5-52fedcfc180b.webp",
+      "sha256": "52fedcfc180b76d8e83757b1e373d6b0d506933a75196f2c15b92f1ace46b24f",
+      "bytes": 105628
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "0dd2036ccbd814164e3eb9bfa3869edbe90f376360fdd73076b8ecaa150538fb",
+    "recipe_ids": [
+      "industrial-v3-pie-peppercorn-tofu"
+    ],
+    "titles": [
+      "Shift Peppercorn Tofu Proper Pie"
+    ],
+    "notes": "Pass after targeted retry: clean plain fork-ridged water-mashed potato top with golden browned ridges. Opening shows approximately 2cm firm tofu cubes plain evenly golden browned, carrots and peas with transparent cooking juices. No discrete black pepper or mustard flecks on hot food or creamy filling. ALL light mayonnaise-wholegrain mustard-black pepper exclusively in separate cold bowl alongside. No cheese, herbs, pastry, meat or extra foods. Rejected pepper-flecked original retained; main pie centred with rear-right dressing bowl visible.",
+    "alt": "Tofu potato-topped pie with carrots, peas and separate mayonnaise-wholegrain mustard dressing",
+    "reviewed_at": "2026-10-05T01:10:48.747053+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1192.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,103 @@
+{
+  "groupId": "6bcf5828d519d3c91873d053f1121f36c3a4318eafe30ab0f37a36c32be37b25",
+  "recipe_ids": [
+    "industrial-v3-pizza-mexican-salmon"
+  ],
+  "titles": [
+    "Shift Mexican Salmon Proper Pizza"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mexican Salmon Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.\",\"Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured chilli powder and paprika. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Transfer large flakes of the cooked salmon to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and large flakes of the cooked salmon evenly on top. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only this exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, sesame/poppy seeds, cheese, cream, fresh green herb leaves, coriander, parsley, lemon wedges, side dishes or dipping sauce. All buns and flatbreads entirely plain unseeded wholemeal. Mexican finish is ONLY cold tomato ketchup mixed with cider vinegar drizzled on TOP after cooking or inside burger, no sauce ramekin. Spice is paprika/chilli only. Protein form must match the method: pork burger thin opaque 1cm cutlets, pork other dishes opaque1cm strips; salmon burger intact opaque cooked FILLET, other salmon dishes large opaque cooked FLAKES, not raw slices/chunks; tofu burger golden1cm SLAB, other tofu dishes2cm CUBES; turkey burger ONE1.5cm mince patty, turkey kebab exactly THREE short cooked koftas without skewers, turkey fries/pizza loose mince; chicken fries/pizza opaque cooked1.5cm strips. Lettuce shredded and tomato sliced only where listed. Pizza is visibly CHEESE-FREE passata base with exact cooked protein and peppers, ketchup finish. Fries golden plain ovenchips, thin softened red onion and mixed pepper strips. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.",
+    "Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured chilli powder and paprika. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Transfer large flakes of the cooked salmon to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and large flakes of the cooked salmon evenly on top. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1076cc2c-60fb-4012-8304-0051edfa3cc1.png",
+  "source_sha256": "edc7b1482e484b083c23400ff3fdc29f0bbad683cf3c5362e8762833f0a5c220",
+  "generated_at": "2026-10-05T00:21:32.227Z",
+  "elapsed_ms": 260757.99999999997,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6bcf5828d519d3c91873-retry4-480-7a043d67ad5e.webp",
+      "sha256": "7a043d67ad5efe45dbd046ddd3722ceb76692714aec8f61cd1a1ed9294a5dd2a",
+      "bytes": 27254
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6bcf5828d519d3c91873-retry4-a9f22a180319.webp",
+      "sha256": "a9f22a180319199cb24ba4e4da63e49f25510d1f635555e0f6b45a819cb53c23",
+      "bytes": 81260
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "edc7b1482e484b083c23400ff3fdc29f0bbad683cf3c5362e8762833f0a5c220",
+    "recipe_ids": [
+      "industrial-v3-pizza-mexican-salmon"
+    ],
+    "titles": [
+      "Shift Mexican Salmon Proper Pizza"
+    ],
+    "notes": "Pass: opaque cooked salmon in large irregular flakes with clearly separated layers, thin mixed pepper strips on tomato passata and golden cooked individual pizza base, red ketchup-cider finish. No cheese, raw fish, diced cubes, onion, herb garnish, cream or extra food. Exact cheeseless flaked salmon pizza and crop margin.",
+    "alt": "Mexican flaked salmon pizza with tomato passata, mixed peppers and ketchup-cider sauce",
+    "reviewed_at": "2026-10-05T00:22:15.782979+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1120.json"
+  },
+  "integrated": true,
+  "live": false
+}

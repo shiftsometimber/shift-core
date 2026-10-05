@@ -1,0 +1,78 @@
+{
+  "groupId": "a8d74bf7d84abe5c830d1fdbfb3cc1ae71aa2ba81042a8077080f05aa3dbba66",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-jalfrezi-chicken"
+  ],
+  "titles": [
+    "Shift Jalfrezi Chicken Slow-Cooker Big Pot"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe in natural window light, truthful appetising textures in a plain serving dish. No invented garnish or additions. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Jalfrezi Chicken Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"pepper and tomato masala\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "pepper and tomato masala"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f5bbcd6c-188c-4178-9f31-4a5e4436267b.png",
+  "source_sha256": "f702eb3955e4d61f07b803dc14b3ceb04eac2c841be3ef33c35b21e1da2743b1",
+  "generated_at": "2026-10-05T00:33:57.448Z",
+  "elapsed_ms": 391287,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a8d74bf7d84abe5c830d-480.webp",
+      "sha256": "b1018f2a17944bef0d5f4f9986a6045e149f993b713b3ab59f66ae6151c76e55",
+      "bytes": 27104
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a8d74bf7d84abe5c830d.webp",
+      "sha256": "32e0476f8268663e3115ce85a8b24939a767784aa94ccd0b52e335110c2fe1b0",
+      "bytes": 86094
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Jalfrezi chicken with tender baby potatoes, carrots and onion",
+    "notes": "Full-resolution individual inspection: cooked chicken breast, tender baby potatoes, carrots and softened onion in glossy reduced masala cooking juices; exact method and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-jalfrezi-chicken"
+    ],
+    "titles": [
+      "Shift Jalfrezi Chicken Slow-Cooker Big Pot"
+    ],
+    "source_sha256": "f702eb3955e4d61f07b803dc14b3ceb04eac2c841be3ef33c35b21e1da2743b1",
+    "reviewed_at": "2026-10-05T00:50:10.494234+00:00"
+  }
+}

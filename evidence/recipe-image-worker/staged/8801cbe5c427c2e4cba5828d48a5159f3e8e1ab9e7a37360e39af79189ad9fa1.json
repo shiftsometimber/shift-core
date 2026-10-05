@@ -1,0 +1,87 @@
+{
+  "groupId": "8801cbe5c427c2e4cba5828d48a5159f3e8e1ab9e7a37360e39af79189ad9fa1",
+  "recipe_ids": [
+    "industrial-v3-pasta-mediterranean-turkey"
+  ],
+  "titles": [
+    "Shift Mediterranean Turkey Proper Pasta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mediterranean Turkey Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"tomato olive herb sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the tomato olive herb sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured tomato olive herb sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, sesame/poppy seeds, cheese, cream, fresh green herb leaves, coriander, parsley, lemon wedges, side dishes or dipping sauce. All buns/flatbreads entirely plain unseeded wholemeal. Tomato olive herb sauce is light reddish coating with tiny chopped olive and herb pieces ONLY WITHIN SAUCE, no extra whole olive side or fresh leaf garnish. Turkey mince loose cooked crumbles, never chunks or meatballs, except Sunday roast EXACTLY TWO flattened2cm portions. Tofu2cm cubes except roast2cm slabs. PIE: entirely PLAIN water-mashed potato top, ivory with natural golden fork ridges; NO dark/green flecks, NO herbs/pepper/cheese/butter on or mixed into topping. Sauce and herbs only in filling BELOW mash. Slowpot vegetables tender glossy not crispy. Rice exact brown or basmati. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "tomato olive herb sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the tomato olive herb sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured tomato olive herb sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d52bcaf0-4eca-4075-9de9-6515cc8daa31.png",
+  "source_sha256": "d1ba9b2f5a9fa8e8c9a44af6fda52cc8712fb93ef73e0bffeed1d3d5065cf264",
+  "generated_at": "2026-10-05T00:09:45.050Z",
+  "elapsed_ms": 152380.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8801cbe5c427c2e4cba5-retry4-480-95432aefc7b6.webp",
+      "sha256": "95432aefc7b6bf059ed289dc38f3f1c50f8dab407048d05431c9476ff2cdb018",
+      "bytes": 27970
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8801cbe5c427c2e4cba5-retry4-83de9b89d797.webp",
+      "sha256": "83de9b89d7971a510176e96688a53a75c5699beb6a8422a4e0de9bb2f09828dd",
+      "bytes": 85726
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "d1ba9b2f5a9fa8e8c9a44af6fda52cc8712fb93ef73e0bffeed1d3d5065cf264",
+    "recipe_ids": [
+      "industrial-v3-pasta-mediterranean-turkey"
+    ],
+    "titles": [
+      "Shift Mediterranean Turkey Proper Pasta"
+    ],
+    "notes": "Pass: brown wholewheat penne, cooked turkey breast mince loose crumbles, bite-size courgette and cherry tomato pieces lightly coated with tomato olive herb sauce. Small sauce herbs permitted; no chunks, meatballs, cheese, cream, fresh leaf garnish or extra foods. Exact hot pasta assembly and centred crop.",
+    "alt": "Mediterranean turkey mince wholewheat pasta with courgette, cherry tomatoes and tomato olive herb sauce",
+    "reviewed_at": "2026-10-05T00:13:27.961695+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1099.json"
+  },
+  "integrated": true,
+  "live": false
+}

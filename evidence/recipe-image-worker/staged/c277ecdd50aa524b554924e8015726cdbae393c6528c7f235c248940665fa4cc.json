@@ -1,0 +1,81 @@
+{
+  "groupId": "c277ecdd50aa524b554924e8015726cdbae393c6528c7f235c248940665fa4cc",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-crunch-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Crunch Fruit Crunch Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Crunch Fruit Crunch Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"25g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed foods. No honey, nuts, mint, syrup, cinnamon, cocoa or garnish. Small25g berries; generous measured25-30g pumpkin seeds where listed. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Yoghurt smooth and stirred, no cottage cheese curds. One finished dessert bowl all measured ingredients combined, Greek yoghurt visibly swirled through. No separate creamy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "25g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-51777afc-c8f1-4e60-a506-d82327c1cfd7.png",
+  "source_sha256": "6eeb418ed8d18772119a9b61163a15673a1bffd373fb4bb77bc1e4c0d31395d6",
+  "generated_at": "2026-10-05T01:09:47.411Z",
+  "elapsed_ms": 282298,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c277ecdd50aa524b5549-480-b0bcfcc897ee.webp",
+      "sha256": "b0bcfcc897eef2329f05ebfede54b476d587e318c99d802383d723b766a688f2",
+      "bytes": 22992
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c277ecdd50aa524b5549-b500bf02e429.webp",
+      "sha256": "b500bf02e429a21b6db1b53eaee2b94be2b9f4c7d749e60828f9440646be650b",
+      "bytes": 63312
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6eeb418ed8d18772119a9b61163a15673a1bffd373fb4bb77bc1e4c0d31395d6",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-crunch-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Crunch Fruit Crunch Dessert Pot"
+    ],
+    "notes": "Apple/small berries, generous seeds and oats combined in one finished dessert bowl with yoghurt swirled through. No chocolate.",
+    "alt": "Apple crunch dessert with berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T01:12:43.209234+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/c277ecdd50aa524b554924e8015726cdbae393c6528c7f235c248940665fa4cc.json"
+  },
+  "integrated": true,
+  "live": false
+}

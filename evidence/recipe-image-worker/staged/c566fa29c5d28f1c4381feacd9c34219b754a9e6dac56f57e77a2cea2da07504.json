@@ -1,0 +1,84 @@
+{
+  "groupId": "c566fa29c5d28f1c4381feacd9c34219b754a9e6dac56f57e77a2cea2da07504",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-weekend-treat-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Weekend Treat Cottage Cheese Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Treat Cottage Cheese Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"15g\",\"item\":\"dark chocolate chips\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed ingredients: no honey, mint, coconut, nuts, syrup, pineapple or banana/apple unless listed. Mixed berries only listed berry addition. Cottage cheese curdy, high-protein yoghurt smooth, fruit-only variants have no dairy unless 40g Greek yoghurt explicitly listed. Rolled oats plain flakes, no granola with invented foods. Pumpkin seeds flat green pepitas. Chocolate chips discrete small chips; Big Feed recipes that ALSO list chopped dark chocolate must show chopped pieces as the measured finishing element. WORK SNACK BOX: wet fruit/dairy separated from dry oats/pepitas/TWO wholegrain crackers. EXCEPTION overnight-oats work snack box: oats are milk-hydrated overnight with pineapple/berries mixed through; seeds separate until serving, crackers alongside dry. Fruit/Protein pots: dry crunch only added at immediate serving. Greek yoghurt swirled through dessert pots at end exactly as method requires, not an invented cream base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate chips"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e3645679-e0c8-449f-9a05-a5c49db1c6ce.png",
+  "source_sha256": "95c5c58283eeabc200fa6dd0b60a10365d0dca28c2d9ae9b2a08545bb13c0e19",
+  "generated_at": "2026-10-05T01:25:06.317Z",
+  "elapsed_ms": 294161.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c566fa29c5d28f1c4381-480-0b28c0cb6586.webp",
+      "sha256": "0b28c0cb6586b7d8888e04e0290117fddb09907c39d4d4e907dec2807090a9bb",
+      "bytes": 23756
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c566fa29c5d28f1c4381-26b5f98513a4.webp",
+      "sha256": "26b5f98513a4feafc7151b2e2bc903078f5104f3fd3edcd9ce89ad099d2d4a49",
+      "bytes": 65504
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "95c5c58283eeabc200fa6dd0b60a10365d0dca28c2d9ae9b2a08545bb13c0e19",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-weekend-treat-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Weekend Treat Cottage Cheese Protein Pot"
+    ],
+    "notes": "Curdy cottage cheese combined with mixed berries and dark chocolate chips; dry plain rolled oats and green pumpkin seeds kept in separate bowls until serving. No Greek yoghurt, extra chopped chocolate, fruit or honey; exact title/method checked.",
+    "alt": "Cottage cheese berry chocolate chip pot with separate oats and pumpkin seeds",
+    "reviewed_at": "2026-10-05T01:27:18.966014+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2583.json"
+  },
+  "integrated": true,
+  "live": false
+}

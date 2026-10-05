@@ -1,0 +1,84 @@
+{
+  "groupId": "80d1350d0d4e62e14841497b9d8eb1d04a9098e1b51b670c5b4531888840a61f",
+  "recipe_ids": [
+    "industrial-v3-wrap-club-tuna"
+  ],
+  "titles": [
+    "Shift Club Tuna Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Club Tuna Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"mustard mayo\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the tuna in spring water, drained; if the filling is being served hot, reduce only the sauce-coated tuna in spring water, drained until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "mustard mayo"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the tuna in spring water, drained; if the filling is being served hot, reduce only the sauce-coated tuna in spring water, drained until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2cda3977-294a-4be2-92d0-809396386da8.png",
+  "source_sha256": "cb795aa0daaafb2a12c502cd5bc5bf497e21206c66335e590009cc5427cd68d0",
+  "generated_at": "2026-10-05T01:13:40.998Z",
+  "elapsed_ms": 225584,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-80d1350d0d4e62e14841-480.webp",
+      "sha256": "d0f52d2f521dd0fcc5ea7e52bcc6bad73626ae3a8f1f08f52332ae11b2ea13fa",
+      "bytes": 20814
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-80d1350d0d4e62e14841.webp",
+      "sha256": "953c10bc5f4f4e0b1281f6335afee78fe38e76f5081f293ec9e2a005656c2f10",
+      "bytes": 59110
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Toasted wholemeal wrap with tuna, mustard mayonnaise, lettuce and tomato",
+    "notes": "Individual full-resolution inspection: Wholemeal wrap holds cooked tuna flakes with mustard mayo and fresh lettuce and tomato, rolled and lightly toasted. All exact ingredients, method and mapped titles reviewed.",
+    "source_sha256": "cb795aa0daaafb2a12c502cd5bc5bf497e21206c66335e590009cc5427cd68d0",
+    "recipe_ids": [
+      "industrial-v3-wrap-club-tuna"
+    ],
+    "titles": [
+      "Shift Club Tuna Loaded Wrap"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

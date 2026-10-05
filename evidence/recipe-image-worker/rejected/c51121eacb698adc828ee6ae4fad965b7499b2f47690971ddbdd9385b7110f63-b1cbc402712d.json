@@ -1,0 +1,15 @@
+{
+  "groupId": "c51121eacb698adc828ee6ae4fad965b7499b2f47690971ddbdd9385b7110f63",
+  "decision": "reject",
+  "source_sha256": "b1cbc402712d3d986d5095d9c773b784be5044ef753b4c1a77157bf15b436dd7",
+  "recipe_ids": [
+    "industrial-v3-pasta-harissa-tofu"
+  ],
+  "titles": [
+    "Shift Harissa Tofu Proper Pasta"
+  ],
+  "notes": "REJECT: courgette shown in round slices and cherry tomatoes mostly whole, whereas method specifies diced bite-size courgette and tomatoes. Tofu and wholewheat pasta otherwise match.",
+  "alt": "Shift Harissa Tofu Proper Pasta: reject: courgette shown in round slices and cherry tomatoes mostly whole, whereas method specifies diced bite-size courgette and tomatoes. tofu and wholewheat pasta otherwise match.",
+  "reviewed_at": "2026-10-05T00:20:23.638111+00:00",
+  "reviewer": "root-full-resolution-visual-review"
+}

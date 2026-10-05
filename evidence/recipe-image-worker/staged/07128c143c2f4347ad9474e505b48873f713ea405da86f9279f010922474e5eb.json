@@ -1,0 +1,84 @@
+{
+  "groupId": "07128c143c2f4347ad9474e505b48873f713ea405da86f9279f010922474e5eb",
+  "recipe_ids": [
+    "industrial-v3-sandwich-smoky-turkey"
+  ],
+  "titles": [
+    "Shift Smoky Turkey Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Turkey Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"smoked paprika dressing\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the smoky flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel: no sesame/poppy seeds, cheese or unlisted food. Keep the raw spinach/tomato or rocket/tomato side salad separate where method reserves it. Spring onion belongs finely sliced in mixed salad beside jacket potatoes. Greek yoghurt/lemon/paprika dressing must be mixed and placed as method requires, no paprika dust or lemon wedge garnish. No mayo or melted cheese. Chicken/turkey plain cooked breast without breadcrumb/batter coating. Sweet chilli sauce translucent reddish glossy, never creamy. Chickpeas roughly mashed only for toastie/bagel; whole elsewhere. Eggs are sliced hard-boiled eggs.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "smoked paprika dressing"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the smoky flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a02a0bbe-6923-4105-b97d-5fdb97fbc636.png",
+  "source_sha256": "29ed17ea920764bf63a0f9a9ccbaacf3e5c156f5c39b26e06f3a0563a6381a20",
+  "generated_at": "2026-10-05T00:21:25.460Z",
+  "elapsed_ms": 74259.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-07128c143c2f4347ad94-480-23e458fe61a6.webp",
+      "sha256": "23e458fe61a63ecf5306b9d36717a338a8f8bd07ea8a91f955916950785fd630",
+      "bytes": 25674
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-07128c143c2f4347ad94-4f0c09b8527b.webp",
+      "sha256": "4f0c09b8527b9a4fc48f70635279880bfb90d6a3b538c952187885197a9241a1",
+      "bytes": 83136
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "29ed17ea920764bf63a0f9a9ccbaacf3e5c156f5c39b26e06f3a0563a6381a20",
+    "recipe_ids": [
+      "industrial-v3-sandwich-smoky-turkey"
+    ],
+    "titles": [
+      "Shift Smoky Turkey Proper Sandwich"
+    ],
+    "notes": "Two plain wholemeal slices enclose lightly coloured plain turkey breast, fresh lettuce/tomato and smoky paprika dressing. No additional side, bread seeds, cheese or garnish; exact sandwich method and title checked.",
+    "alt": "Wholemeal turkey sandwich with lettuce, tomato and smoky paprika dressing",
+    "reviewed_at": "2026-10-05T00:27:02.050765+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2049.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "e6f0b468f8a5b7e3eaa061922ff8c9cd1f8f95b1dd653563ec317281f2ff4906",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-mushroom-sausage"
+  ],
+  "titles": [
+    "Shift Mushroom Sausage Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mushroom Sausage Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"garlic mushrooms\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic mushrooms"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d59148ab-b226-4441-8e58-85d64ffa28da.png",
+  "source_sha256": "7f41e6c5787989d4a478432f482b678748f5ff528f98558018943a8a51f24d4c",
+  "generated_at": "2026-10-05T00:25:43.505Z",
+  "elapsed_ms": 275458,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e6f0b468f8a5b7e3eaa0-480.webp",
+      "sha256": "35c26e7674ee83f4268d70d3ed6ecbbcbfeb78f9df36f0b7b24a83219f0b7d40",
+      "bytes": 27086
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e6f0b468f8a5b7e3eaa0-5ced6b6db33f.webp",
+      "sha256": "5ced6b6db33fd9625538a14797ed36adf2d664854df2b127bdad6a151057aa92",
+      "bytes": 86978
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "7f41e6c5787989d4a478432f482b678748f5ff528f98558018943a8a51f24d4c",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-mushroom-sausage"
+    ],
+    "titles": [
+      "Shift Mushroom Sausage Breakfast Buttie"
+    ],
+    "notes": "Two browned cooked sausages in an unseeded wholemeal bap with softened tomato, wilted spinach and sliced garlic mushrooms. No extra garnish.",
+    "alt": "Mushroom sausage bap with tomato and spinach",
+    "reviewed_at": "2026-10-05T00:28:19.192066+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/300.json"
+  },
+  "integrated": true,
+  "live": false
+}

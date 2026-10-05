@@ -1,0 +1,84 @@
+{
+  "groupId": "3b9ca2f19e6cd40e278cc955f8357f6447be68d334ea80f0e9135fc7834b7e1e",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-classic-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Classic Greek Yoghurt Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Greek Yoghurt Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"240g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only, no honey, nuts, mint, syrup or decorative garnish. Small25g mixed berries. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Cinnamon only light1g powder evenly mixed into food; no decorative cinnamon sticks or dry powder piles. Yoghurt smooth and stirred, no cottage-cheese curds. Finished dessert one bowl all ingredients combined, measured Greek yoghurt visibly swirled through. No separate dairy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "240g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-59609115-6581-4972-a111-8f126944c7a6.png",
+  "source_sha256": "5500818245e74ab00b01424a76deb37c21853b68d3be64c4db0513164a93864d",
+  "generated_at": "2026-10-05T00:43:11.422Z",
+  "elapsed_ms": 53058,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3b9ca2f19e6cd40e278c-480-32c6afa085fb.webp",
+      "sha256": "32c6afa085fbb48f8386d8d15df87bb68ced6f0af74b86a386f6e9adc10f0356",
+      "bytes": 23084
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3b9ca2f19e6cd40e278c-6d80f4a36257.webp",
+      "sha256": "6d80f4a362577e63af3493938b8ebd28f781e2ef6a4d8e6d490ad39d30aaa24f",
+      "bytes": 66590
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "5500818245e74ab00b01424a76deb37c21853b68d3be64c4db0513164a93864d",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-classic-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Classic Greek Yoghurt Dessert Pot"
+    ],
+    "notes": "Smooth Greek yoghurt with fine cinnamon, small berries/oats/seeds combined and yoghurt swirled through. No chocolate or sticks.",
+    "alt": "Cinnamon Greek yoghurt dessert with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:50:44.861878+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/3b9ca2f19e6cd40e278cc955f8357f6447be68d334ea80f0e9135fc7834b7e1e.json"
+  },
+  "integrated": true,
+  "live": false
+}

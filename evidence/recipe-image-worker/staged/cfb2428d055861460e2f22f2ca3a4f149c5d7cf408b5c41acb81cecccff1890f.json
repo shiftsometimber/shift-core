@@ -1,0 +1,95 @@
+{
+  "groupId": "cfb2428d055861460e2f22f2ca3a4f149c5d7cf408b5c41acb81cecccff1890f",
+  "recipe_ids": [
+    "industrial-v3-pizza-nashville-pork"
+  ],
+  "titles": [
+    "Shift Nashville-Style Pork Proper Pizza"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Nashville-Style Pork Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"lean pork loin\"},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.\",\"Cut the lean pork loin across the grain into strips about 1cm thick. Coat with all the measured paprika, chilli powder and garlic powder. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the pork strips over a medium-high heat for about 7\u20139 minutes, turning regularly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Transfer the cooked pork strips to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked pork strips evenly on top. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, appetising professional natural daylight, credible single serving with generous crop margin. No unlisted garnish, green herb flecks/leaves, sesame/poppy seeds, cheese, cream, breading, fried batter, lemon wedges, side dishes or dipping sauce. Buns and flatbreads plain unseeded wholemeal. Protein shape/state precisely follows method: beef/turkey burger ONE cooked mince patty1.5cm; beef/turkey kebab THREE short cooked koftas without skewers; beef/turkey fries/pizza loose mince crumbles; chicken burger thin cooked opaque unbreaded cutlets1.5cm, other chicken1.5cm strips; pork burger opaque cooked1cm cutlets, other pork1cm strips; salmon burger whole opaque cooked FILLET, other salmon large irregular opaque cooked FLAKES with separated layers, not raw chunks; tofu burger golden1cmSLAB, other tofu2cmCUBES. Lettuce shredded and tomato sliced only where listed. Pizza CHEESE-FREE passata base exact protein and thin mixed pepper strips. Fries golden plain oven chips, thin red onion and pepper strips. Nashville dry paprika/chilli/garlic coating only. NO ketchup, mayonnaise, barbecue sauce, hot sauce, white/red finishing drizzle, mustard or any sauce; only listed tomato passata under pizza topping is permitted. No sauce on burgers/kebabs/fries.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.",
+    "Cut the lean pork loin across the grain into strips about 1cm thick. Coat with all the measured paprika, chilli powder and garlic powder. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the pork strips over a medium-high heat for about 7\u20139 minutes, turning regularly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Transfer the cooked pork strips to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked pork strips evenly on top. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Rest for one minute, cut and serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b5f4d61c-c06f-4c01-8b70-667566b2df55.png",
+  "source_sha256": "c646c6e21e5be23af26c96852e507cff0bf3194acf4794e67bf86e54d5abeaae",
+  "generated_at": "2026-10-05T00:33:12.594Z",
+  "elapsed_ms": 260286.99999999997,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-cfb2428d055861460e2f-retry4-480-fb029f11b61c.webp",
+      "sha256": "fb029f11b61cb53499ca610caf8600cfbdfaa1626110e0d65f3ed31178143de2",
+      "bytes": 36442
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-cfb2428d055861460e2f-retry4-a9d051ed1cb6.webp",
+      "sha256": "a9d051ed1cb6bc481f979e242f028b4f2daecbefefb2a14dfe3c5b2d73980096",
+      "bytes": 122068
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c646c6e21e5be23af26c96852e507cff0bf3194acf4794e67bf86e54d5abeaae",
+    "recipe_ids": [
+      "industrial-v3-pizza-nashville-pork"
+    ],
+    "titles": [
+      "Shift Nashville-Style Pork Proper Pizza"
+    ],
+    "notes": "Pass: opaque cooked pork loin strips with dry paprika-chilli-garlic coating and thin red/yellow pepper strips on tomato passata and cooked golden pizza base. No cheese, ketchup finish, white sauce, onion, fresh green garnish, raw pink pork or extra foods. Exact Nashville cheeseless pork strip pizza and centred whole base.",
+    "alt": "Nashville-style pork pizza with tomato passata and mixed peppers",
+    "reviewed_at": "2026-10-05T00:33:52.551179+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1140.json"
+  },
+  "integrated": true,
+  "live": false
+}

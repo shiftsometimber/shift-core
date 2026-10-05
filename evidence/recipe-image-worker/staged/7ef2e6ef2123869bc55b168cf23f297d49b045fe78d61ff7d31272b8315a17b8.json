@@ -1,0 +1,90 @@
+{
+  "groupId": "7ef2e6ef2123869bc55b168cf23f297d49b045fe78d61ff7d31272b8315a17b8",
+  "recipe_ids": [
+    "industrial-v3-sandwich-cajun-tuna"
+  ],
+  "titles": [
+    "Shift Cajun Tuna Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Tuna Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"Cajun yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the tuna in spring water, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the cajun flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the tuna in spring water, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. If spices are mixed into a dressing, all spices remain in the smooth dressing: NO dry spice dust scattered over food, salad or plate. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty; cooked salmon and cooked cured ham retain their natural opaque colour. For meal-prep bowls, all filling including egg slices is folded THROUGH the rice and vegetables, not arranged on top as a decorative row or fan.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the tuna in spring water, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the cajun flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the tuna in spring water, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a69d7b68-8e81-4fe8-91fc-8bbc1470ae37.png",
+  "source_sha256": "37de5e3b7a9ffe1a45cd8103b58b793b2fef3526b1ccdfde1f9381f48fcc51ed",
+  "generated_at": "2026-10-05T01:22:30.667Z",
+  "elapsed_ms": 209107.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7ef2e6ef2123869bc55b-480-92e7f472e9d8.webp",
+      "sha256": "92e7f472e9d887a21e5c57b998d239fb7443311b0d07131780f04dd503e03d5c",
+      "bytes": 27792
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7ef2e6ef2123869bc55b-08b3fb47df84.webp",
+      "sha256": "08b3fb47df8407b7ed2a716d5f76bc599a6247343cb32b627b71b45365a93a64",
+      "bytes": 85646
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "37de5e3b7a9ffe1a45cd8103b58b793b2fef3526b1ccdfde1f9381f48fcc51ed",
+    "recipe_ids": [
+      "industrial-v3-sandwich-cajun-tuna"
+    ],
+    "titles": [
+      "Shift Cajun Tuna Proper Sandwich"
+    ],
+    "notes": "Plain wholemeal bread encloses opaque drained tuna flakes with Cajun yoghurt, fresh lettuce and tomato. No separate cheese, seeds or garnish; exact tuna sandwich title matches.",
+    "alt": "Cajun tuna sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-05T01:24:02.009991+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1626-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

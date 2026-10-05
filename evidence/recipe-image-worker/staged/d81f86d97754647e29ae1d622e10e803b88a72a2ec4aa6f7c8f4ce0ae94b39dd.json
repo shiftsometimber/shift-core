@@ -1,0 +1,95 @@
+{
+  "groupId": "d81f86d97754647e29ae1d622e10e803b88a72a2ec4aa6f7c8f4ce0ae94b39dd",
+  "recipe_ids": [
+    "industrial-v3-traybake-peppercorn-pork"
+  ],
+  "titles": [
+    "Shift Peppercorn Pork Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Pork Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and lean pork loin. Get the pan properly hot first. Cook the lean pork loin until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the lean pork loin is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Exact method gates: No garnish or unlisted cheese, herbs, seeds, breading, sauce or sides. Wholemeal bread, wrap and bun entirely plain unseeded. Peppercorn flavour uses LIGHT MAYONNAISE plus WHOLEGRAIN MUSTARD plus BLACK PEPPER only: no cream or ketchup. In roast and pie all three exclusively in separate small cold dressing bowl alongside; hot food must be PLAIN with no black pepper or mustard pieces, herbs or creamy coat. Roast salmon intact fully cooked opaque fillet; tofu roast 2cm slabs. Pie plain fork-roughened water-mashed potato top and plain filling carrot/pea/protein with clear cooking juices; never creamy filling. Salmon in pasta, pizza, kebab or fries large opaque cooked FLAKES. Tofu burger one 1cm slab, kebab/fries/pasta/pizza/slowpot/pie 2cm cubes. Burger or kebab cold dressing finish INSIDE bread; pizza and loaded fries cold finish ON TOP after cooking; cheeseless pizza with passata and mixed peppers only listed. Pasta mayonnaise/mustard/pepper folded THROUGH wholewheat pasta offheat, courgette and cherry tomatoes. Slowpot tender baby potatoes carrots onion and protein, light mayo final glossy coating after switch off; no crispy roast appearance. Traybake chilled mayo only added after oven. Show correct finished appearance and all ingredients where method places them. For roast especially plain golden surfaces, all black pepper strictly only INSIDE the separate cold bowl, no pepper rub or garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and lean pork loin. Get the pan properly hot first. Cook the lean pork loin until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.",
+    "Check the lean pork loin is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fd30bec7-8233-4742-a2b1-b18c6416a6be.png",
+  "source_sha256": "fccb35d0d8212f843c193be6bc29e1f9443bfeb9c1321a33568860853ea44512",
+  "generated_at": "2026-10-05T01:00:57.678Z",
+  "elapsed_ms": 30198.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d81f86d97754647e29ae-retry4-480-0098d48e52ef.webp",
+      "sha256": "0098d48e52efea5aa72b7b416ab3f582ce0501d9075092a1d514174ed812d4ce",
+      "bytes": 33956
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d81f86d97754647e29ae-retry4-5f7df5accd76.webp",
+      "sha256": "5f7df5accd76551784ea7a94e54e739dfa893839f410f6f501382404f73676cb",
+      "bytes": 106290
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fccb35d0d8212f843c193be6bc29e1f9443bfeb9c1321a33568860853ea44512",
+    "recipe_ids": [
+      "industrial-v3-traybake-peppercorn-pork"
+    ],
+    "titles": [
+      "Shift Peppercorn Pork Traybake"
+    ],
+    "notes": "Pass: fully opaque cooked pork loin slices, golden skin-on baby potato pieces, roasted red pepper strips and broccoli with coloured oven edges. Cold mayonnaise-wholegrain mustard bowl alongside added after oven, small mustard grains inside. No carrots, peas, herbs, cream, cheese, raw pink pork or extra foods. Black pepper final seasoning consistent with traybake method; intact plate with cropping margin.",
+    "alt": "Peppercorn pork traybake with baby potatoes, broccoli, red pepper and cold mayonnaise-wholegrain mustard dressing",
+    "reviewed_at": "2026-10-05T01:01:22.755976+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1179.json"
+  },
+  "integrated": true,
+  "live": false
+}

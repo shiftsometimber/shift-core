@@ -1,0 +1,84 @@
+{
+  "groupId": "13f368491b8b05fb6980eac3c797c79789d807662742109d070e11df19640a04",
+  "recipe_ids": [
+    "industrial-v3-sandwich-sweet-chilli-chickpea"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Chickpea Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Chickpea Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the chickpeas, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Build the sweet chilli flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the chickpeas, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel: no sesame/poppy seeds, cheese or unlisted food. Keep the raw spinach/tomato or rocket/tomato side salad separate where method reserves it. Spring onion belongs finely sliced in mixed salad beside jacket potatoes. Greek yoghurt/lemon/paprika dressing must be mixed and placed as method requires, no paprika dust or lemon wedge garnish. No mayo or melted cheese. Chicken/turkey plain cooked breast without breadcrumb/batter coating. Sweet chilli sauce translucent reddish glossy, never creamy. Chickpeas roughly mashed only for toastie/bagel; whole elsewhere. Eggs are sliced hard-boiled eggs.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the chickpeas, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+    "Build the sweet chilli flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the chickpeas, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-15287b13-41bb-416c-9772-566074f2efac.png",
+  "source_sha256": "82792678e64e6beea3e2a4a7b10636a5ec3a61afdf79a06d228edd47f34e3bc4",
+  "generated_at": "2026-10-05T00:25:34.215Z",
+  "elapsed_ms": 323014.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-13f368491b8b05fb6980-480-bb10ffd6a803.webp",
+      "sha256": "bb10ffd6a803e05210f39c345ded5218aef2b983acdc899950f220bda3f70852",
+      "bytes": 28334
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-13f368491b8b05fb6980-89da87cd1a1c.webp",
+      "sha256": "89da87cd1a1c7ceb9c6dde65cc726631fa69f7e7f00bb1f4fbc0500c589ca3a2",
+      "bytes": 88082
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "82792678e64e6beea3e2a4a7b10636a5ec3a61afdf79a06d228edd47f34e3bc4",
+    "recipe_ids": [
+      "industrial-v3-sandwich-sweet-chilli-chickpea"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Chickpea Proper Sandwich"
+    ],
+    "notes": "Two plain wholemeal bread slices enclosing whole lightly coloured chickpeas in translucent sweet chilli sauce with fresh lettuce/tomato. No mashed chickpea spread, cheese, creamy sauce or extra side. Exact title/method checked.",
+    "alt": "Wholemeal sweet chilli chickpea sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:27:04.832184+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2060.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,80 @@
+{
+  "groupId": "4a7b1ab70b159149353d629b25e6be03351617b81652c87a5f8909312840b594",
+  "recipe_ids": [
+    "industrial-v3-pie-chilli-tofu"
+  ],
+  "titles": [
+    "Shift Smoky Chilli Tofu Proper Pie"
+  ],
+  "prompt": "Photorealistic appetising exact recipe photography. NO extra garnish. If brown rice is listed, use genuine wholegrain rice with natural tan bran coats and longitudinal bran seams; never polished white rice. If vegetables are diced by the method, depict diced pieces, not whole tomatoes. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Tofu Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Measure the smoked chilli tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Stir in the smoked chilli tomato sauce, heat for 1\u20132 minutes, then spoon into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Measure the smoked chilli tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Stir in the smoked chilli tomato sauce, heat for 1\u20132 minutes, then spoon into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d94b2718-6d42-488c-8451-8f48d8dcf1b8.png",
+  "source_sha256": "cb9caa9a35d4f0ca8520b4496bb4b4cd85e892be68b7509ba51227ef85e40125",
+  "generated_at": "2026-10-05T00:52:44.965Z",
+  "elapsed_ms": 321955,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4a7b1ab70b159149353d-480.webp",
+      "sha256": "32248c863d132864b9e987905bd8e8bc65f9377c3ecdd69fddff053f5353549b",
+      "bytes": 27986
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4a7b1ab70b159149353d.webp",
+      "sha256": "dcec17d682237656e4257ffb19f34d0cfb95c54a02d8d2e3de2ba23efb1902d9",
+      "bytes": 89164
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Smoky chilli tofu pie with browned mash, carrots and peas",
+    "notes": "Individual full-resolution inspection: browned firm tofu cubes, diced carrots and peas in red smoky tomato filling beneath fork-roughened golden mash; no added dairy, exact method and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-pie-chilli-tofu"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Tofu Proper Pie"
+    ],
+    "source_sha256": "cb9caa9a35d4f0ca8520b4496bb4b4cd85e892be68b7509ba51227ef85e40125",
+    "reviewed_at": "2026-10-05T01:03:30.438696+00:00"
+  }
+}

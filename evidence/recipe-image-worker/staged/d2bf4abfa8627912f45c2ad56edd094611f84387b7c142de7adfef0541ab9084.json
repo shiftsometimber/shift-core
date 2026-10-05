@@ -1,0 +1,78 @@
+{
+  "groupId": "d2bf4abfa8627912f45c2ad56edd094611f84387b7c142de7adfef0541ab9084",
+  "recipe_ids": [
+    "industrial-v3-traybake-sweet-chilli-beef"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Beef Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Beef Traybake. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and 5% beef mince. Get the pan properly hot first. Cook the 5% beef mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the 5% beef mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArt direction: exact ingredients and method, appealing natural textures, no decorative extras. Brown rice must depict visibly intact unpolished tan/brown bran coats on the entire grain, with brown longitudinal seams, never white grains with brown seasoning. Cooked diced vegetables remain diced.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and 5% beef mince. Get the pan properly hot first. Cook the 5% beef mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the 5% beef mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e6c255c2-0ddc-44e4-82aa-e0ea009b2ef9.png",
+  "source_sha256": "4e94798eac243ccabc0641f7f6bac80fad19e4f7dfae8ebb2d53e855b038dedd",
+  "generated_at": "2026-10-05T01:03:16.287Z",
+  "elapsed_ms": 341087,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d2bf4abfa8627912f45c-480.webp",
+      "sha256": "ed60c9c6c42bfee4c670455418844cb634f4b157d2b90c63ce3afea4aae7d409",
+      "bytes": 43792
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d2bf4abfa8627912f45c.webp",
+      "sha256": "77330b44d346aba2beab30fec69291b0b764f9b58dace3f7beaed4c82c9593a5",
+      "bytes": 148918
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Sweet chilli beef mince traybake with baby potatoes, broccoli and red pepper",
+    "notes": "Individual full-resolution inspection: Cooked beef mince crumbles and roasted skin-on baby potato pieces, broccoli and red pepper lightly sweet-chilli coated with roasted edges. Exact ingredients, method and every mapped title reviewed.",
+    "source_sha256": "4e94798eac243ccabc0641f7f6bac80fad19e4f7dfae8ebb2d53e855b038dedd",
+    "recipe_ids": [
+      "industrial-v3-traybake-sweet-chilli-beef"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Beef Traybake"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

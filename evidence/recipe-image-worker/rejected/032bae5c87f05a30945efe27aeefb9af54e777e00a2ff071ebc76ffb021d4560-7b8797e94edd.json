@@ -1,0 +1,15 @@
+{
+  "groupId": "032bae5c87f05a30945efe27aeefb9af54e777e00a2ff071ebc76ffb021d4560",
+  "decision": "reject",
+  "source_sha256": "7b8797e94eddeaa1f26f0d852e15af2044755ad0c1f501e32526ab3431667447",
+  "recipe_ids": [
+    "industrial-v3-chilli-balti-pork"
+  ],
+  "titles": [
+    "Shift Balti Pork Big Chilli"
+  ],
+  "notes": "REJECT: targeted edit still shows pale ivory polished rice, without credible wholegrain bran; pork, beans and red pepper unchanged.",
+  "alt": "Shift Balti Pork Big Chilli: reject: targeted edit still shows pale ivory polished rice, without credible wholegrain bran",
+  "reviewed_at": "2026-10-05T00:20:23.626356+00:00",
+  "reviewer": "root-full-resolution-visual-review"
+}

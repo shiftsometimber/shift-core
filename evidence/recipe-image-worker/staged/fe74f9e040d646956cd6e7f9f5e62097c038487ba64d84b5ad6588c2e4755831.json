@@ -1,0 +1,95 @@
+{
+  "groupId": "fe74f9e040d646956cd6e7f9f5e62097c038487ba64d84b5ad6588c2e4755831",
+  "recipe_ids": [
+    "industrial-v3-traybake-peppercorn-chicken"
+  ],
+  "titles": [
+    "Shift Peppercorn Chicken Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Chicken Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph this exact finished recipe, appetising natural daylight, credible ordinary single serving with generous crop margin. No unlisted food, fresh green herb flecks/leaves, seeds on bread, cheese, milk, butter, cream, breading, fried batter, ketchup, gravy or decorative garnish. Wholemeal buns/flatbreads completely plain unseeded. Protein form exact: chicken burger cooked opaque unbreaded1.5cmcutlets; chicken kebab/fries/pizza cooked opaque1.5cm strips; chicken pasta/pie2cm cooked pieces; chicken roast intact plain roasted breast. Pork burger opaque1cmcutlets; pork kebab/fries/pizza opaque1cmstrips; pork pasta/pie2cm cooked pieces; pork roast plain roasted loin, if sliced opaque no pink. Slowpot protein tender opaque, potatoes/carrot/onion glossy tender not crispyroast. Peppercorn uses LIGHT MAYONNAISE + WHOLEGRAIN MUSTARD + BLACK PEPPER, not hot cream sauce. Wholegrain mustard grains permitted only inside ivory dressing, no seed garnish. Exact placement: burger/kebab ivory cold mayo-mustard on cooked protein inside bread; fries/pizza ivory cold finish drizzled ON TOP after cooking; pasta thin mayo-mustard-black pepper dressing folded THROUGH wholewheat pasta offheat with courgette/cherry tomatoes; slowpot light mayo/final mustardpepper stirred through OFFHEAT, lightly ivory-glossy coating not thick cream pool; pie PLAIN browned fork-roughened WATER mash absolutely no black pepper/mustard/herbs/cheese on or in topping, PLAIN chicken/pork-carrot-pea filling, ivory cold mustard-blackpepper dressing in SEPARATE small bowl alongside; Sundayroast protein/potatoes/slimcarrotbatons/boiledbroccoli all PLAIN with NO blackpepper/mustard/herb flecks or dressing, cold ivory dressing separate alongside; traybake baby potatoes/broccoli/redpepper/protein golden roast edges with mayo and final seasoning only AFTER oven, ivory finishing topping. Pizza visibly cheese-free passata base thin mixed peppers correct protein, cold ivory finish on top. Fries golden plain ovenchips thin redonion/mixedpepper strips. No whole peppercorn berry garnish: pepper is finely ground/coarsely crushed specks. No extra foods.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.",
+    "Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8599edb7-63fa-47c9-9010-e4fb6f9120f9.png",
+  "source_sha256": "d8fdb3600d80ac3d264402d6381cbd1a27c9ae97abf35884d3dc5d123bcb77b7",
+  "generated_at": "2026-10-05T00:51:06.336Z",
+  "elapsed_ms": 171498.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fe74f9e040d646956cd6-retry4-480-8296b2c6048f.webp",
+      "sha256": "8296b2c6048f0085a71e82ec21ecc03a5f1ac7458cbb3c6ce87eca94dea16e06",
+      "bytes": 36028
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fe74f9e040d646956cd6-retry4-8bf63dd4a945.webp",
+      "sha256": "8bf63dd4a94592a371ae204806705865ad3c73cb8c44a9eee1a94010d2d6fac2",
+      "bytes": 113124
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "d8fdb3600d80ac3d264402d6381cbd1a27c9ae97abf35884d3dc5d123bcb77b7",
+    "recipe_ids": [
+      "industrial-v3-traybake-peppercorn-chicken"
+    ],
+    "titles": [
+      "Shift Peppercorn Chicken Traybake"
+    ],
+    "notes": "Pass: opaque cooked browned chicken breast with golden baby potato pieces, roasted broccoli and red pepper. Cold ivory light mayonnaise with wholegrain mustard added as finishing topping after roast; black pepper final seasoning visible. No breading, cheese, cream, ketchup, herb garnish or extra foods. Roasted edges retained; exact traybake assembly and crop margin.",
+    "alt": "Peppercorn chicken traybake with baby potatoes, broccoli, red pepper and light mayonnaise-wholegrain mustard finish",
+    "reviewed_at": "2026-10-05T00:53:06.432550+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1170.json"
+  },
+  "integrated": true,
+  "live": false
+}

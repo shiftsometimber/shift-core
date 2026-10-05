@@ -1,0 +1,78 @@
+{
+  "groupId": "927cd12663f18c2dcafeb067b49164316e7b47dd97a1307ccf0b49389501e7bf",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-hoisin-turkey"
+  ],
+  "titles": [
+    "Shift Hoisin Turkey Slow-Cooker Big Pot"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe in natural window light, truthful appetising textures in a plain serving dish. No invented garnish or additions. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hoisin Turkey Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"hoisin-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the turkey mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and turkey mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the turkey mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "hoisin-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the turkey mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and turkey mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the turkey mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e51f9cb9-b393-4eb5-becb-1d44e50c73c7.png",
+  "source_sha256": "e58da42d88b42e899cfca4c9a3497a536d7e53265ff138f961a90f6d8f5ed24b",
+  "generated_at": "2026-10-05T00:28:45.844Z",
+  "elapsed_ms": 79683,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-927cd12663f18c2dcafe-480.webp",
+      "sha256": "e4ce6840d40222d03145839bbe8dfff8bcbfbac1c45200f9a1319a43c8f2aa3a",
+      "bytes": 28134
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-927cd12663f18c2dcafe.webp",
+      "sha256": "b6fee29e9be7e4c0a796265fb1b69eb68c60e89288bb8dd638d7af03475cb5c8",
+      "bytes": 84578
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Hoisin turkey mince with tender baby potatoes, carrots and onion",
+    "notes": "Full-resolution inspection: loose cooked turkey mince crumbles, tender baby potatoes, carrots and onion in glossy hoisin cooking juices; no invented garnish. Exact ingredients, preparation and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-hoisin-turkey"
+    ],
+    "titles": [
+      "Shift Hoisin Turkey Slow-Cooker Big Pot"
+    ],
+    "source_sha256": "e58da42d88b42e899cfca4c9a3497a536d7e53265ff138f961a90f6d8f5ed24b",
+    "reviewed_at": "2026-10-05T00:50:10.473227+00:00"
+  }
+}

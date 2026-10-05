@@ -1,0 +1,84 @@
+{
+  "groupId": "8aa1abc8a978c99f8dc378e96b524c0024c481597b15fab29e8acc4dbac6c80e",
+  "recipe_ids": [
+    "industrial-v3-sandwich-sweet-chilli-ham"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Ham Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Ham Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the sweet chilli flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel, no sesame/poppy seeds, cheese or food not listed. Sweet chilli sauce is translucent glossy red, never creamy: no mayo/yoghurt/cream. Tuna is loose fibrous drained flakes, never creamy tuna salad; ham thin cooked strips where method specifies. Eggs sliced hard-boiled. Turkey plain cooked breast not breaded. Keep reserved raw spinach/tomato or rocket/tomato side salads separate. Spring onion sliced finely mixed into salad alongside jacket potatoes, never garnish on potato. Cook rice; peppers raw diced, corn ready-to-eat. Sauce incorporated exactly as method states.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the sweet chilli flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9fdf6c4e-a7f9-4d59-81bf-ce508bf30523.png",
+  "source_sha256": "5473df7ec2a54449a9167977775b37a8d427321f510130b45289abc8dd1df135",
+  "generated_at": "2026-10-05T00:31:40.569Z",
+  "elapsed_ms": 203986.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8aa1abc8a978c99f8dc3-480-473d78a615fb.webp",
+      "sha256": "473d78a615fbfe8d6db308955e671303be910009be2ea7abd3fe6241f7c0d6ac",
+      "bytes": 23356
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8aa1abc8a978c99f8dc3-7026df588ea4.webp",
+      "sha256": "7026df588ea408e3de780d4e4429e06a2cc2c7228c08305ea0adf9860ca6946c",
+      "bytes": 70382
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "5473df7ec2a54449a9167977775b37a8d427321f510130b45289abc8dd1df135",
+    "recipe_ids": [
+      "industrial-v3-sandwich-sweet-chilli-ham"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Ham Proper Sandwich"
+    ],
+    "notes": "Two plain wholemeal slices hold lightly coloured cooked lean ham, fresh lettuce/tomato and translucent sweet chilli sauce. No cheese, cream, bread seeds or additional side; exact title/method checked.",
+    "alt": "Wholemeal sweet chilli ham sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:34:58.568792+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2072.json"
+  },
+  "integrated": true,
+  "live": false
+}

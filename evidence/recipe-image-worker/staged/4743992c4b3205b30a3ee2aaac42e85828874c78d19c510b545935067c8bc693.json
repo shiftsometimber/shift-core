@@ -1,0 +1,89 @@
+{
+  "groupId": "4743992c4b3205b30a3ee2aaac42e85828874c78d19c510b545935067c8bc693",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-coffee-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Coffee Cottage Cheese Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Cottage Cheese Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.\",\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only, no honey, nuts, mint, syrup or decorative garnish. Small25g mixed berries. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Instant espresso measured1g fully dissolved in tiny teaspoon water and cooled, mixed through fruit/dairy as subtle coffee tint; no whole coffee beans, granules, dry coffee grounds, separate coffee drink or chocolate syrup. Cottage cheese has recognisable small curds, coffee evenly mixed into those curds where listed. Finished dessert one bowl all ingredients combined, measured Greek yoghurt visibly swirled through. No separate dairy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.",
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-956cf855-38d8-4c40-88ba-c383104b753f.png",
+  "source_sha256": "6990e1e4723db29f965e89c46cd5f37618c782ff9341704c6d47cf3e3e98093c",
+  "generated_at": "2026-10-05T00:47:59.178Z",
+  "elapsed_ms": 340814,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4743992c4b3205b30a3e-480-9e4e7613e6c2.webp",
+      "sha256": "9e4e7613e6c259f12622dd82965caad8f33b854ec8e306d5a0ab7e66dd6de12d",
+      "bytes": 20612
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4743992c4b3205b30a3e-c52466b64776.webp",
+      "sha256": "c52466b647766da9c586359ec6e19ff9421bfdca20e5d8017ea15e028d9802d8",
+      "bytes": 59368
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6990e1e4723db29f965e89c46cd5f37618c782ff9341704c6d47cf3e3e98093c",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-coffee-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Coffee Cottage Cheese Dessert Pot"
+    ],
+    "notes": "Coffee lightly mixed into cottage cheese curds, small berries/oats/seeds combined and Greek yoghurt swirled through. No coffee drink or granules.",
+    "alt": "Coffee cottage cheese dessert with berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:50:47.286012+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/4743992c4b3205b30a3ee2aaac42e85828874c78d19c510b545935067c8bc693.json"
+  },
+  "integrated": true,
+  "live": false
+}

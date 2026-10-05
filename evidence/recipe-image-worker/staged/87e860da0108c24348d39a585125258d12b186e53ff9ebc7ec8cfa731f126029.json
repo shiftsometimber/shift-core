@@ -1,0 +1,103 @@
+{
+  "groupId": "87e860da0108c24348d39a585125258d12b186e53ff9ebc7ec8cfa731f126029",
+  "recipe_ids": [
+    "industrial-v3-pizza-peppercorn-turkey"
+  ],
+  "titles": [
+    "Shift Peppercorn Turkey Proper Pizza"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Turkey Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.\",\"Mix the measured light mayonnaise and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Keep the turkey breast mince ready to break into small pieces in the pan. Coat with all the measured black pepper. After handling raw turkey breast mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the turkey breast mince over a medium-high heat for about 8\u201310 minutes, breaking up clumps and stirring frequently. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Transfer the cooked turkey breast mince to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked turkey breast mince evenly on top. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain entirely unseeded: no sesame/poppy or seed garnish. No cheese, herbs, garnish, crumbs, breading, lemon, cream, ketchup or extra foods unless listed. Exact protein and preparation. Light mayo plus wholegrain mustard plus black pepper only. Wholegrain mustard grains may appear INSIDE dressing, not as seed garnish. Turkey mince loose pale opaque browned crumbles blackpeppercoated. Fries plain golden chips, softened red onion mixedpepper strips, cold mayo-mustard finish ON TOP. Pizza tomato passata mixedpepper strips, cold mayo-mustard finish ON TOP afteroven, NOcheese.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.",
+    "Mix the measured light mayonnaise and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Keep the turkey breast mince ready to break into small pieces in the pan. Coat with all the measured black pepper. After handling raw turkey breast mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the turkey breast mince over a medium-high heat for about 8\u201310 minutes, breaking up clumps and stirring frequently. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Transfer the cooked turkey breast mince to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked turkey breast mince evenly on top. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0008a8af-55f2-424e-9350-b00efe9fb4b0.png",
+  "source_sha256": "23d72a0fa0276c9a5c66aa08d313f91ede54752ee46131fdfd74c93a0430e9bc",
+  "generated_at": "2026-10-05T01:17:05.821Z",
+  "elapsed_ms": 270419.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-87e860da0108c24348d3-retry4-480-3fae7d3c979d.webp",
+      "sha256": "3fae7d3c979d85a3a44a0873ba85a406bbb01f74d281986a28843c88b04db75f",
+      "bytes": 35796
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-87e860da0108c24348d3-retry4-821c974bcf3b.webp",
+      "sha256": "821c974bcf3b8fdb62dffe6ca1584a53f263c24535ce923f5827865534f22f6b",
+      "bytes": 108432
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "23d72a0fa0276c9a5c66aa08d313f91ede54752ee46131fdfd74c93a0430e9bc",
+    "recipe_ids": [
+      "industrial-v3-pizza-peppercorn-turkey"
+    ],
+    "titles": [
+      "Shift Peppercorn Turkey Proper Pizza"
+    ],
+    "notes": "Pass: loose opaque pale browned turkey breast mince crumbles with black pepper coating, softened thin mixed pepper strips on tomato passata and golden cooked individual pizza base. Cold light mayonnaise-wholegrain mustard finish spooned on TOP after baking. No cheese layer, breast strips, herbs, onion, ketchup or extra foods. Exact cheeseless minced-turkey pizza and full crop.",
+    "alt": "Peppercorn turkey pizza with tomato passata, mixed peppers and mayonnaise-wholegrain mustard finish",
+    "reviewed_at": "2026-10-05T01:18:08.788971+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1202.json"
+  },
+  "integrated": true,
+  "live": false
+}

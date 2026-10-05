@@ -1,0 +1,101 @@
+{
+  "groupId": "bdbe150b7a84ecf21ecea88d7230f48b54ab787b6a60fd31dd64b56fe3f44fc4",
+  "recipe_ids": [
+    "industrial-v3-bagel-buffalo-egg"
+  ],
+  "titles": [
+    "Shift Buffalo Egg Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Buffalo Egg Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Stir together all the measured tomato ketchup, chilli powder, paprika, cider vinegar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Correction of rejected output: ALL paprika and chilli powder MUST be fully stirred into the smooth RED ketchup-vinegar-oil sauce before assembly. NO visible dry spice dust, powder grains or sprinkled garnish anywhere on eggs, ham, potato, salad, bread, plate or background. Side salad is plain unseasoned mixed leaves and thin spring onion only, or rocket and tomato as listed. Eggs are thin slices of fully boiled eggs, no runny yolk. Plain unseeded wholemeal bagel. No cheese or mayonnaise. Smooth red sauce only where the method directs it, no dusting.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+    "Stir together all the measured tomato ketchup, chilli powder, paprika, cider vinegar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7be7ecfc-9006-484b-947b-1b90a2891fd1.png",
+  "source_sha256": "d290221b60d30016d506ca39885be5c7a7b3568f73d7143b3489d758fe074f43",
+  "generated_at": "2026-10-05T00:40:37.654Z",
+  "elapsed_ms": 31405.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bdbe150b7a84ecf21ece-480-cd8e7eb213f0.webp",
+      "sha256": "cd8e7eb213f069375129d3a7436662c966bae28922c00024ee96c9f4c8511799",
+      "bytes": 25044
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bdbe150b7a84ecf21ece-c8c8ff3766ee.webp",
+      "sha256": "c8c8ff3766eee278438fb1c988b91775eebe8dc1e2af715b895b763ddba43a47",
+      "bytes": 78432
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "d290221b60d30016d506ca39885be5c7a7b3568f73d7143b3489d758fe074f43",
+    "recipe_ids": [
+      "industrial-v3-bagel-buffalo-egg"
+    ],
+    "titles": [
+      "Shift Buffalo Egg Loaded Bagel"
+    ],
+    "notes": "Corrected replacement: plain wholemeal bagel with fully boiled egg slices in smooth red ketchup-spice dressing, rocket and tomato; plain rocket and tomato alongside. No dry spice dust or cheese; exact title matches.",
+    "alt": "Buffalo egg bagel with rocket and tomato",
+    "reviewed_at": "2026-10-05T00:42:56.371342+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1562-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

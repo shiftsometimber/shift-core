@@ -1,0 +1,86 @@
+{
+  "groupId": "123b1a63759806863a9e58e5266475bb21041cea5eed3118e5e24f9a775acbca",
+  "recipe_ids": [
+    "industrial-v3-pasta-chilli-salmon"
+  ],
+  "titles": [
+    "Shift Smoky Chilli Salmon Proper Pasta"
+  ],
+  "prompt": "Photorealistic appetising exact recipe photography. NO extra garnish. If brown rice is listed, use genuine wholegrain rice with natural tan bran coats and longitudinal bran seams; never polished white rice. If vegetables are diced by the method, depict diced pieces, not whole tomatoes. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Salmon Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the smoked chilli tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured smoked chilli tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the smoked chilli tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured smoked chilli tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-eff7a67b-487f-4877-afeb-fb0a6ff8094a.png",
+  "source_sha256": "0f1e5bf5bf4fdba0f90a45dc390db329d02a285040d9b34e755fbe078953a912",
+  "generated_at": "2026-10-05T00:50:23.533Z",
+  "elapsed_ms": 180523,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-123b1a63759806863a9e-480.webp",
+      "sha256": "b2d8e703fe8d42c5cf1ccc35ac7d188112d46bc349310c578a4ed48b51ff4bce",
+      "bytes": 34904
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-123b1a63759806863a9e.webp",
+      "sha256": "18fb5ad8c57a0deb584e0909fedbbf08095b8cc6bc9baa5ce17058a88229230d",
+      "bytes": 108048
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Smoky chilli salmon wholewheat pasta with diced courgette and tomatoes",
+    "notes": "Individually inspected full-resolution: cooked salmon large flakes, tan wholewheat penne, diced cooked courgette and diced tomato pieces in measured smoky tomato coating; exact method and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-pasta-chilli-salmon"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Salmon Proper Pasta"
+    ],
+    "source_sha256": "0f1e5bf5bf4fdba0f90a45dc390db329d02a285040d9b34e755fbe078953a912",
+    "reviewed_at": "2026-10-05T01:03:30.425355+00:00"
+  }
+}

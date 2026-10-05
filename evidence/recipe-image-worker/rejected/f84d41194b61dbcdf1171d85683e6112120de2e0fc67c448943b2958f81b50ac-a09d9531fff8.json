@@ -1,0 +1,16 @@
+{
+  "groupId": "f84d41194b61dbcdf1171d85683e6112120de2e0fc67c448943b2958f81b50ac",
+  "source_sha256": "a09d9531fff8815de8334665255b1a00022be19c90c9cb9938065270498904b3",
+  "review": {
+    "decision": "reject",
+    "notes": "Full-resolution inspection: the method specifies two compact flattened turkey-mince portions, but only one large patty is shown. Reject assembly/count mismatch; regenerate two distinct portions.",
+    "source_sha256": "a09d9531fff8815de8334665255b1a00022be19c90c9cb9938065270498904b3",
+    "recipe_ids": [
+      "industrial-v3-roast-chilli-turkey"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Turkey Sunday-Style Roast"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

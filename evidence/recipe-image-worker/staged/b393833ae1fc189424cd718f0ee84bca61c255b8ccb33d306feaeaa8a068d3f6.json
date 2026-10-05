@@ -1,0 +1,81 @@
+{
+  "groupId": "b393833ae1fc189424cd718f0ee84bca61c255b8ccb33d306feaeaa8a068d3f6",
+  "recipe_ids": [
+    "industrial-v3-roast-harissa-tofu"
+  ],
+  "titles": [
+    "Shift Harissa Tofu Sunday-Style Roast"
+  ],
+  "prompt": "Photorealistic editorial recipe food photography. Make the actual finished dish appetising through natural window light, truthful cooked texture and a clean plain ceramic serving dish. No decorative garnish or ingredients beyond the exact recipe. If brown rice is listed, show wholegrain rice with unmistakable tan bran on the grains, never ivory polished rice. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Harissa Tofu Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"harissa tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Pat the firm tofu dry, cut it into 2cm slabs and roast on a separate lined tray for 20\u201325 minutes, turning halfway, until the edges are golden and the centre is hot.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the harissa tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked firm tofu, roast potatoes, carrots and broccoli together. Spoon the hot harissa tomato sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "harissa tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Pat the firm tofu dry, cut it into 2cm slabs and roast on a separate lined tray for 20\u201325 minutes, turning halfway, until the edges are golden and the centre is hot.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the harissa tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked firm tofu, roast potatoes, carrots and broccoli together. Spoon the hot harissa tomato sauce over the cooked protein."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-05c448b2-b101-4ab6-9274-42db4565c1b9.png",
+  "source_sha256": "c8000e66388e7f8f30f2a5be4c5dd917597c7c6222aa8ccc929a8eaceb1006fc",
+  "generated_at": "2026-10-05T00:12:31.069Z",
+  "elapsed_ms": 288562,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b393833ae1fc189424cd-480.webp",
+      "sha256": "9ffb8a4dd218d1cbd0fe2e5360f085ee67985a15596fe476b7df2c29a052b889",
+      "bytes": 35854
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b393833ae1fc189424cd.webp",
+      "sha256": "53856f62b49a14ebe8bdaf0e1e3fb34f485833f839373d7f7ba77fb8b8e4b3d9",
+      "bytes": 108662
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c8000e66388e7f8f30f2a5be4c5dd917597c7c6222aa8ccc929a8eaceb1006fc",
+    "recipe_ids": [
+      "industrial-v3-roast-harissa-tofu"
+    ],
+    "titles": [
+      "Shift Harissa Tofu Sunday-Style Roast"
+    ],
+    "notes": "Roasted firm tofu slabs with hot harissa tomato sauce on the protein, separate peeled roast potato chunks, roasted carrot batons and boiled broccoli; no added garnish.",
+    "alt": "Shift Harissa Tofu Sunday-Style Roast: roasted firm tofu slabs with hot harissa tomato sauce on the protein, separate peeled roast potato chunks, roasted carrot batons and boiled broccoli",
+    "reviewed_at": "2026-10-05T00:20:23.644834+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

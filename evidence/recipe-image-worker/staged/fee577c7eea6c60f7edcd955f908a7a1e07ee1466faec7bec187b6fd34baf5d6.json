@@ -1,0 +1,81 @@
+{
+  "groupId": "fee577c7eea6c60f7edcd955f908a7a1e07ee1466faec7bec187b6fd34baf5d6",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-cherry-savory-box"
+  ],
+  "titles": [
+    "Shift Cherry Banana Split Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Banana Split Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the banana in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only, no honey, nuts, mint, syrup or garnish. Cherries ALL destoned stemless fresh HALVES with visible EMPTY pit cavities; no whole cherries, cherry stones, stems or glazed maraschino cherries. Small25g berries alongside measured80g cherry flesh. No cake or biscuit crumbs. All food inside frame. NO crackers or biscuits anywhere. Finished fruit snack pot at eating time, dry rolled oats/seeds newly added. No dairy base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the banana in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3af9c838-85d4-4eaf-93f1-d1109142e2db.png",
+  "source_sha256": "7f077c473ae4be81215df50156747c0e7751f27ea621fdb7ebd3bff00ee9f88f",
+  "generated_at": "2026-10-05T00:07:48.239Z",
+  "elapsed_ms": 17815,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fee577c7eea6c60f7edc-480-6c9f1758d1a3.webp",
+      "sha256": "6c9f1758d1a374ec586f64a815c3a8c9f2a01efc2068990e55f77a88ec4e8d3c",
+      "bytes": 29938
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fee577c7eea6c60f7edc-12af861eff9e.webp",
+      "sha256": "12af861eff9e2517834eb2d4d1f369d09448295f80304f74c87d7483bee60a59",
+      "bytes": 90392
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "7f077c473ae4be81215df50156747c0e7751f27ea621fdb7ebd3bff00ee9f88f",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-cherry-savory-box"
+    ],
+    "titles": [
+      "Shift Cherry Banana Split Snack Pot"
+    ],
+    "notes": "Banana and destoned cherry halves with small berries, dry oats/seeds newly added at serving. No creamy base or chocolate.",
+    "alt": "Banana and pitted cherry snack pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:16:57.902670+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/fee577c7eea6c60f7edcd955f908a7a1e07ee1466faec7bec187b6fd34baf5d6.json"
+  },
+  "integrated": true,
+  "live": false
+}

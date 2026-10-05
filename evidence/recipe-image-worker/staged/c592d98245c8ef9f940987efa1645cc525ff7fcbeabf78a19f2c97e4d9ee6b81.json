@@ -1,0 +1,81 @@
+{
+  "groupId": "c592d98245c8ef9f940987efa1645cc525ff7fcbeabf78a19f2c97e4d9ee6b81",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-crunch-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Crunch Fruit Crunch Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Crunch Fruit Crunch Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"25g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed foods. No honey, nuts, mint, syrup, cinnamon, cocoa or garnish. Small25g berries; generous measured25-30g pumpkin seeds where listed. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Finished combined dessert bowl with listed chopped dark chocolate finishing, no melted sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "25g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ba5502cc-b985-43d7-9139-38d53c2ebdd1.png",
+  "source_sha256": "cb1af52c0b41ffe56c76148a43a4c116fc1adfc20441f9d851efdcd6dd8f640f",
+  "generated_at": "2026-10-05T01:09:26.582Z",
+  "elapsed_ms": 261469,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c592d98245c8ef9f9409-480-9494342c0b73.webp",
+      "sha256": "9494342c0b73c0724d9b731e01badfb96da2b33f29d608831bfc6827f597fd03",
+      "bytes": 28456
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c592d98245c8ef9f9409-82f462d54260.webp",
+      "sha256": "82f462d5426000dcf0652f8be898179a749025f2eff82fc4fdf72d729593cc24",
+      "bytes": 87568
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "cb1af52c0b41ffe56c76148a43a4c116fc1adfc20441f9d851efdcd6dd8f640f",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-crunch-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Crunch Fruit Crunch Big Feed Dessert"
+    ],
+    "notes": "Apple and small berries with generous pumpkin seeds, oats and listed chopped chocolate combined. No dairy or unlisted spice.",
+    "alt": "Apple crunch dessert with berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T01:12:44.197317+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/c592d98245c8ef9f940987efa1645cc525ff7fcbeabf78a19f2c97e4d9ee6b81.json"
+  },
+  "integrated": true,
+  "live": false
+}

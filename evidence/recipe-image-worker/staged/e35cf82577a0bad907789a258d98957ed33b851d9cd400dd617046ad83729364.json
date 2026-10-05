@@ -1,0 +1,89 @@
+{
+  "groupId": "e35cf82577a0bad907789a258d98957ed33b851d9cd400dd617046ad83729364",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-coffee-overnight-oats"
+  ],
+  "titles": [
+    "Shift Coffee Overnight Oats Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Overnight Oats Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.\",\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 1g instant espresso, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds, 15g dark chocolate, chopped separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact foods. Espresso measured1g fully dissolved, cooled and mixed through dairy/fruit, subtle coffee tint; no whole coffee beans, granules, dry grounds, coffee drinks or syrup. Small25g berries. No honey, mint, nuts or decorative garnish. Entire food inside frame. NO crackers, biscuits or cake anywhere. Fully soft milk overnight oats with espresso and fruit evenly mixed, yoghurt mixed in where listed; seeds/chocolate topped at serving. No dry oats or coffee powder piles.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.",
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 1g instant espresso, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds, 15g dark chocolate, chopped separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d159c7cd-3eb5-405e-8e3a-acf2e77e59b3.png",
+  "source_sha256": "23f92c476980abec8b474d5bb4cc73935111275efc86038b8445c052c14e3404",
+  "generated_at": "2026-10-05T00:57:23.794Z",
+  "elapsed_ms": 209215,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e35cf82577a0bad90778-480-a0aaf038e3f1.webp",
+      "sha256": "a0aaf038e3f13a2c803c87f27b2c474c1fa49735b788fbe4fbfb761c0cff8bab",
+      "bytes": 20988
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e35cf82577a0bad90778-55e6f4625829.webp",
+      "sha256": "55e6f46258290483fbf590770a6bccc604a51423ad5cb0b015fa62bfea91a965",
+      "bytes": 65720
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "23f92c476980abec8b474d5bb4cc73935111275efc86038b8445c052c14e3404",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-coffee-overnight-oats"
+    ],
+    "titles": [
+      "Shift Coffee Overnight Oats Big Feed Dessert"
+    ],
+    "notes": "Fully soft milk overnight oats with espresso and small berries evenly mixed, seeds/chopped chocolate topped. No dry oats or extra crackers.",
+    "alt": "Coffee berry overnight oats with pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T01:02:15.771175+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/e35cf82577a0bad907789a258d98957ed33b851d9cd400dd617046ad83729364.json"
+  },
+  "integrated": true,
+  "live": false
+}

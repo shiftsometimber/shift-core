@@ -12,7 +12,8 @@ against both their saved SHA256 values and the closeout's embedded WebP bytes.
 `staged/*.json` records each new accepted image's prompt, exact recipe IDs,
 ingredients, method, explicit visual review, descriptive alt text, source hash
 and production WebP hashes. Shared groups require explicit review of every
-title. `attempts.json` also retains generated and rejected attempts; queued jobs
+title. `attempts.json` indexes the SHA-verified `attempts.json.gz` archive of
+generated and rejected attempts; queued jobs
 are not counted as usable assets. Its pending sources may still require
 regeneration if their temporary source file is unavailable after resumption.
 

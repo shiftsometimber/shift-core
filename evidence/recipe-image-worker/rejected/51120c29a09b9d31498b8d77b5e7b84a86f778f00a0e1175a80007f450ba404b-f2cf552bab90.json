@@ -1,0 +1,15 @@
+{
+  "groupId": "51120c29a09b9d31498b8d77b5e7b84a86f778f00a0e1175a80007f450ba404b",
+  "decision": "reject",
+  "source_sha256": "f2cf552bab903e91624215a3edad924a370c06e41440c0160fbf427d658329ff",
+  "recipe_ids": [
+    "industrial-v3-pasta-harissa-turkey"
+  ],
+  "titles": [
+    "Shift Harissa Turkey Proper Pasta"
+  ],
+  "notes": "REJECT: cherry tomatoes mostly remain whole, contrary to method requiring diced bite-size tomato pieces. Courgette chunks, turkey mince and wholewheat pasta otherwise match.",
+  "alt": "Shift Harissa Turkey Proper Pasta: reject: cherry tomatoes mostly remain whole, contrary to method requiring diced bite-size tomato pieces. courgette chunks, turkey mince and wholewheat pasta otherwise match.",
+  "reviewed_at": "2026-10-05T00:20:23.650945+00:00",
+  "reviewer": "root-full-resolution-visual-review"
+}

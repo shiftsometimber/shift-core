@@ -1,0 +1,100 @@
+{
+  "groupId": "65491cddc765b26a120fe6987fb701042ae294f60db5c64b68ae337c724ee750",
+  "recipe_ids": [
+    "industrial-v3-burger-peppercorn-beef"
+  ],
+  "titles": [
+    "Shift Peppercorn Beef Fakeaway Burger"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Beef Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.\",\"Mix the measured light mayonnaise and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Press the 5% beef mince into a patty about 1.5cm thick, slightly wider than the bun; no binder is needed. Coat with all the measured black pepper. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the beef patty over a medium heat for about 5\u20136 minutes on each side. Turn it carefully and leave it intact rather than repeatedly pressing it flat. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the lettuce and tomato in the toasted bun, add the cooked beef patty and the cold finishing sauce, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, appetising professional natural daylight, ordinary one-person serving with generous crop margin. No invented garnish, fresh green herb flecks/leaves, sesame/poppy seeds, cheese, milk, butter, cream, breading, lemon wedges, extra sides. Plain unseeded wholemeal buns/flatbreads. Exact protein forms per method: beef/turkey burger ONE cooked1.5cm mince patty; kebab THREE short cooked mince koftas, no skewers; pasta/pie/fries/pizza/slowpot/traybake loose cooked mince crumbles; Sunday roast exactly TWO compact flattened2cm cooked mince portions, not roast joint. Chicken burger thin cooked opaque unbreaded1.5cm cutlets. Tofu burger1cm golden slabs, kebab/fries/pizza2cm golden cubes. Shredded lettuce and sliced tomato only where listed. Pizza CHEESE-FREE, passata base exact cooked protein and thin pepper strips. Fries golden plain oven chips, thin cooked red onion and mixed pepper strips. Peppercorn ingredients are light mayonnaise, wholegrain mustard and ground BLACK pepper, no cream sauce. Small mustard grains are permitted INSIDE the ivory cold finishing dressing; no seed garnish. Keep preparation placement EXACT: burger/kebab cold ivory mayo-mustard finish inside bread over cooked protein; fries/pizza cold ivory finish drizzled ON TOP after cooking; pasta light ivory mayo-mustard-black-pepper dressing folded through wholewheat pasta OFF heat; slowpot tender potatoes/carrot/onion/cooked loose mince glossy lightly ivory-coated after mayo stirred offheat; pie PLAIN browned water-mashed potato top absolutely free of black pepper/green flecks/cheese/butter, loose beef mince/carrot/pea filling also PLAIN, cold ivory mustard-black-pepper dressing in separate small bowl alongside; Sunday roast hot meat/potatoes/carrot/broccoli all completely PLAIN with no pepper/mustard flecks, cold ivory mustard-black-pepper dressing alongside in small bowl; traybake golden baby potatoes/broccoli/redpepper/loose mince with ivory mayonnaise and final seasonings added ONLY after roast. No red ketchup, red sauce or hot cream sauce. ",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal burger bun",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.",
+    "Mix the measured light mayonnaise and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Press the 5% beef mince into a patty about 1.5cm thick, slightly wider than the bun; no binder is needed. Coat with all the measured black pepper. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the beef patty over a medium heat for about 5\u20136 minutes on each side. Turn it carefully and leave it intact rather than repeatedly pressing it flat. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the lettuce and tomato in the toasted bun, add the cooked beef patty and the cold finishing sauce, then close the bun and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fe72ffbe-8231-4844-b13c-45d5acf99889.png",
+  "source_sha256": "3d3806ccc125f3300811c26b169df8276b5f861ed2c663ab292546f7ddde0bdd",
+  "generated_at": "2026-10-05T00:41:31.203Z",
+  "elapsed_ms": 159741.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-65491cddc765b26a120f-retry4-480-3fa6b77bbe96.webp",
+      "sha256": "3fa6b77bbe9694c984fd926bab894cae2312555e83a324ab0e3ba3c4dcd05951",
+      "bytes": 23290
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-65491cddc765b26a120f-retry4-d1cec27d3d35.webp",
+      "sha256": "d1cec27d3d358a4ad9349702dd71488abad7de6f0f7a515acd753399facffbef",
+      "bytes": 76452
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3d3806ccc125f3300811c26b169df8276b5f861ed2c663ab292546f7ddde0bdd",
+    "recipe_ids": [
+      "industrial-v3-burger-peppercorn-beef"
+    ],
+    "titles": [
+      "Shift Peppercorn Beef Fakeaway Burger"
+    ],
+    "notes": "Pass: one browned intact beef mince patty with visible black pepper pieces, cold ivory light mayonnaise containing wholegrain mustard grains over patty inside plain unseeded wholemeal bun, shredded lettuce and sliced tomato. Mustard grains remain within dressing and black pepper belongs to protein coating; no sesame, ketchup, cheese, herb garnish, breading or side foods. Exact peppercorn burger assembly.",
+    "alt": "Peppercorn beef burger in a wholemeal bun with lettuce, tomato and light mayonnaise-wholegrain mustard dressing",
+    "reviewed_at": "2026-10-05T00:42:17.608822+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1153.json"
+  },
+  "integrated": true,
+  "live": false
+}

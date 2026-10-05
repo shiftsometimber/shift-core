@@ -10,6 +10,9 @@ import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-
 import taldefgrobepRv8451 from './reviews/2026-10-04-authorised-taldefgrobep-rv8451.json' with {type:'json'};
 import internationalMaintenanceWave from './reviews/2026-10-04-authorised-international-maintenance-wave.json' with {type:'json'};
 import novoSpecialistWave from './reviews/2026-10-05-authorised-novo-specialist-wave.json' with {type:'json'};
+import petrelintideZupreme from './reviews/2026-10-05-authorised-petrelintide-zupreme-registry.json' with {type:'json'};
+import ribupatideSpecialistWave from './reviews/2026-10-05-authorised-ribupatide-specialist-wave.json' with {type:'json'};
+import hansohOlatorepatideReview from './reviews/2026-10-05-authorised-hansoh-olatorepatide-source-review.json' with {type:'json'};
 import evening from './reviews/2026-10-01-authorised-evening-updates.json' with {type:'json'};
 import broaderDiscovery from './reviews/2026-10-01-authorised-broader-discovery.json' with {type:'json'};
 import synt101Correction from './reviews/2026-10-01-synt101-mad-correction.json' with {type:'json'};
@@ -48,7 +51,7 @@ import specialistRegistryWave from './reviews/2026-10-03-authorised-specialist-r
 import leanMassEnergyFollowup from './reviews/2026-10-03-authorised-lean-mass-energy-followup.json' with {type:'json'};
 import vikingAntagFollowup from './reviews/2026-10-03-authorised-vk3019-at673.json' with {type:'json'};
 export const INDUSTRY_REVIEWED_AT = evidence.reviewedAt;
-export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources,kainetic.source,...evidenceDesk.sources,...vk2735Maintenance.sources,...azelapragDiscontinuation.sources].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===eloraTZP.source.id?eloraTZP.source:s).map(s => monitorRepairs.sources.find(r=>r.id===s.id)||s).map(s => pfizerPdfRepair.sources.find(r=>r.id===s.id)||s).map(s => ({
+export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources,kainetic.source,...evidenceDesk.sources,...vk2735Maintenance.sources,...azelapragDiscontinuation.sources,...ribupatideSpecialistWave.sources].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===eloraTZP.source.id?eloraTZP.source:s).map(s => monitorRepairs.sources.find(r=>r.id===s.id)||s).map(s => pfizerPdfRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===hansohOlatorepatideReview.source.id?hansohOlatorepatideReview.source:s).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.sourceDateLabel||(s.id.endsWith('-smpc')?'Product information updated':'Source publication date'),
  reviewedAt:s.reviewedAt,requiredTerms:s.requiredTerms,
@@ -216,6 +219,9 @@ export const industry = [...originalIndustry.map(e => {
    reviewedAt:survodutidePaper.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
  })
+ .map(e=>e.id===hansohOlatorepatideReview.change.id?{...e,...hansohOlatorepatideReview.change.fields,
+  reviewedAt:hansohOlatorepatideReview.reviewedAt,
+  additionalEvidence:[...(e.additionalEvidence||[]),...hansohOlatorepatideReview.change.additionalEvidence]}:e)
  .map(e=>{
   const change=internationalMaintenanceWave.changes.find(c=>c.id===e.id);
   if(!change)return e;
@@ -234,5 +240,25 @@ export const industry = [...originalIndustry.map(e => {
    ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
    ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
    reviewedAt:novoSpecialistWave.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
+ })
+ .map(e=>{
+  const change=petrelintideZupreme.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  const {summaryToAppend,limitationsToAppend,...fields}=change.fields;
+  return {...e,...fields,
+   ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
+   ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
+   reviewedAt:petrelintideZupreme.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
+ })
+ .map(e=>{
+  const change=ribupatideSpecialistWave.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  const {summaryToAppend,limitationsToAppend,...fields}=change.fields;
+  return {...e,...fields,
+   ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
+   ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
+   reviewedAt:ribupatideSpecialistWave.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
  });

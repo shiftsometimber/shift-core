@@ -1,0 +1,85 @@
+{
+  "groupId": "6bdd95d6da99b3bd630d098db3ccc5b4fe6579850270f0dfc6a72714e7e9c452",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-chocolate-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Chocolate Fruit Crunch Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Fruit Crunch Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup, cream or decorative garnish. Berries just small25g portion. All food inside frame. NO crackers, biscuits or cake anywhere. Cocoa measured5g fine powder lightly mixed into fruit/dairy, never chocolate syrup or melted chocolate. Chocolate chunks ONLY if explicitly listed. Finished combined dessert bowl; listed chopped dark chocolate topped, no melted sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-89200662-f1dc-4508-a480-48e07ef000ae.png",
+  "source_sha256": "7fd721233cb3d92425eba9b0f650f996aa9c7cf1d033df6bba4e725700252846",
+  "generated_at": "2026-10-05T00:32:17.098Z",
+  "elapsed_ms": 21464,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6bdd95d6da99b3bd630d-480-76022aeb2912.webp",
+      "sha256": "76022aeb2912ea73c225f5b491dcfb3af1da7db05a096e2ba7a8e97ba5b5ca39",
+      "bytes": 22472
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6bdd95d6da99b3bd630d-30a463aca4bd.webp",
+      "sha256": "30a463aca4bdf6575a9b3307952d12582ebb0b10f70753ef09d1a98dd0b4186d",
+      "bytes": 66674
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "7fd721233cb3d92425eba9b0f650f996aa9c7cf1d033df6bba4e725700252846",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-chocolate-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Chocolate Fruit Crunch Big Feed Dessert"
+    ],
+    "notes": "Apple and small berries lightly coated in cocoa powder, oats/seeds combined, listed chopped dark chocolate finishing. No dairy, syrup or biscuits.",
+    "alt": "Cocoa apple dessert with berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T00:39:16.739741+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/6bdd95d6da99b3bd630d098db3ccc5b4fe6579850270f0dfc6a72714e7e9c452.json"
+  },
+  "integrated": true,
+  "live": false
+}

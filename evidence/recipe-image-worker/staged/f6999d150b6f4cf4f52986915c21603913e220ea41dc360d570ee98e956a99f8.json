@@ -1,0 +1,88 @@
+{
+  "groupId": "f6999d150b6f4cf4f52986915c21603913e220ea41dc360d570ee98e956a99f8",
+  "recipe_ids": [
+    "industrial-lunch-salmon-pitta"
+  ],
+  "titles": [
+    "Salmon Pitta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Salmon Pitta. Ingredients, quantities and allergens: [{\"amount\":\"110g\",\"item\":\"cooked salmon\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"wholemeal pitta\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"shredded lettuce\"},{\"amount\":\"60g\",\"item\":\"cucumber\"},{\"amount\":\"40g\",\"item\":\"lemon yoghurt dressing\",\"allergens\":[\"milk\"]}]. Preparation: [\"Wash and dry the shredded lettuce and cucumber; shred the leaves and slice the cucumber thinly. Reserve most of the leaves and any excess cucumber for a side salad so the wholemeal pitta can close.\",\"Use chilled, already-cooked salmon. Check for bones, remove any skin and break the flesh into small flakes.\",\"Use the measured lemon yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Use ready-to-eat wholemeal pitta. Cut it into two halves and carefully open the pockets.\",\"Combine the prepared filling with the measured lemon yoghurt dressing. Add a small handful of the prepared leaves and some sliced cucumber. Spoon a manageable layer of filling into each pitta pocket. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "110g",
+      "item": "cooked salmon",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal pitta",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "shredded lettuce"
+    },
+    {
+      "amount": "60g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "40g",
+      "item": "lemon yoghurt dressing",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Wash and dry the shredded lettuce and cucumber; shred the leaves and slice the cucumber thinly. Reserve most of the leaves and any excess cucumber for a side salad so the wholemeal pitta can close.",
+    "Use chilled, already-cooked salmon. Check for bones, remove any skin and break the flesh into small flakes.",
+    "Use the measured lemon yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Use ready-to-eat wholemeal pitta. Cut it into two halves and carefully open the pockets.",
+    "Combine the prepared filling with the measured lemon yoghurt dressing. Add a small handful of the prepared leaves and some sliced cucumber. Spoon a manageable layer of filling into each pitta pocket. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a69c309c-0c24-48ea-8cad-ce9f82a60545.png",
+  "source_sha256": "ff0d93d0fd182607136cdb3caf11f0c72c53a63d19c6bda5621a98cbe7aeb5b5",
+  "generated_at": "2026-10-05T00:08:36.748Z",
+  "elapsed_ms": 32216.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f6999d150b6f4cf4f529-480-5a767d4f119b.webp",
+      "sha256": "5a767d4f119b25f502405bd242e39441efc87d8de971d2fe293699d0e8267598",
+      "bytes": 26292
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f6999d150b6f4cf4f529-77bfe99634de.webp",
+      "sha256": "77bfe99634de6f1b8c4979fb908da4125ed80de28594ed2f9dca00fc03e68a14",
+      "bytes": 72936
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ff0d93d0fd182607136cdb3caf11f0c72c53a63d19c6bda5621a98cbe7aeb5b5",
+    "recipe_ids": [
+      "industrial-lunch-salmon-pitta"
+    ],
+    "titles": [
+      "Salmon Pitta"
+    ],
+    "notes": "Two distinct plain wholemeal pitta half pockets with skinless opaque cooked salmon flakes, lemon yoghurt dressing, cucumber and lettuce; remaining lettuce and cucumber alongside. No extra ingredients; exact title matches.",
+    "alt": "Two salmon pitta pockets with cucumber, lettuce and lemon yoghurt dressing",
+    "reviewed_at": "2026-10-05T00:15:15.516410+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1510-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

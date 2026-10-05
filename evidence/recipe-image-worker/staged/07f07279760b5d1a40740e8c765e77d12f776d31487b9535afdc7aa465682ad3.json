@@ -1,0 +1,84 @@
+{
+  "groupId": "07f07279760b5d1a40740e8c765e77d12f776d31487b9535afdc7aa465682ad3",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-pineapple-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Pineapple Cottage Cheese Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pineapple Cottage Cheese Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"pineapple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nShow only each exact recipe's ingredients, with appetising realistic textures. No honey, mint, coconut, nuts, syrup, other seeds or unlisted fruit. Pumpkin seeds are flat green pepitas. Rolled oats plain flakes, not granola containing unlisted foods. Cottage cheese visibly curdy, Greek yoghurt smooth; fruit-only pots have no creamy base unless 40g yoghurt is listed. Chocolate only recipes listing it. WORK SNACK BOX: juicy bite-size fruit and any listed dairy in separate compartment from dry oats, pumpkin seeds and TWO wholegrain crackers, no loose crunch mixed into wet fruit. OAT CRUNCH snack pot: dry-pan-toasted oats/seeds completely cooled and packed separately from cut fruit; no milk/cream/yoghurt. PROTEIN/SNACK pots: crunch may be added just before immediate serving as method allows. OVERNIGHT OATS: soft hydrated oats in measured milk; fruit mixed through, pumpkin seeds and any listed chopped chocolate added only at serving. Follow the exact listed method, not an invented garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "pineapple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-cbcd5926-49a5-4fda-9009-8e4f0cb73492.png",
+  "source_sha256": "51341be19b0d947de065263f15036a78d54733fe58231655e564712038898d3e",
+  "generated_at": "2026-10-05T01:12:29.256Z",
+  "elapsed_ms": 53717.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-07f07279760b5d1a4074-480-3221d51c9602.webp",
+      "sha256": "3221d51c9602c4b35813cb4d775827b3c7298a391eec4564e70644ce29c99777",
+      "bytes": 17986
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-07f07279760b5d1a4074-961a19c64bb2.webp",
+      "sha256": "961a19c64bb2bd8913fed8903097db242c59d8983107148d6efd6fbeeb60720e",
+      "bytes": 56682
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "51341be19b0d947de065263f15036a78d54733fe58231655e564712038898d3e",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-pineapple-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Pineapple Cottage Cheese Protein Pot"
+    ],
+    "notes": "Curdy cottage cheese topped at serving with pineapple, mixed berries, plain rolled oats and green pumpkin seeds; crunch remains recognisable and dry. No extra yoghurt, chocolate, honey or garnish; exact title/method checked.",
+    "alt": "Pineapple cottage cheese protein pot with berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-05T01:18:52.469292+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2559.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,91 @@
+{
+  "groupId": "8bab38ed671ea13086b76631d8bfc8e2dc7609fc69f9699d4dae93a073d56734",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-nashville-tofu"
+  ],
+  "titles": [
+    "Shift Nashville-Style Tofu Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Nashville-Style Tofu Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"190g\",\"item\":\"firm tofu\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Drain the firm tofu, pat it dry and cut it into 2cm cubes. Coat with all the measured paprika, chilli powder and garlic powder. Use clean utensils for the cooked tofu.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the tofu cubes over a medium-high heat for about 8\u201310 minutes, turning so several faces become golden and the centre is hot. Follow any longer cooking instruction on the tofu pack.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.\",\"Pile the crisp oven chips onto a plate and spoon over the browned tofu cubes, the red onion and peppers. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, appetising professional natural daylight, ordinary one-person serving with generous crop margin. No invented garnish, fresh green herb flecks/leaves, sesame/poppy seeds, cheese, milk, butter, cream, breading, lemon wedges, extra sides. Plain unseeded wholemeal buns/flatbreads. Exact protein forms per method: beef/turkey burger ONE cooked1.5cm mince patty; kebab THREE short cooked mince koftas, no skewers; pasta/pie/fries/pizza/slowpot/traybake loose cooked mince crumbles; Sunday roast exactly TWO compact flattened2cm cooked mince portions, not roast joint. Chicken burger thin cooked opaque unbreaded1.5cm cutlets. Tofu burger1cm golden slabs, kebab/fries/pizza2cm golden cubes. Shredded lettuce and sliced tomato only where listed. Pizza CHEESE-FREE, passata base exact cooked protein and thin pepper strips. Fries golden plain oven chips, thin cooked red onion and mixed pepper strips. Nashville dry paprika/chilli/garlic spices only, no sauce whatsoever except listed passata UNDER pizza toppings; no ketchup, mayo, white/red drizzle, green garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "190g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Drain the firm tofu, pat it dry and cut it into 2cm cubes. Coat with all the measured paprika, chilli powder and garlic powder. Use clean utensils for the cooked tofu.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the tofu cubes over a medium-high heat for about 8\u201310 minutes, turning so several faces become golden and the centre is hot. Follow any longer cooking instruction on the tofu pack.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.",
+    "Pile the crisp oven chips onto a plate and spoon over the browned tofu cubes, the red onion and peppers. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8237f24f-70d0-442b-8940-a4ca15f39670.png",
+  "source_sha256": "e94bf59ec7bc0743e743cb7eb0e4ac2035191e7f4972ab296047b177d9dd730a",
+  "generated_at": "2026-10-05T00:39:14.940Z",
+  "elapsed_ms": 23479.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8bab38ed671ea13086b7-retry4-480-70aedafca936.webp",
+      "sha256": "70aedafca936c85275358f854467ff561a1c6e0e5725e63f487b0ce7c14210fa",
+      "bytes": 32608
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8bab38ed671ea13086b7-retry4-b2de44319353.webp",
+      "sha256": "b2de443193537aec94119cc2fa43ba32b3f0d4d5fc4d1bd7439a6de156117926",
+      "bytes": 106672
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "e94bf59ec7bc0743e743cb7eb0e4ac2035191e7f4972ab296047b177d9dd730a",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-nashville-tofu"
+    ],
+    "titles": [
+      "Shift Nashville-Style Tofu Loaded Fries"
+    ],
+    "notes": "Pass: golden firm tofu cubes with dry paprika-chilli-garlic browned coating over golden plain oven chips, thin softened red onion and mixed pepper strips. No ketchup, mayo, cheese, breading, green garnish, meat or extra foods. Exact Nashville cube tofu loaded fries and crop margin.",
+    "alt": "Nashville-style tofu loaded oven chips with red onion and mixed peppers",
+    "reviewed_at": "2026-10-05T00:39:45.200436+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1147.json"
+  },
+  "integrated": true,
+  "live": false
+}

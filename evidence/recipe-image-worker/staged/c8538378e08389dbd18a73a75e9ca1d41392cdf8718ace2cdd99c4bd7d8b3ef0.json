@@ -1,0 +1,79 @@
+{
+  "groupId": "c8538378e08389dbd18a73a75e9ca1d41392cdf8718ace2cdd99c4bd7d8b3ef0",
+  "recipe_ids": [
+    "industrial-v3-traybake-hoisin-pork"
+  ],
+  "titles": [
+    "Shift Hoisin Pork Traybake"
+  ],
+  "prompt": "Photorealistic editorial food photography. Present the actual finished recipe appetisingly through natural window light and believable cooked texture in a plain dish. No invented garnish or additional ingredients. Wholegrain rice if listed must have naturally tan bran surfaces and visible bran seams, never polished white rice. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hoisin Pork Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"hoisin-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and lean pork loin. Get the pan properly hot first. Cook the lean pork loin until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the lean pork loin is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "hoisin-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and lean pork loin. Get the pan properly hot first. Cook the lean pork loin until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the lean pork loin is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b51f71b4-14b3-4a91-8c8b-8a697f957e3c.png",
+  "source_sha256": "13c5afa718d51eda1ec9d3e797327e12f2d719e73a07e4c1e051fb2d6f9c9da8",
+  "generated_at": "2026-10-05T00:20:58.793Z",
+  "elapsed_ms": 319393,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c8538378e08389dbd18a-480.webp",
+      "sha256": "e1a3a9f6de3d04dceccefc9a17e8e1752b8f92d999622ac4d2a61f8f8aaa4fb2",
+      "bytes": 39430
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c8538378e08389dbd18a.webp",
+      "sha256": "3727e5a5dd67e5b721ffc246b648fc610bc3a09b13f7a390859836396037df86",
+      "bytes": 124750
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "13c5afa718d51eda1ec9d3e797327e12f2d719e73a07e4c1e051fb2d6f9c9da8",
+    "recipe_ids": [
+      "industrial-v3-traybake-hoisin-pork"
+    ],
+    "titles": [
+      "Shift Hoisin Pork Traybake"
+    ],
+    "notes": "Cooked pork loin portions with golden roast baby potatoes, broccoli and red pepper in glossy measured hoisin coating.",
+    "alt": "Shift Hoisin Pork Traybake: cooked pork loin portions with golden roast baby potatoes, broccoli and red pepper in glossy measured hoisin coating.",
+    "reviewed_at": "2026-10-05T00:33:13.814769+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

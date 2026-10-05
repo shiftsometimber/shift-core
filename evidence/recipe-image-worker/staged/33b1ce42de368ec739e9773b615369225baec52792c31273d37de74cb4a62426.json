@@ -1,0 +1,90 @@
+{
+  "groupId": "33b1ce42de368ec739e9773b615369225baec52792c31273d37de74cb4a62426",
+  "recipe_ids": [
+    "industrial-v3-wrap-tikka-tuna"
+  ],
+  "titles": [
+    "Shift Tikka Tuna Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Tuna Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"tikka yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the tuna in spring water, drained; if the filling is being served hot, reduce only the sauce-coated tuna in spring water, drained until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nWholemeal bread/wrap/bagel/pitta plain unseeded; no sesame/poppy seed garnish or cheese unless explicitly listed. Tikka yoghurt only in the recipes listing it; no extra cream/mayo or coriander. Poultry plain cooked breast unbreaded; tuna fibrous drained flakes. Tofu specifically ready-to-eat pale unseared firm tofu: small cubes in grain salad, jacket, pasta and rice; thin slices in pitta, toastie, wrap. Never substitute feta, chicken or grilled tofu. Cheddar only listed Tofu Toastie, grated before toast. Preserve raw vegetables and all reserved side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not topping. Listed lemon/lime juice/dressing incorporated: no citrus wedges. Wholegrain mustard stays in grain-salad dressing, no seed garnish. Rice/pasta/couscous depicted cooked.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the tuna in spring water, drained; if the filling is being served hot, reduce only the sauce-coated tuna in spring water, drained until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-64546de3-fba9-44b4-b422-ea97963b33f4.png",
+  "source_sha256": "861e2edda42b1c59a339d73133f61840280f85037445b65bc90f52ea200e9690",
+  "generated_at": "2026-10-05T00:53:13.253Z",
+  "elapsed_ms": 27167.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-33b1ce42de368ec739e9-480-f0e6426628fe.webp",
+      "sha256": "f0e6426628fe58aace8ea2957956a1b1214b4483f250c75c6290cafbadbbd543",
+      "bytes": 23934
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-33b1ce42de368ec739e9-c8183cde53d4.webp",
+      "sha256": "c8183cde53d486bb616569576d8e327c3c4eccab2143de04f475348b61448218",
+      "bytes": 69714
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "861e2edda42b1c59a339d73133f61840280f85037445b65bc90f52ea200e9690",
+    "recipe_ids": [
+      "industrial-v3-wrap-tikka-tuna"
+    ],
+    "titles": [
+      "Shift Tikka Tuna Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap halves with fibrous drained tuna flakes mixed with listed tikka yoghurt and fresh lettuce/tomato. No unlisted cream/mayo, cheese, seeds or added side; exact title/method checked.",
+    "alt": "Tikka yoghurt tuna wholemeal wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T01:01:43.866708+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2112.json"
+  },
+  "integrated": true,
+  "live": false
+}

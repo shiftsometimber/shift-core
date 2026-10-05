@@ -1,0 +1,79 @@
+{
+  "groupId": "520369b8cd7fffd0f3609a129d7d3f5836ed960c0c52b6bb9cfba6035bef98a7",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-hoisin-chicken"
+  ],
+  "titles": [
+    "Shift Hoisin Chicken Slow-Cooker Big Pot"
+  ],
+  "prompt": "Photorealistic editorial food photography. Present the actual finished recipe appetisingly through natural window light and believable cooked texture in a plain dish. No invented garnish or additional ingredients. Wholegrain rice if listed must have naturally tan bran surfaces and visible bran seams, never polished white rice. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hoisin Chicken Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"hoisin-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "hoisin-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2e241569-8f4b-443e-a047-badf331ff220.png",
+  "source_sha256": "a5bf7f20a5c4bc6c0169840b177eac44a65dbe8d3e8665faf5ba9dd046917c3f",
+  "generated_at": "2026-10-05T00:19:37.481Z",
+  "elapsed_ms": 238081,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-520369b8cd7fffd0f360-480.webp",
+      "sha256": "de57ec135c4695daef62776fce6340a18cf93f24bada55d8e179203a87818d29",
+      "bytes": 27758
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-520369b8cd7fffd0f360.webp",
+      "sha256": "0deb8a891145d30c9994c571325fe824d2955d63577fb84d715420722933b951",
+      "bytes": 89454
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a5bf7f20a5c4bc6c0169840b177eac44a65dbe8d3e8665faf5ba9dd046917c3f",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-hoisin-chicken"
+    ],
+    "titles": [
+      "Shift Hoisin Chicken Slow-Cooker Big Pot"
+    ],
+    "notes": "One cooked chicken breast with tender baby potatoes, carrots and onion in glossy measured hoisin cooking juices.",
+    "alt": "Shift Hoisin Chicken Slow-Cooker Big Pot: one cooked chicken breast with tender baby potatoes, carrots and onion in glossy measured hoisin cooking juices.",
+    "reviewed_at": "2026-10-05T00:33:13.806478+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

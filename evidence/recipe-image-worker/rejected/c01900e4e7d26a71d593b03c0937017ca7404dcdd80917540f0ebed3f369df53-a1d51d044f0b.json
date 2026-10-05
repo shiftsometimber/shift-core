@@ -1,0 +1,16 @@
+{
+  "groupId": "c01900e4e7d26a71d593b03c0937017ca7404dcdd80917540f0ebed3f369df53",
+  "source_sha256": "a1d51d044f0bcd43e6155fa115f7361a468ec9fef53ac605315db01e47ba9d98",
+  "review": {
+    "decision": "reject",
+    "notes": "Full-resolution inspection: rice shows polished ivory/white surfaces lacking convincing brown bran-coated grains. Requires brown rice. Regenerate natural tan bran-coated rice with chickpeas, diced peppers and sweetcorn folded through measured creamy dressing.",
+    "source_sha256": "a1d51d044f0bcd43e6155fa115f7361a468ec9fef53ac605315db01e47ba9d98",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-caesar-chickpea"
+    ],
+    "titles": [
+      "Shift Creamy Cheddar Chickpea Meal-Prep Bowl"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

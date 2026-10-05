@@ -1,0 +1,78 @@
+{
+  "groupId": "e8364bd355aa5804467c4a443700617d8eb9caa981f3b1336b2057ad674122f6",
+  "recipe_ids": [
+    "industrial-v3-traybake-jalfrezi-beef"
+  ],
+  "titles": [
+    "Shift Jalfrezi Beef Traybake"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe in natural window light, truthful appetising textures in a plain serving dish. No invented garnish or additions. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Jalfrezi Beef Traybake. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"pepper and tomato masala\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and 5% beef mince. Get the pan properly hot first. Cook the 5% beef mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.\",\"Check the 5% beef mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "pepper and tomato masala"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and 5% beef mince. Get the pan properly hot first. Cook the 5% beef mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.",
+    "Check the 5% beef mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e33d50aa-220a-4472-a451-7a33c04ed1ab.png",
+  "source_sha256": "0dd3635c8b02f190ab0a7a8d4c1101a1930bfa5fb4154f442ad0782bbef127ed",
+  "generated_at": "2026-10-05T00:32:42.291Z",
+  "elapsed_ms": 316130,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e8364bd355aa5804467c-480.webp",
+      "sha256": "bf304b9c78e39ae20be6aa976f8264ac00e2af82348bf1afc7498e21d7d57066",
+      "bytes": 35966
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e8364bd355aa5804467c.webp",
+      "sha256": "673201075569a32d456ebe02e98dc0df82691c8fc45f03c26100aed8bec4600b",
+      "bytes": 111146
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Roasted jalfrezi beef mince, baby potatoes, broccoli and red pepper",
+    "notes": "Full-resolution individual inspection: browned beef mince and golden baby potatoes, roasted broccoli and red pepper; no pooled added sauce or garnish, exact method and all titles checked.",
+    "recipe_ids": [
+      "industrial-v3-traybake-jalfrezi-beef"
+    ],
+    "titles": [
+      "Shift Jalfrezi Beef Traybake"
+    ],
+    "source_sha256": "0dd3635c8b02f190ab0a7a8d4c1101a1930bfa5fb4154f442ad0782bbef127ed",
+    "reviewed_at": "2026-10-05T00:50:10.486828+00:00"
+  }
+}

@@ -13,7 +13,11 @@ def walk(value):
    for child in value.values():yield from walk(child)
 ledger={}
 previous=STATE/'attempts.json'
-if previous.exists():ledger={a['attemptId']:a for a in json.loads(previous.read_text())['attempts']}
+if previous.exists():
+ document=json.loads(previous.read_text())
+ if 'attempts' not in document:
+  archive=STATE/document['attempts_archive'];raw=archive.read_bytes();assert hashlib.sha256(raw).hexdigest()==document['archive_sha256'];document=json.loads(gzip.decompress(raw))
+ ledger={a['attemptId']:a for a in document['attempts']}
 files=list((STATE/'results').glob('*.json'))+list((STATE/'results-retries').glob('*.json'))+list((STATE/'rejected').glob('*.json'))+list((STATE/'staged').glob('*.json'))+list(STATE.glob('*retry.json'))
 for folder in STATE.glob('worker-*'):files.extend(folder.rglob('*.json'))
 hashes={}
@@ -57,5 +61,6 @@ for p in (STATE/'rejected').glob('*.json'):
  if key in ledger:ledger[key].update(review_status='reject',review=r.get('review',{'notes':r.get('reason')}))
 attempts=sorted(ledger.values(),key=lambda a:(a['groupId'],a['attemptId']))
 summary={'generated_attempts':len(attempts),'generated_distinct_groups':len({a['groupId'] for a in attempts}),'reviewed_pass_attempts':sum(a['review_status']=='pass' for a in attempts),'reviewed_reject_attempts':sum(a['review_status']=='reject' for a in attempts),'awaiting_review_attempts':sum(a['review_status']=='pending' for a in attempts)}
-temp=previous.with_suffix('.tmp.json');temp.write_text(json.dumps({'summary':summary,'attempts':attempts},indent=2)+'\n');os.replace(temp,previous)
+archive=STATE/'attempts.json.gz';raw=gzip.compress((json.dumps({'summary':summary,'attempts':attempts},separators=(',',':'))+'\n').encode(),mtime=0);temp=archive.with_suffix('.tmp.gz');temp.write_bytes(raw);os.replace(temp,archive)
+temp=previous.with_suffix('.tmp.json');temp.write_text(json.dumps({'summary':summary,'attempts_archive':archive.name,'archive_sha256':hashlib.sha256(raw).hexdigest(),'archive_bytes':len(raw)},indent=2)+'\n');os.replace(temp,previous)
 print(json.dumps(summary))

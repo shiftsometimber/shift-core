@@ -1,0 +1,85 @@
+{
+  "groupId": "1a6fa59fc0bdc84baef15e79cc23e85833446639a89037c9640c55f1ab0e46bb",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-weekend-treat-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Weekend Treat Fruit Crunch Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Treat Fruit Crunch Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"15g\",\"item\":\"dark chocolate chips\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed ingredients: no honey, mint, coconut, nuts, syrup, pineapple or banana/apple unless listed. Mixed berries only listed berry addition. Cottage cheese curdy, high-protein yoghurt smooth, fruit-only variants have no dairy unless 40g Greek yoghurt explicitly listed. Rolled oats plain flakes, no granola with invented foods. Pumpkin seeds flat green pepitas. Chocolate chips discrete small chips; Big Feed recipes that ALSO list chopped dark chocolate must show chopped pieces as the measured finishing element. WORK SNACK BOX: wet fruit/dairy separated from dry oats/pepitas/TWO wholegrain crackers. EXCEPTION overnight-oats work snack box: oats are milk-hydrated overnight with pineapple/berries mixed through; seeds separate until serving, crackers alongside dry. Fruit/Protein pots: dry crunch only added at immediate serving. Greek yoghurt swirled through dessert pots at end exactly as method requires, not an invented cream base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate chips"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-32484b25-7e59-42ed-8db0-2610fe389878.png",
+  "source_sha256": "3e4caec54dd8ab55b17f43492ac43010e7db3f65d726414b8227ae138b58f3ce",
+  "generated_at": "2026-10-05T01:26:48.230Z",
+  "elapsed_ms": 396074.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1a6fa59fc0bdc84baef1-480-6fe779c76be2.webp",
+      "sha256": "6fe779c76be2e8c1ac80f9998c5b8347f81fe395140d7d4fc95454cd7ef8b784",
+      "bytes": 17294
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1a6fa59fc0bdc84baef1-364653257f75.webp",
+      "sha256": "364653257f75f04b0dda906f842b7ad769cacb4677fcc434a4cd0ed455dd960a",
+      "bytes": 52752
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3e4caec54dd8ab55b17f43492ac43010e7db3f65d726414b8227ae138b58f3ce",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-weekend-treat-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Weekend Treat Fruit Crunch Dessert Pot"
+    ],
+    "notes": "Bite-size apple/mixed berries with dark chips, plain oats and green pumpkin seeds, measured Greek yoghurt swirled through. No large invented dairy base, chopped extra chocolate, honey or unlisted fruit; exact title/method checked.",
+    "alt": "Apple berry yoghurt fruit pot with oats, pumpkin seeds and chocolate chips",
+    "reviewed_at": "2026-10-05T01:27:19.714707+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2586.json"
+  },
+  "integrated": true,
+  "live": false
+}

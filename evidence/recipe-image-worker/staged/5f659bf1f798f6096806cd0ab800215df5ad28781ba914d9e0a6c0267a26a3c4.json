@@ -1,0 +1,84 @@
+{
+  "groupId": "5f659bf1f798f6096806cd0ab800215df5ad28781ba914d9e0a6c0267a26a3c4",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-cherry-protein-pudding"
+  ],
+  "titles": [
+    "Shift Cherry Protein Pudding Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Protein Pudding Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed food; no honey, nuts, mint, syrup, sauces or decorative garnish. All food inside frame. Berries just small25g portion. NO crackers or biscuits anywhere. All cherries destoned stemless fresh halves with visible empty pit cavities. No whole cherries/stems. Yoghurt smooth and stirred, no cottage cheese curds. Finished protein pot with cocoa mixed into dairy if listed, measured fruit and dry oats/seeds newly added at serving.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3ed77161-3a08-4600-8aa2-db0cf68fe277.png",
+  "source_sha256": "b6ab37a86eee23f270ba432acf8d6c62229a35c25542065fd5d442bdc60d05bf",
+  "generated_at": "2026-10-05T00:23:29.223Z",
+  "elapsed_ms": 199198,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5f659bf1f798f6096806-480-34f947b2b11a.webp",
+      "sha256": "34f947b2b11a93b065a0dcfa5f1148689be72d39a944443a5658fdd4f8ca07cb",
+      "bytes": 28394
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5f659bf1f798f6096806-96b0e2c95dc4.webp",
+      "sha256": "96b0e2c95dc40e36a29460a43ff62c00f284618c53704012c7dd00d28f69fe88",
+      "bytes": 86926
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b6ab37a86eee23f270ba432acf8d6c62229a35c25542065fd5d442bdc60d05bf",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-cherry-protein-pudding"
+    ],
+    "titles": [
+      "Shift Cherry Protein Pudding Protein Pot"
+    ],
+    "notes": "Smooth protein yoghurt, destoned cherry halves/small berries with dry oats and seeds newly added at serving. No extra food or garnish.",
+    "alt": "Cherry protein yoghurt pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:28:45.433371+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/5f659bf1f798f6096806cd0ab800215df5ad28781ba914d9e0a6c0267a26a3c4.json"
+  },
+  "integrated": true,
+  "live": false
+}

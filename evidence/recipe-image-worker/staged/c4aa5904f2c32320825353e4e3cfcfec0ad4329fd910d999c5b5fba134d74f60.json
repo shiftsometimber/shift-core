@@ -1,0 +1,94 @@
+{
+  "groupId": "c4aa5904f2c32320825353e4e3cfcfec0ad4329fd910d999c5b5fba134d74f60",
+  "recipe_ids": [
+    "industrial-lunch-turkey-grain-salad"
+  ],
+  "titles": [
+    "Turkey Grain Salad"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Turkey Grain Salad. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"75g dry\",\"item\":\"couscous, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"cucumber\"},{\"amount\":\"60g\",\"item\":\"tomato\"},{\"amount\":\"5ml\",\"item\":\"olive oil\"},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]}]. Preparation: [\"The listed couscous quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Use instant couscous suitable for preparation with boiling water. Put the measured dry couscous in a heatproof bowl, pour over the boiling-water quantity stated on its packet, cover and leave for the packet time. Fluff with a fork; it should be tender with no hard grains.\",\"Wash the cucumber and tomato, then dice both into small pieces.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Stir together all the measured lemon juice, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Fold the cooked couscous, cucumber, tomato and prepared ready-to-eat filling together with the prepared dressing. Eat immediately.\",\"For a packed lunch, cool the prepared couscous promptly before combining it with the chilled filling. Cover, refrigerate and eat within 24 hours, following any shorter ingredient use-by date. Keep the meal chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nBread/wrap/pitta plain unseeded, no sesame/poppy garnish. Cheese ONLY where cheddar is explicitly listed in toastie. Tuna fibrous drained flakes, turkey plain unbreaded cooked breast, no protein substitution. Greek yoghurt only recipes listing yoghurt; grain salads and tomato-pesto pasta have no added mayo/cream/yoghurt. Couscous, brown rice and wholewheat pasta cooked. Lemon/lime dressings incorporated, no citrus wedge. Preserve all reserved raw side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not potato garnish. Pitta shown as TWO distinct filled halves of ONE wholemeal pitta, each visible, with reserved lettuce/cucumber side. Wholemeal wraps here have reserved leaf/tomato side salad. Apple cottage cheese includes diced apple folded through, pineapple chunks, wholegrain crackers and measured black pepper. Overnight oats fruit/berries mixed through softened chilled oats, not dry oats or separate decorative toppings. No added fruit, honey, nuts, herbs or garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "75g dry",
+      "item": "couscous, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "60g",
+      "item": "tomato"
+    },
+    {
+      "amount": "5ml",
+      "item": "olive oil"
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    }
+  ],
+  "method": [
+    "The listed couscous quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Use instant couscous suitable for preparation with boiling water. Put the measured dry couscous in a heatproof bowl, pour over the boiling-water quantity stated on its packet, cover and leave for the packet time. Fluff with a fork; it should be tender with no hard grains.",
+    "Wash the cucumber and tomato, then dice both into small pieces.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Stir together all the measured lemon juice, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "Fold the cooked couscous, cucumber, tomato and prepared ready-to-eat filling together with the prepared dressing. Eat immediately.",
+    "For a packed lunch, cool the prepared couscous promptly before combining it with the chilled filling. Cover, refrigerate and eat within 24 hours, following any shorter ingredient use-by date. Keep the meal chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8312aa51-4505-4ccf-8b90-e67e36419f51.png",
+  "source_sha256": "a3f1cdc3dfecf7fb17fed44e5e77dab0f52a432787204e13bb9573bfb32182c4",
+  "generated_at": "2026-10-05T01:06:35.394Z",
+  "elapsed_ms": 210638.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c4aa5904f2c323208253-480-1c7c2d271e22.webp",
+      "sha256": "1c7c2d271e22f1585b1c87092efaa4d4a7fec9f4419912fd309f214a82981819",
+      "bytes": 25308
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c4aa5904f2c323208253-48c25e76fca1.webp",
+      "sha256": "48c25e76fca1b2ac82f8a671c95be451c7c21eb87facd4e32ee7724c438020fa",
+      "bytes": 74902
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a3f1cdc3dfecf7fb17fed44e5e77dab0f52a432787204e13bb9573bfb32182c4",
+    "recipe_ids": [
+      "industrial-lunch-turkey-grain-salad"
+    ],
+    "titles": [
+      "Turkey Grain Salad"
+    ],
+    "notes": "Cooked fluffy couscous folded with plain ready-to-eat sliced/shredded turkey, raw diced cucumber/tomato and lemon/wholegrain-mustard/oil dressing. No cream, cheese, herbs or citrus wedge; exact title/method checked.",
+    "alt": "Turkey couscous salad with cucumber, tomato and mustard lemon dressing",
+    "reviewed_at": "2026-10-05T01:10:19.747458+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2135.json"
+  },
+  "integrated": true,
+  "live": false
+}

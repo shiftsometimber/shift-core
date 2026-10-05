@@ -1,0 +1,87 @@
+{
+  "groupId": "512f11360da2f76e9be6b5ea651389f06322ef539342e8d8c6a8409ba3a4f7a0",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-coffee-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Coffee Cottage Cheese Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Cottage Cheese Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the low-fat cottage cheese, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the low-fat cottage cheese first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact foods. Espresso measured1g fully dissolved, cooled and mixed through dairy/fruit, subtle coffee tint; no whole coffee beans, granules, dry grounds, coffee drinks or syrup. Small25g berries. No honey, mint, nuts or decorative garnish. Entire food inside frame. Exactly TWO entire plain unseeded wholegrain crackers, independently visible edges, no sesame/poppy seeds. Cottage cheese retains recognisable small curds, lightly coffee tinted. Real snack box: dry oats/seeds/crackers separate from coffee-tinted dairy and berries.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the low-fat cottage cheese, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the low-fat cottage cheese first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9f5916e5-25dc-451b-9c03-2d262084116c.png",
+  "source_sha256": "94ee5f1b4a39b914051cd412136fecb4b396699540c480b4063e28b6cfa3e247",
+  "generated_at": "2026-10-05T00:54:23.230Z",
+  "elapsed_ms": 28651,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-512f11360da2f76e9be6-480-8a14cdfdeaf6.webp",
+      "sha256": "8a14cdfdeaf669328b306846642a56aac88aa50aa176cca5f17a2a305f555bcb",
+      "bytes": 27488
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-512f11360da2f76e9be6-3fc466a15926.webp",
+      "sha256": "3fc466a15926b41c2227ab2a71e4b187bc50bfe5ee568c08232b38dc1471ce40",
+      "bytes": 78026
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "94ee5f1b4a39b914051cd412136fecb4b396699540c480b4063e28b6cfa3e247",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-coffee-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Coffee Cottage Cheese Work Snack Box"
+    ],
+    "notes": "Coffee-tinted cottage cheese curds with small berries, dry oats/seeds separate and two plain crackers visible. No coffee garnish.",
+    "alt": "Coffee cottage cheese snack box with berries, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-05T01:02:16.213827+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/512f11360da2f76e9be6b5ea651389f06322ef539342e8d8c6a8409ba3a4f7a0.json"
+  },
+  "integrated": true,
+  "live": false
+}

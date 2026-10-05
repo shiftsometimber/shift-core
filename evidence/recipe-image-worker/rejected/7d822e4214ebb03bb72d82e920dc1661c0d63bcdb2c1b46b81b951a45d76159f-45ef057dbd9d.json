@@ -1,0 +1,15 @@
+{
+  "groupId": "7d822e4214ebb03bb72d82e920dc1661c0d63bcdb2c1b46b81b951a45d76159f",
+  "decision": "reject",
+  "source_sha256": "45ef057dbd9dcfb919271721195c9fa091cf107721305b2c74a26004490e415c",
+  "recipe_ids": [
+    "industrial-v3-chilli-balti-tofu"
+  ],
+  "titles": [
+    "Shift Balti Tofu Big Chilli"
+  ],
+  "notes": "REJECT: targeted edit still shows pale ivory polished rice, and the cubed protein appears fibrous like meat rather than firm tofu; regenerate with explicit tofu texture.",
+  "alt": "Shift Balti Tofu Big Chilli: reject: targeted edit still shows pale ivory polished rice, and the cubed protein appears fibrous like meat rather than firm tofu",
+  "reviewed_at": "2026-10-05T00:20:23.628092+00:00",
+  "reviewer": "root-full-resolution-visual-review"
+}

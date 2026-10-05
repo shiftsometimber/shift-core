@@ -1,0 +1,89 @@
+{
+  "groupId": "6e8b035f541bc6a98222e60942ac99978d3065ce8a01c711a5ef6eb24fc18658",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-coffee-protein-pudding"
+  ],
+  "titles": [
+    "Shift Coffee Protein Pudding Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Protein Pudding Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.\",\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact foods. Espresso measured1g fully dissolved, cooled and mixed through dairy/fruit, subtle coffee tint; no whole coffee beans, granules, dry grounds, coffee drinks or syrup. Small25g berries. No honey, mint, nuts or decorative garnish. Entire food inside frame. NO crackers, biscuits or cake anywhere. Yoghurt smooth and stirred, no cottage cheese curds. Combined single dessert bowl with listed chopped dark chocolate finishing; no melted chocolate sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.",
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2a2cf193-ed8b-4949-a480-f736c2946333.png",
+  "source_sha256": "5922d10f89b733844c960a843bded4938c6044a0284cddc94d67c4941b4a58ac",
+  "generated_at": "2026-10-05T00:58:44.035Z",
+  "elapsed_ms": 289456,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6e8b035f541bc6a98222-480-66b7efabbd85.webp",
+      "sha256": "66b7efabbd850e1050e144b68fae24fd1207d755d5b73db46869f3ee35855e38",
+      "bytes": 25862
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6e8b035f541bc6a98222-d733bf134bb9.webp",
+      "sha256": "d733bf134bb9560d6722b6a88753eee35aad1dffc0acbda462ab5b84e2d5b2d0",
+      "bytes": 77770
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "5922d10f89b733844c960a843bded4938c6044a0284cddc94d67c4941b4a58ac",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-coffee-protein-pudding"
+    ],
+    "titles": [
+      "Shift Coffee Protein Pudding Big Feed Dessert"
+    ],
+    "notes": "Smooth coffee protein yoghurt with small berries/oats/seeds combined, listed chopped chocolate finishing. No beans or syrup.",
+    "alt": "Coffee protein yoghurt dessert with berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T01:02:14.558387+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/6e8b035f541bc6a98222e60942ac99978d3065ce8a01c711a5ef6eb24fc18658.json"
+  },
+  "integrated": true,
+  "live": false
+}

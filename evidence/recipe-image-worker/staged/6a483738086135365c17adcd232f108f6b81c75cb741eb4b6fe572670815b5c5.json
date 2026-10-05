@@ -1,0 +1,90 @@
+{
+  "groupId": "6a483738086135365c17adcd232f108f6b81c75cb741eb4b6fe572670815b5c5",
+  "recipe_ids": [
+    "industrial-v3-bagel-club-tuna"
+  ],
+  "titles": [
+    "Shift Club Tuna Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Club Tuna Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"item\":\"light mayonnaise\",\"amount\":\"24g\"},{\"item\":\"wholegrain mustard\",\"amount\":\"6g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Stir together all the measured light mayonnaise, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "item": "light mayonnaise",
+      "amount": "24g"
+    },
+    {
+      "item": "wholegrain mustard",
+      "amount": "6g"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.",
+    "Stir together all the measured light mayonnaise, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e6da61c0-337a-4fbd-832b-03e8f9d02059.png",
+  "source_sha256": "40daa8a491fec16c1e7985622697c670d4802f59100e71607d145b8ff9b7b304",
+  "generated_at": "2026-10-05T01:12:28.564Z",
+  "elapsed_ms": 153150,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6a483738086135365c17-480.webp",
+      "sha256": "b7b3c49a85bdc73e1ecea7c5cdd8589a2f6a81cf67cb7db2b1b0a4224fff2b03",
+      "bytes": 29048
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6a483738086135365c17.webp",
+      "sha256": "e510dc0880267b5a7ff6851d254f7259e3dc224f4f1827357c9cd77dde9efa6d",
+      "bytes": 83892
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Wholemeal bagel with tuna, mustard mayonnaise, rocket and tomato salad",
+    "notes": "Full-resolution inspection against all titles and exact method: closed wholemeal bagel with canned tuna flakes and wholegrain mustard mayonnaise, rocket and sliced tomato, with remaining rocket and tomato alongside.",
+    "source_sha256": "40daa8a491fec16c1e7985622697c670d4802f59100e71607d145b8ff9b7b304",
+    "recipe_ids": [
+      "industrial-v3-bagel-club-tuna"
+    ],
+    "titles": [
+      "Shift Club Tuna Loaded Bagel"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

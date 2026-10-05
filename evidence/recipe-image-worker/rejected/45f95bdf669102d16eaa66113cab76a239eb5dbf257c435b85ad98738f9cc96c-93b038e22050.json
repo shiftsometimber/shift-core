@@ -1,0 +1,16 @@
+{
+  "groupId": "45f95bdf669102d16eaa66113cab76a239eb5dbf257c435b85ad98738f9cc96c",
+  "source_sha256": "93b038e220502fee2813409a288e9e65302964b705548556e2154708c3eff846",
+  "review": {
+    "decision": "reject",
+    "notes": "Full-resolution inspection: spring onion mixed into dressing and topping on egg-filled jacket potato, although all spring onion must remain in side salad. Grated cheddar also piled as garnish rather than incorporated into dressing. Reject incorrect assembly.",
+    "source_sha256": "93b038e220502fee2813409a288e9e65302964b705548556e2154708c3eff846",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-caesar-egg"
+    ],
+    "titles": [
+      "Shift Creamy Cheddar Egg Loaded Jacket Potato"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}
