@@ -278,8 +278,10 @@
     "gate1-email-verification-e2e.mjs": "72e6de14866c002c41382094646ecd6a3665171a493124428ac06a31d08addac",
     "tests/member-signup-alert.test.mjs": "9389457783cbcd5f909c4dfa1287ade81cc2938d257fbfd85a70d655868c1622",
     "tests/auth-mail-delivery-reliability.test.mjs": "d6bcf8794c47dd80ed82b4979c5fce7eb67735820f0f1aefff86293baa455f80",
-    "preview/ai-context/sustained-reliability-proof.mjs": "3d4aab07f44839ef734e1cdb3d94f2f93524af64e3de4f53a4590c852a33d571",
-    ".github/workflows/sustained-ai-closeout-proof.yml": "335c8199e4b323d189232cd1d3f8d500fb251e04c63877a7f55c88a0aa18cf88"
+    "preview/ai-context/sustained-reliability-proof.mjs": "0f3e879b57ad74fe49871f42aaa01a9a86ce2c3b1075de1bb58b7b286b887790",
+    ".github/workflows/sustained-ai-closeout-proof.yml": "d98b552681c90fa8e6c4941638882aeb7dee7269ebbea66d9235ad69a88edddb",
+    "docs/DATA-GOVERNANCE-OPERATING-PACK-2026-09-02.md": "fca71c2db2318bc886bdc1c0ada6a92b7c87f806d61c94740f1763cc98ed8e44",
+    "shift-coach/release-contract.mjs": "8ef7791da324d9a05d90576c1234c46a70f7cee661b940875ffdf83387312576"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
