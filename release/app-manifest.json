@@ -204,7 +204,7 @@
     "release/treatment-guidance-scope.mjs": "dcc3707b62a61b7d7435f25887c99e9ea005138093f7c9f113948cc91d1c45ef",
     "member-experience/tests/lookup-continuation.test.mjs": "b2fb48c0e10274935f1e6f61dd476d418d82fad2ee73b8ca2cdaaa022378a1eb",
     "tests/checkout-recovery.test.mjs": "4f85d460fbd8d37ae8f716b57465694a379333e22540a041051435d7724cc775",
-    "release/watch-registry-wave-scope.mjs": "65855a07f1d0c4e226a9c8e9debbd2414a72d4585f0d8a7abf877b2bcefe0ebb",
+    "release/watch-registry-wave-scope.mjs": "bd44f2d5d3f4820d122f4549fd58372e004203d36fc637bde32d10ac64b82001",
     "medicines-watch/reviews/2026-10-02-authorised-expanded-registry-wave.json": "0a1b5f1ce6c01afef9b78f719d0dd630ed9048e0b267684fd948e736901b629c",
     "tests/promise-accuracy.test.mjs": "4f8387ec49a12f8c5d2828f6b91a63c9df8055085a4f41edbb38a886992df260",
     ".github/workflows/book-voice-preview.yml": "e79cc6d3d36a2392b383be5442ca72b1a635af03c88004b026c41ec9bc1db41b",
@@ -365,7 +365,7 @@
   "memberPanelLayout": {
     "candidate": "72f0796f7de9ccfc42f46ec203a6c00b04d17aba",
     "previewRun": 36987513488,
-    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404\u2013IMG_2406 and the 07:57 screen recording.",
+    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404–IMG_2406 and the 07:57 screen recording.",
     "scope": "Three exact presentation/preview files; existing records, controls and clinical/commercial gates preserved."
   },
   "watchCredibility": {
