@@ -1,6 +1,7 @@
 // Preview only. Production never imports this module.
 import core from '../../worker-entry-v6.js';
 import {repairPasswordResetDocument} from '../../auth-recovery-page-v1.mjs';
+import {previewResetSender} from './mail-guard.mjs';
 const headers={'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff'};
 export async function b1PreviewRoutes(request,env,ctx){
  const u=new URL(request.url),p=u.pathname;
@@ -21,10 +22,7 @@ export async function b1PreviewRoutes(request,env,ctx){
    // No tokens or credentials are exposed by this preview-only gate.
    const claim=await env.DB.prepare('INSERT OR IGNORE INTO preview_b1_email_gate(candidate,created_at) VALUES(?,?)').bind(env.PREVIEW_SOURCE_SHA,new Date().toISOString()).run();
    if(Number(claim.meta?.changes)!==1)return Response.json({ok:true,message:'If that account exists, reset instructions will be sent shortly.'},{headers});
-   checkedEnv.EMAIL={send:async message=>{
-    if(message.to!==env.PREVIEW_B1_MAILBOX||message.subject!=='Reset your My Shift password')throw Error('preview_mail_not_allowed');
-    return env.EMAIL.send({...message,subject:message.subject+' [B1 preview '+env.PREVIEW_SOURCE_SHA.slice(0,7)+']'});
-   }};
+   checkedEnv.EMAIL=previewResetSender(env);
   }
  }
  return core.fetch(request,checkedEnv,ctx);
