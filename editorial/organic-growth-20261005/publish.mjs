@@ -37,6 +37,7 @@ export function validateBaseline(current,baseline){
   assert.equal(row.summary,expected.expected_summary,'Live summary changed since review');
   assert.equal(row.publish_at,expected.expected_publish_at,'Publication identity changed');
   assert.equal(articleModifiedDate(row),expected.expected_modified_at,'Article changed since inspected baseline');
+  if(expected.expected_main_sha256)assert.equal(sha(htmlPart(articleHTML(row),'main')),expected.expected_main_sha256,'Full article body changed since inspected baseline');
   assert(current.receipts.some(r=>r.slug===row.slug),'Original receipt absent');
  }
 }
