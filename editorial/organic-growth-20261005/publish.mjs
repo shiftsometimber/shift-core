@@ -91,8 +91,8 @@ export function checkPublicArticle(html,row){
  return {url:canonical,status:200,canonical,headline:schema.headline,datePublished:schema.datePublished,dateModified:schema.dateModified,mainSha256:sha(main)};
 }
 
-async function run(){
- const mode=process.argv[2];assert(['--snapshot','--check','--apply','--verify','--rollback'].includes(mode),'Unknown mode');
+export async function run({mode=process.argv[2],mainGuard=readCurrentMain}={}){
+ assert(['--snapshot','--check','--apply','--verify','--rollback'].includes(mode),'Unknown mode');
  if(mode==='--snapshot'){
   const before=rows();validateBaseline(before,json(root+'baseline.json'));const home=await publicRead('/');
   const backup={workflowSha:process.env.GITHUB_SHA||null,runId:process.env.GITHUB_RUN_ID||null,readAt:new Date().toISOString(),before,homepage:{mainSha256:sha(htmlPart(home,'main')),headSha256:sha(htmlPart(home,'head'))}};
@@ -120,8 +120,8 @@ async function run(){
  const prepared=json(proof+'/prepared.json'),backup=json(proof+'/backup.json');
  assert.equal(prepared.workflowSha,process.env.GITHUB_SHA);assert.equal(prepared.runId,process.env.GITHUB_RUN_ID);assert.equal(backup.workflowSha,prepared.workflowSha);assert.equal(recordHash(backup.before),recordHash(prepared.before));
  if(mode==='--apply'){
-  await readCurrentMain();assert.equal(recordHash(rows()),recordHash(prepared.before),'Concurrent article change before publication');
-  await readCurrentMain();query(buildApplySql(prepared.before,prepared.after));
+  await mainGuard();assert.equal(recordHash(rows()),recordHash(prepared.before),'Concurrent article change before publication');
+  await mainGuard();query(buildApplySql(prepared.before,prepared.after));
   const after=rows();assert.equal(recordHash(after.articles),recordHash([...prepared.after].sort((a,b)=>a.slug.localeCompare(b.slug))),'Exact article publication failed');assert.equal(recordHash(after.receipts),recordHash(prepared.before.receipts),'Receipts changed');
   save('applied.json',{ok:true,workflowSha:prepared.workflowSha,runId:prepared.runId,appliedAt:new Date().toISOString(),articles:after.articles.map(r=>({slug:r.slug,id:r.id,bodySha256:sha(r.body),publishAt:r.publish_at}))});
   console.log(JSON.stringify({ok:true,mode,slugs:SLUGS}));return;
