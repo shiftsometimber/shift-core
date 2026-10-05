@@ -43,6 +43,7 @@ import vk2735Maintenance from './reviews/2026-10-04-authorised-vk2735-maintenanc
 import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-discontinuation.json' with {type:'json'};
 import taldefgrobepRv8451 from './reviews/2026-10-04-authorised-taldefgrobep-rv8451.json' with {type:'json'};
 import ard201Pause from './reviews/2026-10-05-authorised-ard201-pause.json' with {type:'json'};
+import asc36OralPublication from './reviews/2026-10-05-authorised-asc36-oral.json' with {type:'json'};
 import internationalMaintenanceWave from './reviews/2026-10-04-authorised-international-maintenance-wave.json' with {type:'json'};
 import asc30AuroraCorrection from './reviews/2026-10-05-authorised-asc30-aurora-phase3.json' with {type:'json'};
 import novoSpecialistWave from './reviews/2026-10-05-authorised-novo-specialist-wave.json' with {type:'json'};
@@ -370,8 +371,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,93);assert.equal(sources.length,162);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,99);
+ assert.equal(medicines.length,6);assert.equal(industry.length,94);assert.equal(sources.length,163);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,100);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -878,7 +879,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,93);
+ assert.equal(industry.length,94);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -1226,4 +1227,31 @@ test('ARD-201 keeps the initiated trial, planned trial, pause and ARD-101 hold d
  assert.match(entry.supply,/does not establish lawful UK retail supply/);
  assert.equal(entry.sourceIds.length,0);
  assert.equal(entry.additionalEvidence.length,3);
+});
+
+test('oral ASC36 promotion stays formulation-specific and does not invent registry status',()=>{
+ assert.equal(asc36OralPublication.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(asc36OralPublication.clinicalApproval,null);
+ assert.equal(asc36OralPublication.industryComplete,false);
+ assert.equal(asc36OralPublication.catalogueCounts.totalAfter,100);
+ assert.equal(asc36OralPublication.catalogueCounts.configuredSourcesAfter,163);
+ const entry=industry.find(item=>item.id==='asc36-oral');
+ assert.ok(entry);
+ assert.equal(entry.group,'research');
+ assert.match(entry.stage,/US Phase 1 initiation sponsor-reported/);
+ assert.match(entry.summary,/86 participants/);
+ assert.match(entry.summary,/separate from ASC36 subcutaneous injection/);
+ assert.match(entry.limitations,/does not identify first dosing, recruitment status/);
+ assert.match(entry.limitations,/ClinicalTrials.gov API searches returned no matching public record/);
+ assert.match(entry.limitations,/not proof that no registry or other record exists/);
+ assert.match(entry.limitations,/non-human primates or rats/);
+ assert.match(entry.ukAuthorisation,/not marketing approval in the US or UK/);
+ assert.match(entry.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(entry.supply,/does not establish lawful UK retail supply/);
+ assert.deepEqual(entry.sourceIds,['ascletis-asc36-oral-phase1-20260908']);
+ const source=industrySources.find(item=>item.id==='ascletis-asc36-oral-phase1-20260908');
+ assert.equal(source.reviewedAt,asc36OralPublication.reviewedAt);
+ assert.equal(source.contentSelector,'.team_text');
+ assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ assert.equal(asc36OralPublication.discoveryPass.failedChecks.length,0);
 });

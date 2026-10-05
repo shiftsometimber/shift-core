@@ -1,0 +1,133 @@
+{
+  "reviewedAt": "2026-10-05T11:27:10Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Promote the existing proposal-only ASC36 oral-tablet candidate after complete review of the now-readable original sponsor page. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "asc36-oral",
+      "name": "ASC36 oral tablets",
+      "developer": "Ascletis",
+      "group": "research",
+      "stage": "US Phase 1 initiation sponsor-reported; oral formulation",
+      "summary": "Ascletis reported initiation of a US Phase I study of ASC36 oral tablets after FDA Investigational New Drug clearance. The study is designed to assess safety, tolerability, pharmacokinetics and pharmacodynamics after single and multiple ascending oral doses in 86 participants with obesity or overweight. This oral-tablet study is separate from ASC36 subcutaneous injection and ASC36_35FDC combination research.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation or UK clinical-trial authorisation for ASC36 oral tablets. US FDA permission to conduct a study is not marketing approval in the US or UK.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed research evidence.",
+      "supply": "An initiated US Phase I study does not establish lawful UK retail supply, pharmacy stock, expanded access or sale by Shift Some Timber.",
+      "limitations": "The sponsor announcement says the study was initiated but does not identify first dosing, recruitment status, study locations, start date or completion date. Exact-name ClinicalTrials.gov API searches returned no matching public record at this review; absence from those searches is not proof that no registry or other record exists. The reported oral bioavailability, half-life, weight change, food-intake and comparator findings are from non-human primates or rats, not human efficacy, safety, superiority or an approved dose. No human results are reported.",
+      "sourceIds": ["ascletis-asc36-oral-phase1-20260908"],
+      "reviewedAt": "2026-10-05T11:27:10Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Ascletis: US Phase I study initiated for ASC36 oral tablets",
+          "url": "https://www.ascletis.com/index/index/relation_detail/cate_id/200/id/1453/l/en-us.html",
+          "sourcePublishedAt": "2026-09-08",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-05T11:27:10Z",
+          "checkScope": "Complete original sponsor announcement read for formulation, IND clearance, reported study initiation, planned population and endpoints, and animal-only findings. Automatic monitoring checks the bounded claim-bearing article text; it does not assess clinical outcomes."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "ascletis-asc36-oral-phase1-20260908",
+      "title": "Ascletis: US Phase I study initiated for ASC36 oral tablets",
+      "url": "https://www.ascletis.com/index/index/relation_detail/cate_id/200/id/1453/l/en-us.html",
+      "checkUrl": "https://www.ascletis.com/index/index/relation_detail/cate_id/200/id/1453/l/en-us.html",
+      "format": "html",
+      "contentSelector": ".team_text",
+      "sourcePublishedAt": "2026-09-08",
+      "sourceUpdatedAt": null,
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-10-05T11:27:10Z",
+      "requiredTerms": ["ASC36 oral tablets", "86 participants", "initiated a U.S. Phase I study"],
+      "reviewedFingerprint": "bb52bfb18d82adf8113eee808450543f5927d46dc5fda65e90d203c9564a4f39",
+      "evidenceType": "Original Ascletis sponsor announcement; study initiation and plans, not trial results or marketing authorisation",
+      "httpStatus": 200,
+      "responseSha256": "ef557f52838f4b3cc7d4747f5281454569f35ff4a59ebe81ff9e91ef5fb348e9",
+      "bytes": 16300
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-05T11:00:56.605Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 162,
+    "currentSources": 161,
+    "overdueReviews": 0,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "reviewStatus": "verification_pending",
+        "error": "http_403",
+        "lastAttemptAt": "2026-10-05T10:30:56.604Z"
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only health response verifies configured-source monitoring only. It does not renew factual reviews, approve changed wording or prove complete industry coverage. The unchanged Zealand 403 remains explicit and is not repeated as a new alert."
+  },
+  "discoveryPass": {
+    "method": "A separate current-date and broader undated topic pass covered formulations, combinations, specialist indications, early and late trials, muscle preservation, and paused or discontinued programmes across named and additional developers. Findings were reconciled with current main, the historical expansion, proposal receipts and open Watch pull requests.",
+    "included": "The oral formulation was already recorded as a proposal-only candidate on 30 September and was not duplicated. The sponsor's own English announcement is now directly readable and supports publication of the bounded formulation-specific study summary.",
+    "notDuplicated": "ASC36 subcutaneous injection and ASC36_35FDC are already separate live programmes. The earlier 30 September oral ASC36 proposal remains as historical review work; no open Watch pull request contains this promotion.",
+    "incompleteChecks": [
+      "ClinicalTrials.gov API searches for ASC36, Ascletis ASC36 and oral amylin receptor peptide agonist returned zero records at review time. The sponsor announcement therefore controls the bounded status summary; absence from these searches is not proof that no record exists.",
+      "The sponsor announcement does not identify first dosing, recruitment status, locations or typed study dates, and no such facts are inferred.",
+      "Current-date and selected-domain searches cannot exclude indexing delay, older omissions or additional international developers. Programme and source counts do not establish industry completeness."
+    ],
+    "failedChecks": [],
+    "preservedKnownFailures": "The unchanged Zealand ZP6590 HTTP 403 remains visible in health. Earlier receipts retain other blocked and incomplete discovery checks; none is silently cleared by this addition.",
+    "openReviewPrCheck": {
+      "checkedAt": "2026-10-05T11:16:00Z",
+      "openWatchPullRequests": [],
+      "duplicationFound": false
+    },
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "widerBefore": 93,
+    "widerAfter": 94,
+    "totalBefore": 99,
+    "totalAfter": 100,
+    "configuredSourcesBefore": 162,
+    "configuredSourcesAfter": 163
+  },
+  "sourceReviews": [
+    {
+      "url": "https://www.ascletis.com/index/index/relation_detail/cate_id/200/id/1453/l/en-us.html",
+      "publicationDate": "2026-09-08",
+      "updateDate": null,
+      "reviewedAt": "2026-10-05T11:27:10Z",
+      "outcome": "Complete original sponsor announcement read. It reports US Phase I initiation after IND clearance and describes a planned 86-participant single- and multiple-ascending-dose study. It reports no human results and does not identify first dosing or registry status."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=ASC36&pageSize=100",
+      "publicationDate": null,
+      "updateDate": null,
+      "reviewedAt": "2026-10-05T11:27:10Z",
+      "outcome": "Exact-term API search returned zero records. This is an incomplete discovery check, not proof that no registry or study exists."
+    }
+  ],
+  "retrievalEvidence": {
+    "sponsorPage": {
+      "retrievedAt": "2026-10-05T11:25:04Z",
+      "httpStatus": 200,
+      "responseSha256": "ef557f52838f4b3cc7d4747f5281454569f35ff4a59ebe81ff9e91ef5fb348e9",
+      "responseBytes": 16300,
+      "reviewedFingerprint": "bb52bfb18d82adf8113eee808450543f5927d46dc5fda65e90d203c9564a4f39"
+    }
+  },
+  "nextAction": "Run the full Watch tests and exact-head release gates, publish through the guarded production workflow, then verify the live ASC36 oral card, Treatments entry and SELECT-only health endpoint. Continue open-ended discovery without claiming completeness."
+}
