@@ -40,13 +40,15 @@ test('promotion carries the exact verified later runtime forward and rejects mov
 });
 
 import {recentSuccessfulPromotions} from './cancelled-release-recovery.mjs';
-test('successful deployment evidence remains discoverable behind unrelated workflow traffic',async()=>{
- const requests=[],production={id:37150287373,path:'.github/workflows/cloudflare-production-promote.yml'};
- const result=await recentSuccessfulPromotions(async path=>{requests.push(path);return {workflow_runs:path.endsWith('page=1')?Array.from({length:100},()=>({path:'.github/workflows/other.yml'})):[production]}});
- assert.deepEqual(result,[production]);assert.equal(requests.length,2);
+test('successful deployment evidence uses the exact production workflow instead of unrelated traffic',async()=>{
+ const requests=[],production={id:37277280482,path:'.github/workflows/cloudflare-production-promote.yml'};
+ const result=await recentSuccessfulPromotions(async path=>{requests.push(path);assert(path.startsWith('/actions/workflows/cloudflare-production-promote.yml/runs?'));return {workflow_runs:[production]}});
+ assert.deepEqual(result,[production]);assert.equal(requests.length,1);
  assert(requests.every(path=>path.includes('branch=main&event=push&status=success')));
 });
-test('history search is bounded and never invents an ownership receipt',async()=>{
- let calls=0;assert.deepEqual(await recentSuccessfulPromotions(async()=>{calls++;return {workflow_runs:Array.from({length:100},()=>({path:'other.yml'}))}}),[]);assert.equal(calls,10);
+test('workflow-scoped history is bounded and never invents an ownership receipt',async()=>{
+ let calls=0;assert.deepEqual(await recentSuccessfulPromotions(async()=>{calls++;return {workflow_runs:Array.from({length:100},()=>({path:'other.yml'}))}}),[]);assert.equal(calls,1);
  calls=0;assert.deepEqual(await recentSuccessfulPromotions(async()=>{calls++;return {workflow_runs:[]}}),[]);assert.equal(calls,1);
+ const records=Array.from({length:100},(_,id)=>({id,path:'.github/workflows/cloudflare-production-promote.yml'}));
+ assert.deepEqual(await recentSuccessfulPromotions(async()=>({workflow_runs:records})),records.slice(0,5));
 });
