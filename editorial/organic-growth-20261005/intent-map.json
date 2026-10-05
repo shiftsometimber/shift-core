@@ -18,7 +18,9 @@
       "OG-01",
       "OG-02"
     ],
-    "remaining_batch_status": "ranked_queue_only_authored_and_verified_candidate_required"
+    "remaining_batch_status": "ranked_queue_only_authored_and_verified_candidate_required",
+    "first_batch_status": "published_verified_2026-10-05T20:52:29.049Z",
+    "first_batch_receipt": "editorial/organic-growth-20261005/release-receipt.json"
   },
   "measurement_caveats": [
     "Search impressions and average positions describe SHIFT visibility, not UK monthly search volume.",
@@ -74,7 +76,7 @@
       ],
       "owner_path": "/articles/wegovy-side-effects-timeline",
       "owner_job": "Answer symptom timing and urgent warning signs for the injection; distinguish tablet questions.",
-      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_status": "existing_url_live_content_and_canonical_verified",
       "ownership_evidence": {
         "type": "settled_gsc_page_row",
         "read_at": "2026-10-05",
@@ -162,7 +164,9 @@
       },
       "overlap_audit": [],
       "delivery_status": "d1_production_authored_candidate_pending_verification",
-      "public_change_status": "not_live_verified_by_this_map"
+      "public_change_status": "not_live_verified_by_this_map",
+      "publication_status": "published_verified",
+      "publication_receipt": "editorial/organic-growth-20261005/release-receipt.json"
     },
     {
       "rank": 2,
@@ -175,7 +179,7 @@
       ],
       "owner_path": "/articles/nhs-weight-loss-drugs",
       "owner_job": "Give a short eligibility and access explainer, separating authorisation, recommendation and local commissioning.",
-      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_status": "existing_url_live_content_and_canonical_verified",
       "ownership_evidence": {
         "type": "settled_gsc_page_row",
         "read_at": "2026-10-05",
@@ -267,7 +271,9 @@
       ],
       "delivery_status": "d1_production_authored_candidate_pending_verification",
       "public_change_status": "not_live_verified_by_this_map",
-      "notes": "Retain the article as quick answer, the medication guide as detailed service pathway and the management guide as the broader service guide. Content comparison is required before any consolidation; no cannibalisation claim is proven."
+      "notes": "Retain the article as quick answer, the medication guide as detailed service pathway and the management guide as the broader service guide. Content comparison is required before any consolidation; no cannibalisation claim is proven.",
+      "publication_status": "published_verified",
+      "publication_receipt": "editorial/organic-growth-20261005/release-receipt.json"
     },
     {
       "rank": 3,

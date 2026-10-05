@@ -63,7 +63,11 @@ jobs:
             mode=snapshot
           elif [ "$GITHUB_REF" = 'refs/heads/main' ]; then
             if [ "$GITHUB_EVENT_NAME" = 'push' ]; then
-              mode=publish
+              if [ -f 'editorial/organic-growth-20261005/release-receipt.json' ]; then
+                mode=verify
+              else
+                mode=publish
+              fi
             else
               test "$GITHUB_EVENT_NAME" = 'workflow_dispatch'
               case "$REQUESTED_MODE" in verify|snapshot|publish) mode="$REQUESTED_MODE" ;; *) exit 1 ;; esac
