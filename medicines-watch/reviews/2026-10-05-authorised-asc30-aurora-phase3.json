@@ -1,0 +1,167 @@
+{
+  "reviewedAt": "2026-10-05T04:34:32Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Correct the existing oral ASC30 summary after complete sponsor and registry review confirmed first dosing and recruiting Phase III AURORA-1 and AURORA-2 research. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "changes": [
+    {
+      "id": "asc30-oral",
+      "fields": {
+        "stage": "Recruiting global Phase 3 AURORA programme; completed Phase 2 sponsor results",
+        "summary": "Oral ASC30 is an investigational once-daily small-molecule GLP-1 receptor agonist. The sponsor reported the first participant dosed in the global Phase III AURORA programme. AURORA-1 studies adults with obesity or overweight without type 2 diabetes and records 3,003 estimated participants; AURORA-2 studies adults with obesity or overweight and type 2 diabetes and records 1,560 estimated participants. Both sponsor-submitted records are recruiting, have actual August 2026 starts, use 20 mg, 40 mg and 60 mg maintenance-dose groups versus placebo over 72 weeks, and have no posted results. The earlier completed US Phase 2 study and sponsor-reported results remain separate evidence.",
+        "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for oral ASC30. Phase III recruitment and planned US or EU submissions are not UK approval.",
+        "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed research evidence.",
+        "supply": "Global Phase III research and a completed US Phase 2 study do not establish lawful UK retail supply, pharmacy stock or a product sold by Shift Some Timber.",
+        "limitations": "The registries estimate 3,003 and 1,560 participants, while the sponsor describes approximately 4,600 across both trials; these figures are not actual enrolment. July 2028 completion, third-quarter 2028 topline data, an end-2028 US NDA and an early-2029 EMA application are estimates or sponsor plans, not completed events. Neither registry has posted results, so Phase III efficacy, safety, durability or superiority is not established. AURORA-2 is specialist type 2 diabetes research and must not be presented as results for people without diabetes. The oral formulation remains separate from depot ASC30 injection. None of this establishes UK authorisation, NICE/NHS access or UK supply."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07743463: ASC30 AURORA-1",
+          "url": "https://clinicaltrials.gov/study/NCT07743463",
+          "sourcePublishedAt": "2026-08-03",
+          "sourceUpdatedAt": "2026-09-16",
+          "reviewedAt": "2026-10-05T04:34:32Z",
+          "checkScope": "Automatic record-status checks for identity, Phase III design, status, typed dates, estimated enrolment and posted-results state; no assessment of clinical outcomes."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07743450: ASC30 AURORA-2",
+          "url": "https://clinicaltrials.gov/study/NCT07743450",
+          "sourcePublishedAt": "2026-08-03",
+          "sourceUpdatedAt": "2026-09-16",
+          "reviewedAt": "2026-10-05T04:34:32Z",
+          "checkScope": "Automatic record-status checks for identity, Phase III design, specialist type 2 diabetes population, status, typed dates, estimated enrolment and posted-results state; no assessment of clinical outcomes."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "ascletis-asc30-aurora-first-dose-20260830",
+      "title": "Ascletis: first participant dosed in ASC30 AURORA Phase III programme",
+      "url": "https://www.ascletis.com/index/index/relation_detail/cate_id/200/id/1447/l/en-us.html",
+      "checkUrl": "https://www.ascletis.com/index/index/relation_detail/cate_id/200/id/1447/l/en-us.html",
+      "format": "html",
+      "contentSelector": ".team_text",
+      "sourcePublishedAt": "2026-08-30",
+      "sourceUpdatedAt": null,
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-10-05T04:34:32Z",
+      "requiredTerms": ["AURORA-1", "AURORA-2", "first participant has been dosed"],
+      "reviewedFingerprint": "3a6d993aa33d6ce54cf0862534214ca8e54c88791723666c2582fccbf0046617",
+      "evidenceType": "Original Ascletis sponsor announcement; first dosing and programme plans, not trial results or marketing authorisation",
+      "httpStatus": 200,
+      "responseSha256": "271e91e15886cface4b322a63264af0bba481662e2b08be8ce961f879e43593d",
+      "bytes": 18549
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct07743463",
+      "nctId": "NCT07743463",
+      "title": "ClinicalTrials.gov NCT07743463: ASC30 AURORA-1",
+      "url": "https://clinicaltrials.gov/study/NCT07743463",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07743463",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07743463", "Ascletis Pharma (China) Co., Limited"],
+      "reviewedAt": "2026-10-05T04:34:32Z",
+      "sourcePublishedAt": "2026-08-03",
+      "sourceUpdatedAt": "2026-09-16",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07743463",
+        "title": "A Phase III, Randomized, Double-blind, Placebo-controlled Study to Evaluate the Efficacy and Safety of Once-Daily Oral ASC30 in Adult Participants With Obesity or Overweight With Weight-Related Comorbidities (AURORA-1)",
+        "sponsor": "Ascletis Pharma (China) Co., Limited",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE3"],
+        "enrollment": {"count": 3003, "type": "ESTIMATED"},
+        "start": {"date": "2026-08-31", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2028-07", "type": "ESTIMATED"},
+        "completion": {"date": "2028-07", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2026-08-03", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-09-16", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["asc30-oral"],
+      "rawResponseSha256": "77eb15064636024b86a2e09dc030a5047e6ce176aad282d248a38cf7b3cd69d0",
+      "reviewedFingerprint": "d1eb3187dbcc3ce406ea09e1b99305327237e85020f5b9490268779048a2ac99"
+    },
+    {
+      "id": "registry-nct07743450",
+      "nctId": "NCT07743450",
+      "title": "ClinicalTrials.gov NCT07743450: ASC30 AURORA-2",
+      "url": "https://clinicaltrials.gov/study/NCT07743450",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07743450",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07743450", "Ascletis Pharma (China) Co., Limited"],
+      "reviewedAt": "2026-10-05T04:34:32Z",
+      "sourcePublishedAt": "2026-08-03",
+      "sourceUpdatedAt": "2026-09-16",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07743450",
+        "title": "A Phase III, Randomized, Double-blind, Placebo-controlled Study to Evaluate the Efficacy and Safety of Once-Daily Oral ASC30 in Adult Participants With Obesity or Overweight With Type 2 Diabetes Mellitus (AURORA-2)",
+        "sponsor": "Ascletis Pharma (China) Co., Limited",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE3"],
+        "enrollment": {"count": 1560, "type": "ESTIMATED"},
+        "start": {"date": "2026-08-28", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2028-07", "type": "ESTIMATED"},
+        "completion": {"date": "2028-07", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2026-08-03", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-09-16", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["asc30-oral"],
+      "rawResponseSha256": "17b06a0cd9d14876d5d1166c8b7039f3109d66e51b3a34515c71f5129e499d03",
+      "reviewedFingerprint": "acea4e5a0322dfda5ff5ab12d08d2e207071811da2543fa116c148c906f997c4"
+    }
+  ],
+  "sourceReviews": [
+    {"url": "https://clinicaltrials.gov/api/v2/studies/NCT07743463", "publicationDate": "2026-08-03", "updateDate": "2026-09-16", "reviewedAt": "2026-10-05T04:34:32Z", "outcome": "Complete API body read for AURORA-1 identity, Phase III design, population without type 2 diabetes, recruiting status, actual start, estimated enrolment and completion, primary endpoint, locations and absence of posted results."},
+    {"url": "https://clinicaltrials.gov/api/v2/studies/NCT07743450", "publicationDate": "2026-08-03", "updateDate": "2026-09-16", "reviewedAt": "2026-10-05T04:34:32Z", "outcome": "Complete API body read for AURORA-2 identity, Phase III design, population with type 2 diabetes, recruiting status, actual start, estimated enrolment and completion, primary endpoint, locations and absence of posted results."},
+    {"url": "https://www.ascletis.com/index/index/relation_detail/cate_id/200/id/1447/l/en-us.html", "publicationDate": "2026-08-30", "updateDate": null, "reviewedAt": "2026-10-05T04:34:32Z", "outcome": "Complete original sponsor announcement read for reported first dosing, the two separate trial populations and planned topline and regulatory events. Plans are not presented as completed events or approvals."}
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-05T04:34:32Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 159,
+    "currentSources": 158,
+    "overdueReviews": 0,
+    "lastAttemptAt": "2026-10-05T04:16:05.002Z",
+    "attention": [{"id": "zealand-zp6590-pipeline", "status": "check_delayed", "reviewStatus": "verification_pending", "error": "http_403", "lastAttemptAt": "2026-10-05T03:31:16.797Z", "lastSuccessAt": null, "nextCheckAt": "2026-10-05T04:31:16.797Z"}],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only response verifies configured-source monitoring only. It does not renew factual reviews, approve changed wording or prove complete industry coverage. The unchanged Zealand 403 remains explicit."
+  },
+  "discoveryPass": {
+    "method": "A separate configured-source pass checked availability, changes, withdrawals, overdue reviews and monitor failures. A broader current-date and undated topic pass covered formulations, combinations, specialist indications, early and late trials, muscle preservation, paused and discontinued programmes across named and additional developers, then reconciled candidates with live entries, dated receipts and open Watch pull requests.",
+    "included": "ASC30 already existed as a completed Phase II oral programme, but the live summary omitted the initiated global Phase III AURORA programme. Complete original sponsor and registry review supports a stage correction rather than a new programme.",
+    "incompleteChecks": ["The registries and sponsor evidence do not establish UK marketing authorisation, a NICE recommendation, NHS access or UK supply; no such claim is inferred.", "The two registry estimates total 4,563 while the sponsor says approximately 4,600; the difference remains explicit and neither is treated as actual enrolment.", "Current-date and selected-domain searches cannot exclude indexing delay, older omissions or additional international developers. The 98-programme catalogue and 162 configured sources do not establish industry completeness."],
+    "failedChecks": [],
+    "preservedKnownFailures": "The unchanged Zealand ZP6590 HTTP 403 remains visible in health. Earlier receipts retain other blocked and incomplete discovery checks; none is silently cleared by this correction.",
+    "openReviewPrCheck": {"checkedAt": "2026-10-05T04:34:32Z", "openWatchPullRequests": [], "duplicationFound": false},
+    "industryComplete": false
+  },
+  "catalogueCounts": {"detailedBefore": 6, "widerBefore": 92, "widerAfter": 92, "totalBefore": 98, "totalAfter": 98, "configuredSourcesBefore": 159, "configuredSourcesAfter": 162, "trialRecordsBefore": 99, "trialRecordsAfter": 101},
+  "retrievalEvidence": {
+    "aurora1Registry": {"retrievedAt": "2026-10-05T04:34:32Z", "httpStatus": 200, "responseSha256": "77eb15064636024b86a2e09dc030a5047e6ce176aad282d248a38cf7b3cd69d0", "responseBytes": 29335},
+    "aurora2Registry": {"retrievedAt": "2026-10-05T04:34:32Z", "httpStatus": 200, "responseSha256": "17b06a0cd9d14876d5d1166c8b7039f3109d66e51b3a34515c71f5129e499d03", "responseBytes": 31872},
+    "sponsorPage": {"retrievedAt": "2026-10-05T04:34:32Z", "httpStatus": 200, "responseSha256": "271e91e15886cface4b322a63264af0bba481662e2b08be8ce961f879e43593d", "responseBytes": 18549}
+  }
+}
