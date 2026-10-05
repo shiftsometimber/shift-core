@@ -51,7 +51,33 @@ import petrelintideZupreme from './reviews/2026-10-05-authorised-petrelintide-zu
 import ribupatideSpecialistWave from './reviews/2026-10-05-authorised-ribupatide-specialist-wave.json' with {type:'json'};
 import hansohOlatorepatideReview from './reviews/2026-10-05-authorised-hansoh-olatorepatide-source-review.json' with {type:'json'};
 import gzc8072Publication from './reviews/2026-10-05-authorised-gzc8072.json' with {type:'json'};
+import te8105Phase2b from './reviews/2026-10-05-authorised-te8105-phase2b.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
+test('TE-8105 preserves not-yet-recruiting status and estimated Phase 2b plans',()=>{
+ assert.equal(te8105Phase2b.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(te8105Phase2b.clinicalApproval,null);
+ assert.equal(te8105Phase2b.industryComplete,false);
+ assert.equal(te8105Phase2b.catalogueCounts.totalAfter,101);
+ assert.equal(te8105Phase2b.catalogueCounts.configuredSourcesAfter,164);
+ const e=industry.find(e=>e.id==='te8105');
+ assert.ok(e);assert.equal(e.group,'research');
+ assert.match(e.stage,/not yet recruiting/);
+ assert.match(e.summary,/injectable GLP-1 receptor agonist/);
+ assert.match(e.summary,/up to 204 participants/);
+ assert.match(e.limitations,/October 2026 start.*204-participant enrolment.*February 2028 completion are estimates/);
+ assert.match(e.limitations,/No results are posted/);
+ assert.match(e.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.match(e.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(e.supply,/does not establish lawful UK retail supply/);
+ assert.deepEqual(e.sourceIds,[]);
+ assert.ok(e.additionalEvidence.some(s=>s.url==='https://clinicaltrials.gov/study/NCT07857473'));
+ const registry=te8105Phase2b.registrySources[0];
+ assert.equal(registry.lifecycle.status,'NOT_YET_RECRUITING');
+ assert.deepEqual(registry.lifecycle.enrollment,{count:204,type:'ESTIMATED'});
+ assert.equal(registry.lifecycle.start.type,'ESTIMATED');
+ assert.equal(registry.lifecycle.hasResults,false);
+ assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
+});
 test('VK2735 maintenance evidence stays sponsor-reported and does not create an approved regimen',()=>{
  const e=industry.find(e=>e.id==='vk2735');
  assert.equal(vk2735Maintenance.publicationStatus,'owner_authorised_factual_publication');
@@ -371,8 +397,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,94);assert.equal(sources.length,163);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,100);
+ assert.equal(medicines.length,6);assert.equal(industry.length,95);assert.equal(sources.length,164);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,101);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -535,10 +561,12 @@ test('ENV-308 stays a bounded early-stage proposal with registry absence visible
  assert.equal(industrySources.some(source=>source.id==='env308-enveda-20260818'),true);
 });
 
+
 test('authorised source repair preserves the original receipt and joins readable evidence',()=>{
  assert.equal(industrySources.find(s=>s.id==='petrelintide-zealand').url,continuingReview.proposals.petrelintideSourceRepair.candidateUrl);
  for(const id of ['hrs1596','emugrobart']){const html=industryMarkup({},new URLSearchParams({q:id==='hrs1596'?'HRS-1596':'emugrobart'}));assert.doesNotMatch(html,/href=""/);assert.match(html,/clinicaltrials.gov/);}
 });
+
 
 test('GlobeNewswire access repair changes only check URLs and preserves reviewed evidence',()=>{
  assert.equal(globeNewswireRepair.reviewRenewed,false);
@@ -558,6 +586,7 @@ test('GlobeNewswire access repair changes only check URLs and preserves reviewed
  }
 });
 
+
 test('evening evidence preserves safety, planned events and research access boundaries',()=>{
  const find=id=>industry.find(e=>e.id===id);
  assert.match(find('trevogrumab-semaglutide').limitations,/two deaths; causation was not established/);
@@ -571,6 +600,7 @@ test('evening evidence preserves safety, planned events and research access boun
  assert.match(find('kai7535').name,/Safiglipron/);
  assert.match(find('survodutide').limitations,/efficacy estimand assumes continued treatment/);
 });
+
 
 test('broader discovery adds bounded research summaries without inventing UK access',()=>{
  assert.equal(broaderReview.publicationStatus,'owner_authorised_factual_publication');
@@ -592,6 +622,7 @@ test('broader discovery adds bounded research summaries without inventing UK acc
  for(const domain of ['mbxbio.com','arrowheadpharma.com','lexpharma.com','neurocrine.com','corbuspharma.com','syntis.bio','alveustx.com'])assert.ok(discoveryDomains.includes(domain));
 });
 
+
 test('SYNT-101 correction replaces the stale pending multiple-dose claim without overstating early results',()=>{
  const entry=industry.find(item=>item.id==='synt101');
  assert.equal(synt101Correction.publicationStatus,'owner_authorised_factual_correction');
@@ -610,6 +641,7 @@ test('SYNT-101 correction replaces the stale pending multiple-dose claim without
  assert.match(entry.nhsEngland,/No NICE recommendation or NHS England access/);
  assert.match(entry.supply,/does not establish lawful UK retail supply/);
 });
+
 
 test('international omissions distinguish China approval from UK access and early US research',()=>{
  assert.equal(internationalOmissions.publicationStatus,'owner_authorised_factual_publication');
@@ -656,6 +688,8 @@ test('expanded discovery keeps trial status and UK access boundaries explicit',(
 });
 
 
+
+
 test('UBT251 keeps completed Chinese evidence separate from global plans and UK access',()=>{
  const item=industry.find(entry=>entry.id==='ubt251');
  assert.ok(item);
@@ -669,6 +703,7 @@ test('UBT251 keeps completed Chinese evidence separate from global plans and UK 
  assert.match(item.supply,/does not establish lawful UK retail supply/);
  assert.ok(item.additionalEvidence.length>=3);
 });
+
 
 test('SGB-7342 preserves the dated registry mismatch and human-evidence limits',()=>{
  const item=industry.find(entry=>entry.id==='sgb7342');
@@ -685,6 +720,7 @@ test('SGB-7342 preserves the dated registry mismatch and human-evidence limits',
  assert.match(item.supply,/do not establish lawful UK retail supply/);
  assert.equal(item.additionalEvidence.length,2);
 });
+
 
 test('latest wider discovery keeps formulations, plans and stopped programmes distinct',()=>{
  assert.equal(abbvAsc30TernBimagrumab.publicationStatus,'owner_authorised_factual_publication');
@@ -708,6 +744,7 @@ test('latest wider discovery keeps formulations, plans and stopped programmes di
  assert.match(industry.find(entry=>entry.id==='bimagrumab-tirzepatide').limitations,/do not establish improved strength/);
  for(const domain of ['abbvie.com','ascletis.com','ternspharma.com'])assert.ok(discoveryDomains.includes(domain));
 });
+
 
 test('international registry omissions preserve live, completed and delayed status boundaries',()=>{
  assert.equal(registryOmissions.publicationStatus,'owner_authorised_factual_publication');
@@ -733,6 +770,7 @@ test('international registry omissions preserve live, completed and delayed stat
  assert.match(industry.find(entry=>entry.id==='cmsd008').limitations,/estimated start was 2 April 2026/);
 });
 
+
 test('enobosarm combination keeps muscle-preservation research separate from results and UK access',()=>{
  assert.equal(enobosarmSemaglutide.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(enobosarmSemaglutide.clinicalApproval,null);
@@ -753,6 +791,7 @@ test('enobosarm combination keeps muscle-preservation research separate from res
  assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/);
  assert.match(item.supply,/do(?:es)? not establish lawful UK retail supply/);
 });
+
 
 test('expanded registry wave preserves formulation, status and specialist-indication boundaries',()=>{
  assert.equal(expandedRegistryWave.publicationStatus,'owner_authorised_factual_publication');
@@ -787,6 +826,7 @@ test('expanded registry wave preserves formulation, status and specialist-indica
  for(const domain of ['biophytis.com','orsobio.com','neurobiogen.com','sbpgroup.com','lepumedical.com'])assert.ok(discoveryDomains.includes(domain));
 });
 
+
 test('semaglutide specialist research remains distinct from authorised weight-management use',()=>{
  assert.equal(semaglutideSpecialistTrials.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(semaglutideSpecialistTrials.clinicalApproval,null);
@@ -809,6 +849,7 @@ test('semaglutide specialist research remains distinct from authorised weight-ma
  assert.ok(semaglutideSpecialistTrials.registryEvidence.every(record=>record.overallStatus==='NOT_YET_RECRUITING'));
  assert.ok(semaglutideSpecialistTrials.registryEvidence.every(record=>record.hasResults===false));
 });
+
 
 test('GLIMR COPD remains planned specialist tirzepatide research, not a UK treatment claim',()=>{
  assert.equal(glimrCopd.publicationStatus,'owner_authorised_factual_publication');
@@ -836,6 +877,7 @@ test('GLIMR COPD remains planned specialist tirzepatide research, not a UK treat
  assert.equal(glimrCopd.registryEvidence.hasResults,false);
  assert.equal(glimrCopd.registryEvidence.estimatedEnrollment,30);
 });
+
 
 test('specialist registry follow-up separates active research, planned studies and UK access',()=>{
  assert.equal(specialistRegistryFollowup.publicationStatus,'owner_authorised_factual_publication');
@@ -872,6 +914,7 @@ test('specialist registry follow-up separates active research, planned studies a
  assert.equal(specialistRegistryFollowup.preservedCandidates[0].status,'not_yet_recruiting_incomplete');
 });
 
+
 test('switching studies remain planned research and do not inflate programme counts',()=>{
  assert.equal(switchingStudies.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(switchingStudies.clinicalApproval,null);
@@ -879,7 +922,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,94);
+ assert.equal(industry.length,95);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -898,6 +941,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.ok(switchingStudies.registryEvidence.every(record=>record.overallStatus==='NOT_YET_RECRUITING'));
  assert.ok(switchingStudies.registryEvidence.every(record=>record.hasResults===false));
 });
+
 
 test('NA-931 preserves the sponsor and registry discrepancy without implying access or results',()=>{
  assert.equal(na931Publication.publicationStatus,'owner_authorised_factual_publication');
@@ -980,6 +1024,7 @@ test('Azelaprag stays discontinued and preserves the registry and sponsor safety
  assert.ok(discoveryDomains.includes('bioagelabs.com'));
 });
 
+
 test('taldefgrobep and RV-8451 preserve clinical-stage and evidence boundaries',()=>{
  assert.equal(taldefgrobepRv8451.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(taldefgrobepRv8451.clinicalApproval,null);
@@ -1011,6 +1056,7 @@ test('taldefgrobep and RV-8451 preserve clinical-stage and evidence boundaries',
  assert.match(rv8451.supply,/do not establish lawful UK retail supply/);
 });
 
+
 test('international maintenance wave preserves separate programme, stage and results boundaries',()=>{
  assert.equal(internationalMaintenanceWave.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(internationalMaintenanceWave.clinicalApproval,null);
@@ -1041,6 +1087,7 @@ test('international maintenance wave preserves separate programme, stage and res
  assert.equal(internationalMaintenanceWave.registrySources.find(s=>s.nctId==='NCT07654374').lifecycle.status,'RECRUITING');
 });
 
+
 test('programme-level Novo and specialist discovery preserves indication and evidence boundaries',()=>{
  assert.equal(novoSpecialistWave.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(novoSpecialistWave.clinicalApproval,null);
@@ -1070,6 +1117,7 @@ test('programme-level Novo and specialist discovery preserves indication and evi
  assert.match(novoSpecialistWave.failedChecks[0].outcome,/timed out/);
 });
 
+
 test('Petrelintide ZUPREME review distinguishes sponsor initiation from registry recruitment',()=>{
  assert.equal(petrelintideZupreme.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(petrelintideZupreme.clinicalApproval,null);
@@ -1093,6 +1141,7 @@ test('Petrelintide ZUPREME review distinguishes sponsor initiation from registry
  assert.equal(petrelintideZupreme.configuredSourcePass.currentSources,145);
  assert.equal(petrelintideZupreme.configuredSourcePass.attention[0].id,'zealand-zp6590-pipeline');
 });
+
 
 test('ribupatide specialist wave keeps formulation, indication and conflicting evidence separate',()=>{
  assert.equal(ribupatideSpecialistWave.publicationStatus,'owner_authorised_factual_publication');
@@ -1122,6 +1171,7 @@ test('ribupatide specialist wave keeps formulation, indication and conflicting e
  assert.equal(ribupatideSpecialistWave.configuredSourcePass.attention[0].id,'zealand-zp6590-pipeline');
 });
 
+
 test('GZC8072 promotion separates trial initiation, estimates and UK access',()=>{
  assert.equal(gzc8072Publication.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(gzc8072Publication.clinicalApproval,null);
@@ -1148,6 +1198,7 @@ test('GZC8072 promotion separates trial initiation, estimates and UK access',()=
  assert.equal(sponsor.reviewedAt,gzc8072Publication.reviewedAt);
  assert.match(sponsor.reviewedFingerprint,/^[a-f0-9]{64}$/);
 });
+
 
 test('ASC30 AURORA correction separates trial populations, estimates and planned events',()=>{
  assert.equal(asc30AuroraCorrection.publicationStatus,'owner_authorised_factual_publication');
@@ -1186,6 +1237,7 @@ test('ASC30 AURORA correction separates trial populations, estimates and planned
  assert.match(sponsor.reviewedFingerprint,/^[a-f0-9]{64}$/);
 });
 
+
 test('Hansoh source review renews only the read claim-bearing baseline',()=>{
  assert.equal(hansohOlatorepatideReview.publicationStatus,'owner_authorised_source_review');
  assert.equal(hansohOlatorepatideReview.clinicalApproval,null);
@@ -1206,6 +1258,7 @@ test('Hansoh source review renews only the read claim-bearing baseline',()=>{
  assert.match(entry.nhsEngland,/no routine access claim/i);
  assert.match(entry.supply,/stock unverified/i);
 });
+
 
 test('ARD-201 keeps the initiated trial, planned trial, pause and ARD-101 hold distinct',()=>{
  assert.equal(ard201Pause.publicationStatus,'owner_authorised_factual_publication');
@@ -1228,6 +1281,7 @@ test('ARD-201 keeps the initiated trial, planned trial, pause and ARD-101 hold d
  assert.equal(entry.sourceIds.length,0);
  assert.equal(entry.additionalEvidence.length,3);
 });
+
 
 test('oral ASC36 promotion stays formulation-specific and does not invent registry status',()=>{
  assert.equal(asc36OralPublication.publicationStatus,'owner_authorised_factual_publication');
