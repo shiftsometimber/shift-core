@@ -19,6 +19,7 @@ import ard201Pause from './reviews/2026-10-05-authorised-ard201-pause.json' with
 import asc36OralPublication from './reviews/2026-10-05-authorised-asc36-oral.json' with {type:'json'};
 import te8105Phase2b from './reviews/2026-10-05-authorised-te8105-phase2b.json' with {type:'json'};
 import nct05713799Correction from './reviews/2026-10-05-authorised-nct05713799-start-correction.json' with {type:'json'};
+import semaglutideSpecialistSarcopeniaWave from './reviews/2026-10-05-authorised-semaglutide-specialist-sarcopenia-wave.json' with {type:'json'};
 import evening from './reviews/2026-10-01-authorised-evening-updates.json' with {type:'json'};
 import broaderDiscovery from './reviews/2026-10-01-authorised-broader-discovery.json' with {type:'json'};
 import synt101Correction from './reviews/2026-10-01-synt101-mad-correction.json' with {type:'json'};
@@ -135,7 +136,7 @@ export const industry = [...originalIndustry.map(e => {
  const update=followup.updates.find(u=>u.id===e.id);
  return update ? {...e,...update.fields,reviewedAt:followup.reviewedAt,sourceIds:[...e.sourceIds,...update.sourceIdsToAdd]} : e;
 }),...followup.entries,...continuing.entries,...biPublication.entries,...macupatide.entries,...evening.entries,...broaderDiscovery.entries,...internationalOmissions.entries,...expandedDiscovery.entries,...ubt251Publication.entries,...sgb7342Publication.entries,...abbvAsc30TernBimagrumab.entries,...registryOmissions.entries,...enobosarmSemaglutide.entries,...expandedRegistryWave.entries,...semaglutideSpecialistTrials.entries,...glimrCopd.entries,...specialistRegistryFollowup.entries,...na931Publication.entries]
- .concat(amylinMetabolicFollowup.entries,azd1043Publication.entries,wve007Publication.entries,specialistRegistryWave.entries,leanMassEnergyFollowup.entries,vikingAntagFollowup.entries,evidenceDesk.entries,srsd384Publication.entries,fractylModalityGap.entries,arteloMuscleGap.entries,rgt075Publication.entries,vct220Publication.entries,azelapragDiscontinuation.entries,taldefgrobepRv8451.entries,internationalMaintenanceWave.entries,novoSpecialistWave.entries,gzc8072Publication.entries,ard201Pause.entries,asc36OralPublication.entries,te8105Phase2b.entries)
+ .concat(amylinMetabolicFollowup.entries,azd1043Publication.entries,wve007Publication.entries,specialistRegistryWave.entries,leanMassEnergyFollowup.entries,vikingAntagFollowup.entries,evidenceDesk.entries,srsd384Publication.entries,fractylModalityGap.entries,arteloMuscleGap.entries,rgt075Publication.entries,vct220Publication.entries,azelapragDiscontinuation.entries,taldefgrobepRv8451.entries,internationalMaintenanceWave.entries,novoSpecialistWave.entries,gzc8072Publication.entries,ard201Pause.entries,asc36OralPublication.entries,te8105Phase2b.entries,semaglutideSpecialistSarcopeniaWave.entries)
  .map(e=>{const update=repairs.updates.find(u=>u.id===e.id);return update?{...e,...update,reviewedAt:repairs.reviewedAt}:e;})
  .map(e=>e.id===berobenatide.change.id?{...e,...berobenatide.change.fields,reviewedAt:berobenatide.reviewedAt,
   sourceIds:[...e.sourceIds,...berobenatide.change.sourceIdsToAdd],additionalEvidence:berobenatide.change.additionalEvidence}:e)
@@ -274,6 +275,16 @@ export const industry = [...originalIndustry.map(e => {
   if(!change)return e;
   return {...e,...change.fields,reviewedAt:asc30AuroraCorrection.reviewedAt,
    sourceIds:[...e.sourceIds,...asc30AuroraCorrection.sources.map(source=>source.id)],
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
+ })
+ .map(e=>{
+  const change=semaglutideSpecialistSarcopeniaWave.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  const {summaryToAppend,limitationsToAppend,...fields}=change.fields;
+  return {...e,...fields,
+   ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
+   ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
+   reviewedAt:semaglutideSpecialistSarcopeniaWave.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
  })
  .map(e=>{
