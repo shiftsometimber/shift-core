@@ -1,0 +1,17 @@
+{
+  "proof": "FIT_300_RUNTIME_ACTIVATION_V1",
+  "base": "eecd31ba0f3eb06e8de829d3415d7f86e954a162",
+  "source": "0ecb9a248165082f1de3a6ae5de7d5e67016eb31",
+  "ownerInstruction": {
+    "actor": "Matt",
+    "quote": "Can’t we get the full 300",
+    "recordedAt": "2026-10-05T21:07:51Z"
+  },
+  "trainerAttestation": false,
+  "clinicalAttestation": false,
+  "databaseWrites": false,
+  "movements": 300,
+  "servedProtocols": 2688,
+  "designUnchanged": true,
+  "homepageUnchanged": true
+}
