@@ -16,7 +16,7 @@ WATCH_REGISTRY_WAVE_PATHS.push('medicines-watch/reviews/2026-10-05-authorised-as
 WATCH_REGISTRY_WAVE_PATHS.push('medicines-watch/reviews/2026-10-05-authorised-ard201-pause.json');
 WATCH_REGISTRY_WAVE_PATHS.push('medicines-watch/reviews/2026-10-05-authorised-asc36-oral.json');
 WATCH_REGISTRY_WAVE_PATHS.push('medicines-watch/reviews/2026-10-05-authorised-te8105-phase2b.json');
-// The ASC36 review keeps the sponsor-reported study initiation, planned 86-participant design, absent registry record, animal findings and UK access separate without clearing unrelated source failures.
+// The TE-8105 review keeps not-yet-recruiting registry status, estimated dates, Australian sites, no results and absent UK access separate without clearing unrelated source failures.
 export const WATCH_SOURCE_LINK_SOURCE=WATCH_REGISTRY_WAVE_COMMIT;
 export const WATCH_OWNERSHIP_SOURCE='1eca49505836ac99e5b1cb929660f1e108213781';
 export const WATCH_OWNERSHIP_BASE='725e4bb0d27d4cbd52e85c27bfa9e27841a166b0';
