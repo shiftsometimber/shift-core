@@ -45,6 +45,7 @@ import taldefgrobepRv8451 from './reviews/2026-10-04-authorised-taldefgrobep-rv8
 import internationalMaintenanceWave from './reviews/2026-10-04-authorised-international-maintenance-wave.json' with {type:'json'};
 import novoSpecialistWave from './reviews/2026-10-05-authorised-novo-specialist-wave.json' with {type:'json'};
 import petrelintideZupreme from './reviews/2026-10-05-authorised-petrelintide-zupreme-registry.json' with {type:'json'};
+import ribupatideSpecialistWave from './reviews/2026-10-05-authorised-ribupatide-specialist-wave.json' with {type:'json'};
 import hansohOlatorepatideReview from './reviews/2026-10-05-authorised-hansoh-olatorepatide-source-review.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('VK2735 maintenance evidence stays sponsor-reported and does not create an approved regimen',()=>{
@@ -366,7 +367,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,91);assert.equal(sources.length,149);
+ assert.equal(medicines.length,6);assert.equal(industry.length,91);assert.equal(sources.length,157);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,97);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
@@ -1087,6 +1088,34 @@ test('Petrelintide ZUPREME review distinguishes sponsor initiation from registry
  }
  assert.equal(petrelintideZupreme.configuredSourcePass.currentSources,145);
  assert.equal(petrelintideZupreme.configuredSourcePass.attention[0].id,'zealand-zp6590-pipeline');
+});
+
+test('ribupatide specialist wave keeps formulation, indication and conflicting evidence separate',()=>{
+ assert.equal(ribupatideSpecialistWave.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(ribupatideSpecialistWave.clinicalApproval,null);
+ assert.equal(ribupatideSpecialistWave.industryComplete,false);
+ assert.equal(ribupatideSpecialistWave.catalogueCounts.totalAfter,97);
+ assert.equal(ribupatideSpecialistWave.catalogueCounts.configuredSourcesAfter,157);
+ const injection=industry.find(item=>item.id==='ribupatide-injection');
+ assert.match(injection.stage,/specialist-indication studies active/);
+ assert.match(injection.summary,/9,262-participant Phase 3 cardiovascular-outcomes study/);
+ assert.match(injection.summary,/active-not-recruiting 48-participant Phase 1 adolescent-obesity study/);
+ assert.match(injection.summary,/older registry record remains UNKNOWN/);
+ assert.match(injection.limitations,/sponsor-reported topline results/);
+ assert.match(injection.limitations,/None establishes UK authorisation/);
+ const oral=industry.find(item=>item.id==='ribupatide-oral');
+ assert.match(oral.stage,/Recruiting China Phase III/);
+ assert.match(oral.summary,/NCT07670884/);
+ assert.match(oral.limitations,/does not establish that the separately planned global Phase 3 programme has started/);
+ const hrs4729=industry.find(item=>item.id==='kai4729');
+ assert.match(hrs4729.stage,/recruiting China Phase II MASH study/);
+ assert.match(hrs4729.summary,/separate HRS-4729, ribupatide and matching-placebo arms/);
+ assert.equal(ribupatideSpecialistWave.registrySources.length,7);
+ assert.equal(ribupatideSpecialistWave.registrySources.find(s=>s.nctId==='NCT07551492').lifecycle.enrollment.count,9262);
+ assert.equal(ribupatideSpecialistWave.registrySources.find(s=>s.nctId==='NCT06595797').lifecycle.status,'UNKNOWN');
+ assert.ok(ribupatideSpecialistWave.registrySources.every(s=>!s.lifecycle.hasResults&&/^[a-f0-9]{64}$/.test(s.reviewedFingerprint)));
+ assert.equal(ribupatideSpecialistWave.configuredSourcePass.currentSources,148);
+ assert.equal(ribupatideSpecialistWave.configuredSourcePass.attention[0].id,'zealand-zp6590-pipeline');
 });
 
 test('Hansoh source review renews only the read claim-bearing baseline',()=>{
