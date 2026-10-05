@@ -109,7 +109,9 @@ jobs:
       - id: verify
         name: Prove exact database values, public HTML, canonical URLs and publication dates
         if: steps.intent.outputs.mode == 'publish' || steps.intent.outputs.mode == 'verify'
-        run: node editorial/organic-growth-20261005/publish.mjs --verify
+        run: |
+          mkdir -p organic-growth-proof
+          node editorial/organic-growth-20261005/publish.mjs --verify
       - name: Restore only changes still owned by this run after failed publication proof
         if: failure() && steps.intent.outputs.mode == 'publish' && (steps.apply.outcome == 'failure' || steps.verify.outcome == 'failure')
         run: node editorial/organic-growth-20261005/publish.mjs --rollback
