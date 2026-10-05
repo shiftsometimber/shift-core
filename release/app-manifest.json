@@ -268,7 +268,7 @@
     "shift-coach/member-record-browser.mjs": "5010cfb8aa46bfd8fde6c82f1519162f7ac5c4c3b195c18a35f10cda732f6598",
     "tests/member-record-reliability.test.mjs": "e42fe3c45bcd9cd8ba122eea0b731e2eee64b88ee666aa7c7c05cf7d6cafbefb",
     "transactional-email-v1.js": "7655330ea7364a6051b3b18299dc14d05ee45b067382cef077d15116fb9d6b0a",
-    "tests/transactional-mail-reliability.test.mjs": "3ee22a82377633f04765a533ad2a7b39a65ad63e032ab34a3877c01d8d09c454",
+    "tests/transactional-mail-reliability.test.mjs": "7de0a1208ff8194b83578f2d92cf35b64fd89a000553aef8ca7852bfaa363d97",
     "shift-coach/acceptance-current-20261004.json": "e6c2f667e241c2c933e1ce6109e2451094a0520cae16f78d3f65379651e6df22",
     "tests/watch-ownership-release.test.mjs": "b37bb73358a6dca55ec38d0015d353cb095f71b5fa200b316321962166707047",
     "medicines-watch/scheduler.test.mjs": "6ccf1e387380ad0aa711d992078d67768fc6dc6d8048de24522296367644626d",
