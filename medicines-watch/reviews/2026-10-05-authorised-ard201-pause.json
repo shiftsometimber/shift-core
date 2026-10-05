@@ -1,0 +1,119 @@
+{
+  "reviewedAt": "2026-10-05T10:08:41Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add the previously deferred ARD-201 programme with its initiated POWER trial, planned STRENGTH trial and current voluntary pause kept distinct. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "ard201",
+      "name": "ARD-201",
+      "developer": "Aardvark Therapeutics",
+      "group": "paused",
+      "stage": "Phase 2 POWER initiated, then voluntarily paused; STRENGTH planned, then paused",
+      "summary": "Aardvark describes ARD-201 as a planned once-daily oral fixed-dose combination of ARD-101 and a DPP-4 inhibitor. Its August 2026 SEC filing says POWER began in December 2025 to study prevention of weight regain after more than 15% GLP-1-receptor-agonist-associated weight loss. STRENGTH was planned to study weight loss, including ARD-201 alone and with GLP-1 therapy. Both programmes were voluntarily paused on 27 February 2026.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation or a UK clinical-trial authorisation for ARD-201. A US Phase 2 start is not marketing approval.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed sources.",
+      "supply": "A paused investigational programme does not establish lawful UK retail supply, pharmacy stock, expanded access or sale by Shift Some Timber.",
+      "limitations": "The FDA clinical hold described in the filing applies to the ARD-101 IND; ARD-201 contains ARD-101, so Aardvark says further ARD-201 timing depends on resolving that hold and future regulatory discussions. The pause followed reversible cardiac observations in a healthy-volunteer ARD-101 study. This entry does not infer causation, severity, a restart, termination or a timetable. No POWER or STRENGTH results, weight-maintenance benefit, weight-loss benefit, lean-mass benefit, safety, superiority or approved regimen is established. The still-live sponsor programme page describes planned trials but does not supersede the later SEC status disclosure.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-05T10:08:41Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Aardvark Therapeutics second-quarter 2026 Form 10-Q",
+          "url": "https://www.sec.gov/Archives/edgar/data/1774857/000119312526344987/ck0001774857-20260630.htm",
+          "sourcePublishedAt": "2026-08-11",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-05T10:08:41Z",
+          "checkScope": "Complete SEC filing read for POWER initiation, STRENGTH planning, the voluntary pause, the ARD-101 hold dependency and stated uncertainty. Not automatically content-monitored."
+        },
+        {
+          "title": "Aardvark Therapeutics: voluntary pause of clinical programmes",
+          "url": "https://ir.aardvarktherapeutics.com/news-releases/news-release-details/aardvark-therapeutics-announces-voluntary-pause-phase-3-hero",
+          "sourcePublishedAt": "2026-02-27",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-05T10:08:41Z",
+          "checkScope": "Complete sponsor announcement read for the pause date, affected ARD-201 trials and the stated healthy-volunteer observations. Not automatically content-monitored."
+        },
+        {
+          "title": "Aardvark Therapeutics ARD-201 programmes",
+          "url": "https://aardvarktherapeutics.com/programs/",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-05T10:08:41Z",
+          "checkScope": "Full sponsor programme page read for formulation, once-daily route and intended POWER/STRENGTH questions. The page displays 'Last Updated: October 2025' without an exact day and is treated as older context, not current trial status. Not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-05T10:00:56.604Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 162,
+    "currentSources": 161,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "error": "http_403",
+        "lastAttemptAt": "2026-10-05T09:15:56.603Z",
+        "nextCheckAt": "2026-10-05T10:15:56.603Z"
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only health response verifies configured-source availability and monitor operation. It does not renew factual reviews, approve changed wording or establish complete industry coverage. The unchanged Zealand 403 remains visible and is not repeated as a new alert."
+  },
+  "discoveryPass": {
+    "method": "A current-date pass and a broader undated topic pass checked primary regulator, registry, SEC and sponsor sources for combinations, maintenance, paused programmes and smaller developers, then reconciled findings with current main and open review PRs.",
+    "included": "ARD-201 is an older fixed-dose-combination omission previously deferred when later primary evidence could not be read. The later SEC filing now supports a bounded paused-programme summary and corrects the older sponsor programme page's planned-trial presentation.",
+    "notDuplicated": "The only open repository PR concerns support email and does not touch Medicines Watch. The historical expansion PR 851 and later merged Watch reviews do not contain ARD-201.",
+    "incompleteChecks": [
+      "Exact ClinicalTrials.gov searches for ARD-201, Aardvark, POWER and STRENGTH did not return a matching public record. The SEC filing therefore controls the bounded status summary; absence from these searches is not proof that no registry or other record exists.",
+      "Search indexing can lag and selected results cannot exclude older omissions, unannounced programmes or additional international developers. Catalogue and configured-source counts do not establish industry completeness."
+    ]
+  },
+  "failedChecks": [],
+  "catalogueCounts": {
+    "detailed": 6,
+    "widerBefore": 92,
+    "widerAfter": 93,
+    "totalBefore": 98,
+    "totalAfter": 99,
+    "configuredSourcesBefore": 162,
+    "configuredSourcesAfter": 162
+  },
+  "sourceReviews": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1774857/000119312526344987/ck0001774857-20260630.htm",
+      "publicationDate": "2026-08-11",
+      "updateDate": null,
+      "reviewedAt": "2026-10-05T10:08:41Z",
+      "outcome": "Complete SEC filing read. POWER began in December 2025; STRENGTH remained planned; both ARD-201 programmes were voluntarily paused on 27 February 2026. Further ARD-201 timing depends on resolution of the ARD-101 clinical hold and future regulatory discussions."
+    },
+    {
+      "url": "https://ir.aardvarktherapeutics.com/news-releases/news-release-details/aardvark-therapeutics-announces-voluntary-pause-phase-3-hero",
+      "publicationDate": "2026-02-27",
+      "updateDate": null,
+      "reviewedAt": "2026-10-05T10:08:41Z",
+      "outcome": "Complete sponsor announcement read for the initial voluntary pause and its stated basis. Later SEC evidence controls the current programme summary."
+    },
+    {
+      "url": "https://aardvarktherapeutics.com/programs/",
+      "publicationDate": null,
+      "updateDate": "2025-10 (exact day unknown)",
+      "reviewedAt": "2026-10-05T10:08:41Z",
+      "outcome": "Full sponsor page read for formulation, route and intended trial questions. Its older planned-trial copy is not used as current status evidence."
+    }
+  ],
+  "nextAction": "Run the full Watch tests and exact-head release gates, publish through the guarded production workflow, then verify the live ARD-201 wording, Treatments entry and SELECT-only health endpoint."
+}

@@ -42,6 +42,7 @@ import vct220Publication from './reviews/2026-10-04-authorised-vct220.json' with
 import vk2735Maintenance from './reviews/2026-10-04-authorised-vk2735-maintenance.json' with {type:'json'};
 import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-discontinuation.json' with {type:'json'};
 import taldefgrobepRv8451 from './reviews/2026-10-04-authorised-taldefgrobep-rv8451.json' with {type:'json'};
+import ard201Pause from './reviews/2026-10-05-authorised-ard201-pause.json' with {type:'json'};
 import internationalMaintenanceWave from './reviews/2026-10-04-authorised-international-maintenance-wave.json' with {type:'json'};
 import asc30AuroraCorrection from './reviews/2026-10-05-authorised-asc30-aurora-phase3.json' with {type:'json'};
 import novoSpecialistWave from './reviews/2026-10-05-authorised-novo-specialist-wave.json' with {type:'json'};
@@ -369,8 +370,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,92);assert.equal(sources.length,162);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,98);
+ assert.equal(medicines.length,6);assert.equal(industry.length,93);assert.equal(sources.length,162);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,99);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -877,7 +878,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,92);
+ assert.equal(industry.length,93);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -1203,4 +1204,26 @@ test('Hansoh source review renews only the read claim-bearing baseline',()=>{
  assert.match(entry.ukAuthorisation,/Not established.*reviewed evidence/);
  assert.match(entry.nhsEngland,/no routine access claim/i);
  assert.match(entry.supply,/stock unverified/i);
+});
+
+test('ARD-201 keeps the initiated trial, planned trial, pause and ARD-101 hold distinct',()=>{
+ assert.equal(ard201Pause.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(ard201Pause.clinicalApproval,null);
+ assert.equal(ard201Pause.industryComplete,false);
+ assert.equal(ard201Pause.catalogueCounts.totalAfter,99);
+ assert.equal(ard201Pause.catalogueCounts.configuredSourcesAfter,162);
+ const entry=industry.find(item=>item.id==='ard201');
+ assert.ok(entry);
+ assert.equal(entry.group,'paused');
+ assert.match(entry.stage,/POWER initiated, then voluntarily paused/);
+ assert.match(entry.summary,/POWER began in December 2025/);
+ assert.match(entry.summary,/STRENGTH was planned/);
+ assert.match(entry.summary,/27 February 2026/);
+ assert.match(entry.limitations,/clinical hold described in the filing applies to the ARD-101 IND/);
+ assert.match(entry.limitations,/does not infer causation, severity, a restart, termination or a timetable/);
+ assert.match(entry.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.match(entry.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(entry.supply,/does not establish lawful UK retail supply/);
+ assert.equal(entry.sourceIds.length,0);
+ assert.equal(entry.additionalEvidence.length,3);
 });
