@@ -1,0 +1,69 @@
+{
+  "source": "9e7dd54f4d4d3da456b361de7db6544584aaae6a",
+  "base": "2b727bff6a33adb9bc37716314a0ace19e141bdb",
+  "bindings": 2093,
+  "usable": 2671,
+  "complete": false,
+  "entries": [
+    {
+      "path": "evidence/grub-image-coverage-2026-10-04",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "190a14898c0be8d0369f47599700303b198ce8ec"
+    },
+    {
+      "path": "evidence/recipe-image-worker",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "82579a05d28cd6ad82769f82e55a6b685feff007"
+    },
+    {
+      "path": "evidence/prepared-recipe-images-2026-10-04.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8053b44698c6a852b6dbf46249508cf6bd00661f"
+    },
+    {
+      "path": "frontend/member/assets/member-experience/food",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "61d83636f170ba86b59f279ac098587e34e60bd7"
+    },
+    {
+      "path": "member-experience/grub-client.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1050c1103c9b20301092e324e51a684cc408f6f0"
+    },
+    {
+      "path": "member-experience/grub-image-map.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7771f8b239b617a7574dbb23010b842214e60c9a"
+    },
+    {
+      "path": "member-experience/grub-intelligence-client.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a10809afb25589e9e7b30046be2017ae13991364"
+    },
+    {
+      "path": "member-experience/tests/grub-intelligence.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4cabf0097afbd98e2ef4be56955e7eceddb11610"
+    },
+    {
+      "path": "member-experience/tests/recipe-image-production.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "456b054e63eb3fc0fb37a07b263a8b6c3984edec"
+    },
+    {
+      "path": "scripts/build-grub-image-coverage.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd4059474f23adefabade8420a2d352460c3b6a6"
+    }
+  ]
+}
