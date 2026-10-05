@@ -427,8 +427,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,96);assert.equal(sources.length,171);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,102);
+ assert.equal(medicines.length,6);assert.equal(industry.length,97);assert.equal(sources.length,171);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,103);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -936,7 +936,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,96);
+ assert.equal(industry.length,97);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -1312,3 +1312,5 @@ test('oral ASC36 promotion stays formulation-specific and does not invent regist
  assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
  assert.equal(asc36OralPublication.discoveryPass.failedChecks.length,0);
 });
+
+test("710GO keeps sponsor dosing separate from animal findings and unknown registry",()=>{const e=industry.find(e=>e.id==='710go');assert.ok(e);assert.equal(e.clinicalApproval,null);assert.deepEqual(e.sourceIds,[]);assert.match(e.stage,/Sponsor-reported first dosing in Phase 1/);assert.match(e.limitations,/no human trial results/);assert.match(e.limitations,/registry discovery remains incomplete/);assert.match(e.limitations,/preclinical studies/);assert.match(e.additionalEvidence[0].checkScope,/HTTP 403/);assert.equal(e.additionalEvidence[0].sourcePublishedAt,'2026-05-28');assert.equal(e.additionalEvidence[0].sourceUpdatedAt,null);const html=industryMarkup({},new URLSearchParams({q:'710GO'}));assert.match(html,/710GO/);assert.match(html,/prnewswire.com/);});
