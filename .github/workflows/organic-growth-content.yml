@@ -1,0 +1,119 @@
+name: SHIFT Organic Growth Content Pass 1
+
+on:
+  push:
+    branches: [main, codex/organic-growth-pass1-20261005]
+    paths:
+      - 'editorial/organic-growth-20261005/**'
+      - '.github/workflows/organic-growth-content.yml'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Snapshot or verify without writes; publish the reviewed two-article release on current main'
+        type: choice
+        options: [verify, snapshot, publish]
+        default: verify
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: organic-growth-content-pass1-production
+  cancel-in-progress: false
+
+jobs:
+  content:
+    if: github.repository == 'shiftsometimber/shift-core' && github.actor_id == '315011648'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+      ORGANIC_GROWTH_BASE_SHA: 70bb5a39ccd89a73b96833f754ef7a81b5cbb318
+      ORGANIC_GROWTH_PROOF_DIR: organic-growth-proof
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - id: intent
+        name: Restrict branch runs to read-only snapshots and require bounded source scope
+        shell: bash
+        env:
+          REQUESTED_MODE: ${{ inputs.mode }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os, subprocess
+          base=os.environ['ORGANIC_GROWTH_BASE_SHA']
+          changed=subprocess.check_output(['git','diff','--name-only',base,'HEAD'],text=True).splitlines()
+          allowed=lambda p: p=='.github/workflows/organic-growth-content.yml' or p.startswith('editorial/organic-growth-20261005/')
+          forbidden=[p for p in changed if not allowed(p)]
+          assert not forbidden, 'Content release contains unrelated paths: '+repr(forbidden)
+          PY
+          if [ "$GITHUB_REF" = 'refs/heads/codex/organic-growth-pass1-20261005' ]; then
+            test "$GITHUB_EVENT_NAME" = 'push'
+            test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$ORGANIC_GROWTH_BASE_SHA"
+            mode=snapshot
+          elif [ "$GITHUB_REF" = 'refs/heads/main' ]; then
+            if [ "$GITHUB_EVENT_NAME" = 'push' ]; then
+              mode=publish
+            else
+              test "$GITHUB_EVENT_NAME" = 'workflow_dispatch'
+              case "$REQUESTED_MODE" in verify|snapshot|publish) mode="$REQUESTED_MODE" ;; *) exit 1 ;; esac
+            fi
+            node --input-type=module -e "import {readCurrentMain} from './scripts/current-main-guard.mjs'; await readCurrentMain();"
+          else
+            exit 1
+          fi
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
+          echo "ORGANIC_GROWTH_MODE=$mode" >> "$GITHUB_ENV"
+          test -n "$CLOUDFLARE_API_TOKEN"
+          node --check editorial/organic-growth-20261005/publish.mjs
+      - name: Install existing pinned query toolchain
+        run: npm ci --no-audit --no-fund
+      - id: snapshot
+        name: Capture exact selected rows, receipts and restoration data without writes
+        if: steps.intent.outputs.mode != 'verify'
+        run: node editorial/organic-growth-20261005/publish.mjs --snapshot
+      - id: prepare
+        name: Validate reviewed copy, exact source guards and existing article rendering
+        if: steps.intent.outputs.mode == 'publish'
+        run: |
+          node editorial/organic-growth-20261005/publish.mjs --check
+          node --test editorial/organic-growth-20261005/*.test.mjs babylove/dynamic-public.test.mjs
+      - name: Retain exact pre-publication backup before any production mutation
+        if: steps.intent.outputs.mode != 'verify'
+        uses: actions/upload-artifact@v4
+        with:
+          name: organic-growth-before-${{ github.run_id }}-${{ github.run_attempt }}
+          path: organic-growth-proof/
+          if-no-files-found: error
+          retention-days: 90
+      - id: apply
+        name: Update only the two guarded live content rows on current main
+        if: steps.intent.outputs.mode == 'publish'
+        run: |
+          node --input-type=module -e "import {readCurrentMain} from './scripts/current-main-guard.mjs'; await readCurrentMain();"
+          node editorial/organic-growth-20261005/publish.mjs --apply
+      - id: verify
+        name: Prove exact database values, public HTML, canonical URLs and publication dates
+        if: steps.intent.outputs.mode == 'publish' || steps.intent.outputs.mode == 'verify'
+        run: node editorial/organic-growth-20261005/publish.mjs --verify
+      - name: Restore only changes still owned by this run after failed publication proof
+        if: failure() && steps.intent.outputs.mode == 'publish' && (steps.apply.outcome == 'failure' || steps.verify.outcome == 'failure')
+        run: node editorial/organic-growth-20261005/publish.mjs --rollback
+      - name: Retain publication, live proof and restoration receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: organic-growth-proof-${{ github.run_id }}-${{ github.run_attempt }}
+          path: organic-growth-proof/
+          if-no-files-found: warn
+          retention-days: 90
