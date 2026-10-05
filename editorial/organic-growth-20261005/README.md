@@ -2,7 +2,7 @@
 
 Thirty ranked search families across the six agreed lanes. Ranking uses SHIFT’s observed visibility, strategic fit and useful existing-page improvements. It is **not a ranking by verified UK search volume**.
 
-OG-01 and OG-02 are the planned first production-authored candidates. This map does not mark them live. The other 28 are a ranked queue; each needs an authored candidate, current source/content checks, rendering checks and a production receipt before it is complete.
+OG-01 and OG-02 were published and verified on 5 October 2026 at 20:52 UTC. See `release-receipt.json` for the exact public-page checks, source commit and measurement annotation. Publication used the owner’s authenticated local release after GitHub jobs remained queued; it did not deploy the Worker. The other 28 are a ranked queue; each needs an authored candidate, current source/content checks, rendering checks and a production receipt before it is complete.
 
 The homepage and Start Here flow are protected. No new URL, redirect or public edit is made by this map. Reta keeps `/guides/retatrutide-uk-guide`.
 

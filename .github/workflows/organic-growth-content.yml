@@ -63,7 +63,11 @@ jobs:
             mode=snapshot
           elif [ "$GITHUB_REF" = 'refs/heads/main' ]; then
             if [ "$GITHUB_EVENT_NAME" = 'push' ]; then
-              mode=publish
+              if [ -f 'editorial/organic-growth-20261005/release-receipt.json' ]; then
+                mode=verify
+              else
+                mode=publish
+              fi
             else
               test "$GITHUB_EVENT_NAME" = 'workflow_dispatch'
               case "$REQUESTED_MODE" in verify|snapshot|publish) mode="$REQUESTED_MODE" ;; *) exit 1 ;; esac
@@ -105,7 +109,9 @@ jobs:
       - id: verify
         name: Prove exact database values, public HTML, canonical URLs and publication dates
         if: steps.intent.outputs.mode == 'publish' || steps.intent.outputs.mode == 'verify'
-        run: node editorial/organic-growth-20261005/publish.mjs --verify
+        run: |
+          mkdir -p organic-growth-proof
+          node editorial/organic-growth-20261005/publish.mjs --verify
       - name: Restore only changes still owned by this run after failed publication proof
         if: failure() && steps.intent.outputs.mode == 'publish' && (steps.apply.outcome == 'failure' || steps.verify.outcome == 'failure')
         run: node editorial/organic-growth-20261005/publish.mjs --rollback
