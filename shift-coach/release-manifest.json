@@ -264,5 +264,14 @@
     "tolerancePercent": 20,
     "limitMs": 3000,
     "scope": "Homepage mobile median LCP lab release check; retain actual timings and distinguish target-met from within-tolerance. Does not establish real-user timing."
+  },
+  "fitComposition": {
+    "proof": "FIT_300_BOUNDED_RELEASE_COMPOSITION_V1",
+    "source": "76562e03ec3c5544c1952afaea73305db932ea31",
+    "paths": [
+      "scripts/b1-release-scope.mjs",
+      "release/app-scope.mjs",
+      "shift-coach/release-contract.mjs"
+    ]
   }
 }

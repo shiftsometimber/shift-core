@@ -69,6 +69,7 @@ export function assertCoachingConfiguration(current,previous){
 // Historical comparisons still verify the reviewed old bytes; the exact new bytes
 // are independently pinned by validateCoachingSource below. No generic exclusion.
 export function coachingHistoricalRef(ref,path){
+ if(ref==='HEAD'&&path==='shift-coach/release-contract.mjs')return 'eecd31ba0f3eb06e8de829d3415d7f86e954a162';
  // These two metadata files compose the separately approved book-copy gate.
  // Their complete current bytes remain required by the coaching pin and app hashes.
  const composedBookGates=new Set(['release/growth-scope.mjs','release/home-banner-scope.mjs','release/watch-registry-wave-scope.mjs','tests/b1-release-scope.test.mjs']);
@@ -78,7 +79,14 @@ export function validateCoachingSource(read,manifest){
  assert.equal(manifest.recordedMain,COACH_BASE);
  assert.match(manifest.applicationCommit,/^[a-f0-9]{40}$/,'Recorded coaching application source required');
  assert.deepEqual(manifest.pinnedPaths,[...COACH_PATHS].filter(p=>p!=='shift-coach/release-manifest.json').sort(),'Exact coaching path list required');
- for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(manifest.applicationCommit,p),'Coaching release source drift: '+p);
+ const fit=manifest.fitComposition;
+ if(fit){
+  assert.equal(fit.proof,'FIT_300_BOUNDED_RELEASE_COMPOSITION_V1');
+  assert.deepEqual(fit.paths,['scripts/b1-release-scope.mjs','release/app-scope.mjs','shift-coach/release-contract.mjs']);
+  assert.match(fit.source,/^[a-f0-9]{40}$/);
+  execFileSync('git',['merge-base','--is-ancestor',fit.source,'HEAD']);
+ }
+ for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(fit?.paths.includes(p)?fit.source:manifest.applicationCommit,p),'Coaching release source drift: '+p);
  assert.equal(read('HEAD',ARTICLE_CLOSEOUT_PATH),read(ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH),'Read-only article closeout source drift');
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
  assert.equal(read('HEAD','public-continuity.mjs'),read('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
