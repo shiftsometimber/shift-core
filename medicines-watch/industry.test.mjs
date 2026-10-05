@@ -44,6 +44,7 @@ import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-
 import taldefgrobepRv8451 from './reviews/2026-10-04-authorised-taldefgrobep-rv8451.json' with {type:'json'};
 import internationalMaintenanceWave from './reviews/2026-10-04-authorised-international-maintenance-wave.json' with {type:'json'};
 import novoSpecialistWave from './reviews/2026-10-05-authorised-novo-specialist-wave.json' with {type:'json'};
+import hansohOlatorepatideReview from './reviews/2026-10-05-authorised-hansoh-olatorepatide-source-review.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('VK2735 maintenance evidence stays sponsor-reported and does not create an approved regimen',()=>{
  const e=industry.find(e=>e.id==='vk2735');
@@ -1061,4 +1062,25 @@ test('programme-level Novo and specialist discovery preserves indication and evi
  }
  assert.equal(novoSpecialistWave.failedChecks.length,2);
  assert.match(novoSpecialistWave.failedChecks[0].outcome,/timed out/);
+});
+
+test('Hansoh source review renews only the read claim-bearing baseline',()=>{
+ assert.equal(hansohOlatorepatideReview.publicationStatus,'owner_authorised_source_review');
+ assert.equal(hansohOlatorepatideReview.clinicalApproval,null);
+ assert.equal(hansohOlatorepatideReview.industryComplete,false);
+ assert.equal(hansohOlatorepatideReview.medicineWordingChanged,false);
+ assert.equal(hansohOlatorepatideReview.monitoring.thresholdsChanged,false);
+ assert.equal(hansohOlatorepatideReview.monitoring.successesSeeded,false);
+ assert.match(hansohOlatorepatideReview.monitoring.result,/complete primary-source read/);
+ const source=industrySources.find(item=>item.id==='hansoh-olatorepatide-20260604');
+ assert.equal(source.reviewedAt,hansohOlatorepatideReview.reviewedAt);
+ assert.equal(source.reviewedFingerprint,hansohOlatorepatideReview.source.reviewedFingerprint);
+ assert.notEqual(source.reviewedFingerprint,hansohOlatorepatideReview.monitoring.previousReviewedFingerprint);
+ const entry=industry.find(item=>item.id==='olatorepatide');
+ assert.equal(entry.reviewedAt,hansohOlatorepatideReview.reviewedAt);
+ assert.match(entry.stage,/Chinese NDA accepted following Phase III/);
+ assert.match(entry.summary,/Acceptance is not marketing approval/);
+ assert.match(entry.ukAuthorisation,/Not established.*reviewed evidence/);
+ assert.match(entry.nhsEngland,/no routine access claim/i);
+ assert.match(entry.supply,/stock unverified/i);
 });
