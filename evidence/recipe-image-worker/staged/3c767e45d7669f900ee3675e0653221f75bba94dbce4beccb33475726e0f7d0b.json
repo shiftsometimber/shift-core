@@ -1,0 +1,87 @@
+{
+  "groupId": "3c767e45d7669f900ee3675e0653221f75bba94dbce4beccb33475726e0f7d0b",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-mango-protein-pudding"
+  ],
+  "titles": [
+    "Shift Mango Protein Pudding Work Snack Box"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "mango"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mango Protein Pudding Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"mango\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-760d01a7-d299-4504-92c8-604c843ba8a8.png",
+  "source_sha256": "6ed7e83490d3bb88fdcd35805d4bb9b657b381e6c2266c8556035e187933407d",
+  "generated_at": "2026-10-05T18:33:51.736Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3c767e45d7669f900ee3-final20261005-480-6dd0d5dda945.webp",
+      "sha256": "6dd0d5dda9459eedd5575eec775722c4bb3f08a653ad0c2988ece942c8249662",
+      "bytes": 28234
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3c767e45d7669f900ee3-final20261005-960-c21265ca4a1f.webp",
+      "sha256": "c21265ca4a1fadd8c91d8b3575cb97af629741ef56b7dfcc1504b60baa9c8c73",
+      "bytes": 78938
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 006, item 57. The finished food, main ingredient identity and serving form agree with Shift Mango Protein Pudding Work Snack Box and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Mango Protein Pudding Work Snack Box served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "6ed7e83490d3bb88fdcd35805d4bb9b657b381e6c2266c8556035e187933407d",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-mango-protein-pudding"
+    ],
+    "titles": [
+      "Shift Mango Protein Pudding Work Snack Box"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,80 @@
+{
+  "groupId": "ce6f621524f8ec5ea4f20faaa10ab5c0ded17775dac0c43eee2881e3fb711d40",
+  "recipe_ids": [
+    "industrial-snack-apple-protein-snack-cinnamon"
+  ],
+  "titles": [
+    "Cinnamon Apple Protein Snack"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "15g",
+      "item": "peanut butter",
+      "allergens": [
+        "peanuts"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "2.3g",
+      "item": "ground cinnamon"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare any fruit or vegetables and keep chilled ingredients cold.",
+    "Combine or pack the ingredients into a bowl or lidded container.",
+    "Finish with the measured cinnamon.",
+    "Eat straight away or keep refrigerated until needed."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cinnamon Apple Protein Snack. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"15g\",\"item\":\"peanut butter\",\"allergens\":[\"peanuts\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"2.3g\",\"item\":\"ground cinnamon\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare any fruit or vegetables and keep chilled ingredients cold.\",\"Combine or pack the ingredients into a bowl or lidded container.\",\"Finish with the measured cinnamon.\",\"Eat straight away or keep refrigerated until needed.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-6dd714fa-bbf6-4894-8945-36964ec553f2.png",
+  "source_sha256": "644eb8f555cfaf39c83aff743d83ec200443cab8e9075bfec5a91e807b18aecb",
+  "generated_at": "2026-10-05T18:22:30.703Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ce6f621524f8ec5ea4f2-final20261005-480-e60cb11bea5e.webp",
+      "sha256": "e60cb11bea5e2f1045e9eb1125d3c59a180ee34bf23af8df2d72cae3f8c6dbf8",
+      "bytes": 19458
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ce6f621524f8ec5ea4f2-final20261005-960-0fa7225c297b.webp",
+      "sha256": "0fa7225c297b13c2cec14d63028dafd9092940f6b64c31d9bc42adbd07f8aaf4",
+      "bytes": 61902
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 023, item 214. The finished food, main ingredient identity and serving form agree with Cinnamon Apple Protein Snack and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Cinnamon Apple Protein Snack served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "644eb8f555cfaf39c83aff743d83ec200443cab8e9075bfec5a91e807b18aecb",
+    "recipe_ids": [
+      "industrial-snack-apple-protein-snack-cinnamon"
+    ],
+    "titles": [
+      "Cinnamon Apple Protein Snack"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "690c3b49c1c034b12bb06c45573c050f5bf892e0ca05642397c86805dd92a2bd",
+  "recipe_ids": [
+    "industrial-snack-apple-protein-snack-classic"
+  ],
+  "titles": [
+    "Classic Apple Protein Snack"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "15g",
+      "item": "peanut butter",
+      "allergens": [
+        "peanuts"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1/2 tsp",
+      "item": "ground cinnamon"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare any fruit or vegetables and keep chilled ingredients cold.",
+    "Combine or pack the ingredients into a bowl or lidded container.",
+    "Finish with measured pumpkin seeds for crunch.",
+    "Eat straight away or keep refrigerated until needed."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Classic Apple Protein Snack. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"15g\",\"item\":\"peanut butter\",\"allergens\":[\"peanuts\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1/2 tsp\",\"item\":\"ground cinnamon\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare any fruit or vegetables and keep chilled ingredients cold.\",\"Combine or pack the ingredients into a bowl or lidded container.\",\"Finish with measured pumpkin seeds for crunch.\",\"Eat straight away or keep refrigerated until needed.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-24b5cb8b-e36b-4987-a412-92a912c5c4c7.png",
+  "source_sha256": "b77bb783c13dbcc320e772dc08036d3fb3a74009502bee369cd7751f2ab82de2",
+  "generated_at": "2026-10-05T18:24:15.093Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-690c3b49c1c034b12bb0-final20261005-480-3574e1bc6c53.webp",
+      "sha256": "3574e1bc6c53a7efd22440c214b0bc73da687eb2b01411abd781d64358fc2eca",
+      "bytes": 25530
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-690c3b49c1c034b12bb0-final20261005-960-ee9ebf8e1575.webp",
+      "sha256": "ee9ebf8e15756a3efd9e960706c66c5c36661043719c896bbe28f9d33a8d7cba",
+      "bytes": 81956
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 010, item 91. The finished food, main ingredient identity and serving form agree with Classic Apple Protein Snack and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Classic Apple Protein Snack served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "b77bb783c13dbcc320e772dc08036d3fb3a74009502bee369cd7751f2ab82de2",
+    "recipe_ids": [
+      "industrial-snack-apple-protein-snack-classic"
+    ],
+    "titles": [
+      "Classic Apple Protein Snack"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

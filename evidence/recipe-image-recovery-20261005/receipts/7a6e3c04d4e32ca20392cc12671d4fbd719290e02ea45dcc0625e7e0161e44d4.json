@@ -1,0 +1,83 @@
+{
+  "groupId": "7a6e3c04d4e32ca20392cc12671d4fbd719290e02ea45dcc0625e7e0161e44d4",
+  "recipe_ids": [
+    "industrial-snack-egg-snack-box-berry"
+  ],
+  "titles": [
+    "Tomato Egg Snack Box"
+  ],
+  "ingredients": [
+    {
+      "amount": "2",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "80g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "25g",
+      "item": "wholegrain crackers",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "tomato"
+    }
+  ],
+  "method": [
+    "Measure everything before assembling the snack so the portion stays intentional.",
+    "Halve the eggs and pack them with the vegetables, crackers and measured savoury add-on.",
+    "Keep chilled protein and vegetables refrigerated until you are ready to eat.",
+    "Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Tomato Egg Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"2\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"80g\",\"item\":\"cucumber\"},{\"amount\":\"25g\",\"item\":\"wholegrain crackers\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"tomato\"}]. Preparation: [\"Measure everything before assembling the snack so the portion stays intentional.\",\"Halve the eggs and pack them with the vegetables, crackers and measured savoury add-on.\",\"Keep chilled protein and vegetables refrigerated until you are ready to eat.\",\"Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-793d4f01-3827-47f6-bf4c-f740cb1229cd.png",
+  "source_sha256": "e4d0c7aa103a6d05c03d333e8c1f8f051fb8a96d16220437136fda4f2cff2e7e",
+  "generated_at": "2026-10-05T18:40:32.482Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7a6e3c04d4e32ca20392-final20261005-480-a4f18f33092e.webp",
+      "sha256": "a4f18f33092e8784f4903110fd566cd0313ef5656f42fa7d73f18b929601a3eb",
+      "bytes": 28192
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7a6e3c04d4e32ca20392-final20261005-960-a06dbd9a7207.webp",
+      "sha256": "a06dbd9a7207d5d76c39742e363bd1f42e89fc2761d22d59390a57259d2eb108",
+      "bytes": 83308
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 012, item 115. The finished food, main ingredient identity and serving form agree with Tomato Egg Snack Box and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Tomato Egg Snack Box served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "e4d0c7aa103a6d05c03d333e8c1f8f051fb8a96d16220437136fda4f2cff2e7e",
+    "recipe_ids": [
+      "industrial-snack-egg-snack-box-berry"
+    ],
+    "titles": [
+      "Tomato Egg Snack Box"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

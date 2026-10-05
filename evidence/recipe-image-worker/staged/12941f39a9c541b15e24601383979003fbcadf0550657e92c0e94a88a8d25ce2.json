@@ -6,7 +6,6 @@
   "titles": [
     "Shift Creamy Cheddar Turkey Meal-Prep Bowl"
   ],
-  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Turkey Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients. Brown rice must be naturally tan, with intact bran coats and longitudinal bran seams visibly present, not ivory white rice with spice flecks.",
   "ingredients": [
     {
       "amount": "130g",
@@ -50,27 +49,44 @@
     "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.",
     "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
   ],
-  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-990bc8ea-16b9-422d-a515-af40e07b1917.png",
-  "source_sha256": "3c5b7891f53f9ebfa619cc66e36fe1c078f7c8c538d2b21bf02c952b2e26aacd",
-  "generated_at": "2026-10-05T01:29:40.663Z",
-  "elapsed_ms": 280491,
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Turkey Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-3d03e2c6-471f-46e0-9d1a-0bc52e2bdf60.png",
+  "source_sha256": "a5eded7c65258b83ec314a728fa1c5a2802ae9bf04fa325cef3cb2cd470a68d4",
+  "generated_at": "2026-10-05T18:17:37.005Z",
   "variants": [
     {
       "width": 480,
       "height": 360,
-      "asset": "evidence/recipe-image-worker/assets/catalogue-12941f39a9c541b15e24-480.webp",
-      "sha256": "418498abb678a01db95b3c0714a068b69b66a919b55bddc8db8f5ace88212aec",
-      "bytes": 27844
+      "asset": "frontend/member/assets/member-experience/food/catalogue-12941f39a9c541b15e24-final20261005-480-dd1dcb781eb0.webp",
+      "sha256": "dd1dcb781eb031994422ece4d3cc94ebd841563a80ed5f612deb8cac61458167",
+      "bytes": 31520
     },
     {
       "width": 960,
       "height": 720,
-      "asset": "evidence/recipe-image-worker/assets/catalogue-12941f39a9c541b15e24.webp",
-      "sha256": "31e2ff0c00ba14bca7fd4174f67abd4b506ecd17f91a034b4355e5cc0e357f88",
-      "bytes": 79714
+      "asset": "frontend/member/assets/member-experience/food/catalogue-12941f39a9c541b15e24-final20261005-960-972685669806.webp",
+      "sha256": "97268566980600e0e1706c3138f80d3da0581750d160691a866bf6b0848d7d63",
+      "bytes": 93442
     }
   ],
-  "review_status": "pending",
-  "integrated": false,
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 002, item 18. The finished food, main ingredient identity and serving form agree with Shift Creamy Cheddar Turkey Meal-Prep Bowl and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Creamy Cheddar Turkey Meal-Prep Bowl served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "a5eded7c65258b83ec314a728fa1c5a2802ae9bf04fa325cef3cb2cd470a68d4",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-caesar-turkey"
+    ],
+    "titles": [
+      "Shift Creamy Cheddar Turkey Meal-Prep Bowl"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
   "live": false
 }

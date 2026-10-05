@@ -1,0 +1,85 @@
+{
+  "groupId": "dba03f64b7ba984e35efc47bd2f0c153b3f9fce90ab3115884d65f32631f23da",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-mango-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Mango Fruit Crunch Big Feed Dessert"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "80g",
+      "item": "mango"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mango Fruit Crunch Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"80g\",\"item\":\"mango\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-f28335d2-7e79-4350-ade6-20e5a2ded02a.png",
+  "source_sha256": "e448e364426e9313aa9456f0c60afa2688fc886f2f80911864bb23b655867287",
+  "generated_at": "2026-10-05T18:35:43.046Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-dba03f64b7ba984e35ef-final20261005-480-38bd7123cd46.webp",
+      "sha256": "38bd7123cd469c8a5addd15599a22f57cbced1da5839c0872823e360e4f6af1a",
+      "bytes": 28262
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-dba03f64b7ba984e35ef-final20261005-960-86e5ce60ea9c.webp",
+      "sha256": "86e5ce60ea9cd5cf463a8d5429927a470df8058c61f9d9773f7e8f429c6bf618",
+      "bytes": 81322
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 026, item 234. The finished food, main ingredient identity and serving form agree with Shift Mango Fruit Crunch Big Feed Dessert and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Mango Fruit Crunch Big Feed Dessert served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "e448e364426e9313aa9456f0c60afa2688fc886f2f80911864bb23b655867287",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-mango-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Mango Fruit Crunch Big Feed Dessert"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

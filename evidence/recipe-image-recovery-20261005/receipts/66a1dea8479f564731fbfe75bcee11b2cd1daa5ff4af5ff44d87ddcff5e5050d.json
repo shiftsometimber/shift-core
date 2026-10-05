@@ -1,0 +1,81 @@
+{
+  "groupId": "66a1dea8479f564731fbfe75bcee11b2cd1daa5ff4af5ff44d87ddcff5e5050d",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-mango-savory-box"
+  ],
+  "titles": [
+    "Shift Mango Banana Split Snack Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "80g",
+      "item": "mango"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the banana in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mango Banana Split Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"80g\",\"item\":\"mango\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the banana in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-432d50c0-be42-4c5b-808d-03c04c7329bd.png",
+  "source_sha256": "4b8b17d1c4cbbe1b2c083b4e7c770b778c39ef75e5a1f2db49b26d912a2be0ee",
+  "generated_at": "2026-10-05T18:32:57.730Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-66a1dea8479f564731fb-final20261005-480-e6c3088c2276.webp",
+      "sha256": "e6c3088c227679944b7dcfd7bbd9221071b6b796f5e1645792bbf1cc38186b32",
+      "bytes": 23490
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-66a1dea8479f564731fb-final20261005-960-d7c4ff38827b.webp",
+      "sha256": "d7c4ff38827ba760d1fcf6fcf8f5b5b5ee9458ed87b07ea90b0d9382a8aecdcd",
+      "bytes": 67196
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 009, item 89. The finished food, main ingredient identity and serving form agree with Shift Mango Banana Split Snack Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Mango Banana Split Snack Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "4b8b17d1c4cbbe1b2c083b4e7c770b778c39ef75e5a1f2db49b26d912a2be0ee",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-mango-savory-box"
+    ],
+    "titles": [
+      "Shift Mango Banana Split Snack Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "7ec799e8135c15475a56cb3ca3434c495b535b848ba37f1e3a0c509663411750",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-caramel-protein-pudding"
+  ],
+  "titles": [
+    "Shift Honey Protein Pudding Protein Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "8g",
+      "item": "honey"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Honey Protein Pudding Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"8g\",\"item\":\"honey\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-4f28d74f-80c8-4fdb-ab4e-a2c61be70b75.png",
+  "source_sha256": "15e32ef1e26394c469e62e5264b529da1a05428bd18cbd66a15ad74376e346af",
+  "generated_at": "2026-10-05T18:32:13.954Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7ec799e8135c15475a56-final20261005-480-44b21a425f90.webp",
+      "sha256": "44b21a425f90c95224195dc72588af83d722d94aaa8ee9b1b5162d446e5df065",
+      "bytes": 23864
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7ec799e8135c15475a56-final20261005-960-beab766e1b56.webp",
+      "sha256": "beab766e1b565831a79f4c0b6b6a7c858dab95c54bbfb6c8e49ecf5de4cc3eec",
+      "bytes": 71892
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 013, item 118. The finished food, main ingredient identity and serving form agree with Shift Honey Protein Pudding Protein Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Honey Protein Pudding Protein Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "15e32ef1e26394c469e62e5264b529da1a05428bd18cbd66a15ad74376e346af",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-caramel-protein-pudding"
+    ],
+    "titles": [
+      "Shift Honey Protein Pudding Protein Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

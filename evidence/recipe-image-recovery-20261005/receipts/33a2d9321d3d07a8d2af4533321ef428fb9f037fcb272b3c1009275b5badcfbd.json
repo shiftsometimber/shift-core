@@ -1,0 +1,87 @@
+{
+  "groupId": "33a2d9321d3d07a8d2af4533321ef428fb9f037fcb272b3c1009275b5badcfbd",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-weekend-treat-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Weekend Treat Greek Yoghurt Work Snack Box"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate chips"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the 0% Greek yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the 0% Greek yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Treat Greek Yoghurt Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"15g\",\"item\":\"dark chocolate chips\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the 0% Greek yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the 0% Greek yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-6685e39b-fd34-4780-9441-16bfd4fcd7e8.png",
+  "source_sha256": "31bc241822a9ddc0b38e960199171f8fe5e295bb1e482f173e2a80d8d2794189",
+  "generated_at": "2026-10-05T18:40:33.282Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-33a2d9321d3d07a8d2af-final20261005-480-7321560fda2f.webp",
+      "sha256": "7321560fda2f616374251ba32194c44d94784f674aad0dd81d68613d35aea1f1",
+      "bytes": 27604
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-33a2d9321d3d07a8d2af-final20261005-960-175587a350ef.webp",
+      "sha256": "175587a350efbfc176c4c67aa4e35ee04f1e682ebdaf172e842080b4c8b03394",
+      "bytes": 82786
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 005, item 48. The finished food, main ingredient identity and serving form agree with Shift Weekend Treat Greek Yoghurt Work Snack Box and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Weekend Treat Greek Yoghurt Work Snack Box served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "31bc241822a9ddc0b38e960199171f8fe5e295bb1e482f173e2a80d8d2794189",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-weekend-treat-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Weekend Treat Greek Yoghurt Work Snack Box"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

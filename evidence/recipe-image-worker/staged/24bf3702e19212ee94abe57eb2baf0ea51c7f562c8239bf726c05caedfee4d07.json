@@ -1,0 +1,87 @@
+{
+  "groupId": "24bf3702e19212ee94abe57eb2baf0ea51c7f562c8239bf726c05caedfee4d07",
+  "recipe_ids": [
+    "industrial-v3-sandwich-classic-tuna"
+  ],
+  "titles": [
+    "Shift Classic Tuna Proper Sandwich"
+  ],
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "light mayonnaise"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the tuna in spring water, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the classic flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can — nobody asked for a soggy lunch.",
+    "Pile in the tuna in spring water, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Tuna Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"light mayonnaise\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the tuna in spring water, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the classic flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can — nobody asked for a soggy lunch.\",\"Pile in the tuna in spring water, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-75093dad-0b5b-4297-bbd8-fbfea2b8122d.png",
+  "source_sha256": "162e36bed4019901ec47870b80d122e558ae9144d0f127c7cb54508eb147f627",
+  "generated_at": "2026-10-05T18:17:08.865Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-24bf3702e19212ee94ab-final20261005-480-deefd4def150.webp",
+      "sha256": "deefd4def1504b5a27393a85cd706617f9350894d042f03c60ce9feaa4d84a6a",
+      "bytes": 28340
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-24bf3702e19212ee94ab-final20261005-960-cdb74524a982.webp",
+      "sha256": "cdb74524a982a88efeb4770e8812af97f105a573685b727aba930a55407f2921",
+      "bytes": 84256
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 003, item 34. The finished food, main ingredient identity and serving form agree with Shift Classic Tuna Proper Sandwich and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Classic Tuna Proper Sandwich served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "162e36bed4019901ec47870b80d122e558ae9144d0f127c7cb54508eb147f627",
+    "recipe_ids": [
+      "industrial-v3-sandwich-classic-tuna"
+    ],
+    "titles": [
+      "Shift Classic Tuna Proper Sandwich"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

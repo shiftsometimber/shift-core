@@ -1,0 +1,77 @@
+{
+  "groupId": "8b3da52b48fee739b37ee98a38c019b1f3387372ff5fce45d0aee0bf93dce2b9",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-caramel-overnight-oats"
+  ],
+  "titles": [
+    "Shift Honey Oat Crunch Snack Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "85g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "8g",
+      "item": "honey"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Toast the rolled oats and seeds in a dry frying pan over a medium heat for 4\u20135 minutes, stirring until they smell nutty and take on a little colour.",
+    "Tip the toasted crunch onto a plate and let it cool completely while you prepare the mixed berries and other measured fruit.",
+    "Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.",
+    "Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Honey Oat Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"85g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"8g\",\"item\":\"honey\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Toast the rolled oats and seeds in a dry frying pan over a medium heat for 4\u20135 minutes, stirring until they smell nutty and take on a little colour.\",\"Tip the toasted crunch onto a plate and let it cool completely while you prepare the mixed berries and other measured fruit.\",\"Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.\",\"Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-56c8478c-504e-4e47-8648-774e7858b54c.png",
+  "source_sha256": "451ba7c9a69d424a83a9f48bdf8dad56a2459df41b1fba891574aba7badfd213",
+  "generated_at": "2026-10-05T18:29:23.643Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8b3da52b48fee739b37e-final20261005-480-95e91b427963.webp",
+      "sha256": "95e91b427963a080e6bbd3016eece0c875c13aec788a39a52333d9bd97a2a477",
+      "bytes": 23992
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8b3da52b48fee739b37e-final20261005-960-d95d2ddb7ad7.webp",
+      "sha256": "d95d2ddb7ad76fd74726e621b484240d9a782f16c05ff6beae034920a742cff8",
+      "bytes": 73562
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 015, item 135. The finished food, main ingredient identity and serving form agree with Shift Honey Oat Crunch Snack Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Honey Oat Crunch Snack Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "451ba7c9a69d424a83a9f48bdf8dad56a2459df41b1fba891574aba7badfd213",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-caramel-overnight-oats"
+    ],
+    "titles": [
+      "Shift Honey Oat Crunch Snack Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

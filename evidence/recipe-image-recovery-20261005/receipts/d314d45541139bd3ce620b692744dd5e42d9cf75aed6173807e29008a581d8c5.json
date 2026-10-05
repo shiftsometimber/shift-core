@@ -1,0 +1,88 @@
+{
+  "groupId": "d314d45541139bd3ce620b692744dd5e42d9cf75aed6173807e29008a581d8c5",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-orange-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Orange Greek Yoghurt Big Feed Dessert"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "15ml",
+      "item": "orange juice"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Orange Greek Yoghurt Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"15ml\",\"item\":\"orange juice\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-fc71204d-3a04-4cc8-85c8-303482181171.png",
+  "source_sha256": "2b48834a1845458f11c937ee006f4a38d3ea900b50f2b241bcd72f6878b8c49e",
+  "generated_at": "2026-10-05T18:39:57.051Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d314d45541139bd3ce62-final20261005-480-fe62a0c824c0.webp",
+      "sha256": "fe62a0c824c0d1a398cfd99981c0d24f7fefda45daa878e8ce088590e83076e7",
+      "bytes": 20020
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d314d45541139bd3ce62-final20261005-960-17c76f2f6791.webp",
+      "sha256": "17c76f2f67918083190d7a458af942991acafe029a9ecd12ff09ced61551e9f3",
+      "bytes": 55934
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 024, item 222. The finished food, main ingredient identity and serving form agree with Shift Orange Greek Yoghurt Big Feed Dessert and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Orange Greek Yoghurt Big Feed Dessert served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "2b48834a1845458f11c937ee006f4a38d3ea900b50f2b241bcd72f6878b8c49e",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-orange-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Orange Greek Yoghurt Big Feed Dessert"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}
