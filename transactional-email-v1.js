@@ -50,6 +50,8 @@ async function auditDelivery(env,detail){
 const escapeHtml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 export async function sendTransactionalEmail(env,{to,subject,text,html,eventType,userId=null,internalNotify=false,includeMatt=false}){
+  const isSupport=eventType==='support'||eventType==='interest_notify';
+  const sender=isSupport?SHIFT_MAILBOXES.support:String(env.TRANSACTIONAL_EMAIL_FROM||DEFAULT_FROM);
   const recipients=[to,...(internalNotify?internalRecipients(eventType,includeMatt):[])].filter(Boolean);
   const unique=[...new Set(recipients.map(x=>String(x).trim().toLowerCase()))];
   const results=[];
@@ -61,7 +63,7 @@ export async function sendTransactionalEmail(env,{to,subject,text,html,eventType
     }
     try{
       const result=await env.EMAIL.send({
-        from:{email:String(env.TRANSACTIONAL_EMAIL_FROM||DEFAULT_FROM),name:'Shift Some Timber'},
+        from:{email:sender,name:isSupport?'Shift Some Timber Support':'Shift Some Timber'},
         to:email,replyTo:(ROUTING[eventType]||[DEFAULT_FROM])[0],
         subject:String(subject||'SHIFT update').replace(/[\r\n]+/g,' ').slice(0,180),
         text:String(text||''),html:String(html||'')
