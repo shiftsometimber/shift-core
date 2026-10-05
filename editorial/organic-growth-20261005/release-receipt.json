@@ -1,0 +1,60 @@
+{
+  "ok": true,
+  "verifiedAt": "2026-10-05T20:52:29.049Z",
+  "workflowSha": "32b535bc84cc1178156bebb7476a6571f74143b1",
+  "runId": "owner-local-20261005-2051",
+  "checks": [
+    {
+      "url": "https://shiftsometimber.co.uk/articles/wegovy-side-effects-timeline",
+      "status": 200,
+      "canonical": "https://shiftsometimber.co.uk/articles/wegovy-side-effects-timeline",
+      "headline": "Wegovy side effects: how long do they last?",
+      "datePublished": "2026-09-23T05:31:02.403Z",
+      "dateModified": "2026-10-05T20:50:45.871Z",
+      "mainSha256": "6d5aedfe3571e8c03120893e8f5d5ccea0162458fbc3d7c417e9771b8c57a055"
+    },
+    {
+      "url": "https://shiftsometimber.co.uk/articles/nhs-weight-loss-drugs",
+      "status": 200,
+      "canonical": "https://shiftsometimber.co.uk/articles/nhs-weight-loss-drugs",
+      "headline": "NHS weight-loss medicines: who qualifies and what to ask",
+      "datePublished": "2026-09-24T05:30:31.924Z",
+      "dateModified": "2026-10-05T20:50:45.871Z",
+      "mainSha256": "5820c62cd747bd7f4012a0d025fe4a4430fd57c854a662012b60745d3e4e7d68"
+    }
+  ],
+  "homepageUnchanged": true,
+  "originalPublicationDatesRetained": true,
+  "originalReceiptsRetained": true,
+  "workerDeploymentPerformed": false,
+  "publicationSource": "owner-local-oauth",
+  "appliedAt": "2026-10-05T20:52:26.159Z",
+  "backupSavedBeforeApply": true,
+  "validation": {
+    "publicationAndRenderingTestsPassed": 12
+  },
+  "supersededWorkflowNote": "Queued push workflows based on the original snapshot are superseded by this owner-local publication. Their baseline checks must refuse the now-modified rows. Do not replay the old publication; use --verify for a read-only check.",
+  "seoResultClaim": "Implementation verified. Search performance impact requires subsequent settled data.",
+  "measurementAnnotation": {
+    "eventDate": "2026-10-05",
+    "label": "Organic SEO pass 1: Wegovy + NHS articles",
+    "property": "sc-domain:shiftsometimber.co.uk"
+  },
+  "independentVerification": {
+    "verifiedAt": "2026-10-05T20:53:11Z",
+    "bothArticleStatuses": 200,
+    "indexable": true,
+    "oneH1PerArticle": true,
+    "brokenSamePageAnchors": 0,
+    "linkedGuides": [
+      {
+        "path": "/guides/nutrition-protein-calories-meal-planning",
+        "status": 200
+      },
+      {
+        "path": "/guides/nhs-weight-loss-medication-pathways",
+        "status": 200
+      }
+    ]
+  }
+}
