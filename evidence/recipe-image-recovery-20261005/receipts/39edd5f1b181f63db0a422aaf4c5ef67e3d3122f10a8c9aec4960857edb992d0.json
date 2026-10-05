@@ -1,0 +1,87 @@
+{
+  "groupId": "39edd5f1b181f63db0a422aaf4c5ef67e3d3122f10a8c9aec4960857edb992d0",
+  "recipe_ids": [
+    "industrial-v3-meal-prep-bowl-cheesy-chickpea"
+  ],
+  "titles": [
+    "Shift Cheesy Chickpea Meal-Prep Bowl"
+  ],
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+    "Finely grate the measured reduced-fat cheddar. Use all the measured olive oil to dress the prepared vegetables.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the grated reduced-fat cheddar. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Chickpea Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Finely grate the measured reduced-fat cheddar. Use all the measured olive oil to dress the prepared vegetables.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the grated reduced-fat cheddar. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Entire ordinary single portion and cream serving ware visible with generous crop margin. No unlisted food or garnish. Cold finished bowl with cooked long-grain WHOLEGRAIN BROWN BASMATI rice, clearly slender elongated tan grains FOUR to FIVE times longer than wide with natural brown bran texture, FRESH RAW diced mixed peppers and drained ready-to-eat canned sweetcorn. Protein is ready-to-eat chilled, never browned or pan-fried. Finely grated reduced-fat cheddar folded through, cheese remains fine fresh shreds, no melted cheese blanket or sauce.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/39edd5f1b181f63db0a422aaf4c5ef67e3d3122f10a8c9aec4960857edb992d0.png",
+  "source_sha256": "9bbfa8e0ae7059722c17baf2e78861bfec45001a86ab180330a6e031bfeead6e",
+  "generated_at": "2026-10-05T13:14:16.194Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-39edd5f1b181f63db0a4-final20261005-480-2faee850b2ee.webp",
+      "sha256": "2faee850b2ee1edb0ea289439e8babf34b4f1179a033bad136446f830c145d33",
+      "bytes": 26964
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-39edd5f1b181f63db0a4-final20261005-960-5e4e1437f512.webp",
+      "sha256": "5e4e1437f5125dba0ee7369cd701c1600c4a18609f20a7c7e537bf2695fdec27",
+      "bytes": 79658
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Cooked brown rice with chickpeas, mixed peppers, sweetcorn and grated cheddar. No unlisted food or garnish; single serving remains inside the reviewed 4:3 crop.",
+    "alt": "Shift Cheesy Chickpea Meal-Prep Bowl on cream serving ware",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "9bbfa8e0ae7059722c17baf2e78861bfec45001a86ab180330a6e031bfeead6e",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-cheesy-chickpea"
+    ],
+    "titles": [
+      "Shift Cheesy Chickpea Meal-Prep Bowl"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

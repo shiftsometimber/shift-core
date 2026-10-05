@@ -1,0 +1,88 @@
+{
+  "groupId": "2d37ec53976608e0e51d0e85e1e246dab223d5195cc430f64378532d6fb3a5e5",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-orange-protein-pudding"
+  ],
+  "titles": [
+    "Shift Orange Protein Pudding Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "15ml",
+      "item": "orange juice"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Orange Protein Pudding Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"15ml\",\"item\":\"orange juice\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-c09919d7-63e5-420e-9da4-341d68bb63dc.png",
+  "source_sha256": "b70016bc4a60078ddad47ab8bc9a30c2b58b9cf231f3dfef76e5feb55caffb8d",
+  "generated_at": "2026-10-05T18:38:08.590Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2d37ec53976608e0e51d-final20261005-480-d149148851a4.webp",
+      "sha256": "d149148851a468e934472412193b00c434c13c093794c66b8c36595ee15aa443",
+      "bytes": 17806
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2d37ec53976608e0e51d-final20261005-960-f75dd529ea30.webp",
+      "sha256": "f75dd529ea309c024d0b79f35b2352e6b5da43fc4bf3df66d3fda83ac8b46c0b",
+      "bytes": 51124
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 004, item 40. The finished food, main ingredient identity and serving form agree with Shift Orange Protein Pudding Dessert Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Orange Protein Pudding Dessert Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "b70016bc4a60078ddad47ab8bc9a30c2b58b9cf231f3dfef76e5feb55caffb8d",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-orange-protein-pudding"
+    ],
+    "titles": [
+      "Shift Orange Protein Pudding Dessert Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

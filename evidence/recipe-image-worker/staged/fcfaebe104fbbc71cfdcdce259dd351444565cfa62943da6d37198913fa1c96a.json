@@ -1,0 +1,88 @@
+{
+  "groupId": "fcfaebe104fbbc71cfdcdce259dd351444565cfa62943da6d37198913fa1c96a",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-lemon-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Lemon Greek Yoghurt Big Feed Dessert"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "lemon zest"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Greek Yoghurt Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"lemon zest\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-5ab815ca-7c69-414d-910c-0c41861fef46.png",
+  "source_sha256": "ef551eb8ab7bdf03157fccc035621a1b32872e90c85a670302b31ab2b2b0686f",
+  "generated_at": "2026-10-05T18:31:46.010Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fcfaebe104fbbc71cfdc-final20261005-480-e9130ea0e9c5.webp",
+      "sha256": "e9130ea0e9c5ee3717e96025865929a28113595056961ee62b8d3df7ddcae818",
+      "bytes": 24648
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fcfaebe104fbbc71cfdc-final20261005-960-e98d81ddce79.webp",
+      "sha256": "e98d81ddce792ef263ef0fbf9516750e526036c1f0d6da31795421109f91a09b",
+      "bytes": 75304
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 030, item 271. The finished food, main ingredient identity and serving form agree with Shift Lemon Greek Yoghurt Big Feed Dessert and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Lemon Greek Yoghurt Big Feed Dessert served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "ef551eb8ab7bdf03157fccc035621a1b32872e90c85a670302b31ab2b2b0686f",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-lemon-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Lemon Greek Yoghurt Big Feed Dessert"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

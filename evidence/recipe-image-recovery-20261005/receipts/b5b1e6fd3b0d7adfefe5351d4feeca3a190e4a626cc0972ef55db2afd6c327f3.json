@@ -1,0 +1,88 @@
+{
+  "groupId": "b5b1e6fd3b0d7adfefe5351d4feeca3a190e4a626cc0972ef55db2afd6c327f3",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-peanut-protein-pudding"
+  ],
+  "titles": [
+    "Shift Peanut Protein Pudding Big Feed Dessert"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "peanut butter"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peanut Protein Pudding Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"15g\",\"item\":\"peanut butter\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-9334e14e-b6bf-4931-8f56-a67eddd4e9cf.png",
+  "source_sha256": "388eda7261d564206ad766e39b42c1603f3d1532363b6fd816046193f4b2f5e1",
+  "generated_at": "2026-10-05T18:40:33.021Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b5b1e6fd3b0d7adfefe5-final20261005-480-7e0685d94d8a.webp",
+      "sha256": "7e0685d94d8a61c6cf7e58b5678f35a580df0dd6d57932d45d1817e1825f70af",
+      "bytes": 25566
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b5b1e6fd3b0d7adfefe5-final20261005-960-e7e6518df281.webp",
+      "sha256": "e7e6518df281fcd33defb38af4e4c8fe36b31f34c4311390bc76df8cfb9b156d",
+      "bytes": 72244
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 020, item 187. The finished food, main ingredient identity and serving form agree with Shift Peanut Protein Pudding Big Feed Dessert and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Peanut Protein Pudding Big Feed Dessert served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "388eda7261d564206ad766e39b42c1603f3d1532363b6fd816046193f4b2f5e1",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-peanut-protein-pudding"
+    ],
+    "titles": [
+      "Shift Peanut Protein Pudding Big Feed Dessert"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

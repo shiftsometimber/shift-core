@@ -1,0 +1,87 @@
+{
+  "groupId": "16803abe1d40257c7168565d6824477b6737e74a146ce9509c27181000e1e0c3",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-caramel-protein-pudding"
+  ],
+  "titles": [
+    "Shift Honey Protein Pudding Work Snack Box"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "8g",
+      "item": "honey"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Honey Protein Pudding Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"8g\",\"item\":\"honey\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-4685dc9d-b4bd-4b24-b304-98549641c8b6.png",
+  "source_sha256": "98a04c9f70ae2e849d041dfdf5d5af6d865bdc1ffa02511d1a0a6814fe85e620",
+  "generated_at": "2026-10-05T18:27:50.916Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-16803abe1d40257c7168-final20261005-480-c1e9818a2ba3.webp",
+      "sha256": "c1e9818a2ba3bfddb408a53419f364c9b78ef4ca91d95f4a824e8dd7d84acf9c",
+      "bytes": 28944
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-16803abe1d40257c7168-final20261005-960-b0bb71443de2.webp",
+      "sha256": "b0bb71443de2c65789187c7b160faa1f72e72763dbc0c8ed098035b8b61a0f05",
+      "bytes": 88928
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 002, item 23. The finished food, main ingredient identity and serving form agree with Shift Honey Protein Pudding Work Snack Box and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Honey Protein Pudding Work Snack Box served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "98a04c9f70ae2e849d041dfdf5d5af6d865bdc1ffa02511d1a0a6814fe85e620",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-caramel-protein-pudding"
+    ],
+    "titles": [
+      "Shift Honey Protein Pudding Work Snack Box"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

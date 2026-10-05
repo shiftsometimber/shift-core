@@ -1,0 +1,80 @@
+{
+  "groupId": "434bfcf80ddfe03bd738da07fbe5889b664ec59fc96654c2f9bead5461c12756",
+  "recipe_ids": [
+    "industrial-snack-bean-dip-box-cocoa"
+  ],
+  "titles": [
+    "Paprika Bean Dip Box"
+  ],
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "chickpeas"
+    },
+    {
+      "amount": "10ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "80g",
+      "item": "carrot sticks"
+    },
+    {
+      "amount": "25g",
+      "item": "wholegrain crackers",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "paprika"
+    }
+  ],
+  "method": [
+    "Measure everything before assembling the snack so the portion stays intentional.",
+    "Lightly crush the ready-cooked canned chickpeas with the measured lemon juice and savoury add-on, then pack with the vegetables and crackers.",
+    "Keep chilled protein and vegetables refrigerated until you are ready to eat.",
+    "Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Paprika Bean Dip Box. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"chickpeas\"},{\"amount\":\"10ml\",\"item\":\"lemon juice\"},{\"amount\":\"80g\",\"item\":\"carrot sticks\"},{\"amount\":\"25g\",\"item\":\"wholegrain crackers\",\"allergens\":[\"gluten\"]},{\"amount\":\"1g\",\"item\":\"paprika\"}]. Preparation: [\"Measure everything before assembling the snack so the portion stays intentional.\",\"Lightly crush the ready-cooked canned chickpeas with the measured lemon juice and savoury add-on, then pack with the vegetables and crackers.\",\"Keep chilled protein and vegetables refrigerated until you are ready to eat.\",\"Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-c8c320ce-e9ad-4c69-9250-5672552f7623.png",
+  "source_sha256": "1a32952feb3dcb326aa32b755077d1fec8d7fdf41fe41813cc6c75b832173d3c",
+  "generated_at": "2026-10-05T18:27:39.113Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-434bfcf80ddfe03bd738-final20261005-480-29b4058f4514.webp",
+      "sha256": "29b4058f4514fdb68730289894e9a4ebfd1f990d6503e78143db94c5f7671be8",
+      "bytes": 25342
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-434bfcf80ddfe03bd738-final20261005-960-9fe0aeb8aa7a.webp",
+      "sha256": "9fe0aeb8aa7ad70a862e6ab4d673c7c57f2104ec2f71599763360ed57d42690b",
+      "bytes": 75394
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 007, item 66. The finished food, main ingredient identity and serving form agree with Paprika Bean Dip Box and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Paprika Bean Dip Box served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "1a32952feb3dcb326aa32b755077d1fec8d7fdf41fe41813cc6c75b832173d3c",
+    "recipe_ids": [
+      "industrial-snack-bean-dip-box-cocoa"
+    ],
+    "titles": [
+      "Paprika Bean Dip Box"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

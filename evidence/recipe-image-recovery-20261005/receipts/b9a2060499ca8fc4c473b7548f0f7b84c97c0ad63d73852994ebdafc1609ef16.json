@@ -1,0 +1,84 @@
+{
+  "groupId": "b9a2060499ca8fc4c473b7548f0f7b84c97c0ad63d73852994ebdafc1609ef16",
+  "recipe_ids": [
+    "industrial-snack-tuna-snack-pot-classic"
+  ],
+  "titles": [
+    "Pepper Tuna Snack Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "80g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "25g",
+      "item": "wholegrain crackers",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Use canned ready-to-eat sweetcorn, drained before weighing the listed portion. Keep it chilled until assembling the pot.",
+    "Measure everything before assembling the snack so the portion stays intentional.",
+    "Drain the tuna well, combine it with the vegetables and measured savoury add-on, and keep the crackers separate until eating.",
+    "Keep chilled protein and vegetables refrigerated until you are ready to eat.",
+    "Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Pepper Tuna Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"sweetcorn\"},{\"amount\":\"80g\",\"item\":\"cucumber\"},{\"amount\":\"25g\",\"item\":\"wholegrain crackers\",\"allergens\":[\"gluten\"]},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Use canned ready-to-eat sweetcorn, drained before weighing the listed portion. Keep it chilled until assembling the pot.\",\"Measure everything before assembling the snack so the portion stays intentional.\",\"Drain the tuna well, combine it with the vegetables and measured savoury add-on, and keep the crackers separate until eating.\",\"Keep chilled protein and vegetables refrigerated until you are ready to eat.\",\"Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-d083d64e-ae6e-4a01-b718-7e1ad53d6c5c.png",
+  "source_sha256": "40e3a6e99a855160c17ff2b950d0bbbdbe114ad4a7efdfaf6466c6342648f56c",
+  "generated_at": "2026-10-05T18:25:45.440Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b9a2060499ca8fc4c473-final20261005-480-391d2a7b2b5d.webp",
+      "sha256": "391d2a7b2b5db7e8efb77394b256f177c9a5bab94bf0307591f7e087aefd1cce",
+      "bytes": 27126
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b9a2060499ca8fc4c473-final20261005-960-0ac042285b03.webp",
+      "sha256": "0ac042285b03b2d47b92fbd7c9ae2c3ef28ac9b5e2791d60bdac331cc039780b",
+      "bytes": 82270
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 021, item 190. The finished food, main ingredient identity and serving form agree with Pepper Tuna Snack Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Pepper Tuna Snack Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "40e3a6e99a855160c17ff2b950d0bbbdbe114ad4a7efdfaf6466c6342648f56c",
+    "recipe_ids": [
+      "industrial-snack-tuna-snack-pot-classic"
+    ],
+    "titles": [
+      "Pepper Tuna Snack Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

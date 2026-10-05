@@ -1,0 +1,83 @@
+{
+  "groupId": "ee0a85c4e8404262d72a34f4521616c5a0ef08935f539d0778ea388d12b866ec",
+  "recipe_ids": [
+    "industrial-snack-overnight-oats-pot-berry"
+  ],
+  "titles": [
+    "Berry Overnight Oats Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "50g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "150ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "140g",
+      "item": "mixed berries"
+    }
+  ],
+  "method": [
+    "Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Stir in 100g 0% Greek yoghurt until evenly mixed.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 140g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Berry Overnight Oats Pot. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"150ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"140g\",\"item\":\"mixed berries\"}]. Preparation: [\"Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 100g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 140g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-67d4914b-ba85-4a7f-a84a-b8fcb377a943.png",
+  "source_sha256": "5cd22efc6f3a0de50430cb937cc110e788eb5b575e794edf01261cbcead091b9",
+  "generated_at": "2026-10-05T18:23:30.825Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ee0a85c4e8404262d72a-final20261005-480-bc5a5a4ac1f2.webp",
+      "sha256": "bc5a5a4ac1f2aec6bb73d5b900c82a5ab65a5e315c994f167f1e8a7077a91250",
+      "bytes": 18274
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ee0a85c4e8404262d72a-final20261005-960-defef61a4e1c.webp",
+      "sha256": "defef61a4e1c6ce924e8ba585f0921bd840eb284b39ea822d26f85ca3e9ce5b0",
+      "bytes": 55986
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 028, item 252. The finished food, main ingredient identity and serving form agree with Berry Overnight Oats Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Berry Overnight Oats Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "5cd22efc6f3a0de50430cb937cc110e788eb5b575e794edf01261cbcead091b9",
+    "recipe_ids": [
+      "industrial-snack-overnight-oats-pot-berry"
+    ],
+    "titles": [
+      "Berry Overnight Oats Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

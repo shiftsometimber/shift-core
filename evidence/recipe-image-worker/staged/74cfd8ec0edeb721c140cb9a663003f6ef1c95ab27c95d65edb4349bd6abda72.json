@@ -1,0 +1,85 @@
+{
+  "groupId": "74cfd8ec0edeb721c140cb9a663003f6ef1c95ab27c95d65edb4349bd6abda72",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-caramel-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Honey Fruit Crunch Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "8g",
+      "item": "honey"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Honey Fruit Crunch Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"8g\",\"item\":\"honey\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-20ee0c50-a457-4476-8ece-8ef5b437248c.png",
+  "source_sha256": "7bb05832b1d630ae037abd0b3e9ddf88a89ff54a057d0901b05b384c296f28fa",
+  "generated_at": "2026-10-05T18:26:17.812Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-74cfd8ec0edeb721c140-final20261005-480-64de69ad5ee6.webp",
+      "sha256": "64de69ad5ee654bc3a65c436440bd18e234a67e5f3614f608160bb7d055e51a4",
+      "bytes": 24026
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-74cfd8ec0edeb721c140-final20261005-960-5810c4a63fc6.webp",
+      "sha256": "5810c4a63fc6843b1aed4e86dddb76db787480085ad7556c8e7327172a37ee94",
+      "bytes": 74298
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 011, item 107. The finished food, main ingredient identity and serving form agree with Shift Honey Fruit Crunch Dessert Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Honey Fruit Crunch Dessert Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "7bb05832b1d630ae037abd0b3e9ddf88a89ff54a057d0901b05b384c296f28fa",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-caramel-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Honey Fruit Crunch Dessert Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

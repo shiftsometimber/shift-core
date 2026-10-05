@@ -1,0 +1,87 @@
+{
+  "groupId": "37f8c22f7bc7861ef2bbb38ac7708ad6563bc76cc191eb51bc49e838ba174f92",
+  "recipe_ids": [
+    "industrial-snack-tuna-snack-pot-apple"
+  ],
+  "titles": [
+    "Mustard Tuna Snack Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "80g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "25g",
+      "item": "wholegrain crackers",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    }
+  ],
+  "method": [
+    "Use canned ready-to-eat sweetcorn, drained before weighing the listed portion. Keep it chilled until assembling the pot.",
+    "Measure everything before assembling the snack so the portion stays intentional.",
+    "Drain the tuna well, combine it with the vegetables and measured savoury add-on, and keep the crackers separate until eating.",
+    "Keep chilled protein and vegetables refrigerated until you are ready to eat.",
+    "Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Mustard Tuna Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"sweetcorn\"},{\"amount\":\"80g\",\"item\":\"cucumber\"},{\"amount\":\"25g\",\"item\":\"wholegrain crackers\",\"allergens\":[\"gluten\"]},{\"amount\":\"5g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]}]. Preparation: [\"Use canned ready-to-eat sweetcorn, drained before weighing the listed portion. Keep it chilled until assembling the pot.\",\"Measure everything before assembling the snack so the portion stays intentional.\",\"Drain the tuna well, combine it with the vegetables and measured savoury add-on, and keep the crackers separate until eating.\",\"Keep chilled protein and vegetables refrigerated until you are ready to eat.\",\"Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-021fc0b3-e282-4612-b230-8ae2426b2894.png",
+  "source_sha256": "d2cf7957145617b91c51b58b817ffef7cb3fc6ab2270566bd51c3e153b9ac56a",
+  "generated_at": "2026-10-05T18:25:19.098Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-37f8c22f7bc7861ef2bb-final20261005-480-113af06650d7.webp",
+      "sha256": "113af06650d77d8443bef41ea2601f5834a4770c5f9819014524502243ca5681",
+      "bytes": 22666
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-37f8c22f7bc7861ef2bb-final20261005-960-cef16cfd6cd4.webp",
+      "sha256": "cef16cfd6cd4852276b2b6f5939d8fbea56f7dac1a6e06be5c07baf5892411bb",
+      "bytes": 68404
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 005, item 51. The finished food, main ingredient identity and serving form agree with Mustard Tuna Snack Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Mustard Tuna Snack Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "d2cf7957145617b91c51b58b817ffef7cb3fc6ab2270566bd51c3e153b9ac56a",
+    "recipe_ids": [
+      "industrial-snack-tuna-snack-pot-apple"
+    ],
+    "titles": [
+      "Mustard Tuna Snack Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

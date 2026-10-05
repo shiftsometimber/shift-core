@@ -1,0 +1,84 @@
+{
+  "groupId": "07be4b7800a37c52eac9e2cc40831a23e330ed3c4322d8e1946f5a16a9ea80a0",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-peanut-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Peanut Cottage Cheese Protein Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "peanut butter"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peanut Cottage Cheese Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"15g\",\"item\":\"peanut butter\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-08bb2d21-6ec6-45c1-8394-22cffadb3c78.png",
+  "source_sha256": "60e3536649b11e984a3b65b67feae38b3bca9eaf7907573538c99c3600b900aa",
+  "generated_at": "2026-10-05T18:37:21.747Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-07be4b7800a37c52eac9-final20261005-480-acf6aa317c9f.webp",
+      "sha256": "acf6aa317c9ffad1257185f9135daace205b2b4f26d9dc0a865b29772117af6c",
+      "bytes": 22916
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-07be4b7800a37c52eac9-final20261005-960-e13888cc35c2.webp",
+      "sha256": "e13888cc35c2e513875253eb997336dc9640945f35ef290e8671f72a63da44c4",
+      "bytes": 67936
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 000, item 8. The finished food, main ingredient identity and serving form agree with Shift Peanut Cottage Cheese Protein Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Peanut Cottage Cheese Protein Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "60e3536649b11e984a3b65b67feae38b3bca9eaf7907573538c99c3600b900aa",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-peanut-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Peanut Cottage Cheese Protein Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}
