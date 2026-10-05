@@ -70,12 +70,6 @@
       "mode": "100644",
       "type": "blob",
       "sha": "70da55678022ae8534cf1283b298259c76c5658c"
-    },
-    {
-      "path": "member-experience/verify-production-member.mjs",
-      "mode": "100644",
-      "type": "blob",
-      "sha": "923f8e66a8502d1af67e74ae846d8153ba4d86cb"
     }
   ],
   "followupSource": "0df8c4d69ba1a71f51bf9d5491d5ef2f554107b0"
