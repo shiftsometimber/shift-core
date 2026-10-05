@@ -10,6 +10,7 @@ import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-
 import taldefgrobepRv8451 from './reviews/2026-10-04-authorised-taldefgrobep-rv8451.json' with {type:'json'};
 import internationalMaintenanceWave from './reviews/2026-10-04-authorised-international-maintenance-wave.json' with {type:'json'};
 import novoSpecialistWave from './reviews/2026-10-05-authorised-novo-specialist-wave.json' with {type:'json'};
+import petrelintideZupreme from './reviews/2026-10-05-authorised-petrelintide-zupreme-registry.json' with {type:'json'};
 import hansohOlatorepatideReview from './reviews/2026-10-05-authorised-hansoh-olatorepatide-source-review.json' with {type:'json'};
 import evening from './reviews/2026-10-01-authorised-evening-updates.json' with {type:'json'};
 import broaderDiscovery from './reviews/2026-10-01-authorised-broader-discovery.json' with {type:'json'};
@@ -238,5 +239,15 @@ export const industry = [...originalIndustry.map(e => {
    ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
    ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
    reviewedAt:novoSpecialistWave.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
+ })
+ .map(e=>{
+  const change=petrelintideZupreme.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  const {summaryToAppend,limitationsToAppend,...fields}=change.fields;
+  return {...e,...fields,
+   ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
+   ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
+   reviewedAt:petrelintideZupreme.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
  });
