@@ -15,7 +15,7 @@ else{
   const job=(jobs.jobs||[]).find(j=>j.name==='release'&&j.conclusion==='success');
   if(verifiedArticleRuntime(before,run,job))ownedProof={run:run.id,source:run.head_sha,version:articleRuntime.version};
  }
- const runs=ownedProof?[]:await recentSuccessfulPromotions(get);
+ const runs=ownedProof?[]:await recentSuccessfulPromotions(get,before);
  for(const run of runs){
   if(ownedProof)break;
   const jobs=await get('/actions/runs/'+run.id+'/jobs');
