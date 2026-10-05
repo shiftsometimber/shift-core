@@ -38,3 +38,5 @@ jobs:
             const h=await r.text();console.log(host,JSON.stringify({status:r.status,newFilter:h.includes('gambling'),length:h.length}));
           }
           JS
+
+# Read-only runtime reconciliation refresh: 2026-10-05.
