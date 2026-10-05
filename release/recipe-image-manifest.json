@@ -1,7 +1,7 @@
 {
-  "source": "0af52424dc464356d3e429eea762f1bacb27fb48",
-  "base": "6f994ba93f539cac9d5cf2767318d435b8f092fe",
-  "bindings": 2158,
+  "source": "c26a1e5c247ba3624ccdeda064b812fa545822eb",
+  "base": "8d1100c21bdb61f7ba64913d8b5464018c412ea2",
+  "bindings": 2315,
   "usable": 2671,
   "complete": false,
   "entries": [
@@ -15,7 +15,7 @@
       "path": "evidence/recipe-image-worker",
       "mode": "040000",
       "type": "tree",
-      "sha": "9d25e699b67692a246e5822c86fbb87bba964eff"
+      "sha": "eef3313c6443ee444be14f0c88ee34e4e4ef32ff"
     },
     {
       "path": "evidence/prepared-recipe-images-2026-10-04.json",
@@ -27,7 +27,7 @@
       "path": "frontend/member/assets/member-experience/food",
       "mode": "040000",
       "type": "tree",
-      "sha": "3ff63a1e7c1ce8768a30fe92a0dbd53c219b6dc1"
+      "sha": "2c0f1304f8ac4623e0e68e273edf5fecb45f4bb4"
     },
     {
       "path": "member-experience/grub-client.mjs",
@@ -39,7 +39,7 @@
       "path": "member-experience/grub-image-map.mjs",
       "mode": "100644",
       "type": "blob",
-      "sha": "2feff832935e9a06236ba0b3654adfb0053c8428"
+      "sha": "348dbae02a1e47e53db0973a920d3931e37aa8b3"
     },
     {
       "path": "member-experience/grub-intelligence-client.mjs",
@@ -75,7 +75,7 @@
       "path": "evidence/recipe-image-recovery-20261005",
       "mode": "040000",
       "type": "tree",
-      "sha": "f211f86c34d68458b53a14af8a57892936a3fd19"
+      "sha": "ee9cd0aac94ca47f9f286c86eb07ab0eae21ffd8"
     },
     {
       "path": "release/recipe-image-scope.mjs",
@@ -95,13 +95,17 @@
     {
       "base": "2b727bff6a33adb9bc37716314a0ace19e141bdb",
       "source": "9e7dd54f4d4d3da456b361de7db6544584aaae6a"
+    },
+    {
+      "base": "6f994ba93f539cac9d5cf2767318d435b8f092fe",
+      "source": "0af52424dc464356d3e429eea762f1bacb27fb48"
     }
   ],
   "recovery": {
     "previouslyDeployedBindings": 2093,
-    "addedBindings": 65,
-    "reviewedAssetsCheckpointed": 78,
-    "remainingBindings": 513,
+    "addedBindings": 222,
+    "reviewedAssetsCheckpointed": 222,
+    "remainingBindings": 356,
     "newBindingsVerifiedLive": 0,
     "scope": "Exact recipe imagery only; current main retained; previous image scope preserved as immutable prior payload."
   }

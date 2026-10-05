@@ -1,0 +1,84 @@
+{
+  "groupId": "d0e431bf2409b633e1a6d0c5499f1960784fd7ad3a754144f9babc55ebbc0644",
+  "recipe_ids": [
+    "industrial-v3-roast-peri-peri-turkey"
+  ],
+  "titles": [
+    "Shift Peri-Peri Turkey Sunday-Style Roast"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the peri-peri sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot peri-peri sauce over the cooked protein."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Turkey Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the peri-peri sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot peri-peri sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Entire ordinary single portion and cream serving ware visible with generous empty crop margin. No unlisted food, herbs, garnish or cheese. Roast potato chunks must be PEELED with NO SKIN, roughened fluffy crisp golden exteriors; roasted carrot batons and boiled tender broccoli. Hot peri-peri sauce over protein. Turkey mince is shaped into TWO compact flattened portions, not a sliced roasting joint; visibly minced texture, opaque cooked through.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/d0e431bf2409b633e1a6d0c5499f1960784fd7ad3a754144f9babc55ebbc0644.png",
+  "source_sha256": "663d440adb8287ae74374905b5ffbad70fd9189baeb769b7ae6c91178eac2eb5",
+  "generated_at": "2026-10-05T13:07:28.279Z",
+  "elapsed_ms": 205387,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d0e431bf2409b633e1a6-recovery20261005-480-2b365cbd90de.webp",
+      "sha256": "2b365cbd90de6872c857f3f01b2ed83cbaa832646066d977d5b9d37087a34ddd",
+      "bytes": 23210
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d0e431bf2409b633e1a6-recovery20261005-960-8c44399153cc.webp",
+      "sha256": "8c44399153cce57aae545f6ce48324f856e8e0a153feeda07a9419331e0cc1a2",
+      "bytes": 69638
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "663d440adb8287ae74374905b5ffbad70fd9189baeb769b7ae6c91178eac2eb5",
+    "recipe_ids": [
+      "industrial-v3-roast-peri-peri-turkey"
+    ],
+    "titles": [
+      "Shift Peri-Peri Turkey Sunday-Style Roast"
+    ],
+    "notes": "Two compact flattened cooked turkey breast mince portions with peri-peri sauce, peeled golden roast potatoes, carrot batons and boiled broccoli. No roasting joint. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Peri-Peri Turkey Sunday-Style Roast, prepared with 100% turkey breast mince, raw, potatoes, peeled, raw, carrots, broccoli",
+    "reviewed_at": "2026-10-05T13:09:24.326485+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:12.335776+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

@@ -1,0 +1,89 @@
+{
+  "groupId": "c1b722ae254063e6d96274aa834daaed8a2bbb0a1c85720a1058cd987302104e",
+  "recipe_ids": [
+    "industrial-v3-pasta-harissa-salmon"
+  ],
+  "titles": [
+    "Shift Harissa Salmon Proper Pasta"
+  ],
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "harissa tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the harissa tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4–5 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6–8 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured harissa tomato sauce and 2 tablespoons of cooking water. Heat gently for 1–2 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Harissa Salmon Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"harissa tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the harissa tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4–5 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6–8 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured harissa tomato sauce and 2 tablespoons of cooking water. Heat gently for 1–2 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Food-specific accuracy: make every listed major ingredient visually recognizable in the finished serving; preserve the exact protein and cooking form. Keep the entire edible serving centrally framed with generous empty margin on all four sides. No unlisted foods. Cooked pasta is tan/brown wholewheat pasta, never white pasta.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/4/sources/025.png",
+  "source_sha256": "7ae9f2dfcaa23186f51203430bd9b974d127e28b60ee0032f6ca84dc411cf329",
+  "generated_at": "2026-10-05T12:56:21.552632+00:00",
+  "elapsed_ms": 70451,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c1b722ae254063e6d962-recovery20261005-480-347c1a249db4.webp",
+      "sha256": "347c1a249db4a01f1ed47b08e030b706b28086d29795efaa2df35e584f27750e",
+      "bytes": 21970
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c1b722ae254063e6d962-recovery20261005-960-de50464b0f4a.webp",
+      "sha256": "de50464b0f4a816882fbd68c0e3eae55d2e45eb67b4927c2b340de205eebad99",
+      "bytes": 71002
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "7ae9f2dfcaa23186f51203430bd9b974d127e28b60ee0032f6ca84dc411cf329",
+    "recipe_ids": [
+      "industrial-v3-pasta-harissa-salmon"
+    ],
+    "titles": [
+      "Shift Harissa Salmon Proper Pasta"
+    ],
+    "notes": "Opaque pink cooked salmon flakes with browned edges are tossed through tan wholewheat penne with cooked courgette and softened cherry tomatoes in harissa tomato coating. No cream, cheese or garnish. Single bowl serving fully framed.",
+    "alt": "Wholewheat salmon pasta with courgette, cherry tomatoes and harissa sauce.",
+    "reviewed_at": "2026-10-05T12:58:00.564301+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:16.151221+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

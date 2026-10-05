@@ -1,0 +1,89 @@
+{
+  "groupId": "cde3a62da4db8687ac595cb923c0f913c024c187f34b549ba5482ebb2bd8ef49",
+  "recipe_ids": [
+    "industrial-v3-bagel-cheesy-ham"
+  ],
+  "titles": [
+    "Shift Cheesy Ham Loaded Bagel"
+  ],
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.",
+    "Finely grate the measured reduced-fat cheddar. Use all the measured olive oil to dress the prepared vegetables.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the grated reduced-fat cheddar. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Ham Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.\",\"Finely grate the measured reduced-fat cheddar. Use all the measured olive oil to dress the prepared vegetables.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the grated reduced-fat cheddar. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual method constraint: ONE closed wholemeal bagel with manageable modest filling and finely grated cheddar UNMELTED; remaining rocket/tomato and excess listed filling as a small side salad on same plate, as explicitly required by method. No mayonnaise, onions or other foods. Filling must follow exact sliced/shredded/rough-mashed state.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/5/sources/045.png",
+  "source_sha256": "850e33843485f567ee900253d850e8bcbd39e6f358ece9befd5efa4e63c66d38",
+  "generated_at": "2026-10-05T13:05:42.078Z",
+  "elapsed_ms": 206572,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-cde3a62da4db8687ac59-recovery20261005-480-2b92fa48df7a.webp",
+      "sha256": "2b92fa48df7ad9f47d95d5e574baf4b84c741aff597cf3a20e608f76d782b88b",
+      "bytes": 27478
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-cde3a62da4db8687ac59-recovery20261005-960-135606c78405.webp",
+      "sha256": "135606c7840573004b0842be863c4e736613328c7fd015eb61e7e870d39c73de",
+      "bytes": 79854
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "850e33843485f567ee900253d850e8bcbd39e6f358ece9befd5efa4e63c66d38",
+    "recipe_ids": [
+      "industrial-v3-bagel-cheesy-ham"
+    ],
+    "titles": [
+      "Shift Cheesy Ham Loaded Bagel"
+    ],
+    "notes": "Thin lean cooked ham pieces with raw rocket and tomato and grated unmelted cheddar in closed wholemeal bagel, rocket/tomato side salad. No extra dressing or garnish.",
+    "alt": "Shift Cheesy Ham Loaded Bagel, prepared with lean ham, wholemeal bagel, rocket, tomato",
+    "reviewed_at": "2026-10-05T13:09:55.083099+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:15.958991+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

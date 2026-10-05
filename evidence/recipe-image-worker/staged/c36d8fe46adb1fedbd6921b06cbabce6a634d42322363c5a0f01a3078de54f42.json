@@ -1,0 +1,95 @@
+{
+  "groupId": "c36d8fe46adb1fedbd6921b06cbabce6a634d42322363c5a0f01a3078de54f42",
+  "recipe_ids": [
+    "industrial-v3-pie-garlic-herb-turkey"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Turkey Proper Pie"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Heat the oven to 200°C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15–20 minutes until a knife goes through easily, then drain and mash with 2–3 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8–10 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75°C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8–10 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15–20 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, garlic powder, dried parsley dressing alongside."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Turkey Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Heat the oven to 200°C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15–20 minutes until a knife goes through easily, then drain and mash with 2–3 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8–10 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75°C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8–10 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15–20 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, garlic powder, dried parsley dressing alongside.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Small individual potato-topped pie. Fork-roughened golden mashed potato crust; a small opened section reveals cooked finely crumbled pale turkey breast mince, finely diced cooked carrots and green peas beneath. Separate small dish of mayonnaise garlic/dried parsley dressing. No pastry, cheese, milk, butter or gravy. Full serving entirely inside the 4:3 landscape frame, generous margin for responsive crop. No unlisted garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/020.png",
+  "source_sha256": "c97d0969198902a2aa46d8b860a6971d81dc302b6a2965a941542fda3458454e",
+  "generated_at": "2026-10-05T12:55:22.250588+00:00",
+  "elapsed_ms": 147753,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c36d8fe46adb1fedbd69-recovery20261005-480-888fa04adaac.webp",
+      "sha256": "888fa04adaac23997f6e52c7aa627347846c4c7155344c41280f361eadd2765d",
+      "bytes": 23934
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c36d8fe46adb1fedbd69-recovery20261005-960-bbc8b0abc895.webp",
+      "sha256": "bbc8b0abc8959265f3b288414cc8ce20825b8ec531f4e5c8ba792ed61a25cc2f",
+      "bytes": 68532
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c97d0969198902a2aa46d8b860a6971d81dc302b6a2965a941542fda3458454e",
+    "recipe_ids": [
+      "industrial-v3-pie-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Proper Pie"
+    ],
+    "notes": "Source viewed: golden fork-ridged mashed potato top with opening revealing small cooked pale turkey breast mince crumbles, green peas and fine orange carrot cubes. Separate mayonnaise garlic/dried parsley dressing. No pastry, cheese, gravy or additional food; complete individual pie.",
+    "alt": "Shift Garlic & Herb Turkey Proper Pie served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:10.579097+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.912330+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

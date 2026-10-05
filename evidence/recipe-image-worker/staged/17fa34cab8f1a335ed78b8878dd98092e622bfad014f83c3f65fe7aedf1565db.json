@@ -1,0 +1,98 @@
+{
+  "groupId": "17fa34cab8f1a335ed78b8878dd98092e622bfad014f83c3f65fe7aedf1565db",
+  "recipe_ids": [
+    "industrial-v3-pasta-garlic-herb-turkey"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Turkey Proper Pasta"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8–10 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75°C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6–8 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, garlic powder, dried parsley dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Turkey Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8–10 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75°C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6–8 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, garlic powder, dried parsley dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: Turkey breast mince is small browned crumbles, not turkey slices or chicken cubes. Wholewheat pasta must have distinctly tan-brown wholegrain colour and texture. Courgette and tomatoes are cooked soft; mayonnaise dressing folded through off heat.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/019-17fa34cab8f1a335ed78b8878dd98092e622bfad014f83c3f65fe7aedf1565db-b3.png",
+  "source_sha256": "4545650867decb483e9acd54c4b9ba16f5c44415bb257fa66c6acce89c16402e",
+  "generated_at": "2026-10-05T12:54:40.221Z",
+  "elapsed_ms": 153727,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-17fa34cab8f1a335ed78-recovery20261005-480-632610b1efb9.webp",
+      "sha256": "632610b1efb9bb13d3e1092175b7978ec9bc31cb5e1d52841dafd10b55b3a257",
+      "bytes": 33148
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-17fa34cab8f1a335ed78-recovery20261005-960-e020ac5e3156.webp",
+      "sha256": "e020ac5e31561e7609959708e44fa40ad6e0697cb4fe5666cd66eeb07b263cf8",
+      "bytes": 105242
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "4545650867decb483e9acd54c4b9ba16f5c44415bb257fa66c6acce89c16402e",
+    "recipe_ids": [
+      "industrial-v3-pasta-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Proper Pasta"
+    ],
+    "notes": "Tan-brown wholewheat penne has credible grain texture, with small cooked turkey mince crumbles, softened courgette chunks and cooked cherry tomatoes. Pale mayonnaise-garlic-dried parsley dressing coats the mixture after heat removal, as method states. No sliced poultry, cheese or fresh garnish. Full bowl fits frame.",
+    "alt": "Wholewheat penne with turkey mince, courgette, cherry tomatoes and garlic parsley dressing",
+    "reviewed_at": "2026-10-05T12:55:59.581943+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:56:14.115354+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,89 @@
+{
+  "groupId": "52e51a1209a45277343314882f1559ac22370793518618a4a1b05c1d5c08910d",
+  "recipe_ids": [
+    "industrial-v3-bagel-cheesy-turkey"
+  ],
+  "titles": [
+    "Shift Cheesy Turkey Loaded Bagel"
+  ],
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Finely grate the measured reduced-fat cheddar. Use all the measured olive oil to dress the prepared vegetables.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the grated reduced-fat cheddar. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Turkey Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Use all the measured olive oil to dress the prepared vegetables.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the grated reduced-fat cheddar. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual method constraint: ONE closed wholemeal bagel with manageable modest filling and finely grated cheddar UNMELTED; remaining rocket/tomato and excess listed filling as a small side salad on same plate, as explicitly required by method. No mayonnaise, onions or other foods. Filling must follow exact sliced/shredded/rough-mashed state.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/5/sources/047.png",
+  "source_sha256": "db59aa3b32abdc7a122d24a602fd2c92e37ca00948cb58d4c4b1fd1931194b88",
+  "generated_at": "2026-10-05T13:03:18.449Z",
+  "elapsed_ms": 62990,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-52e51a1209a452773433-recovery20261005-480-010e3f39d935.webp",
+      "sha256": "010e3f39d9354f49003ddac45f042ec8503908248a92460a69554f4e8753c885",
+      "bytes": 36864
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-52e51a1209a452773433-recovery20261005-960-ddf613d17c4f.webp",
+      "sha256": "ddf613d17c4f9f90b86856b7c8eb2fc34e449883de97f88c62c5e3ac8b2f58fb",
+      "bytes": 111142
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "db59aa3b32abdc7a122d24a602fd2c92e37ca00948cb58d4c4b1fd1931194b88",
+    "recipe_ids": [
+      "industrial-v3-bagel-cheesy-turkey"
+    ],
+    "titles": [
+      "Shift Cheesy Turkey Loaded Bagel"
+    ],
+    "notes": "Shredded cooked turkey breast and grated cheddar in wholemeal bagel, raw rocket/tomato; remaining listed ingredients as side salad. No mayonnaise or extra foods.",
+    "alt": "Shift Cheesy Turkey Loaded Bagel, prepared with cooked turkey breast, wholemeal bagel, rocket, tomato",
+    "reviewed_at": "2026-10-05T13:09:56.552613+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:15.960383+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

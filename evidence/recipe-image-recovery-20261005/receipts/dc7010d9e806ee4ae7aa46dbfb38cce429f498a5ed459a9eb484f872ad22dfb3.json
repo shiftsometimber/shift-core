@@ -1,0 +1,83 @@
+{
+  "groupId": "dc7010d9e806ee4ae7aa46dbfb38cce429f498a5ed459a9eb484f872ad22dfb3",
+  "recipe_ids": [
+    "industrial-v3-roast-peri-peri-tofu"
+  ],
+  "titles": [
+    "Shift Peri-Peri Tofu Sunday-Style Roast"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Pat the firm tofu dry, cut it into 2cm slabs and roast on a separate lined tray for 20\u201325 minutes, turning halfway, until the edges are golden and the centre is hot.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the peri-peri sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked firm tofu, roast potatoes, carrots and broccoli together. Spoon the hot peri-peri sauce over the cooked protein."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Tofu Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Pat the firm tofu dry, cut it into 2cm slabs and roast on a separate lined tray for 20\u201325 minutes, turning halfway, until the edges are golden and the centre is hot.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the peri-peri sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked firm tofu, roast potatoes, carrots and broccoli together. Spoon the hot peri-peri sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Entire ordinary single portion and cream serving ware visible with generous empty crop margin. No unlisted food, herbs, garnish or cheese. Roast potato chunks must be PEELED with NO SKIN, roughened fluffy crisp golden exteriors; roasted carrot batons and boiled tender broccoli. Hot peri-peri sauce over protein. Tofu is roasted 2cm-thick rectangular SLABS, not cubes or meat.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/dc7010d9e806ee4ae7aa46dbfb38cce429f498a5ed459a9eb484f872ad22dfb3.png",
+  "source_sha256": "13ca275e31b9f34e7521deefb48ce24967953f163df587951dd545fac6cdfe1c",
+  "generated_at": "2026-10-05T13:06:34.289Z",
+  "elapsed_ms": 151397,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-dc7010d9e806ee4ae7aa-recovery20261005-480-2f956cc83732.webp",
+      "sha256": "2f956cc837322aa36cd75ddc63b08805f8ce22002d90e33bc950ba0dc9604cf3",
+      "bytes": 24300
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-dc7010d9e806ee4ae7aa-recovery20261005-960-99e5c10681fa.webp",
+      "sha256": "99e5c10681fab874ba2a1090914d54d865ccb783d363bea445a0e6d804dc02a7",
+      "bytes": 78758
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "13ca275e31b9f34e7521deefb48ce24967953f163df587951dd545fac6cdfe1c",
+    "recipe_ids": [
+      "industrial-v3-roast-peri-peri-tofu"
+    ],
+    "titles": [
+      "Shift Peri-Peri Tofu Sunday-Style Roast"
+    ],
+    "notes": "Roasted rectangular tofu slabs topped with peri-peri sauce, peeled golden roast potato chunks, roast carrot batons and boiled broccoli. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Peri-Peri Tofu Sunday-Style Roast, prepared with firm tofu, potatoes, peeled, raw, carrots, broccoli",
+    "reviewed_at": "2026-10-05T13:09:23.032117+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:12.335310+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

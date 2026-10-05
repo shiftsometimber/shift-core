@@ -1,0 +1,91 @@
+{
+  "groupId": "c5a803afe6988904c31e04d3afc11ae158ec36865ea992b45abb6f0ddb276b23",
+  "recipe_ids": [
+    "industrial-v3-pizza-salt-pepper-chicken"
+  ],
+  "titles": [
+    "Shift Salt & Pepper Chicken Proper Pizza"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "3g",
+      "item": "salt"
+    },
+    {
+      "amount": "2g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5–6 minutes until softened; transfer them to a clean bowl.",
+    "Cut the chicken breast into strips about 1.5cm thick. Coat with all the measured salt and black pepper. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8–10 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Transfer the cooked chicken strips to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3–4 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked chicken strips evenly on top. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Rest for one minute, cut and serve."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Salt & Pepper Chicken Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"chicken breast\"},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"3g\",\"item\":\"salt\"},{\"amount\":\"2g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5–6 minutes until softened; transfer them to a clean bowl.\",\"Cut the chicken breast into strips about 1.5cm thick. Coat with all the measured salt and black pepper. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8–10 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Transfer the cooked chicken strips to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3–4 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked chicken strips evenly on top. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Pizza with NO CHEESE: visible red passata on baked crisp individual base with softened pepper strips and exact cooked protein only. No herbs, olives, mushrooms or cheese strands. ",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/5/sources/036.png",
+  "source_sha256": "3ebd9a2b54f15d329241770a2409f7b2b4bc43fdea2c03c2a6eebf91096659bd",
+  "generated_at": "2026-10-05T13:00:43.338Z",
+  "elapsed_ms": 144357,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c5a803afe6988904c31e-recovery20261005-480-b0683969c315.webp",
+      "sha256": "b0683969c3158ef9595eaee509f12df4f1e7923aa66fb326e2f3580684cb2088",
+      "bytes": 38196
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c5a803afe6988904c31e-recovery20261005-960-6010e9d2f256.webp",
+      "sha256": "6010e9d2f25638471290f6208168c2aa3cbcef4403a13a868e93c912cc99eab7",
+      "bytes": 115156
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3ebd9a2b54f15d329241770a2409f7b2b4bc43fdea2c03c2a6eebf91096659bd",
+    "recipe_ids": [
+      "industrial-v3-pizza-salt-pepper-chicken"
+    ],
+    "titles": [
+      "Shift Salt & Pepper Chicken Proper Pizza"
+    ],
+    "notes": "Cooked browned chicken breast strips and mixed pepper strips on visible tomato-passata pizza base, black pepper seasoning visible. No cheese, herbs, olives or extra toppings.",
+    "alt": "Shift Salt & Pepper Chicken Proper Pizza, prepared with chicken breast, individual pizza base, tomato passata, mixed peppers",
+    "reviewed_at": "2026-10-05T13:05:29.022178+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:08:29.397756+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

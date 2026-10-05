@@ -1,0 +1,83 @@
+{
+  "groupId": "a61fe4f5594ee05faea17f920cbc7772a02f3fcb35ad9f907aae5cbf5fa15812",
+  "recipe_ids": [
+    "industrial-v3-pie-harissa-chicken"
+  ],
+  "titles": [
+    "Shift Harissa Chicken Proper Pie"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "40g",
+      "item": "harissa tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Measure the harissa tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Stir in the harissa tomato sauce, heat for 1\u20132 minutes, then spoon into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve while hot."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Harissa Chicken Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"40g\",\"item\":\"harissa tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Measure the harissa tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Stir in the harissa tomato sauce, heat for 1\u20132 minutes, then spoon into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Small individual potato-topped pie. Fork-roughened golden mashed potato crust; small opened section reveals cooked 2cm chicken breast pieces, finely diced cooked carrots and green peas in red harissa tomato coating. No pastry, cheese, milk, butter, gravy or fresh garnish. Full serving entirely inside the 4:3 landscape frame, generous margin for responsive crop. No unlisted garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/023.png",
+  "source_sha256": "8e6cc4eb898cf718ddfbaeb4a766cd7e9e9084fbc779151e463e980393359e73",
+  "generated_at": "2026-10-05T12:55:51.722520+00:00",
+  "elapsed_ms": 177314,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a61fe4f5594ee05faea1-recovery20261005-480-6d76e014d230.webp",
+      "sha256": "6d76e014d23008b61153d849a5495a265b9391de6dc75e2117c777feb249bab1",
+      "bytes": 25876
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a61fe4f5594ee05faea1-recovery20261005-960-09d559fe542b.webp",
+      "sha256": "09d559fe542b023012d9f1d9adcb05555b962154aa5658ad81062d26ef8017f6",
+      "bytes": 84458
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8e6cc4eb898cf718ddfbaeb4a766cd7e9e9084fbc779151e463e980393359e73",
+    "recipe_ids": [
+      "industrial-v3-pie-harissa-chicken"
+    ],
+    "titles": [
+      "Shift Harissa Chicken Proper Pie"
+    ],
+    "notes": "Source viewed: golden fork-ridged mashed potato crust with opening revealing fully cooked white chicken breast chunks, fine cooked carrots and green peas in red harissa tomato sauce. Oil incorporated. No pastry, cheese, gravy or garnish; complete individual pie.",
+    "alt": "Shift Harissa Chicken Proper Pie served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:13.079230+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.913443+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

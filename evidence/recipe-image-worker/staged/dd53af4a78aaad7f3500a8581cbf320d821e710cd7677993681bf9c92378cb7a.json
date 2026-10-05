@@ -1,0 +1,81 @@
+{
+  "groupId": "dd53af4a78aaad7f3500a8581cbf320d821e710cd7677993681bf9c92378cb7a",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-peri-peri-tofu"
+  ],
+  "titles": [
+    "Shift Peri-Peri Tofu Slow-Cooker Big Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6–8 hours or HIGH for 3–4 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Tofu Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6–8 hours or HIGH for 3–4 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: Slow-cooked tofu and baby potatoes with tender carrots and softened onion in glossy red peri-peri glaze and vegetable juices. This is a moist coated cooked pot, no extra broth or swimming liquid, no meat or garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/032-dd53af4a78aaad7f3500a8581cbf320d821e710cd7677993681bf9c92378cb7a-b5.png",
+  "source_sha256": "f124139dd5d3a1e46e2ec00d06c368f3436b2bd10fa643f455f8940d80f62af6",
+  "generated_at": "2026-10-05T13:05:36.300Z",
+  "elapsed_ms": 231877,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-dd53af4a78aaad7f3500-recovery20261005-480-c398d9b6c9d5.webp",
+      "sha256": "c398d9b6c9d575b178028e8bc262e1e7cc4a7205487c22227a22f67271fa2302",
+      "bytes": 29974
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-dd53af4a78aaad7f3500-recovery20261005-960-6d0337222e39.webp",
+      "sha256": "6d0337222e39e52824d2df441aec8c5795deb53ac3c4f4306fe4f7b029e24325",
+      "bytes": 101562
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f124139dd5d3a1e46e2ec00d06c368f3436b2bd10fa643f455f8940d80f62af6",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-peri-peri-tofu"
+    ],
+    "titles": [
+      "Shift Peri-Peri Tofu Slow-Cooker Big Pot"
+    ],
+    "notes": "Browned cooked firm tofu cubes, tender baby potatoes, soft carrot chunks and translucent onion pieces appear in glossy red peri-peri glaze and released vegetable juices. No swimming added broth, meat, salad or garnish. Full moist slow-cooked bowl framed.",
+    "alt": "Peri-peri tofu pot with baby potatoes, carrots and onion",
+    "reviewed_at": "2026-10-05T13:06:39.059869+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:11.237421+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

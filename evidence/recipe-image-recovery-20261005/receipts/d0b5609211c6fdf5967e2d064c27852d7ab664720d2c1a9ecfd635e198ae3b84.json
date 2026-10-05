@@ -1,0 +1,97 @@
+{
+  "groupId": "d0b5609211c6fdf5967e2d064c27852d7ab664720d2c1a9ecfd635e198ae3b84",
+  "recipe_ids": [
+    "industrial-v3-chilli-garlic-herb-turkey"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Turkey and Bean Rice Bowl"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "kidney beans"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Start the 75g brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Deseed and dice the 90g red pepper and drain and rinse canned, ready-cooked kidney beans, then weigh out 90g; raw or dried kidney beans cannot be used in this method. Keep the 170g turkey breast mince chilled until the pan is ready. Do not rinse raw mince.",
+    "Mix 20g light mayonnaise, 1g garlic powder and 1g dried parsley in a small bowl. Keep this dressing cold until serving; it is not a cooking sauce and must not be simmered in the pan.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the turkey breast mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g red pepper and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained kidney beans. Cover and heat for 3\u20134 minutes over a low heat, stirring halfway, until the beans are steaming hot.",
+    "Return the cooked turkey breast mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Take the pan off the heat and spoon the cold dressing over each serving; do not return it to the hob. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Turkey and Bean Rice Bowl. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"kidney beans\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Start the 75g brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Deseed and dice the 90g red pepper and drain and rinse canned, ready-cooked kidney beans, then weigh out 90g; raw or dried kidney beans cannot be used in this method. Keep the 170g turkey breast mince chilled until the pan is ready. Do not rinse raw mince.\",\"Mix 20g light mayonnaise, 1g garlic powder and 1g dried parsley in a small bowl. Keep this dressing cold until serving; it is not a cooking sauce and must not be simmered in the pan.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the turkey breast mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g red pepper and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Add the drained kidney beans. Cover and heat for 3\u20134 minutes over a low heat, stirring halfway, until the beans are steaming hot.\",\"Return the cooked turkey breast mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Take the pan off the heat and spoon the cold dressing over each serving; do not return it to the hob. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Whole ordinary single portion and cream serving ware entirely in frame, wide empty crop margin. No unlisted ingredients or decorative fresh herbs. Show realistic tender cooked WHOLEGRAIN BROWN rice: short-to-medium slender beige-brown grains, never white rice or oversized barley. Pan mixture spooned over rice contains softened red pepper and ready-cooked dark-red kidney beans. No corn or fresh leaves. Turkey is small loose cooked turkey breast MINCE crumbles, never slices or cubes; cold garlic/dried parsley mayonnaise spooned on top. Critical rice correction: Use cooked long-grain wholegrain brown BASMATI rice, clearly slender elongated tan grains FOUR to FIVE times longer than wide, showing the brown bran layer and lengthwise grooves. The rice bed must be recognizable as actual long-grain brown rice with natural individual grains.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/d0b5609211c6fdf5967e2d064c27852d7ab664720d2c1a9ecfd635e198ae3b84.png",
+  "source_sha256": "460ad881d5d763bbc0c84cef8966a11ebee25dfe22ffbeb017bd51f2c81aa8d9",
+  "generated_at": "2026-10-05T12:58:32.951Z",
+  "elapsed_ms": 65582,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d0b5609211c6fdf5967e-recovery20261005-480-503560be633a.webp",
+      "sha256": "503560be633acfd144bbb26cee634b956e44a2bb471912a65fa2e16ab5769b09",
+      "bytes": 26066
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d0b5609211c6fdf5967e-recovery20261005-960-9f120a9aac58.webp",
+      "sha256": "9f120a9aac58026852388ea2c83dbd9faf791aa315a6ac4fe522572192bc9c4d",
+      "bytes": 80014
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "460ad881d5d763bbc0c84cef8966a11ebee25dfe22ffbeb017bd51f2c81aa8d9",
+    "recipe_ids": [
+      "industrial-v3-chilli-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey and Bean Rice Bowl"
+    ],
+    "notes": "Cooked turkey breast mince crumbles with soft red pepper and kidney beans on visibly elongated tan cooked brown rice grains, cold garlic/dried parsley mayonnaise. No meat slices; rice correction passed. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Turkey and Bean Rice Bowl, prepared with 100% turkey breast mince, raw, brown rice, dry, kidney beans, red pepper",
+    "reviewed_at": "2026-10-05T13:02:47.035843+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:03:16.479150+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

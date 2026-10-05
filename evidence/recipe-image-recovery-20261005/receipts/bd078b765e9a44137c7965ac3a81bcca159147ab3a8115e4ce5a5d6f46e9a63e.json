@@ -1,0 +1,84 @@
+{
+  "groupId": "bd078b765e9a44137c7965ac3a81bcca159147ab3a8115e4ce5a5d6f46e9a63e",
+  "recipe_ids": [
+    "industrial-v3-curry-peri-peri-tofu"
+  ],
+  "titles": [
+    "Shift Peri-Peri Tofu Proper Curry"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Turn the heat to low and fold in the 40g peri-peri sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Tofu Proper Curry. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Turn the heat to low and fold in the 40g peri-peri sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Entire ordinary single portion and cream serving ware visible with generous empty crop margin. No unlisted food, herbs, garnish or cheese. Pan mixture contains softened onion and sliced mixed peppers, light peri-peri coating over cooked white BASMATI rice, slender elongated grains 4-5 times longer than wide. Golden browned intact 2cm tofu cubes, no meat.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/bd078b765e9a44137c7965ac3a81bcca159147ab3a8115e4ce5a5d6f46e9a63e.png",
+  "source_sha256": "8684513955aa5e75a72f4f02757a914762d10c88953fd4fb79b5f3ea38de3e4d",
+  "generated_at": "2026-10-05T13:05:59.260Z",
+  "elapsed_ms": 116368,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bd078b765e9a44137c79-recovery20261005-480-22f86adb40a7.webp",
+      "sha256": "22f86adb40a70ad197a30cc129d3cb7053f68f0bee32214ca935d49eb8cec89e",
+      "bytes": 21462
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bd078b765e9a44137c79-recovery20261005-960-edcfdd2a384f.webp",
+      "sha256": "edcfdd2a384f121530f326610163639065f5f04d9ed59a44c4cb8f573849ac1a",
+      "bytes": 67566
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8684513955aa5e75a72f4f02757a914762d10c88953fd4fb79b5f3ea38de3e4d",
+    "recipe_ids": [
+      "industrial-v3-curry-peri-peri-tofu"
+    ],
+    "titles": [
+      "Shift Peri-Peri Tofu Proper Curry"
+    ],
+    "notes": "Browned tofu cubes and soft onion/mixed pepper strips coated peri-peri over cooked elongated white basmati rice. No meat or garnish. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Peri-Peri Tofu Proper Curry, prepared with firm tofu, basmati rice, dry, onion, mixed peppers",
+    "reviewed_at": "2026-10-05T13:09:22.374136+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:12.334963+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

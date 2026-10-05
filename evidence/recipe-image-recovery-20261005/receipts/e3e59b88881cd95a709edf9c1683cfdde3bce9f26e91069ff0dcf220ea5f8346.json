@@ -1,0 +1,83 @@
+{
+  "groupId": "e3e59b88881cd95a709edf9c1683cfdde3bce9f26e91069ff0dcf220ea5f8346",
+  "recipe_ids": [
+    "industrial-v3-roast-harissa-beef"
+  ],
+  "titles": [
+    "Shift Harissa Beef Sunday-Style Roast"
+  ],
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "harissa tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Shape the 5% beef mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the harissa tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked 5% beef mince, roast potatoes, carrots and broccoli together. Spoon the hot harissa tomato sauce over the cooked protein."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Harissa Beef Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"harissa tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Shape the 5% beef mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the harissa tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked 5% beef mince, roast potatoes, carrots and broccoli together. Spoon the hot harissa tomato sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Whole ordinary single portion and cream serving ware entirely in frame, wide empty crop margin. No unlisted ingredients or decorative fresh herbs. TWO compact flattened cooked beef MINCE portions about 2cm thick, not roast beef joint, with golden peeled roast potato chunks, roasted carrot batons, boiled broccoli and harissa tomato sauce over protein.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/e3e59b88881cd95a709edf9c1683cfdde3bce9f26e91069ff0dcf220ea5f8346.png",
+  "source_sha256": "82f6fd6a98454a9bd44bd69596bd12e48e5067033e1fa953b123681f4ece345a",
+  "generated_at": "2026-10-05T12:54:55.342Z",
+  "elapsed_ms": 205521,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e3e59b88881cd95a709e-recovery20261005-480-1d82e337fb56.webp",
+      "sha256": "1d82e337fb56d8441d3fc1a8da0f7405a6b4a7ba79ecf64089b2bdcce3651f74",
+      "bytes": 23226
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e3e59b88881cd95a709e-recovery20261005-960-b3c761eb1085.webp",
+      "sha256": "b3c761eb10853f47400c8acd42169477deda24cf4ee5e04ba9f02ff8efe49880",
+      "bytes": 81688
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "82f6fd6a98454a9bd44bd69596bd12e48e5067033e1fa953b123681f4ece345a",
+    "recipe_ids": [
+      "industrial-v3-roast-harissa-beef"
+    ],
+    "titles": [
+      "Shift Harissa Beef Sunday-Style Roast"
+    ],
+    "notes": "Two flattened browned beef mince portions topped with hot harissa sauce alongside golden roast potato chunks, tender carrot batons and boiled broccoli. No roasting joint. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Harissa Beef Sunday-Style Roast, prepared with 5% beef mince, potatoes, peeled, raw, carrots, broccoli",
+    "reviewed_at": "2026-10-05T12:56:24.040848+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:56:44.557501+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

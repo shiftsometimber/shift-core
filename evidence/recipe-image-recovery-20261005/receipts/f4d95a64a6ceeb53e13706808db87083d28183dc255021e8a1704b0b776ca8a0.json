@@ -1,0 +1,95 @@
+{
+  "groupId": "f4d95a64a6ceeb53e13706808db87083d28183dc255021e8a1704b0b776ca8a0",
+  "recipe_ids": [
+    "industrial-v3-roast-garlic-herb-turkey"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Turkey Sunday-Style Roast"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, garlic powder, dried parsley dressing alongside after cooking."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Turkey Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, garlic powder, dried parsley dressing alongside after cooking.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: Turkey breast mince MUST appear as exactly two compact flattened cooked patties about 2cm thick, no roasting joint and no sliced poultry. Golden peeled roast potato chunks, slim roasted carrot batons, tender broccoli, with chilled dressing alongside. No gravy. Method-derived clarification: turkey mince patties MUST be completely plain with only olive oil and natural golden browning, no green herb or black pepper seasoning flecks anywhere on protein or vegetables. ALL dried parsley and garlic powder are mixed into the cold mayonnaise dressing alongside. Do not season or mix herbs into the protein.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/020-f4d95a64a6ceeb53e13706808db87083d28183dc255021e8a1704b0b776ca8a0-b5.png",
+  "source_sha256": "a94d1f171713149e567f0e94fb8479c56727421fd8f141536f510123f49b6323",
+  "generated_at": "2026-10-05T13:03:31.511Z",
+  "elapsed_ms": 107088,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f4d95a64a6ceeb53e137-recovery20261005-480-a5e59a857fc9.webp",
+      "sha256": "a5e59a857fc995e955062f21126a343413e555351c309e93ee4ec748370992b9",
+      "bytes": 27176
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f4d95a64a6ceeb53e137-recovery20261005-960-5dc433fd94a2.webp",
+      "sha256": "5dc433fd94a25c793b0ed831ab177e5fe9e084b68e2e64b6cf659f54b87ec568",
+      "bytes": 85704
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a94d1f171713149e567f0e94fb8479c56727421fd8f141536f510123f49b6323",
+    "recipe_ids": [
+      "industrial-v3-roast-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Sunday-Style Roast"
+    ],
+    "notes": "Exactly two compact cooked turkey breast mince patties show plain pale minced texture and natural brown crust, no dry herbs. Golden peeled roast potato chunks, roasted carrot batons and tender broccoli sit alongside. All parsley/garlic is in cold mayonnaise dressing. No roasting joint, gravy or garnish. Full plate framed.",
+    "alt": "Two roast turkey mince patties with potatoes, carrots, broccoli and garlic parsley dressing",
+    "reviewed_at": "2026-10-05T13:04:57.965481+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:05:15.856636+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

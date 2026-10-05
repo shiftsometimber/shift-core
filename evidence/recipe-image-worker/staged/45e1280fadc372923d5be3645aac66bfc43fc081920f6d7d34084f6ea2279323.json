@@ -1,0 +1,97 @@
+{
+  "groupId": "45e1280fadc372923d5be3645aac66bfc43fc081920f6d7d34084f6ea2279323",
+  "recipe_ids": [
+    "industrial-v3-roast-garlic-herb-salmon"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Salmon Sunday-Style Roast"
+  ],
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8–10 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35–40 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20–25 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Place the salmon fillet on a separate lined tray and roast for approximately 12–15 minutes, until opaque at the thickest point and easy to flake. Check for bones before serving.",
+    "Cut the broccoli into small florets and boil for 4–6 minutes until tender with a little bite. Drain well.",
+    "Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Serve the cooked salmon fillet, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, garlic powder, dried parsley dressing alongside after cooking."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Salmon Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200°C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8–10 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35–40 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20–25 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Place the salmon fillet on a separate lined tray and roast for approximately 12–15 minutes, until opaque at the thickest point and easy to flake. Check for bones before serving.\",\"Cut the broccoli into small florets and boil for 4–6 minutes until tender with a little bite. Drain well.\",\"Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Serve the cooked salmon fillet, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, garlic powder, dried parsley dressing alongside after cooking.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: Keep salmon as one cooked intact fillet. Show golden peeled roast potato chunks, slim roasted carrot batons and tender green broccoli florets, with the cold mayonnaise-garlic-dried parsley dressing spooned alongside. No gravy. Method-derived clarification: salmon fillet MUST be completely plain with only olive oil and natural golden roast browning: no black pepper, no herbs, no green or black seasoning flecks on fish or vegetables. ALL dried parsley and garlic powder are mixed into the cold mayonnaise dressing served alongside.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/016-45e1280fadc372923d5be3645aac66bfc43fc081920f6d7d34084f6ea2279323-b5.png",
+  "source_sha256": "3b478e082128f45966b870c154747ad1fc6d1b7fb41e56588204f4c5eb66b979",
+  "generated_at": "2026-10-05T13:02:21.642Z",
+  "elapsed_ms": 37219,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-45e1280fadc372923d5b-recovery20261005-480-f7f71d054d93.webp",
+      "sha256": "f7f71d054d93087853b44be5cc297c7a162cf0ffcea24feeec2bf9cd6b1add09",
+      "bytes": 25888
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-45e1280fadc372923d5b-recovery20261005-960-9c31314c0e43.webp",
+      "sha256": "9c31314c0e43e1937ccbcdfae890ff106e2b6aed01fe24fdd4af783c02cdbe82",
+      "bytes": 79278
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3b478e082128f45966b870c154747ad1fc6d1b7fb41e56588204f4c5eb66b979",
+    "recipe_ids": [
+      "industrial-v3-roast-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Sunday-Style Roast"
+    ],
+    "notes": "One plain opaque cooked salmon fillet with natural golden roast browning, golden peeled roast potato chunks, roasted slim carrot batons and cooked broccoli florets. All garlic and dried parsley are confined to cold mayonnaise dressing alongside, with no dry herbs on fish. No gravy or garnish. Full plate framed.",
+    "alt": "Plain roast salmon with roast potatoes, carrots, broccoli and garlic parsley mayonnaise",
+    "reviewed_at": "2026-10-05T13:03:43.483181+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:04:02.816142+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

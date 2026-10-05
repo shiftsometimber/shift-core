@@ -1,0 +1,89 @@
+{
+  "groupId": "0effc4304ed764f3b5ceaa4a8c759fd4d8f0a954c5b82d415260fa3d4aac0ced",
+  "recipe_ids": [
+    "industrial-v3-bagel-cheesy-chicken"
+  ],
+  "titles": [
+    "Shift Cheesy Chicken Loaded Bagel"
+  ],
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Finely grate the measured reduced-fat cheddar. Use all the measured olive oil to dress the prepared vegetables.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the grated reduced-fat cheddar. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Chicken Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Use all the measured olive oil to dress the prepared vegetables.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the grated reduced-fat cheddar. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual method constraint: ONE closed wholemeal bagel with manageable modest filling and finely grated cheddar UNMELTED; remaining rocket/tomato and excess listed filling as a small side salad on same plate, as explicitly required by method. No mayonnaise, onions or other foods. Filling must follow exact sliced/shredded/rough-mashed state.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/5/sources/042.png",
+  "source_sha256": "22d941f4a223ed125faa4890fd6044b7df7f5cef5898bd0295029445fde2fdb4",
+  "generated_at": "2026-10-05T13:03:55.164Z",
+  "elapsed_ms": 99704,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0effc4304ed764f3b5ce-recovery20261005-480-3cd7f4928bf5.webp",
+      "sha256": "3cd7f4928bf5c680e45a17271533a907657969d1f2870c079f1c9da35d476d75",
+      "bytes": 32790
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0effc4304ed764f3b5ce-recovery20261005-960-3cceadea584e.webp",
+      "sha256": "3cceadea584e8fdb2c3ad44bbf18d810253d70908e795740c2ec490839fe6aac",
+      "bytes": 94706
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "22d941f4a223ed125faa4890fd6044b7df7f5cef5898bd0295029445fde2fdb4",
+    "recipe_ids": [
+      "industrial-v3-bagel-cheesy-chicken"
+    ],
+    "titles": [
+      "Shift Cheesy Chicken Loaded Bagel"
+    ],
+    "notes": "Closed wholemeal bagel with shredded cooked chicken, raw rocket/tomato and grated unmelted cheddar, same listed ingredients in side salad. No mayonnaise or extras.",
+    "alt": "Shift Cheesy Chicken Loaded Bagel, prepared with cooked chicken breast, wholemeal bagel, rocket, tomato",
+    "reviewed_at": "2026-10-05T13:09:53.716291+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:15.958153+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

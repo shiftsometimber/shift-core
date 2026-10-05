@@ -1,0 +1,88 @@
+{
+  "groupId": "d5d5b6fb521b90bfb2f6f3beed9313a44bfc59debf4584fa2f9730a82ae652c1",
+  "recipe_ids": [
+    "industrial-v3-stir-fry-peri-peri-chicken"
+  ],
+  "titles": [
+    "Shift Peri-Peri Chicken Stir-Fry"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "75g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 90g mixed peppers. Cut the 170g chicken breast into thin strips about 1cm thick on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the chicken breast in one layer and cook for 7\u201310 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Turn the heat to low and fold in the 40g peri-peri sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked chicken breast and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and chicken breast between serving bowls. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Chicken Stir-Fry. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"75g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 90g mixed peppers. Cut the 170g chicken breast into thin strips about 1cm thick on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the chicken breast in one layer and cook for 7\u201310 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Turn the heat to low and fold in the 40g peri-peri sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked chicken breast and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and chicken breast between serving bowls. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Whole ordinary single portion and cream serving ware entirely in frame, wide empty crop margin. No unlisted ingredients or garnish. Fully cooked thin chicken strips mixed with cooked egg noodles, softened sliced mixed peppers and cooked broccoli, lightly peri-peri coated. No sesame, spring onion or fresh herbs.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/d5d5b6fb521b90bfb2f6f3beed9313a44bfc59debf4584fa2f9730a82ae652c1.png",
+  "source_sha256": "66594b820f23bedd0e7de1856463a7fbffdc26f5340da4534c8cba0a99bec791",
+  "generated_at": "2026-10-05T13:00:46.270Z",
+  "elapsed_ms": 198901,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d5d5b6fb521b90bfb2f6-recovery20261005-480-6fac9eb55fd2.webp",
+      "sha256": "6fac9eb55fd2c79214e3ee5c6e8b586eb43b4f91357f4889c6fc1823bb24cdc5",
+      "bytes": 19514
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d5d5b6fb521b90bfb2f6-recovery20261005-960-47b1e704f56c.webp",
+      "sha256": "47b1e704f56cb294990778ca48f31ebdaf2beb8c5ebf2619b6828ddc7a227892",
+      "bytes": 60694
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "66594b820f23bedd0e7de1856463a7fbffdc26f5340da4534c8cba0a99bec791",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-peri-peri-chicken"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chicken Stir-Fry"
+    ],
+    "notes": "Cooked chicken strips with tender egg noodles, sliced cooked red/yellow peppers and broccoli, light peri-peri coating. No sesame or spring onion. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Peri-Peri Chicken Stir-Fry, prepared with chicken breast, dried egg noodles, mixed peppers, broccoli",
+    "reviewed_at": "2026-10-05T13:02:52.115939+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:03:16.489675+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

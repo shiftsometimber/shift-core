@@ -1,0 +1,83 @@
+{
+  "groupId": "2e7b2df219a60c8ffd1ecd39d44be45e1156780081b9f16f76f820c5dc1a64f6",
+  "recipe_ids": [
+    "industrial-v3-roast-peri-peri-chicken"
+  ],
+  "titles": [
+    "Shift Peri-Peri Chicken Sunday-Style Roast"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Place the chicken breast on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the peri-peri sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked chicken breast, roast potatoes, carrots and broccoli together. Spoon the hot peri-peri sauce over the cooked protein."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Chicken Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Place the chicken breast on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the peri-peri sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked chicken breast, roast potatoes, carrots and broccoli together. Spoon the hot peri-peri sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual preparation clarification: A roast chicken breast cooked through, golden peeled roast potato chunks and roasted slim carrot batons alongside boiled tender broccoli florets. Warm peri-peri sauce spooned only over the cooked protein. Show the complete single serving with crop margin, no unlisted food or garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/3/sources/027-a1.png",
+  "source_sha256": "1329c465b85a157e23614e81af535c44e8a592e5fd714228bb6ddc2d7c0e7f44",
+  "generated_at": "2026-10-05T13:01:20.850Z",
+  "elapsed_ms": 132070,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2e7b2df219a60c8ffd1e-recovery20261005-480-b6f4ee6df6cd.webp",
+      "sha256": "b6f4ee6df6cdeddfcd5e5e197182e03e9a40123e33334c4826ed8faa41a1e7fe",
+      "bytes": 29218
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2e7b2df219a60c8ffd1e-recovery20261005-960-a811e149b711.webp",
+      "sha256": "a811e149b711df4ffb16049b4cc94cd64b2d7d8210448462a1c75afd51f1713d",
+      "bytes": 88990
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1329c465b85a157e23614e81af535c44e8a592e5fd714228bb6ddc2d7c0e7f44",
+    "recipe_ids": [
+      "industrial-v3-roast-peri-peri-chicken"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chicken Sunday-Style Roast"
+    ],
+    "notes": "Roasted whole chicken breast with warm peri-peri sauce over it; golden peeled roast potato chunks, roasted carrot batons and tender boiled broccoli served alongside. No additional roast sides or garnish. Complete single serving.",
+    "alt": "Shift Peri-Peri Chicken Sunday-Style Roast with its listed ingredients",
+    "reviewed_at": "2026-10-05T13:04:20.430259+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:46.372188+00:00"
+  },
+  "integrated": false,
+  "live": false
+}
