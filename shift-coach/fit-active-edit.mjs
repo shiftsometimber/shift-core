@@ -1,3 +1,4 @@
+import {memberImageViewerRuntime} from './member-image-viewer.mjs';
 // Preserve active Fit editing while the approved screen composer receives a
 // saved session. All original screen markup, styles and disclosure labels stay.
 import assert from 'node:assert/strict';
@@ -11,7 +12,7 @@ export function originalFitActiveEditAsset(source){return source.replace(repaire
 export async function withFitActiveEdit(request,response){
  if(request.method!=='GET'||new URL(request.url).pathname!=='/assets/my-timber-layout.mjs'||response.status!==200)return response;
  assert(response.headers.get('Content-Type')?.includes('javascript'),'Approved member-layout asset must remain JavaScript');
- const after=fitActiveEditAsset(await response.text()),headers=new Headers(response.headers);
+ const after=fitActiveEditAsset(await response.text())+memberImageViewerRuntime,headers=new Headers(response.headers);
  for(const key of ['Content-Length','Content-Encoding','ETag','Last-Modified'])headers.delete(key);
  headers.set('Cache-Control','no-store');headers.set('X-Shift-Fit-Active-Edit','20261004');
  return new Response(after,{status:response.status,headers});

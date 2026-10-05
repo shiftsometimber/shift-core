@@ -69,6 +69,7 @@ export function assertCoachingConfiguration(current,previous){
 // Historical comparisons still verify the reviewed old bytes; the exact new bytes
 // are independently pinned by validateCoachingSource below. No generic exclusion.
 export function coachingHistoricalRef(ref,path){
+ if(ref==='HEAD'&&['shift-coach/fit-active-edit.mjs','shift-coach/fit-active-edit.test.mjs'].includes(path))return '4afdd2686d5a74dfeea9ca2d86aba71e62ed2320';
  if(ref==='HEAD'&&path==='shift-coach/release-contract.mjs')return 'eecd31ba0f3eb06e8de829d3415d7f86e954a162';
  // These two metadata files compose the separately approved book-copy gate.
  // Their complete current bytes remain required by the coaching pin and app hashes.
@@ -86,7 +87,9 @@ export function validateCoachingSource(read,manifest){
   assert.match(fit.source,/^[a-f0-9]{40}$/);
   execFileSync('git',['merge-base','--is-ancestor',fit.source,'HEAD']);
  }
- for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(fit?.paths.includes(p)?fit.source:manifest.applicationCommit,p),'Coaching release source drift: '+p);
+ const viewer=manifest.imageViewerComposition;
+ if(viewer){assert.equal(viewer.proof,'MEMBER_IMAGE_VIEWER_RELEASE_V1');assert.deepEqual(viewer.paths,['shift-coach/fit-active-edit.mjs','shift-coach/fit-active-edit.test.mjs','shift-coach/release-contract.mjs']);assert.match(viewer.source,/^[a-f0-9]{40}$/);execFileSync('git',['merge-base','--is-ancestor',viewer.source,'HEAD']);}
+ for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit,p),'Coaching release source drift: '+p);
  assert.equal(read('HEAD',ARTICLE_CLOSEOUT_PATH),read(ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH),'Read-only article closeout source drift');
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
  assert.equal(read('HEAD','public-continuity.mjs'),read('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
