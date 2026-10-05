@@ -48,7 +48,11 @@ export function verifiedStartingPoint(record,active){
 
 // Search the promotion workflow directly. Unrelated successful workflows must
 // never push the current owned runtime beyond a repository-wide page limit.
-export async function recentSuccessfulPromotions(get){
+export const recordedImageRuntime=Object.freeze({run:37306982503,source:'6f994ba93f539cac9d5cf2767318d435b8f092fe',version:'7be77b1a-5f23-4b6c-9a1b-3d8aa0425bc2'});
+export async function recentSuccessfulPromotions(get,active){
+ const recorded=active?.versions?.length===1&&active.versions[0].percentage===100&&active.versions[0].version_id===recordedImageRuntime.version
+  ?await get('/actions/runs/'+recordedImageRuntime.run):null;
+ if(recorded){assert.equal(recorded.id,recordedImageRuntime.run);assert.equal(recorded.head_sha,recordedImageRuntime.source);assert.equal(recorded.conclusion,'success');assert.equal(recorded.status,'completed');assert.equal(recorded.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(recorded.event,'push');assert.equal(recorded.head_branch,'main');}
  const result=await get('/actions/workflows/cloudflare-production-promote.yml/runs?branch=main&event=push&status=success&per_page=100');
- return (result.workflow_runs||[]).filter(run=>run.path==='.github/workflows/cloudflare-production-promote.yml').slice(0,5);
+ return [...(recorded?[recorded]:[]),...(result.workflow_runs||[]).filter(run=>run.path==='.github/workflows/cloudflare-production-promote.yml'&&run.id!==recorded?.id).slice(0,5)];
 }
