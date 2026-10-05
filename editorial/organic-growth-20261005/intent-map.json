@@ -1,0 +1,1936 @@
+{
+  "version": "organic-growth-intent-map-20261005-v1",
+  "prepared_at": "2026-10-05",
+  "purpose": "Rank existing intent owners and practical enhancements before creating pages. This map is editorial work; it is not proof of publication or SEO results.",
+  "ranking_basis": [
+    "Observed settled UK site visibility where available",
+    "Fit to the six agreed lanes",
+    "Practical help for the consumer",
+    "Potential to improve an existing owner without duplicate content"
+  ],
+  "search_volume_ranking": false,
+  "scope": {
+    "homepage": "protected_no_edit",
+    "start_here_flow": "protected_no_edit",
+    "new_urls_created": 0,
+    "retatrutide_fixed_owner": "/guides/retatrutide-uk-guide",
+    "first_batch": [
+      "OG-01",
+      "OG-02"
+    ],
+    "remaining_batch_status": "ranked_queue_only_authored_and_verified_candidate_required"
+  },
+  "measurement_caveats": [
+    "Search impressions and average positions describe SHIFT visibility, not UK monthly search volume.",
+    "Baseline UK aggregate reports 18 clicks while returned UK page rows report zero; reported click attribution remains under reconciliation.",
+    "No page-response, current canonical or production verification is performed by this mapping artifact.",
+    "Several distinct query families intentionally use separate sections of the same existing owner. Do not create one page per keyword."
+  ],
+  "sources": [
+    {
+      "path": "seo-plan/SHIFT-Organic-Growth-Plan.html",
+      "role": "agreed priorities and starting work queue"
+    },
+    {
+      "path": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+      "role": "settled visibility observation sample",
+      "period": {
+        "start": "2026-09-06",
+        "end": "2026-10-03",
+        "type": "web"
+      }
+    },
+    {
+      "path": "citation-authority-live-report.json",
+      "role": "historical existing-response catalogue",
+      "checked_at": "2026-09-06T21:55:54.716Z"
+    },
+    {
+      "path": "editorial/retatrutide/style-source/app.txt",
+      "role": "retained link references only"
+    },
+    {
+      "path": "evidence/seo-authority/phase3-keyword-url-map-r1.md",
+      "role": "historical staging ownership candidate; does not override current intent evidence"
+    }
+  ],
+  "lane_counts": {
+    "Help me lose weight": 6,
+    "Men’s mental health": 5,
+    "Men’s weight loss": 6,
+    "Mounjaro": 5,
+    "Reta / retatrutide": 3,
+    "Wegovy": 5
+  },
+  "rows": [
+    {
+      "rank": 1,
+      "id": "OG-01",
+      "lane": "Wegovy",
+      "search_family": "Wegovy side effects and how long they last",
+      "candidate_queries": [
+        "Wegovy side effects how long",
+        "when do Wegovy side effects start"
+      ],
+      "owner_path": "/articles/wegovy-side-effects-timeline",
+      "owner_job": "Answer symptom timing and urgent warning signs for the injection; distinguish tablet questions.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Give the duration answer immediately without a fixed timetable; add a symptom log and clear prescriber/urgent-care routes before testing a title or snippet change.",
+      "internal_links": [
+        "/articles/glp1-side-effects",
+        "/comparisons/medications/wegovy-injection-vs-tablets"
+      ],
+      "search_evidence": {
+        "status": "observed_uk_query_sample",
+        "query_samples": [
+          {
+            "query": "wegovy side effects",
+            "impressions": 47,
+            "reported_clicks": 0,
+            "average_position": 2.9787234042553195,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          },
+          {
+            "query": "what are the worst side effects of wegovy",
+            "impressions": 22,
+            "reported_clicks": 0,
+            "average_position": 1.9545454545454546,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          },
+          {
+            "query": "how long do wegovy side effects last",
+            "impressions": 4,
+            "reported_clicks": 0,
+            "average_position": 18.25,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          }
+        ],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "uk_page": {
+          "impressions": 397,
+          "reported_clicks": 0,
+          "average_position": 5.869017632241814,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        },
+        "all_countries_page": {
+          "impressions": 1211,
+          "reported_clicks": 0,
+          "average_position": 4.023947151114781,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "d1_production_authored_candidate_pending_verification",
+      "public_change_status": "not_live_verified_by_this_map"
+    },
+    {
+      "rank": 2,
+      "id": "OG-02",
+      "lane": "Help me lose weight",
+      "search_family": "NHS weight-loss medicines eligibility and access",
+      "candidate_queries": [
+        "NHS weight loss drugs",
+        "NHS weight loss injections eligibility"
+      ],
+      "owner_path": "/articles/nhs-weight-loss-drugs",
+      "owner_job": "Give a short eligibility and access explainer, separating authorisation, recommendation and local commissioning.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Put the access distinction first; add nation-specific routes and practical questions for a GP, with clear limits to what can be inferred about an individual.",
+      "internal_links": [
+        "/guides/nhs-weight-loss-medication-pathways",
+        "/guides/nhs-weight-management-uk-guide"
+      ],
+      "search_evidence": {
+        "status": "observed_uk_query_sample",
+        "query_samples": [
+          {
+            "query": "nhs weight loss medication",
+            "impressions": 4,
+            "reported_clicks": 0,
+            "average_position": 50,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          },
+          {
+            "query": "nhs weight loss treatment",
+            "impressions": 2,
+            "reported_clicks": 0,
+            "average_position": 51,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          },
+          {
+            "query": "can i get weight loss medication on nhs",
+            "impressions": 2,
+            "reported_clicks": 0,
+            "average_position": 64.5,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          }
+        ],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "uk_page": {
+          "impressions": 238,
+          "reported_clicks": 0,
+          "average_position": 53.83613445378151,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        },
+        "all_countries_page": {
+          "impressions": 340,
+          "reported_clicks": 0,
+          "average_position": 40.023529411764706,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [
+        "/guides/nhs-weight-loss-medication-pathways",
+        "/guides/nhs-weight-management-uk-guide"
+      ],
+      "delivery_status": "d1_production_authored_candidate_pending_verification",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "Retain the article as quick answer, the medication guide as detailed service pathway and the management guide as the broader service guide. Content comparison is required before any consolidation; no cannibalisation claim is proven."
+    },
+    {
+      "rank": 3,
+      "id": "OG-03",
+      "lane": "Men’s weight loss",
+      "search_family": "Weight loss for men over 40",
+      "candidate_queries": [
+        "weight loss for men over 40",
+        "men over 40 weight loss"
+      ],
+      "owner_path": "/articles/weight-loss-after-40-men",
+      "owner_job": "A realistic first week around work, family, food and movement.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Add a seven-day worked example, swaps for busy shifts and sore knees, and one manageable action today.",
+      "internal_links": [
+        "/tools/calories",
+        "/articles/knee-pain-weight-men",
+        "/articles/meal-prep-busy-men"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 1,
+          "reported_clicks": 0,
+          "average_position": 5,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [
+        "/articles/men-weight-loss-after-40"
+      ],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "The plan owner has current settled GSC visibility. The alternate has a historical response and older staging owner map. Keep this owner provisional until both current pages and canonicals are compared; no new URL or redirect in this batch."
+    },
+    {
+      "rank": 4,
+      "id": "OG-04",
+      "lane": "Help me lose weight",
+      "search_family": "Help me lose weight and how to start",
+      "candidate_queries": [
+        "help me lose weight",
+        "how to start losing weight",
+        "weight loss help UK"
+      ],
+      "owner_path": "/guides/mens-weight-management-guide",
+      "owner_job": "Explain the non-medicine starting plan and available routes in plain language.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Confirm the retained route exists, then add a simple first-week plan with one action today and clear links to existing support.",
+      "internal_links": [
+        "/tools/calories",
+        "/guides/nutrition-protein-calories-meal-planning",
+        "/articles/beginner-walking-plan-men"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 3,
+          "reported_clicks": 0,
+          "average_position": 23,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [
+        "/start-here",
+        "/programme",
+        "/guides/nutrition-guide"
+      ],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "Homepage and Start Here flow are protected. These routes are destinations to inspect or link, not edited in this work. Do not create a competing beginner page until ownership is confirmed."
+    },
+    {
+      "rank": 5,
+      "id": "OG-05",
+      "lane": "Mounjaro",
+      "search_family": "Not losing weight on Mounjaro",
+      "candidate_queries": [
+        "not losing weight on Mounjaro",
+        "Mounjaro not working"
+      ],
+      "owner_path": "/guides/mounjaro-ultimate-uk-guide",
+      "owner_job": "A balanced treatment explainer with a clearly signposted plateau section.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Inspect the existing guide for this question, then add a non-judgemental checklist covering measurement noise, routine and prescriber questions without dose-change instructions.",
+      "internal_links": [
+        "/articles/weight-loss-plateau-men",
+        "/articles/glp1-side-effects"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "uk_page": {
+          "impressions": 2,
+          "reported_clicks": 0,
+          "average_position": 80,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        },
+        "all_countries_page": {
+          "impressions": 17,
+          "reported_clicks": 0,
+          "average_position": 17.941176470588236,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "A dedicated owner is not demonstrated in the inspected catalogue. Use a substantial section in the existing guide first; a separate page needs a proved intent gap and authored candidate."
+    },
+    {
+      "rank": 6,
+      "id": "OG-06",
+      "lane": "Help me lose weight",
+      "search_family": "What to eat when appetite is low during treatment",
+      "candidate_queries": [
+        "low appetite weight loss treatment",
+        "what to eat on Mounjaro"
+      ],
+      "owner_path": "/guides/nutrition-protein-calories-meal-planning",
+      "owner_job": "Practical food planning that remains useful across prescribed treatments.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Add three realistic small-meal examples with cost and preparation options; make persistent difficulty eating a reason to seek professional help.",
+      "internal_links": [
+        "/tools/protein",
+        "/articles/protein-for-men-weight-management",
+        "/articles/meal-prep-busy-men"
+      ],
+      "search_evidence": {
+        "status": "observed_uk_query_sample",
+        "query_samples": [
+          {
+            "query": "healthy nutrition guide for weight loss",
+            "impressions": 5,
+            "reported_clicks": 0,
+            "average_position": 81.2,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          }
+        ],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "uk_page": {
+          "impressions": 7,
+          "reported_clicks": 0,
+          "average_position": 69.85714285714286,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        },
+        "all_countries_page": {
+          "impressions": 26,
+          "reported_clicks": 0,
+          "average_position": 30.153846153846153,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [
+        "/guides/nutrition-guide"
+      ],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map"
+    },
+    {
+      "rank": 7,
+      "id": "OG-07",
+      "lane": "Help me lose weight",
+      "search_family": "Keeping weight off after stopping treatment",
+      "candidate_queries": [
+        "stopping Mounjaro weight regain",
+        "keeping weight off after Wegovy",
+        "weight regain after stopping GLP-1"
+      ],
+      "owner_path": "/articles/stopping-glp1",
+      "owner_job": "Explain post-treatment maintenance and the need to plan with a prescriber.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Add a practical first-week maintenance routine and a check-in plan without telling someone to stop or restart medicine.",
+      "internal_links": [
+        "/articles/food-noise-after-stopping-glp1",
+        "/articles/healthy-habits-that-last-men"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 11,
+          "reported_clicks": 0,
+          "average_position": 1.1818181818181819,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [
+        "/articles/food-noise-after-stopping-glp1"
+      ],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "Stopping page owns maintenance and planning; food-noise page owns returning food thoughts. Give them separate jobs and link the answers."
+    },
+    {
+      "rank": 8,
+      "id": "OG-08",
+      "lane": "Men’s mental health",
+      "search_family": "Weight loss and mental-health support",
+      "candidate_queries": [
+        "weight loss mental health support"
+      ],
+      "owner_path": "/mental-health/mental-health-and-weight",
+      "owner_job": "Help someone separate mood, eating and weight concerns and get the right support.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Lead with free support now; explain that weight loss is not treatment for depression and preserve urgent-help routes.",
+      "internal_links": [
+        "/mens-mental-health",
+        "/mental-health/when-to-get-help",
+        "/mental-health/self-refer-talking-therapy"
+      ],
+      "search_evidence": {
+        "status": "observed_uk_query_sample",
+        "query_samples": [
+          {
+            "query": "weight loss mental health support",
+            "impressions": 23,
+            "reported_clicks": 0,
+            "average_position": 63.08695652173913,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          },
+          {
+            "query": "mental health for weight loss",
+            "impressions": 7,
+            "reported_clicks": 0,
+            "average_position": 31.857142857142858,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          }
+        ],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "uk_page": {
+          "impressions": 42,
+          "reported_clicks": 0,
+          "average_position": 49.476190476190474,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        },
+        "all_countries_page": {
+          "impressions": 45,
+          "reported_clicks": 0,
+          "average_position": 47.355555555555554,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [
+        "/articles/mens-mental-health-and-weight"
+      ],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "Mental-health page owns support navigation; the article can provide a longer evidence explanation if the inspected copy proves that distinction. No sales CTA."
+    },
+    {
+      "rank": 9,
+      "id": "OG-09",
+      "lane": "Men’s weight loss",
+      "search_family": "Lose belly fat men",
+      "candidate_queries": [
+        "lose belly fat men",
+        "how to lose belly fat after 40"
+      ],
+      "owner_path": "/articles/men-belly-fat",
+      "owner_job": "Explain central fat, realistic whole-body weight management and waist context.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Answer the spot-reduction question near the top; add a simple waist-measurement example and practical food/movement actions.",
+      "internal_links": [
+        "/tools/waist-height",
+        "/articles/waist-size-men",
+        "/articles/alcohol-and-weight-men"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 7,
+          "reported_clicks": 0,
+          "average_position": 6.714285714285714,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map"
+    },
+    {
+      "rank": 10,
+      "id": "OG-10",
+      "lane": "Men’s weight loss",
+      "search_family": "Weight-loss plateau for men",
+      "candidate_queries": [
+        "weight loss plateau men",
+        "weight loss stalled"
+      ],
+      "owner_path": "/articles/weight-loss-plateau-men",
+      "owner_job": "Help someone distinguish short-term scale noise from a sustained stall.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Add a two-week observation worksheet and a routine review; keep medicine-specific decisions with the prescriber.",
+      "internal_links": [
+        "/articles/calories-explained-men",
+        "/articles/healthy-habits-that-last-men"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 7,
+          "reported_clicks": 0,
+          "average_position": 6.285714285714286,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map"
+    },
+    {
+      "rank": 11,
+      "id": "OG-11",
+      "lane": "Help me lose weight",
+      "search_family": "Calorie calculator for men",
+      "candidate_queries": [
+        "calorie calculator men",
+        "how many calories to lose weight men"
+      ],
+      "owner_path": "/tools/calories",
+      "owner_job": "Provide an estimate and explain its practical limits.",
+      "ownership_status": "existing_url_historical_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "historical_public_response_receipt",
+        "checked_at": "2026-09-06T21:55:54.716Z",
+        "http_status": 200,
+        "source": "citation-authority-live-report.json",
+        "limitation": "Historical response only; current response, canonical and full content need verification."
+      },
+      "first_practical_enhancement": "Check the existing calculation and units, then add a worked UK example and explain why a starting estimate should be adjusted using a trend and health context.",
+      "internal_links": [
+        "/articles/calories-explained-men",
+        "/guides/nutrition-protein-calories-meal-planning"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map"
+    },
+    {
+      "rank": 12,
+      "id": "OG-12",
+      "lane": "Help me lose weight",
+      "search_family": "Protein calculator and protein for weight loss",
+      "candidate_queries": [
+        "protein calculator weight loss",
+        "how much protein men need"
+      ],
+      "owner_path": "/tools/protein",
+      "owner_job": "Provide a planning estimate and useful food translation.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Check inputs and existing caveats; translate one example result into ordinary meal options without treating it as an individual prescription.",
+      "internal_links": [
+        "/articles/protein-for-men-weight-management",
+        "/guides/nutrition-protein-calories-meal-planning"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 8,
+          "reported_clicks": 0,
+          "average_position": 6.125,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map"
+    },
+    {
+      "rank": 13,
+      "id": "OG-13",
+      "lane": "Men’s weight loss",
+      "search_family": "Lose weight with knee pain",
+      "candidate_queries": [
+        "lose weight with knee pain",
+        "weight loss bad knees"
+      ],
+      "owner_path": "/articles/knee-pain-weight-men",
+      "owner_job": "Offer manageable movement and food options with appropriate pain boundaries.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Add choices for a sore-knee week and clear signs to get assessed; avoid promising that weight loss alone will solve knee pain.",
+      "internal_links": [
+        "/articles/beginner-walking-plan-men",
+        "/guides/exercise-walking-strength-mobility"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 2,
+          "reported_clicks": 0,
+          "average_position": 8,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map"
+    },
+    {
+      "rank": 14,
+      "id": "OG-14",
+      "lane": "Men’s weight loss",
+      "search_family": "Weight loss on night shifts and busy working days",
+      "candidate_queries": [
+        "weight loss on night shifts",
+        "healthy meals for shift workers"
+      ],
+      "owner_path": "/articles/meal-prep-busy-men",
+      "owner_job": "Make food planning usable around awkward working hours.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Add a night-shift meal example, packed-food fallback and minimal-preparation shopping list; verify the current page can serve this intent before widening its title.",
+      "internal_links": [
+        "/guides/nutrition-protein-calories-meal-planning",
+        "/articles/sleep-and-weight-men"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 7,
+          "reported_clicks": 0,
+          "average_position": 2.857142857142857,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map"
+    },
+    {
+      "rank": 15,
+      "id": "OG-15",
+      "lane": "Men’s weight loss",
+      "search_family": "Beginner walking plan for men",
+      "candidate_queries": [
+        "walking for weight loss men",
+        "beginner walking plan overweight"
+      ],
+      "owner_path": "/articles/beginner-walking-plan-men",
+      "owner_job": "Give a manageable starting activity with adaptations.",
+      "ownership_status": "existing_url_historical_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "historical_public_response_receipt",
+        "checked_at": "2026-09-06T21:55:54.716Z",
+        "http_status": 200,
+        "source": "citation-authority-live-report.json",
+        "limitation": "Historical response only; current response, canonical and full content need verification."
+      },
+      "first_practical_enhancement": "Add a one-week plan with shorter alternatives and ways to track usefulness beyond steps or weight.",
+      "internal_links": [
+        "/tools/walking",
+        "/guides/walking-guide",
+        "/articles/knee-pain-weight-men"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map"
+    },
+    {
+      "rank": 16,
+      "id": "OG-16",
+      "lane": "Mounjaro",
+      "search_family": "Mounjaro side effects",
+      "candidate_queries": [
+        "Mounjaro side effects",
+        "Mounjaro nausea how long"
+      ],
+      "owner_path": "/guides/mounjaro-ultimate-uk-guide",
+      "owner_job": "Provide treatment-specific balanced information and signpost assessment.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Confirm current injection product-information sources, improve the side-effects section and record symptoms/warning signs clearly.",
+      "internal_links": [
+        "/articles/glp1-side-effects"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "uk_page": {
+          "impressions": 2,
+          "reported_clicks": 0,
+          "average_position": 80,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        },
+        "all_countries_page": {
+          "impressions": 17,
+          "reported_clicks": 0,
+          "average_position": 17.941176470588236,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "Same existing guide as plateau family, with distinct sections; do not manufacture near-identical Mounjaro pages."
+    },
+    {
+      "rank": 17,
+      "id": "OG-17",
+      "lane": "Mounjaro",
+      "search_family": "Sulphur burps on Mounjaro",
+      "candidate_queries": [
+        "sulphur burps Mounjaro",
+        "eggy burps Mounjaro"
+      ],
+      "owner_path": "/articles/glp1-side-effects",
+      "owner_job": "Explain a symptom in practical, cautious terms and when to get advice.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Audit the generic side-effect article first; add a clear answer to the burps question with a symptom record and red flags only where current primary evidence supports it.",
+      "internal_links": [
+        "/guides/mounjaro-ultimate-uk-guide"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 3,
+          "reported_clicks": 0,
+          "average_position": 5,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [
+        "/guides/mounjaro-ultimate-uk-guide"
+      ],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "This is a candidate symptom section, not evidence of a current dedicated answer. Confirm intent fit before publication; no unsupported cure claims."
+    },
+    {
+      "rank": 18,
+      "id": "OG-18",
+      "lane": "Mounjaro",
+      "search_family": "What is Mounjaro and can men take it",
+      "candidate_queries": [
+        "what is Mounjaro",
+        "can men take Mounjaro"
+      ],
+      "owner_path": "/articles/what-is-mounjaro",
+      "owner_job": "Give an accessible treatment overview; link to the detailed guide.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Put the factual overview and assessment boundary first, separate licensed use from NHS access and explain where practical support fits.",
+      "internal_links": [
+        "/guides/mounjaro-ultimate-uk-guide",
+        "/faq/can-men-take-mounjaro",
+        "/articles/nhs-weight-loss-drugs"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 1,
+          "reported_clicks": 0,
+          "average_position": 6,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [
+        "/guides/mounjaro-ultimate-uk-guide"
+      ],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map"
+    },
+    {
+      "rank": 19,
+      "id": "OG-19",
+      "lane": "Mounjaro",
+      "search_family": "Mounjaro cost UK",
+      "candidate_queries": [
+        "Mounjaro cost UK",
+        "how much is Mounjaro UK"
+      ],
+      "owner_path": "/articles/mounjaro-cost-uk",
+      "owner_job": "Explain cost components and access questions without a discount-led medicine campaign.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Verify dated figures and what each includes; explain repeat costs and assessment/refund questions without promotional claims.",
+      "internal_links": [
+        "/articles/nhs-weight-loss-drugs",
+        "/guides/mounjaro-ultimate-uk-guide"
+      ],
+      "search_evidence": {
+        "status": "observed_uk_query_sample",
+        "query_samples": [
+          {
+            "query": "mounjaro price comparison uk nhs",
+            "impressions": 7,
+            "reported_clicks": 0,
+            "average_position": 45.142857142857146,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          }
+        ],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "uk_page": {
+          "impressions": 21,
+          "reported_clicks": 0,
+          "average_position": 46.142857142857146,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        },
+        "all_countries_page": {
+          "impressions": 37,
+          "reported_clicks": 0,
+          "average_position": 32.5945945945946,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "Commercial query samples are observed, but candidate publication must pass medicine-advertising review of copy, titles, links and CTA together."
+    },
+    {
+      "rank": 20,
+      "id": "OG-20",
+      "lane": "Wegovy",
+      "search_family": "Wegovy not working",
+      "candidate_queries": [
+        "Wegovy not working",
+        "why is Wegovy not working for me"
+      ],
+      "owner_path": "/articles/wegovy-not-working",
+      "owner_job": "Help someone consider expectations, measurement and prescriber questions.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Add a practical observation checklist and clarify that response varies, without promises or personal dosing advice.",
+      "internal_links": [
+        "/articles/weight-loss-plateau-men",
+        "/articles/wegovy-side-effects-timeline"
+      ],
+      "search_evidence": {
+        "status": "observed_uk_query_sample",
+        "query_samples": [
+          {
+            "query": "wegovy not working",
+            "impressions": 3,
+            "reported_clicks": 0,
+            "average_position": 52,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          },
+          {
+            "query": "wegovy not working anymore",
+            "impressions": 1,
+            "reported_clicks": 0,
+            "average_position": 66,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          }
+        ],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "uk_page": {
+          "impressions": 4,
+          "reported_clicks": 0,
+          "average_position": 72.5,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        },
+        "all_countries_page": {
+          "impressions": 5,
+          "reported_clicks": 0,
+          "average_position": 69,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map"
+    },
+    {
+      "rank": 21,
+      "id": "OG-21",
+      "lane": "Wegovy",
+      "search_family": "Wegovy tablet UK and oral semaglutide",
+      "candidate_queries": [
+        "Wegovy tablet UK",
+        "Wegovy pill UK"
+      ],
+      "owner_path": "/articles/oral-semaglutide-for-weight-loss",
+      "owner_job": "Explain the tablet formulation, evidence and UK access separately from injections.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Verify whether this retained article is public/current; separate authorisation, NHS commissioning and private supply with dated primary evidence.",
+      "internal_links": [
+        "/comparisons/medications/wegovy-injection-vs-tablets",
+        "/articles/nhs-weight-loss-drugs"
+      ],
+      "search_evidence": {
+        "status": "observed_uk_query_sample",
+        "query_samples": [
+          {
+            "query": "wegovy pill",
+            "impressions": 9,
+            "reported_clicks": 0,
+            "average_position": 3.111111111111111,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          },
+          {
+            "query": "what is the wegovy pill",
+            "impressions": 1,
+            "reported_clicks": 0,
+            "average_position": 3,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          }
+        ],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 12,
+          "reported_clicks": 0,
+          "average_position": 4.333333333333334,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [
+        "/wegovy-tablet"
+      ],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "The owner has 12 all-country Google impressions in the pinned sample and a retained repository article asset. Current content and formulation fit still require verification. The product route keeps its transactional job; no new buying funnel is created."
+    },
+    {
+      "rank": 22,
+      "id": "OG-22",
+      "lane": "Wegovy",
+      "search_family": "Wegovy tablet versus injection",
+      "candidate_queries": [
+        "Wegovy pill versus injection",
+        "Wegovy tablet vs injection"
+      ],
+      "owner_path": "/comparisons/medications/wegovy-injection-vs-tablets",
+      "owner_job": "Give a balanced formulation comparison with clear limits to cross-trial comparison.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Refresh the comparison table using current authorised product information, keep instructions formulation-specific and state uncertainty plainly.",
+      "internal_links": [
+        "/articles/oral-semaglutide-for-weight-loss",
+        "/articles/wegovy-side-effects-timeline"
+      ],
+      "search_evidence": {
+        "status": "observed_uk_query_sample",
+        "query_samples": [
+          {
+            "query": "wegovy tablet vs injection",
+            "impressions": 1,
+            "reported_clicks": 0,
+            "average_position": 92,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          },
+          {
+            "query": "wegovy tablets vs injection",
+            "impressions": 1,
+            "reported_clicks": 0,
+            "average_position": 90,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          }
+        ],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "uk_page": {
+          "impressions": 3,
+          "reported_clicks": 0,
+          "average_position": 70,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        },
+        "all_countries_page": {
+          "impressions": 11,
+          "reported_clicks": 0,
+          "average_position": 24.272727272727273,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map"
+    },
+    {
+      "rank": 23,
+      "id": "OG-23",
+      "lane": "Wegovy",
+      "search_family": "What to eat on Wegovy",
+      "candidate_queries": [
+        "what to eat on Wegovy"
+      ],
+      "owner_path": "/guides/nutrition-protein-calories-meal-planning",
+      "owner_job": "Give food examples rather than a medicine-specific restrictive diet.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Use the shared low-appetite section with three practical meal choices; address injection/tablet distinctions by linking to verified product information rather than inventing dietary rules.",
+      "internal_links": [
+        "/tools/protein",
+        "/articles/wegovy-side-effects-timeline"
+      ],
+      "search_evidence": {
+        "status": "observed_uk_query_sample",
+        "query_samples": [
+          {
+            "query": "what should i eat on wegovy",
+            "impressions": 1,
+            "reported_clicks": 0,
+            "average_position": 3,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          },
+          {
+            "query": "what not to eat on wegovy",
+            "impressions": 1,
+            "reported_clicks": 0,
+            "average_position": 3,
+            "market": "UK",
+            "period": {
+              "start": "2026-09-06",
+              "end": "2026-10-03",
+              "type": "web"
+            },
+            "limitation": "Site visibility sample, not total search demand. Reported click attribution is under reconciliation."
+          }
+        ],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "uk_page": {
+          "impressions": 7,
+          "reported_clicks": 0,
+          "average_position": 69.85714285714286,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        },
+        "all_countries_page": {
+          "impressions": 26,
+          "reported_clicks": 0,
+          "average_position": 30.153846153846153,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "Shares the food-planning owner with the low-appetite family. Candidate queries do not justify duplicating the same meal advice under another medicine title."
+    },
+    {
+      "rank": 24,
+      "id": "OG-24",
+      "lane": "Reta / retatrutide",
+      "search_family": "Is retatrutide approved or available in the UK",
+      "candidate_queries": [
+        "retatrutide UK",
+        "is retatrutide approved in the UK",
+        "Reta UK"
+      ],
+      "owner_path": "/guides/retatrutide-uk-guide",
+      "owner_job": "Maintain the fixed evergreen research owner with dated authorisation/access status.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Refresh primary regulatory and trial-register evidence, place a clear status answer first and preserve the informational boundary.",
+      "internal_links": [
+        "/future-medicines-comparison"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 9,
+          "reported_clicks": 0,
+          "average_position": 7.111111111111111,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "Fixed existing owner. No buying, reservation, speculative price or availability funnel. Do not create another retatrutide guide."
+    },
+    {
+      "rank": 25,
+      "id": "OG-25",
+      "lane": "Reta / retatrutide",
+      "search_family": "Retatrutide trial results",
+      "candidate_queries": [
+        "retatrutide trial results",
+        "retatrutide weight loss trial"
+      ],
+      "owner_path": "/guides/retatrutide-uk-guide",
+      "owner_job": "Explain study results, participants, duration and what remains unknown.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Maintain an evidence table with study phase, population, endpoints and limitations; distinguish full papers from sponsor summaries.",
+      "internal_links": [
+        "/future-medicines-comparison"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 9,
+          "reported_clicks": 0,
+          "average_position": 7.111111111111111,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "A dated research update may link to this evergreen owner if it adds a distinct new finding; do not repeat the guide as another keyword page."
+    },
+    {
+      "rank": 26,
+      "id": "OG-26",
+      "lane": "Reta / retatrutide",
+      "search_family": "Retatrutide side effects and comparison with Mounjaro",
+      "candidate_queries": [
+        "retatrutide side effects",
+        "retatrutide versus Mounjaro"
+      ],
+      "owner_path": "/guides/retatrutide-uk-guide",
+      "owner_job": "Explain trial safety observations and why investigational and authorised products cannot be treated as interchangeable.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Source adverse-event statements to the actual trial report and avoid ranking treatments from separate studies.",
+      "internal_links": [
+        "/guides/mounjaro-ultimate-uk-guide",
+        "/future-medicines-comparison"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 9,
+          "reported_clicks": 0,
+          "average_position": 7.111111111111111,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "Candidate questions currently map to separate sections of the same fixed research owner; market demand remains unvalidated."
+    },
+    {
+      "rank": 27,
+      "id": "OG-27",
+      "lane": "Men’s mental health",
+      "search_family": "Men’s mental health and how to get help",
+      "candidate_queries": [
+        "men’s mental health",
+        "men mental health help UK"
+      ],
+      "owner_path": "/mens-mental-health",
+      "owner_job": "Provide the public Good to Talk front door and free support routes.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Check that the opening explains who it helps and offers a clear route by need, with urgent support readily visible.",
+      "internal_links": [
+        "/mental-health/when-to-get-help",
+        "/mental-health/talking-about-it",
+        "/mental-health/nhs-talking-therapies"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 12,
+          "reported_clicks": 0,
+          "average_position": 5.083333333333333,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "No sales funnel, paywall or suggestion that buying a weight product treats mental-health problems."
+    },
+    {
+      "rank": 28,
+      "id": "OG-28",
+      "lane": "Men’s mental health",
+      "search_family": "Signs of depression in men and feeling low",
+      "candidate_queries": [
+        "signs of depression in men",
+        "male depression symptoms"
+      ],
+      "owner_path": "/mental-health/feeling-low",
+      "owner_job": "Help someone recognise persistent symptoms and decide how to seek support.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Audit symptom coverage against current NHS information, give a concrete booking/talking step and preserve urgent help without a diagnostic quiz.",
+      "internal_links": [
+        "/mental-health/when-to-get-help",
+        "/mental-health/self-refer-talking-therapy"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 1,
+          "reported_clicks": 0,
+          "average_position": 9,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "Existing URL is observed; its exact fit to symptom queries remains a content-verification task. Do not imply all distress is depression."
+    },
+    {
+      "rank": 29,
+      "id": "OG-29",
+      "lane": "Men’s mental health",
+      "search_family": "Male loneliness and reconnecting with people",
+      "candidate_queries": [
+        "male loneliness",
+        "lonely man what to do"
+      ],
+      "owner_path": "/mental-health/reconnect-with-people",
+      "owner_job": "Give a manageable way to reconnect without assuming confidence or a large social circle.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Add one low-pressure message example, alternatives for someone with few contacts and a support route when loneliness feels overwhelming.",
+      "internal_links": [
+        "/mental-health/talking-to-a-mate",
+        "/mental-health/when-to-get-help"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 3,
+          "reported_clicks": 0,
+          "average_position": 8.333333333333332,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "Confirm the existing page addresses loneliness before widening metadata. Free access and support remain the purpose."
+    },
+    {
+      "rank": 30,
+      "id": "OG-30",
+      "lane": "Men’s mental health",
+      "search_family": "Why am I always angry or overwhelmed and when to seek help",
+      "candidate_queries": [
+        "why am I always angry",
+        "men stress overwhelmed"
+      ],
+      "owner_path": "/mental-health/when-to-get-help",
+      "owner_job": "Explain when persistent changes in mood or behaviour deserve professional support.",
+      "ownership_status": "existing_url_observed_current_content_pending_verification",
+      "ownership_evidence": {
+        "type": "settled_gsc_page_row",
+        "read_at": "2026-10-05",
+        "period": {
+          "start": "2026-09-06",
+          "end": "2026-10-03",
+          "type": "web"
+        },
+        "source": "seo-plan/gsc-first-pass-evidence-2026-10-05.json",
+        "limitation": "Google page visibility does not verify the current response, canonical or full content."
+      },
+      "first_practical_enhancement": "Inspect the page for this intent; add a practical way to describe irritability to a GP if supported by current sources, and distinguish emergency risk from routine support.",
+      "internal_links": [
+        "/mental-health/work-stress-burnout",
+        "/mental-health/talking-about-it"
+      ],
+      "search_evidence": {
+        "status": "candidate_family_no_verified_uk_query_sample",
+        "query_samples": [],
+        "monthly_uk_search_volume": null,
+        "market_volume_status": "not_validated",
+        "visibility_is_market_demand": false,
+        "all_countries_page": {
+          "impressions": 1,
+          "reported_clicks": 0,
+          "average_position": 17,
+          "period": {
+            "start": "2026-09-06",
+            "end": "2026-10-03",
+            "type": "web"
+          },
+          "limitation": "Page observations are not proof that every listed family appeared; attribution is under reconciliation."
+        }
+      },
+      "overlap_audit": [
+        "/mental-health/work-stress-burnout"
+      ],
+      "delivery_status": "ranked_queue_production_authored_candidate_required",
+      "public_change_status": "not_live_verified_by_this_map",
+      "notes": "Provisional intent fit only; stress at work belongs with its specific owner. A dedicated anger page requires a demonstrated content gap and authored candidate, not keyword substitution."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "readAt": "2026-10-05",
+  "articles": [
+    {
+      "slug": "wegovy-side-effects-timeline",
+      "expected_title": "Wegovy side effects: timing varies, warning signs matter",
+      "expected_seo_title": "Wegovy side effects: timing varies, warning signs matter",
+      "expected_summary": "Side effects do not follow a reliable weekly timetable. Know what to record, when to seek help and who is responsible for your treatment.",
+      "expected_publish_at": "2026-09-23T05:31:02.403Z",
+      "expected_modified_at": "2026-10-03T10:02:20.000Z",
+      "baseline_url": "https://shiftsometimber.co.uk/articles/wegovy-side-effects-timeline",
+      "expected_main_sha256": "5637e1804c526ecbd04371aefcbcfbeddc27174d7ff573a66cf8b93b77d812e6"
+    },
+    {
+      "slug": "nhs-weight-loss-drugs",
+      "expected_title": "NHS weight-loss medicines: eligibility and access",
+      "expected_seo_title": "NHS weight-loss medicines: eligibility and access",
+      "expected_summary": "How NHS weight-management medicine criteria differ, with England pathway distinctions and questions for your local service.",
+      "expected_publish_at": "2026-09-24T05:30:31.924Z",
+      "expected_modified_at": "2026-10-03T20:06:31.000Z",
+      "baseline_url": "https://shiftsometimber.co.uk/articles/nhs-weight-loss-drugs",
+      "expected_main_sha256": "729d1aff8fae42511be98c300b3de76c8b6616d05531f3f35d7dd4cce0d45906"
+    }
+  ]
+}
