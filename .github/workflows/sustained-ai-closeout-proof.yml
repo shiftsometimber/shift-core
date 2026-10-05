@@ -1,7 +1,7 @@
 name: Sustained bounded AI closeout proof
 on:
   push:
-    branches: [codex/close-auth-delivery-20261004]
+    branches: [codex/close-auth-delivery-20261004, codex/non-image-closeout-20261004]
 permissions:
   contents: read
 concurrency:
@@ -67,7 +67,7 @@ jobs:
           }
           if(!ready)throw Error('Preview inference did not become ready within the bounded startup attempts');
           NODE
-      - name: Five one-minute rounds of two uncached fictional-member requests
+      - name: Ten one-minute rounds of four uncached fictional-member requests
         run: node preview/ai-context/sustained-reliability-proof.mjs
       - name: Remove only the temporary evaluator
         if: always() && env.SHIFT_EVAL_URL != ''
