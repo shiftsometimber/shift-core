@@ -1,0 +1,62 @@
+name: Mail provider read-only proof
+on:
+  push:
+    branches: [proof/mail-provider-readonly-20261005]
+    paths: [.github/workflows/mail-provider-readonly-proof.yml]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Run existing auth and transactional reliability checks without real mail
+        run: node --test tests/auth-mail-delivery-reliability.test.mjs tests/transactional-mail-reliability.test.mjs
+      - name: Read the existing sender configuration only
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import {writeFileSync} from 'node:fs';
+          import {createHash} from 'node:crypto';
+          const account=process.env.CLOUDFLARE_ACCOUNT_ID;
+          const report={at:new Date().toISOString(),source:process.env.GITHUB_SHA,base:'2b727bff6a33adb9bc37716314a0ace19e141bdb',scope:'GET-only provider configuration; no mail, DB writes, deployment or DNS changes',mailSent:false,reads:[]};
+          const hash=s=>createHash('sha256').update(s).digest('hex');
+          async function read(path){
+            const r=await fetch('https://api.cloudflare.com/client/v4'+path,{method:'GET',redirect:'error',signal:AbortSignal.timeout(20000),headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN}});
+            const raw=await r.text(); let j={};try{j=JSON.parse(raw)}catch{}
+            const receipt={path,status:r.status,sha256:hash(raw),success:j.success===true,errorCodes:(j.errors||[]).map(e=>e.code)};
+            report.reads.push(receipt);
+            return {ok:r.ok&&j.success===true,result:j.result,receipt};
+          }
+          try{
+            const zones=await read('/zones?name=shiftsometimber.co.uk&account.id='+account);
+            const zone=(zones.result||[]).find(z=>z.name==='shiftsometimber.co.uk'&&z.account?.id===account);
+            if(zone){
+              report.zone={name:zone.name,status:zone.status};
+              const sub=await read('/zones/'+zone.id+'/email/sending/subdomains');
+              report.sendingRows=(Array.isArray(sub.result)?sub.result:[]).filter(x=>['shiftsometimber.co.uk','*.shiftsometimber.co.uk','cf-bounce.shiftsometimber.co.uk'].includes(x.name)).map(({name,enabled,dkim_selector,return_path_domain,preview_enabled})=>({name,enabled,dkim_selector,return_path_domain,preview_enabled}));
+              report.sendingConfiguration=sub.ok?'read':'not_verified';
+              for(const name of ['shiftsometimber.co.uk','cf-bounce.shiftsometimber.co.uk','cf-bounce._domainkey.shiftsometimber.co.uk']){
+                const dns=await read('/zones/'+zone.id+'/dns_records?name='+name);
+                report.dns??=[];report.dns.push({name,verified:dns.ok,records:(dns.result||[]).filter(x=>['MX','TXT','CNAME'].includes(x.type)).map(({name,type,content,priority})=>({name,type,content,priority}))});
+              }
+            }else report.sendingConfiguration='zone_not_verified';
+            report.limitation='Provider configuration and DNS cannot establish mailbox receipt, support staffing or received-link recovery.';
+          }catch(e){report.error=e.name;report.sendingConfiguration='not_verified'}
+          writeFileSync('mail-provider-readonly-proof.json',JSON.stringify(report,null,2));
+          console.log(JSON.stringify(report,null,2));
+          if(report.sendingConfiguration!=='read')process.exitCode=1;
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mail-provider-readonly-proof
+          path: mail-provider-readonly-proof.json
+          retention-days: 30
