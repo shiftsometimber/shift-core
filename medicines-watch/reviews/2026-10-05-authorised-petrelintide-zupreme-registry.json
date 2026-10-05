@@ -1,0 +1,80 @@
+{
+  "reviewedAt": "2026-10-05T01:29:41Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Reconcile the sponsor's ZUPREME programme-initiation announcement with the three subsequently posted Phase III registry records. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "changes": [
+    {
+      "id": "petrelintide",
+      "fields": {
+        "stage": "Phase 3 ZUPREME announced; three records not yet recruiting",
+        "summaryToAppend": "The subsequently posted ZUPREME-3, ZUPREME-4 and ZUPREME-5 records separately cover participants without type 2 diabetes, with type 2 diabetes and with established cardiovascular disease. All three sponsor-submitted records remain not yet recruiting, list no study locations and have no posted results; each retains an estimated 30 September 2026 start date.",
+        "limitationsToAppend": "The sponsor's 22 September 2026 announcement describes programme initiation, but the three records first posted on 28 September do not yet record recruitment or an actual start. The passed estimated start date is not treated as dosing, enrolment or completion. The diabetes and cardiovascular studies are specialist-indication research, not evidence of those benefits, UK authorisation, NICE or NHS access, or actual supply."
+      },
+      "additionalEvidence": [
+        {"title":"ClinicalTrials.gov NCT07843498: ZUPREME-3 without type 2 diabetes","url":"https://clinicaltrials.gov/study/NCT07843498","sourcePublishedAt":"2026-09-28","sourceUpdatedAt":"2026-09-28","reviewedAt":"2026-10-05T01:29:41Z","checkScope":"Automatic record-status checks; no assessment of clinical outcomes."},
+        {"title":"ClinicalTrials.gov NCT07843485: ZUPREME-4 with type 2 diabetes","url":"https://clinicaltrials.gov/study/NCT07843485","sourcePublishedAt":"2026-09-28","sourceUpdatedAt":"2026-09-28","reviewedAt":"2026-10-05T01:29:41Z","checkScope":"Automatic record-status checks; no assessment of clinical outcomes."},
+        {"title":"ClinicalTrials.gov NCT07843472: ZUPREME-5 with established cardiovascular disease","url":"https://clinicaltrials.gov/study/NCT07843472","sourcePublishedAt":"2026-09-28","sourceUpdatedAt":"2026-09-28","reviewedAt":"2026-10-05T01:29:41Z","checkScope":"Automatic record-status checks; no assessment of clinical outcomes."}
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id":"registry-nct07843498","nctId":"NCT07843498","title":"ClinicalTrials.gov NCT07843498: ZUPREME-3 without type 2 diabetes","url":"https://clinicaltrials.gov/study/NCT07843498","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07843498","format":"ctgov-lifecycle","requiredTerms":["NCT07843498","Hoffmann-La Roche"],"reviewedAt":"2026-10-05T01:29:41Z","sourcePublishedAt":"2026-09-28","sourceUpdatedAt":"2026-09-28","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle":{"nctId":"NCT07843498","title":"A Phase III Study to Evaluate the Efficacy and Safety of Petrelintide in Participants With Overweight or Obesity","sponsor":"Hoffmann-La Roche","status":"NOT_YET_RECRUITING","whyStopped":null,"phases":["PHASE3"],"enrollment":{"count":3900,"type":"ESTIMATED"},"start":{"date":"2026-09-30","type":"ESTIMATED"},"primaryCompletion":{"date":"2028-12-21","type":"ESTIMATED"},"completion":{"date":"2029-03-22","type":"ESTIMATED"},"firstPosted":{"date":"2026-09-28","type":"ACTUAL"},"lastUpdated":{"date":"2026-09-28","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},
+      "entryIds":["petrelintide"],"rawResponseSha256":"89736a2152abb6ebece1ce416d84493ec2aba967106c0acfc41e05b7be778531","reviewedFingerprint":"ed47a4a099a5d69d37016103c4264fbed699b7549df2372919fa814e4b03a31e"
+    },
+    {
+      "id":"registry-nct07843485","nctId":"NCT07843485","title":"ClinicalTrials.gov NCT07843485: ZUPREME-4 with type 2 diabetes","url":"https://clinicaltrials.gov/study/NCT07843485","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07843485","format":"ctgov-lifecycle","requiredTerms":["NCT07843485","Hoffmann-La Roche"],"reviewedAt":"2026-10-05T01:29:41Z","sourcePublishedAt":"2026-09-28","sourceUpdatedAt":"2026-09-28","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle":{"nctId":"NCT07843485","title":"A Phase III Study to Evaluate the Efficacy and Safety of Petrelintide in Participants With Overweight or Obesity and Type 2 Diabetes","sponsor":"Hoffmann-La Roche","status":"NOT_YET_RECRUITING","whyStopped":null,"phases":["PHASE3"],"enrollment":{"count":600,"type":"ESTIMATED"},"start":{"date":"2026-09-30","type":"ESTIMATED"},"primaryCompletion":{"date":"2028-10-20","type":"ESTIMATED"},"completion":{"date":"2029-01-19","type":"ESTIMATED"},"firstPosted":{"date":"2026-09-28","type":"ACTUAL"},"lastUpdated":{"date":"2026-09-28","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},
+      "entryIds":["petrelintide"],"rawResponseSha256":"94ed7b741bb564d0a653fd00d2d66652ee51369e596830c17ba8bbe807d85a9a","reviewedFingerprint":"96bce0f5664ebf33fc6c7ff6b2838bd2a5067591cf8ef745dd0fbe2e84eb7390"
+    },
+    {
+      "id":"registry-nct07843472","nctId":"NCT07843472","title":"ClinicalTrials.gov NCT07843472: ZUPREME-5 with established cardiovascular disease","url":"https://clinicaltrials.gov/study/NCT07843472","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07843472","format":"ctgov-lifecycle","requiredTerms":["NCT07843472","Hoffmann-La Roche"],"reviewedAt":"2026-10-05T01:29:41Z","sourcePublishedAt":"2026-09-28","sourceUpdatedAt":"2026-09-28","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle":{"nctId":"NCT07843472","title":"A Phase III Study to Evaluate the Efficacy and Safety of Petrelintide in Participants With Overweight or Obesity and Established Cardiovascular Disease","sponsor":"Hoffmann-La Roche","status":"NOT_YET_RECRUITING","whyStopped":null,"phases":["PHASE3"],"enrollment":{"count":2500,"type":"ESTIMATED"},"start":{"date":"2026-09-30","type":"ESTIMATED"},"primaryCompletion":{"date":"2030-07-28","type":"ESTIMATED"},"completion":{"date":"2030-10-06","type":"ESTIMATED"},"firstPosted":{"date":"2026-09-28","type":"ACTUAL"},"lastUpdated":{"date":"2026-09-28","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},
+      "entryIds":["petrelintide"],"rawResponseSha256":"d4a8e80b0d85357fbceaad093b90dd572b0f4d6e3e714eadab3330d95a79a090","reviewedFingerprint":"cc49a1d641d429c805f14ed82392694171527874084f37bd0f7363839a9430bb"
+    }
+  ],
+  "sourceReviews": [
+    {"url":"https://www.globenewswire.com/news-release/2026/09/22/3366613/0/en/zealand-pharma-announces-initiation-of-the-registrational-phase-3-zupreme-program-of-petrelintide-in-people-with-overweight-or-obesity.html","publicationDate":"2026-09-22","updateDate":"unknown","reviewedAt":"2026-10-05T01:29:41Z","outcome":"Complete sponsor announcement read. It calls the three-trial programme initiated and identifies ZUPREME-3, -4 and -5, but is not used to infer registry recruitment or an actual start."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07843498","publicationDate":"2026-09-28","updateDate":"2026-09-28","reviewedAt":"2026-10-05T01:29:41Z","outcome":"Complete primary API body read; not-yet-recruiting Phase III record, estimated start, no listed locations and no posted results."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07843485","publicationDate":"2026-09-28","updateDate":"2026-09-28","reviewedAt":"2026-10-05T01:29:41Z","outcome":"Complete primary API body read; not-yet-recruiting Phase III type 2 diabetes record, estimated start, no listed locations and no posted results."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07843472","publicationDate":"2026-09-28","updateDate":"2026-09-28","reviewedAt":"2026-10-05T01:29:41Z","outcome":"Complete primary API body read; not-yet-recruiting Phase III cardiovascular-disease record, estimated start, no listed locations and no posted results."}
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-05T01:29:41Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 146,
+    "currentSources": 145,
+    "attention": [
+      {"id":"zealand-zp6590-pipeline","status":"check_delayed","error":"http_403","lastAttemptAt":"2026-10-05T01:16:05.927Z","reviewStatus":"verification_pending"}
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only response verifies configured-source monitoring only. It does not renew factual reviews, approve changed wording or prove complete industry coverage. The Zealand 403 remains explicit; the earlier Scottish timeout recovered."
+  },
+  "discoveryPass": {
+    "method": "Current-date and broader undated topic, developer, specialist-indication and registry searches were reconciled with current main, dated receipts and open Watch PRs.",
+    "programmeLevelCheck": "The sponsor announcement and all three complete ClinicalTrials.gov API bodies were read. ZUPREME-3, -4 and -5 were missing from the Watch's registry lifecycle even though the existing summary repeated the earlier programme-initiation headline.",
+    "included": "The three distinct Phase III records are attached to the existing petrelintide programme, with populations, status, estimated dates and absence of results kept separate.",
+    "notDuplicated": "The separate petrelintide-enicepatide ZYNERGY Phase II combination already tracked in the Watch remains distinct. No open Medicines Watch review PR was present.",
+    "incompleteChecks": [
+      "Search indexing can lag and selected searches cannot exclude unannounced programmes, older omissions or additional international developers.",
+      "All three records currently list no study locations and have no posted results; automatic lifecycle checks do not assess future outcomes.",
+      "No new MHRA authorisation, NICE recommendation, NHS access decision or verified UK supply change was established."
+    ]
+  },
+  "failedChecks": [
+    {"url":"https://www.zealandpharma.com/obesity/pipeline/","attemptedAt":"2026-10-05T01:16:05.927Z","outcome":"The configured monitor received HTTP 403.","impact":"The prior source remains verification pending; the successful registry reviews do not replace or green that blocked baseline."}
+  ],
+  "catalogueCounts":{"detailed":6,"widerBefore":91,"widerAfter":91,"totalBefore":97,"totalAfter":97,"configuredSourcesBefore":146,"configuredSourcesAfter":149},
+  "nextAction":"Run the full Watch and release gates, publish the exact passing head through the guarded workflow, verify the live Petrelintide record labels, Treatments link and SELECT-only health endpoint, and retain the Zealand 403 until a complete primary response can be captured."
+}

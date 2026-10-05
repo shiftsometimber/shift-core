@@ -44,6 +44,7 @@ import azelapragDiscontinuation from './reviews/2026-10-04-authorised-azelaprag-
 import taldefgrobepRv8451 from './reviews/2026-10-04-authorised-taldefgrobep-rv8451.json' with {type:'json'};
 import internationalMaintenanceWave from './reviews/2026-10-04-authorised-international-maintenance-wave.json' with {type:'json'};
 import novoSpecialistWave from './reviews/2026-10-05-authorised-novo-specialist-wave.json' with {type:'json'};
+import petrelintideZupreme from './reviews/2026-10-05-authorised-petrelintide-zupreme-registry.json' with {type:'json'};
 import hansohOlatorepatideReview from './reviews/2026-10-05-authorised-hansoh-olatorepatide-source-review.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('VK2735 maintenance evidence stays sponsor-reported and does not create an approved regimen',()=>{
@@ -365,7 +366,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,91);assert.equal(sources.length,146);
+ assert.equal(medicines.length,6);assert.equal(industry.length,91);assert.equal(sources.length,149);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,97);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
@@ -1062,6 +1063,30 @@ test('programme-level Novo and specialist discovery preserves indication and evi
  }
  assert.equal(novoSpecialistWave.failedChecks.length,2);
  assert.match(novoSpecialistWave.failedChecks[0].outcome,/timed out/);
+});
+
+test('Petrelintide ZUPREME review distinguishes sponsor initiation from registry recruitment',()=>{
+ assert.equal(petrelintideZupreme.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(petrelintideZupreme.clinicalApproval,null);
+ assert.equal(petrelintideZupreme.industryComplete,false);
+ assert.equal(petrelintideZupreme.catalogueCounts.totalAfter,97);
+ assert.equal(petrelintideZupreme.catalogueCounts.configuredSourcesAfter,149);
+ const petrelintide=industry.find(item=>item.id==='petrelintide');
+ assert.match(petrelintide.stage,/three records not yet recruiting/);
+ assert.match(petrelintide.summary,/ZUPREME-3, ZUPREME-4 and ZUPREME-5/);
+ assert.match(petrelintide.summary,/list no study locations/);
+ assert.match(petrelintide.limitations,/passed estimated start date is not treated as dosing/);
+ assert.match(petrelintide.limitations,/specialist-indication research/);
+ assert.equal(petrelintideZupreme.registrySources.length,3);
+ for(const registry of petrelintideZupreme.registrySources){
+  assert.equal(registry.lifecycle.status,'NOT_YET_RECRUITING');
+  assert.equal(registry.lifecycle.start.type,'ESTIMATED');
+  assert.equal(registry.lifecycle.start.date,'2026-09-30');
+  assert.equal(registry.lifecycle.hasResults,false);
+  assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ }
+ assert.equal(petrelintideZupreme.configuredSourcePass.currentSources,145);
+ assert.equal(petrelintideZupreme.configuredSourcePass.attention[0].id,'zealand-zp6590-pipeline');
 });
 
 test('Hansoh source review renews only the read claim-bearing baseline',()=>{
