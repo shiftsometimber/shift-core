@@ -1,5 +1,6 @@
 import {RECIPE_IMAGE_PATHS,validateRecipeImages} from '../release/recipe-image-scope.mjs';
 import {WATCH_REGISTRY_WAVE_PATHS,validateWatchRegistryWave} from '../release/watch-registry-wave-scope.mjs';
+import {FIT300_PATHS,READONLY_ORGANIC_PATHS,validateFit300} from '../release/fit-300-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
@@ -8,8 +9,14 @@ export const base=COACH_BASE;export const additions=COACH_ADDITIONS;
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim(),candidate=process.env.SHIFT_COACH_SOURCE||'HEAD';
 git('merge-base','--is-ancestor',base,candidate);
 validateRecipeImages();
+validateFit300();
 for(const line of git('diff','--name-status',base,candidate).split('\n').filter(Boolean)){
  const [status,path]=line.split('\t');
+ if(FIT300_PATHS.has(path)||READONLY_ORGANIC_PATHS.has(path)){
+  assert(['A','M'].includes(status),'Unexpected independently pinned release change: '+path);
+  assert.equal(git('rev-parse',candidate+':'+path),git('rev-parse','HEAD:'+path),'Candidate independently pinned payload changed in merge: '+path);
+  continue;
+ }
  if(RECIPE_IMAGE_PATHS.has(path))continue;
  if(WATCH_REGISTRY_WAVE_PATHS.includes(path)){assert(['A','M'].includes(status),'Unexpected Watch registry-wave change: '+path);continue;}
  if(!WATCH_REGISTRY_WAVE_PATHS.includes(path))assertCoachingChangedPath(status,path);
