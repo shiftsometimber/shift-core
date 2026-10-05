@@ -16,7 +16,7 @@ dialog.sst-image-viewer::backdrop{background:#000c}
 .sst-image-viewer button:not(.sst-image-open){font:600 16px/1.2 system-ui!important;background:#050505!important;color:#E7E3DA!important;border:0!important;border-radius:8px!important;padding:12px 16px!important;min-height:44px!important;cursor:pointer!important;flex:none!important}
 .sst-image-stage{flex:1!important;min-height:0!important;overflow:auto!important;overscroll-behavior:contain;touch-action:pan-x pan-y pinch-zoom;background:#fff;border-radius:8px}
 .sst-image-stage img{display:block!important;max-width:none!important;max-height:none!important;height:auto!important;object-fit:contain!important;margin:0!important;cursor:zoom-in}
-.sst-image-viewer footer{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:12px!important;flex:none!important;margin:0!important;padding:0!important;background:transparent!important}
+.sst-image-viewer .sst-image-tools{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:12px!important;flex:none!important;margin:0!important;padding:0!important;background:transparent!important}
 .sst-image-viewer p{margin:0!important;font:14px/1.4 system-ui!important}
 `;
   document.head.append(style);
@@ -32,7 +32,7 @@ dialog.sst-image-viewer::backdrop{background:#000c}
     viewer = document.createElement('dialog');
     viewer.className = 'sst-image-viewer';
     viewer.setAttribute('aria-labelledby', 'sst-image-viewer-title');
-    viewer.innerHTML = '<header><h2 id="sst-image-viewer-title"></h2><button type="button" data-image-close aria-label="Close enlarged image">Close</button></header><div class="sst-image-stage"><img alt=""></div><footer><button type="button" data-image-zoom>Zoom in</button><p>Zoom in, then swipe across to see the detail.</p></footer>';
+    viewer.innerHTML = '<header><h2 id="sst-image-viewer-title"></h2><button type="button" data-image-close aria-label="Close enlarged image">Close</button></header><div class="sst-image-stage"><img alt=""></div><div class="sst-image-tools"><button type="button" data-image-zoom>Zoom in</button><p>Zoom in, then swipe across to see the detail.</p></div>';
     document.body.append(viewer);
     image = viewer.querySelector('img');
     zoomButton = viewer.querySelector('[data-image-zoom]');
@@ -44,7 +44,7 @@ dialog.sst-image-viewer::backdrop{background:#000c}
       if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) close();
     });
     viewer.addEventListener('close', () => { if (opener?.isConnected) opener.focus({preventScroll:true}); });
-    image.addEventListener('error', () => { viewer.querySelector('footer p').textContent = 'Image could not load. Close and try again.'; });
+    image.addEventListener('error', () => { viewer.querySelector('.sst-image-tools p').textContent = 'Image could not load. Close and try again.'; });
     window.addEventListener('resize', sizeImage);
     window.addEventListener('hashchange', close);
   }
@@ -55,7 +55,7 @@ dialog.sst-image-viewer::backdrop{background:#000c}
     opener = button; zoom = 1; fit = thumbnail.matches('.sf-approved-exercise-image');
     const card = button.closest('.sf-exercise,.mp-meal,.grub-recipe,.grub-meal-card,article');
     viewer.querySelector('h2').textContent = card?.querySelector('h4,h3,h2')?.textContent || thumbnail.alt || (fit ? 'Movement illustration' : 'Recipe illustration');
-    viewer.querySelector('footer p').textContent = fit ? 'Zoom in, then swipe across the movement sequence.' : 'Zoom in, then swipe to see the detail. Portions are illustrative.';
+    viewer.querySelector('.sst-image-tools p').textContent = fit ? 'Zoom in, then swipe across the movement sequence.' : 'Zoom in, then swipe to see the detail. Portions are illustrative.';
     const sources = (thumbnail.getAttribute('srcset') || '').split(',').map(part => part.trim().split(/\s+/)).filter(part => part[0] && /^\d+w$/.test(part[1] || '')).sort((a,b) => parseInt(b[1]) - parseInt(a[1]));
     image.src = sources[0]?.[0] || thumbnail.src;
     image.alt = thumbnail.alt;
