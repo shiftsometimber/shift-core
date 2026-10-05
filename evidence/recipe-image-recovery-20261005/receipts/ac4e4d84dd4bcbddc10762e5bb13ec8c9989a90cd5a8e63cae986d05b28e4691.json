@@ -1,0 +1,100 @@
+{
+  "groupId": "ac4e4d84dd4bcbddc10762e5bb13ec8c9989a90cd5a8e63cae986d05b28e4691",
+  "recipe_ids": [
+    "industrial-v3-pasta-garlic-herb-salmon"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Salmon Proper Pasta"
+  ],
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, garlic powder, dried parsley dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Salmon Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, garlic powder, dried parsley dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Cooked naturally brown wholewheat penne with large opaque cooked salmon flakes, softened diced courgette and juicy cherry tomato pieces tossed in mayonnaise garlic/dried parsley coating. No fresh garnish or cheese. Full serving entirely inside the 4:3 landscape frame, generous margin for responsive crop. No unlisted garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/016.png",
+  "source_sha256": "274023df16eba5c54b4c236e238d1f1a152b23dda5ba0e41d83c38279f71a75a",
+  "generated_at": "2026-10-05T12:57:00.805366+00:00",
+  "elapsed_ms": 35676,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ac4e4d84dd4bcbddc107-recovery20261005-480-b9b100d95b10.webp",
+      "sha256": "b9b100d95b10fc34a235e72a17730355a6530fca94b92479738f9c9f6b98ed34",
+      "bytes": 32626
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ac4e4d84dd4bcbddc107-recovery20261005-960-567180e756e0.webp",
+      "sha256": "567180e756e077c95c1223039339d69cdc966e7e366f08e12153e9c7fc59df7b",
+      "bytes": 99952
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "274023df16eba5c54b4c236e238d1f1a152b23dda5ba0e41d83c38279f71a75a",
+    "recipe_ids": [
+      "industrial-v3-pasta-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Proper Pasta"
+    ],
+    "notes": "Source viewed: large cooked opaque pink salmon flakes among natural brown wholewheat penne, softened courgette cubes and cooked cherry tomatoes. Mayonnaise garlic/dried parsley coating with oil integrated. No cheese, lemon or fresh garnish; full bowl serving visible.",
+    "alt": "Shift Garlic & Herb Salmon Proper Pasta served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:07.852432+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.910688+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

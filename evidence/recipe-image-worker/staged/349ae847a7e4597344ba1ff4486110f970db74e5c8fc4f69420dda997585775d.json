@@ -1,0 +1,81 @@
+{
+  "groupId": "349ae847a7e4597344ba1ff4486110f970db74e5c8fc4f69420dda997585775d",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-peri-peri-chicken"
+  ],
+  "titles": [
+    "Shift Peri-Peri Chicken Slow-Cooker Big Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6–8 hours or HIGH for 3–4 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Chicken Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6–8 hours or HIGH for 3–4 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: One cream bowl of slow-cooked chicken breast with tender skin-on baby potatoes, tender carrots and translucent onion. Glossy red-orange peri-peri sauce and released juices, modest liquid not soup. All food cooked, no extra herbs or garnish. Complete full single serving entirely inside the 4:3 landscape frame with generous crop margin.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/027.png",
+  "source_sha256": "cf28f49f158deb2da68fe68ef7d840abb018ff10b1ced61dc4030593a4f79668",
+  "generated_at": "2026-10-05T13:03:21.202861+00:00",
+  "elapsed_ms": 120051,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-349ae847a7e4597344ba-recovery20261005-480-adc89f9fd1f0.webp",
+      "sha256": "adc89f9fd1f07663b377a8c61d2df25a93d92782ffda02ee756b1f523ba699af",
+      "bytes": 26150
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-349ae847a7e4597344ba-recovery20261005-960-f2bf764ced66.webp",
+      "sha256": "f2bf764ced6631a0fbb793d40156685896b8710bc053ca806b8fea3d8a96572e",
+      "bytes": 85722
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "cf28f49f158deb2da68fe68ef7d840abb018ff10b1ced61dc4030593a4f79668",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-peri-peri-chicken"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chicken Slow-Cooker Big Pot"
+    ],
+    "notes": "Source viewed: cooked chicken breast with tender skin-on baby potato halves, cooked carrot pieces and translucent onion in glossy peri-peri sauce and released juices. Moist slow-cooker finish without excessive soup liquid. Oil integrated; no garnish or sides, whole bowl retained.",
+    "alt": "Shift Peri-Peri Chicken Slow-Cooker Big Pot on cream serving ware",
+    "reviewed_at": "2026-10-05T13:04:18.761662+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:04:45.183139+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

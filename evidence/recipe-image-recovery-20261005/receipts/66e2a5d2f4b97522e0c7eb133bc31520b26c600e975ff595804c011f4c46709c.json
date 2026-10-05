@@ -1,0 +1,94 @@
+{
+  "groupId": "66e2a5d2f4b97522e0c7eb133bc31520b26c600e975ff595804c011f4c46709c",
+  "recipe_ids": [
+    "industrial-v3-pie-garlic-herb-tofu"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Tofu Proper Pie"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, garlic powder, dried parsley dressing alongside."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Tofu Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, garlic powder, dried parsley dressing alongside.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Small individual potato-topped pie. Fork-roughened golden mashed potato crust; a small opened serving section reveals golden cooked tofu cubes, finely diced cooked carrots and green peas beneath. Separate small dish of mayonnaise garlic/dried parsley dressing. No pastry, cheese, milk, butter or gravy. Full serving entirely inside the 4:3 landscape frame, generous margin for responsive crop. No unlisted garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/018.png",
+  "source_sha256": "35a4893053649b99190165e4dfbfef5fc2ebebdbe0f40d64dcedbb717070f52c",
+  "generated_at": "2026-10-05T12:57:00.813538+00:00",
+  "elapsed_ms": 91763,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-66e2a5d2f4b97522e0c7-recovery20261005-480-3d88c65db59d.webp",
+      "sha256": "3d88c65db59dab68008a670e3a3ff1c77fc3eeb6d0ebf086f7dc6cdd2f87d7a7",
+      "bytes": 28334
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-66e2a5d2f4b97522e0c7-recovery20261005-960-1e2df5e94b9f.webp",
+      "sha256": "1e2df5e94b9fab4fb5429bf2434bd7c78b21babf1904a34b89b409f864654935",
+      "bytes": 88568
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "35a4893053649b99190165e4dfbfef5fc2ebebdbe0f40d64dcedbb717070f52c",
+    "recipe_ids": [
+      "industrial-v3-pie-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Proper Pie"
+    ],
+    "notes": "Source viewed: fork-ridged golden mashed potato crust over visible cooked golden firm tofu cubes, fine carrot cubes and green peas in opened portion. Mayonnaise garlic/dried parsley dressing separate. No pastry, cheese or gravy; complete individual pie and sauce inside frame.",
+    "alt": "Shift Garlic & Herb Tofu Proper Pie served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:09.360518+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.911355+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

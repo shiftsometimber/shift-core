@@ -1,0 +1,90 @@
+{
+  "groupId": "a4e38b622695bda33c5e589181e9fc4036f461902cb3327990f1710380837698",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-garlic-herb-salmon"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Salmon Loaded Fries"
+  ],
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Mix the measured garlic herb yoghurt in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot. Keep the salmon in large flakes rather than mashing it.",
+    "Pile the crisp oven chips onto a plate and spoon over large flakes of the cooked salmon, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Salmon Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Mix the measured garlic herb yoghurt in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot. Keep the salmon in large flakes rather than mashing it.\",\"Pile the crisp oven chips onto a plate and spoon over large flakes of the cooked salmon, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: Show large flakes of opaque cooked salmon over golden crisp chips, cooked red onion and peppers, with cold garlic herb yoghurt drizzled after cooking; no intact fish fillet.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/015-a4e38b622695bda33c5e589181e9fc4036f461902cb3327990f1710380837698-b3.png",
+  "source_sha256": "ea44ec8caefdfaf3dfa2ba3568fd76fc7aa864c420cab1004057853c929c0de3",
+  "generated_at": "2026-10-05T12:52:33.999Z",
+  "elapsed_ms": 27506,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a4e38b622695bda33c5e-recovery20261005-480-23fe176f6227.webp",
+      "sha256": "23fe176f6227c1695ea8b33aee3b0ec3326e255e4d3d5ee4b35f0a2c4a646426",
+      "bytes": 30608
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a4e38b622695bda33c5e-recovery20261005-960-8dc9fa25a2c9.webp",
+      "sha256": "8dc9fa25a2c98ed69d7cf922b5cc21c38ee564b8f9889e1da88f113ee0bd4450",
+      "bytes": 94064
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ea44ec8caefdfaf3dfa2ba3568fd76fc7aa864c420cab1004057853c929c0de3",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Loaded Fries"
+    ],
+    "notes": "Golden crisp plain oven chips are topped with large opaque cooked salmon flakes, softened red onion and red/yellow pepper strips. Cold garlic herb yoghurt is distinct as finishing ribbons. No cheese or extra garnish, and no intact fillet substituted for flakes. Whole plate and portion framed.",
+    "alt": "Loaded oven chips with salmon flakes, peppers, red onion and garlic herb yoghurt",
+    "reviewed_at": "2026-10-05T12:54:46.379461+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:54:59.612318+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

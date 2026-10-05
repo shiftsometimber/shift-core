@@ -1,0 +1,92 @@
+{
+  "groupId": "c5710bbce2402fec880e73b519e9139b15598b2516178e2e550f256438aa0fda",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-garlic-herb-pork"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Pork Slow-Cooker Big Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the lean pork loin is safely cooked, switch the cooker off, then stir through the light mayonnaise and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Pork Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the lean pork loin is safely cooked, switch the cooker off, then stir through the light mayonnaise and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual constraint: moist tender slow-cooked ingredients in one cream bowl, glossy cooking juices with mayonnaise stirred in, not broth soup. Baby potatoes, softened carrot and onion visible. Dried parsley tiny incorporated flecks only, no fresh garnish. ",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/5/sources/014.png",
+  "source_sha256": "dab42bbe388865bd25c609c048dd913111e604f6f01a2a67d410af4fac7b2da7",
+  "generated_at": "2026-10-05T12:45:59.745Z",
+  "elapsed_ms": 103142,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c5710bbce2402fec880e-recovery20261005-480-0fc4dfd4256b.webp",
+      "sha256": "0fc4dfd4256be64610a7721c1268fb2b2b7c01a52b79ca98881d6f3713a04778",
+      "bytes": 25846
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c5710bbce2402fec880e-recovery20261005-960-f657d682fa5a.webp",
+      "sha256": "f657d682fa5a81a90f99cd757335997010267a0d3ee915d68ee74123d2d10857",
+      "bytes": 82568
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "dab42bbe388865bd25c609c048dd913111e604f6f01a2a67d410af4fac7b2da7",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked lean pork loin chunks, tender baby potatoes, carrot pieces and softened onion in glossy mayonnaise-enriched juices with small dried parsley flecks. No fresh garnish or sides.",
+    "alt": "Shift Garlic & Herb Pork Slow-Cooker Big Pot, prepared with lean pork loin, baby potatoes, carrots, onion",
+    "reviewed_at": "2026-10-05T12:52:21.685481+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:44.065160+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

@@ -1,0 +1,93 @@
+{
+  "groupId": "8fbffc35c1a98724f8c3fef7062f871cc0fdd59744ef1873a3afaad3541bbb3e",
+  "recipe_ids": [
+    "industrial-v3-toastie-cajun-tuna"
+  ],
+  "titles": [
+    "Shift Cajun Tuna Hot Toastie"
+  ],
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+    "Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.",
+    "Use the measured Cajun yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+    "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the measured Cajun yoghurt between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+    "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+    "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Tuna Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"Cajun yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Use the measured Cajun yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the measured Cajun yoghurt between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: the two cut brown wholemeal toastie halves show canned tuna flakes, some tomato and spinach with Cajun yoghurt, while MOST fresh spinach leaves and excess raw tomato with any remaining tuna are retained as a side salad on the same plate. No cheese.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/041-8fbffc35c1a98724f8c3fef7062f871cc0fdd59744ef1873a3afaad3541bbb3e-b7.png",
+  "source_sha256": "9dbac5e0ba5c65510c70d26cfc99d66f378142231f2e75073d191b54d56a7bc9",
+  "generated_at": "2026-10-05T13:08:53.389Z",
+  "elapsed_ms": 29278,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8fbffc35c1a98724f8c3-recovery20261005-480-06ca2785ecda.webp",
+      "sha256": "06ca2785ecda869b6a63a8ce0b6a6cf444ede6a87486809efdc3609da5fef843",
+      "bytes": 35638
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8fbffc35c1a98724f8c3-recovery20261005-960-d23637cd041f.webp",
+      "sha256": "d23637cd041f741e5c1d983f97b2feaae6912655fa436cf4d22529b8964f6315",
+      "bytes": 107526
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "9dbac5e0ba5c65510c70d26cfc99d66f378142231f2e75073d191b54d56a7bc9",
+    "recipe_ids": [
+      "industrial-v3-toastie-cajun-tuna"
+    ],
+    "titles": [
+      "Shift Cajun Tuna Hot Toastie"
+    ],
+    "notes": "Cut crisp brown wholemeal toastie halves show canned tuna flakes, tomato, spinach and pale Cajun yoghurt. Most spinach and excess raw tomato plus tuna are a fresh side salad, as method requires. No cheese or garnish. Entire toastie and full side are framed.",
+    "alt": "Cajun tuna wholemeal toastie with a fresh spinach, tomato and tuna side salad",
+    "reviewed_at": "2026-10-05T13:11:01.559505+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:11:35.192003+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

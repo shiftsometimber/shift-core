@@ -1,0 +1,86 @@
+{
+  "groupId": "5b1852027cd3a3ce7c6b0011c93e74e0dfd7ad7684a1d29601c77a539640217c",
+  "recipe_ids": [
+    "industrial-v3-pasta-harissa-beef"
+  ],
+  "titles": [
+    "Shift Harissa Beef Proper Pasta"
+  ],
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "harissa tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the harissa tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Add the 5% beef mince, break it into small pieces with a spoon and fry over medium-high heat for about 8–10 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75°C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6–8 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured harissa tomato sauce and 2 tablespoons of cooking water. Heat gently for 1–2 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Harissa Beef Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"harissa tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the harissa tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Add the 5% beef mince, break it into small pieces with a spoon and fry over medium-high heat for about 8–10 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75°C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6–8 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured harissa tomato sauce and 2 tablespoons of cooking water. Heat gently for 1–2 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Food-specific accuracy: make every listed major ingredient visually recognizable in the finished serving; preserve the exact protein and cooking form. Keep the entire edible serving centrally framed with generous empty margin on all four sides. No unlisted foods. Cooked pasta is tan/brown wholewheat pasta, never white pasta.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/4/sources/021.png",
+  "source_sha256": "7791ba769dd340fb40ddcb0430223e9f71cd40dce76185c6c8bf81ffc53530b3",
+  "generated_at": "2026-10-05T12:52:34.750754+00:00",
+  "elapsed_ms": 175572,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5b1852027cd3a3ce7c6b-recovery20261005-480-bbb5d7301c9a.webp",
+      "sha256": "bbb5d7301c9ad9c4dbea1a57b40de7d19c281eb70f5573f6d4b97d94dbc93796",
+      "bytes": 23512
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5b1852027cd3a3ce7c6b-recovery20261005-960-6ec0b2aedfac.webp",
+      "sha256": "6ec0b2aedfac45953d25b80438f909f3d68d38bb239e8fa9c253b101de5d33bb",
+      "bytes": 74584
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "7791ba769dd340fb40ddcb0430223e9f71cd40dce76185c6c8bf81ffc53530b3",
+    "recipe_ids": [
+      "industrial-v3-pasta-harissa-beef"
+    ],
+    "titles": [
+      "Shift Harissa Beef Proper Pasta"
+    ],
+    "notes": "Cooked brown wholewheat penne shows browned crumbled beef mince, green-skinned courgette chunks and softened cherry tomatoes in a thin red harissa tomato coating. No cheese, parsley garnish, other vegetables or side foods; single bowl fully framed.",
+    "alt": "Wholewheat beef pasta with courgette, cherry tomatoes and harissa sauce.",
+    "reviewed_at": "2026-10-05T12:54:25.822282+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:54:37.392846+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

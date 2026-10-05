@@ -1,0 +1,92 @@
+{
+  "groupId": "f583730297d9ec699d13f0305e62e5f13ec009d22870471de08e8fff8ba1ef21",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-garlic-herb-beef"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Beef Slow-Cooker Big Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the 5% beef mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and 5% beef mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the 5% beef mince is safely cooked, switch the cooker off, then stir through the light mayonnaise and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Beef Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the 5% beef mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and 5% beef mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the 5% beef mince is safely cooked, switch the cooker off, then stir through the light mayonnaise and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual constraint: moist tender slow-cooked ingredients in one cream bowl, glossy cooking juices with mayonnaise stirred in, not broth soup. Baby potatoes, softened carrot and onion visible. Dried parsley tiny incorporated flecks only, no fresh garnish. ",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/5/sources/010.png",
+  "source_sha256": "16511dc1df73274d397075f1ebf06f80e4160d3851eaa74046f86646c5559cc5",
+  "generated_at": "2026-10-05T12:47:57.035Z",
+  "elapsed_ms": 220378,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f583730297d9ec699d13-recovery20261005-480-3bfdf585b1ee.webp",
+      "sha256": "3bfdf585b1ee97e294dcf02fc8bd3c72e2cc5b1c74cc4d3e0c82af57f63bb2d5",
+      "bytes": 31354
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f583730297d9ec699d13-recovery20261005-960-b4314bb1b0f5.webp",
+      "sha256": "b4314bb1b0f5d2ec37ee7bfddd7f56d9f65276eddedf5302b4f006586e1560b4",
+      "bytes": 95322
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "16511dc1df73274d397075f1ebf06f80e4160d3851eaa74046f86646c5559cc5",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Slow-Cooker Big Pot"
+    ],
+    "notes": "Browned beef-mince crumbles with tender baby potatoes, carrot chunks and softened onion in glossy lightly creamy cooking juices. Dried parsley incorporated as small flecks; no fresh garnish or other vegetables.",
+    "alt": "Shift Garlic & Herb Beef Slow-Cooker Big Pot, prepared with 5% beef mince, baby potatoes, carrots, onion",
+    "reviewed_at": "2026-10-05T12:52:19.042572+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:44.063171+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

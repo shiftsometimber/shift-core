@@ -1,0 +1,87 @@
+{
+  "groupId": "3ff41593cd4fea30e11de2ff001b9e56126db593442e9df66b8767099e98efd9",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-salt-pepper-beef"
+  ],
+  "titles": [
+    "Shift Salt & Pepper Beef Loaded Fries"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "3g",
+      "item": "salt"
+    },
+    {
+      "amount": "2g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220°C conventional or 200°C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20–30 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6–8 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Keep the 5% beef mince ready to break into small pieces in the pan. Coat with all the measured salt and black pepper. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the beef mince over a medium-high heat for about 8–10 minutes, breaking up clumps and stirring until browned. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Return the cooked red onion and mixed peppers to the pan for 1–2 minutes, turning gently until hot.",
+    "Pile the crisp oven chips onto a plate and spoon over the cooked beef mince, the red onion and peppers. Serve immediately while the chips are crisp."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Salt & Pepper Beef Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"3g\",\"item\":\"salt\"},{\"amount\":\"2g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220°C conventional or 200°C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20–30 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6–8 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Keep the 5% beef mince ready to break into small pieces in the pan. Coat with all the measured salt and black pepper. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the beef mince over a medium-high heat for about 8–10 minutes, breaking up clumps and stirring until browned. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Return the cooked red onion and mixed peppers to the pan for 1–2 minutes, turning gently until hot.\",\"Pile the crisp oven chips onto a plate and spoon over the cooked beef mince, the red onion and peppers. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: Cooked beef mince is browned small crumbles seasoned with salt and black pepper only. Crisp plain golden oven chips, softened red onion and mixed peppers. No sauce, cheese, herbs or spring onions.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/035-3ff41593cd4fea30e11de2ff001b9e56126db593442e9df66b8767099e98efd9-b6.png",
+  "source_sha256": "96d5cdfc24753da3ed58d59f1ac1324379f6c608c47896fa6da46c423a7bc81c",
+  "generated_at": "2026-10-05T13:09:33.581Z",
+  "elapsed_ms": 119041,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3ff41593cd4fea30e11d-recovery20261005-480-ddc304820c37.webp",
+      "sha256": "ddc304820c37c07aac372e1b71349533e2e772a946395281f8451b8b4d188c9c",
+      "bytes": 32572
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3ff41593cd4fea30e11d-recovery20261005-960-8299cfb59882.webp",
+      "sha256": "8299cfb59882678d32cce1b2369fa86082f5e97e8f8d987a6ba050073703b73c",
+      "bytes": 106992
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "96d5cdfc24753da3ed58d59f1ac1324379f6c608c47896fa6da46c423a7bc81c",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-salt-pepper-beef"
+    ],
+    "titles": [
+      "Shift Salt & Pepper Beef Loaded Fries"
+    ],
+    "notes": "Browned beef mince crumbles seasoned with salt and black pepper over golden crisp plain oven chips, softened sliced red onion and red/yellow peppers. No sauce, cheese or herbs. Entire credible loaded-chip serving and plate framed.",
+    "alt": "Salt and pepper beef mince loaded chips with red onion and mixed peppers",
+    "reviewed_at": "2026-10-05T13:11:00.929657+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:11:35.191323+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

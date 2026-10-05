@@ -1,0 +1,86 @@
+{
+  "groupId": "022802cc1c92b089f7054174deb3a693445dd2f0b55810f468e9a986052650d4",
+  "recipe_ids": [
+    "industrial-v3-burger-peri-peri-pork"
+  ],
+  "titles": [
+    "Shift Peri-Peri Pork Fakeaway Burger"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal burger bun",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1–2 minutes. Set it on a clean plate.",
+    "Slice the lean pork loin across the grain into cutlets about 1cm thick. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the pork cutlets over a medium heat for about 4–5 minutes on each side. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2–3 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Put the lettuce and tomato in the toasted bun, add the cooked pork cutlets and the warm sauce, then close the bun and serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Pork Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"lean pork loin\"},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1–2 minutes. Set it on a clean plate.\",\"Slice the lean pork loin across the grain into cutlets about 1cm thick. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the pork cutlets over a medium heat for about 4–5 minutes on each side. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2–3 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Put the lettuce and tomato in the toasted bun, add the cooked pork cutlets and the warm sauce, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: Wholemeal burger bun has brown wholegrain crumb. Pork loin is cooked thin cutlets with browned edges and opaque pale interior, not a minced patty. Lettuce and tomato stay raw and fresh. Hot red peri-peri sauce over pork; no cheese or mayonnaise.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/027-022802cc1c92b089f7054174deb3a693445dd2f0b55810f468e9a986052650d4-b4.png",
+  "source_sha256": "5e700abac9a819f23a90b0185c94e317dd80d9c2de362a55d0e462b9cbafb9b3",
+  "generated_at": "2026-10-05T12:59:39.049Z",
+  "elapsed_ms": 167821,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-022802cc1c92b089f705-recovery20261005-480-d6b6d90917df.webp",
+      "sha256": "d6b6d90917dfdc43960195425a309bffda4dd8fc9e6058838ceaa494bcde263b",
+      "bytes": 27692
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-022802cc1c92b089f705-recovery20261005-960-472e75b093e6.webp",
+      "sha256": "472e75b093e6f3a0d1d0efabd1f656a4242c77e003754589d8b0aa243d8c2481",
+      "bytes": 90620
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "5e700abac9a819f23a90b0185c94e317dd80d9c2de362a55d0e462b9cbafb9b3",
+    "recipe_ids": [
+      "industrial-v3-burger-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Fakeaway Burger"
+    ],
+    "notes": "Brown wholemeal burger bun contains browned opaque cooked pork loin cutlets, fresh shredded lettuce and raw tomato slices. Warm red peri-peri sauce lies over pork; no minced patty, mayonnaise, cheese or extra salad. Whole single burger and plate remain framed.",
+    "alt": "Wholemeal pork cutlet burger with lettuce, tomato and peri-peri sauce",
+    "reviewed_at": "2026-10-05T13:00:56.984643+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:16.900427+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

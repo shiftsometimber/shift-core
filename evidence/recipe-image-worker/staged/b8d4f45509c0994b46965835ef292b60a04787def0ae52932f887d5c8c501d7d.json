@@ -1,0 +1,91 @@
+{
+  "groupId": "b8d4f45509c0994b46965835ef292b60a04787def0ae52932f887d5c8c501d7d",
+  "recipe_ids": [
+    "industrial-v3-pizza-peri-peri-salmon"
+  ],
+  "titles": [
+    "Shift Peri-Peri Salmon Proper Pizza"
+  ],
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5–6 minutes until softened; transfer them to a clean bowl.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4–5 minutes on the first side and 3–4 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Transfer large flakes of the cooked salmon to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3–4 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2–3 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and large flakes of the cooked salmon evenly on top, then spoon over the warm sauce. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Rest for one minute, cut and serve."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Salmon Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5–6 minutes until softened; transfer them to a clean bowl.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4–5 minutes on the first side and 3–4 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Transfer large flakes of the cooked salmon to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3–4 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2–3 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and large flakes of the cooked salmon evenly on top, then spoon over the warm sauce. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: Finished pizza MUST be visibly cut into four slices with one shifted slightly to expose crisp cooked base. Salmon is large opaque cooked flakes with softened peppers, passata and red peri-peri sauce. No cheese or white sauce.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/030-b8d4f45509c0994b46965835ef292b60a04787def0ae52932f887d5c8c501d7d-b5.png",
+  "source_sha256": "3791cafb9bafd41ced598cab61edc97f910638ffcc430a39e2d68e80a0c078ac",
+  "generated_at": "2026-10-05T13:04:35.963Z",
+  "elapsed_ms": 171540,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b8d4f45509c0994b4696-recovery20261005-480-ff20ade0f64f.webp",
+      "sha256": "ff20ade0f64f7fc32241e401655307b30d57d597108fa171e498237c601e093a",
+      "bytes": 35682
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b8d4f45509c0994b4696-recovery20261005-960-d676213590c2.webp",
+      "sha256": "d676213590c2679899eee1b65621305c484ffbd4f67bc72257d45f2cf1a18584",
+      "bytes": 113154
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3791cafb9bafd41ced598cab61edc97f910638ffcc430a39e2d68e80a0c078ac",
+    "recipe_ids": [
+      "industrial-v3-pizza-peri-peri-salmon"
+    ],
+    "titles": [
+      "Shift Peri-Peri Salmon Proper Pizza"
+    ],
+    "notes": "Four cut crisp cooked pizza slices are topped with large opaque cooked salmon flakes, softened mixed pepper strips, tomato passata and red peri-peri sauce. No cheese, white drizzle or garnish. Whole individual pizza and exposed cut base edges fit frame.",
+    "alt": "Sliced peri-peri salmon pizza with mixed peppers and tomato passata",
+    "reviewed_at": "2026-10-05T13:06:37.729054+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:11.223341+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

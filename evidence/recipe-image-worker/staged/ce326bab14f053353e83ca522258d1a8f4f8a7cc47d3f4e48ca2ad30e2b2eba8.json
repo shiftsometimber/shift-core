@@ -1,0 +1,84 @@
+{
+  "groupId": "ce326bab14f053353e83ca522258d1a8f4f8a7cc47d3f4e48ca2ad30e2b2eba8",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-peri-peri-pork"
+  ],
+  "titles": [
+    "Shift Peri-Peri Pork Loaded Fries"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220°C conventional or 200°C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20–30 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6–8 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Cut the lean pork loin across the grain into strips about 1cm thick. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the pork strips over a medium-high heat for about 7–9 minutes, turning regularly. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Return the cooked red onion and mixed peppers to the pan for 1–2 minutes, turning gently until hot.",
+    "Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2–3 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Pile the crisp oven chips onto a plate and spoon over the cooked pork strips, the red onion and peppers, followed by the warm sauce. Serve immediately while the chips are crisp."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Pork Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220°C conventional or 200°C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20–30 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6–8 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Cut the lean pork loin across the grain into strips about 1cm thick. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the pork strips over a medium-high heat for about 7–9 minutes, turning regularly. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Return the cooked red onion and mixed peppers to the pan for 1–2 minutes, turning gently until hot.\",\"Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2–3 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Pile the crisp oven chips onto a plate and spoon over the cooked pork strips, the red onion and peppers, followed by the warm sauce. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Whole ordinary single portion and cream serving ware entirely in frame, wide empty crop margin. No unlisted ingredients or garnish. Crisp plain golden oven chips topped with opaque cooked pork loin strips, softened sliced red onion and mixed peppers, warm peri-peri sauce. No cheese or herbs.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/ce326bab14f053353e83ca522258d1a8f4f8a7cc47d3f4e48ca2ad30e2b2eba8.png",
+  "source_sha256": "d3dc5907d45245e5a8fd4371a742bce41faa5f9c4fff51d1adf0dba405d97cfe",
+  "generated_at": "2026-10-05T13:01:55.845Z",
+  "elapsed_ms": 268476,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ce326bab14f053353e83-recovery20261005-480-efa1770f9b71.webp",
+      "sha256": "efa1770f9b71ac02bef4afcc8639a60eb6c5a083d62d04e67f9e5b80c2577ef0",
+      "bytes": 22056
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ce326bab14f053353e83-recovery20261005-960-776268a4ae0a.webp",
+      "sha256": "776268a4ae0a5bbfd3b792ddd5d2cdc203a4d89eb7834d6748fa0c70ed1ea376",
+      "bytes": 70160
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "d3dc5907d45245e5a8fd4371a742bce41faa5f9c4fff51d1adf0dba405d97cfe",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Loaded Fries"
+    ],
+    "notes": "Golden plain oven chips topped with cooked opaque pork loin strips, softened red onion and mixed pepper strips, peri-peri sauce. No cheese or fresh garnish. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Peri-Peri Pork Loaded Fries, prepared with lean pork loin, oven chips, red onion, mixed peppers",
+    "reviewed_at": "2026-10-05T13:02:53.059832+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:03:16.489996+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

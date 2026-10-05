@@ -1,0 +1,99 @@
+{
+  "groupId": "ab1b2c475a35bd483a608be0a86e099794ac009433d4891d2a6733c63f7578df",
+  "recipe_ids": [
+    "industrial-v3-stir-fry-garlic-herb-chicken"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Chicken Stir-Fry"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "75g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3–4 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 90g mixed peppers. Cut the 170g chicken breast into thin strips about 1cm thick on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.",
+    "Mix 20g light mayonnaise, 1g garlic powder and 1g dried parsley in a small bowl. Keep this dressing cold until serving; it is not a cooking sauce and must not be simmered in the pan.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the chicken breast in one layer and cook for 7–10 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70°C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4–6 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1–2 minutes to combine without crushing the florets.",
+    "Return the cooked chicken breast and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and chicken breast between serving bowls. Take the pan off the heat and spoon the cold dressing over each serving; do not return it to the hob. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Stir-Fry. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"75g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3–4 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 90g mixed peppers. Cut the 170g chicken breast into thin strips about 1cm thick on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.\",\"Mix 20g light mayonnaise, 1g garlic powder and 1g dried parsley in a small bowl. Keep this dressing cold until serving; it is not a cooking sauce and must not be simmered in the pan.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the chicken breast in one layer and cook for 7–10 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70°C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4–6 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1–2 minutes to combine without crushing the florets.\",\"Return the cooked chicken breast and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and chicken breast between serving bowls. Take the pan off the heat and spoon the cold dressing over each serving; do not return it to the hob. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: cold light mayonnaise mixed with garlic powder and dried parsley MUST remain visibly distinct, as one small pale creamy spoonful laid over the top of the finished hot noodles after cooking. Do not toss or simmer the dressing through the noodles. This visible cold dressing uses only the listed 20g mayonnaise, 1g garlic powder and 1g dried parsley.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/012-ab1b2c475a35bd483a608be0a86e099794ac009433d4891d2a6733c63f7578df-b4.png",
+  "source_sha256": "36c888b8262b88a3a371c4100590a19f0ce39340f8702029288280e78f198020",
+  "generated_at": "2026-10-05T12:58:13.419Z",
+  "elapsed_ms": 82191,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ab1b2c475a35bd483a60-recovery20261005-480-bdd8899b164d.webp",
+      "sha256": "bdd8899b164d88d9d149732e579c1be9b246b1c134d3d7750a4df65d872a798c",
+      "bytes": 28842
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ab1b2c475a35bd483a60-recovery20261005-960-46033daffb0c.webp",
+      "sha256": "46033daffb0c723c8523a988dab2a1d2eafded53be8a718cbe097903bd568246",
+      "bytes": 87850
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "36c888b8262b88a3a371c4100590a19f0ce39340f8702029288280e78f198020",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Stir-Fry"
+    ],
+    "notes": "Tender egg noodles with fully cooked browned chicken breast strips, cooked broccoli florets and softened red/yellow peppers. Cold garlic, dried parsley and light mayonnaise dressing is a separate pale creamy spoonful over the hot food, matching serving method. No cheese or extra vegetables. Full bowl fits frame.",
+    "alt": "Chicken egg-noodle stir-fry with broccoli, peppers and cold garlic parsley mayonnaise",
+    "reviewed_at": "2026-10-05T12:59:11.968749+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:59:30.512959+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,87 @@
+{
+  "groupId": "378c0928c9f122342974c844af108fe92abf354a282e518fe80b5587ca43d2f5",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-garlic-herb-tofu"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Tofu Loaded Fries"
+  ],
+  "ingredients": [
+    {
+      "amount": "190g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220°C conventional or 200°C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20–30 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6–8 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Mix the measured garlic herb yoghurt in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Drain the firm tofu, pat it dry and cut it into 2cm cubes. Use clean utensils for the cooked tofu.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the tofu cubes over a medium-high heat for about 8–10 minutes, turning so several faces become golden and the centre is hot. Follow any longer cooking instruction on the tofu pack.",
+    "Return the cooked red onion and mixed peppers to the pan for 1–2 minutes, turning gently until hot.",
+    "Pile the crisp oven chips onto a plate and spoon over the browned tofu cubes, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Tofu Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"190g\",\"item\":\"firm tofu\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220°C conventional or 200°C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20–30 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6–8 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Mix the measured garlic herb yoghurt in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Drain the firm tofu, pat it dry and cut it into 2cm cubes. Use clean utensils for the cooked tofu.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the tofu cubes over a medium-high heat for about 8–10 minutes, turning so several faces become golden and the centre is hot. Follow any longer cooking instruction on the tofu pack.\",\"Return the cooked red onion and mixed peppers to the pan for 1–2 minutes, turning gently until hot.\",\"Pile the crisp oven chips onto a plate and spoon over the browned tofu cubes, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual method constraint: ordinary crisp golden chips underneath visible topping of softened red onion and mixed peppers and cooked protein, cold garlic-herb yoghurt drizzle. No cheese, ketchup or extra garnish.  Firm tofu visibly intact 2cm golden cubes with pale porous centers, not meat or cheese.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/5/sources/017.png",
+  "source_sha256": "04341778cd220d78ae41e6b51b84aa4eee5f60cc5ad854434663fef77bb6792a",
+  "generated_at": "2026-10-05T12:50:51.734Z",
+  "elapsed_ms": 61667,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-378c0928c9f122342974-recovery20261005-480-951e4e4199d5.webp",
+      "sha256": "951e4e4199d56af7ada859f40a006055280f600f8c086aa56cd920009f567eb9",
+      "bytes": 32986
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-378c0928c9f122342974-recovery20261005-960-43231fde42ea.webp",
+      "sha256": "43231fde42ea9cbe59a1a63a2ac7aead85ea07111845c32b5767df7944ddac06",
+      "bytes": 99914
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "04341778cd220d78ae41e6b51b84aa4eee5f60cc5ad854434663fef77bb6792a",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Loaded Fries"
+    ],
+    "notes": "Golden tofu cubes with pale porous centers, softened red onion and red/yellow peppers over golden crisp chips; garlic-herb yoghurt drizzled on finished plate. No meat, cheese or extra sides.",
+    "alt": "Shift Garlic & Herb Tofu Loaded Fries, prepared with firm tofu, oven chips, red onion, mixed peppers",
+    "reviewed_at": "2026-10-05T12:57:24.117931+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:57:48.113165+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

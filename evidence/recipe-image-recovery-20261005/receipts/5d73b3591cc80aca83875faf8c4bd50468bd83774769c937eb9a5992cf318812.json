@@ -1,0 +1,91 @@
+{
+  "groupId": "5d73b3591cc80aca83875faf8c4bd50468bd83774769c937eb9a5992cf318812",
+  "recipe_ids": [
+    "industrial-v3-pizza-garlic-herb-tofu"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Tofu Proper Pizza"
+  ],
+  "ingredients": [
+    {
+      "amount": "190g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.",
+    "Mix the measured garlic herb yoghurt in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Drain the firm tofu, pat it dry and cut it into 2cm cubes. Use clean utensils for the cooked tofu.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the tofu cubes over a medium-high heat for about 8\u201310 minutes, turning so several faces become golden and the centre is hot. Follow any longer cooking instruction on the tofu pack.",
+    "Transfer the browned tofu cubes to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the browned tofu cubes evenly on top. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Tofu Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"190g\",\"item\":\"firm tofu\"},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.\",\"Mix the measured garlic herb yoghurt in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Drain the firm tofu, pat it dry and cut it into 2cm cubes. Use clean utensils for the cooked tofu.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the tofu cubes over a medium-high heat for about 8\u201310 minutes, turning so several faces become golden and the centre is hot. Follow any longer cooking instruction on the tofu pack.\",\"Transfer the browned tofu cubes to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the browned tofu cubes evenly on top. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Whole ordinary single portion and cream serving ware entirely in frame, wide empty crop margin. No unlisted ingredients or decorative fresh herbs. Individual baked pizza with tomato passata, cooked mixed peppers and golden browned tofu cubes. Cold garlic herb YOGHURT spooned on after baking, absolutely NO cheese or melted cheese texture.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/5d73b3591cc80aca83875faf8c4bd50468bd83774769c937eb9a5992cf318812.png",
+  "source_sha256": "91a47cab83df846351f93052f1ec3037e6731b607aec1d6dae22434ad5294f5c",
+  "generated_at": "2026-10-05T12:52:59.191Z",
+  "elapsed_ms": 89370,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5d73b3591cc80aca8387-recovery20261005-480-3cd2a51fb619.webp",
+      "sha256": "3cd2a51fb619686fda31ac98a2bc794006e83099e17db7f14e5bfbd2c3fb2f17",
+      "bytes": 23282
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5d73b3591cc80aca8387-recovery20261005-960-23c768ca4577.webp",
+      "sha256": "23c768ca4577e0ca5578564de6063c69870b18536012dac6ed9bfd44c4ea6f1e",
+      "bytes": 72340
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "91a47cab83df846351f93052f1ec3037e6731b607aec1d6dae22434ad5294f5c",
+    "recipe_ids": [
+      "industrial-v3-pizza-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Proper Pizza"
+    ],
+    "notes": "Baked individual pizza has golden tofu cubes and cooked mixed peppers over tomato passata, cold garlic herb yoghurt dollops. No meat or cheese. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Tofu Proper Pizza, prepared with firm tofu, individual pizza base, tomato passata, mixed peppers",
+    "reviewed_at": "2026-10-05T12:56:22.924660+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:56:44.555964+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

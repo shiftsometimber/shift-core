@@ -1,0 +1,86 @@
+{
+  "groupId": "8f64902e905f3c685ab818e6168433eeba2a176dc44fd3ce6e22b1cdce4515e2",
+  "recipe_ids": [
+    "industrial-v3-pasta-peri-peri-pork"
+  ],
+  "titles": [
+    "Shift Peri-Peri Pork Proper Pasta"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the peri-peri sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8–12 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75°C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6–8 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured peri-peri sauce and 2 tablespoons of cooking water. Heat gently for 1–2 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Pork Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the peri-peri sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8–12 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75°C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6–8 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured peri-peri sauce and 2 tablespoons of cooking water. Heat gently for 1–2 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Food-specific accuracy: make every listed major ingredient visually recognizable in the finished serving; preserve the exact protein and cooking form. Keep the entire edible serving centrally framed with generous empty margin on all four sides. No unlisted foods. Cooked pasta is tan/brown wholewheat pasta, never white pasta. Pork is cooked pale pork loin with browned faces, not beef or chicken.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/4/sources/028.png",
+  "source_sha256": "92c2b24a080b1fa60811e7a250650eace1e26e435ce0e272d043b28df7ceebd0",
+  "generated_at": "2026-10-05T12:57:49.660700+00:00",
+  "elapsed_ms": 158552,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8f64902e905f3c685ab8-recovery20261005-480-a436303b1beb.webp",
+      "sha256": "a436303b1beb5c6f9cc3de14a8f0db2e31352c4118c9c4bba21e4558a9ad6a22",
+      "bytes": 24962
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8f64902e905f3c685ab8-recovery20261005-960-cc37f2ac8f8d.webp",
+      "sha256": "cc37f2ac8f8d5f4b3d72f2067200d2081c0cc15a9dff0482ca15057edd8858a1",
+      "bytes": 84460
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "92c2b24a080b1fa60811e7a250650eace1e26e435ce0e272d043b28df7ceebd0",
+    "recipe_ids": [
+      "industrial-v3-pasta-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Proper Pasta"
+    ],
+    "notes": "Browned cooked pale pork loin cubes are tossed with tan wholewheat penne, cooked courgette chunks and softened cherry tomatoes in a modest peri-peri coating. No chicken, beef, cheese, garnish or extra vegetables. One bowl serving fully framed.",
+    "alt": "Wholewheat pork pasta with courgette, cherry tomatoes and peri-peri sauce.",
+    "reviewed_at": "2026-10-05T13:01:33.616784+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:55.764740+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

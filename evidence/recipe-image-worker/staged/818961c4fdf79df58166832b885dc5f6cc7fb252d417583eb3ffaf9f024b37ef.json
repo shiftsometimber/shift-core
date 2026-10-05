@@ -1,0 +1,97 @@
+{
+  "groupId": "818961c4fdf79df58166832b885dc5f6cc7fb252d417583eb3ffaf9f024b37ef",
+  "recipe_ids": [
+    "industrial-v3-pasta-garlic-herb-chicken"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Chicken Proper Pasta"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8–12 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75°C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6–8 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, garlic powder, dried parsley dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8–12 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75°C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6–8 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, garlic powder, dried parsley dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Cooked naturally brown wholewheat penne with fully cooked 2cm chicken breast pieces, softened diced courgette and juicy cherry tomato pieces tossed together with creamy mayonnaise garlic/dried parsley dressing. No cheese or fresh herb garnish. Frame the complete ordinary single serving with generous crop margin, 4:3 landscape. Wholegrains must have natural texture, not black seasoning speckles.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/012.png",
+  "source_sha256": "e1e52f574d175c8859ecf96448a36e4efaf1840b6f2b60af12aaa5e64f53ed50",
+  "generated_at": "2026-10-05T12:48:50.618935+00:00",
+  "elapsed_ms": 151440,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-818961c4fdf79df58166-recovery20261005-480-5e2a447cef4a.webp",
+      "sha256": "5e2a447cef4a1e8df2d8e4d80dafefeb3732efe22bfdb89c04f2fb7166cdfa07",
+      "bytes": 25660
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-818961c4fdf79df58166-recovery20261005-960-1562417fd48e.webp",
+      "sha256": "1562417fd48e65e9cc4748aa1f841178fc5207c94aa06c3705ad9510177e1a99",
+      "bytes": 75656
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "e1e52f574d175c8859ecf96448a36e4efaf1840b6f2b60af12aaa5e64f53ed50",
+    "recipe_ids": [
+      "industrial-v3-pasta-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Proper Pasta"
+    ],
+    "notes": "Actual source reviewed: cooked brown penne, cooked white chicken breast chunks, softened courgette pieces and juicy cherry tomatoes mixed in mayonnaise garlic/dried parsley coating with incorporated oil. No cheese, fresh herb garnish or extra sides; complete bowl serving.",
+    "alt": "Shift Garlic & Herb Chicken Proper Pasta on cream serving ware",
+    "reviewed_at": "2026-10-05T12:51:17.634407+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:51:56.605210+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

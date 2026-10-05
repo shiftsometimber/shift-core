@@ -31570,5 +31570,2517 @@
     "reviewer": "images_2",
     "final_crop_reviewed": true,
     "final_crop_reviewed_at": "2026-10-05T12:50:46.240073+00:00"
+  },
+  "022802cc1c92b089f7054174deb3a693445dd2f0b55810f468e9a986052650d4": {
+    "decision": "pass",
+    "source_sha256": "5e700abac9a819f23a90b0185c94e317dd80d9c2de362a55d0e462b9cbafb9b3",
+    "recipe_ids": [
+      "industrial-v3-burger-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Fakeaway Burger"
+    ],
+    "notes": "Brown wholemeal burger bun contains browned opaque cooked pork loin cutlets, fresh shredded lettuce and raw tomato slices. Warm red peri-peri sauce lies over pork; no minced patty, mayonnaise, cheese or extra salad. Whole single burger and plate remain framed.",
+    "alt": "Wholemeal pork cutlet burger with lettuce, tomato and peri-peri sauce",
+    "reviewed_at": "2026-10-05T13:00:56.984643+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:16.900427+00:00"
+  },
+  "02a0a894d123b6be443412f8e41f926d309df6ed14a10bf8e0f7e8567dd66d4d": {
+    "decision": "pass",
+    "source_sha256": "fe05ce2108c71af1607cd7be87f02f8c5d56b7928247898cdd657db5d1ad913a",
+    "recipe_ids": [
+      "industrial-v3-traybake-harissa-beef"
+    ],
+    "titles": [
+      "Shift Harissa Beef Traybake"
+    ],
+    "notes": "Golden roasted baby potato pieces, roasted broccoli and red pepper plus fully browned beef mince form one traybake serving. Light harissa tomato sauce coats the roasted ingredients; no extra vegetables, sauce or garnish.",
+    "alt": "Shift Harissa Beef Traybake with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:58:51.716324+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:39.629470+00:00"
+  },
+  "06ad2f66176ce76caec044c4607a806859a3c97b07d1bc7681f79d2e8e059202": {
+    "decision": "pass",
+    "source_sha256": "6b930633dbd6260d8031aace48b00c3ca17ea8f9bb67fffb68a3a1d58ccc6c1b",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-harissa-beef"
+    ],
+    "titles": [
+      "Shift Harissa Beef Stir-Fry"
+    ],
+    "notes": "Source viewed: cooked egg noodles with browned beef mince crumbles, cooked broccoli and softened thin red/yellow pepper strips all tossed with red harissa tomato coating and oil sheen. No sesame, coriander or other garnish; full ordinary bowl serving.",
+    "alt": "Shift Harissa Beef Stir-Fry served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:12.113256+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.912965+00:00"
+  },
+  "0e64496b0e352e4d9a6067e7ed866258d7224977c7e5c270e5e3acf720563579": {
+    "decision": "pass",
+    "source_sha256": "a66f2c320287f8c58663a8292888e7841ef3406fda2aa5a72c0fb8d9f8b67688",
+    "recipe_ids": [
+      "industrial-v3-pie-harissa-salmon"
+    ],
+    "titles": [
+      "Shift Harissa Salmon Proper Pie"
+    ],
+    "notes": "Large cooked pink salmon flakes with carrot dice and peas in red harissa coating under fork-roughened browned mashed-potato top. Filling visible at edge; no pastry, cheese or garnish.",
+    "alt": "Shift Harissa Salmon Proper Pie, prepared with salmon fillet, potatoes, carrots, peas",
+    "reviewed_at": "2026-10-05T13:01:24.037312+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:56.835322+00:00"
+  },
+  "0fb9f68b402319b1de252847d46e97fe1df12003d014f7e8b3c7fc676adc34cd": {
+    "decision": "pass",
+    "source_sha256": "3a52268c3f49d0c24cef97ea1ac593dbb18b6b87e54c6c9528d9402996199832",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-harissa-pork"
+    ],
+    "titles": [
+      "Shift Harissa Pork Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked pale pork loin chunks with browned faces, tender baby potatoes, carrots and translucent onion sit in a reduced red harissa tomato coating. No beef substitution, extra vegetables or garnish. One warm slow-cooker bowl serving fully framed.",
+    "alt": "Harissa pork loin pot with baby potatoes, carrots and onion.",
+    "reviewed_at": "2026-10-05T12:57:59.956823+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:16.148490+00:00"
+  },
+  "119613f06579a063b1545c32f9a5ed0734512424e1cac4144c1dc334e0f7e640": {
+    "decision": "pass",
+    "source_sha256": "25bb5748fe634ed52651cc3cfb7875da9b42c752a2601c746a3626f0e7115acd",
+    "recipe_ids": [
+      "industrial-v3-traybake-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Traybake"
+    ],
+    "notes": "Source viewed: golden cooked tofu cubes clearly retain tofu texture with golden skin-on baby potato pieces, roasted broccoli florets and red pepper. Mayonnaise garlic/dried parsley dollop added beside cooked food. Oil sheen integrated; no lemon, cheese or fresh garnish; complete single serving.",
+    "alt": "Shift Garlic & Herb Tofu Traybake served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:09.948134+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.911885+00:00"
+  },
+  "1367bcc2a024e99adc2d7ffa132bfe2cf683ce922c36df2f557df4490326798d": {
+    "decision": "pass",
+    "source_sha256": "c2f902e7d07c1ae77ae151c5f8187be2ff1c97c65696f279ee50b52900b2b3e5",
+    "recipe_ids": [
+      "industrial-v3-kebab-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Fakeaway Kebab"
+    ],
+    "notes": "Browned cooked chicken breast strips with pale fibrous centers in folded wholemeal flatbread, shredded lettuce, tomato and garlic-herb yoghurt dressing. No side dish, skewers or extra vegetables.",
+    "alt": "Shift Garlic & Herb Chicken Fakeaway Kebab, prepared with chicken breast, wholemeal flatbread, lettuce, tomato",
+    "reviewed_at": "2026-10-05T12:52:19.816337+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:44.063337+00:00"
+  },
+  "17fa34cab8f1a335ed78b8878dd98092e622bfad014f83c3f65fe7aedf1565db": {
+    "decision": "pass",
+    "source_sha256": "4545650867decb483e9acd54c4b9ba16f5c44415bb257fa66c6acce89c16402e",
+    "recipe_ids": [
+      "industrial-v3-pasta-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Proper Pasta"
+    ],
+    "notes": "Tan-brown wholewheat penne has credible grain texture, with small cooked turkey mince crumbles, softened courgette chunks and cooked cherry tomatoes. Pale mayonnaise-garlic-dried parsley dressing coats the mixture after heat removal, as method states. No sliced poultry, cheese or fresh garnish. Full bowl fits frame.",
+    "alt": "Wholewheat penne with turkey mince, courgette, cherry tomatoes and garlic parsley dressing",
+    "reviewed_at": "2026-10-05T12:55:59.581943+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:56:14.115354+00:00"
+  },
+  "20a9619cdbee82b26cedd8df1de7e18a2a01384876e865b36ae8f1bbb9cf1826": {
+    "decision": "pass",
+    "source_sha256": "1b3ce7c56f266c1e9c214eab00afe3fbebc8b945322c15b2981a5770983a71ba",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Stir-Fry"
+    ],
+    "notes": "Cooked pale turkey mince in small crumbles among tender egg noodles, broccoli and softened pepper strips; garlic-parsley mayonnaise dressing on top. No meat chunks, sesame or extra vegetables.",
+    "alt": "Shift Garlic & Herb Turkey Stir-Fry, prepared with 100% turkey breast mince, raw, dried egg noodles, mixed peppers, broccoli",
+    "reviewed_at": "2026-10-05T12:57:26.390792+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:57:48.114267+00:00"
+  },
+  "212b61a9516be5df310c2ae1e3dff8a9cff46f9138842d7bd35364356a8f854b": {
+    "decision": "pass",
+    "source_sha256": "29b603f1577fcb98ae09c84b2b3fc48715ed176e859009ba1bde488f61168a12",
+    "recipe_ids": [
+      "industrial-v3-burger-loaded-turkey"
+    ],
+    "titles": [
+      "Shift Fully Loaded Turkey Fakeaway Burger"
+    ],
+    "notes": "One wholemeal burger with browned paprika-coated turkey mince patty, pale cooked meat visible, shredded lettuce, tomato slices and pink finishing sauce. No cheese, fries, garnish or unlisted foods.",
+    "alt": "Shift Fully Loaded Turkey Fakeaway Burger, prepared with 100% turkey breast mince, raw, wholemeal burger bun, lettuce, tomato",
+    "reviewed_at": "2026-10-05T12:52:17.490083+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:44.062498+00:00"
+  },
+  "21ed4ce7aee1ff2729048afd8cbf1314b5b03f0f254868436e2efe2bf285b6ae": {
+    "decision": "pass",
+    "source_sha256": "5c191c66a4ce674c81a79d6332edcb42533eaf588791902dbc2dda2517f44a58",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-harissa-chicken"
+    ],
+    "titles": [
+      "Shift Harissa Chicken Slow-Cooker Big Pot"
+    ],
+    "notes": "Slow-cooked chicken breast pieces with tender skin-on baby potatoes, carrots and softened onion in reduced harissa tomato sauce, no added vegetables. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Harissa Chicken Slow-Cooker Big Pot, prepared with chicken breast, baby potatoes, carrots, onion",
+    "reviewed_at": "2026-10-05T12:56:24.783630+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:56:44.557790+00:00"
+  },
+  "29f21fa91ecbb68242e449296d655efb15cea6d0e72fd425d56b31e67ba9e5dd": {
+    "decision": "pass",
+    "source_sha256": "e8e836574ff0a1c4a6dd8e18ddfaf8a4fc6fee3d97511e029b06941aa1d7e7fb",
+    "recipe_ids": [
+      "industrial-v3-chilli-harissa-chicken"
+    ],
+    "titles": [
+      "Shift Harissa Chicken Big Chilli"
+    ],
+    "notes": "Cooked chicken breast cubes with opaque pale interiors, dark red kidney beans and softened diced red pepper in measured red harissa coating sit above tan cooked brown rice. No onion, garnish or added side foods; one bowl serving fully framed.",
+    "alt": "Chicken, kidney bean and red pepper chilli on brown rice.",
+    "reviewed_at": "2026-10-05T12:54:26.352739+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:54:37.393505+00:00"
+  },
+  "2c0726343c89956266f2ea21153832b673b3572c630a1abba7c227e5e1005510": {
+    "decision": "pass",
+    "source_sha256": "d84e27783c25e75fbe45a0cb1f426ea2986e02e1f87a4a718094b20086139564",
+    "recipe_ids": [
+      "industrial-v3-pizza-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Proper Pizza"
+    ],
+    "notes": "Whole individual baked pizza base with cooked passata, browned beef mince and softened mixed pepper strips; cold garlic herb yoghurt in distinct spoonfuls after baking. No melted cheese, additional vegetables or garnish. Credible complete serving.",
+    "alt": "Shift Garlic & Herb Beef Proper Pizza with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:52:50.660258+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:55:40.499633+00:00"
+  },
+  "2c127194bea1b6b3f280a9b773fe537de355371ec0fa033608d3cfe41ab023bd": {
+    "decision": "pass",
+    "source_sha256": "4f3c47933c0d1c927b1589c320ad0b39a301bff67aefeca87a4856c814b753a7",
+    "recipe_ids": [
+      "industrial-v3-traybake-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Traybake"
+    ],
+    "notes": "Cooked pork loin medallion pieces show pale interiors and browned faces beside roasted baby potatoes, broccoli and red pepper, lightly peri-peri coated. No chicken substitution, extra vegetables or garnish. Single plate serving centrally framed.",
+    "alt": "Peri-peri pork traybake with baby potatoes, broccoli and red pepper.",
+    "reviewed_at": "2026-10-05T13:01:34.270860+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:55.765628+00:00"
+  },
+  "355ab3dd54dc35fbca9528195f85e99b1fa97bf2329b211b5c977f1eded3466a": {
+    "decision": "pass",
+    "source_sha256": "0d3761b9b52e3fb855e7a2399cb93bbfd6a74d1d70465a3a317bbc3d33e40cc5",
+    "recipe_ids": [
+      "industrial-v3-kebab-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Fakeaway Kebab"
+    ],
+    "notes": "Regenerated image shows exactly three plain pale cooked turkey-mince koftas with browned surfaces, with herb flecks confined to white garlic-herb yoghurt finishing sauce. Wholemeal flatbread contains shredded lettuce and tomato slices. No embedded green herbs, extra spices, binder, or other foods; single kebab fully framed.",
+    "alt": "Wholemeal flatbread with three turkey koftas, lettuce, tomato and herb yoghurt.",
+    "reviewed_at": "2026-10-05T12:55:42.388757+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:55:53.034518+00:00"
+  },
+  "35a4adb6a41db82ed7de3ed0198a8cbe800c5a61a1897b32beaac9e3fd7940a9": {
+    "decision": "pass",
+    "source_sha256": "4d4325b078ea7b161b34aa0e12725e431d8744e089409fb0843d218d45d7a492",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-harissa-salmon"
+    ],
+    "titles": [
+      "Shift Harissa Salmon Stir-Fry"
+    ],
+    "notes": "Large opaque cooked salmon flakes are folded into tender egg noodles with green cooked broccoli florets and softened red/yellow peppers, lightly coated in hot red harissa tomato sauce. No intact fish fillet, prawns, creamy sauce or garnish. Entire bowl framed.",
+    "alt": "Harissa salmon egg-noodle stir-fry with broccoli and mixed peppers",
+    "reviewed_at": "2026-10-05T13:00:56.384430+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:16.899592+00:00"
+  },
+  "3604199d89fb513077d1db8f45b5892a3aab2bfd6105969dad48d8606c962cea": {
+    "decision": "pass",
+    "source_sha256": "c584956c2faac12cb0a5475d6669687981760f892b984956b5973e2e465d5e5c",
+    "recipe_ids": [
+      "industrial-v3-traybake-peri-peri-chicken"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chicken Traybake"
+    ],
+    "notes": "Cooked browned chicken breast sliced to show opaque interior is served with roasted skin-on baby potato halves, broccoli florets and red pepper chunks, lightly peri-peri coated. No extra foods, sauces or garnish. One dinner serving fully framed.",
+    "alt": "Peri-peri chicken traybake with baby potatoes, broccoli and red pepper.",
+    "reviewed_at": "2026-10-05T12:58:01.706667+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:16.153993+00:00"
+  },
+  "378c0928c9f122342974c844af108fe92abf354a282e518fe80b5587ca43d2f5": {
+    "decision": "pass",
+    "source_sha256": "04341778cd220d78ae41e6b51b84aa4eee5f60cc5ad854434663fef77bb6792a",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Loaded Fries"
+    ],
+    "notes": "Golden tofu cubes with pale porous centers, softened red onion and red/yellow peppers over golden crisp chips; garlic-herb yoghurt drizzled on finished plate. No meat, cheese or extra sides.",
+    "alt": "Shift Garlic & Herb Tofu Loaded Fries, prepared with firm tofu, oven chips, red onion, mixed peppers",
+    "reviewed_at": "2026-10-05T12:57:24.117931+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:57:48.113165+00:00"
+  },
+  "39fc5efc54f0b39a672c3a094accbf60adc185ef1b8e252614064ed8840146b7": {
+    "decision": "pass",
+    "source_sha256": "17d46aae1628f56454a376544b6a3c6337aabc0f7e08bb5e94f917206256c71f",
+    "recipe_ids": [
+      "industrial-v3-curry-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Rice Bowl"
+    ],
+    "notes": "Large opaque cooked salmon flakes with browned faces are folded with softened mixed peppers and onion over white long-grain basmati rice. Garlic-parsley mayonnaise dressing lies on top. No intact raw fillet, additional vegetables or garnish; one fully framed bowl.",
+    "alt": "Salmon flakes and peppers on basmati rice with garlic-parsley mayonnaise.",
+    "reviewed_at": "2026-10-05T12:51:49.017598+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:02.987574+00:00"
+  },
+  "3dc7f15342cc205fc22d46ba7319ae426c81499c2d2989e46f4fd22a6acc1834": {
+    "decision": "pass",
+    "source_sha256": "2b60abb28d596f044686272492d79349488bc65f834cc490211c8194172ae8c6",
+    "recipe_ids": [
+      "industrial-v3-pasta-peri-peri-chicken"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chicken Proper Pasta"
+    ],
+    "notes": "Browned cooked chicken breast cubes with pale interiors appear among tan wholewheat fusilli, softened courgette and cherry tomatoes in a light peri-peri coating. No additional vegetables, cheese or fresh garnish; one bowl serving fully framed.",
+    "alt": "Wholewheat chicken pasta with courgette, cherry tomatoes and peri-peri sauce.",
+    "reviewed_at": "2026-10-05T12:58:01.097684+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:16.151763+00:00"
+  },
+  "407730379244c43be0e911f25e85274d7b949e30a0314b703ee3e39f18809971": {
+    "decision": "pass",
+    "source_sha256": "27db5db374b83a2f34ca087847f13a35721eb2dde24077f9ea2f396c09ba24f6",
+    "recipe_ids": [
+      "industrial-v3-pasta-peri-peri-salmon"
+    ],
+    "titles": [
+      "Shift Peri-Peri Salmon Proper Pasta"
+    ],
+    "notes": "Opaque cooked salmon broken into large recognizable flakes is tossed among tan wholewheat penne with cooked courgette and softened cherry tomatoes in light peri-peri coating. No cheese, cream, garnish or other vegetables. Single bowl fully framed.",
+    "alt": "Wholewheat salmon pasta with courgette, cherry tomatoes and peri-peri sauce.",
+    "reviewed_at": "2026-10-05T13:01:34.931213+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:55.766218+00:00"
+  },
+  "43ba912ca407603ffe98872b92e75a3a8c03f5149ed1104c14fd0a5046081a0c": {
+    "decision": "pass",
+    "source_sha256": "fa7143a40989eeab74e86a3bd574c7b06f85b601e3c651923b77e799b5f4ac8d",
+    "recipe_ids": [
+      "industrial-v3-traybake-harissa-salmon"
+    ],
+    "titles": [
+      "Shift Harissa Salmon Traybake"
+    ],
+    "notes": "Opaque flaky cooked salmon fillet alongside golden roast baby potatoes, cooked broccoli and roasted red pepper, lightly harissa coated. No extra sides. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Harissa Salmon Traybake, prepared with salmon fillet, baby potatoes, broccoli, red pepper",
+    "reviewed_at": "2026-10-05T13:02:51.426082+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:03:16.481724+00:00"
+  },
+  "44623d831b7db5f10783723650e49587d62d913f99be7b251764e46a5cc7ddde": {
+    "decision": "pass",
+    "source_sha256": "d9f0a8b5ac5347938ef395526061fcf37e83a4e34462a048c695b8f4fffbc496",
+    "recipe_ids": [
+      "industrial-v3-chilli-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon and Bean Rice Bowl"
+    ],
+    "notes": "Cooked brown rice supports large opaque orange salmon flakes, soft kidney beans and cooked diced red pepper. Garlic/dried parsley flecks are in the cold mayonnaise dressing spooned after cooking. No unlisted garnish or sides; complete serving.",
+    "alt": "Shift Garlic & Herb Salmon and Bean Rice Bowl with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:58:47.135682+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:39.616964+00:00"
+  },
+  "48ac2d41bfbe8960d446a5187e3632cc5c8d7d2d796138aa0d8da1b2de09fc11": {
+    "decision": "pass",
+    "source_sha256": "8788ca4dfbdee9788df02688ff62b9e401db1fe58b34faf53e994a413855e0c4",
+    "recipe_ids": [
+      "industrial-v3-pasta-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Proper Pasta"
+    ],
+    "notes": "Tan-brown wholewheat penne shows grain texture, tossed with golden-edged 2cm tofu cubes, softened courgette chunks and cooked cherry tomatoes. Pale garlic, dried parsley and mayonnaise dressing coats the components as required after removing from heat. No meat, cheese or fresh herb garnish. Entire bowl retained.",
+    "alt": "Wholewheat pasta with golden tofu cubes, courgette, cherry tomatoes and garlic parsley mayonnaise",
+    "reviewed_at": "2026-10-05T12:54:46.928889+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:54:59.613355+00:00"
+  },
+  "4eb06614443c91af89507475892890bab98ee46af3bcdd51f6ac838d2aec7582": {
+    "decision": "pass",
+    "source_sha256": "759c1e2ee6f87aceb59d805ce789d0d3d113bae7869714544d45125185772c3a",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-loaded-turkey"
+    ],
+    "titles": [
+      "Shift Fully Loaded Turkey Loaded Fries"
+    ],
+    "notes": "Actual source reviewed: crisp golden plain chips underneath cooked crumbled turkey breast mince, softened red onion strips and mixed red/yellow peppers. Paprika/chilli colouring and olive oil sheen on filling, pink mayonnaise/ketchup drizzle after cooking. No cheese, herbs or extra food; full plated serving.",
+    "alt": "Shift Fully Loaded Turkey Loaded Fries on cream serving ware",
+    "reviewed_at": "2026-10-05T12:51:14.589669+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:51:56.604245+00:00"
+  },
+  "5362dd9eb29209d3f40122b8fca48d262d0b431e1bdfaa1ddbaa7ab7f04ee07b": {
+    "decision": "pass",
+    "source_sha256": "b3102a421dec1ceff9925cf49b1635fb0eeb74e6c1a9857f0a61d9bd28c594a9",
+    "recipe_ids": [
+      "industrial-v3-chilli-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken and Bean Rice Bowl"
+    ],
+    "notes": "Cooked brown rice, browned fully cooked chicken chunks, soft kidney beans and cooked diced red pepper are identifiable. A small cold mayonnaise dressing with garlic/dried parsley is on top; no extra garnish or sides. Complete single bowl.",
+    "alt": "Shift Garlic & Herb Chicken and Bean Rice Bowl with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:52:51.321772+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:55:40.501438+00:00"
+  },
+  "53f4373825d634b0dc86b6e6dca3190276182a6f5790c5f752c2c6a000c2d46a": {
+    "decision": "pass",
+    "source_sha256": "324bb449c8d6094d1f9e7d982b880855ae0bbd569859d2dd34ddc31031d5fed0",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-harissa-pork"
+    ],
+    "titles": [
+      "Shift Harissa Pork Stir-Fry"
+    ],
+    "notes": "Cooked thin pork strips with egg noodles, softened mixed pepper strips and broccoli florets, harissa tomato sauce coating incorporated. No sesame, scallions, herbs or extra foods.",
+    "alt": "Shift Harissa Pork Stir-Fry, prepared with lean pork loin, dried egg noodles, mixed peppers, broccoli",
+    "reviewed_at": "2026-10-05T13:01:23.269561+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:56.834754+00:00"
+  },
+  "5405b8f0b207151ebc7eefe2fc09b9d802e57eb448bd7c0906162f7bdc9cb809": {
+    "decision": "pass",
+    "source_sha256": "f7736d7f9463fdbd07bbcda08cd6061e9704241e235d4d18de40fea7e32d1b1e",
+    "recipe_ids": [
+      "industrial-v3-chilli-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu and Bean Rice Bowl"
+    ],
+    "notes": "Golden browned intact tofu cubes, cooked kidney beans and soft red pepper over cooked slender long-grain brown rice with tan bran texture; cold garlic/dried parsley mayonnaise on top. Correction replaced rejected round grains. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Tofu and Bean Rice Bowl, prepared with firm tofu, brown rice, dry, kidney beans, red pepper",
+    "reviewed_at": "2026-10-05T13:02:45.484186+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:03:16.478692+00:00"
+  },
+  "546efedca1268e5ffa7ffd9e9df1eaaf708782eb549c58434d61c968c1226921": {
+    "decision": "pass",
+    "source_sha256": "02f846e0bc2b17703c8008000d1647e57777fc8e129796973b1ce650444f9925",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-smoky-turkey"
+    ],
+    "titles": [
+      "Shift Smoky Turkey Breakfast Buttie"
+    ],
+    "notes": "Plain wholemeal bap now has no oat or seed topping. Warm sliced cooked turkey breast, wilted spinach and cooked tomato are clearly visible inside with paprika-ketchup-vinegar coating; oil incorporated. Single full sandwich, no additional food or garnish.",
+    "alt": "Shift Smoky Turkey Breakfast Buttie with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:52:48.708989+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:55:40.495857+00:00"
+  },
+  "561de1f09d7ecad9a0e315bd4a088ddc223af73e94410b6629a7022f9a0c0a86": {
+    "decision": "pass",
+    "source_sha256": "1aa32156b00df5132cac8dd65764e1172270be09247d3988ddc8b47350c11cef",
+    "recipe_ids": [
+      "industrial-v3-traybake-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Traybake"
+    ],
+    "notes": "Source viewed: cooked turkey mince crumbles with golden baby potato halves, roast broccoli and red pepper pieces. Cold mayonnaise garlic/dried parsley dollops visible after cooking; oil integrated. No turkey breast chunks, cheese, lemon or garnish; complete single bowl.",
+    "alt": "Shift Garlic & Herb Turkey Traybake served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:11.213888+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.912661+00:00"
+  },
+  "57d21dcf4a441fc2bfa7bf3c58482b1265adc89055789d87087a829924cbf4f3": {
+    "decision": "pass",
+    "source_sha256": "20a8c0312a8a65bab60d87d6d2ef953fa1bf8a80ea5d0484fae051df962b9ea8",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Slow-Cooker Big Pot"
+    ],
+    "notes": "Single bowl contains browned firm-tofu cubes, tender baby potato halves, cooked carrot pieces and translucent onion in a light glossy mayonnaise coating with dried parsley. No beef/chicken substitution, extra vegetables or watery broth; fully framed believable serving.",
+    "alt": "Tofu, baby potatoes, carrots and onion in garlic-herb slow-cooker pot.",
+    "reviewed_at": "2026-10-05T12:51:51.231864+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:02.989139+00:00"
+  },
+  "5b1852027cd3a3ce7c6b0011c93e74e0dfd7ad7684a1d29601c77a539640217c": {
+    "decision": "pass",
+    "source_sha256": "7791ba769dd340fb40ddcb0430223e9f71cd40dce76185c6c8bf81ffc53530b3",
+    "recipe_ids": [
+      "industrial-v3-pasta-harissa-beef"
+    ],
+    "titles": [
+      "Shift Harissa Beef Proper Pasta"
+    ],
+    "notes": "Cooked brown wholewheat penne shows browned crumbled beef mince, green-skinned courgette chunks and softened cherry tomatoes in a thin red harissa tomato coating. No cheese, parsley garnish, other vegetables or side foods; single bowl fully framed.",
+    "alt": "Wholewheat beef pasta with courgette, cherry tomatoes and harissa sauce.",
+    "reviewed_at": "2026-10-05T12:54:25.822282+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:54:37.392846+00:00"
+  },
+  "5d73b3591cc80aca83875faf8c4bd50468bd83774769c937eb9a5992cf318812": {
+    "decision": "pass",
+    "source_sha256": "91a47cab83df846351f93052f1ec3037e6731b607aec1d6dae22434ad5294f5c",
+    "recipe_ids": [
+      "industrial-v3-pizza-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Proper Pizza"
+    ],
+    "notes": "Baked individual pizza has golden tofu cubes and cooked mixed peppers over tomato passata, cold garlic herb yoghurt dollops. No meat or cheese. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Tofu Proper Pizza, prepared with firm tofu, individual pizza base, tomato passata, mixed peppers",
+    "reviewed_at": "2026-10-05T12:56:22.924660+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:56:44.555964+00:00"
+  },
+  "5e439faacf399dfaf5abb04f38ea5b716eae63b452872436c39b004983b2c49e": {
+    "decision": "pass",
+    "source_sha256": "db381be4502a98120d079e5d1028197d3b00c45989d3284c3f16167da0ec4c8e",
+    "recipe_ids": [
+      "industrial-v3-pasta-harissa-pork"
+    ],
+    "titles": [
+      "Shift Harissa Pork Proper Pasta"
+    ],
+    "notes": "Cooked wholewheat penne mixed with fully cooked opaque pork loin cubes, softened courgette and cherry tomatoes in harissa tomato coating. No cheese or herbs. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Harissa Pork Proper Pasta, prepared with lean pork loin, wholewheat pasta, dry, courgette, cherry tomatoes",
+    "reviewed_at": "2026-10-05T13:02:49.165486+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:03:16.479887+00:00"
+  },
+  "625fb21a9d7172cb034346b467004e10598a9f824df6dfbb2ad3269d2a5b3ba0": {
+    "decision": "pass",
+    "source_sha256": "6e00f034356c926f10264d7b9aabb4b46f4282001450b142131146fa93a6074f",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Loaded Fries"
+    ],
+    "notes": "Golden crisp uncoated oven chips carry fully cooked browned chicken breast strips, softened sliced red onion and red/yellow peppers. Garlic herb yoghurt remains a visible cold drizzle after cooking. No cheese or extra food garnish. Complete ordinary loaded fries serving fits comfortably.",
+    "alt": "Loaded oven chips with chicken breast, red onion, peppers and garlic herb yoghurt",
+    "reviewed_at": "2026-10-05T12:51:12.742157+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:51:28.740795+00:00"
+  },
+  "65820c88dcdb63140952de541bc3e7a19d4c21ef1cc6c4aa78923cd3799aa9b4": {
+    "decision": "pass",
+    "source_sha256": "009457a9d598bf97fa677cd1ebad377b1dbfe6d2805d3c2f5c06951833aab484",
+    "recipe_ids": [
+      "industrial-v3-pizza-peri-peri-chicken"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chicken Proper Pizza"
+    ],
+    "notes": "Four cut pizza slices show cooked browned chicken breast strips, softened red/yellow/green mixed peppers, thick tomato passata and red peri-peri sauce over a crisp cooked individual base. No melted cheese, white drizzle or garnish. Entire pizza and cut base edges visible with margin.",
+    "alt": "Sliced peri-peri chicken pizza with mixed peppers and tomato passata",
+    "reviewed_at": "2026-10-05T13:02:23.393648+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:02:37.680541+00:00"
+  },
+  "66e2a5d2f4b97522e0c7eb133bc31520b26c600e975ff595804c011f4c46709c": {
+    "decision": "pass",
+    "source_sha256": "35a4893053649b99190165e4dfbfef5fc2ebebdbe0f40d64dcedbb717070f52c",
+    "recipe_ids": [
+      "industrial-v3-pie-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Proper Pie"
+    ],
+    "notes": "Source viewed: fork-ridged golden mashed potato crust over visible cooked golden firm tofu cubes, fine carrot cubes and green peas in opened portion. Mayonnaise garlic/dried parsley dressing separate. No pastry, cheese or gravy; complete individual pie and sauce inside frame.",
+    "alt": "Shift Garlic & Herb Tofu Proper Pie served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:09.360518+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.911355+00:00"
+  },
+  "66f56c93e764f898ca57f8107a49b286a892b8eb8700029bfa47d4594b0cd508": {
+    "decision": "pass",
+    "source_sha256": "8599a8c2f2cc99bf112e277620bf0e5ddfb431556d2b1cb261312ca72f5ea7f2",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-loaded-tofu"
+    ],
+    "titles": [
+      "Shift Fully Loaded Tofu Loaded Fries"
+    ],
+    "notes": "Golden plain oven chips support paprika/chilli browned tofu cubes with visible pale tofu interiors, softened red onion and mixed peppers. Light mayonnaise-ketchup finishing sauce is drizzled after cooking; no cheese or added topping. Full single serving.",
+    "alt": "Shift Fully Loaded Tofu Loaded Fries with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:52:49.423270+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:55:40.497773+00:00"
+  },
+  "6a61988871ffa8599788293a733f1afa431b43e13b1822bfc39176d4e20a7f46": {
+    "decision": "pass",
+    "source_sha256": "70bd5a96296a276ee590e2084b2184df8da23333c02b76e155dbb4e828d1c8c0",
+    "recipe_ids": [
+      "industrial-v3-roast-harissa-pork"
+    ],
+    "titles": [
+      "Shift Harissa Pork Sunday-Style Roast"
+    ],
+    "notes": "Cooked roast pork loin slices have opaque pale cut faces beneath hot red harissa tomato sauce. Golden peeled roast potato chunks, slim roasted carrot batons and cooked broccoli florets sit alongside. No creamy dressing, gravy, meat substitution or garnish. Complete single roast plate retains margins.",
+    "alt": "Harissa pork roast with roast potatoes, carrot batons and broccoli",
+    "reviewed_at": "2026-10-05T13:00:55.778662+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:16.898524+00:00"
+  },
+  "6b798a76f6572819aed0d44d5f7f355b5c87bc175caa78c6a084c7457d78170b": {
+    "decision": "pass",
+    "source_sha256": "a1a6eb882219c82a49a9538fce911a49898c5afe0b6676dccafbee5a973e4228",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Stir-Fry"
+    ],
+    "notes": "Golden firm tofu cubes, broccoli florets and softened red/yellow pepper strips among cooked egg noodles; pale garlic-parsley mayonnaise dressing on top. No meat, sesame or fresh garnish.",
+    "alt": "Shift Garlic & Herb Tofu Stir-Fry, prepared with firm tofu, dried egg noodles, mixed peppers, broccoli",
+    "reviewed_at": "2026-10-05T12:57:24.741314+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:57:48.113660+00:00"
+  },
+  "7198d72cc17524e571bd1c77df28cd58a727742627f7e5d4b0af6166bc8a36a3": {
+    "decision": "pass",
+    "source_sha256": "203894c0c622a85e9e46e16136e17181c2d1dfb72d7b5c67a288465d912231cc",
+    "recipe_ids": [
+      "industrial-v3-pie-harissa-beef"
+    ],
+    "titles": [
+      "Shift Harissa Beef Proper Pie"
+    ],
+    "notes": "Fork-roughened browned mashed-potato top over cooked beef mince, finely diced carrots and peas in red harissa coating, visible at edge of small baking dish. No pastry, cheese or garnish.",
+    "alt": "Shift Harissa Beef Proper Pie, prepared with 5% beef mince, potatoes, carrots, peas",
+    "reviewed_at": "2026-10-05T12:57:27.027358+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:57:48.114929+00:00"
+  },
+  "7a57cdbf0c0d2fb52e6dd8fe90b3242b9fbf546698aecbd4110c22ea6d9ae6e0": {
+    "decision": "pass",
+    "source_sha256": "8e946e74dab8e7527ec4ab26f58d389292ce8f0d7f1ccff0c028b61458130939",
+    "recipe_ids": [
+      "industrial-v3-chilli-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Big Chilli"
+    ],
+    "notes": "Cooked pork chunks, kidney beans and diced red peppers in light peri-peri coating over plain naturally tan wholegrain rice with bran texture, no fake black speckles. No onion, garnish or extras.",
+    "alt": "Shift Peri-Peri Pork Big Chilli, prepared with lean pork loin, brown rice, dry, kidney beans, red pepper",
+    "reviewed_at": "2026-10-05T13:01:25.499369+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:56.836262+00:00"
+  },
+  "818961c4fdf79df58166832b885dc5f6cc7fb252d417583eb3ffaf9f024b37ef": {
+    "decision": "pass",
+    "source_sha256": "e1e52f574d175c8859ecf96448a36e4efaf1840b6f2b60af12aaa5e64f53ed50",
+    "recipe_ids": [
+      "industrial-v3-pasta-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Proper Pasta"
+    ],
+    "notes": "Actual source reviewed: cooked brown penne, cooked white chicken breast chunks, softened courgette pieces and juicy cherry tomatoes mixed in mayonnaise garlic/dried parsley coating with incorporated oil. No cheese, fresh herb garnish or extra sides; complete bowl serving.",
+    "alt": "Shift Garlic & Herb Chicken Proper Pasta on cream serving ware",
+    "reviewed_at": "2026-10-05T12:51:17.634407+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:51:56.605210+00:00"
+  },
+  "84ff1179ce76ac864142d3732f9fee5a7372ec3eadd28bcfacc9e16bfcf6a0cb": {
+    "decision": "pass",
+    "source_sha256": "e814e1652462e41f2504fb549d83ce2b4c0d8aae0f93dc4272baee1032123c37",
+    "recipe_ids": [
+      "industrial-v3-roast-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Sunday-Style Roast"
+    ],
+    "notes": "Actual source reviewed: exactly two cooked browned compact beef mince portions, golden peeled potato chunks, roasted slim carrot batons and cooked broccoli florets. Mayonnaise/garlic/dried parsley dressing separate in small dish; oil sheen from cooking. No beef joint slices, gravy or extra food; full serving framed.",
+    "alt": "Shift Garlic & Herb Beef Sunday-Style Roast on cream serving ware",
+    "reviewed_at": "2026-10-05T12:51:16.794945+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:51:56.604946+00:00"
+  },
+  "867862b0237a9ebc61a75a86a2542bf6c9c9a316065b1891a40e423e1b6aeb0c": {
+    "decision": "pass",
+    "source_sha256": "4c3df4be44ea82b9123c79df8a9fc800124a96d64954a9ea08d1bcdb0771bde8",
+    "recipe_ids": [
+      "industrial-v3-burger-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Fakeaway Burger"
+    ],
+    "notes": "Plain wholemeal burger bun contains one browned cooked pale turkey breast mince patty, fresh shredded lettuce and tomato slices with cold garlic herb yoghurt. No added binder, cheese or seeded bun. Full single burger centred.",
+    "alt": "Shift Garlic & Herb Turkey Fakeaway Burger with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:58:50.030344+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:39.624690+00:00"
+  },
+  "86b694a96eaf7efb7a2bd8495e761c41d41495491bb5769085a3127ace501a0c": {
+    "decision": "pass",
+    "source_sha256": "ddd99bc377340ff9c779efc7df8052a55735bc0d0254c9e435f08d6797d89e6d",
+    "recipe_ids": [
+      "industrial-v3-pizza-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Proper Pizza"
+    ],
+    "notes": "Individual pizza with small cooked turkey mince crumbles, softened mixed peppers, tomato passata and cold herb yoghurt topping; no melted cheese or fresh garnish. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Turkey Proper Pizza, prepared with 100% turkey breast mince, raw, individual pizza base, tomato passata, mixed peppers",
+    "reviewed_at": "2026-10-05T12:56:23.468639+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:56:44.556846+00:00"
+  },
+  "8b9ab40056cc3112ceeffe9a3280f47055bb8dd4764793bcead7a6f78f86ffb1": {
+    "decision": "pass",
+    "source_sha256": "da8bb05bef31d2e2863fc461c9f572d30d7d6798b849b03a7c75ef6fcc2ea787",
+    "recipe_ids": [
+      "industrial-v3-pie-peri-peri-salmon"
+    ],
+    "titles": [
+      "Shift Peri-Peri Salmon Proper Pie"
+    ],
+    "notes": "Opaque cooked salmon flakes, carrot dice and peas under browned fork-roughened mashed potatoes in individual dish, light peri-peri coating. No pastry, cheese or garnish.",
+    "alt": "Shift Peri-Peri Salmon Proper Pie, prepared with salmon fillet, potatoes, carrots, peas",
+    "reviewed_at": "2026-10-05T13:01:29.120057+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:56.837432+00:00"
+  },
+  "8f44977c5631d9fb0e123913cc8b9b228d669549335f9c8e5007559d6d9ecd94": {
+    "decision": "pass",
+    "source_sha256": "48cf4103c273d349d1a14a34c38202f79ed6883d26dee56bf3a73bf85ef9b9e3",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked pale crumbled turkey mince surrounds tender skin-on baby potato pieces, cooked carrots and translucent onion in a lightly glossy mayonnaise coating with dried parsley. No meat chunks or extra foods. One slow-cooker bowl serving centrally framed.",
+    "alt": "Turkey mince with baby potatoes, carrots and onion in garlic-herb pot.",
+    "reviewed_at": "2026-10-05T12:54:25.322428+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:54:37.392442+00:00"
+  },
+  "8f64902e905f3c685ab818e6168433eeba2a176dc44fd3ce6e22b1cdce4515e2": {
+    "decision": "pass",
+    "source_sha256": "92c2b24a080b1fa60811e7a250650eace1e26e435ce0e272d043b28df7ceebd0",
+    "recipe_ids": [
+      "industrial-v3-pasta-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Proper Pasta"
+    ],
+    "notes": "Browned cooked pale pork loin cubes are tossed with tan wholewheat penne, cooked courgette chunks and softened cherry tomatoes in a modest peri-peri coating. No chicken, beef, cheese, garnish or extra vegetables. One bowl serving fully framed.",
+    "alt": "Wholewheat pork pasta with courgette, cherry tomatoes and peri-peri sauce.",
+    "reviewed_at": "2026-10-05T13:01:33.616784+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:55.764740+00:00"
+  },
+  "919da9f9d5686c14b4ff288a4101e8c9f7df77fe1f6ee8913cad0d8454829db6": {
+    "decision": "pass",
+    "source_sha256": "1e0950772e43368a5d3d6b7fef122ca78850e735eb7f57ed603aaf6016926dd2",
+    "recipe_ids": [
+      "industrial-v3-pasta-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Proper Pasta"
+    ],
+    "notes": "Actual source reviewed: cooked naturally brown ridged penne with small browned beef mince crumbles, softened green-skinned courgette and juicy red cherry tomatoes. Creamy mayonnaise coating with dried parsley specks and incorporated garlic/oil. No cheese or fresh garnish; whole bowl and serving retained.",
+    "alt": "Shift Garlic & Herb Beef Proper Pasta on cream serving ware",
+    "reviewed_at": "2026-10-05T12:51:15.619359+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:51:56.604529+00:00"
+  },
+  "93b09438bac4ddcedfcfe6bd9d94c91d23b1acfcec82dcf53c63384f54257c1c": {
+    "decision": "pass",
+    "source_sha256": "c3af4dc2bf65d755cd7f7955a3f347e6c6f842799d2e76965e2132af3443ca51",
+    "recipe_ids": [
+      "industrial-v3-chilli-harissa-salmon"
+    ],
+    "titles": [
+      "Shift Harissa Salmon Big Chilli"
+    ],
+    "notes": "Large opaque cooked salmon flakes with ready-cooked kidney beans and softened red pepper coated in harissa tomato sauce over slender tan wholegrain rice. No cream or extra vegetables. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Harissa Salmon Big Chilli, prepared with salmon fillet, brown rice, dry, kidney beans, red pepper",
+    "reviewed_at": "2026-10-05T13:02:50.198427+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:03:16.481386+00:00"
+  },
+  "a406fa89ef62d8b14346459fa090b20ab9631c6f6c328484c624d08ad09f28ad": {
+    "decision": "pass",
+    "source_sha256": "cb4fbca7219042ccd8ec180e9f060aa96367dbb8db4adb5f6b69fef94dfeb2bc",
+    "recipe_ids": [
+      "industrial-v3-pizza-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Proper Pizza"
+    ],
+    "notes": "Whole baked individual pizza has cooked passata, browned cooked pork loin strips with beige interiors, and softened mixed peppers. Cold garlic herb yoghurt is spooned on after baking, with no cheese or unlisted topping. Complete single serving.",
+    "alt": "Shift Garlic & Herb Pork Proper Pizza with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:52:53.238462+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:55:40.503247+00:00"
+  },
+  "a4e38b622695bda33c5e589181e9fc4036f461902cb3327990f1710380837698": {
+    "decision": "pass",
+    "source_sha256": "ea44ec8caefdfaf3dfa2ba3568fd76fc7aa864c420cab1004057853c929c0de3",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Loaded Fries"
+    ],
+    "notes": "Golden crisp plain oven chips are topped with large opaque cooked salmon flakes, softened red onion and red/yellow pepper strips. Cold garlic herb yoghurt is distinct as finishing ribbons. No cheese or extra garnish, and no intact fillet substituted for flakes. Whole plate and portion framed.",
+    "alt": "Loaded oven chips with salmon flakes, peppers, red onion and garlic herb yoghurt",
+    "reviewed_at": "2026-10-05T12:54:46.379461+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:54:59.612318+00:00"
+  },
+  "a4ed71d3b46352297839d20ec62a0b809c6a4ba7a935862e8eaad6fba092c131": {
+    "decision": "pass",
+    "source_sha256": "e3e969d249ed04526357ff5b2b444b4a571ae1c403f28e937f18e6fd04d93983",
+    "recipe_ids": [
+      "industrial-v3-pie-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Proper Pie"
+    ],
+    "notes": "Cooked lean pork chunks with diced carrots and peas beneath fork-roughened golden mashed potato top; light peri-peri coating. No pastry, cheese, milk or fresh garnish.",
+    "alt": "Shift Peri-Peri Pork Proper Pie, prepared with lean pork loin, potatoes, carrots, peas",
+    "reviewed_at": "2026-10-05T13:01:26.446707+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:56.836602+00:00"
+  },
+  "a61fe4f5594ee05faea17f920cbc7772a02f3fcb35ad9f907aae5cbf5fa15812": {
+    "decision": "pass",
+    "source_sha256": "8e6cc4eb898cf718ddfbaeb4a766cd7e9e9084fbc779151e463e980393359e73",
+    "recipe_ids": [
+      "industrial-v3-pie-harissa-chicken"
+    ],
+    "titles": [
+      "Shift Harissa Chicken Proper Pie"
+    ],
+    "notes": "Source viewed: golden fork-ridged mashed potato crust with opening revealing fully cooked white chicken breast chunks, fine cooked carrots and green peas in red harissa tomato sauce. Oil incorporated. No pastry, cheese, gravy or garnish; complete individual pie.",
+    "alt": "Shift Harissa Chicken Proper Pie served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:13.079230+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.913443+00:00"
+  },
+  "a6cb56dde1d6c2a8d32adcffba302aa42f4b48c4f884a8f2078b18d4b6d75bef": {
+    "decision": "pass",
+    "source_sha256": "f8d70fba397e3cac660cd10d40c8e6d552760c29ee72328625541dad5696dbcd",
+    "recipe_ids": [
+      "industrial-v3-pie-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Proper Pie"
+    ],
+    "notes": "Fork-ridged golden mashed potato pie exposes large opaque pink cooked salmon flakes, softened diced carrots and peas; separate garlic/dried parsley mayonnaise ramekin, no pastry. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Salmon Proper Pie, prepared with salmon fillet, potatoes, carrots, peas",
+    "reviewed_at": "2026-10-05T12:56:22.454382+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:56:44.555490+00:00"
+  },
+  "a76bc1733c77e60891a23fc80c79f8d9206c79248ac516f5adc06455bcbf0f6c": {
+    "decision": "pass",
+    "source_sha256": "cfb4b33d5ae7abeb9d31e60907223f0ed1fb47c5ba5a1170f16029b45751aeef",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Stir-Fry"
+    ],
+    "notes": "Tender egg noodles with cooked lean pork loin strips, broccoli florets and softened red/yellow mixed peppers. A distinct cold spoonful of mayonnaise mixed with garlic powder and dried parsley sits over the finished hot noodles. No meat substitution, cheese or added food. Entire serving framed.",
+    "alt": "Pork egg-noodle stir-fry with broccoli, peppers and cold garlic parsley mayonnaise",
+    "reviewed_at": "2026-10-05T12:59:12.616144+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:59:30.515590+00:00"
+  },
+  "a8164c6d10b13d1e2e01e02bec6bf5a5c4cd7758724a224d554142ab12e55ead": {
+    "decision": "pass",
+    "source_sha256": "39cdd6d42ac6b7c00c371ffca40f2a46e019c1f28ae812df930f533ed50ea789",
+    "recipe_ids": [
+      "industrial-v3-pie-peri-peri-chicken"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chicken Proper Pie"
+    ],
+    "notes": "Cooked chicken breast chunks, finely diced carrots and peas in light peri-peri coating beneath browned forked mashed potatoes. No pastry, cheese, dairy sauce or garnish.",
+    "alt": "Shift Peri-Peri Chicken Proper Pie, prepared with chicken breast, potatoes, carrots, peas",
+    "reviewed_at": "2026-10-05T13:01:24.749046+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:56.835660+00:00"
+  },
+  "a998164521f6948a5284324a07390dda47d87c2b0c0d861398b397cc1441e76c": {
+    "decision": "pass",
+    "source_sha256": "194314e4dcf3c7d7c98e2c350050439d34ae67b2f10ba57e4e2dbc416f8350a2",
+    "recipe_ids": [
+      "industrial-v3-chilli-harissa-beef"
+    ],
+    "titles": [
+      "Shift Harissa Beef Big Chilli"
+    ],
+    "notes": "Browned beef mince, kidney beans and softened red pepper lightly coated harissa tomato sauce over elongated cooked brown rice with visible bran speckles. No cream; corrected rice source. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Harissa Beef Big Chilli, prepared with 5% beef mince, brown rice, dry, kidney beans, red pepper",
+    "reviewed_at": "2026-10-05T13:02:47.913885+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:03:16.479641+00:00"
+  },
+  "ab1b2c475a35bd483a608be0a86e099794ac009433d4891d2a6733c63f7578df": {
+    "decision": "pass",
+    "source_sha256": "36c888b8262b88a3a371c4100590a19f0ce39340f8702029288280e78f198020",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Stir-Fry"
+    ],
+    "notes": "Tender egg noodles with fully cooked browned chicken breast strips, cooked broccoli florets and softened red/yellow peppers. Cold garlic, dried parsley and light mayonnaise dressing is a separate pale creamy spoonful over the hot food, matching serving method. No cheese or extra vegetables. Full bowl fits frame.",
+    "alt": "Chicken egg-noodle stir-fry with broccoli, peppers and cold garlic parsley mayonnaise",
+    "reviewed_at": "2026-10-05T12:59:11.968749+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:59:30.512959+00:00"
+  },
+  "ac27814133619e0dfbbffb31fcd885397f226341db5b2842e59c20ad83265542": {
+    "decision": "pass",
+    "source_sha256": "097c27628d77e93ccfd1995280256bb3cec0e5e9b641e953f2d49589140dc013",
+    "recipe_ids": [
+      "industrial-v3-pizza-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Proper Pizza"
+    ],
+    "notes": "Four cut pizza slices carry cooked lean pork loin strips, softened mixed peppers, thickened tomato passata and red peri-peri sauce. Cooked crisp base and cut edges show clearly. No cheese, white sauce, meat substitution or garnish. Whole individual pizza fits the plate and frame.",
+    "alt": "Sliced peri-peri pork pizza with mixed peppers and tomato passata",
+    "reviewed_at": "2026-10-05T13:02:24.255283+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:02:37.681240+00:00"
+  },
+  "ac4e4d84dd4bcbddc10762e5bb13ec8c9989a90cd5a8e63cae986d05b28e4691": {
+    "decision": "pass",
+    "source_sha256": "274023df16eba5c54b4c236e238d1f1a152b23dda5ba0e41d83c38279f71a75a",
+    "recipe_ids": [
+      "industrial-v3-pasta-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Proper Pasta"
+    ],
+    "notes": "Source viewed: large cooked opaque pink salmon flakes among natural brown wholewheat penne, softened courgette cubes and cooked cherry tomatoes. Mayonnaise garlic/dried parsley coating with oil integrated. No cheese, lemon or fresh garnish; full bowl serving visible.",
+    "alt": "Shift Garlic & Herb Salmon Proper Pasta served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:07.852432+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.910688+00:00"
+  },
+  "b11b036e23e0949084aebe6a10733766329554ad66d474899e87002c9a9e4ee3": {
+    "decision": "pass",
+    "source_sha256": "fc03c46a152069f8a836841bcb7a61935ad7572e5eed92a1049e2d8e6d859cde",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Loaded Fries"
+    ],
+    "notes": "Golden crisp plain oven chips carry cooked lean pork loin strips cut across the grain, softened red onion and red/yellow pepper strips. Cold garlic herb yoghurt appears as pale herb-speckled ribbons on top. No cheese or extra garnish. Complete plate retains crop margin.",
+    "alt": "Loaded oven chips with pork loin strips, peppers, red onion and garlic herb yoghurt",
+    "reviewed_at": "2026-10-05T12:52:54.861138+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:53:08.354653+00:00"
+  },
+  "b5a6a857b3308c8bb0722b08d49381c5ab79d074d55a5162f825f5bbef1ec474": {
+    "decision": "pass",
+    "source_sha256": "9dfbb4b81215cef4e6cb83ed284871139c82bef188a417bbe447814674a004e4",
+    "recipe_ids": [
+      "industrial-v3-chilli-peri-peri-salmon"
+    ],
+    "titles": [
+      "Shift Peri-Peri Salmon Big Chilli"
+    ],
+    "notes": "Large opaque salmon flakes, kidney beans and softened red pepper in peri-peri coating over naturally tan wholegrain rice; no fake seasoning specks, onion or fresh garnish.",
+    "alt": "Shift Peri-Peri Salmon Big Chilli, prepared with salmon fillet, brown rice, dry, kidney beans, red pepper",
+    "reviewed_at": "2026-10-05T13:01:27.397415+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:56.836930+00:00"
+  },
+  "b752c336720e0f0f48655fa7eaafeac8cba1450b17b1466af2afd539eb9fcdff": {
+    "decision": "pass",
+    "source_sha256": "aea5cebd6fd7f42011091747516ed9381da5d62682dbc119b296feb0c446b15a",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked chicken breast portions with baby potatoes, carrots and softened onion, glossy released cooking juices lightly creamy from stirred mayonnaise, dried parsley flecks. No extra foods or garnish.",
+    "alt": "Shift Garlic & Herb Chicken Slow-Cooker Big Pot, prepared with chicken breast, baby potatoes, carrots, onion",
+    "reviewed_at": "2026-10-05T12:52:20.470144+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:44.064244+00:00"
+  },
+  "bcc9cd7e61b43f3675ec08c400c7c7d13fa51cf08d65edb1703a9b2a58eac7ed": {
+    "decision": "pass",
+    "source_sha256": "d72f84c3406f54bcefb5444eb2d3668d6b2e6c7e0364f419d8842108f3a6315d",
+    "recipe_ids": [
+      "industrial-v3-traybake-harissa-chicken"
+    ],
+    "titles": [
+      "Shift Harissa Chicken Traybake"
+    ],
+    "notes": "Cooked chicken breast with white fibrous interior, roasted baby-potato pieces, broccoli and red pepper lightly harissa-coated, browned edges. No extra vegetables, sauce side or garnish.",
+    "alt": "Shift Harissa Chicken Traybake, prepared with chicken breast, baby potatoes, broccoli, red pepper",
+    "reviewed_at": "2026-10-05T13:01:22.504288+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:56.833795+00:00"
+  },
+  "bd8d47c17c2fb691895a03c508991b076428f89d3e73460f3c5dfb5c2323987f": {
+    "decision": "pass",
+    "source_sha256": "68878fa1a22c321a68e98188bf62cb707dd4fd8dee80d964e662316223deef31",
+    "recipe_ids": [
+      "industrial-v3-roast-harissa-chicken"
+    ],
+    "titles": [
+      "Shift Harissa Chicken Sunday-Style Roast"
+    ],
+    "notes": "One roast chicken breast with red harissa tomato sauce is served with golden peeled roast potato chunks, roasted carrot batons and cooked green broccoli florets. No gravy, garnish, skin-on potato substitution, or extra vegetables. Entire single dinner plate centrally framed.",
+    "alt": "Harissa chicken breast with roast potatoes, carrots and broccoli.",
+    "reviewed_at": "2026-10-05T12:55:43.032669+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:55:53.035541+00:00"
+  },
+  "c1b722ae254063e6d96274aa834daaed8a2bbb0a1c85720a1058cd987302104e": {
+    "decision": "pass",
+    "source_sha256": "7ae9f2dfcaa23186f51203430bd9b974d127e28b60ee0032f6ca84dc411cf329",
+    "recipe_ids": [
+      "industrial-v3-pasta-harissa-salmon"
+    ],
+    "titles": [
+      "Shift Harissa Salmon Proper Pasta"
+    ],
+    "notes": "Opaque pink cooked salmon flakes with browned edges are tossed through tan wholewheat penne with cooked courgette and softened cherry tomatoes in harissa tomato coating. No cream, cheese or garnish. Single bowl serving fully framed.",
+    "alt": "Wholewheat salmon pasta with courgette, cherry tomatoes and harissa sauce.",
+    "reviewed_at": "2026-10-05T12:58:00.564301+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:16.151221+00:00"
+  },
+  "c36d8fe46adb1fedbd6921b06cbabce6a634d42322363c5a0f01a3078de54f42": {
+    "decision": "pass",
+    "source_sha256": "c97d0969198902a2aa46d8b860a6971d81dc302b6a2965a941542fda3458454e",
+    "recipe_ids": [
+      "industrial-v3-pie-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Proper Pie"
+    ],
+    "notes": "Source viewed: golden fork-ridged mashed potato top with opening revealing small cooked pale turkey breast mince crumbles, green peas and fine orange carrot cubes. Separate mayonnaise garlic/dried parsley dressing. No pastry, cheese, gravy or additional food; complete individual pie.",
+    "alt": "Shift Garlic & Herb Turkey Proper Pie served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:10.579097+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.912330+00:00"
+  },
+  "c5710bbce2402fec880e73b519e9139b15598b2516178e2e550f256438aa0fda": {
+    "decision": "pass",
+    "source_sha256": "dab42bbe388865bd25c609c048dd913111e604f6f01a2a67d410af4fac7b2da7",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked lean pork loin chunks, tender baby potatoes, carrot pieces and softened onion in glossy mayonnaise-enriched juices with small dried parsley flecks. No fresh garnish or sides.",
+    "alt": "Shift Garlic & Herb Pork Slow-Cooker Big Pot, prepared with lean pork loin, baby potatoes, carrots, onion",
+    "reviewed_at": "2026-10-05T12:52:21.685481+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:44.065160+00:00"
+  },
+  "c6170601e412f57aec21534698914244521d2fb9dc6491b61827876e26cd2ce7": {
+    "decision": "pass",
+    "source_sha256": "ef27b582d92db0eb2c91db2bcc0741f70deda380302c21f839495a15b603ce62",
+    "recipe_ids": [
+      "industrial-v3-kebab-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Fakeaway Kebab"
+    ],
+    "notes": "Large opaque cooked salmon flakes with tomato slices and shredded lettuce inside folded wholemeal flatbread, cold garlic-herb yoghurt dressing. No whole raw fillet, garnish, side dish or unlisted foods.",
+    "alt": "Shift Garlic & Herb Salmon Fakeaway Kebab, prepared with salmon fillet, wholemeal flatbread, lettuce, tomato",
+    "reviewed_at": "2026-10-05T12:52:22.277306+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:44.065332+00:00"
+  },
+  "ca9f9473eb164120dffdb522e0167f1f243e964c90928e3064febc75060299f4": {
+    "decision": "pass",
+    "source_sha256": "ab07341b3059a33a654c32d2dd9e31a767943d0d182ff78fa96cb491cedb4581",
+    "recipe_ids": [
+      "industrial-v3-curry-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Rice Bowl"
+    ],
+    "notes": "Tender long-grain basmati rice below cooked pale turkey mince crumbles, translucent cooked onion and softened red/yellow pepper strips. Cold garlic/dried parsley mayonnaise dressing spooned on top; no additional food or fresh garnish.",
+    "alt": "Shift Garlic & Herb Turkey Rice Bowl with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:58:50.576592+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:39.628712+00:00"
+  },
+  "ce326bab14f053353e83ca522258d1a8f4f8a7cc47d3f4e48ca2ad30e2b2eba8": {
+    "decision": "pass",
+    "source_sha256": "d3dc5907d45245e5a8fd4371a742bce41faa5f9c4fff51d1adf0dba405d97cfe",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Loaded Fries"
+    ],
+    "notes": "Golden plain oven chips topped with cooked opaque pork loin strips, softened red onion and mixed pepper strips, peri-peri sauce. No cheese or fresh garnish. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Peri-Peri Pork Loaded Fries, prepared with lean pork loin, oven chips, red onion, mixed peppers",
+    "reviewed_at": "2026-10-05T13:02:53.059832+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:03:16.489996+00:00"
+  },
+  "ce7ee09ef3105a6cc305694befc79a21251654f4deaa8fca1f52949a42fe5f87": {
+    "decision": "pass",
+    "source_sha256": "5b81a863d00f01711d2e1eddaad548b406afa1ce8733e68e0c27d368e14bf205",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Loaded Fries"
+    ],
+    "notes": "Pale cooked turkey-mince crumbles over golden chips, softened red onion and mixed peppers with cold garlic-herb yoghurt drizzle. No turkey strips, cheese, extra foods or garnish.",
+    "alt": "Shift Garlic & Herb Turkey Loaded Fries, prepared with 100% turkey breast mince, raw, oven chips, red onion, mixed peppers",
+    "reviewed_at": "2026-10-05T12:57:25.816731+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:57:48.113944+00:00"
+  },
+  "d0b5609211c6fdf5967e2d064c27852d7ab664720d2c1a9ecfd635e198ae3b84": {
+    "decision": "pass",
+    "source_sha256": "460ad881d5d763bbc0c84cef8966a11ebee25dfe22ffbeb017bd51f2c81aa8d9",
+    "recipe_ids": [
+      "industrial-v3-chilli-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey and Bean Rice Bowl"
+    ],
+    "notes": "Cooked turkey breast mince crumbles with soft red pepper and kidney beans on visibly elongated tan cooked brown rice grains, cold garlic/dried parsley mayonnaise. No meat slices; rice correction passed. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Turkey and Bean Rice Bowl, prepared with 100% turkey breast mince, raw, brown rice, dry, kidney beans, red pepper",
+    "reviewed_at": "2026-10-05T13:02:47.035843+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:03:16.479150+00:00"
+  },
+  "d0cd2aa9cba1b5946165ef9134080f18de1bd20c936824cc032a3a36df2701ff": {
+    "decision": "pass",
+    "source_sha256": "32d4f9525150d14c9be8cca1bb182429c2ac8498e029107c98e266b0f75e0171",
+    "recipe_ids": [
+      "industrial-v3-chilli-peri-peri-tofu"
+    ],
+    "titles": [
+      "Shift Peri-Peri Tofu Big Chilli"
+    ],
+    "notes": "Golden browned firm-tofu cubes with pale interiors, cooked dark kidney beans and diced red peppers are lightly coated in peri-peri sauce over tan cooked brown rice. No meat substitution, additional vegetables or garnish. One bowl fully framed.",
+    "alt": "Tofu, kidney bean and red pepper chilli on brown rice.",
+    "reviewed_at": "2026-10-05T13:01:36.029804+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:55.766838+00:00"
+  },
+  "d22dcccb06a519933ea7fb7de73c9a6c60383d6cf07f48d17fc82b414d82c5ed": {
+    "decision": "pass",
+    "source_sha256": "d0db26b6db4b6e09608181bcfb427c33d4990bbba2030539729a299552097895",
+    "recipe_ids": [
+      "industrial-v3-pasta-harissa-chicken"
+    ],
+    "titles": [
+      "Shift Harissa Chicken Proper Pasta"
+    ],
+    "notes": "Tan-brown wholewheat penne with credible grain texture carries browned fully cooked 2cm chicken pieces, softened courgette chunks and cooked cherry tomatoes in red harissa tomato sauce. No white sauce, cheese or herb garnish. Whole single pasta bowl is framed with margin.",
+    "alt": "Harissa chicken wholewheat pasta with courgette and cherry tomatoes",
+    "reviewed_at": "2026-10-05T12:57:29.565927+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:57:57.790432+00:00"
+  },
+  "d5d5b6fb521b90bfb2f6f3beed9313a44bfc59debf4584fa2f9730a82ae652c1": {
+    "decision": "pass",
+    "source_sha256": "66594b820f23bedd0e7de1856463a7fbffdc26f5340da4534c8cba0a99bec791",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-peri-peri-chicken"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chicken Stir-Fry"
+    ],
+    "notes": "Cooked chicken strips with tender egg noodles, sliced cooked red/yellow peppers and broccoli, light peri-peri coating. No sesame or spring onion. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Peri-Peri Chicken Stir-Fry, prepared with chicken breast, dried egg noodles, mixed peppers, broccoli",
+    "reviewed_at": "2026-10-05T13:02:52.115939+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:03:16.489675+00:00"
+  },
+  "da6c3110ffc9052c82236ba1dd6ffb8cb7294fe17b2c4cfda28236d23b70c6aa": {
+    "decision": "pass",
+    "source_sha256": "2577f07a7c5c60cc78c65d49dd81924fb8bf6f8bf1a7136f6a86faeea75477da",
+    "recipe_ids": [
+      "industrial-v3-curry-harissa-chicken"
+    ],
+    "titles": [
+      "Shift Harissa Chicken Proper Curry"
+    ],
+    "notes": "Cooked chicken pieces with softened onion and mixed pepper strips, lightly harissa-coated and spooned over plain white basmati rice. No cream, herbs, beans or extra vegetables.",
+    "alt": "Shift Harissa Chicken Proper Curry, prepared with chicken breast, basmati rice, dry, onion, mixed peppers",
+    "reviewed_at": "2026-10-05T12:57:27.724805+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:57:48.115282+00:00"
+  },
+  "dd2e8dd21fb907548bce62f82831c72cb4a814d850699262985dbb52bd881254": {
+    "decision": "pass",
+    "source_sha256": "85756f3177cd573491b68eaeef6d7fe82378fa70784cf05bdca8e1dac4ada94e",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Stir-Fry"
+    ],
+    "notes": "Tender egg noodles are tossed with browned beef mince crumbles, cooked green broccoli florets and softened red/yellow peppers. Pale mayonnaise, garlic and dried parsley dressing is spooned over as cold finishing ribbons rather than simmered throughout. No soy sauce, fresh herb garnish or unlisted vegetables. Full bowl framed.",
+    "alt": "Egg noodles with beef mince, broccoli, peppers and garlic parsley mayonnaise",
+    "reviewed_at": "2026-10-05T12:51:11.770382+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:51:28.740058+00:00"
+  },
+  "e385ec91a35374e7da7233c917c6ff6d7b3cd4830accc25f48a35da9abf29964": {
+    "decision": "pass",
+    "source_sha256": "bb4cfcc4485d1a2c244aa8cca7d681b49c15b07eafd468100fc9046be0fa4238",
+    "recipe_ids": [
+      "industrial-v3-curry-harissa-beef"
+    ],
+    "titles": [
+      "Shift Harissa Beef Proper Curry"
+    ],
+    "notes": "Cooked basmati rice supports browned beef mince crumbles, translucent softened onion and cooked mixed pepper strips. Light harissa tomato sauce coats the mixture instead of a deep liquid curry; no added garnish or ingredients.",
+    "alt": "Shift Harissa Beef Proper Curry with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:58:51.169814+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:39.629262+00:00"
+  },
+  "e3af4468b56e9a660fc271609671177241a09d7713bfae44e0b2ad9a7512b380": {
+    "decision": "pass",
+    "source_sha256": "61648f17ff987cc7b098ec2f8f198af19177c569ea76afa6d7997bbeee2750da",
+    "recipe_ids": [
+      "industrial-v3-traybake-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Traybake"
+    ],
+    "notes": "Source viewed: cooked opaque salmon fillet, golden skin-on baby potato halves, roasted broccoli and red pepper pieces. Cold mayonnaise garlic/dried parsley dressing separate beside food; oil sheen from cooking. No lemon or extra garnish; full single plate.",
+    "alt": "Shift Garlic & Herb Salmon Traybake served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:08.507437+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.911081+00:00"
+  },
+  "e3e59b88881cd95a709edf9c1683cfdde3bce9f26e91069ff0dcf220ea5f8346": {
+    "decision": "pass",
+    "source_sha256": "82f6fd6a98454a9bd44bd69596bd12e48e5067033e1fa953b123681f4ece345a",
+    "recipe_ids": [
+      "industrial-v3-roast-harissa-beef"
+    ],
+    "titles": [
+      "Shift Harissa Beef Sunday-Style Roast"
+    ],
+    "notes": "Two flattened browned beef mince portions topped with hot harissa sauce alongside golden roast potato chunks, tender carrot batons and boiled broccoli. No roasting joint. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Harissa Beef Sunday-Style Roast, prepared with 5% beef mince, potatoes, peeled, raw, carrots, broccoli",
+    "reviewed_at": "2026-10-05T12:56:24.040848+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:56:44.557501+00:00"
+  },
+  "e43040bc81de0b1a9f60145bf4c1d64ac0d3e2274abe6c7f5c204f5ec9668dbe": {
+    "decision": "pass",
+    "source_sha256": "d461ff5e687ae92dbffc6b9473131ceccfa9236e3420dc9aa63282d7f8820d39",
+    "recipe_ids": [
+      "industrial-v3-kebab-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Fakeaway Kebab"
+    ],
+    "notes": "Browned firm-tofu cubes with pale interiors, shredded lettuce, sliced tomato and garlic-herb yoghurt sit inside one folded brown wholemeal flatbread. No meat substitution, cheese, onion or added garnish. Single folded kebab centrally framed.",
+    "alt": "Wholemeal tofu flatbread kebab with lettuce, tomato and garlic-herb yoghurt.",
+    "reviewed_at": "2026-10-05T12:51:50.136837+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:02.988321+00:00"
+  },
+  "e587dd7ba9e7ff7d343f2f26e0186e76d44531c95658752017bd59c7f988215b": {
+    "decision": "pass",
+    "source_sha256": "34f3daf4a5d02a2e3f3d43ca808532190784e932acf17e06bddf0835ee954337",
+    "recipe_ids": [
+      "industrial-v3-kebab-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Fakeaway Kebab"
+    ],
+    "notes": "Cooked lean pork strips with visible meat fibers in folded wholemeal flatbread, lettuce and tomato beneath and cold garlic-herb yoghurt above. No skewer, extra vegetables or side dish.",
+    "alt": "Shift Garlic & Herb Pork Fakeaway Kebab, prepared with lean pork loin, wholemeal flatbread, lettuce, tomato",
+    "reviewed_at": "2026-10-05T12:52:21.075274+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:44.064851+00:00"
+  },
+  "e6896e282a881a7faa8a270b9d8e7218c4a86e785e056575d33ade56d65606ef": {
+    "decision": "pass",
+    "source_sha256": "ef4adbb4b602b5b48d7476855c731659699b870bec22d170da92503e0fd826f4",
+    "recipe_ids": [
+      "industrial-v3-curry-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Rice Bowl"
+    ],
+    "notes": "Cooked long-grain basmati rice below intact lightly golden tofu cubes and cooked soft onion and mixed pepper strips. Small cold garlic/dried parsley mayonnaise dressing rests on top. No extra vegetables or garnish; full single bowl.",
+    "alt": "Shift Garlic & Herb Tofu Rice Bowl with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:58:49.285163+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:39.624460+00:00"
+  },
+  "e72638ca3c26f8a4f1da5ab2110b3848bde85f89c6ab8c1dd7603c39d777de24": {
+    "decision": "pass",
+    "source_sha256": "34918de8fd1a3628063a72b1aecce7d28975d88882172d05ef792cd0d3600467",
+    "recipe_ids": [
+      "industrial-v3-burger-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Fakeaway Burger"
+    ],
+    "notes": "Plain wholemeal burger bun holds golden cooked tofu slabs, fresh shredded lettuce and fresh tomato slices; garlic herb yoghurt is visibly cold on the tofu. No seeded topping or added condiments; single whole burger with full food margins.",
+    "alt": "Shift Garlic & Herb Tofu Fakeaway Burger with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:58:48.727756+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:39.620112+00:00"
+  },
+  "e7e6bab56df315b8140cbd614e77d4daccc69d72633bcfb0936a16cffe852d10": {
+    "decision": "pass",
+    "source_sha256": "18766880259ebea27fa1de0d3b893c25a9d264bc136c351e1f93ddae522bc608",
+    "recipe_ids": [
+      "industrial-v3-roast-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Sunday-Style Roast"
+    ],
+    "notes": "Actual source reviewed: roast chicken breast, golden peeled potato chunks, slim cooked carrot batons, tender broccoli florets and separate mayonnaise garlic/dried parsley dressing. Listed parsley specks visible; no fresh garnish, gravy or extra sides. Single full serving and plate safely within image.",
+    "alt": "Shift Garlic & Herb Chicken Sunday-Style Roast on cream serving ware",
+    "reviewed_at": "2026-10-05T12:51:18.903654+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:51:56.605451+00:00"
+  },
+  "e8d11e1d21ee1f9f8a3201a2ee68d031a4c0eb33196565b09ecc4166d09c5829": {
+    "decision": "pass",
+    "source_sha256": "9b85d2be82e5e23f821d52f0c092e2e2346681aa5b01eeae2eeb49b410635493",
+    "recipe_ids": [
+      "industrial-v3-roast-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Sunday-Style Roast"
+    ],
+    "notes": "Actual source reviewed: lean pork loin sliced with cooked pale interiors, golden peeled potato chunks, roasted carrot batons and cooked broccoli. Mayonnaise garlic/dried parsley dressing separate in small dish, oil integrated in cooking. No gravy or extra garnish; full single plate serving.",
+    "alt": "Shift Garlic & Herb Pork Sunday-Style Roast on cream serving ware",
+    "reviewed_at": "2026-10-05T12:51:21.370188+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:51:56.605860+00:00"
+  },
+  "e98ab857316dcda50ade2c6c0271cee5d8e0aca13213073009e975bbfb98d7b3": {
+    "decision": "pass",
+    "source_sha256": "8b787a37799cd07ad4616ea9dec17664c68016bdcbb31afa4972c18537545233",
+    "recipe_ids": [
+      "industrial-v3-kebab-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Fakeaway Kebab"
+    ],
+    "notes": "Three short browned beef mince koftas on lettuce and tomato in folded wholemeal flatbread, garlic-herb yoghurt over cooked filling. No skewer, side dish or garnish; ordinary serving.",
+    "alt": "Shift Garlic & Herb Beef Fakeaway Kebab, prepared with 5% beef mince, wholemeal flatbread, lettuce, tomato",
+    "reviewed_at": "2026-10-05T12:52:18.147442+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:44.062948+00:00"
+  },
+  "ebcb847daef22e8611488aba3ca618bb7d5b080ac095dd7bce9f5a6954389ba6": {
+    "decision": "pass",
+    "source_sha256": "40b6751c6a14113f0c8b95c2658179ecc8a7be510abb0e4e7836d82726010618",
+    "recipe_ids": [
+      "industrial-v3-chilli-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork and Bean Rice Bowl"
+    ],
+    "notes": "Tender cooked brown rice beneath cooked beige pork loin pieces with browned faces, kidney beans and softened diced red pepper. Cold garlic/dried parsley mayonnaise dressing is spooned over; no unlisted garnish or additional food.",
+    "alt": "Shift Garlic & Herb Pork and Bean Rice Bowl with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:52:52.600446+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:55:40.502956+00:00"
+  },
+  "ecf63d6e53e0fdbe19573ec777e27f8f0c84caab9e886c98ed1fc5e0ca72f150": {
+    "decision": "pass",
+    "source_sha256": "636bf45ce15a7ed54e5dacf82a1ca3b25d2ada991eecc6adf5ce39eac3e4bdac",
+    "recipe_ids": [
+      "industrial-v3-pizza-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Proper Pizza"
+    ],
+    "notes": "Whole crisp individual pizza shows passata, opaque cooked salmon flakes and softened mixed pepper strips. Garlic herb yoghurt forms cold dollops added after baking. No cheese or additional topping; complete single pizza centred.",
+    "alt": "Shift Garlic & Herb Salmon Proper Pizza with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:58:47.895048+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:39.619794+00:00"
+  },
+  "ee2673ab56e1e908a60d856fedea517ec940ba2abaa002e2dfc1bc960f7020a1": {
+    "decision": "pass",
+    "source_sha256": "d4e549e7fc1db669c7ccc9dfe58a5f93b1c0cb17c99199df9ce4c0636959b0a7",
+    "recipe_ids": [
+      "industrial-v3-pasta-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Proper Pasta"
+    ],
+    "notes": "Actual source reviewed: cooked brown wholewheat penne, cooked lean pork loin cubes, softened courgette and cooked juicy cherry tomato pieces mixed with mayonnaise garlic/dried parsley dressing and incorporated oil. No cheese, fresh herb garnish or sides; complete single bowl with margins.",
+    "alt": "Shift Garlic & Herb Pork Proper Pasta on cream serving ware",
+    "reviewed_at": "2026-10-05T12:51:20.195180+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:51:56.605674+00:00"
+  },
+  "f0eb26ecb44eca8417fbcb9b3be61a99cafc9a8438842c99ed26136a45efeff7": {
+    "decision": "pass",
+    "source_sha256": "cc39a506979782469673671a8df5bd85248511171c55e25a63936feb9f525f6b",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-harissa-beef"
+    ],
+    "titles": [
+      "Shift Harissa Beef Slow-Cooker Big Pot"
+    ],
+    "notes": "Small cooked beef mince crumbles, tender whole/halved baby potatoes, softened carrot chunks and translucent onion pieces appear together in thick reduced red harissa tomato sauce. No stewing beef chunks, noodles or garnish. Credible complete slow-cooked portion and bowl fit the frame.",
+    "alt": "Harissa beef mince slow-cooked pot with baby potatoes, carrots and onion",
+    "reviewed_at": "2026-10-05T12:57:28.981238+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:57:57.787664+00:00"
+  },
+  "f196ca957df12c7a230a2229f7e0d692910205a38368b9e96e693b4abd600305": {
+    "decision": "pass",
+    "source_sha256": "b0a37d7695432b23cde129c6b5568b8d8a7c2faa8edcaee338326f2cb2f7932d",
+    "recipe_ids": [
+      "industrial-v3-burger-peri-peri-tofu"
+    ],
+    "titles": [
+      "Shift Peri-Peri Tofu Fakeaway Burger"
+    ],
+    "notes": "Browned firm tofu slabs with pale porous centers, raw lettuce and tomato slices in one wholemeal bun with peri-peri sauce. No meat patty, cheese, mayonnaise or side.",
+    "alt": "Shift Peri-Peri Tofu Fakeaway Burger, prepared with firm tofu, wholemeal burger bun, lettuce, tomato",
+    "reviewed_at": "2026-10-05T13:01:30.516675+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:56.837741+00:00"
+  },
+  "f4e7b3a4c2c4e4b622b78792fdd77bf78982a4a8c1ca82da9d0eb3e6fca8b48c": {
+    "decision": "pass",
+    "source_sha256": "3769eb4853d6085297e047faca71db10e9794bc18975c826e19c56a740c9c56f",
+    "recipe_ids": [
+      "industrial-v3-burger-loaded-tofu"
+    ],
+    "titles": [
+      "Shift Fully Loaded Tofu Fakeaway Burger"
+    ],
+    "notes": "Actual source reviewed: browned tofu slabs unmistakably show pale tofu interiors, wholemeal bun with fresh shredded lettuce and tomato slices, pale pink mayonnaise/ketchup sauce. Paprika/chilli coat tofu and oil is integrated in cooking. No meat patty, cheese, fries or garnish; complete single burger with margin.",
+    "alt": "Shift Fully Loaded Tofu Fakeaway Burger on cream serving ware",
+    "reviewed_at": "2026-10-05T12:51:13.036550+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:51:56.603753+00:00"
+  },
+  "f583730297d9ec699d13f0305e62e5f13ec009d22870471de08e8fff8ba1ef21": {
+    "decision": "pass",
+    "source_sha256": "16511dc1df73274d397075f1ebf06f80e4160d3851eaa74046f86646c5559cc5",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Slow-Cooker Big Pot"
+    ],
+    "notes": "Browned beef-mince crumbles with tender baby potatoes, carrot chunks and softened onion in glossy lightly creamy cooking juices. Dried parsley incorporated as small flecks; no fresh garnish or other vegetables.",
+    "alt": "Shift Garlic & Herb Beef Slow-Cooker Big Pot, prepared with 5% beef mince, baby potatoes, carrots, onion",
+    "reviewed_at": "2026-10-05T12:52:19.042572+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:44.063171+00:00"
+  },
+  "f693c5af9937a87742dedce3618e8edadb96002779633e7ac3de1a09b5ed77d2": {
+    "decision": "pass",
+    "source_sha256": "addbb55b632054cb506fc5678af9884a0b2936eb87b09fd5b82eab3fba7db5ab",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Stir-Fry"
+    ],
+    "notes": "Opaque pink salmon flakes folded into cooked egg noodles, broccoli florets and softened mixed peppers; mayonnaise dressing visibly spooned on top with dried parsley. No soy, sesame, extra vegetables or garnish.",
+    "alt": "Shift Garlic & Herb Salmon Stir-Fry, prepared with salmon fillet, dried egg noodles, mixed peppers, broccoli",
+    "reviewed_at": "2026-10-05T12:57:23.367048+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:57:48.112367+00:00"
+  },
+  "fa74cd5feefad5d270bf2b514366bc03e20c300e9514364a60221207211e817c": {
+    "decision": "pass",
+    "source_sha256": "13c0d41d0a8b288281df4d08de29f62dfc12b0d9ed16ea44382904b930b50986",
+    "recipe_ids": [
+      "industrial-v3-pizza-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Proper Pizza"
+    ],
+    "notes": "Complete individual crisp baked pizza with passata, cooked white chicken strips and softened red/yellow/green pepper strips. Cold garlic herb yoghurt rests in distinct dollops; no cheese or additional garnish. All food comfortably framed.",
+    "alt": "Shift Garlic & Herb Chicken Proper Pizza with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:52:51.991176+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:55:40.502046+00:00"
+  },
+  "fd4d206a8ed69021dee49c6440572ddd61f29ed0631cfa65caa7e1afd55536a9": {
+    "decision": "pass",
+    "source_sha256": "0753d3cf11caba81d55123e53dfe99ec2351594a18f436730a7e5dbd05072f0d",
+    "recipe_ids": [
+      "industrial-v3-chilli-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef and Bean Rice Bowl"
+    ],
+    "notes": "Cooked brown rice beneath browned beef mince crumbles, soft kidney beans and cooked diced red pepper; garlic and dried parsley appear in the small cold mayonnaise dressing spooned on top. Oil incorporated; no fresh garnish or extra ingredients.",
+    "alt": "Shift Garlic & Herb Beef and Bean Rice Bowl with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:52:50.083185+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:55:40.498728+00:00"
+  },
+  "01f3e9a1d8590e26258431c996988500af03879c2f61f543323c9d274e180b14": {
+    "decision": "pass",
+    "source_sha256": "739c74f2172b44822e4f47a2e0dd05b02d90b32402109267647222391faa3455",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-cheesy-chicken"
+    ],
+    "titles": [
+      "Shift Cheesy Chicken Loaded Jacket Potato"
+    ],
+    "notes": "One split cooked jacket potato with fluffy interior is topped with pale chilled cooked chicken shreds and distinct finely grated cheddar strands. Fresh mixed leaves and finely sliced spring onion are dressed alongside with olive oil. No butter, melted cap or garnish. Full plate framed.",
+    "alt": "Jacket potato with chicken and grated cheddar beside mixed leaves and spring onion",
+    "reviewed_at": "2026-10-05T13:11:02.158420+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:11:35.192346+00:00"
+  },
+  "0294f2221132935242f2fe3943239dbe6f1ad0c2c1b322f45c84380b771c20a0": {
+    "decision": "pass",
+    "source_sha256": "3f621c0b3b2ceea994871593f70c26130b219fbb4737f989a901c00ba5f2934b",
+    "recipe_ids": [
+      "industrial-v3-curry-harissa-salmon"
+    ],
+    "titles": [
+      "Shift Harissa Salmon Proper Curry"
+    ],
+    "notes": "Cooked basmati rice supports large opaque cooked salmon flakes, softened onion and mixed peppers in a light harissa tomato sauce coating. No creamy dressing, added herb garnish or extra vegetables; full single bowl.",
+    "alt": "Shift Harissa Salmon Proper Curry with its listed ingredients",
+    "reviewed_at": "2026-10-05T13:04:19.008031+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:46.371611+00:00"
+  },
+  "0bfc3c9e30416cec777f8bdadb8d067d50aa517630fe0155bcfd0946fc56591d": {
+    "decision": "pass",
+    "source_sha256": "bbc187aa35b2a2aba7d40ae746a4445b9fe03c50a8dbbbf87b04a96e65cd45c4",
+    "recipe_ids": [
+      "industrial-v3-burger-salt-pepper-beef"
+    ],
+    "titles": [
+      "Shift Salt & Pepper Beef Fakeaway Burger"
+    ],
+    "notes": "One browned black-pepper-speckled beef mince patty sits between tomato slices and shredded lettuce in brown wholemeal bun. No mayonnaise, ketchup, cheese, onion or side foods. One burger entirely framed.",
+    "alt": "Wholemeal salt-and-pepper beef burger with lettuce and tomato.",
+    "reviewed_at": "2026-10-05T13:03:04.119346+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:05:12.710482+00:00"
+  },
+  "0effc4304ed764f3b5ceaa4a8c759fd4d8f0a954c5b82d415260fa3d4aac0ced": {
+    "decision": "pass",
+    "source_sha256": "22d941f4a223ed125faa4890fd6044b7df7f5cef5898bd0295029445fde2fdb4",
+    "recipe_ids": [
+      "industrial-v3-bagel-cheesy-chicken"
+    ],
+    "titles": [
+      "Shift Cheesy Chicken Loaded Bagel"
+    ],
+    "notes": "Closed wholemeal bagel with shredded cooked chicken, raw rocket/tomato and grated unmelted cheddar, same listed ingredients in side salad. No mayonnaise or extras.",
+    "alt": "Shift Cheesy Chicken Loaded Bagel, prepared with cooked chicken breast, wholemeal bagel, rocket, tomato",
+    "reviewed_at": "2026-10-05T13:09:53.716291+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:15.958153+00:00"
+  },
+  "1331b3e4760387eba2c96a25d255c87509ce3153856674c4894843eb1150227d": {
+    "decision": "pass",
+    "source_sha256": "f2052f6eafb8151a353eb4c0680e87c44060abfd88eabf3a0c21ac48c8f9d45d",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-peri-peri-turkey"
+    ],
+    "titles": [
+      "Shift Peri-Peri Turkey Slow-Cooker Big Pot"
+    ],
+    "notes": "Small cooked turkey mince crumbles, tender baby potatoes, softened carrots and translucent onion are glossy with red peri-peri glaze and vegetable juices. No chicken cubes, meat slices, swimming broth or garnish. Complete slow-cooked bowl fits frame.",
+    "alt": "Peri-peri turkey mince pot with baby potatoes, carrots and onion",
+    "reviewed_at": "2026-10-05T13:11:00.363726+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:11:35.190573+00:00"
+  },
+  "1afbeb9191eb1ef0a6d0c86b624f6e4e0077d9fa9c382c5ab8d208a7f79bc766": {
+    "decision": "pass",
+    "source_sha256": "5b36df42eab60dae538a176102070dcaa61ebf92bc6eb15a28b6127922ddeacb",
+    "recipe_ids": [
+      "industrial-v3-bagel-cheesy-tuna"
+    ],
+    "titles": [
+      "Shift Cheesy Tuna Loaded Bagel"
+    ],
+    "notes": "Drained tuna flakes and grated unmelted cheddar in wholemeal bagel with rocket and tomato, same ingredients as side salad. No mayonnaise, extra vegetables or garnish.",
+    "alt": "Shift Cheesy Tuna Loaded Bagel, prepared with tuna in spring water, drained, wholemeal bagel, rocket, tomato",
+    "reviewed_at": "2026-10-05T13:09:55.873974+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:15.959917+00:00"
+  },
+  "1b49fea6e07369020aced335eaece09526319ff55b6478ad308e963d023379a0": {
+    "decision": "pass",
+    "source_sha256": "38db9bb0ae9c1ff3ddb6b68ea11fe362054ea254605370d7d62814d8ae63c18a",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-harissa-chicken"
+    ],
+    "titles": [
+      "Shift Harissa Chicken Stir-Fry"
+    ],
+    "notes": "Tender cooked egg noodles, cooked chicken strips, softened mixed peppers and tender broccoli florets are all visible in one mixed bowl; measured harissa tomato sauce forms a light coating. No additional garnish or sauce.",
+    "alt": "Shift Harissa Chicken Stir-Fry with its listed ingredients",
+    "reviewed_at": "2026-10-05T13:04:17.693500+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:46.370641+00:00"
+  },
+  "20597f347b439e1eed526b3e61ead2cf1a3a444b6a79f65dec69d8e8f717cce5": {
+    "decision": "pass",
+    "source_sha256": "ca0d5becb00698bfe0a0e7fabcd09dd0bdcce0b311f3fb5db9a122009861dc56",
+    "recipe_ids": [
+      "industrial-v3-bagel-cheesy-chickpea"
+    ],
+    "titles": [
+      "Shift Cheesy Chickpea Loaded Bagel"
+    ],
+    "notes": "Rough-mashed chickpea filling and grated cheddar in wholemeal bagel with rocket and tomato, remaining filling and vegetables alongside. No meat, mayonnaise or extra salad foods.",
+    "alt": "Shift Cheesy Chickpea Loaded Bagel, prepared with chickpeas, drained, wholemeal bagel, rocket, tomato",
+    "reviewed_at": "2026-10-05T13:09:54.363002+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:15.958671+00:00"
+  },
+  "2e7b2df219a60c8ffd1ecd39d44be45e1156780081b9f16f76f820c5dc1a64f6": {
+    "decision": "pass",
+    "source_sha256": "1329c465b85a157e23614e81af535c44e8a592e5fd714228bb6ddc2d7c0e7f44",
+    "recipe_ids": [
+      "industrial-v3-roast-peri-peri-chicken"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chicken Sunday-Style Roast"
+    ],
+    "notes": "Roasted whole chicken breast with warm peri-peri sauce over it; golden peeled roast potato chunks, roasted carrot batons and tender boiled broccoli served alongside. No additional roast sides or garnish. Complete single serving.",
+    "alt": "Shift Peri-Peri Chicken Sunday-Style Roast with its listed ingredients",
+    "reviewed_at": "2026-10-05T13:04:20.430259+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:46.372188+00:00"
+  },
+  "349ae847a7e4597344ba1ff4486110f970db74e5c8fc4f69420dda997585775d": {
+    "decision": "pass",
+    "source_sha256": "cf28f49f158deb2da68fe68ef7d840abb018ff10b1ced61dc4030593a4f79668",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-peri-peri-chicken"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chicken Slow-Cooker Big Pot"
+    ],
+    "notes": "Source viewed: cooked chicken breast with tender skin-on baby potato halves, cooked carrot pieces and translucent onion in glossy peri-peri sauce and released juices. Moist slow-cooker finish without excessive soup liquid. Oil integrated; no garnish or sides, whole bowl retained.",
+    "alt": "Shift Peri-Peri Chicken Slow-Cooker Big Pot on cream serving ware",
+    "reviewed_at": "2026-10-05T13:04:18.761662+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:04:45.183139+00:00"
+  },
+  "3ff41593cd4fea30e11de2ff001b9e56126db593442e9df66b8767099e98efd9": {
+    "decision": "pass",
+    "source_sha256": "96d5cdfc24753da3ed58d59f1ac1324379f6c608c47896fa6da46c423a7bc81c",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-salt-pepper-beef"
+    ],
+    "titles": [
+      "Shift Salt & Pepper Beef Loaded Fries"
+    ],
+    "notes": "Browned beef mince crumbles seasoned with salt and black pepper over golden crisp plain oven chips, softened sliced red onion and red/yellow peppers. No sauce, cheese or herbs. Entire credible loaded-chip serving and plate framed.",
+    "alt": "Salt and pepper beef mince loaded chips with red onion and mixed peppers",
+    "reviewed_at": "2026-10-05T13:11:00.929657+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:11:35.191323+00:00"
+  },
+  "40f3bb29c0f8d9b72bb73c34f758f89022442abdf2b341bf57eb38695b51b90a": {
+    "decision": "pass",
+    "source_sha256": "2bdce5d456e5b81e55a793a1e766e4ff2be8c11eed92357a0ac2921a410a2553",
+    "recipe_ids": [
+      "industrial-v3-burger-peri-peri-salmon"
+    ],
+    "titles": [
+      "Shift Peri-Peri Salmon Fakeaway Burger"
+    ],
+    "notes": "Wholemeal burger bun with brown grain crumb holds one intact opaque cooked salmon fillet, warm red peri-peri sauce, fresh raw tomato slices and shredded lettuce. No mince patty, mayonnaise, cheese or extra salad garnish. Complete believable burger and plate fit image.",
+    "alt": "Wholemeal salmon burger with lettuce, tomato and peri-peri sauce",
+    "reviewed_at": "2026-10-05T13:04:58.771166+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:05:15.861842+00:00"
+  },
+  "45e1280fadc372923d5be3645aac66bfc43fc081920f6d7d34084f6ea2279323": {
+    "decision": "pass",
+    "source_sha256": "3b478e082128f45966b870c154747ad1fc6d1b7fb41e56588204f4c5eb66b979",
+    "recipe_ids": [
+      "industrial-v3-roast-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Sunday-Style Roast"
+    ],
+    "notes": "One plain opaque cooked salmon fillet with natural golden roast browning, golden peeled roast potato chunks, roasted slim carrot batons and cooked broccoli florets. All garlic and dried parsley are confined to cold mayonnaise dressing alongside, with no dry herbs on fish. No gravy or garnish. Full plate framed.",
+    "alt": "Plain roast salmon with roast potatoes, carrots, broccoli and garlic parsley mayonnaise",
+    "reviewed_at": "2026-10-05T13:03:43.483181+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:04:02.816142+00:00"
+  },
+  "52e51a1209a45277343314882f1559ac22370793518618a4a1b05c1d5c08910d": {
+    "decision": "pass",
+    "source_sha256": "db59aa3b32abdc7a122d24a602fd2c92e37ca00948cb58d4c4b1fd1931194b88",
+    "recipe_ids": [
+      "industrial-v3-bagel-cheesy-turkey"
+    ],
+    "titles": [
+      "Shift Cheesy Turkey Loaded Bagel"
+    ],
+    "notes": "Shredded cooked turkey breast and grated cheddar in wholemeal bagel, raw rocket/tomato; remaining listed ingredients as side salad. No mayonnaise or extra foods.",
+    "alt": "Shift Cheesy Turkey Loaded Bagel, prepared with cooked turkey breast, wholemeal bagel, rocket, tomato",
+    "reviewed_at": "2026-10-05T13:09:56.552613+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:15.960383+00:00"
+  },
+  "5cb1d9b86241c7d2cd3ccd6deda63e44e3c4b297b82881be800f4d3075ee4cee": {
+    "decision": "pass",
+    "source_sha256": "044f8d829ca3294d70d08bd1759cfae7d02f9912136b230d2bae2553e211c22b",
+    "recipe_ids": [
+      "industrial-v3-kebab-peri-peri-tofu"
+    ],
+    "titles": [
+      "Shift Peri-Peri Tofu Fakeaway Kebab"
+    ],
+    "notes": "Brown wholemeal flatbread folded around golden-edged cooked firm tofu cubes, raw fresh lettuce and sliced tomato, with red peri-peri sauce over tofu. No meat, mayonnaise, cheese or extra vegetable garnish. Complete one folded flatbread and plate framed.",
+    "alt": "Wholemeal tofu kebab with lettuce, tomato and peri-peri sauce",
+    "reviewed_at": "2026-10-05T13:06:38.397430+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:11.234320+00:00"
+  },
+  "5ed6301a564bb7412b1d1084a48eab070da77e13b3edfa08a077b9faed2622cc": {
+    "decision": "pass",
+    "source_sha256": "a95f27cfe8b6875440a9b914c82eb898e4b80d57e0272e710fb5ebbddb499b95",
+    "recipe_ids": [
+      "industrial-v3-pie-peri-peri-tofu"
+    ],
+    "titles": [
+      "Shift Peri-Peri Tofu Proper Pie"
+    ],
+    "notes": "Single individual pie has browned fork-ridged mashed-potato topping with front opening exposing golden cooked tofu cubes, carrot dice and green peas in peri-peri coating. No pastry, dairy topping, meat substitution or extra vegetables. Entire dish fully framed.",
+    "alt": "Tofu, carrot and pea pie with golden mashed potato topping.",
+    "reviewed_at": "2026-10-05T13:05:07.370473+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:05:30.876203+00:00"
+  },
+  "6722bab151df2cbdd9eba65aba300b471b07801850f608aee6e14b8cb80abcde": {
+    "decision": "pass",
+    "source_sha256": "c074b89e41aabcc67e2cd66acdfc92d404bef7f465fdc4b1e036d66c24c02628",
+    "recipe_ids": [
+      "industrial-v3-curry-peri-peri-salmon"
+    ],
+    "titles": [
+      "Shift Peri-Peri Salmon Proper Curry"
+    ],
+    "notes": "Large opaque salmon flakes folded through softened onion and mixed pepper strips with peri-peri coating over tender cooked basmati rice. No unlisted herb garnish or extra sauces; full single serving.",
+    "alt": "Shift Peri-Peri Salmon Proper Curry with its listed ingredients",
+    "reviewed_at": "2026-10-05T13:04:22.483443+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:46.372860+00:00"
+  },
+  "6823221daa7e54851b42a14d6161eb4ac7f1d5799ce637719a6f168cf0a6a26f": {
+    "decision": "pass",
+    "source_sha256": "5aae910e3f603bfa6c8c297ed47be8d744fa39d705f467081c4f78f0c97e6d8c",
+    "recipe_ids": [
+      "industrial-v3-pie-harissa-pork"
+    ],
+    "titles": [
+      "Shift Harissa Pork Proper Pie"
+    ],
+    "notes": "Small baked pie has a fork-roughened golden mashed potato lid and an exposed section showing opaque cooked pork pieces, diced carrots and peas in harissa tomato coating. No pastry or dairy topping; full single dish visible.",
+    "alt": "Shift Harissa Pork Proper Pie with its listed ingredients",
+    "reviewed_at": "2026-10-05T13:04:18.418929+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:46.371295+00:00"
+  },
+  "68a3307a08c6230d982b7f8a70663713e0fb62cda388025a583ed86f51923c27": {
+    "decision": "pass",
+    "source_sha256": "6d3692beaf577b7d45f4276a3e6ea6ca78eff6f92135c89919a2fb23e70453a8",
+    "recipe_ids": [
+      "industrial-v3-roast-peri-peri-salmon"
+    ],
+    "titles": [
+      "Shift Peri-Peri Salmon Sunday-Style Roast"
+    ],
+    "notes": "Cooked opaque flaking salmon fillet with peri-peri sauce, visibly peeled roughened golden roast potatoes, roasted carrot batons and boiled broccoli. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Peri-Peri Salmon Sunday-Style Roast, prepared with salmon fillet, potatoes, peeled, raw, carrots, broccoli",
+    "reviewed_at": "2026-10-05T13:09:21.284524+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:12.334681+00:00"
+  },
+  "695467f97ba2aa1592b51b0e3eacbd7100906f0dbd4c717096a1c3db5e73eb13": {
+    "decision": "pass",
+    "source_sha256": "80c16795e59f3e27c2a6440527cef91d9a0238fa742ea435ff0e364ac7705fe5",
+    "recipe_ids": [
+      "industrial-v3-kebab-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Fakeaway Kebab"
+    ],
+    "notes": "Source viewed: browned cooked lean pork strips, fresh shredded lettuce and tomato slices inside folded brown wholemeal flatbread, warm red-orange peri-peri coating on pork. Oil incorporated in cooking. No onion, mayonnaise or garnish; complete single kebab.",
+    "alt": "Shift Peri-Peri Pork Fakeaway Kebab on cream serving ware",
+    "reviewed_at": "2026-10-05T13:04:19.422446+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:04:45.183738+00:00"
+  },
+  "6a3a8b52f023ec7e5e0b87fc5e669ee4d8ce0a9a3cc6fdd2bb4c9b484e8384c5": {
+    "decision": "pass",
+    "source_sha256": "2951654e282b92b76b9afe8ade25da8b7c8904f0c33a645b62b5c39bfb0aacab",
+    "recipe_ids": [
+      "industrial-v3-curry-harissa-pork"
+    ],
+    "titles": [
+      "Shift Harissa Pork Proper Curry"
+    ],
+    "notes": "Source viewed: cooked pale pork loin chunks, softened onion and red/yellow/green pepper strips coated with red harissa tomato sauce over fluffy white basmati rice. Olive oil incorporated; no coconut cream, fresh garnish or side food. Full single serving.",
+    "alt": "Shift Harissa Pork Proper Curry on cream serving ware",
+    "reviewed_at": "2026-10-05T13:04:16.466083+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:04:45.181455+00:00"
+  },
+  "6f586ed6339cf3c43e9b5218df48bb60bd347273375b67be449af86993d60896": {
+    "decision": "pass",
+    "source_sha256": "978ac6bb62f764c392ce718c9f9c9201330a7473d61d87075701a0c5fa79db4a",
+    "recipe_ids": [
+      "industrial-v3-curry-peri-peri-turkey"
+    ],
+    "titles": [
+      "Shift Peri-Peri Turkey Proper Curry"
+    ],
+    "notes": "Small cooked turkey breast mince crumbles with soft onion and mixed pepper strips over slender cooked white basmati rice, light peri-peri coating. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Peri-Peri Turkey Proper Curry, prepared with 100% turkey breast mince, raw, basmati rice, dry, onion, mixed peppers",
+    "reviewed_at": "2026-10-05T13:09:23.720164+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:12.335560+00:00"
+  },
+  "70e516d5d80ceff4f48d3a4259753374ec48c6474d164c7413970809743663b7": {
+    "decision": "pass",
+    "source_sha256": "4f2a8ab029d1080bbd25d08751e2ed45138a7c6b930113c6c85c38e1735ef140",
+    "recipe_ids": [
+      "industrial-v3-traybake-chilli-beef"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Beef Traybake"
+    ],
+    "notes": "Browned beef mince crumbles with golden roasted baby potatoes, broccoli and red pepper, light smoky tomato coating. No meat chunks, other vegetables or garnish.",
+    "alt": "Shift Smoky Chilli Beef Traybake, prepared with 5% beef mince, baby potatoes, broccoli, red pepper",
+    "reviewed_at": "2026-10-05T13:09:52.974724+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:15.957001+00:00"
+  },
+  "77443ef7f33b9d532bc3b2eab9632b89c2458da977bccaf3425a1d0127cac664": {
+    "decision": "pass",
+    "source_sha256": "5a68112d384c2e5dcc36cbc67b7683f079641966827a9012f4493d608fdd6eaf",
+    "recipe_ids": [
+      "industrial-v3-pizza-peri-peri-turkey"
+    ],
+    "titles": [
+      "Shift Peri-Peri Turkey Proper Pizza"
+    ],
+    "notes": "Cooked pale turkey mince crumbles and softened mixed peppers on red passata-coated crisp pizza base with peri-peri sauce. No cheese, meat strips, herbs or extra toppings.",
+    "alt": "Shift Peri-Peri Turkey Proper Pizza, prepared with 100% turkey breast mince, raw, individual pizza base, tomato passata, mixed peppers",
+    "reviewed_at": "2026-10-05T13:05:28.430674+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:08:29.397430+00:00"
+  },
+  "7b4f1823850f97e4160c5d94dbdd210febdd36ff1daaf6468c5fca56510dd3a3": {
+    "decision": "pass",
+    "source_sha256": "7adda4e35b970f096039457044f8eb407f93154e4ffd46116d3bea2da05c4454",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-salt-pepper-tofu"
+    ],
+    "titles": [
+      "Shift Salt & Pepper Tofu Loaded Fries"
+    ],
+    "notes": "Golden cooked firm-tofu cubes with pale interiors and black-pepper flecks, softened red onion and red/yellow pepper strips sit on plain golden oven chips. No cheese, sauce, meat or garnish. One plate serving fully framed.",
+    "alt": "Salt-and-pepper tofu loaded fries with red onion and peppers.",
+    "reviewed_at": "2026-10-05T13:05:08.054530+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:05:30.876979+00:00"
+  },
+  "8211660b3e84e1e0fb7bdcc4bf5bb9aaeec4606921e2949749c4de10fdb56932": {
+    "decision": "pass",
+    "source_sha256": "64debe2b8b5de8b1ccba9d397417aa24655f9e82d976d10725efc3ee59d4818d",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Stir-Fry"
+    ],
+    "notes": "Opaque cooked pork loin strips mixed with cooked egg noodles, softened red/yellow pepper strips and broccoli lightly peri-peri coated. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Peri-Peri Pork Stir-Fry, prepared with lean pork loin, dried egg noodles, mixed peppers, broccoli",
+    "reviewed_at": "2026-10-05T13:09:19.996696+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:12.333663+00:00"
+  },
+  "8c1d7fe9f8189e6a42f882617e493989431b5de218f4a38acb44e67721319b23": {
+    "decision": "pass",
+    "source_sha256": "38d9c5c168c32523a1bb68486c8918bae8eb5bba4eef1f7ca58356bd315bad6f",
+    "recipe_ids": [
+      "industrial-v3-curry-chilli-beef"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Beef Proper Curry"
+    ],
+    "notes": "Browned beef mince crumbles, softened onion and mixed pepper strips in light smoky tomato coating over plain cooked white basmati rice. No beans, herbs, yoghurt or extras.",
+    "alt": "Shift Smoky Chilli Beef Proper Curry, prepared with 5% beef mince, basmati rice, dry, onion, mixed peppers",
+    "reviewed_at": "2026-10-05T13:05:31.350175+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:08:29.398977+00:00"
+  },
+  "8fbffc35c1a98724f8c3fef7062f871cc0fdd59744ef1873a3afaad3541bbb3e": {
+    "decision": "pass",
+    "source_sha256": "9dbac5e0ba5c65510c70d26cfc99d66f378142231f2e75073d191b54d56a7bc9",
+    "recipe_ids": [
+      "industrial-v3-toastie-cajun-tuna"
+    ],
+    "titles": [
+      "Shift Cajun Tuna Hot Toastie"
+    ],
+    "notes": "Cut crisp brown wholemeal toastie halves show canned tuna flakes, tomato, spinach and pale Cajun yoghurt. Most spinach and excess raw tomato plus tuna are a fresh side salad, as method requires. No cheese or garnish. Entire toastie and full side are framed.",
+    "alt": "Cajun tuna wholemeal toastie with a fresh spinach, tomato and tuna side salad",
+    "reviewed_at": "2026-10-05T13:11:01.559505+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:11:35.192003+00:00"
+  },
+  "93c66625f7338b0216fc78a216ed6d401014667f680fa6ab4cfb91cba2951b7c": {
+    "decision": "pass",
+    "source_sha256": "a173599d14e453c6d38cb0069db32b068eaa8d5f33b1127613405d9293c1b5a7",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Slow-Cooker Big Pot"
+    ],
+    "notes": "Source viewed: cooked tender pork loin chunks with skin-on baby potatoes, cooked carrots and translucent onion in glossy red-orange peri-peri juices. Oil integrated, credible moist slow-cooker finish. No chicken, garnish or sides; whole single bowl serving.",
+    "alt": "Shift Peri-Peri Pork Slow-Cooker Big Pot on cream serving ware",
+    "reviewed_at": "2026-10-05T13:04:20.408400+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:04:45.184564+00:00"
+  },
+  "9afba180e23ffe7dfe45ce4503f4237cad742494383b7860ae46e118a1f8c240": {
+    "decision": "pass",
+    "source_sha256": "c81b01a108fa959be91573d396637f5810e33cd124fa8c3afbe0a15455e0fb42",
+    "recipe_ids": [
+      "industrial-v3-roast-harissa-salmon"
+    ],
+    "titles": [
+      "Shift Harissa Salmon Sunday-Style Roast"
+    ],
+    "notes": "Source viewed: cooked opaque salmon fillet with red harissa tomato sauce over fish; golden peeled roast potato chunks, roast carrot batons and cooked broccoli alongside. Olive oil sheen integrated. No lemon, mayonnaise or garnish; complete single plate.",
+    "alt": "Shift Harissa Salmon Sunday-Style Roast on cream serving ware",
+    "reviewed_at": "2026-10-05T13:04:18.096868+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:04:45.182665+00:00"
+  },
+  "9f86651bc4797d18c5692300c553dca28387657ab4a0e200df11fead0bfeae39": {
+    "decision": "pass",
+    "source_sha256": "8d4fc5e2db40c98f20b321efb538e3dc7ba710e895c9349b6c37426f04a44d3b",
+    "recipe_ids": [
+      "industrial-v3-traybake-harissa-pork"
+    ],
+    "titles": [
+      "Shift Harissa Pork Traybake"
+    ],
+    "notes": "Source viewed: cooked pale pork loin pieces among golden skin-on baby potato halves, roasted broccoli and red pepper with light red harissa tomato coating. Olive oil incorporated; no mayonnaise, lemon or fresh garnish. Full single plate framed.",
+    "alt": "Shift Harissa Pork Traybake on cream serving ware",
+    "reviewed_at": "2026-10-05T13:04:17.342400+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:04:45.182149+00:00"
+  },
+  "a9d3694a9ffbb08f0fd03cadcc0d7a0c8f4f45696c526f74dc3a8a3a84c6e078": {
+    "decision": "pass",
+    "source_sha256": "dfeb40ab68ec0e71e4b867898350572b01b9127b6c1c64ffeb3e172b6dff0598",
+    "recipe_ids": [
+      "industrial-v3-burger-salt-pepper-salmon"
+    ],
+    "titles": [
+      "Shift Salt & Pepper Salmon Fakeaway Burger"
+    ],
+    "notes": "Cooked opaque pink salmon fillet with browned surface and black-pepper flecks sits in brown wholemeal burger bun with shredded lettuce and sliced tomato. No fishcake, sauce, cheese, garnish or extra sides; one burger fully framed.",
+    "alt": "Wholemeal salt-and-pepper salmon burger with lettuce and tomato.",
+    "reviewed_at": "2026-10-05T13:03:05.697246+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:05:12.712085+00:00"
+  },
+  "ad273b962345cc02f1d32ce53e0e6d3f691f88bcc01191858be3769913e251a1": {
+    "decision": "pass",
+    "source_sha256": "e8b6e0b01d725be9960f8110ead4aca21c4abc6572053a185ba15ab94978997d",
+    "recipe_ids": [
+      "industrial-v3-chilli-harissa-tofu"
+    ],
+    "titles": [
+      "Shift Harissa Tofu Big Chilli"
+    ],
+    "notes": "Cooked brown rice beneath intact golden tofu cubes, soft kidney beans and cooked diced red pepper with harissa tomato sauce. Pale tofu interiors remain visible; no fresh garnish, extra toppings or additional sauce.",
+    "alt": "Shift Harissa Tofu Big Chilli with its listed ingredients",
+    "reviewed_at": "2026-10-05T13:04:19.732799+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:46.371946+00:00"
+  },
+  "af79a9984c7be3ed91a98fe9a7a11987746f06ec464e27f27a33f2aae35f20c8": {
+    "decision": "pass",
+    "source_sha256": "e3fb09275dd73f8e7c9d68d79db2c55b2fe33261808d7d0c4b93affc6b69bfd3",
+    "recipe_ids": [
+      "industrial-v3-roast-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Sunday-Style Roast"
+    ],
+    "notes": "Plain golden roasted firm tofu slabs around 2cm thick, peeled golden roast potato chunks, roasted slim carrot batons and tender broccoli florets. Garlic and dried parsley are only in the cold mayonnaise dressing alongside; no herbs on tofu. No meat, gravy or extra garnish. Complete plate framed.",
+    "alt": "Roasted tofu slabs with roast potatoes, carrots, broccoli and garlic parsley mayonnaise",
+    "reviewed_at": "2026-10-05T13:03:44.920658+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:04:02.821509+00:00"
+  },
+  "b3566ea6edc20263b35fd644fbd9d0e0331f7f8b1070b8bac09deee07710559c": {
+    "decision": "pass",
+    "source_sha256": "039eff9a6d299965dfc4c705b91edc92cf4b838a04c2d5c1147166a62ffce8b4",
+    "recipe_ids": [
+      "industrial-v3-pizza-peri-peri-tofu"
+    ],
+    "titles": [
+      "Shift Peri-Peri Tofu Proper Pizza"
+    ],
+    "notes": "Golden firm tofu cubes and softened mixed pepper strips on visible tomato-passata base with peri-peri coating, cooked crisp pizza crust. No cheese, herbs, olives or extra toppings.",
+    "alt": "Shift Peri-Peri Tofu Proper Pizza, prepared with firm tofu, individual pizza base, tomato passata, mixed peppers",
+    "reviewed_at": "2026-10-05T13:05:25.672801+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:08:29.396430+00:00"
+  },
+  "b8d4f45509c0994b46965835ef292b60a04787def0ae52932f887d5c8c501d7d": {
+    "decision": "pass",
+    "source_sha256": "3791cafb9bafd41ced598cab61edc97f910638ffcc430a39e2d68e80a0c078ac",
+    "recipe_ids": [
+      "industrial-v3-pizza-peri-peri-salmon"
+    ],
+    "titles": [
+      "Shift Peri-Peri Salmon Proper Pizza"
+    ],
+    "notes": "Four cut crisp cooked pizza slices are topped with large opaque cooked salmon flakes, softened mixed pepper strips, tomato passata and red peri-peri sauce. No cheese, white drizzle or garnish. Whole individual pizza and exposed cut base edges fit frame.",
+    "alt": "Sliced peri-peri salmon pizza with mixed peppers and tomato passata",
+    "reviewed_at": "2026-10-05T13:06:37.729054+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:11.223341+00:00"
+  },
+  "bd078b765e9a44137c7965ac3a81bcca159147ab3a8115e4ce5a5d6f46e9a63e": {
+    "decision": "pass",
+    "source_sha256": "8684513955aa5e75a72f4f02757a914762d10c88953fd4fb79b5f3ea38de3e4d",
+    "recipe_ids": [
+      "industrial-v3-curry-peri-peri-tofu"
+    ],
+    "titles": [
+      "Shift Peri-Peri Tofu Proper Curry"
+    ],
+    "notes": "Browned tofu cubes and soft onion/mixed pepper strips coated peri-peri over cooked elongated white basmati rice. No meat or garnish. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Peri-Peri Tofu Proper Curry, prepared with firm tofu, basmati rice, dry, onion, mixed peppers",
+    "reviewed_at": "2026-10-05T13:09:22.374136+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:12.334963+00:00"
+  },
+  "c2ced7fcd4afc34c157858073b480b5d63f1b50741b71c6117e75b83647c5345": {
+    "decision": "pass",
+    "source_sha256": "a748550a81fbc8bffea1029ba48ca37eae0979c7a62edfb8970063cdc2391391",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-salt-pepper-chicken"
+    ],
+    "titles": [
+      "Shift Salt & Pepper Chicken Loaded Fries"
+    ],
+    "notes": "Cooked browned chicken breast strips with opaque interiors, softened red onion and red/yellow pepper strips top plain golden oven chips. No sauce, cheese, garnish or added sides; one plate serving fully framed.",
+    "alt": "Salt-and-pepper chicken loaded fries with red onion and peppers.",
+    "reviewed_at": "2026-10-05T13:03:04.870249+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:05:12.711141+00:00"
+  },
+  "c46c25c5acb47072b76459c141319794d0442b1702d9e1bf3932a23aa5b77b56": {
+    "decision": "pass",
+    "source_sha256": "9730af8b19331b67a535aeab60676029b8d267229abd79ea08d1613f780d4ed9",
+    "recipe_ids": [
+      "industrial-v3-curry-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Proper Curry"
+    ],
+    "notes": "Cooked basmati rice beneath fully cooked browned pork loin pieces and translucent softened onion with red/yellow/green pepper strips. Peri-peri forms a light coating; no unlisted sauces or garnish. Single full bowl.",
+    "alt": "Shift Peri-Peri Pork Proper Curry with its listed ingredients",
+    "reviewed_at": "2026-10-05T13:04:21.104069+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:46.372411+00:00"
+  },
+  "c5a803afe6988904c31e04d3afc11ae158ec36865ea992b45abb6f0ddb276b23": {
+    "decision": "pass",
+    "source_sha256": "3ebd9a2b54f15d329241770a2409f7b2b4bc43fdea2c03c2a6eebf91096659bd",
+    "recipe_ids": [
+      "industrial-v3-pizza-salt-pepper-chicken"
+    ],
+    "titles": [
+      "Shift Salt & Pepper Chicken Proper Pizza"
+    ],
+    "notes": "Cooked browned chicken breast strips and mixed pepper strips on visible tomato-passata pizza base, black pepper seasoning visible. No cheese, herbs, olives or extra toppings.",
+    "alt": "Shift Salt & Pepper Chicken Proper Pizza, prepared with chicken breast, individual pizza base, tomato passata, mixed peppers",
+    "reviewed_at": "2026-10-05T13:05:29.022178+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:08:29.397756+00:00"
+  },
+  "cb27319602459bc6202bb002532833460a13ae44193633e3f7665b3e4b731ca2": {
+    "decision": "pass",
+    "source_sha256": "5fe71abcfd6b872b864b961f7da6361af3d7d1cbb89295db8ae6d168cf24096a",
+    "recipe_ids": [
+      "industrial-v3-pie-peri-peri-turkey"
+    ],
+    "titles": [
+      "Shift Peri-Peri Turkey Proper Pie"
+    ],
+    "notes": "One individual mashed-potato-topped pie has fork ridges browned by baking, with open front exposing cooked pale turkey mince, carrot dice and green peas in peri-peri coating. No pastry, cheese or extra vegetables; entire single-serving dish framed.",
+    "alt": "Turkey, carrot and pea pie with golden mashed potato topping.",
+    "reviewed_at": "2026-10-05T13:03:03.506960+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:05:12.709358+00:00"
+  },
+  "cd8918dc5c8ff9a1691c0e1a10a68ce5438060ce34303fb0d334a9fcf1da6a0f": {
+    "decision": "pass",
+    "source_sha256": "9ade944cdc8e3ecd5acd089be8a836c4c930cd183d47a6cca086038c192a7f3d",
+    "recipe_ids": [
+      "industrial-v3-burger-salt-pepper-chicken"
+    ],
+    "titles": [
+      "Shift Salt & Pepper Chicken Fakeaway Burger"
+    ],
+    "notes": "Unbreaded browned black-pepper chicken cutlets in wholemeal bun with toasted cut faces, fresh shredded lettuce and tomato slices. No sauce, mayonnaise or cheese. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Salt & Pepper Chicken Fakeaway Burger, prepared with chicken breast, wholemeal burger bun, lettuce, tomato",
+    "reviewed_at": "2026-10-05T13:09:24.914997+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:12.336115+00:00"
+  },
+  "cde3a62da4db8687ac595cb923c0f913c024c187f34b549ba5482ebb2bd8ef49": {
+    "decision": "pass",
+    "source_sha256": "850e33843485f567ee900253d850e8bcbd39e6f358ece9befd5efa4e63c66d38",
+    "recipe_ids": [
+      "industrial-v3-bagel-cheesy-ham"
+    ],
+    "titles": [
+      "Shift Cheesy Ham Loaded Bagel"
+    ],
+    "notes": "Thin lean cooked ham pieces with raw rocket and tomato and grated unmelted cheddar in closed wholemeal bagel, rocket/tomato side salad. No extra dressing or garnish.",
+    "alt": "Shift Cheesy Ham Loaded Bagel, prepared with lean ham, wholemeal bagel, rocket, tomato",
+    "reviewed_at": "2026-10-05T13:09:55.083099+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:15.958991+00:00"
+  },
+  "ce70ec2979bf4ecb936da8431a8c6f5caccc67c05475a030a70706e3d12c5d6e": {
+    "decision": "pass",
+    "source_sha256": "bd7fdee7804f476dc32dc156d8a10e9fdb72bd085bc9043efc5017fe17a894e8",
+    "recipe_ids": [
+      "industrial-v3-pizza-salt-pepper-tofu"
+    ],
+    "titles": [
+      "Shift Salt & Pepper Tofu Proper Pizza"
+    ],
+    "notes": "Golden tofu cubes with porous pale centers, softened mixed peppers on tomato-passata pizza base; black pepper seasoning visible. No cheese, herbs or extra toppings.",
+    "alt": "Shift Salt & Pepper Tofu Proper Pizza, prepared with firm tofu, individual pizza base, tomato passata, mixed peppers",
+    "reviewed_at": "2026-10-05T13:05:30.687989+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:08:29.398775+00:00"
+  },
+  "cf45fd41d0d2fa5c94e6566d723161f4bbe4c9e96a3ef3da9dc232339df464e4": {
+    "decision": "pass",
+    "source_sha256": "64208c4d0dfdc1d13a1f84d745032a131ad01b2edce51fd2aefd97a876098d12",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-peri-peri-salmon"
+    ],
+    "titles": [
+      "Shift Peri-Peri Salmon Stir-Fry"
+    ],
+    "notes": "Source viewed: cooked egg noodles with large opaque pink salmon pieces/flakes, cooked broccoli and softened red/yellow/green pepper strips all lightly coated in peri-peri sauce with cooking oil incorporated. No sesame, spring onion, lemon or garnish; complete single bowl.",
+    "alt": "Shift Peri-Peri Salmon Stir-Fry on cream serving ware",
+    "reviewed_at": "2026-10-05T13:04:21.633589+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:04:45.186163+00:00"
+  },
+  "d0e431bf2409b633e1a6d0c5499f1960784fd7ad3a754144f9babc55ebbc0644": {
+    "decision": "pass",
+    "source_sha256": "663d440adb8287ae74374905b5ffbad70fd9189baeb769b7ae6c91178eac2eb5",
+    "recipe_ids": [
+      "industrial-v3-roast-peri-peri-turkey"
+    ],
+    "titles": [
+      "Shift Peri-Peri Turkey Sunday-Style Roast"
+    ],
+    "notes": "Two compact flattened cooked turkey breast mince portions with peri-peri sauce, peeled golden roast potatoes, carrot batons and boiled broccoli. No roasting joint. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Peri-Peri Turkey Sunday-Style Roast, prepared with 100% turkey breast mince, raw, potatoes, peeled, raw, carrots, broccoli",
+    "reviewed_at": "2026-10-05T13:09:24.326485+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:12.335776+00:00"
+  },
+  "d2bd792f1be6b296fc90224d1d26b97b4f2e4031add788fab3c16b074243e4ac": {
+    "decision": "pass",
+    "source_sha256": "a40d846e901d8f77d61f7f15f599727b4b156be9dc172efaf847fb4e5f11ea87",
+    "recipe_ids": [
+      "industrial-v3-chilli-peri-peri-turkey"
+    ],
+    "titles": [
+      "Shift Peri-Peri Turkey Big Chilli"
+    ],
+    "notes": "Cooked pale crumbled turkey breast mince, dark kidney beans and diced red pepper in peri-peri coating sit over cooked tan brown rice. No meat chunks, beef substitution, onion, extra vegetables or garnish. One bowl serving fully framed.",
+    "alt": "Turkey mince, kidney bean and red pepper chilli on brown rice.",
+    "reviewed_at": "2026-10-05T13:03:02.856231+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:05:12.708342+00:00"
+  },
+  "dc7010d9e806ee4ae7aa46dbfb38cce429f498a5ed459a9eb484f872ad22dfb3": {
+    "decision": "pass",
+    "source_sha256": "13ca275e31b9f34e7521deefb48ce24967953f163df587951dd545fac6cdfe1c",
+    "recipe_ids": [
+      "industrial-v3-roast-peri-peri-tofu"
+    ],
+    "titles": [
+      "Shift Peri-Peri Tofu Sunday-Style Roast"
+    ],
+    "notes": "Roasted rectangular tofu slabs topped with peri-peri sauce, peeled golden roast potato chunks, roast carrot batons and boiled broccoli. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Peri-Peri Tofu Sunday-Style Roast, prepared with firm tofu, potatoes, peeled, raw, carrots, broccoli",
+    "reviewed_at": "2026-10-05T13:09:23.032117+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:12.335310+00:00"
+  },
+  "dd53af4a78aaad7f3500a8581cbf320d821e710cd7677993681bf9c92378cb7a": {
+    "decision": "pass",
+    "source_sha256": "f124139dd5d3a1e46e2ec00d06c368f3436b2bd10fa643f455f8940d80f62af6",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-peri-peri-tofu"
+    ],
+    "titles": [
+      "Shift Peri-Peri Tofu Slow-Cooker Big Pot"
+    ],
+    "notes": "Browned cooked firm tofu cubes, tender baby potatoes, soft carrot chunks and translucent onion pieces appear in glossy red peri-peri glaze and released vegetable juices. No swimming added broth, meat, salad or garnish. Full moist slow-cooked bowl framed.",
+    "alt": "Peri-peri tofu pot with baby potatoes, carrots and onion",
+    "reviewed_at": "2026-10-05T13:06:39.059869+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:11.237421+00:00"
+  },
+  "dd6f46c90a65bc41145ba38fe37df493422986b6cf6034b842af5d3fa4b6303e": {
+    "decision": "pass",
+    "source_sha256": "53c7477e9ab787f15e96a7400fd5c6741ba9276632bcb40478337577231aefac",
+    "recipe_ids": [
+      "industrial-v3-burger-peri-peri-turkey"
+    ],
+    "titles": [
+      "Shift Peri-Peri Turkey Fakeaway Burger"
+    ],
+    "notes": "One cooked pale turkey-mince patty browned on surface, tomato slices and lettuce inside wholemeal bun with peri-peri coating. No cheese, mayonnaise, fries or garnish.",
+    "alt": "Shift Peri-Peri Turkey Fakeaway Burger, prepared with 100% turkey breast mince, raw, wholemeal burger bun, lettuce, tomato",
+    "reviewed_at": "2026-10-05T13:05:26.875046+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:08:29.397115+00:00"
+  },
+  "ea5c22a0a98879bb8ff23b080731ddb0efce099f04d96fc7be95fbf5390eb83c": {
+    "decision": "pass",
+    "source_sha256": "5647c7f1ad6e7f3556d18784520116bf5ce45581042b480bf4295cbc6c2ec7d5",
+    "recipe_ids": [
+      "industrial-v3-roast-peri-peri-pork"
+    ],
+    "titles": [
+      "Shift Peri-Peri Pork Sunday-Style Roast"
+    ],
+    "notes": "Opaque roast pork loin slices topped with hot peri-peri sauce alongside golden peeled roast potatoes, roasted carrot batons and tender boiled broccoli. No extra sides or garnish; complete serving framed.",
+    "alt": "Shift Peri-Peri Pork Sunday-Style Roast with its listed ingredients",
+    "reviewed_at": "2026-10-05T13:04:21.826465+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:46.372641+00:00"
+  },
+  "eb1f63c593e75eeaab388643f96bd75154cb3a863468961fc238d2ebb6c3e3c1": {
+    "decision": "pass",
+    "source_sha256": "42ca376d20156c2fde61655286f55e4f3f6598cc829d187777cf729cfe4b8679",
+    "recipe_ids": [
+      "industrial-v3-kebab-peri-peri-salmon"
+    ],
+    "titles": [
+      "Shift Peri-Peri Salmon Fakeaway Kebab"
+    ],
+    "notes": "Source viewed: large cooked opaque pink salmon flakes with peri-peri coating, fresh shredded lettuce and sliced tomato in folded brown wholemeal flatbread. Oil incorporated in cooking. No onion, mayonnaise, lemon or garnish; full single kebab.",
+    "alt": "Shift Peri-Peri Salmon Fakeaway Kebab on cream serving ware",
+    "reviewed_at": "2026-10-05T13:04:21.031619+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:04:45.185206+00:00"
+  },
+  "eb96ca02889f7c421f40016eb43ed507ad85c88de92bbe70e41acef788b4f982": {
+    "decision": "pass",
+    "source_sha256": "88aee802c5d19cfbd480b9522f8b71fc770d3d59203335cd7b386a623727fce3",
+    "recipe_ids": [
+      "industrial-v3-chilli-chilli-beef"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Beef Big Chilli"
+    ],
+    "notes": "Browned cooked beef mince crumbles, dark kidney beans and softened red pepper chunks have a glossy smoked-chilli tomato coating over tan cooked brown rice. No extra vegetables, cheese or garnish. One bowl serving fully framed.",
+    "alt": "Smoky beef, kidney bean and red pepper chilli on brown rice.",
+    "reviewed_at": "2026-10-05T13:05:09.838489+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:05:30.877828+00:00"
+  },
+  "ee4709a6f35d2d2bad53fc4ac444ef25b39016084ba9fc52b3a50d4265b38159": {
+    "decision": "pass",
+    "source_sha256": "af38556816e9a32f452fff4334edae99f9fb99cc216938d609bf3466e599e0c0",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-cheesy-chickpea"
+    ],
+    "titles": [
+      "Shift Cheesy Chickpea Loaded Jacket Potato"
+    ],
+    "notes": "Split cooked jacket potato holds ready-cooked chickpeas and distinct finely grated cheddar strands added at serving. Fresh mixed leafy salad and finely sliced spring onion sit alongside with olive oil dressing. No baked cheese cap, butter or garnish. Complete single potato and salad framed.",
+    "alt": "Jacket potato with chickpeas and grated cheddar beside mixed leaves and spring onion",
+    "reviewed_at": "2026-10-05T13:11:02.970528+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:11:35.192608+00:00"
+  },
+  "f4d95a64a6ceeb53e13706808db87083d28183dc255021e8a1704b0b776ca8a0": {
+    "decision": "pass",
+    "source_sha256": "a94d1f171713149e567f0e94fb8479c56727421fd8f141536f510123f49b6323",
+    "recipe_ids": [
+      "industrial-v3-roast-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Sunday-Style Roast"
+    ],
+    "notes": "Exactly two compact cooked turkey breast mince patties show plain pale minced texture and natural brown crust, no dry herbs. Golden peeled roast potato chunks, roasted carrot batons and tender broccoli sit alongside. All parsley/garlic is in cold mayonnaise dressing. No roasting joint, gravy or garnish. Full plate framed.",
+    "alt": "Two roast turkey mince patties with potatoes, carrots, broccoli and garlic parsley dressing",
+    "reviewed_at": "2026-10-05T13:04:57.965481+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:05:15.856636+00:00"
+  },
+  "f7f69c6281a255c6fe52c61d76859c69cd4bbc7893aed4ad1435a5e3ac0df3d7": {
+    "decision": "pass",
+    "source_sha256": "fe82647ccd1e8b8769d70076d693a43bca5db2c5f7b4f9566b76d4c8a28d5b15",
+    "recipe_ids": [
+      "industrial-v3-kebab-salt-pepper-salmon"
+    ],
+    "titles": [
+      "Shift Salt & Pepper Salmon Fakeaway Kebab"
+    ],
+    "notes": "Large opaque cooked pink salmon flakes with measured black pepper, raw shredded lettuce and tomato slices in folded wholemeal flatbread. No sauce, yoghurt, skewer or sides.",
+    "alt": "Shift Salt & Pepper Salmon Fakeaway Kebab, prepared with salmon fillet, wholemeal flatbread, lettuce, tomato",
+    "reviewed_at": "2026-10-05T13:05:29.777553+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:08:29.397969+00:00"
+  },
+  "fc6439b6ec6f011084c8fa9dc6803ea76be716747fb6fd6c8ed466e7bb3c70ef": {
+    "decision": "pass",
+    "source_sha256": "870ceec870578ba754294a5c39426067edccdcbaaf385e4644e160264272ef6e",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-peri-peri-salmon"
+    ],
+    "titles": [
+      "Shift Peri-Peri Salmon Loaded Fries"
+    ],
+    "notes": "Large opaque cooked salmon flakes over golden plain oven chips with softened red onion and mixed peppers in hot peri-peri sauce. No cheese. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Peri-Peri Salmon Loaded Fries, prepared with salmon fillet, oven chips, red onion, mixed peppers",
+    "reviewed_at": "2026-10-05T13:09:20.536338+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:12.334272+00:00"
   }
 }

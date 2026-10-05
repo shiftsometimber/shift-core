@@ -48,7 +48,7 @@ export function verifiedStartingPoint(record,active){
 
 // Search the promotion workflow directly. Unrelated successful workflows must
 // never push the current owned runtime beyond a repository-wide page limit.
-export const recordedImageRuntime=Object.freeze({run:37306982503,source:'6f994ba93f539cac9d5cf2767318d435b8f092fe',version:'7be77b1a-5f23-4b6c-9a1b-3d8aa0425bc2'});
+export const recordedImageRuntime=Object.freeze({run:37319812444,source:'8d1100c21bdb61f7ba64913d8b5464018c412ea2',version:'2a871f40-2466-43f7-9f54-43112779d525'});
 export async function recentSuccessfulPromotions(get,active){
  const recorded=active?.versions?.length===1&&active.versions[0].percentage===100&&active.versions[0].version_id===recordedImageRuntime.version
   ?await get('/actions/runs/'+recordedImageRuntime.run):null;

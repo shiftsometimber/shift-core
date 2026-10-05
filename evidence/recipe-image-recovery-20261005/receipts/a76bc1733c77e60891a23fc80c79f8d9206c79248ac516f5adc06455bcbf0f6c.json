@@ -1,0 +1,99 @@
+{
+  "groupId": "a76bc1733c77e60891a23fc80c79f8d9206c79248ac516f5adc06455bcbf0f6c",
+  "recipe_ids": [
+    "industrial-v3-stir-fry-garlic-herb-pork"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Pork Stir-Fry"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "75g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 90g mixed peppers. Cut the 170g lean pork loin into thin strips about 1cm thick on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.",
+    "Mix 20g light mayonnaise, 1g garlic powder and 1g dried parsley in a small bowl. Keep this dressing cold until serving; it is not a cooking sauce and must not be simmered in the pan.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the lean pork loin in one layer and cook for 7\u201310 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Return the cooked lean pork loin and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and lean pork loin between serving bowls. Take the pan off the heat and spoon the cold dressing over each serving; do not return it to the hob. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Pork Stir-Fry. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"75g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 90g mixed peppers. Cut the 170g lean pork loin into thin strips about 1cm thick on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.\",\"Mix 20g light mayonnaise, 1g garlic powder and 1g dried parsley in a small bowl. Keep this dressing cold until serving; it is not a cooking sauce and must not be simmered in the pan.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the lean pork loin in one layer and cook for 7\u201310 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Return the cooked lean pork loin and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and lean pork loin between serving bowls. Take the pan off the heat and spoon the cold dressing over each serving; do not return it to the hob. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: cold light mayonnaise mixed with garlic powder and dried parsley MUST remain visibly distinct, as one small pale creamy spoonful laid over the top of the finished hot noodles after cooking. Do not toss or simmer the dressing through the noodles. This visible cold dressing uses only the listed 20g mayonnaise, 1g garlic powder and 1g dried parsley.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/014-a76bc1733c77e60891a23fc80c79f8d9206c79248ac516f5adc06455bcbf0f6c-b4.png",
+  "source_sha256": "cfb4b33d5ae7abeb9d31e60907223f0ed1fb47c5ba5a1170f16029b45751aeef",
+  "generated_at": "2026-10-05T12:57:44.132Z",
+  "elapsed_ms": 52904,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a76bc1733c77e60891a2-recovery20261005-480-4e3bec958211.webp",
+      "sha256": "4e3bec9582111e01ea89c20827c11b8db64b8500289be43e17c4a3edef8e273b",
+      "bytes": 27720
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a76bc1733c77e60891a2-recovery20261005-960-c0d9c08cb3e6.webp",
+      "sha256": "c0d9c08cb3e6afebeba1942f9e20c666c831070188794c283aaa8a06ddec0e79",
+      "bytes": 79444
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "cfb4b33d5ae7abeb9d31e60907223f0ed1fb47c5ba5a1170f16029b45751aeef",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Stir-Fry"
+    ],
+    "notes": "Tender egg noodles with cooked lean pork loin strips, broccoli florets and softened red/yellow mixed peppers. A distinct cold spoonful of mayonnaise mixed with garlic powder and dried parsley sits over the finished hot noodles. No meat substitution, cheese or added food. Entire serving framed.",
+    "alt": "Pork egg-noodle stir-fry with broccoli, peppers and cold garlic parsley mayonnaise",
+    "reviewed_at": "2026-10-05T12:59:12.616144+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:59:30.515590+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

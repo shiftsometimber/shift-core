@@ -1,0 +1,92 @@
+{
+  "groupId": "119613f06579a063b1545c32f9a5ed0734512424e1cac4144c1dc334e0f7e640",
+  "recipe_ids": [
+    "industrial-v3-traybake-garlic-herb-tofu"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Tofu Traybake"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.",
+    "Add the vegetables to the hot tray and roast for another 15–20 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.",
+    "Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Tofu Traybake. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200°C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.\",\"Add the vegetables to the hot tray and roast for another 15–20 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Golden cooked firm tofu pieces alongside golden tender cut baby potatoes, roasted broccoli florets and red pepper pieces; measured mayonnaise with garlic/dried parsley added cold after cooking. No lemon, cheese or fresh herb garnish. Full serving entirely inside the 4:3 landscape frame, generous margin for responsive crop. No unlisted garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/019.png",
+  "source_sha256": "25bb5748fe634ed52651cc3cfb7875da9b42c752a2601c746a3626f0e7115acd",
+  "generated_at": "2026-10-05T12:57:00.749971+00:00",
+  "elapsed_ms": 119682,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-119613f06579a063b154-recovery20261005-480-88d839906008.webp",
+      "sha256": "88d83990600853a0361c7805feffd4e148df218f066b31901ad63f66338c5c8e",
+      "bytes": 37144
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-119613f06579a063b154-recovery20261005-960-7fc14980d245.webp",
+      "sha256": "7fc14980d245a336fd7e31c5e139f8a613c18a0d9ece43699d25be675f14aed0",
+      "bytes": 119740
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "25bb5748fe634ed52651cc3cfb7875da9b42c752a2601c746a3626f0e7115acd",
+    "recipe_ids": [
+      "industrial-v3-traybake-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Traybake"
+    ],
+    "notes": "Source viewed: golden cooked tofu cubes clearly retain tofu texture with golden skin-on baby potato pieces, roasted broccoli florets and red pepper. Mayonnaise garlic/dried parsley dollop added beside cooked food. Oil sheen integrated; no lemon, cheese or fresh garnish; complete single serving.",
+    "alt": "Shift Garlic & Herb Tofu Traybake served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:09.948134+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.911885+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

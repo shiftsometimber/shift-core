@@ -1,0 +1,84 @@
+{
+  "groupId": "e385ec91a35374e7da7233c917c6ff6d7b3cd4830accc25f48a35da9abf29964",
+  "recipe_ids": [
+    "industrial-v3-curry-harissa-beef"
+  ],
+  "titles": [
+    "Shift Harissa Beef Proper Curry"
+  ],
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "75g",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "harissa tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Turn the heat to low and fold in the 40g harissa tomato sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked 5% beef mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Harissa Beef Proper Curry. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"harissa tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Turn the heat to low and fold in the 40g harissa tomato sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked 5% beef mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual preparation clarification: show the complete single serving with generous crop margin. Cooked long-grain basmati rice beneath browned beef mince with softened onion and mixed peppers, lightly coated with the listed harissa tomato sauce, no additional sauces or herb garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/3/sources/021-a1.png",
+  "source_sha256": "bb4cfcc4485d1a2c244aa8cca7d681b49c15b07eafd468100fc9046be0fa4238",
+  "generated_at": "2026-10-05T12:56:30.168Z",
+  "elapsed_ms": 200503,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e385ec91a35374e7da72-recovery20261005-480-d2eacc3de962.webp",
+      "sha256": "d2eacc3de9621d69e6d768aad844ebdfa06f9cb1f94371befe8156cda7b00d16",
+      "bytes": 24086
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e385ec91a35374e7da72-recovery20261005-960-05efedbff485.webp",
+      "sha256": "05efedbff485de9ebfbdc244f86f7b049a37f2b25765deeaa74aaf2f466721ec",
+      "bytes": 72962
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "bb4cfcc4485d1a2c244aa8cca7d681b49c15b07eafd468100fc9046be0fa4238",
+    "recipe_ids": [
+      "industrial-v3-curry-harissa-beef"
+    ],
+    "titles": [
+      "Shift Harissa Beef Proper Curry"
+    ],
+    "notes": "Cooked basmati rice supports browned beef mince crumbles, translucent softened onion and cooked mixed pepper strips. Light harissa tomato sauce coats the mixture instead of a deep liquid curry; no added garnish or ingredients.",
+    "alt": "Shift Harissa Beef Proper Curry with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:58:51.169814+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:39.629262+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

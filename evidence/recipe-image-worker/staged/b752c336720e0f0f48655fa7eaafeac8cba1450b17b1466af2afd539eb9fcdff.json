@@ -1,0 +1,92 @@
+{
+  "groupId": "b752c336720e0f0f48655fa7eaafeac8cba1450b17b1466af2afd539eb9fcdff",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-garlic-herb-chicken"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Chicken Slow-Cooker Big Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6–8 hours or HIGH for 3–4 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the chicken breast is safely cooked, switch the cooker off, then stir through the light mayonnaise and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6–8 hours or HIGH for 3–4 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the chicken breast is safely cooked, switch the cooker off, then stir through the light mayonnaise and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual constraint: moist tender slow-cooked ingredients in one cream bowl, glossy cooking juices with mayonnaise stirred in, not broth soup. Baby potatoes, softened carrot and onion visible. Dried parsley tiny incorporated flecks only, no fresh garnish. ",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/5/sources/012.png",
+  "source_sha256": "aea5cebd6fd7f42011091747516ed9381da5d62682dbc119b296feb0c446b15a",
+  "generated_at": "2026-10-05T12:44:54.845Z",
+  "elapsed_ms": 38303,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b752c336720e0f0f4865-recovery20261005-480-2e4fcbaddbf2.webp",
+      "sha256": "2e4fcbaddbf2748e996fe9a5e9ef0ce694726146a2e91eb72defd5c1e62e7012",
+      "bytes": 28578
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b752c336720e0f0f4865-recovery20261005-960-ab0cae9ccfbe.webp",
+      "sha256": "ab0cae9ccfbe30d3e58427f4a1bfe385ea77ca3e0e8dc67ae773a25bb14b7103",
+      "bytes": 87052
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "aea5cebd6fd7f42011091747516ed9381da5d62682dbc119b296feb0c446b15a",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked chicken breast portions with baby potatoes, carrots and softened onion, glossy released cooking juices lightly creamy from stirred mayonnaise, dried parsley flecks. No extra foods or garnish.",
+    "alt": "Shift Garlic & Herb Chicken Slow-Cooker Big Pot, prepared with chicken breast, baby potatoes, carrots, onion",
+    "reviewed_at": "2026-10-05T12:52:20.470144+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:44.064244+00:00"
+  },
+  "integrated": true,
+  "live": false
+}
