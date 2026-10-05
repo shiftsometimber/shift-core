@@ -6,6 +6,7 @@ const main=await get('/git/refs/heads/main');assert.equal(main.object.sha,proces
 const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args,'--config','wrangler.jsonc'],{encoding:'utf8',maxBuffer:4*1024*1024});
 const active=()=>JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
 const verified=await get('/actions/runs/'+recovery.verifiedRun),failed=await get('/actions/runs/'+recovery.run),before=active();
+console.log(JSON.stringify({kind:'runtime_recovery_observation',deploymentId:before.id,activeVersion:before.versions?.[0]?.version_id,release:process.env.GITHUB_SHA}));
 let decision,ownedProof;
 if([recovery.verified,recovery.unverified].includes(before.versions?.[0]?.version_id))decision=recoveryDecision(before,failed,verified);
 else{
