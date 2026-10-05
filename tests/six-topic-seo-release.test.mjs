@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {SIX_TOPIC_SEO_SOURCE,SIX_TOPIC_SEO_PATHS,validateSixTopicSeoSource,verifySixTopicSeoProof} from '../release/six-topic-seo-scope.mjs';
-import {preserveSixTopicSeo} from '../release/six-topic-seo-preservation.mjs';
+import {preserveSixTopicSeo,originalSixTopicSeoPreservation} from '../release/six-topic-seo-preservation.mjs';
 import {withSixTopicGuides} from '../public-seo-closeout.mjs';
 test('each finite SEO source path rejects unrelated source drift',()=>{
  validateSixTopicSeoSource((ref,path)=>path);
@@ -16,4 +16,10 @@ test('full-page preservation admits only the exact reviewed additive transform',
  assert.throws(()=>preserveSixTopicSeo('/mens-mental-health',Buffer.from(before),{required:true}),/missing/);
  assert.notDeepEqual(preserveSixTopicSeo('/mens-mental-health',Buffer.from(before)),preserveSixTopicSeo('/mens-mental-health',Buffer.from(after.replace('Original safety text','Changed safety text')),{required:true}));
  for(const path of ['/','/start-here','/member/dashboard','/treatment-centre'])assert.equal(preserveSixTopicSeo(path,Buffer.from(before)).toString(),before);
+});
+test('historical preservation normalises only the exact two SEO integration lines',()=>{
+ const old='Preserved verification';const added="import {preserveSixTopicSeo} from '../release/six-topic-seo-preservation.mjs';\n"+old+' preserved=preserveSixTopicSeo(path,preserved,{required:Boolean(before)});\n';
+ assert.equal(originalSixTopicSeoPreservation(added),old);
+ assert.notEqual(originalSixTopicSeoPreservation(added.replace('required:Boolean(before)','required:false')),old);
+ assert.throws(()=>originalSixTopicSeoPreservation(added+added),/Duplicate/);
 });

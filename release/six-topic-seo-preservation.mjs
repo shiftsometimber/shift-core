@@ -8,3 +8,9 @@ export function preserveSixTopicSeo(path,input,{required=false}={}){
  if(required)assert(html.includes(`data-six-topic-seo="${path}"`),'Reviewed SEO section missing: '+path);
  return Buffer.from(withSixTopicGuides(html,path));
 }
+// Only these two exact integration lines are normalised for historical Book Voice checks.
+export function originalSixTopicSeoPreservation(source){
+ const lines=["import {preserveSixTopicSeo} from '../release/six-topic-seo-preservation.mjs';\n",' preserved=preserveSixTopicSeo(path,preserved,{required:Boolean(before)});\n'];
+ for(const line of lines){assert(source.split(line).length-1<=1,'Duplicate SEO preservation integration');source=source.replace(line,'');}
+ return source;
+}
