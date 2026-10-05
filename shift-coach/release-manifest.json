@@ -276,7 +276,7 @@
   },
   "imageViewerComposition": {
     "proof": "MEMBER_IMAGE_VIEWER_RELEASE_V1",
-    "source": "538c0ec128f3cbc20b7e153be47df557c7d963c1",
+    "source": "097b5584061f8adcfa144c0084f9e921cc0e0b18",
     "paths": [
       "shift-coach/fit-active-edit.mjs",
       "shift-coach/fit-active-edit.test.mjs",
