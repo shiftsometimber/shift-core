@@ -48,7 +48,8 @@ export function verifiedStartingPoint(record,active){
 
 // Search the promotion workflow directly. Unrelated successful workflows must
 // never push the current owned runtime beyond a repository-wide page limit.
-export const recordedImageRuntime=Object.freeze({run:37323166189,source:'4c5e2352e0a0a4ac2b592ed2036357214d484a65',version:'6e704595-b395-4cc9-9671-6cd653e01405'});
+// This exact successful Watch deployment supersedes the preceding image runtime.
+export const recordedImageRuntime=Object.freeze({run:37336998330,source:'9d2b9e146063d634ac7ce058258c00dd7d804d2c',version:'f81ab965-f6aa-4655-be7d-b29f4ac29d67'});
 export async function recentSuccessfulPromotions(get,active){
  const recorded=active?.versions?.length===1&&active.versions[0].percentage===100&&active.versions[0].version_id===recordedImageRuntime.version
   ?await get('/actions/runs/'+recordedImageRuntime.run):null;
