@@ -1,0 +1,51 @@
+name: Exact recipe image live read-back
+on:
+  push:
+    branches: [proof/recipe-images-live-2315-20261005]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Read public recipe image assets and verify exact reviewed bytes
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import crypto from 'node:crypto';
+          import assert from 'node:assert/strict';
+          import {grubImages} from './member-experience/grub-image-map.mjs';
+          import {grubRuntime} from './member-experience/grub-runtime.mjs';
+          const source='4c5e2352e0a0a4ac2b592ed2036357214d484a65';
+          const sha=data=>crypto.createHash('sha256').update(data).digest('hex');
+          const client=await fetch('https://shiftsometimber.co.uk/assets/member-experience/grub.mjs',{signal:AbortSignal.timeout(30000)});
+          assert.equal(client.status,200);
+          assert.equal(sha(await client.text()),'68bd9d4f723fb664094f3e6d09250c2b4c6897ca481930b92d39d6c1bc2fe387','Exact serving Grub renderer');
+          const assets=new Map();
+          for(const image of grubImages){
+            assert.equal(sha(fs.readFileSync('frontend/member'+image.src)),image.sha256);
+            for(const path of [image.src,...(image.srcSet||'').split(',').map(x=>x.trim().split(' ')[0]).filter(Boolean)]){
+              const bytes=fs.readFileSync('frontend/member'+path);assets.set(path,{path,sha256:sha(bytes),bytes:bytes.length});
+            }
+          }
+          const queue=[...assets.values()],results=[];let index=0;
+          await Promise.all(Array.from({length:32},async()=>{while(index<queue.length){
+            const asset=queue[index++];const r=await fetch('https://shiftsometimber.co.uk'+asset.path,{signal:AbortSignal.timeout(30000)});const bytes=Buffer.from(await r.arrayBuffer());
+            assert.equal(r.status,200,asset.path);assert.match(r.headers.get('content-type')||'',/image\/webp/);
+            assert.equal(sha(bytes),asset.sha256,asset.path);assert.equal(bytes.length,asset.bytes,asset.path);
+            results.push({...asset,status:r.status,verified:true});if(results.length%250===0)console.log('Verified '+results.length+'/'+queue.length);
+          }}));
+          const report={at:new Date().toISOString(),source,recipeBindings:grubImages.length,verifiedAssets:results.length,remainingRecipes:2671-grubImages.length,complete:grubImages.length===2671,publicGetOnly:true,customerRecordsRead:0,writes:0,status:'pass',assets:results};
+          fs.mkdirSync('recipe-live-proof',{recursive:true});fs.writeFileSync('recipe-live-proof/readback.json',JSON.stringify(report,null,2));
+          console.log(JSON.stringify({...report,assets:undefined}));
+          JS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: exact-recipe-image-live-readback
+          path: recipe-live-proof/
+          if-no-files-found: error
