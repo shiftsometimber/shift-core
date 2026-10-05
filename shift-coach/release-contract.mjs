@@ -81,7 +81,7 @@ export function validateCoachingSource(read,manifest){
  const fit=manifest.fitComposition;
  if(fit){
   assert.equal(fit.proof,'FIT_300_BOUNDED_RELEASE_COMPOSITION_V1');
-  assert.deepEqual(fit.paths,['scripts/b1-release-scope.mjs','shift-coach/release-contract.mjs']);
+  assert.deepEqual(fit.paths,['scripts/b1-release-scope.mjs','release/app-scope.mjs','shift-coach/release-contract.mjs']);
   assert.match(fit.source,/^[a-f0-9]{40}$/);
   execFileSync('git',['merge-base','--is-ancestor',fit.source,'HEAD']);
  }

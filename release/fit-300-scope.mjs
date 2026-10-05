@@ -7,7 +7,7 @@ import {FIT_EXPANSION_SERVING_AUTHORITY} from '../fit-expansion-serving-manifest
 
 // Exact runtime activation. No new prescriptions, catalogue writes or inferred
 // trainer/clinical approval. Existing safety/equipment/dose checks remain intact.
-export const FIT300_PATHS=new Set(['fit-expansion-serving-manifest-v1.mjs','release/fit-300-scope.mjs','release/fit-300-activation.json','tests/fit-expansion-publication.test.mjs','scripts/b1-release-scope.mjs','shift-coach/release-contract.mjs','shift-coach/release-manifest.json']);
+export const FIT300_PATHS=new Set(['fit-expansion-serving-manifest-v1.mjs','release/fit-300-scope.mjs','release/fit-300-activation.json','tests/fit-expansion-publication.test.mjs','scripts/b1-release-scope.mjs','release/app-scope.mjs','shift-coach/release-contract.mjs','shift-coach/release-manifest.json']);
 export const READONLY_ORGANIC_PATHS=new Set(['.github/workflows/organic-growth-content.yml','editorial/organic-growth-20261005/README.md','editorial/organic-growth-20261005/baseline.json','editorial/organic-growth-20261005/intent-map.json','editorial/organic-growth-20261005/nhs-weight-loss-drugs.json','editorial/organic-growth-20261005/publication.test.mjs','editorial/organic-growth-20261005/publish.mjs','editorial/organic-growth-20261005/release-receipt.json','editorial/organic-growth-20261005/wegovy-side-effects-timeline.json']);
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const sha=b=>createHash('sha256').update(b).digest('hex');
@@ -34,7 +34,7 @@ export function validateFit300(){
  assert.equal(art.records.length,300);assert.equal(art.heldImages,0);
  for(const r of art.records){assert.equal(r.status,'approved');assert.equal(sha(readFileSync('frontend/member'+r.image)),r.sha256,'Approved artwork drift: '+r.id);}
  const coach=JSON.parse(readFileSync('shift-coach/release-manifest.json'));
- assert.deepEqual(coach.fitComposition,{proof:'FIT_300_BOUNDED_RELEASE_COMPOSITION_V1',source:activation.source,paths:['scripts/b1-release-scope.mjs','shift-coach/release-contract.mjs']});
+ assert.deepEqual(coach.fitComposition,{proof:'FIT_300_BOUNDED_RELEASE_COMPOSITION_V1',source:activation.source,paths:['scripts/b1-release-scope.mjs','release/app-scope.mjs','shift-coach/release-contract.mjs']});
  const priorCoach=JSON.parse(execFileSync('git',['show',activation.base+':shift-coach/release-manifest.json'],{encoding:'utf8'}));
  const {fitComposition,...unchanged}=coach;assert.deepEqual(unchanged,priorCoach,'Existing coaching launch decisions changed');
  return {movements:300,servedProtocols:2688,approvedImages:300,databaseWrites:false,designUnchanged:true};
