@@ -1,0 +1,92 @@
+{
+  "groupId": "abff426ffc48b35fded4cc9bef1dbbda3f427294694e284d6f3d2a30bfff57a1",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-cheesecake-style-overnight-oats"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Overnight Oats Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Overnight Oats Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 30g light cream cheese, 40g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed foods; no honey, nuts, mint, syrup, garnish, cake or biscuit crust. Mixed berries just the measured25g. All food inside frame.  NO side crackers, whole biscuits or biscuit crumbs anywhere unless exact list explicitly includes crushed wholegrain biscuit. Measured30g light cream cheese smoothly folded through the fruit/base; no giant cream mound, no cake or crust. Yoghurt is SMOOTH and stirred, no cottage-cheese curds or rice-like grains. Fully softened overnight milk oats, cream cheese/yoghurt evenly stirred in where listed, berries mixed through, listed seeds/chocolate freshly topped. No dry oat heap.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Stir in 30g light cream cheese, 40g 0% Greek yoghurt until evenly mixed.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f1dd30f1-a774-46ff-80e5-4292a9e8f305.png",
+  "source_sha256": "6b8d5f1e9faeb6eaa5346b29e43c96efd10a3509a5958da4b3cd50b70661d7df",
+  "generated_at": "2026-10-04T23:51:35.066Z",
+  "elapsed_ms": 261103,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-abff426ffc48b35fded4-480-6b1cdb36aa33.webp",
+      "sha256": "6b1cdb36aa33b1b773aedf1294a8b924d724535cef822d34a1f915d10ad66537",
+      "bytes": 25926
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-abff426ffc48b35fded4-0ad5d9a9e2cd.webp",
+      "sha256": "0ad5d9a9e2cd3c30baedc363357f74cf0f1a190b7547cfd9d1a0b6e432cb6388",
+      "bytes": 76456
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6b8d5f1e9faeb6eaa5346b29e43c96efd10a3509a5958da4b3cd50b70661d7df",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-cheesecake-style-overnight-oats"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Overnight Oats Dessert Pot"
+    ],
+    "notes": "Soft milk oats with cream cheese and Greek yoghurt evenly combined, small berries mixed through, pumpkin seeds on top. No dry oats or extra biscuit.",
+    "alt": "Creamy berry overnight oats with cream cheese and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:56:17.038241+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/abff426ffc48b35fded4cc9bef1dbbda3f427294694e284d6f3d2a30bfff57a1.json"
+  },
+  "integrated": true,
+  "live": false
+}

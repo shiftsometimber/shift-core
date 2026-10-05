@@ -1,0 +1,84 @@
+{
+  "groupId": "3a1875809bde27336c7d417084c3bedfb32e86cc789ec91ce83db902e1f5f2b9",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-chocolate-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Chocolate Greek Yoghurt Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Greek Yoghurt Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"240g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup, cream or decorative garnish. Berries just small25g portion. All food inside frame. NO crackers, biscuits or cake anywhere. Cocoa measured5g fine powder lightly mixed into fruit/dairy, never chocolate syrup or melted chocolate. Chocolate chunks ONLY if explicitly listed. Yoghurt base smooth and stirred, no cottage-cheese curds. All exact ingredients combined in one finished dessert bowl, measured Greek yoghurt swirled through. No separate dairy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "240g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3bce7cf6-c384-4747-8b06-0151b8a1d37d.png",
+  "source_sha256": "34fea5b0a0692498363313f7790ca92dcca15b676df8fbbd178910c9640d8140",
+  "generated_at": "2026-10-05T00:34:12.808Z",
+  "elapsed_ms": 137174,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3a1875809bde27336c7d-480-04206cb1cc6b.webp",
+      "sha256": "04206cb1cc6b51a85d4dbabb57ed0c9e09dd144e9b37672595a3b206f5c2f5fb",
+      "bytes": 18252
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3a1875809bde27336c7d-09b8e42bb5d5.webp",
+      "sha256": "09b8e42bb5d58cd422153d7dfa914683b34d6b831084edc1eeeb3432d624689b",
+      "bytes": 51884
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "34fea5b0a0692498363313f7790ca92dcca15b676df8fbbd178910c9640d8140",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-chocolate-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Chocolate Greek Yoghurt Dessert Pot"
+    ],
+    "notes": "Smooth cocoa Greek yoghurt with small berries, oats/seeds combined and yoghurt swirl. No chocolate chunks or garnish.",
+    "alt": "Cocoa Greek yoghurt dessert with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:39:17.202354+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/3a1875809bde27336c7d417084c3bedfb32e86cc789ec91ce83db902e1f5f2b9.json"
+  },
+  "integrated": true,
+  "live": false
+}

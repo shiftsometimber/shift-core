@@ -1,0 +1,87 @@
+{
+  "groupId": "08d8ae9469386ce45c30b1541b3123b8538ad0db5873f75d06f75684ea1a2bc0",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-mustard-egg"
+  ],
+  "titles": [
+    "Shift Mustard Egg Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mustard Egg Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"wholegrain mustard\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "wholegrain mustard"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-33b7819f-f9da-48a8-91fb-f1efadd9ea64.png",
+  "source_sha256": "f08fd7a9b286413336d19d50fa87a71ad1f7c37201219e0e2bd3359f8754d401",
+  "generated_at": "2026-10-05T00:41:18.547Z",
+  "elapsed_ms": 101565,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-08d8ae9469386ce45c30-480.webp",
+      "sha256": "d54ef7fa1e09d322915c1eceeb94992aaef65922078d1a300306dbb66815d0b0",
+      "bytes": 23302
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-08d8ae9469386ce45c30-771b6633fdce.webp",
+      "sha256": "771b6633fdceeabd34bc079deb289e87b43827c1199d3bc1938fb887750f3ef3",
+      "bytes": 71564
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f08fd7a9b286413336d19d50fa87a71ad1f7c37201219e0e2bd3359f8754d401",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-mustard-egg"
+    ],
+    "titles": [
+      "Shift Mustard Egg Breakfast Wrap"
+    ],
+    "notes": "Single lightly toasted unseeded wholemeal wrap with tender set egg curds, softened mixed peppers and wilted spinach coated in wholegrain mustard.",
+    "alt": "Mustard egg wrap with peppers and spinach",
+    "reviewed_at": "2026-10-05T00:46:28.330596+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/323.json"
+  },
+  "integrated": true,
+  "live": false
+}

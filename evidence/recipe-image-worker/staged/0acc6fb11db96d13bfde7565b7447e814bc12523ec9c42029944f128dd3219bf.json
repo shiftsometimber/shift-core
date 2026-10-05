@@ -1,0 +1,88 @@
+{
+  "groupId": "0acc6fb11db96d13bfde7565b7447e814bc12523ec9c42029944f128dd3219bf",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-caramel-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Honey Cottage Cheese Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Honey Cottage Cheese Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"8g\",\"item\":\"honey\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only; no nuts, mint, syrup, spices or decorative garnish. Small25g mixed berries. Pumpkin seeds the actual listed quantity. All food inside frame. Measured8g honey modestly folded through fruit/dairy, a little visible golden sheen, no honey jar, separate honey bowl or large pool. NO crackers, biscuits or cake. Cottage cheese has distinct small curds. ONE finished dessert bowl, all measured ingredients combined with yoghurt visibly swirled through. No separate dairy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "8g",
+      "item": "honey"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4553627e-0bf3-459d-9d56-338f4e6e07ce.png",
+  "source_sha256": "21dcb5ab8ac8f5cc4770cfc9ef8b3ab71929d63a86dc322f7662307661c7283d",
+  "generated_at": "2026-10-05T01:22:16.123Z",
+  "elapsed_ms": 373466,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0acc6fb11db96d13bfde-480-2a9f5b4af88f.webp",
+      "sha256": "2a9f5b4af88fb79ba64b088c7068f91ae7909fe3977cc59f003540f6a0e7bda6",
+      "bytes": 22532
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0acc6fb11db96d13bfde-6e9f58fbe865.webp",
+      "sha256": "6e9f58fbe8659668fb6e1c4d59ece38db5265ade237fc9eb3accf68b66ad4e54",
+      "bytes": 68418
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "21dcb5ab8ac8f5cc4770cfc9ef8b3ab71929d63a86dc322f7662307661c7283d",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-caramel-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Honey Cottage Cheese Dessert Pot"
+    ],
+    "notes": "Cottage cheese curds lightly honey coated with small berries/oats/seeds combined and Greek yoghurt swirled through. No chocolate or extra sides.",
+    "alt": "Honey cottage cheese dessert with berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T01:23:15.233252+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/0acc6fb11db96d13bfde7565b7447e814bc12523ec9c42029944f128dd3219bf.json"
+  },
+  "integrated": true,
+  "live": false
+}

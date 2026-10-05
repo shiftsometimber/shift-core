@@ -1,0 +1,89 @@
+{
+  "groupId": "8d6340aeece0e99f347bfe7ee4db5a9012c5ec907315790d8be2e8b0f7d5e108",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-coffee-protein-pudding"
+  ],
+  "titles": [
+    "Shift Coffee Protein Pudding Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Protein Pudding Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.\",\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact foods. Espresso measured1g fully dissolved, cooled and mixed through dairy/fruit, subtle coffee tint; no whole coffee beans, granules, dry grounds, coffee drinks or syrup. Small25g berries. No honey, mint, nuts or decorative garnish. Entire food inside frame. NO crackers, biscuits or cake anywhere. Yoghurt smooth and stirred, no cottage cheese curds. One finished dessert bowl all ingredients combined, measured yoghurt visibly swirled through, no separate dairy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.",
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-23a99e2d-8696-4f84-af1f-7b8dc5d525eb.png",
+  "source_sha256": "340fd5652cbd1f92abe86bfb965895bdd55c9e6a852d89c636cd41a1d9a49b35",
+  "generated_at": "2026-10-05T00:59:11.295Z",
+  "elapsed_ms": 316716,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8d6340aeece0e99f347b-480-74d9bc18d6b9.webp",
+      "sha256": "74d9bc18d6b974fd6d295161b8e3cf1d4fc27d30ef92657052dd525eeec554d2",
+      "bytes": 21152
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8d6340aeece0e99f347b-38fcef01a714.webp",
+      "sha256": "38fcef01a71446686f1040e121ac2d88afd89dd6d392b43f49c412bdd32f472d",
+      "bytes": 60728
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "340fd5652cbd1f92abe86bfb965895bdd55c9e6a852d89c636cd41a1d9a49b35",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-coffee-protein-pudding"
+    ],
+    "titles": [
+      "Shift Coffee Protein Pudding Dessert Pot"
+    ],
+    "notes": "Smooth coffee protein yoghurt, small berries/oats/seeds combined and Greek yoghurt visibly swirled through. No extra chocolate.",
+    "alt": "Coffee protein yoghurt dessert with berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T01:02:15.264966+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/8d6340aeece0e99f347bfe7ee4db5a9012c5ec907315790d8be2e8b0f7d5e108.json"
+  },
+  "integrated": true,
+  "live": false
+}

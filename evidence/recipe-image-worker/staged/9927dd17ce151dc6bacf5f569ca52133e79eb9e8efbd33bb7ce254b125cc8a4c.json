@@ -1,0 +1,86 @@
+{
+  "groupId": "9927dd17ce151dc6bacf5f569ca52133e79eb9e8efbd33bb7ce254b125cc8a4c",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-cheesy-bacon"
+  ],
+  "titles": [
+    "Shift Cheesy Bacon Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Bacon Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4688bd52-4f7b-4f99-868f-42d8ef3bc083.png",
+  "source_sha256": "cd0a9652c76a4e6cd32b04045f302f061f5435ed6f8783fb08b8a636c7bf65fc",
+  "generated_at": "2026-10-04T21:14:55.769Z",
+  "elapsed_ms": 122598,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9927dd17ce151dc6bacf-480.webp",
+      "sha256": "cb857b016061467dcf109788ca0dfb438889c94f11529b513d0a265ababdc2c1",
+      "bytes": 24262
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9927dd17ce151dc6bacf.webp",
+      "sha256": "7e88df5fb4b48a9ca5b6dfeda3aa73d90a20b3ec363ca3816ce1298a9bf2b4ce",
+      "bytes": 73690
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-cheesy-bacon"
+    ],
+    "titles": [
+      "Shift Cheesy Bacon Breakfast Wrap"
+    ],
+    "notes": "Browned back-bacon pieces, wilted spinach, softened mixed peppers and melted cheddar in a lightly crisped plain wholemeal wrap. No extra garnish or side; credible single serving and crop margin.",
+    "alt": "Wholemeal wrap filled with bacon, peppers, spinach and melted cheddar.",
+    "reviewed_at": "2026-10-04T21:18:06.611172+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/115.json",
+    "source_sha256": "cd0a9652c76a4e6cd32b04045f302f061f5435ed6f8783fb08b8a636c7bf65fc"
+  },
+  "integrated": true,
+  "live": false
+}

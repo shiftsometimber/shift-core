@@ -1,0 +1,78 @@
+{
+  "groupId": "2b81c9d7671f5e990bbf4a5668ef301b267d5751775edbbc4ca56b49099f5424",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-sweet-chilli-chicken"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Chicken Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Chicken Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArt direction: exact ingredients and method, appealing natural textures, no decorative extras. Brown rice must depict visibly intact unpolished tan/brown bran coats on the entire grain, with brown longitudinal seams, never white grains with brown seasoning. Cooked diced vegetables remain diced.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-dd63acd8-f302-4c98-8b7d-339d4e625ed4.png",
+  "source_sha256": "c7d448801c9f89e46363e987b9047e16ec5d47ae97461ff47425723414042bec",
+  "generated_at": "2026-10-05T01:03:47.378Z",
+  "elapsed_ms": 372178,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2b81c9d7671f5e990bbf-480.webp",
+      "sha256": "c210176a9de65ea7adda663df5099c3e12540c831d8d02953013e9cfb97d640e",
+      "bytes": 25916
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2b81c9d7671f5e990bbf.webp",
+      "sha256": "64df6ec96d0e82f8f65f6ee3f8e6a88699759340c4d04b6f67cc840070d09f82",
+      "bytes": 82134
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Sweet chilli chicken breast with tender baby potatoes, carrots and onion",
+    "notes": "Individual full-resolution inspection: Whole chicken breast with tender baby potatoes, soft carrot and onion in glossy reduced cooking juices; no invented sides. Exact ingredients, method and every mapped title reviewed.",
+    "source_sha256": "c7d448801c9f89e46363e987b9047e16ec5d47ae97461ff47425723414042bec",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-sweet-chilli-chicken"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Chicken Slow-Cooker Big Pot"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

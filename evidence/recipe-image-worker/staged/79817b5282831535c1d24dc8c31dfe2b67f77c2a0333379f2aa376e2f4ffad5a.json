@@ -1,0 +1,80 @@
+{
+  "groupId": "79817b5282831535c1d24dc8c31dfe2b67f77c2a0333379f2aa376e2f4ffad5a",
+  "recipe_ids": [
+    "industrial-v3-roast-chilli-pork"
+  ],
+  "titles": [
+    "Shift Smoky Chilli Pork Sunday-Style Roast"
+  ],
+  "prompt": "Photorealistic appetising exact recipe photography. NO extra garnish. If brown rice is listed, use genuine wholegrain rice with natural tan bran coats and longitudinal bran seams; never polished white rice. If vegetables are diced by the method, depict diced pieces, not whole tomatoes. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Pork Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Place the lean pork loin on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the smoked chilli tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked lean pork loin, roast potatoes, carrots and broccoli together. Spoon the hot smoked chilli tomato sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Place the lean pork loin on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the smoked chilli tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked lean pork loin, roast potatoes, carrots and broccoli together. Spoon the hot smoked chilli tomato sauce over the cooked protein."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a7eb98f0-68be-44ad-a6db-9a24149910ec.png",
+  "source_sha256": "488436fe66ee43983731a32ee532849b1dcd15b943c6fd3f62f4fed3101459b7",
+  "generated_at": "2026-10-05T00:48:08.334Z",
+  "elapsed_ms": 45324,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-79817b5282831535c1d2-480.webp",
+      "sha256": "bc847a211c33ddcf76bec20f3e8cdb86bb853313b8eb2cae00b69bf0519be286",
+      "bytes": 35302
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-79817b5282831535c1d2.webp",
+      "sha256": "76b4f6319e4da62c9c469f3442c3815aa2bc2b1edf9bcd7a3af57880e3e8ce05",
+      "bytes": 106668
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Roast pork with smoky chilli sauce, roast potatoes, carrots and broccoli",
+    "notes": "Individual full-resolution inspection: cooked lean pork loin with smoky tomato sauce on protein, golden peeled roast potato chunks, roasted carrot batons and plain boiled broccoli kept separate; exact method and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-roast-chilli-pork"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Pork Sunday-Style Roast"
+    ],
+    "source_sha256": "488436fe66ee43983731a32ee532849b1dcd15b943c6fd3f62f4fed3101459b7",
+    "reviewed_at": "2026-10-05T01:03:30.419081+00:00"
+  }
+}

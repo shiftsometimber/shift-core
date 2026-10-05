@@ -1,0 +1,87 @@
+{
+  "groupId": "ab71bb76843090f86f6faf88fb0e0c07ee6af8dc87ffdf147c61632b17441bd8",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-classic-protein-pudding"
+  ],
+  "titles": [
+    "Shift Classic Protein Pudding Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Protein Pudding Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only, no honey, nuts, mint, syrup or decorative garnish. Small25g mixed berries. Entire serving inside frame. Exactly TWO plain unseeded wholegrain crackers, independently visible offset edges, no sesame/poppy seeds. Cinnamon only light1g powder evenly mixed into food; no decorative cinnamon sticks or dry powder piles. Yoghurt smooth and stirred, no cottage-cheese curds. Real snack box with dry oats/seeds/crackers separate from fruit/dairy. Coffee/cinnamon in fruit/dairy component.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9fecd9cc-cc2f-409d-910a-6540675abda4.png",
+  "source_sha256": "1529f721dcf711d549ae92a66106e07bd8cb3527f73f00e9395f187340258882",
+  "generated_at": "2026-10-05T00:45:47.946Z",
+  "elapsed_ms": 209582,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ab71bb76843090f86f6f-480-6462da7b33b0.webp",
+      "sha256": "6462da7b33b03368532336306c789e43556a7a6f7c5045e87abae063e993ae27",
+      "bytes": 22468
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ab71bb76843090f86f6f-80052dda758f.webp",
+      "sha256": "80052dda758fbc858bdfefde28c3e6d7fb1df65776e8dd448d02f46a29012cc9",
+      "bytes": 73170
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1529f721dcf711d549ae92a66106e07bd8cb3527f73f00e9395f187340258882",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-classic-protein-pudding"
+    ],
+    "titles": [
+      "Shift Classic Protein Pudding Work Snack Box"
+    ],
+    "notes": "Smooth cinnamon protein yoghurt with small berries, dry oats/seeds separate and exactly two plain crackers visible. No curds.",
+    "alt": "Cinnamon protein yoghurt snack box with berries, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-05T00:50:46.569873+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/ab71bb76843090f86f6faf88fb0e0c07ee6af8dc87ffdf147c61632b17441bd8.json"
+  },
+  "integrated": true,
+  "live": false
+}

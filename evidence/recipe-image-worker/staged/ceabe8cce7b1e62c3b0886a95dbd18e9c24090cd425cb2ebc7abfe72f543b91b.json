@@ -1,0 +1,82 @@
+{
+  "groupId": "ceabe8cce7b1e62c3b0886a95dbd18e9c24090cd425cb2ebc7abfe72f543b91b",
+  "recipe_ids": [
+    "industrial-v3-chilli-chilli-tofu"
+  ],
+  "titles": [
+    "Shift Smoky Chilli Tofu Big Chilli"
+  ],
+  "prompt": "One appetising photorealistic cooked meal: lightly pan-golden firm tofu cut in intact 2cm cubes, cooked kidney beans and softened DICED red pepper in a small measured amount of smoked chilli tomato sauce, spooned over authentic cooked UNPOLISHED WHOLEGRAIN BROWN RICE. Expose a large foreground bed of naturally chestnut-tan rice grains. Every grain has an intact continuous visibly TAN outer bran coat, brown longitudinal seams and a chewy wholegrain texture, genuinely cooked brown rice photographed in neutral daylight. This must visually unmistakably depict brown rice rather than pale polished rice or white rice dotted with brown seasoning. Only measured olive oil; no garnish, no added herbs or sides. Cream ceramic bowl on matte muted table, landscape4:3 generous margin, appetising truthful food photography, no text or people.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "kidney beans"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Deseed and dice the 90g red pepper and drain and rinse canned, ready-cooked kidney beans, then weigh out 90g; raw or dried kidney beans cannot be used in this method. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g red pepper and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained kidney beans. Cover and heat for 3\u20134 minutes over a low heat, stirring halfway, until the beans are steaming hot.",
+    "Turn the heat to low and fold in the 40g smoked chilli tomato sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1174c64d-e767-4cb5-9688-867191e2a23c.png",
+  "source_sha256": "c236a8953fb409f4f88694d1c8cde6ffd4401a8d315dec5eb6c2f3511c851afc",
+  "generated_at": "2026-10-05T01:05:28.647Z",
+  "elapsed_ms": 69912,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ceabe8cce7b1e62c3b08-retry2-480.webp",
+      "sha256": "2d09dcd3a1b12830c0c6e514650d935f76190d47c6c3bd28a5ea0e60a2641024",
+      "bytes": 38446
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ceabe8cce7b1e62c3b08-retry2.webp",
+      "sha256": "be0a344392e92dc36b2ca34771e3df94fd9874d4de31f2b73752f342d7e536ce",
+      "bytes": 115012
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Smoky chilli tofu with kidney beans and diced red pepper over brown rice",
+    "notes": "Individual full-resolution inspection of fresh attempt2: intact golden firm tofu cubes, kidney beans and diced red pepper in smoky tomato coating; foreground rice now has credible tan bran coats and longitudinal seams. Exact ingredients, method and all titles reviewed, no extras.",
+    "recipe_ids": [
+      "industrial-v3-chilli-chilli-tofu"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Tofu Big Chilli"
+    ],
+    "source_sha256": "c236a8953fb409f4f88694d1c8cde6ffd4401a8d315dec5eb6c2f3511c851afc",
+    "reviewed_at": "2026-10-05T01:09:45.579170+00:00"
+  }
+}

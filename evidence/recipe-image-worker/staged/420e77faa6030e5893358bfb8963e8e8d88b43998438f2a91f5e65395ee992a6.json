@@ -1,0 +1,103 @@
+{
+  "groupId": "420e77faa6030e5893358bfb8963e8e8d88b43998438f2a91f5e65395ee992a6",
+  "recipe_ids": [
+    "industrial-v3-pasta-peppercorn-salmon"
+  ],
+  "titles": [
+    "Shift Peppercorn Salmon Proper Pasta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Salmon Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, wholegrain mustard, black pepper dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Exact method gates: No garnish or unlisted cheese, herbs, seeds, breading, sauce or sides. Wholemeal bread, wrap and bun entirely plain unseeded. Peppercorn flavour uses LIGHT MAYONNAISE plus WHOLEGRAIN MUSTARD plus BLACK PEPPER only: no cream or ketchup. In roast and pie all three exclusively in separate small cold dressing bowl alongside; hot food must be PLAIN with no black pepper or mustard pieces, herbs or creamy coat. Roast salmon intact fully cooked opaque fillet; tofu roast 2cm slabs. Pie plain fork-roughened water-mashed potato top and plain filling carrot/pea/protein with clear cooking juices; never creamy filling. Salmon in pasta, pizza, kebab or fries large opaque cooked FLAKES. Tofu burger one 1cm slab, kebab/fries/pasta/pizza/slowpot/pie 2cm cubes. Burger or kebab cold dressing finish INSIDE bread; pizza and loaded fries cold finish ON TOP after cooking; cheeseless pizza with passata and mixed peppers only listed. Pasta mayonnaise/mustard/pepper folded THROUGH wholewheat pasta offheat, courgette and cherry tomatoes. Slowpot tender baby potatoes carrots onion and protein, light mayo final glossy coating after switch off; no crispy roast appearance. Traybake chilled mayo only added after oven. Show correct finished appearance and all ingredients where method places them. For roast especially plain golden surfaces, all black pepper strictly only INSIDE the separate cold bowl, no pepper rub or garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, wholegrain mustard, black pepper dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1494f647-765a-4287-93d3-bc72474720d0.png",
+  "source_sha256": "7586616596e68bb8c0524ba360f62723c7791275c0a48100871206d85f6de242",
+  "generated_at": "2026-10-05T01:02:36.451Z",
+  "elapsed_ms": 128971.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-420e77faa6030e589335-retry4-480-f537cc60cfee.webp",
+      "sha256": "f537cc60cfee9f8be69b77e6a4c9276aa477a9051e5b856ef54acab337f75a7c",
+      "bytes": 30714
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-420e77faa6030e589335-retry4-ef9ed735b0f8.webp",
+      "sha256": "ef9ed735b0f8c60cb2f246ff5806ad2b36d66e2306d456f32b22205fbc3109ea",
+      "bytes": 92210
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "7586616596e68bb8c0524ba360f62723c7791275c0a48100871206d85f6de242",
+    "recipe_ids": [
+      "industrial-v3-pasta-peppercorn-salmon"
+    ],
+    "titles": [
+      "Shift Peppercorn Salmon Proper Pasta"
+    ],
+    "notes": "Pass: brown wholewheat penne with large opaque cooked salmon flakes, softened diced courgette and juicy halved cherry tomatoes. Light mayonnaise-wholegrain mustard-black pepper dressing folded THROUGH finished pasta as glossy coating, small mustard grains inside. No cheese, cream pool, herb garnish, red onion or extra foods. Exact offheat pasta assembly and crop margin.",
+    "alt": "Wholewheat peppercorn salmon pasta with courgette, cherry tomatoes and mayonnaise-wholegrain mustard dressing",
+    "reviewed_at": "2026-10-05T01:03:30.999803+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1183.json"
+  },
+  "integrated": true,
+  "live": false
+}

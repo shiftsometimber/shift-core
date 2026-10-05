@@ -1,0 +1,79 @@
+{
+  "groupId": "63be5e127c38d39a864aca3e25726aa75ae711826bc02e038d156ddbb12fef88",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-hoisin-pork"
+  ],
+  "titles": [
+    "Shift Hoisin Pork Slow-Cooker Big Pot"
+  ],
+  "prompt": "Photorealistic editorial food photography. Present the actual finished recipe appetisingly through natural window light and believable cooked texture in a plain dish. No invented garnish or additional ingredients. Wholegrain rice if listed must have naturally tan bran surfaces and visible bran seams, never polished white rice. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hoisin Pork Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"hoisin-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "hoisin-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-524ceaa2-1cdf-4edd-bc6f-3760d79152c7.png",
+  "source_sha256": "36f48f70d35ab485534507f8a94f64249336c02681cfa79bcf9443a3d69ae347",
+  "generated_at": "2026-10-05T00:21:38.746Z",
+  "elapsed_ms": 359346,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-63be5e127c38d39a864a-480.webp",
+      "sha256": "a5804b7b23b8b8d65d40e3340f7e4520af566c0d1cd4ed4de7b29510828afa45",
+      "bytes": 29744
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-63be5e127c38d39a864a.webp",
+      "sha256": "c86d0a12d4553f6ed1cec6f658c7adfea60b79d003b078c41fa6ce8a593a34c0",
+      "bytes": 95408
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "36f48f70d35ab485534507f8a94f64249336c02681cfa79bcf9443a3d69ae347",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-hoisin-pork"
+    ],
+    "titles": [
+      "Shift Hoisin Pork Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked opaque pork loin portions with tender baby potatoes, carrots and onion in glossy hoisin cooking juices; no extra food.",
+    "alt": "Shift Hoisin Pork Slow-Cooker Big Pot: cooked opaque pork loin portions with tender baby potatoes, carrots and onion in glossy hoisin cooking juices",
+    "reviewed_at": "2026-10-05T00:33:13.811520+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "groupId": "99a52f6e7389182eadb03474be54f04203a86ed1e649d915ccdbba2845dc2375",
+  "recipe_ids": [
+    "industrial-breakfast-overnight-oats-plum-ginger-7"
+  ],
+  "titles": [
+    "Plum Ginger Overnight Oats"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Plum Ginger Overnight Oats. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"150ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"120g\",\"item\":\"plum, diced\"},{\"amount\":\"1/2 tsp\",\"item\":\"ground ginger\"}]. Preparation: [\"Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 100g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 120g plum, diced, 1/2 tsp ground ginger. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "50g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "150ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "120g",
+      "item": "plum, diced"
+    },
+    {
+      "amount": "1/2 tsp",
+      "item": "ground ginger"
+    }
+  ],
+  "method": [
+    "Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Stir in 100g 0% Greek yoghurt until evenly mixed.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 120g plum, diced, 1/2 tsp ground ginger. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-00771358-4ff3-47dd-a86f-a799d646d047.png",
+  "source_sha256": "d89440d278c51ba51d784838d330aa27fc6ad4c51b4ded43980f1011301c31aa",
+  "generated_at": null,
+  "elapsed_ms": 56169.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-99a52f6e7389182eadb0-480.webp",
+      "sha256": "b135c71d64d4a5156baf1b58ea3ac2223a6c4b769cffce500e48ddc375a00555",
+      "bytes": 19968
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-99a52f6e7389182eadb0.webp",
+      "sha256": "4c444741b546c37ed9444f3dd2a3f724b7bfe5864c0154bbc9914646f51aabe7",
+      "bytes": 58872
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-overnight-oats-plum-ginger-7"
+    ],
+    "titles": [
+      "Plum Ginger Overnight Oats"
+    ],
+    "notes": "Purple-skinned diced plum is dispersed through wet, soft-looking oats in a creamy milk-and-yoghurt mixture; no separate dry spice pockets or invented toppings. This depicts a stirred chilled mixture rather than dry cereal. Title and ingredient identity agree; one plausible bowl. Centre crop retains dish.",
+    "alt": "Creamy overnight oats with diced plum and ginger stirred through.",
+    "reviewed_at": "2026-10-04T21:12:01.688Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews.json",
+    "source_sha256": "d89440d278c51ba51d784838d330aa27fc6ad4c51b4ded43980f1011301c31aa"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,81 @@
+{
+  "groupId": "02d1794c227bf2a991420fee26bc0565bfc75d87632c3ca7f129e5de2b4ffe6f",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-chocolate-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Chocolate Fruit Crunch Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Fruit Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the apple in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup, cream or decorative garnish. Berries just small25g portion. All food inside frame. NO crackers, biscuits or cake anywhere. Cocoa measured5g fine powder lightly mixed into fruit/dairy, never chocolate syrup or melted chocolate. Chocolate chunks ONLY if explicitly listed. Fruit snack pot at eating time, fruit with flavour powder folded through and dry oats/seeds newly topped. No dairy base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the apple in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0cfa2dfb-2c7f-4153-8392-bb8c7350188e.png",
+  "source_sha256": "b6afdc678312d6222a5d245bc936fa688992985c79f305d45f6098aed0980c91",
+  "generated_at": "2026-10-05T00:32:35.876Z",
+  "elapsed_ms": 40242,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-02d1794c227bf2a99142-480-5c82665a9ab7.webp",
+      "sha256": "5c82665a9ab78b0f67a97b3f28c4d95673f273a9ecc7ce9e1e314d29edba7f67",
+      "bytes": 29482
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-02d1794c227bf2a99142-528b7e9f5325.webp",
+      "sha256": "528b7e9f53251e840e4bf2c9b51527f946c516c7e845c91f28f57ba5a5d42c8d",
+      "bytes": 96702
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b6afdc678312d6222a5d245bc936fa688992985c79f305d45f6098aed0980c91",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-chocolate-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Chocolate Fruit Crunch Snack Pot"
+    ],
+    "notes": "Cocoa lightly folded through apple and small berries, dry oats/seeds newly added at serving. No dairy base or chocolate pieces.",
+    "alt": "Cocoa apple snack pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:39:16.470113+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/02d1794c227bf2a991420fee26bc0565bfc75d87632c3ca7f129e5de2b4ffe6f.json"
+  },
+  "integrated": true,
+  "live": false
+}

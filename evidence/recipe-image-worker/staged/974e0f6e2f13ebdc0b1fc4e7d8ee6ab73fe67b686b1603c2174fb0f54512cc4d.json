@@ -1,0 +1,82 @@
+{
+  "groupId": "974e0f6e2f13ebdc0b1fc4e7d8ee6ab73fe67b686b1603c2174fb0f54512cc4d",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-bean-loaded-beans"
+  ],
+  "titles": [
+    "Shift Loaded Beans Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Loaded Beans Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.\",\"Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the baked beans and heat gently until steaming hot throughout.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.",
+    "Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the baked beans and heat gently until steaming hot throughout.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4a060029-47e7-4e41-a70c-63a08dfbd7bf.png",
+  "source_sha256": "1bb87f481561b45d36d0b0363bc54b4f46b071e82a4e98110e8dc5a67dcf9255",
+  "generated_at": "2026-10-04T23:38:01.536Z",
+  "elapsed_ms": 247597,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-974e0f6e2f13ebdc0b1f-480.webp",
+      "sha256": "748a3e1236ab72bdb8786bc0c1d3a57abc0773ac76d0533b375856648a866f08",
+      "bytes": 29264
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-974e0f6e2f13ebdc0b1f-retry2-6770bbad659e.webp",
+      "sha256": "6770bbad659ee03a080e52c322f7b966ab122bc1a53b3ec7e8719630bca05524",
+      "bytes": 89646
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1bb87f481561b45d36d0b0363bc54b4f46b071e82a4e98110e8dc5a67dcf9255",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-bean-loaded-beans"
+    ],
+    "titles": [
+      "Shift Loaded Beans Breakfast Toastie"
+    ],
+    "notes": "Crisp wholemeal toastie with baked beans, softened tomato and wilted spinach, plus remaining measured filling alongside as method allows. No cheese.",
+    "alt": "Loaded baked bean toastie with tomato and spinach",
+    "reviewed_at": "2026-10-04T23:39:16.306865+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/234.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,90 @@
+{
+  "groupId": "ed962690df9821c252490086dd3d5997d45d96bd4f3f6e6f6134ed3d97f2b4c5",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-cheesecake-style-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Greek Yoghurt Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Greek Yoghurt Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the 0% Greek yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the 0% Greek yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed foods; no honey, nuts, mint, syrup, garnish, cake or biscuit crust. Mixed berries just the measured25g. All food inside frame.  Exactly TWO entire plain unseeded crackers, visibly separated or offset so both full edges can be counted. No seeds on crackers. Measured30g light cream cheese smoothly folded through the fruit/base; no giant cream mound, no cake or crust. Yoghurt is SMOOTH and stirred, no cottage-cheese curds or rice-like grains. Real snack box with dry oats/seeds/crackers/biscuit crumbs if listed in separate compartments from fruit and smooth yoghurt or cream cheese-coated fruit. No curds unless cottage cheese actually listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the 0% Greek yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the 0% Greek yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8b4bdbdf-b6ec-43cf-91e3-724f00797752.png",
+  "source_sha256": "3d2a721c091d877e724d092375e5e85a0a3a6180c3eb7daa5259a37d8a35a1e3",
+  "generated_at": "2026-10-04T23:50:36.484Z",
+  "elapsed_ms": 202521,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ed962690df9821c25249-480-b3091ca214c6.webp",
+      "sha256": "b3091ca214c62baf8bd5b3af4f21ce082f4a5e46c2244b97cefdc26bcd81a181",
+      "bytes": 26258
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ed962690df9821c25249-4a9980cbd948.webp",
+      "sha256": "4a9980cbd948c27f52304160364544385287d021bc1d72b60fa25fa5b63f33ae",
+      "bytes": 81246
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3d2a721c091d877e724d092375e5e85a0a3a6180c3eb7daa5259a37d8a35a1e3",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-cheesecake-style-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Greek Yoghurt Work Snack Box"
+    ],
+    "notes": "Smooth Greek yoghurt and cream cheese with small berries; dry oats/seeds separate and exactly two plain unseeded crackers. No curd substitution.",
+    "alt": "Greek yoghurt and berry snack box with cream cheese, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-04T23:56:15.287588+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/ed962690df9821c252490086dd3d5997d45d96bd4f3f6e6f6134ed3d97f2b4c5.json"
+  },
+  "integrated": true,
+  "live": false
+}

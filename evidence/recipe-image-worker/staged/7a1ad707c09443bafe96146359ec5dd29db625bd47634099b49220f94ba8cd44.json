@@ -1,0 +1,77 @@
+{
+  "groupId": "7a1ad707c09443bafe96146359ec5dd29db625bd47634099b49220f94ba8cd44",
+  "recipe_ids": [
+    "industrial-breakfast-potato-hash-pear-ginger-3"
+  ],
+  "titles": [
+    "Mixed-Beans Spinach Breakfast Potato Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Mixed-Beans Spinach Breakfast Potato Hash. Ingredients, quantities and allergens: [{\"amount\":\"220g\",\"item\":\"baby potatoes\"},{\"amount\":\"120g\",\"item\":\"mixed beans, drained\"},{\"amount\":\"80g\",\"item\":\"spinach\"},{\"amount\":\"60g\",\"item\":\"onion\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.\",\"Chop the onion and spinach. Heat the measured olive oil in a wide non-stick frying pan; cook the onion over medium heat for 4\u20135 minutes.\",\"Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.\",\"Stir in the spinach and cook for 2\u20133 minutes until wilted and hot. Use ready-cooked canned mixed beans, drained before weighing. Heat for 3\u20134 minutes, stirring until steaming hot throughout.\",\"Serve the mixed beans, potatoes and vegetables immediately. For another portion, follow the chilled-storage and single-reheat instructions.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "220g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "120g",
+      "item": "mixed beans, drained"
+    },
+    {
+      "amount": "80g",
+      "item": "spinach"
+    },
+    {
+      "amount": "60g",
+      "item": "onion"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.",
+    "Chop the onion and spinach. Heat the measured olive oil in a wide non-stick frying pan; cook the onion over medium heat for 4\u20135 minutes.",
+    "Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.",
+    "Stir in the spinach and cook for 2\u20133 minutes until wilted and hot. Use ready-cooked canned mixed beans, drained before weighing. Heat for 3\u20134 minutes, stirring until steaming hot throughout.",
+    "Serve the mixed beans, potatoes and vegetables immediately. For another portion, follow the chilled-storage and single-reheat instructions."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5a7e4871-1ef2-4141-95d7-2f956f93314f.png",
+  "source_sha256": "77a6ab49bb6b47e09b4fbf696ca72f8b35dbed4fc01aba36ca992aa96a0554bf",
+  "generated_at": "2026-10-04T21:08:12.906Z",
+  "elapsed_ms": 65201,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7a1ad707c09443bafe96-480.webp",
+      "sha256": "d04e86f211a5f62ab5a5b969536794a01655d4b8c080d39ab8fa1cd86ca1e0c7",
+      "bytes": 26782
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7a1ad707c09443bafe96.webp",
+      "sha256": "93d405d9cb8b7d66393faa1506f5d362c6e3d0e723e3b5cd150a48d87856d551",
+      "bytes": 82158
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-potato-hash-pear-ginger-3"
+    ],
+    "titles": [
+      "Mixed-Beans Spinach Breakfast Potato Hash"
+    ],
+    "notes": "Golden potato pieces, mixed beans, cooked wilted spinach and diced softened onion match the hash method; distinct spinach form rather than kale; no added garnish or sides.",
+    "alt": "Golden potato hash with mixed beans, wilted spinach and onion.",
+    "reviewed_at": "2026-10-04T21:11:30.825170+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/batch.json",
+    "source_sha256": "77a6ab49bb6b47e09b4fbf696ca72f8b35dbed4fc01aba36ca992aa96a0554bf"
+  },
+  "integrated": true,
+  "live": false
+}

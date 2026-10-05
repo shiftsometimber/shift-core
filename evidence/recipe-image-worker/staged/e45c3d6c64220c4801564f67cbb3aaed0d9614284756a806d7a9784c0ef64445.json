@@ -1,0 +1,83 @@
+{
+  "groupId": "e45c3d6c64220c4801564f67cbb3aaed0d9614284756a806d7a9784c0ef64445",
+  "recipe_ids": [
+    "industrial-v3-traybake-jalfrezi-salmon"
+  ],
+  "titles": [
+    "Shift Jalfrezi Salmon Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Jalfrezi Salmon Traybake. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"pepper and tomato masala\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and salmon fillet. Cook the salmon fillet until opaque and just flaking at the thickest point; pull it from the heat before it dries out.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.\",\"Check the salmon fillet is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "pepper and tomato masala"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and salmon fillet. Cook the salmon fillet until opaque and just flaking at the thickest point; pull it from the heat before it dries out.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.",
+    "Check the salmon fillet is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4c865f13-b78b-4d13-9773-e343bd659f33.png",
+  "source_sha256": "d212d524ac48b6eaf6eddcd9a265e224f2f5129bb78779813141592dac8310ba",
+  "generated_at": "2026-10-04T21:21:06.539Z",
+  "elapsed_ms": 174348.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e45c3d6c64220c480156-480.webp",
+      "sha256": "c60b5e2450d743a213320603c0aa4593872d26155e100be157daa4a72a4f879f",
+      "bytes": 38034
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e45c3d6c64220c480156.webp",
+      "sha256": "14d62efd428cfdc747ffe9c2c8f3dce4bbd9e41c35efb9d9d063b303395342fa",
+      "bytes": 122946
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-traybake-jalfrezi-salmon"
+    ],
+    "titles": [
+      "Shift Jalfrezi Salmon Traybake"
+    ],
+    "notes": "Opaque cooked salmon fillet with golden baby potato pieces, roasted broccoli and red pepper lightly coated in pepper-tomato masala. Whole fillet matches traybake preparation; no rice, noodles, lemon or herbs. Plate centre framed with margin.",
+    "alt": "Jalfrezi salmon traybake with golden potatoes, broccoli and red pepper",
+    "reviewed_at": "2026-10-04T21:21:30.886821+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/950.json",
+    "source_sha256": "d212d524ac48b6eaf6eddcd9a265e224f2f5129bb78779813141592dac8310ba"
+  },
+  "integrated": true,
+  "live": false
+}

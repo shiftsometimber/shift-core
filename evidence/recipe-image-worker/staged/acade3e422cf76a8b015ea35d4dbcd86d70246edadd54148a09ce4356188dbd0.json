@@ -1,0 +1,83 @@
+{
+  "groupId": "acade3e422cf76a8b015ea35d4dbcd86d70246edadd54148a09ce4356188dbd0",
+  "index": 2256,
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-berry-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Berry Greek Yoghurt Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "240g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Greek Yoghurt Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"240g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"105g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed food; no honey, nuts, mint, syrup or decorative garnish. Plain unseeded crackers: exactly two visible crackers when listed, no sesame or poppy seeds. All food inside the serving margins. Finished combined dessert in ONE bowl: cottage cheese or yoghurt base, fruit, oats and seeds combined in this bowl, yoghurt visibly swirled through. No separate yoghurt or crunch ramekins.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f510002d-4858-4c25-8e38-b734478e7d60.png",
+  "source_sha256": "f0cc48e5fb675d03159c9025a21dfdd5ffdd55e2ee8f2c1e486f3b92fd42b960",
+  "dispatched_at": "2026-10-04T23:14:16.136Z",
+  "generated_at": "2026-10-04T23:16:01.261Z",
+  "elapsed_ms": 105125,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-acade3e422cf76a8b015-480.webp",
+      "sha256": "208b20c3cc588dd7db4fecebb9257a3b947e99a939e6726c5ae0e789a0ac7b8c",
+      "bytes": 26408,
+      "git_blob_sha": "bfaf80d0d4ce8cfd520714c6653b71bb29e69ab7"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-acade3e422cf76a8b015.webp",
+      "sha256": "549b1e4273d7b900074935d108b81b2ee5e1597ddfba788e03a203abda4a7478",
+      "bytes": 74608,
+      "git_blob_sha": "56ea5e4e64d13e1c7852c70e174e01ccd47f679a"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-berry-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Berry Greek Yoghurt Dessert Pot"
+    ],
+    "notes": "Combined Greek yoghurt dessert with mixed berries, oats and pumpkin seeds, yoghurt swirled through. No chocolate or separate yoghurt ramekin.",
+    "alt": "Berry Greek yoghurt dessert with oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:21:59.769890+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/acade3e422cf76a8b015ea35d4dbcd86d70246edadd54148a09ce4356188dbd0.json",
+    "source_sha256": "f0cc48e5fb675d03159c9025a21dfdd5ffdd55e2ee8f2c1e486f3b92fd42b960"
+  },
+  "integrated": true,
+  "live": false
+}

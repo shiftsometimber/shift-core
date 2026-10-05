@@ -1,0 +1,83 @@
+{
+  "groupId": "bf049868580bd7866f5b82c8897248ffe0e954350295782c93da78e83b6409e9",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-biscoff-style-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Fruit Crunch Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Fruit Crunch Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.\",\"Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.\",\"Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.\",\"Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nUse only listed foods, no honey, nuts, mint, syrup or garnish. Crushed wholegrain biscuit is modest irregular crumb pieces, no caramel spread or cookie butter. Berries just the listed25g, a small portion. All food safely inside frame. Exactly two plain unseeded wholegrain crackers where listed, no sesame/poppy seeds. Real snack box: dry oats, seeds, biscuit crumbs and two plain crackers in separate compartments from fruit and any creamy base. Cottage cheese has distinct small curds.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.",
+    "Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.",
+    "Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.",
+    "Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5eab4ee3-95e5-4bff-abab-327fce430d45.png",
+  "source_sha256": "ef2d39e8cf9185c170a09e1436c5729df572218395788532d025e900df082716",
+  "generated_at": "2026-10-04T23:29:34.110Z",
+  "elapsed_ms": 251897,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bf049868580bd7866f5b-480-4fa55863ba29.webp",
+      "sha256": "4fa55863ba29bd79271af7a0d251a998076cbdac9d4ae32e4e852a6247a2d40c",
+      "bytes": 28032
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bf049868580bd7866f5b-5cbaacc416b9.webp",
+      "sha256": "5cbaacc416b9bc3dcb0208df2b63e6ab30b2115e7a8ca5ece1017bacee27d9a1",
+      "bytes": 86700
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ef2d39e8cf9185c170a09e1436c5729df572218395788532d025e900df082716",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-biscoff-style-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Fruit Crunch Work Snack Box"
+    ],
+    "notes": "Bite-size apple and berries; biscuit crumbs, dry oats, pumpkin seeds and exactly two plain crackers independently portioned in snack box.",
+    "alt": "Apple and berry snack box with biscuit crumbs, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-04T23:32:44.860675+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/bf049868580bd7866f5b82c8897248ffe0e954350295782c93da78e83b6409e9.json"
+  },
+  "integrated": true,
+  "live": false
+}

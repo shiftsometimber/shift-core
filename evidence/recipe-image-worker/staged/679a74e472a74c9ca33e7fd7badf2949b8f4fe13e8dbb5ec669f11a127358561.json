@@ -1,0 +1,87 @@
+{
+  "groupId": "679a74e472a74c9ca33e7fd7badf2949b8f4fe13e8dbb5ec669f11a127358561",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-apple-protein-pudding"
+  ],
+  "titles": [
+    "Shift Apple Protein Pudding Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Protein Pudding Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"diced apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "diced apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1aa1c2b7-6322-415e-a07d-94b221b089fa.png",
+  "source_sha256": "6083b3cec71bf57a69c97da03dd23351aea85dc3572569c9c0bdb1900659d084",
+  "generated_at": "2026-10-04T21:32:25.397Z",
+  "elapsed_ms": 260852,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-679a74e472a74c9ca33e-480.webp",
+      "sha256": "159e757a1daf263d363ca52130c673c823257a70326b255c0f0f912a95cc06c8",
+      "bytes": 22806
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-679a74e472a74c9ca33e.webp",
+      "sha256": "9b234d276cac8c724995aed84bc818a46cef952d126e0886930572c6971955ec",
+      "bytes": 64518
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-apple-protein-pudding"
+    ],
+    "titles": [
+      "Shift Apple Protein Pudding Big Feed Dessert"
+    ],
+    "notes": "Smooth high-protein yoghurt fruit dessert with apple and mixed berries, rolled oats, pumpkin seeds and chopped dark chocolate.",
+    "alt": "Protein yoghurt dessert with apple, berries, oats, pumpkin seeds and dark chocolate",
+    "reviewed_at": "2026-10-04T21:36:21.645345+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/679a74e472a74c9ca33e7fd7badf2949b8f4fe13e8dbb5ec669f11a127358561.json",
+    "source_sha256": "6083b3cec71bf57a69c97da03dd23351aea85dc3572569c9c0bdb1900659d084"
+  },
+  "integrated": true,
+  "live": false
+}

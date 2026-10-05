@@ -1,0 +1,16 @@
+{
+  "groupId": "a6b08d1d51e82a7902463a818488941df069f47a6ee98379557b2e93ea98155b",
+  "source_sha256": "f895ab828360182416fc6af42396561be149d8743fb1680c5e7cca93ec80c2f0",
+  "review": {
+    "decision": "reject",
+    "notes": "Full-resolution inspection: rice appears polished ivory/white with no convincing continuous bran coats or seams visible. Recipe requires brown rice; regenerate with natural tan intact bran-coated grains while retaining folded chicken/pepper/sweetcorn/dressing assembly.",
+    "source_sha256": "f895ab828360182416fc6af42396561be149d8743fb1680c5e7cca93ec80c2f0",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-caesar-chicken"
+    ],
+    "titles": [
+      "Shift Creamy Cheddar Chicken Meal-Prep Bowl"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

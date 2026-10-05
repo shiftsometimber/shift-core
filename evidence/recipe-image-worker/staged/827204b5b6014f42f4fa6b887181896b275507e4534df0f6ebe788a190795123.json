@@ -1,0 +1,83 @@
+{
+  "groupId": "827204b5b6014f42f4fa6b887181896b275507e4534df0f6ebe788a190795123",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-biscoff-style-protein-pudding"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Protein Pudding Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Protein Pudding Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup or garnish. No cake, pie or biscuit crust. Mixed berries just the listed25g, a small portion. All food safely inside frame. NO side crackers or whole biscuits anywhere. Crushed biscuit ONLY if explicitly listed, small irregular crumbs as topping; no intact biscuits. Cottage cheese has distinct small curds if listed, listed flavour additions folded through with oats and seeds freshly topped at serving.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ed0c67e4-0143-4ade-b0f5-ebfcb1328cff.png",
+  "source_sha256": "861780a2bb8f8fb9cab58dfe1f54e4f61505da7f9f24e699cea8589c17840db8",
+  "generated_at": "2026-10-04T23:38:12.467Z",
+  "elapsed_ms": 130926,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-827204b5b6014f42f4fa-480-3629cff2ecd2.webp",
+      "sha256": "3629cff2ecd203ca26a9408d288afba0807916dee8101729e03c23e93e4555ad",
+      "bytes": 22886
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-827204b5b6014f42f4fa-3db1478fe7ac.webp",
+      "sha256": "3db1478fe7ace1ab3e648b462581895f7d551f4c13b47dfe9b5206f800943554",
+      "bytes": 72416
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "861780a2bb8f8fb9cab58dfe1f54e4f61505da7f9f24e699cea8589c17840db8",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-biscoff-style-protein-pudding"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Protein Pudding Protein Pot"
+    ],
+    "notes": "Protein yoghurt and small berries with listed biscuit crumbs, rolled oats and pumpkin seeds newly topped at serving. No extra foods.",
+    "alt": "Berry protein yoghurt pot with biscuit crumbs, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:44:02.451343+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/827204b5b6014f42f4fa6b887181896b275507e4534df0f6ebe788a190795123.json"
+  },
+  "integrated": true,
+  "live": false
+}

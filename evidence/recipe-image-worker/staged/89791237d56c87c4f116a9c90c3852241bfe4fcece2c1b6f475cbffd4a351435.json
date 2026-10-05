@@ -1,0 +1,86 @@
+{
+  "groupId": "89791237d56c87c4f116a9c90c3852241bfe4fcece2c1b6f475cbffd4a351435",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-cherry-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Cherry Fruit Crunch Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Fruit Crunch Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.\",\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only, no honey, nuts, mint, syrup or garnish. Cherries ALL destoned stemless fresh HALVES with visible EMPTY pit cavities; no whole cherries, cherry stones, stems or glazed maraschino cherries. Small25g berries alongside measured80g cherry flesh. No cake or biscuit crumbs. All food inside frame. NO crackers or biscuits anywhere. All measured ingredients combined in dessert bowl with listed chopped dark chocolate topping, no melted chocolate sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.",
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7f910414-c7ac-4bc0-8f58-ae61cc2652d2.png",
+  "source_sha256": "a291df0aebae82c88555ff39e3c4d22d9bed7017c1188bcf4ac844eef56fe4d0",
+  "generated_at": "2026-10-05T00:11:07.219Z",
+  "elapsed_ms": 216795,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-89791237d56c87c4f116-480-c45b4a6e85eb.webp",
+      "sha256": "c45b4a6e85eb8f5cd79f9c1411f27822e8b5a9b3275ea750cf10341e8a077b19",
+      "bytes": 23928
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-89791237d56c87c4f116-5e74f42ef6b3.webp",
+      "sha256": "5e74f42ef6b39bee8d4b5cb053dc70cc3f16150be0d380aaabe5720ccca5f1e6",
+      "bytes": 74132
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a291df0aebae82c88555ff39e3c4d22d9bed7017c1188bcf4ac844eef56fe4d0",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-cherry-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Cherry Fruit Crunch Big Feed Dessert"
+    ],
+    "notes": "Apple and destoned cherry halves with small berries, oats/seeds and chopped dark chocolate combined. No dairy or syrup.",
+    "alt": "Apple and pitted cherry dessert with berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T00:16:57.663240+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/89791237d56c87c4f116a9c90c3852241bfe4fcece2c1b6f475cbffd4a351435.json"
+  },
+  "integrated": true,
+  "live": false
+}

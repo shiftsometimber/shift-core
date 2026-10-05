@@ -1,0 +1,100 @@
+{
+  "groupId": "324e4af2e36424871e489d13f82b2abda12ebe037d73c98e4ce2de09399c1f15",
+  "recipe_ids": [
+    "industrial-v3-pizza-mexican-tofu"
+  ],
+  "titles": [
+    "Shift Mexican Tofu Proper Pizza"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mexican Tofu Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"190g\",\"item\":\"firm tofu\"},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.\",\"Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.\",\"Drain the firm tofu, pat it dry and cut it into 2cm cubes. Coat with all the measured chilli powder and paprika. Use clean utensils for the cooked tofu.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the tofu cubes over a medium-high heat for about 8\u201310 minutes, turning so several faces become golden and the centre is hot. Follow any longer cooking instruction on the tofu pack.\",\"Transfer the browned tofu cubes to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the browned tofu cubes evenly on top. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only this exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, sesame/poppy seeds, cheese, cream, fresh green herb leaves, coriander, parsley, lemon wedges, side dishes or dipping sauce. All buns and flatbreads entirely plain unseeded wholemeal. Mexican finish is ONLY cold tomato ketchup mixed with cider vinegar drizzled on TOP after cooking or inside burger, no sauce ramekin. Spice is paprika/chilli only. Protein form must match the method: pork burger thin opaque 1cm cutlets, pork other dishes opaque1cm strips; salmon burger intact opaque cooked FILLET, other salmon dishes large opaque cooked FLAKES, not raw slices/chunks; tofu burger golden1cm SLAB, other tofu dishes2cm CUBES; turkey burger ONE1.5cm mince patty, turkey kebab exactly THREE short cooked koftas without skewers, turkey fries/pizza loose mince; chicken fries/pizza opaque cooked1.5cm strips. Lettuce shredded and tomato sliced only where listed. Pizza is visibly CHEESE-FREE passata base with exact cooked protein and peppers, ketchup finish. Fries golden plain ovenchips, thin softened red onion and mixed pepper strips. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "190g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.",
+    "Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.",
+    "Drain the firm tofu, pat it dry and cut it into 2cm cubes. Coat with all the measured chilli powder and paprika. Use clean utensils for the cooked tofu.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the tofu cubes over a medium-high heat for about 8\u201310 minutes, turning so several faces become golden and the centre is hot. Follow any longer cooking instruction on the tofu pack.",
+    "Transfer the browned tofu cubes to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the browned tofu cubes evenly on top. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-72215b4e-8a7b-4104-ab2a-c1a521d37bab.png",
+  "source_sha256": "cc6c652b8d48cb036f86051e2ab3e7f442a595aed7df8810c6d6fd717a0b155f",
+  "generated_at": "2026-10-05T00:23:12.384Z",
+  "elapsed_ms": 360915.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-324e4af2e36424871e48-retry4-480-3d07a43d0eeb.webp",
+      "sha256": "3d07a43d0eebcd4a4ad8a630409c55cbad23a8b18cd64978285df9eb634b3c9a",
+      "bytes": 35192
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-324e4af2e36424871e48-retry4-4d139eb1102e.webp",
+      "sha256": "4d139eb1102e3cd021482411ea51ddce08b5bd026c481259f96f13ca590f2ba1",
+      "bytes": 110536
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "cc6c652b8d48cb036f86051e2ab3e7f442a595aed7df8810c6d6fd717a0b155f",
+    "recipe_ids": [
+      "industrial-v3-pizza-mexican-tofu"
+    ],
+    "titles": [
+      "Shift Mexican Tofu Proper Pizza"
+    ],
+    "notes": "Pass: golden firm tofu cubes with chilli-paprika browned faces and thin mixed pepper strips on tomato passata and golden cooked individual pizza base, red ketchup-cider finishing drizzle. No cheese, meat, slab substitution, onion, fresh green garnish, cream or side food. Exact cheeseless cube tofu pizza and crop margin.",
+    "alt": "Mexican tofu pizza with tomato passata, mixed peppers and ketchup-cider finishing sauce",
+    "reviewed_at": "2026-10-05T00:24:29.949194+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1124.json"
+  },
+  "integrated": true,
+  "live": false
+}

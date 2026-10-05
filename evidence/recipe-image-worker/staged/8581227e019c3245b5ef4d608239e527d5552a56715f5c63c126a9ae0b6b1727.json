@@ -1,0 +1,83 @@
+{
+  "groupId": "8581227e019c3245b5ef4d608239e527d5552a56715f5c63c126a9ae0b6b1727",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-bbq-chicken-sausage"
+  ],
+  "titles": [
+    "Shift BBQ Chicken Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Chicken Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5575d315-5357-4033-9afe-2fd4e702b37d.png",
+  "source_sha256": "bc5e5101bf9c63ef9441d47f7951532c2045a9e29fa3fd66707c7ba34ccadb33",
+  "generated_at": "2026-10-04T21:13:06.777Z",
+  "elapsed_ms": 174760.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8581227e019c3245b5ef-480.webp",
+      "sha256": "6dad2dbba8c29ad605ef1fa42e8eb68e7f31f15af77fe3ef31a559ab0ae52417",
+      "bytes": 23638
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8581227e019c3245b5ef.webp",
+      "sha256": "e14007b2f5f54e4ffe546fe08b3cd48a5e9baf40f9eb76e3fc655eae7ed29078",
+      "bytes": 71682
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-bbq-chicken-sausage"
+    ],
+    "titles": [
+      "Shift BBQ Chicken Breakfast Wrap"
+    ],
+    "notes": "Rolled lightly crisped wholemeal wrap shows browned chicken breast with cooked white interior, softened red/yellow peppers and wilted spinach coated in barbecue sauce. No sausage, cheese or garnish. One believable serving with margin.",
+    "alt": "Toasted wholemeal wrap filled with barbecue chicken, peppers and spinach",
+    "reviewed_at": "2026-10-04T21:13:45.278897+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/55.json",
+    "source_sha256": "bc5e5101bf9c63ef9441d47f7951532c2045a9e29fa3fd66707c7ba34ccadb33"
+  },
+  "integrated": true,
+  "live": false
+}

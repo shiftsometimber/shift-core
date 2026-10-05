@@ -1,0 +1,87 @@
+{
+  "groupId": "101ee683e0485c9198506cc30da447e9881e1795bb20ebd3cbdd2e7702b16535",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-peri-peri-egg"
+  ],
+  "titles": [
+    "Shift Peri-Peri Egg Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Egg Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d0736bbb-ee2f-4c66-8d22-98da6d0087be.png",
+  "source_sha256": "32492adb63881bc1212c5fa2a44d4a63578033b6be6f222c42f1fad0a124b66b",
+  "generated_at": "2026-10-05T01:10:21.343Z",
+  "elapsed_ms": 180021,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-101ee683e0485c919850-480.webp",
+      "sha256": "69ff00ac3cc93026cc6ba1c65557c128bc97ffd16690794529b17e39da2b9000",
+      "bytes": 21650
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-101ee683e0485c919850-7dccd4ba4a3d.webp",
+      "sha256": "7dccd4ba4a3dc568cfaaa89c574216291e22f5a102a7a827fb6efe985c777fa7",
+      "bytes": 67044
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "32492adb63881bc1212c5fa2a44d4a63578033b6be6f222c42f1fad0a124b66b",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-peri-peri-egg"
+    ],
+    "titles": [
+      "Shift Peri-Peri Egg Breakfast Buttie"
+    ],
+    "notes": "Full-resolution inspection confirms set egg curds, wilted spinach, cooked tomato and peri-peri sauce inside a plain unseeded bap, matching the cooked filling method with no added garnish.",
+    "alt": "Peri-peri egg breakfast bap with cooked tomato and spinach",
+    "reviewed_at": "2026-10-05T01:14:37.820663+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/368.json"
+  },
+  "integrated": true,
+  "live": false
+}

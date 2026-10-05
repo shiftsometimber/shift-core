@@ -1,0 +1,86 @@
+{
+  "groupId": "c88f1e595589c78a56749003454dc8c11c2ffe12ccf349b6a2c121b652d1f89a",
+  "recipe_ids": [
+    "industrial-breakfast-overnight-oats-cherry-cocoa-5"
+  ],
+  "titles": [
+    "Cherry Cocoa Overnight Oats"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cherry Cocoa Overnight Oats. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"150ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"120g\",\"item\":\"cherries\"},{\"amount\":\"1/2 tsp\",\"item\":\"cocoa powder\"}]. Preparation: [\"Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.\",\"Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 100g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 120g cherries, 1/2 tsp cocoa powder. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "50g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "150ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "120g",
+      "item": "cherries"
+    },
+    {
+      "amount": "1/2 tsp",
+      "item": "cocoa powder"
+    }
+  ],
+  "method": [
+    "Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.",
+    "Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Stir in 100g 0% Greek yoghurt until evenly mixed.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 120g cherries, 1/2 tsp cocoa powder. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6785536e-a783-4bbd-aef0-b9153dd62dc5.png",
+  "source_sha256": "38417ca1e25bd17a4e38c30997306f25d462400732d2baabe4f7d993d97691b0",
+  "generated_at": "2026-10-04T21:04:14.652Z",
+  "elapsed_ms": 135344,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c88f1e595589c78a5674-480.webp",
+      "sha256": "d7cb9254ab79bf35bc55a4e335f6b3bdd26cc40fa45fa0eabe317616812f4f4c",
+      "bytes": 25122
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c88f1e595589c78a5674.webp",
+      "sha256": "16d9b57020a5c5e3f1066035b3bf7667825302481018b2bb818e59493c1251f9",
+      "bytes": 72958
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-overnight-oats-cherry-cocoa-5"
+    ],
+    "titles": [
+      "Cherry Cocoa Overnight Oats"
+    ],
+    "notes": "Soft soaked oats with milk and yoghurt, cut pitted cherries and cocoa mixed throughout; no dry granola or extra toppings. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Creamy overnight oats with pitted cherries and cocoa mixed through.",
+    "reviewed_at": "2026-10-04T21:13:56.961291+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "38417ca1e25bd17a4e38c30997306f25d462400732d2baabe4f7d993d97691b0"
+  }
+}

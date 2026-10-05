@@ -1,0 +1,80 @@
+{
+  "groupId": "348906fb0087eeca99ce1ca801bc61cec4f3fd7e0dcf56c2e9dbaa215c47ebf7",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-madras-chicken"
+  ],
+  "titles": [
+    "Shift Madras Chicken Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Madras Chicken Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"madras-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, seeds, cheese, cream, fresh green herbs, coriander, parsley, lemon wedges, side dishes or dipping sauce. Madras sauce lightly coats food, no separate sauce ramekin. Pie: plain water-mashed potato top fork roughened, visibly expose exact cooked filling at one edge; no buttery or cheese topping. Chicken/pork curry and chilli: fully opaque 2cm cubes; stir fry: thin 1cm cooked strips. Salmon: opaque cooked large flakes where method flakes; traybake may keep opaque fillet. Tofu: 2cm firm cubes. Slow cooker potatoes/carrot/onion tender and glossy, no crispy roasted edges. Rice exact brown or basmati per recipe. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "madras-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and chicken breast into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a200c88f-63a7-46b3-996f-4b4ef1e6b77d.png",
+  "source_sha256": "2bf16db314f0c256944efd6ee1fa64654600d7f76edc9a9c3b53c0571030517a",
+  "generated_at": "2026-10-04T23:23:25.514Z",
+  "elapsed_ms": 84040.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-348906fb0087eeca99ce-retry4-480-e48827f6f3fd.webp",
+      "sha256": "e48827f6f3fd074e7740c41be284f1ec8f70a5cb5e8b30341079d918262c4e42",
+      "bytes": 22150
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-348906fb0087eeca99ce-retry4-9470f3d4fe5d.webp",
+      "sha256": "9470f3d4fe5d1c3cecc17d20c35f65ed69a8928760dfd08806f315a227cd66b7",
+      "bytes": 70116
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2bf16db314f0c256944efd6ee1fa64654600d7f76edc9a9c3b53c0571030517a",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-madras-chicken"
+    ],
+    "titles": [
+      "Shift Madras Chicken Slow-Cooker Big Pot"
+    ],
+    "notes": "Pass: opaque chicken pieces with tender baby potatoes, carrot and translucent onion in glossy Madras cooking juices. Slow cooked appearance rather than roast tray edges. No broccoli, peppers, herbs or unlisted food; centred individual serving.",
+    "alt": "Slow-cooked Madras chicken with baby potatoes, carrots and onion",
+    "reviewed_at": "2026-10-04T23:23:56.231198+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1032.json"
+  },
+  "integrated": true,
+  "live": false
+}

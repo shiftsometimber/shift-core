@@ -1,0 +1,84 @@
+{
+  "groupId": "6da6272a35ff7ecfe21d46374839e278fbd876fe0d2086cf42d6fe351efbedb0",
+  "recipe_ids": [
+    "industrial-v3-sandwich-club-tuna"
+  ],
+  "titles": [
+    "Shift Club Tuna Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Club Tuna Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"mustard mayo\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the tuna in spring water, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the club flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the tuna in spring water, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "mustard mayo"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the tuna in spring water, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the club flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the tuna in spring water, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-87cfcf9e-eed5-4e97-8834-7a67d5a8f1f0.png",
+  "source_sha256": "3f5ec945f787c8155c316e34af00bdd20ae72226f490268803a5eed947de65ae",
+  "generated_at": "2026-10-05T01:14:29.155Z",
+  "elapsed_ms": 273741,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6da6272a35ff7ecfe21d-480.webp",
+      "sha256": "4da3f9cf5b67cc9522be7b85d4a19b577ec3fcbc2034feb5f184d8940ee9a771",
+      "bytes": 27440
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6da6272a35ff7ecfe21d.webp",
+      "sha256": "481567e60f1806bcfce87e23de25373762f087c83010aa08344572323dc4b4e8",
+      "bytes": 81700
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Wholemeal tuna sandwich with lettuce, tomato and mustard mayonnaise",
+    "notes": "Individual full-resolution inspection: Closed two-slice wholemeal sandwich with canned tuna flakes, lettuce, sliced tomatoes and mustard mayonnaise, no extra fillings. All exact ingredients, method and mapped titles reviewed.",
+    "source_sha256": "3f5ec945f787c8155c316e34af00bdd20ae72226f490268803a5eed947de65ae",
+    "recipe_ids": [
+      "industrial-v3-sandwich-club-tuna"
+    ],
+    "titles": [
+      "Shift Club Tuna Proper Sandwich"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "groupId": "380b229d33c36a594a2ecaf384f7fb3f2e5092dce558e1fd13366c52e582c822",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-biscoff-style-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Greek Yoghurt Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Greek Yoghurt Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the 0% Greek yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the 0% Greek yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nUse only listed foods, no honey, nuts, mint, syrup or garnish. Crushed wholegrain biscuit is modest irregular crumb pieces, no caramel spread or cookie butter. Berries just the listed25g, a small portion. All food safely inside frame. Exactly two plain unseeded wholegrain crackers where listed, no sesame/poppy seeds. Real snack box: dry oats, seeds, biscuit crumbs and two plain crackers in separate compartments from fruit and any creamy base. Cottage cheese has distinct small curds.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the 0% Greek yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the 0% Greek yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4dd70b0a-e4cc-4780-8f5a-8a8063ca2529.png",
+  "source_sha256": "83ee45f9326ada8227febca9d68404bdb86853cc6fd00675991e904bafcd585f",
+  "generated_at": "2026-10-04T23:31:06.662Z",
+  "elapsed_ms": 344449,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-380b229d33c36a594a2e-480-6b97b341ee17.webp",
+      "sha256": "6b97b341ee17b6b14eb4df4ed20d0701abe8cbbf70d472801525f7cf85847fbc",
+      "bytes": 22766
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-380b229d33c36a594a2e-e7aca47242bc.webp",
+      "sha256": "e7aca47242bc81ebe1bace58782a05ece120fb1fe63597f570193878a582c7aa",
+      "bytes": 69030
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "83ee45f9326ada8227febca9d68404bdb86853cc6fd00675991e904bafcd585f",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-biscoff-style-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Greek Yoghurt Work Snack Box"
+    ],
+    "notes": "Greek yoghurt and modest berry portion; dry biscuit crumbs, oats and pumpkin seeds separate, two plain unseeded crackers visible.",
+    "alt": "Greek yoghurt and berry snack box with biscuit crumbs, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-04T23:32:46.701702+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/380b229d33c36a594a2ecaf384f7fb3f2e5092dce558e1fd13366c52e582c822.json"
+  },
+  "integrated": true,
+  "live": false
+}

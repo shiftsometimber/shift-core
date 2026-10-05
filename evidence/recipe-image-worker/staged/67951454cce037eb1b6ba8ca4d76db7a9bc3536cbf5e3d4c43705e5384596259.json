@@ -1,0 +1,81 @@
+{
+  "groupId": "67951454cce037eb1b6ba8ca4d76db7a9bc3536cbf5e3d4c43705e5384596259",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-caramel-savory-box"
+  ],
+  "titles": [
+    "Shift Honey Banana Split Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Honey Banana Split Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"8g\",\"item\":\"honey\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the banana in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only; no nuts, mint, syrup, spices or decorative garnish. Small25g mixed berries. Pumpkin seeds the actual listed quantity. All food inside frame. Measured8g honey modestly folded through fruit/dairy, a little visible golden sheen, no honey jar, separate honey bowl or large pool. NO crackers, biscuits or cake. Finished fruit snack pot with honey lightly mixed into fruit and dry oats/seeds just added. No dairy base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "8g",
+      "item": "honey"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the banana in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c59095c5-6aed-4421-a00a-05d70fc32933.png",
+  "source_sha256": "15d2a85166da25c675bee68b0add9f504435eb78bc691afd5e1a60984a0692fc",
+  "generated_at": "2026-10-05T01:21:09.557Z",
+  "elapsed_ms": 306900,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-67951454cce037eb1b6b-480-9331a4d0b6bc.webp",
+      "sha256": "9331a4d0b6bcd5f63803b6f486db58c46e510d8fee3a785335b356617e5962b4",
+      "bytes": 26886
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-67951454cce037eb1b6b-fcfd280e550c.webp",
+      "sha256": "fcfd280e550c660194cdd35565b327af35c3317342043fa0de147b2d4044d824",
+      "bytes": 76546
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "15d2a85166da25c675bee68b0add9f504435eb78bc691afd5e1a60984a0692fc",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-caramel-savory-box"
+    ],
+    "titles": [
+      "Shift Honey Banana Split Snack Pot"
+    ],
+    "notes": "Banana and small berries with modest honey sheen, dry oats/seeds newly added at eating time. No dairy base or chocolate.",
+    "alt": "Honey banana snack pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T01:23:15.904879+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/67951454cce037eb1b6ba8ca4d76db7a9bc3536cbf5e3d4c43705e5384596259.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,83 @@
+{
+  "groupId": "ef0e0882442ec0298dda3f3be6983f1dd0402b74861bad14f44827946208ab4e",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-apple-protein-pudding"
+  ],
+  "titles": [
+    "Shift Apple Protein Pudding Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Protein Pudding Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"diced apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "diced apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4ef4e875-5047-4b98-a3cd-6c01188ee465.png",
+  "source_sha256": "4b739cb7f0a20d12d3cc32412915049a52b6e55fe9d714b5d0665c494987d664",
+  "generated_at": "2026-10-04T21:33:15.384Z",
+  "elapsed_ms": 310838,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ef0e0882442ec0298dda-480.webp",
+      "sha256": "a07a30d0f48c6b1b77332fad95b51d2556c16c219e4b7812732081588dd04046",
+      "bytes": 18162
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ef0e0882442ec0298dda.webp",
+      "sha256": "f7fce3a333e021393517e19ff2ea95e30c0759fa5491206cb0ad7706fbc47545",
+      "bytes": 54550
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-apple-protein-pudding"
+    ],
+    "titles": [
+      "Shift Apple Protein Pudding Protein Pot"
+    ],
+    "notes": "High-protein yoghurt fruit pot with apple and berries and dry oat and pumpkin-seed topping added at serving; no extras.",
+    "alt": "Protein yoghurt pot with apple, berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:36:22.312041+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/ef0e0882442ec0298dda3f3be6983f1dd0402b74861bad14f44827946208ab4e.json",
+    "source_sha256": "4b739cb7f0a20d12d3cc32412915049a52b6e55fe9d714b5d0665c494987d664"
+  },
+  "integrated": true,
+  "live": false
+}

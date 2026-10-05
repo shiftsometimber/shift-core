@@ -1,0 +1,82 @@
+{
+  "groupId": "b08ee0b2d21a9e2bf6805233da6e679f7de38f4e360d7007b42dffd5cf975828",
+  "recipe_ids": [
+    "industrial-v3-traybake-lemon-herb-beef"
+  ],
+  "titles": [
+    "Shift Lemon Herb Beef Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Beef Traybake. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and 5% beef mince. Get the pan properly hot first. Cook the 5% beef mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the 5% beef mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Dried parsley is small rehydrated flecks in the dressing, never fresh leaves as garnish. No lemon wedges. Depict the named protein in the exact cut and cooked form specified; pie topping is potato, not pastry.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and 5% beef mince. Get the pan properly hot first. Cook the 5% beef mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.",
+    "Check the 5% beef mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2f30d301-6252-4cba-8662-c9d8a12bbcc9.png",
+  "source_sha256": "fa60da7c4afadf5814df6a3bfb0679f74a8dcf1ef52c063e5f681a843d246961",
+  "generated_at": "2026-10-04T21:43:12.505Z",
+  "elapsed_ms": 28985.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b08ee0b2d21a9e2bf680-480.webp",
+      "sha256": "3ed93d353f7e2b690b71a50366bb19ff6d6e2def8b2dadb228291cfd42d1523c",
+      "bytes": 34332
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b08ee0b2d21a9e2bf680.webp",
+      "sha256": "297f70a24a3567e3ecc5245a9120c7bfa7bff15e90b510eb6f5c8272440f028d",
+      "bytes": 106354
+    }
+  ],
+  "review_status": "reject",
+  "review": {
+    "decision": "reject",
+    "source_sha256": "fa60da7c4afadf5814df6a3bfb0679f74a8dcf1ef52c063e5f681a843d246961",
+    "notes": "Recovered older checkpoint: later visual inspection rejected herb placement, dressing is specified cold/separate. Regeneration required.",
+    "reviewed_at": "2026-10-04T22:52:14.305538+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

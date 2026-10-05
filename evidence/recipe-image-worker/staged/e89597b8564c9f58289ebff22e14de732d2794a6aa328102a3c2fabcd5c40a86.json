@@ -1,0 +1,81 @@
+{
+  "groupId": "e89597b8564c9f58289ebff22e14de732d2794a6aa328102a3c2fabcd5c40a86",
+  "recipe_ids": [
+    "industrial-lunch-chicken-jacket-potato"
+  ],
+  "titles": [
+    "Chicken Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Chicken Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"300g\",\"item\":\"baking potato\"},{\"amount\":\"60g\",\"item\":\"mixed salad\"},{\"amount\":\"60g\",\"item\":\"spring onion\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured 0% Greek yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured 0% Greek yoghurt; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "300g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "60g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "60g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured 0% Greek yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured 0% Greek yoghurt; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-11f82e8b-e5a6-478b-af7b-8810004c7989.png",
+  "source_sha256": "67571f781f23f328b7e2ac93c062cccbc4b5708acee822b0d7d289f11fe83815",
+  "generated_at": "2026-10-04T23:44:55.557Z",
+  "elapsed_ms": 226177.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e89597b8564c9f58289e-480-d8500d7f6e34.webp",
+      "sha256": "d8500d7f6e34c5f27b32ac0a76ea915967e8d795448ed7296607e9112bd90740",
+      "bytes": 25434
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e89597b8564c9f58289e-de4367f7ceef.webp",
+      "sha256": "de4367f7ceef5d5981487a37c5f3c211f930b0b3957d09be2f0d9687a06655ed",
+      "bytes": 73312
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "67571f781f23f328b7e2ac93c062cccbc4b5708acee822b0d7d289f11fe83815",
+    "recipe_ids": [
+      "industrial-lunch-chicken-jacket-potato"
+    ],
+    "titles": [
+      "Chicken Jacket Potato"
+    ],
+    "notes": "Split crisp-skinned jacket potato with fluffy centre, chilled opaque shredded chicken and plain Greek yoghurt. Mixed leaves and sliced spring onion alongside only, not scattered on potato. Exact title matches.",
+    "alt": "Chicken jacket potato with Greek yoghurt and spring onion salad",
+    "reviewed_at": "2026-10-04T23:46:24.108440+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1487-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

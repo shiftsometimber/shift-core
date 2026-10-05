@@ -1,0 +1,6 @@
+{
+  "started_at": "2026-10-04T23:36:19.470942+00:00",
+  "baseline_integrated_new_groups": 862,
+  "baseline_bindings": 913,
+  "basis": "Actual exact bindings with passing source-specific review and both SHA-verified variants; exclude queued and generated-only images."
+}

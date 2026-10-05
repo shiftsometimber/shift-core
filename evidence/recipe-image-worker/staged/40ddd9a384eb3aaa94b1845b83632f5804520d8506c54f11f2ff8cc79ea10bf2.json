@@ -1,0 +1,87 @@
+{
+  "groupId": "40ddd9a384eb3aaa94b1845b83632f5804520d8506c54f11f2ff8cc79ea10bf2",
+  "recipe_ids": [
+    "industrial-snack-overnight-oats-pot-apple"
+  ],
+  "titles": [
+    "Apple Overnight Oats Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Apple Overnight Oats Pot. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"150ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"mixed berries\"},{\"amount\":\"60g\",\"item\":\"apple, diced\"}]. Preparation: [\"Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 100g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g mixed berries, 60g apple, diced. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nBread/wrap/pitta plain unseeded, no sesame/poppy garnish. Cheese ONLY where cheddar is explicitly listed in toastie. Tuna fibrous drained flakes, turkey plain unbreaded cooked breast, no protein substitution. Greek yoghurt only recipes listing yoghurt; grain salads and tomato-pesto pasta have no added mayo/cream/yoghurt. Couscous, brown rice and wholewheat pasta cooked. Lemon/lime dressings incorporated, no citrus wedge. Preserve all reserved raw side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not potato garnish. Pitta shown as TWO distinct filled halves of ONE wholemeal pitta, each visible, with reserved lettuce/cucumber side. Wholemeal wraps here have reserved leaf/tomato side salad. Apple cottage cheese includes diced apple folded through, pineapple chunks, wholegrain crackers and measured black pepper. Overnight oats fruit/berries mixed through softened chilled oats, not dry oats or separate decorative toppings. No added fruit, honey, nuts, herbs or garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "50g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "150ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "60g",
+      "item": "apple, diced"
+    }
+  ],
+  "method": [
+    "Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Stir in 100g 0% Greek yoghurt until evenly mixed.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g mixed berries, 60g apple, diced. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-125fbe60-e2f9-431c-b4fe-1e1b487ece01.png",
+  "source_sha256": "3e1d6b18c7e753c40f3bdf2206cea982da66069b05084eb0263a779a1b96c02a",
+  "generated_at": "2026-10-05T01:09:50.853Z",
+  "elapsed_ms": 406096.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-40ddd9a384eb3aaa94b1-480-c41d3ba11cce.webp",
+      "sha256": "c41d3ba11cce28c5a32d94b107071072ff38cad5d4c5c72aaff24eef3e9429ef",
+      "bytes": 19324
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-40ddd9a384eb3aaa94b1-bed70f499760.webp",
+      "sha256": "bed70f499760a007591694168057a12f4fb2468c37bde97c658c5deea891f3af",
+      "bytes": 55558
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3e1d6b18c7e753c40f3bdf2206cea982da66069b05084eb0263a779a1b96c02a",
+    "recipe_ids": [
+      "industrial-snack-overnight-oats-pot-apple"
+    ],
+    "titles": [
+      "Apple Overnight Oats Pot"
+    ],
+    "notes": "Soft hydrated overnight oats with milk/Greek yoghurt evenly mixed, diced apple and mixed berries folded through with berry streaks. No dry oats, separate decorative garnish, nuts, honey or unlisted fruit; exact title/method checked.",
+    "alt": "Apple overnight oats with Greek yoghurt and mixed berries",
+    "reviewed_at": "2026-10-05T01:10:21.792278+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2143.json"
+  },
+  "integrated": true,
+  "live": false
+}

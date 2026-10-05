@@ -1,0 +1,85 @@
+{
+  "groupId": "6c8ae111d511bb1c929512363d14d3562e2e0ceada37bc77f3d0f8fc3ed1bc03",
+  "recipe_ids": [
+    "industrial-lunch-tofu-wholemeal-wrap"
+  ],
+  "titles": [
+    "Tofu Wholemeal Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Tofu Wholemeal Wrap. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"firm tofu\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"salad leaves\"},{\"amount\":\"60g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt dressing\",\"allergens\":[\"milk\"]}]. Preparation: [\"Wash and dry the salad leaves and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal wrap can close.\",\"Choose firm tofu labelled ready to eat. Drain and pat it dry, then cut it into thin slices; keep it chilled until assembly.\",\"Use the measured 0% Greek yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Use a ready-to-eat wholemeal wrap and lay it flat on a clean plate.\",\"Combine the prepared filling with the measured 0% Greek yoghurt dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling down the centre, fold in the sides and roll up firmly. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nWholemeal bread/wrap/bagel/pitta plain unseeded; no sesame/poppy seed garnish or cheese unless explicitly listed. Tikka yoghurt only in the recipes listing it; no extra cream/mayo or coriander. Poultry plain cooked breast unbreaded; tuna fibrous drained flakes. Tofu specifically ready-to-eat pale unseared firm tofu: small cubes in grain salad, jacket, pasta and rice; thin slices in pitta, toastie, wrap. Never substitute feta, chicken or grilled tofu. Cheddar only listed Tofu Toastie, grated before toast. Preserve raw vegetables and all reserved side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not topping. Listed lemon/lime juice/dressing incorporated: no citrus wedges. Wholegrain mustard stays in grain-salad dressing, no seed garnish. Rice/pasta/couscous depicted cooked.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "salad leaves"
+    },
+    {
+      "amount": "60g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt dressing",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Wash and dry the salad leaves and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal wrap can close.",
+    "Choose firm tofu labelled ready to eat. Drain and pat it dry, then cut it into thin slices; keep it chilled until assembly.",
+    "Use the measured 0% Greek yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Use a ready-to-eat wholemeal wrap and lay it flat on a clean plate.",
+    "Combine the prepared filling with the measured 0% Greek yoghurt dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling down the centre, fold in the sides and roll up firmly. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f9a03283-dee9-4eae-b6b5-40b40931cbf1.png",
+  "source_sha256": "3c5b29b13f5c8fe434e721c5b2aa94209526c235d44ac2c1405a53e6a627efca",
+  "generated_at": "2026-10-05T00:59:30.204Z",
+  "elapsed_ms": 404118.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6c8ae111d511bb1c9295-480-fe5e88145ace.webp",
+      "sha256": "fe5e88145ace09c75c9f4ea7ebfa82f98d7ba7d72de0355e9f37aa1ecdec554b",
+      "bytes": 23454
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6c8ae111d511bb1c9295-4ebc98cd3bda.webp",
+      "sha256": "4ebc98cd3bda2eeffd28a82bf28fa9ecb4bf889233fdce4992ef92dac49a71e8",
+      "bytes": 68080
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3c5b29b13f5c8fe434e721c5b2aa94209526c235d44ac2c1405a53e6a627efca",
+    "recipe_ids": [
+      "industrial-lunch-tofu-wholemeal-wrap"
+    ],
+    "titles": [
+      "Tofu Wholemeal Wrap"
+    ],
+    "notes": "Plain wholemeal rolled wrap contains thin pale ready-to-eat firm tofu slices combined with Greek yoghurt dressing, fresh salad leaves/tomato, and reserved leaves/tomato side salad alongside. No seared tofu, cheese or herbs; exact title/method checked.",
+    "alt": "Tofu wholemeal wrap with Greek yoghurt dressing and tomato leaf salad",
+    "reviewed_at": "2026-10-05T01:01:47.761706+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2127.json"
+  },
+  "integrated": true,
+  "live": false
+}

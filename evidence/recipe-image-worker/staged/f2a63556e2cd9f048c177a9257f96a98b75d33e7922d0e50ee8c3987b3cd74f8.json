@@ -1,0 +1,78 @@
+{
+  "groupId": "f2a63556e2cd9f048c177a9257f96a98b75d33e7922d0e50ee8c3987b3cd74f8",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-sweet-chilli-pork"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Pork Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Pork Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-df79364a-3724-4c4e-8088-f99986f2e052.png",
+  "source_sha256": "0184ceabf94955bf26ddf358e01e23ab1ae2358aeee65af5961bf00301a32ce6",
+  "generated_at": "2026-10-05T01:10:22.763Z",
+  "elapsed_ms": 27349,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f2a63556e2cd9f048c17-480.webp",
+      "sha256": "52d739d761399a4756db5be3a66ae0c2087e090c3138fb02bc2286e15dc68acc",
+      "bytes": 24752
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f2a63556e2cd9f048c17.webp",
+      "sha256": "2a54fb1d03625f69b34177b7f8d03035410b901c0b77875687ca9cfcf5e959de",
+      "bytes": 74556
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Sweet chilli pork loin with tender baby potatoes, carrots and onion",
+    "notes": "Individual full-resolution inspection against all titles, ingredients and method: cooked lean pork loin pieces, tender baby potatoes, soft carrots and onion in glossy reduced sweet chilli cooking juices; no extras.",
+    "source_sha256": "0184ceabf94955bf26ddf358e01e23ab1ae2358aeee65af5961bf00301a32ce6",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-sweet-chilli-pork"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Pork Slow-Cooker Big Pot"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

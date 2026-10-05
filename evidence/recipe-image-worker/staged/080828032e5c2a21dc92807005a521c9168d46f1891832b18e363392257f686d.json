@@ -1,0 +1,76 @@
+{
+  "groupId": "080828032e5c2a21dc92807005a521c9168d46f1891832b18e363392257f686d",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-biscoff-style-overnight-oats"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Oat Crunch Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Oat Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"85g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Toast the rolled oats and seeds in a dry frying pan over a medium heat for 4\u20135 minutes, stirring until they smell nutty and take on a little colour.\",\"Tip the toasted crunch onto a plate and let it cool completely while you prepare the mixed berries and other measured fruit.\",\"Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.\",\"Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nUse only listed foods, no honey, nuts, mint, syrup or garnish. Crushed wholegrain biscuit is modest irregular crumb pieces, no caramel spread or cookie butter. Berries just the listed25g, a small portion. All food safely inside frame. Exactly two plain unseeded wholegrain crackers where listed, no sesame/poppy seeds. Dry toasted oats, pumpkin seeds and listed biscuit crumbs in small pot separate from modest measured berries; no creamy base.",
+  "ingredients": [
+    {
+      "amount": "85g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Toast the rolled oats and seeds in a dry frying pan over a medium heat for 4\u20135 minutes, stirring until they smell nutty and take on a little colour.",
+    "Tip the toasted crunch onto a plate and let it cool completely while you prepare the mixed berries and other measured fruit.",
+    "Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.",
+    "Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-cb442822-f04d-4aba-bef4-56df08f7c032.png",
+  "source_sha256": "53da458e3752b619f82267793e9c53c4f92d688d3858cdc0d4c460f9da32db2e",
+  "generated_at": "2026-10-04T23:31:25.894Z",
+  "elapsed_ms": 363681,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-080828032e5c2a21dc92-480-2aed4dc5effb.webp",
+      "sha256": "2aed4dc5effb395420a75f7c49a5ed57ba140123da71e8f7777ba681820e4d0a",
+      "bytes": 23182
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-080828032e5c2a21dc92-ff98010375f2.webp",
+      "sha256": "ff98010375f2d2fda62b189599a882c53c9f4e3be1f4237b77625f841fd5b61f",
+      "bytes": 78824
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "53da458e3752b619f82267793e9c53c4f92d688d3858cdc0d4c460f9da32db2e",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-biscoff-style-overnight-oats"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Oat Crunch Snack Pot"
+    ],
+    "notes": "Dry toasted rolled oats and pumpkin seeds with biscuit crumbs separately portioned from modest berries, no milk or creamy base. Correct crunch preparation.",
+    "alt": "Toasted oats, pumpkin seeds and biscuit crumbs beside mixed berries.",
+    "reviewed_at": "2026-10-04T23:32:46.182498+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/080828032e5c2a21dc92807005a521c9168d46f1891832b18e363392257f686d.json"
+  },
+  "integrated": true,
+  "live": false
+}

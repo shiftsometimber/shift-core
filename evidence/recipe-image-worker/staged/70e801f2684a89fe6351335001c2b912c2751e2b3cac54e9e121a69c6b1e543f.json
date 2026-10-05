@@ -1,0 +1,87 @@
+{
+  "groupId": "70e801f2684a89fe6351335001c2b912c2751e2b3cac54e9e121a69c6b1e543f",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-biscoff-style-overnight-oats"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Overnight Oats Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Overnight Oats Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 20g crushed wholegrain biscuit, 10g pumpkin seeds, 15g dark chocolate, chopped separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup or garnish. No cake, pie or biscuit crust. Mixed berries just the listed25g, a small portion. All food safely inside frame. NO side crackers or whole biscuits anywhere. Crushed biscuit ONLY if explicitly listed, small irregular crumbs as topping; no intact biscuits. Fully softened overnight milk oats with small berry portion mixed through. Listed biscuit crumbs/seeds/chocolate topped at serving. No dry oats heap. Side crackers ONLY if exact ingredient list has them.",
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 20g crushed wholegrain biscuit, 10g pumpkin seeds, 15g dark chocolate, chopped separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6e18078f-b8b7-44ce-afbe-95b2781effe4.png",
+  "source_sha256": "8e0415b3ad3976c2c880b1f391524f6e791c75a0e3660603704e1cc5c54d1f6b",
+  "generated_at": "2026-10-04T23:36:24.130Z",
+  "elapsed_ms": 22589,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-70e801f2684a89fe6351-480-3c31cf220212.webp",
+      "sha256": "3c31cf2202128f079854f301aae0a5caaaef405147691278083b28f545dcd31f",
+      "bytes": 24812
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-70e801f2684a89fe6351-61fc9a336695.webp",
+      "sha256": "61fc9a336695b727c898afcaea0b3e80207c0c8ff57d60356a9e2d9d3c7f1329",
+      "bytes": 73844
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8e0415b3ad3976c2c880b1f391524f6e791c75a0e3660603704e1cc5c54d1f6b",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-biscoff-style-overnight-oats"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Overnight Oats Big Feed Dessert"
+    ],
+    "notes": "Targeted retry now shows only soft milk-soaked berry oats with crushed biscuit, pumpkin seeds and chopped chocolate topping. No unlisted side crackers. Exact recipe and method checked.",
+    "alt": "Berry overnight oats with biscuit crumbs, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-04T23:44:03.149420+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/70e801f2684a89fe6351335001c2b912c2751e2b3cac54e9e121a69c6b1e543f.json"
+  },
+  "integrated": true,
+  "live": false
+}

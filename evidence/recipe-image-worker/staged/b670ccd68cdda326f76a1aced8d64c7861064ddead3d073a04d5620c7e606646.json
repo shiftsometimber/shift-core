@@ -1,0 +1,80 @@
+{
+  "groupId": "b670ccd68cdda326f76a1aced8d64c7861064ddead3d073a04d5620c7e606646",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-tikka-tofu"
+  ],
+  "titles": [
+    "Shift Tikka Tofu Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Tofu Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"tikka masala sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish. If specified, depict exactly THREE koftas. Fully cooked meat.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka masala sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4dc8f6ea-1331-47fd-a60f-27f459395be6.png",
+  "source_sha256": "6b8e23f089a0b61008b408e60189a3fec5a7edaa6557120102896b22bd452860",
+  "generated_at": "2026-10-04T23:00:54.720Z",
+  "elapsed_ms": 386040.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b670ccd68cdda326f76a-480-e50b08b15f95.webp",
+      "sha256": "e50b08b15f95077c20bad8f096de719cbb7aa1efd646bc0a1daeef0e0017d867",
+      "bytes": 25300
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b670ccd68cdda326f76a-a08d90ab439e.webp",
+      "sha256": "a08d90ab439e0eb73d66b911dc18a39181f536b8157bf5117ee90e03f1a18723",
+      "bytes": 79338
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6b8e23f089a0b61008b408e60189a3fec5a7edaa6557120102896b22bd452860",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-tikka-tofu"
+    ],
+    "titles": [
+      "Shift Tikka Tofu Slow-Cooker Big Pot"
+    ],
+    "notes": "Browned tofu, tender baby potatoes, carrots and onion in glossy tikka cooking juices; no extra vegetables or garnish.",
+    "alt": "Slow-cooked tikka tofu with potatoes, carrots and onion",
+    "reviewed_at": "2026-10-04T23:03:56.834322+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1428-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

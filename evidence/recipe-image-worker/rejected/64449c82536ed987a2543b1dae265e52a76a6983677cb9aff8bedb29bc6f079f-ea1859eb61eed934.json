@@ -1,0 +1,19 @@
+{
+  "groupId": "64449c82536ed987a2543b1dae265e52a76a6983677cb9aff8bedb29bc6f079f",
+  "source_sha256": "ea1859eb61eed9341382d0702c13d1c0191fd1f94b7c64903d817850484c7548",
+  "review": {
+    "decision": "reject",
+    "source_sha256": "ea1859eb61eed9341382d0702c13d1c0191fd1f94b7c64903d817850484c7548",
+    "recipe_ids": [
+      "industrial-dinner-prawn-traybake"
+    ],
+    "titles": [
+      "Prawn Traybake"
+    ],
+    "notes": "Unlisted dried herb-like flecks cover potatoes and prawns; repeat with plain oil-roasted surfaces and natural browning only.",
+    "alt": "",
+    "reviewed_at": "2026-10-04T23:32:39.070065+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  },
+  "reason": "Unlisted dried herb-like flecks cover potatoes and prawns; repeat with plain oil-roasted surfaces and natural browning only."
+}

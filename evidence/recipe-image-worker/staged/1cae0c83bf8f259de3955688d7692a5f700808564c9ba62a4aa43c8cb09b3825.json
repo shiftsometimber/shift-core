@@ -1,0 +1,83 @@
+{
+  "groupId": "1cae0c83bf8f259de3955688d7692a5f700808564c9ba62a4aa43c8cb09b3825",
+  "recipe_ids": [
+    "industrial-lunch-turkey-rice-bowl"
+  ],
+  "titles": [
+    "Turkey Rice Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Turkey Rice Bowl. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"75g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"60g\",\"item\":\"mixed peppers\"},{\"amount\":\"60g\",\"item\":\"sweetcorn\"},{\"amount\":\"40g\",\"item\":\"lime yoghurt dressing\",\"allergens\":[\"milk\"]}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured lime yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured lime yoghurt dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nBread/wrap/pitta plain unseeded, no sesame/poppy garnish. Cheese ONLY where cheddar is explicitly listed in toastie. Tuna fibrous drained flakes, turkey plain unbreaded cooked breast, no protein substitution. Greek yoghurt only recipes listing yoghurt; grain salads and tomato-pesto pasta have no added mayo/cream/yoghurt. Couscous, brown rice and wholewheat pasta cooked. Lemon/lime dressings incorporated, no citrus wedge. Preserve all reserved raw side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not potato garnish. Pitta shown as TWO distinct filled halves of ONE wholemeal pitta, each visible, with reserved lettuce/cucumber side. Wholemeal wraps here have reserved leaf/tomato side salad. Apple cottage cheese includes diced apple folded through, pineapple chunks, wholegrain crackers and measured black pepper. Overnight oats fruit/berries mixed through softened chilled oats, not dry oats or separate decorative toppings. No added fruit, honey, nuts, herbs or garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "75g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "60g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "60g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "40g",
+      "item": "lime yoghurt dressing",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured lime yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured lime yoghurt dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4a98b835-9dbf-4109-8ea9-bbd6cc6cf665.png",
+  "source_sha256": "ac94a43404e37315ec9f0633222869106f01d82a3e07d92097ae529555d636da",
+  "generated_at": "2026-10-05T01:08:17.571Z",
+  "elapsed_ms": 312815.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1cae0c83bf8f259de395-480-308d96e1973e.webp",
+      "sha256": "308d96e1973e9fc9a2bf8c7670696b58b865fab004f1c33dd1896f85f265ea88",
+      "bytes": 23804
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1cae0c83bf8f259de395-ccc593a730fb.webp",
+      "sha256": "ccc593a730fbc48004107c6b6532b7c5f64300058bfe9cedc83d0ef5e7114254",
+      "bytes": 66802
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ac94a43404e37315ec9f0633222869106f01d82a3e07d92097ae529555d636da",
+    "recipe_ids": [
+      "industrial-lunch-turkey-rice-bowl"
+    ],
+    "titles": [
+      "Turkey Rice Bowl"
+    ],
+    "notes": "Cooked brown rice folded with ready-to-eat plain turkey slices, raw diced mixed peppers, sweetcorn and listed lime yoghurt dressing. No citrus wedge, extra herbs, cheese or unlisted condiment; exact title/method checked.",
+    "alt": "Turkey brown rice bowl with peppers, sweetcorn and lime yoghurt dressing",
+    "reviewed_at": "2026-10-05T01:10:20.790702+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2139.json"
+  },
+  "integrated": true,
+  "live": false
+}

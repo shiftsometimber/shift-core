@@ -1,0 +1,78 @@
+{
+  "groupId": "449749216570177904bb4486adc461e04b07a17274733be87be88263ea3a4e68",
+  "recipe_ids": [
+    "industrial-dinner-lean-beef-curry"
+  ],
+  "titles": [
+    "Lean Beef Curry"
+  ],
+  "prompt": "Photograph the actual completed recipe with careful food styling, natural side light and believable appetising texture. No added garnish or ingredient. Match protein cut, quantities and preparation exactly. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Lean Beef Curry. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"70g dry\",\"item\":\"basmati rice, dry\"},{\"amount\":\"120g\",\"item\":\"chopped tomatoes\"},{\"amount\":\"100g\",\"item\":\"spinach\"},{\"amount\":\"25g\",\"item\":\"medium curry paste\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 70g dry basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Wash and drain the 100g spinach. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.\",\"Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Put the 120g chopped tomatoes and 25g medium curry paste into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.\",\"Add the washed spinach in two handfuls, cover for 1 minute, then stir. Cook for another 2\u20133 minutes until wilted throughout.\",\"Return the cooked 5% beef mince and its juices to the pan and stir through. Heat everything together over a low heat for 2\u20133 minutes, stirring gently, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Exact ingredients and method are authoritative. No food outside these ingredients.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "70g dry",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "chopped tomatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "spinach"
+    },
+    {
+      "amount": "25g",
+      "item": "medium curry paste"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 70g dry basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Wash and drain the 100g spinach. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.",
+    "Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Put the 120g chopped tomatoes and 25g medium curry paste into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.",
+    "Add the washed spinach in two handfuls, cover for 1 minute, then stir. Cook for another 2\u20133 minutes until wilted throughout.",
+    "Return the cooked 5% beef mince and its juices to the pan and stir through. Heat everything together over a low heat for 2\u20133 minutes, stirring gently, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0da3f630-8be8-42b5-b260-b00a4a709404.png",
+  "source_sha256": "c8ed57bbfe2682988136cd27c7e910dcb8d0076c3a89ca60c564af75c492081b",
+  "generated_at": "2026-10-04T23:38:36.044Z",
+  "elapsed_ms": 312576,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-449749216570177904bb-480.webp",
+      "sha256": "5a5b51b15d77d316de04ccb10b1da1cc697c7a665b7943aa68e0ff21968983cd",
+      "bytes": 31840
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-449749216570177904bb.webp",
+      "sha256": "e576480d478b882193ff865672193dd349f65721110530e3f1a69a723a3dd8b0",
+      "bytes": 94814
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c8ed57bbfe2682988136cd27c7e910dcb8d0076c3a89ca60c564af75c492081b",
+    "recipe_ids": [
+      "industrial-dinner-lean-beef-curry"
+    ],
+    "titles": [
+      "Lean Beef Curry"
+    ],
+    "notes": "Fine cooked beef mince with tomato and wilted spinach curry over white basmati; no steak chunks or garnish.",
+    "alt": "Lean beef mince and spinach curry with basmati rice",
+    "reviewed_at": "2026-10-04T23:45:25.954543+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

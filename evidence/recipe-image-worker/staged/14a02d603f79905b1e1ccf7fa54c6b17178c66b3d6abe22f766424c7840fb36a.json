@@ -1,0 +1,81 @@
+{
+  "groupId": "14a02d603f79905b1e1ccf7fa54c6b17178c66b3d6abe22f766424c7840fb36a",
+  "recipe_ids": [
+    "industrial-breakfast-cottage-cheese-toast-cherry-cocoa-5"
+  ],
+  "titles": [
+    "Cottage Cheese Rocket Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cottage Cheese Rocket Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"rocket\"},{\"amount\":\"1 tsp\",\"item\":\"lemon juice\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Toast the bread.\",\"Prepare the vegetables.\",\"Spoon cottage cheese over the toast.\",\"Top with vegetables, lemon juice and black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "rocket"
+    },
+    {
+      "amount": "1 tsp",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Toast the bread.",
+    "Prepare the vegetables.",
+    "Spoon cottage cheese over the toast.",
+    "Top with vegetables, lemon juice and black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8a0e8b93-3154-4e89-ab58-9d2ee0ea3bcf.png",
+  "source_sha256": "c3374931cfc1affe9f493f9615d5f23740e0d5646ad020bd36472dce9023a67f",
+  "generated_at": "2026-10-04T21:08:06.453Z",
+  "elapsed_ms": 367145,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-14a02d603f79905b1e1c-480.webp",
+      "sha256": "bc67b1f9f5a10ad65a37b402c4ccfc7a12c32251da11ac4c7f91fad2e3a904be",
+      "bytes": 31770
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-14a02d603f79905b1e1c.webp",
+      "sha256": "1644813b90816b1898ac6d4b4668ea21f9ff088a5853ac00b189c5a6b566df53",
+      "bytes": 92342
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-cottage-cheese-toast-cherry-cocoa-5"
+    ],
+    "titles": [
+      "Cottage Cheese Rocket Wholemeal Toast"
+    ],
+    "notes": "Two wholemeal toast slices with cottage cheese, raw rocket and black pepper; no garnish; both slices centrally framed. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Cottage cheese on wholemeal toast topped with fresh rocket and black pepper.",
+    "reviewed_at": "2026-10-04T21:13:56.961431+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "c3374931cfc1affe9f493f9615d5f23740e0d5646ad020bd36472dce9023a67f"
+  }
+}

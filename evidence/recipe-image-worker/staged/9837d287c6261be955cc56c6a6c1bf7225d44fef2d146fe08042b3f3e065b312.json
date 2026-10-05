@@ -1,0 +1,82 @@
+{
+  "groupId": "9837d287c6261be955cc56c6a6c1bf7225d44fef2d146fe08042b3f3e065b312",
+  "recipe_ids": [
+    "industrial-breakfast-yoghurt-pot-cherry-cocoa-5"
+  ],
+  "titles": [
+    "Cherry Cocoa Yoghurt Crunch Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cherry Cocoa Yoghurt Crunch Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"cherries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"1/2 tsp\",\"item\":\"cocoa powder\"}]. Preparation: [\"Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.\",\"Spoon the yoghurt into a bowl or lidded pot.\",\"Wash and prepare the fruit, removing any stones, cores or inedible peel, then weigh the edible portion and add it to the yoghurt.\",\"Top with oats and pumpkin seeds.\",\"Finish with the flavouring just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "cherries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "1/2 tsp",
+      "item": "cocoa powder"
+    }
+  ],
+  "method": [
+    "Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.",
+    "Spoon the yoghurt into a bowl or lidded pot.",
+    "Wash and prepare the fruit, removing any stones, cores or inedible peel, then weigh the edible portion and add it to the yoghurt.",
+    "Top with oats and pumpkin seeds.",
+    "Finish with the flavouring just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6305dee8-1ea0-4f5e-ba2a-721355d716f5.png",
+  "source_sha256": "31d62ba123ce08b89412b5329479d043432fc60410e1a2ecec407e5d9339294a",
+  "generated_at": "2026-10-04T21:05:04.797Z",
+  "elapsed_ms": 185489,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9837d287c6261be955cc-480.webp",
+      "sha256": "b690857a82b32ec8fc4b7bd4790f6abab1f156cbff3cf69c5e95c253d4a98c72",
+      "bytes": 20614
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9837d287c6261be955cc.webp",
+      "sha256": "ec0ea5186868719d21fd57aed8908174aca599ff41389adbae8348854e6a8c91",
+      "bytes": 65252
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-yoghurt-pot-cherry-cocoa-5"
+    ],
+    "titles": [
+      "Cherry Cocoa Yoghurt Crunch Pot"
+    ],
+    "notes": "Yoghurt base, cut pitted cherries, rolled oat flakes, pumpkin seeds and cocoa; layered crunch rather than cooked porridge; no cherry stems or extra garnish. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Greek yoghurt topped with pitted cherries, rolled oats, pumpkin seeds and cocoa.",
+    "reviewed_at": "2026-10-04T21:13:56.961586+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "31d62ba123ce08b89412b5329479d043432fc60410e1a2ecec407e5d9339294a"
+  }
+}

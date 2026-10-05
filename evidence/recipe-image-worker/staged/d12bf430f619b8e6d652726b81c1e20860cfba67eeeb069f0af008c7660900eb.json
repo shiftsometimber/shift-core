@@ -1,0 +1,87 @@
+{
+  "groupId": "d12bf430f619b8e6d652726b81c1e20860cfba67eeeb069f0af008c7660900eb",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-weekend-turkey"
+  ],
+  "titles": [
+    "Shift Weekend Turkey Breakfast Hash"
+  ],
+  "prompt": "Photograph the actual completed recipe with careful food styling, natural side light and believable appetising texture. No added garnish or ingredient. Match protein cut, quantities and preparation exactly. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Turkey Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"110g\",\"item\":\"onion\",\"allergens\":[]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Keep the already-cooked turkey refrigerated while preparing the vegetables. Add it near the end and heat until steaming hot throughout.\",\"Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the cooked turkey breast and heat gently until steaming hot throughout.\",\"Stir in the listed flavour ingredients (10g tomato ketchup, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Exact ingredients and method are authoritative. No food outside these ingredients.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "110g",
+      "item": "onion",
+      "allergens": []
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "10g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Keep the already-cooked turkey refrigerated while preparing the vegetables. Add it near the end and heat until steaming hot throughout.",
+    "Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the cooked turkey breast and heat gently until steaming hot throughout.",
+    "Stir in the listed flavour ingredients (10g tomato ketchup, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e9dc9039-13de-47da-a7c4-ffd16cc84849.png",
+  "source_sha256": "d636fdcc0b0c13f97981250b96fa435e3bf9920c9240f78adbef1c5ee56a764a",
+  "generated_at": "2026-10-04T23:34:34.648Z",
+  "elapsed_ms": 71180,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d12bf430f619b8e6d652-480.webp",
+      "sha256": "236ea7148c25024fd63a9af06c6842a0fba277536c8d8be431f4464f2f6e0b2f",
+      "bytes": 26826
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d12bf430f619b8e6d652.webp",
+      "sha256": "ff6239b3d19b69296fb4a81a45f84c31e9f52071d86d7b10a414f5a25837a297",
+      "bytes": 84062
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "d636fdcc0b0c13f97981250b96fa435e3bf9920c9240f78adbef1c5ee56a764a",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-weekend-turkey"
+    ],
+    "titles": [
+      "Shift Weekend Turkey Breakfast Hash"
+    ],
+    "notes": "Small golden potato pieces, cooked turkey, softened onion and mixed peppers coated lightly with ketchup; no egg.",
+    "alt": "Turkey breakfast hash with potatoes, peppers and onion",
+    "reviewed_at": "2026-10-04T23:45:25.952177+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

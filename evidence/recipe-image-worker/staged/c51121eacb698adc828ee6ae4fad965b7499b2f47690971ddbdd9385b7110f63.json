@@ -1,0 +1,84 @@
+{
+  "groupId": "c51121eacb698adc828ee6ae4fad965b7499b2f47690971ddbdd9385b7110f63",
+  "recipe_ids": [
+    "industrial-v3-pasta-harissa-tofu"
+  ],
+  "titles": [
+    "Shift Harissa Tofu Proper Pasta"
+  ],
+  "prompt": "Generate a fresh faithful editorial food photograph, without using a prior image. The courgette and cherry tomatoes MUST both be DICED into bite-size pieces before cooking. Show softened diced courgette chunks and cut tomato pieces with visible cut faces, no whole round cherry tomatoes or round courgette slices. No garnish, extra vegetables, herbs or substitutions. Natural window light, appetising truthful texture, plain ceramic serving dish. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Harissa Tofu Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"harissa tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the harissa tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured harissa tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "harissa tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the harissa tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured harissa tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-42d0c73c-d529-437b-9196-d873a2c883f0.png",
+  "source_sha256": "12aa758fefa2b239aafc74bafe2df46d2ec950e256d82649a6b82e8cc3befba9",
+  "generated_at": "2026-10-05T00:23:30.689Z",
+  "elapsed_ms": 95559,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c51121eacb698adc828e-retry2-480.webp",
+      "sha256": "ac682fa1e15dff8463ad4dba83086d56958389d852301dff7b8a842d13253e2f",
+      "bytes": 31612
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c51121eacb698adc828e-retry2.webp",
+      "sha256": "ff086926139e5da15f55cd3b1e2ca988f02b7c68bb1a9de1d74826b99bf8d4c2",
+      "bytes": 102104
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "12aa758fefa2b239aafc74bafe2df46d2ec950e256d82649a6b82e8cc3befba9",
+    "recipe_ids": [
+      "industrial-v3-pasta-harissa-tofu"
+    ],
+    "titles": [
+      "Shift Harissa Tofu Proper Pasta"
+    ],
+    "notes": "Corrected diced courgette chunks and cut softened tomato pieces with golden firm tofu cubes and wholewheat pasta, light harissa tomato coating.",
+    "alt": "Shift Harissa Tofu Proper Pasta: corrected diced courgette chunks and cut softened tomato pieces with golden firm tofu cubes and wholewheat pasta, light harissa tomato coating.",
+    "reviewed_at": "2026-10-05T00:33:13.789266+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

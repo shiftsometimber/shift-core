@@ -1,0 +1,94 @@
+{
+  "groupId": "a6d7dec1328cbb2b5f6ef413590313d93e66393a5d53f918ad3cfb0e725cd065",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-nashville-salmon"
+  ],
+  "titles": [
+    "Shift Nashville-Style Salmon Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Nashville-Style Salmon Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured paprika, chilli powder and garlic powder. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot. Keep the salmon in large flakes rather than mashing it.\",\"Pile the crisp oven chips onto a plate and spoon over large flakes of the cooked salmon, the red onion and peppers. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, appetising professional natural daylight, credible single serving with generous crop margin. No unlisted garnish, green herb flecks/leaves, sesame/poppy seeds, cheese, cream, breading, fried batter, lemon wedges, side dishes or dipping sauce. Buns and flatbreads plain unseeded wholemeal. Protein shape/state precisely follows method: beef/turkey burger ONE cooked mince patty1.5cm; beef/turkey kebab THREE short cooked koftas without skewers; beef/turkey fries/pizza loose mince crumbles; chicken burger thin cooked opaque unbreaded cutlets1.5cm, other chicken1.5cm strips; pork burger opaque cooked1cm cutlets, other pork1cm strips; salmon burger whole opaque cooked FILLET, other salmon large irregular opaque cooked FLAKES with separated layers, not raw chunks; tofu burger golden1cmSLAB, other tofu2cmCUBES. Lettuce shredded and tomato sliced only where listed. Pizza CHEESE-FREE passata base exact protein and thin mixed pepper strips. Fries golden plain oven chips, thin red onion and pepper strips. Nashville dry paprika/chilli/garlic coating only. NO ketchup, mayonnaise, barbecue sauce, hot sauce, white/red finishing drizzle, mustard or any sauce; only listed tomato passata under pizza topping is permitted. No sauce on burgers/kebabs/fries.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured paprika, chilli powder and garlic powder. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot. Keep the salmon in large flakes rather than mashing it.",
+    "Pile the crisp oven chips onto a plate and spoon over large flakes of the cooked salmon, the red onion and peppers. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-715340f2-9efe-4983-b84a-6aea99af4b78.png",
+  "source_sha256": "ddd263cc6dab321f919624a3d9b2d0b38420563eca99a5112ba8dd7e4c7decc1",
+  "generated_at": "2026-10-05T00:34:45.655Z",
+  "elapsed_ms": 353348.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a6d7dec1328cbb2b5f6e-retry4-480-62299212f23d.webp",
+      "sha256": "62299212f23d4f88ac60fda318dcbd4c8240aa2e41c02d74324e32f844cd3c3d",
+      "bytes": 31916
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a6d7dec1328cbb2b5f6e-retry4-a8617726ff1a.webp",
+      "sha256": "a8617726ff1aab8f1c417aae2fbc94d7eb6bed390fa816249af583ddc3c2e7b5",
+      "bytes": 98754
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ddd263cc6dab321f919624a3d9b2d0b38420563eca99a5112ba8dd7e4c7decc1",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-nashville-salmon"
+    ],
+    "titles": [
+      "Shift Nashville-Style Salmon Loaded Fries"
+    ],
+    "notes": "Pass: large irregular opaque cooked salmon flakes with separated layers and dry paprika-chilli-garlic browned surfaces over plain golden oven chips, thin red onion and mixed pepper strips. No ketchup, white sauce, cheese, breading, raw translucent fish, fresh green garnish or extra foods. Exact Nashville dry-spiced flaked salmon fries assembly and crop margin.",
+    "alt": "Nashville-style salmon loaded oven chips with red onion and mixed peppers",
+    "reviewed_at": "2026-10-05T00:35:25.751072+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1143.json"
+  },
+  "integrated": true,
+  "live": false
+}

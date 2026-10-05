@@ -1,0 +1,84 @@
+{
+  "groupId": "b97648bf8b98c70d311a52ef8d0f267d3baae4b538ac8ec96d34d11a673ae7cf",
+  "recipe_ids": [
+    "industrial-lunch-chicken-pitta"
+  ],
+  "titles": [
+    "Chicken Pitta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Chicken Pitta. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal pitta\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"shredded lettuce\"},{\"amount\":\"60g\",\"item\":\"cucumber\"},{\"amount\":\"40g\",\"item\":\"lemon yoghurt dressing\",\"allergens\":[\"milk\"]}]. Preparation: [\"Wash and dry the shredded lettuce and cucumber; shred the leaves and slice the cucumber thinly. Reserve most of the leaves and any excess cucumber for a side salad so the wholemeal pitta can close.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured lemon yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Use ready-to-eat wholemeal pitta. Cut it into two halves and carefully open the pockets.\",\"Combine the prepared filling with the measured lemon yoghurt dressing. Add a small handful of the prepared leaves and some sliced cucumber. Spoon a manageable layer of filling into each pitta pocket. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal pitta",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "shredded lettuce"
+    },
+    {
+      "amount": "60g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "40g",
+      "item": "lemon yoghurt dressing",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Wash and dry the shredded lettuce and cucumber; shred the leaves and slice the cucumber thinly. Reserve most of the leaves and any excess cucumber for a side salad so the wholemeal pitta can close.",
+    "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured lemon yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Use ready-to-eat wholemeal pitta. Cut it into two halves and carefully open the pockets.",
+    "Combine the prepared filling with the measured lemon yoghurt dressing. Add a small handful of the prepared leaves and some sliced cucumber. Spoon a manageable layer of filling into each pitta pocket. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ead9b345-60cb-4ea7-944e-1ff109f8c1a1.png",
+  "source_sha256": "053e87930dd96b9d324b8ab3125b74fd388525b678a66ac49080a3f28277169d",
+  "generated_at": "2026-10-04T23:45:49.388Z",
+  "elapsed_ms": 280008.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b97648bf8b98c70d311a-480-2e920c973def.webp",
+      "sha256": "2e920c973def19ef233e4a30d3b0f88dbc9cc8fe546dc4ec8699239fc1839d2e",
+      "bytes": 28408
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b97648bf8b98c70d311a-6df7258d087a.webp",
+      "sha256": "6df7258d087a77fba7aa33d6dc9c6677ca5cc4978ffb9af91d8034f94e3d5671",
+      "bytes": 80260
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "053e87930dd96b9d324b8ab3125b74fd388525b678a66ac49080a3f28277169d",
+    "recipe_ids": [
+      "industrial-lunch-chicken-pitta"
+    ],
+    "titles": [
+      "Chicken Pitta"
+    ],
+    "notes": "Two distinct plain wholemeal pitta half pockets with opaque cooked shredded chicken bound in lemon yoghurt dressing, cucumber and lettuce, remaining salad alongside. No other toppings; exact title matches.",
+    "alt": "Two chicken pitta pockets with cucumber, lettuce and lemon yoghurt dressing",
+    "reviewed_at": "2026-10-04T23:46:24.607306+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1489-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,91 @@
+{
+  "groupId": "c001ec687768aaf2b30c6f03088839b6cfd7efd1004cc76f1350602a9e0d322e",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-nashville-pork"
+  ],
+  "titles": [
+    "Shift Nashville-Style Pork Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Nashville-Style Pork Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Cut the lean pork loin across the grain into strips about 1cm thick. Coat with all the measured paprika, chilli powder and garlic powder. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the pork strips over a medium-high heat for about 7\u20139 minutes, turning regularly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.\",\"Pile the crisp oven chips onto a plate and spoon over the cooked pork strips, the red onion and peppers. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, appetising professional natural daylight, credible single serving with generous crop margin. No unlisted garnish, green herb flecks/leaves, sesame/poppy seeds, cheese, cream, breading, fried batter, lemon wedges, side dishes or dipping sauce. Buns and flatbreads plain unseeded wholemeal. Protein shape/state precisely follows method: beef/turkey burger ONE cooked mince patty1.5cm; beef/turkey kebab THREE short cooked koftas without skewers; beef/turkey fries/pizza loose mince crumbles; chicken burger thin cooked opaque unbreaded cutlets1.5cm, other chicken1.5cm strips; pork burger opaque cooked1cm cutlets, other pork1cm strips; salmon burger whole opaque cooked FILLET, other salmon large irregular opaque cooked FLAKES with separated layers, not raw chunks; tofu burger golden1cmSLAB, other tofu2cmCUBES. Lettuce shredded and tomato sliced only where listed. Pizza CHEESE-FREE passata base exact protein and thin mixed pepper strips. Fries golden plain oven chips, thin red onion and pepper strips. Nashville dry paprika/chilli/garlic coating only. NO ketchup, mayonnaise, barbecue sauce, hot sauce, white/red finishing drizzle, mustard or any sauce; only listed tomato passata under pizza topping is permitted. No sauce on burgers/kebabs/fries.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Cut the lean pork loin across the grain into strips about 1cm thick. Coat with all the measured paprika, chilli powder and garlic powder. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the pork strips over a medium-high heat for about 7\u20139 minutes, turning regularly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.",
+    "Pile the crisp oven chips onto a plate and spoon over the cooked pork strips, the red onion and peppers. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5a74126f-193c-4b2f-8011-613ed4ed564e.png",
+  "source_sha256": "577daf21ad4227728c1576ac29ac15bb33bad76e76f4c1e13ed95fff28f074e7",
+  "generated_at": "2026-10-05T00:32:47.565Z",
+  "elapsed_ms": 235258.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c001ec687768aaf2b30c-retry4-480-7b8bee965617.webp",
+      "sha256": "7b8bee9656176fa4cd97d6ee0111faf1bd83ba4dc2ffac9ac9aa69a8fbaf1b09",
+      "bytes": 30378
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c001ec687768aaf2b30c-retry4-2f80bbafef10.webp",
+      "sha256": "2f80bbafef1034974c4df9276a4997eb13ab24cb0a22eea7bcb951d6b8a18469",
+      "bytes": 99746
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "577daf21ad4227728c1576ac29ac15bb33bad76e76f4c1e13ed95fff28f074e7",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-nashville-pork"
+    ],
+    "titles": [
+      "Shift Nashville-Style Pork Loaded Fries"
+    ],
+    "notes": "Pass: opaque cooked thin pork loin strips coated in dry paprika-chilli-garlic spices over golden plain oven chips with thin softened red onion and mixed peppers. No ketchup or other finishing sauce, breading, cheese, mayonnaise, green garnish, raw pink pork or extra sides. Exact Nashville dry-spiced loaded fries assembly and crop margin.",
+    "alt": "Nashville-style pork loaded oven chips with red onion and mixed peppers",
+    "reviewed_at": "2026-10-05T00:33:52.207583+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1139.json"
+  },
+  "integrated": true,
+  "live": false
+}

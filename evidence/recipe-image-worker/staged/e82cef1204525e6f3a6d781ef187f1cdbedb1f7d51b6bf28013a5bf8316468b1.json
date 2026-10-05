@@ -1,0 +1,88 @@
+{
+  "groupId": "e82cef1204525e6f3a6d781ef187f1cdbedb1f7d51b6bf28013a5bf8316468b1",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-classic-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Classic Cottage Cheese Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Cottage Cheese Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup, cream or decorative garnish. Berries just small25g portion. All food inside frame. NO crackers, biscuits or cake anywhere. Cinnamon only a light1g fine powder mixed into fruit/dairy; no cinnamon sticks anywhere. Cottage cheese has distinct small curds. Finished combined dessert bowl; listed chopped dark chocolate topped, no melted sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f11d37ac-74bf-427f-a8f6-d8d1eecd0499.png",
+  "source_sha256": "8a555c23f9c104db51c1eb238341074dafacb45d6bcf1ff4f0c4016749cabb4e",
+  "generated_at": "2026-10-05T00:35:20.876Z",
+  "elapsed_ms": 205242,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e82cef1204525e6f3a6d-480-99ad48ecd5ef.webp",
+      "sha256": "99ad48ecd5efe3fca988715f791ba618794fcca1eefc4c95efc7a7731c17e7c2",
+      "bytes": 24604
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e82cef1204525e6f3a6d-ba0739f3274b.webp",
+      "sha256": "ba0739f3274bee6a28c7e63c74abeb166472c86282301934e30070c5ac070fd1",
+      "bytes": 83392
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8a555c23f9c104db51c1eb238341074dafacb45d6bcf1ff4f0c4016749cabb4e",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-classic-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Classic Cottage Cheese Big Feed Dessert"
+    ],
+    "notes": "Distinct cottage cheese curds with fine cinnamon, small berries/oats/seeds and listed chopped chocolate. No extra syrup or cinnamon sticks.",
+    "alt": "Cinnamon cottage cheese dessert with berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T00:39:15.457718+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/e82cef1204525e6f3a6d781ef187f1cdbedb1f7d51b6bf28013a5bf8316468b1.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,82 @@
+{
+  "groupId": "5b7ad3815408725a2925cd1421672ffa80d10a78f67e0f257f8bff84db92eb03",
+  "recipe_ids": [
+    "industrial-dinner-lentil-stir-fry"
+  ],
+  "titles": [
+    "Lentil Stir Fry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Lentil Stir Fry. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"cooked green lentils\"},{\"amount\":\"70g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"120g\",\"item\":\"mixed peppers\"},{\"amount\":\"100g\",\"item\":\"broccoli\"},{\"amount\":\"15ml\",\"item\":\"reduced-salt soy sauce\"}]. Preparation: [\"The listed 70g dry egg noodles is an uncooked weight. Cut the 100g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 120g mixed peppers. Use 180g ready-cooked green lentils; drain before weighing. Do not start this method with dry lentils.\",\"Use the non-stick pan over a medium-low heat; no oil is listed for this recipe. Add 120g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Cover between stirs for the first 3 minutes so the peppers soften in their own moisture; lower the heat if they catch.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Turn the heat to low and fold in the 15ml reduced-salt soy sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Fold in the cooked green lentils and heat gently for 3\u20135 minutes, stirring, until steaming hot throughout. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and cooked green lentils between serving bowls. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Photorealistic appetising food; all ingredients exactly match. No garnish or extra food. Keep any listed brown rice distinctly wholegrain tan/brown with visible bran texture; no polished white grains. Match portion and method, natural warm light and generous framing.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "cooked green lentils"
+    },
+    {
+      "amount": "70g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "120g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "100g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "15ml",
+      "item": "reduced-salt soy sauce"
+    }
+  ],
+  "method": [
+    "The listed 70g dry egg noodles is an uncooked weight. Cut the 100g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 120g mixed peppers. Use 180g ready-cooked green lentils; drain before weighing. Do not start this method with dry lentils.",
+    "Use the non-stick pan over a medium-low heat; no oil is listed for this recipe. Add 120g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Cover between stirs for the first 3 minutes so the peppers soften in their own moisture; lower the heat if they catch.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Turn the heat to low and fold in the 15ml reduced-salt soy sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Fold in the cooked green lentils and heat gently for 3\u20135 minutes, stirring, until steaming hot throughout. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and cooked green lentils between serving bowls. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-49f8f15f-1e2f-4a1a-8096-1eb915ff275e.png",
+  "source_sha256": "f778eddca99c583dc8f7b89c6530cb690aaa4082a7148eea41c9d88d83d2bb0d",
+  "generated_at": "2026-10-04T22:57:21.859Z",
+  "elapsed_ms": 183848,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5b7ad3815408725a2925-480.webp",
+      "sha256": "926dcfd8a34c5c134eba3ad98061b96818e5ccc816544027a83a4fd706c90012",
+      "bytes": 28734
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5b7ad3815408725a2925.webp",
+      "sha256": "e74ebc25eddf4274bd585818c51722bcc98b0905879b6bfce401e3c62f63a86c",
+      "bytes": 87992
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "index": 470,
+    "decision": "pass",
+    "notes": "Full source inspected: recognisable cooked lentils through egg noodles with red/yellow pepper strips and broccoli, light soy coating. No meat, leafy garnish or unlisted side.",
+    "alt": "Lentils and egg noodles tossed with peppers, broccoli and soy sauce.",
+    "source_sha256": "f778eddca99c583dc8f7b89c6530cb690aaa4082a7148eea41c9d88d83d2bb0d",
+    "recipe_ids": [
+      "industrial-dinner-lentil-stir-fry"
+    ],
+    "titles": [
+      "Lentil Stir Fry"
+    ],
+    "reviewer": "root full source image inspection",
+    "reviewed_at": "2026-10-04T23:09:36.309649+00:00"
+  }
+}

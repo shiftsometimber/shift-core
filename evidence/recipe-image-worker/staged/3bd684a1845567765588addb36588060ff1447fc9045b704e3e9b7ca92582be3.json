@@ -1,0 +1,78 @@
+{
+  "groupId": "3bd684a1845567765588addb36588060ff1447fc9045b704e3e9b7ca92582be3",
+  "recipe_ids": [
+    "industrial-dinner-lentil-curry"
+  ],
+  "titles": [
+    "Lentil Curry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Lentil Curry. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"cooked green lentils\"},{\"amount\":\"70g dry\",\"item\":\"basmati rice, dry\"},{\"amount\":\"120g\",\"item\":\"chopped tomatoes\"},{\"amount\":\"100g\",\"item\":\"spinach\"},{\"amount\":\"25g\",\"item\":\"medium curry paste\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 70g dry basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Wash and drain the 100g spinach. Use 180g ready-cooked green lentils; drain before weighing. Do not start this method with dry lentils.\",\"Put the 120g chopped tomatoes and 25g medium curry paste into the non-stick frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.\",\"Add the washed spinach in two handfuls, cover for 1 minute, then stir. Cook for another 2\u20133 minutes until wilted throughout.\",\"Fold in the cooked green lentils and heat gently for 3\u20135 minutes, stirring, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Photorealistic appetising food; all ingredients exactly match. No garnish or extra food. Keep any listed brown rice distinctly wholegrain tan/brown with visible bran texture; no polished white grains. Match portion and method, natural warm light and generous framing.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "cooked green lentils"
+    },
+    {
+      "amount": "70g dry",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "chopped tomatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "spinach"
+    },
+    {
+      "amount": "25g",
+      "item": "medium curry paste"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 70g dry basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Wash and drain the 100g spinach. Use 180g ready-cooked green lentils; drain before weighing. Do not start this method with dry lentils.",
+    "Put the 120g chopped tomatoes and 25g medium curry paste into the non-stick frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.",
+    "Add the washed spinach in two handfuls, cover for 1 minute, then stir. Cook for another 2\u20133 minutes until wilted throughout.",
+    "Fold in the cooked green lentils and heat gently for 3\u20135 minutes, stirring, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-878d0f80-fcd5-40bc-a6de-62b1105bb31e.png",
+  "source_sha256": "505b9047aa54a4e4c663f305ebdd2dfdeee4b11ff3453b5df6bc54b9f5c275bd",
+  "generated_at": "2026-10-04T22:56:24.158Z",
+  "elapsed_ms": 126147,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3bd684a1845567765588-480.webp",
+      "sha256": "56aa20818f7ef7d02ac4a5dfec7752c526bb13a16a90047989b8e3c3a9ead19a",
+      "bytes": 30244
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3bd684a1845567765588.webp",
+      "sha256": "51824cf21ece9abaf71691b964bdac4911699d0ce53e037513840e00d642df17",
+      "bytes": 97276
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "index": 468,
+    "decision": "pass",
+    "notes": "Full source inspected: cooked green lentils with wilted spinach and chopped tomatoes in curry sauce over white long-grain basmati rice, as specified; no garnish or extra side.",
+    "alt": "Green lentil, spinach and tomato curry over basmati rice.",
+    "source_sha256": "505b9047aa54a4e4c663f305ebdd2dfdeee4b11ff3453b5df6bc54b9f5c275bd",
+    "recipe_ids": [
+      "industrial-dinner-lentil-curry"
+    ],
+    "titles": [
+      "Lentil Curry"
+    ],
+    "reviewer": "root full source image inspection",
+    "reviewed_at": "2026-10-04T23:09:36.309586+00:00"
+  }
+}

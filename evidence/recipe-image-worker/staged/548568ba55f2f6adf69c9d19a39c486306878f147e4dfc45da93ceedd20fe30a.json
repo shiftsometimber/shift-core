@@ -1,0 +1,80 @@
+{
+  "groupId": "548568ba55f2f6adf69c9d19a39c486306878f147e4dfc45da93ceedd20fe30a",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-bbq-beef"
+  ],
+  "titles": [
+    "Shift BBQ Beef Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Beef Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ glaze\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the 5% beef mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and 5% beef mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the 5% beef mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ glaze"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the 5% beef mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and 5% beef mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the 5% beef mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6acf2524-15e8-47ec-8b43-f779324d8ab5.png",
+  "source_sha256": "e18bdb37b51041e0b3cfdf40ad5021dc37604db9e39aca223eaf6f9812c89d17",
+  "generated_at": null,
+  "elapsed_ms": 174300.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-548568ba55f2f6adf69c-480.webp",
+      "sha256": "7cc7b2f53b420a35a2c5a6895262122ea9d14113c76c0f204ca268f77f601c3f",
+      "bytes": 28956
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-548568ba55f2f6adf69c.webp",
+      "sha256": "79443a1b03f2063ee4f3dbdddcfa10ef8e88a3fe415559d58320f73ed7029941",
+      "bytes": 96288
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-bbq-beef"
+    ],
+    "titles": [
+      "Shift BBQ Beef Slow-Cooker Big Pot"
+    ],
+    "notes": "Soft baby-potato pieces, carrots and translucent onion surround loose cooked beef mince in moist brown BBQ glaze. No steak substitution, additional vegetables or garnish. Credible slow-cooked bowl.",
+    "alt": "Slow-cooked beef mince with baby potatoes, carrots, onion and BBQ glaze.",
+    "reviewed_at": "2026-10-04T21:21:05.163Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-528-544.json",
+    "source_sha256": "e18bdb37b51041e0b3cfdf40ad5021dc37604db9e39aca223eaf6f9812c89d17"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,86 @@
+{
+  "groupId": "4bd4e5608ca25ef3c31cbb38ae3657f42f51814ec1bc1649d6e864709ad3b804",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-cheesy-bacon"
+  ],
+  "titles": [
+    "Shift Cheesy Bacon Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Bacon Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b160b446-ed6f-4b9d-b778-46968382ed42.png",
+  "source_sha256": "c461d950b5ab966eeb4d5d5a24efb0f6d0d29d64d7d8cc03c37f97f797153971",
+  "generated_at": "2026-10-04T21:13:20.382Z",
+  "elapsed_ms": 27211,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4bd4e5608ca25ef3c31c-480.webp",
+      "sha256": "359837b296c6ee45e1d01d0effffe4dc8cb98fbd895f648251b6854f96c45894",
+      "bytes": 25342
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4bd4e5608ca25ef3c31c.webp",
+      "sha256": "3d5da6d8f192eba81fb5a04933c685c3cbf9a90bffa37510580bcb4670ab6ff3",
+      "bytes": 82920
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-cheesy-bacon"
+    ],
+    "titles": [
+      "Shift Cheesy Bacon Breakfast Buttie"
+    ],
+    "notes": "Plain wholemeal bap, cooked browned back-bacon rashers, softened tomato, wilted spinach and melted cheddar match ingredients and hot bap method. No extra foods or garnish; crop margin.",
+    "alt": "Wholemeal bap with bacon, tomato, spinach and melted cheddar.",
+    "reviewed_at": "2026-10-04T21:20:42.259924+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/112.json",
+    "source_sha256": "c461d950b5ab966eeb4d5d5a24efb0f6d0d29d64d7d8cc03c37f97f797153971"
+  },
+  "integrated": true,
+  "live": false
+}

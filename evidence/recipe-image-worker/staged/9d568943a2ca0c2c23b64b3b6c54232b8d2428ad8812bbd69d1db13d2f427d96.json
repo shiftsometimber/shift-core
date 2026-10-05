@@ -1,0 +1,95 @@
+{
+  "groupId": "9d568943a2ca0c2c23b64b3b6c54232b8d2428ad8812bbd69d1db13d2f427d96",
+  "recipe_ids": [
+    "industrial-v3-traybake-peppercorn-turkey"
+  ],
+  "titles": [
+    "Shift Peppercorn Turkey Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Turkey Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and turkey mince. Get the pan properly hot first. Cook the turkey mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the turkey mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain entirely unseeded: no sesame/poppy or seed garnish. No cheese, herbs, garnish, crumbs, breading, lemon, cream, ketchup or extra foods unless listed. Exact protein and preparation. Light mayo plus wholegrain mustard plus black pepper only. Wholegrain mustard grains may appear INSIDE dressing, not as seed garnish. Golden baby potato pieces roasted broccoli/redpepper. Tofu 2cm cubes, turkey loose cooked opaque pale browned crumbles. Chilled lightmayo added ONLY afteroven. No carrots or peas.",
+  "original_generation_prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Turkey Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and turkey mince. Get the pan properly hot first. Cook the turkey mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the turkey mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and turkey mince. Get the pan properly hot first. Cook the turkey mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.",
+    "Check the turkey mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-52f1912c-7868-47d9-b6ac-fea1b11585e5.png",
+  "source_sha256": "766db2462be6b13e56e86cdaef073e3da8602a603fde0bee304f1432521bf18b",
+  "generated_at": "2026-10-05T01:17:54.155Z",
+  "elapsed_ms": 318753.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9d568943a2ca0c2c23b6-retry4-480-6c46d77a2c8f.webp",
+      "sha256": "6c46d77a2c8f1b9e0b46be9251d13b9760cd802db1575cb777756f05effade7e",
+      "bytes": 34638
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9d568943a2ca0c2c23b6-retry4-4a3fc268a215.webp",
+      "sha256": "4a3fc268a215568a4eb1ffc4d28e9291b5cffa7ea6c7caf82008bb9f704029a2",
+      "bytes": 102864
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "766db2462be6b13e56e86cdaef073e3da8602a603fde0bee304f1432521bf18b",
+    "recipe_ids": [
+      "industrial-v3-traybake-peppercorn-turkey"
+    ],
+    "titles": [
+      "Shift Peppercorn Turkey Traybake"
+    ],
+    "notes": "Pass: loose opaque pale browned turkey mince crumbles with golden skin-on baby potato pieces, roasted broccoli and red pepper. Black pepper final seasoning consistent with traybake method; cold light mayonnaise-wholegrain mustard finish alongside after oven. No breast slices, carrots, peas, cheese, herbs, creamy baked coating or extra foods. Exact minced-turkey traybake and central crop.",
+    "alt": "Peppercorn turkey traybake with baby potatoes, broccoli, red pepper and cold mayonnaise-wholegrain mustard dressing",
+    "reviewed_at": "2026-10-05T01:19:53.902172+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1205.json"
+  },
+  "integrated": true,
+  "live": false
+}

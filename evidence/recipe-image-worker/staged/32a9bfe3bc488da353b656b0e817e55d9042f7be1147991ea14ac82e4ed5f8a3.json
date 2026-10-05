@@ -1,0 +1,84 @@
+{
+  "groupId": "32a9bfe3bc488da353b656b0e817e55d9042f7be1147991ea14ac82e4ed5f8a3",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-mushroom-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Mushroom Chicken Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mushroom Chicken Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"garlic mushrooms\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients. Correction: omit absolutely all visible pepper, spice and seasoning dots; chicken and egg are plain except natural continuous golden sear. Use only the ingredients listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic mushrooms"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6d4d10d1-899a-422a-ae41-dd508eda7c6e.png",
+  "source_sha256": "311c3338e191444e239ae1d05594b034ae7caa9c312de3261657dc614c85d198",
+  "generated_at": "2026-10-05T00:31:31.526Z",
+  "elapsed_ms": 23298,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-32a9bfe3bc488da353b6-480.webp",
+      "sha256": "2a8356992f95fb359bf6a2ef6c2ebf391c52f1f62f88f95c0a1dc5300d74db9a",
+      "bytes": 25040
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-32a9bfe3bc488da353b6-retry2-585f1cfc8f61.webp",
+      "sha256": "585f1cfc8f61ff557562e2d875c8687a16123e793301b52e98ef08e9d76981b6",
+      "bytes": 77700
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "311c3338e191444e239ae1d05594b034ae7caa9c312de3261657dc614c85d198",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-mushroom-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Mushroom Chicken Breakfast Wrap"
+    ],
+    "notes": "Corrected source: plain naturally seared chicken breast with no seasoning dots, softened peppers, wilted spinach and sliced cooked mushrooms in one unseeded toasted wholemeal wrap.",
+    "alt": "Mushroom chicken wrap with peppers and spinach",
+    "reviewed_at": "2026-10-05T00:37:32.639126+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/295.json"
+  },
+  "integrated": true,
+  "live": false
+}

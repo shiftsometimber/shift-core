@@ -1,0 +1,85 @@
+{
+  "groupId": "68613f3f3b208b5cc8020a6c7d949e0e2a246677c0e8da2d7a8bc707e029b99a",
+  "recipe_ids": [
+    "industrial-lunch-turkey-pitta"
+  ],
+  "titles": [
+    "Turkey Pitta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Turkey Pitta. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal pitta\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"shredded lettuce\"},{\"amount\":\"60g\",\"item\":\"cucumber\"},{\"amount\":\"40g\",\"item\":\"lemon yoghurt dressing\",\"allergens\":[\"milk\"]}]. Preparation: [\"Wash and dry the shredded lettuce and cucumber; shred the leaves and slice the cucumber thinly. Reserve most of the leaves and any excess cucumber for a side salad so the wholemeal pitta can close.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured lemon yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Use ready-to-eat wholemeal pitta. Cut it into two halves and carefully open the pockets.\",\"Combine the prepared filling with the measured lemon yoghurt dressing. Add a small handful of the prepared leaves and some sliced cucumber. Spoon a manageable layer of filling into each pitta pocket. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nBread/wrap/pitta plain unseeded, no sesame/poppy garnish. Cheese ONLY where cheddar is explicitly listed in toastie. Tuna fibrous drained flakes, turkey plain unbreaded cooked breast, no protein substitution. Greek yoghurt only recipes listing yoghurt; grain salads and tomato-pesto pasta have no added mayo/cream/yoghurt. Couscous, brown rice and wholewheat pasta cooked. Lemon/lime dressings incorporated, no citrus wedge. Preserve all reserved raw side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not potato garnish. Pitta shown as TWO distinct filled halves of ONE wholemeal pitta, each visible, with reserved lettuce/cucumber side. Wholemeal wraps here have reserved leaf/tomato side salad. Apple cottage cheese includes diced apple folded through, pineapple chunks, wholegrain crackers and measured black pepper. Overnight oats fruit/berries mixed through softened chilled oats, not dry oats or separate decorative toppings. No added fruit, honey, nuts, herbs or garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal pitta",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "shredded lettuce"
+    },
+    {
+      "amount": "60g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "40g",
+      "item": "lemon yoghurt dressing",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Wash and dry the shredded lettuce and cucumber; shred the leaves and slice the cucumber thinly. Reserve most of the leaves and any excess cucumber for a side salad so the wholemeal pitta can close.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured lemon yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Use ready-to-eat wholemeal pitta. Cut it into two halves and carefully open the pockets.",
+    "Combine the prepared filling with the measured lemon yoghurt dressing. Add a small handful of the prepared leaves and some sliced cucumber. Spoon a manageable layer of filling into each pitta pocket. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-badf7417-be52-4246-b4ca-55a73cbfc730.png",
+  "source_sha256": "d92e3107affb66e87bec59b0d87950d3d2d7f71b56445a6aa80df0e0f43c558d",
+  "generated_at": "2026-10-05T01:07:53.957Z",
+  "elapsed_ms": 289201.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-68613f3f3b208b5cc802-480-af6c97f689d1.webp",
+      "sha256": "af6c97f689d108b058cceab2a21b973f66dc33e27f76b5087aae43a96d6b2242",
+      "bytes": 29554
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-68613f3f3b208b5cc802-5e5d53aea9e8.webp",
+      "sha256": "5e5d53aea9e8df5b6d1f328408b3959f980485805666fc7917e246d94eaa524b",
+      "bytes": 78292
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "d92e3107affb66e87bec59b0d87950d3d2d7f71b56445a6aa80df0e0f43c558d",
+    "recipe_ids": [
+      "industrial-lunch-turkey-pitta"
+    ],
+    "titles": [
+      "Turkey Pitta"
+    ],
+    "notes": "Both distinct filled halves of one plain wholemeal pitta visible with ready-to-eat turkey, lemon yoghurt dressing, shredded lettuce and thin cucumber. Reserved lettuce/cucumber salad alongside; no cheese, seeds or citrus wedge. Exact title/method checked.",
+    "alt": "Two turkey wholemeal pitta pockets with lemon yoghurt and lettuce cucumber salad",
+    "reviewed_at": "2026-10-05T01:10:20.542317+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2138.json"
+  },
+  "integrated": true,
+  "live": false
+}

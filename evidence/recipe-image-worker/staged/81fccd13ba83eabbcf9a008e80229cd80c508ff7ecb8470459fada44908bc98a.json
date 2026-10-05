@@ -1,0 +1,81 @@
+{
+  "groupId": "81fccd13ba83eabbcf9a008e80229cd80c508ff7ecb8470459fada44908bc98a",
+  "recipe_ids": [
+    "industrial-breakfast-cottage-cheese-toast-pear-ginger-3"
+  ],
+  "titles": [
+    "Cottage Cheese Spinach Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cottage Cheese Spinach Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"spinach\"},{\"amount\":\"1 tsp\",\"item\":\"lemon juice\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Toast the bread.\",\"Prepare the vegetables.\",\"Spoon cottage cheese over the toast.\",\"Top with vegetables, lemon juice and black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPreparation correction: the listed method contains NO spinach cooking step. Show fresh RAW spinach leaves on top of cottage cheese on two pieces of toasted plain UNSEEDED wholemeal bread, with black pepper and lemon juice only. Never show wilted, steamed or saut\u00e9ed spinach, herbs or extra garnish. Keep all toast and leaves inside the 4:3 frame.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "spinach"
+    },
+    {
+      "amount": "1 tsp",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Toast the bread.",
+    "Prepare the vegetables.",
+    "Spoon cottage cheese over the toast.",
+    "Top with vegetables, lemon juice and black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6b4ffb06-d7f9-4a62-ad08-dfc7d321b0ab.png",
+  "source_sha256": "175fa91c8be47929ee4238bb8efd2185b93ead2385f3b0e9aec6fd18ec220b74",
+  "generated_at": "2026-10-04T21:28:34.528Z",
+  "elapsed_ms": 20043,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-81fccd13ba83eabbcf9a-retry-480.webp",
+      "sha256": "087199e7cdb2c109bafb10d652089d649dfd4d781126c242a0301d47d91ad6ee",
+      "bytes": 32410
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-81fccd13ba83eabbcf9a-retry.webp",
+      "sha256": "af4b7ddcb9e39accfc72a85d5d2a3c409ccc1cf0036d0a09cb55dcd9fdabf76c",
+      "bytes": 96622
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-cottage-cheese-toast-pear-ginger-3"
+    ],
+    "titles": [
+      "Cottage Cheese Spinach Wholemeal Toast"
+    ],
+    "notes": "Two slices of plain wholemeal toast with cottage cheese, fresh raw spinach leaves and black pepper. Lemon juice is invisible dressing. No wilted/cooked leaves or unlisted garnish; both slices inside4:3 frame. Corrects rejected cooked-spinach attempt. Image is illustrative, not gram-weight or allergen evidence.",
+    "alt": "Cottage cheese on wholemeal toast topped with fresh spinach leaves and black pepper.",
+    "reviewed_at": "2026-10-04T21:30:14.909705+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "175fa91c8be47929ee4238bb8efd2185b93ead2385f3b0e9aec6fd18ec220b74"
+  }
+}

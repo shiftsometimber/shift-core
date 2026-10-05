@@ -1,0 +1,80 @@
+{
+  "groupId": "d9673dc6950037d8091751d839ce5e336f1bb4b15743485bfc61a266874c7275",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-tikka-pork"
+  ],
+  "titles": [
+    "Shift Tikka Pork Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Pork Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"tikka masala sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish. If specified, depict exactly THREE koftas. Fully cooked meat.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka masala sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fdb8db9c-7f12-4dfc-8577-aaacbf505332.png",
+  "source_sha256": "b705835cab72de5475f6c79fca4fe2cc47ee5cd38f94114b66fd7abbccd56a7e",
+  "generated_at": "2026-10-04T22:55:12.452Z",
+  "elapsed_ms": 43772.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d9673dc6950037d80917-480-7e267f0e93d1.webp",
+      "sha256": "7e267f0e93d1852b61db9228c7a202aebf3fff3fb4c46831cd9c1b9ff2dd031a",
+      "bytes": 23350
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d9673dc6950037d80917-2cc5c3b5863b.webp",
+      "sha256": "2cc5c3b5863b827fa9fb6e25f88b2eb95e6123c0cdc232b01022df47f807ff6a",
+      "bytes": 71870
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b705835cab72de5475f6c79fca4fe2cc47ee5cd38f94114b66fd7abbccd56a7e",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-tikka-pork"
+    ],
+    "titles": [
+      "Shift Tikka Pork Slow-Cooker Big Pot"
+    ],
+    "notes": "Tender cooked pork pieces, baby potatoes, carrots and onion in glossy tikka cooking juices; no invented vegetables.",
+    "alt": "Slow-cooked tikka pork with potatoes, carrots and onion",
+    "reviewed_at": "2026-10-04T23:03:54.813938+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1409-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

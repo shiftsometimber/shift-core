@@ -1,0 +1,82 @@
+{
+  "groupId": "54546f3e30a559a79920521b7bd4fc3bc03dd905182e0d63beeab73025994613",
+  "recipe_ids": [
+    "industrial-breakfast-egg-toast-apple-cinnamon-0"
+  ],
+  "titles": [
+    "Egg Spinach Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Spinach Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"spinach\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Wash the vegetables and slice or finely chop them before cooking.\",\"Toast the bread.\",\"Heat the oil and cook the vegetables until softened.\",\"Add the eggs and scramble until fully set.\",\"Serve the eggs and vegetables on the toast and season with the measured black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "spinach"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Wash the vegetables and slice or finely chop them before cooking.",
+    "Toast the bread.",
+    "Heat the oil and cook the vegetables until softened.",
+    "Add the eggs and scramble until fully set.",
+    "Serve the eggs and vegetables on the toast and season with the measured black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-583f4c42-fc53-459f-9f64-bc1c5abc3eca.png",
+  "source_sha256": "307b47087c7d0f853fd350bf628dc450ef38d0ec0d60ea72c385ffb9d8ba76eb",
+  "generated_at": "2026-10-04T21:14:38.355Z",
+  "elapsed_ms": 759047,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-54546f3e30a559a79920-480.webp",
+      "sha256": "2a6f52be88a791a1429cb5dc04b770bf4f5ec48f5356ab3c350221fb24bb99a1",
+      "bytes": 31640
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-54546f3e30a559a79920.webp",
+      "sha256": "6aeb9a77127921a41de1cdf97f92fe6f154a0e6e5396c7fa1629dd701681670f",
+      "bytes": 95644
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-egg-toast-apple-cinnamon-0"
+    ],
+    "titles": [
+      "Egg Spinach Wholemeal Toast"
+    ],
+    "notes": "Two wholemeal toast slices with set egg and cooked spinach mixed through; no cottage cheese or garnish. Single credible serving with full food visible in phone/desktop 4:3 framing. Quantities, hidden temperature and nutrition cannot be verified visually.",
+    "alt": "Scrambled egg and wilted spinach on two slices of wholemeal toast.",
+    "reviewed_at": "2026-10-04T21:21:38.766791+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "307b47087c7d0f853fd350bf628dc450ef38d0ec0d60ea72c385ffb9d8ba76eb"
+  }
+}

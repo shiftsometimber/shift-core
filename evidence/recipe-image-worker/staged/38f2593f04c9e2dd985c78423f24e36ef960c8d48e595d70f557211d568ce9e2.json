@@ -1,0 +1,83 @@
+{
+  "groupId": "38f2593f04c9e2dd985c78423f24e36ef960c8d48e595d70f557211d568ce9e2",
+  "recipe_ids": [
+    "industrial-lunch-tofu-pasta-pot"
+  ],
+  "titles": [
+    "Tofu Pasta Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Tofu Pasta Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"firm tofu\"},{\"amount\":\"75g dry\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"60g\",\"item\":\"rocket\"},{\"amount\":\"40g\",\"item\":\"tomato pesto\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed wholewheat pasta is a dry weight. Cook it in boiling water for the packet time until tender, then drain well.\",\"Wash and dry the cherry tomatoes and rocket. Halve the tomatoes and roughly chop the rocket.\",\"Choose firm tofu labelled ready to eat. Drain and pat it dry, then cut it into small cubes; keep it chilled until assembly.\",\"Use the measured tomato pesto as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Toss the drained cooked pasta with the measured tomato pesto, then fold in the tomatoes, rocket and prepared ready-to-eat filling. Eat immediately.\",\"For a packed lunch, cool the cooked pasta promptly before combining it with the chilled filling. Cover, refrigerate and eat within 24 hours, following any shorter ingredient use-by date. Keep the meal chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nWholemeal bread/wrap/bagel/pitta plain unseeded; no sesame/poppy seed garnish or cheese unless explicitly listed. Tikka yoghurt only in the recipes listing it; no extra cream/mayo or coriander. Poultry plain cooked breast unbreaded; tuna fibrous drained flakes. Tofu specifically ready-to-eat pale unseared firm tofu: small cubes in grain salad, jacket, pasta and rice; thin slices in pitta, toastie, wrap. Never substitute feta, chicken or grilled tofu. Cheddar only listed Tofu Toastie, grated before toast. Preserve raw vegetables and all reserved side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not topping. Listed lemon/lime juice/dressing incorporated: no citrus wedges. Wholegrain mustard stays in grain-salad dressing, no seed garnish. Rice/pasta/couscous depicted cooked.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g dry",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "60g",
+      "item": "rocket"
+    },
+    {
+      "amount": "40g",
+      "item": "tomato pesto"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed wholewheat pasta is a dry weight. Cook it in boiling water for the packet time until tender, then drain well.",
+    "Wash and dry the cherry tomatoes and rocket. Halve the tomatoes and roughly chop the rocket.",
+    "Choose firm tofu labelled ready to eat. Drain and pat it dry, then cut it into small cubes; keep it chilled until assembly.",
+    "Use the measured tomato pesto as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Toss the drained cooked pasta with the measured tomato pesto, then fold in the tomatoes, rocket and prepared ready-to-eat filling. Eat immediately.",
+    "For a packed lunch, cool the cooked pasta promptly before combining it with the chilled filling. Cover, refrigerate and eat within 24 hours, following any shorter ingredient use-by date. Keep the meal chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-695d99bd-671f-43fb-8e9f-2f8e7f0fdb25.png",
+  "source_sha256": "1f993a1abf1f601d47e4f1021489260260d445553c7b99117f460f377dcea739",
+  "generated_at": "2026-10-05T00:58:07.241Z",
+  "elapsed_ms": 321155.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-38f2593f04c9e2dd985c-480-a7664cd11448.webp",
+      "sha256": "a7664cd11448a04d9bfc30eb6abff7ca1f82d86065e290406b12955220a60b92",
+      "bytes": 25566
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-38f2593f04c9e2dd985c-0065bbbef8e5.webp",
+      "sha256": "0065bbbef8e59d096503765efe9c99002f10ba10487f090e038a6dbd4b113ec6",
+      "bytes": 74010
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1f993a1abf1f601d47e4f1021489260260d445553c7b99117f460f377dcea739",
+    "recipe_ids": [
+      "industrial-lunch-tofu-pasta-pot"
+    ],
+    "titles": [
+      "Tofu Pasta Pot"
+    ],
+    "notes": "Cooked wholewheat pasta tossed with tomato pesto, halved cherry tomatoes, roughly chopped rocket and small pale firm tofu cubes. Tofu has pesto coating, not seared crust; no feta, cheese garnish or unlisted food. Exact title/method checked.",
+    "alt": "Tofu wholewheat pasta with tomato pesto, cherry tomatoes and rocket",
+    "reviewed_at": "2026-10-05T01:01:46.695669+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2123.json"
+  },
+  "integrated": true,
+  "live": false
+}

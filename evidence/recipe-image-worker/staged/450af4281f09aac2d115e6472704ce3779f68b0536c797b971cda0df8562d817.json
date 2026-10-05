@@ -1,0 +1,83 @@
+{
+  "groupId": "450af4281f09aac2d115e6472704ce3779f68b0536c797b971cda0df8562d817",
+  "recipe_ids": [
+    "industrial-dinner-turkey-stir-fry"
+  ],
+  "titles": [
+    "Turkey Stir Fry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Turkey Stir Fry. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey breast\"},{\"amount\":\"70g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"120g\",\"item\":\"mixed peppers\"},{\"amount\":\"100g\",\"item\":\"broccoli\"},{\"amount\":\"15ml\",\"item\":\"reduced-salt soy sauce\"}]. Preparation: [\"The listed 70g dry egg noodles is an uncooked weight. Cut the 100g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 120g mixed peppers. Cut the 170g turkey breast into thin strips about 1cm thick on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.\",\"Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the turkey breast in one layer and cook for 7\u201310 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Use the non-stick pan over a medium-low heat; no oil is listed for this recipe. Add 120g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Cover between stirs for the first 3 minutes so the peppers soften in their own moisture; lower the heat if they catch.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Turn the heat to low and fold in the 15ml reduced-salt soy sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked turkey breast and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and turkey breast between serving bowls. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey breast"
+    },
+    {
+      "amount": "70g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "120g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "100g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "15ml",
+      "item": "reduced-salt soy sauce"
+    }
+  ],
+  "method": [
+    "The listed 70g dry egg noodles is an uncooked weight. Cut the 100g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 120g mixed peppers. Cut the 170g turkey breast into thin strips about 1cm thick on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.",
+    "Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the turkey breast in one layer and cook for 7\u201310 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Use the non-stick pan over a medium-low heat; no oil is listed for this recipe. Add 120g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Cover between stirs for the first 3 minutes so the peppers soften in their own moisture; lower the heat if they catch.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Turn the heat to low and fold in the 15ml reduced-salt soy sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked turkey breast and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and turkey breast between serving bowls. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9dff026d-1460-44ba-92b2-476b6e505c76.png",
+  "source_sha256": "79c56c314f40bafc2f5932643e9280fef1034abe838996f3cc05a3e975e5518b",
+  "generated_at": "2026-10-04T23:35:26.916Z",
+  "elapsed_ms": 382275.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-450af4281f09aac2d115-480-092643c0c80d.webp",
+      "sha256": "092643c0c80dddc0c3e392db2ff8f6bc8a5686c52259aad509a8eaac54c6545d",
+      "bytes": 27834
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-450af4281f09aac2d115-13b3b9def6f2.webp",
+      "sha256": "13b3b9def6f252b2173e86965769cf007b43e9891a5022dc82f6fe065aaf752e",
+      "bytes": 86580
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "79c56c314f40bafc2f5932643e9280fef1034abe838996f3cc05a3e975e5518b",
+    "recipe_ids": [
+      "industrial-dinner-turkey-stir-fry"
+    ],
+    "titles": [
+      "Turkey Stir Fry"
+    ],
+    "notes": "Opaque cooked turkey strips with egg noodles, mixed pepper strips and broccoli in a light soy coating. No seeds or herb garnish; exact title matches.",
+    "alt": "Turkey stir fry with egg noodles, broccoli and mixed peppers",
+    "reviewed_at": "2026-10-04T23:39:19.270479+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1476-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

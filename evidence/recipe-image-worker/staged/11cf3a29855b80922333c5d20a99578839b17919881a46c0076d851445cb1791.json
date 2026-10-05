@@ -1,0 +1,83 @@
+{
+  "groupId": "11cf3a29855b80922333c5d20a99578839b17919881a46c0076d851445cb1791",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-classic-beans"
+  ],
+  "titles": [
+    "Shift Classic Beans Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Beans Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"brown sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "brown sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ff68af5d-1c62-4165-a1b6-2227328e1202.png",
+  "source_sha256": "7f39debb3c5d669645185626f136613cf21c2cad46dad38d17fb44800cc62183",
+  "generated_at": "2026-10-04T21:26:26.666Z",
+  "elapsed_ms": 319849,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-11cf3a29855b80922333-480.webp",
+      "sha256": "9e6a1b18b40423d0718e627652b57362461126af9391bf95463b32c25b5017fd",
+      "bytes": 24310
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-11cf3a29855b80922333.webp",
+      "sha256": "69a55df2e19618087c51dd583637a10e82dee6c93de9150adbd88a50a70279a3",
+      "bytes": 74932
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-classic-beans"
+    ],
+    "titles": [
+      "Shift Classic Beans Breakfast Buttie"
+    ],
+    "notes": "Plain wholemeal bap with hot baked beans, softened tomato, wilted spinach and brown sauce. No cheese or added foods; correct cooked sandwich form.",
+    "alt": "Wholemeal bap with baked beans, tomato, spinach and brown sauce.",
+    "reviewed_at": "2026-10-04T21:28:50.621520+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/140.json",
+    "source_sha256": "7f39debb3c5d669645185626f136613cf21c2cad46dad38d17fb44800cc62183"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,626 @@
+[
+  {
+    "groupId": "e776ddbb4d312df108aa3d96025cb50e77ba73b11a1b24b86971437bc3621330",
+    "recipe_ids": [
+      "industrial-v3-burger-buffalo-beef",
+      "industrial-v3-burger-smoky-beef"
+    ],
+    "titles": [
+      "Shift Buffalo Beef Fakeaway Burger",
+      "Shift Smoky Beef Fakeaway Burger"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "aa9134d83d0336ab3d89029b38394fe6a9313702208990d653add467fbc10fd3",
+    "recipe_ids": [
+      "industrial-v3-kebab-buffalo-beef",
+      "industrial-v3-kebab-smoky-beef"
+    ],
+    "titles": [
+      "Shift Buffalo Beef Fakeaway Kebab",
+      "Shift Smoky Beef Fakeaway Kebab"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "068786bf8e4853bdb756badd62c07f43b5d6b87b660597518b7459bc4ce1b921",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-buffalo-beef",
+      "industrial-v3-loaded-fries-smoky-beef"
+    ],
+    "titles": [
+      "Shift Buffalo Beef Loaded Fries",
+      "Shift Smoky Beef Loaded Fries"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "9c599eef59dfd727d6c56318e112ef250c55dfedc8f6acadd472451c3b202b50",
+    "recipe_ids": [
+      "industrial-v3-pizza-buffalo-beef",
+      "industrial-v3-pizza-smoky-beef"
+    ],
+    "titles": [
+      "Shift Buffalo Beef Proper Pizza",
+      "Shift Smoky Beef Proper Pizza"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "7941a11b1583063ae447191130273853602b12c426158aa0cfa833ff815edefd",
+    "recipe_ids": [
+      "industrial-v3-burger-buffalo-chicken",
+      "industrial-v3-burger-smoky-chicken"
+    ],
+    "titles": [
+      "Shift Buffalo Chicken Fakeaway Burger",
+      "Shift Smoky Chicken Fakeaway Burger"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "3d04b358c48d253e0e809c0f6f13e660e28963d04fa6a8ddd088524dd7b2b762",
+    "recipe_ids": [
+      "industrial-v3-kebab-buffalo-chicken",
+      "industrial-v3-kebab-smoky-chicken"
+    ],
+    "titles": [
+      "Shift Buffalo Chicken Fakeaway Kebab",
+      "Shift Smoky Chicken Fakeaway Kebab"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "bee4d83488274689402c2b71c06f9b01544bcbcdceab92a3dc8d7c9334ceb146",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-buffalo-chicken",
+      "industrial-v3-loaded-fries-smoky-chicken"
+    ],
+    "titles": [
+      "Shift Buffalo Chicken Loaded Fries",
+      "Shift Smoky Chicken Loaded Fries"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "4d69bb46bf50beb395d4316d82e9891ad90220248189e28284540b5893462728",
+    "recipe_ids": [
+      "industrial-v3-pizza-buffalo-chicken",
+      "industrial-v3-pizza-smoky-chicken"
+    ],
+    "titles": [
+      "Shift Buffalo Chicken Proper Pizza",
+      "Shift Smoky Chicken Proper Pizza"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "322fcc0178c3d7f37b51fe0860ffa77b105aa415b0d64f4108cc99229dba2ac5",
+    "recipe_ids": [
+      "industrial-v3-burger-buffalo-pork",
+      "industrial-v3-burger-smoky-pork"
+    ],
+    "titles": [
+      "Shift Buffalo Pork Fakeaway Burger",
+      "Shift Smoky Pork Fakeaway Burger"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "777140ba2dbb66b5f91abb9e05d551b20d5f1f106ad2631618ccb21302b20224",
+    "recipe_ids": [
+      "industrial-v3-kebab-buffalo-pork",
+      "industrial-v3-kebab-smoky-pork"
+    ],
+    "titles": [
+      "Shift Buffalo Pork Fakeaway Kebab",
+      "Shift Smoky Pork Fakeaway Kebab"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "6a4055a7c6ccf8dbf522154fef1098a1e8cea5dfad3634e95bc8fc7713bb0a17",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-buffalo-pork",
+      "industrial-v3-loaded-fries-smoky-pork"
+    ],
+    "titles": [
+      "Shift Buffalo Pork Loaded Fries",
+      "Shift Smoky Pork Loaded Fries"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "82ebd294e68955fd640ccab85b2212f0548b00debd8c6c0139f79598ea2e29cb",
+    "recipe_ids": [
+      "industrial-v3-pizza-buffalo-pork",
+      "industrial-v3-pizza-smoky-pork"
+    ],
+    "titles": [
+      "Shift Buffalo Pork Proper Pizza",
+      "Shift Smoky Pork Proper Pizza"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "f3528098cb5a24c1bdda43f0ef570f720a7357df1bf3ab7bcd536f564e8d4bbc",
+    "recipe_ids": [
+      "industrial-v3-burger-buffalo-salmon",
+      "industrial-v3-burger-smoky-salmon"
+    ],
+    "titles": [
+      "Shift Buffalo Salmon Fakeaway Burger",
+      "Shift Smoky Salmon Fakeaway Burger"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "94f70dabaa33330ec97667cf2311a6e704ac79f5e8d84bd5009ad46ca960e4dc",
+    "recipe_ids": [
+      "industrial-v3-kebab-buffalo-salmon",
+      "industrial-v3-kebab-smoky-salmon"
+    ],
+    "titles": [
+      "Shift Buffalo Salmon Fakeaway Kebab",
+      "Shift Smoky Salmon Fakeaway Kebab"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "54968735d228e949b7e20ba5468111d18399a2d1c7a05c49e77bca9bfbc83f54",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-buffalo-salmon",
+      "industrial-v3-loaded-fries-smoky-salmon"
+    ],
+    "titles": [
+      "Shift Buffalo Salmon Loaded Fries",
+      "Shift Smoky Salmon Loaded Fries"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "bc164a5cf9e3cea6efdf026781a415c3fe73c54c5494853e5c145436ab35749c",
+    "recipe_ids": [
+      "industrial-v3-pizza-buffalo-salmon",
+      "industrial-v3-pizza-smoky-salmon"
+    ],
+    "titles": [
+      "Shift Buffalo Salmon Proper Pizza",
+      "Shift Smoky Salmon Proper Pizza"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "2d5dd4255d890c9b3a50942a6bbc40c899b8bd8ac4705b223612db230f2da6ce",
+    "recipe_ids": [
+      "industrial-v3-burger-buffalo-tofu",
+      "industrial-v3-burger-smoky-tofu"
+    ],
+    "titles": [
+      "Shift Buffalo Tofu Fakeaway Burger",
+      "Shift Smoky Tofu Fakeaway Burger"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "4a036394f1a6ef5fceadacba041f6470e11d03941ed36e878df5888b68e1b5af",
+    "recipe_ids": [
+      "industrial-v3-kebab-buffalo-tofu",
+      "industrial-v3-kebab-smoky-tofu"
+    ],
+    "titles": [
+      "Shift Buffalo Tofu Fakeaway Kebab",
+      "Shift Smoky Tofu Fakeaway Kebab"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "535ef1ad9881f77d1901a9cfa9775f1d765551ebbc02ed4fd3a3a3e4e9c87d44",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-buffalo-tofu",
+      "industrial-v3-loaded-fries-smoky-tofu"
+    ],
+    "titles": [
+      "Shift Buffalo Tofu Loaded Fries",
+      "Shift Smoky Tofu Loaded Fries"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "75557011e949a8cc6a9493eee753405813e61807279f674578eeb060afe86393",
+    "recipe_ids": [
+      "industrial-v3-pizza-buffalo-tofu",
+      "industrial-v3-pizza-smoky-tofu"
+    ],
+    "titles": [
+      "Shift Buffalo Tofu Proper Pizza",
+      "Shift Smoky Tofu Proper Pizza"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "0b5455fbbaad34beb5c5498f80cd35f20a9ab0d12108c7a82bb4f25c8f39382d",
+    "recipe_ids": [
+      "industrial-v3-burger-buffalo-turkey",
+      "industrial-v3-burger-smoky-turkey"
+    ],
+    "titles": [
+      "Shift Buffalo Turkey Fakeaway Burger",
+      "Shift Smoky Turkey Fakeaway Burger"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "7e7f1f1623071ed864060c09235feb17935da0410a46a1a43dba1a9952ed6145",
+    "recipe_ids": [
+      "industrial-v3-kebab-buffalo-turkey",
+      "industrial-v3-kebab-smoky-turkey"
+    ],
+    "titles": [
+      "Shift Buffalo Turkey Fakeaway Kebab",
+      "Shift Smoky Turkey Fakeaway Kebab"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "85ca97bc354ae83805953ab04897fc88b4a206162b2a918961372bb10c32ac81",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-buffalo-turkey",
+      "industrial-v3-loaded-fries-smoky-turkey"
+    ],
+    "titles": [
+      "Shift Buffalo Turkey Loaded Fries",
+      "Shift Smoky Turkey Loaded Fries"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "45bb7075e7263b40115f7224d4626fb50b6d3d0ae013b8714fd81dd24bf323f4",
+    "recipe_ids": [
+      "industrial-v3-pizza-buffalo-turkey",
+      "industrial-v3-pizza-smoky-turkey"
+    ],
+    "titles": [
+      "Shift Buffalo Turkey Proper Pizza",
+      "Shift Smoky Turkey Proper Pizza"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "23d3f75b2d211fd9ebfc00d8f1bc9ce0770f9ade4d59f583dffa819c0436aaf6",
+    "recipe_ids": [
+      "industrial-v3-burger-cajun-beef",
+      "industrial-v3-burger-doner-beef"
+    ],
+    "titles": [
+      "Shift Cajun Beef Fakeaway Burger",
+      "Shift Doner-Style Beef Fakeaway Burger"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "1bc51abf9f17c5601aac571e3503b659eeee844da2c797051cd2188d2ea7ba54",
+    "recipe_ids": [
+      "industrial-v3-kebab-cajun-beef",
+      "industrial-v3-kebab-doner-beef"
+    ],
+    "titles": [
+      "Shift Cajun Beef Fakeaway Kebab",
+      "Shift Doner-Style Beef Fakeaway Kebab"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "66afa9820159d4cfcc5cc9d4c85999573d70751a3b173caae9de2a36228ae7c0",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-cajun-beef",
+      "industrial-v3-loaded-fries-doner-beef"
+    ],
+    "titles": [
+      "Shift Cajun Beef Loaded Fries",
+      "Shift Doner-Style Beef Loaded Fries"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "6f3d572c1b5858e36e056f3f740c53ef7c310a4a0671eb7cdea5d086135bad6e",
+    "recipe_ids": [
+      "industrial-v3-pizza-cajun-beef",
+      "industrial-v3-pizza-doner-beef"
+    ],
+    "titles": [
+      "Shift Cajun Beef Proper Pizza",
+      "Shift Doner-Style Beef Proper Pizza"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "c772f681b570fd8c59f3582f8bbed266df727f51e9305041c49152671984f5fb",
+    "recipe_ids": [
+      "industrial-v3-burger-cajun-chicken",
+      "industrial-v3-burger-doner-chicken"
+    ],
+    "titles": [
+      "Shift Cajun Chicken Fakeaway Burger",
+      "Shift Doner-Style Chicken Fakeaway Burger"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "f1c6f9f5614f6517739ede51a478eeb37f6527351bbf569e9acef8836a5a9dcc",
+    "recipe_ids": [
+      "industrial-v3-kebab-cajun-chicken",
+      "industrial-v3-kebab-doner-chicken"
+    ],
+    "titles": [
+      "Shift Cajun Chicken Fakeaway Kebab",
+      "Shift Doner-Style Chicken Fakeaway Kebab"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "c0aa5e922195ef39eb0f1e931c2508eda66ef9364be27408ce1a144fd1639fc8",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-cajun-chicken",
+      "industrial-v3-loaded-fries-doner-chicken"
+    ],
+    "titles": [
+      "Shift Cajun Chicken Loaded Fries",
+      "Shift Doner-Style Chicken Loaded Fries"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "6dc7bab28e0f578402214758d70268dd27ebd7a9efdc3681c51b81368b0eeb08",
+    "recipe_ids": [
+      "industrial-v3-pizza-cajun-chicken",
+      "industrial-v3-pizza-doner-chicken"
+    ],
+    "titles": [
+      "Shift Cajun Chicken Proper Pizza",
+      "Shift Doner-Style Chicken Proper Pizza"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "313f4a7244fbea8e4b27676465c26d0384d93a589b66a7363c8a3fe75e7813b5",
+    "recipe_ids": [
+      "industrial-v3-burger-cajun-pork",
+      "industrial-v3-burger-doner-pork"
+    ],
+    "titles": [
+      "Shift Cajun Pork Fakeaway Burger",
+      "Shift Doner-Style Pork Fakeaway Burger"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "a29f0b6e90489f54417616076a436c0d440e6d8b34e88eceb2cd5d385ba71352",
+    "recipe_ids": [
+      "industrial-v3-kebab-cajun-pork",
+      "industrial-v3-kebab-doner-pork"
+    ],
+    "titles": [
+      "Shift Cajun Pork Fakeaway Kebab",
+      "Shift Doner-Style Pork Fakeaway Kebab"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "6465a1bcf87dec55940ee1fef0a9fa6fb5c5c6178d476006ac3d766a4fe2e1df",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-cajun-pork",
+      "industrial-v3-loaded-fries-doner-pork"
+    ],
+    "titles": [
+      "Shift Cajun Pork Loaded Fries",
+      "Shift Doner-Style Pork Loaded Fries"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "e6b404af005ae121c76081c717a65849f3c0b315efa4ec36980b1ff33c1d4f09",
+    "recipe_ids": [
+      "industrial-v3-pizza-cajun-pork",
+      "industrial-v3-pizza-doner-pork"
+    ],
+    "titles": [
+      "Shift Cajun Pork Proper Pizza",
+      "Shift Doner-Style Pork Proper Pizza"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "56f8aedbc8f4b979c974784aaf429dc94294b17aea6d8ac4dbc3abe30cff446e",
+    "recipe_ids": [
+      "industrial-v3-burger-cajun-salmon",
+      "industrial-v3-burger-doner-salmon"
+    ],
+    "titles": [
+      "Shift Cajun Salmon Fakeaway Burger",
+      "Shift Doner-Style Salmon Fakeaway Burger"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "977b42416ed2d86a89deaf5e296912fe8848c6aa3a696f6d7460270860eaee3e",
+    "recipe_ids": [
+      "industrial-v3-kebab-cajun-salmon",
+      "industrial-v3-kebab-doner-salmon"
+    ],
+    "titles": [
+      "Shift Cajun Salmon Fakeaway Kebab",
+      "Shift Doner-Style Salmon Fakeaway Kebab"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "2183b2764515840df440ed844ffdc5a54d62725dc004e1442746b34ec0e91012",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-cajun-salmon",
+      "industrial-v3-loaded-fries-doner-salmon"
+    ],
+    "titles": [
+      "Shift Cajun Salmon Loaded Fries",
+      "Shift Doner-Style Salmon Loaded Fries"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "5a99f42491844485fb07aba64203d05ec65e3eb11c3bf241543235be3336d649",
+    "recipe_ids": [
+      "industrial-v3-pizza-cajun-salmon",
+      "industrial-v3-pizza-doner-salmon"
+    ],
+    "titles": [
+      "Shift Cajun Salmon Proper Pizza",
+      "Shift Doner-Style Salmon Proper Pizza"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "2b45df3fe2e956f35f4408733f28ef369807cd41405378afc967a8ef867faf3f",
+    "recipe_ids": [
+      "industrial-v3-burger-cajun-tofu",
+      "industrial-v3-burger-doner-tofu"
+    ],
+    "titles": [
+      "Shift Cajun Tofu Fakeaway Burger",
+      "Shift Doner-Style Tofu Fakeaway Burger"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "4b012a3c5f85f620b85eada998fb881797273486fb7217f2068312f3ee23757b",
+    "recipe_ids": [
+      "industrial-v3-kebab-cajun-tofu",
+      "industrial-v3-kebab-doner-tofu"
+    ],
+    "titles": [
+      "Shift Cajun Tofu Fakeaway Kebab",
+      "Shift Doner-Style Tofu Fakeaway Kebab"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "267cef84fb481ba59231e09c6a2fd7ba8af9606132768c78d4b9ec14a1999276",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-cajun-tofu",
+      "industrial-v3-loaded-fries-doner-tofu"
+    ],
+    "titles": [
+      "Shift Cajun Tofu Loaded Fries",
+      "Shift Doner-Style Tofu Loaded Fries"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "eebe942baf43d95fa1ed1519045e650afb086785d47903778529c1d6e12081c2",
+    "recipe_ids": [
+      "industrial-v3-pizza-cajun-tofu",
+      "industrial-v3-pizza-doner-tofu"
+    ],
+    "titles": [
+      "Shift Cajun Tofu Proper Pizza",
+      "Shift Doner-Style Tofu Proper Pizza"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "b192ed07278fb1b317914f1c8fc5b6a6040a810f8ad4f35726737c254692f9b7",
+    "recipe_ids": [
+      "industrial-v3-burger-cajun-turkey",
+      "industrial-v3-burger-doner-turkey"
+    ],
+    "titles": [
+      "Shift Cajun Turkey Fakeaway Burger",
+      "Shift Doner-Style Turkey Fakeaway Burger"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "42e96ebd169efdac55444b3c14e29cb22603b7b2004431184061f53361ff1b6e",
+    "recipe_ids": [
+      "industrial-v3-kebab-cajun-turkey",
+      "industrial-v3-kebab-doner-turkey"
+    ],
+    "titles": [
+      "Shift Cajun Turkey Fakeaway Kebab",
+      "Shift Doner-Style Turkey Fakeaway Kebab"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "413079bc496bcb531d86a2fb449f5aea989f7d996fc4f106f974717727d49c01",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-cajun-turkey",
+      "industrial-v3-loaded-fries-doner-turkey"
+    ],
+    "titles": [
+      "Shift Cajun Turkey Loaded Fries",
+      "Shift Doner-Style Turkey Loaded Fries"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  },
+  {
+    "groupId": "3bbf22583f9dd4a74190afed93dbbb1a7e4aad0ae6de1c1446d4012a9ec6cf24",
+    "recipe_ids": [
+      "industrial-v3-pizza-cajun-turkey",
+      "industrial-v3-pizza-doner-turkey"
+    ],
+    "titles": [
+      "Shift Cajun Turkey Proper Pizza",
+      "Shift Doner-Style Turkey Proper Pizza"
+    ],
+    "title_reviewed": true,
+    "integrated": true
+  }
+]

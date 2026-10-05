@@ -1,0 +1,86 @@
+{
+  "groupId": "8b68b2b01aad35cdaaf4d5933e1aa213507fd852c5a66dd63178511e936e27e7",
+  "recipe_ids": [
+    "industrial-lunch-salmon-rice-bowl"
+  ],
+  "titles": [
+    "Salmon Rice Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Salmon Rice Bowl. Ingredients, quantities and allergens: [{\"amount\":\"110g\",\"item\":\"cooked salmon\",\"allergens\":[\"fish\"]},{\"amount\":\"75g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"60g\",\"item\":\"mixed peppers\"},{\"amount\":\"60g\",\"item\":\"sweetcorn\"},{\"amount\":\"40g\",\"item\":\"lime yoghurt dressing\",\"allergens\":[\"milk\"]}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use chilled, already-cooked salmon. Check for bones, remove any skin and break the flesh into small flakes.\",\"Use the measured lime yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured lime yoghurt dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "110g",
+      "item": "cooked salmon",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "60g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "60g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "40g",
+      "item": "lime yoghurt dressing",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use chilled, already-cooked salmon. Check for bones, remove any skin and break the flesh into small flakes.",
+    "Use the measured lime yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured lime yoghurt dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d51b29c7-35a8-4baf-a0a6-771c70cd1cdb.png",
+  "source_sha256": "0605a0816c32cf3b0b1ad8d58c28571f60f03ba501f96ef261112641ee566858",
+  "generated_at": "2026-10-05T00:09:06.735Z",
+  "elapsed_ms": 62202.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8b68b2b01aad35cdaaf4-480-4b57e60ebd4a.webp",
+      "sha256": "4b57e60ebd4a84133907b967a829e8e4d86e80c6977f1c813b8d30cd2c56cb7d",
+      "bytes": 23800
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8b68b2b01aad35cdaaf4-b71fc5542ecb.webp",
+      "sha256": "b71fc5542ecb07272ee85aa1ba7eeb47e563dad7e61b8bb76153b8a4cbb194bd",
+      "bytes": 68738
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "0605a0816c32cf3b0b1ad8d58c28571f60f03ba501f96ef261112641ee566858",
+    "recipe_ids": [
+      "industrial-lunch-salmon-rice-bowl"
+    ],
+    "titles": [
+      "Salmon Rice Bowl"
+    ],
+    "notes": "Skinless opaque cooked salmon flakes folded through brown rice with diced mixed peppers, sweetcorn and lime yoghurt coating. No added garnish; exact title matches.",
+    "alt": "Salmon rice bowl with peppers, sweetcorn and lime yoghurt dressing",
+    "reviewed_at": "2026-10-05T00:15:15.750813+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1511-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

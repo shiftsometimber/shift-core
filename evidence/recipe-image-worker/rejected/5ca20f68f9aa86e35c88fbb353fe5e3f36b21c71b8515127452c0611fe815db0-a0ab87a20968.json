@@ -1,0 +1,16 @@
+{
+  "groupId": "5ca20f68f9aa86e35c88fbb353fe5e3f36b21c71b8515127452c0611fe815db0",
+  "source_sha256": "a0ab87a2096891f9f7d603fad43061d59b5f2a9427a96798eaab680ee93c1746",
+  "review": {
+    "decision": "reject",
+    "notes": "Individual full-resolution review: turkey mince, onion and pepper accurate, but rice bed depicts tan bran-coated wholegrain rice when recipe specifies basmati. Regenerate with clearly white basmati to avoid misleading substitution.",
+    "source_sha256": "a0ab87a2096891f9f7d603fad43061d59b5f2a9427a96798eaab680ee93c1746",
+    "recipe_ids": [
+      "industrial-v3-curry-chilli-turkey"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Turkey Proper Curry"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

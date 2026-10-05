@@ -1,0 +1,79 @@
+{
+  "groupId": "feea6747bd38defa087a6b9fcb435680c8b80152ce41a10e22d91a2aef0b832c",
+  "recipe_ids": [
+    "industrial-v3-traybake-harissa-turkey"
+  ],
+  "titles": [
+    "Shift Harissa Turkey Traybake"
+  ],
+  "prompt": "Photorealistic editorial food photography. Present the actual finished recipe appetisingly through natural window light and believable cooked texture in a plain dish. No invented garnish or additional ingredients. Wholegrain rice if listed must have naturally tan bran surfaces and visible bran seams, never polished white rice. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Harissa Turkey Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"harissa tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and turkey mince. Get the pan properly hot first. Cook the turkey mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the turkey mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "harissa tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and turkey mince. Get the pan properly hot first. Cook the turkey mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the turkey mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a10920c5-57db-4073-a0c8-c348794366d6.png",
+  "source_sha256": "5a259359cc1fc62e42c608b61a98c39e2124279c33b05946a160050c4e93169b",
+  "generated_at": "2026-10-05T00:19:13.202Z",
+  "elapsed_ms": 213802,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-feea6747bd38defa087a-480.webp",
+      "sha256": "6b96cac4476a26063586f2ad83937df87f454ef83fafd3e7c5b7073d50ec5e3a",
+      "bytes": 36804
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-feea6747bd38defa087a.webp",
+      "sha256": "b7a99bec599809bb4fcdefd88d025f7cb740c1e2af3f59b32c69cdc71788bdf8",
+      "bytes": 117140
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "5a259359cc1fc62e42c608b61a98c39e2124279c33b05946a160050c4e93169b",
+    "recipe_ids": [
+      "industrial-v3-traybake-harissa-turkey"
+    ],
+    "titles": [
+      "Shift Harissa Turkey Traybake"
+    ],
+    "notes": "Loose cooked turkey mince crumbles with golden roasted baby potatoes, broccoli and red pepper lightly coated in harissa tomato sauce.",
+    "alt": "Shift Harissa Turkey Traybake: loose cooked turkey mince crumbles with golden roasted baby potatoes, broccoli and red pepper lightly coated in harissa tomato sauce.",
+    "reviewed_at": "2026-10-05T00:33:13.800416+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "groupId": "bf0e3acf5d5e459c613281bf94ae17ae1bd270926790227969ffabcd50d50e4e",
+  "recipe_ids": [
+    "industrial-dinner-lentil-chilli"
+  ],
+  "titles": [
+    "Lentil Chilli"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Lentil Chilli. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"cooked green lentils\"},{\"amount\":\"70g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"120g\",\"item\":\"chopped tomatoes\"},{\"amount\":\"100g\",\"item\":\"kidney beans\"},{\"amount\":\"5g\",\"item\":\"smoked paprika\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 70g dry brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Drain and rinse canned, ready-cooked kidney beans, then weigh out 100g; raw or dried kidney beans cannot be used in this method. Use 180g ready-cooked green lentils; drain before weighing. Do not start this method with dry lentils.\",\"Put the 120g chopped tomatoes and 5g smoked paprika into the non-stick frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.\",\"Add the drained kidney beans, cover and simmer for 5 minutes, stirring halfway, until the beans are hot through.\",\"Fold in the cooked green lentils and heat gently for 3\u20135 minutes, stirring, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Photorealistic appetising food; all ingredients exactly match. No garnish or extra food. Keep any listed brown rice distinctly wholegrain tan/brown with visible bran texture; no polished white grains. Match portion and method, natural warm light and generous framing.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "cooked green lentils"
+    },
+    {
+      "amount": "70g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "chopped tomatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "kidney beans"
+    },
+    {
+      "amount": "5g",
+      "item": "smoked paprika"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 70g dry brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Drain and rinse canned, ready-cooked kidney beans, then weigh out 100g; raw or dried kidney beans cannot be used in this method. Use 180g ready-cooked green lentils; drain before weighing. Do not start this method with dry lentils.",
+    "Put the 120g chopped tomatoes and 5g smoked paprika into the non-stick frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.",
+    "Add the drained kidney beans, cover and simmer for 5 minutes, stirring halfway, until the beans are hot through.",
+    "Fold in the cooked green lentils and heat gently for 3\u20135 minutes, stirring, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a8258d3b-23a7-4f37-9041-f1d6700d7cf1.png",
+  "source_sha256": "279f754e0bb5e75ec1405d94cc91cef96f22b099bbe1371d6472d4e098685241",
+  "generated_at": "2026-10-04T22:55:03.682Z",
+  "elapsed_ms": 45671,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bf0e3acf5d5e459c6132-480.webp",
+      "sha256": "ccd09504d70960ba9ebb81217783d6793028f8731ca66b10cb1370af1c6791e5",
+      "bytes": 27692
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bf0e3acf5d5e459c6132.webp",
+      "sha256": "8c9e0c7073c1bf10a6a302aaa87797ee141e5ce73981695d25bf4a26605e5c93",
+      "bytes": 91228
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "index": 467,
+    "decision": "pass",
+    "notes": "Full source inspected: recognisable cooked green lentils and red kidney beans in chopped tomato paprika sauce spooned over tan wholegrain rice with visible bran texture. No meat or added garnish.",
+    "alt": "Green lentil and kidney bean tomato chilli over wholegrain brown rice.",
+    "source_sha256": "279f754e0bb5e75ec1405d94cc91cef96f22b099bbe1371d6472d4e098685241",
+    "recipe_ids": [
+      "industrial-dinner-lentil-chilli"
+    ],
+    "titles": [
+      "Lentil Chilli"
+    ],
+    "reviewer": "root full source image inspection",
+    "reviewed_at": "2026-10-04T23:09:36.309556+00:00"
+  }
+}

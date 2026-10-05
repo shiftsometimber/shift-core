@@ -1,0 +1,88 @@
+{
+  "groupId": "2c86c0ff41caf90e09159eb3cd0956ec629a000bd0d417a5c99c5919f5b17beb",
+  "index": 2268,
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-biscoff-style-savory-box"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Banana Split Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Banana Split Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed food; no honey, nuts, mint, syrup or decorative garnish. Plain unseeded crackers: exactly two visible crackers when listed, no sesame or poppy seeds. All food inside the serving margins. Finished combined dessert in ONE bowl: cottage cheese or yoghurt base, fruit, oats and seeds combined in this bowl, yoghurt visibly swirled through. No separate yoghurt or crunch ramekins.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-27dfca0d-2d6e-4c3b-b37a-db4e5d8ce242.png",
+  "source_sha256": "2d5e05f35ef38d4fdea1043b16d06b65f0a2fb09d44e124774f626c782983e83",
+  "dispatched_at": "2026-10-04T23:14:16.136Z",
+  "generated_at": "2026-10-04T23:20:56.357Z",
+  "elapsed_ms": 400221,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2c86c0ff41caf90e0915-480.webp",
+      "sha256": "32798d30b1f46d5ec214cef60941174cde5444e5ddfdf3d3bd95248c0890dc87",
+      "bytes": 26296,
+      "git_blob_sha": "be2089d61e4b81cb4e2bfd429158b64c60051ec9"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2c86c0ff41caf90e0915.webp",
+      "sha256": "ce08fdd6a625a2289221581abb5053e1196d2380c84b29c6cbdcd3a76895ffcc",
+      "bytes": 73890,
+      "git_blob_sha": "cdae83f8daa4664aa75384f39d5e87649e42b844"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-biscoff-style-savory-box"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Banana Split Dessert Pot"
+    ],
+    "notes": "Banana, berries, biscuit crumbs, oats and pumpkin seeds combined with small Greek yoghurt swirl. No chocolate or sauce.",
+    "alt": "Banana and berry dessert with biscuit crumbs, oats, pumpkin seeds and Greek yoghurt.",
+    "reviewed_at": "2026-10-04T23:21:58.788818+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/2c86c0ff41caf90e09159eb3cd0956ec629a000bd0d417a5c99c5919f5b17beb.json",
+    "source_sha256": "2d5e05f35ef38d4fdea1043b16d06b65f0a2fb09d44e124774f626c782983e83"
+  },
+  "integrated": true,
+  "live": false
+}

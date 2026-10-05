@@ -1,0 +1,97 @@
+{
+  "groupId": "f6d61612120efcfd1845ade8be096051f4f5b21b4e1d911a0c32948bf370de62",
+  "recipe_ids": [
+    "industrial-v3-pie-peppercorn-pork"
+  ],
+  "titles": [
+    "Shift Peppercorn Pork Proper Pie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Pork Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, wholegrain mustard, black pepper dressing alongside.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph this exact finished recipe, appetising natural daylight, credible ordinary single serving with generous crop margin. No unlisted food, fresh green herb flecks/leaves, seeds on bread, cheese, milk, butter, cream, breading, fried batter, ketchup, gravy or decorative garnish. Wholemeal buns/flatbreads completely plain unseeded. Protein form exact: chicken burger cooked opaque unbreaded1.5cmcutlets; chicken kebab/fries/pizza cooked opaque1.5cm strips; chicken pasta/pie2cm cooked pieces; chicken roast intact plain roasted breast. Pork burger opaque1cmcutlets; pork kebab/fries/pizza opaque1cmstrips; pork pasta/pie2cm cooked pieces; pork roast plain roasted loin, if sliced opaque no pink. Slowpot protein tender opaque, potatoes/carrot/onion glossy tender not crispyroast. Peppercorn uses LIGHT MAYONNAISE + WHOLEGRAIN MUSTARD + BLACK PEPPER, not hot cream sauce. Wholegrain mustard grains permitted only inside ivory dressing, no seed garnish. Exact placement: burger/kebab ivory cold mayo-mustard on cooked protein inside bread; fries/pizza ivory cold finish drizzled ON TOP after cooking; pasta thin mayo-mustard-black pepper dressing folded THROUGH wholewheat pasta offheat with courgette/cherry tomatoes; slowpot light mayo/final mustardpepper stirred through OFFHEAT, lightly ivory-glossy coating not thick cream pool; pie PLAIN browned fork-roughened WATER mash absolutely no black pepper/mustard/herbs/cheese on or in topping, PLAIN chicken/pork-carrot-pea filling, ivory cold mustard-blackpepper dressing in SEPARATE small bowl alongside; Sundayroast protein/potatoes/slimcarrotbatons/boiledbroccoli all PLAIN with NO blackpepper/mustard/herb flecks or dressing, cold ivory dressing separate alongside; traybake baby potatoes/broccoli/redpepper/protein golden roast edges with mayo and final seasoning only AFTER oven, ivory finishing topping. Pizza visibly cheese-free passata base thin mixed peppers correct protein, cold ivory finish on top. Fries golden plain ovenchips thin redonion/mixedpepper strips. No whole peppercorn berry garnish: pepper is finely ground/coarsely crushed specks. No extra foods.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, wholegrain mustard, black pepper dressing alongside."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b2ede910-95d6-4450-b572-1bb4c9f582b9.png",
+  "source_sha256": "03832e1e9aa73a11379f0b750c7bd61d19c26591cfb7fb3c8ef141fe3b5323f8",
+  "generated_at": "2026-10-05T00:53:56.907Z",
+  "elapsed_ms": 342069.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f6d61612120efcfd1845-retry4-480-de953f430fde.webp",
+      "sha256": "de953f430fde26d8ee89c212cd9c5c3240101f06f558b4c7c67ef27112a1ba5d",
+      "bytes": 22512
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f6d61612120efcfd1845-retry4-ff600604e772.webp",
+      "sha256": "ff600604e7728d4276b0b8d9256db11257e611480af42334ac407038a899746b",
+      "bytes": 77002
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "03832e1e9aa73a11379f0b750c7bd61d19c26591cfb7fb3c8ef141fe3b5323f8",
+    "recipe_ids": [
+      "industrial-v3-pie-peppercorn-pork"
+    ],
+    "titles": [
+      "Shift Peppercorn Pork Proper Pie"
+    ],
+    "notes": "Pass: plain opaque cooked pork loin pieces, diced carrots and peas in plain glossy cooking juices under plain browned fork-roughened water mash. All light mayo-wholegrain mustard-black pepper dressing exclusively in separate small bowl alongside. No black pepper or green herb flecks on mash/filling, cheese, butter, creamy filling sauce, ketchup or extra foods. Whole pie and dressing within crop.",
+    "alt": "Peppercorn pork pie with carrots, peas and plain golden mash, served beside mayonnaise-wholegrain mustard dressing",
+    "reviewed_at": "2026-10-05T00:55:49.471638+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1175.json"
+  },
+  "integrated": true,
+  "live": false
+}

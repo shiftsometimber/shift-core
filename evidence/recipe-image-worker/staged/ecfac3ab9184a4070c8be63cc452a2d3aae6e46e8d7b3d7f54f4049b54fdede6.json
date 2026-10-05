@@ -1,0 +1,87 @@
+{
+  "groupId": "ecfac3ab9184a4070c8be63cc452a2d3aae6e46e8d7b3d7f54f4049b54fdede6",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-pineapple-protein-pudding"
+  ],
+  "titles": [
+    "Shift Pineapple Protein Pudding Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pineapple Protein Pudding Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"pineapple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed ingredients: no honey, mint, coconut, nuts, syrup, pineapple or banana/apple unless listed. Mixed berries only listed berry addition. Cottage cheese curdy, high-protein yoghurt smooth, fruit-only variants have no dairy unless 40g Greek yoghurt explicitly listed. Rolled oats plain flakes, no granola with invented foods. Pumpkin seeds flat green pepitas. Chocolate chips discrete small chips; Big Feed recipes that ALSO list chopped dark chocolate must show chopped pieces as the measured finishing element. WORK SNACK BOX: wet fruit/dairy separated from dry oats/pepitas/TWO wholegrain crackers. EXCEPTION overnight-oats work snack box: oats are milk-hydrated overnight with pineapple/berries mixed through; seeds separate until serving, crackers alongside dry. Fruit/Protein pots: dry crunch only added at immediate serving. Greek yoghurt swirled through dessert pots at end exactly as method requires, not an invented cream base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "pineapple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a5d7150a-ae62-4e21-98de-8104563840af.png",
+  "source_sha256": "120c18315741e9d024e52d7ccad12a59274296f16224dfaf279d78bf2c08b617",
+  "generated_at": "2026-10-05T01:22:11.863Z",
+  "elapsed_ms": 119708.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ecfac3ab9184a4070c8b-480-afbbb81a64e7.webp",
+      "sha256": "afbbb81a64e70c138b22a18f189a355206b4be9458b29295cd0c51ae93379bb9",
+      "bytes": 22116
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ecfac3ab9184a4070c8b-31e9b2e80758.webp",
+      "sha256": "31e9b2e80758c7cca9fbb29794a4a292ced280bdf1dd967d74870c23673ff31a",
+      "bytes": 67988
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "120c18315741e9d024e52d7ccad12a59274296f16224dfaf279d78bf2c08b617",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-pineapple-protein-pudding"
+    ],
+    "titles": [
+      "Shift Pineapple Protein Pudding Work Snack Box"
+    ],
+    "notes": "Smooth high-protein yoghurt with bite-size pineapple/mixed berries in wet compartment; plain dry oats, green pumpkin seeds and two crackers isolated in dry compartments. No curdy cheese, chocolate, honey or garnish; exact title/method checked.",
+    "alt": "Pineapple protein yoghurt snack box with berries and separate oats, pumpkin seeds and crackers",
+    "reviewed_at": "2026-10-05T01:27:17.211145+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2576.json"
+  },
+  "integrated": true,
+  "live": false
+}

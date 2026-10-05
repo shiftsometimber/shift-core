@@ -1,0 +1,87 @@
+{
+  "groupId": "758e7bc020800b7661196525ffe0ab82d8547a3d9316817a553a3d63edce9c5f",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-pineapple-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Pineapple Cottage Cheese Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pineapple Cottage Cheese Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"pineapple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the low-fat cottage cheese, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the low-fat cottage cheese first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nShow only each exact recipe's ingredients, with appetising realistic textures. No honey, mint, coconut, nuts, syrup, other seeds or unlisted fruit. Pumpkin seeds are flat green pepitas. Rolled oats plain flakes, not granola containing unlisted foods. Cottage cheese visibly curdy, Greek yoghurt smooth; fruit-only pots have no creamy base unless 40g yoghurt is listed. Chocolate only recipes listing it. WORK SNACK BOX: juicy bite-size fruit and any listed dairy in separate compartment from dry oats, pumpkin seeds and TWO wholegrain crackers, no loose crunch mixed into wet fruit. OAT CRUNCH snack pot: dry-pan-toasted oats/seeds completely cooled and packed separately from cut fruit; no milk/cream/yoghurt. PROTEIN/SNACK pots: crunch may be added just before immediate serving as method allows. OVERNIGHT OATS: soft hydrated oats in measured milk; fruit mixed through, pumpkin seeds and any listed chopped chocolate added only at serving. Follow the exact listed method, not an invented garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "pineapple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the low-fat cottage cheese, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the low-fat cottage cheese first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2815bd86-f308-4232-ad18-7471616f1162.png",
+  "source_sha256": "29bbbf76b5dd7514816e49ec1a6beeb37fe4a54992cfb8c31dfa7547f00f0577",
+  "generated_at": "2026-10-05T01:13:38.364Z",
+  "elapsed_ms": 122825.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-758e7bc020800b766119-480-15a90f1bc92c.webp",
+      "sha256": "15a90f1bc92c07210aeae2d305f73b44ece1d822fdd766439384ae2c327b9e42",
+      "bytes": 25898
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-758e7bc020800b766119-be8b8d07af4b.webp",
+      "sha256": "be8b8d07af4b879a74960b6710e8f809670cc463c7d7f685ac6e93be4b06e07d",
+      "bytes": 74870
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "29bbbf76b5dd7514816e49ec1a6beeb37fe4a54992cfb8c31dfa7547f00f0577",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-pineapple-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Pineapple Cottage Cheese Work Snack Box"
+    ],
+    "notes": "Full-resolution box confirms curdy cottage cheese with bite-size pineapple/mixed berries in wet section, dry rolled oats/green pumpkin seeds separately, and two overlapping wholegrain crackers isolated. No chocolate, yoghurt, honey or mint; exact title/method checked.",
+    "alt": "Pineapple cottage cheese snack box with berries and separate oats, pumpkin seeds and crackers",
+    "reviewed_at": "2026-10-05T01:18:52.691518+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2560.json"
+  },
+  "integrated": true,
+  "live": false
+}

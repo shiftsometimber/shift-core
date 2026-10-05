@@ -1,0 +1,98 @@
+{
+  "groupId": "5c66869e00a2909851a8f73902efaa18b74989e3804017bb216b43deb87b7d28",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-peppercorn-chicken"
+  ],
+  "titles": [
+    "Shift Peppercorn Chicken Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Chicken Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"chicken breast\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Mix the measured light mayonnaise and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Cut the chicken breast into strips about 1.5cm thick. Coat with all the measured black pepper. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8\u201310 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.\",\"Pile the crisp oven chips onto a plate and spoon over the cooked chicken strips, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph this exact finished recipe, appetising natural daylight, credible ordinary single serving with generous crop margin. No unlisted food, fresh green herb flecks/leaves, seeds on bread, cheese, milk, butter, cream, breading, fried batter, ketchup, gravy or decorative garnish. Wholemeal buns/flatbreads completely plain unseeded. Protein form exact: chicken burger cooked opaque unbreaded1.5cmcutlets; chicken kebab/fries/pizza cooked opaque1.5cm strips; chicken pasta/pie2cm cooked pieces; chicken roast intact plain roasted breast. Pork burger opaque1cmcutlets; pork kebab/fries/pizza opaque1cmstrips; pork pasta/pie2cm cooked pieces; pork roast plain roasted loin, if sliced opaque no pink. Slowpot protein tender opaque, potatoes/carrot/onion glossy tender not crispyroast. Peppercorn uses LIGHT MAYONNAISE + WHOLEGRAIN MUSTARD + BLACK PEPPER, not hot cream sauce. Wholegrain mustard grains permitted only inside ivory dressing, no seed garnish. Exact placement: burger/kebab ivory cold mayo-mustard on cooked protein inside bread; fries/pizza ivory cold finish drizzled ON TOP after cooking; pasta thin mayo-mustard-black pepper dressing folded THROUGH wholewheat pasta offheat with courgette/cherry tomatoes; slowpot light mayo/final mustardpepper stirred through OFFHEAT, lightly ivory-glossy coating not thick cream pool; pie PLAIN browned fork-roughened WATER mash absolutely no black pepper/mustard/herbs/cheese on or in topping, PLAIN chicken/pork-carrot-pea filling, ivory cold mustard-blackpepper dressing in SEPARATE small bowl alongside; Sundayroast protein/potatoes/slimcarrotbatons/boiledbroccoli all PLAIN with NO blackpepper/mustard/herb flecks or dressing, cold ivory dressing separate alongside; traybake baby potatoes/broccoli/redpepper/protein golden roast edges with mayo and final seasoning only AFTER oven, ivory finishing topping. Pizza visibly cheese-free passata base thin mixed peppers correct protein, cold ivory finish on top. Fries golden plain ovenchips thin redonion/mixedpepper strips. No whole peppercorn berry garnish: pepper is finely ground/coarsely crushed specks. No extra foods.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Mix the measured light mayonnaise and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Cut the chicken breast into strips about 1.5cm thick. Coat with all the measured black pepper. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8\u201310 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.",
+    "Pile the crisp oven chips onto a plate and spoon over the cooked chicken strips, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d4bd369e-1ebd-4162-a9d7-12a22f87c3ca.png",
+  "source_sha256": "754b40ed208f11da994241d8a127bb2342a0c5e521e100d2e7c515c5d3528c68",
+  "generated_at": "2026-10-05T00:48:33.357Z",
+  "elapsed_ms": 18519.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5c66869e00a2909851a8-retry4-480-869f2e512a6f.webp",
+      "sha256": "869f2e512a6f4d3f74d7e3d86655a5d9cd4f616ab06770715813d0218a41b822",
+      "bytes": 30932
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5c66869e00a2909851a8-retry4-96a71abdbc33.webp",
+      "sha256": "96a71abdbc33dad46bb1cecfc5d4d38bf2d203bbd5c8b0e72e49c002813ce44f",
+      "bytes": 92328
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "754b40ed208f11da994241d8a127bb2342a0c5e521e100d2e7c515c5d3528c68",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-peppercorn-chicken"
+    ],
+    "titles": [
+      "Shift Peppercorn Chicken Loaded Fries"
+    ],
+    "notes": "Pass: opaque cooked chicken breast strips with black pepper coating over golden plain oven chips, thin softened red onion and mixed pepper strips, cold ivory light mayo-wholegrain mustard drizzle on TOP. Mustard grains inside dressing; no breading, cheese, ketchup, herb garnish, raw pink chicken or side foods. Exact peppercorn loaded fries assembly and crop margin.",
+    "alt": "Peppercorn chicken loaded oven chips with red onion, mixed peppers and light mayonnaise-wholegrain mustard dressing",
+    "reviewed_at": "2026-10-05T00:48:57.738083+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1164.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,80 @@
+{
+  "groupId": "81fccd13ba83eabbcf9a008e80229cd80c508ff7ecb8470459fada44908bc98a",
+  "recipe_ids": [
+    "industrial-breakfast-cottage-cheese-toast-pear-ginger-3"
+  ],
+  "titles": [
+    "Cottage Cheese Spinach Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cottage Cheese Spinach Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"spinach\"},{\"amount\":\"1 tsp\",\"item\":\"lemon juice\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Toast the bread.\",\"Prepare the vegetables.\",\"Spoon cottage cheese over the toast.\",\"Top with vegetables, lemon juice and black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "spinach"
+    },
+    {
+      "amount": "1 tsp",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Toast the bread.",
+    "Prepare the vegetables.",
+    "Spoon cottage cheese over the toast.",
+    "Top with vegetables, lemon juice and black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ada67ee9-0d7f-44e3-89c8-bfbe7dfc40d6.png",
+  "source_sha256": "f57cd2f72d810ec866a7b75e4372ac734e117eb530c7f17f0282b22be6e8fc8a",
+  "generated_at": "2026-10-04T21:08:31.059Z",
+  "elapsed_ms": 391751,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "evidence/recipe-image-worker/assets/catalogue-81fccd13ba83eabbcf9a-480.webp",
+      "sha256": "91841f3565c0853e217bde031eaaeba91c41158fc9f9e0abc7fb67f6144128f4",
+      "bytes": 29580
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "evidence/recipe-image-worker/assets/catalogue-81fccd13ba83eabbcf9a.webp",
+      "sha256": "316099bcf246c89cab44615bc726bd5b9b48186e90cfe1985798cce3a866d7b4",
+      "bytes": 84642
+    }
+  ],
+  "review_status": "reject",
+  "integrated": false,
+  "live": false,
+  "review": {
+    "decision": "reject",
+    "recipe_ids": [
+      "industrial-breakfast-cottage-cheese-toast-pear-ginger-3"
+    ],
+    "titles": [
+      "Cottage Cheese Spinach Wholemeal Toast"
+    ],
+    "notes": "Reject: spinach appears wilted and cooked. Exact method only prepares vegetables and tops toast; image adds an unsupported cooking state. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Cottage cheese on wholemeal toast topped with spinach.",
+    "reviewed_at": "2026-10-04T21:13:56.961404+00:00",
+    "reviewer": "recipe-image-root"
+  }
+}

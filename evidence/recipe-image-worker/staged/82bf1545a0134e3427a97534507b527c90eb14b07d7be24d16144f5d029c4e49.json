@@ -1,0 +1,89 @@
+{
+  "groupId": "82bf1545a0134e3427a97534507b527c90eb14b07d7be24d16144f5d029c4e49",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-cheesy-egg"
+  ],
+  "titles": [
+    "Shift Cheesy Egg Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Egg Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-343feae5-b3b7-4ab3-9e90-9dcd1c70db95.png",
+  "source_sha256": "b4b004e9a4b092891ad946dcf5b5ac2a60575c71ed66b85c79e145fd1938b1bc",
+  "generated_at": "2026-10-04T21:18:16.082Z",
+  "elapsed_ms": 322911,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-82bf1545a0134e3427a9-480.webp",
+      "sha256": "52519ec413a69a80aede3c1990471600610d39fca28bd04d54cb2753aa9441ba",
+      "bytes": 24946
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-82bf1545a0134e3427a9.webp",
+      "sha256": "189b993e033988192c9d922cd4e7538f9e5078cdf36b511e99e9197555510591",
+      "bytes": 79522
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-cheesy-egg"
+    ],
+    "titles": [
+      "Shift Cheesy Egg Breakfast Buttie"
+    ],
+    "notes": "Tender set scrambled egg, cooked tomato, wilted spinach and melted cheddar in a plain wholemeal bap. Correct hot cooked form; no extra ingredients or garnish.",
+    "alt": "Wholemeal bap with scrambled egg, tomato, spinach and melted cheddar.",
+    "reviewed_at": "2026-10-04T21:20:43.422327+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/124.json",
+    "source_sha256": "b4b004e9a4b092891ad946dcf5b5ac2a60575c71ed66b85c79e145fd1938b1bc"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,77 @@
+{
+  "groupId": "82bfffe1e09c53602b31bebc6effe1ef130143a24b597842be62052edb38c618",
+  "recipe_ids": [
+    "industrial-dinner-salmon-taco-bowl"
+  ],
+  "titles": [
+    "Salmon Taco Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Salmon Taco Bowl. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\"},{\"amount\":\"70g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"120g\",\"item\":\"sweetcorn\"},{\"amount\":\"100g\",\"item\":\"tomato salsa\"},{\"amount\":\"50g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Cook the measured dry brown rice in boiling water according to its packet instructions, then drain if needed. Keep the yoghurt refrigerated while the hot components cook.\",\"Heat a non-stick frying pan over medium heat with 2 tablespoons of water; this recipe has no added oil. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Add a spoonful of water if the pan starts sticking.\",\"Add the sweetcorn and tomato salsa to the pan. Cook for 3\u20135 minutes, stirring until hot; if using frozen sweetcorn, follow its packet cooking time. Return the cooked salmon fillet from its plate and fold in gently until steaming hot.\",\"Spoon the cooked rice into a bowl, add the hot filling and take it away from the heat before adding the measured Greek yoghurt as a cool topping.\",\"Eat immediately, or portion and cool leftovers promptly following the rice-storage instructions. Keep the yoghurt topping separate when packing a portion for reheating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Appetising faithful editorial food photography, warm side light, generous framing. Follow exact method and protein form. No unlisted garnish or food. For listed brown rice, depict ordinary cooked WHOLEGRAIN BROWN RICE with distinctly medium-tan to light-brown intact bran on every grain; natural earthy brown rice, never polished white rice, risotto or pale glossy short grains. For basmati, retain its listed long-grain appearance. Show all ingredients in their specified placement and cooked/raw state.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet"
+    },
+    {
+      "amount": "70g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "100g",
+      "item": "tomato salsa"
+    },
+    {
+      "amount": "50g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Cook the measured dry brown rice in boiling water according to its packet instructions, then drain if needed. Keep the yoghurt refrigerated while the hot components cook.",
+    "Heat a non-stick frying pan over medium heat with 2 tablespoons of water; this recipe has no added oil. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Add a spoonful of water if the pan starts sticking.",
+    "Add the sweetcorn and tomato salsa to the pan. Cook for 3\u20135 minutes, stirring until hot; if using frozen sweetcorn, follow its packet cooking time. Return the cooked salmon fillet from its plate and fold in gently until steaming hot.",
+    "Spoon the cooked rice into a bowl, add the hot filling and take it away from the heat before adding the measured Greek yoghurt as a cool topping.",
+    "Eat immediately, or portion and cool leftovers promptly following the rice-storage instructions. Keep the yoghurt topping separate when packing a portion for reheating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6130355f-c8b7-415a-8cf5-1dd276c5cb6e.png",
+  "source_sha256": "2b98254a5e53ee0a4fecc996a7ebcb47eaf4d100801d04ef23f856f6e948c5cd",
+  "generated_at": "2026-10-04T23:20:57.676Z",
+  "elapsed_ms": 362201,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-82bfffe1e09c53602b31-480.webp",
+      "sha256": "503433cca0e14c21b40412c28edeafefc334d52ca55f0ee9b5860e64df13d289",
+      "bytes": 31196
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-82bfffe1e09c53602b31.webp",
+      "sha256": "9e6a2e25beb960a220ada4e8c5d5ab66c8d161ad6d0526e2879a391917633800",
+      "bytes": 92110
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2b98254a5e53ee0a4fecc996a7ebcb47eaf4d100801d04ef23f856f6e948c5cd",
+    "recipe_ids": [
+      "industrial-dinner-salmon-taco-bowl"
+    ],
+    "titles": [
+      "Salmon Taco Bowl"
+    ],
+    "notes": "Large opaque salmon flakes with hot corn and salsa over tan wholegrain rice, cool yoghurt added on top.",
+    "alt": "Salmon taco bowl with sweetcorn, brown rice and yoghurt",
+    "reviewed_at": "2026-10-04T23:32:39.071337+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

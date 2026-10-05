@@ -1,0 +1,83 @@
+{
+  "groupId": "7d3c765cdadc18b69fb4d8ab23edcf3781c51e4b16fd081d5663e3e68bbec837",
+  "recipe_ids": [
+    "industrial-snack-tuna-snack-pot-cinnamon"
+  ],
+  "titles": [
+    "Rocket Tuna Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Rocket Tuna Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"sweetcorn\"},{\"amount\":\"80g\",\"item\":\"cucumber\"},{\"amount\":\"25g\",\"item\":\"wholegrain crackers\",\"allergens\":[\"gluten\"]},{\"amount\":\"50g\",\"item\":\"rocket\"}]. Preparation: [\"Use canned ready-to-eat sweetcorn, drained before weighing the listed portion. Keep it chilled until assembling the pot.\",\"Measure everything before assembling the snack so the portion stays intentional.\",\"Drain the tuna well, combine it with the vegetables and measured savoury add-on, and keep the crackers separate until eating.\",\"Keep chilled protein and vegetables refrigerated until you are ready to eat.\",\"Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "80g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "25g",
+      "item": "wholegrain crackers",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "50g",
+      "item": "rocket"
+    }
+  ],
+  "method": [
+    "Use canned ready-to-eat sweetcorn, drained before weighing the listed portion. Keep it chilled until assembling the pot.",
+    "Measure everything before assembling the snack so the portion stays intentional.",
+    "Drain the tuna well, combine it with the vegetables and measured savoury add-on, and keep the crackers separate until eating.",
+    "Keep chilled protein and vegetables refrigerated until you are ready to eat.",
+    "Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a7448eac-1742-456b-a746-00c2cce0a71e.png",
+  "source_sha256": "18cbb65244cfc8491b96b0b7417cb1073699c9d179faa073e1ee5a8646f66603",
+  "generated_at": "2026-10-04T21:20:47.363Z",
+  "elapsed_ms": 82199,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7d3c765cdadc18b69fb4-480.webp",
+      "sha256": "3cdce6aed564af0b5668741d602574f21f2c79b3b39ee07586d09c842d4f68fe",
+      "bytes": 30178
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7d3c765cdadc18b69fb4.webp",
+      "sha256": "59e34d0165682b83fc640fc8df7227e13b63aca3cb02d721a0304832eba4e34b",
+      "bytes": 82196
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-snack-tuna-snack-pot-cinnamon"
+    ],
+    "titles": [
+      "Rocket Tuna Snack Pot"
+    ],
+    "notes": "Drained tuna flakes, sweetcorn and cucumber combined with rocket; plain wholegrain crackers kept separate; no mayo or garnish.",
+    "alt": "Tuna snack salad with sweetcorn, cucumber, rocket and separate wholegrain crackers",
+    "reviewed_at": "2026-10-04T21:27:26.637410+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/7d3c765cdadc18b69fb4d8ab23edcf3781c51e4b16fd081d5663e3e68bbec837.json",
+    "source_sha256": "18cbb65244cfc8491b96b0b7417cb1073699c9d179faa073e1ee5a8646f66603"
+  },
+  "integrated": true,
+  "live": false
+}

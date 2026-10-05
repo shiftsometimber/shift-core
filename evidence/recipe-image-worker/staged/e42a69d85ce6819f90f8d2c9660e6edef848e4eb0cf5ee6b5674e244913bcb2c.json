@@ -1,0 +1,101 @@
+{
+  "groupId": "e42a69d85ce6819f90f8d2c9660e6edef848e4eb0cf5ee6b5674e244913bcb2c",
+  "recipe_ids": [
+    "industrial-v3-pasta-peppercorn-turkey"
+  ],
+  "titles": [
+    "Shift Peppercorn Turkey Proper Pasta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Turkey Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, wholegrain mustard, black pepper dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain entirely unseeded: no sesame/poppy or seed garnish. No cheese, herbs, garnish, crumbs, breading, lemon, cream, ketchup or extra foods unless listed. Exact protein and preparation. Light mayo plus wholegrain mustard plus black pepper only. Wholegrain mustard grains may appear INSIDE dressing, not as seed garnish. Wholewheat pasta with courgette and cherry tomatoes; light mayo mustard blackpepper folded THROUGH offheat glossy light coating. Turkey mince loose pale opaque golden crumbles.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, wholegrain mustard, black pepper dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-31713a99-76f0-4fe1-a5d2-22f49683305d.png",
+  "source_sha256": "c754e03373c38bb85dde1e28e7aaf4db2ee6f7b4c42509f90ca35eb71d447b11",
+  "generated_at": "2026-10-05T01:15:58.732Z",
+  "elapsed_ms": 203330.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e42a69d85ce6819f90f8-retry4-480-94621d03811e.webp",
+      "sha256": "94621d03811e064c38822d239e5a3d127aef06f1afb066bfee28a0a87068b442",
+      "bytes": 28366
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e42a69d85ce6819f90f8-retry4-0fdbd5f2c933.webp",
+      "sha256": "0fdbd5f2c933ba997420937bd217cf4c82f97badc05d2470371a7562240db354",
+      "bytes": 82374
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c754e03373c38bb85dde1e28e7aaf4db2ee6f7b4c42509f90ca35eb71d447b11",
+    "recipe_ids": [
+      "industrial-v3-pasta-peppercorn-turkey"
+    ],
+    "titles": [
+      "Shift Peppercorn Turkey Proper Pasta"
+    ],
+    "notes": "Pass: loose opaque pale golden turkey breast mince crumbles, softened diced courgette and juicy cherry tomatoes with brown wholewheat penne. Light mayonnaise-wholegrain mustard-black pepper dressing folded THROUGH finished pasta as light glossy offheat coating. No slices, cream pool, cheese, herbs, extra vegetables or foods. Exact turkey mince pasta preparation and central crop.",
+    "alt": "Wholewheat peppercorn turkey pasta with courgette, cherry tomatoes and mayonnaise-wholegrain mustard dressing",
+    "reviewed_at": "2026-10-05T01:16:38.489282+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1200.json"
+  },
+  "integrated": true,
+  "live": false
+}

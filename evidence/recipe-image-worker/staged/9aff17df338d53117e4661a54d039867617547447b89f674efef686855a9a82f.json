@@ -1,0 +1,83 @@
+{
+  "groupId": "9aff17df338d53117e4661a54d039867617547447b89f674efef686855a9a82f",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-bbq-chicken-sausage"
+  ],
+  "titles": [
+    "Shift BBQ Chicken Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Chicken Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0e474bba-4e90-4b2c-951d-0f4bb974f94f.png",
+  "source_sha256": "2ad904b04f3b1bc7ef80d6790af38b9a6b3df7fb54e0c16fb644b74e6531aded",
+  "generated_at": "2026-10-04T21:12:41.438Z",
+  "elapsed_ms": 149422.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9aff17df338d53117e46-480.webp",
+      "sha256": "f8cb16b9ee9146b4e897d81b5f9a1b10828b14038a150e76c9de0fc13bd95577",
+      "bytes": 26620
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9aff17df338d53117e46.webp",
+      "sha256": "1c30c6cbeb8cfaac8f071f9a0918042616340a4b6a2536fcce6c7ebf28db3158",
+      "bytes": 88436
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-bbq-chicken-sausage"
+    ],
+    "titles": [
+      "Shift BBQ Chicken Breakfast Buttie"
+    ],
+    "notes": "Wholemeal bap contains cooked browned chicken breast strips with white interiors, softened tomato and wilted spinach coated in barbecue sauce. No sausage despite legacy recipe ID wording; exact title and ingredients match chicken. No cheese or herb garnish, good crop margin.",
+    "alt": "Wholemeal bap filled with barbecue chicken, tomato and wilted spinach",
+    "reviewed_at": "2026-10-04T21:13:18.715389+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/52.json",
+    "source_sha256": "2ad904b04f3b1bc7ef80d6790af38b9a6b3df7fb54e0c16fb644b74e6531aded"
+  },
+  "integrated": true,
+  "live": false
+}

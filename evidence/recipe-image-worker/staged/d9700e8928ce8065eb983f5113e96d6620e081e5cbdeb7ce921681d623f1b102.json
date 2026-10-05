@@ -1,0 +1,87 @@
+{
+  "groupId": "d9700e8928ce8065eb983f5113e96d6620e081e5cbdeb7ce921681d623f1b102",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-cherry-protein-pudding"
+  ],
+  "titles": [
+    "Shift Cherry Protein Pudding Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Protein Pudding Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed food; no honey, nuts, mint, syrup, sauces or decorative garnish. All food inside frame. Berries just small25g portion. Exactly TWO plain unseeded wholegrain crackers with visibly independent offset edges. All cherries destoned stemless fresh halves with visible empty pit cavities. No whole cherries/stems. Yoghurt smooth and stirred, no cottage cheese curds. Real snack box; dry oats/seeds/crackers in separate compartments from fruit or dairy. Cocoa mixed into fruit/dairy component.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-image-rescue/raw-d9700e8928ce8065eb983f5113e96d6620e081e5cbdeb7ce921681d623f1b102.png",
+  "source_sha256": "0f44ae79451d830860f33dcbd09776df1553145233dee7ad9dbc4332c9eac17a",
+  "generated_at": "2026-10-05T00:24:00.121Z",
+  "elapsed_ms": 230096,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d9700e8928ce8065eb98-480-f2f4ded5ae2f.webp",
+      "sha256": "f2f4ded5ae2f844935717180f92fd876f9c3fca088a8f2667d48c4ade0512b72",
+      "bytes": 31120
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d9700e8928ce8065eb98-7cc29d6fe7a4.webp",
+      "sha256": "7cc29d6fe7a4f3bfbb32550b4afb229059874a0d54cfde773ecfeaaf941ff50a",
+      "bytes": 97788
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "0f44ae79451d830860f33dcbd09776df1553145233dee7ad9dbc4332c9eac17a",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-cherry-protein-pudding"
+    ],
+    "titles": [
+      "Shift Cherry Protein Pudding Work Snack Box"
+    ],
+    "notes": "Exact source bytes restored from stored full result. Smooth protein yoghurt with destoned cherry halves/berries, dry oats/seeds separate and two plain crackers visible.",
+    "alt": "Cherry protein yoghurt snack box with berries, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-05T00:28:48.515560+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/d9700e8928ce8065eb983f5113e96d6620e081e5cbdeb7ce921681d623f1b102.json"
+  },
+  "integrated": true,
+  "live": false
+}

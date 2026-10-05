@@ -1,0 +1,79 @@
+{
+  "groupId": "8a6150af4c14d056e712f7598d4149783ccfdc6f8709060f4ea18d987b4d5dd4",
+  "recipe_ids": [
+    "industrial-v3-traybake-balti-chicken"
+  ],
+  "titles": [
+    "Shift Balti Chicken Traybake"
+  ],
+  "prompt": "Photorealistic editorial recipe food photography. Make the actual finished dish appetising through natural window light, truthful cooked texture and a clean plain ceramic serving dish. No decorative garnish or ingredients beyond the exact recipe. If brown rice is listed, show wholegrain rice with unmistakable tan bran on the grains, never ivory polished rice. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Chicken Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f86dbd17-61dc-453e-a756-60dc29b927c7.png",
+  "source_sha256": "7453e13bec5ba67287b94e39842d0d49e343bf55cc44e699a2bbfa831ecbed02",
+  "generated_at": "2026-10-05T00:08:05.481Z",
+  "elapsed_ms": 22974,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8a6150af4c14d056e712-480.webp",
+      "sha256": "081980cde52dc648c7125e56bc4598517ce219e6e24bd6a672ef3d35999eeb0d",
+      "bytes": 41108
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8a6150af4c14d056e712.webp",
+      "sha256": "2330abc149e61df6a25acb254b416079066ef100c95505aaa82fe31761eb22b3",
+      "bytes": 132184
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "7453e13bec5ba67287b94e39842d0d49e343bf55cc44e699a2bbfa831ecbed02",
+    "recipe_ids": [
+      "industrial-v3-traybake-balti-chicken"
+    ],
+    "titles": [
+      "Shift Balti Chicken Traybake"
+    ],
+    "notes": "Cooked chicken breast portions, golden roast baby potatoes, broccoli and red pepper with a light balti coating; no added garnish.",
+    "alt": "Shift Balti Chicken Traybake: cooked chicken breast portions, golden roast baby potatoes, broccoli and red pepper with a light balti coating",
+    "reviewed_at": "2026-10-05T00:20:23.624872+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

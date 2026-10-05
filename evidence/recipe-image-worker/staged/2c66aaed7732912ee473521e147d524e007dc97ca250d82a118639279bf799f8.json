@@ -1,0 +1,78 @@
+{
+  "groupId": "2c66aaed7732912ee473521e147d524e007dc97ca250d82a118639279bf799f8",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-sweet-chilli-tofu"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Tofu Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Tofu Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-840834c0-1e7c-4045-8ef1-c08ff162e50a.png",
+  "source_sha256": "3ac0677417811e9bbed3d072af6210ed5eb5ace144c222451743c7d6a747f4e6",
+  "generated_at": "2026-10-05T01:12:07.530Z",
+  "elapsed_ms": 132116,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2c66aaed7732912ee473-480.webp",
+      "sha256": "9a0150d86a930249d33aac564a49adb33786de868ba6b0c6af05108dbb55b164",
+      "bytes": 25344
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2c66aaed7732912ee473.webp",
+      "sha256": "1b021d9517c5c481f6e447725651b80d959d2b0932743ff9f861e4226c9f1f13",
+      "bytes": 75272
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Sweet chilli firm tofu with baby potatoes, carrots and onion",
+    "notes": "Full-resolution inspection against all titles and exact method: golden firm tofu cubes, soft baby potatoes, carrots and onion in glossy sweet chilli cooking juices, no invented extras.",
+    "source_sha256": "3ac0677417811e9bbed3d072af6210ed5eb5ace144c222451743c7d6a747f4e6",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-sweet-chilli-tofu"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Tofu Slow-Cooker Big Pot"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

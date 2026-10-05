@@ -1,0 +1,84 @@
+{
+  "groupId": "ff063e4ee1c0747d173c3844a198e394b6776d7ee1860b6dba5909c6268d9773",
+  "recipe_ids": [
+    "industrial-v3-pasta-chilli-turkey"
+  ],
+  "titles": [
+    "Shift Smoky Chilli Turkey Proper Pasta"
+  ],
+  "prompt": "Create an appetising photorealistic editorial food photograph. Landscape 4:3, warm natural daylight, cream ceramic plate, generous framing. Cooked turkey breast MINCE crumbles with WHOLEWHEAT pasta, cooked courgette and very small irregular DICED cherry tomato pieces. ALL cherry tomatoes are diced, no round halves or whole tomatoes. Exact ingredients: [{\"amount\": \"170g\", \"item\": \"100% turkey breast mince, raw\"}, {\"amount\": \"75g\", \"item\": \"wholewheat pasta, dry\", \"allergens\": [\"gluten\"]}, {\"amount\": \"90g\", \"item\": \"courgette\"}, {\"amount\": \"90g\", \"item\": \"cherry tomatoes\"}, {\"amount\": \"40g\", \"item\": \"smoked chilli tomato sauce\"}, {\"amount\": \"1 tsp / 5ml\", \"item\": \"olive oil\"}]. Exact preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\", \"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\", \"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\", \"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the smoked chilli tomato sauce ready to add near the end of cooking.\", \"Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.\", \"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\", \"Add the cooked pasta and filling. Stir in the measured smoked chilli tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Only these foods, no garnish or decorative ingredients. Credible cooked food texture.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the smoked chilli tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured smoked chilli tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0373d33e-b172-45c9-ad93-0eb413585a8a.png",
+  "source_sha256": "be50cc98fca69aef3d3ef4930ec1b3ac4c5a867b3e46700d0a195fe534c0268b",
+  "generated_at": "2026-10-05T01:20:22.325Z",
+  "elapsed_ms": 78425,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ff063e4ee1c0747d173c-retry2-480.webp",
+      "sha256": "96a15501a1a4835e23dbce5d15aa1f6ec7c6567dd7c8cc25c4937adb0cee6d31",
+      "bytes": 45128
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ff063e4ee1c0747d173c-retry2.webp",
+      "sha256": "c50f09f742853f6eeb405080353cc9a8618127c9cd42c3ac7ecfe2d149615fa9",
+      "bytes": 137040
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Smoky chilli turkey mince wholewheat pasta with diced courgette and tomatoes",
+    "notes": "Corrected source inspected individually at full resolution against all titles and exact method: brown wholewheat penne, cooked turkey mince crumbles and softened bite-size courgette and irregular small diced tomato pieces; no whole or halved tomatoes.",
+    "source_sha256": "be50cc98fca69aef3d3ef4930ec1b3ac4c5a867b3e46700d0a195fe534c0268b",
+    "recipe_ids": [
+      "industrial-v3-pasta-chilli-turkey"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Turkey Proper Pasta"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

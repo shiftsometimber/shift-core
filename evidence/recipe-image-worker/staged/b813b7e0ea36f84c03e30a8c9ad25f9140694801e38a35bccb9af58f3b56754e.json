@@ -1,0 +1,78 @@
+{
+  "groupId": "b813b7e0ea36f84c03e30a8c9ad25f9140694801e38a35bccb9af58f3b56754e",
+  "recipe_ids": [
+    "industrial-dinner-lentil-taco-bowl"
+  ],
+  "titles": [
+    "Lentil Taco Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Lentil Taco Bowl. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"cooked green lentils\"},{\"amount\":\"70g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"120g\",\"item\":\"sweetcorn\"},{\"amount\":\"100g\",\"item\":\"tomato salsa\"},{\"amount\":\"50g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Cook the measured dry brown rice in boiling water according to its packet instructions, then drain if needed. Keep the yoghurt refrigerated while the hot components cook.\",\"Heat a non-stick frying pan over medium heat with 2 tablespoons of water; this recipe has no added oil. Add the cooked green lentils and warm for 3\u20134 minutes, stirring until steaming hot throughout. They are already cooked and do not need a long simmer. Add a spoonful of water if the pan starts sticking.\",\"Add the sweetcorn and tomato salsa to the pan. Cook for 3\u20135 minutes, stirring until hot; if using frozen sweetcorn, follow its packet cooking time. Stir the cooked filling through and check it is steaming hot.\",\"Spoon the cooked rice into a bowl, add the hot filling and take it away from the heat before adding the measured Greek yoghurt as a cool topping.\",\"Eat immediately, or portion and cool leftovers promptly following the rice-storage instructions. Keep the yoghurt topping separate when packing a portion for reheating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Photorealistic appetising food; all ingredients exactly match. No garnish or extra food. Keep any listed brown rice distinctly wholegrain tan/brown with visible bran texture; no polished white grains. Match portion and method, natural warm light and generous framing.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "cooked green lentils"
+    },
+    {
+      "amount": "70g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "100g",
+      "item": "tomato salsa"
+    },
+    {
+      "amount": "50g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Cook the measured dry brown rice in boiling water according to its packet instructions, then drain if needed. Keep the yoghurt refrigerated while the hot components cook.",
+    "Heat a non-stick frying pan over medium heat with 2 tablespoons of water; this recipe has no added oil. Add the cooked green lentils and warm for 3\u20134 minutes, stirring until steaming hot throughout. They are already cooked and do not need a long simmer. Add a spoonful of water if the pan starts sticking.",
+    "Add the sweetcorn and tomato salsa to the pan. Cook for 3\u20135 minutes, stirring until hot; if using frozen sweetcorn, follow its packet cooking time. Stir the cooked filling through and check it is steaming hot.",
+    "Spoon the cooked rice into a bowl, add the hot filling and take it away from the heat before adding the measured Greek yoghurt as a cool topping.",
+    "Eat immediately, or portion and cool leftovers promptly following the rice-storage instructions. Keep the yoghurt topping separate when packing a portion for reheating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6cc7783d-6644-45de-a22f-18d970a82c30.png",
+  "source_sha256": "40ee1074b12072bcca10098d2b916b7ac451666a1aa6ac48b25c39e0b360fac7",
+  "generated_at": "2026-10-04T22:57:44.211Z",
+  "elapsed_ms": 206200,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b813b7e0ea36f84c03e3-480.webp",
+      "sha256": "b1fd49af9c04e9bec30c054745fa5b66a570335c9402e99589f320b03808d9dd",
+      "bytes": 23318
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b813b7e0ea36f84c03e3.webp",
+      "sha256": "e04131aed3853a0200c434038a8bf60fd85ebd1fc5cfdbe43ace5f0f51d64cb4",
+      "bytes": 73900
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "index": 471,
+    "decision": "pass",
+    "notes": "Full source inspected: green lentils, sweetcorn and tomato salsa over visibly tan bran-textured wholegrain rice with a cool Greek yoghurt topping. No cheese or extra garnish.",
+    "alt": "Lentils, sweetcorn and salsa on wholegrain brown rice with Greek yoghurt.",
+    "source_sha256": "40ee1074b12072bcca10098d2b916b7ac451666a1aa6ac48b25c39e0b360fac7",
+    "recipe_ids": [
+      "industrial-dinner-lentil-taco-bowl"
+    ],
+    "titles": [
+      "Lentil Taco Bowl"
+    ],
+    "reviewer": "root full source image inspection",
+    "reviewed_at": "2026-10-04T23:09:36.309679+00:00"
+  }
+}

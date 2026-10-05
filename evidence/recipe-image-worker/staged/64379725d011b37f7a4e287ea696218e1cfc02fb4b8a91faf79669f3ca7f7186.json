@@ -1,0 +1,81 @@
+{
+  "groupId": "64379725d011b37f7a4e287ea696218e1cfc02fb4b8a91faf79669f3ca7f7186",
+  "recipe_ids": [
+    "industrial-breakfast-cottage-cheese-toast-berry-vanilla-2"
+  ],
+  "titles": [
+    "Cottage Cheese Red Pepper Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cottage Cheese Red Pepper Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"red pepper\"},{\"amount\":\"1 tsp\",\"item\":\"lemon juice\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Toast the bread.\",\"Prepare the vegetables.\",\"Spoon cottage cheese over the toast.\",\"Top with vegetables, lemon juice and black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "1 tsp",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Toast the bread.",
+    "Prepare the vegetables.",
+    "Spoon cottage cheese over the toast.",
+    "Top with vegetables, lemon juice and black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d8319f2a-9a21-47b8-94db-cdaba3d2abee.png",
+  "source_sha256": "4e0cc6b4e06b71771f7a38a279a3a4b345b4a3ee502e64d56e5adb50fb53686a",
+  "generated_at": "2026-10-04T21:07:33.284Z",
+  "elapsed_ms": 333976,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-64379725d011b37f7a4e-480.webp",
+      "sha256": "459453e3aecbd20aa6d0808cee5e3c7f9405f271a44095be14883deba46ecf77",
+      "bytes": 24318
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-64379725d011b37f7a4e.webp",
+      "sha256": "0592d3d3a0f219d4a535de74bde11f25122ac654720482c98978b32821ab78c8",
+      "bytes": 75476
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-cottage-cheese-toast-berry-vanilla-2"
+    ],
+    "titles": [
+      "Cottage Cheese Red Pepper Wholemeal Toast"
+    ],
+    "notes": "Two wholemeal toast slices with cottage cheese, red pepper pieces and black pepper; no green leaves or extra ingredients. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Cottage cheese on wholemeal toast topped with red pepper and black pepper.",
+    "reviewed_at": "2026-10-04T21:13:56.961259+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "4e0cc6b4e06b71771f7a38a279a3a4b345b4a3ee502e64d56e5adb50fb53686a"
+  }
+}

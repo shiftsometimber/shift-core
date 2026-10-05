@@ -1,0 +1,84 @@
+{
+  "groupId": "008a0c4cbabdfcbb344376dea2276376451d5546c4a9a53cee899e6807910ead",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-mustard-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Mustard Chicken Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mustard Chicken Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"wholegrain mustard\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "wholegrain mustard"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ff5a09c4-556a-4384-8919-31a8c873738b.png",
+  "source_sha256": "820efcbcc8b86be1d35c027f513640f62feb3436edce5ceb4e0f5d48d7f71db2",
+  "generated_at": "2026-10-05T00:37:05.080Z",
+  "elapsed_ms": 356852,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-008a0c4cbabdfcbb3443-480.webp",
+      "sha256": "4de8a81e07e8599adf18695b3f0466d58959b8f7de86cc36445e7714e0b1e4ca",
+      "bytes": 21498
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-008a0c4cbabdfcbb3443-14c6fa656443.webp",
+      "sha256": "14c6fa656443b34890639370938a58d2962e6d3d1ca48c282c460c66f370132b",
+      "bytes": 62774
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "820efcbcc8b86be1d35c027f513640f62feb3436edce5ceb4e0f5d48d7f71db2",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-mustard-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Mustard Chicken Breakfast Wrap"
+    ],
+    "notes": "Single lightly toasted unseeded wholemeal wrap with browned cooked chicken, softened mixed peppers and wilted spinach coated in wholegrain mustard. No extra garnish.",
+    "alt": "Mustard chicken wrap with peppers and spinach",
+    "reviewed_at": "2026-10-05T00:37:51.108120+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/319.json"
+  },
+  "integrated": true,
+  "live": false
+}

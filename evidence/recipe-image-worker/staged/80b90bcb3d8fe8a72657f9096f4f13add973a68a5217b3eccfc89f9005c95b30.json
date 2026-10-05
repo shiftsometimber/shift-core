@@ -1,0 +1,77 @@
+{
+  "groupId": "80b90bcb3d8fe8a72657f9096f4f13add973a68a5217b3eccfc89f9005c95b30",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-coffee-overnight-oats"
+  ],
+  "titles": [
+    "Shift Coffee Oat Crunch Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Oat Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"85g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Toast the rolled oats and seeds in a dry frying pan over a medium heat for 4\u20135 minutes, stirring until they smell nutty and take on a little colour.\",\"Tip the toasted crunch onto a plate and let it cool completely while you prepare the mixed berries and other measured fruit.\",\"Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.\",\"Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact foods. Espresso measured1g fully dissolved, cooled and mixed through dairy/fruit, subtle coffee tint; no whole coffee beans, granules, dry grounds, coffee drinks or syrup. Small25g berries. No honey, mint, nuts or decorative garnish. Entire food inside frame. NO crackers, biscuits or cake anywhere. Dry toasted oats and pumpkin seeds in separate pot from small berries; coffee flavour subtly mixed with fruit, no dairy or milk.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "85g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Toast the rolled oats and seeds in a dry frying pan over a medium heat for 4\u20135 minutes, stirring until they smell nutty and take on a little colour.",
+    "Tip the toasted crunch onto a plate and let it cool completely while you prepare the mixed berries and other measured fruit.",
+    "Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.",
+    "Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4929e083-1a98-40c2-9caa-c38d6e3c0d46.png",
+  "source_sha256": "6366f53801e6a5a8e056cab75c584bb39a110c04c2de5e895bba8037109d4e3f",
+  "generated_at": "2026-10-05T00:56:56.328Z",
+  "elapsed_ms": 181749,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-80b90bcb3d8fe8a72657-480-5a07ab5e7515.webp",
+      "sha256": "5a07ab5e75159a4045b5ac37da4cc388b070f6b0dd610526deaea61901222b9d",
+      "bytes": 18938
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-80b90bcb3d8fe8a72657-80878e3b374d.webp",
+      "sha256": "80878e3b374d9d7c99d11cc6f75a3295c52c684a1a1c40a46a932c63a02b6a81",
+      "bytes": 58600
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6366f53801e6a5a8e056cab75c584bb39a110c04c2de5e895bba8037109d4e3f",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-coffee-overnight-oats"
+    ],
+    "titles": [
+      "Shift Coffee Oat Crunch Snack Pot"
+    ],
+    "notes": "Dry toasted oats and pumpkin seeds separately portioned from small berries with subtle dissolved-coffee flavour; no dairy base, milk or coffee-bean garnish.",
+    "alt": "Toasted oat and pumpkin seed crunch beside coffee-flavoured berries.",
+    "reviewed_at": "2026-10-05T01:02:15.998162+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/80b90bcb3d8fe8a72657f9096f4f13add973a68a5217b3eccfc89f9005c95b30.json"
+  },
+  "integrated": true,
+  "live": false
+}

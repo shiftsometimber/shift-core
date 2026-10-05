@@ -1,0 +1,84 @@
+{
+  "groupId": "487eac541ed9b931a38be1411571df508c12c95024c9c7d4605f31a6ef1ff64a",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-mustard-turkey"
+  ],
+  "titles": [
+    "Shift Mustard Turkey Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mustard Turkey Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"wholegrain mustard\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "wholegrain mustard"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f94c41e9-c359-429f-9c93-d1f263e71181.png",
+  "source_sha256": "f57aafe5c5db237483d62a0578203982d8c8f38efb0eaa9d4e3e25f9974e0e86",
+  "generated_at": "2026-10-05T00:43:33.234Z",
+  "elapsed_ms": 236252,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-487eac541ed9b931a38b-480.webp",
+      "sha256": "7b5a8d87654c316e9ed4494fbcdf28fe7b41126c86ddf1d0f6c923f7c50677c5",
+      "bytes": 30408
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-487eac541ed9b931a38b-e342909e8bcf.webp",
+      "sha256": "e342909e8bcf100d32ffc131584b1e709a649c6149902d062972899e6068222e",
+      "bytes": 93022
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f57aafe5c5db237483d62a0578203982d8c8f38efb0eaa9d4e3e25f9974e0e86",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-mustard-turkey"
+    ],
+    "titles": [
+      "Shift Mustard Turkey Breakfast Buttie"
+    ],
+    "notes": "Lightly pan-coloured cooked turkey breast with softened tomato and wilted spinach coated in wholegrain mustard in an unseeded wholemeal bap.",
+    "alt": "Mustard turkey bap with tomato and spinach",
+    "reviewed_at": "2026-10-05T00:44:40.022675+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/328.json"
+  },
+  "integrated": true,
+  "live": false
+}

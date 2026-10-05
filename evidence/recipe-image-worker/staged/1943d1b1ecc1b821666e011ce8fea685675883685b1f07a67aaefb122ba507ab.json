@@ -1,0 +1,83 @@
+{
+  "groupId": "1943d1b1ecc1b821666e011ce8fea685675883685b1f07a67aaefb122ba507ab",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-biscoff-style-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Greek Yoghurt Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Greek Yoghurt Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nUse only listed foods, no honey, nuts, mint, syrup or garnish. Crushed wholegrain biscuit is modest irregular crumb pieces, no caramel spread or cookie butter. Berries just the listed25g, a small portion. All food safely inside frame. Exactly two plain unseeded wholegrain crackers where listed, no sesame/poppy seeds. Creamy base with distinct small curds for cottage cheese only, listed berries, biscuit crumbs, oats and seeds freshly added at serving; no extra ingredients.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4fb2ecf6-b898-4bf2-83de-9386401f194e.png",
+  "source_sha256": "835face60e4b6a611692be105c8fedc9985047051a67d0d942fa5a7874771714",
+  "generated_at": "2026-10-04T23:30:43.267Z",
+  "elapsed_ms": 321054,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1943d1b1ecc1b821666e-480-3e5433f111c3.webp",
+      "sha256": "3e5433f111c3beca65c02b89cf4332d0357718c30b41293b3cd107d88a97d287",
+      "bytes": 22698
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1943d1b1ecc1b821666e-efa6732d752b.webp",
+      "sha256": "efa6732d752b7d534767574d3abe5a21ee764d32a5cb4cf9522057a32cf68fcf",
+      "bytes": 66596
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "835face60e4b6a611692be105c8fedc9985047051a67d0d942fa5a7874771714",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-biscoff-style-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Greek Yoghurt Protein Pot"
+    ],
+    "notes": "Greek yoghurt protein pot with small berries, biscuit crumbs, dry rolled oats and pumpkin seeds at serving; no extras.",
+    "alt": "Greek yoghurt pot with berries, biscuit crumbs, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:32:46.435373+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/1943d1b1ecc1b821666e011ce8fea685675883685b1f07a67aaefb122ba507ab.json"
+  },
+  "integrated": true,
+  "live": false
+}

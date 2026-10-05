@@ -1,0 +1,100 @@
+{
+  "groupId": "ccac756d4c4d1ce4e69bf29dcfaf97560f6c67fbec9e9c5b6bef16a826ceccdc",
+  "recipe_ids": [
+    "industrial-v3-burger-classic-beef"
+  ],
+  "titles": [
+    "Shift Classic Beef Fakeaway Burger"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Beef Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"15g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.\",\"Mix the measured light mayonnaise, tomato ketchup and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Press the 5% beef mince into a patty about 1.5cm thick, slightly wider than the bun; no binder is needed. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the beef patty over a medium heat for about 5\u20136 minutes on each side. Turn it carefully and leave it intact rather than repeatedly pressing it flat. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the lettuce and tomato in the toasted bun, add the cooked beef patty and the cold finishing sauce, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; dried oregano cooked into protein only if listed, never fresh garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal burger bun",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "15g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.",
+    "Mix the measured light mayonnaise, tomato ketchup and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Press the 5% beef mince into a patty about 1.5cm thick, slightly wider than the bun; no binder is needed. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the beef patty over a medium heat for about 5\u20136 minutes on each side. Turn it carefully and leave it intact rather than repeatedly pressing it flat. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the lettuce and tomato in the toasted bun, add the cooked beef patty and the cold finishing sauce, then close the bun and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7e014752-a1bb-449d-b9c0-fa71dae70b47.png",
+  "source_sha256": "4173f0b805afc20e7e4209d2db0779cd73d957092c5da84f919bec0b0d435089",
+  "generated_at": "2026-10-05T00:00:07.520Z",
+  "elapsed_ms": 415001.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ccac756d4c4d1ce4e69b-480.webp",
+      "sha256": "aa94d2611bcfccf13c33a6d6a790d5f6effd7c88c33a7be82ce764c0729595fc",
+      "bytes": 19180
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ccac756d4c4d1ce4e69b-040014530a66.webp",
+      "sha256": "040014530a668f4c0896f5b52e178e78b87d081e6030baf451195db3e20101cf",
+      "bytes": 61048
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "4173f0b805afc20e7e4209d2db0779cd73d957092c5da84f919bec0b0d435089",
+    "recipe_ids": [
+      "industrial-v3-burger-classic-beef"
+    ],
+    "titles": [
+      "Shift Classic Beef Fakeaway Burger"
+    ],
+    "notes": "One browned beef-mince patty with shredded lettuce, sliced tomato and cold pale pink mayonnaise/ketchup/mustard sauce visibly containing wholegrain mustard, in unseeded wholemeal bun; no cheese. Believable single serving with central composition and crop margin.",
+    "alt": "Beef burger with lettuce, tomato and creamy mustard sauce.",
+    "reviewed_at": "2026-10-05T00:09:57.630Z",
+    "reviewer": "worker-c source visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-672-688.json"
+  },
+  "integrated": true,
+  "live": false
+}

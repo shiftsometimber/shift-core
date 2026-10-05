@@ -1,0 +1,83 @@
+{
+  "groupId": "5e6026d6d4bc5831fed4f88f0ed43ffdc0010cf28aa72c7b86db28bd01b0844d",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-apple-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Apple Greek Yoghurt Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Greek Yoghurt Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"240g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"diced apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "240g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "diced apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e1fd793a-4e83-48ae-9074-497198038274.png",
+  "source_sha256": "7f7143b32988ded2938365c50921d76be2c5e038f73a20f8a185509edb4d2bce",
+  "generated_at": "2026-10-04T21:29:19.047Z",
+  "elapsed_ms": 74502,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5e6026d6d4bc5831fed4-480.webp",
+      "sha256": "5f8910f18063f1a4f10105ec0b3ed63e42edee81f379a53c239184235163e613",
+      "bytes": 19428
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5e6026d6d4bc5831fed4.webp",
+      "sha256": "900d0f3e576de49872eef4d2fd61349437a7a53faa4d46c6211026c5c2714f91",
+      "bytes": 56494
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-apple-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Apple Greek Yoghurt Dessert Pot"
+    ],
+    "notes": "Smooth Greek yoghurt combined with diced apple, berries, rolled oats and pumpkin seeds; no cottage cheese, chocolate or added garnish.",
+    "alt": "Greek yoghurt dessert pot with apple, berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:36:23.489032+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/5e6026d6d4bc5831fed4f88f0ed43ffdc0010cf28aa72c7b86db28bd01b0844d.json",
+    "source_sha256": "7f7143b32988ded2938365c50921d76be2c5e038f73a20f8a185509edb4d2bce"
+  },
+  "integrated": true,
+  "live": false
+}

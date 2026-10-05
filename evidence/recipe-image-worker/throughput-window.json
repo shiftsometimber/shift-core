@@ -1,0 +1,7 @@
+{
+  "started_at": "2026-10-04T21:30:14.914614+00:00",
+  "baseline_integrated_new": 202,
+  "target_usable_per_minute": 10,
+  "next_target": 20,
+  "basis": "New exact mappings integrated after this start; recovered12 and original7 excluded."
+}

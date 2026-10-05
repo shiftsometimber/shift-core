@@ -1,0 +1,81 @@
+{
+  "groupId": "c990614ff1acea4adaf9d2e0d542da287c724b3cc2ad983f1c25d9216b355f69",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-pineapple-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Pineapple Fruit Crunch Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pineapple Fruit Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"80g\",\"item\":\"pineapple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the apple in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nShow only each exact recipe's ingredients, with appetising realistic textures. No honey, mint, coconut, nuts, syrup, other seeds or unlisted fruit. Pumpkin seeds are flat green pepitas. Rolled oats plain flakes, not granola containing unlisted foods. Cottage cheese visibly curdy, Greek yoghurt smooth; fruit-only pots have no creamy base unless 40g yoghurt is listed. Chocolate only recipes listing it. WORK SNACK BOX: juicy bite-size fruit and any listed dairy in separate compartment from dry oats, pumpkin seeds and TWO wholegrain crackers, no loose crunch mixed into wet fruit. OAT CRUNCH snack pot: dry-pan-toasted oats/seeds completely cooled and packed separately from cut fruit; no milk/cream/yoghurt. PROTEIN/SNACK pots: crunch may be added just before immediate serving as method allows. OVERNIGHT OATS: soft hydrated oats in measured milk; fruit mixed through, pumpkin seeds and any listed chopped chocolate added only at serving. Follow the exact listed method, not an invented garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "80g",
+      "item": "pineapple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the apple in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6fb5911e-65f8-46ec-98f9-956a54a63262.png",
+  "source_sha256": "f2d510f22951e12c8d1390d82636e17c5d36b88abb8c80ffddac6cf3731adf97",
+  "generated_at": "2026-10-05T01:14:52.631Z",
+  "elapsed_ms": 197091.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c990614ff1acea4adaf9-480-6c992e4e6b8c.webp",
+      "sha256": "6c992e4e6b8ca1a730757e129325a72dd8825632efbb2902a292e693cc629593",
+      "bytes": 25838
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c990614ff1acea4adaf9-52686aa9550d.webp",
+      "sha256": "52686aa9550d68641b2f183f175f548ab83c6bdff8e5cf2988761b5d5874e340",
+      "bytes": 76332
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f2d510f22951e12c8d1390d82636e17c5d36b88abb8c80ffddac6cf3731adf97",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-pineapple-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Pineapple Fruit Crunch Snack Pot"
+    ],
+    "notes": "Bite-size apple/pineapple and mixed berries in fruit pot, with dry plain rolled oats and green pumpkin seeds in separate bowls ready for serving. No creamy base, chocolate, honey or unlisted fruit; exact title/method checked.",
+    "alt": "Apple pineapple berry fruit pot with separate oats and pumpkin seeds",
+    "reviewed_at": "2026-10-05T01:18:53.365765+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2563.json"
+  },
+  "integrated": true,
+  "live": false
+}

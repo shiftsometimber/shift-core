@@ -1,0 +1,87 @@
+{
+  "groupId": "2eed0fadd70fefacfbd9c5ce10fd9f5273a388d47394aed437d5edd3aed7f9c2",
+  "recipe_ids": [
+    "industrial-v3-stir-fry-madras-beef"
+  ],
+  "titles": [
+    "Shift Madras Beef Stir-Fry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Madras Beef Stir-Fry. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"75g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"madras-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 90g mixed peppers. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Turn the heat to low and fold in the 40g madras-style sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked 5% beef mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and 5% beef mince between serving bowls. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist accuracy hard gates: Madras sauce only as specified, cooked and coating food. No cold white sauce. No decorative green herb flecks, no coriander/parsley leaves, no unlisted ingredients or garnish. Turkey breast mince loose cooked pale-brown crumbles except roast EXACTLY TWO compact flattened plain portions 2cmthick; no herb inclusions. Tofu roast 2cm thick SLABS; otherwise2cm browned cubes. Madras beef loose browned mince not chunks; Madras chicken2cm cooked cubes not mince. No cheese, cream, extra butter, lemon wedges, seeds or garnish. Listed broccoli/peas/courgette only green vegetables as relevant. Plain hotpot slowcooked tender potatoes/carrots/onion no roast edges; tray potatoes golden. Preserve exact preparation and ingredient amounts visually credible single serving.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "75g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "madras-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 90g mixed peppers. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Turn the heat to low and fold in the 40g madras-style sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked 5% beef mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and 5% beef mince between serving bowls. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-dd62d953-91f2-4c69-aca5-d570582313d2.png",
+  "source_sha256": "af2d498b533bc85a4a0720c3c54ce193b2c51fbeec714177347987b2a27a1d10",
+  "generated_at": "2026-10-04T23:15:59.950Z",
+  "elapsed_ms": 345628.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2eed0fadd70fefacfbd9-retry4-480-30928c42d395.webp",
+      "sha256": "30928c42d395e622c32a1f80851428547842d2eee2c94f332fb38aafca27f16e",
+      "bytes": 28900
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2eed0fadd70fefacfbd9-retry4-88829bbf933f.webp",
+      "sha256": "88829bbf933f7f2997091a8196d59f251cf9e145f5c7e49a6711a834afcbad7c",
+      "bytes": 88614
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "af2d498b533bc85a4a0720c3c54ce193b2c51fbeec714177347987b2a27a1d10",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-madras-beef"
+    ],
+    "titles": [
+      "Shift Madras Beef Stir-Fry"
+    ],
+    "notes": "Full-resolution review: egg noodles with loose browned beef mince, cooked thin pepper strips and broccoli in light madras coating. No green garnish, creamy sauce or extra ingredients.",
+    "alt": "Madras beef egg noodles with peppers and broccoli",
+    "reviewed_at": "2026-10-04T23:17:38.267336+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1027.json"
+  },
+  "integrated": true,
+  "live": false
+}

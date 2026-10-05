@@ -1,0 +1,87 @@
+{
+  "groupId": "f77f3dc70ef555ebed3fc68932cafb578d14f23a2feebce79ddc3e3ba9d4bfd2",
+  "index": 2260,
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-berry-overnight-oats"
+  ],
+  "titles": [
+    "Shift Berry Overnight Oats Big Feed Dessert"
+  ],
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 105g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds, 15g dark chocolate, chopped separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Overnight Oats Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"105g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 105g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds, 15g dark chocolate, chopped separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed food; no honey, nuts, mint, syrup or decorative garnish. Plain unseeded crackers: exactly two visible crackers when listed, no sesame or poppy seeds. All food inside the serving margins. Finished chilled overnight oats: oats fully softened in milk, fruit mixed through, listed seeds and chocolate may be freshly topped; exactly two plain crackers alongside only if listed. No dry oat heap.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-36ced10d-75a3-413c-9d16-125ed27b8daa.png",
+  "source_sha256": "0875324ee0e3dce607d89e4f50768872db0f01a52221703d4c7c69ef2137cd32",
+  "dispatched_at": "2026-10-04T23:14:16.136Z",
+  "generated_at": "2026-10-04T23:18:06.724Z",
+  "elapsed_ms": 230588,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f77f3dc70ef555ebed3f-480.webp",
+      "sha256": "ed3b880c95437e92142ac5ebc3167d29b72bac6de9e33e2367a7c8ecc0171357",
+      "bytes": 22634,
+      "git_blob_sha": "6050018db557e6ed2e5cd2da0b1fd1d8a1e5df58"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f77f3dc70ef555ebed3f.webp",
+      "sha256": "c84d702ca7b0722c8bfe1697de0b710ed791d219d721d734e67dd5fed866ff71",
+      "bytes": 70294,
+      "git_blob_sha": "2ba883af7d1d616c864e28e0cacbeb35b1597d28"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-berry-overnight-oats"
+    ],
+    "titles": [
+      "Shift Berry Overnight Oats Big Feed Dessert"
+    ],
+    "notes": "Fully softened milk oats with mixed berries stirred through and listed pumpkin seeds/chopped dark chocolate on top; no dry oat heap or yoghurt.",
+    "alt": "Berry overnight oats with pumpkin seeds and chopped dark chocolate.",
+    "reviewed_at": "2026-10-04T23:22:00.017156+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/f77f3dc70ef555ebed3fc68932cafb578d14f23a2feebce79ddc3e3ba9d4bfd2.json",
+    "source_sha256": "0875324ee0e3dce607d89e4f50768872db0f01a52221703d4c7c69ef2137cd32"
+  },
+  "integrated": true,
+  "live": false
+}

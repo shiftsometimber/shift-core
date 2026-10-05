@@ -1,0 +1,97 @@
+{
+  "groupId": "b5452d83dbda84519a68b1b022e9e99d8108cd6f038202335a118c8acaf6d7a7",
+  "recipe_ids": [
+    "industrial-v3-roast-peppercorn-beef"
+  ],
+  "titles": [
+    "Shift Peppercorn Beef Sunday-Style Roast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Beef Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Shape the 5% beef mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.\",\"Serve the cooked 5% beef mince, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, wholegrain mustard, black pepper dressing alongside after cooking.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, appetising professional natural daylight, ordinary one-person serving with generous crop margin. No invented garnish, fresh green herb flecks/leaves, sesame/poppy seeds, cheese, milk, butter, cream, breading, lemon wedges, extra sides. Plain unseeded wholemeal buns/flatbreads. Exact protein forms per method: beef/turkey burger ONE cooked1.5cm mince patty; kebab THREE short cooked mince koftas, no skewers; pasta/pie/fries/pizza/slowpot/traybake loose cooked mince crumbles; Sunday roast exactly TWO compact flattened2cm cooked mince portions, not roast joint. Chicken burger thin cooked opaque unbreaded1.5cm cutlets. Tofu burger1cm golden slabs, kebab/fries/pizza2cm golden cubes. Shredded lettuce and sliced tomato only where listed. Pizza CHEESE-FREE, passata base exact cooked protein and thin pepper strips. Fries golden plain oven chips, thin cooked red onion and mixed pepper strips. Peppercorn ingredients are light mayonnaise, wholegrain mustard and ground BLACK pepper, no cream sauce. Small mustard grains are permitted INSIDE the ivory cold finishing dressing; no seed garnish. Keep preparation placement EXACT: burger/kebab cold ivory mayo-mustard finish inside bread over cooked protein; fries/pizza cold ivory finish drizzled ON TOP after cooking; pasta light ivory mayo-mustard-black-pepper dressing folded through wholewheat pasta OFF heat; slowpot tender potatoes/carrot/onion/cooked loose mince glossy lightly ivory-coated after mayo stirred offheat; pie PLAIN browned water-mashed potato top absolutely free of black pepper/green flecks/cheese/butter, loose beef mince/carrot/pea filling also PLAIN, cold ivory mustard-black-pepper dressing in separate small bowl alongside; Sunday roast hot meat/potatoes/carrot/broccoli all completely PLAIN with no pepper/mustard flecks, cold ivory mustard-black-pepper dressing alongside in small bowl; traybake golden baby potatoes/broccoli/redpepper/loose mince with ivory mayonnaise and final seasonings added ONLY after roast. No red ketchup, red sauce or hot cream sauce. ",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Shape the 5% beef mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.",
+    "Serve the cooked 5% beef mince, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, wholegrain mustard, black pepper dressing alongside after cooking."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-173996ad-b713-4930-96c7-e974fc77186f.png",
+  "source_sha256": "685a192b72080e8d48f018c26b49891203b6bdda442efbda123e2b1c3e0c248f",
+  "generated_at": "2026-10-05T00:45:00.167Z",
+  "elapsed_ms": 368705.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b5452d83dbda84519a68-retry4-480-234145165ed2.webp",
+      "sha256": "234145165ed2a95f490be27bf45969a785a1b3b84c1f4c4617b7b41b844c3635",
+      "bytes": 33998
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b5452d83dbda84519a68-retry4-2ea16a1627e8.webp",
+      "sha256": "2ea16a1627e8d259fd291d3ea7b4a54f0faea6ad3b4d584de9ea90612a49ba61",
+      "bytes": 105978
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "685a192b72080e8d48f018c26b49891203b6bdda442efbda123e2b1c3e0c248f",
+    "recipe_ids": [
+      "industrial-v3-roast-peppercorn-beef"
+    ],
+    "titles": [
+      "Shift Peppercorn Beef Sunday-Style Roast"
+    ],
+    "notes": "Pass: exactly two compact flattened cooked beef mince portions with plain browned surfaces, peeled golden rough-edged roast potatoes, slim carrot batons and plain boiled broccoli. Cold ivory mayo-wholegrain mustard-black pepper dressing separate in small bowl alongside. Fine brown roast marks on potatoes/carrots are not clearly pepper or green herbs; no dressing on hot food, roast joint, cheese, gravy or garnish. Whole plate and dressing within crop.",
+    "alt": "Peppercorn beef mince roast with two flattened portions, potatoes, carrots, broccoli and separate mayonnaise-wholegrain mustard dressing",
+    "reviewed_at": "2026-10-05T00:45:44.347039+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1160.json"
+  },
+  "integrated": true,
+  "live": false
+}

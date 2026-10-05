@@ -1,0 +1,78 @@
+{
+  "groupId": "426481cbc4c987bc2563653951aeedb5d6240d520b6e77df28953a827dc91f85",
+  "recipe_ids": [
+    "industrial-v3-traybake-sweet-chilli-chicken"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Chicken Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Chicken Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArt direction: exact ingredients and method, appealing natural textures, no decorative extras. Brown rice must depict visibly intact unpolished tan/brown bran coats on the entire grain, with brown longitudinal seams, never white grains with brown seasoning. Cooked diced vegetables remain diced.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-933ccc8a-71fd-4134-801d-17d521613810.png",
+  "source_sha256": "1a9f8689a78184d826d4f5e149028c2b1dac9033de2baa5b7441173967819faf",
+  "generated_at": "2026-10-05T01:04:42.656Z",
+  "elapsed_ms": 427456,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-426481cbc4c987bc2563-480.webp",
+      "sha256": "d6bfafbef436a1b0500ef56f5b8ab396ce04a14e733a654be58988326f5b336e",
+      "bytes": 33470
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-426481cbc4c987bc2563.webp",
+      "sha256": "e88304dbba2f744464e573d34f4e34a8059ced63945bb43ebb19c04fb0c8da47",
+      "bytes": 113732
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Sweet chilli chicken traybake with roasted baby potatoes, broccoli and red pepper",
+    "notes": "Individual full-resolution inspection: Browned chicken breast pieces and roasted baby potatoes, broccoli and red pepper, lightly glazed with sweet chilli sauce. Exact ingredients, method and every mapped title reviewed.",
+    "source_sha256": "1a9f8689a78184d826d4f5e149028c2b1dac9033de2baa5b7441173967819faf",
+    "recipe_ids": [
+      "industrial-v3-traybake-sweet-chilli-chicken"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Chicken Traybake"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

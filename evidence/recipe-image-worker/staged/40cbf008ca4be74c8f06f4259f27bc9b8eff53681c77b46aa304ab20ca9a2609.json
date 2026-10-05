@@ -1,0 +1,83 @@
+{
+  "groupId": "40cbf008ca4be74c8f06f4259f27bc9b8eff53681c77b46aa304ab20ca9a2609",
+  "recipe_ids": [
+    "industrial-lunch-tofu-rice-bowl"
+  ],
+  "titles": [
+    "Tofu Rice Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Tofu Rice Bowl. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"firm tofu\"},{\"amount\":\"75g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"60g\",\"item\":\"mixed peppers\"},{\"amount\":\"60g\",\"item\":\"sweetcorn\"},{\"amount\":\"40g\",\"item\":\"lime yoghurt dressing\",\"allergens\":[\"milk\"]}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Choose firm tofu labelled ready to eat. Drain and pat it dry, then cut it into small cubes; keep it chilled until assembly.\",\"Use the measured lime yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured lime yoghurt dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nWholemeal bread/wrap/bagel/pitta plain unseeded; no sesame/poppy seed garnish or cheese unless explicitly listed. Tikka yoghurt only in the recipes listing it; no extra cream/mayo or coriander. Poultry plain cooked breast unbreaded; tuna fibrous drained flakes. Tofu specifically ready-to-eat pale unseared firm tofu: small cubes in grain salad, jacket, pasta and rice; thin slices in pitta, toastie, wrap. Never substitute feta, chicken or grilled tofu. Cheddar only listed Tofu Toastie, grated before toast. Preserve raw vegetables and all reserved side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not topping. Listed lemon/lime juice/dressing incorporated: no citrus wedges. Wholegrain mustard stays in grain-salad dressing, no seed garnish. Rice/pasta/couscous depicted cooked.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "60g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "60g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "40g",
+      "item": "lime yoghurt dressing",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Choose firm tofu labelled ready to eat. Drain and pat it dry, then cut it into small cubes; keep it chilled until assembly.",
+    "Use the measured lime yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured lime yoghurt dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0b54cc84-3c89-4fc6-8933-67943315ab54.png",
+  "source_sha256": "166c3b17dd77cbccc3c4d7ed6c33f84b1a06fc0143781642b01143423f763b6e",
+  "generated_at": "2026-10-05T00:58:30.544Z",
+  "elapsed_ms": 344458.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-40cbf008ca4be74c8f06-480-fc6c669e855c.webp",
+      "sha256": "fc6c669e855ce816ee5a45322b878fa6c82a3d6142508b2051f94d2a97d63dd9",
+      "bytes": 23176
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-40cbf008ca4be74c8f06-36f755f93513.webp",
+      "sha256": "36f755f93513b77f2ca6097e548d56b251ed1b4bbeea715c1bf14a76e2750c49",
+      "bytes": 64844
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "166c3b17dd77cbccc3c4d7ed6c33f84b1a06fc0143781642b01143423f763b6e",
+    "recipe_ids": [
+      "industrial-lunch-tofu-rice-bowl"
+    ],
+    "titles": [
+      "Tofu Rice Bowl"
+    ],
+    "notes": "Cooked brown rice folded with small pale unseared ready-to-eat firm tofu cubes, raw diced mixed peppers, sweetcorn and listed lime yoghurt dressing. No feta, citrus wedge, seared tofu or garnish; exact title/method checked.",
+    "alt": "Tofu brown rice bowl with peppers, sweetcorn and lime yoghurt dressing",
+    "reviewed_at": "2026-10-05T01:01:47.236963+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2125.json"
+  },
+  "integrated": true,
+  "live": false
+}

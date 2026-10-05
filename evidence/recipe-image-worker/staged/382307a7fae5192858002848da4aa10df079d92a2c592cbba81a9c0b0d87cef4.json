@@ -1,0 +1,90 @@
+{
+  "groupId": "382307a7fae5192858002848da4aa10df079d92a2c592cbba81a9c0b0d87cef4",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-cheesecake-style-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Cottage Cheese Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Cottage Cheese Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup or garnish. No cake, pie or biscuit crust. Mixed berries just the listed25g, a small portion. All food safely inside frame. NO side crackers or whole biscuits anywhere. Crushed biscuit ONLY if explicitly listed, small irregular crumbs as topping; no intact biscuits. Light cream cheese only a modest measured30g smoothly folded through the fruit or cottage cheese, never a giant cream mound or cake. No biscuit crumb unless listed. Combined single dessert bowl with chopped dark chocolate topping. Cottage cheese has recognisable small curds where listed. No melted chocolate sauce.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-160120fd-c961-4d2f-b75f-2c70e5d2c926.png",
+  "source_sha256": "df75bed136e65dc75a97f401b88e0b6bf63ea907effcc2ce34e0f5e3ddd0fe31",
+  "generated_at": "2026-10-04T23:40:26.746Z",
+  "elapsed_ms": 265204,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-382307a7fae519285800-480-7578eb965d43.webp",
+      "sha256": "7578eb965d43f5411f107a6460181768508fe1007b9436cdbf7921a2816b57cf",
+      "bytes": 18870
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-382307a7fae519285800-ebc9b1554dce.webp",
+      "sha256": "ebc9b1554dcee148067551faa82fdab6064db450a199bad6890c10a175f6e635",
+      "bytes": 53718
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "df75bed136e65dc75a97f401b88e0b6bf63ea907effcc2ce34e0f5e3ddd0fe31",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-cheesecake-style-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Cottage Cheese Big Feed Dessert"
+    ],
+    "notes": "Distinct cottage cheese curds blended with small cream-cheese portion, berries, rolled oats and seeds, chopped dark chocolate finishing. No cake.",
+    "alt": "Cottage cheese dessert with cream cheese, berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-04T23:44:04.565412+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/382307a7fae5192858002848da4aa10df079d92a2c592cbba81a9c0b0d87cef4.json"
+  },
+  "integrated": true,
+  "live": false
+}

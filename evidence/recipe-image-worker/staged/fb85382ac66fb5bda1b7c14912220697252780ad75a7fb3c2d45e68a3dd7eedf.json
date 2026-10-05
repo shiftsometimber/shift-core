@@ -1,0 +1,83 @@
+{
+  "groupId": "fb85382ac66fb5bda1b7c14912220697252780ad75a7fb3c2d45e68a3dd7eedf",
+  "recipe_ids": [
+    "industrial-v3-jacket-potato-sweet-chilli-ham"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Ham Loaded Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Ham Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.\",\"Use the measured sweet chilli sauce as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured sweet chilli sauce and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel, no sesame/poppy seeds, cheese or food not listed. Sweet chilli sauce is translucent glossy red, never creamy: no mayo/yoghurt/cream. Tuna is loose fibrous drained flakes, never creamy tuna salad; ham thin cooked strips where method specifies. Eggs sliced hard-boiled. Turkey plain cooked breast not breaded. Keep reserved raw spinach/tomato or rocket/tomato side salads separate. Spring onion sliced finely mixed into salad alongside jacket potatoes, never garnish on potato. Cook rice; peppers raw diced, corn ready-to-eat. Sauce incorporated exactly as method states.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "250g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "90g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.",
+    "Use the measured sweet chilli sauce as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured sweet chilli sauce and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-44f944a6-1dc8-47e4-8e99-69eb3c274b14.png",
+  "source_sha256": "dae230d2f52bb6cbd499bc343381fe417e7143d04c1e8f14f1da7f3876c4acae",
+  "generated_at": "2026-10-05T00:30:18.439Z",
+  "elapsed_ms": 121856.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fb85382ac66fb5bda1b7-480-0d5add957d6c.webp",
+      "sha256": "0d5add957d6ce7b8830ef8294544f8bb216108a7896c12902f25039ea69075d7",
+      "bytes": 28190
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fb85382ac66fb5bda1b7-7bc776270552.webp",
+      "sha256": "7bc776270552d971a0cbe3db706e5bf1297bf7e154c2f74f76a731036615c9b5",
+      "bytes": 81860
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "dae230d2f52bb6cbd499bc343381fe417e7143d04c1e8f14f1da7f3876c4acae",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-sweet-chilli-ham"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Ham Loaded Jacket Potato"
+    ],
+    "notes": "Fluffy split jacket potato with thin cooked ham strips and translucent sweet chilli/oil dressing. Finely sliced spring onion stays mixed into separate mixed-leaf salad; no butter, cheese or cream. Exact title/method checked.",
+    "alt": "Sweet chilli ham jacket potato with mixed salad and spring onion",
+    "reviewed_at": "2026-10-05T00:34:57.875513+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2069.json"
+  },
+  "integrated": true,
+  "live": false
+}

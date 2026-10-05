@@ -1,0 +1,81 @@
+{
+  "groupId": "44fe55be31371ea51924dae973c7cd13d3de736d2017aee4238a32cec58b441f",
+  "recipe_ids": [
+    "industrial-v3-pie-balti-tofu"
+  ],
+  "titles": [
+    "Shift Balti Tofu Proper Pie"
+  ],
+  "prompt": "Photorealistic editorial recipe food photography. Make the actual finished dish appetising through natural window light, truthful cooked texture and a clean plain ceramic serving dish. No decorative garnish or ingredients beyond the exact recipe. If brown rice is listed, show wholegrain rice with unmistakable tan bran on the grains, never ivory polished rice. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Tofu Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Measure the balti-style sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Stir in the balti-style sauce, heat for 1\u20132 minutes, then spoon into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Measure the balti-style sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Stir in the balti-style sauce, heat for 1\u20132 minutes, then spoon into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1276e246-5319-47b2-a0a3-e827814b4c6a.png",
+  "source_sha256": "09209fb11a9c8538eea685de2d81ba56a1609d455d837f23a8a19a2b55ee9712",
+  "generated_at": "2026-10-05T00:08:57.022Z",
+  "elapsed_ms": 74515,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-44fe55be31371ea51924-480.webp",
+      "sha256": "2144ac0ff6c3b49548bb24f463b4a1beb5714e7507109f56c4fa9f5ee60c6044",
+      "bytes": 26850
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-44fe55be31371ea51924.webp",
+      "sha256": "63c6c3ec1b7c81712fd504d49cfade5738466da34372fcf525148ce7c53207fa",
+      "bytes": 81868
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "09209fb11a9c8538eea685de2d81ba56a1609d455d837f23a8a19a2b55ee9712",
+    "recipe_ids": [
+      "industrial-v3-pie-balti-tofu"
+    ],
+    "titles": [
+      "Shift Balti Tofu Proper Pie"
+    ],
+    "notes": "Golden intact firm tofu cubes, carrot dice and peas under plain fork-roughened mashed potato with browned ridges, no herbs or cheese.",
+    "alt": "Shift Balti Tofu Proper Pie: golden intact firm tofu cubes, carrot dice and peas under plain fork-roughened mashed potato with browned ridges, no herbs or cheese.",
+    "reviewed_at": "2026-10-05T00:20:23.629770+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

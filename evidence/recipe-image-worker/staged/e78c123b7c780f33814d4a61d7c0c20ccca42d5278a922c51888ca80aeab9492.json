@@ -1,0 +1,85 @@
+{
+  "groupId": "e78c123b7c780f33814d4a61d7c0c20ccca42d5278a922c51888ca80aeab9492",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-weekend-treat-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Weekend Treat Fruit Crunch Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Treat Fruit Crunch Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"15g\",\"item\":\"dark chocolate chips\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed ingredients: no honey, mint, coconut, nuts, syrup, pineapple or banana/apple unless listed. Mixed berries only listed berry addition. Cottage cheese curdy, high-protein yoghurt smooth, fruit-only variants have no dairy unless 40g Greek yoghurt explicitly listed. Rolled oats plain flakes, no granola with invented foods. Pumpkin seeds flat green pepitas. Chocolate chips discrete small chips; Big Feed recipes that ALSO list chopped dark chocolate must show chopped pieces as the measured finishing element. WORK SNACK BOX: wet fruit/dairy separated from dry oats/pepitas/TWO wholegrain crackers. EXCEPTION overnight-oats work snack box: oats are milk-hydrated overnight with pineapple/berries mixed through; seeds separate until serving, crackers alongside dry. Fruit/Protein pots: dry crunch only added at immediate serving. Greek yoghurt swirled through dessert pots at end exactly as method requires, not an invented cream base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate chips"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-79520038-5f4e-4487-b157-69fb3cd0df8e.png",
+  "source_sha256": "017c741861b49d1011f3c762d69ee24ca304945a8fd79914a2edd7f405e6f8df",
+  "generated_at": "2026-10-05T01:25:58.325Z",
+  "elapsed_ms": 346169.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e78c123b7c780f33814d-480-6d28bade847c.webp",
+      "sha256": "6d28bade847c2bfffee05e6883cd58d29e7e0d1acba2bdd27a54e11672ae798d",
+      "bytes": 19852
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e78c123b7c780f33814d-a3d8457f786a.webp",
+      "sha256": "a3d8457f786af9eb6394443b247d238ca02961f0107fa226b5ab5f50feb3e764",
+      "bytes": 60772
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "017c741861b49d1011f3c762d69ee24ca304945a8fd79914a2edd7f405e6f8df",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-weekend-treat-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Weekend Treat Fruit Crunch Big Feed Dessert"
+    ],
+    "notes": "Bite-size apple/mixed berries with plain oats, green pumpkin seeds and discrete dark chocolate chips, finished with additional chopped dark chocolate. No invented creamy base, banana/pineapple, honey or nuts; exact title/method checked.",
+    "alt": "Apple berry fruit dessert with oats, pumpkin seeds, chocolate chips and chopped dark chocolate",
+    "reviewed_at": "2026-10-05T01:27:19.481749+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2585.json"
+  },
+  "integrated": true,
+  "live": false
+}

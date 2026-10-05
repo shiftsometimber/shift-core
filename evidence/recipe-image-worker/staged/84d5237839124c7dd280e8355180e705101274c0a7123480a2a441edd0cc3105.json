@@ -1,0 +1,90 @@
+{
+  "groupId": "84d5237839124c7dd280e8355180e705101274c0a7123480a2a441edd0cc3105",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-cherry-overnight-oats"
+  ],
+  "titles": [
+    "Shift Cherry Overnight Oats Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Overnight Oats Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.\",\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 40g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g cherries, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed food; no honey, nuts, mint, syrup, sauces or decorative garnish. All food inside frame. Berries just small25g portion. NO crackers or biscuits anywhere. All cherries destoned stemless fresh halves with visible empty pit cavities. No whole cherries/stems. Yoghurt smooth and stirred, no cottage cheese curds. Fully softened overnight milk oats with measured fruit mixed through, listed yoghurt evenly mixed, seeds/chopped chocolate topped at serving. No dry oats pile. Crackers alongside ONLY if listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.",
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Stir in 40g 0% Greek yoghurt until evenly mixed.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g cherries, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3ae8b167-4f43-4623-b245-a6ff836e80d2.png",
+  "source_sha256": "b26d13f20cc7a3d3a80bf191ee3bd59f45eecc06babcfbe9807e3b95f29c5e26",
+  "generated_at": "2026-10-05T00:21:41.923Z",
+  "elapsed_ms": 91898,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-84d5237839124c7dd280-480-2be69a958ed1.webp",
+      "sha256": "2be69a958ed1c27dea91e781658da1e14b7140acd973cb8118756f0285fae212",
+      "bytes": 25248
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-84d5237839124c7dd280-e970d45a0300.webp",
+      "sha256": "e970d45a03000a7ce2b2cb06fb032bba00dc737a9ec45557b6f3795a8bc80dd9",
+      "bytes": 72928
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b26d13f20cc7a3d3a80bf191ee3bd59f45eecc06babcfbe9807e3b95f29c5e26",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-cherry-overnight-oats"
+    ],
+    "titles": [
+      "Shift Cherry Overnight Oats Dessert Pot"
+    ],
+    "notes": "Soft milk overnight oats with Greek yoghurt evenly mixed, destoned cherry halves/berries combined and seeds on top. No chocolate or dry oats.",
+    "alt": "Creamy cherry and berry overnight oats with pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:28:47.008610+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/84d5237839124c7dd280e8355180e705101274c0a7123480a2a441edd0cc3105.json"
+  },
+  "integrated": true,
+  "live": false
+}

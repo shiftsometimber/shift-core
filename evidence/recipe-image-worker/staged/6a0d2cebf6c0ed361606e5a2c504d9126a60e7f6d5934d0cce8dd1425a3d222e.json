@@ -1,0 +1,81 @@
+{
+  "groupId": "6a0d2cebf6c0ed361606e5a2c504d9126a60e7f6d5934d0cce8dd1425a3d222e",
+  "recipe_ids": [
+    "industrial-breakfast-yoghurt-pot-berry-vanilla-2"
+  ],
+  "titles": [
+    "Berry Cinnamon Yoghurt Crunch Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Berry Cinnamon Yoghurt Crunch Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"1/2 tsp\",\"item\":\"ground cinnamon\"}]. Preparation: [\"Spoon the yoghurt into a bowl or lidded pot.\",\"Wash and prepare the fruit, removing any stones, cores or inedible peel, then weigh the edible portion and add it to the yoghurt.\",\"Top with oats and pumpkin seeds.\",\"Finish with the flavouring just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "1/2 tsp",
+      "item": "ground cinnamon"
+    }
+  ],
+  "method": [
+    "Spoon the yoghurt into a bowl or lidded pot.",
+    "Wash and prepare the fruit, removing any stones, cores or inedible peel, then weigh the edible portion and add it to the yoghurt.",
+    "Top with oats and pumpkin seeds.",
+    "Finish with the flavouring just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-aed7bd80-6b18-4e6d-a8f6-68863557f7dd.png",
+  "source_sha256": "598acdde7754e2a5d5164a5c55eedfe09842556b36f16a59721e86478c95e517",
+  "generated_at": "2026-10-04T21:02:31.788Z",
+  "elapsed_ms": 32480,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6a0d2cebf6c0ed361606-480.webp",
+      "sha256": "656e57e20c46e3c45d1f9adb580851d8e4ac9718d8be631b2b238991647e65fa",
+      "bytes": 21638
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6a0d2cebf6c0ed361606.webp",
+      "sha256": "cdb062bda269696e5c277b2acd003f2fb311c5885b7a7164c8d06762cc9b1f00",
+      "bytes": 65122
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-yoghurt-pot-berry-vanilla-2"
+    ],
+    "titles": [
+      "Berry Cinnamon Yoghurt Crunch Pot"
+    ],
+    "notes": "Plain yoghurt with raw mixed berries, dry rolled oat flakes, pumpkin seeds and cinnamon; no extra garnish or sweetener. Single credible serving with full food visible in phone/desktop 4:3 framing. Quantities, hidden temperature and nutrition cannot be verified visually.",
+    "alt": "Greek yoghurt topped with mixed berries, rolled oats, pumpkin seeds and cinnamon.",
+    "reviewed_at": "2026-10-04T21:21:38.766887+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "598acdde7754e2a5d5164a5c55eedfe09842556b36f16a59721e86478c95e517"
+  }
+}

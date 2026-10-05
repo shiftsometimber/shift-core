@@ -1,0 +1,83 @@
+{
+  "groupId": "cba88960a5c5590c4ef1d73ff51c7b9c7e55acfa3fd3dbaaad7284ef7ba4029e",
+  "recipe_ids": [
+    "industrial-v3-traybake-bbq-salmon"
+  ],
+  "titles": [
+    "Shift BBQ Salmon Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Salmon Traybake. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ glaze\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and salmon fillet. Cook the salmon fillet until opaque and just flaking at the thickest point; pull it from the heat before it dries out.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the salmon fillet is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ glaze"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and salmon fillet. Cook the salmon fillet until opaque and just flaking at the thickest point; pull it from the heat before it dries out.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the salmon fillet is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8ef6de47-4d4c-474e-86a6-26e9ed3dafdf.png",
+  "source_sha256": "7caa5d4a9eb79504a559e320e903979d9ee9d1273376621c1f4b1c4cae24ecf7",
+  "generated_at": null,
+  "elapsed_ms": 229341.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-cba88960a5c5590c4ef1-480.webp",
+      "sha256": "1847493fd03bfe0e2faf192475e697b2c05497278baaea19611abd31c48a5b69",
+      "bytes": 32730
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-cba88960a5c5590c4ef1.webp",
+      "sha256": "07bc2a91d2702a243cee4b31f23f9c7bb0feb2c6239aef87f78d717138230b54",
+      "bytes": 100316
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-traybake-bbq-salmon"
+    ],
+    "titles": [
+      "Shift BBQ Salmon Traybake"
+    ],
+    "notes": "One browned opaque salmon fillet with roasted skin-on baby potatoes, broccoli and red pepper in BBQ glaze. No extra vegetables or garnish. Ingredients and finished state match actual method and title; plausible single serving, central responsive crop retains dish.",
+    "alt": "BBQ salmon with roasted baby potatoes, broccoli and red pepper.",
+    "reviewed_at": "2026-10-04T21:39:05.896Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-560-576.json",
+    "source_sha256": "7caa5d4a9eb79504a559e320e903979d9ee9d1273376621c1f4b1c4cae24ecf7"
+  },
+  "integrated": true,
+  "live": false
+}

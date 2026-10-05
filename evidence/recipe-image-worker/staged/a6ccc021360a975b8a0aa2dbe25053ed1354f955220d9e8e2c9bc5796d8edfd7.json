@@ -1,0 +1,84 @@
+{
+  "groupId": "a6ccc021360a975b8a0aa2dbe25053ed1354f955220d9e8e2c9bc5796d8edfd7",
+  "recipe_ids": [
+    "industrial-v3-curry-mediterranean-tofu"
+  ],
+  "titles": [
+    "Shift Mediterranean Tofu Proper Curry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mediterranean Tofu Proper Curry. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"tomato olive herb sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Turn the heat to low and fold in the 40g tomato olive herb sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, seeds, cheese, cream, fresh green herbs scattered on top, coriander, parsley leaves, lemon wedges, side dishes or dipping sauce. Tomato olive herb sauce is a light reddish tomato coating with tiny chopped olive and herb pieces ONLY WITHIN SAUCE, no separate whole olives or fresh leaf garnish. PIE HARD GATE: topping is PLAIN WATER-MASHED POTATO, ivory and golden naturally browned fork ridges only. NO HERBS, NO PEPPER, NO dark/green flecks, NO cheese or butter on OR mixed in potato topping. Listed sauce belongs only in exposed cooked filling BELOW potato topping. Salmon fully opaque cooked large flakes wherever method flakes, traybake and roast may keep opaque fillet. Pork stir-fry thin 1cm opaque strips; all other forms follow method. Tofu firm 2cm cubes EXCEPT roast uses 2cm slabs. Slow cooker potatoes/carrot/onion tender glossy not crispy. Rice exact brown or basmati per recipe. Listed sauce lightly coats finished dish per method, no sauce ramekin. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "tomato olive herb sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Turn the heat to low and fold in the 40g tomato olive herb sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1d8c9255-be3a-4e6e-941e-d81135e6b459.png",
+  "source_sha256": "1aa35726f82798da7b7c7b200b3991f9f5e9f48c66c6304945843f380a9bb521",
+  "generated_at": "2026-10-04T23:57:13.977Z",
+  "elapsed_ms": 331906.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a6ccc021360a975b8a0a-retry4-480-c9a9981bb907.webp",
+      "sha256": "c9a9981bb907d6ec71fad923d70fe1beb93ac2e9f2e3d7d9a0761023462e9a4a",
+      "bytes": 24586
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a6ccc021360a975b8a0a-retry4-dc4eeea06b0f.webp",
+      "sha256": "dc4eeea06b0fd78f0a8e078d403d6dfcbf2b3719fbc444719a40cd965650bdfb",
+      "bytes": 77886
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1aa35726f82798da7b7c7b200b3991f9f5e9f48c66c6304945843f380a9bb521",
+    "recipe_ids": [
+      "industrial-v3-curry-mediterranean-tofu"
+    ],
+    "titles": [
+      "Shift Mediterranean Tofu Proper Curry"
+    ],
+    "notes": "Pass: firm tofu 2cm cubes with golden faces, thin onion and mixed pepper strips lightly coated in tomato olive herb sauce over basmati rice. Chopped olive and herb pieces stay in listed sauce, no meat, kidney beans, fresh garnish, cheese, cream or extra food. Correct curry assembly and centred crop.",
+    "alt": "Mediterranean tofu curry with onion and mixed peppers over basmati rice",
+    "reviewed_at": "2026-10-04T23:58:15.280388+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1090.json"
+  },
+  "integrated": true,
+  "live": false
+}

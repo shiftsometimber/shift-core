@@ -1,0 +1,83 @@
+{
+  "groupId": "67e4095b1e44cb439dc328b2cd9c0d20b0e2d76cd88c58ed33f20f0b6522ea0c",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-bbq-bacon"
+  ],
+  "titles": [
+    "Shift BBQ Bacon Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Bacon Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f3f78604-35d6-4d4b-9010-2417810ba701.png",
+  "source_sha256": "2e7df32c9b80912215ee0218eef95f14cf27aa05cb37ce748cb44fb7e6addd2b",
+  "generated_at": null,
+  "elapsed_ms": 201805.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-67e4095b1e44cb439dc3-480.webp",
+      "sha256": "0a5350c6493b0ee9996441a9105b4344e44458b3810d7083b6562b06e3b4665a",
+      "bytes": 26512
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-67e4095b1e44cb439dc3.webp",
+      "sha256": "388a913654e4022b6c482be9f51a7fb33c9e2f7a6cb5af8cabda79539c6ac847",
+      "bytes": 87176
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-bbq-bacon"
+    ],
+    "titles": [
+      "Shift BBQ Bacon Breakfast Buttie"
+    ],
+    "notes": "Wholemeal bap encloses browned bacon, softened sliced tomato and wilted spinach with a dark reddish BBQ coating. No cheese, eggs or extra salad. Bacon is visibly browned; filling matches method and title, one plausible bap. Central framing keeps all identifiable ingredients.",
+    "alt": "Wholemeal bap filled with browned bacon, cooked tomato, spinach and BBQ sauce.",
+    "reviewed_at": "2026-10-04T21:12:01.688Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews.json",
+    "source_sha256": "2e7df32c9b80912215ee0218eef95f14cf27aa05cb37ce748cb44fb7e6addd2b"
+  },
+  "integrated": true,
+  "live": false
+}

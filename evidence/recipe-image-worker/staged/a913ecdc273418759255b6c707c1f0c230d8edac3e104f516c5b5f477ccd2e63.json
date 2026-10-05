@@ -1,0 +1,83 @@
+{
+  "groupId": "a913ecdc273418759255b6c707c1f0c230d8edac3e104f516c5b5f477ccd2e63",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-bbq-beans"
+  ],
+  "titles": [
+    "Shift BBQ Beans Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Beans Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7cd5f8b2-7c8c-45db-9f92-9b1d5c92e098.png",
+  "source_sha256": "0945d68c4d0679bbfcf9ce2dc8c9787d37789ef17af8500e507f1a1e73fee90e",
+  "generated_at": "2026-10-04T21:10:36.188Z",
+  "elapsed_ms": 24172.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a913ecdc273418759255-480.webp",
+      "sha256": "dacd1456f4b19ef72865f5068a39432782cf72f2b254d842bdedd7c8c8d34cc9",
+      "bytes": 30118
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a913ecdc273418759255.webp",
+      "sha256": "8277795ef62f1b2deb39e56e5ab5f92f960f4a914f0f829473a9a59ed08872ea",
+      "bytes": 98668
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-bbq-beans"
+    ],
+    "titles": [
+      "Shift BBQ Beans Breakfast Buttie"
+    ],
+    "notes": "Wholemeal bap contains baked white beans, cooked tomato pieces and wilted spinach coated in barbecue sauce. No cheese, meat, herbs or extra sides visible. Single sandwich is centred with crop margin.",
+    "alt": "Wholemeal bap filled with barbecue baked beans, tomato and wilted spinach",
+    "reviewed_at": "2026-10-04T21:11:36.902161+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/48.json",
+    "source_sha256": "0945d68c4d0679bbfcf9ce2dc8c9787d37789ef17af8500e507f1a1e73fee90e"
+  },
+  "integrated": true,
+  "live": false
+}

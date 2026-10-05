@@ -1,0 +1,16 @@
+{
+  "groupId": "284dae24a0d4dd01462e2594cffc6255a5c68f48ed4b6252290930983e7d0f18",
+  "source_sha256": "50e4a68cccb567746e46096bac033a9f6cfa3ca57c1275a9817d8786405c75c3",
+  "review": {
+    "decision": "reject",
+    "notes": "Full-resolution inspection: spring onion is folded through ham filling and scattered on potato although required solely in side salad; visible grated cheddar topping also substitutes for stirring cheddar into dressing. Reject assembly mismatch.",
+    "source_sha256": "50e4a68cccb567746e46096bac033a9f6cfa3ca57c1275a9817d8786405c75c3",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-caesar-ham"
+    ],
+    "titles": [
+      "Shift Creamy Cheddar Ham Loaded Jacket Potato"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

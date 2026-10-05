@@ -1,0 +1,93 @@
+{
+  "groupId": "ef53caabab9d7e1596963fa89e01ebdcac72e8a4f5a4bb76add2bbe9b5299290",
+  "recipe_ids": [
+    "industrial-lunch-chicken-grain-salad"
+  ],
+  "titles": [
+    "Chicken Grain Salad"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Chicken Grain Salad. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"75g dry\",\"item\":\"couscous, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"cucumber\"},{\"amount\":\"60g\",\"item\":\"tomato\"},{\"amount\":\"5ml\",\"item\":\"olive oil\"},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]}]. Preparation: [\"The listed couscous quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Use instant couscous suitable for preparation with boiling water. Put the measured dry couscous in a heatproof bowl, pour over the boiling-water quantity stated on its packet, cover and leave for the packet time. Fluff with a fork; it should be tender with no hard grains.\",\"Wash the cucumber and tomato, then dice both into small pieces.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Stir together all the measured lemon juice, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Fold the cooked couscous, cucumber, tomato and prepared ready-to-eat filling together with the prepared dressing. Eat immediately.\",\"For a packed lunch, cool the prepared couscous promptly before combining it with the chilled filling. Cover, refrigerate and eat within 24 hours, following any shorter ingredient use-by date. Keep the meal chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "75g dry",
+      "item": "couscous, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "60g",
+      "item": "tomato"
+    },
+    {
+      "amount": "5ml",
+      "item": "olive oil"
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    }
+  ],
+  "method": [
+    "The listed couscous quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Use instant couscous suitable for preparation with boiling water. Put the measured dry couscous in a heatproof bowl, pour over the boiling-water quantity stated on its packet, cover and leave for the packet time. Fluff with a fork; it should be tender with no hard grains.",
+    "Wash the cucumber and tomato, then dice both into small pieces.",
+    "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Stir together all the measured lemon juice, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "Fold the cooked couscous, cucumber, tomato and prepared ready-to-eat filling together with the prepared dressing. Eat immediately.",
+    "For a packed lunch, cool the prepared couscous promptly before combining it with the chilled filling. Cover, refrigerate and eat within 24 hours, following any shorter ingredient use-by date. Keep the meal chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-09f372c6-5cca-479e-850d-3c91b62b4315.png",
+  "source_sha256": "65063338886925875ba6b3d20cef559245a760617a45e0f74f07a2e63886abef",
+  "generated_at": "2026-10-04T23:44:32.144Z",
+  "elapsed_ms": 202765.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ef53caabab9d7e159696-480-ee3f59eb67a2.webp",
+      "sha256": "ee3f59eb67a233b62e5ac8e8a21003f75a016265debe97af39d7c80f36fb8b53",
+      "bytes": 25466
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ef53caabab9d7e159696-b7c821925020.webp",
+      "sha256": "b7c82192502005c894dd30aeb8ef44bbb87070103b076a1703e563e8540e7615",
+      "bytes": 75924
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "65063338886925875ba6b3d20cef559245a760617a45e0f74f07a2e63886abef",
+    "recipe_ids": [
+      "industrial-lunch-chicken-grain-salad"
+    ],
+    "titles": [
+      "Chicken Grain Salad"
+    ],
+    "notes": "Opaque shredded cooked chicken folded through couscous with diced cucumber and tomato, light oil-lemon-wholegrain mustard coating. Visible mustard grains correspond to listed dressing; no unlisted garnish. Exact title matches.",
+    "alt": "Chicken couscous salad with cucumber, tomato and mustard-lemon dressing",
+    "reviewed_at": "2026-10-04T23:46:23.866265+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1486-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

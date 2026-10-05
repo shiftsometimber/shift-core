@@ -1,0 +1,86 @@
+{
+  "groupId": "cce822f36cebfab43450c3831029fbf430b5eedf05fca007e9c171b415eeb967",
+  "recipe_ids": [
+    "industrial-v3-sandwich-peri-peri-ham"
+  ],
+  "titles": [
+    "Shift Peri-Peri Ham Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Ham Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the peri-peri flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Mexican/peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish, tortilla chips or extra ingredients. Listed yoghurt sauces are ready-to-eat dressings, not melted cheese.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the peri-peri flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c3bc48e2-9a24-4ac3-b471-d6a924c653f0.png",
+  "source_sha256": "71b9211ce54c565d0e195ea8f9f1c856877fa6e33ecbcf1fc63262959cb622c5",
+  "generated_at": "2026-10-04T23:23:25.378Z",
+  "elapsed_ms": 311200.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-cce822f36cebfab43450-480-bbe6aca450e1.webp",
+      "sha256": "bbe6aca450e1d5bbeb156c3c6f71a5cd0d2ecaff35bd357fa7dbdccaa42b4bf9",
+      "bytes": 34524
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-cce822f36cebfab43450-4b51fcc49334.webp",
+      "sha256": "4b51fcc49334755b1f90837a7037e9f35a4af60016c5167aad8807c967a1f74b",
+      "bytes": 109042
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "71b9211ce54c565d0e195ea8f9f1c856877fa6e33ecbcf1fc63262959cb622c5",
+    "recipe_ids": [
+      "industrial-v3-sandwich-peri-peri-ham"
+    ],
+    "titles": [
+      "Shift Peri-Peri Ham Proper Sandwich"
+    ],
+    "notes": "Lightly browned cooked ham in two plain wholemeal bread slices with fresh lettuce/tomato and peri-peri yoghurt. No seeds, cheese, added side or garnish; ham preparation matches method.",
+    "alt": "Peri-peri ham sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:25:00.377435+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1965.json"
+  },
+  "integrated": true,
+  "live": false
+}

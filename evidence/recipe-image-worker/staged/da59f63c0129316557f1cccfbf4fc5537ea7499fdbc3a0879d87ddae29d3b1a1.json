@@ -1,0 +1,87 @@
+{
+  "groupId": "da59f63c0129316557f1cccfbf4fc5537ea7499fdbc3a0879d87ddae29d3b1a1",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-cherry-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Cherry Cottage Cheese Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Cottage Cheese Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the low-fat cottage cheese, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the low-fat cottage cheese first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only, no honey, nuts, mint, syrup or garnish. Cherries ALL destoned stemless fresh HALVES with visible EMPTY pit cavities; no whole cherries, cherry stones, stems or glazed maraschino cherries. Small25g berries alongside measured80g cherry flesh. No cake or biscuit crumbs. All food inside frame. Exactly TWO entire plain unseeded crackers, visibly offset with independent edges for counting. No sesame/poppy seeds. Cottage cheese retains distinct small white curds. Real snack box: dry oats/seeds/crackers in separate compartments from bite-size fruit and any dairy base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the low-fat cottage cheese, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the low-fat cottage cheese first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ed39a5a0-ea59-4584-ba4f-3e035d79fc06.png",
+  "source_sha256": "9d3d028aca2d275cd1e9d24f4581535af5d0e88aa90f224d32072427fc3931fc",
+  "generated_at": "2026-10-05T00:11:28.736Z",
+  "elapsed_ms": 238312,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-da59f63c0129316557f1-480-7fc8f36e1959.webp",
+      "sha256": "7fc8f36e195971f546eee6502559bc8d85df27ca63b05f9ff510067bed4d7eb2",
+      "bytes": 30164
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-da59f63c0129316557f1-672f66c07c4f.webp",
+      "sha256": "672f66c07c4f9e96bb582278df4d80983548dc3e5dbe4aa8e82b4e1e9c4a5b6f",
+      "bytes": 88506
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "9d3d028aca2d275cd1e9d24f4581535af5d0e88aa90f224d32072427fc3931fc",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-cherry-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Cherry Cottage Cheese Work Snack Box"
+    ],
+    "notes": "Cottage cheese and destoned cherry halves/small berries portioned; dry oats/seeds separate, exactly two plain crackers visible.",
+    "alt": "Cottage cheese snack box with pitted cherries, berries, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-05T00:16:56.349995+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/da59f63c0129316557f1cccfbf4fc5537ea7499fdbc3a0879d87ddae29d3b1a1.json"
+  },
+  "integrated": true,
+  "live": false
+}

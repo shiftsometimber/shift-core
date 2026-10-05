@@ -1,0 +1,85 @@
+{
+  "groupId": "5b03eb5beb528eefb0c990bca0e37a523a7ae355dfd2ff0ed77bbdfa2f2ee2db",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-coffee-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Coffee Greek Yoghurt Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Greek Yoghurt Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"240g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"}]. Preparation: [\"Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.\",\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact foods. Espresso measured1g fully dissolved, cooled and mixed through dairy/fruit, subtle coffee tint; no whole coffee beans, granules, dry grounds, coffee drinks or syrup. Small25g berries. No honey, mint, nuts or decorative garnish. Entire food inside frame. NO crackers, biscuits or cake anywhere. Yoghurt smooth and stirred, no cottage cheese curds. One finished dessert bowl all ingredients combined, measured yoghurt visibly swirled through, no separate dairy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "240g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    }
+  ],
+  "method": [
+    "Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.",
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3fe982cb-c1a4-4f97-8541-0121cba6cc60.png",
+  "source_sha256": "8e42fc5fc38ffcdef5ab441adb6789b9445f1cce871d13a29353a2fe9fbd9c68",
+  "generated_at": "2026-10-05T00:55:15.253Z",
+  "elapsed_ms": 80674,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5b03eb5beb528eefb0c9-480-e5868d33b919.webp",
+      "sha256": "e5868d33b919fcff15c8d828e11f01e4ac3241916edf7d366f26db29ed6b1694",
+      "bytes": 21868
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5b03eb5beb528eefb0c9-ae1f8f3a8425.webp",
+      "sha256": "ae1f8f3a842541521a808bcc10076bd6ee955bdfb7beeb36c4ccfe84df541e60",
+      "bytes": 66474
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8e42fc5fc38ffcdef5ab441adb6789b9445f1cce871d13a29353a2fe9fbd9c68",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-coffee-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Coffee Greek Yoghurt Dessert Pot"
+    ],
+    "notes": "Smooth coffee Greek yoghurt with small berries/oats/seeds combined and yoghurt swirl. No separate dairy, coffee granules or chocolate chunks.",
+    "alt": "Coffee Greek yoghurt dessert with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T01:02:13.624850+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/5b03eb5beb528eefb0c990bca0e37a523a7ae355dfd2ff0ed77bbdfa2f2ee2db.json"
+  },
+  "integrated": true,
+  "live": false
+}

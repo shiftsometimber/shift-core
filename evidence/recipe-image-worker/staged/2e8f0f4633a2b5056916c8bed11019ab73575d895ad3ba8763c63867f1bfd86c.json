@@ -1,0 +1,84 @@
+{
+  "groupId": "2e8f0f4633a2b5056916c8bed11019ab73575d895ad3ba8763c63867f1bfd86c",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-biscoff-style-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Fruit Crunch Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Fruit Crunch Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nUse only listed foods, no honey, nuts, mint, syrup or garnish. Crushed wholegrain biscuit is modest irregular crumb pieces, no caramel spread or cookie butter. Berries just the listed25g, a small portion. All food safely inside frame. Exactly two plain unseeded wholegrain crackers where listed, no sesame/poppy seeds. Finished combined dessert in ONE bowl: all ingredients combined, measured yoghurt visibly swirled through. No separate ramekins.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9451c52a-5ab6-46c2-bc00-dab7b285a4cc.png",
+  "source_sha256": "fc233f32e3cffd5b0ad355ef1281e4924604a7db767243b1406e11e61c0ef662",
+  "generated_at": "2026-10-04T23:28:41.684Z",
+  "elapsed_ms": 199471,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2e8f0f4633a2b5056916-480-7346405e8b92.webp",
+      "sha256": "7346405e8b922c56cd4676073f85799341a29b071460d99942b08519c44df352",
+      "bytes": 24480
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2e8f0f4633a2b5056916-5cb17a54b392.webp",
+      "sha256": "5cb17a54b392afe40f34ab9aa79f8101d6d580c050bef0dbe301734e46c2e06e",
+      "bytes": 71056
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fc233f32e3cffd5b0ad355ef1281e4924604a7db767243b1406e11e61c0ef662",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-biscoff-style-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Fruit Crunch Dessert Pot"
+    ],
+    "notes": "Apple and berries combined with biscuit crumbs, oats and seeds, small measured yoghurt swirled through. No extra garnish or chocolate.",
+    "alt": "Apple and berry dessert with biscuit crumbs, oats, pumpkin seeds and Greek yoghurt.",
+    "reviewed_at": "2026-10-04T23:32:45.118360+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/2e8f0f4633a2b5056916c8bed11019ab73575d895ad3ba8763c63867f1bfd86c.json"
+  },
+  "integrated": true,
+  "live": false
+}

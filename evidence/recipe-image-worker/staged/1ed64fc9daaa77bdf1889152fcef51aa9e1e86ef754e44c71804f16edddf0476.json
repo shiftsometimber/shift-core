@@ -1,0 +1,84 @@
+{
+  "groupId": "1ed64fc9daaa77bdf1889152fcef51aa9e1e86ef754e44c71804f16edddf0476",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-coffee-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Coffee Yoghurt Crunch Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Yoghurt Crunch Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed foods. No honey, nuts, mint, syrup, cinnamon, cocoa or garnish. Small25g berries; generous measured25-30g pumpkin seeds where listed. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Instant espresso fully dissolved, cooled and mixed into smooth yoghurt, subtle coffee tint. No beans, granules, dry grounds or coffee drink. Yoghurt smooth and stirred, no cottage cheese curds. Correct dairy pot with small berries and dry rolled oats/generous pumpkin seeds newly topped at serving.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-96183de4-c8d1-4534-b209-aa6df395dca8.png",
+  "source_sha256": "7276d00c3516cb41b615be31eabf3756844886fa7a9c8ee6bc74e5128f669cb6",
+  "generated_at": "2026-10-05T01:05:24.583Z",
+  "elapsed_ms": 19470,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1ed64fc9daaa77bdf188-480-ad5c1c9eeaa6.webp",
+      "sha256": "ad5c1c9eeaa6eb526bb7a6c06f84e3f922a49387beea51225eaf60e197897f43",
+      "bytes": 21594
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1ed64fc9daaa77bdf188-e98010476cab.webp",
+      "sha256": "e98010476cab4716e4249b4a833f8ce00ea136501d843dd2a8ab8bb632a74774",
+      "bytes": 65392
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "7276d00c3516cb41b615be31eabf3756844886fa7a9c8ee6bc74e5128f669cb6",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-coffee-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Coffee Yoghurt Crunch Protein Pot"
+    ],
+    "notes": "Smooth coffee Greek yoghurt with small berries and dry oats/seeds newly topped at serving. No beans/grounds garnish; exact yoghurt crunch title checked.",
+    "alt": "Coffee yoghurt crunch pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T01:12:45.427309+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/1ed64fc9daaa77bdf1889152fcef51aa9e1e86ef754e44c71804f16edddf0476.json"
+  },
+  "integrated": true,
+  "live": false
+}

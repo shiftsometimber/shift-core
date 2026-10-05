@@ -1,0 +1,89 @@
+{
+  "groupId": "b2b29e73a161966dce52ca7b74c4925a0d5af0c472141029fe438198296d5fa7",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-coffee-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Coffee Cottage Cheese Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Cottage Cheese Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.\",\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only, no honey, nuts, mint, syrup or decorative garnish. Small25g mixed berries. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Instant espresso measured1g fully dissolved in tiny teaspoon water and cooled, mixed through fruit/dairy as subtle coffee tint; no whole coffee beans, granules, dry coffee grounds, separate coffee drink or chocolate syrup. Cottage cheese has recognisable small curds, coffee evenly mixed into those curds where listed. All listed ingredients combined in dessert bowl; chopped dark chocolate finishing only if listed. No melted sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.",
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-43a3c254-13d5-4b19-baf4-27c6d51c4104.png",
+  "source_sha256": "c7888c3268e68068c4a37adbdfb1a62b6fae40c4478d84f30c55cb1250e6ba17",
+  "generated_at": "2026-10-05T00:48:24.143Z",
+  "elapsed_ms": 365779,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b2b29e73a161966dce52-480-5ce1213201fa.webp",
+      "sha256": "5ce1213201fac6badefb9241ba81a07d658f2e99a4322d410ab02525759de645",
+      "bytes": 18498
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b2b29e73a161966dce52-f42b53e784b3.webp",
+      "sha256": "f42b53e784b3497644d3306ac9aa780e22dbbf9ae29f589c2bf89586ac96e355",
+      "bytes": 49286
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c7888c3268e68068c4a37adbdfb1a62b6fae40c4478d84f30c55cb1250e6ba17",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-coffee-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Coffee Cottage Cheese Big Feed Dessert"
+    ],
+    "notes": "Distinct cottage cheese curds lightly coffee tinted from dissolved espresso, small berries/oats/seeds with listed chopped chocolate. No beans or grounds.",
+    "alt": "Coffee cottage cheese dessert with berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T00:50:47.086281+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/b2b29e73a161966dce52ca7b74c4925a0d5af0c472141029fe438198296d5fa7.json"
+  },
+  "integrated": true,
+  "live": false
+}

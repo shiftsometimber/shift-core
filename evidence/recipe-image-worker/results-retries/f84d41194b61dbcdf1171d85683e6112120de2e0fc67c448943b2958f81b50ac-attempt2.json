@@ -1,0 +1,48 @@
+{
+  "index": 1346,
+  "groupId": "f84d41194b61dbcdf1171d85683e6112120de2e0fc67c448943b2958f81b50ac",
+  "title": "Shift Smoky Chilli Turkey Sunday-Style Roast",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Heat the oven to 200°C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8–10 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35–40 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20–25 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18–22 minutes, turning halfway, until steaming hot through the centre. Check 75°C for 30 seconds with a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4–6 minutes until tender with a little bite. Drain well.",
+    "Warm the smoked chilli tomato sauce in a small saucepan with 2 tablespoons of water for 1–2 minutes, stirring until hot.",
+    "Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot smoked chilli tomato sauce over the cooked protein."
+  ],
+  "attempt": 2,
+  "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Turkey Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Heat the oven to 200°C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8–10 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35–40 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20–25 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18–22 minutes, turning halfway, until steaming hot through the centre. Check 75°C for 30 seconds with a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4–6 minutes until tender with a little bite. Drain well.\",\"Warm the smoked chilli tomato sauce in a small saucepan with 2 tablespoons of water for 1–2 minutes, stirring until hot.\",\"Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot smoked chilli tomato sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "prompt": "Create an appetising photorealistic editorial food photograph. Landscape 4:3, warm natural daylight, cream ceramic plate, generous framing. Exactly TWO separate compact flattened plain turkey breast MINCE portions approximately 2 cm thick. Both are clearly visible with a gap between them, roast browned and glazed on top with measured smoky chilli tomato sauce. Separate peeled golden roast potato chunks, carrot batons and plain broccoli. No whole turkey fillet, no single large patty. Exact ingredients: [{\"amount\": \"170g\", \"item\": \"100% turkey breast mince, raw\"}, {\"amount\": \"250g\", \"item\": \"potatoes, peeled, raw\"}, {\"amount\": \"90g\", \"item\": \"carrots\"}, {\"amount\": \"90g\", \"item\": \"broccoli\"}, {\"amount\": \"40g\", \"item\": \"smoked chilli tomato sauce\"}, {\"amount\": \"1 tsp / 5ml\", \"item\": \"olive oil\"}]. Exact preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\", \"Heat the oven to 200\\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\", \"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\", \"Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\\u00b0C for 30 seconds with a clean thermometer.\", \"Cut the broccoli into small florets and boil for 4\\u20136 minutes until tender with a little bite. Drain well.\", \"Warm the smoked chilli tomato sauce in a small saucepan with 2 tablespoons of water for 1\\u20132 minutes, stirring until hot.\", \"Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot smoked chilli tomato sauce over the cooked protein.\"]. Only these foods, no garnish or decorative ingredients. Credible cooked food texture.",
+  "generated_at": "2026-10-05T01:19:28.829Z",
+  "elapsed_ms": 24928,
+  "result": {
+    "output_hint": "Generated images are saved to /workspace/scratch/79490e627254/generated_images as /workspace/scratch/79490e627254/generated_images/exec-3fef0c85-0b4e-47e7-a753-17a13514433f.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  }
+}

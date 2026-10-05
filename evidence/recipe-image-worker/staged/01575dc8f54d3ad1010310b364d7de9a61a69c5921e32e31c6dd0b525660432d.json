@@ -1,0 +1,88 @@
+{
+  "groupId": "01575dc8f54d3ad1010310b364d7de9a61a69c5921e32e31c6dd0b525660432d",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-classic-protein-pudding"
+  ],
+  "titles": [
+    "Shift Classic Protein Pudding Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Protein Pudding Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only, no honey, nuts, mint, syrup or decorative garnish. Small25g mixed berries. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Cinnamon only light1g powder evenly mixed into food; no decorative cinnamon sticks or dry powder piles. Yoghurt smooth and stirred, no cottage-cheese curds. All listed ingredients combined in dessert bowl; chopped dark chocolate finishing only if listed. No melted sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-eb4e82f8-27b6-4a65-9783-134481ecef95.png",
+  "source_sha256": "78722342f2233e90b90322010c745b6f7ff3ec857997e6c329069590c2b6d227",
+  "generated_at": "2026-10-05T00:45:02.453Z",
+  "elapsed_ms": 164089,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-01575dc8f54d3ad10103-480-29bfd0c4ae14.webp",
+      "sha256": "29bfd0c4ae14b4c5bc842b11153cfe210a1fa4809139c1324ec7609b6b7466a4",
+      "bytes": 18922
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-01575dc8f54d3ad10103-e1f9204e86d8.webp",
+      "sha256": "e1f9204e86d8ea3df2517b1a727a9eb33a2f6aa4101659547bd3442f4d0d0b8d",
+      "bytes": 57426
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "78722342f2233e90b90322010c745b6f7ff3ec857997e6c329069590c2b6d227",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-classic-protein-pudding"
+    ],
+    "titles": [
+      "Shift Classic Protein Pudding Big Feed Dessert"
+    ],
+    "notes": "Smooth protein yoghurt, fine cinnamon, small berries/oats/seeds combined with listed chopped chocolate finishing. No curds.",
+    "alt": "Cinnamon protein yoghurt dessert with berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T00:50:46.330058+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/01575dc8f54d3ad1010310b364d7de9a61a69c5921e32e31c6dd0b525660432d.json"
+  },
+  "integrated": true,
+  "live": false
+}

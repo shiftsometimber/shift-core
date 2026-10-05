@@ -1,0 +1,78 @@
+{
+  "groupId": "841d688b296ed94acf9f2eac6b3d2b17a9309f1d4eb6d48106c4b17aefb87d52",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-chilli-chicken"
+  ],
+  "titles": [
+    "Shift Smoky Chilli Chicken Slow-Cooker Big Pot"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe, appetising through natural window light and truthful texture. No invented garnish or additional ingredients. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Chicken Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables, measured cooking liquid and chicken breast into the slow cooker. Stir once so everything is coated, then cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours.\",\"Keep the lid on while it cooks. In the final 30 minutes, check the texture: if the cooking liquid is still thin, leave the lid slightly ajar or finish uncovered where your cooker allows until it reduces.\",\"Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables, measured cooking liquid and chicken breast into the slow cooker. Stir once so everything is coated, then cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours.",
+    "Keep the lid on while it cooks. In the final 30 minutes, check the texture: if the cooking liquid is still thin, leave the lid slightly ajar or finish uncovered where your cooker allows until it reduces.",
+    "Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ee74d7fe-4c39-4b34-adb0-bb81e26192cf.png",
+  "source_sha256": "4ea3cca240d4e6ff765e11981e92b0852db7c6e7e7bf5a357d131a8521c7f8ed",
+  "generated_at": "2026-10-05T00:40:22.948Z",
+  "elapsed_ms": 196282,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-841d688b296ed94acf9f-480.webp",
+      "sha256": "5ce260b3d9521720d43dc19c53e5c70d6a168f7e78dae8a410128f2b25b8fa67",
+      "bytes": 28384
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-841d688b296ed94acf9f.webp",
+      "sha256": "981b4eb1aa814ce682b2b9e859b7fa858d535c4c2bea7794eb0ca33b4de78c76",
+      "bytes": 96752
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Smoky chilli chicken with tender baby potatoes, carrots and onion",
+    "notes": "Full-resolution individual inspection: slow-cooked chicken with tender baby potatoes, carrots and onion in reduced tomato cooking juices; exact recipe and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-chilli-chicken"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Chicken Slow-Cooker Big Pot"
+    ],
+    "source_sha256": "4ea3cca240d4e6ff765e11981e92b0852db7c6e7e7bf5a357d131a8521c7f8ed",
+    "reviewed_at": "2026-10-05T00:54:17.971230+00:00"
+  }
+}

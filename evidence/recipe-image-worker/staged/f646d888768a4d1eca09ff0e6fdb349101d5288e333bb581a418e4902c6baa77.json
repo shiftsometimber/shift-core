@@ -1,0 +1,81 @@
+{
+  "groupId": "f646d888768a4d1eca09ff0e6fdb349101d5288e333bb581a418e4902c6baa77",
+  "recipe_ids": [
+    "industrial-v3-traybake-sweet-chilli-salmon"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Salmon Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Salmon Traybake. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and salmon fillet. Cook the salmon fillet until opaque and just flaking at the thickest point; pull it from the heat before it dries out.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the salmon fillet is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and salmon fillet. Cook the salmon fillet until opaque and just flaking at the thickest point; pull it from the heat before it dries out.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the salmon fillet is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8a524575-99dc-4aa8-96a2-53e49e262394.png",
+  "source_sha256": "ba870c2b3ce6ba342a87a113ace1839d9fddbcce9231ea03c15b0fa1e412504e",
+  "generated_at": "2026-10-05T01:11:20.865Z",
+  "elapsed_ms": 85451,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f646d888768a4d1eca09-480.webp",
+      "sha256": "2d74e4ad22b53802d00a7707b763cdcf9e8c1f8118a97858ad8231ed7fb1f094",
+      "bytes": 33396
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f646d888768a4d1eca09.webp",
+      "sha256": "c558b345fb3cf859e164c767faac33ab1b51bd399b4b8938a472c6d8bf1d2c0e",
+      "bytes": 103368
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Sweet chilli salmon fillet with roast baby potatoes, broccoli and red pepper",
+    "notes": "Full-resolution inspection against all titles and exact method: cooked flaking salmon fillet with golden skin-on baby potatoes, roasted broccoli and red pepper in light sweet chilli glaze, no garnish.",
+    "source_sha256": "ba870c2b3ce6ba342a87a113ace1839d9fddbcce9231ea03c15b0fa1e412504e",
+    "recipe_ids": [
+      "industrial-v3-traybake-sweet-chilli-salmon"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Salmon Traybake"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "d0f9238bfcadf9f361cb2107436ae0f8da047b3d5065c8d5db97e8d30f7ef447",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-classic-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Classic Fruit Crunch Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Fruit Crunch Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.\",\"Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.\",\"Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.\",\"Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup, cream or decorative garnish. Berries just small25g portion. All food inside frame. Exactly TWO plain unseeded wholegrain crackers visibly separated or offset with independent edges; no sesame/poppy seeds. Cinnamon only a light1g fine powder mixed into fruit/dairy; no cinnamon sticks anywhere. Real snack box: dry oats/seeds/crackers separate from juicy fruit or dairy. Flavour powder mixed into fruit/dairy.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.",
+    "Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.",
+    "Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.",
+    "Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c8937a48-2be9-413f-b14c-a1ecb4db49e1.png",
+  "source_sha256": "48346f81814f8cab1b9742d74c08e4352456f9278bd50db9af83a7e80c66946c",
+  "generated_at": "2026-10-05T00:38:19.100Z",
+  "elapsed_ms": 383466,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d0f9238bfcadf9f361cb-480-18ce469e559d.webp",
+      "sha256": "18ce469e559dad7480f94fc7c82095ae1d85d0ec20d7df61d68f091dc9272036",
+      "bytes": 25214
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d0f9238bfcadf9f361cb-162690231f98.webp",
+      "sha256": "162690231f983807b4dd2f3b9247f7b9eb3800aecf5d417a2ea593cc487ca7d8",
+      "bytes": 79302
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "48346f81814f8cab1b9742d74c08e4352456f9278bd50db9af83a7e80c66946c",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-classic-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Classic Fruit Crunch Work Snack Box"
+    ],
+    "notes": "Cinnamon apple/small berries with dry oats/seeds separate, exactly two plain crackers visible. No syrup, dairy or cinnamon sticks.",
+    "alt": "Cinnamon apple snack box with berries, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-05T00:39:15.202545+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/d0f9238bfcadf9f361cb2107436ae0f8da047b3d5065c8d5db97e8d30f7ef447.json"
+  },
+  "integrated": true,
+  "live": false
+}

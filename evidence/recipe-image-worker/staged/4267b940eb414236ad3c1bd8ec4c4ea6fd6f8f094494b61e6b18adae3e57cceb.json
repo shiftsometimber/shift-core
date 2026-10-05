@@ -1,0 +1,84 @@
+{
+  "groupId": "4267b940eb414236ad3c1bd8ec4c4ea6fd6f8f094494b61e6b18adae3e57cceb",
+  "recipe_ids": [
+    "industrial-v3-wrap-sweet-chilli-ham"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Ham Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Ham Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the lean ham; if the filling is being served hot, reduce only the sauce-coated lean ham until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel, no sesame/poppy seeds, cheese or food not listed. Sweet chilli sauce is translucent glossy red, never creamy: no mayo/yoghurt/cream. Tuna is loose fibrous drained flakes, never creamy tuna salad; ham thin cooked strips where method specifies. Eggs sliced hard-boiled. Turkey plain cooked breast not breaded. Keep reserved raw spinach/tomato or rocket/tomato side salads separate. Spring onion sliced finely mixed into salad alongside jacket potatoes, never garnish on potato. Cook rice; peppers raw diced, corn ready-to-eat. Sauce incorporated exactly as method states.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the lean ham; if the filling is being served hot, reduce only the sauce-coated lean ham until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-85f00a07-0e7a-485a-9575-76401db25006.png",
+  "source_sha256": "88d9a3060a85c9a3ba09e26e67102b4def7c544a82576c835e709f55a0e52d52",
+  "generated_at": "2026-10-05T00:30:59.591Z",
+  "elapsed_ms": 163008.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4267b940eb414236ad3c-480-cc3bce9b1b71.webp",
+      "sha256": "cc3bce9b1b7151e48f35110f6cb827dbf6bf883568de7a395eeb57740a2c2ed6",
+      "bytes": 22228
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4267b940eb414236ad3c-4951e8b19494.webp",
+      "sha256": "4951e8b19494a27bb0f6c9c180e581c5afcbe8727653845765b0aff73e3b3f77",
+      "bytes": 67012
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "88d9a3060a85c9a3ba09e26e67102b4def7c544a82576c835e709f55a0e52d52",
+    "recipe_ids": [
+      "industrial-v3-wrap-sweet-chilli-ham"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Ham Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal rolled wrap contains cooked ham strips coated in sweet chilli sauce plus fresh lettuce/tomato. No cheese, creamy spread, seeds or side; exact title and hot-filling/fresh-vegetable method checked.",
+    "alt": "Sweet chilli ham wholemeal wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:34:58.117801+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2070.json"
+  },
+  "integrated": true,
+  "live": false
+}

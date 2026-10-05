@@ -1,0 +1,88 @@
+{
+  "groupId": "f982a41352c47679f1cc9eac9e6676efa66385f25c551bd4b2ec9acd0f34edbc",
+  "index": 2363,
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-classic-savory-box"
+  ],
+  "titles": [
+    "Shift Classic Banana Split Big Feed Dessert"
+  ],
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Banana Split Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: generic method references to food apply only when that food appears in the exact ingredient list. Plain wholegrain crackers unseeded, no seed garnish unless listed. No cheese unless listed. No extra sauce, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow dry/separate and soaked/prepared instructions exactly. Cocoa means measured cocoa powder folded or dusted on food, never liquid chocolate syrup or extra chocolate chunks unless chopped dark chocolate listed. Overnight oats cocoa must be fully mixed in milk, visibly soft soaked brown oats without dry cocoa pockets. Cinnamon means fine powder, no decorative cinnamon sticks.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-05861cf8-f3a5-4e92-afcc-79e5e39fcac9.png",
+  "source_sha256": "a9ce895ad5f0d292aaafaebf06fc742c80896417193f259f52d83f046c14a1f1",
+  "dispatched_at": "2026-10-04T22:43:35.292Z",
+  "generated_at": "2026-10-04T22:49:49.921Z",
+  "elapsed_ms": 374629,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f982a41352c47679f1cc-480.webp",
+      "sha256": "9acc93a6289b464ba65ecccb91817fdab4f3448084db6481591301392aee49bf",
+      "bytes": 27738,
+      "git_blob_sha": "83a478b656bc5cfedbcecb775c610927bfa9bf0f"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f982a41352c47679f1cc.webp",
+      "sha256": "2dd2c87e23657cbc3c67622f7eef288eec58478ca5f0d9dd862452be36d314e9",
+      "bytes": 85048,
+      "git_blob_sha": "5451c515d9b403dc6b839afb97c9c708256801ef"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-classic-savory-box"
+    ],
+    "titles": [
+      "Shift Classic Banana Split Big Feed Dessert"
+    ],
+    "notes": "Banana and berries dusted lightly with cinnamon powder, oats and pumpkin seeds finished with chopped dark chocolate; no dairy or sticks.",
+    "alt": "Cinnamon banana and berry dessert with oats, pumpkin seeds and dark chocolate",
+    "reviewed_at": "2026-10-04T22:52:30.885755+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/f982a41352c47679f1cc9eac9e6676efa66385f25c551bd4b2ec9acd0f34edbc.json",
+    "source_sha256": "a9ce895ad5f0d292aaafaebf06fc742c80896417193f259f52d83f046c14a1f1"
+  },
+  "integrated": true,
+  "live": false
+}

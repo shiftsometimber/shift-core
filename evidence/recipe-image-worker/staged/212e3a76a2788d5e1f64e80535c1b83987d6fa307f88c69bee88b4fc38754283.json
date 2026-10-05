@@ -1,0 +1,90 @@
+{
+  "groupId": "212e3a76a2788d5e1f64e80535c1b83987d6fa307f88c69bee88b4fc38754283",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-cheesecake-style-protein-pudding"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Protein Pudding Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Protein Pudding Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed foods; no honey, nuts, mint, syrup, garnish, cake or biscuit crust. Mixed berries just the measured25g. All food inside frame.  Exactly TWO entire plain unseeded crackers, visibly separated or offset so both full edges can be counted. No seeds on crackers. Measured30g light cream cheese smoothly folded through the fruit/base; no giant cream mound, no cake or crust. Yoghurt is SMOOTH and stirred, no cottage-cheese curds or rice-like grains. Real snack box with dry oats/seeds/crackers/biscuit crumbs if listed in separate compartments from fruit and smooth yoghurt or cream cheese-coated fruit. No curds unless cottage cheese actually listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a75b0ef8-1bb7-4364-943f-da82c4c6c22d.png",
+  "source_sha256": "fe188485121e9b48ec707e3c8b118ba9cb0d40610a423f413149eb160f8ef82c",
+  "generated_at": "2026-10-04T23:53:41.101Z",
+  "elapsed_ms": 387138,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-212e3a76a2788d5e1f64-480-e063629b2370.webp",
+      "sha256": "e063629b23703d27f9b7316d1ef442f4ef13ef499b55961c95609b218cf83561",
+      "bytes": 27598
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-212e3a76a2788d5e1f64-5310e5797489.webp",
+      "sha256": "5310e5797489d3894447bb82080d2c44f04f05877a1de88991f0418355db788c",
+      "bytes": 80094
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fe188485121e9b48ec707e3c8b118ba9cb0d40610a423f413149eb160f8ef82c",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-cheesecake-style-protein-pudding"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Protein Pudding Work Snack Box"
+    ],
+    "notes": "Smooth protein yoghurt and cream cheese with small berries, dry oats/seeds in separate compartments and two plain crackers visible. No extra garnish.",
+    "alt": "Protein yoghurt and berry snack box with cream cheese, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-04T23:56:16.023284+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/212e3a76a2788d5e1f64e80535c1b83987d6fa307f88c69bee88b4fc38754283.json"
+  },
+  "integrated": true,
+  "live": false
+}

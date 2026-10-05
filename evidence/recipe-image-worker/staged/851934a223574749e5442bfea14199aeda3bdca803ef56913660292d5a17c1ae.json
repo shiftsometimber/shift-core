@@ -1,0 +1,81 @@
+{
+  "groupId": "851934a223574749e5442bfea14199aeda3bdca803ef56913660292d5a17c1ae",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-classic-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Classic Fruit Crunch Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Fruit Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the apple in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup, cream or decorative garnish. Berries just small25g portion. All food inside frame. NO crackers, biscuits or cake anywhere. Cinnamon only a light1g fine powder mixed into fruit/dairy; no cinnamon sticks anywhere. Fruit snack pot at eating time, fruit with flavour powder folded through and dry oats/seeds newly topped. No dairy base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the apple in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0e4b53a8-21b8-4aae-9eb7-18770715c5f8.png",
+  "source_sha256": "2536e5654fd994722b595ae10375da4d8cb570bce19df4b2c96f11f1cd64a791",
+  "generated_at": "2026-10-05T00:37:50.081Z",
+  "elapsed_ms": 354447,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-851934a223574749e544-480-c9e5748aaddd.webp",
+      "sha256": "c9e5748aaddd683f0d869c65ed448b6e4905939184a1da28aa7a112e118e955b",
+      "bytes": 27088
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-851934a223574749e544-c784d7f03705.webp",
+      "sha256": "c784d7f03705593fd78967a7fe78ee7b4860837452567422f6b77ce9623fa848",
+      "bytes": 78534
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2536e5654fd994722b595ae10375da4d8cb570bce19df4b2c96f11f1cd64a791",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-classic-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Classic Fruit Crunch Snack Pot"
+    ],
+    "notes": "Apple and small berries lightly cinnamon seasoned, dry oats/seeds newly topped at serving. No dairy base, sticks or extra garnish.",
+    "alt": "Cinnamon apple snack pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:39:18.017666+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/851934a223574749e5442bfea14199aeda3bdca803ef56913660292d5a17c1ae.json"
+  },
+  "integrated": true,
+  "live": false
+}

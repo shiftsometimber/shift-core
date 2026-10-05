@@ -1,0 +1,81 @@
+{
+  "groupId": "5dca21efe62d2cf6e02bf9259fef4a07555b4c6dcd01fd6e688ff0872fe80114",
+  "recipe_ids": [
+    "industrial-breakfast-cottage-cheese-toast-plum-ginger-7"
+  ],
+  "titles": [
+    "Cottage Cheese Beetroot Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cottage Cheese Beetroot Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"beetroot\"},{\"amount\":\"1 tsp\",\"item\":\"lemon juice\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Toast the bread.\",\"Prepare the vegetables.\",\"Spoon cottage cheese over the toast.\",\"Top with vegetables, lemon juice and black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "beetroot"
+    },
+    {
+      "amount": "1 tsp",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Toast the bread.",
+    "Prepare the vegetables.",
+    "Spoon cottage cheese over the toast.",
+    "Top with vegetables, lemon juice and black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a6f7b04d-19e7-4cfb-b9e2-1520ef4257f2.png",
+  "source_sha256": "547eff3354e093f62a1c72124633fa9b91a1d15bcf08ec3c211df294c0bd515a",
+  "generated_at": "2026-10-04T21:06:18.488Z",
+  "elapsed_ms": 259180,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5dca21efe62d2cf6e02b-480.webp",
+      "sha256": "60b2a19c621254cecf006fdea55a0188029aa3ca0c574cc216ef8ec7082e8292",
+      "bytes": 28760
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5dca21efe62d2cf6e02b.webp",
+      "sha256": "801e2c16e5bcdd346feed1d779b6c06c9186f9339d8d8c0c6c1fe5b54af13d8a",
+      "bytes": 84164
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-cottage-cheese-toast-plum-ginger-7"
+    ],
+    "titles": [
+      "Cottage Cheese Beetroot Wholemeal Toast"
+    ],
+    "notes": "Two wholemeal toast slices with cottage cheese, beetroot pieces and black pepper; no herbs or decorative food. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Cottage cheese on wholemeal toast topped with beetroot and black pepper.",
+    "reviewed_at": "2026-10-04T21:13:56.960930+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "547eff3354e093f62a1c72124633fa9b91a1d15bcf08ec3c211df294c0bd515a"
+  }
+}

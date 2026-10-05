@@ -1,0 +1,80 @@
+{
+  "groupId": "ec6a663c5065b2a7518dd18a20a4c70d4703370edd3b45e10de828af210c03a7",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-jalfrezi-tofu"
+  ],
+  "titles": [
+    "Shift Jalfrezi Tofu Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Jalfrezi Tofu Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"pepper and tomato masala\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "pepper and tomato masala"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-607bc57e-69d3-40fc-9a26-e790f9623206.png",
+  "source_sha256": "63063d07b663d95fed4a1f349472a32b0eebcfc1113ab0751fbc0915ac04ccce",
+  "generated_at": "2026-10-04T21:23:13.662Z",
+  "elapsed_ms": 301471.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ec6a663c5065b2a7518d-480.webp",
+      "sha256": "1d7a15c176c50173475f0877c552473f7095d9a189746164968b86cbaa06c1bb",
+      "bytes": 25610
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ec6a663c5065b2a7518d.webp",
+      "sha256": "3babfd28aa2d2352c62de2f9e88dc78f73ac4e3e3150e44ff2cda1366de41a52",
+      "bytes": 89334
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-jalfrezi-tofu"
+    ],
+    "titles": [
+      "Shift Jalfrezi Tofu Slow-Cooker Big Pot"
+    ],
+    "notes": "Firm tofu cubes with soft baby potatoes, carrot pieces and cooked onion in glossy pepper-tomato masala. Tofu browned as optional first step permits, vegetables moist and tender in slow-cooked assembly. Red pieces belong to listed pepper-tomato masala. No rice, cheese, herbs or extra sides. Single bowl with margin.",
+    "alt": "Slow-cooked jalfrezi tofu with baby potatoes, carrots and onion",
+    "reviewed_at": "2026-10-04T21:23:45.221774+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/954.json",
+    "source_sha256": "63063d07b663d95fed4a1f349472a32b0eebcfc1113ab0751fbc0915ac04ccce"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "d81d5cef65ee7efb466a896f7f1532a427d2c5ce1d370e641df80e0ca170b416",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-weekend-treat-savory-box"
+  ],
+  "titles": [
+    "Shift Weekend Treat Banana Split Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Treat Banana Split Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"15g\",\"item\":\"dark chocolate chips\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.\",\"Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.\",\"Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.\",\"Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed ingredients: no honey, mint, coconut, nuts, syrup, pineapple or banana/apple unless listed. Mixed berries only listed berry addition. Cottage cheese curdy, high-protein yoghurt smooth, fruit-only variants have no dairy unless 40g Greek yoghurt explicitly listed. Rolled oats plain flakes, no granola with invented foods. Pumpkin seeds flat green pepitas. Chocolate chips discrete small chips; Big Feed recipes that ALSO list chopped dark chocolate must show chopped pieces as the measured finishing element. WORK SNACK BOX: wet fruit/dairy separated from dry oats/pepitas/TWO wholegrain crackers. EXCEPTION overnight-oats work snack box: oats are milk-hydrated overnight with pineapple/berries mixed through; seeds separate until serving, crackers alongside dry. Fruit/Protein pots: dry crunch only added at immediate serving. Greek yoghurt swirled through dessert pots at end exactly as method requires, not an invented cream base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate chips"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.",
+    "Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.",
+    "Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.",
+    "Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-18f2de8a-a601-4e92-b662-5f05ca2f2023.png",
+  "source_sha256": "64edaaee268319354c6dcc8fefdc1034285acc2124906fe8b6c3dc910acddffb",
+  "generated_at": "2026-10-05T01:23:53.793Z",
+  "elapsed_ms": 221637.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d81d5cef65ee7efb466a-480-9db8277ded11.webp",
+      "sha256": "9db8277ded119808c0182af2fa0b7a1b5fcc2e26be4905d0cfa9317191ba2a20",
+      "bytes": 25734
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d81d5cef65ee7efb466a-eb3c1a24bc55.webp",
+      "sha256": "eb3c1a24bc5561ade896d23ce2f66c896a33d819e0835dafc29a3af177033ddb",
+      "bytes": 77542
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "64edaaee268319354c6dcc8fefdc1034285acc2124906fe8b6c3dc910acddffb",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-weekend-treat-savory-box"
+    ],
+    "titles": [
+      "Shift Weekend Treat Banana Split Work Snack Box"
+    ],
+    "notes": "Bite-size banana/mixed berries in wet section, dark chocolate chips separately; plain dry oats, green pumpkin seeds and two wholegrain crackers kept dry in distinct compartments. No dairy, pineapple, honey or nuts; exact title/method checked.",
+    "alt": "Banana berry snack box with chocolate chips and separate oats, pumpkin seeds and crackers",
+    "reviewed_at": "2026-10-05T01:27:18.219036+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2580.json"
+  },
+  "integrated": true,
+  "live": false
+}

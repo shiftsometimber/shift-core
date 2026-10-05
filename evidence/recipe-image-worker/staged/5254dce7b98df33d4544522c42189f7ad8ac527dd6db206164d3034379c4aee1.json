@@ -1,0 +1,81 @@
+{
+  "groupId": "5254dce7b98df33d4544522c42189f7ad8ac527dd6db206164d3034379c4aee1",
+  "recipe_ids": [
+    "industrial-breakfast-breakfast-wrap-peach-cinnamon-4"
+  ],
+  "titles": [
+    "Egg Kidney Beans Courgette Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Kidney Beans Courgette Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g drained\",\"item\":\"kidney beans\"},{\"amount\":\"1 / 65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"courgette\"},{\"amount\":\"50g\",\"item\":\"tomato salsa\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g drained",
+      "item": "kidney beans"
+    },
+    {
+      "amount": "1 / 65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "courgette"
+    },
+    {
+      "amount": "50g",
+      "item": "tomato salsa"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a41cbe9b-8780-45b3-aad9-4ef14bfb83ea.png",
+  "source_sha256": "b1414544bf6f9d81557e66ebe16d2ac0b847fe92d2c1b6bd10e58185154a8ee1",
+  "generated_at": "2026-10-04T21:11:20.123Z",
+  "elapsed_ms": 560815,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5254dce7b98df33d4544-480.webp",
+      "sha256": "5d7b46e7f4972a7fc2070c59d3dd475ad161722e9a77dc40d24d2962abecc39b",
+      "bytes": 21378
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5254dce7b98df33d4544.webp",
+      "sha256": "bad5f9effb45ee56bc35135654f76ed62287a43088f2e8bcafbb763c6dfb17b4",
+      "bytes": 64690
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-breakfast-wrap-peach-cinnamon-4"
+    ],
+    "titles": [
+      "Egg Kidney Beans Courgette Breakfast Wrap"
+    ],
+    "notes": "Toasted wholemeal wrap reveals cooked egg, red kidney beans, courgette pieces and tomato salsa; no spinach or cheese. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Toasted wholemeal wrap filled with egg, kidney beans, courgette and tomato salsa.",
+    "reviewed_at": "2026-10-04T21:13:56.961377+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "b1414544bf6f9d81557e66ebe16d2ac0b847fe92d2c1b6bd10e58185154a8ee1"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "groupId": "8c346a24c5de84a02584b4650f68df3697369227671737be89ad51d159ea169c",
+  "recipe_ids": [
+    "industrial-v3-roast-lemon-herb-turkey"
+  ],
+  "titles": [
+    "Shift Lemon Herb Turkey Sunday-Style Roast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Turkey Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Stir together the measured light mayonnaise, lemon juice, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, lemon juice, dried parsley dressing alongside after cooking.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist accuracy hard gates: All parsley ONLY in cold white dressing in separate side ramekin. Hot food smooth plain surfaces with golden browning, absolutely NO tiny black/brown/green seasoning or herb flecks, NO black pepper. Mash plain fork-roughened. Turkey breast mince loose cooked pale-brown crumbles except roast EXACTLY TWO compact flattened plain portions 2cmthick; no herb inclusions. Tofu roast 2cm thick SLABS; otherwise2cm browned cubes. Madras beef loose browned mince not chunks; Madras chicken2cm cooked cubes not mince. No cheese, cream, extra butter, lemon wedges, seeds or garnish. Listed broccoli/peas/courgette only green vegetables as relevant. Plain hotpot slowcooked tender potatoes/carrots/onion no roast edges; tray potatoes golden. Preserve exact preparation and ingredient amounts visually credible single serving.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Stir together the measured light mayonnaise, lemon juice, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, lemon juice, dried parsley dressing alongside after cooking."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-72db49f2-b113-4441-b6ed-513505d7e648.png",
+  "source_sha256": "03949230c9f1229a88acb9e50ab192d3ba3dde39290cb486853c06f8bb1394c5",
+  "generated_at": "2026-10-04T23:13:19.947Z",
+  "elapsed_ms": 185626.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8c346a24c5de84a02584-retry4-480-7b8149c0a658.webp",
+      "sha256": "7b8149c0a6585fabc7d69a82bbbb463eb61777bee478f2cbf9c4b11993382a3b",
+      "bytes": 29284
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8c346a24c5de84a02584-retry4-78bc6dc5d13e.webp",
+      "sha256": "78bc6dc5d13e7fe29c1c2cdc08cc4bf612a037363173e995ac7708b0051018db",
+      "bytes": 92468
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "03949230c9f1229a88acb9e50ab192d3ba3dde39290cb486853c06f8bb1394c5",
+    "recipe_ids": [
+      "industrial-v3-roast-lemon-herb-turkey"
+    ],
+    "titles": [
+      "Shift Lemon Herb Turkey Sunday-Style Roast"
+    ],
+    "notes": "Full-resolution review: exactly two compact flattened cooked plain turkey breast mince portions, golden peeled roast potato chunks, carrots/broccoli. Parsley confined to cold white side dressing; no green herb inclusions in mince.",
+    "alt": "Two turkey mince portions with roast potatoes, carrots, broccoli and cold lemon parsley dressing",
+    "reviewed_at": "2026-10-04T23:15:26.249237+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1021.json"
+  },
+  "integrated": true,
+  "live": false
+}

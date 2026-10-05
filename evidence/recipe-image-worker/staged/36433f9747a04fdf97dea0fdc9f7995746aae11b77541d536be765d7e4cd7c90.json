@@ -1,0 +1,85 @@
+{
+  "groupId": "36433f9747a04fdf97dea0fdc9f7995746aae11b77541d536be765d7e4cd7c90",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-caramel-savory-box"
+  ],
+  "titles": [
+    "Shift Honey Banana Split Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Honey Banana Split Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"8g\",\"item\":\"honey\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only; no nuts, mint, syrup, spices or decorative garnish. Small25g mixed berries. Pumpkin seeds the actual listed quantity. All food inside frame. Measured8g honey modestly folded through fruit/dairy, a little visible golden sheen, no honey jar, separate honey bowl or large pool. NO crackers, biscuits or cake. Yoghurt smooth and stirred, no cottage cheese curds. ONE finished dessert bowl, all measured ingredients combined with yoghurt visibly swirled through. No separate dairy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "8g",
+      "item": "honey"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a778aad7-5160-4992-a05f-8d2f97f3ad9b.png",
+  "source_sha256": "d6207bc8a8ad3c5619c1146127e1a5ab291ecbff70467a0ac357c2d133b94207",
+  "generated_at": "2026-10-05T01:20:44.538Z",
+  "elapsed_ms": 281881,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-36433f9747a04fdf97de-480-a06bff1ad8ec.webp",
+      "sha256": "a06bff1ad8ec6db1a028d89637233571197785070f8f08205cd1d07a846d2ed2",
+      "bytes": 18696
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-36433f9747a04fdf97de-2f79f0dbded0.webp",
+      "sha256": "2f79f0dbded090c6f394ecaf5ca9efbcc3a858dd4b972427008aee1a0a04a7ee",
+      "bytes": 50732
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "d6207bc8a8ad3c5619c1146127e1a5ab291ecbff70467a0ac357c2d133b94207",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-caramel-savory-box"
+    ],
+    "titles": [
+      "Shift Honey Banana Split Dessert Pot"
+    ],
+    "notes": "Banana/small berries lightly honey coated, oats/seeds combined and measured Greek yoghurt swirled through. No chocolate or separate creamy components.",
+    "alt": "Honey banana dessert with berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T01:23:15.465190+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/36433f9747a04fdf97dea0fdc9f7995746aae11b77541d536be765d7e4cd7c90.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,87 @@
+{
+  "groupId": "78f7c8a27be6052588e5451d40cd4d7e23ebfa2c1a33f2921f8a31cc63aa551d",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-banana-overnight-oats"
+  ],
+  "titles": [
+    "Shift Banana Overnight Oats Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Banana Overnight Oats Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"sliced banana\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g sliced banana, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds, 2 / 20g wholegrain crackers separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow every dry/separate and soaked/prepared instruction exactly.",
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sliced banana"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g sliced banana, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds, 2 / 20g wholegrain crackers separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8e65f0e9-c472-407f-b6ea-1be1ff370f0e.png",
+  "source_sha256": "db851cace86051498e17e69abcd3cbb47ec0c2e9feec09f0fe42f3e1e3cb2db2",
+  "generated_at": "2026-10-04T21:43:33.136Z",
+  "elapsed_ms": 395504,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-78f7c8a27be6052588e5-480.webp",
+      "sha256": "cea8c4175f366c4163fd2bf1a7c7eb2497d2adb31ab8d6cfb11e20a2e0fab4d3",
+      "bytes": 22138
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-78f7c8a27be6052588e5.webp",
+      "sha256": "47b5325d61c6b0a0c2962e8d1007039b57d0f0ffe5db0e2725bd2168cae47d1c",
+      "bytes": 67750
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-banana-overnight-oats"
+    ],
+    "titles": [
+      "Shift Banana Overnight Oats Work Snack Box"
+    ],
+    "notes": "Soft milk-soaked oats with banana and mixed berries, pumpkin-seed topping and two separate plain wholegrain crackers.",
+    "alt": "Banana and berry overnight oats with pumpkin seeds and two wholegrain crackers",
+    "reviewed_at": "2026-10-04T21:44:54.937456+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/78f7c8a27be6052588e5451d40cd4d7e23ebfa2c1a33f2921f8a31cc63aa551d.json",
+    "source_sha256": "db851cace86051498e17e69abcd3cbb47ec0c2e9feec09f0fe42f3e1e3cb2db2"
+  },
+  "integrated": true,
+  "live": false
+}

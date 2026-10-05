@@ -1,0 +1,88 @@
+{
+  "groupId": "15cc7299478b7d95dde626c9aa5b18b265802320b0703cdcacac842419393121",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-weekend-treat-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Weekend Treat Cottage Cheese Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Treat Cottage Cheese Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"15g\",\"item\":\"dark chocolate chips\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed ingredients: no honey, mint, coconut, nuts, syrup, pineapple or banana/apple unless listed. Mixed berries only listed berry addition. Cottage cheese curdy, high-protein yoghurt smooth, fruit-only variants have no dairy unless 40g Greek yoghurt explicitly listed. Rolled oats plain flakes, no granola with invented foods. Pumpkin seeds flat green pepitas. Chocolate chips discrete small chips; Big Feed recipes that ALSO list chopped dark chocolate must show chopped pieces as the measured finishing element. WORK SNACK BOX: wet fruit/dairy separated from dry oats/pepitas/TWO wholegrain crackers. EXCEPTION overnight-oats work snack box: oats are milk-hydrated overnight with pineapple/berries mixed through; seeds separate until serving, crackers alongside dry. Fruit/Protein pots: dry crunch only added at immediate serving. Greek yoghurt swirled through dessert pots at end exactly as method requires, not an invented cream base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate chips"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-acb5b814-60d5-45e2-8690-8f618eb98860.png",
+  "source_sha256": "8421604f8cb437953a34d7cfe82dd3b5f196d04be725f22d7d77b704e8c98c8e",
+  "generated_at": "2026-10-05T01:24:42.729Z",
+  "elapsed_ms": 270573.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-15cc7299478b7d95dde6-480-3961bff293cc.webp",
+      "sha256": "3961bff293cca2d4ec2ed76dd8e47dca41faa3278d165223ab58d4851c43e623",
+      "bytes": 17578
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-15cc7299478b7d95dde6-fba4fd489bf1.webp",
+      "sha256": "fba4fd489bf1ab68099a2da16a275888d6dcea6be8d9060a01478ec7129a40e5",
+      "bytes": 47564
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8421604f8cb437953a34d7cfe82dd3b5f196d04be725f22d7d77b704e8c98c8e",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-weekend-treat-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Weekend Treat Cottage Cheese Dessert Pot"
+    ],
+    "notes": "Curdy cottage cheese with mixed berries, dark chocolate chips, plain oats and green pumpkin seeds; measured Greek yoghurt swirled through. No extra chopped chocolate, fruit, honey, nuts or garnish; exact title/method checked.",
+    "alt": "Cottage cheese yoghurt berry pot with oats, pumpkin seeds and chocolate chips",
+    "reviewed_at": "2026-10-05T01:27:18.755876+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2582.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,83 @@
+{
+  "groupId": "2d74276b8c8242a7e3e20bccff41ca636889eec1f5918cdd41b80a2dde1c75c8",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-classic-sausage"
+  ],
+  "titles": [
+    "Shift Classic Sausage Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Sausage Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"brown sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "brown sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-186f715d-f4fc-45ac-a71c-08bf9776b3eb.png",
+  "source_sha256": "20cd344abdfe7bb29de5d3c5e37503f80a1c92c0d46b65976a5a3f558b529275",
+  "generated_at": "2026-10-04T21:32:51.048Z",
+  "elapsed_ms": 214708,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2d74276b8c8242a7e3e2-480.webp",
+      "sha256": "597f2536da32b87759b149b9d4daa4d15937f4d1902a79d5dafd0425b9d036e3",
+      "bytes": 26602
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2d74276b8c8242a7e3e2.webp",
+      "sha256": "6d4a137ee113d960fc5e309c491f3e653bf4dbb2ddffb1a57132e5ffd75fcd5c",
+      "bytes": 85906
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-classic-sausage"
+    ],
+    "titles": [
+      "Shift Classic Sausage Breakfast Buttie"
+    ],
+    "notes": "Two cooked browned sausages with softened tomato, wilted spinach and brown sauce in a plain wholemeal bap. No cheese or garnish; correct hot sandwich form.",
+    "alt": "Wholemeal bap with sausages, tomato, spinach and brown sauce.",
+    "reviewed_at": "2026-10-04T21:34:03.405440+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/152.json",
+    "source_sha256": "20cd344abdfe7bb29de5d3c5e37503f80a1c92c0d46b65976a5a3f558b529275"
+  },
+  "integrated": true,
+  "live": false
+}

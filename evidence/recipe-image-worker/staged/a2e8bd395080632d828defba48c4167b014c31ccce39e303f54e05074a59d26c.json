@@ -1,0 +1,84 @@
+{
+  "groupId": "a2e8bd395080632d828defba48c4167b014c31ccce39e303f54e05074a59d26c",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-crunch-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Crunch Cottage Cheese Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Crunch Cottage Cheese Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed foods. No honey, nuts, mint, syrup, cinnamon, cocoa or garnish. Small25g berries; generous measured25-30g pumpkin seeds where listed. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Cottage cheese retains recognisable small curds. One finished dessert bowl all measured ingredients combined, Greek yoghurt visibly swirled through. No separate creamy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d81d18c4-80f9-46be-ab06-e7f3577b5cfe.png",
+  "source_sha256": "abd8ae3ff614efbbc558f67df054c2b0bc768167efb840556e082703112847df",
+  "generated_at": "2026-10-05T01:08:32.968Z",
+  "elapsed_ms": 207855,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a2e8bd395080632d828d-480-e3ff8ce92397.webp",
+      "sha256": "e3ff8ce92397e25efe5108d20e589e2ac82c6cc197a917f22a700ded804bfc6d",
+      "bytes": 21210
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a2e8bd395080632d828d-11634e7f7bcb.webp",
+      "sha256": "11634e7f7bcb986eeddec502e2489f21e556178ea0c6fa0df68c89e459bcb0f3",
+      "bytes": 64168
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "abd8ae3ff614efbbc558f67df054c2b0bc768167efb840556e082703112847df",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-crunch-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Crunch Cottage Cheese Dessert Pot"
+    ],
+    "notes": "Cottage cheese curds, small berries, generous seeds and oats combined with measured yoghurt swirl. No chocolate or separate creamy component.",
+    "alt": "Cottage cheese crunch dessert with berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T01:12:46.422261+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/a2e8bd395080632d828defba48c4167b014c31ccce39e303f54e05074a59d26c.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,90 @@
+{
+  "groupId": "deb795351516cf8d5bfb5f007705576ade4d2826c0db5c28786360f9b619626e",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-hash-brown-beans"
+  ],
+  "titles": [
+    "Shift Hash Brown Beans Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hash Brown Beans Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"120g\",\"item\":\"baby potatoes\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10ml\",\"item\":\"olive oil\"}]. Preparation: [\"Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g tomato, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.\",\"Put the diced potatoes into a saucepan of boiling water. Simmer for about 8\u201310 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.\",\"Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6\u20138 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.\",\"In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped tomato for 3\u20134 minutes until softened, then add the spinach and stir until wilted. Finish the protein as described in the next step.\",\"Use the listed ready-cooked canned baked beans. After softening the vegetables as described above, add the beans and reserved 2ml olive oil to that pan. Heat gently, stirring, until steaming hot throughout; do not brown or dry out the beans.\",\"Split and toast the measured 80g wholemeal bap. Put one crisp potato patty and a manageable amount of hot protein and vegetables inside. Serve the second patty and all remaining filling alongside; the nutrition includes the complete listed portion.\",\"Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "120g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g tomato, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+    "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8\u201310 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+    "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6\u20138 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+    "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped tomato for 3\u20134 minutes until softened, then add the spinach and stir until wilted. Finish the protein as described in the next step.",
+    "Use the listed ready-cooked canned baked beans. After softening the vegetables as described above, add the beans and reserved 2ml olive oil to that pan. Heat gently, stirring, until steaming hot throughout; do not brown or dry out the beans.",
+    "Split and toast the measured 80g wholemeal bap. Put one crisp potato patty and a manageable amount of hot protein and vegetables inside. Serve the second patty and all remaining filling alongside; the nutrition includes the complete listed portion.",
+    "Serve immediately while the potato is crisp. For preparing ahead, follow the component storage instructions; assemble only when ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a953bff3-77b3-4ea4-848d-a76b1c047f41.png",
+  "source_sha256": "f856b5fac40e75eb26aed2cb0853471af4222161ae32bd9158d5778b966c3f7f",
+  "generated_at": "2026-10-04T23:00:26.905Z",
+  "elapsed_ms": 355082,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-deb795351516cf8d5bfb-480.webp",
+      "sha256": "238b3977681b72fb79381c0a280c1f71bb606e31f8ac53ac4688d2443a63535c",
+      "bytes": 33896
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-deb795351516cf8d5bfb-retry2-8d98c31efa72.webp",
+      "sha256": "8d98c31efa72b96251b831ea0731773d1949e0be3fab11d83ea0bc2b9773ac2e",
+      "bytes": 115094
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f856b5fac40e75eb26aed2cb0853471af4222161ae32bd9158d5778b966c3f7f",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-hash-brown-beans"
+    ],
+    "titles": [
+      "Shift Hash Brown Beans Breakfast Buttie"
+    ],
+    "notes": "One potato onion patty inside plain wholemeal bap and one alongside, with gently heated baked beans, softened tomato and wilted spinach. Exact two-patty preparation and no extras.",
+    "alt": "Hash brown baked bean breakfast buttie with tomato, spinach and a patty alongside.",
+    "reviewed_at": "2026-10-04T23:05:37.784076+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/188.json"
+  },
+  "integrated": true,
+  "live": false
+}

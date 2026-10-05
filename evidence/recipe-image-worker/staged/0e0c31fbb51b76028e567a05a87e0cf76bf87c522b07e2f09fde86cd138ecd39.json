@@ -1,0 +1,83 @@
+{
+  "groupId": "0e0c31fbb51b76028e567a05a87e0cf76bf87c522b07e2f09fde86cd138ecd39",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-biscoff-style-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Greek Yoghurt Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Greek Yoghurt Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"240g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nUse only listed foods, no honey, nuts, mint, syrup or garnish. Crushed wholegrain biscuit is modest irregular crumb pieces, no caramel spread or cookie butter. Berries just the listed25g, a small portion. All food safely inside frame. Exactly two plain unseeded wholegrain crackers where listed, no sesame/poppy seeds. Finished combined dessert in ONE bowl: all ingredients combined, measured yoghurt visibly swirled through. No separate ramekins.",
+  "ingredients": [
+    {
+      "amount": "240g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-28065f51-8698-4a50-8afd-e88a19cddfab.png",
+  "source_sha256": "24c8ecc31760ccdc877e90b8e14153d5cc43e604027db73af0173e7028532cae",
+  "generated_at": "2026-10-04T23:30:20.013Z",
+  "elapsed_ms": 297800,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0e0c31fbb51b76028e56-480-da411cfbd270.webp",
+      "sha256": "da411cfbd270cd72de67116cff595a79dfeba62f0ca21e5fbc9b748142edc5da",
+      "bytes": 21688
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0e0c31fbb51b76028e56-9153c3c14723.webp",
+      "sha256": "9153c3c14723ffd6313e23d3b07f9663063cd810273d70e9ffbb11b7d748f6ed",
+      "bytes": 64280
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "24c8ecc31760ccdc877e90b8e14153d5cc43e604027db73af0173e7028532cae",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-biscoff-style-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Greek Yoghurt Dessert Pot"
+    ],
+    "notes": "Finished Greek yoghurt dessert combined with modest berries, biscuit crumbs, oats and pumpkin seeds, yoghurt swirled through. No chocolate.",
+    "alt": "Greek yoghurt dessert with berries, biscuit crumbs, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:32:44.303054+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/0e0c31fbb51b76028e567a05a87e0cf76bf87c522b07e2f09fde86cd138ecd39.json"
+  },
+  "integrated": true,
+  "live": false
+}

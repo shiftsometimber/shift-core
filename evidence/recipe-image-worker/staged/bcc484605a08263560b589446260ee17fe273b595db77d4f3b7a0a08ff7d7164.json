@@ -1,0 +1,95 @@
+{
+  "groupId": "bcc484605a08263560b589446260ee17fe273b595db77d4f3b7a0a08ff7d7164",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-peppercorn-tofu"
+  ],
+  "titles": [
+    "Shift Peppercorn Tofu Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Tofu Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the firm tofu is safely cooked, switch the cooker off, then stir through the light mayonnaise and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain entirely unseeded: no sesame/poppy or seed garnish. No cheese, herbs, garnish, crumbs, breading, lemon, cream, ketchup or extra foods unless listed. Exact protein and preparation. Light mayo plus wholegrain mustard plus black pepper only. Wholegrain mustard grains may appear INSIDE dressing, not as seed garnish. Soft baby potatoes carrots onion with tender protein and final glossy lightmayo/mustard/pepper coating added AFTER switchoff. Tofu 2cm cubes, turkey loose opaque pale browned crumbles. No crispy roast.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the firm tofu is safely cooked, switch the cooker off, then stir through the light mayonnaise and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-54cbbf7a-46ee-4c22-b177-3861d63d06be.png",
+  "source_sha256": "966291a4e55a47744eec6a04e7015274afc32796754bfd53c86cdd71382e5cf8",
+  "generated_at": "2026-10-05T01:13:32.581Z",
+  "elapsed_ms": 57179.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bcc484605a08263560b5-retry4-480-532034044427.webp",
+      "sha256": "532034044427faba5ac5d92c734b609db85fd6fd9cde57927d1b6222341ae1ad",
+      "bytes": 24596
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bcc484605a08263560b5-retry4-e3af256b1832.webp",
+      "sha256": "e3af256b18327746ae8c0fa19cd452bef3a097b34693bb2fe10659675070e9f5",
+      "bytes": 78230
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "966291a4e55a47744eec6a04e7015274afc32796754bfd53c86cdd71382e5cf8",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-peppercorn-tofu"
+    ],
+    "titles": [
+      "Shift Peppercorn Tofu Slow-Cooker Big Pot"
+    ],
+    "notes": "Pass: firm tofu approximately 2cm cubes with tender skin-on baby potatoes, soft carrot pieces and translucent onion. Final glossy light mayonnaise-wholegrain mustard-black pepper coating stirred offheat, mustard grains retained within coating. No crispy roast texture, green herbs, cheese, cream pool, meat or extra foods. Exact slow-pot ingredient set and final mayonnaise preparation; bowl centred with crop margin.",
+    "alt": "Slow-cooked peppercorn tofu with baby potatoes, carrots, onion and light mayonnaise-wholegrain mustard finish",
+    "reviewed_at": "2026-10-05T01:14:12.176304+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1194.json"
+  },
+  "integrated": true,
+  "live": false
+}

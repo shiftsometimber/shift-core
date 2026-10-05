@@ -1,0 +1,86 @@
+{
+  "groupId": "6b62ecf0702f2eabd97240e5d48d2edfbcf2e1ffeba9febed1dacbc88dcc6a67",
+  "recipe_ids": [
+    "industrial-v3-kebab-peri-peri-beef"
+  ],
+  "titles": [
+    "Shift Peri-Peri Beef Fakeaway Kebab"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Beef Fakeaway Kebab. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"80g\",\"item\":\"wholemeal flatbread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.\",\"Press the 5% beef mince firmly into three short koftas, each no thicker than 1.5cm; no skewers or binder are needed. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the beef koftas over a medium heat for about 10\u201312 minutes, turning them onto every side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Put the lettuce and tomato on the warm flatbread. Add the cooked beef koftas and the warm sauce, fold the bread around the filling and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain entirely unseeded: no sesame/poppy or seed garnish. No cheese, herbs, garnish, crumbs, breading, lemon, cream, ketchup or extra foods unless listed. Exact protein and preparation. Peri-peri sauce is warm reddish-orange chilli sauce, no white mayo sauce or mustard unless listed. Beef mince burger ONE fully cooked1.5cm patty; kebab THREE short1.5cm koftas no skewers, warm peri-peri sauce inside bread; other dishes loose browned mince crumbles. Chilli cooked red pepper and kidney beans coated in measured sauce over brown rice, no additional tomato jar or onion. Fries crisp plain chips topped with browned mince, softened redonion/mixedpepper strips, hot red peri-peri sauce. No herbs or cheese.",
+  "original_generation_prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Beef Fakeaway Kebab. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"80g\",\"item\":\"wholemeal flatbread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.\",\"Press the 5% beef mince firmly into three short koftas, each no thicker than 1.5cm; no skewers or binder are needed. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the beef koftas over a medium heat for about 10\u201312 minutes, turning them onto every side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Put the lettuce and tomato on the warm flatbread. Add the cooked beef koftas and the warm sauce, fold the bread around the filling and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal flatbread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.",
+    "Press the 5% beef mince firmly into three short koftas, each no thicker than 1.5cm; no skewers or binder are needed. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the beef koftas over a medium heat for about 10\u201312 minutes, turning them onto every side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Put the lettuce and tomato on the warm flatbread. Add the cooked beef koftas and the warm sauce, fold the bread around the filling and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f7f982e3-c55e-4c6d-92b3-aa9dd1206009.png",
+  "source_sha256": "c0f7a6e44eaff6ae8018e366d4e862cba8745176575dab212baf168c7b6e9487",
+  "generated_at": "2026-10-05T01:19:06.315Z",
+  "elapsed_ms": 390912.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6b62ecf0702f2eabd972-retry4-480-f81572d7a07b.webp",
+      "sha256": "f81572d7a07bf6486a3104999edc755af0a8fa82ceef37c68a40d4e182603b3d",
+      "bytes": 27200
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6b62ecf0702f2eabd972-retry4-ad9ead5b7279.webp",
+      "sha256": "ad9ead5b7279aba50a49dcef8e618a4d4fa5808d6a0cb0e2ec4652e5698521b9",
+      "bytes": 78756
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c0f7a6e44eaff6ae8018e366d4e862cba8745176575dab212baf168c7b6e9487",
+    "recipe_ids": [
+      "industrial-v3-kebab-peri-peri-beef"
+    ],
+    "titles": [
+      "Shift Peri-Peri Beef Fakeaway Kebab"
+    ],
+    "notes": "Pass: THREE short compact fully browned cooked beef mince koftas, no skewers, inside warmed folded plain unseeded wholemeal flatbread. Shredded lettuce and tomato slices with warm reddish-orange peri-peri sauce inside bread. No meat strips, cheese, white mayonnaise, mustard, herbs, binder crumbs or extra foods. Exact three-kofta kebab preparation and usable crop.",
+    "alt": "Peri-peri beef kofta flatbread with lettuce, tomato and warm chilli sauce",
+    "reviewed_at": "2026-10-05T01:20:52.428283+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1208.json"
+  },
+  "integrated": true,
+  "live": false
+}

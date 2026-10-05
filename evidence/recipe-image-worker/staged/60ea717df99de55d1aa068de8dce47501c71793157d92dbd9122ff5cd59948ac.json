@@ -1,0 +1,86 @@
+{
+  "groupId": "60ea717df99de55d1aa068de8dce47501c71793157d92dbd9122ff5cd59948ac",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-cherry-savory-box"
+  ],
+  "titles": [
+    "Shift Cherry Banana Split Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Banana Split Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.\",\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only, no honey, nuts, mint, syrup or garnish. Cherries ALL destoned stemless fresh HALVES with visible EMPTY pit cavities; no whole cherries, cherry stones, stems or glazed maraschino cherries. Small25g berries alongside measured80g cherry flesh. No cake or biscuit crumbs. All food inside frame. NO crackers or biscuits anywhere. Yoghurt base completely smooth, no cottage cheese curds. All ingredients combined as finished dessert in ONE bowl, measured yoghurt visibly swirled through; no separate creamy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.",
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5ac03902-ab57-441a-98d4-e22cd1fc6160.png",
+  "source_sha256": "290dad9fa5ac5070c580fb040b9b6d8cdd5282650dc382fe0659b7e793286de0",
+  "generated_at": "2026-10-05T00:08:17.476Z",
+  "elapsed_ms": 47052,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-60ea717df99de55d1aa0-480-028f2d5bd0af.webp",
+      "sha256": "028f2d5bd0af3dd95e4c40004d542640ef7af6c72e8c339b22d0841886078d0c",
+      "bytes": 22776
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-60ea717df99de55d1aa0-3fed876d212f.webp",
+      "sha256": "3fed876d212fede8bed5cec806929b594d607378ee3288d0e93df297772fee12",
+      "bytes": 66832
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "290dad9fa5ac5070c580fb040b9b6d8cdd5282650dc382fe0659b7e793286de0",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-cherry-savory-box"
+    ],
+    "titles": [
+      "Shift Cherry Banana Split Dessert Pot"
+    ],
+    "notes": "Banana and empty-cavity cherry halves with small berries/oats/seeds, measured Greek yoghurt visibly swirled through one finished dessert bowl.",
+    "alt": "Banana and pitted cherry dessert with berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:16:58.656596+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/60ea717df99de55d1aa068de8dce47501c71793157d92dbd9122ff5cd59948ac.json"
+  },
+  "integrated": true,
+  "live": false
+}

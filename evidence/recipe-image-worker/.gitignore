@@ -1,0 +1,10 @@
+# Worker conversion caches are replaceable; reviewed assets live in frontend.
+worker-*/
+snapshots/
+assets/
+results/
+qa/
+*.tmp*
+
+.checkpoint.lock
+remote-blob-cache.json

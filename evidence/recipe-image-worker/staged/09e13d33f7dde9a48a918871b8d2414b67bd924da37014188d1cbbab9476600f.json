@@ -1,0 +1,82 @@
+{
+  "groupId": "09e13d33f7dde9a48a918871b8d2414b67bd924da37014188d1cbbab9476600f",
+  "recipe_ids": [
+    "industrial-dinner-prawn-stir-fry"
+  ],
+  "titles": [
+    "Prawn Stir Fry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Prawn Stir Fry. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"raw king prawns\"},{\"amount\":\"70g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"120g\",\"item\":\"mixed peppers\"},{\"amount\":\"100g\",\"item\":\"broccoli\"},{\"amount\":\"15ml\",\"item\":\"reduced-salt soy sauce\"}]. Preparation: [\"The listed 70g dry egg noodles is an uncooked weight. Cut the 100g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 120g mixed peppers. Use 160g peeled raw king prawns. Fully defrost frozen prawns in the fridge and drain before cooking. Keep them separate from the prepared vegetables.\",\"Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the raw king prawns in one layer and cook for 3\u20135 minutes, turning, until every prawn is pink outside and opaque in the centre with no translucent flesh. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Use the non-stick pan over a medium-low heat; no oil is listed for this recipe. Add 120g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Cover between stirs for the first 3 minutes so the peppers soften in their own moisture; lower the heat if they catch.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Turn the heat to low and fold in the 15ml reduced-salt soy sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked prawns at the end and heat for 1 minute until the whole dish is steaming hot; do not simmer them through the longer vegetable cooking stage. Heat gently until the whole pan is steaming hot, folding carefully so the seafood stays intact. Divide the noodles, vegetables and raw king prawns between serving bowls. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Appetising faithful editorial food photography, warm side light, generous framing. Follow exact method and protein form. No unlisted garnish or food. For listed brown rice, depict ordinary cooked WHOLEGRAIN BROWN RICE with distinctly medium-tan to light-brown intact bran on every grain; natural earthy brown rice, never polished white rice, risotto or pale glossy short grains. For basmati, retain its listed long-grain appearance. Show all ingredients in their specified placement and cooked/raw state.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "raw king prawns"
+    },
+    {
+      "amount": "70g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "120g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "100g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "15ml",
+      "item": "reduced-salt soy sauce"
+    }
+  ],
+  "method": [
+    "The listed 70g dry egg noodles is an uncooked weight. Cut the 100g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 120g mixed peppers. Use 160g peeled raw king prawns. Fully defrost frozen prawns in the fridge and drain before cooking. Keep them separate from the prepared vegetables.",
+    "Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the raw king prawns in one layer and cook for 3\u20135 minutes, turning, until every prawn is pink outside and opaque in the centre with no translucent flesh. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Use the non-stick pan over a medium-low heat; no oil is listed for this recipe. Add 120g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Cover between stirs for the first 3 minutes so the peppers soften in their own moisture; lower the heat if they catch.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Turn the heat to low and fold in the 15ml reduced-salt soy sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked prawns at the end and heat for 1 minute until the whole dish is steaming hot; do not simmer them through the longer vegetable cooking stage. Heat gently until the whole pan is steaming hot, folding carefully so the seafood stays intact. Divide the noodles, vegetables and raw king prawns between serving bowls. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d8c81221-ce50-4513-b8b2-5e3e2d742561.png",
+  "source_sha256": "4d2edad4d0b4e3b86f2a9ee0b913c34ff6803757fb67db941e553f419072a1a9",
+  "generated_at": "2026-10-04T23:18:04.951Z",
+  "elapsed_ms": 189476,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-09e13d33f7dde9a48a91-480.webp",
+      "sha256": "5b4c0c3eec30213e7f5dca3c0df01f36cb7948a9de77bd5a1e825b008032af92",
+      "bytes": 28348
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-09e13d33f7dde9a48a91.webp",
+      "sha256": "54bdebfe545a8a65beac045a301340b408cf46eb773c509cb14cdd5cfe71dc56",
+      "bytes": 87296
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "4d2edad4d0b4e3b86f2a9ee0b913c34ff6803757fb67db941e553f419072a1a9",
+    "recipe_ids": [
+      "industrial-dinner-prawn-stir-fry"
+    ],
+    "titles": [
+      "Prawn Stir Fry"
+    ],
+    "notes": "Opaque peeled prawns folded through egg noodles, sliced peppers and tender broccoli with a light soy coating.",
+    "alt": "Prawn stir fry with egg noodles, peppers and broccoli",
+    "reviewed_at": "2026-10-04T23:32:39.069654+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

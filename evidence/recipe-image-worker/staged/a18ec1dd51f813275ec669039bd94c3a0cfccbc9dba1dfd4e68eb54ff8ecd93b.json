@@ -1,0 +1,86 @@
+{
+  "groupId": "a18ec1dd51f813275ec669039bd94c3a0cfccbc9dba1dfd4e68eb54ff8ecd93b",
+  "recipe_ids": [
+    "industrial-v3-wrap-bbq-egg"
+  ],
+  "titles": [
+    "Shift BBQ Egg Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Egg Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the boiled eggs with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Follow exact ingredient placement and method. No decorative garnish. If method cuts a pitta into two halves, show TWO separately distinguishable filled half-pitta pockets, with remaining salad alongside.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the boiled eggs with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-cdd9db85-9cc1-4353-9389-4a77e88f8b35.png",
+  "source_sha256": "081270dfc7c78bee6e90ee3483312a32fb6f823a6174ca262dac31e563e71fbc",
+  "generated_at": "2026-10-04T22:47:45.827Z",
+  "elapsed_ms": 215065.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a18ec1dd51f813275ec6-480-79243229f596.webp",
+      "sha256": "79243229f596f64b60fda36566dc6fbae7087a445dd28d0f3195a09fca83fbb0",
+      "bytes": 25984
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a18ec1dd51f813275ec6-39117bef8fda.webp",
+      "sha256": "39117bef8fda9cf8b77449f7b096cab3e2e54b7cc3ceb4f889e91cc823807743",
+      "bytes": 74402
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "081270dfc7c78bee6e90ee3483312a32fb6f823a6174ca262dac31e563e71fbc",
+    "recipe_ids": [
+      "industrial-v3-wrap-bbq-egg"
+    ],
+    "titles": [
+      "Shift BBQ Egg Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap holds sliced boiled eggs, BBQ sauce and fresh lettuce and tomato; no cheese or garnish.",
+    "alt": "BBQ egg wholemeal wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-04T22:52:32.834753+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1528-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

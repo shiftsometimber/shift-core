@@ -1,0 +1,89 @@
+{
+  "groupId": "9e0c9f54a3c0182e7df082cf044ca718d729502225037d8ceede20540d009a3c",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-coffee-overnight-oats"
+  ],
+  "titles": [
+    "Shift Coffee Overnight Oats Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Overnight Oats Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.\",\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 1g instant espresso, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds, 2 / 20g wholegrain crackers separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact foods. Espresso measured1g fully dissolved, cooled and mixed through dairy/fruit, subtle coffee tint; no whole coffee beans, granules, dry grounds, coffee drinks or syrup. Small25g berries. No honey, mint, nuts or decorative garnish. Entire food inside frame. Exactly TWO entire plain unseeded wholegrain crackers, independently visible edges, no sesame/poppy seeds. Fully soft milk overnight oats with espresso and fruit evenly mixed, yoghurt mixed in where listed; seeds/chocolate topped at serving. No dry oats or coffee powder piles.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.",
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 1g instant espresso, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds, 2 / 20g wholegrain crackers separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1b6cc545-b29f-4c63-bdd7-e8aa1c09b9ef.png",
+  "source_sha256": "b77a20e51482ec789ac71326dae28eeb0a33a14d9c616a78d194c91a9e6ac063",
+  "generated_at": "2026-10-05T00:58:16.920Z",
+  "elapsed_ms": 262341,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9e0c9f54a3c0182e7df0-480-626c483cb4eb.webp",
+      "sha256": "626c483cb4eb513315ac9e2364961e98872859001ed3b99abc6eba0a3c52408a",
+      "bytes": 20852
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9e0c9f54a3c0182e7df0-fe5725815367.webp",
+      "sha256": "fe57258153673ec1d7e7bbcb470199b8f3bdeadabc2e0274cb6438fa1ce606f6",
+      "bytes": 67462
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b77a20e51482ec789ac71326dae28eeb0a33a14d9c616a78d194c91a9e6ac063",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-coffee-overnight-oats"
+    ],
+    "titles": [
+      "Shift Coffee Overnight Oats Work Snack Box"
+    ],
+    "notes": "Fully soft coffee milk oats with berries mixed through, seed topping and exactly two plain wholegrain crackers alongside.",
+    "alt": "Coffee berry overnight oats with pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-05T01:02:14.327514+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/9e0c9f54a3c0182e7df082cf044ca718d729502225037d8ceede20540d009a3c.json"
+  },
+  "integrated": true,
+  "live": false
+}

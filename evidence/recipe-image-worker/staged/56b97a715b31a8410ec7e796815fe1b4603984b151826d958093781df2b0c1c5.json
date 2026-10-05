@@ -1,0 +1,100 @@
+{
+  "groupId": "56b97a715b31a8410ec7e796815fe1b4603984b151826d958093781df2b0c1c5",
+  "recipe_ids": [
+    "industrial-v3-pasta-peppercorn-tofu"
+  ],
+  "titles": [
+    "Shift Peppercorn Tofu Proper Pasta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Tofu Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, wholegrain mustard, black pepper dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Exact method gates: No garnish or unlisted cheese, herbs, seeds, breading, sauce or sides. Wholemeal bread, wrap and bun entirely plain unseeded. Peppercorn flavour uses LIGHT MAYONNAISE plus WHOLEGRAIN MUSTARD plus BLACK PEPPER only: no cream or ketchup. In roast and pie all three exclusively in separate small cold dressing bowl alongside; hot food must be PLAIN with no black pepper or mustard pieces, herbs or creamy coat. Roast salmon intact fully cooked opaque fillet; tofu roast 2cm slabs. Pie plain fork-roughened water-mashed potato top and plain filling carrot/pea/protein with clear cooking juices; never creamy filling. Salmon in pasta, pizza, kebab or fries large opaque cooked FLAKES. Tofu burger one 1cm slab, kebab/fries/pasta/pizza/slowpot/pie 2cm cubes. Burger or kebab cold dressing finish INSIDE bread; pizza and loaded fries cold finish ON TOP after cooking; cheeseless pizza with passata and mixed peppers only listed. Pasta mayonnaise/mustard/pepper folded THROUGH wholewheat pasta offheat, courgette and cherry tomatoes. Slowpot tender baby potatoes carrots onion and protein, light mayo final glossy coating after switch off; no crispy roast appearance. Traybake chilled mayo only added after oven. Show correct finished appearance and all ingredients where method places them. For roast especially plain golden surfaces, all black pepper strictly only INSIDE the separate cold bowl, no pepper rub or garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, wholegrain mustard, black pepper dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a0dd927c-e1bb-4586-b626-0b0a88c45fb1.png",
+  "source_sha256": "44a9938a125abaeddf4b8e8e06bdc0872434ed684c351a9f2240be4e69e5fe7f",
+  "generated_at": "2026-10-05T01:05:51.344Z",
+  "elapsed_ms": 323864.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-56b97a715b31a8410ec7-retry4-480-d7a437222710.webp",
+      "sha256": "d7a437222710ab75aa61122fe48571777e0a59bb1593650c1d279012103c414c",
+      "bytes": 33448
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-56b97a715b31a8410ec7-retry4-d41b27b48ff2.webp",
+      "sha256": "d41b27b48ff285eb508d7ec4efff852f7c6d606226892f53a61d9037ce7ac6b1",
+      "bytes": 101544
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "44a9938a125abaeddf4b8e8e06bdc0872434ed684c351a9f2240be4e69e5fe7f",
+    "recipe_ids": [
+      "industrial-v3-pasta-peppercorn-tofu"
+    ],
+    "titles": [
+      "Shift Peppercorn Tofu Proper Pasta"
+    ],
+    "notes": "Pass: golden firm tofu 2cm cubes, softened diced courgette and juicy cherry tomatoes mixed with brown wholewheat penne. Light mayonnaise-wholegrain mustard-black pepper dressing folded THROUGH finished pasta offheat, glossy light coating with small mustard grains. No cheese, cream pool, meat, herbs or extra food. Exact tofu pasta assembly and usable crop.",
+    "alt": "Wholewheat peppercorn tofu pasta with courgette, cherry tomatoes and mayonnaise-wholegrain mustard dressing",
+    "reviewed_at": "2026-10-05T01:07:33.116627+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1191.json"
+  },
+  "integrated": true,
+  "live": false
+}

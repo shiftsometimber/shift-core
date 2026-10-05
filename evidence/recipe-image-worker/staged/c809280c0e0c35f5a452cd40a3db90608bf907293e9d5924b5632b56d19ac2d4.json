@@ -1,0 +1,83 @@
+{
+  "groupId": "c809280c0e0c35f5a452cd40a3db90608bf907293e9d5924b5632b56d19ac2d4",
+  "recipe_ids": [
+    "industrial-v3-roast-chilli-salmon"
+  ],
+  "titles": [
+    "Shift Smoky Chilli Salmon Sunday-Style Roast"
+  ],
+  "prompt": "Photorealistic appetising exact recipe photography. NO extra garnish. If brown rice is listed, use genuine wholegrain rice with natural tan bran coats and longitudinal bran seams; never polished white rice. If vegetables are diced by the method, depict diced pieces, not whole tomatoes. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Salmon Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Place the salmon fillet on a separate lined tray and roast for approximately 12\u201315 minutes, until opaque at the thickest point and easy to flake. Check for bones before serving.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the smoked chilli tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked salmon fillet, roast potatoes, carrots and broccoli together. Spoon the hot smoked chilli tomato sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Place the salmon fillet on a separate lined tray and roast for approximately 12\u201315 minutes, until opaque at the thickest point and easy to flake. Check for bones before serving.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the smoked chilli tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked salmon fillet, roast potatoes, carrots and broccoli together. Spoon the hot smoked chilli tomato sauce over the cooked protein."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c1198e9b-2c32-4021-8b7b-b8354a17d317.png",
+  "source_sha256": "c9e521b35e687ca40bd190868522c3d61a9292fe8b1472d182d1e43a32048c79",
+  "generated_at": "2026-10-05T00:51:10.410Z",
+  "elapsed_ms": 227400,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c809280c0e0c35f5a452-480.webp",
+      "sha256": "e42ba7082685e55c29adc67cb16f29fe76d0a4a76dbf5859a740e41fd163f813",
+      "bytes": 30544
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c809280c0e0c35f5a452.webp",
+      "sha256": "472e575f30f296edde56c13f83c4e493262f4e159f31ec2c9eb18984fa47975a",
+      "bytes": 91926
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Roast salmon with smoky chilli sauce, roast potatoes, carrots and broccoli",
+    "notes": "Individual full-resolution inspection: intact cooked opaque salmon fillet with sauce on protein, golden peeled roast potato chunks, roast carrot batons and plain cooked broccoli kept separate; exact method and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-roast-chilli-salmon"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Salmon Sunday-Style Roast"
+    ],
+    "source_sha256": "c9e521b35e687ca40bd190868522c3d61a9292fe8b1472d182d1e43a32048c79",
+    "reviewed_at": "2026-10-05T01:03:30.430070+00:00"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "groupId": "538cbb8af1193a93e84132aa26ea58abb804d9b0675bace5182935d767d0f219",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-banana-savory-box"
+  ],
+  "titles": [
+    "Shift Banana Banana Split Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Banana Banana Split Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"220g\",\"item\":\"banana\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the banana in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "220g",
+      "item": "banana"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the banana in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c0d9626e-90f6-42f1-82af-8cc146580061.png",
+  "source_sha256": "46281f77721eda1b7370d60f96999b699d730d9faa5410e451730341afa206b3",
+  "generated_at": "2026-10-04T21:34:00.790Z",
+  "elapsed_ms": 356244,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-538cbb8af1193a93e841-480.webp",
+      "sha256": "9fd602786bccbe599f007bb2dbc6bc3de4f522758e7cd24845b2e7c8a7a43ad2",
+      "bytes": 25656
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-538cbb8af1193a93e841.webp",
+      "sha256": "a146c8a818152d6de83a42fb48ff9f33acea5583b00670d13351843d7e2d303f",
+      "bytes": 74560
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-banana-savory-box"
+    ],
+    "titles": [
+      "Shift Banana Banana Split Snack Pot"
+    ],
+    "notes": "Banana and mixed berry fruit pot accompanied by separate dry rolled oats and pumpkin seeds; no apple or creamy base.",
+    "alt": "Banana and mixed berry snack pot with separate oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:36:21.868603+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/538cbb8af1193a93e84132aa26ea58abb804d9b0675bace5182935d767d0f219.json",
+    "source_sha256": "46281f77721eda1b7370d60f96999b699d730d9faa5410e451730341afa206b3"
+  },
+  "integrated": true,
+  "live": false
+}

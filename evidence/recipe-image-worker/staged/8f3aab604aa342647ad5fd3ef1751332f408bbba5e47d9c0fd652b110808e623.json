@@ -1,0 +1,100 @@
+{
+  "groupId": "8f3aab604aa342647ad5fd3ef1751332f408bbba5e47d9c0fd652b110808e623",
+  "recipe_ids": [
+    "industrial-v3-burger-classic-pork"
+  ],
+  "titles": [
+    "Shift Classic Pork Fakeaway Burger"
+  ],
+  "prompt": "Replace the protein with an intact plainly pan-fried PORK LOIN CUTLET sliced across the grain about1cm thick. Visible continuous lean pork-muscle fibres across pale cooked cross section, an irregular thin oval cutlet, absolutely no minced meat/patty. Keep exact remaining food: lettuce/tomato, wholemeal bun or flatbread, or pizza passata/peppers where present, and pale pink cold mayonnaise/ketchup/wholegrain mustard sauce. No new ingredient. Preserve original composition/crop.\nCreate one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Pork Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"lean pork loin\"},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"15g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.\",\"Mix the measured light mayonnaise, tomato ketchup and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Slice the lean pork loin across the grain into cutlets about 1cm thick. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the pork cutlets over a medium heat for about 4\u20135 minutes on each side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the lettuce and tomato in the toasted bun, add the cooked pork cutlets and the cold finishing sauce, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; any herbs listed in cold finishing sauce stay ONLY inside that sauce. No fresh herb garnish. Listed mayonnaise, ketchup and wholegrain mustard MIXED TOGETHER as one cold pale pink sauce with tiny mustard grains, added AFTER cooking. Do not portray these as three separate sauces or melted cheese. No extra herbs or spices on protein.",
+  "original_generation_prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Pork Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"lean pork loin\"},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"15g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.\",\"Mix the measured light mayonnaise, tomato ketchup and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Slice the lean pork loin across the grain into cutlets about 1cm thick. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the pork cutlets over a medium heat for about 4\u20135 minutes on each side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the lettuce and tomato in the toasted bun, add the cooked pork cutlets and the cold finishing sauce, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; any herbs listed in cold finishing sauce stay ONLY inside that sauce. No fresh herb garnish. Listed mayonnaise, ketchup and wholegrain mustard MIXED TOGETHER as one cold pale pink sauce with tiny mustard grains, added AFTER cooking. Do not portray these as three separate sauces or melted cheese. No extra herbs or spices on protein.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal burger bun",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "15g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.",
+    "Mix the measured light mayonnaise, tomato ketchup and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Slice the lean pork loin across the grain into cutlets about 1cm thick. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the pork cutlets over a medium heat for about 4\u20135 minutes on each side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the lettuce and tomato in the toasted bun, add the cooked pork cutlets and the cold finishing sauce, then close the bun and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-70754c20-baa9-4219-b3a2-0ab762794fbc.png",
+  "source_sha256": "ef78c6127d6a7f34c0d20deb3526350f0fca57a026fa1f27e5434e625be19b91",
+  "generated_at": "2026-10-05T00:22:49.650Z",
+  "elapsed_ms": 125776.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8f3aab604aa342647ad5-480.webp",
+      "sha256": "d14abf2790810587b1f0248969ae6f8740f3e3d04adc4d53b6d9097040d2e7d6",
+      "bytes": 21786
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8f3aab604aa342647ad5-f6c3e1931e58.webp",
+      "sha256": "f6c3e1931e58fd6336a8d94bb6e3f6fc0245c051439ce9f54e3b4657b66a1cb8",
+      "bytes": 66352
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ef78c6127d6a7f34c0d20deb3526350f0fca57a026fa1f27e5434e625be19b91",
+    "recipe_ids": [
+      "industrial-v3-burger-classic-pork"
+    ],
+    "titles": [
+      "Shift Classic Pork Fakeaway Burger"
+    ],
+    "notes": "Edited after patty-texture rejection: intact pork loin cutlets with continuous pale muscle fibres across exposed cooked cross-sections, lettuce and tomato in unseeded wholemeal bun, mixed cold pale pink finishing sauce; no mince patty. Believable single serving; central food retained by responsive crops.",
+    "alt": "Pork loin cutlet burger with lettuce, tomato and creamy mustard sauce.",
+    "reviewed_at": "2026-10-05T00:23:59.126Z",
+    "reviewer": "worker-c source visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-694.json"
+  },
+  "integrated": true,
+  "live": false
+}

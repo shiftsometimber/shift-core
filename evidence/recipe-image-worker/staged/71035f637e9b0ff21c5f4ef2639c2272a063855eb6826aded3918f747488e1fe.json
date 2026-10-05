@@ -1,0 +1,78 @@
+{
+  "groupId": "71035f637e9b0ff21c5f4ef2639c2272a063855eb6826aded3918f747488e1fe",
+  "recipe_ids": [
+    "industrial-dinner-lentil-pasta-bake"
+  ],
+  "titles": [
+    "Lentil Pasta Bake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Lentil Pasta Bake. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"cooked green lentils\"},{\"amount\":\"70g dry\",\"item\":\"wholewheat pasta, dry\"},{\"amount\":\"120g\",\"item\":\"chopped tomatoes\"},{\"amount\":\"100g\",\"item\":\"courgette\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Heat the oven to 200\u00b0C fan. Cook the measured dry wholewheat pasta in boiling water for 2 minutes less than its packet time. Drain, saving a small cup of cooking water.\",\"Dice the courgette. Heat a non-stick frying pan over medium heat with 2 tablespoons of water; no oil is listed for this recipe. Add the cooked green lentils and warm for 3\u20134 minutes, stirring until steaming hot throughout. They are already cooked and do not need a long simmer. Add another spoonful of water if needed to prevent sticking, then transfer the cooked filling to a clean plate.\",\"Add the courgette, chopped tomatoes and 3 tablespoons of pasta cooking water to the pan. Cover and simmer for 6\u20138 minutes until the courgette softens, then remove the lid.\",\"Fold in the drained pasta and cooked green lentils. Transfer to a small ovenproof dish and scatter over the measured reduced-fat cheddar.\",\"Bake for 12\u201315 minutes until the cheese melts and the centre is bubbling and steaming hot. Rest for 2 minutes before serving.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Photorealistic appetising food; all ingredients exactly match. No garnish or extra food. Keep any listed brown rice distinctly wholegrain tan/brown with visible bran texture; no polished white grains. Match portion and method, natural warm light and generous framing.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "cooked green lentils"
+    },
+    {
+      "amount": "70g dry",
+      "item": "wholewheat pasta, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "chopped tomatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "courgette"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Heat the oven to 200\u00b0C fan. Cook the measured dry wholewheat pasta in boiling water for 2 minutes less than its packet time. Drain, saving a small cup of cooking water.",
+    "Dice the courgette. Heat a non-stick frying pan over medium heat with 2 tablespoons of water; no oil is listed for this recipe. Add the cooked green lentils and warm for 3\u20134 minutes, stirring until steaming hot throughout. They are already cooked and do not need a long simmer. Add another spoonful of water if needed to prevent sticking, then transfer the cooked filling to a clean plate.",
+    "Add the courgette, chopped tomatoes and 3 tablespoons of pasta cooking water to the pan. Cover and simmer for 6\u20138 minutes until the courgette softens, then remove the lid.",
+    "Fold in the drained pasta and cooked green lentils. Transfer to a small ovenproof dish and scatter over the measured reduced-fat cheddar.",
+    "Bake for 12\u201315 minutes until the cheese melts and the centre is bubbling and steaming hot. Rest for 2 minutes before serving."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a0d5a04c-626a-4fe3-9dd0-ab6b406036b9.png",
+  "source_sha256": "3ac232fa9cbc4ea8b6fb8f6646f47bd333e73baa364031a2bd541a95f57d3ab9",
+  "generated_at": "2026-10-04T22:56:57.488Z",
+  "elapsed_ms": 159477,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-71035f637e9b0ff21c5f-480.webp",
+      "sha256": "2b58a2fcd683c92d96235ea1803d2448310a7867f50c3d46a898d9c3c07a1c7f",
+      "bytes": 29740
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-71035f637e9b0ff21c5f.webp",
+      "sha256": "7c842fd14dec41fbe7cee826778ca12e575e26934da86101bc867326d370e651",
+      "bytes": 97782
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "index": 469,
+    "decision": "pass",
+    "notes": "Full source inspected: tan wholewheat penne, cooked green lentils, softened courgette cubes and chopped tomato sauce in a small ovenproof dish with melted golden cheddar. No meat or herbs.",
+    "alt": "Wholewheat pasta bake with lentils, courgette and tomato under melted cheddar.",
+    "source_sha256": "3ac232fa9cbc4ea8b6fb8f6646f47bd333e73baa364031a2bd541a95f57d3ab9",
+    "recipe_ids": [
+      "industrial-dinner-lentil-pasta-bake"
+    ],
+    "titles": [
+      "Lentil Pasta Bake"
+    ],
+    "reviewer": "root full source image inspection",
+    "reviewed_at": "2026-10-04T23:09:36.309617+00:00"
+  }
+}

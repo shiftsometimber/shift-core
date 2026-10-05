@@ -1,0 +1,86 @@
+{
+  "groupId": "713e12802d9556a96ccf503abcd07d13c2f450ce160bbedd3553bd6223520a6d",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-apple-protein-pudding"
+  ],
+  "titles": [
+    "Shift Apple Protein Pudding Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Protein Pudding Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"diced apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "diced apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the high-protein yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the high-protein yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a28ee848-62c4-42c2-8a98-b8e3e3361d43.png",
+  "source_sha256": "0bdf9ff7ace6d70e5531d48eaa1b98765b8af58960c0d8fc17beeaaf44e6e4d7",
+  "generated_at": "2026-10-04T21:33:38.280Z",
+  "elapsed_ms": 333734,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-713e12802d9556a96ccf-480.webp",
+      "sha256": "315db762308b5e84a0e42d98c30a662693e7f3a1ebc99a3a1220398dcf6c7967",
+      "bytes": 21032
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-713e12802d9556a96ccf.webp",
+      "sha256": "72fa5bf313e8e72938e9b1051aba5ad3e44401cc23c3732fbc7e88d18e32df92",
+      "bytes": 63110
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-apple-protein-pudding"
+    ],
+    "titles": [
+      "Shift Apple Protein Pudding Work Snack Box"
+    ],
+    "notes": "High-protein yoghurt portion beside apple and berries, with plain crackers and dry rolled oats and pumpkin seeds separate in box.",
+    "alt": "Protein yoghurt snack box with apple, berries, crackers, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:36:23.036983+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/713e12802d9556a96ccf503abcd07d13c2f450ce160bbedd3553bd6223520a6d.json",
+    "source_sha256": "0bdf9ff7ace6d70e5531d48eaa1b98765b8af58960c0d8fc17beeaaf44e6e4d7"
+  },
+  "integrated": true,
+  "live": false
+}

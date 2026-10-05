@@ -1,0 +1,85 @@
+{
+  "groupId": "af37bd7b9beb825f8cb4043b9995382741e5955254658386d25642555677ec45",
+  "recipe_ids": [
+    "industrial-breakfast-protein-oats-pear-ginger-3"
+  ],
+  "titles": [
+    "Pear Ginger Protein Oats"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Pear Ginger Protein Oats. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"porridge oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"200ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"120g\",\"item\":\"pear, diced\"},{\"amount\":\"1/2 tsp\",\"item\":\"ground ginger\"}]. Preparation: [\"Add oats, milk and fruit to a saucepan.\",\"Cook gently for 5\u20136 minutes, stirring until thick.\",\"Take off the heat and stir through the yoghurt.\",\"Finish with the measured flavouring and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "50g",
+      "item": "porridge oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "200ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "120g",
+      "item": "pear, diced"
+    },
+    {
+      "amount": "1/2 tsp",
+      "item": "ground ginger"
+    }
+  ],
+  "method": [
+    "Add oats, milk and fruit to a saucepan.",
+    "Cook gently for 5\u20136 minutes, stirring until thick.",
+    "Take off the heat and stir through the yoghurt.",
+    "Finish with the measured flavouring and serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-028fb413-0f32-4ac4-be18-675a57127a84.png",
+  "source_sha256": "2388552374639d24c926e95bb20ee112f13c302a6b1134e7e93c7ffcd98eea67",
+  "generated_at": "2026-10-04T21:09:53.093Z",
+  "elapsed_ms": 165388,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-af37bd7b9beb825f8cb4-480.webp",
+      "sha256": "77ad93eae6d9dd436cd74be8fba80d958d25509a53490b4b4c53d3f229d443f4",
+      "bytes": 17640
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-af37bd7b9beb825f8cb4.webp",
+      "sha256": "df98f3c7d9d3d0f655e2a80700eeb267026d567d6e34444a535c96fc6e71db89",
+      "bytes": 52382
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-protein-oats-pear-ginger-3"
+    ],
+    "titles": [
+      "Pear Ginger Protein Oats"
+    ],
+    "notes": "Thick cooked porridge with softened pear pieces and yoghurt integrated into the mixture; subtle ginger specks and no extra garnish; matches cooked protein-oats method.",
+    "alt": "Warm pear porridge with Greek yoghurt stirred through and ground ginger.",
+    "reviewed_at": "2026-10-04T21:11:31.672796+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/batch.json",
+    "source_sha256": "2388552374639d24c926e95bb20ee112f13c302a6b1134e7e93c7ffcd98eea67"
+  },
+  "integrated": true,
+  "live": false
+}

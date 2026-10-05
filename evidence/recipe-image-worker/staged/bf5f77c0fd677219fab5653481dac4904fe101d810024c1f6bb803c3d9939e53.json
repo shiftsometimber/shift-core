@@ -1,0 +1,90 @@
+{
+  "groupId": "bf5f77c0fd677219fab5653481dac4904fe101d810024c1f6bb803c3d9939e53",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-hash-brown-turkey"
+  ],
+  "titles": [
+    "Shift Hash Brown Turkey Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hash Brown Turkey Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"120g\",\"item\":\"baby potatoes\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10ml\",\"item\":\"olive oil\"}]. Preparation: [\"Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g tomato, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.\",\"Put the diced potatoes into a saucepan of boiling water. Simmer for about 8\u201310 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.\",\"Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6\u20138 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.\",\"In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped tomato for 3\u20134 minutes until softened, then add the spinach and stir until wilted. Finish the protein as described in the next step.\",\"Keep the listed already-cooked turkey refrigerated until the vegetables have softened as described above. Slice it thinly, then add it to those vegetables with the reserved 2ml olive oil and stir over a medium heat until steaming hot all the way through. This uses the single reheating of the cooked turkey: assemble and eat immediately.\",\"Split and toast the measured 80g wholemeal bap. Put one crisp potato patty and a manageable amount of hot protein and vegetables inside. Serve the second patty and all remaining filling alongside; the nutrition includes the complete listed portion.\",\"Eat immediately. Do not cool and reheat the turkey filling or assembled meal again.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "120g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g tomato, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+    "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8\u201310 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+    "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6\u20138 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+    "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped tomato for 3\u20134 minutes until softened, then add the spinach and stir until wilted. Finish the protein as described in the next step.",
+    "Keep the listed already-cooked turkey refrigerated until the vegetables have softened as described above. Slice it thinly, then add it to those vegetables with the reserved 2ml olive oil and stir over a medium heat until steaming hot all the way through. This uses the single reheating of the cooked turkey: assemble and eat immediately.",
+    "Split and toast the measured 80g wholemeal bap. Put one crisp potato patty and a manageable amount of hot protein and vegetables inside. Serve the second patty and all remaining filling alongside; the nutrition includes the complete listed portion.",
+    "Eat immediately. Do not cool and reheat the turkey filling or assembled meal again."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7a5810e8-9aeb-4870-be9c-bb6213f282be.png",
+  "source_sha256": "654717615399f982711ea7b98d8e25d126d7e918632889039ee0536ffb848838",
+  "generated_at": "2026-10-04T23:15:41.581Z",
+  "elapsed_ms": 345693,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bf5f77c0fd677219fab5-480.webp",
+      "sha256": "8741ff67c32e938fc918168665a1ba09860eda5d2742aa6eaaa3996008637ebe",
+      "bytes": 31842
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bf5f77c0fd677219fab5-retry2-438db1bb480c.webp",
+      "sha256": "438db1bb480cc7f8c91d91906812f392bc8da3ecd9e528bd5d17f7214f1134a2",
+      "bytes": 98788
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "654717615399f982711ea7b98d8e25d126d7e918632889039ee0536ffb848838",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-hash-brown-turkey"
+    ],
+    "titles": [
+      "Shift Hash Brown Turkey Breakfast Buttie"
+    ],
+    "notes": "Plain wholemeal bap contains warmed thinly sliced cooked turkey, softened tomato and wilted spinach over one potato onion patty. One remaining patty and filling alongside match exact two-patty method.",
+    "alt": "Hash brown turkey breakfast buttie with tomato, spinach and a patty alongside.",
+    "reviewed_at": "2026-10-04T23:20:43.398086+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/204.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,83 @@
+{
+  "groupId": "caaa2895f9975b816b3864db8991e50b01dca6532cb7332b2e80d8c8d1ac5ef4",
+  "recipe_ids": [
+    "industrial-dinner-tofu-stir-fry"
+  ],
+  "titles": [
+    "Tofu Stir Fry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Tofu Stir Fry. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"70g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"120g\",\"item\":\"mixed peppers\"},{\"amount\":\"100g\",\"item\":\"broccoli\"},{\"amount\":\"15ml\",\"item\":\"reduced-salt soy sauce\"}]. Preparation: [\"The listed 70g dry egg noodles is an uncooked weight. Cut the 100g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 120g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.\",\"Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Use the non-stick pan over a medium-low heat; no oil is listed for this recipe. Add 120g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Cover between stirs for the first 3 minutes so the peppers soften in their own moisture; lower the heat if they catch.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Turn the heat to low and fold in the 15ml reduced-salt soy sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and firm tofu between serving bowls. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "70g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "120g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "100g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "15ml",
+      "item": "reduced-salt soy sauce"
+    }
+  ],
+  "method": [
+    "The listed 70g dry egg noodles is an uncooked weight. Cut the 100g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 120g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.",
+    "Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Use the non-stick pan over a medium-low heat; no oil is listed for this recipe. Add 120g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Cover between stirs for the first 3 minutes so the peppers soften in their own moisture; lower the heat if they catch.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Turn the heat to low and fold in the 15ml reduced-salt soy sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and firm tofu between serving bowls. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-331f87ec-1d77-4929-b0bc-44eeaa160bdd.png",
+  "source_sha256": "a41ed2c765148da491265d3eaa36dd016324a583736bbfddd57ef1d561c0b80c",
+  "generated_at": "2026-10-04T23:32:23.537Z",
+  "elapsed_ms": 198896.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-caaa2895f9975b816b38-480-ef9df1807f50.webp",
+      "sha256": "ef9df1807f504d3cb0f91c525624dec0427f10a9431fe9f72424708751696b12",
+      "bytes": 25850
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-caaa2895f9975b816b38-d86bf8bdaa3c.webp",
+      "sha256": "d86bf8bdaa3c0b95f10dd68260fc89711122b3572d03899572237deba3cd12eb",
+      "bytes": 78626
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a41ed2c765148da491265d3eaa36dd016324a583736bbfddd57ef1d561c0b80c",
+    "recipe_ids": [
+      "industrial-dinner-tofu-stir-fry"
+    ],
+    "titles": [
+      "Tofu Stir Fry"
+    ],
+    "notes": "Golden tofu cubes, egg noodles, broccoli and sliced mixed peppers with light soy coating; no seeds, garnish or extras.",
+    "alt": "Tofu noodle stir-fry with broccoli and peppers",
+    "reviewed_at": "2026-10-04T23:33:57.077341+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1469-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

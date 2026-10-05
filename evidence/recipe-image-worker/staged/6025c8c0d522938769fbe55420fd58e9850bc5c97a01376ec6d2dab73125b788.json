@@ -1,0 +1,86 @@
+{
+  "groupId": "6025c8c0d522938769fbe55420fd58e9850bc5c97a01376ec6d2dab73125b788",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-cherry-savory-box"
+  ],
+  "titles": [
+    "Shift Cherry Banana Split Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Banana Split Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.\",\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only, no honey, nuts, mint, syrup or garnish. Cherries ALL destoned stemless fresh HALVES with visible EMPTY pit cavities; no whole cherries, cherry stones, stems or glazed maraschino cherries. Small25g berries alongside measured80g cherry flesh. No cake or biscuit crumbs. All food inside frame. NO crackers or biscuits anywhere. All measured ingredients combined in dessert bowl with listed chopped dark chocolate topping, no melted chocolate sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.",
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1c783bf0-3bf3-4f42-82e0-504090ef0bda.png",
+  "source_sha256": "b886d1d8a37bf5b168854d92f94c34b0725ac147f67897579926fdaeae31692b",
+  "generated_at": "2026-10-05T00:09:26.854Z",
+  "elapsed_ms": 116430,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6025c8c0d522938769fb-480-d436ddf85012.webp",
+      "sha256": "d436ddf850123a571065bdadeb5e28676fce2bc41e2e09beeebce9f28e093015",
+      "bytes": 26848
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6025c8c0d522938769fb-519c0083c609.webp",
+      "sha256": "519c0083c6092c36bbf728550a3f12a5f7af5e36898e4272967140684dddd6ac",
+      "bytes": 79942
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b886d1d8a37bf5b168854d92f94c34b0725ac147f67897579926fdaeae31692b",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-cherry-savory-box"
+    ],
+    "titles": [
+      "Shift Cherry Banana Split Big Feed Dessert"
+    ],
+    "notes": "Banana, destoned stemless cherry halves with empty cavities and small berries combined with oats/seeds, chopped dark chocolate topping. No dairy or syrup.",
+    "alt": "Banana and pitted cherry dessert with berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T00:16:55.812733+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/6025c8c0d522938769fbe55420fd58e9850bc5c97a01376ec6d2dab73125b788.json"
+  },
+  "integrated": true,
+  "live": false
+}

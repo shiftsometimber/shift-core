@@ -1,0 +1,88 @@
+{
+  "groupId": "e458926d543934d7610c02d67ffcd2683cd454807ead21493de5e05f9ebe7565",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-weekend-treat-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Weekend Treat Cottage Cheese Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Treat Cottage Cheese Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"15g\",\"item\":\"dark chocolate chips\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed ingredients: no honey, mint, coconut, nuts, syrup, pineapple or banana/apple unless listed. Mixed berries only listed berry addition. Cottage cheese curdy, high-protein yoghurt smooth, fruit-only variants have no dairy unless 40g Greek yoghurt explicitly listed. Rolled oats plain flakes, no granola with invented foods. Pumpkin seeds flat green pepitas. Chocolate chips discrete small chips; Big Feed recipes that ALSO list chopped dark chocolate must show chopped pieces as the measured finishing element. WORK SNACK BOX: wet fruit/dairy separated from dry oats/pepitas/TWO wholegrain crackers. EXCEPTION overnight-oats work snack box: oats are milk-hydrated overnight with pineapple/berries mixed through; seeds separate until serving, crackers alongside dry. Fruit/Protein pots: dry crunch only added at immediate serving. Greek yoghurt swirled through dessert pots at end exactly as method requires, not an invented cream base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate chips"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2b191075-0843-4a4d-88f4-2ed8619d5aee.png",
+  "source_sha256": "560138381bdbed8843ad716b812b6457307cc88339a7d2ab385d6d4adb13306d",
+  "generated_at": "2026-10-05T01:24:17.904Z",
+  "elapsed_ms": 245748.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e458926d543934d7610c-480-ca59861c10a9.webp",
+      "sha256": "ca59861c10a979c0cc737f2c68a2320207b7cfc56d12b28172a8c49ae4819ffc",
+      "bytes": 23080
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e458926d543934d7610c-c3dbdbd1849b.webp",
+      "sha256": "c3dbdbd1849bbeff41cde9a64a87f0ce141f5c807b5fff5fcb7b7325ee14d738",
+      "bytes": 63380
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "560138381bdbed8843ad716b812b6457307cc88339a7d2ab385d6d4adb13306d",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-weekend-treat-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Weekend Treat Cottage Cheese Big Feed Dessert"
+    ],
+    "notes": "Visible cottage-cheese curds with mixed berries, plain oats, green pumpkin seeds and small dark chocolate chips, finished with additional listed chopped dark chocolate. No yoghurt, banana, pineapple, honey or garnish; exact title/method checked.",
+    "alt": "Cottage cheese berry dessert with oats, pumpkin seeds, chocolate chips and chopped dark chocolate",
+    "reviewed_at": "2026-10-05T01:27:18.502362+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2581.json"
+  },
+  "integrated": true,
+  "live": false
+}

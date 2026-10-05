@@ -1,0 +1,81 @@
+{
+  "groupId": "e4c3dcd4b5efa7fe00f4f3c1de00045ed0b53801fd59db3d496884ef5a933e48",
+  "recipe_ids": [
+    "industrial-breakfast-cottage-cheese-toast-banana-cocoa-1"
+  ],
+  "titles": [
+    "Cottage Cheese Cucumber Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cottage Cheese Cucumber Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"cucumber\"},{\"amount\":\"1 tsp\",\"item\":\"lemon juice\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Toast the bread.\",\"Prepare the vegetables.\",\"Spoon cottage cheese over the toast.\",\"Top with vegetables, lemon juice and black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "1 tsp",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Toast the bread.",
+    "Prepare the vegetables.",
+    "Spoon cottage cheese over the toast.",
+    "Top with vegetables, lemon juice and black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f50641e9-cf65-4385-8e6b-6d7f77521fdc.png",
+  "source_sha256": "6a7a1279d26d05df84928f61d54fe2ff65dc04860ef8f19b897a9b933323fd20",
+  "generated_at": "2026-10-04T21:06:48.005Z",
+  "elapsed_ms": 288697,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e4c3dcd4b5efa7fe00f4-480.webp",
+      "sha256": "16fb91574d5115268692dc7a8e50053f4cb497c5ccca7bbcad22d1685038766e",
+      "bytes": 26008
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e4c3dcd4b5efa7fe00f4.webp",
+      "sha256": "ffd24badc512bb5ba74c0986e3599697cabec3acc121d06fcdf7cc2b82d622b9",
+      "bytes": 79306
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-cottage-cheese-toast-banana-cocoa-1"
+    ],
+    "titles": [
+      "Cottage Cheese Cucumber Wholemeal Toast"
+    ],
+    "notes": "Two wholemeal toast slices topped with cottage cheese, fresh cucumber pieces and pepper; no herbs or extra seeds. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Cottage cheese on wholemeal toast topped with fresh cucumber and black pepper.",
+    "reviewed_at": "2026-10-04T21:13:56.961317+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "6a7a1279d26d05df84928f61d54fe2ff65dc04860ef8f19b897a9b933323fd20"
+  }
+}

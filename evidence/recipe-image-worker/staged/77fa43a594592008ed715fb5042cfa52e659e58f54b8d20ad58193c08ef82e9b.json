@@ -1,0 +1,79 @@
+{
+  "groupId": "77fa43a594592008ed715fb5042cfa52e659e58f54b8d20ad58193c08ef82e9b",
+  "recipe_ids": [
+    "industrial-v3-traybake-harissa-tofu"
+  ],
+  "titles": [
+    "Shift Harissa Tofu Traybake"
+  ],
+  "prompt": "Photorealistic editorial recipe food photography. Make the actual finished dish appetising through natural window light, truthful cooked texture and a clean plain ceramic serving dish. No decorative garnish or ingredients beyond the exact recipe. If brown rice is listed, show wholegrain rice with unmistakable tan bran on the grains, never ivory polished rice. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Harissa Tofu Traybake. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"harissa tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "harissa tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ecaa1c28-721b-4f67-bab4-0a2d4f18859c.png",
+  "source_sha256": "e59a2a5fd512baf025540093327a2c45abd7b91e8cd00abdb42894b39517f344",
+  "generated_at": "2026-10-05T00:12:54.239Z",
+  "elapsed_ms": 311732,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-77fa43a594592008ed71-480.webp",
+      "sha256": "1a58b93ddeb9b19f01d3bfb21f2e0cdacd9d9097c4e1f1249995ddfc9b724ae1",
+      "bytes": 36338
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-77fa43a594592008ed71.webp",
+      "sha256": "f703a0de80a594be6470520096ecb64a689e123ec6318160a0e9ddcab872bdf3",
+      "bytes": 115212
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "e59a2a5fd512baf025540093327a2c45abd7b91e8cd00abdb42894b39517f344",
+    "recipe_ids": [
+      "industrial-v3-traybake-harissa-tofu"
+    ],
+    "titles": [
+      "Shift Harissa Tofu Traybake"
+    ],
+    "notes": "Golden firm tofu pieces with golden roast baby potatoes, roasted broccoli and red pepper in measured harissa tomato coating; no added garnish.",
+    "alt": "Shift Harissa Tofu Traybake: golden firm tofu pieces with golden roast baby potatoes, roasted broccoli and red pepper in measured harissa tomato coating",
+    "reviewed_at": "2026-10-05T00:20:23.646373+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "groupId": "ff063e4ee1c0747d173c3844a198e394b6776d7ee1860b6dba5909c6268d9773",
+  "source_sha256": "dda6d12343b54796d73a11a68211026d64da7fcdd0dce2de20fd8c5106eb589c",
+  "review": {
+    "decision": "reject",
+    "notes": "Full-resolution inspection: turkey mince, wholewheat pasta and courgette correct, but several cherry tomatoes remain intact round halves instead of the explicitly diced tomato pieces. Reject and correct diced preparation.",
+    "source_sha256": "dda6d12343b54796d73a11a68211026d64da7fcdd0dce2de20fd8c5106eb589c",
+    "recipe_ids": [
+      "industrial-v3-pasta-chilli-turkey"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Turkey Proper Pasta"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

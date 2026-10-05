@@ -1,0 +1,84 @@
+{
+  "groupId": "e2fca11c3801c02032a0cd0ff0cbefd30064a6975e46c3b053305d510cd13d22",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-chocolate-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Chocolate Cottage Cheese Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Cottage Cheese Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed food; no honey, nuts, mint, syrup, sauces or decorative garnish. All food inside frame. Berries just small25g portion. NO crackers or biscuits anywhere. Unsweetened cocoa is fine powder measured5g, lightly mixed into fruit/dairy, never chocolate syrup, melted chocolate or extra chocolate chunks. Dark chocolate chunks ONLY where explicitly listed. Cottage cheese recognisable small curds, cocoa evenly mixed into curds when listed. Finished protein pot with cocoa mixed into dairy if listed, measured fruit and dry oats/seeds newly added at serving.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fe07655b-248f-4d83-83c3-06bd0cb4f59f.png",
+  "source_sha256": "eed0af4f6f4b0b395c6a65feae6376776322ae53119d84f394e50ed0b68a0df7",
+  "generated_at": "2026-10-05T00:27:03.675Z",
+  "elapsed_ms": 413650,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e2fca11c3801c02032a0-480-143bb70066ee.webp",
+      "sha256": "143bb70066eecc33a192bc8862a47a1ad3830aaef7395f602285eac77e49d9ff",
+      "bytes": 21384
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e2fca11c3801c02032a0-6c31cdebc819.webp",
+      "sha256": "6c31cdebc8196ef3de6ef10303c2654f26346dfd8df7aa7d095018d77fdcf9f7",
+      "bytes": 67408
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "eed0af4f6f4b0b395c6a65feae6376776322ae53119d84f394e50ed0b68a0df7",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-chocolate-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Chocolate Cottage Cheese Protein Pot"
+    ],
+    "notes": "Cocoa mixed through cottage cheese curds with small berries, dry oats/seeds newly topped at serving. No chocolate pieces or syrup.",
+    "alt": "Cocoa cottage cheese protein pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:28:47.257822+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/e2fca11c3801c02032a0cd0ff0cbefd30064a6975e46c3b053305d510cd13d22.json"
+  },
+  "integrated": true,
+  "live": false
+}

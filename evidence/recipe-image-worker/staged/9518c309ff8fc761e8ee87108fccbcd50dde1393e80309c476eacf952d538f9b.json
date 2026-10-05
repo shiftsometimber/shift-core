@@ -1,0 +1,80 @@
+{
+  "groupId": "9518c309ff8fc761e8ee87108fccbcd50dde1393e80309c476eacf952d538f9b",
+  "recipe_ids": [
+    "industrial-v3-traybake-tikka-tofu"
+  ],
+  "titles": [
+    "Shift Tikka Tofu Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Tofu Traybake. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"tikka masala sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish. If specified, depict exactly THREE koftas. Fully cooked meat, brown inside cooked beef patty, no pink. Correction required: absolutely NO green leaf flecks or herbs anywhere on potatoes, tofu, sauce or plate. Only whole broccoli florets may be green. Smooth orange tikka coating, golden plain browned potato surfaces and browned tofu, red pepper chunks. No spice fleck garnish.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka masala sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-23e33695-9777-4203-b29e-5366d29ec032.png",
+  "source_sha256": "4971818a1374dbbb7867aba519829f045c34cff77b02cda9e0b6192743bca579",
+  "generated_at": "2026-10-04T23:16:26.218Z",
+  "elapsed_ms": 23592.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9518c309ff8fc761e8ee-480-fbe00109ce3b.webp",
+      "sha256": "fbe00109ce3b5977deb3047af45edc53bd741cc16ac9d5ad45079e492d00c0c1",
+      "bytes": 31736
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9518c309ff8fc761e8ee-561430cbd176.webp",
+      "sha256": "561430cbd176ede77ca788bc3493884726d498265d3ce12d2a1e7e708d10fe4a",
+      "bytes": 100196
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "4971818a1374dbbb7867aba519829f045c34cff77b02cda9e0b6192743bca579",
+    "recipe_ids": [
+      "industrial-v3-traybake-tikka-tofu"
+    ],
+    "titles": [
+      "Shift Tikka Tofu Traybake"
+    ],
+    "notes": "Replacement shows browned tofu cubes, plain golden baby potatoes, roasted broccoli and red pepper with smooth tikka coating; previous scattered green herb flecks removed.",
+    "alt": "Tikka tofu traybake with baby potatoes, broccoli and red pepper",
+    "reviewed_at": "2026-10-04T23:16:40.544943+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1430-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

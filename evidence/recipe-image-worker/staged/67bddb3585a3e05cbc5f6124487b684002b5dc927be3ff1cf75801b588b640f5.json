@@ -1,0 +1,87 @@
+{
+  "groupId": "67bddb3585a3e05cbc5f6124487b684002b5dc927be3ff1cf75801b588b640f5",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-banana-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Banana Greek Yoghurt Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Banana Greek Yoghurt Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"sliced banana\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow every dry/separate and soaked/prepared instruction exactly.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sliced banana"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-86c0464c-7712-49ca-a05b-8f50913a2a8a.png",
+  "source_sha256": "46002bdf48782496c75f888bded9b97e4388330ab9c2244a003c1e4e6a29c431",
+  "generated_at": "2026-10-04T21:40:20.696Z",
+  "elapsed_ms": 203064,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-67bddb3585a3e05cbc5f-480.webp",
+      "sha256": "08d2a4a057d7572ef09bda75cfc32add518fffb757ea96be878f7efa1ebbc40b",
+      "bytes": 24756
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-67bddb3585a3e05cbc5f.webp",
+      "sha256": "dfff8e005f80dc8070b21f77f19ec0a411f3beaee91d70e50c344f64cda14a32",
+      "bytes": 76770
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-banana-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Banana Greek Yoghurt Big Feed Dessert"
+    ],
+    "notes": "Greek yoghurt bowl with banana, mixed berries, oats, pumpkin seeds and chopped dark chocolate; no apple.",
+    "alt": "Greek yoghurt dessert with banana, berries, oats, pumpkin seeds and dark chocolate",
+    "reviewed_at": "2026-10-04T21:44:57.479582+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/67bddb3585a3e05cbc5f6124487b684002b5dc927be3ff1cf75801b588b640f5.json",
+    "source_sha256": "46002bdf48782496c75f888bded9b97e4388330ab9c2244a003c1e4e6a29c431"
+  },
+  "integrated": true,
+  "live": false
+}

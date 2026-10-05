@@ -1,0 +1,78 @@
+{
+  "groupId": "019a4724ba99e816eb59814d35ef6a39eaebb399f7f377541b2bb5094613ee71",
+  "recipe_ids": [
+    "industrial-dinner-prawn-curry"
+  ],
+  "titles": [
+    "Prawn Curry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Prawn Curry. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"raw king prawns\"},{\"amount\":\"70g dry\",\"item\":\"basmati rice, dry\"},{\"amount\":\"120g\",\"item\":\"chopped tomatoes\"},{\"amount\":\"100g\",\"item\":\"spinach\"},{\"amount\":\"25g\",\"item\":\"medium curry paste\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 70g dry basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Wash and drain the 100g spinach. Use 160g peeled raw king prawns. Fully defrost frozen prawns in the fridge and drain before cooking. Keep them separate from the prepared vegetables.\",\"Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the raw king prawns in one layer and cook for 3\u20135 minutes, turning, until every prawn is pink outside and opaque in the centre with no translucent flesh. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Put the 120g chopped tomatoes and 25g medium curry paste into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.\",\"Add the washed spinach in two handfuls, cover for 1 minute, then stir. Cook for another 2\u20133 minutes until wilted throughout.\",\"Return the cooked prawns at the end and heat for 1 minute until the whole dish is steaming hot; do not simmer them through the longer vegetable cooking stage. Spoon over the freshly cooked rice and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Appetising faithful editorial food photography, warm side light, generous framing. Follow exact method and protein form. No unlisted garnish or food. For listed brown rice, depict ordinary cooked WHOLEGRAIN BROWN RICE with distinctly medium-tan to light-brown intact bran on every grain; natural earthy brown rice, never polished white rice, risotto or pale glossy short grains. For basmati, retain its listed long-grain appearance. Show all ingredients in their specified placement and cooked/raw state.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "raw king prawns"
+    },
+    {
+      "amount": "70g dry",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "chopped tomatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "spinach"
+    },
+    {
+      "amount": "25g",
+      "item": "medium curry paste"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 70g dry basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Wash and drain the 100g spinach. Use 160g peeled raw king prawns. Fully defrost frozen prawns in the fridge and drain before cooking. Keep them separate from the prepared vegetables.",
+    "Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the raw king prawns in one layer and cook for 3\u20135 minutes, turning, until every prawn is pink outside and opaque in the centre with no translucent flesh. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Put the 120g chopped tomatoes and 25g medium curry paste into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.",
+    "Add the washed spinach in two handfuls, cover for 1 minute, then stir. Cook for another 2\u20133 minutes until wilted throughout.",
+    "Return the cooked prawns at the end and heat for 1 minute until the whole dish is steaming hot; do not simmer them through the longer vegetable cooking stage. Spoon over the freshly cooked rice and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-bc16a948-0dec-43a6-97a6-3ec775ca08a5.png",
+  "source_sha256": "f49bff110ea202787d7e00f9f933443006f9deb78b9cfd393e4c1ee9ece6a5d9",
+  "generated_at": "2026-10-04T23:16:05.500Z",
+  "elapsed_ms": 70025,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-019a4724ba99e816eb59-480.webp",
+      "sha256": "54ddf9ec4bfb7ac65fe38a09d85f6a014b772779740182847850a1ad61ed07ef",
+      "bytes": 26592
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-019a4724ba99e816eb59.webp",
+      "sha256": "5cbc0502c76d78a37e49f8b5501b7ed3078e885fd497ac578243ab93cc8eae81",
+      "bytes": 83570
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f49bff110ea202787d7e00f9f933443006f9deb78b9cfd393e4c1ee9ece6a5d9",
+    "recipe_ids": [
+      "industrial-dinner-prawn-curry"
+    ],
+    "titles": [
+      "Prawn Curry"
+    ],
+    "notes": "Opaque prawns with wilted spinach and tomato curry over white long-grain basmati; no invented coconut cream or garnish.",
+    "alt": "Prawn and spinach curry with basmati rice",
+    "reviewed_at": "2026-10-04T23:32:39.069008+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

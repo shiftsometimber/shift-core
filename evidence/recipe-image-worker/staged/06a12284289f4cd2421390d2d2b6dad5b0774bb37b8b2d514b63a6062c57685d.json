@@ -1,0 +1,87 @@
+{
+  "groupId": "06a12284289f4cd2421390d2d2b6dad5b0774bb37b8b2d514b63a6062c57685d",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-apple-overnight-oats"
+  ],
+  "titles": [
+    "Shift Apple Overnight Oats Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Overnight Oats Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"diced apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g diced apple, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds, 2 / 20g wholegrain crackers separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "diced apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g diced apple, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds, 2 / 20g wholegrain crackers separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e5d4e6fc-2742-41e7-96e1-6fc1d8d55c21.png",
+  "source_sha256": "d5fe2a66bd7285362489bc711f7f66e12e0eaca5d0a3a2d7f5ba346b6b47077f",
+  "generated_at": "2026-10-04T21:31:52.449Z",
+  "elapsed_ms": 227904,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-06a12284289f4cd24213-480.webp",
+      "sha256": "7fff40b55ee7ca5bdc790ca12ddc0f8532b7859c86328cbed70d8cf68a8cda5d",
+      "bytes": 23650
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-06a12284289f4cd24213.webp",
+      "sha256": "0002682dcabb6521a588ffc54b6a635d94c7de1d9a99f7313868c916a5e1653c",
+      "bytes": 70802
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-apple-overnight-oats"
+    ],
+    "titles": [
+      "Shift Apple Overnight Oats Work Snack Box"
+    ],
+    "notes": "Milk-soaked soft oats with diced apple and berries, pumpkin seeds added at serving and two plain crackers separate; original full-size inspected confirms two crackers.",
+    "alt": "Apple and berry overnight oats with pumpkin seeds and two wholegrain crackers",
+    "reviewed_at": "2026-10-04T21:36:23.260952+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/06a12284289f4cd2421390d2d2b6dad5b0774bb37b8b2d514b63a6062c57685d.json",
+    "source_sha256": "d5fe2a66bd7285362489bc711f7f66e12e0eaca5d0a3a2d7f5ba346b6b47077f"
+  },
+  "integrated": true,
+  "live": false
+}

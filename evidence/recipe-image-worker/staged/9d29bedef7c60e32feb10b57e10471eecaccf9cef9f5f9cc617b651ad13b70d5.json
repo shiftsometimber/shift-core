@@ -1,0 +1,85 @@
+{
+  "groupId": "9d29bedef7c60e32feb10b57e10471eecaccf9cef9f5f9cc617b651ad13b70d5",
+  "recipe_ids": [
+    "industrial-breakfast-protein-oats-cherry-cocoa-5"
+  ],
+  "titles": [
+    "Cherry Cocoa Protein Oats"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cherry Cocoa Protein Oats. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"porridge oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"200ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"120g\",\"item\":\"cherries\"},{\"amount\":\"1/2 tsp\",\"item\":\"cocoa powder\"}]. Preparation: [\"Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.\",\"Add oats, milk and fruit to a saucepan.\",\"Cook gently for 5\u20136 minutes, stirring until thick.\",\"Take off the heat and stir through the yoghurt.\",\"Finish with the measured flavouring and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "50g",
+      "item": "porridge oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "200ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "120g",
+      "item": "cherries"
+    },
+    {
+      "amount": "1/2 tsp",
+      "item": "cocoa powder"
+    }
+  ],
+  "method": [
+    "Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.",
+    "Add oats, milk and fruit to a saucepan.",
+    "Cook gently for 5\u20136 minutes, stirring until thick.",
+    "Take off the heat and stir through the yoghurt.",
+    "Finish with the measured flavouring and serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6e513bbf-35c8-4de9-bc35-66196379cda0.png",
+  "source_sha256": "7d0851e2b4cac1c6cdf618950fd5d7c0353d6b976fcc0cafa7d57443b9890ba2",
+  "generated_at": "2026-10-04T21:04:36.481Z",
+  "elapsed_ms": 157173,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9d29bedef7c60e32feb1-480.webp",
+      "sha256": "aa75bdda4d719b21b0f45856cfc9bd3539aa0b4082acfe6405eaf6de6119009e",
+      "bytes": 23152
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9d29bedef7c60e32feb1.webp",
+      "sha256": "c142b714014bbca0e43343b4d7f146127049841da4fb0e02012db86d1d95e0a6",
+      "bytes": 72814
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-protein-oats-cherry-cocoa-5"
+    ],
+    "titles": [
+      "Cherry Cocoa Protein Oats"
+    ],
+    "notes": "Cooked thick oats with yoghurt incorporated, pitted cherry pieces and cocoa; no powder supplement, whole cherries with stones or topping additions. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Warm cocoa porridge with pitted cherries and Greek yoghurt stirred through.",
+    "reviewed_at": "2026-10-04T21:13:56.960993+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "7d0851e2b4cac1c6cdf618950fd5d7c0353d6b976fcc0cafa7d57443b9890ba2"
+  }
+}

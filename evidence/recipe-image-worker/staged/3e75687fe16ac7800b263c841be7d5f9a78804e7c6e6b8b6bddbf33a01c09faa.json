@@ -1,0 +1,98 @@
+{
+  "groupId": "3e75687fe16ac7800b263c841be7d5f9a78804e7c6e6b8b6bddbf33a01c09faa",
+  "recipe_ids": [
+    "industrial-v3-kebab-mexican-chicken"
+  ],
+  "titles": [
+    "Shift Mexican Chicken Fakeaway Kebab"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mexican Chicken Fakeaway Kebab. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal flatbread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.\",\"Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.\",\"Cut the chicken breast into strips about 1.5cm thick. Coat with all the measured chilli powder and paprika. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8\u201310 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the lettuce and tomato on the warm flatbread. Add the cooked chicken strips and the cold finishing sauce, fold the bread around the filling and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, sesame/poppy seeds, cheese, cream, fresh green herb leaves, coriander, parsley, lemon wedges, side dishes or dipping sauce. All buns/flatbreads entirely plain unseeded wholemeal. Mexican finish is ONLY cold tomato ketchup mixed with cider vinegar drizzled on TOP after cooking/inside burger, no sauce ramekin. Spice is paprika/chilli only. Beef burger exactly one cooked mince patty about1.5cmthick; beef kebab exactly THREE short cooked koftas without skewers; beef fries/pizza loose mince crumbles. Chicken burger thin opaque unbreaded cutlet, chicken kebab cooked1.5cm strips. Lettuce shredded and tomato sliced only where listed. Pizza is visibly CHEESE-FREE passata base with cooked mince and peppers, ketchup finish. Fries golden plain ovenchips, thin softened red onion and mixed pepper strips. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal flatbread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.",
+    "Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.",
+    "Cut the chicken breast into strips about 1.5cm thick. Coat with all the measured chilli powder and paprika. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8\u201310 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the lettuce and tomato on the warm flatbread. Add the cooked chicken strips and the cold finishing sauce, fold the bread around the filling and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2ac83d05-738e-4f7a-875a-a890661d8c4b.png",
+  "source_sha256": "bfb9b90fb3050d5649ae2fe7cbebb81880e1f08969868970b5eb65b27270939a",
+  "generated_at": "2026-10-05T00:14:34.635Z",
+  "elapsed_ms": 441965.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3e75687fe16ac7800b26-retry4-480-4d300b47ccb0.webp",
+      "sha256": "4d300b47ccb0f3d2e084294a440a62d1925916dc5eb6bd6b059ac51cda6b5542",
+      "bytes": 27032
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3e75687fe16ac7800b26-retry4-b84ab509449d.webp",
+      "sha256": "b84ab509449d6d3a3e187acf39d520caca0c5738ce00c56bb8143cd4b2249966",
+      "bytes": 84902
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "bfb9b90fb3050d5649ae2fe7cbebb81880e1f08969868970b5eb65b27270939a",
+    "recipe_ids": [
+      "industrial-v3-kebab-mexican-chicken"
+    ],
+    "titles": [
+      "Shift Mexican Chicken Fakeaway Kebab"
+    ],
+    "notes": "Pass: opaque cooked chicken breast strips with chilli-paprika coating in folded plain wholemeal flatbread with shredded lettuce, sliced tomato and red ketchup-cider sauce. No breading, mayonnaise, cheese, green garnish, seeds or side foods. Exact chicken strip kebab form and crop margin.",
+    "alt": "Mexican chicken strips in wholemeal flatbread with shredded lettuce, sliced tomato and ketchup-cider sauce",
+    "reviewed_at": "2026-10-05T00:15:31.601477+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1110.json"
+  },
+  "integrated": true,
+  "live": false
+}

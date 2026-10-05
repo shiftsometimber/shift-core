@@ -1,0 +1,95 @@
+{
+  "groupId": "c6cf4f3fecb6a1f3677322dcb222907d4a4db313caa0562c7732f569785fcfa6",
+  "recipe_ids": [
+    "industrial-v3-traybake-peppercorn-tofu"
+  ],
+  "titles": [
+    "Shift Peppercorn Tofu Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Tofu Traybake. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain entirely unseeded: no sesame/poppy or seed garnish. No cheese, herbs, garnish, crumbs, breading, lemon, cream, ketchup or extra foods unless listed. Exact protein and preparation. Light mayo plus wholegrain mustard plus black pepper only. Wholegrain mustard grains may appear INSIDE dressing, not as seed garnish. Golden baby potato pieces roasted broccoli/redpepper. Tofu 2cm cubes, turkey loose cooked opaque pale browned crumbles. Chilled lightmayo added ONLY afteroven. No carrots or peas.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.",
+    "Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b1c00469-a7e3-4261-a5a5-e4436de6a7e6.png",
+  "source_sha256": "87b6129f72d54355c07370c5f48b436d5d4c842fccde00b6c6e3002099347356",
+  "generated_at": "2026-10-05T01:14:01.454Z",
+  "elapsed_ms": 86052.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c6cf4f3fecb6a1f36773-retry4-480-954c6f9bc68d.webp",
+      "sha256": "954c6f9bc68d6c3a0e2f9701e7a0e4283e93cdd6fd8e8066c6c5777a33d1f2a7",
+      "bytes": 33746
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c6cf4f3fecb6a1f36773-retry4-2a72b5b51d95.webp",
+      "sha256": "2a72b5b51d95e6f28bee1bf3092d122a2fc80428b0f676726b145a077727d756",
+      "bytes": 101564
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "87b6129f72d54355c07370c5f48b436d5d4c842fccde00b6c6e3002099347356",
+    "recipe_ids": [
+      "industrial-v3-traybake-peppercorn-tofu"
+    ],
+    "titles": [
+      "Shift Peppercorn Tofu Traybake"
+    ],
+    "notes": "Pass: golden firm tofu cubes with golden skin-on baby potato pieces, roasted broccoli and red pepper with coloured edges. Black pepper final seasoning consistent with traybake method. Cold light mayonnaise-wholegrain mustard dressing in separate bowl added after oven, small mustard grains inside. No carrots, peas, cheese, cream, green herb garnish, meat or extra foods. Exact traybake ingredient set and full plate crop.",
+    "alt": "Peppercorn tofu traybake with baby potatoes, broccoli, red pepper and cold mayonnaise-wholegrain mustard dressing",
+    "reviewed_at": "2026-10-05T01:14:45.497300+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1196.json"
+  },
+  "integrated": true,
+  "live": false
+}

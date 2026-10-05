@@ -1,0 +1,89 @@
+{
+  "groupId": "38ce4e4e6ab018044b902359aa5bf50524728fb6adb6c837b7f91a691d1ca033",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-cherry-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Cherry Greek Yoghurt Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Greek Yoghurt Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.\",\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only, no honey, nuts, mint, syrup or garnish. Cherries ALL destoned stemless fresh HALVES with visible EMPTY pit cavities; no whole cherries, cherry stones, stems or glazed maraschino cherries. Small25g berries alongside measured80g cherry flesh. No cake or biscuit crumbs. All food inside frame. NO crackers or biscuits anywhere. Yoghurt base completely smooth, no cottage cheese curds. All measured ingredients combined in dessert bowl with listed chopped dark chocolate topping, no melted chocolate sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.",
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-76bdbbdd-7fee-4d65-ae65-7871a7d32a7e.png",
+  "source_sha256": "454a9bffd8b851fbc81a6763f4dd301dbb8d4f2e139680ff045c0d577b43d533",
+  "generated_at": "2026-10-05T00:12:56.087Z",
+  "elapsed_ms": 325662,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-38ce4e4e6ab018044b90-480-2d97efe95de7.webp",
+      "sha256": "2d97efe95de7549b99206e981782cdeccc1a09cbd3f1679adf789dace899bb4a",
+      "bytes": 28790
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-38ce4e4e6ab018044b90-e5b269702a75.webp",
+      "sha256": "e5b269702a75ed5d20c5ac185219f729aa315a9be645d5b588765e673f1ec6b2",
+      "bytes": 86780
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "454a9bffd8b851fbc81a6763f4dd301dbb8d4f2e139680ff045c0d577b43d533",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-cherry-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Cherry Greek Yoghurt Big Feed Dessert"
+    ],
+    "notes": "Smooth Greek yoghurt, destoned cherry halves, small berries/oats/seeds combined with chopped chocolate finishing. No curd substitution.",
+    "alt": "Greek yoghurt dessert with pitted cherries, berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T00:16:57.405044+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/38ce4e4e6ab018044b902359aa5bf50524728fb6adb6c837b7f91a691d1ca033.json"
+  },
+  "integrated": true,
+  "live": false
+}

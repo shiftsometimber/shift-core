@@ -1,0 +1,84 @@
+{
+  "groupId": "c71eff01ebdeb194770c528227210ae65228d14b4bb06ecb8ebde3a5d83c14ee",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-pineapple-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Pineapple Greek Yoghurt Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pineapple Greek Yoghurt Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"240g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"pineapple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nShow only each exact recipe's ingredients, with appetising realistic textures. No honey, mint, coconut, nuts, syrup, other seeds or unlisted fruit. Pumpkin seeds are flat green pepitas. Rolled oats plain flakes, not granola containing unlisted foods. Cottage cheese visibly curdy, Greek yoghurt smooth; fruit-only pots have no creamy base unless 40g yoghurt is listed. Chocolate only recipes listing it. WORK SNACK BOX: juicy bite-size fruit and any listed dairy in separate compartment from dry oats, pumpkin seeds and TWO wholegrain crackers, no loose crunch mixed into wet fruit. OAT CRUNCH snack pot: dry-pan-toasted oats/seeds completely cooled and packed separately from cut fruit; no milk/cream/yoghurt. PROTEIN/SNACK pots: crunch may be added just before immediate serving as method allows. OVERNIGHT OATS: soft hydrated oats in measured milk; fruit mixed through, pumpkin seeds and any listed chopped chocolate added only at serving. Follow the exact listed method, not an invented garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "240g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "pineapple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c91c2f64-6c02-4502-9c05-ab012fdc4fb8.png",
+  "source_sha256": "f3611dd80ba2ccedb9457b83d7d219bd5ad62f5496e24bcbdc64bec0e03c2a4c",
+  "generated_at": "2026-10-05T01:16:07.131Z",
+  "elapsed_ms": 271591.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c71eff01ebdeb194770c-480-e11dd53e9b70.webp",
+      "sha256": "e11dd53e9b70eda0e632c5787f4cf4318279aec47b020ce7b3b960a0fa3fa2d2",
+      "bytes": 20904
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c71eff01ebdeb194770c-2c1aa6bc6d9b.webp",
+      "sha256": "2c1aa6bc6d9bea425c90f3c0d519fb36af8a4716bb1d969c1c80895bd47b9685",
+      "bytes": 59690
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f3611dd80ba2ccedb9457b83d7d219bd5ad62f5496e24bcbdc64bec0e03c2a4c",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-pineapple-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Pineapple Greek Yoghurt Dessert Pot"
+    ],
+    "notes": "Smooth Greek yoghurt visibly swirled through pineapple/mixed berries, plain rolled oats and green pumpkin seeds. No cottage-cheese substitution, chocolate, honey, nuts or herb garnish; exact title/method checked.",
+    "alt": "Pineapple Greek yoghurt pot with berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-05T01:18:54.072962+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2566.json"
+  },
+  "integrated": true,
+  "live": false
+}

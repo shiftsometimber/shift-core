@@ -1,0 +1,98 @@
+{
+  "groupId": "20a6531ab87f896f0c176a95d0873aa72a7a6d78fe26c3155bb36f49abb43650",
+  "recipe_ids": [
+    "industrial-v3-pie-peppercorn-turkey"
+  ],
+  "titles": [
+    "Shift Peppercorn Turkey Proper Pie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Turkey Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, wholegrain mustard, black pepper dressing alongside.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain entirely unseeded: no sesame/poppy or seed garnish. No cheese, herbs, garnish, crumbs, breading, lemon, cream, ketchup or extra foods unless listed. Exact protein and preparation. Light mayo plus wholegrain mustard plus black pepper only. Wholegrain mustard grains may appear INSIDE dressing, not as seed garnish. CRITICAL: Pie top WATER ONLY mashed potato, fork-ridged plain ivory with golden ridges, ZERO spiceflecks. Filling PLAIN cooked protein plus finely diced carrots and peas in TRANSPARENT clear water juices, NO creamy sauce, pepper or mustard in filling. ALL light mayo mustard blackpepper ONLY in separate cold bowl alongside. Turkey mince loose pale opaque browned crumbles, no slices.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, wholegrain mustard, black pepper dressing alongside."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-552d10a3-da50-4f2e-ae8d-37711affe3d7.png",
+  "source_sha256": "5d4ba463d3392c12b3223ad423a92608259e8836f5fb987a13dc511611b72066",
+  "generated_at": "2026-10-05T01:16:21.882Z",
+  "elapsed_ms": 226480.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-20a6531ab87f896f0c17-retry4-480-086e10ffa08d.webp",
+      "sha256": "086e10ffa08d356d6b60e363033d4be42a48c18be48ab4f7b4a34b025865b670",
+      "bytes": 23302
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-20a6531ab87f896f0c17-retry4-aa0db424109a.webp",
+      "sha256": "aa0db424109a5210c4f0e3d89f4d794b7329d66ee99b2eb0af3ddc9d3e3e3c57",
+      "bytes": 68136
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "5d4ba463d3392c12b3223ad423a92608259e8836f5fb987a13dc511611b72066",
+    "recipe_ids": [
+      "industrial-v3-pie-peppercorn-turkey"
+    ],
+    "titles": [
+      "Shift Peppercorn Turkey Proper Pie"
+    ],
+    "notes": "Pass: clean plain fork-ridged water-mashed potato top with golden browned ridges. Opening shows loose opaque pale cooked turkey breast mince crumbles, finely diced carrots and peas in transparent cooking juices; no pepper flecks, mustard or creamy filling. ALL mayonnaise-wholegrain mustard-black pepper exclusively inside separate cold bowl alongside. No cheese, pastry, gravy, herbs or extra foods. Exact mince pie and crop with dressing visible.",
+    "alt": "Turkey potato-topped pie with carrots, peas and separate mayonnaise-wholegrain mustard dressing",
+    "reviewed_at": "2026-10-05T01:17:24.887732+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1201.json"
+  },
+  "integrated": true,
+  "live": false
+}

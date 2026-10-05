@@ -1,0 +1,94 @@
+{
+  "groupId": "255f985463edcedf7ca7d7a6c4e11b613c4df8e8c30d299365e26a871cfbb0c7",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-garlic-herb-bacon"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Bacon Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Bacon Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"35g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "35g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d2583e2b-a244-462e-9fdc-e47f29e8ceb6.png",
+  "source_sha256": "d905778f0517f6289120de39b43e1671ed1fc707eb1bad04dd553929a7970eba",
+  "generated_at": "2026-10-04T21:37:39.637Z",
+  "elapsed_ms": 24333,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-255f985463edcedf7ca7-480.webp",
+      "sha256": "899a82bc79cbb4d27ab85efcc9c5faf169c3fb236dbf23979b3769b84ddc80c5",
+      "bytes": 23458
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-255f985463edcedf7ca7.webp",
+      "sha256": "24aa91cdc7d7524d40428e8ebb9fd43f6443d7de4a6846757d65fdad1a3cf446",
+      "bytes": 73782
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-garlic-herb-bacon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Bacon Breakfast Buttie"
+    ],
+    "notes": "Plain wholemeal bap with browned cooked back bacon, softened tomato, wilted spinach and garlic-yoghurt sauce with dried parsley. No cheese or extra garnish.",
+    "alt": "Wholemeal bap with bacon, tomato, spinach and garlic-herb yoghurt.",
+    "reviewed_at": "2026-10-04T21:45:25.809161+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/160.json",
+    "source_sha256": "d905778f0517f6289120de39b43e1671ed1fc707eb1bad04dd553929a7970eba"
+  },
+  "integrated": true,
+  "live": false
+}

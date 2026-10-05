@@ -1,0 +1,88 @@
+{
+  "groupId": "b3f8dc7437b2f3452322307d9f30216f19b9196254890ab331b456f3ebfa578d",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-chocolate-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Chocolate Cottage Cheese Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Cottage Cheese Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed food; no honey, nuts, mint, syrup, sauces or decorative garnish. All food inside frame. Berries just small25g portion. NO crackers or biscuits anywhere. Unsweetened cocoa is fine powder measured5g, lightly mixed into fruit/dairy, never chocolate syrup, melted chocolate or extra chocolate chunks. Dark chocolate chunks ONLY where explicitly listed. Cottage cheese recognisable small curds, cocoa evenly mixed into curds when listed. Finished dessert ONE bowl with all listed ingredients combined and measured Greek yoghurt swirled through, no separate creamy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-71f6cb19-86b2-45a5-b267-3bca8bfd7ebd.png",
+  "source_sha256": "30394f149d2ac04df2ca6a074e345df521f9b75f87760415badd128aff8fc592",
+  "generated_at": "2026-10-05T00:26:22.612Z",
+  "elapsed_ms": 372587,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b3f8dc7437b2f3452322-480-3139ae46500c.webp",
+      "sha256": "3139ae46500c996c588801d998e0f1461e986e04cf1aa5d8f41915e3628c773b",
+      "bytes": 29566
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b3f8dc7437b2f3452322-84ea0f4bc3cc.webp",
+      "sha256": "84ea0f4bc3cc3b1ecc239e1c2357bab190a6999ee1c4c427cc0ccb723af47556",
+      "bytes": 86674
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "30394f149d2ac04df2ca6a074e345df521f9b75f87760415badd128aff8fc592",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-chocolate-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Chocolate Cottage Cheese Dessert Pot"
+    ],
+    "notes": "Cocoa mixed through cottage cheese curds and small berries/oats/seeds with measured Greek yoghurt swirl. No chocolate chunks or extra sauce.",
+    "alt": "Cocoa cottage cheese dessert with berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:28:45.968823+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/b3f8dc7437b2f3452322307d9f30216f19b9196254890ab331b456f3ebfa578d.json"
+  },
+  "integrated": true,
+  "live": false
+}

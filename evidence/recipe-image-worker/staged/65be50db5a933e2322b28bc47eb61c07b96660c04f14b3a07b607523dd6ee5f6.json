@@ -1,0 +1,105 @@
+{
+  "groupId": "65be50db5a933e2322b28bc47eb61c07b96660c04f14b3a07b607523dd6ee5f6",
+  "recipe_ids": [
+    "industrial-v3-pizza-peppercorn-salmon"
+  ],
+  "titles": [
+    "Shift Peppercorn Salmon Proper Pizza"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Salmon Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.\",\"Mix the measured light mayonnaise and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured black pepper. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Transfer large flakes of the cooked salmon to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and large flakes of the cooked salmon evenly on top. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Exact method gates: No garnish or unlisted cheese, herbs, seeds, breading, sauce or sides. Wholemeal bread, wrap and bun entirely plain unseeded. Peppercorn flavour uses LIGHT MAYONNAISE plus WHOLEGRAIN MUSTARD plus BLACK PEPPER only: no cream or ketchup. In roast and pie all three exclusively in separate small cold dressing bowl alongside; hot food must be PLAIN with no black pepper or mustard pieces, herbs or creamy coat. Roast salmon intact fully cooked opaque fillet; tofu roast 2cm slabs. Pie plain fork-roughened water-mashed potato top and plain filling carrot/pea/protein with clear cooking juices; never creamy filling. Salmon in pasta, pizza, kebab or fries large opaque cooked FLAKES. Tofu burger one 1cm slab, kebab/fries/pasta/pizza/slowpot/pie 2cm cubes. Burger or kebab cold dressing finish INSIDE bread; pizza and loaded fries cold finish ON TOP after cooking; cheeseless pizza with passata and mixed peppers only listed. Pasta mayonnaise/mustard/pepper folded THROUGH wholewheat pasta offheat, courgette and cherry tomatoes. Slowpot tender baby potatoes carrots onion and protein, light mayo final glossy coating after switch off; no crispy roast appearance. Traybake chilled mayo only added after oven. Show correct finished appearance and all ingredients where method places them. For roast especially plain golden surfaces, all black pepper strictly only INSIDE the separate cold bowl, no pepper rub or garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.",
+    "Mix the measured light mayonnaise and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured black pepper. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Transfer large flakes of the cooked salmon to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and large flakes of the cooked salmon evenly on top. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3701dfd7-c51b-4ed8-9bdc-ba10b179b430.png",
+  "source_sha256": "cacafbebd241707e8e88d1d7f62a85c7a9ea559179fdc00b2a630ab31edf3717",
+  "generated_at": "2026-10-05T01:03:33.506Z",
+  "elapsed_ms": 186026.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-65be50db5a933e2322b2-retry4-480-39275ddd53b0.webp",
+      "sha256": "39275ddd53b04821ae095e5a96929bd8138081d93bac1f3577af91677867ccf8",
+      "bytes": 34116
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-65be50db5a933e2322b2-retry4-94be3c25d068.webp",
+      "sha256": "94be3c25d068b5ed33bea096867976efba4a76f2fb1cad752ed2a09bb8e534c1",
+      "bytes": 97050
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "cacafbebd241707e8e88d1d7f62a85c7a9ea559179fdc00b2a630ab31edf3717",
+    "recipe_ids": [
+      "industrial-v3-pizza-peppercorn-salmon"
+    ],
+    "titles": [
+      "Shift Peppercorn Salmon Proper Pizza"
+    ],
+    "notes": "Pass: opaque cooked salmon in large flakes with black pepper coating, softened red-yellow pepper strips over tomato passata on golden crisp individual pizza base. Cold ivory mayonnaise-wholegrain mustard finishing sauce spooned on TOP after baking; remaining listed sauce in small bowl. No cheese layer, raw translucent fish, herbs, onion, extra garnish or foods. Exact cheeseless salmon pizza; crop margin.",
+    "alt": "Peppercorn salmon pizza with tomato passata, peppers and mayonnaise-wholegrain mustard finish",
+    "reviewed_at": "2026-10-05T01:04:04.845929+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1185.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "74a801be7953381edd2f7140048224f9470189b907b1d23cff73ee6c68651f5b",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-apple-savory-box"
+  ],
+  "titles": [
+    "Shift Apple Banana Split Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Banana Split Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"80g\",\"item\":\"diced apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "80g",
+      "item": "diced apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f106dbad-b571-4708-964e-70ada25ef070.png",
+  "source_sha256": "4744368fc5ba27944f0b74ae2f37dc5220c4742ca910294bede353b3165a389c",
+  "generated_at": "2026-10-04T21:21:18.857Z",
+  "elapsed_ms": 113693,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-74a801be7953381edd2f-480.webp",
+      "sha256": "05355fdec61f122dd80d2edb4719e2ce7a074f7fa5ea249f3fa5fe634c3fdcdb",
+      "bytes": 20744
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-74a801be7953381edd2f.webp",
+      "sha256": "d6c84a82816fe9ff5c71fac02b823ad5d0a7b698cb4538d431a23e17b462afac",
+      "bytes": 59394
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-apple-savory-box"
+    ],
+    "titles": [
+      "Shift Apple Banana Split Big Feed Dessert"
+    ],
+    "notes": "Banana, diced apple and mixed berries with rolled oats and pumpkin seeds, finished with chopped dark chocolate; no creamy base.",
+    "alt": "Banana and apple dessert with mixed berries, oats, pumpkin seeds and chopped dark chocolate",
+    "reviewed_at": "2026-10-04T21:27:26.883077+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/74a801be7953381edd2f7140048224f9470189b907b1d23cff73ee6c68651f5b.json",
+    "source_sha256": "4744368fc5ba27944f0b74ae2f37dc5220c4742ca910294bede353b3165a389c"
+  },
+  "integrated": true,
+  "live": false
+}
