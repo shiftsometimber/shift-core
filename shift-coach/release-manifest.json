@@ -273,5 +273,14 @@
       "release/app-scope.mjs",
       "shift-coach/release-contract.mjs"
     ]
+  },
+  "imageViewerComposition": {
+    "proof": "MEMBER_IMAGE_VIEWER_RELEASE_V1",
+    "source": "b184b29388032d3207d13a052151280a048f215b",
+    "paths": [
+      "shift-coach/fit-active-edit.mjs",
+      "shift-coach/fit-active-edit.test.mjs",
+      "shift-coach/release-contract.mjs"
+    ]
   }
 }
