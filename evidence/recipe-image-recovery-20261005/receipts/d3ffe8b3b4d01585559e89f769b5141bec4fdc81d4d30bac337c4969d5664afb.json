@@ -1,0 +1,88 @@
+{
+  "groupId": "d3ffe8b3b4d01585559e89f769b5141bec4fdc81d4d30bac337c4969d5664afb",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-tomato-beans"
+  ],
+  "titles": [
+    "Shift Tomato Beans Breakfast Buttie"
+  ],
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "25g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tomato Beans Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"25g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Serve the entire meal on one centered cream plate fully within the frame, with wide empty crop margins. The vegetables are cooked softened, spinach visibly wilted; no raw green leaf garnish. Show sandwich or wrap cut once so the exact cooked filling is visible. No cheese, eggs, herbs, unlisted sides or garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/d3ffe8b3b4d01585559e89f769b5141bec4fdc81d4d30bac337c4969d5664afb.png",
+  "source_sha256": "f15518b948931ce93b5797089c2c9678fc1ce4cdd698d0395c515530bb3fa852",
+  "generated_at": "2026-10-05T12:43:36.374Z",
+  "elapsed_ms": 196277,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d3ffe8b3b4d01585559e-recovery20261005-480-3c558cacefe8.webp",
+      "sha256": "3c558cacefe8db2351c24bc6b1da5dff9f16d64ade5e08712f76c847cf7bb2e7",
+      "bytes": 26912
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d3ffe8b3b4d01585559e-recovery20261005-960-30dadce8a06e.webp",
+      "sha256": "30dadce8a06e49423910273476eb6353e1ec796f435bfbb9a8c56ed2443b571b",
+      "bytes": 85624
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f15518b948931ce93b5797089c2c9678fc1ce4cdd698d0395c515530bb3fa852",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-tomato-beans"
+    ],
+    "titles": [
+      "Shift Tomato Beans Breakfast Buttie"
+    ],
+    "notes": "Wholemeal bap halves show baked beans in tomato sauce, softened tomato and wilted spinach. No meat or cheese, no unlisted garnish. One complete bap on cream plate with safe margins.",
+    "alt": "Shift Tomato Beans Breakfast Buttie, prepared with baked beans, wholemeal bap, spinach, tomato",
+    "reviewed_at": "2026-10-05T12:44:23.944261+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:44:47.507975+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

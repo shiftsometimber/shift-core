@@ -1,0 +1,91 @@
+{
+  "groupId": "ab04aa6a73007f5e13df7db32ac9489d9797c2fd9c93ab3468271a2157897b14",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-tomato-egg"
+  ],
+  "titles": [
+    "Shift Tomato Egg Breakfast Wrap"
+  ],
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "25g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tomato Egg Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"25g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Composition: full cream plate entirely inside frame with wide crop margin, 4:3 landscape, one complete serving. No extra herbs, seeds, side foods or dipping sauce. Show the single wholemeal tortilla wrap rolled and lightly pan-crisped, cut into two halves to reveal cooked filling. Spinach is wilted, peppers softened; ketchup and vinegar cooked into filling, not side sauce. Eggs are tender set scrambled pieces, no meat.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/003.png",
+  "source_sha256": "bdc0eca9b11e6c382d975d0107cd27f7d0c6409789bcb6e4f1edc28559b718e6",
+  "generated_at": "2026-10-05T12:43:51.392637+00:00",
+  "elapsed_ms": 121319,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ab04aa6a73007f5e13df-recovery20261005-480-977e04241c6b.webp",
+      "sha256": "977e04241c6b3bca70438f1116f20ed5d063cf84baf4e94cb0eaf93b223dbd08",
+      "bytes": 23916
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ab04aa6a73007f5e13df-recovery20261005-960-2c6a4befbfa2.webp",
+      "sha256": "2c6a4befbfa2b66d0683697b98a4da8c8ea8f4684ba45299b361eaa66417edf0",
+      "bytes": 74324
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "bdc0eca9b11e6c382d975d0107cd27f7d0c6409789bcb6e4f1edc28559b718e6",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-tomato-egg"
+    ],
+    "titles": [
+      "Shift Tomato Egg Breakfast Wrap"
+    ],
+    "notes": "Viewed actual source: tender set scrambled egg pieces, softened red/yellow peppers and wilted spinach inside lightly browned wholemeal tortilla halves. Ketchup/oil coat filling and vinegar is incorporated. No meat, cheese, herbs or side food. Full believable single wrap with crop margin.",
+    "alt": "Shift Tomato Egg Breakfast Wrap served on a cream plate",
+    "reviewed_at": "2026-10-05T12:44:43.712169+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:45:20.900684+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

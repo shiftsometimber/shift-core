@@ -1,0 +1,92 @@
+{
+  "groupId": "379522d03888d660823e61b69dbb9254b1790d354b19b240cac4901f9be95494",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-weekend-beans"
+  ],
+  "titles": [
+    "Shift Weekend Beans Breakfast Buttie"
+  ],
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Beans Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Serve the entire meal on one centered cream plate fully within the frame, with wide empty crop margins. The vegetables are cooked softened, spinach visibly wilted; no raw green leaf garnish. Show sandwich or wrap cut once so the exact cooked filling is visible. No cheese, eggs, herbs, unlisted sides or garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/379522d03888d660823e61b69dbb9254b1790d354b19b240cac4901f9be95494.png",
+  "source_sha256": "69643f5703f3e83c0692c9e008477aefd79d0f5e8da96b5d068b13ce8db5c9cc",
+  "generated_at": "2026-10-05T12:43:36.393Z",
+  "elapsed_ms": 143870,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-379522d03888d660823e-recovery20261005-480-4d2a58d04a08.webp",
+      "sha256": "4d2a58d04a08177bf9e601f1c9680f988076529df9113f2c2f4214a41e53f00a",
+      "bytes": 21756
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-379522d03888d660823e-recovery20261005-960-195cc73836f0.webp",
+      "sha256": "195cc73836f0b1c31ac71a61f90f441c4405de922546a66e363d4eabe8cecfe3",
+      "bytes": 73048
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "69643f5703f3e83c0692c9e008477aefd79d0f5e8da96b5d068b13ce8db5c9cc",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-weekend-beans"
+    ],
+    "titles": [
+      "Shift Weekend Beans Breakfast Buttie"
+    ],
+    "notes": "Cut wholemeal bap filled with baked beans, softened tomato and translucent cooked onion, wilted spinach and tomato sauce. No sausage or cheese, no garnish. One serving centered on cream plate with margins.",
+    "alt": "Shift Weekend Beans Breakfast Buttie, prepared with baked beans, wholemeal bap, spinach, tomato",
+    "reviewed_at": "2026-10-05T12:44:26.179616+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:44:47.511948+00:00"
+  },
+  "integrated": false,
+  "live": false
+}
