@@ -14,6 +14,7 @@ const read=p=>JSON.parse(fs.readFileSync(p));
 const candidate=read('evidence/fit-publication-2026-09-16/resolved-candidate.json'),nineReview=read('evidence/fit-publication-2026-09-16/independent-nine-dose-review.json');
 const wire=JSON.parse(gunzipSync(fs.readFileSync('evidence/fit-publication-2026-09-16/owner-release.json.gz')));
 const input={candidate,ownerInstruction:wire.manifest.owner_instruction,nineReview};
+const pendingManifest={proof:"FIT_OWNER_SERVING_AUTHORITY_V1",status:"pending",protected_v1:wire.protected_originals,additions:[],supersedes:[]};
 const release=buildFitOwnerRelease(input);
 const decoded=row=>({...row,data:JSON.parse(row.data_json),review:JSON.parse(row.review_json)});
 // Use the actual original publication script, not the new hash projector, as the fixture source.
@@ -29,7 +30,7 @@ function publishedOriginals(){
 const originalWire=publishedOriginals(),originals=originalWire.map(decoded),all=[...originals,...wire.additions.map(decoded)];
 
 test('real original publisher produces all 1326 exact protected hashes accepted by pending authority',async()=>{
-  const result=await selectGovernedFitRows(originals);
+  const result=await selectGovernedFitRows(originals,pendingManifest);
   assert.equal(result.incomplete,false,result.reason);assert.equal(result.rows.length,1326);assert.equal(result.expansionAccepted,0);
   assert.deepEqual(FIT_EXPANSION_SERVING_AUTHORITY.protected_v1,wire.protected_originals);
 });
@@ -43,7 +44,7 @@ test('2688 served protocols cover all 300 movements while physical2868 preserve 
   assert.equal(result.incomplete,false,result.reason);assert.equal(result.rows.length,2688);assert.equal(new Set(result.rows.map(row=>row.data.canonical_movement)).size,300);
   assert.equal(result.revisionAccepted,180);assert.equal(all.length,2868);assert.equal(JSON.stringify(originalWire),before);
   for(const revision of wire.manifest.supersedes){const replacement=result.rows.find(row=>row.id===revision.original_id);assert.equal(replacement.publication_id,revision.replacement_id);assert.ok(originalWire.some(row=>row.id===revision.original_id));}
-  const pending=await selectGovernedFitRows(all);assert.equal(pending.rows.length,1326);assert.equal(pending.expansionAccepted,0);
+  const pending=await selectGovernedFitRows(all,pendingManifest);assert.equal(pending.rows.length,1326);assert.equal(pending.expansionAccepted,0);
 });
 test('paged serving retrieves beyond2500 and never drops additions',async()=>{
   const rows=[...originalWire,...wire.additions].sort((a,b)=>a.id<b.id?-1:1),calls=[];
@@ -96,4 +97,9 @@ test('full timed work and rest must fit the remaining session; prescriptions are
   assert.equal(ownerFitWithinTime(long,10),false);
   assert.equal(JSON.stringify(timed),original);assert.equal(timed.dosage.time_seconds,10);assert.equal(timed.dosage.rest_seconds,50);
   assert.equal(ownerFitWithinTime({minutes:16},10),true,'Legacy selection remains unchanged');
+});
+
+test("current member authority activates the exact 300-movement owner release",async()=>{
+ assert.deepEqual(FIT_EXPANSION_SERVING_AUTHORITY,wire.manifest);
+ const result=await selectGovernedFitRows(all);assert.equal(result.incomplete,false);assert.equal(result.rows.length,2688);assert.equal(new Set(result.rows.map(r=>r.data.canonical_movement)).size,300);
 });
