@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {industry,industrySources} from './industry.mjs';
+import {registrySources} from './credibility.mjs';
 import {medicines,sources} from './data.mjs';
 import {industryMarkup} from './industry-page.mjs';
 import {discoveryDomains,queriesForDate,summariseDiscovery} from './discovery.mjs';
@@ -388,7 +389,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
   const html=industryMarkup({},new URLSearchParams({q:e.name}));
   assert.match(html,/Status checks do not assess clinical outcomes/);
  }
- const correctedSource=industrySources.find(s=>s.id==='registry-nct05713799');
+ const correctedSource=registrySources.find(s=>s.id==='registry-nct05713799');
  assert.equal(correctedSource.lifecycle.start.date,'2026-10-08');
  assert.equal(correctedSource.sourceUpdatedAt,'2026-10-05');
  assert.equal(correctedSource.reviewedFingerprint,'f1f1502b85ec20feb6fa3aaa46b023e7a42a2a2c0ecba7f775b4bd77ff83471d');
