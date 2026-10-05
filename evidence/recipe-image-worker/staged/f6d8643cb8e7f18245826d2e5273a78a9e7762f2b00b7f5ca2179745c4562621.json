@@ -1,0 +1,94 @@
+{
+  "groupId": "f6d8643cb8e7f18245826d2e5273a78a9e7762f2b00b7f5ca2179745c4562621",
+  "recipe_ids": [
+    "industrial-v3-pie-garlic-herb-chicken"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Chicken Proper Pie"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15–20 minutes until a knife goes through easily, then drain and mash with 2–3 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8–12 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75°C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8–10 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15–20 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, garlic powder, dried parsley dressing alongside."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200°C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15–20 minutes until a knife goes through easily, then drain and mash with 2–3 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8–12 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75°C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8–10 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15–20 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, garlic powder, dried parsley dressing alongside.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Whole single portion and cream serving ware entirely in frame, wide empty margin. No unlisted ingredients or fresh decorative herbs. This is a mashed POTATO topped pie, absolutely NO pastry. Small cream ovenproof dish with fork-roughened golden mash top; scoop edge open to reveal exact cooked protein, finely diced carrots and peas. Garlic/DRIED parsley mayonnaise dressing in small cream ramekin alongside, no extra gravy.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/f6d8643cb8e7f18245826d2e5273a78a9e7762f2b00b7f5ca2179745c4562621.png",
+  "source_sha256": "76f8ef170dd4d18d5b0f3fff765577df1fc957788f88d6568377689e949aa436",
+  "generated_at": "2026-10-05T12:47:45.329Z",
+  "elapsed_ms": 144577,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f6d8643cb8e7f1824582-recovery20261005-480-966676d22cc8.webp",
+      "sha256": "966676d22cc84b659b84d9cf6a074f332e25bd3e1e2fb8a8d3b96491884a3a3d",
+      "bytes": 18094
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f6d8643cb8e7f1824582-recovery20261005-960-fef8a4768caa.webp",
+      "sha256": "fef8a4768caab382f1fb20c100791dfda7a6c43f6dd15f9cc79f3325176982e2",
+      "bytes": 54238
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "76f8ef170dd4d18d5b0f3fff765577df1fc957788f88d6568377689e949aa436",
+    "recipe_ids": [
+      "industrial-v3-pie-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Proper Pie"
+    ],
+    "notes": "Mashed-potato topped baked pie exposes opaque cooked chicken pieces, soft diced carrot and peas. Separate garlic/dried parsley mayonnaise, no pastry or cheese. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Chicken Proper Pie, prepared with chicken breast, potatoes, carrots, peas",
+    "reviewed_at": "2026-10-05T12:50:23.241749+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:46.240073+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

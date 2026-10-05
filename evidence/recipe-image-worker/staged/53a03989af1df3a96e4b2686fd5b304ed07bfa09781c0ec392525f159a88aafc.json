@@ -1,0 +1,88 @@
+{
+  "groupId": "53a03989af1df3a96e4b2686fd5b304ed07bfa09781c0ec392525f159a88aafc",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-tomato-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Tomato Chicken Breakfast Hash"
+  ],
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "25g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6–8 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70°C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked chicken breast to the pan and heat through.",
+    "Stir in the listed flavour ingredients (25g tomato ketchup, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tomato Chicken Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"25g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6–8 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70°C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked chicken breast to the pan and heat through.\",\"Stir in the listed flavour ingredients (25g tomato ketchup, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Composition: full cream plate entirely inside frame with wide crop margin, 4:3 landscape, one complete serving. No extra herbs, seeds, side foods or dipping sauce. Hash consists of golden tender 1 cm potato cubes, softened diced onion and mixed peppers, with cooked 2 cm chicken breast pieces.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/002.png",
+  "source_sha256": "60c8a36ffc1b00a157c12c67f0b8d5b0df40fa3164ff13ab60b01bb3820714f8",
+  "generated_at": "2026-10-05T12:43:51.386524+00:00",
+  "elapsed_ms": 93938,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-53a03989af1df3a96e4b-recovery20261005-480-20b1fa0360e5.webp",
+      "sha256": "20b1fa0360e55057f122fa630bd5795df6b6a4a1bf8a316875e5bc72acd3307b",
+      "bytes": 27170
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-53a03989af1df3a96e4b-recovery20261005-960-36f7b187ae9b.webp",
+      "sha256": "36f7b187ae9be4676b1491ded22e0daf846f2e375f43aa4cf12976e73e7f50fd",
+      "bytes": 88538
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "60c8a36ffc1b00a157c12c67f0b8d5b0df40fa3164ff13ab60b01bb3820714f8",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-tomato-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Tomato Chicken Breakfast Hash"
+    ],
+    "notes": "Viewed actual source: browned cooked chicken breast chunks, golden tender potato cubes, translucent cooked onion and softened red/yellow peppers are visible in combined hash. Tomato ketchup and incorporated vinegar/oil coat components. No spinach, eggs, beans, herbs or extra sides. Complete single plate serving with food safely inside frame.",
+    "alt": "Shift Tomato Chicken Breakfast Hash served on a cream plate",
+    "reviewed_at": "2026-10-05T12:44:42.962265+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:45:20.899212+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

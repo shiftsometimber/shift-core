@@ -1,0 +1,92 @@
+{
+  "groupId": "57d21dcf4a441fc2bfa7bf3c58482b1265adc89055789d87087a829924cbf4f3",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-garlic-herb-tofu"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Tofu Slow-Cooker Big Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the firm tofu is safely cooked, switch the cooker off, then stir through the light mayonnaise and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Tofu Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the firm tofu is safely cooked, switch the cooker off, then stir through the light mayonnaise and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Food-specific accuracy: make every listed major ingredient visually recognizable in the finished serving; preserve the exact protein and cooking form. Keep the entire edible serving centrally framed with generous empty margin on all four sides. No unlisted foods.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/4/sources/018.png",
+  "source_sha256": "20a8c0312a8a65bab60d87d6d2ef953fa1bf8a80ea5d0484fae051df962b9ea8",
+  "generated_at": "2026-10-05T12:51:16.702243+00:00",
+  "elapsed_ms": 97490,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-57d21dcf4a441fc2bfa7-recovery20261005-480-789d55573dba.webp",
+      "sha256": "789d55573dba4319b57573cb58eaba2bbdf2ce5876aa7f94a9ba2f5a9b629a7e",
+      "bytes": 18566
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-57d21dcf4a441fc2bfa7-recovery20261005-960-f6934253f4af.webp",
+      "sha256": "f6934253f4af733b2354d0e40f7b84a8a9f3296d87b73443c809041c2d5010e8",
+      "bytes": 58612
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "20a8c0312a8a65bab60d87d6d2ef953fa1bf8a80ea5d0484fae051df962b9ea8",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Slow-Cooker Big Pot"
+    ],
+    "notes": "Single bowl contains browned firm-tofu cubes, tender baby potato halves, cooked carrot pieces and translucent onion in a light glossy mayonnaise coating with dried parsley. No beef/chicken substitution, extra vegetables or watery broth; fully framed believable serving.",
+    "alt": "Tofu, baby potatoes, carrots and onion in garlic-herb slow-cooker pot.",
+    "reviewed_at": "2026-10-05T12:51:51.231864+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:02.989139+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

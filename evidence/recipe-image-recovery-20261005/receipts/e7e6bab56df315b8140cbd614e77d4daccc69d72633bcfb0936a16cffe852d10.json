@@ -1,0 +1,94 @@
+{
+  "groupId": "e7e6bab56df315b8140cbd614e77d4daccc69d72633bcfb0936a16cffe852d10",
+  "recipe_ids": [
+    "industrial-v3-roast-garlic-herb-chicken"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Chicken Sunday-Style Roast"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Place the chicken breast on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Serve the cooked chicken breast, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, garlic powder, dried parsley dressing alongside after cooking."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Place the chicken breast on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Serve the cooked chicken breast, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, garlic powder, dried parsley dressing alongside after cooking.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Cooked chicken breast roast plate with golden 3cm peeled potato chunks, tender slim carrot batons, boiled broccoli florets and a small separate spoon of light mayonnaise garlic/dried parsley dressing. No gravy or fresh herb garnish. Frame the complete ordinary single serving with generous crop margin, 4:3 landscape. Wholegrains must have natural texture, not black seasoning speckles.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/013.png",
+  "source_sha256": "18766880259ebea27fa1de0d3b893c25a9d264bc136c351e1f93ddae522bc608",
+  "generated_at": "2026-10-05T12:49:18.661757+00:00",
+  "elapsed_ms": 179335,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e7e6bab56df315b8140c-recovery20261005-480-b1759afb93d1.webp",
+      "sha256": "b1759afb93d10a3db1677d9ea160729033c957e1a983f464dcb80df43ad30f5c",
+      "bytes": 30898
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e7e6bab56df315b8140c-recovery20261005-960-897548686b7d.webp",
+      "sha256": "897548686b7dcf8bfcff2c1484b7cb89ba8f5e5c482d7c388775b35b8532789d",
+      "bytes": 94724
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "18766880259ebea27fa1de0d3b893c25a9d264bc136c351e1f93ddae522bc608",
+    "recipe_ids": [
+      "industrial-v3-roast-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Sunday-Style Roast"
+    ],
+    "notes": "Actual source reviewed: roast chicken breast, golden peeled potato chunks, slim cooked carrot batons, tender broccoli florets and separate mayonnaise garlic/dried parsley dressing. Listed parsley specks visible; no fresh garnish, gravy or extra sides. Single full serving and plate safely within image.",
+    "alt": "Shift Garlic & Herb Chicken Sunday-Style Roast on cream serving ware",
+    "reviewed_at": "2026-10-05T12:51:18.903654+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:51:56.605451+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

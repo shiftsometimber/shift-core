@@ -1,0 +1,87 @@
+{
+  "groupId": "6150ea46857ff9c56f52ef569006e399fef4f6849e2f1f0dfa363bab3ed783d5",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-garlic-herb-beef"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Beef Loaded Fries"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220°C conventional or 200°C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20–30 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6–8 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Mix the measured garlic herb yoghurt in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Keep the 5% beef mince ready to break into small pieces in the pan. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the beef mince over a medium-high heat for about 8–10 minutes, breaking up clumps and stirring until browned. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Return the cooked red onion and mixed peppers to the pan for 1–2 minutes, turning gently until hot.",
+    "Pile the crisp oven chips onto a plate and spoon over the cooked beef mince, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Beef Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220°C conventional or 200°C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20–30 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6–8 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Mix the measured garlic herb yoghurt in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Keep the 5% beef mince ready to break into small pieces in the pan. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the beef mince over a medium-high heat for about 8–10 minutes, breaking up clumps and stirring until browned. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Return the cooked red onion and mixed peppers to the pan for 1–2 minutes, turning gently until hot.\",\"Pile the crisp oven chips onto a plate and spoon over the cooked beef mince, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/009-6150ea46857ff9c56f52ef569006e399fef4f6849e2f1f0dfa363bab3ed783d5-b2.png",
+  "source_sha256": "fbed023f5a5a5ca6a140b0fc1ccd8b32b620fb24302372b84622fe757a8e2f61",
+  "generated_at": "2026-10-05T12:49:07.327Z",
+  "elapsed_ms": 91554,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6150ea46857ff9c56f52-recovery20261005-480-eb208c7c8bb8.webp",
+      "sha256": "eb208c7c8bb845e540c237d02fc7142371636ee2a77c818065776de0526a45a1",
+      "bytes": 28572
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6150ea46857ff9c56f52-recovery20261005-960-233eb2638791.webp",
+      "sha256": "233eb26387916dad7219d3409374b9907cf4c864e19ada91f6d45fdf0f8a94fa",
+      "bytes": 84790
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fbed023f5a5a5ca6a140b0fc1ccd8b32b620fb24302372b84622fe757a8e2f61",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Loaded Fries"
+    ],
+    "notes": "Golden crisp plain oven chips support browned beef mince crumbles, softened sliced red onion and red/yellow mixed peppers. Cold garlic herb yoghurt is drizzled over after cooking. No cheese, extra herbs or vegetable garnish. Entire believable loaded-chip serving remains framed.",
+    "alt": "Loaded oven chips with beef mince, red onion, peppers and garlic herb yoghurt",
+    "reviewed_at": "2026-10-05T12:50:06.463812+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:19.189486+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

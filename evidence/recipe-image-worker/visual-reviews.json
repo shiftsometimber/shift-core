@@ -30530,5 +30530,1045 @@
     "reviewed_at": "2026-10-05T01:27:19.936592+00:00",
     "reviewer": "worker-f visual inspection",
     "receipt": "evidence/recipe-image-worker/worker-f/2587.json"
+  },
+  "005d699c41a5e9fa75558685d609fdc97d3300b8094ce05c15b362021d6c4749": {
+    "decision": "pass",
+    "source_sha256": "957bac39f7cb99d870ed7c1076acff3b2a6634a56c8bdee44cf78f9ce517ba55",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-weekend-bacon"
+    ],
+    "titles": [
+      "Shift Weekend Bacon Breakfast Toastie"
+    ],
+    "notes": "Cut crisp brown wholemeal toastie contains cooked lean back bacon pieces, softened tomato, wilted spinach and translucent cooked onion in red sauce. No cheese or additional food. Whole two-half portion fits comfortably.",
+    "alt": "Cut crisp brown wholemeal toastie contains cooked lean back bacon pieces, softened tomato, wilted spinach and translucent cooked onion in red sauce",
+    "reviewed_at": "2026-10-05T12:46:33.260183+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:47:08.399724+00:00"
+  },
+  "023c75f215eee44235ebfc9b3cd6191f22e8d244f9eba26b729c3f92e3435294": {
+    "decision": "pass",
+    "source_sha256": "48a1c984f892166c0853137455458d0213857dece8faca5959c6c8d2bfcaf135",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-weekend-sausage"
+    ],
+    "titles": [
+      "Shift Weekend Sausage Breakfast Buttie"
+    ],
+    "notes": "One cut wholemeal bap contains browned cooked pork sausages, soft tomato, translucent onion and wilted spinach in ketchup coating. No eggs, beans or cheese. Full single serving on cream plate with crop margin.",
+    "alt": "Shift Weekend Sausage Breakfast Buttie, prepared with reduced-fat pork sausages, wholemeal bap, spinach, tomato",
+    "reviewed_at": "2026-10-05T12:44:27.437108+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:44:47.512441+00:00"
+  },
+  "16ec7d4009cf75f78ee592102a8ae243a4b28eec4ecb134398f271e99c1bfd9f": {
+    "decision": "pass",
+    "source_sha256": "fdbce3ca7110fa30c7f8a451a182e1a987d36b21354b037868d1a7c184cf9021",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-tomato-bacon"
+    ],
+    "titles": [
+      "Shift Tomato Bacon Breakfast Wrap"
+    ],
+    "notes": "Viewed actual source: cooked lean back bacon, softened red/yellow peppers and wilted spinach in a lightly crisp wholemeal tortilla cut into two halves. Tomato ketchup coating, olive oil sheen and incorporated vinegar match cooked filling. No extra egg, cheese, herbs or side sauce; full single serving with margin.",
+    "alt": "Shift Tomato Bacon Breakfast Wrap served on a cream plate",
+    "reviewed_at": "2026-10-05T12:44:42.279676+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:45:20.898898+00:00"
+  },
+  "2845e9ebdc44d5109607ed61b6b0823ed8e5e0a488541d5828729d5bb5852276": {
+    "decision": "pass",
+    "source_sha256": "df0e42b6e722dc09f50385fa6e0580f514b74b7a81dd480a5291aed5538231e4",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-smoky-bacon"
+    ],
+    "titles": [
+      "Shift Smoky Bacon Breakfast Wrap"
+    ],
+    "notes": "Viewed actual source: lean cooked back bacon pieces with browned edges, softened red/yellow peppers and wilted spinach visible inside two cut wholemeal wrap halves. Paprika/ketchup coating and oil sheen are incorporated; cider vinegar has no separate visible state. No egg, cheese, herbs or side food. Complete believable single wrap remains inside frame.",
+    "alt": "Shift Smoky Bacon Breakfast Wrap served on a cream plate",
+    "reviewed_at": "2026-10-05T12:44:41.408316+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:45:20.879926+00:00"
+  },
+  "2f251289620ca9d87f11d45742de7876990fbf2e3a12912492fd9f0bc924d394": {
+    "decision": "pass",
+    "source_sha256": "904bc0bf59e531840e06fdc3629454fb88323af4d3ec971e922a120e80658265",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-weekend-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Weekend Chicken Breakfast Hash"
+    ],
+    "notes": "Viewed actual source: cooked white chicken breast cubes, golden baby potato cubes, abundant softened onion and red/yellow/green peppers in combined breakfast hash. Light ketchup/vinegar/oil coating incorporated. No spinach, egg, garnish or side food. Entire credible single serving inside frame.",
+    "alt": "Shift Weekend Chicken Breakfast Hash served on a cream plate",
+    "reviewed_at": "2026-10-05T12:44:46.176949+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:45:20.910232+00:00"
+  },
+  "379522d03888d660823e61b69dbb9254b1790d354b19b240cac4901f9be95494": {
+    "decision": "pass",
+    "source_sha256": "69643f5703f3e83c0692c9e008477aefd79d0f5e8da96b5d068b13ce8db5c9cc",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-weekend-beans"
+    ],
+    "titles": [
+      "Shift Weekend Beans Breakfast Buttie"
+    ],
+    "notes": "Cut wholemeal bap filled with baked beans, softened tomato and translucent cooked onion, wilted spinach and tomato sauce. No sausage or cheese, no garnish. One serving centered on cream plate with margins.",
+    "alt": "Shift Weekend Beans Breakfast Buttie, prepared with baked beans, wholemeal bap, spinach, tomato",
+    "reviewed_at": "2026-10-05T12:44:26.179616+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:44:47.511948+00:00"
+  },
+  "43e6c0331d57e7f2d364adfe88a8c72a6b79c9dc5c6560e469bc214a61315d0f": {
+    "decision": "pass",
+    "source_sha256": "84cffa53df6cc31f93d764d0248bdb4eb53d18dc24faae295a2b5a4375b8700f",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-weekend-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Weekend Chicken Breakfast Buttie"
+    ],
+    "notes": "Brown wholemeal bap exposes browned cooked chicken breast, softened tomato, wilted spinach and cooked translucent onion with red sauce. No cheese, egg or bacon. Whole portion and plate are fully framed.",
+    "alt": "Brown wholemeal bap exposes browned cooked chicken breast, softened tomato, wilted spinach and cooked translucent onion with red sauce",
+    "reviewed_at": "2026-10-05T12:46:33.990705+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:47:08.400448+00:00"
+  },
+  "47dc388abfde55f46a8e63aea5e919ff54114e876f187ec1c4fa5223fe8efdb4": {
+    "decision": "pass",
+    "source_sha256": "b472b4584d74c6125035d2db20a5c27a3c7722edfd9c4e09b795249a3a95c3ff",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-tomato-sausage"
+    ],
+    "titles": [
+      "Shift Tomato Sausage Breakfast Buttie"
+    ],
+    "notes": "One wholemeal bap cut in halves contains browned pork sausages with opaque cooked interiors, softened tomato and wilted spinach in red sauce. No beans, eggs or cheese. Full cream plate and meal with margins.",
+    "alt": "Shift Tomato Sausage Breakfast Buttie, prepared with reduced-fat pork sausages, wholemeal bap, spinach, tomato",
+    "reviewed_at": "2026-10-05T12:44:25.120568+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:44:47.508547+00:00"
+  },
+  "480b826dc2254b7ac53e853b7b048fc00407b258e4969792c46c569238b9a1ef": {
+    "decision": "pass",
+    "source_sha256": "6a497de4a4a261dda2cdb87b0473049fe1bef516fdfb16966077cae9a9b5ac5e",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-tomato-turkey"
+    ],
+    "titles": [
+      "Shift Tomato Turkey Breakfast Toastie"
+    ],
+    "notes": "Toasted wholemeal sandwich shows reheated cooked turkey breast strands, softened tomato and wilted spinach, ketchup coating. Small same-filling remainder alongside as specified. No cheese or unlisted food; whole portion in frame.",
+    "alt": "Shift Tomato Turkey Breakfast Toastie, prepared with cooked turkey breast, wholemeal bread, tomato, spinach",
+    "reviewed_at": "2026-10-05T12:44:25.661164+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:44:47.511700+00:00"
+  },
+  "53a03989af1df3a96e4b2686fd5b304ed07bfa09781c0ec392525f159a88aafc": {
+    "decision": "pass",
+    "source_sha256": "60c8a36ffc1b00a157c12c67f0b8d5b0df40fa3164ff13ab60b01bb3820714f8",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-tomato-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Tomato Chicken Breakfast Hash"
+    ],
+    "notes": "Viewed actual source: browned cooked chicken breast chunks, golden tender potato cubes, translucent cooked onion and softened red/yellow peppers are visible in combined hash. Tomato ketchup and incorporated vinegar/oil coat components. No spinach, eggs, beans, herbs or extra sides. Complete single plate serving with food safely inside frame.",
+    "alt": "Shift Tomato Chicken Breakfast Hash served on a cream plate",
+    "reviewed_at": "2026-10-05T12:44:42.962265+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:45:20.899212+00:00"
+  },
+  "57742580b1cac9cc33e3424f8b35383d063236e6d04026ed0020cc7cb0254137": {
+    "decision": "pass",
+    "source_sha256": "14486f522700f5aad6cbeef6096fad3894b932e6e92afbc664fa1530acf8515f",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-tomato-sausage"
+    ],
+    "titles": [
+      "Shift Tomato Sausage Breakfast Toastie"
+    ],
+    "notes": "Browned sliced pork sausages with cooked pale interiors, tomato and wilted spinach are visible in crisp wholemeal toastie halves. Reddish ketchup sauce matches listed seasoning. No cheese, extra protein or garnish; one toastie serving.",
+    "alt": "Wholemeal pork sausage toastie with tomato and spinach.",
+    "reviewed_at": "2026-10-05T12:45:52.080812+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:46:28.013971+00:00"
+  },
+  "59f02d4cc410c9066d43630092950691396eb7ec311cb1479f733a3dd21d4bc1": {
+    "decision": "pass",
+    "source_sha256": "e33071477e232fae8184f9bd2790ce3de5d0c4afe2220c753323ffae5fb9bbca",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-tomato-beans"
+    ],
+    "titles": [
+      "Shift Tomato Beans Breakfast Toastie"
+    ],
+    "notes": "Visible cooked baked beans, softened tomato and wilted spinach in reddish ketchup sauce inside crisp brown wholemeal triangle toastie halves, with remaining measured filling alongside. No cheese or unlisted garnish; one toastie serving fully in frame.",
+    "alt": "Wholemeal baked-bean toastie with tomato and spinach.",
+    "reviewed_at": "2026-10-05T12:45:50.222650+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:46:28.012032+00:00"
+  },
+  "5de85af642ab6f23066e4412815d67154571d3aa3066e596a91fdf3c84564e74": {
+    "decision": "pass",
+    "source_sha256": "4543a631691d43f39184f762e5499811c112e4fb26fb311fa4a2cf6bca471614",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-tomato-egg"
+    ],
+    "titles": [
+      "Shift Tomato Egg Breakfast Toastie"
+    ],
+    "notes": "Two cut wholemeal toastie halves show fully set scrambled egg, softened tomato and wilted spinach; spare cooked filling is alongside as the method allows. Red sauce coats filling, with no cheese or meat. Full serving visible.",
+    "alt": "Two cut wholemeal toastie halves show fully set scrambled egg, softened tomato and wilted spinach; spare cooked filling is alongside as the method allows",
+    "reviewed_at": "2026-10-05T12:46:31.808329+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:47:08.398398+00:00"
+  },
+  "670c39cc6995d9241141d0444a2355e415e38cf25dc767f3e5e5dda2b01abc33": {
+    "decision": "pass",
+    "source_sha256": "0410964338cf00cdfe898662ce87233c3651ad2d46caf6eb9876a92d011af9cf",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-weekend-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Weekend Chicken Breakfast Toastie"
+    ],
+    "notes": "Wholemeal toasted sandwich halves contain cooked opaque chicken cubes, softened tomato, wilted spinach and translucent onion coated red. Same cooked filling alongside follows method. No cheese or garnish, full portion visible.",
+    "alt": "Shift Weekend Chicken Breakfast Toastie, prepared with chicken breast, wholemeal bread, tomato, spinach",
+    "reviewed_at": "2026-10-05T12:44:26.701805+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:44:47.512198+00:00"
+  },
+  "7e8f80113d6ec0f3cbffc7364845e4ab920096d5000007d07f890b81aa11d2cd": {
+    "decision": "pass",
+    "source_sha256": "2cf2048dc684ffda33ab61ec53ba3d96ff1be0dffa7ffaca67e1e35421ddccdb",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-tomato-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Tomato Chicken Breakfast Buttie"
+    ],
+    "notes": "Wholemeal bap holds browned fully cooked chicken breast pieces, softened tomato and wilted spinach; the red ketchup-vinegar coating is visible. No bacon, egg, cheese or fresh salad added. Whole ordinary bap and plate retained.",
+    "alt": "Wholemeal bap holds browned fully cooked chicken breast pieces, softened tomato and wilted spinach; the red ketchup-vinegar coating is visible",
+    "reviewed_at": "2026-10-05T12:46:31.096817+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:47:08.397725+00:00"
+  },
+  "8cffa74691f0efbd7bbfb2b5293220d80862173648110a2ead6b1c188995f1e4": {
+    "decision": "pass",
+    "source_sha256": "57a05125665b3d4159a3eff29af28057cd58e6318d1071f8c4093e9e896529cf",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-smoky-sausage"
+    ],
+    "titles": [
+      "Shift Smoky Sausage Breakfast Wrap"
+    ],
+    "notes": "Cut wholemeal wrap shows browned pork sausage pieces, softened red/yellow peppers, dark wilted spinach and red ketchup/paprika coating. Entire two halves form one serving; no eggs, cheese or garnish. Cream plate and all food retained with margin.",
+    "alt": "Shift Smoky Sausage Breakfast Wrap, prepared with reduced-fat pork sausages, wholemeal wrap, mixed peppers, spinach",
+    "reviewed_at": "2026-10-05T12:44:23.300666+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:44:47.504375+00:00"
+  },
+  "9752d532e55ba2b67e29cd9312d97c64c4e2599891e0a3c65c295b58ba8f9dfb": {
+    "decision": "pass",
+    "source_sha256": "daa0e040642f549e1b690729b01ee2ad37ad32706eecedefd51ed121f6bdbee1",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-weekend-egg"
+    ],
+    "titles": [
+      "Shift Weekend Egg Breakfast Toastie"
+    ],
+    "notes": "Cut wholemeal toastie shows fully set scrambled egg with cooked tomato, wilted spinach and translucent onion; remaining measured cooked filling sits alongside. No cheese or meat. Single dish retained within image.",
+    "alt": "Cut wholemeal toastie shows fully set scrambled egg with cooked tomato, wilted spinach and translucent onion; remaining measured cooked filling sits alongside",
+    "reviewed_at": "2026-10-05T12:46:34.631167+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:47:08.400891+00:00"
+  },
+  "a06f792c41a9bd1982a22f961e1b327d3d5da70201c43dbbef1791242203317e": {
+    "decision": "pass",
+    "source_sha256": "fdb0df13abc4cc827dbb768ae0e3afbf9dbf281d1b7974269482cdd1d42b2db5",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-smoky-turkey"
+    ],
+    "titles": [
+      "Shift Smoky Turkey Breakfast Wrap"
+    ],
+    "notes": "Actual source shows cooked turkey breast slices with softened red/yellow peppers and wilted spinach, lightly ketchup-paprika coated, enclosed in a browned wholemeal wrap cut into two halves. No cheese, garnish, or unlisted side foods. Single wrap serving remains identifiable in the 4:3 preview crop.",
+    "alt": "Wholemeal turkey wrap with cooked peppers and spinach, cut into halves.",
+    "reviewed_at": "2026-10-05T12:41:30.388488+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:46:28.010830+00:00"
+  },
+  "a191bac21f9719736a5a16717e4bc1db581c3642568713ef521cfbc6c98d12b6": {
+    "decision": "pass",
+    "source_sha256": "fcde9e8526fc4612c3be51a296c40b88b20a3a492f115a97b16106836b1e66ff",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-weekend-beans"
+    ],
+    "titles": [
+      "Shift Weekend Beans Breakfast Toastie"
+    ],
+    "notes": "Cooked baked beans, softened tomato, translucent onion and wilted spinach appear in crisp wholemeal toastie halves with remaining cooked filling alongside. No cheese, extra protein or garnish. One toastie serving is fully framed.",
+    "alt": "Wholemeal beans toastie with cooked tomato, spinach and onion.",
+    "reviewed_at": "2026-10-05T12:45:53.900659+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:46:28.016760+00:00"
+  },
+  "aabe6fe2a3835307c6825ef9fbea634fa1352f1a40f2d1862bc6d123cd70cab1": {
+    "decision": "pass",
+    "source_sha256": "bdab0146a5f449f3700e15fd1be6e55f69d2ef00ac92d864205453c78a774573",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-tomato-egg"
+    ],
+    "titles": [
+      "Shift Tomato Egg Breakfast Buttie"
+    ],
+    "notes": "Tender cooked scrambled egg, softened tomato and wilted spinach visibly fill a brown wholemeal bap with red ketchup coating. No cheese, extra protein or garnish. One intact filled bap on cream plate with clear surrounding margin.",
+    "alt": "Wholemeal egg bap with cooked tomato and spinach.",
+    "reviewed_at": "2026-10-05T12:45:51.028915+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:46:28.012956+00:00"
+  },
+  "ab04aa6a73007f5e13df7db32ac9489d9797c2fd9c93ab3468271a2157897b14": {
+    "decision": "pass",
+    "source_sha256": "bdc0eca9b11e6c382d975d0107cd27f7d0c6409789bcb6e4f1edc28559b718e6",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-tomato-egg"
+    ],
+    "titles": [
+      "Shift Tomato Egg Breakfast Wrap"
+    ],
+    "notes": "Viewed actual source: tender set scrambled egg pieces, softened red/yellow peppers and wilted spinach inside lightly browned wholemeal tortilla halves. Ketchup/oil coat filling and vinegar is incorporated. No meat, cheese, herbs or side food. Full believable single wrap with crop margin.",
+    "alt": "Shift Tomato Egg Breakfast Wrap served on a cream plate",
+    "reviewed_at": "2026-10-05T12:44:43.712169+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:45:20.900684+00:00"
+  },
+  "ad1bf24eb6dc4646f7975c0fc3c48027c9d9b879d449b0ea3a114c384b30700b": {
+    "decision": "pass",
+    "source_sha256": "2758bc60bdde3433ce10c8af66afc93347cba17e4f1a13cb359c25cb56d8e0e5",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-weekend-egg"
+    ],
+    "titles": [
+      "Shift Weekend Egg Breakfast Wrap"
+    ],
+    "notes": "Viewed actual source: tender set egg curds, softened onion and red/yellow peppers with wilted spinach inside a browned wholemeal wrap cut into two halves. Light ketchup/vinegar/oil coating incorporated. No meat, cheese, extra garnish or sides. Complete serving with margins.",
+    "alt": "Shift Weekend Egg Breakfast Wrap served on a cream plate",
+    "reviewed_at": "2026-10-05T12:44:47.101218+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:45:20.916977+00:00"
+  },
+  "b57a1061114c8e95a79e03524266c100c0a5098ab8c0d69215c0ba672e27d262": {
+    "decision": "pass",
+    "source_sha256": "e79bfb3ce9fd14d8ee0484650e363e03dc4d7cb150ec3665d6d9ca7e2983133d",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-weekend-sausage"
+    ],
+    "titles": [
+      "Shift Weekend Sausage Breakfast Toastie"
+    ],
+    "notes": "Crisp brown wholemeal toastie halves show browned cooked pork sausage slices with pale interiors, softened tomato and onion, wilted spinach and ketchup sauce. No cheese or extra foods; one toastie serving within plate.",
+    "alt": "Wholemeal pork sausage toastie with tomato, spinach and onion.",
+    "reviewed_at": "2026-10-05T12:45:55.719261+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:46:28.017835+00:00"
+  },
+  "b77e82ceaa456825ee7d23567f09f876e14f00abb66ab3169da9f93c599da53a": {
+    "decision": "pass",
+    "source_sha256": "20950979969a9bd942316a2b26c112baf19378678fa4a88aa927dda582173d11",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-tomato-turkey"
+    ],
+    "titles": [
+      "Shift Tomato Turkey Breakfast Buttie"
+    ],
+    "notes": "Wholemeal bap contains sliced lightly browned cooked turkey breast, softened tomato, wilted spinach and red ketchup-vinegar coating. No bacon, egg, cheese or added garnish. Complete plausible single bap fits the image.",
+    "alt": "Wholemeal bap contains sliced lightly browned cooked turkey breast, softened tomato, wilted spinach and red ketchup-vinegar coating",
+    "reviewed_at": "2026-10-05T12:46:32.450037+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:47:08.399230+00:00"
+  },
+  "b8a85776890468475c508a061835ace26501577d1f9afc9920fe2285960203ec": {
+    "decision": "pass",
+    "source_sha256": "31bf5b4e9f4e346b7ea8226c4b0d5ec92e1741f26f9e146848e02099040bae1b",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-tomato-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Tomato Chicken Breakfast Toastie"
+    ],
+    "notes": "Crisp wholemeal toastie halves show opaque cooked diced chicken, softened tomato and wilted spinach coated in ketchup. Small remainder of same cooked filling served alongside per method. No cheese or garnish; complete portion in frame.",
+    "alt": "Shift Tomato Chicken Breakfast Toastie, prepared with chicken breast, wholemeal bread, tomato, spinach",
+    "reviewed_at": "2026-10-05T12:44:24.577775+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:44:47.508322+00:00"
+  },
+  "c861f38e651d3dccf17a17c968e15d96df9bafe3a9ee885cc518f8c60dd55edd": {
+    "decision": "pass",
+    "source_sha256": "62ac249ab2e999be3905496f289fa10c8e89cd62efd0661d80a0b164fd8e9fe4",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-tomato-turkey"
+    ],
+    "titles": [
+      "Shift Tomato Turkey Breakfast Hash"
+    ],
+    "notes": "Viewed actual source: cooked pale turkey breast chunks, golden potato cubes, softened onion and red/yellow peppers in combined hash. Ketchup/vinegar/oil are incorporated in the warm coating. No egg, beans, spinach, garnish or side food. Single full serving safely inside frame.",
+    "alt": "Shift Tomato Turkey Breakfast Hash served on a cream plate",
+    "reviewed_at": "2026-10-05T12:44:44.761797+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:45:20.906377+00:00"
+  },
+  "d3ffe8b3b4d01585559e89f769b5141bec4fdc81d4d30bac337c4969d5664afb": {
+    "decision": "pass",
+    "source_sha256": "f15518b948931ce93b5797089c2c9678fc1ce4cdd698d0395c515530bb3fa852",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-tomato-beans"
+    ],
+    "titles": [
+      "Shift Tomato Beans Breakfast Buttie"
+    ],
+    "notes": "Wholemeal bap halves show baked beans in tomato sauce, softened tomato and wilted spinach. No meat or cheese, no unlisted garnish. One complete bap on cream plate with safe margins.",
+    "alt": "Shift Tomato Beans Breakfast Buttie, prepared with baked beans, wholemeal bap, spinach, tomato",
+    "reviewed_at": "2026-10-05T12:44:23.944261+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:44:47.507975+00:00"
+  },
+  "dc56c6976d8841835b892133e73ac4ec387966717517c8d67c0480a6878f42eb": {
+    "decision": "pass",
+    "source_sha256": "d21965a02a4512ae168e591b53d19622b7dd2dbc5e3a7753c7493015157a9636",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-weekend-egg"
+    ],
+    "titles": [
+      "Shift Weekend Egg Breakfast Buttie"
+    ],
+    "notes": "One brown wholemeal bap cut in two shows tender scrambled eggs, wilted spinach, softened tomato and translucent onion with modest ketchup coating. No cheese, extra protein, or garnish. Single bap serving remains fully visible.",
+    "alt": "Wholemeal egg bap with tomato, spinach and onion, cut in halves.",
+    "reviewed_at": "2026-10-05T12:45:54.878722+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:46:28.017342+00:00"
+  },
+  "f6ad79810f74ff3763b77da40b1c8529ef88e3f3de0f9807235a2067924253c8": {
+    "decision": "pass",
+    "source_sha256": "bdf1fa96e9bd07068254cc07785e6fdf23b76ed8707e65189463de2d06c86ad9",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-weekend-bacon"
+    ],
+    "titles": [
+      "Shift Weekend Bacon Breakfast Buttie"
+    ],
+    "notes": "Broad cooked lean back-bacon rashers with browned edges fill brown wholemeal bap above wilted spinach, softened tomato and translucent onion. No streaky bacon substitution, cheese, or added garnish. One filled bap is fully shown.",
+    "alt": "Wholemeal back-bacon bap with tomato, spinach and onion.",
+    "reviewed_at": "2026-10-05T12:45:52.983852+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:46:28.015145+00:00"
+  },
+  "f829b5ec6b9badbb29db96555c5202ac44d905dfac323020d887346856300445": {
+    "decision": "pass",
+    "source_sha256": "bf9e95356cbf718d0fb63ea0a81d32c3edfc49917ddff2a12b8a32ac32ed0cf7",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-weekend-bacon"
+    ],
+    "titles": [
+      "Shift Weekend Bacon Breakfast Wrap"
+    ],
+    "notes": "Viewed actual source: cooked lean back bacon pieces, softened onion, red/yellow peppers and wilted spinach inside two halves of one lightly pan-crisp wholemeal tortilla. Ketchup/vinegar/oil coating incorporated. No eggs, cheese, herbs, extra sauce or sides. Food entirely inside frame.",
+    "alt": "Shift Weekend Bacon Breakfast Wrap served on a cream plate",
+    "reviewed_at": "2026-10-05T12:44:45.430960+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:45:20.909671+00:00"
+  },
+  "fb338c6698c72264409dec1fb8d475decc19110aa1c586e765293d1ceb298cd4": {
+    "decision": "pass",
+    "source_sha256": "cf2479ac682f9693aa36e265523e767dd6f1aa7d1459435e4957102896840e16",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-tomato-bacon"
+    ],
+    "titles": [
+      "Shift Tomato Bacon Breakfast Toastie"
+    ],
+    "notes": "Brown wholemeal bread toasted into two cut halves; lean back bacon pieces are cooked, with softened tomato and wilted spinach in red ketchup-vinegar sauce. No cheese, egg or garnish. Complete single toastie and plate fit the frame.",
+    "alt": "Brown wholemeal bread toasted into two cut halves; lean back bacon pieces are cooked, with softened tomato and wilted spinach in red ketchup-vinegar sauce",
+    "reviewed_at": "2026-10-05T12:46:30.546561+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:47:08.396936+00:00"
+  },
+  "03d307b5c746c889ef531f2a2af8d38d09a91b31be07ee55d5d2d168e9573bfe": {
+    "decision": "pass",
+    "source_sha256": "500fe1d2bd3da8315ee9b8f6c4e20611c678f73111112a5c005e9c319e5b074c",
+    "recipe_ids": [
+      "industrial-v3-traybake-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Traybake"
+    ],
+    "notes": "Browned chicken breast with roasted baby potato pieces, roasted broccoli and red pepper; small cold garlic/dried parsley mayonnaise. No fresh herb garnish. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Chicken Traybake, prepared with chicken breast, baby potatoes, broccoli, red pepper",
+    "reviewed_at": "2026-10-05T12:50:23.832352+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:46.240233+00:00"
+  },
+  "137f0e4aa4efe78aa245c40fade60bf13c5329b53e542de36abe1bd893888f7f": {
+    "decision": "pass",
+    "source_sha256": "d439eb5354daa5a30d2c4c2410abeb33316f2e9e59cd8bd1d9a38ca01f898297",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-tomato-sausage"
+    ],
+    "titles": [
+      "Shift Tomato Sausage Breakfast Hash"
+    ],
+    "notes": "Sliced browned pork sausages show cooked beige interiors in a hash of golden potato cubes, softened onion and mixed peppers. The ketchup/vinegar coating is integrated; no separate sauce or added garnish. One full serving remains visible at 960.",
+    "alt": "Shift Tomato Sausage Breakfast Hash, freshly prepared with the listed ingredients",
+    "reviewed_at": "2026-10-05T12:46:29.779311+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:49:50.272468+00:00"
+  },
+  "14c3fbf78b56a38ffeb55fec6708d9d20d3f98197c0d3ab42b0feb36d46ec5a9": {
+    "decision": "pass",
+    "source_sha256": "a697bfc11c5eaaea87b664050edc27081d20f95ba71c3d844b3194f868cfb319",
+    "recipe_ids": [
+      "industrial-v3-traybake-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Traybake"
+    ],
+    "notes": "Roasted golden baby potato halves, browned loose beef mince, cooked broccoli and roasted red pepper with small cold garlic/dried parsley mayonnaise ramekin. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Beef Traybake, prepared with 5% beef mince, baby potatoes, broccoli, red pepper",
+    "reviewed_at": "2026-10-05T12:50:22.483803+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:46.239871+00:00"
+  },
+  "1f2812e57e93ddd3aab3a1de0aec42013fa884aba74f756341cded6a9f769c97": {
+    "decision": "pass",
+    "source_sha256": "6ca84c3637e611a0d06352381437903686c0f080bc0adea0ce9e6dc281fe55b3",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-tomato-egg"
+    ],
+    "titles": [
+      "Shift Tomato Egg Breakfast Hash"
+    ],
+    "notes": "Fully set scrambled egg curds mixed through golden diced potatoes, softened onion and red/yellow peppers, light tomato coating. No fried eggs, meat, spinach or extras.",
+    "alt": "Shift Tomato Egg Breakfast Hash, prepared with large eggs, baby potatoes, onion, mixed peppers",
+    "reviewed_at": "2026-10-05T12:47:55.163957+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:48:29.470529+00:00"
+  },
+  "289dbf668319ab6bd06f0ec9fae5e1c64a49d8520c85e597df323e861a5e7c01": {
+    "decision": "pass",
+    "source_sha256": "915880bc2a7745ea85afb21d301d27df0d1161e993249d3f9c177e5260363907",
+    "recipe_ids": [
+      "industrial-v3-pie-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Proper Pie"
+    ],
+    "notes": "Golden fork-ridged mashed potato covers cooked pork loin cubes, carrots and peas, visible at scooped edge. Garlic/dried parsley mayonnaise separate, no pastry. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Pork Proper Pie, prepared with lean pork loin, potatoes, carrots, peas",
+    "reviewed_at": "2026-10-05T12:50:24.844722+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:46.240394+00:00"
+  },
+  "2c0d40aff545528a743ffcd3987a071d1e812a9880e88478d7dd2b14714fca43": {
+    "decision": "pass",
+    "source_sha256": "372b79a9b03c427b334b78df2219bcb787a53937907f25716ec459d29c08a1c3",
+    "recipe_ids": [
+      "industrial-v3-curry-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Rice Bowl"
+    ],
+    "notes": "Single bowl contains browned cooked chicken breast cubes with pale interiors, softened red/yellow peppers and translucent onion over fluffy white basmati rice. White mayonnaise with dried-parsley flecks is added on top. No extra vegetables or garnish; bowl and serving fully framed.",
+    "alt": "Chicken and pepper basmati rice bowl with garlic-parsley mayonnaise.",
+    "reviewed_at": "2026-10-05T12:49:08.501067+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:49:19.983107+00:00"
+  },
+  "2c0e53937ceaaa75bfe3c9751feb10ff4dfa3005d386d003baafd326e4ecfbc9": {
+    "decision": "pass",
+    "source_sha256": "bf4a00a71568068b226920bcd02d2c5c5e3483c9f72e0ad345d10a3650325c0a",
+    "recipe_ids": [
+      "industrial-v3-curry-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Rice Bowl"
+    ],
+    "notes": "Browned crumbled beef mince with softened red/yellow peppers and translucent onion sits over fluffy white long-grain basmati rice. Cold mayonnaise dressing has small dried-parsley flecks. No additional vegetables, garnish, or side food; single bowl fully framed.",
+    "alt": "Beef mince and pepper basmati rice bowl with garlic-parsley mayonnaise.",
+    "reviewed_at": "2026-10-05T12:47:42.120941+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:48:04.374829+00:00"
+  },
+  "4005ac63f6060d5d804c0c1f50036ce04b5c28044b3fb64f5f08cad848ea5a2f": {
+    "decision": "pass",
+    "source_sha256": "d715620f63f56b5a9820a1056e8a84af3d36c1b4691ab5ae03f79c7ca3491242",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-tomato-sausage"
+    ],
+    "titles": [
+      "Shift Tomato Sausage Breakfast Wrap"
+    ],
+    "notes": "Cooked pork sausage rounds with softened red/yellow peppers and wilted spinach in lightly toasted wholemeal wrap halves. No onion, egg, beans, garnish or sides.",
+    "alt": "Shift Tomato Sausage Breakfast Wrap, prepared with reduced-fat pork sausages, wholemeal wrap, mixed peppers, spinach",
+    "reviewed_at": "2026-10-05T12:47:55.884616+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:48:29.470824+00:00"
+  },
+  "40c2e57903c43744495f76406ac67c7a2ad9ea3c605b62141591069be83a5b62": {
+    "decision": "pass",
+    "source_sha256": "b41642c8dd7706aa1eab80b74d92222b659f3befde7515365635c0e42dafd49c",
+    "recipe_ids": [
+      "industrial-v3-burger-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Fakeaway Burger"
+    ],
+    "notes": "Burger contains browned unbreaded chicken breast cutlet with cooked pale interior edges, tomato slices, shredded lettuce and garlic-herb yoghurt inside brown wholemeal bun. No beef patty, breading, cheese, pickles or sides. Entire single burger framed.",
+    "alt": "Wholemeal chicken burger with lettuce, tomato and garlic-herb yoghurt.",
+    "reviewed_at": "2026-10-05T12:47:42.950456+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:48:04.375127+00:00"
+  },
+  "53e5d5e4057d2beb9d1d06591a8db995618d17debecc20ec95aa934665128b55": {
+    "decision": "pass",
+    "source_sha256": "b80dbe7253f883f3c6be08ee5f75dd689bf46d4794df18b75bebf17c938777ce",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-tomato-beans"
+    ],
+    "titles": [
+      "Shift Tomato Beans Breakfast Hash"
+    ],
+    "notes": "Golden pan-fried baby potato cubes, soft baked beans, cooked onion and red/yellow pepper are all visible in the mixed hot hash. Ketchup/vinegar form its light tomato coating with the measured oil sheen. No additional food or garnish. Full single serving and 4:3 crop retain the complete food.",
+    "alt": "Shift Tomato Beans Breakfast Hash, freshly prepared with the listed ingredients",
+    "reviewed_at": "2026-10-05T12:46:28.208145+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:49:50.271547+00:00"
+  },
+  "54a2b3bf83047f98e98f6e85853efa5998157f9e2b1f344a177b6bd18b69a983": {
+    "decision": "pass",
+    "source_sha256": "ad107752df6dc8d5e5501a959758deba5f67f3162aee9ad85bba06c6ae60d23c",
+    "recipe_ids": [
+      "industrial-v3-burger-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Fakeaway Burger"
+    ],
+    "notes": "One cooked lean pork loin cutlet with browned face and pale interior fills brown wholemeal bun with shredded lettuce, tomato slices and white garlic-herb yoghurt. No beef mince, chicken, breading, cheese, or sides. Single burger fully framed.",
+    "alt": "Wholemeal pork loin burger with lettuce, tomato and garlic-herb yoghurt.",
+    "reviewed_at": "2026-10-05T12:49:09.174536+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:49:19.990851+00:00"
+  },
+  "5f0b2d0317a99bd5f70122627cc880beafb5d00389524534425a213e9d62bfae": {
+    "decision": "pass",
+    "source_sha256": "de65b5755ceb716181fa1e4106e73c4379ce70af57eb071ad265b19507a483be",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-tomato-turkey"
+    ],
+    "titles": [
+      "Shift Tomato Turkey Breakfast Wrap"
+    ],
+    "notes": "One sealed toasted wholemeal wrap cut into two halves has lightly browned cooked pale fibrous turkey breast pieces, wilted spinach and cooked mixed peppers. Listed ketchup/vinegar appear as coating, oil is incorporated. No additional ingredients; entire food retained in responsive crop.",
+    "alt": "Shift Tomato Turkey Breakfast Wrap, freshly prepared with the listed ingredients",
+    "reviewed_at": "2026-10-05T12:46:30.520404+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:49:50.272644+00:00"
+  },
+  "6150ea46857ff9c56f52ef569006e399fef4f6849e2f1f0dfa363bab3ed783d5": {
+    "decision": "pass",
+    "source_sha256": "fbed023f5a5a5ca6a140b0fc1ccd8b32b620fb24302372b84622fe757a8e2f61",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Loaded Fries"
+    ],
+    "notes": "Golden crisp plain oven chips support browned beef mince crumbles, softened sliced red onion and red/yellow mixed peppers. Cold garlic herb yoghurt is drizzled over after cooking. No cheese, extra herbs or vegetable garnish. Entire believable loaded-chip serving remains framed.",
+    "alt": "Loaded oven chips with beef mince, red onion, peppers and garlic herb yoghurt",
+    "reviewed_at": "2026-10-05T12:50:06.463812+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:19.189486+00:00"
+  },
+  "64292359f5c9311f6915fa664c51b344279c57697cd837455ddb33d3452ca420": {
+    "decision": "pass",
+    "source_sha256": "2b9f46594d67a00147597ab92961285fa3bf71add74ec110dee704f624cf2789",
+    "recipe_ids": [
+      "industrial-v3-burger-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Fakeaway Burger"
+    ],
+    "notes": "One salmon burger shows cooked opaque pink fillet with distinct flakes and browned surface, tomato slices, shredded lettuce and garlic-herb yoghurt in brown wholemeal bun. No fishcake, breading, cheese, garnish or sides. Single burger fully framed.",
+    "alt": "Wholemeal salmon fillet burger with lettuce, tomato and garlic-herb yoghurt.",
+    "reviewed_at": "2026-10-05T12:50:02.216978+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:10.975204+00:00"
+  },
+  "6ab76dfd5e4203833260a3942354a3cbf4a50429ad6c2ff0a0bc4a4a09af842b": {
+    "decision": "pass",
+    "source_sha256": "409eb817178eb0288bd79cb90d4962fbb408449e86729b4b4ab47a48bd39750c",
+    "recipe_ids": [
+      "industrial-v3-pizza-loaded-salmon"
+    ],
+    "titles": [
+      "Shift Fully Loaded Salmon Proper Pizza"
+    ],
+    "notes": "Four visibly cut pizza slices together show opaque cooked salmon flakes, softened red and yellow pepper strips, tomato passata and pale pink mayonnaise-ketchup finishing sauce. Paprika/chilli coating is on salmon. Cooked base cut edges are visible. No cheese or garnish; full pizza and plate framed.",
+    "alt": "Sliced salmon pizza with peppers, tomato sauce and mayonnaise-ketchup drizzle",
+    "reviewed_at": "2026-10-05T12:50:05.864607+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:19.188279+00:00"
+  },
+  "6b1b897212011bf835b36d784775ed4f3047e6d1cdea76c8b3e713e093a23624": {
+    "decision": "pass",
+    "source_sha256": "cd9e0496db5e85a8b02c1d23e0e545f2c22dffc7e58a568e23b81b1db345ab77",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-tomato-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Tomato Chicken Breakfast Wrap"
+    ],
+    "notes": "One toasted wholemeal wrap, cut into two halves, exposes fully cooked white chicken breast pieces, wilted spinach and softened red/yellow peppers. Tomato ketchup/vinegar coat the filling with oil sheen. No additional filling, garnish or sides; full serving fits the 960 crop.",
+    "alt": "Shift Tomato Chicken Breakfast Wrap, freshly prepared with the listed ingredients",
+    "reviewed_at": "2026-10-05T12:46:29.187244+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:49:50.272045+00:00"
+  },
+  "72ffbc1a582681467b18a2ce5de4c2ea3322c46b79441cee2e73082327213a55": {
+    "decision": "pass",
+    "source_sha256": "cbd73032c2b28ec60d68e587dcd6c411766d0728689f0b826e18263bfd0b1ea8",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-weekend-bacon"
+    ],
+    "titles": [
+      "Shift Weekend Bacon Breakfast Hash"
+    ],
+    "notes": "Cooked lean bacon pieces, small golden potato cubes, softened onion and mixed peppers in one bowl; light ketchup coating incorporated. No egg, spinach, garnish or side dish.",
+    "alt": "Shift Weekend Bacon Breakfast Hash, prepared with lean back bacon, baby potatoes, onion, mixed peppers",
+    "reviewed_at": "2026-10-05T12:47:56.496985+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:48:29.472465+00:00"
+  },
+  "794ba51fa226b006cc79a22ea27ffee550842037ba3023f12c2ceb83e7e503ce": {
+    "decision": "pass",
+    "source_sha256": "af6c8987e21ae769c88e8922c26b9ff796062ae6cef283effa14c3e1cf3389d7",
+    "recipe_ids": [
+      "industrial-v3-curry-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Rice Bowl"
+    ],
+    "notes": "Single bowl shows cooked pale pork loin pieces with browned faces, softened mixed peppers and translucent onion over fluffy white basmati rice; garlic-parsley mayonnaise on top. No other vegetables, garnish or side food; whole serving framed.",
+    "alt": "Pork loin and pepper basmati rice bowl with garlic-parsley mayonnaise.",
+    "reviewed_at": "2026-10-05T12:49:09.705743+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:49:19.994598+00:00"
+  },
+  "79e50625afba446b421341b6538856834bf3f676397b6dc08d46c41047283cbe": {
+    "decision": "pass",
+    "source_sha256": "35024dd155c2d277e0575246a1f720263b548ab36d63e705d110c5b25bff1b41",
+    "recipe_ids": [
+      "industrial-v3-pizza-loaded-tofu"
+    ],
+    "titles": [
+      "Shift Fully Loaded Tofu Proper Pizza"
+    ],
+    "notes": "Single individual pizza shows browned firm-tofu cubes, softened mixed pepper strips and tomato-passata base with pink mayonnaise-ketchup finishing sauce. No cheese or unlisted topping. Baked crust and all toppings are fully framed on cream plate.",
+    "alt": "Tofu pizza with peppers, tomato passata and mayonnaise-ketchup sauce.",
+    "reviewed_at": "2026-10-05T12:47:40.421664+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:48:04.374070+00:00"
+  },
+  "7c15b7f1b0945ad90485bb70ead1dfdcba3c7404b4f93d36344636557a48a0ff": {
+    "decision": "pass",
+    "source_sha256": "402b32731d682853f3b1fb6908554b202840048306467fe69b39d4025b38e00d",
+    "recipe_ids": [
+      "industrial-v3-pie-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Proper Pie"
+    ],
+    "notes": "Golden fork-ridged mashed-potato pie in small cream casserole; exposed brown beef mince crumbles, cooked carrot dice and peas. Separate dried-parsley garlic mayonnaise ramekin, no pastry. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Beef Proper Pie, prepared with 5% beef mince, potatoes, carrots, peas",
+    "reviewed_at": "2026-10-05T12:50:21.195294+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:46.239668+00:00"
+  },
+  "821b5503b6e4846b4d74fccd496d2dc96a20b847cd89e8b6ca6ee0be6c9a8724": {
+    "decision": "pass",
+    "source_sha256": "81af5c2649c02dd7b500837decfa567f7a59fd3a8f99167b937bc6b5b3822cc8",
+    "recipe_ids": [
+      "industrial-v3-kebab-loaded-tofu"
+    ],
+    "titles": [
+      "Shift Fully Loaded Tofu Fakeaway Kebab"
+    ],
+    "notes": "Folded warmed wholemeal flatbread contains golden browned tofu cubes with paprika/chilli coating, fresh raw shredded lettuce and sliced tomato, pink cold mayo/ketchup dressing. No meat. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Fully Loaded Tofu Fakeaway Kebab, prepared with firm tofu, wholemeal flatbread, lettuce, tomato",
+    "reviewed_at": "2026-10-05T12:50:19.195627+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:46.238129+00:00"
+  },
+  "831bc707780ff6ee7b1e7f81de35a6af0e555d22841015a94e30b8978645ea8b": {
+    "decision": "pass",
+    "source_sha256": "68f20efa746f12165b1c9b76bb13bcc63d8efa931e1cbe360f5f679fd8fbc013",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-weekend-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Weekend Chicken Breakfast Wrap"
+    ],
+    "notes": "Toasted wholemeal wrap halves expose browned and fully cooked chicken pieces, wilted spinach, softened mixed peppers and translucent onion. Ketchup/vinegar coat the filling and oil is incorporated. No unlisted garnish or sides; one full serving is retained in crop.",
+    "alt": "Shift Weekend Chicken Breakfast Wrap, freshly prepared with the listed ingredients",
+    "reviewed_at": "2026-10-05T12:46:32.586781+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:49:50.273389+00:00"
+  },
+  "9e06d4dcc68e9d13623010b93a4d774f65ae1ad5c1bbd39c4238e85ad776755f": {
+    "decision": "pass",
+    "source_sha256": "6daebf41aca334261c6ded4bc812bd737f04f362247c422b7dbee547c3e3563c",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-weekend-beans"
+    ],
+    "titles": [
+      "Shift Weekend Beans Breakfast Hash"
+    ],
+    "notes": "Full mixed hash shows golden baby potato cubes, soft baked beans, abundant cooked onion and softened mixed peppers with a light tomato ketchup/vinegar coating. Beans have not been browned. No added food or garnish; full food and serving margins retained.",
+    "alt": "Shift Weekend Beans Breakfast Hash, freshly prepared with the listed ingredients",
+    "reviewed_at": "2026-10-05T12:46:31.766479+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:49:50.273154+00:00"
+  },
+  "a1be86b2e381fe98ce9e4e452027e2604438ba56051ef8a7b7bb373209958f44": {
+    "decision": "pass",
+    "source_sha256": "e0ad90c5147f7ea16b99072b0e3d4f8e402dc8b1443999a0c0d093f0b2816127",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-tomato-bacon"
+    ],
+    "titles": [
+      "Shift Tomato Bacon Breakfast Hash"
+    ],
+    "notes": "Cooked lean back-bacon pieces, golden small potato cubes, softened onion and red/yellow peppers visible; ketchup mixed as light red coating, no spinach or sides. Credible single bowl portion and crop margin.",
+    "alt": "Shift Tomato Bacon Breakfast Hash, prepared with lean back bacon, baby potatoes, onion, mixed peppers",
+    "reviewed_at": "2026-10-05T12:47:53.773338+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:48:29.469900+00:00"
+  },
+  "a1e3dff12b1ff34a51fd221ada34bd88c8e1391dd63ef571d99d24627117a0c4": {
+    "decision": "pass",
+    "source_sha256": "3427cb5fce3055d9311ce52a9fdfbf9eedb8d6b1b72e9b1d3816de1772901022",
+    "recipe_ids": [
+      "industrial-v3-kebab-loaded-turkey"
+    ],
+    "titles": [
+      "Shift Fully Loaded Turkey Fakeaway Kebab"
+    ],
+    "notes": "Brown wholemeal flatbread folded around fully cooked minced turkey koftas, cut to expose crumbly pale turkey interior and paprika/chilli-coloured browned crust. Lettuce and tomato remain raw and fresh; pink mayonnaise-ketchup sauce is cold on assembly. No cheese, herbs or unlisted vegetables. Complete single wrap and plate fit frame.",
+    "alt": "Wholemeal flatbread with turkey koftas, fresh lettuce and tomato and mayonnaise-ketchup sauce",
+    "reviewed_at": "2026-10-05T12:48:58.383346+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:49:11.245612+00:00"
+  },
+  "a40f224d1985bb33deb08d48adcd5375d52a8d3cb494df3680029c03b890014d": {
+    "decision": "pass",
+    "source_sha256": "8a41043e3b670698cdc1bd74fb349de7c4c848a4916784a75498a68060097425",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-weekend-beans"
+    ],
+    "titles": [
+      "Shift Weekend Beans Breakfast Wrap"
+    ],
+    "notes": "Visible baked beans, wilted spinach, softened onion and red/yellow peppers in a pan-sealed wholemeal wrap cut into halves. Tomato sauce incorporated, no meat, eggs or extra foods.",
+    "alt": "Shift Weekend Beans Breakfast Wrap, prepared with baked beans, wholemeal wrap, mixed peppers, spinach",
+    "reviewed_at": "2026-10-05T12:47:57.172649+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:48:29.472739+00:00"
+  },
+  "b21879699a989cb2352061125324f1a0a85ae6e6b1aeb9ba295965f64770fd31": {
+    "decision": "pass",
+    "source_sha256": "26ebef180051e44f8297f42b5b50b3f67e952a76a118de346ab019342d17f8e2",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-tomato-beans"
+    ],
+    "titles": [
+      "Shift Tomato Beans Breakfast Wrap"
+    ],
+    "notes": "Baked beans with wilted spinach and softened red/yellow peppers in one wholemeal wrap cut into two halves. Tomato coating incorporated; no meat, egg, onion, garnish or sides.",
+    "alt": "Shift Tomato Beans Breakfast Wrap, prepared with baked beans, wholemeal wrap, mixed peppers, spinach",
+    "reviewed_at": "2026-10-05T12:47:54.481229+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:48:29.470342+00:00"
+  },
+  "bfa79fdfc7f7198c2470a3fbc070e04a6cf1afdee59482922629b0a19f55e612": {
+    "decision": "pass",
+    "source_sha256": "c582c1f4a95804663b7f3743d29dcae9f55514b7b077c2fce086befa2f2636a4",
+    "recipe_ids": [
+      "industrial-v3-pizza-loaded-turkey"
+    ],
+    "titles": [
+      "Shift Fully Loaded Turkey Proper Pizza"
+    ],
+    "notes": "Individual baked pizza shows cooked crumbled turkey mince, softened mixed peppers, tomato passata and pink cold finishing sauce. No cheese or fresh herb. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Fully Loaded Turkey Proper Pizza, prepared with 100% turkey breast mince, raw, individual pizza base, tomato passata, mixed peppers",
+    "reviewed_at": "2026-10-05T12:50:20.021317+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:46.238914+00:00"
+  },
+  "ce4991443b5402d4bb569249efa8ca8e7c10c7bc89378d009af7fe35883e029d": {
+    "decision": "pass",
+    "source_sha256": "a4c46adcaadd4ddf2697601e549ea32d76c75f37dd8f207fb397babe9d8039bc",
+    "recipe_ids": [
+      "industrial-v3-burger-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Fakeaway Burger"
+    ],
+    "notes": "Single burger shows one browned beef mince patty, sliced tomato, shredded lettuce and white garlic-herb yoghurt in a brown wholemeal bun. No cheese, onion, pickles or sides. Whole burger centered with clear surrounding margin.",
+    "alt": "Wholemeal beef burger with lettuce, tomato and garlic-herb yoghurt.",
+    "reviewed_at": "2026-10-05T12:47:41.330174+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:48:04.374547+00:00"
+  },
+  "e40bc30f7581a8cd6369fbf4853f000fed9f6fba0a696d476f8ef585b9f0200c": {
+    "decision": "pass",
+    "source_sha256": "413bdcd2779ced15efe7a6fd7390e349218638a85a73f5c22aa5b243fe95b31a",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-weekend-sausage"
+    ],
+    "titles": [
+      "Shift Weekend Sausage Breakfast Wrap"
+    ],
+    "notes": "Cooked sausage rounds, softened onion and mixed peppers, wilted spinach inside lightly pan-sealed wholemeal wrap halves. No beans, egg, extra garnish or side; plausible single wrap portion.",
+    "alt": "Shift Weekend Sausage Breakfast Wrap, prepared with reduced-fat pork sausages, wholemeal wrap, mixed peppers, spinach",
+    "reviewed_at": "2026-10-05T12:47:58.412118+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:48:29.473205+00:00"
+  },
+  "e88ec0109e31e6e47bf7db5898766f679d9a7a331d68c8ef34be6d64be711183": {
+    "decision": "pass",
+    "source_sha256": "4d16f8c1c3a923c525eb68ea677628c156dd5200403b5c19ee60e2a0a5c892db",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-weekend-sausage"
+    ],
+    "titles": [
+      "Shift Weekend Sausage Breakfast Hash"
+    ],
+    "notes": "Single hash serving contains sliced cooked pork sausages with beige interiors, golden potato cubes, soft onion and red/yellow/green peppers. Ketchup/vinegar coat the mixture with oil sheen; no unlisted garnish or side. Complete food remains within the 960 crop.",
+    "alt": "Shift Weekend Sausage Breakfast Hash, freshly prepared with the listed ingredients",
+    "reviewed_at": "2026-10-05T12:46:33.432780+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:49:50.273691+00:00"
+  },
+  "eba12d42dc66d1dd31c03507ad10d6ff5ccd24584be9cea1332fb3a2c3f682a8": {
+    "decision": "pass",
+    "source_sha256": "fa08a49e760cbe7cc421cca029537900c2f18a1aecc73a83349b4db3a2aa9141",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-weekend-egg"
+    ],
+    "titles": [
+      "Shift Weekend Egg Breakfast Hash"
+    ],
+    "notes": "Fully set scrambled egg curds among golden potato cubes, softened onion and red/yellow peppers in a cream plate. No fried egg, bacon, spinach or garnish; light tomato coating.",
+    "alt": "Shift Weekend Egg Breakfast Hash, prepared with large eggs, baby potatoes, onion, mixed peppers",
+    "reviewed_at": "2026-10-05T12:47:57.787572+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:48:29.472952+00:00"
+  },
+  "f30cc7763c61cc1e8a90d80f9f797ddd6c87013b62cfe1117abd3ef621e9623c": {
+    "decision": "pass",
+    "source_sha256": "0ebc4022ff302843d13c4a3e5b1b4caabd9626a8770a7447a1880145b55d3e4a",
+    "recipe_ids": [
+      "industrial-v3-traybake-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Traybake"
+    ],
+    "notes": "Sliced cooked pork loin with opaque interiors, golden baby potatoes, roasted broccoli and red peppers, small garlic/dried parsley mayonnaise. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Pork Traybake, prepared with lean pork loin, baby potatoes, broccoli, red pepper",
+    "reviewed_at": "2026-10-05T12:50:25.606596+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:46.240535+00:00"
+  },
+  "f6d8643cb8e7f18245826d2e5273a78a9e7762f2b00b7f5ca2179745c4562621": {
+    "decision": "pass",
+    "source_sha256": "76f8ef170dd4d18d5b0f3fff765577df1fc957788f88d6568377689e949aa436",
+    "recipe_ids": [
+      "industrial-v3-pie-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Proper Pie"
+    ],
+    "notes": "Mashed-potato topped baked pie exposes opaque cooked chicken pieces, soft diced carrot and peas. Separate garlic/dried parsley mayonnaise, no pastry or cheese. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Chicken Proper Pie, prepared with chicken breast, potatoes, carrots, peas",
+    "reviewed_at": "2026-10-05T12:50:23.241749+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:46.240073+00:00"
   }
 }

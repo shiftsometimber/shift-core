@@ -1,0 +1,92 @@
+{
+  "groupId": "14c3fbf78b56a38ffeb55fec6708d9d20d3f98197c0d3ab42b0feb36d46ec5a9",
+  "recipe_ids": [
+    "industrial-v3-traybake-garlic-herb-beef"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Beef Traybake"
+  ],
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and 5% beef mince. Get the pan properly hot first. Cook the 5% beef mince until browned and cooked through — colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15–20 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.",
+    "Check the 5% beef mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Beef Traybake. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200°C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and 5% beef mince. Get the pan properly hot first. Cook the 5% beef mince until browned and cooked through — colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15–20 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the 5% beef mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Whole single portion and cream serving ware entirely in frame, wide empty margin. No unlisted ingredients or fresh decorative herbs. Plate cooked protein with browned roasted baby potato pieces, cooked broccoli and roasted red pepper. Small measured cold mayonnaise with garlic powder and dried parsley; no fresh herbs. Beef mince is loose browned crumbles, never steak or meatballs.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/14c3fbf78b56a38ffeb55fec6708d9d20d3f98197c0d3ab42b0feb36d46ec5a9.png",
+  "source_sha256": "a697bfc11c5eaaea87b664050edc27081d20f95ba71c3d844b3194f868cfb319",
+  "generated_at": "2026-10-05T12:47:11.747Z",
+  "elapsed_ms": 110995,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-14c3fbf78b56a38ffeb5-recovery20261005-480-12c7fadf6ad3.webp",
+      "sha256": "12c7fadf6ad35e2e611c0e5a4017c7e920ee20bc21da29206b08ddb3eec72d61",
+      "bytes": 26466
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-14c3fbf78b56a38ffeb5-recovery20261005-960-e65f4f19c92a.webp",
+      "sha256": "e65f4f19c92a80ea2d7b2d84f327554a1f7800074218dea652abfc4c7c6554ee",
+      "bytes": 89916
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a697bfc11c5eaaea87b664050edc27081d20f95ba71c3d844b3194f868cfb319",
+    "recipe_ids": [
+      "industrial-v3-traybake-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Traybake"
+    ],
+    "notes": "Roasted golden baby potato halves, browned loose beef mince, cooked broccoli and roasted red pepper with small cold garlic/dried parsley mayonnaise ramekin. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Beef Traybake, prepared with 5% beef mince, baby potatoes, broccoli, red pepper",
+    "reviewed_at": "2026-10-05T12:50:22.483803+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:46.239871+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

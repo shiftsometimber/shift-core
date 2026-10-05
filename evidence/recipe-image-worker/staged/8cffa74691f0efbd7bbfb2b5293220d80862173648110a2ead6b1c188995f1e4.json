@@ -1,0 +1,92 @@
+{
+  "groupId": "8cffa74691f0efbd7bbfb2b5293220d80862173648110a2ead6b1c188995f1e4",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-smoky-sausage"
+  ],
+  "titles": [
+    "Shift Smoky Sausage Breakfast Wrap"
+  ],
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through — colour is flavour, so do not crowd the pan.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30–60 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20–30 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Sausage Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through — colour is flavour, so do not crowd the pan.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30–60 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20–30 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Serve the entire meal on one centered cream plate fully within the frame, with wide empty crop margins. The vegetables are cooked softened, spinach visibly wilted; no raw green leaf garnish. Show sandwich or wrap cut once so the exact cooked filling is visible. No cheese, eggs, herbs, unlisted sides or garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/8cffa74691f0efbd7bbfb2b5293220d80862173648110a2ead6b1c188995f1e4.png",
+  "source_sha256": "57a05125665b3d4159a3eff29af28057cd58e6318d1071f8c4093e9e896529cf",
+  "generated_at": "2026-10-05T12:43:36.368Z",
+  "elapsed_ms": 93339,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8cffa74691f0efbd7bbf-recovery20261005-480-a4d998e83201.webp",
+      "sha256": "a4d998e8320176d773d0de1ab7a4edec288dbbceb3b8ae3fdab24941292181cf",
+      "bytes": 19514
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8cffa74691f0efbd7bbf-recovery20261005-960-4dcbae6788bd.webp",
+      "sha256": "4dcbae6788bd519691817fec1ff32f7980dd8e2d861a9236b5ec2c37f363eccb",
+      "bytes": 63660
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "57a05125665b3d4159a3eff29af28057cd58e6318d1071f8c4093e9e896529cf",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-smoky-sausage"
+    ],
+    "titles": [
+      "Shift Smoky Sausage Breakfast Wrap"
+    ],
+    "notes": "Cut wholemeal wrap shows browned pork sausage pieces, softened red/yellow peppers, dark wilted spinach and red ketchup/paprika coating. Entire two halves form one serving; no eggs, cheese or garnish. Cream plate and all food retained with margin.",
+    "alt": "Shift Smoky Sausage Breakfast Wrap, prepared with reduced-fat pork sausages, wholemeal wrap, mixed peppers, spinach",
+    "reviewed_at": "2026-10-05T12:44:23.300666+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:44:47.504375+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,92 @@
+{
+  "groupId": "023c75f215eee44235ebfc9b3cd6191f22e8d244f9eba26b729c3f92e3435294",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-weekend-sausage"
+  ],
+  "titles": [
+    "Shift Weekend Sausage Breakfast Buttie"
+  ],
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through — colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Sausage Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through — colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Serve the entire meal on one centered cream plate fully within the frame, with wide empty crop margins. The vegetables are cooked softened, spinach visibly wilted; no raw green leaf garnish. Show sandwich or wrap cut once so the exact cooked filling is visible. No cheese, eggs, herbs, unlisted sides or garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/023c75f215eee44235ebfc9b3cd6191f22e8d244f9eba26b729c3f92e3435294.png",
+  "source_sha256": "48a1c984f892166c0853137455458d0213857dece8faca5959c6c8d2bfcaf135",
+  "generated_at": "2026-10-05T12:43:36.403Z",
+  "elapsed_ms": 224139,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-023c75f215eee44235eb-recovery20261005-480-c80d62bbc3bd.webp",
+      "sha256": "c80d62bbc3bdf7947d376d4d306613e9bbbd1b1f58dea5a7b90ad32cf456fc8b",
+      "bytes": 23532
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-023c75f215eee44235eb-recovery20261005-960-0dba844170cf.webp",
+      "sha256": "0dba844170cf440573bef4fc70d6dd7cf2a0bee008092e6d052c8fe9b37d57fe",
+      "bytes": 75396
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "48a1c984f892166c0853137455458d0213857dece8faca5959c6c8d2bfcaf135",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-weekend-sausage"
+    ],
+    "titles": [
+      "Shift Weekend Sausage Breakfast Buttie"
+    ],
+    "notes": "One cut wholemeal bap contains browned cooked pork sausages, soft tomato, translucent onion and wilted spinach in ketchup coating. No eggs, beans or cheese. Full single serving on cream plate with crop margin.",
+    "alt": "Shift Weekend Sausage Breakfast Buttie, prepared with reduced-fat pork sausages, wholemeal bap, spinach, tomato",
+    "reviewed_at": "2026-10-05T12:44:27.437108+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:44:47.512441+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

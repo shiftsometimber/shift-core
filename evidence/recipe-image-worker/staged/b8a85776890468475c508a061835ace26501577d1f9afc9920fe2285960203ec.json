@@ -1,0 +1,92 @@
+{
+  "groupId": "b8a85776890468475c508a061835ace26501577d1f9afc9920fe2285960203ec",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-tomato-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Tomato Chicken Breakfast Toastie"
+  ],
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "25g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70°C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked chicken breast to the pan and heat through.",
+    "Stir in the listed flavour ingredients (25g tomato ketchup, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4–6 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tomato Chicken Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"25g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70°C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked chicken breast to the pan and heat through.\",\"Stir in the listed flavour ingredients (25g tomato ketchup, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4–6 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Serve the entire meal on one centered cream plate fully within the frame, with wide empty crop margins. The vegetables are cooked softened, spinach visibly wilted; no raw green leaf garnish. Show sandwich or wrap cut once so the exact cooked filling is visible. No cheese, eggs, herbs, unlisted sides or garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/b8a85776890468475c508a061835ace26501577d1f9afc9920fe2285960203ec.png",
+  "source_sha256": "31bf5b4e9f4e346b7ea8226c4b0d5ec92e1741f26f9e146848e02099040bae1b",
+  "generated_at": "2026-10-05T12:43:36.378Z",
+  "elapsed_ms": 35060,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b8a85776890468475c50-recovery20261005-480-755d9c64a0e2.webp",
+      "sha256": "755d9c64a0e2896714f486bc78d0cd5155aa6b950ac0af09ce9f9139abcba767",
+      "bytes": 26512
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b8a85776890468475c50-recovery20261005-960-3cc4f3d9107c.webp",
+      "sha256": "3cc4f3d9107ce89d55c6a2f67a4d66440c986f66ffab0e8dd6ca623ddc9c989c",
+      "bytes": 87592
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "31bf5b4e9f4e346b7ea8226c4b0d5ec92e1741f26f9e146848e02099040bae1b",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-tomato-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Tomato Chicken Breakfast Toastie"
+    ],
+    "notes": "Crisp wholemeal toastie halves show opaque cooked diced chicken, softened tomato and wilted spinach coated in ketchup. Small remainder of same cooked filling served alongside per method. No cheese or garnish; complete portion in frame.",
+    "alt": "Shift Tomato Chicken Breakfast Toastie, prepared with chicken breast, wholemeal bread, tomato, spinach",
+    "reviewed_at": "2026-10-05T12:44:24.577775+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:44:47.508322+00:00"
+  },
+  "integrated": true,
+  "live": false
+}
