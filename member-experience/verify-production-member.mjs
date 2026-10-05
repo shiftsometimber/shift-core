@@ -73,13 +73,20 @@ for(const [name,asset] of Object.entries(lifeBackAssets)){
  const actual=Buffer.from(await r.arrayBuffer()),expected=readFileSync('frontend/member'+path);assert.deepEqual(actual,expected,path+' must match source exactly');
  evidence.assets.push({path,status:r.status,sha256:createHash('sha256').update(actual).digest('hex'),matchesSource:true,authority:r.headers.get('x-shift-frontend-authority')});
 }
+const imageAssets=new Map();
 for(const asset of grubImages){
- const r=await fetch(origin+asset.src,{signal:AbortSignal.timeout(30000)});
- assert.equal(r.status,200,asset.src);
- assert.match(r.headers.get('content-type')||'',/image\/webp/);
- const sha256=createHash('sha256').update(Buffer.from(await r.arrayBuffer())).digest('hex');
- assert.equal(sha256,asset.sha256,asset.src+' must match the approved image');
- evidence.assets.push({path:asset.src,status:r.status,sha256,matchesSource:true});
+ imageAssets.set(asset.src,asset.sha256);
+ if(asset.srcSet)for(const variant of asset.srcSet.split(', ')){const src=variant.split(' ')[0];imageAssets.set(src,createHash('sha256').update(readFileSync('frontend/member'+src)).digest('hex'));}
+}
+const imageEntries=[...imageAssets];
+for(let offset=0;offset<imageEntries.length;offset+=24){
+ await Promise.all(imageEntries.slice(offset,offset+24).map(async([src,expected])=>{
+  const r=await fetch(origin+src,{signal:AbortSignal.timeout(30000)});
+  assert.equal(r.status,200,src);assert.match(r.headers.get('content-type')||'',/image\/webp/);
+  const sha256=createHash('sha256').update(Buffer.from(await r.arrayBuffer())).digest('hex');
+  assert.equal(sha256,expected,src+' must match the approved image');
+  evidence.assets.push({path:src,status:r.status,sha256,matchesSource:true});
+ }));
 }
 for(const path of ['/v1/check-ins','/v1/fit/activity','/v1/grub/workspace','/v1/life-back']){
  const r=await fetch(origin+path,{signal:AbortSignal.timeout(30000),redirect:'manual'});
