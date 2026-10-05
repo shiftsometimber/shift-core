@@ -54,7 +54,29 @@ import ribupatideSpecialistWave from './reviews/2026-10-05-authorised-ribupatide
 import hansohOlatorepatideReview from './reviews/2026-10-05-authorised-hansoh-olatorepatide-source-review.json' with {type:'json'};
 import gzc8072Publication from './reviews/2026-10-05-authorised-gzc8072.json' with {type:'json'};
 import te8105Phase2b from './reviews/2026-10-05-authorised-te8105-phase2b.json' with {type:'json'};
+import semaglutideSpecialistSarcopeniaWave from './reviews/2026-10-05-authorised-semaglutide-specialist-sarcopenia-wave.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
+test('new semaglutide specialist and sarcopenia records remain bounded research evidence',()=>{
+ assert.equal(semaglutideSpecialistSarcopeniaWave.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(semaglutideSpecialistSarcopeniaWave.clinicalApproval,null);
+ assert.equal(semaglutideSpecialistSarcopeniaWave.industryComplete,false);
+ assert.equal(semaglutideSpecialistSarcopeniaWave.catalogueCounts.totalAfter,102);
+ assert.equal(semaglutideSpecialistSarcopeniaWave.catalogueCounts.configuredSourcesAfter,171);
+ const specialist=industry.find(e=>e.id==='semaglutide-specialist-trials');
+ assert.match(specialist.stage,/Nine Phase 2\/4/);
+ assert.match(specialist.summary,/five Phase 4 metabolic-and-bariatric-surgery studies/);
+ assert.match(specialist.limitations,/All six new records remain not yet recruiting/);
+ assert.equal(specialist.additionalEvidence.length,9);
+ const observation=industry.find(e=>e.id==='glp1-sarcopenia-observation');
+ assert.ok(observation);assert.equal(observation.group,'research');
+ assert.match(observation.stage,/observational study.*no treatment assigned/i);
+ assert.match(observation.summary,/hand-grip strength/);
+ assert.match(observation.limitations,/do not establish muscle loss, muscle preservation, causation/);
+ assert.match(observation.ukAuthorisation,/does not establish a new UK medicine authorisation/);
+ assert.equal(observation.additionalEvidence.length,1);
+ assert.equal(semaglutideSpecialistSarcopeniaWave.registrySources.length,7);
+ assert.ok(semaglutideSpecialistSarcopeniaWave.registrySources.every(source=>!source.lifecycle.hasResults&&/^[a-f0-9]{64}$/.test(source.reviewedFingerprint)));
+});
 test('TE-8105 preserves not-yet-recruiting status and estimated Phase 2b plans',()=>{
  assert.equal(te8105Phase2b.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(te8105Phase2b.clinicalApproval,null);
@@ -405,8 +427,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,95);assert.equal(sources.length,164);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,101);
+ assert.equal(medicines.length,6);assert.equal(industry.length,96);assert.equal(sources.length,171);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,102);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -831,7 +853,8 @@ test('semaglutide specialist research remains distinct from authorised weight-ma
  assert.equal(item.group,'research');
  assert.equal(item.clinicalApproval,null);
  assert.equal(item.sourceIds.length,0);
- assert.equal(item.additionalEvidence.length,3);
+ assert.equal(semaglutideSpecialistTrials.entries[0].additionalEvidence.length,3);
+ assert.equal(item.additionalEvidence.length,9);
  assert.match(item.stage,/all not yet recruiting/i);
  assert.match(item.summary,/low-back-pain/i);
  assert.match(item.summary,/arthroplasty/i);
@@ -913,7 +936,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,95);
+ assert.equal(industry.length,96);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
