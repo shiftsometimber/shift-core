@@ -1,7 +1,7 @@
 name: Sustained bounded AI closeout proof
 on:
   push:
-    branches: [codex/close-auth-delivery-20261004, codex/non-image-closeout-20261004]
+    branches: [codex/close-auth-delivery-20261004]
 permissions:
   contents: read
 concurrency:
