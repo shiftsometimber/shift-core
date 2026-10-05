@@ -1,0 +1,162 @@
+{
+  "reviewedAt": "2026-10-05T19:48:22.631759Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections without repeat permission.",
+    "scope": "One bounded early-phase oral-peptide omission. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "710go",
+      "name": "710GO",
+      "developer": "Kalohexis",
+      "group": "research",
+      "stage": "Sponsor-reported first dosing in Phase 1; Australian oral-peptide study",
+      "summary": "Kalohexis describes 710GO as an oral peptide acting at both melanocortin-3 and melanocortin-4 receptors. Its 28 May 2026 announcement reports first dosing in a randomized, placebo-controlled Australian Phase 1 study, with planned single-dose, multiple-dose and food-effect assessments in approximately 100 healthy volunteers with overweight or obesity.",
+      "ukAuthorisation": "The reviewed sponsor evidence does not establish UK marketing authorisation or UK clinical-trial authorisation for 710GO.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Australian research and sponsor-reported first dosing do not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "First dosing is sponsor-reported. Approximately 100 participants is planned enrolment, not an actual recruitment count. The announcement contains no human trial results or verified completion date. Its weight, fat, lean-mass, tolerability, post-treatment maintenance and semaglutide-combination observations concern preclinical studies, including non-human primates; they do not establish human efficacy, safety, muscle strength or function, durability, superiority or an approved regimen. Exact-name and sponsor ClinicalTrials.gov searches returned no matching public record in this pass; registry discovery remains incomplete rather than proof that no study exists. The separate mifomelatide cancer-cachexia programme is not obesity evidence.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-05T19:48:22.631759Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Kalohexis: 710GO first-in-human Phase 1 first dosing",
+          "url": "https://www.prnewswire.com/news-releases/kalohexis-announces-first-patients-dosed-in-first-in-human-phase-1-clinical-trial-of-710go-for-general-obesity-302783802.html",
+          "sourcePublishedAt": "2026-05-28",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-05T19:48:22.631759Z",
+          "checkScope": "Original sponsor-distributed announcement read in full. Not automatically content-monitored; direct command-line retrieval returned HTTP 403. No approved retrieval fingerprint is created."
+        }
+      ]
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://www.prnewswire.com/news-releases/kalohexis-announces-first-patients-dosed-in-first-in-human-phase-1-clinical-trial-of-710go-for-general-obesity-302783802.html",
+      "sourcePublishedAt": "2026-05-28",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-05T19:48:22.631759Z",
+      "retrieval": "Complete readable original sponsor release via web retrieval; direct HTTP retrieval separately failed 403.",
+      "assessment": "Read body from dated attribution through trial design, preclinical findings, programme context and source attribution. Publish formulation, mechanism and sponsor-reported first dosing only. No human benefit or safety claim."
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-05T19:48:22.631759Z",
+    "httpStatus": 200,
+    "configuredSources": 171,
+    "current": 169,
+    "status": "check_delayed",
+    "lastAttemptAt": "2026-10-05T19:30:54.740Z",
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "checkStatus": "check_delayed",
+        "reviewStatus": "verification_pending",
+        "reasons": [
+          "source_not_verified",
+          "last_check_failed"
+        ],
+        "reviewedAt": "2026-10-03T20:05:13.956Z",
+        "lastAttemptAt": "2026-10-05T18:45:55.048Z",
+        "lastSuccessAt": null,
+        "lastFailureAt": "2026-10-05T18:45:55.048Z",
+        "error": "http_403",
+        "httpStatus": 403,
+        "nextCheckAt": "2026-10-05T19:45:55.048Z"
+      },
+      {
+        "id": "wales-weight-access",
+        "status": "check_delayed",
+        "checkStatus": "check_delayed",
+        "reviewStatus": "reviewed",
+        "reasons": [
+          "last_check_failed"
+        ],
+        "reviewedAt": "2026-10-03T18:59:53.508Z",
+        "lastAttemptAt": "2026-10-05T18:45:55.048Z",
+        "lastSuccessAt": "2026-10-05T11:30:56.610Z",
+        "lastFailureAt": "2026-10-05T18:45:55.048Z",
+        "error": "http_403",
+        "httpStatus": 403,
+        "nextCheckAt": "2026-10-05T19:45:55.048Z"
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "SELECT-only public health evidence. Successful checks do not renew medical reviews or establish completeness. Both access failures remain explicit."
+  },
+  "discoveryPass": {
+    "method": "Separate availability/monitor pass followed by five unrestricted topics, each dated and undated, plus selected sponsor/regulator searches and exact registry queries.",
+    "date": "2026-10-05",
+    "topics": [
+      "approval safety withdrawal",
+      "incretin amylin trials pauses discontinuations",
+      "muscle preservation combinations oral long acting",
+      "specialist indications",
+      "early first-in-human smaller international developers"
+    ],
+    "searchedSponsors": [
+      "Novo Nordisk",
+      "Lilly",
+      "Amgen",
+      "Zealand/Roche",
+      "Pfizer",
+      "Viking",
+      "Structure",
+      "Boehringer Ingelheim",
+      "AstraZeneca",
+      "Hansoh/Merck",
+      "Kailera",
+      "Kalohexis",
+      "Can-Fite"
+    ],
+    "limitations": "Several dated/domain queries returned unrelated or sparse results; sponsor coverage is incomplete, indexing can lag, and these searches are not exhaustive. No factual review claimed for snippets or inaccessible evidence.",
+    "duplicates": "PR 851 closed with verified 29 September publication. Current main contains 102 programmes. Open PRs 1130 (imagery) and 1131 (SEO) contain no 710GO programme; no open Watch review duplicate observed.",
+    "unpublishedLeads": [
+      {
+        "name": "Namodenoson",
+        "url": "https://ir.canfite.com/news-events/press-releases/detail/1104/can-fite-announces-scientific-breakthrough-publication",
+        "sourcePublishedAt": "2026-02-17",
+        "sourceUpdatedAt": null,
+        "reviewedAt": "2026-10-05T19:48:22.631759Z",
+        "status": "Sponsor announcement read; underlying full paper and indication-specific registry review remain incomplete. No catalogue addition or human obesity claim."
+      }
+    ]
+  },
+  "failedChecks": [
+    {
+      "url": "https://www.prnewswire.com/news-releases/kalohexis-announces-first-patients-dosed-in-first-in-human-phase-1-clinical-trial-of-710go-for-general-obesity-302783802.html",
+      "outcome": "Direct HTTP 403; web full body readable",
+      "effect": "No automatic monitor or approved baseline. Readable primary release supports narrowly attributed stage only."
+    }
+  ],
+  "incompleteChecks": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=710GO&pageSize=100&format=json",
+      "outcome": "Zero matching records; no next-page token",
+      "responseSha256": "e5660ca1fb1bc482c0112c159084af7c325461ac1624b4de41dd67edef2981b9"
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?query.term=Kalohexis&pageSize=100&format=json",
+      "outcome": "Zero matching records; no next-page token",
+      "responseSha256": "e5660ca1fb1bc482c0112c159084af7c325461ac1624b4de41dd67edef2981b9"
+    }
+  ],
+  "catalogueCounts": {
+    "detailed": 6,
+    "widerBefore": 96,
+    "widerAfter": 97,
+    "totalBefore": 102,
+    "totalAfter": 103,
+    "configuredSources": 171
+  },
+  "nextAction": "Exact source review and checks, sequential merge after the passing SEO release, guarded deployment and actual live verification. This receipt records reviewed factual content, not a completed deployment."
+}
