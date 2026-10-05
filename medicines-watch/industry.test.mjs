@@ -47,6 +47,7 @@ import novoSpecialistWave from './reviews/2026-10-05-authorised-novo-specialist-
 import petrelintideZupreme from './reviews/2026-10-05-authorised-petrelintide-zupreme-registry.json' with {type:'json'};
 import ribupatideSpecialistWave from './reviews/2026-10-05-authorised-ribupatide-specialist-wave.json' with {type:'json'};
 import hansohOlatorepatideReview from './reviews/2026-10-05-authorised-hansoh-olatorepatide-source-review.json' with {type:'json'};
+import gzc8072Publication from './reviews/2026-10-05-authorised-gzc8072.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('VK2735 maintenance evidence stays sponsor-reported and does not create an approved regimen',()=>{
  const e=industry.find(e=>e.id==='vk2735');
@@ -367,8 +368,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,91);assert.equal(sources.length,157);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,97);
+ assert.equal(medicines.length,6);assert.equal(industry.length,92);assert.equal(sources.length,159);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,98);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -875,7 +876,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,91);
+ assert.equal(industry.length,92);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -1116,6 +1117,33 @@ test('ribupatide specialist wave keeps formulation, indication and conflicting e
  assert.ok(ribupatideSpecialistWave.registrySources.every(s=>!s.lifecycle.hasResults&&/^[a-f0-9]{64}$/.test(s.reviewedFingerprint)));
  assert.equal(ribupatideSpecialistWave.configuredSourcePass.currentSources,148);
  assert.equal(ribupatideSpecialistWave.configuredSourcePass.attention[0].id,'zealand-zp6590-pipeline');
+});
+
+test('GZC8072 promotion separates trial initiation, estimates and UK access',()=>{
+ assert.equal(gzc8072Publication.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(gzc8072Publication.clinicalApproval,null);
+ assert.equal(gzc8072Publication.industryComplete,false);
+ assert.equal(gzc8072Publication.catalogueCounts.totalAfter,98);
+ assert.equal(gzc8072Publication.catalogueCounts.configuredSourcesAfter,159);
+ const entry=industry.find(item=>item.id==='gzc8072');
+ assert.match(entry.stage,/Recruiting China Phase 1/);
+ assert.match(entry.stage,/once-weekly oral peptide/);
+ assert.match(entry.summary,/actual 2 September 2026 start/);
+ assert.match(entry.limitations,/planned 112 participants/);
+ assert.match(entry.limitations,/estimates 126/);
+ assert.match(entry.limitations,/no posted results/);
+ assert.match(entry.ukAuthorisation,/not a marketing authorisation/);
+ assert.match(entry.supply,/do not establish lawful UK retail supply/);
+ assert.deepEqual(entry.sourceIds,['ganlee-gzc8072-20260907']);
+ const registry=gzc8072Publication.registrySources[0];
+ assert.equal(registry.lifecycle.status,'RECRUITING');
+ assert.deepEqual(registry.lifecycle.start,{date:'2026-09-02',type:'ACTUAL'});
+ assert.deepEqual(registry.lifecycle.enrollment,{count:126,type:'ESTIMATED'});
+ assert.equal(registry.lifecycle.hasResults,false);
+ assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ const sponsor=industrySources.find(source=>source.id==='ganlee-gzc8072-20260907');
+ assert.equal(sponsor.reviewedAt,gzc8072Publication.reviewedAt);
+ assert.match(sponsor.reviewedFingerprint,/^[a-f0-9]{64}$/);
 });
 
 test('Hansoh source review renews only the read claim-bearing baseline',()=>{

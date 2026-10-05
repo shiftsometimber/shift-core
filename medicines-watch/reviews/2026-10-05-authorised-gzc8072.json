@@ -1,0 +1,231 @@
+{
+  "reviewedAt": "2026-10-05T03:47:54Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Promote the previously deferred GZC8072 candidate after complete primary registry and sponsor review confirmed an initiated weight-management study. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "gzc8072",
+      "name": "GZC8072",
+      "developer": "Gan & Lee Pharmaceuticals",
+      "group": "research",
+      "stage": "Recruiting China Phase 1; sponsor-described once-weekly oral peptide GLP-1 RA; no posted results",
+      "summary": "Gan & Lee describes GZC8072 as an investigational ultra-long-acting oral peptide GLP-1 receptor agonist designed for once-weekly administration. The sponsor-submitted NCT07784699 record studies a single oral dose in healthy adults and multiple oral doses in adults with overweight or obesity. It records recruiting Phase 1 research in China, an actual 2 September 2026 start and 126 estimated participants.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for GZC8072. China's NMPA permission to conduct clinical trials is not a marketing authorisation in China or the UK.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed research evidence.",
+      "supply": "A recruiting Chinese clinical trial and permission to investigate the medicine do not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "This promotes a candidate explicitly deferred on 3 October after the later primary record confirmed an initiated obesity study; it is not a newly started October trial. The Phase 1 study primarily evaluates safety, tolerability, immunogenicity and pharmacokinetics; fasting weight, BMI and waist circumference are secondary outcomes. The registry has no posted results, so it does not establish weight-loss efficacy, a weekly regimen's benefit, long-term safety or superiority. Gan & Lee's 9 September first-participant release planned 112 participants, while the registry updated 30 September estimates 126; the later registry figure is used without treating either estimate as actual enrolment. August 2027 completion remains estimated. The reviewed evidence is China-based and does not establish UK authorisation, NICE/NHS access or UK supply.",
+      "sourceIds": [
+        "ganlee-gzc8072-20260907"
+      ],
+      "reviewedAt": "2026-10-05T03:47:54Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07784699: GZC8072",
+          "url": "https://clinicaltrials.gov/study/NCT07784699",
+          "sourcePublishedAt": "2026-08-25",
+          "sourceUpdatedAt": "2026-09-30",
+          "reviewedAt": "2026-10-05T03:47:54Z",
+          "checkScope": "Automatic record-status checks for identity, design, status, typed dates, estimated enrolment and posted-results state; no assessment of clinical outcomes."
+        },
+        {
+          "title": "Gan & Lee: first participant dosed in GZC8072 Phase 1",
+          "url": "https://www.prnewswire.com/news-releases/first-participant-dosed-in-first-in-human-phase-1-study-of-gzc8072-a-novel-ultra-long-acting-once-weekly-oral-peptide-glp-1-ra-302873704.html",
+          "sourcePublishedAt": "2026-09-09",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-05T03:47:54Z",
+          "checkScope": "Complete sponsor-distributed announcement read for reported first dosing, intended weekly oral formulation and the earlier 112-participant plan. The later registry controls current status and estimated enrolment. Not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "ganlee-gzc8072-20260907",
+      "title": "Gan & Lee: GZC8072 obesity clinical-trial approval",
+      "url": "https://www.ganlee.com/detail/865.html",
+      "checkUrl": "https://www.ganlee.com/detail/865.html",
+      "format": "html",
+      "contentSelector": ".m3nContent",
+      "sourcePublishedAt": "2026-09-07",
+      "sourceUpdatedAt": null,
+      "sourceDateLabel": "Source publication date",
+      "reviewedAt": "2026-10-05T03:47:54Z",
+      "requiredTerms": [
+        "GZC8072",
+        "once-weekly oral administration regimen",
+        "clinical trial stage"
+      ],
+      "reviewedFingerprint": "1ed471c800e14e097582461b9dfe58f79cbc64579edb69597ba0601db45c6a73",
+      "evidenceType": "Original Gan & Lee sponsor announcement; Chinese clinical-trial permission, not marketing authorisation",
+      "httpStatus": 200,
+      "responseSha256": "c746fc39e4e2fcd0144555167ae033c15c5d2935f2915f3d2d1cd9a19f4e567e",
+      "bytes": 37441
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct07784699",
+      "nctId": "NCT07784699",
+      "title": "ClinicalTrials.gov NCT07784699: GZC8072",
+      "url": "https://clinicaltrials.gov/study/NCT07784699",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07784699",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07784699",
+        "Gan & Lee Pharmaceuticals."
+      ],
+      "reviewedAt": "2026-10-05T03:47:54Z",
+      "sourcePublishedAt": "2026-08-25",
+      "sourceUpdatedAt": "2026-09-30",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07784699",
+        "title": "A Phase 1 Study of GZC8072 Tablets Following a Single Dose in Healthy Study Participants and Multiple Doses in Obese/Overweight Study Participants",
+        "sponsor": "Gan & Lee Pharmaceuticals.",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 126,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-09-02",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-08-18",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-08-18",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-08-25",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-30",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "gzc8072"
+      ],
+      "rawResponseSha256": "e543f69be4ae723b5d93c85e188e83e50eccd1f6c90649d318f8ae770faea7c1",
+      "reviewedFingerprint": "eb71180cf8a8d8066ef1cf769e1218856ec76be8046b9b2eae6715aa03e1b0a1"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07784699",
+      "publicationDate": "2026-08-25",
+      "updateDate": "2026-09-30",
+      "reviewedAt": "2026-10-05T03:47:54Z",
+      "outcome": "Complete sponsor-submitted API body read for identity, oral formulation, Phase 1 design, recruiting status, actual start, estimated enrolment/completion, China location, outcome hierarchy and absence of posted results."
+    },
+    {
+      "url": "https://www.ganlee.com/detail/865.html",
+      "publicationDate": "2026-09-07",
+      "updateDate": null,
+      "reviewedAt": "2026-10-05T03:47:54Z",
+      "outcome": "Complete original sponsor page read. The page reports an NMPA clinical-trial approval announced in Beijing on 24 August; that permission is not represented as marketing authorisation."
+    },
+    {
+      "url": "https://www.prnewswire.com/news-releases/first-participant-dosed-in-first-in-human-phase-1-study-of-gzc8072-a-novel-ultra-long-acting-once-weekly-oral-peptide-glp-1-ra-302873704.html",
+      "publicationDate": "2026-09-09",
+      "updateDate": null,
+      "reviewedAt": "2026-10-05T03:47:54Z",
+      "outcome": "Complete sponsor-distributed release read for reported first dosing and the earlier 112-participant plan; the later primary registry record controls current lifecycle facts."
+    }
+  ],
+  "retrievalEvidence": {
+    "registry": {
+      "retrievedAt": "2026-10-05T03:45:17Z",
+      "httpStatus": 200,
+      "responseSha256": "e543f69be4ae723b5d93c85e188e83e50eccd1f6c90649d318f8ae770faea7c1",
+      "responseBytes": 17244
+    },
+    "sponsorPage": {
+      "retrievedAt": "2026-10-05T03:46:12Z",
+      "httpStatus": 200,
+      "responseSha256": "c746fc39e4e2fcd0144555167ae033c15c5d2935f2915f3d2d1cd9a19f4e567e",
+      "responseBytes": 37441
+    },
+    "firstParticipantRelease": {
+      "retrievedAt": "2026-10-05T03:46:12Z",
+      "httpStatus": 200,
+      "responseSha256": "799df19f1d81982283a381442b51f09704def0eef22daa1f90d6696294c61f8f",
+      "responseBytes": 210674,
+      "automaticBaselineApproved": false
+    }
+  },
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-05T03:47:54Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 157,
+    "currentSources": 156,
+    "overdueReviews": 0,
+    "lastAttemptAt": "2026-10-05T03:31:16.797Z",
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "reviewStatus": "verification_pending",
+        "error": "http_403",
+        "lastAttemptAt": "2026-10-05T03:31:16.797Z",
+        "lastSuccessAt": null,
+        "nextCheckAt": "2026-10-05T04:31:16.797Z"
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only response verifies configured-source monitoring only. It does not renew factual reviews, approve changed wording or prove complete industry coverage. The unchanged Zealand 403 remains explicit."
+  },
+  "discoveryPass": {
+    "method": "A separate current-date/current-month pass checked configured sources and regulator/access changes. A broader undated topic pass covered oral peptides, early trials, international and smaller developers, specialist indications, combinations, muscle preservation, paused and discontinued programmes, and was reconciled with live entries, dated receipts and open Watch PRs.",
+    "included": "GZC8072 is a distinct once-weekly oral-peptide programme absent from the live catalogue. A 3 October receipt explicitly deferred it pending programme-relevance and sponsor-context review; the later complete registry review now confirms recruiting Phase 1 research with an actual start.",
+    "incompleteChecks": [
+      "The registry and sponsor evidence do not establish UK marketing authorisation, a NICE recommendation, NHS access or UK supply; no such claim is inferred.",
+      "The sponsor-distributed 9 September release reports 112 planned participants while the registry updated 30 September estimates 126. The discrepancy remains explicit and neither figure is treated as actual enrolment.",
+      "Current-date and selected-domain searches cannot exclude indexing delay, older omissions or additional international developers. The 98-programme catalogue and 159 configured sources do not establish industry completeness."
+    ],
+    "failedChecks": [],
+    "preservedKnownFailures": "The unchanged Zealand ZP6590 HTTP 403 remains visible in health. Earlier receipts retain other blocked and incomplete discovery checks; none is silently cleared by this addition.",
+    "openReviewPrCheck": {
+      "checkedAt": "2026-10-05T03:31:16Z",
+      "openWatchPullRequests": [],
+      "duplicationFound": false
+    },
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "widerBefore": 91,
+    "widerAfter": 92,
+    "totalBefore": 97,
+    "totalAfter": 98,
+    "configuredSourcesBefore": 157,
+    "configuredSourcesAfter": 159,
+    "trialRecordsBefore": 98,
+    "trialRecordsAfter": 99
+  },
+  "nextAction": "Publish the bounded GZC8072 addition through exact passing checks and guarded production, then verify the live card, Treatments entry, trial lifecycle and SELECT-only health endpoint. Continue open-ended discovery without claiming completeness."
+}
