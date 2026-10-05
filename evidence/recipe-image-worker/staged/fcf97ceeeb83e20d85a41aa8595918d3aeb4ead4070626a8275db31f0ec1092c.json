@@ -1,0 +1,84 @@
+{
+  "groupId": "fcf97ceeeb83e20d85a41aa8595918d3aeb4ead4070626a8275db31f0ec1092c",
+  "recipe_ids": [
+    "industrial-v3-wrap-classic-turkey"
+  ],
+  "titles": [
+    "Shift Classic Turkey Loaded Wrap"
+  ],
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "light mayonnaise"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked turkey breast; if the filling is being served hot, reduce only the sauce-coated cooked turkey breast until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1–2 minutes if you want a crisp finish."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Turkey Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"light mayonnaise\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked turkey breast; if the filling is being served hot, reduce only the sauce-coated cooked turkey breast until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1–2 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-40387000-3d3f-411c-a6c0-1f3d9ce78761.png",
+  "source_sha256": "492012ec0cc68198897c3501dc847d10250b5e5cbfbe663efb35ec47c4d33c31",
+  "generated_at": "2026-10-05T18:18:34.748Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fcf97ceeeb83e20d85a4-final20261005-480-d7c93c93702a.webp",
+      "sha256": "d7c93c93702a13c31ac54dce9525f53fab65cee60e7413cbb96fa4c53415d7fb",
+      "bytes": 25536
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fcf97ceeeb83e20d85a4-final20261005-960-33c1f4e6843a.webp",
+      "sha256": "33c1f4e6843abfa1d0cfb3669f890e1a11641419d4d071679f82db63248537fe",
+      "bytes": 75228
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 030, item 270. The finished food, main ingredient identity and serving form agree with Shift Classic Turkey Loaded Wrap and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Classic Turkey Loaded Wrap served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "492012ec0cc68198897c3501dc847d10250b5e5cbfbe663efb35ec47c4d33c31",
+    "recipe_ids": [
+      "industrial-v3-wrap-classic-turkey"
+    ],
+    "titles": [
+      "Shift Classic Turkey Loaded Wrap"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

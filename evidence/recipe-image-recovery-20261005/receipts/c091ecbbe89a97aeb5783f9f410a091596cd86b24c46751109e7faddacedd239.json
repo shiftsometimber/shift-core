@@ -1,0 +1,84 @@
+{
+  "groupId": "c091ecbbe89a97aeb5783f9f410a091596cd86b24c46751109e7faddacedd239",
+  "recipe_ids": [
+    "industrial-v3-sandwich-club-chicken"
+  ],
+  "titles": [
+    "Shift Club Chicken Proper Sandwich"
+  ],
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "mustard mayo"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the cooked chicken breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the club flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the cooked chicken breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Club Chicken Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"mustard mayo\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the cooked chicken breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the club flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the cooked chicken breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-7d0cbff1-50f4-445f-ae98-418e59be173d.png",
+  "source_sha256": "f16845f9012f2d0513cec3ad0c6283c6e135f7d36e7920cfe200e4a5814b6dcc",
+  "generated_at": "2026-10-05T18:21:49.800Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c091ecbbe89a97aeb578-final20261005-480-e40b4b544ec4.webp",
+      "sha256": "e40b4b544ec4cb0c18fd1d400670893c49218635e97ac2b56cb8ea3e96f571fb",
+      "bytes": 28192
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c091ecbbe89a97aeb578-final20261005-960-c7807315c126.webp",
+      "sha256": "c7807315c126bae594562e8825e0c2c5d55a28489e7061a89377a4de508d0a16",
+      "bytes": 83496
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 021, item 197. The finished food, main ingredient identity and serving form agree with Shift Club Chicken Proper Sandwich and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Club Chicken Proper Sandwich served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "f16845f9012f2d0513cec3ad0c6283c6e135f7d36e7920cfe200e4a5814b6dcc",
+    "recipe_ids": [
+      "industrial-v3-sandwich-club-chicken"
+    ],
+    "titles": [
+      "Shift Club Chicken Proper Sandwich"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

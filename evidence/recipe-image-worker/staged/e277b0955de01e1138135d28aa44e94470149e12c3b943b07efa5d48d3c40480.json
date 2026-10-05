@@ -1,0 +1,84 @@
+{
+  "groupId": "e277b0955de01e1138135d28aa44e94470149e12c3b943b07efa5d48d3c40480",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-mango-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Mango Greek Yoghurt Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "240g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "mango"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mango Greek Yoghurt Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"240g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"mango\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-f5496afc-60ab-4510-966d-1f046880b42e.png",
+  "source_sha256": "ef91e99bac9ab6832274f481d40a7aa601e2d6bbda9d3adc354c0c9b84f4058f",
+  "generated_at": "2026-10-05T18:32:50.924Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e277b0955de01e113813-final20261005-480-dde91e5ea31c.webp",
+      "sha256": "dde91e5ea31c12572d135c25267050f7ea998e131ef056dbb86a228f50065d1d",
+      "bytes": 25686
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e277b0955de01e113813-final20261005-960-105566c81e01.webp",
+      "sha256": "105566c81e0167b14903ad48903734b306cb0cb3059279bf1a893712bf7f4d0d",
+      "bytes": 81368
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 027, item 243. The finished food, main ingredient identity and serving form agree with Shift Mango Greek Yoghurt Dessert Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Mango Greek Yoghurt Dessert Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "ef91e99bac9ab6832274f481d40a7aa601e2d6bbda9d3adc354c0c9b84f4058f",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-mango-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Mango Greek Yoghurt Dessert Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

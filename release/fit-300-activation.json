@@ -1,0 +1,28 @@
+{
+  "proof": "FIT_300_RUNTIME_ACTIVATION_V1",
+  "base": "eecd31ba0f3eb06e8de829d3415d7f86e954a162",
+  "source": "76562e03ec3c5544c1952afaea73305db932ea31",
+  "ownerInstruction": {
+    "actor": "Matt",
+    "quote": "Can’t we get the full 300",
+    "recordedAt": "2026-10-05T21:07:51Z"
+  },
+  "trainerAttestation": false,
+  "clinicalAttestation": false,
+  "databaseWrites": false,
+  "movements": 300,
+  "servedProtocols": 2688,
+  "designUnchanged": true,
+  "homepageUnchanged": true,
+  "imageViewerComposition": {
+    "proof": "MEMBER_IMAGE_VIEWER_RELEASE_V1",
+    "base": "4afdd2686d5a74dfeea9ca2d86aba71e62ed2320",
+    "source": "097b5584061f8adcfa144c0084f9e921cc0e0b18",
+    "ownerInstruction": {
+      "actor": "Matt",
+      "quote": "No good these pics on a mobile ….. it doesn’t let you click on them to enlarge ? So can’t view what it is ? Assume perhaps same for grub"
+    },
+    "databaseWrites": false,
+    "homepageChanged": false
+  }
+}

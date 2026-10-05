@@ -2,6 +2,13 @@ import test from 'node:test';import assert from 'node:assert/strict';
 import {SIX_TOPIC_SEO_SOURCE,SIX_TOPIC_SEO_PATHS,validateSixTopicSeoSource,verifySixTopicSeoProof} from '../release/six-topic-seo-scope.mjs';
 import {preserveSixTopicSeo,originalSixTopicSeoPreservation} from '../release/six-topic-seo-preservation.mjs';
 import {withSixTopicGuides} from '../public-seo-closeout.mjs';
+import {SEO_FIT_COMPOSITION_PATHS,validateSeoFitComposition} from '../release/fit-300-scope.mjs';
+test('combined SEO and Fit source rejects any guard drift or broadened composition',()=>{
+ const composition={proof:'SEO_FIT_EXACT_COMPOSITION_V1',base:'82c433486152e61833639efeffc3bac7dbe1713e',seoSource:'36749bd7c3e728ceb09a443366a7e2b933b7c144',source:'a'.repeat(40),paths:[...SEO_FIT_COMPOSITION_PATHS]};
+ validateSeoFitComposition(composition,(ref,path)=>path);
+ for(const changed of composition.paths)assert.throws(()=>validateSeoFitComposition(composition,(ref,path)=>ref==='HEAD'&&path===changed?'changed':path),/source drift/);
+ for(const delta of [{base:'b'.repeat(40)},{seoSource:'b'.repeat(40)},{proof:'UNBOUNDED'},{paths:[...composition.paths,'worker-entry-v6.js']}])assert.throws(()=>validateSeoFitComposition({...composition,...delta},(ref,path)=>path));
+});
 test('each finite SEO source path rejects unrelated source drift',()=>{
  validateSixTopicSeoSource((ref,path)=>path);
  for(const changed of SIX_TOPIC_SEO_PATHS)assert.throws(()=>validateSixTopicSeoSource((ref,path)=>ref==='HEAD'&&path===changed?'changed':path),/source drift/);

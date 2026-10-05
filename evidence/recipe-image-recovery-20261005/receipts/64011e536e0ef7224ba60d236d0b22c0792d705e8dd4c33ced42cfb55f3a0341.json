@@ -1,0 +1,84 @@
+{
+  "groupId": "64011e536e0ef7224ba60d236d0b22c0792d705e8dd4c33ced42cfb55f3a0341",
+  "recipe_ids": [
+    "industrial-snack-apple-protein-snack-lemon"
+  ],
+  "titles": [
+    "Lemon Apple Protein Snack"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "15g",
+      "item": "peanut butter",
+      "allergens": [
+        "peanuts"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1/2 tsp",
+      "item": "ground cinnamon"
+    },
+    {
+      "amount": "1g",
+      "item": "lemon zest"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare any fruit or vegetables and keep chilled ingredients cold.",
+    "Combine or pack the ingredients into a bowl or lidded container.",
+    "Add the measured lemon zest just before eating.",
+    "Eat straight away or keep refrigerated until needed."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Lemon Apple Protein Snack. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"15g\",\"item\":\"peanut butter\",\"allergens\":[\"peanuts\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1/2 tsp\",\"item\":\"ground cinnamon\"},{\"amount\":\"1g\",\"item\":\"lemon zest\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare any fruit or vegetables and keep chilled ingredients cold.\",\"Combine or pack the ingredients into a bowl or lidded container.\",\"Add the measured lemon zest just before eating.\",\"Eat straight away or keep refrigerated until needed.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-d304fdf5-d3c5-43e0-8e4a-f0088d836acd.png",
+  "source_sha256": "d48a8e1e5f0ca6671a4220066621879719899e7ef8ef747deee30ede30b1aa45",
+  "generated_at": "2026-10-05T18:29:34.324Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-64011e536e0ef7224ba6-final20261005-480-81ea57507490.webp",
+      "sha256": "81ea5750749007b77fa4c83c83dd12fd17d14725b1396e9cec784ef051e7bc8b",
+      "bytes": 20498
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-64011e536e0ef7224ba6-final20261005-960-c1317f89df8b.webp",
+      "sha256": "c1317f89df8b7350899d09b2165d9fe2736a0bb6749847a3fccf4256dc8be587",
+      "bytes": 60992
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 009, item 87. The finished food, main ingredient identity and serving form agree with Lemon Apple Protein Snack and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Lemon Apple Protein Snack served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "d48a8e1e5f0ca6671a4220066621879719899e7ef8ef747deee30ede30b1aa45",
+    "recipe_ids": [
+      "industrial-snack-apple-protein-snack-lemon"
+    ],
+    "titles": [
+      "Lemon Apple Protein Snack"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

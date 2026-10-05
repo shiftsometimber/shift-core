@@ -1,0 +1,84 @@
+{
+  "groupId": "b0fff8212be80383d2ae8e37c6260ca07831a2e29d7ca363bb2c7b855118c61e",
+  "recipe_ids": [
+    "industrial-snack-cottage-cheese-pot-banana"
+  ],
+  "titles": [
+    "Banana Cottage Cheese Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "pineapple chunks"
+    },
+    {
+      "amount": "25g",
+      "item": "wholegrain crackers",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    },
+    {
+      "amount": "60g",
+      "item": "banana, sliced"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare any fruit or vegetables and keep chilled ingredients cold.",
+    "Combine or pack the ingredients into a bowl or lidded container.",
+    "Add the measured sliced banana just before eating.",
+    "Eat straight away or keep refrigerated until needed."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Banana Cottage Cheese Pot. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"pineapple chunks\"},{\"amount\":\"25g\",\"item\":\"wholegrain crackers\",\"allergens\":[\"gluten\"]},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"},{\"amount\":\"60g\",\"item\":\"banana, sliced\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare any fruit or vegetables and keep chilled ingredients cold.\",\"Combine or pack the ingredients into a bowl or lidded container.\",\"Add the measured sliced banana just before eating.\",\"Eat straight away or keep refrigerated until needed.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-66dae7fc-b3db-4dcf-bf7a-0b3d699c3935.png",
+  "source_sha256": "16ed056662a246740441dc87925cb6e745e674a1611f073f1840f2605d788aa6",
+  "generated_at": "2026-10-05T18:21:23.766Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b0fff8212be80383d2ae-final20261005-480-4a77b649445a.webp",
+      "sha256": "4a77b649445a6733f1d30eaa751a7b63bc0f28da80d63955522e5d169c5dfb67",
+      "bytes": 21028
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b0fff8212be80383d2ae-final20261005-960-3438f9e25d0d.webp",
+      "sha256": "3438f9e25d0d0007011ec09b0c574995151b9b27e15e931c8ad19f95616fde2d",
+      "bytes": 65206
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 020, item 180. The finished food, main ingredient identity and serving form agree with Banana Cottage Cheese Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Banana Cottage Cheese Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "16ed056662a246740441dc87925cb6e745e674a1611f073f1840f2605d788aa6",
+    "recipe_ids": [
+      "industrial-snack-cottage-cheese-pot-banana"
+    ],
+    "titles": [
+      "Banana Cottage Cheese Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

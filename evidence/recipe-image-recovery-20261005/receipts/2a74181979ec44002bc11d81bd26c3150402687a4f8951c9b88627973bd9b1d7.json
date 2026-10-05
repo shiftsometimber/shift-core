@@ -1,0 +1,80 @@
+{
+  "groupId": "2a74181979ec44002bc11d81bd26c3150402687a4f8951c9b88627973bd9b1d7",
+  "recipe_ids": [
+    "industrial-snack-bean-dip-box-lemon"
+  ],
+  "titles": [
+    "Cucumber Bean Dip Box"
+  ],
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "chickpeas"
+    },
+    {
+      "amount": "10ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "80g",
+      "item": "carrot sticks"
+    },
+    {
+      "amount": "25g",
+      "item": "wholegrain crackers",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "cucumber"
+    }
+  ],
+  "method": [
+    "Measure everything before assembling the snack so the portion stays intentional.",
+    "Lightly crush the ready-cooked canned chickpeas with the measured lemon juice and savoury add-on, then pack with the vegetables and crackers.",
+    "Keep chilled protein and vegetables refrigerated until you are ready to eat.",
+    "Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cucumber Bean Dip Box. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"chickpeas\"},{\"amount\":\"10ml\",\"item\":\"lemon juice\"},{\"amount\":\"80g\",\"item\":\"carrot sticks\"},{\"amount\":\"25g\",\"item\":\"wholegrain crackers\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"cucumber\"}]. Preparation: [\"Measure everything before assembling the snack so the portion stays intentional.\",\"Lightly crush the ready-cooked canned chickpeas with the measured lemon juice and savoury add-on, then pack with the vegetables and crackers.\",\"Keep chilled protein and vegetables refrigerated until you are ready to eat.\",\"Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-d43038c3-72ba-4a07-b9ec-fef526e82595.png",
+  "source_sha256": "44ce8d4ddcaee135000d4bc0a1b4a84128f5c67ac4434a91729ada6641224fd9",
+  "generated_at": "2026-10-05T18:28:00.633Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2a74181979ec44002bc1-final20261005-480-ed086cb7c21d.webp",
+      "sha256": "ed086cb7c21dbd55e4958c8bb29d3ae3fad2b4c52d6a8f0c126ef87ae50b8657",
+      "bytes": 24280
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2a74181979ec44002bc1-final20261005-960-872918b2e4e9.webp",
+      "sha256": "872918b2e4e90c8f9965a1713a23326fbea1f58c3e8710723a5ff641f0050bb2",
+      "bytes": 70856
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 004, item 38. The finished food, main ingredient identity and serving form agree with Cucumber Bean Dip Box and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Cucumber Bean Dip Box served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "44ce8d4ddcaee135000d4bc0a1b4a84128f5c67ac4434a91729ada6641224fd9",
+    "recipe_ids": [
+      "industrial-snack-bean-dip-box-lemon"
+    ],
+    "titles": [
+      "Cucumber Bean Dip Box"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

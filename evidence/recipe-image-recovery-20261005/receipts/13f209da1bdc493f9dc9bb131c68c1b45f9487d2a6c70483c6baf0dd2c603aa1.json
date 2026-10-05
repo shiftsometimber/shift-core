@@ -1,0 +1,84 @@
+{
+  "groupId": "13f209da1bdc493f9dc9bb131c68c1b45f9487d2a6c70483c6baf0dd2c603aa1",
+  "recipe_ids": [
+    "industrial-snack-yoghurt-pot-orange"
+  ],
+  "titles": [
+    "Orange Yoghurt Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "25g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15ml",
+      "item": "orange juice"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare any fruit or vegetables and keep chilled ingredients cold.",
+    "Combine or pack the ingredients into a bowl or lidded container.",
+    "Add the measured orange juice just before eating.",
+    "Eat straight away or keep refrigerated until needed."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Orange Yoghurt Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"mixed berries\"},{\"amount\":\"25g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15ml\",\"item\":\"orange juice\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare any fruit or vegetables and keep chilled ingredients cold.\",\"Combine or pack the ingredients into a bowl or lidded container.\",\"Add the measured orange juice just before eating.\",\"Eat straight away or keep refrigerated until needed.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-e902bb26-c1a3-4de2-85df-1f9787506c9d.png",
+  "source_sha256": "8b0c74c37d3f666ca3efcdff864d02aa0da0f1079d7cf09db94d77c295e4eaea",
+  "generated_at": "2026-10-05T18:27:06.788Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-13f209da1bdc493f9dc9-final20261005-480-025f0579b593.webp",
+      "sha256": "025f0579b5937a35c6d6ef457d8b6350e0abffc8f6b73e60744b4795a0355126",
+      "bytes": 21288
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-13f209da1bdc493f9dc9-final20261005-960-4a1e6bfd0ee2.webp",
+      "sha256": "4a1e6bfd0ee25e859820e37cf08b54e9aa0a263cb8c83a9ad68267eee473d115",
+      "bytes": 68332
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 002, item 19. The finished food, main ingredient identity and serving form agree with Orange Yoghurt Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Orange Yoghurt Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "8b0c74c37d3f666ca3efcdff864d02aa0da0f1079d7cf09db94d77c295e4eaea",
+    "recipe_ids": [
+      "industrial-snack-yoghurt-pot-orange"
+    ],
+    "titles": [
+      "Orange Yoghurt Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

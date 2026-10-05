@@ -1,0 +1,84 @@
+{
+  "groupId": "66b3cefcd4c43c6fd16580e485cc4796d7c8a3bc7e2f90e30f26b133647512d7",
+  "recipe_ids": [
+    "industrial-snack-tuna-snack-pot-berry"
+  ],
+  "titles": [
+    "Tomato Tuna Snack Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "80g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "25g",
+      "item": "wholegrain crackers",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "tomato"
+    }
+  ],
+  "method": [
+    "Use canned ready-to-eat sweetcorn, drained before weighing the listed portion. Keep it chilled until assembling the pot.",
+    "Measure everything before assembling the snack so the portion stays intentional.",
+    "Drain the tuna well, combine it with the vegetables and measured savoury add-on, and keep the crackers separate until eating.",
+    "Keep chilled protein and vegetables refrigerated until you are ready to eat.",
+    "Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Tomato Tuna Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"sweetcorn\"},{\"amount\":\"80g\",\"item\":\"cucumber\"},{\"amount\":\"25g\",\"item\":\"wholegrain crackers\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"tomato\"}]. Preparation: [\"Use canned ready-to-eat sweetcorn, drained before weighing the listed portion. Keep it chilled until assembling the pot.\",\"Measure everything before assembling the snack so the portion stays intentional.\",\"Drain the tuna well, combine it with the vegetables and measured savoury add-on, and keep the crackers separate until eating.\",\"Keep chilled protein and vegetables refrigerated until you are ready to eat.\",\"Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-1513ef92-d7bc-40df-b013-52eb01eb969b.png",
+  "source_sha256": "efa1f81d4a9e76afa1a5ac0b4e6bb07413c3fad2c2c3f28407b5a07a4589ff72",
+  "generated_at": "2026-10-05T18:40:56.599Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-66b3cefcd4c43c6fd165-final20261005-480-2158bed288d9.webp",
+      "sha256": "2158bed288d91ce75b9dda4f1190034b0b62e6d087db1c31cbe32d6a124c545e",
+      "bytes": 24402
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-66b3cefcd4c43c6fd165-final20261005-960-7aad3316d029.webp",
+      "sha256": "7aad3316d029e626235e3a9740f576d527daadefe1826845067a3d06cb1d80da",
+      "bytes": 78686
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 010, item 90. The finished food, main ingredient identity and serving form agree with Tomato Tuna Snack Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Tomato Tuna Snack Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "efa1f81d4a9e76afa1a5ac0b4e6bb07413c3fad2c2c3f28407b5a07a4589ff72",
+    "recipe_ids": [
+      "industrial-snack-tuna-snack-pot-berry"
+    ],
+    "titles": [
+      "Tomato Tuna Snack Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}
