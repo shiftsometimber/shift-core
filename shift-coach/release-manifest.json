@@ -267,7 +267,7 @@
   },
   "fitComposition": {
     "proof": "FIT_300_BOUNDED_RELEASE_COMPOSITION_V1",
-    "source": "5e3ed1d9469cb3087fb51a1a7e4b035924d630c4",
+    "source": "76562e03ec3c5544c1952afaea73305db932ea31",
     "paths": [
       "scripts/b1-release-scope.mjs",
       "release/app-scope.mjs",
