@@ -282,7 +282,7 @@
     "preview/ai-context/sustained-reliability-proof.mjs": "0f3e879b57ad74fe49871f42aaa01a9a86ce2c3b1075de1bb58b7b286b887790",
     ".github/workflows/sustained-ai-closeout-proof.yml": "d98b552681c90fa8e6c4941638882aeb7dee7269ebbea66d9235ad69a88edddb",
     "docs/DATA-GOVERNANCE-OPERATING-PACK-2026-09-02.md": "fca71c2db2318bc886bdc1c0ada6a92b7c87f806d61c94740f1763cc98ed8e44",
-    "shift-coach/release-contract.mjs": "8ef7791da324d9a05d90576c1234c46a70f7cee661b940875ffdf83387312576"
+    "shift-coach/release-contract.mjs": "a694e9de3e7a20e3562ea1b163e55fd3ee5bd76d9c7ac337e29dd5cf81bef588"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
