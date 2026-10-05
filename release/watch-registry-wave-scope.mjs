@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
-// Exact standing-authorised factual research updates through PR #1125, including
-// the NCT05713799 estimated-start correction; prior reviewed claims are preserved.
+// Exact standing-authorised factual research updates through PR #1128, including
+// the specialist semaglutide and sarcopenia registry wave; prior reviewed claims are preserved.
 // Research listings do not establish supply, sale, clinical approval or UK access.
-export const WATCH_REGISTRY_WAVE_COMMIT='970b94c64094a2adb2ac74d4d241156ae1d1963a';
+export const WATCH_REGISTRY_WAVE_COMMIT='fe8ff85ed10251a892e10a643611ecc707681bcd';
 export const WATCH_REGISTRY_WAVE_PATHS=['medicines-watch/evidence-desk.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/reviews/2026-10-03-evidence-desk-zp6590.json','medicines-watch/README.md','medicines-watch/data.mjs','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/product-renewal.test.mjs','medicines-watch/provider-review.test.mjs','medicines-watch/source-review.test.mjs','medicines-watch/reviews/2026-10-02-authorised-expanded-registry-wave.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json','medicines-watch/reviews/2026-10-02-authorised-glimr-copd.json','medicines-watch/reviews/2026-10-02-authorised-specialist-registry-followup.json','medicines-watch/reviews/2026-10-02-authorised-switching-studies.json','medicines-watch/reviews/2026-10-02-authorised-na931.json','medicines-watch/reviews/2026-10-03-authorised-amylin-metabolic-followup.json','medicines-watch/reviews/2026-10-03-authorised-azd1043.json','medicines-watch/reviews/2026-10-03-authorised-azd6234-selene.json','medicines-watch/reviews/2026-10-03-authorised-wve007.json','medicines-watch/reviews/2026-10-03-authorised-specialist-registry-wave.json','medicines-watch/reviews/2026-10-03-authorised-lean-mass-energy-followup.json','medicines-watch/reviews/2026-10-03-authorised-foundayo-predicted-risk.json','medicines-watch/reviews/2026-10-03-authorised-wegovy-mash-correction.json','medicines-watch/reviews/2026-10-03-authorised-vk3019-at673.json','medicines-watch/reviews/2026-10-04-authorised-srsd384.json','medicines-watch/reviews/2026-10-04-authorised-fractyl-modality-gap.json','medicines-watch/reviews/2026-10-04-authorised-art2713-muscle-gap.json','medicines-watch/reviews/2026-10-04-authorised-rgt075.json','medicines-watch/reviews/2026-10-04-authorised-vct220.json','medicines-watch/reviews/2026-10-04-authorised-vk2735-maintenance.json','medicines-watch/reviews/2026-10-04-wegovy-tablet-provider-renewal.json','medicines-watch/reviews/2026-10-04-authorised-survodutide-paper.json','medicines-watch/reviews/2026-10-04-authorised-azelaprag-discontinuation.json','medicines-watch/reviews/2026-10-04-authorised-taldefgrobep-rv8451.json','medicines-watch/reviews/2026-10-04-authorised-foundayo-attain-maintain.json','medicines-watch/industry-page.mjs','medicines-watch/monitor.mjs','medicines-watch/page.mjs','medicines-watch/verify-live.mjs','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/registry-lifecycle.mjs','medicines-watch/reviews/2026-10-03-credibility-improvements.json'];
 WATCH_REGISTRY_WAVE_PATHS.push('medicines-watch/reviews/2026-10-04-authorised-international-maintenance-wave.json');
 WATCH_REGISTRY_WAVE_PATHS.push('medicines-watch/reviews/2026-10-05-authorised-novo-specialist-wave.json');
@@ -17,7 +17,8 @@ WATCH_REGISTRY_WAVE_PATHS.push('medicines-watch/reviews/2026-10-05-authorised-ar
 WATCH_REGISTRY_WAVE_PATHS.push('medicines-watch/reviews/2026-10-05-authorised-asc36-oral.json');
 WATCH_REGISTRY_WAVE_PATHS.push('medicines-watch/reviews/2026-10-05-authorised-te8105-phase2b.json');
 WATCH_REGISTRY_WAVE_PATHS.push('medicines-watch/reviews/2026-10-05-authorised-nct05713799-start-correction.json');
-// The TE-8105 review keeps not-yet-recruiting registry status, estimated dates, Australian sites, no results and absent UK access separate without clearing unrelated source failures.
+WATCH_REGISTRY_WAVE_PATHS.push('medicines-watch/reviews/2026-10-05-authorised-semaglutide-specialist-sarcopenia-wave.json');
+// The new registry wave keeps planned interventional work separate from an observational sarcopenia study, and preserves absent UK access and unrelated source failures.
 export const WATCH_SOURCE_LINK_SOURCE=WATCH_REGISTRY_WAVE_COMMIT;
 export const WATCH_OWNERSHIP_SOURCE='1eca49505836ac99e5b1cb929660f1e108213781';
 export const WATCH_OWNERSHIP_BASE='725e4bb0d27d4cbd52e85c27bfa9e27841a166b0';
@@ -34,4 +35,4 @@ export function originalWatchOwnershipEntry(source){
  return source.replace(change,'      const medicinesWatch = await checkSources(env).catch((error) => ({')+'\n';
 }
 export function validateWatchRegistryWave(read){for(const path of WATCH_REGISTRY_WAVE_PATHS)assert.equal(read('HEAD',path),read(watchWaveRef(path),path),'Watch registry-wave source drift: '+path);}
-export async function verifyWatchRegistryWaveProof(get){const proof=await get('/actions/runs/37316086081');assert.equal(proof.head_sha,'da1cbfec19917aac98c4e83f832902d790e9ca41');assert.equal(proof.path,'.github/workflows/medicines-watch-check.yml');assert.equal(proof.conclusion,'success');validateWatchRegistryWave((ref,path)=>execFileSync('git',['rev-parse',ref+':'+path],{encoding:'utf8'}).trim());return proof;}
+export async function verifyWatchRegistryWaveProof(get){const proof=await get('/actions/runs/37352493136');assert.equal(proof.head_sha,'fe8ff85ed10251a892e10a643611ecc707681bcd');assert.equal(proof.path,'.github/workflows/medicines-watch-check.yml');assert.equal(proof.conclusion,'success');validateWatchRegistryWave((ref,path)=>execFileSync('git',['rev-parse',ref+':'+path],{encoding:'utf8'}).trim());return proof;}
