@@ -4,6 +4,8 @@ Authority date: 2 September 2026
 Business owner: Matt O'Brien  
 Status: owner-adopted pre-pharmacy baseline; not a claim of external legal certification.
 
+Reconciled 4 October 2026 against the coaching implementation and Matt's purpose/privacy decision recorded at `2026-10-02T16:30:46+01:00` in `shift-coach/release-manifest.json`. The coaching rows below supersede the original September blanket 90-day AI-memory statement. The other rows remain the working baseline; they are not receipts of current tenant settings, disposal jobs or processor contracts.
+
 ## Data categories and retention
 
 | Category | Working retention | Trigger | Disposal/control |
@@ -11,7 +13,9 @@ Status: owner-adopted pre-pharmacy baseline; not a claim of external legal certi
 | Account and security record | Account life + 6 years | Account closure | Delete direct profile data; retain narrow fraud/security evidence where lawful |
 | Session and authentication telemetry | 90 days | Creation | Automatic expiry/deletion |
 | Optional My Journey tracking | Until member deletion/withdrawal | Member request or account closure | Authenticated self-service erasure; remove photos and tracking rows atomically |
-| Shift AI/Ask Timber operational memory | 90 days unless member removes sooner | Creation | Existing memory/privacy controls and member removal |
+| Shift AI coaching confirmed context, feedback and plans | Until member deletion or account-data erasure | Member deletion request | Existing consent-bound D1 coaching snapshot and member erasure controls; consent withdrawal stops use and invalidates the old consent context, but does not itself erase historical records |
+| Shift AI coaching audit and night-run history | Entries older than 90 days pruned on the next coaching mutation | Next successful mutation | Mutation-based pruning in `shift-coach/store.mjs`; no guaranteed nightly purge or dormant-account deadline |
+| Other Ask Timber memory, inference/gateway logs and backups | Actual operational retention still to be verified | Store/provider-specific | Do not apply the coaching snapshot rule to separate stores, processor logs or backups |
 | Tap Room visible content | Until removed/account erasure | Member/moderator action | Anonymise or remove content subject to safety/audit need |
 | Tap Room moderation audit | 24 months | Moderation action | Restricted access, then deletion unless an active legal/safeguarding hold applies |
 | Analytics event data | 14 months | Event date | GA4 property retention; no health/free-text payloads |
@@ -22,7 +26,9 @@ Status: owner-adopted pre-pharmacy baseline; not a claim of external legal certi
 
 ## DPIA decision record
 
-High-risk processing exists because optional health and wellbeing tracking, AI-assisted support and community content may reveal special-category data. Controls include explicit choice, data minimisation, member isolation, fail-closed clinical language, human escalation, deletion routes, short AI retention, analytics filtering, audit logging and kill switches.
+High-risk processing exists because optional health and wellbeing tracking, AI-assisted support and community content may reveal special-category data. Controls include explicit choice, data minimisation, member isolation, fail-closed clinical language, human escalation, deletion routes, the disclosed store-specific retention rules, analytics filtering, audit logging and kill switches. The bounded coaching component makes no model calls; its retention does not establish the separate Ask Timber inference or gateway policy.
+
+The coaching snapshot is held in `member_state.preferences.lifeBack.progress.shiftAI`. Confirmed context and feedback are not silently expired after 90 days. Synthetic integration checks support consent fencing, account isolation and member erasure; they do not prove production rights-request fulfilment, dormant-account disposal or deletion of infrastructure backups. Actual account plan, backup retention, processing locations, contracts, subprocessors and staff access remain operational evidence requirements.
 
 The pre-pharmacy residual risk is acceptable only while medicine sales, prescribing, clinical decision-making and provider data exchange remain disabled. The DPIA must be reopened before: live treatment sales, a new clinical/pharmacy processor, new automated clinical inference, material international transfer, or materially expanded health-data use.
 

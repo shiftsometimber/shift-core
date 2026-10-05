@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {fixture,ask} from '../../tests/helpers/ai-member-fixture.mjs';
 import {storePublicPage} from '../../member-experience/ai-site-knowledge.mjs';
+assert(process.env.SHIFT_EVAL_URL&&process.env.SHIFT_EVAL_KEY,'Authenticated temporary evaluator URL and key are required; no local fixture can establish real-model capacity');
+const roundCount=10,intervalMs=60000;
 const cleanups=[],{env,DB}=fixture({after:fn=>cleanups.push(fn)});
 env.SHIFT_AI_PRACTICAL_CONTEXT='true';env.SHIFT_AI_CONVERSATION_MEMORY='true';
 DB.sqlite.exec('CREATE TABLE ai_knowledge_documents(id INTEGER PRIMARY KEY,title,source_uri,category,trust_tier,status,checksum UNIQUE,updated_at);CREATE TABLE ai_knowledge_chunks(id INTEGER PRIMARY KEY,document_id,chunk_index,content,search_text);');
@@ -28,15 +30,26 @@ async function probe(message,token,scenario){
  else{assert.equal(done.journeyUsed,true);assert.match(done.answer,/weekend[ -]walks?/i);assert.doesNotMatch(done.answer,/completed.*walk|ate.*Lentil/i)}
  return receipt;
 }
-const report={source:process.env.GITHUB_SHA,at:new Date().toISOString(),model:'@cf/meta/llama-3.3-70b-instruct-fp8-fast',maximumConcurrency:2,rounds:5,intervalMs:60000,retries:0,customerReads:0,customerWrites:0,results:[],scope:'Five rounds over at least four minutes, each with two simultaneous uncached fictional-member requests, plus one uncached public request. Repeated provider/handler evidence at concurrency two; not production-scale, human or clinical acceptance.'};
+const report={source:process.env.GITHUB_SHA,at:new Date().toISOString(),model:'@cf/meta/llama-3.3-70b-instruct-fp8-fast',maximumConcurrency:4,rounds:roundCount,intervalMs,retries:0,customerReads:0,customerWrites:0,expectedRequests:41,openingBudgetMs:3200,roundStarts:[],results:[],scope:'Ten rounds over at least nine minutes, each with four simultaneous uncached requests from one fictional-member fixture, plus one uncached public request. Real provider/handler evidence under this bounded synthetic load; not production-scale, multiple-member capacity, human or clinical acceptance. Existing gateway privacy and $2/day spend guard must pass before execution.'};
 try{
  await probe('What is Life Back?',null,'fresh-public');
- for(let round=0;round<5;round++){
+ for(let round=0;round<roundCount;round++){
  const roundStart=Date.now();
- const parallel=await Promise.allSettled([probe('Help me make time for my saved personal goal on a busy evening.','synthetic-1','fresh-member-a-round-'+(round+1)),probe('Help me work towards my saved personal goal on a rainy day.','synthetic-1','fresh-member-b-round-'+(round+1))]);
- for(const result of parallel)if(result.status==='rejected')throw result.reason;
- if(round<4)await new Promise(resolve=>setTimeout(resolve,Math.max(0,60000-(Date.now()-roundStart))));
+ report.roundStarts.push(new Date(roundStart).toISOString());
+ const parallel=await Promise.allSettled([
+  probe('Help me make time for my saved personal goal on a busy evening.','synthetic-1','fresh-member-a-round-'+(round+1)),
+  probe('Help me work towards my saved personal goal on a rainy day.','synthetic-1','fresh-member-b-round-'+(round+1)),
+  probe('Help me take a small step towards my saved personal goal during a short lunch break.','synthetic-1','fresh-member-c-round-'+(round+1)),
+  probe('Help me plan a simple weekend step towards my saved personal goal.','synthetic-1','fresh-member-d-round-'+(round+1))
+ ]);
+ const failures=parallel.filter(result=>result.status==='rejected');
+ report.rejected=(report.rejected||0)+failures.length;
+ if(failures.length)throw new AggregateError(failures.map(result=>result.reason),failures.map(result=>result.reason.message).join('; '));
+ if(round<roundCount-1)await new Promise(resolve=>setTimeout(resolve,Math.max(0,intervalMs-(Date.now()-roundStart))));
  }
+ report.sustainedWindowMs=Date.parse(report.roundStarts.at(-1))-Date.parse(report.roundStarts[0]);
+ assert(report.sustainedWindowMs>=(roundCount-1)*intervalMs,'The sustained window was shorter than nine minutes');
+ assert.equal(report.results.length,report.expectedRequests);assert.equal(calls,report.expectedRequests);
  report.completed=report.results.length;report.rejected=0;report.passed=true;
 }catch(error){report.passed=false;report.error=error.message;throw error}
-finally{report.calls=calls;mkdirSync('evidence/priority-closeout',{recursive:true});writeFileSync('evidence/priority-closeout/sustained-ai.json',JSON.stringify(report,null,2));for(const fn of cleanups)fn()}
+finally{report.calls=calls;report.completed=report.results.filter(result=>result.delivery==='streamed').length;mkdirSync('evidence/priority-closeout',{recursive:true});writeFileSync('evidence/priority-closeout/sustained-ai.json',JSON.stringify(report,null,2));for(const fn of cleanups)fn()}
