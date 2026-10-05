@@ -28,6 +28,7 @@ import switchingStudies from './reviews/2026-10-02-authorised-switching-studies.
 import na931Publication from './reviews/2026-10-02-authorised-na931.json' with {type:'json'};
 import earlierEloraNa931Proposal from './reviews/2026-09-30-eloratzp-na931-discovery.json' with {type:'json'};
 import amylinMetabolicFollowup from './reviews/2026-10-03-authorised-amylin-metabolic-followup.json' with {type:'json'};
+import nct05713799Correction from './reviews/2026-10-05-authorised-nct05713799-start-correction.json' with {type:'json'};
 import azd1043Publication from './reviews/2026-10-03-authorised-azd1043.json' with {type:'json'};
 import seleneCorrection from './reviews/2026-10-03-authorised-azd6234-selene.json' with {type:'json'};
 import wve007Publication from './reviews/2026-10-03-authorised-wve007.json' with {type:'json'};
@@ -376,17 +377,23 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.match(azd.summary,/262 actual participants/);
  const pilot=industry.find(e=>e.id==='mirabegron-alpha-lipoic-acid');
  assert.match(pilot.stage,/not yet recruiting/);
- assert.match(pilot.summary,/estimated 7 October 2026 start/);
+ assert.match(pilot.summary,/estimated 8 October 2026 start/);
  assert.match(pilot.summary,/primary endpoint is insulin sensitivity/);
  assert.match(pilot.limitations,/48-person target.*estimates 60/);
  for(const e of [abbv,azd,pilot]){
   assert.equal(e.clinicalApproval,null);
-  assert.equal(e.reviewedAt,e.id==='azd6234'?seleneCorrection.reviewedAt:amylinMetabolicFollowup.reviewedAt);
+  assert.equal(e.reviewedAt,e.id==='azd6234'?seleneCorrection.reviewedAt:e.id==='mirabegron-alpha-lipoic-acid'?nct05713799Correction.reviewedAt:amylinMetabolicFollowup.reviewedAt);
   assert.equal(e.sourceIds.length,0);
   for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k]);
   const html=industryMarkup({},new URLSearchParams({q:e.name}));
   assert.match(html,/Status checks do not assess clinical outcomes/);
  }
+ const correctedSource=industrySources.find(s=>s.id==='registry-nct05713799');
+ assert.equal(correctedSource.lifecycle.start.date,'2026-10-08');
+ assert.equal(correctedSource.sourceUpdatedAt,'2026-10-05');
+ assert.equal(correctedSource.reviewedFingerprint,'f1f1502b85ec20feb6fa3aaa46b023e7a42a2a2c0ecba7f775b4bd77ff83471d');
+ assert.equal(nct05713799Correction.clinicalApproval,null);
+ assert.equal(nct05713799Correction.industryComplete,false);
  assert.equal(amylinMetabolicFollowup.automatedMonitorChanges,false);
  assert.equal(amylinMetabolicFollowup.clinicalApproval,null);
  assert.equal(amylinMetabolicFollowup.industryComplete,false);
