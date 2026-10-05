@@ -55,6 +55,7 @@ test('workflow-scoped history is bounded and never invents an ownership receipt'
 
 import {recordedImageRuntime} from './cancelled-release-recovery.mjs';
 test('recorded current image deployment remains discoverable when workflow history omits it',async()=>{
+ assert.deepEqual(recordedImageRuntime,{run:37336998330,source:'9d2b9e146063d634ac7ce058258c00dd7d804d2c',version:'f81ab965-f6aa-4655-be7d-b29f4ac29d67'});
  const record={id:recordedImageRuntime.run,head_sha:recordedImageRuntime.source,conclusion:'success',status:'completed',path:'.github/workflows/cloudflare-production-promote.yml',event:'push',head_branch:'main'};
  const requests=[];const get=async path=>{requests.push(path);return path==='/actions/runs/'+record.id?record:{workflow_runs:[]}};
  assert.deepEqual(await recentSuccessfulPromotions(get,active(recordedImageRuntime.version)),[record]);assert.equal(requests.length,2);
