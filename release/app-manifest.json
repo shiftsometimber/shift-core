@@ -63,7 +63,7 @@
     "tests/app-client-proof.test.mjs": "e16a741196a4fde2eee7cc89c62b3a2b4d38e1d8aa262042d03b400b350220cc",
     "tests/app-index-freshness.test.mjs": "17a1b920275517313e771688a32f599f98169cfcc3d8b1f9d11f0ceb312fcbc9",
     "tests/app-layout-live.test.mjs": "d9e9e435f9f197ed06f4d38742367f8e57ac40b28d9295a1cb633389131c3be8",
-    "tests/b1-release-scope.test.mjs": "2579af9058bf53dfc8a98bb28c65333d1d116ac3acd1dc555e9f3bd8ae5d1727",
+    "tests/b1-release-scope.test.mjs": "ca1adb8e9faf0dba2a99b3339541fd41ff4e6af60392c4938b3a64bef14d667b",
     "tests/member-focus-release.test.mjs": "c8ec0cac8283c7f5edd8a25f727c7230e0e9db0a63964d9bd8575f53a4a2f424",
     "medicines-watch/knowledge.mjs": "c7078053267c8ec36937d6e25a8ca3b2200b476bc8cb570f2a666117abe69ac5",
     "medicines-watch/knowledge.test.mjs": "95d7d1770f23ade771af7d89733b3d3b4b575bdd39b6c024b548ebeffa0ac3c4",
@@ -204,7 +204,7 @@
     "release/treatment-guidance-scope.mjs": "dcc3707b62a61b7d7435f25887c99e9ea005138093f7c9f113948cc91d1c45ef",
     "member-experience/tests/lookup-continuation.test.mjs": "b2fb48c0e10274935f1e6f61dd476d418d82fad2ee73b8ca2cdaaa022378a1eb",
     "tests/checkout-recovery.test.mjs": "4f85d460fbd8d37ae8f716b57465694a379333e22540a041051435d7724cc775",
-    "release/watch-registry-wave-scope.mjs": "e70626728fd415779e395d69fe7258b2cef8f5ee00c205cb2f104ba50589d087",
+    "release/watch-registry-wave-scope.mjs": "58563c9d91a9e268a7c2eee2ed6a65602b8c58e0dae9cbc5bcff5f0903735ade",
     "medicines-watch/reviews/2026-10-02-authorised-expanded-registry-wave.json": "0a1b5f1ce6c01afef9b78f719d0dd630ed9048e0b267684fd948e736901b629c",
     "tests/promise-accuracy.test.mjs": "4f8387ec49a12f8c5d2828f6b91a63c9df8055085a4f41edbb38a886992df260",
     ".github/workflows/book-voice-preview.yml": "e79cc6d3d36a2392b383be5442ca72b1a635af03c88004b026c41ec9bc1db41b",
@@ -283,7 +283,7 @@
     "preview/ai-context/sustained-reliability-proof.mjs": "0f3e879b57ad74fe49871f42aaa01a9a86ce2c3b1075de1bb58b7b286b887790",
     ".github/workflows/sustained-ai-closeout-proof.yml": "d98b552681c90fa8e6c4941638882aeb7dee7269ebbea66d9235ad69a88edddb",
     "docs/DATA-GOVERNANCE-OPERATING-PACK-2026-09-02.md": "fca71c2db2318bc886bdc1c0ada6a92b7c87f806d61c94740f1763cc98ed8e44",
-    "shift-coach/release-contract.mjs": "e7c58c5bc978b2b03b1df47a1e3f0e43cabfd8361e9d1f296786b2dc954c5afe",
+    "shift-coach/release-contract.mjs": "5e52a426cc8d49c1f59c5236cb15e91f698f2caea533ec11d56838d5e3da529f",
     "medicines-watch/reviews/2026-10-05-authorised-te8105-phase2b.json": "19832c6d157f39a1619ce1ab5fa77a0019195f26b53b2f7e57b2ece3d6c57dac",
     "medicines-watch/reviews/2026-10-05-authorised-nct05713799-start-correction.json": "e612c4d574ccefb788eca7fdff4e262f528f36e44ac328fad0d832e62adeb041",
     "medicines-watch/reviews/2026-10-05-authorised-semaglutide-specialist-sarcopenia-wave.json": "dc0e3ee79682c5be6206027778092d55d6cb5a4032ef211dc124f9b21fe721e7"
@@ -367,7 +367,7 @@
   "memberPanelLayout": {
     "candidate": "72f0796f7de9ccfc42f46ec203a6c00b04d17aba",
     "previewRun": 36987513488,
-    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404–IMG_2406 and the 07:57 screen recording.",
+    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404\u2013IMG_2406 and the 07:57 screen recording.",
     "scope": "Three exact presentation/preview files; existing records, controls and clinical/commercial gates preserved."
   },
   "watchCredibility": {
