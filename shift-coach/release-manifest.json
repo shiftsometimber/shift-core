@@ -294,7 +294,7 @@
     "proof": "SEO_FIT_EXACT_COMPOSITION_V1",
     "base": "4afdd2686d5a74dfeea9ca2d86aba71e62ed2320",
     "seoSource": "36749bd7c3e728ceb09a443366a7e2b933b7c144",
-    "source": "0000000000000000000000000000000000000000",
+    "source": "0234e52e1425b94437bfa314beb2afd65f748d2e",
     "paths": [
       "scripts/b1-release-scope.mjs",
       "release/app-scope.mjs",
