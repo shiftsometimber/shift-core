@@ -1,0 +1,88 @@
+{
+  "groupId": "b21879699a989cb2352061125324f1a0a85ae6e6b1aeb9ba295965f64770fd31",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-tomato-beans"
+  ],
+  "titles": [
+    "Shift Tomato Beans Breakfast Wrap"
+  ],
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "25g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tomato Beans Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"25g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual method constraint: one lightly pan-sealed wholemeal wrap cut into two halves with visible cooked filling, no side dish. Spinach wilted and peppers softened. Visible baked beans, not chickpeas; no meat or eggs.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/5/sources/001.png",
+  "source_sha256": "26ebef180051e44f8297f42b5b50b3f67e952a76a118de346ab019342d17f8e2",
+  "generated_at": "2026-10-05T12:46:34.918286+00:00",
+  "elapsed_ms": 56735,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b21879699a989cb23520-recovery20261005-480-e395cc2a13e4.webp",
+      "sha256": "e395cc2a13e4906ef3848cce0ce5d6732934ad983695045f021ad471eb748c3a",
+      "bytes": 28118
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b21879699a989cb23520-recovery20261005-960-4d4f4a8b9de2.webp",
+      "sha256": "4d4f4a8b9de20a6ae60a6e5a1fc0d49147a6c8180c7f1ad779b95feeb1ea195e",
+      "bytes": 86474
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "26ebef180051e44f8297f42b5b50b3f67e952a76a118de346ab019342d17f8e2",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-tomato-beans"
+    ],
+    "titles": [
+      "Shift Tomato Beans Breakfast Wrap"
+    ],
+    "notes": "Baked beans with wilted spinach and softened red/yellow peppers in one wholemeal wrap cut into two halves. Tomato coating incorporated; no meat, egg, onion, garnish or sides.",
+    "alt": "Shift Tomato Beans Breakfast Wrap, prepared with baked beans, wholemeal wrap, mixed peppers, spinach",
+    "reviewed_at": "2026-10-05T12:47:54.481229+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:48:29.470342+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

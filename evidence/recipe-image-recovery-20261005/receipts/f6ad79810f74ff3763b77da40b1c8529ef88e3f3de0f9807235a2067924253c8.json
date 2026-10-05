@@ -1,0 +1,92 @@
+{
+  "groupId": "f6ad79810f74ff3763b77da40b1c8529ef88e3f3de0f9807235a2067924253c8",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-weekend-bacon"
+  ],
+  "titles": [
+    "Shift Weekend Bacon Breakfast Buttie"
+  ],
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Bacon Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Food-specific accuracy: show the cooked filling in its stated bread, visibly cut open so every listed major filling is recognizable. Wholemeal bread must have brown whole-wheat crumb. No cheese, lettuce, garnish or unlisted foods. Bacon is lean back bacon: broad loin rashers with browned edges, not streaky bacon strips.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/4/sources/004.png",
+  "source_sha256": "bdf1fa96e9bd07068254cc07785e6fdf23b76ed8707e65189463de2d06c86ad9",
+  "generated_at": "2026-10-05T12:42:30.853680+00:00",
+  "elapsed_ms": 138323,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f6ad79810f74ff3763b7-recovery20261005-480-915c6e961e73.webp",
+      "sha256": "915c6e961e73ba2e2267345803be5a1642e40dd776cb9ae2780832846fd1c79e",
+      "bytes": 34496
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f6ad79810f74ff3763b7-recovery20261005-960-9d6842b05c5e.webp",
+      "sha256": "9d6842b05c5e425fe985589e3c70b3cc3ae9165888e31ffcbdec1fa061a9ac9c",
+      "bytes": 108890
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "bdf1fa96e9bd07068254cc07785e6fdf23b76ed8707e65189463de2d06c86ad9",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-weekend-bacon"
+    ],
+    "titles": [
+      "Shift Weekend Bacon Breakfast Buttie"
+    ],
+    "notes": "Broad cooked lean back-bacon rashers with browned edges fill brown wholemeal bap above wilted spinach, softened tomato and translucent onion. No streaky bacon substitution, cheese, or added garnish. One filled bap is fully shown.",
+    "alt": "Wholemeal back-bacon bap with tomato, spinach and onion.",
+    "reviewed_at": "2026-10-05T12:45:52.983852+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:46:28.015145+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

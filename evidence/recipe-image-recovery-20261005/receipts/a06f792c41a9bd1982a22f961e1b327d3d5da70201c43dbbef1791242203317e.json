@@ -53,7 +53,7 @@
   "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/4/sources/000.png",
   "source_sha256": "fdb0df13abc4cc827dbb768ae0e3afbf9dbf281d1b7974269482cdd1d42b2db5",
   "generated_at": "2026-10-05T12:41:30.188288+00:00",
-  "elapsed_ms": null,
+  "elapsed_ms": 21675,
   "variants": [
     {
       "width": 480,
@@ -85,7 +85,7 @@
     "reviewed_at": "2026-10-05T12:41:30.388488+00:00",
     "reviewer": "images_4",
     "final_crop_reviewed": true,
-    "final_crop_reviewed_at": "2026-10-05T12:41:46.781388+00:00"
+    "final_crop_reviewed_at": "2026-10-05T12:46:28.010830+00:00"
   },
   "integrated": false,
   "live": false

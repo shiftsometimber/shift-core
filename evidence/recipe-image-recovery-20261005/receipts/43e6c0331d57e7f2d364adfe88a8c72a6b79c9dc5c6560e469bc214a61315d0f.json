@@ -1,0 +1,92 @@
+{
+  "groupId": "43e6c0331d57e7f2d364adfe88a8c72a6b79c9dc5c6560e469bc214a61315d0f",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-weekend-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Weekend Chicken Breakfast Buttie"
+  ],
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Chicken Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/005-43e6c0331d57e7f2d364adfe88a8c72a6b79c9dc5c6560e469bc214a61315d0f.png",
+  "source_sha256": "84cffa53df6cc31f93d764d0248bdb4eb53d18dc24faae295a2b5a4375b8700f",
+  "generated_at": "2026-10-05T12:45:23.622Z",
+  "elapsed_ms": 125273,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-43e6c0331d57e7f2d364-recovery20261005-480-de0ba42dd918.webp",
+      "sha256": "de0ba42dd918b60017650087eb087711af335613acee86fdee1775d138dc7736",
+      "bytes": 27120
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-43e6c0331d57e7f2d364-recovery20261005-960-8787a2d1a6e1.webp",
+      "sha256": "8787a2d1a6e13edba369e82c8f6f4e3487c9c0e599b97e117643b326d6682bc7",
+      "bytes": 94872
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "84cffa53df6cc31f93d764d0248bdb4eb53d18dc24faae295a2b5a4375b8700f",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-weekend-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Weekend Chicken Breakfast Buttie"
+    ],
+    "notes": "Brown wholemeal bap exposes browned cooked chicken breast, softened tomato, wilted spinach and cooked translucent onion with red sauce. No cheese, egg or bacon. Whole portion and plate are fully framed.",
+    "alt": "Brown wholemeal bap exposes browned cooked chicken breast, softened tomato, wilted spinach and cooked translucent onion with red sauce",
+    "reviewed_at": "2026-10-05T12:46:33.990705+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:47:08.400448+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

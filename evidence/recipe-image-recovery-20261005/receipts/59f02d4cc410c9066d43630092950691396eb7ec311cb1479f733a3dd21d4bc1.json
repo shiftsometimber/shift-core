@@ -1,0 +1,92 @@
+{
+  "groupId": "59f02d4cc410c9066d43630092950691396eb7ec311cb1479f733a3dd21d4bc1",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-tomato-beans"
+  ],
+  "titles": [
+    "Shift Tomato Beans Breakfast Toastie"
+  ],
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "25g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.",
+    "Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the baked beans and heat gently until steaming hot throughout.",
+    "Stir in the listed flavour ingredients (25g tomato ketchup, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tomato Beans Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"25g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.\",\"Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the baked beans and heat gently until steaming hot throughout.\",\"Stir in the listed flavour ingredients (25g tomato ketchup, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Food-specific accuracy: show the cooked filling in its stated bread, visibly cut open so every listed major filling is recognizable. Wholemeal bread must have brown whole-wheat crumb. No cheese, lettuce, garnish or unlisted foods.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/4/sources/001.png",
+  "source_sha256": "e33071477e232fae8184f9bd2790ce3de5d0c4afe2220c753323ffae5fb9bbca",
+  "generated_at": "2026-10-05T12:41:01.813637+00:00",
+  "elapsed_ms": 49306,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-59f02d4cc410c9066d43-recovery20261005-480-3b55afb43f4f.webp",
+      "sha256": "3b55afb43f4fd56e8b1352d1276bb67feda90d73a9c1966525599fd897e252cd",
+      "bytes": 29518
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-59f02d4cc410c9066d43-recovery20261005-960-163fb07c2bc7.webp",
+      "sha256": "163fb07c2bc7abfd4c1eb29423b4867489c7b4758c911a6d7278962a98ba764a",
+      "bytes": 92918
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "e33071477e232fae8184f9bd2790ce3de5d0c4afe2220c753323ffae5fb9bbca",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-tomato-beans"
+    ],
+    "titles": [
+      "Shift Tomato Beans Breakfast Toastie"
+    ],
+    "notes": "Visible cooked baked beans, softened tomato and wilted spinach in reddish ketchup sauce inside crisp brown wholemeal triangle toastie halves, with remaining measured filling alongside. No cheese or unlisted garnish; one toastie serving fully in frame.",
+    "alt": "Wholemeal baked-bean toastie with tomato and spinach.",
+    "reviewed_at": "2026-10-05T12:45:50.222650+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:46:28.012032+00:00"
+  },
+  "integrated": false,
+  "live": false
+}
