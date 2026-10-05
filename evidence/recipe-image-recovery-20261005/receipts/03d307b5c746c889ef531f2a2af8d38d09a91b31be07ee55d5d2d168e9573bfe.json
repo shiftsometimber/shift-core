@@ -1,0 +1,92 @@
+{
+  "groupId": "03d307b5c746c889ef531f2a2af8d38d09a91b31be07ee55d5d2d168e9573bfe",
+  "recipe_ids": [
+    "industrial-v3-traybake-garlic-herb-chicken"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Chicken Traybake"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.",
+    "Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Whole single portion and cream serving ware entirely in frame, wide empty margin. No unlisted ingredients or fresh decorative herbs. Plate cooked protein with browned roasted baby potato pieces, cooked broccoli and roasted red pepper. Small measured cold mayonnaise with garlic powder and dried parsley; no fresh herbs. Beef mince is loose browned crumbles, never steak or meatballs.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/03d307b5c746c889ef531f2a2af8d38d09a91b31be07ee55d5d2d168e9573bfe.png",
+  "source_sha256": "500fe1d2bd3da8315ee9b8f6c4e20611c678f73111112a5c005e9c319e5b074c",
+  "generated_at": "2026-10-05T12:48:22.715Z",
+  "elapsed_ms": 181963,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-03d307b5c746c889ef53-recovery20261005-480-a30570051005.webp",
+      "sha256": "a30570051005ca2950238c4dcc2589fc0cb3f5f61cda9ddf01a4efd30671e39d",
+      "bytes": 25156
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-03d307b5c746c889ef53-recovery20261005-960-d727c4fb1b59.webp",
+      "sha256": "d727c4fb1b5908f20297716b4575294524ffdd7cd87a7578ee1408421c1fec32",
+      "bytes": 87076
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "500fe1d2bd3da8315ee9b8f6c4e20611c678f73111112a5c005e9c319e5b074c",
+    "recipe_ids": [
+      "industrial-v3-traybake-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Traybake"
+    ],
+    "notes": "Browned chicken breast with roasted baby potato pieces, roasted broccoli and red pepper; small cold garlic/dried parsley mayonnaise. No fresh herb garnish. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Chicken Traybake, prepared with chicken breast, baby potatoes, broccoli, red pepper",
+    "reviewed_at": "2026-10-05T12:50:23.832352+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:46.240233+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

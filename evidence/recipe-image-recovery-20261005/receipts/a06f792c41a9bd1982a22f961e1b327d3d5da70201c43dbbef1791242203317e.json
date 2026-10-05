@@ -1,0 +1,92 @@
+{
+  "groupId": "a06f792c41a9bd1982a22f961e1b327d3d5da70201c43dbbef1791242203317e",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-smoky-turkey"
+  ],
+  "titles": [
+    "Shift Smoky Turkey Breakfast Wrap"
+  ],
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Turkey Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Food-specific accuracy: show the cooked filling in its stated bread, visibly cut open so every listed major filling is recognizable. Wholemeal bread must have brown whole-wheat crumb. No cheese, lettuce, garnish or unlisted foods.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/4/sources/000.png",
+  "source_sha256": "fdb0df13abc4cc827dbb768ae0e3afbf9dbf281d1b7974269482cdd1d42b2db5",
+  "generated_at": "2026-10-05T12:41:30.188288+00:00",
+  "elapsed_ms": 21675,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a06f792c41a9bd1982a2-recovery20261005-480-94498cc5c8bc.webp",
+      "sha256": "94498cc5c8bc7cd68423bb03ae65a9d9f08c9a4f791f3f0bc66803d70c99fa18",
+      "bytes": 31482
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a06f792c41a9bd1982a2-recovery20261005-960-0dd544b401c0.webp",
+      "sha256": "0dd544b401c0366aead41f8b1d6e700a44d9be55b11a6fc87bba9c6bd81589a0",
+      "bytes": 98312
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fdb0df13abc4cc827dbb768ae0e3afbf9dbf281d1b7974269482cdd1d42b2db5",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-smoky-turkey"
+    ],
+    "titles": [
+      "Shift Smoky Turkey Breakfast Wrap"
+    ],
+    "notes": "Actual source shows cooked turkey breast slices with softened red/yellow peppers and wilted spinach, lightly ketchup-paprika coated, enclosed in a browned wholemeal wrap cut into two halves. No cheese, garnish, or unlisted side foods. Single wrap serving remains identifiable in the 4:3 preview crop.",
+    "alt": "Wholemeal turkey wrap with cooked peppers and spinach, cut into halves.",
+    "reviewed_at": "2026-10-05T12:41:30.388488+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:46:28.010830+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

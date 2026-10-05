@@ -1,0 +1,94 @@
+{
+  "groupId": "e8d11e1d21ee1f9f8a3201a2ee68d031a4c0eb33196565b09ecc4166d09c5829",
+  "recipe_ids": [
+    "industrial-v3-roast-garlic-herb-pork"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Pork Sunday-Style Roast"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Place the lean pork loin on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Serve the cooked lean pork loin, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, garlic powder, dried parsley dressing alongside after cooking."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Pork Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Place the lean pork loin on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Serve the cooked lean pork loin, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, garlic powder, dried parsley dressing alongside after cooking.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Cooked lean pork loin roast plate with golden 3cm peeled potato chunks, tender slim carrot batons, boiled broccoli florets and a small separate spoon of light mayonnaise garlic/dried parsley dressing. No gravy or fresh herb garnish. Frame the complete ordinary single serving with generous crop margin, 4:3 landscape. Wholegrains must have natural texture, not black seasoning speckles.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/015.png",
+  "source_sha256": "9b85d2be82e5e23f821d52f0c092e2e2346681aa5b01eeae2eeb49b410635493",
+  "generated_at": "2026-10-05T12:50:16.079510+00:00",
+  "elapsed_ms": 236590,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e8d11e1d21ee1f9f8a32-recovery20261005-480-00d0136a974a.webp",
+      "sha256": "00d0136a974a2d4f836eb1f73f3b96c1ac71d0d8d31d55d06fa75a115d9cc3d3",
+      "bytes": 26870
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e8d11e1d21ee1f9f8a32-recovery20261005-960-88d880532ba5.webp",
+      "sha256": "88d880532ba502576cee1754853b26815af92af8012d07a795e823e986f59cb8",
+      "bytes": 76066
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "9b85d2be82e5e23f821d52f0c092e2e2346681aa5b01eeae2eeb49b410635493",
+    "recipe_ids": [
+      "industrial-v3-roast-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Sunday-Style Roast"
+    ],
+    "notes": "Actual source reviewed: lean pork loin sliced with cooked pale interiors, golden peeled potato chunks, roasted carrot batons and cooked broccoli. Mayonnaise garlic/dried parsley dressing separate in small dish, oil integrated in cooking. No gravy or extra garnish; full single plate serving.",
+    "alt": "Shift Garlic & Herb Pork Sunday-Style Roast on cream serving ware",
+    "reviewed_at": "2026-10-05T12:51:21.370188+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:51:56.605860+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

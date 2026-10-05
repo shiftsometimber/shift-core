@@ -1,15 +1,15 @@
 {
   "catalogue_recipes": 2671,
   "distinct_groups": 2623,
-  "generated_new": 2038,
-  "reviewed_pass_new": 2026,
+  "generated_new": 2103,
+  "reviewed_pass_new": 2091,
   "reviewed_reject_new": 1,
-  "integrated_new": 2026,
-  "integrated_recipe_bindings_total": 2093,
-  "remaining_recipe_bindings": 578,
+  "integrated_new": 2091,
+  "integrated_recipe_bindings_total": 2158,
+  "remaining_recipe_bindings": 513,
   "live_new": 0,
-  "remaining_groups_without_prepared_asset": 566,
-  "remaining_groups_without_usable_new_asset": 578,
+  "remaining_groups_without_prepared_asset": 501,
+  "remaining_groups_without_usable_new_asset": 513,
   "complete": false,
   "generation_history": {
     "generated_attempts": 2205,
@@ -18,5 +18,12 @@
     "reviewed_reject_attempts": 86,
     "awaiting_review_attempts": 93
   },
-  "historical_attempts_are_not_current_usable_assets": true
+  "historical_attempts_are_not_current_usable_assets": true,
+  "recovery_20261005": {
+    "generated_reviewed_integrated_new_bindings": 65,
+    "previously_deployed_bindings": 2093,
+    "new_bindings_verified_live": 0,
+    "checkpoint_branch": "codex/recipe-image-recovery-20261005",
+    "full_catalogue_completeness_review_required": false
+  }
 }

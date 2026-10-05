@@ -1,7 +1,7 @@
 {
-  "source": "9e7dd54f4d4d3da456b361de7db6544584aaae6a",
-  "base": "2b727bff6a33adb9bc37716314a0ace19e141bdb",
-  "bindings": 2093,
+  "source": "0af52424dc464356d3e429eea762f1bacb27fb48",
+  "base": "6f994ba93f539cac9d5cf2767318d435b8f092fe",
+  "bindings": 2158,
   "usable": 2671,
   "complete": false,
   "entries": [
@@ -15,7 +15,7 @@
       "path": "evidence/recipe-image-worker",
       "mode": "040000",
       "type": "tree",
-      "sha": "82579a05d28cd6ad82769f82e55a6b685feff007"
+      "sha": "9d25e699b67692a246e5822c86fbb87bba964eff"
     },
     {
       "path": "evidence/prepared-recipe-images-2026-10-04.json",
@@ -27,7 +27,7 @@
       "path": "frontend/member/assets/member-experience/food",
       "mode": "040000",
       "type": "tree",
-      "sha": "61d83636f170ba86b59f279ac098587e34e60bd7"
+      "sha": "3ff63a1e7c1ce8768a30fe92a0dbd53c219b6dc1"
     },
     {
       "path": "member-experience/grub-client.mjs",
@@ -39,7 +39,7 @@
       "path": "member-experience/grub-image-map.mjs",
       "mode": "100644",
       "type": "blob",
-      "sha": "7771f8b239b617a7574dbb23010b842214e60c9a"
+      "sha": "2feff832935e9a06236ba0b3654adfb0053c8428"
     },
     {
       "path": "member-experience/grub-intelligence-client.mjs",
@@ -70,7 +70,39 @@
       "mode": "100644",
       "type": "blob",
       "sha": "70da55678022ae8534cf1283b298259c76c5658c"
+    },
+    {
+      "path": "evidence/recipe-image-recovery-20261005",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f211f86c34d68458b53a14af8a57892936a3fd19"
+    },
+    {
+      "path": "release/recipe-image-scope.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04441eb3c092446579942f2ab701ec2a116117ac"
+    },
+    {
+      "path": "tests/recipe-image-release.test.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a13ae5c8c3fb1962cf9c763944579b2f05ec3bf9"
     }
   ],
-  "followupSource": "0df8c4d69ba1a71f51bf9d5491d5ef2f554107b0"
+  "followupSource": "0df8c4d69ba1a71f51bf9d5491d5ef2f554107b0",
+  "priorPayloads": [
+    {
+      "base": "2b727bff6a33adb9bc37716314a0ace19e141bdb",
+      "source": "9e7dd54f4d4d3da456b361de7db6544584aaae6a"
+    }
+  ],
+  "recovery": {
+    "previouslyDeployedBindings": 2093,
+    "addedBindings": 65,
+    "reviewedAssetsCheckpointed": 78,
+    "remainingBindings": 513,
+    "newBindingsVerifiedLive": 0,
+    "scope": "Exact recipe imagery only; current main retained; previous image scope preserved as immutable prior payload."
+  }
 }

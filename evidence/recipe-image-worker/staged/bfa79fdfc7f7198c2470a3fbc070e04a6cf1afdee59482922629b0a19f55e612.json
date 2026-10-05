@@ -1,0 +1,104 @@
+{
+  "groupId": "bfa79fdfc7f7198c2470a3fbc070e04a6cf1afdee59482922629b0a19f55e612",
+  "recipe_ids": [
+    "industrial-v3-pizza-loaded-turkey"
+  ],
+  "titles": [
+    "Shift Fully Loaded Turkey Proper Pizza"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "15g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5–6 minutes until softened; transfer them to a clean bowl.",
+    "Mix the measured light mayonnaise and tomato ketchup in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Keep the turkey breast mince ready to break into small pieces in the pan. Coat with all the measured paprika and chilli powder. After handling raw turkey breast mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the turkey breast mince over a medium-high heat for about 8–10 minutes, breaking up clumps and stirring frequently. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Transfer the cooked turkey breast mince to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3–4 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked turkey breast mince evenly on top. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Fully Loaded Turkey Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"15g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5–6 minutes until softened; transfer them to a clean bowl.\",\"Mix the measured light mayonnaise and tomato ketchup in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Keep the turkey breast mince ready to break into small pieces in the pan. Coat with all the measured paprika and chilli powder. After handling raw turkey breast mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the turkey breast mince over a medium-high heat for about 8–10 minutes, breaking up clumps and stirring frequently. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Transfer the cooked turkey breast mince to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3–4 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked turkey breast mince evenly on top. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Whole single portion and cream serving ware entirely in frame, wide empty margin. No unlisted ingredients or fresh decorative herbs. One small pizza topped with cooked crumbled turkey breast mince and softened mixed peppers over tomato passata, cold pink finishing sauce. Absolutely NO cheese or cheese-like strands.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/bfa79fdfc7f7198c2470a3fbc070e04a6cf1afdee59482922629b0a19f55e612.png",
+  "source_sha256": "c582c1f4a95804663b7f3743d29dcae9f55514b7b077c2fce086befa2f2636a4",
+  "generated_at": "2026-10-05T12:46:17.134Z",
+  "elapsed_ms": 56382,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bfa79fdfc7f7198c2470-recovery20261005-480-dd45e1bd3250.webp",
+      "sha256": "dd45e1bd3250a88fbf9435806f1765b0b72ab99f1ce3f7f0d4004c0e9641c4d2",
+      "bytes": 25202
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bfa79fdfc7f7198c2470-recovery20261005-960-d2ec59189ac3.webp",
+      "sha256": "d2ec59189ac3027d44543e40d06189856fb1b428ba0f400e21eb7da66b816cc9",
+      "bytes": 78532
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c582c1f4a95804663b7f3743d29dcae9f55514b7b077c2fce086befa2f2636a4",
+    "recipe_ids": [
+      "industrial-v3-pizza-loaded-turkey"
+    ],
+    "titles": [
+      "Shift Fully Loaded Turkey Proper Pizza"
+    ],
+    "notes": "Individual baked pizza shows cooked crumbled turkey mince, softened mixed peppers, tomato passata and pink cold finishing sauce. No cheese or fresh herb. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Fully Loaded Turkey Proper Pizza, prepared with 100% turkey breast mince, raw, individual pizza base, tomato passata, mixed peppers",
+    "reviewed_at": "2026-10-05T12:50:20.021317+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:50:46.238914+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

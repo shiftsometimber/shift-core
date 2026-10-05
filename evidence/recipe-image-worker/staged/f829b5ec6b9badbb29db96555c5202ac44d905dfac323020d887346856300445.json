@@ -1,0 +1,92 @@
+{
+  "groupId": "f829b5ec6b9badbb29db96555c5202ac44d905dfac323020d887346856300445",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-weekend-bacon"
+  ],
+  "titles": [
+    "Shift Weekend Bacon Breakfast Wrap"
+  ],
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through — colour is flavour, so do not crowd the pan.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30–60 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20–30 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Bacon Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through — colour is flavour, so do not crowd the pan.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30–60 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20–30 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Composition: full cream plate entirely inside frame with wide crop margin, 4:3 landscape, one complete serving. No extra herbs, seeds, side foods or dipping sauce. Show the single wholemeal tortilla wrap rolled and lightly pan-crisped, cut into two halves to reveal cooked filling. Spinach is wilted, peppers softened; ketchup and vinegar cooked into filling, not side sauce. Bacon is lean back bacon pieces, not streaky bacon.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/005.png",
+  "source_sha256": "bf9e95356cbf718d0fb63ea0a81d32c3edfc49917ddff2a12b8a32ac32ed0cf7",
+  "generated_at": "2026-10-05T12:43:51.401703+00:00",
+  "elapsed_ms": 176715,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f829b5ec6b9badbb29db-recovery20261005-480-3dfae3339cbb.webp",
+      "sha256": "3dfae3339cbb6c259b9b3e6ea7b70439697269c89bdf5e3f6d41236de7a02f2f",
+      "bytes": 23236
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f829b5ec6b9badbb29db-recovery20261005-960-e7b185b9e605.webp",
+      "sha256": "e7b185b9e6051d332aa9f2247d37d457a9e4e472506c8eb4448a306b1db53b41",
+      "bytes": 70118
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "bf9e95356cbf718d0fb63ea0a81d32c3edfc49917ddff2a12b8a32ac32ed0cf7",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-weekend-bacon"
+    ],
+    "titles": [
+      "Shift Weekend Bacon Breakfast Wrap"
+    ],
+    "notes": "Viewed actual source: cooked lean back bacon pieces, softened onion, red/yellow peppers and wilted spinach inside two halves of one lightly pan-crisp wholemeal tortilla. Ketchup/vinegar/oil coating incorporated. No eggs, cheese, herbs, extra sauce or sides. Food entirely inside frame.",
+    "alt": "Shift Weekend Bacon Breakfast Wrap served on a cream plate",
+    "reviewed_at": "2026-10-05T12:44:45.430960+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:45:20.909671+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

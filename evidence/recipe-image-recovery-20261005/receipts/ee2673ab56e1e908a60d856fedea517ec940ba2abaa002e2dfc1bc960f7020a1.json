@@ -1,0 +1,97 @@
+{
+  "groupId": "ee2673ab56e1e908a60d856fedea517ec940ba2abaa002e2dfc1bc960f7020a1",
+  "recipe_ids": [
+    "industrial-v3-pasta-garlic-herb-pork"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Pork Proper Pasta"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, garlic powder, dried parsley dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Pork Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, garlic powder, dried parsley dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Cooked naturally brown wholewheat penne with fully cooked 2cm lean pork loin pieces, softened diced courgette and juicy cherry tomato pieces tossed with creamy mayonnaise garlic/dried parsley dressing. No cheese or fresh herb garnish. Frame the complete ordinary single serving with generous crop margin, 4:3 landscape. Wholegrains must have natural texture, not black seasoning speckles.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/014.png",
+  "source_sha256": "d4e549e7fc1db669c7ccc9dfe58a5f93b1c0cb17c99199df9ce4c0636959b0a7",
+  "generated_at": "2026-10-05T12:49:48.217133+00:00",
+  "elapsed_ms": 208968,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ee2673ab56e1e908a60d-recovery20261005-480-e68e1b132f2f.webp",
+      "sha256": "e68e1b132f2fddc1f2f60810dc2da819bb4682dda53f4011f7dcfa9b86e1e3a0",
+      "bytes": 32514
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ee2673ab56e1e908a60d-recovery20261005-960-5b9b23885ceb.webp",
+      "sha256": "5b9b23885ceb18e2d877767c09edc85ada4fc0db05bd7e6b0241bc4e51d4a4cf",
+      "bytes": 107472
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "d4e549e7fc1db669c7ccc9dfe58a5f93b1c0cb17c99199df9ce4c0636959b0a7",
+    "recipe_ids": [
+      "industrial-v3-pasta-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Proper Pasta"
+    ],
+    "notes": "Actual source reviewed: cooked brown wholewheat penne, cooked lean pork loin cubes, softened courgette and cooked juicy cherry tomato pieces mixed with mayonnaise garlic/dried parsley dressing and incorporated oil. No cheese, fresh herb garnish or sides; complete single bowl with margins.",
+    "alt": "Shift Garlic & Herb Pork Proper Pasta on cream serving ware",
+    "reviewed_at": "2026-10-05T12:51:20.195180+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:51:56.605674+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

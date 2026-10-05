@@ -1,0 +1,91 @@
+{
+  "groupId": "aabe6fe2a3835307c6825ef9fbea634fa1352f1a40f2d1862bc6d123cd70cab1",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-tomato-egg"
+  ],
+  "titles": [
+    "Shift Tomato Egg Breakfast Buttie"
+  ],
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "25g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tomato Egg Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"25g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Food-specific accuracy: show the cooked filling in its stated bread, visibly cut open so every listed major filling is recognizable. Wholemeal bread must have brown whole-wheat crumb. No cheese, lettuce, garnish or unlisted foods.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/4/sources/002.png",
+  "source_sha256": "bdab0146a5f449f3700e15fd1be6e55f69d2ef00ac92d864205453c78a774573",
+  "generated_at": "2026-10-05T12:41:36.612090+00:00",
+  "elapsed_ms": 84086,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-aabe6fe2a3835307c682-recovery20261005-480-5ea84f6b21ac.webp",
+      "sha256": "5ea84f6b21ac2330680e77c354445fd17a94a6365942aa4441a25e37124d511b",
+      "bytes": 31358
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-aabe6fe2a3835307c682-recovery20261005-960-bf47f970461a.webp",
+      "sha256": "bf47f970461a56bf3820858c9a2290f56585769252f72f176ccb8097f65547d0",
+      "bytes": 102852
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "bdab0146a5f449f3700e15fd1be6e55f69d2ef00ac92d864205453c78a774573",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-tomato-egg"
+    ],
+    "titles": [
+      "Shift Tomato Egg Breakfast Buttie"
+    ],
+    "notes": "Tender cooked scrambled egg, softened tomato and wilted spinach visibly fill a brown wholemeal bap with red ketchup coating. No cheese, extra protein or garnish. One intact filled bap on cream plate with clear surrounding margin.",
+    "alt": "Wholemeal egg bap with cooked tomato and spinach.",
+    "reviewed_at": "2026-10-05T12:45:51.028915+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:46:28.012956+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

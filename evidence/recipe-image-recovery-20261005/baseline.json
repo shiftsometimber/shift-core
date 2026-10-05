@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-05T12:42:37.764292+00:00",
+  "source": "6f994ba93f539cac9d5cf2767318d435b8f092fe",
+  "usable_recipes": 2671,
+  "already_deployed_bindings": 2093,
+  "missing_recipes": 578,
+  "missing_groups": 578,
+  "workers": 6,
+  "no_new_paid_usage": true,
+  "review_policy": "Inspect each actual source and final960WebP; exact ingredients/method/title; source prompt and hashes retained; publish through existing release chain."
+}
