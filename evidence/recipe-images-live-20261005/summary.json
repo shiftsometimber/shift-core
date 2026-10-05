@@ -1,0 +1,43 @@
+{
+  "at_utc": "2026-10-05T12:30:00Z",
+  "source": "6f994ba93f539cac9d5cf2767318d435b8f092fe",
+  "recipe_bindings": 2093,
+  "unique_image_assets": 4071,
+  "verified_live_assets": 4071,
+  "failed_assets": [],
+  "bytes_verified": 225168224,
+  "full_catalogue_complete": false,
+  "remaining_recipe_bindings": 578,
+  "status": "pass",
+  "production_run": 37297540698,
+  "production_source": "8ac28b4ae10e745bbb7863deea71f33e57756824",
+  "deployment_id": "48b0b079-cda0-42ea-9cd5-c641b41dbeee",
+  "version_id": "137ef904-4ba8-483e-a272-b501fdb2da1f",
+  "binding_checks": {
+    "tests": 6,
+    "passed": 6,
+    "failed": 0,
+    "original_seven_preserved": true,
+    "exact_title_ingredients_method_guard": "pass"
+  },
+  "serving_client_checks": [
+    {
+      "path": "/assets/member-experience/grub.mjs",
+      "status": 200,
+      "sha256": "68bd9d4f723fb664094f3e6d09250c2b4c6897ca481930b92d39d6c1bc2fe387",
+      "matches_source": true
+    },
+    {
+      "path": "/assets/member-experience/v1.css",
+      "status": 200,
+      "sha256": "3fd04f8d924955f9cc341789f26b2bea85d54cae92029b7f11b68912010002b2",
+      "matches_source": true
+    }
+  ],
+  "verification_scope": "All primary and responsive image bytes fetched over public HTTPS; exact source recipe bindings; live Grub runtime and CSS. No production mutation needed.",
+  "phone_desktop_limitation": "Responsive renderer source tests pass; no new signed-in browser screenshots captured in this verification.",
+  "evidence_sha256": {
+    "asset-checks.jsonl.gz": "942cdf718e2211b0f89534092557ca85789fe033ae06d8a3bf36beba975f57c8",
+    "expected-assets.json.gz": "08b767e3db703caa2919204606c64c648f198edd24ccbf0feb77af9c0aefe880"
+  }
+}
