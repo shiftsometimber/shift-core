@@ -1,0 +1,86 @@
+{
+  "groupId": "14d6b607b51805777dcaa296c749d83a6f821027e6f5cd052f3612d71dbcaeff",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-katsu-salmon"
+  ],
+  "titles": [
+    "Shift Katsu Salmon Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Katsu Salmon Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"katsu-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot. Keep the salmon in large flakes rather than mashing it.\",\"Put the measured katsu-style sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Pile the crisp oven chips onto a plate and spoon over large flakes of the cooked salmon, the red onion and peppers, followed by the warm sauce. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "katsu-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot. Keep the salmon in large flakes rather than mashing it.",
+    "Put the measured katsu-style sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Pile the crisp oven chips onto a plate and spoon over large flakes of the cooked salmon, the red onion and peppers, followed by the warm sauce. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-38c2f710-7983-4408-882b-4e3432a8a0df.png",
+  "source_sha256": "730bfd957004899b5cb7c4207ce59992386b812d71820478eb16ad0e2b981d97",
+  "generated_at": "2026-10-04T21:34:57.024Z",
+  "elapsed_ms": 39109.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-14d6b607b51805777dca-480.webp",
+      "sha256": "709fd4e7b30e808f58fbd17988cdacdac29b2144da66a3273943b1a4b6ff8e74",
+      "bytes": 28954
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-14d6b607b51805777dca.webp",
+      "sha256": "b3b5b6dbfbfda4582a2b91847ee78cd11bbfdcd115ad4e39a884dad9f03c47e0",
+      "bytes": 89108
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-katsu-salmon"
+    ],
+    "titles": [
+      "Shift Katsu Salmon Loaded Fries"
+    ],
+    "notes": "Golden plain oven chips topped with large opaque cooked salmon flakes, softened red onion and red/yellow mixed peppers under katsu-style sauce. Flakes retained intact as method specifies; no cheese, breadcrumbs or herbs. Single central plate.",
+    "alt": "Katsu salmon loaded fries with red onion and mixed peppers",
+    "reviewed_at": "2026-10-04T21:35:54.770033+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/977.json",
+    "source_sha256": "730bfd957004899b5cb7c4207ce59992386b812d71820478eb16ad0e2b981d97"
+  },
+  "integrated": true,
+  "live": false
+}

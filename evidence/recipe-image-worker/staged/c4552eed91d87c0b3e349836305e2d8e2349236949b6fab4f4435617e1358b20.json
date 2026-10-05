@@ -1,0 +1,94 @@
+{
+  "groupId": "c4552eed91d87c0b3e349836305e2d8e2349236949b6fab4f4435617e1358b20",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-garlic-herb-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Chicken Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"35g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "35g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6f35cafc-c188-4f20-bae5-c431d90cdd98.png",
+  "source_sha256": "7709958bf7771b5e794b69fd60021d27f7558cfc3429ae9db2036160ba6d0b64",
+  "generated_at": "2026-10-04T21:42:38.078Z",
+  "elapsed_ms": 322774,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c4552eed91d87c0b3e34-480.webp",
+      "sha256": "ed0de0241ed52daa61f20cc507aa9df99c0543b836290c34ccd5334a6d05b12a",
+      "bytes": 19880
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c4552eed91d87c0b3e34.webp",
+      "sha256": "fb7034989d08648b26e668c9ae66c76fd4db5ec4597bc7ccca346b6b9dae4241",
+      "bytes": 58570
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-garlic-herb-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Breakfast Wrap"
+    ],
+    "notes": "Fully cooked chicken, softened peppers and wilted spinach with creamy garlic-yoghurt sauce and dried parsley in a plain crisped wholemeal wrap. No cheese or fresh garnish.",
+    "alt": "Wholemeal wrap with chicken, peppers, spinach and garlic-herb yoghurt.",
+    "reviewed_at": "2026-10-04T21:45:26.886981+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/171.json",
+    "source_sha256": "7709958bf7771b5e794b69fd60021d27f7558cfc3429ae9db2036160ba6d0b64"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,83 @@
+{
+  "groupId": "1789b7502d17ad9801d0ad2f8cfffe6968ae8edd1ceb72ebec022bfba7e83cd8",
+  "recipe_ids": [
+    "industrial-v3-pasta-chilli-pork"
+  ],
+  "titles": [
+    "Shift Smoky Chilli Pork Proper Pasta"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe, appetising through natural window light and truthful texture. No invented garnish or additional ingredients. Courgette and cherry tomatoes MUST be diced into bite-size pieces with visible cut faces; no whole tomatoes or round courgette slices. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Pork Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the smoked chilli tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured smoked chilli tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the smoked chilli tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured smoked chilli tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9d3f6b0b-821d-4bb1-b4c4-310bc4bf4c75.png",
+  "source_sha256": "594b6589928557f5f1adf51bf9b2b5b9db32102a6046b9cd7ae75302e50dcd05",
+  "generated_at": "2026-10-05T00:43:39.494Z",
+  "elapsed_ms": 392828,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1789b7502d17ad9801d0-480.webp",
+      "sha256": "c2654ba1468fe4bc81794a3c71dd8c95da8ff7d8984cc9b52ef1943e0c36bd28",
+      "bytes": 35432
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1789b7502d17ad9801d0.webp",
+      "sha256": "ce890e7a6f885b3df622636de13c31585b0dbe1f7ee01316f2061d500964168a",
+      "bytes": 113720
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Smoky chilli pork wholewheat pasta with diced courgette and tomatoes",
+    "notes": "Full-resolution individual inspection: cooked pork chunks, tan wholewheat penne, diced courgette and cooked diced tomato pieces tossed in measured smoky tomato coating; exact method and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-pasta-chilli-pork"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Pork Proper Pasta"
+    ],
+    "source_sha256": "594b6589928557f5f1adf51bf9b2b5b9db32102a6046b9cd7ae75302e50dcd05",
+    "reviewed_at": "2026-10-05T00:54:17.981383+00:00"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "groupId": "8b939086810aa1e610de6e86b2122ca2cbad4b86630931a523e8f1286f39833b",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-biscoff-style-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Cottage Cheese Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Cottage Cheese Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the low-fat cottage cheese, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the low-fat cottage cheese first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nUse only listed foods, no honey, nuts, mint, syrup or garnish. Crushed wholegrain biscuit is modest irregular crumb pieces, no caramel spread or cookie butter. Berries just the listed25g, a small portion. All food safely inside frame. Exactly two plain unseeded wholegrain crackers where listed, no sesame/poppy seeds. Real snack box: dry oats, seeds, biscuit crumbs and two plain crackers in separate compartments from fruit and any creamy base. Cottage cheese has distinct small curds.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the low-fat cottage cheese, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the low-fat cottage cheese first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ffc0c11a-f04b-4cb7-ad99-1bb1369d9a5d.png",
+  "source_sha256": "ff6a2430bdbaca065f429221d0be83f7ad03afc94fd045de5116bf06072d91d2",
+  "generated_at": "2026-10-04T23:27:25.150Z",
+  "elapsed_ms": 122937,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8b939086810aa1e610de-480-c9592c29330e.webp",
+      "sha256": "c9592c29330e8263e6a713add9f0ace8872dcab52b68689dfc7ca56bd2975940",
+      "bytes": 28338
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8b939086810aa1e610de-f9dba65e5aed.webp",
+      "sha256": "f9dba65e5aed6acdf361d662105dc0f001cc9342f008019841ba074ad497c647",
+      "bytes": 82658
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ff6a2430bdbaca065f429221d0be83f7ad03afc94fd045de5116bf06072d91d2",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-biscoff-style-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Cottage Cheese Work Snack Box"
+    ],
+    "notes": "Cottage cheese and berries with dry biscuit crumbs, oats, seeds and exactly two plain crackers kept in separate snack-box compartments.",
+    "alt": "Cottage cheese and berry snack box with biscuit crumbs, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-04T23:32:44.602833+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/8b939086810aa1e610de6e86b2122ca2cbad4b86630931a523e8f1286f39833b.json"
+  },
+  "integrated": true,
+  "live": false
+}

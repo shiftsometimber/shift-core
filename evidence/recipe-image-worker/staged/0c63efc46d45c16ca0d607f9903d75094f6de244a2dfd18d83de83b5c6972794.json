@@ -1,0 +1,89 @@
+{
+  "groupId": "0c63efc46d45c16ca0d607f9903d75094f6de244a2dfd18d83de83b5c6972794",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-cherry-overnight-oats"
+  ],
+  "titles": [
+    "Shift Cherry Overnight Oats Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Overnight Oats Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.\",\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g cherries, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds, 2 / 20g wholegrain crackers separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed food; no honey, nuts, mint, syrup, sauces or decorative garnish. All food inside frame. Berries just small25g portion. Exactly TWO plain unseeded wholegrain crackers with visibly independent offset edges. All cherries destoned stemless fresh halves with visible empty pit cavities. No whole cherries/stems. Fully softened overnight milk oats with measured fruit mixed through, listed yoghurt evenly mixed, seeds/chopped chocolate topped at serving. No dry oats pile. Crackers alongside ONLY if listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.",
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g cherries, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds, 2 / 20g wholegrain crackers separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-925b3545-63b6-4136-97cc-694394a81e5c.png",
+  "source_sha256": "200c8bca1ab56401521de17cb16528793fde50fef76a724490ba7728a40ea734",
+  "generated_at": "2026-10-05T00:22:04.466Z",
+  "elapsed_ms": 114441,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0c63efc46d45c16ca0d6-480-00e992858a86.webp",
+      "sha256": "00e992858a8664123d8aaa42a8dd7520e42d7151b4e54bd01b30521a2624ca2a",
+      "bytes": 26690
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0c63efc46d45c16ca0d6-a7c9a09098cc.webp",
+      "sha256": "a7c9a09098cc03e07d7fc666ce07cdfa8d0e3c836513b618cfa2e4713503cd27",
+      "bytes": 77628
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "200c8bca1ab56401521de17cb16528793fde50fef76a724490ba7728a40ea734",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-cherry-overnight-oats"
+    ],
+    "titles": [
+      "Shift Cherry Overnight Oats Work Snack Box"
+    ],
+    "notes": "Soft milk overnight oats with destoned cherry halves/berries, seeds topped and exactly two plain wholegrain crackers alongside.",
+    "alt": "Cherry and berry overnight oats with pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-05T00:28:48.260907+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/0c63efc46d45c16ca0d607f9903d75094f6de244a2dfd18d83de83b5c6972794.json"
+  },
+  "integrated": true,
+  "live": false
+}

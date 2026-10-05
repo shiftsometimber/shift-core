@@ -1,0 +1,95 @@
+{
+  "groupId": "740ba1bc13fa59fd4cf0a85eb733931da96490832350137d5f56488ca8503a90",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-smoky-egg"
+  ],
+  "titles": [
+    "Shift Smoky Egg Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Egg Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1139b60e-13db-4c33-86d3-d4f7bca3dc80.png",
+  "source_sha256": "8faf7a13e7af08fb5465043626e49d481d5a51a88ac493557bd713205a4ded2b",
+  "generated_at": "2026-10-05T01:21:34.909Z",
+  "elapsed_ms": 235946,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-740ba1bc13fa59fd4cf0-480.webp",
+      "sha256": "e1f2fec4876db96e3f18aa11296ea422aba0171f70e86380a40f6ce7e0aa2c29",
+      "bytes": 22882
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-740ba1bc13fa59fd4cf0-a68512170545.webp",
+      "sha256": "a68512170545510d721844089a17813416fc59f2d36bce6004d16c1d21b1ea40",
+      "bytes": 71640
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8faf7a13e7af08fb5465043626e49d481d5a51a88ac493557bd713205a4ded2b",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-smoky-egg"
+    ],
+    "titles": [
+      "Shift Smoky Egg Breakfast Buttie"
+    ],
+    "notes": "Full-resolution inspection confirms tender set egg curds, cooked tomato and wilted spinach with smoky ketchup sauce inside one plain unseeded wholemeal bap.",
+    "alt": "Smoky egg breakfast bap with cooked tomato and spinach",
+    "reviewed_at": "2026-10-05T01:22:40.626160+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/392.json"
+  },
+  "integrated": true,
+  "live": false
+}

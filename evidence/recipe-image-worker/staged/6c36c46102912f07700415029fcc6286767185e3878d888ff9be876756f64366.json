@@ -1,0 +1,85 @@
+{
+  "groupId": "6c36c46102912f07700415029fcc6286767185e3878d888ff9be876756f64366",
+  "recipe_ids": [
+    "industrial-v3-meal-prep-bowl-club-turkey"
+  ],
+  "titles": [
+    "Shift Club Turkey Meal-Prep Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Club Turkey Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"light mayonnaise\",\"amount\":\"24g\"},{\"item\":\"wholegrain mustard\",\"amount\":\"6g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Stir together all the measured light mayonnaise, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "sweetcorn"
+    },
+    {
+      "item": "light mayonnaise",
+      "amount": "24g"
+    },
+    {
+      "item": "wholegrain mustard",
+      "amount": "6g"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Stir together all the measured light mayonnaise, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1ebf8c23-6b25-496b-9dbf-5635fcf1b25d.png",
+  "source_sha256": "110bac836d96b0954b8331e513fac75629cbd05a249c508f38078ea4f2fa1532",
+  "generated_at": "2026-10-05T01:16:19.738Z",
+  "elapsed_ms": 384324,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6c36c46102912f077004-480.webp",
+      "sha256": "affc50f3644d5b8a3c0bc07655f4b02614d1b1c1cb3ef8b464a361498a19f7bf",
+      "bytes": 25594
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6c36c46102912f077004.webp",
+      "sha256": "f2c35fe3c30e62329d209b79c73c196bc2e53b40281e10fe36c8961cfe783404",
+      "bytes": 70012
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Brown rice bowl with turkey, diced peppers, sweetcorn and mustard mayonnaise",
+    "notes": "Individual full-resolution inspection: Cooked naturally tan brown rice grains with visible bran seams, shredded cooked turkey breast, diced peppers and sweetcorn folded through creamy wholegrain mustard dressing. Every mapped title, exact ingredients and preparation reviewed.",
+    "source_sha256": "110bac836d96b0954b8331e513fac75629cbd05a249c508f38078ea4f2fa1532",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-club-turkey"
+    ],
+    "titles": [
+      "Shift Club Turkey Meal-Prep Bowl"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

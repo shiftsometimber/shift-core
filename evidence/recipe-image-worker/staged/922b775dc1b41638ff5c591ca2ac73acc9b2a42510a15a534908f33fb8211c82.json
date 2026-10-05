@@ -1,0 +1,96 @@
+{
+  "groupId": "922b775dc1b41638ff5c591ca2ac73acc9b2a42510a15a534908f33fb8211c82",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-mexican-beans"
+  ],
+  "titles": [
+    "Shift Mexican Beans Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mexican Beans Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-54e27522-275f-4bc1-9205-9dcfc313d5d9.png",
+  "source_sha256": "2f4688c5fa128f5f0edc425360667bb8479b59b1f07c24ea40f737133ad555f3",
+  "generated_at": "2026-10-04T23:53:45.157Z",
+  "elapsed_ms": 200288,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-922b775dc1b41638ff5c-480.webp",
+      "sha256": "aaf3292ffdcc84fa49ceb266bedebefb445a45b71d209e578b12efe5fa504052",
+      "bytes": 21914
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-922b775dc1b41638ff5c-retry2-58831589cc5b.webp",
+      "sha256": "58831589cc5b0f581c51c38ca5c1529772a7bff4143f3411437e942543f972a4",
+      "bytes": 69208
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2f4688c5fa128f5f0edc425360667bb8479b59b1f07c24ea40f737133ad555f3",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-mexican-beans"
+    ],
+    "titles": [
+      "Shift Mexican Beans Breakfast Buttie"
+    ],
+    "notes": "Unseeded wholemeal bap with hot baked beans, cooked tomato and wilted spinach in listed chilli-paprika tomato sauce. No garnish.",
+    "alt": "Mexican baked bean bap with tomato and spinach",
+    "reviewed_at": "2026-10-04T23:59:59.034005+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/264.json"
+  },
+  "integrated": true,
+  "live": false
+}

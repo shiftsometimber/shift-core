@@ -1,0 +1,13 @@
+{
+  "observed_at": "2026-10-05T00:35:30.282176+00:00",
+  "elapsed_minutes": 59.18018723333333,
+  "additional_usable_images": 551,
+  "usable_images_per_minute": 9.310548441280504,
+  "integrated_new_groups": 1413,
+  "integrated_recipe_bindings": 1480,
+  "remaining_recipes": 1191,
+  "live_new": 0,
+  "basis": "Actual exact bindings with passing source-specific review and both SHA-verified variants; exclude queued and generated-only images.",
+  "target_10_met_over_full_window": false,
+  "target_20_proven": false
+}

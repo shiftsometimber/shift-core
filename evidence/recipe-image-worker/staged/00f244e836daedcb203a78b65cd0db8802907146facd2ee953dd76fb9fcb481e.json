@@ -1,0 +1,84 @@
+{
+  "groupId": "00f244e836daedcb203a78b65cd0db8802907146facd2ee953dd76fb9fcb481e",
+  "recipe_ids": [
+    "industrial-v3-wrap-caesar-ham"
+  ],
+  "titles": [
+    "Shift Caesar Ham Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Caesar Ham Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"light Caesar dressing\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the lean ham with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. If spices are mixed into a dressing, all spices remain in the smooth dressing: NO dry spice dust scattered over food, salad or plate. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty; cooked salmon and cooked cured ham retain their natural opaque colour.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "light Caesar dressing"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the lean ham with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-22cc593b-5dfa-4e8b-9dc1-38a1e16c957a.png",
+  "source_sha256": "16b20ca54bc3e935bf3ca4e58c4902188a0f6f89598fc90891bacec2faf87efb",
+  "generated_at": "2026-10-05T01:01:22.936Z",
+  "elapsed_ms": 186283.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-00f244e836daedcb203a-480-709a760a09bc.webp",
+      "sha256": "709a760a09bcd76e1874f52608ed93d0bed421b7a1917321c03575acb61f28bc",
+      "bytes": 22436
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-00f244e836daedcb203a-5c8c88192b7e.webp",
+      "sha256": "5c8c88192b7eb17b6c641fd14e6ec6de6678dede03147305f8a7eb940244d8ec",
+      "bytes": 63614
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "16b20ca54bc3e935bf3ca4e58c4902188a0f6f89598fc90891bacec2faf87efb",
+    "recipe_ids": [
+      "industrial-v3-wrap-caesar-ham"
+    ],
+    "titles": [
+      "Shift Caesar Ham Loaded Wrap"
+    ],
+    "notes": "Plain toasted wholemeal wrap contains naturally pink cooked lean ham with lightly coloured edges, fresh lettuce, tomato and light Caesar dressing. No separate cheese, seeds or garnish; exact ham wrap title matches.",
+    "alt": "Caesar ham wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T01:02:57.319605+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1591-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

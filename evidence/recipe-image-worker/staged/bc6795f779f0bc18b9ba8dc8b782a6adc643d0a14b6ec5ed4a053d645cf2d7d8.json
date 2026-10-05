@@ -1,0 +1,83 @@
+{
+  "groupId": "bc6795f779f0bc18b9ba8dc8b782a6adc643d0a14b6ec5ed4a053d645cf2d7d8",
+  "recipe_ids": [
+    "industrial-v3-wrap-bbq-ham"
+  ],
+  "titles": [
+    "Shift BBQ Ham Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Ham Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the lean ham; if the filling is being served hot, reduce only the sauce-coated lean ham until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Follow exact ingredient placement and method. No decorative garnish. If method cuts a pitta into two halves, show TWO separately distinguishable filled half-pitta pockets, with remaining salad alongside.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the lean ham; if the filling is being served hot, reduce only the sauce-coated lean ham until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2e36a51e-bf1b-41b9-90ce-419f30472ef4.png",
+  "source_sha256": "0ecadefe8e9d9e258b8b0e045c097b3b8f26bea4864d5134c5d317231a7975f6",
+  "generated_at": "2026-10-04T22:50:20.991Z",
+  "elapsed_ms": 370229.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bc6795f779f0bc18b9ba-480-4880010204bb.webp",
+      "sha256": "4880010204bbc9cb818aeb45ce745c73c31a77d8b51d6b098bde3607285c604b",
+      "bytes": 23740
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bc6795f779f0bc18b9ba-a27f88b0cbb7.webp",
+      "sha256": "a27f88b0cbb70074cbf4f7837b819fc2567c52900ef41f8b0929be104d1103c0",
+      "bytes": 70232
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "0ecadefe8e9d9e258b8b0e045c097b3b8f26bea4864d5134c5d317231a7975f6",
+    "recipe_ids": [
+      "industrial-v3-wrap-bbq-ham"
+    ],
+    "titles": [
+      "Shift BBQ Ham Loaded Wrap"
+    ],
+    "notes": "Wholemeal wrap with BBQ coated lean ham, fresh lettuce and tomato; no added cheese or garnish.",
+    "alt": "BBQ ham wholemeal wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-04T22:52:34.354717+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1534-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

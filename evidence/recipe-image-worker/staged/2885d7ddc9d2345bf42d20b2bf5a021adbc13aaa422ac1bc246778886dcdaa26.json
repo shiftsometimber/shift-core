@@ -1,0 +1,84 @@
+{
+  "groupId": "2885d7ddc9d2345bf42d20b2bf5a021adbc13aaa422ac1bc246778886dcdaa26",
+  "index": 2265,
+  "recipe_ids": [
+    "industrial-v4-protein-pot-berry-protein-pudding"
+  ],
+  "titles": [
+    "Shift Berry Protein Pudding Protein Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries",
+      "allergens": []
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Protein Pudding Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"105g\",\"item\":\"mixed berries\",\"allergens\":[]},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed food; no honey, nuts, mint, syrup or decorative garnish. Plain unseeded crackers: exactly two visible crackers when listed, no sesame or poppy seeds. All food inside the serving margins. Finished yoghurt protein pot with berries and listed crunchy oats and seeds freshly added just before eating.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-50c5081b-e243-4206-9b6a-812def3acba2.png",
+  "source_sha256": "3ce219fa8785880599553d8d50fac13e3395654475b4ac9e9448a7a34030b9d5",
+  "dispatched_at": "2026-10-04T23:14:16.136Z",
+  "generated_at": "2026-10-04T23:19:38.652Z",
+  "elapsed_ms": 322516,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2885d7ddc9d2345bf42d-480.webp",
+      "sha256": "6a3211b228f8137e3634b78a8a7bc22e8d703541a9f9dc758638d4da393a4be5",
+      "bytes": 24476,
+      "git_blob_sha": "b99156388859119bf53b3f6e41a73878f8ef903a"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2885d7ddc9d2345bf42d.webp",
+      "sha256": "1da2fdcab175c9551a368535529250c62a1cb494387695b08f5901a6120305b2",
+      "bytes": 72120,
+      "git_blob_sha": "3b3acfce28b89713b0f10191b8e27948206c2a91"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-berry-protein-pudding"
+    ],
+    "titles": [
+      "Shift Berry Protein Pudding Protein Pot"
+    ],
+    "notes": "High-protein yoghurt berry pot with oats and pumpkin seeds newly added at serving; no unlisted food.",
+    "alt": "Berry protein yoghurt pot topped with oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:21:59.258912+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/2885d7ddc9d2345bf42d20b2bf5a021adbc13aaa422ac1bc246778886dcdaa26.json",
+    "source_sha256": "3ce219fa8785880599553d8d50fac13e3395654475b4ac9e9448a7a34030b9d5"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,89 @@
+{
+  "groupId": "478df35d0573a945ea49a079878b5472484fd83587b0a41c80bcd70cf610ab6b",
+  "recipe_ids": [
+    "industrial-v3-meal-prep-bowl-peri-peri-tuna"
+  ],
+  "titles": [
+    "Shift Peri-Peri Tuna Meal-Prep Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Tuna Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"amount\":\"40g\",\"item\":\"peri-peri yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Use the measured peri-peri yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured peri-peri yoghurt and olive oil dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish or extra ingredients. Listed yoghurt sauces are dressings, not melted cheese. Pickle mustard relish belongs in or on prescribed filling, never invented whole pickle sides. Chicken/turkey breast plain cooked, no breadcrumb or batter coating.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.",
+    "Use the measured peri-peri yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured peri-peri yoghurt and olive oil dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-df3cdc52-c4fa-4883-8858-faa92bf790ce.png",
+  "source_sha256": "fcfe9820ef58b4de9b4b28de744fc3a5b1f963709ade3df65ee1167797fb9fd6",
+  "generated_at": "2026-10-04T23:28:05.011Z",
+  "elapsed_ms": 108500.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-478df35d0573a945ea49-480-7506f9fcb52f.webp",
+      "sha256": "7506f9fcb52f1e4911c88bfd00d8682a5aecb31f873f06a76fbf9229d18790ba",
+      "bytes": 22872
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-478df35d0573a945ea49-79deee046f54.webp",
+      "sha256": "79deee046f5409ef9018b2e39a749a2a6761387c546efedf892f2373802e7158",
+      "bytes": 67226
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fcfe9820ef58b4de9b4b28de744fc3a5b1f963709ade3df65ee1167797fb9fd6",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-peri-peri-tuna"
+    ],
+    "titles": [
+      "Shift Peri-Peri Tuna Meal-Prep Bowl"
+    ],
+    "notes": "Cooked brown rice, drained tuna flakes, raw diced mixed peppers and sweetcorn with creamy peri-peri yoghurt folded through. No garnish or extra ingredient; rice cooked and filling ready-to-eat as exact method requires.",
+    "alt": "Peri-peri tuna rice bowl with peppers and sweetcorn",
+    "reviewed_at": "2026-10-04T23:33:33.391995+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1970.json"
+  },
+  "integrated": true,
+  "live": false
+}

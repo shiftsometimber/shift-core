@@ -1,0 +1,91 @@
+{
+  "groupId": "889915332af9372a6998123aeb6ee7627dcef091bfb4c8f99f0e1bf7fa9671c3",
+  "index": 2359,
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-chocolate-protein-pudding"
+  ],
+  "titles": [
+    "Shift Chocolate Protein Pudding Big Feed Dessert"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Protein Pudding Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: generic method references to food apply only when that food appears in the exact ingredient list. Plain wholegrain crackers unseeded, no seed garnish unless listed. No cheese unless listed. No extra sauce, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow dry/separate and soaked/prepared instructions exactly. Cocoa means measured cocoa powder folded or dusted on food, never liquid chocolate syrup or extra chocolate chunks unless chopped dark chocolate listed. Overnight oats cocoa must be fully mixed in milk, visibly soft soaked brown oats without dry cocoa pockets. Cinnamon means fine powder, no decorative cinnamon sticks.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9c9b9de4-c793-46db-9def-d606ab5148f8.png",
+  "source_sha256": "4a120e21e64899f28c8ffc018d8f02022abe9b722bae42c29d922d85a24ae837",
+  "dispatched_at": "2026-10-04T22:43:35.292Z",
+  "generated_at": "2026-10-04T22:47:31.736Z",
+  "elapsed_ms": 236444,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-889915332af9372a6998-480.webp",
+      "sha256": "83af7eb0fb2b5e4f2a77764838b198322844c4e5328b950fa49be26273a6538c",
+      "bytes": 25622,
+      "git_blob_sha": "3057f533dbdf3ac9a077bc533e3eec93751d9831"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-889915332af9372a6998.webp",
+      "sha256": "49cf8f1edbb8c38ef7ef0047aa2d78391159a2df13dacbca7cfce14fd90345d1",
+      "bytes": 77338,
+      "git_blob_sha": "a401862749a45246fa94d8e02f8c2cd1ca693046"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-chocolate-protein-pudding"
+    ],
+    "titles": [
+      "Shift Chocolate Protein Pudding Big Feed Dessert"
+    ],
+    "notes": "Smooth protein yoghurt with cocoa mixed through, berries, oats and pumpkin seeds topped with chopped dark chocolate; no syrup.",
+    "alt": "Cocoa protein yoghurt dessert with berries, oats, pumpkin seeds and dark chocolate",
+    "reviewed_at": "2026-10-04T22:52:28.985007+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/889915332af9372a6998123aeb6ee7627dcef091bfb4c8f99f0e1bf7fa9671c3.json",
+    "source_sha256": "4a120e21e64899f28c8ffc018d8f02022abe9b722bae42c29d922d85a24ae837"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,81 @@
+{
+  "groupId": "8c595535f58e1fa06e861349c5a91ff1fc46da134117948a6ed50fabde22ebc8",
+  "recipe_ids": [
+    "industrial-v3-curry-jalfrezi-chicken"
+  ],
+  "titles": [
+    "Shift Jalfrezi Chicken Proper Curry"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe in natural window light, truthful appetising textures in a plain serving dish. No invented garnish or additions. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Jalfrezi Chicken Proper Curry. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"pepper and tomato masala\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Cut the 170g chicken breast into pieces no larger than 2cm on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the chicken breast in one layer and cook for 10\u201312 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Turn the heat to low and fold in the 40g pepper and tomato masala. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked chicken breast and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "75g",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "pepper and tomato masala"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Cut the 170g chicken breast into pieces no larger than 2cm on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the chicken breast in one layer and cook for 10\u201312 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Turn the heat to low and fold in the 40g pepper and tomato masala. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked chicken breast and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-daa568be-4135-4a5a-98a1-39fcb50c21dc.png",
+  "source_sha256": "a761ba601a4e918e51f69f772bd13671ac970e115edd7b33bc6f21368490218a",
+  "generated_at": "2026-10-05T00:33:12.423Z",
+  "elapsed_ms": 346262,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8c595535f58e1fa06e86-480.webp",
+      "sha256": "474a605eea3c18c2356cce25a6fa7c19835b1e7ef5692369200246655ed1b2c3",
+      "bytes": 31074
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8c595535f58e1fa06e86.webp",
+      "sha256": "9ae3dc9e8772c49ebbdfb5f0e3ca1e582c17fda91c99c9d8b46c2ede262ce939",
+      "bytes": 97184
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Jalfrezi chicken with sliced onion and mixed peppers over basmati rice",
+    "notes": "Full-resolution individual inspection: cooked chicken breast pieces, softened sliced onion and mixed pepper strips in red tomato masala over white basmati rice; exact method and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-curry-jalfrezi-chicken"
+    ],
+    "titles": [
+      "Shift Jalfrezi Chicken Proper Curry"
+    ],
+    "source_sha256": "a761ba601a4e918e51f69f772bd13671ac970e115edd7b33bc6f21368490218a",
+    "reviewed_at": "2026-10-05T00:50:10.490016+00:00"
+  }
+}

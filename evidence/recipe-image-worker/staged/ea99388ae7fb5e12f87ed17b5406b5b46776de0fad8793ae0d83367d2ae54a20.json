@@ -1,0 +1,86 @@
+{
+  "groupId": "ea99388ae7fb5e12f87ed17b5406b5b46776de0fad8793ae0d83367d2ae54a20",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-classic-egg"
+  ],
+  "titles": [
+    "Shift Classic Egg Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Egg Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"brown sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "brown sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-63dead32-9772-4a17-b849-01dcbab95d14.png",
+  "source_sha256": "5b2be25cd2621627dfc76f5cb53364579b90149af51517cd332ca26320dfa550",
+  "generated_at": "2026-10-04T21:31:12.521Z",
+  "elapsed_ms": 116181,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ea99388ae7fb5e12f87e-480.webp",
+      "sha256": "2a9f1972c0fc8c942829d2b9d1c9d3eb1cc866c94fe7d8a6b163e4caf0be6d1e",
+      "bytes": 21926
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ea99388ae7fb5e12f87e.webp",
+      "sha256": "b4c92e8ca31a2f3f3d56ead6682e8bba9b77c54fa37acc2c9a263edb8e3344ec",
+      "bytes": 65612
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-classic-egg"
+    ],
+    "titles": [
+      "Shift Classic Egg Breakfast Buttie"
+    ],
+    "notes": "Tender set egg curds, cooked tomato, wilted spinach and brown sauce in plain wholemeal bap. No cheese or extra foods; correct hot cooked sandwich.",
+    "alt": "Wholemeal bap with scrambled egg, tomato, spinach and brown sauce.",
+    "reviewed_at": "2026-10-04T21:36:46.189820+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/148.json",
+    "source_sha256": "5b2be25cd2621627dfc76f5cb53364579b90149af51517cd332ca26320dfa550"
+  },
+  "integrated": true,
+  "live": false
+}

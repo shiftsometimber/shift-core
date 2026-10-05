@@ -1,0 +1,95 @@
+{
+  "groupId": "7b4f8fa65b88079e36c685b7bb813774391a1bc618586835a6ce2bf1ef0f6f4b",
+  "recipe_ids": [
+    "industrial-v3-jacket-potato-buffalo-ham"
+  ],
+  "titles": [
+    "Shift Buffalo Ham Loaded Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Buffalo Ham Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.\",\"Stir together all the measured tomato ketchup, chilli powder, paprika, cider vinegar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Correction of rejected output: ALL paprika and chilli powder MUST be fully stirred into the smooth RED ketchup-vinegar-oil sauce before assembly. NO visible dry spice dust, powder grains or sprinkled garnish anywhere on eggs, ham, potato, salad, bread, plate or background. Side salad is plain unseasoned mixed leaves and thin spring onion only, or rocket and tomato as listed. Eggs are thin slices of fully boiled eggs, no runny yolk. Plain unseeded wholemeal bagel. No cheese or mayonnaise. Smooth red sauce only where the method directs it, no dusting.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "250g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "90g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.",
+    "Stir together all the measured tomato ketchup, chilli powder, paprika, cider vinegar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b9c12c1d-fa1c-4129-9f4a-39a17b20d8a0.png",
+  "source_sha256": "5925676dc3ff03ff1af8dcbc487ee85f315d8e08b793e82d148bb5fe37abd98f",
+  "generated_at": "2026-10-05T00:42:09.100Z",
+  "elapsed_ms": 122850.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7b4f8fa65b88079e36c6-480-186ffc6a21e1.webp",
+      "sha256": "186ffc6a21e125a788f3bdd20a6a9e3e3a0bcfbf24cb558153063b006091bf17",
+      "bytes": 28000
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7b4f8fa65b88079e36c6-63dae24ee27b.webp",
+      "sha256": "63dae24ee27be1964c590cd67e8ce1218cde03c988a8bc514f3ac8e1a4605209",
+      "bytes": 81856
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "5925676dc3ff03ff1af8dcbc487ee85f315d8e08b793e82d148bb5fe37abd98f",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-buffalo-ham"
+    ],
+    "titles": [
+      "Shift Buffalo Ham Loaded Jacket Potato"
+    ],
+    "notes": "Corrected replacement: split fluffy jacket potato topped with thin cooked ham strips and smooth red ketchup-spice dressing; plain mixed salad and spring onion alongside. No dry spice dust or cheese; exact title matches.",
+    "alt": "Buffalo ham jacket potato with spring onion salad",
+    "reviewed_at": "2026-10-05T00:42:56.948491+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1569-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

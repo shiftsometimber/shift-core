@@ -1,0 +1,95 @@
+{
+  "groupId": "6c3369e387f00025914b0c541e456504b2c3355ebbf307f3d55cd4acd519b672",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-garlic-herb-sausage"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Sausage Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Sausage Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"35g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Use half the measured olive oil in a frying pan. Follow the sausage packet cooking guidance. Cook the reduced-fat pork sausages thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate. Slice the cooked sausages before returning to the hash.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked reduced-fat pork sausages to the pan and heat through.\",\"Stir in the listed flavour ingredients (1g garlic powder, 1g dried parsley), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Take the pan off the heat before stirring through the 35g 0% Greek yoghurt.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "35g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Use half the measured olive oil in a frying pan. Follow the sausage packet cooking guidance. Cook the reduced-fat pork sausages thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate. Slice the cooked sausages before returning to the hash.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked reduced-fat pork sausages to the pan and heat through.",
+    "Stir in the listed flavour ingredients (1g garlic powder, 1g dried parsley), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Take the pan off the heat before stirring through the 35g 0% Greek yoghurt.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fef67ab0-0a54-4b3e-87b9-e9b579e34151.png",
+  "source_sha256": "1665008837c1c654a90945b7a69f711f38a0c5832ffc8a048f6df38fee760f3c",
+  "generated_at": "2026-10-04T22:56:49.123Z",
+  "elapsed_ms": 137300,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6c3369e387f00025914b-480.webp",
+      "sha256": "2c84694babaacf42dc87736d021bc4aa140de6e4bf1fd8145615aa644ade802f",
+      "bytes": 31916
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6c3369e387f00025914b-retry2-26ad692d7f52.webp",
+      "sha256": "26ad692d7f520e38b60a14bc45e362c21420a81bec699f638d66d19d4b086654",
+      "bytes": 100126
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1665008837c1c654a90945b7a69f711f38a0c5832ffc8a048f6df38fee760f3c",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-garlic-herb-sausage"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Sausage Breakfast Hash"
+    ],
+    "notes": "Browned sliced cooked pork sausage, golden potato cubes, softened onion and mixed peppers with listed dried parsley and Greek yoghurt stirred throughout. No separate garnish or extra ingredients.",
+    "alt": "Garlic and herb sausage breakfast hash with potatoes, onion and peppers.",
+    "reviewed_at": "2026-10-04T22:58:06.255675+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/177.json"
+  },
+  "integrated": true,
+  "live": false
+}

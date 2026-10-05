@@ -1,0 +1,85 @@
+{
+  "groupId": "c676c1802697661d820fae1d5e95963c5eaed194dcaa250079f2f54302806dd6",
+  "recipe_ids": [
+    "industrial-v3-stir-fry-sweet-chilli-beef"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Beef Stir-Fry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Beef Stir-Fry. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"75g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 90g mixed peppers. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Turn the heat to low and fold in the 40g sweet chilli sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked 5% beef mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and 5% beef mince between serving bowls. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArt direction: exact ingredients and method, appealing natural textures, no decorative extras. Brown rice must depict visibly intact unpolished tan/brown bran coats on the entire grain, with brown longitudinal seams, never white grains with brown seasoning. Cooked diced vegetables remain diced.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "75g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 90g mixed peppers. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Turn the heat to low and fold in the 40g sweet chilli sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked 5% beef mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and 5% beef mince between serving bowls. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-bfa9dae8-ccd4-4ae6-8e00-6bacc5694c59.png",
+  "source_sha256": "203b10b38f9ec015dc5a4055dcaebf98c8a0aafeab9eb96841ffb5dd539f5bd3",
+  "generated_at": "2026-10-05T01:02:51.736Z",
+  "elapsed_ms": 316536,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c676c1802697661d820f-480.webp",
+      "sha256": "bc9946e59da6717cf4f20dc992f71bc31ffd3287ae9432416b3374a9807ed1f8",
+      "bytes": 26516
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c676c1802697661d820f.webp",
+      "sha256": "8de0661772c10601a9fc06752847dcc08337e69bac3ed56d9c646cc4d1302c6b",
+      "bytes": 78066
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Sweet chilli beef mince egg noodles with broccoli and pepper strips",
+    "notes": "Full-resolution inspection: cooked beef mince crumbles through egg noodles, broccoli and thin mixed-pepper strips with light sweet chilli gloss; exact ingredients, method and every mapped title reviewed.",
+    "source_sha256": "203b10b38f9ec015dc5a4055dcaebf98c8a0aafeab9eb96841ffb5dd539f5bd3",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-sweet-chilli-beef"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Beef Stir-Fry"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

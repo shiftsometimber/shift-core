@@ -1,0 +1,85 @@
+{
+  "groupId": "de218828d8c71604b34e218689630394368ecebbc69b331660bcf993438f04a9",
+  "recipe_ids": [
+    "industrial-v3-stir-fry-hoisin-tofu"
+  ],
+  "titles": [
+    "Shift Hoisin Tofu Stir-Fry"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe in natural window light, truthful appetising textures in a plain serving dish. No invented garnish or additions. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hoisin Tofu Stir-Fry. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"75g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"hoisin-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 90g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Turn the heat to low and fold in the 40g hoisin-style sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and firm tofu between serving bowls. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "hoisin-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 90g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Turn the heat to low and fold in the 40g hoisin-style sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and firm tofu between serving bowls. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-645c81df-b326-4b28-8de1-06730c140b20.png",
+  "source_sha256": "ea7b8224db5aee4ccdba6d11b652a64a309cdd45cd8084da4a9f9721573f5ce8",
+  "generated_at": "2026-10-05T00:29:09.471Z",
+  "elapsed_ms": 103310,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-de218828d8c71604b34e-480.webp",
+      "sha256": "9d6c47587b96b995523ab28e52804f5494d281f561331662ee4ee14568c516ba",
+      "bytes": 32276
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-de218828d8c71604b34e.webp",
+      "sha256": "8f47d5d718cbdbdcc612c15ad49fc6933427307d3d5882f02560dc700b8ba663",
+      "bytes": 98638
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Hoisin tofu egg noodles with broccoli and sliced peppers",
+    "notes": "Full-resolution inspection: intact golden firm tofu cubes, egg noodles, broccoli and sliced mixed peppers in measured glossy hoisin coating; no extras. Exact ingredients, preparation and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-hoisin-tofu"
+    ],
+    "titles": [
+      "Shift Hoisin Tofu Stir-Fry"
+    ],
+    "source_sha256": "ea7b8224db5aee4ccdba6d11b652a64a309cdd45cd8084da4a9f9721573f5ce8",
+    "reviewed_at": "2026-10-05T00:50:10.470327+00:00"
+  }
+}

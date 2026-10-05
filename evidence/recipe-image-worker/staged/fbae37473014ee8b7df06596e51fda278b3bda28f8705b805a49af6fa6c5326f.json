@@ -1,0 +1,88 @@
+{
+  "groupId": "fbae37473014ee8b7df06596e51fda278b3bda28f8705b805a49af6fa6c5326f",
+  "recipe_ids": [
+    "industrial-v3-stir-fry-sweet-chilli-turkey"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Turkey Stir-Fry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Turkey Stir-Fry. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"75g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 90g mixed peppers. Keep the 170g turkey breast mince chilled until the pan is ready. Do not rinse raw mince.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the turkey breast mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Turn the heat to low and fold in the 40g sweet chilli sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked turkey breast mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and turkey breast mince between serving bowls. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No spring onions, coriander, parsley, sesame or decorative garnish unless the exact ingredient list includes them.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "75g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 90g mixed peppers. Keep the 170g turkey breast mince chilled until the pan is ready. Do not rinse raw mince.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the turkey breast mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Turn the heat to low and fold in the 40g sweet chilli sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked turkey breast mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and turkey breast mince between serving bowls. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ef352d05-7e7b-45aa-a093-e9b24a0a7900.png",
+  "source_sha256": "40d94947d9d6e36c4a31943cc7e45a8e44375b44d5e2af768c674aeed6b85ef1",
+  "generated_at": "2026-10-04T21:20:43.745Z",
+  "elapsed_ms": 95249.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fbae37473014ee8b7df0-480.webp",
+      "sha256": "131ea90d385b2d3e20321c9be7d78505247b54af21de2137d4b1e1c96da809c2",
+      "bytes": 23104
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fbae37473014ee8b7df0.webp",
+      "sha256": "7595805e77836ecc218e15c470ba5ec14faecb9386d1d9effd6461317d639d61",
+      "bytes": 66826
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-sweet-chilli-turkey"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Turkey Stir-Fry"
+    ],
+    "notes": "Cooked turkey breast mince crumbles mixed with egg noodles, peppers and broccoli in sweet chilli sauce; no sausage or garnish.",
+    "alt": "Sweet chilli turkey mince stir-fry with egg noodles, peppers and broccoli.",
+    "reviewed_at": "2026-10-04T21:26:40.055831+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1363-review.json",
+    "source_sha256": "40d94947d9d6e36c4a31943cc7e45a8e44375b44d5e2af768c674aeed6b85ef1"
+  },
+  "integrated": true,
+  "live": false
+}

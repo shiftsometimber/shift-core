@@ -1,0 +1,85 @@
+{
+  "groupId": "c3271a80b46244dedc979160f93698c59d2df5793059a35a717b71b9b3f4b53d",
+  "recipe_ids": [
+    "industrial-v3-bagel-mexican-turkey"
+  ],
+  "titles": [
+    "Shift Mexican Turkey Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mexican Turkey Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"tomato salsa\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured tomato salsa as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured tomato salsa and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Mexican/peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish, tortilla chips or extra ingredients. Listed yoghurt sauces are ready-to-eat dressings, not melted cheese.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "tomato salsa"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured tomato salsa as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the measured tomato salsa and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-images/evidence/recipe-image-worker/worker-f/1938.recovered.png",
+  "source_sha256": "ddccb4c674aef678567005046c5523edf020e79dfa3bf0d893c790184105f429",
+  "generated_at": null,
+  "elapsed_ms": 0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c3271a80b46244dedc97-480-2dec292ee72b.webp",
+      "sha256": "2dec292ee72b90f2a589fba05d060a297f76d4a9974b03181ecbf44ee68ecea7",
+      "bytes": 28228
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c3271a80b46244dedc97-1fb54b9bcfba.webp",
+      "sha256": "1fb54b9bcfba960ee003a434effe05aebd9781c10542da6782acbb9f0c19d6d5",
+      "bytes": 85772
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ddccb4c674aef678567005046c5523edf020e79dfa3bf0d893c790184105f429",
+    "recipe_ids": [
+      "industrial-v3-bagel-mexican-turkey"
+    ],
+    "titles": [
+      "Shift Mexican Turkey Loaded Bagel"
+    ],
+    "notes": "Plain bagel with cooked turkey, rocket/tomato and tomato salsa; reserved rocket/tomato side salad. No unlisted garnish, cheese, seeds or substitutions. Dressing placement matches method.",
+    "alt": "Mexican Turkey Loaded Bagel with rocket, tomato",
+    "reviewed_at": "2026-10-04T22:50:57.034178+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1938.json"
+  },
+  "integrated": true,
+  "live": false
+}

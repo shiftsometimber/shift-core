@@ -1,0 +1,79 @@
+{
+  "groupId": "bbec9541788c093aebd58684b128750b6f5153e9d8238a4a4c36cf13ecf21a7c",
+  "recipe_ids": [
+    "industrial-breakfast-potato-hash-peach-cinnamon-4"
+  ],
+  "titles": [
+    "Egg Tomatoes Breakfast Potato Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Tomatoes Breakfast Potato Hash. Ingredients, quantities and allergens: [{\"amount\":\"220g\",\"item\":\"baby potatoes\"},{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"tomatoes\"},{\"amount\":\"60g\",\"item\":\"onion\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.\",\"Chop the onion and tomatoes. Heat the measured olive oil in a wide non-stick frying pan; cook the onion and tomatoes over medium heat for 4\u20135 minutes.\",\"Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.\",\"Beat the large eggs, pour them into the pan and stir gently for 2\u20133 minutes until fully set, with no liquid egg left.\",\"Serve the large eggs, potatoes and vegetables immediately. For another portion, follow the chilled-storage and single-reheat instructions.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "220g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "tomatoes"
+    },
+    {
+      "amount": "60g",
+      "item": "onion"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.",
+    "Chop the onion and tomatoes. Heat the measured olive oil in a wide non-stick frying pan; cook the onion and tomatoes over medium heat for 4\u20135 minutes.",
+    "Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.",
+    "Beat the large eggs, pour them into the pan and stir gently for 2\u20133 minutes until fully set, with no liquid egg left.",
+    "Serve the large eggs, potatoes and vegetables immediately. For another portion, follow the chilled-storage and single-reheat instructions."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d00e5e1c-ebd6-47d8-b263-34dfc46b1a26.png",
+  "source_sha256": "e77684cc8c7cb889528961b06aef5790d7ebcfac3aec7585483ee1f4e823983a",
+  "generated_at": "2026-10-04T21:16:01.792Z",
+  "elapsed_ms": 842484,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bbec9541788c093aebd5-480.webp",
+      "sha256": "49d89fa1b7fec55a29d04061b76df190aef7f40fa2958081801a79d5a971fbc1",
+      "bytes": 26200
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bbec9541788c093aebd5.webp",
+      "sha256": "f74d2966ddc189ef8774c0d76543abe6ce8cf8752473c0ec3363cb9d967f2923",
+      "bytes": 78344
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-potato-hash-peach-cinnamon-4"
+    ],
+    "titles": [
+      "Egg Tomatoes Breakfast Potato Hash"
+    ],
+    "notes": "Golden potato chunks with set egg, softened tomato pieces and onion; no pepper, beans or green garnish. Single credible serving with full food visible in phone/desktop 4:3 framing. Quantities, hidden temperature and nutrition cannot be verified visually.",
+    "alt": "Golden potato hash with cooked egg, tomatoes and onion.",
+    "reviewed_at": "2026-10-04T21:21:38.765463+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "e77684cc8c7cb889528961b06aef5790d7ebcfac3aec7585483ee1f4e823983a"
+  }
+}

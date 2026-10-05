@@ -1,0 +1,80 @@
+{
+  "groupId": "12a67d697d59c9ab9d1142dfa9854de22f8da1b1042b1ec2f1809bce1fe2b069",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-jalfrezi-turkey"
+  ],
+  "titles": [
+    "Shift Jalfrezi Turkey Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Jalfrezi Turkey Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"pepper and tomato masala\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the turkey mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and turkey mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the turkey mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "pepper and tomato masala"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the turkey mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and turkey mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the turkey mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2c541afb-5103-463e-8805-51e2ab9243d7.png",
+  "source_sha256": "76653496c898646a73a045d8d2bb73ebc2aeba2fc272472c51b65527b8710c2d",
+  "generated_at": "2026-10-04T21:26:33.893Z",
+  "elapsed_ms": 25887.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-12a67d697d59c9ab9d11-480.webp",
+      "sha256": "cd23c594279427680d10871522bade6337ffe9a8618cb7cb70a8d19b42cca651",
+      "bytes": 32494
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-12a67d697d59c9ab9d11.webp",
+      "sha256": "af2f48347d9caa764c885064011c2e5f75fc77b34eb35f0c64b86bd16e2a62e4",
+      "bytes": 101852
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-jalfrezi-turkey"
+    ],
+    "titles": [
+      "Shift Jalfrezi Turkey Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked turkey mince crumbles with soft skin-on baby potatoes, carrot chunks and cooked onion in glossy pepper-tomato masala. Moist slow-cooked state matches method, no extra sides or herbs. One central bowl with crop margin.",
+    "alt": "Slow-cooked jalfrezi turkey mince with baby potatoes, carrots and onion",
+    "reviewed_at": "2026-10-04T21:27:18.828283+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/960.json",
+    "source_sha256": "76653496c898646a73a045d8d2bb73ebc2aeba2fc272472c51b65527b8710c2d"
+  },
+  "integrated": true,
+  "live": false
+}

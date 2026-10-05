@@ -1,0 +1,96 @@
+{
+  "groupId": "8961d1af83d8691c651e1fc2cab132daf2bc411f6a846be886b0f2ca4226863b",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-peppery-sausage"
+  ],
+  "titles": [
+    "Shift Peppery Sausage Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppery Sausage Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use half the measured olive oil in a frying pan. Follow the sausage packet cooking guidance. Cook the reduced-fat pork sausages thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate. Slice the cooked sausages before assembling the toastie.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked reduced-fat pork sausages to the pan and heat through.\",\"Stir in the listed flavour ingredients (20g tomato ketchup, 1g black pepper, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use half the measured olive oil in a frying pan. Follow the sausage packet cooking guidance. Cook the reduced-fat pork sausages thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate. Slice the cooked sausages before assembling the toastie.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked reduced-fat pork sausages to the pan and heat through.",
+    "Stir in the listed flavour ingredients (20g tomato ketchup, 1g black pepper, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-af0497a0-d54f-49f3-8724-d40f0ca32608.png",
+  "source_sha256": "ce3f02119e88b8a6e667afa194047f4311512071d6401768bc8daef26d669081",
+  "generated_at": "2026-10-05T00:54:46.376Z",
+  "elapsed_ms": 371010,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8961d1af83d8691c651e-480.webp",
+      "sha256": "60d4a788993d8708984302be3c576d4ba9e5abbf642da7090e2d8a18e1ed8981",
+      "bytes": 26118
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8961d1af83d8691c651e-e873ff37e1ae.webp",
+      "sha256": "e873ff37e1aeb1e6ba16a4a560d0f78997371d8ac67bd1fddc728b5c85afb325",
+      "bytes": 81084
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ce3f02119e88b8a6e667afa194047f4311512071d6401768bc8daef26d669081",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-peppery-sausage"
+    ],
+    "titles": [
+      "Shift Peppery Sausage Breakfast Toastie"
+    ],
+    "notes": "Crisp unseeded wholemeal toastie containing sliced cooked sausage, softened tomato and wilted spinach in listed ketchup, pepper and vinegar sauce.",
+    "alt": "Peppery sausage toastie with tomato and spinach",
+    "reviewed_at": "2026-10-05T00:55:40.489737+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/350.json"
+  },
+  "integrated": true,
+  "live": false
+}

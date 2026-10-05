@@ -1,0 +1,101 @@
+{
+  "groupId": "f198ee6633d296af7e1840238b0b1bc7da298254cd84a55a98d19a5906b8a01b",
+  "recipe_ids": [
+    "industrial-v3-burger-peppercorn-turkey"
+  ],
+  "titles": [
+    "Shift Peppercorn Turkey Fakeaway Burger"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Turkey Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.\",\"Mix the measured light mayonnaise and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Press the turkey breast mince into a patty about 1.5cm thick, slightly wider than the bun; no binder is needed. Coat with all the measured black pepper. After handling raw turkey breast mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the turkey patty over a medium heat for about 5\u20136 minutes on each side, turning carefully. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the lettuce and tomato in the toasted bun, add the cooked turkey patty and the cold finishing sauce, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain entirely unseeded: no sesame/poppy or seed garnish. No cheese, herbs, garnish, crumbs, breading, lemon, cream, ketchup or extra foods unless listed. Exact protein and preparation. Light mayo plus wholegrain mustard plus black pepper only. Wholegrain mustard grains may appear INSIDE dressing, not as seed garnish. Turkey breast mince ONE opaque pale cooked golden patty 1.5cm thick, pepper coated, NO binder or breading. Cold mayo-mustard sauce INSIDE plain wholemeal bun with shredded lettuce and tomato slices.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal burger bun",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.",
+    "Mix the measured light mayonnaise and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Press the turkey breast mince into a patty about 1.5cm thick, slightly wider than the bun; no binder is needed. Coat with all the measured black pepper. After handling raw turkey breast mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the turkey patty over a medium heat for about 5\u20136 minutes on each side, turning carefully. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the lettuce and tomato in the toasted bun, add the cooked turkey patty and the cold finishing sauce, then close the bun and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5067f169-c116-4a8f-9352-25a052bd6174.png",
+  "source_sha256": "edf54982ce33ff1046a0643103b04712bfe9fa81f6565a9096c333f46ea8028a",
+  "generated_at": "2026-10-05T01:14:29.463Z",
+  "elapsed_ms": 114061.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f198ee6633d296af7e18-retry4-480-d7a6dbfb2340.webp",
+      "sha256": "d7a6dbfb2340c147e4f42926b244c41c78a915d818674143ef996187747d2ca2",
+      "bytes": 22302
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f198ee6633d296af7e18-retry4-d0e27e220284.webp",
+      "sha256": "d0e27e220284788ff0b3d3dde86debb05e0c374e4a5ba3420b4631c81e7da3e2",
+      "bytes": 70254
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "edf54982ce33ff1046a0643103b04712bfe9fa81f6565a9096c333f46ea8028a",
+    "recipe_ids": [
+      "industrial-v3-burger-peppercorn-turkey"
+    ],
+    "titles": [
+      "Shift Peppercorn Turkey Fakeaway Burger"
+    ],
+    "notes": "Pass: one compact opaque pale cooked turkey breast mince patty with golden browned pepper-coated surface, approximately 1.5cm preparation, in toasted plain unseeded wholemeal bun. Shredded lettuce and tomato slices below; cold light mayonnaise-wholegrain mustard finishing sauce inside bun. No breast cutlet, cheese, binder crumbs, ketchup, herbs, seed garnish, raw pink meat or extra foods. Exact turkey mince burger and full central crop.",
+    "alt": "Peppercorn turkey burger with lettuce, tomato and mayonnaise-wholegrain mustard sauce in a wholemeal bun",
+    "reviewed_at": "2026-10-05T01:15:20.987534+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1197.json"
+  },
+  "integrated": true,
+  "live": false
+}

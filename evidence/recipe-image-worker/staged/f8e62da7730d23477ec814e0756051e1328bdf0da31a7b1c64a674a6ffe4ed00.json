@@ -1,0 +1,81 @@
+{
+  "groupId": "f8e62da7730d23477ec814e0756051e1328bdf0da31a7b1c64a674a6ffe4ed00",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-cherry-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Cherry Fruit Crunch Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Fruit Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the apple in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only, no honey, nuts, mint, syrup or garnish. Cherries ALL destoned stemless fresh HALVES with visible EMPTY pit cavities; no whole cherries, cherry stones, stems or glazed maraschino cherries. Small25g berries alongside measured80g cherry flesh. No cake or biscuit crumbs. All food inside frame. NO crackers or biscuits anywhere. Finished fruit snack pot at eating time, dry rolled oats/seeds newly added. No dairy base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the apple in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b1a63087-af61-4717-ab45-17876ade0274.png",
+  "source_sha256": "de286a963faaab7680611bbd40005ecfd306e6cede9824e728841b85e18aac5e",
+  "generated_at": "2026-10-05T00:12:25.576Z",
+  "elapsed_ms": 295152,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f8e62da7730d23477ec8-480-a09dd6fad5e8.webp",
+      "sha256": "a09dd6fad5e80cfd3bc47fd67086e78a8b811cf93cc63edd130386262f33e9b0",
+      "bytes": 25990
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f8e62da7730d23477ec8-697e4cb668bf.webp",
+      "sha256": "697e4cb668bf706438d8615ee6618529735ecc7e8b40638e15432368c15a5afc",
+      "bytes": 76114
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "de286a963faaab7680611bbd40005ecfd306e6cede9824e728841b85e18aac5e",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-cherry-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Cherry Fruit Crunch Snack Pot"
+    ],
+    "notes": "Apple and destoned cherry halves with small berries, dry rolled oats/seeds newly added at serving. No dairy base or chocolate.",
+    "alt": "Apple and pitted cherry snack pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:16:59.642624+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/f8e62da7730d23477ec814e0756051e1328bdf0da31a7b1c64a674a6ffe4ed00.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,95 @@
+{
+  "groupId": "78c9eb6b138f077a3359a8c1adb85f35041ac4323a77b0e081615d1248628ba3",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-cajun-sausage"
+  ],
+  "titles": [
+    "Shift Cajun Sausage Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Sausage Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"1g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried oregano\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "1g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried oregano"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-012d6f1f-419e-467b-a60c-0361df0951cb.png",
+  "source_sha256": "d24fbe618d155aede88a8dd980e9628aeff21682609c220aa9682c55443909a8",
+  "generated_at": "2026-10-04T21:15:02.128Z",
+  "elapsed_ms": 224650,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-78c9eb6b138f077a3359-480.webp",
+      "sha256": "12e56c37140940e50d10302d2321ab51e141fcfc278d14ce01fd698d93ce665e",
+      "bytes": 29004
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-78c9eb6b138f077a3359.webp",
+      "sha256": "fb27ed5949b1354be6a0e4a311db9b30dff880f1150b215a4144f13e58ef4682",
+      "bytes": 96410
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-cajun-sausage"
+    ],
+    "titles": [
+      "Shift Cajun Sausage Breakfast Buttie"
+    ],
+    "notes": "Wholemeal bap with two browned pork sausages, cooked tomato and wilted spinach; no cheese or added sauce. Bread surface reads bran crust rather than seed garnish.",
+    "alt": "Wholemeal breakfast bap with Cajun pork sausages, tomato and spinach",
+    "reviewed_at": "2026-10-04T21:17:52.806858+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/78c9eb6b138f077a3359a8c1adb85f35041ac4323a77b0e081615d1248628ba3.json",
+    "source_sha256": "d24fbe618d155aede88a8dd980e9628aeff21682609c220aa9682c55443909a8"
+  },
+  "integrated": true,
+  "live": false
+}

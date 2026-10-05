@@ -1,0 +1,88 @@
+{
+  "groupId": "5b9a390c44822ab57432d5480ff431f4b4d37a5536f967724af941435dba49d3",
+  "index": 2364,
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-classic-savory-box"
+  ],
+  "titles": [
+    "Shift Classic Banana Split Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Banana Split Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: generic method references to food apply only when that food appears in the exact ingredient list. Plain wholegrain crackers unseeded, no seed garnish unless listed. No cheese unless listed. No extra sauce, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow dry/separate and soaked/prepared instructions exactly. Cocoa means measured cocoa powder folded or dusted on food, never liquid chocolate syrup or extra chocolate chunks unless chopped dark chocolate listed. Overnight oats cocoa must be fully mixed in milk, visibly soft soaked brown oats without dry cocoa pockets. Cinnamon means fine powder, no decorative cinnamon sticks.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-da368a0d-3253-4e58-8c1e-759bbafb7805.png",
+  "source_sha256": "d1d3aecf834bcc984b016835b62986376961acdc32c882a02677197c05eaed2a",
+  "dispatched_at": "2026-10-04T22:43:35.292Z",
+  "generated_at": "2026-10-04T22:50:20.416Z",
+  "elapsed_ms": 405124,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5b9a390c44822ab57432-480.webp",
+      "sha256": "5972459fae3157f930ec411c78e2c5dde64975a5f01317c30fe01878ce5a7066",
+      "bytes": 21596,
+      "git_blob_sha": "b5a954cc2b9cbcd42b9480a6cc59c6c9ea79f3b4"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5b9a390c44822ab57432.webp",
+      "sha256": "9b58ab0229d3a08e1bf519be42417947928231a739fd43e7d62ae814136398f6",
+      "bytes": 67484,
+      "git_blob_sha": "088c19b8869be776e25ad4fb1a8ef27f884f4845"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-classic-savory-box"
+    ],
+    "titles": [
+      "Shift Classic Banana Split Dessert Pot"
+    ],
+    "notes": "Banana and berries with light cinnamon powder, oats and pumpkin seeds and measured yoghurt swirl; no chocolate or cinnamon sticks.",
+    "alt": "Cinnamon banana and berry dessert pot with yoghurt, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T22:52:27.870285+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/5b9a390c44822ab57432d5480ff431f4b4d37a5536f967724af941435dba49d3.json",
+    "source_sha256": "d1d3aecf834bcc984b016835b62986376961acdc32c882a02677197c05eaed2a"
+  },
+  "integrated": true,
+  "live": false
+}

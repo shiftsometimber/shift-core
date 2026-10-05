@@ -1,0 +1,82 @@
+{
+  "groupId": "28c8788bb525ad724867f3babb080bd7c2d846107a573a90204d9d1418e1595a",
+  "recipe_ids": [
+    "industrial-lunch-tofu-jacket-potato"
+  ],
+  "titles": [
+    "Tofu Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Tofu Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"firm tofu\"},{\"amount\":\"300g\",\"item\":\"baking potato\"},{\"amount\":\"60g\",\"item\":\"mixed salad\"},{\"amount\":\"60g\",\"item\":\"spring onion\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Choose firm tofu labelled ready to eat. Drain and pat it dry, then cut it into small cubes; keep it chilled until assembly.\",\"Use the measured 0% Greek yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured 0% Greek yoghurt; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nWholemeal bread/wrap/bagel/pitta plain unseeded; no sesame/poppy seed garnish or cheese unless explicitly listed. Tikka yoghurt only in the recipes listing it; no extra cream/mayo or coriander. Poultry plain cooked breast unbreaded; tuna fibrous drained flakes. Tofu specifically ready-to-eat pale unseared firm tofu: small cubes in grain salad, jacket, pasta and rice; thin slices in pitta, toastie, wrap. Never substitute feta, chicken or grilled tofu. Cheddar only listed Tofu Toastie, grated before toast. Preserve raw vegetables and all reserved side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not topping. Listed lemon/lime juice/dressing incorporated: no citrus wedges. Wholegrain mustard stays in grain-salad dressing, no seed garnish. Rice/pasta/couscous depicted cooked.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "300g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "60g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "60g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Choose firm tofu labelled ready to eat. Drain and pat it dry, then cut it into small cubes; keep it chilled until assembly.",
+    "Use the measured 0% Greek yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured 0% Greek yoghurt; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-00b86599-6bfa-4d87-87d1-fcea3c0d7777.png",
+  "source_sha256": "b43e8b039a0ba10beb500691252f3b54894e15370c71aa4e543b9a5762f84c80",
+  "generated_at": "2026-10-05T00:57:22.901Z",
+  "elapsed_ms": 276815.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-28c8788bb525ad724867-480-f00e64b75278.webp",
+      "sha256": "f00e64b752780b8b1f0084cf4f17cdc56b1dbe7b8378d26be8e83ec31b540536",
+      "bytes": 25596
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-28c8788bb525ad724867-347d24206d04.webp",
+      "sha256": "347d24206d04b5d24f4281f8677dc672d8de8e27e09da7a0336b44ee7538096f",
+      "bytes": 69064
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b43e8b039a0ba10beb500691252f3b54894e15370c71aa4e543b9a5762f84c80",
+    "recipe_ids": [
+      "industrial-lunch-tofu-jacket-potato"
+    ],
+    "titles": [
+      "Tofu Jacket Potato"
+    ],
+    "notes": "Fluffy split baked potato topped with small pale ready-to-eat firm tofu cubes and plain Greek yoghurt. Finely sliced spring onion stays mixed in separate mixed salad alongside; no seared tofu, feta, butter or herbs. Exact title/method checked.",
+    "alt": "Tofu jacket potato with Greek yoghurt, mixed salad and spring onion",
+    "reviewed_at": "2026-10-05T01:01:46.442688+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2122.json"
+  },
+  "integrated": true,
+  "live": false
+}

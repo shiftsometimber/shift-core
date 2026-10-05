@@ -1,0 +1,84 @@
+{
+  "groupId": "963ca2ed08eee9d334db2ee891be7868a624f9cf908374fe6f455d1689a62ee9",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-bbq-bacon"
+  ],
+  "titles": [
+    "Shift BBQ Bacon Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Bacon Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Trim visible fat from the back-bacon rashers and weigh the listed portion raw before cooking.\",\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Use half the measured olive oil in a frying pan. Cut the bacon into bite-size pieces. Cook the lean back bacon thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked lean back bacon to the pan and heat through.\",\"Stir in the listed flavour ingredients (40g reduced-sugar BBQ sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Trim visible fat from the back-bacon rashers and weigh the listed portion raw before cooking.",
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Use half the measured olive oil in a frying pan. Cut the bacon into bite-size pieces. Cook the lean back bacon thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked lean back bacon to the pan and heat through.",
+    "Stir in the listed flavour ingredients (40g reduced-sugar BBQ sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c9f02fbb-afc1-4c43-a3f7-119f1a9e691d.png",
+  "source_sha256": "d6b2612d9a3c0c4bcfe3d62ca5d560ec36a3213ca7c8dffa71cc87206fb85d8f",
+  "generated_at": null,
+  "elapsed_ms": 103044.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-963ca2ed08eee9d334db-480.webp",
+      "sha256": "3ae3ed4f816c9919422c7cf6e5819bbfbc8b62f9a1575ccc58e41fe6cd43c11e",
+      "bytes": 26692
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-963ca2ed08eee9d334db.webp",
+      "sha256": "3b757df2ffad19d66ee88bdeb6ee97927343c78972c0860af4e02546fc3a7ce5",
+      "bytes": 81664
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-bbq-bacon"
+    ],
+    "titles": [
+      "Shift BBQ Bacon Breakfast Hash"
+    ],
+    "notes": "Cubed golden potatoes are mixed with bite-size browned bacon, softened translucent onion and red, yellow and green pepper pieces in a reddish BBQ coating. No spinach, eggs or garnish. Cooked hash presentation and title agree; plausible plateful with crop margin.",
+    "alt": "Breakfast hash of golden potato cubes, bacon, onion and mixed peppers in BBQ sauce.",
+    "reviewed_at": "2026-10-04T21:12:01.688Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews.json",
+    "source_sha256": "d6b2612d9a3c0c4bcfe3d62ca5d560ec36a3213ca7c8dffa71cc87206fb85d8f"
+  },
+  "integrated": true,
+  "live": false
+}

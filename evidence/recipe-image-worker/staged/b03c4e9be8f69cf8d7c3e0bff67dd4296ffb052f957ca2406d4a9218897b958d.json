@@ -1,0 +1,94 @@
+{
+  "groupId": "b03c4e9be8f69cf8d7c3e0bff67dd4296ffb052f957ca2406d4a9218897b958d",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-garlic-herb-beans"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Beans Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Beans Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"35g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "35g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e556a7c4-0c33-4538-a70d-2a3061977599.png",
+  "source_sha256": "04ebe34b1a39c26d3e6a229ef15268402ed7adeff08f64abdcbee804ea9ce785",
+  "generated_at": "2026-10-04T21:39:27.135Z",
+  "elapsed_ms": 131831,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b03c4e9be8f69cf8d7c3-480.webp",
+      "sha256": "56a180ab40b4419724364896843a9ace51fb8cd9df2cc0d5a86f40cb542fb8e0",
+      "bytes": 23302
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b03c4e9be8f69cf8d7c3.webp",
+      "sha256": "e82bf63f67ad41f6dbb476d8441637cb18229f99a30cb91303c08e69ad87f9b6",
+      "bytes": 73710
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-garlic-herb-beans"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beans Breakfast Buttie"
+    ],
+    "notes": "Plain wholemeal bap with baked beans, cooked tomato, wilted spinach and creamy garlic-yoghurt sauce containing dried parsley. No cheese or additional garnish; correct hot sandwich form.",
+    "alt": "Wholemeal bap with baked beans, tomato, spinach and garlic-herb yoghurt.",
+    "reviewed_at": "2026-10-04T21:42:36.214663+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/164.json",
+    "source_sha256": "04ebe34b1a39c26d3e6a229ef15268402ed7adeff08f64abdcbee804ea9ce785"
+  },
+  "integrated": true,
+  "live": false
+}

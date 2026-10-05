@@ -1,0 +1,78 @@
+{
+  "groupId": "01a820eb85bebf45e099746cf90f21490e17718cf7c40eb629be1e1d6e24c355",
+  "recipe_ids": [
+    "industrial-dinner-turkey-taco-bowl"
+  ],
+  "titles": [
+    "Turkey Taco Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Turkey Taco Bowl. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey breast\"},{\"amount\":\"70g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"120g\",\"item\":\"sweetcorn\"},{\"amount\":\"100g\",\"item\":\"tomato salsa\"},{\"amount\":\"50g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Cook the measured dry brown rice in boiling water according to its packet instructions, then drain if needed. Keep the yoghurt refrigerated while the hot components cook.\",\"Heat a non-stick frying pan over medium heat with 2 tablespoons of water; this recipe has no added oil. Cut the turkey breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Add a spoonful of water if the pan starts sticking.\",\"Add the sweetcorn and tomato salsa to the pan. Cook for 3\u20135 minutes, stirring until hot; if using frozen sweetcorn, follow its packet cooking time. Stir the cooked filling through and check it is steaming hot.\",\"Spoon the cooked rice into a bowl, add the hot filling and take it away from the heat before adding the measured Greek yoghurt as a cool topping.\",\"Eat immediately, or portion and cool leftovers promptly following the rice-storage instructions. Keep the yoghurt topping separate when packing a portion for reheating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey breast"
+    },
+    {
+      "amount": "70g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "100g",
+      "item": "tomato salsa"
+    },
+    {
+      "amount": "50g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Cook the measured dry brown rice in boiling water according to its packet instructions, then drain if needed. Keep the yoghurt refrigerated while the hot components cook.",
+    "Heat a non-stick frying pan over medium heat with 2 tablespoons of water; this recipe has no added oil. Cut the turkey breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Add a spoonful of water if the pan starts sticking.",
+    "Add the sweetcorn and tomato salsa to the pan. Cook for 3\u20135 minutes, stirring until hot; if using frozen sweetcorn, follow its packet cooking time. Stir the cooked filling through and check it is steaming hot.",
+    "Spoon the cooked rice into a bowl, add the hot filling and take it away from the heat before adding the measured Greek yoghurt as a cool topping.",
+    "Eat immediately, or portion and cool leftovers promptly following the rice-storage instructions. Keep the yoghurt topping separate when packing a portion for reheating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d1732177-f896-4405-93fc-20056ce652e5.png",
+  "source_sha256": "60527cd4ffe2ba1d98bd30181ed8dd040a88ee66d2208d21fd0bbe34cf1b1236",
+  "generated_at": "2026-10-04T23:35:49.961Z",
+  "elapsed_ms": 405320.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-01a820eb85bebf45e099-480-37df2df5f8af.webp",
+      "sha256": "37df2df5f8af0e07de5122dfd2d64d928dc27868fbcd8e4692c74b017fb43f3f",
+      "bytes": 24324
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-01a820eb85bebf45e099-7d44e93822c4.webp",
+      "sha256": "7d44e93822c4f513a54ed748cc3484a49f1e63dcb34b7e58c8595405ad469e04",
+      "bytes": 74026
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "60527cd4ffe2ba1d98bd30181ed8dd040a88ee66d2208d21fd0bbe34cf1b1236",
+    "recipe_ids": [
+      "industrial-dinner-turkey-taco-bowl"
+    ],
+    "titles": [
+      "Turkey Taco Bowl"
+    ],
+    "notes": "Opaque turkey chunks with sweetcorn and heated tomato salsa over brown rice, plain Greek yoghurt as cool topping. No cheese, herbs or other toppings; exact title matches.",
+    "alt": "Turkey taco bowl with brown rice, sweetcorn, salsa and Greek yoghurt",
+    "reviewed_at": "2026-10-04T23:39:19.521560+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1477-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

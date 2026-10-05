@@ -1,0 +1,95 @@
+{
+  "groupId": "fab7609d8991748ed0264a7c1b80cf300291de45ba497c9be2bbe1f5badb7636",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-cajun-turkey"
+  ],
+  "titles": [
+    "Shift Cajun Turkey Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Turkey Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"1g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried oregano\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Keep the already-cooked turkey refrigerated while preparing the vegetables. Add it near the end and heat until steaming hot throughout.\",\"Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the cooked turkey breast and heat gently until steaming hot throughout.\",\"Stir in the listed flavour ingredients (2g paprika, 1g chilli powder, 1g garlic powder, 1g dried oregano), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "1g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried oregano"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Keep the already-cooked turkey refrigerated while preparing the vegetables. Add it near the end and heat until steaming hot throughout.",
+    "Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the cooked turkey breast and heat gently until steaming hot throughout.",
+    "Stir in the listed flavour ingredients (2g paprika, 1g chilli powder, 1g garlic powder, 1g dried oregano), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8c6f610d-353f-4636-aa9b-ced35d123da5.png",
+  "source_sha256": "7e9ae5cb7c69081074f41f947542274cce51fe4d3816f56dbea7ac3adf13637e",
+  "generated_at": "2026-10-04T21:16:59.231Z",
+  "elapsed_ms": 341752,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fab7609d8991748ed026-480.webp",
+      "sha256": "6f5315f8256c6a347fa89e9e4a7e1af3a73d06bd9de7fcc86b96b3fb89634ff1",
+      "bytes": 28012
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fab7609d8991748ed026.webp",
+      "sha256": "94e9daee5694430e9238599c09cc1a4983a9cd837c7f192663f1322a4d8604f5",
+      "bytes": 91370
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-cajun-turkey"
+    ],
+    "titles": [
+      "Shift Cajun Turkey Breakfast Hash"
+    ],
+    "notes": "Cooked turkey breast pieces, golden potato cubes, softened onion and mixed peppers; paprika coating; no unlisted ingredients.",
+    "alt": "Cajun turkey breakfast hash with potatoes, onion and mixed peppers",
+    "reviewed_at": "2026-10-04T21:17:52.534178+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/fab7609d8991748ed0264a7c1b80cf300291de45ba497c9be2bbe1f5badb7636.json",
+    "source_sha256": "7e9ae5cb7c69081074f41f947542274cce51fe4d3816f56dbea7ac3adf13637e"
+  },
+  "integrated": true,
+  "live": false
+}

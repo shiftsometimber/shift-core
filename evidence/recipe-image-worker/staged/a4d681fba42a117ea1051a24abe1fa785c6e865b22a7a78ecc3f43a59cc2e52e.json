@@ -1,0 +1,87 @@
+{
+  "groupId": "a4d681fba42a117ea1051a24abe1fa785c6e865b22a7a78ecc3f43a59cc2e52e",
+  "index": 2255,
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-berry-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Berry Greek Yoghurt Big Feed Dessert"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Greek Yoghurt Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"105g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed food; no honey, nuts, mint, syrup or decorative garnish. Plain unseeded crackers: exactly two visible crackers when listed, no sesame or poppy seeds. All food inside the serving margins. Single finished combined dessert bowl; listed chopped chocolate topping only, no melted chocolate sauce.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0c57af79-d628-4a6b-93fa-cafb91431d93.png",
+  "source_sha256": "e6827c1527a7b42765623b4dc5ce6b741937b1efdcf6b5aba6e09236842b1163",
+  "dispatched_at": "2026-10-04T23:14:16.136Z",
+  "generated_at": "2026-10-04T23:15:29.061Z",
+  "elapsed_ms": 72925,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a4d681fba42a117ea105-480.webp",
+      "sha256": "3ebb991b810fb0bbd16580c1f3f4dbf316356c2906e37016404d046a5c8e4c5d",
+      "bytes": 20066,
+      "git_blob_sha": "8383b8a40cf9dc19bcdb6a9e4d103d6dcc6ecd55"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a4d681fba42a117ea105.webp",
+      "sha256": "0ba5648785771ce12212fdbc6726bfb0a1b27005495c67052aa980ebc756b82e",
+      "bytes": 63396,
+      "git_blob_sha": "95ac6a12fd51181053024f9736066d9906ab15c8"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-berry-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Berry Greek Yoghurt Big Feed Dessert"
+    ],
+    "notes": "Greek yoghurt and mixed berries combined with oats and pumpkin seeds, finished with chopped dark chocolate; no melted sauce or unlisted garnish.",
+    "alt": "Greek yoghurt with berries, oats, pumpkin seeds and chopped dark chocolate.",
+    "reviewed_at": "2026-10-04T23:21:58.042172+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/a4d681fba42a117ea1051a24abe1fa785c6e865b22a7a78ecc3f43a59cc2e52e.json",
+    "source_sha256": "e6827c1527a7b42765623b4dc5ce6b741937b1efdcf6b5aba6e09236842b1163"
+  },
+  "integrated": true,
+  "live": false
+}

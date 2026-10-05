@@ -1,0 +1,91 @@
+{
+  "groupId": "f52e7265ab0040df706cb20d9f626797a0919654460bb754524ba913e175d6c1",
+  "index": 2360,
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-chocolate-protein-pudding"
+  ],
+  "titles": [
+    "Shift Chocolate Protein Pudding Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Protein Pudding Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: generic method references to food apply only when that food appears in the exact ingredient list. Plain wholegrain crackers unseeded, no seed garnish unless listed. No cheese unless listed. No extra sauce, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow dry/separate and soaked/prepared instructions exactly. Cocoa means measured cocoa powder folded or dusted on food, never liquid chocolate syrup or extra chocolate chunks unless chopped dark chocolate listed. Overnight oats cocoa must be fully mixed in milk, visibly soft soaked brown oats without dry cocoa pockets. Cinnamon means fine powder, no decorative cinnamon sticks.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ced02c55-6adf-4959-b4e3-9e4dabdb5265.png",
+  "source_sha256": "18ef1edb0d2f28f88d0649466e967b1685bc728ea002c3cfb8067b9da610e434",
+  "dispatched_at": "2026-10-04T22:43:35.292Z",
+  "generated_at": "2026-10-04T22:48:54.951Z",
+  "elapsed_ms": 319659,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f52e7265ab0040df706c-480.webp",
+      "sha256": "01aa893343c62dbafda9f2d972e2e0d6f55866839dd129061572dc7182c8378f",
+      "bytes": 27812,
+      "git_blob_sha": "e552dfb48e56dc317034fc6b0a72d1e1dfc248bc"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f52e7265ab0040df706c.webp",
+      "sha256": "a59a0af74d7373dd1c9e440f6d62a3f990f041340ffd7c2f313720c4567e3ba0",
+      "bytes": 81326,
+      "git_blob_sha": "2d0c392488b6981c411ebe2fe0d7c9730ac89037"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-chocolate-protein-pudding"
+    ],
+    "titles": [
+      "Shift Chocolate Protein Pudding Dessert Pot"
+    ],
+    "notes": "Protein yoghurt with cocoa and Greek yoghurt swirl, berries, rolled oats and pumpkin seeds; no chocolate chunks or syrup.",
+    "alt": "Cocoa protein yoghurt dessert pot with berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T22:52:28.133661+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/f52e7265ab0040df706cb20d9f626797a0919654460bb754524ba913e175d6c1.json",
+    "source_sha256": "18ef1edb0d2f28f88d0649466e967b1685bc728ea002c3cfb8067b9da610e434"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,91 @@
+{
+  "groupId": "a16c725eb22baf409190c25a399a8ae2756d34a920f3773e80506337631f86eb",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-hash-brown-beans"
+  ],
+  "titles": [
+    "Shift Hash Brown Beans Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hash Brown Beans Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"120g\",\"item\":\"baby potatoes\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 120g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.\",\"Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the tomato, spinach, onion; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the baked beans and heat gently until steaming hot throughout.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "120g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 120g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.",
+    "Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the tomato, spinach, onion; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the baked beans and heat gently until steaming hot throughout.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-838c2bbf-6d09-4b42-b433-0d0aa4671409.png",
+  "source_sha256": "33ffcaaa29bffcc8c4e08e2313c8012c9fc5e1c6fc3bb731b8dc94d211e7e766",
+  "generated_at": "2026-10-04T23:00:48.971Z",
+  "elapsed_ms": 377147,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a16c725eb22baf409190-480.webp",
+      "sha256": "0e89022f3cb3e5324c020e092a4e4d5f6a05198bf061374301392a88fe18fc78",
+      "bytes": 30662
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a16c725eb22baf409190-retry2-1548ea98b018.webp",
+      "sha256": "1548ea98b018561670d1d0b735976bfbb1e89eefc0f91c5f1f06ba574548fd39",
+      "bytes": 98186
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "33ffcaaa29bffcc8c4e08e2313c8012c9fc5e1c6fc3bb731b8dc94d211e7e766",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-hash-brown-beans"
+    ],
+    "titles": [
+      "Shift Hash Brown Beans Breakfast Toastie"
+    ],
+    "notes": "Crisp plain wholemeal toastie contains golden potato cubes, baked beans, softened tomato and onion with wilted spinach. Remaining measured filling alongside; no extra ingredients.",
+    "alt": "Hash brown baked bean toastie with potato, tomato, onion and spinach filling alongside.",
+    "reviewed_at": "2026-10-04T23:05:58.771165+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/190.json"
+  },
+  "integrated": true,
+  "live": false
+}

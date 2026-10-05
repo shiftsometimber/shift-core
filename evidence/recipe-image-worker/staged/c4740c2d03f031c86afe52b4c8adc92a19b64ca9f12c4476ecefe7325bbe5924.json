@@ -1,0 +1,82 @@
+{
+  "groupId": "c4740c2d03f031c86afe52b4c8adc92a19b64ca9f12c4476ecefe7325bbe5924",
+  "recipe_ids": [
+    "industrial-v3-curry-balti-tofu"
+  ],
+  "titles": [
+    "Shift Balti Tofu Proper Curry"
+  ],
+  "prompt": "Professional appetising close food photograph of this exact actual recipe. Believable home-cooked texture, thoughtful composition and natural light. Show its complete measured dish. Match ingredients, cut and preparation precisely. No invented garnish or side. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Tofu Proper Curry. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Turn the heat to low and fold in the 40g balti-style sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Turn the heat to low and fold in the 40g balti-style sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7bd70cab-01a7-472f-896b-11bd830b6d7c.png",
+  "source_sha256": "35671db6b23e9e938c702b37a70f50b201d7b689c7a25c11a2fe0fcedaeefe48",
+  "generated_at": "2026-10-04T23:53:43.636Z",
+  "elapsed_ms": 436479,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c4740c2d03f031c86afe-480.webp",
+      "sha256": "330904e1b0e7bda103eeb3c117689fe762afeb9b9fe83b6dbf47f93f737cbd11",
+      "bytes": 30640
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c4740c2d03f031c86afe.webp",
+      "sha256": "1963d6d9aab1b1c59f9bce90c5993b2e99d8229f1daa80213188abd48d8fb0d5",
+      "bytes": 96422
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "35671db6b23e9e938c702b37a70f50b201d7b689c7a25c11a2fe0fcedaeefe48",
+    "recipe_ids": [
+      "industrial-v3-curry-balti-tofu"
+    ],
+    "titles": [
+      "Shift Balti Tofu Proper Curry"
+    ],
+    "notes": "Intact browned 2cm firm tofu cubes, softened onion and peppers over white basmati rice, light balti coating and no garnish.",
+    "alt": "Shift Balti Tofu Proper Curry: intact browned 2cm firm tofu cubes, softened onion and peppers over white basmati rice, light balti coating and no garnish.",
+    "reviewed_at": "2026-10-05T00:07:14.190075+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

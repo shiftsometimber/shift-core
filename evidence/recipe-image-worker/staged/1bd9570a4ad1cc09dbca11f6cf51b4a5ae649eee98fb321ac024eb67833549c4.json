@@ -1,0 +1,86 @@
+{
+  "groupId": "1bd9570a4ad1cc09dbca11f6cf51b4a5ae649eee98fb321ac024eb67833549c4",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-bean-loaded-egg"
+  ],
+  "titles": [
+    "Shift Bean Loaded Egg Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Bean Loaded Egg Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"baked beans\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Show one wholemeal bap split and filled, with cooked filling visible. NO cheese or lettuce.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-381e490b-3ce6-4231-9409-7078ead17ca2.png",
+  "source_sha256": "60778a5505e072c592af247486035b04b9764e7e1b487df7f51ab9450a1dce76",
+  "generated_at": "2026-10-04T21:15:36.430Z",
+  "elapsed_ms": 293139.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1bd9570a4ad1cc09dbca-480.webp",
+      "sha256": "38bdc1d113b289f9115eaa485951fe59b9171d0ab949956aaa8a70e7a6947853",
+      "bytes": 26488
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1bd9570a4ad1cc09dbca.webp",
+      "sha256": "a5cdc0ba87fc3eb8c79d3f78fa58bbb9137cf853aae502bd94bfafb7d857d66c",
+      "bytes": 87356
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-bean-loaded-egg"
+    ],
+    "titles": [
+      "Shift Bean Loaded Egg Breakfast Buttie"
+    ],
+    "notes": "Set tender scrambled egg, softened tomato, wilted spinach and baked beans in plain wholemeal bap; no cheese.",
+    "alt": "Wholemeal breakfast bap with egg, tomato, spinach and baked beans.",
+    "reviewed_at": "2026-10-04T21:18:45.073513+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/76-review.json",
+    "source_sha256": "60778a5505e072c592af247486035b04b9764e7e1b487df7f51ab9450a1dce76"
+  },
+  "integrated": true,
+  "live": false
+}

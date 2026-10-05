@@ -1,0 +1,84 @@
+{
+  "groupId": "58cd5aaca406db2f2493f6cff1458c144e1bdf431b014cf0c4cbdb55e92c27c5",
+  "recipe_ids": [
+    "industrial-v3-sandwich-bbq-ham"
+  ],
+  "titles": [
+    "Shift BBQ Ham Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Ham Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the bbq flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the bbq flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3ef8ee14-896c-45c5-a057-31f75c641338.png",
+  "source_sha256": "23f047b2a7892a4bfe9a0f9801fce89152460abad821d5834fe55b83f1714995",
+  "generated_at": "2026-10-05T00:13:40.169Z",
+  "elapsed_ms": 335636.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-58cd5aaca406db2f2493-480-976a54775887.webp",
+      "sha256": "976a54775887ce4acd088b37d3dcffd898d06144313c35043aab602aa68c1101",
+      "bytes": 21302
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-58cd5aaca406db2f2493-37f22e87b01a.webp",
+      "sha256": "37f22e87b01a4161166041b337111936abb7a615c81ed18333a3a63f5311f135",
+      "bytes": 66106
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "23f047b2a7892a4bfe9a0f9801fce89152460abad821d5834fe55b83f1714995",
+    "recipe_ids": [
+      "industrial-v3-sandwich-bbq-ham"
+    ],
+    "titles": [
+      "Shift BBQ Ham Proper Sandwich"
+    ],
+    "notes": "Plain wholemeal sandwich with lean cooked ham slices in BBQ sauce, fresh lettuce and tomato. Pink colour is normal cured cooked ham, no raw meat depiction; no cheese or other additions. Exact title matches.",
+    "alt": "BBQ ham sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:15:16.762309+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1536-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

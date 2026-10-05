@@ -1,0 +1,83 @@
+{
+  "groupId": "a6889e6d92eeb9f70ae782e50648a4c69f051f1dd9dd27b4ffc784643984e0fd",
+  "recipe_ids": [
+    "industrial-v3-jacket-potato-bbq-chickpea"
+  ],
+  "titles": [
+    "Shift BBQ Chickpea Loaded Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Chickpea Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Use the measured reduced-sugar BBQ sauce as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured reduced-sugar BBQ sauce and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "250g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "90g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+    "Use the measured reduced-sugar BBQ sauce as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured reduced-sugar BBQ sauce and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4dc2dc5a-276a-4040-80e2-32cebc2daf86.png",
+  "source_sha256": "fea8c2ef99b30764a3013d766ab37e6f0575585783bc1164e059b1577055d5b5",
+  "generated_at": "2026-10-05T00:13:10.449Z",
+  "elapsed_ms": 305916.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a6889e6d92eeb9f70ae7-480-e241b3185ea7.webp",
+      "sha256": "e241b3185ea71eff2df277e0dc950ae86e955e8bdd94a36cfb99bcaab8c9b87c",
+      "bytes": 33198
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a6889e6d92eeb9f70ae7-7b46d19327d4.webp",
+      "sha256": "7b46d19327d40bb864a106086b93d191e5ecf66d7c795ef72d774c3855676b78",
+      "bytes": 97760
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fea8c2ef99b30764a3013d766ab37e6f0575585783bc1164e059b1577055d5b5",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-bbq-chickpea"
+    ],
+    "titles": [
+      "Shift BBQ Chickpea Loaded Jacket Potato"
+    ],
+    "notes": "Split fluffy jacket potato topped with chickpeas and BBQ sauce, mixed leaves and spring onion strictly alongside. No cheese, dressing herbs or extra vegetables; exact title matches.",
+    "alt": "BBQ chickpea jacket potato with spring onion salad",
+    "reviewed_at": "2026-10-05T00:15:16.544987+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1522-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

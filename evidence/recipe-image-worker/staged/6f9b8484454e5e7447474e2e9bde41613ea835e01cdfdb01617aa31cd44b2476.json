@@ -1,0 +1,85 @@
+{
+  "groupId": "6f9b8484454e5e7447474e2e9bde41613ea835e01cdfdb01617aa31cd44b2476",
+  "recipe_ids": [
+    "industrial-v3-burger-tikka-chicken"
+  ],
+  "titles": [
+    "Shift Tikka Chicken Fakeaway Burger"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Chicken Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"tikka sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.\",\"Slice the chicken breast horizontally into cutlets about 1.5cm thick so they cook evenly and fit the bun. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the chicken cutlets over a medium heat for about 5\u20136 minutes on each side, lowering the heat if they brown too quickly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the measured tikka sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Put the lettuce and tomato in the toasted bun, add the cooked chicken cutlets and the warm sauce, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No spring onions, coriander, parsley, sesame or decorative garnish unless the exact ingredient list includes them.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal burger bun",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.",
+    "Slice the chicken breast horizontally into cutlets about 1.5cm thick so they cook evenly and fit the bun. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the chicken cutlets over a medium heat for about 5\u20136 minutes on each side, lowering the heat if they brown too quickly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the measured tikka sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Put the lettuce and tomato in the toasted bun, add the cooked chicken cutlets and the warm sauce, then close the bun and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-bc39ab90-381d-4ddd-b201-4e44b4bb9e44.png",
+  "source_sha256": "7ea801642f09605432cd05198a77f88315e2c473183e8304fe2fecb1181c4f6c",
+  "generated_at": "2026-10-04T21:35:46.459Z",
+  "elapsed_ms": 30293.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6f9b8484454e5e744747-480.webp",
+      "sha256": "2c2e6631c0b41448f796134f0e71086e0dad9ef3496b7207f421a36829eda3ba",
+      "bytes": 20844
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6f9b8484454e5e744747.webp",
+      "sha256": "9a68acbe4e47355ca4e3dcc7bd275c0c7e441e1dde710319f8165823be20040f",
+      "bytes": 65268
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-burger-tikka-chicken"
+    ],
+    "titles": [
+      "Shift Tikka Chicken Fakeaway Burger"
+    ],
+    "notes": "Cooked chicken breast cutlets with lettuce, tomato and tikka sauce in plain wholemeal bun; no breading, seeds or cheese.",
+    "alt": "Wholemeal tikka chicken burger with lettuce and tomato.",
+    "reviewed_at": "2026-10-04T21:42:31.050363+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1393-review.json",
+    "source_sha256": "7ea801642f09605432cd05198a77f88315e2c473183e8304fe2fecb1181c4f6c"
+  },
+  "integrated": true,
+  "live": false
+}

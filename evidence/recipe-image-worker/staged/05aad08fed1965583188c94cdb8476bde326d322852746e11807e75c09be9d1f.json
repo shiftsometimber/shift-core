@@ -1,0 +1,84 @@
+{
+  "groupId": "05aad08fed1965583188c94cdb8476bde326d322852746e11807e75c09be9d1f",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-mushroom-bacon"
+  ],
+  "titles": [
+    "Shift Mushroom Bacon Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mushroom Bacon Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"garlic mushrooms\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic mushrooms"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-51b169fa-549c-49f0-be74-da7c55781c0f.png",
+  "source_sha256": "4abe96681438d510dc82649f96c9adb3512cd25e6a540d7ddefc567009a69fce",
+  "generated_at": "2026-10-05T00:14:21.719Z",
+  "elapsed_ms": 454215,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-05aad08fed1965583188-480.webp",
+      "sha256": "5402b97ca08d0441fe71b5446fdbc3834b46e2e47ff404ada2b3fc231ccf56ee",
+      "bytes": 26884
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-05aad08fed1965583188-retry2-06deed3b9086.webp",
+      "sha256": "06deed3b9086dc5850c61e687bfdb0bf9253b70546bcecda82721fd184dca66b",
+      "bytes": 87204
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "4abe96681438d510dc82649f96c9adb3512cd25e6a540d7ddefc567009a69fce",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-mushroom-bacon"
+    ],
+    "titles": [
+      "Shift Mushroom Bacon Breakfast Buttie"
+    ],
+    "notes": "Broad lean back bacon medallions in an unseeded wholemeal bap with cooked tomato, wilted spinach and sliced cooked garlic mushrooms. No extra food.",
+    "alt": "Mushroom bacon bap with tomato and spinach",
+    "reviewed_at": "2026-10-05T00:19:33.810711+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/284.json"
+  },
+  "integrated": true,
+  "live": false
+}

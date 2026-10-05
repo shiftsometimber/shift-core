@@ -1,0 +1,90 @@
+{
+  "groupId": "c3379d1029e1b34e056caf318d5b805ab61555ad1b740ed82576f2969f43305f",
+  "recipe_ids": [
+    "industrial-v3-meal-prep-bowl-tikka-egg"
+  ],
+  "titles": [
+    "Shift Tikka Egg Meal-Prep Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Egg Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"amount\":\"40g\",\"item\":\"tikka yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured tikka yoghurt and olive oil dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel. No sesame/poppy seeds, cheese, mayo or extra food/herbs. The listed tikka yoghurt is the only creamy dressing, mixed as exact method specifies; no additional cream or coriander garnish. Chickpeas whole for proper sandwich, not hummus. Eggs sliced hard-boiled, never fried/scrambled. Ham thin cooked strips where required. Tuna small fibrous drained flakes mixed only with listed tikka yoghurt, never different protein. Keep reserved raw spinach/tomato or rocket/tomato side salads separate. Spring onion finely sliced mixed into salad alongside jacket potatoes, not garnish on potato. Rice cooked with raw diced peppers and ready-to-eat corn; dressing folded through rice.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+    "Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured tikka yoghurt and olive oil dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-939ca634-b2cc-44f1-91cc-494cd3f8bfdd.png",
+  "source_sha256": "c0a97d258dd18b91b0c615b46eb7c5578823af81203a15b3171b87e5dcd8ab4e",
+  "generated_at": "2026-10-05T00:46:03.755Z",
+  "elapsed_ms": 104617.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c3379d1029e1b34e056c-480-8b40a7974175.webp",
+      "sha256": "8b40a7974175c95edbdb5edd9e410238212f8098f989680ed3adc70ef6bbf2d0",
+      "bytes": 22792
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c3379d1029e1b34e056c-637c21ad208c.webp",
+      "sha256": "637c21ad208c2f61063a4a05491ff2df60e622f4e280e14964cef41ffe8182b1",
+      "bytes": 66940
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c0a97d258dd18b91b0c615b46eb7c5578823af81203a15b3171b87e5dcd8ab4e",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-tikka-egg"
+    ],
+    "titles": [
+      "Shift Tikka Egg Meal-Prep Bowl"
+    ],
+    "notes": "Cooked brown rice with thin sliced hard-boiled eggs, raw diced mixed peppers and sweetcorn; listed tikka yoghurt/oil dressing folded through. No fried egg, extra herb garnish or cheese; exact title/method checked.",
+    "alt": "Tikka yoghurt boiled egg rice bowl with peppers and sweetcorn",
+    "reviewed_at": "2026-10-05T00:51:33.269789+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2101.json"
+  },
+  "integrated": true,
+  "live": false
+}

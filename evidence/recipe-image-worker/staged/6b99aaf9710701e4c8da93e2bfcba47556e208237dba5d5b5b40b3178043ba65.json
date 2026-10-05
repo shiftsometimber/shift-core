@@ -1,0 +1,83 @@
+{
+  "groupId": "6b99aaf9710701e4c8da93e2bfcba47556e208237dba5d5b5b40b3178043ba65",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-bean-loaded-turkey"
+  ],
+  "titles": [
+    "Shift Bean Loaded Turkey Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Bean Loaded Turkey Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"baked beans\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-afd35c89-4b61-4c32-bfcc-e315e282a12a.png",
+  "source_sha256": "b56e1b80c1b026aac6b1d404cb6af987dc0e4de905f6771111c184c58492e7ff",
+  "generated_at": "2026-10-04T21:14:39.100Z",
+  "elapsed_ms": 215181.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6b99aaf9710701e4c8da-480.webp",
+      "sha256": "a50071958bddfa4d6c7ed6c30adefa8619b02e3613c7f93228015182b9835ab0",
+      "bytes": 25058
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6b99aaf9710701e4c8da.webp",
+      "sha256": "1d163325bc35d5d22e9ba1454ad1252b895af1aa2500b3a6af679327f80dbdba",
+      "bytes": 75846
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-bean-loaded-turkey"
+    ],
+    "titles": [
+      "Shift Bean Loaded Turkey Breakfast Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with cooked turkey, softened mixed peppers, spinach and beans; no garnish or invented sauce.",
+    "alt": "Wholemeal wrap with turkey breast, baked beans, peppers and spinach",
+    "reviewed_at": "2026-10-04T21:19:13.434799+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/87.json",
+    "source_sha256": "b56e1b80c1b026aac6b1d404cb6af987dc0e4de905f6771111c184c58492e7ff"
+  },
+  "integrated": true,
+  "live": false
+}

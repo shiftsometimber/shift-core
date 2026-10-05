@@ -1,0 +1,96 @@
+[
+  {
+    "index": 464,
+    "decision": "pass",
+    "notes": "Full source inspected: browned beef mince crumbles, cooked egg noodles, red/yellow pepper strips and small broccoli florets combined with a light soy coating; no separate garnish or wrong protein.",
+    "alt": "Beef mince and egg noodles mixed with peppers and broccoli in a light soy sauce."
+  },
+  {
+    "index": 465,
+    "decision": "pass",
+    "notes": "Full source inspected: brown wholegrain rice with visible tan bran marks, browned beef mince with sweetcorn and tomato salsa, cool Greek yoghurt topping. No cheese, leaves, lime or other unlisted food.",
+    "alt": "Lean beef, sweetcorn and salsa over wholegrain brown rice with Greek yoghurt."
+  },
+  {
+    "index": 466,
+    "decision": "pass",
+    "notes": "Full source inspected: small browned mince crumbles with halved golden baby potatoes, roasted broccoli and red pepper. Dark marks are browned roast surfaces; no fresh leaf garnish or extra sauce. Fits listed pan-cooked mince and roasted vegetables.",
+    "alt": "Browned beef mince with golden baby potatoes, roasted broccoli and red pepper."
+  },
+  {
+    "index": 467,
+    "decision": "pass",
+    "notes": "Full source inspected: recognisable cooked green lentils and red kidney beans in chopped tomato paprika sauce spooned over tan wholegrain rice with visible bran texture. No meat or added garnish.",
+    "alt": "Green lentil and kidney bean tomato chilli over wholegrain brown rice."
+  },
+  {
+    "index": 468,
+    "decision": "pass",
+    "notes": "Full source inspected: cooked green lentils with wilted spinach and chopped tomatoes in curry sauce over white long-grain basmati rice, as specified; no garnish or extra side.",
+    "alt": "Green lentil, spinach and tomato curry over basmati rice."
+  },
+  {
+    "index": 469,
+    "decision": "pass",
+    "notes": "Full source inspected: tan wholewheat penne, cooked green lentils, softened courgette cubes and chopped tomato sauce in a small ovenproof dish with melted golden cheddar. No meat or herbs.",
+    "alt": "Wholewheat pasta bake with lentils, courgette and tomato under melted cheddar."
+  },
+  {
+    "index": 470,
+    "decision": "pass",
+    "notes": "Full source inspected: recognisable cooked lentils through egg noodles with red/yellow pepper strips and broccoli, light soy coating. No meat, leafy garnish or unlisted side.",
+    "alt": "Lentils and egg noodles tossed with peppers, broccoli and soy sauce."
+  },
+  {
+    "index": 471,
+    "decision": "pass",
+    "notes": "Full source inspected: green lentils, sweetcorn and tomato salsa over visibly tan bran-textured wholegrain rice with a cool Greek yoghurt topping. No cheese or extra garnish.",
+    "alt": "Lentils, sweetcorn and salsa on wholegrain brown rice with Greek yoghurt."
+  },
+  {
+    "index": 472,
+    "decision": "pass",
+    "notes": "Full source inspected: cooked green lentils with golden baby potato pieces, roasted broccoli and red pepper; no added sauce or leafy garnish. Dark marks follow roasted surfaces, with actual broccoli crumbs.",
+    "alt": "Green lentils with roasted baby potatoes, broccoli and red pepper."
+  },
+  {
+    "index": 473,
+    "decision": "reject",
+    "notes": "Full source inspected: pork, kidney beans and tomato sauce match, but rice is too pale and polished-looking to establish the required wholegrain brown rice. Regenerate with distinct intact tan bran texture."
+  },
+  {
+    "index": 474,
+    "decision": "pass",
+    "notes": "Full source inspected: small opaque cooked pork loin pieces with wilted spinach and chopped tomatoes in curry sauce, spooned over white long-grain basmati rice. No added garnish, cream or sides.",
+    "alt": "Pork loin, spinach and tomato curry over basmati rice."
+  },
+  {
+    "index": 475,
+    "decision": "pass",
+    "notes": "Full source inspected: opaque cooked pork loin cubes, tan wholewheat pasta, courgette cubes and tomato sauce under a light melted cheddar layer in a small ovenproof dish. No leafy garnish or extra ingredients.",
+    "alt": "Wholewheat pasta bake with pork loin, courgette, tomato and melted cheddar."
+  },
+  {
+    "index": 476,
+    "decision": "pass",
+    "notes": "Full source inspected: opaque slow-cooked pork loin pieces, tender baby potatoes, carrot chunks and softened onion in vegetable-stock cooking liquid. No separate garnish or extra side; stock itself can contain small seasoning flecks.",
+    "alt": "Slow-cooked pork loin with baby potatoes, carrots and onion in vegetable stock."
+  },
+  {
+    "index": 477,
+    "decision": "pass",
+    "notes": "Full source inspected: cooked opaque lean pork loin strips about 1cm thick, egg noodles, red/yellow pepper strips and broccoli with a light soy coating; no unlisted garnish or sauce.",
+    "alt": "Pork loin strips and egg noodles with peppers, broccoli and soy sauce."
+  },
+  {
+    "index": 478,
+    "decision": "reject",
+    "notes": "Full source inspected: pork pieces, sweetcorn, salsa and cool yoghurt match, but rice appears pale/polished with insufficient credible wholegrain bran texture. Regenerate rice depiction conservatively."
+  },
+  {
+    "index": 479,
+    "decision": "pass",
+    "notes": "Full source inspected: browned pork loin sliced to show opaque cooked interior beside golden baby potato pieces, roasted broccoli and red pepper. No sauce or fresh garnish. Full dish fits responsive frame.",
+    "alt": "Sliced browned pork loin with golden baby potatoes, roasted broccoli and red pepper."
+  }
+]

@@ -1,0 +1,84 @@
+{
+  "groupId": "4bf6b4dd84d027367a522c5ab08e78c01c0c3bdc147a9aab4be72cd7cc612848",
+  "recipe_ids": [
+    "industrial-v3-sandwich-bbq-turkey"
+  ],
+  "titles": [
+    "Shift BBQ Turkey Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Turkey Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the bbq flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty; cooked salmon and cooked cured ham retain their natural opaque colour.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the bbq flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ba88a50e-f30c-4f6d-82da-3df34ffd488f.png",
+  "source_sha256": "a677cc9dc1a158bf848be8c5b40537fe2a5ff68d08561fd78ef4d5aed25afb5e",
+  "generated_at": "2026-10-05T00:24:47.173Z",
+  "elapsed_ms": 288805.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4bf6b4dd84d027367a52-480-3739d2e94d9d.webp",
+      "sha256": "3739d2e94d9da69bfccb300f1701bdfa5c28d9552266f4a472118e18aa6d16ca",
+      "bytes": 28278
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4bf6b4dd84d027367a52-8f0ea36ab9c8.webp",
+      "sha256": "8f0ea36ab9c81144ec9b6164052885ffa4119eab0df586ed928d5556f668e391",
+      "bytes": 89278
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a677cc9dc1a158bf848be8c5b40537fe2a5ff68d08561fd78ef4d5aed25afb5e",
+    "recipe_ids": [
+      "industrial-v3-sandwich-bbq-turkey"
+    ],
+    "titles": [
+      "Shift BBQ Turkey Proper Sandwich"
+    ],
+    "notes": "Plain wholemeal sandwich enclosing opaque cooked turkey breast coated in BBQ sauce, fresh lettuce and tomato. No cheese or extra toppings; exact title matches.",
+    "alt": "BBQ turkey sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:27:15.733690+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1548-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

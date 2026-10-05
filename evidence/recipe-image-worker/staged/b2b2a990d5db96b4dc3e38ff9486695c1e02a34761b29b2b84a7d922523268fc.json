@@ -1,0 +1,80 @@
+{
+  "groupId": "b2b2a990d5db96b4dc3e38ff9486695c1e02a34761b29b2b84a7d922523268fc",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-hash-brown-beans"
+  ],
+  "titles": [
+    "Shift Hash Brown Beans Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hash Brown Beans Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"370g\",\"item\":\"baby potatoes\",\"allergens\":[]},{\"amount\":\"110g\",\"item\":\"onion\",\"allergens\":[]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"10ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 370g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.\",\"Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the baked beans and heat gently until steaming hot throughout.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "370g",
+      "item": "baby potatoes",
+      "allergens": []
+    },
+    {
+      "amount": "110g",
+      "item": "onion",
+      "allergens": []
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "10ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 370g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.",
+    "Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the baked beans and heat gently until steaming hot throughout.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-931607d3-94ad-4797-8e5e-a5380b4dc191.png",
+  "source_sha256": "fb77f6e53ab1caa8beac00482e758a471a6f455c1b38656f66703da0fd06207d",
+  "generated_at": "2026-10-04T23:01:14.780Z",
+  "elapsed_ms": 402957,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b2b2a990d5db96b4dc3e-480.webp",
+      "sha256": "504b861c9cc2d0364337c67a8ca66b38506fa1641e569a28803717bf70ce0bc5",
+      "bytes": 26952
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b2b2a990d5db96b4dc3e-retry2-b8d220874391.webp",
+      "sha256": "b8d220874391f3a9a42053afe8a8e453ba618ba13faa815b592bb5be2724c67c",
+      "bytes": 80662
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fb77f6e53ab1caa8beac00482e758a471a6f455c1b38656f66703da0fd06207d",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-hash-brown-beans"
+    ],
+    "titles": [
+      "Shift Hash Brown Beans Breakfast Hash"
+    ],
+    "notes": "Golden potato cubes, softened onion and red and yellow peppers with gently heated baked beans. No patties, fresh herbs or extra ingredients.",
+    "alt": "Hash brown baked bean breakfast hash with potatoes, onion and peppers.",
+    "reviewed_at": "2026-10-04T23:05:58.426217+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/189.json"
+  },
+  "integrated": true,
+  "live": false
+}

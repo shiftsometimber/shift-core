@@ -1,0 +1,104 @@
+{
+  "groupId": "f3528098cb5a24c1bdda43f0ef570f720a7357df1bf3ab7bcd536f564e8d4bbc",
+  "recipe_ids": [
+    "industrial-v3-burger-buffalo-salmon",
+    "industrial-v3-burger-smoky-salmon"
+  ],
+  "titles": [
+    "Shift Buffalo Salmon Fakeaway Burger",
+    "Shift Smoky Salmon Fakeaway Burger"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Buffalo Salmon Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.\",\"Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured chilli powder and paprika. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Put the lettuce and tomato in the toasted bun, add the cooked salmon fillet and the cold finishing sauce, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; no fresh garnish. Cold ketchup and cider vinegar finishing sauce is red and lightly drizzled only on food as method directs; no creamy sauce. Exactly three short beef koftas where specified; proteins retain exact listed form.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal burger bun",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.",
+    "Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured chilli powder and paprika. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Put the lettuce and tomato in the toasted bun, add the cooked salmon fillet and the cold finishing sauce, then close the bun and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ed6c6355-1674-4980-810a-39c176d34e8b.png",
+  "source_sha256": "b16ffeb3ee9f298039719734327dcd80cf5e7a8f3c936da0062de70f1eb3795a",
+  "generated_at": null,
+  "elapsed_ms": 273811.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f3528098cb5a24c1bdda-480.webp",
+      "sha256": "95b8a54cb8c8c77cd21194445e4d7a20a30c65ef2846d265e1dd457246fadfd9",
+      "bytes": 20532
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f3528098cb5a24c1bdda-f56e101afefa.webp",
+      "sha256": "f56e101afefa449a51059cacd96e926af9a00f764623f42d0e6e63ac45a7c907",
+      "bytes": 62438
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b16ffeb3ee9f298039719734327dcd80cf5e7a8f3c936da0062de70f1eb3795a",
+    "recipe_ids": [
+      "industrial-v3-burger-buffalo-salmon",
+      "industrial-v3-burger-smoky-salmon"
+    ],
+    "titles": [
+      "Shift Buffalo Salmon Fakeaway Burger",
+      "Shift Smoky Salmon Fakeaway Burger"
+    ],
+    "notes": "An intact browned salmon fillet with visible cooked pink flaky structure sits in unseeded wholemeal bun with lettuce, tomato and red finishing sauce. One plausible serving, with central dish retained by responsive crops.",
+    "alt": "Salmon fillet burger with lettuce, tomato and red finishing sauce in a wholemeal bun.",
+    "reviewed_at": "2026-10-04T23:01:45.783Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-603.json"
+  },
+  "integrated": true,
+  "live": false
+}

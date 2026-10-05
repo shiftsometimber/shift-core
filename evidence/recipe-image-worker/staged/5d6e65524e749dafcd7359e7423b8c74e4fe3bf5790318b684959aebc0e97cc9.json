@@ -1,0 +1,79 @@
+{
+  "groupId": "5d6e65524e749dafcd7359e7423b8c74e4fe3bf5790318b684959aebc0e97cc9",
+  "recipe_ids": [
+    "industrial-snack-bean-dip-box-cinnamon"
+  ],
+  "titles": [
+    "Rocket Bean Dip Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Rocket Bean Dip Box. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"chickpeas\"},{\"amount\":\"10ml\",\"item\":\"lemon juice\"},{\"amount\":\"80g\",\"item\":\"carrot sticks\"},{\"amount\":\"25g\",\"item\":\"wholegrain crackers\",\"allergens\":[\"gluten\"]},{\"amount\":\"50g\",\"item\":\"rocket\"}]. Preparation: [\"Measure everything before assembling the snack so the portion stays intentional.\",\"Lightly crush the ready-cooked canned chickpeas with the measured lemon juice and savoury add-on, then pack with the vegetables and crackers.\",\"Keep chilled protein and vegetables refrigerated until you are ready to eat.\",\"Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.\nCRITICAL finished preparation: finely chop the rocket leaves and fold the full rocket portion INTO the lightly mashed chickpea-lemon dip so dark green chopped rocket is visible throughout the dip. Carrot sticks and plain crackers alongside. Do NOT put a separate mound of rocket beside the dip.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "chickpeas"
+    },
+    {
+      "amount": "10ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "80g",
+      "item": "carrot sticks"
+    },
+    {
+      "amount": "25g",
+      "item": "wholegrain crackers",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "50g",
+      "item": "rocket"
+    }
+  ],
+  "method": [
+    "Measure everything before assembling the snack so the portion stays intentional.",
+    "Lightly crush the ready-cooked canned chickpeas with the measured lemon juice and savoury add-on, then pack with the vegetables and crackers.",
+    "Keep chilled protein and vegetables refrigerated until you are ready to eat.",
+    "Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3ab3231b-7468-42ee-a19c-33ca98fad956.png",
+  "source_sha256": "5c21b39149b2ab5240fbbfb21b60929321e3bd628e08e34242422cc62bd4086e",
+  "generated_at": "2026-10-04T21:28:54.326Z",
+  "elapsed_ms": 49781,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5d6e65524e749dafcd73-480.webp",
+      "sha256": "e72d7d905562dbc7364d2734d2e388ce3cd9c0816409ad56f7390f6c0596022b",
+      "bytes": 29458
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5d6e65524e749dafcd73.webp",
+      "sha256": "cf9f4f1dc0a68ae38142b61682ed0acc7dd84a0b0be2f5e8407fe618ed976890",
+      "bytes": 93882
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-snack-bean-dip-box-cinnamon"
+    ],
+    "titles": [
+      "Rocket Bean Dip Box"
+    ],
+    "notes": "Chopped rocket visibly folded throughout crushed chickpea-lemon dip, with raw carrot sticks and plain crackers separate; previous side-rocket rejection corrected.",
+    "alt": "Rocket and chickpea dip with carrot sticks and plain wholegrain crackers",
+    "reviewed_at": "2026-10-04T21:36:22.521426+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/5d6e65524e749dafcd7359e7423b8c74e4fe3bf5790318b684959aebc0e97cc9-retry1.json",
+    "source_sha256": "5c21b39149b2ab5240fbbfb21b60929321e3bd628e08e34242422cc62bd4086e"
+  },
+  "integrated": true,
+  "live": false
+}

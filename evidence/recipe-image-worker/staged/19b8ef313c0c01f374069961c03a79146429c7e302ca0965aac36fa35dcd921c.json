@@ -1,0 +1,78 @@
+{
+  "groupId": "19b8ef313c0c01f374069961c03a79146429c7e302ca0965aac36fa35dcd921c",
+  "recipe_ids": [
+    "industrial-v3-traybake-chilli-turkey"
+  ],
+  "titles": [
+    "Shift Smoky Chilli Turkey Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Turkey Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and turkey mince. Get the pan properly hot first. Cook the turkey mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the turkey mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArt direction: exact ingredients and method, appealing natural textures, no decorative extras. Brown rice must depict visibly intact unpolished tan/brown bran coats on the entire grain, with brown longitudinal seams, never white grains with brown seasoning. Cooked diced vegetables remain diced.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and turkey mince. Get the pan properly hot first. Cook the turkey mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the turkey mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f802d301-d7b8-4974-bc7f-e10ea4c87a97.png",
+  "source_sha256": "a85ce0b8b5d8341245ce9902fe66f6f4d87d4f6d66be11ca301e119779a59f3f",
+  "generated_at": "2026-10-05T01:01:58.069Z",
+  "elapsed_ms": 262869,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-19b8ef313c0c01f37406-480.webp",
+      "sha256": "8972f90717c870b8f6331fd7e663ae666651e6e5fb4d36d1768b31f875888a00",
+      "bytes": 33048
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-19b8ef313c0c01f37406.webp",
+      "sha256": "9c43d8d4b146a1bafc5fc8040526838d3d4ce33616f9e945136710be1e556c7a",
+      "bytes": 104892
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Smoky chilli turkey mince traybake with baby potatoes, broccoli and red pepper",
+    "notes": "Full-resolution inspection: loose browned turkey mince, roasted baby potatoes, broccoli and red pepper with measured smoky tomato coating; exact ingredients, method and every mapped title reviewed.",
+    "source_sha256": "a85ce0b8b5d8341245ce9902fe66f6f4d87d4f6d66be11ca301e119779a59f3f",
+    "recipe_ids": [
+      "industrial-v3-traybake-chilli-turkey"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Turkey Traybake"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

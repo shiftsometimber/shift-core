@@ -1,0 +1,87 @@
+{
+  "groupId": "2886e1b803dcae24a1e563475f25eb4680dc5aa6865c629a8b510455bc8c0e26",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-chocolate-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Chocolate Cottage Cheese Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Cottage Cheese Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the low-fat cottage cheese, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the low-fat cottage cheese first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed food; no honey, nuts, mint, syrup, sauces or decorative garnish. All food inside frame. Berries just small25g portion. Exactly TWO plain unseeded wholegrain crackers with visibly independent offset edges. Unsweetened cocoa is fine powder measured5g, lightly mixed into fruit/dairy, never chocolate syrup, melted chocolate or extra chocolate chunks. Dark chocolate chunks ONLY where explicitly listed. Cottage cheese recognisable small curds, cocoa evenly mixed into curds when listed. Real snack box; dry oats/seeds/crackers in separate compartments from fruit or dairy. Cocoa mixed into fruit/dairy component.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the low-fat cottage cheese, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the low-fat cottage cheese first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ba3335ba-6b19-408f-bc89-c294e47e2bfe.png",
+  "source_sha256": "221537297a7e6bcc74299cb9e10fc3de3e5e0a0276c853b5f70c7e58000c6e42",
+  "generated_at": "2026-10-05T00:27:32.854Z",
+  "elapsed_ms": 442829,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2886e1b803dcae24a1e5-480-229aacd2d3e5.webp",
+      "sha256": "229aacd2d3e503cb98f8ff8e2bccde8148b3c063d199ea20c3cbac33a0cf931e",
+      "bytes": 27334
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2886e1b803dcae24a1e5-3dbd7c52c12d.webp",
+      "sha256": "3dbd7c52c12d20a6ac4369bf0c9375268188f797b3886e958c6fd5604ba008f4",
+      "bytes": 86302
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "221537297a7e6bcc74299cb9e10fc3de3e5e0a0276c853b5f70c7e58000c6e42",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-chocolate-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Chocolate Cottage Cheese Work Snack Box"
+    ],
+    "notes": "Cocoa evenly mixed through cottage cheese and small berries, dry oats/seeds separate, two plain crackers visible. No invented topping.",
+    "alt": "Cocoa cottage cheese snack box with berries, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-05T00:28:45.696501+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/2886e1b803dcae24a1e563475f25eb4680dc5aa6865c629a8b510455bc8c0e26.json"
+  },
+  "integrated": true,
+  "live": false
+}

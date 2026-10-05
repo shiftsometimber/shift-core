@@ -1,0 +1,48 @@
+{
+  "index": 1346,
+  "groupId": "f84d41194b61dbcdf1171d85683e6112120de2e0fc67c448943b2958f81b50ac",
+  "title": "Shift Smoky Chilli Turkey Sunday-Style Roast",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Heat the oven to 200°C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8–10 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35–40 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20–25 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18–22 minutes, turning halfway, until steaming hot through the centre. Check 75°C for 30 seconds with a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4–6 minutes until tender with a little bite. Drain well.",
+    "Warm the smoked chilli tomato sauce in a small saucepan with 2 tablespoons of water for 1–2 minutes, stirring until hot.",
+    "Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot smoked chilli tomato sauce over the cooked protein."
+  ],
+  "attempt": 3,
+  "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Turkey Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Heat the oven to 200°C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8–10 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35–40 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20–25 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18–22 minutes, turning halfway, until steaming hot through the centre. Check 75°C for 30 seconds with a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4–6 minutes until tender with a little bite. Drain well.\",\"Warm the smoked chilli tomato sauce in a small saucepan with 2 tablespoons of water for 1–2 minutes, stirring until hot.\",\"Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot smoked chilli tomato sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "prompt": "Appetising realistic editorial food photograph, landscape4:3, warm soft natural light, cream ceramic plate or bowl with room around entire meal. Exactly TWO compact flattened patties made ONLY from unseasoned pure turkey breast mince, separate portions with a gap. Their exposed mince is plain pale golden with natural browning, NO pepper grains, NO green flecks, NO herbs. Smoked chilli tomato sauce spooned over each patty. Peeled golden roast potato chunks, roasted carrot batons and plain boiled broccoli alongside. Use only the exact recipe foods. No decorative ingredients, text, people or extra dishes.",
+  "generated_at": "2026-10-05T01:39:43.181Z",
+  "elapsed_ms": 275477,
+  "result": {
+    "output_hint": "Generated images are saved to /workspace/scratch/79490e627254/generated_images as /workspace/scratch/79490e627254/generated_images/exec-f9740bd0-7aac-421f-ba21-0fa6872aeba3.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link."
+  }
+}

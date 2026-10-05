@@ -1,0 +1,88 @@
+{
+  "groupId": "2a44b2582891dc5d6676e7e29967a29d57c46ba90c2237cea061ea0cd221d143",
+  "recipe_ids": [
+    "industrial-v3-bagel-greek-ham"
+  ],
+  "titles": [
+    "Shift Greek Ham Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Greek Ham Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"lemon herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.\",\"Use the measured lemon herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured lemon herb yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Never add a lemon wedge just because the sauce is lemon herb yoghurt.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "lemon herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.",
+    "Use the measured lemon herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the measured lemon herb yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-52979ec7-ea1c-4aef-9ac2-88c1733d4f6c.png",
+  "source_sha256": "4553f141fa2dbede624c7721367e78c395f58ebc3ac1e5e3c2910a35e294a41e",
+  "generated_at": "2026-10-04T21:40:21.722Z",
+  "elapsed_ms": 269482.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2a44b2582891dc5d6676-480.webp",
+      "sha256": "2419e5df460b6ca7ed9f2690fc9d50db0b8c9fa2dd48f5e73a13f768a62366c7",
+      "bytes": 27154
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2a44b2582891dc5d6676.webp",
+      "sha256": "8dbc91ebecc2582b61f97dd0dbc167609153b3d873dd8f57aa2664e0a58d4d60",
+      "bytes": 85168
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-bagel-greek-ham"
+    ],
+    "titles": [
+      "Shift Greek Ham Loaded Bagel"
+    ],
+    "notes": "Plain unseeded bagel with lean ham strips, rocket, tomato and lemon herb yoghurt; reserved rocket/tomato salad alongside.",
+    "alt": "Greek Ham Loaded Bagel with rocket, tomato",
+    "reviewed_at": "2026-10-04T21:43:23.139169+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1818.json",
+    "source_sha256": "4553f141fa2dbede624c7721367e78c395f58ebc3ac1e5e3c2910a35e294a41e"
+  },
+  "integrated": true,
+  "live": false
+}

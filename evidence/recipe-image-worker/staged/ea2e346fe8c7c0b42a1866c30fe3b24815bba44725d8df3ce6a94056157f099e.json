@@ -1,0 +1,79 @@
+{
+  "groupId": "ea2e346fe8c7c0b42a1866c30fe3b24815bba44725d8df3ce6a94056157f099e",
+  "recipe_ids": [
+    "industrial-dinner-turkey-chilli"
+  ],
+  "titles": [
+    "Turkey Chilli"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Turkey Chilli. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey breast\"},{\"amount\":\"70g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"120g\",\"item\":\"chopped tomatoes\"},{\"amount\":\"100g\",\"item\":\"kidney beans\"},{\"amount\":\"5g\",\"item\":\"smoked paprika\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 70g dry brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Drain and rinse canned, ready-cooked kidney beans, then weigh out 100g; raw or dried kidney beans cannot be used in this method. Cut the 170g turkey breast into pieces no larger than 2cm on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.\",\"Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the turkey breast in one layer and cook for 10\u201312 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Put the 120g chopped tomatoes and 5g smoked paprika into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.\",\"Add the drained kidney beans, cover and simmer for 5 minutes, stirring halfway, until the beans are hot through.\",\"Return the cooked turkey breast and its juices to the pan and stir through. Heat everything together over a low heat for 2\u20133 minutes, stirring gently, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey breast"
+    },
+    {
+      "amount": "70g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "chopped tomatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "kidney beans"
+    },
+    {
+      "amount": "5g",
+      "item": "smoked paprika"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 70g dry brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Drain and rinse canned, ready-cooked kidney beans, then weigh out 100g; raw or dried kidney beans cannot be used in this method. Cut the 170g turkey breast into pieces no larger than 2cm on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.",
+    "Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the turkey breast in one layer and cook for 10\u201312 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Put the 120g chopped tomatoes and 5g smoked paprika into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.",
+    "Add the drained kidney beans, cover and simmer for 5 minutes, stirring halfway, until the beans are hot through.",
+    "Return the cooked turkey breast and its juices to the pan and stir through. Heat everything together over a low heat for 2\u20133 minutes, stirring gently, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0466945e-804a-4ec1-bcfe-cc54111f6028.png",
+  "source_sha256": "6e337abbcfe05ee82498f040b92fdc0259dc643ba2a1e3ecfe63b0916df3f48a",
+  "generated_at": "2026-10-04T23:33:29.873Z",
+  "elapsed_ms": 265232.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ea2e346fe8c7c0b42a18-480-7c67ecabe850.webp",
+      "sha256": "7c67ecabe85060b5363820f1af9942d37f20fb54d7f0a714bb2f7a68a3eaacf0",
+      "bytes": 24826
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ea2e346fe8c7c0b42a18-622e15222aa4.webp",
+      "sha256": "622e15222aa4b5ea0c04db257f7c5a0ae95aafc63b3f183f59ae0180588441b5",
+      "bytes": 79900
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6e337abbcfe05ee82498f040b92fdc0259dc643ba2a1e3ecfe63b0916df3f48a",
+    "recipe_ids": [
+      "industrial-dinner-turkey-chilli"
+    ],
+    "titles": [
+      "Turkey Chilli"
+    ],
+    "notes": "Opaque cooked turkey breast chunks with chopped tomato and kidney beans over brown rice; paprika-coloured tomato sauce, no unlisted garnish or vegetables. Exact title matches.",
+    "alt": "Turkey chilli with kidney beans and tomatoes over brown rice",
+    "reviewed_at": "2026-10-04T23:39:18.188326+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1472-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

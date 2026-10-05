@@ -1,0 +1,88 @@
+{
+  "groupId": "0ae536959d460a79853a7a115201daa4ef298ed5c26360b19cdf5d01cf5139df",
+  "recipe_ids": [
+    "industrial-lunch-salmon-wholemeal-wrap"
+  ],
+  "titles": [
+    "Salmon Wholemeal Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Salmon Wholemeal Wrap. Ingredients, quantities and allergens: [{\"amount\":\"110g\",\"item\":\"cooked salmon\",\"allergens\":[\"fish\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"salad leaves\"},{\"amount\":\"60g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt dressing\",\"allergens\":[\"milk\"]}]. Preparation: [\"Wash and dry the salad leaves and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal wrap can close.\",\"Use chilled, already-cooked salmon. Check for bones, remove any skin and break the flesh into small flakes.\",\"Use the measured 0% Greek yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Use a ready-to-eat wholemeal wrap and lay it flat on a clean plate.\",\"Combine the prepared filling with the measured 0% Greek yoghurt dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling down the centre, fold in the sides and roll up firmly. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "110g",
+      "item": "cooked salmon",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "salad leaves"
+    },
+    {
+      "amount": "60g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt dressing",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Wash and dry the salad leaves and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal wrap can close.",
+    "Use chilled, already-cooked salmon. Check for bones, remove any skin and break the flesh into small flakes.",
+    "Use the measured 0% Greek yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Use a ready-to-eat wholemeal wrap and lay it flat on a clean plate.",
+    "Combine the prepared filling with the measured 0% Greek yoghurt dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling down the centre, fold in the sides and roll up firmly. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7bb77def-8374-467e-95ec-ecf93b33af53.png",
+  "source_sha256": "a52b2fd6f21f1e28fee111185cefd27356326e3a38862ae26f00e69f5e581df3",
+  "generated_at": "2026-10-05T00:10:13.840Z",
+  "elapsed_ms": 129306.99999999999,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0ae536959d460a79853a-480-d075ae2c6fb9.webp",
+      "sha256": "d075ae2c6fb9ad62dc684458ecd81f77a3658f27ee033e52356888f4d5de1566",
+      "bytes": 27584
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0ae536959d460a79853a-ec2fa287f262.webp",
+      "sha256": "ec2fa287f262c15eb39dc0cfd8a7b6c21ffc059dccade5b63d5d9c9bda17595f",
+      "bytes": 81162
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a52b2fd6f21f1e28fee111185cefd27356326e3a38862ae26f00e69f5e581df3",
+    "recipe_ids": [
+      "industrial-lunch-salmon-wholemeal-wrap"
+    ],
+    "titles": [
+      "Salmon Wholemeal Wrap"
+    ],
+    "notes": "Skinless cooked opaque salmon flakes bound in Greek yoghurt dressing with salad leaves and sliced tomato in plain wholemeal wrap, remaining leaves and tomato alongside. No additional toppings; exact title matches.",
+    "alt": "Salmon wholemeal wrap with tomato, salad leaves and Greek yoghurt dressing",
+    "reviewed_at": "2026-10-05T00:12:44.889866+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1513-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

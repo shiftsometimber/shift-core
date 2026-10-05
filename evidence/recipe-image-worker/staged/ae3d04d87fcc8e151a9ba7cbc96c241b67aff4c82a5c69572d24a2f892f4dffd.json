@@ -1,0 +1,93 @@
+{
+  "groupId": "ae3d04d87fcc8e151a9ba7cbc96c241b67aff4c82a5c69572d24a2f892f4dffd",
+  "recipe_ids": [
+    "industrial-v3-roast-lemon-herb-chicken"
+  ],
+  "titles": [
+    "Shift Lemon Herb Chicken Sunday-Style Roast"
+  ],
+  "prompt": "Edit this exact chicken roast photo. Remove EVERY tiny black, brown or green herb/pepper/seasoning fleck from the chicken breast, potatoes and carrots. Keep natural browned crust and golden roast colour, but smooth clean chicken surface and potato faces WITHOUT speckled seasoning. Roast chicken cooked only with olive oil. The cold white mayonnaise dressing in side ramekin is the ONLY place for the listed dried parsley; keep its tiny green flecks. Broccoli remains as is. Do not add anything else, keep composition appetising and all food identities correct. Exact ingredients and method: Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Chicken Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Place the chicken breast on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Stir together the measured light mayonnaise, lemon juice, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Serve the cooked chicken breast, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, lemon juice, dried parsley dressing alongside after cooking.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Place the chicken breast on a separate lined tray and roast for approximately 20\u201325 minutes, adjusting for thickness. Check the thickest part is steaming hot with no pink and reaches 75\u00b0C for 30 seconds on a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Stir together the measured light mayonnaise, lemon juice, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Serve the cooked chicken breast, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, lemon juice, dried parsley dressing alongside after cooking."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f643f448-9046-49de-856a-c30ae7af5764.png",
+  "source_sha256": "bea7ad94802af6e4fdef0cfb0114bf77d4ce81965155ebc07a6102ea3f59b01e",
+  "generated_at": "2026-10-04T22:58:06.248Z",
+  "elapsed_ms": 30482.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ae3d04d87fcc8e151a9b-retry5-480-8ab0e96ec821.webp",
+      "sha256": "8ab0e96ec82148298b2c41e66a2eff5defca8b8d5f6dab6de4b449a7e5131167",
+      "bytes": 25578
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ae3d04d87fcc8e151a9b-retry5-7b4c76b705a4.webp",
+      "sha256": "7b4c76b705a4ce20cb3fb7c76421da3f270ea8b4080ce5fd7252819322342fc1",
+      "bytes": 77272
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "bea7ad94802af6e4fdef0cfb0114bf77d4ce81965155ebc07a6102ea3f59b01e",
+    "recipe_ids": [
+      "industrial-v3-roast-lemon-herb-chicken"
+    ],
+    "titles": [
+      "Shift Lemon Herb Chicken Sunday-Style Roast"
+    ],
+    "notes": "Full-resolution corrected review: plain browned whole chicken breast, golden peeled roast potato chunks, carrot batons and broccoli. Hot food clean of herb flecks; parsley exclusively in cold white mayonnaise side dressing. No invented garnish.",
+    "alt": "Chicken roast with potatoes, carrots, broccoli and cold lemon parsley dressing",
+    "reviewed_at": "2026-10-04T23:00:20.930251+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/997.json"
+  },
+  "integrated": true,
+  "live": false
+}

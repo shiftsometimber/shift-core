@@ -1,0 +1,85 @@
+{
+  "groupId": "e61aa410d5d9fcd5f9c171895f38d8ac3b1ab75b5db6cec0946bf545476f334f",
+  "recipe_ids": [
+    "industrial-v3-pasta-cajun-chicken"
+  ],
+  "titles": [
+    "Shift Cajun Chicken Proper Pasta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Chicken Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"Cajun tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the Cajun tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured Cajun tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; dried oregano cooked into protein only if listed, never fresh garnish.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the Cajun tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured Cajun tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fe5d3161-b274-4f8e-b5b9-ac089e5471c3.png",
+  "source_sha256": "fd22eb4f1319e4d7891b8cf7002b7027d75b066f6aa121973cbeb5a4498d6752",
+  "generated_at": null,
+  "elapsed_ms": 198581.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e61aa410d5d9fcd5f9c1-480.webp",
+      "sha256": "dbfaa6258cbbb87cf4549dd54da834a328dab72fec0bf857ca7d40cc6f5e3f6a",
+      "bytes": 26778
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e61aa410d5d9fcd5f9c1-331eabeb2405.webp",
+      "sha256": "331eabeb2405e0054ff2778a79b7e227c8a4974222e92aaff6e39b89121ed305",
+      "bytes": 83246
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fd22eb4f1319e4d7891b8cf7002b7027d75b066f6aa121973cbeb5a4498d6752",
+    "recipe_ids": [
+      "industrial-v3-pasta-cajun-chicken"
+    ],
+    "titles": [
+      "Shift Cajun Chicken Proper Pasta"
+    ],
+    "notes": "Tan wholewheat penne with browned chicken breast pieces, cooked diced courgette and softened cherry tomato pieces is tossed in a light red coating; no cheese or garnish. One plausible serving with central food retained by responsive cropping.",
+    "alt": "Wholewheat pasta with chicken, courgette and cherry tomatoes in Cajun sauce.",
+    "reviewed_at": "2026-10-04T23:28:44.652Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-632.json"
+  },
+  "integrated": true,
+  "live": false
+}

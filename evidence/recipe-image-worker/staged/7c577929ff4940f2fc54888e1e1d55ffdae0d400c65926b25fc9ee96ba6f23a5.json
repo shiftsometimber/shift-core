@@ -1,0 +1,84 @@
+{
+  "groupId": "7c577929ff4940f2fc54888e1e1d55ffdae0d400c65926b25fc9ee96ba6f23a5",
+  "recipe_ids": [
+    "industrial-v3-wrap-sweet-chilli-turkey"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Turkey Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Turkey Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked turkey breast; if the filling is being served hot, reduce only the sauce-coated cooked turkey breast until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel. No sesame/poppy seeds, cheese, cream/mayo or unlisted food. Sweet chilli recipes: sauce translucent glossy red, no opaque creamy coating. Tikka recipes: only listed tikka yoghurt dressing, creamy orange-tinted; no additional herbs, coriander, rice sides, curry garnish or tikka grilling char invented. Poultry plain already-cooked breast, no breadcrumb/batter coating. Chickpeas coarse roughly mashed only for toastie/bagel, whole elsewhere. Keep reserved raw spinach/tomato or rocket/tomato salads alongside. Finely sliced spring onion mixed into salad alongside jacket potatoes, never scattered on potato. Rice cooked, peppers diced raw, corn ready-to-eat; measured dressing folded through rice.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked turkey breast; if the filling is being served hot, reduce only the sauce-coated cooked turkey breast until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-57c03ea7-14a5-41cd-a00f-7193f6c921be.png",
+  "source_sha256": "bc7ec55d13cd8d93fe510b57baedcdde6feb03421779c36b9b9903fa94f8302d",
+  "generated_at": "2026-10-05T00:36:56.880Z",
+  "elapsed_ms": 54482.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7c577929ff4940f2fc54-480-3d6601945cbe.webp",
+      "sha256": "3d6601945cbe10fabf6a78a89cc0803a7754df6ba484de857b0292c0b78a31e0",
+      "bytes": 22292
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7c577929ff4940f2fc54-3cc5c0f4a18a.webp",
+      "sha256": "3cc5c0f4a18a8509956b841295b8d6c70fea2f61cf4cbbe2ec07e153230f9743",
+      "bytes": 64054
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "bc7ec55d13cd8d93fe510b57baedcdde6feb03421779c36b9b9903fa94f8302d",
+    "recipe_ids": [
+      "industrial-v3-wrap-sweet-chilli-turkey"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Turkey Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal rolled wrap with lightly coloured unbreaded cooked turkey coated in sweet chilli sauce and fresh lettuce/tomato. No cream, cheese, seeds or added side; exact title/method checked.",
+    "alt": "Sweet chilli turkey wholemeal wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:43:08.348416+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2082.json"
+  },
+  "integrated": true,
+  "live": false
+}

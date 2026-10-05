@@ -1,0 +1,86 @@
+{
+  "groupId": "89d918f360c04ee3f13d4d00f948c49a020d756ccc44f7f09901dd6b34aeaa85",
+  "recipe_ids": [
+    "industrial-v3-jacket-potato-cajun-chickpea"
+  ],
+  "titles": [
+    "Shift Cajun Chickpea Loaded Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Chickpea Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"amount\":\"40g\",\"item\":\"Cajun yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Use the measured Cajun yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured Cajun yoghurt and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. If spices are mixed into a dressing, all spices remain in the smooth dressing: NO dry spice dust scattered over food, salad or plate. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty; cooked salmon and cooked cured ham retain their natural opaque colour.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "250g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "90g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+    "Use the measured Cajun yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured Cajun yoghurt and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7d619924-60ac-4db2-a34e-fa9a1100ba01.png",
+  "source_sha256": "48b373ab9b4091752023ccdb1c36ce050a3b055b9f27be506a57b9fff75ed840",
+  "generated_at": "2026-10-05T01:10:07.215Z",
+  "elapsed_ms": 127830.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-89d918f360c04ee3f13d-480-60dab3571fb1.webp",
+      "sha256": "60dab3571fb10d922afc6d926373b67d43213244ccb18e4917373f3b59b28ee4",
+      "bytes": 33072
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-89d918f360c04ee3f13d-bdf2b194c573.webp",
+      "sha256": "bdf2b194c5739447545a6c46e4f888de32c52f77462d1b1b17a0e890995edc09",
+      "bytes": 92732
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "48b373ab9b4091752023ccdb1c36ce050a3b055b9f27be506a57b9fff75ed840",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-cajun-chickpea"
+    ],
+    "titles": [
+      "Shift Cajun Chickpea Loaded Jacket Potato"
+    ],
+    "notes": "Fluffy split baked potato topped with drained whole chickpeas and Cajun yoghurt dressing. Mixed salad and finely sliced spring onion are alongside, without topping the potato. No cheese or dry spice dust; exact jacket potato title matches.",
+    "alt": "Cajun chickpea jacket potato with salad and spring onion",
+    "reviewed_at": "2026-10-05T01:12:47.466513+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1605-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

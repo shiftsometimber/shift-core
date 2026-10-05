@@ -1,0 +1,91 @@
+{
+  "groupId": "8285b26637d7fe58da35c071931d3948c0f041af6fcb8036743b01b68f0b13e8",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-mustard-egg"
+  ],
+  "titles": [
+    "Shift Mustard Egg Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mustard Egg Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"wholegrain mustard\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Beat the measured eggs in a clean bowl and set them aside while cooking the vegetables.\",\"Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the beaten eggs to the cooked vegetables and stir until fully set.\",\"Stir in the listed flavour ingredients (40g wholegrain mustard), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "wholegrain mustard"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Beat the measured eggs in a clean bowl and set them aside while cooking the vegetables.",
+    "Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the beaten eggs to the cooked vegetables and stir until fully set.",
+    "Stir in the listed flavour ingredients (40g wholegrain mustard), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-90a6bffc-31f6-4deb-a1a6-da453a1d809c.png",
+  "source_sha256": "2d4576d9ce09853bbccbbe888e215579167e2d40a054b8de29b7b7af5a0bce26",
+  "generated_at": "2026-10-05T00:42:26.205Z",
+  "elapsed_ms": 169223,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8285b26637d7fe58da35-480.webp",
+      "sha256": "371007d64309e297d7a471aea1af46f24abb79a4c692f4813c4fa23c6da416e3",
+      "bytes": 29250
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8285b26637d7fe58da35-94022b78c9c2.webp",
+      "sha256": "94022b78c9c244f6bcf47c7c866e692ab831479b55b838a92dc1476f2b6c473b",
+      "bytes": 90276
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2d4576d9ce09853bbccbbe888e215579167e2d40a054b8de29b7b7af5a0bce26",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-mustard-egg"
+    ],
+    "titles": [
+      "Shift Mustard Egg Breakfast Toastie"
+    ],
+    "notes": "Crisp unseeded wholemeal toastie with fully set egg curds, softened tomato and wilted spinach coated in wholegrain mustard; measured remaining filling alongside.",
+    "alt": "Mustard egg toastie with tomato and spinach",
+    "reviewed_at": "2026-10-05T00:44:17.122079+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/322.json"
+  },
+  "integrated": true,
+  "live": false
+}

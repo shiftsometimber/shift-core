@@ -1,0 +1,84 @@
+{
+  "groupId": "66557594a1f596d355c917050ca7a0c787664c26485a1494e6331978d3b4833a",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-mustard-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Mustard Chicken Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mustard Chicken Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"wholegrain mustard\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked chicken breast to the pan and heat through.\",\"Stir in the listed flavour ingredients (40g wholegrain mustard), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "wholegrain mustard"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked chicken breast to the pan and heat through.",
+    "Stir in the listed flavour ingredients (40g wholegrain mustard), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-91e37e9d-0f63-499a-8340-45e233ab7cdd.png",
+  "source_sha256": "42b09604195af63a85e823275c0e5cca6c20eabf46e6f908c5500b3df7648443",
+  "generated_at": "2026-10-05T00:36:46.041Z",
+  "elapsed_ms": 337813,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-66557594a1f596d355c9-480.webp",
+      "sha256": "f960526edbd29ccd197079a553fc29ad9c95d600ed712c778d0fa396b2f0b678",
+      "bytes": 25826
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-66557594a1f596d355c9-bce9ae733a5b.webp",
+      "sha256": "bce9ae733a5b556a40076991ea834d538f81d6cf02be39ea7b4e86745d6e24f6",
+      "bytes": 76944
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "42b09604195af63a85e823275c0e5cca6c20eabf46e6f908c5500b3df7648443",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-mustard-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Mustard Chicken Breakfast Hash"
+    ],
+    "notes": "Diced cooked chicken breast with golden potato cubes, cooked onion and mixed peppers coated in listed wholegrain mustard. No extra food.",
+    "alt": "Mustard chicken hash with potatoes and peppers",
+    "reviewed_at": "2026-10-05T00:37:50.417648+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/317.json"
+  },
+  "integrated": true,
+  "live": false
+}

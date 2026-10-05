@@ -1,0 +1,83 @@
+{
+  "groupId": "eb0e0bf539a86f29ae85a64be6094272ace546402a03e046209f5e6ee4254700",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-bbq-turkey"
+  ],
+  "titles": [
+    "Shift BBQ Turkey Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Turkey Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Show one firmly rolled lightly crisped wholemeal wrap cut in two to reveal the cooked filling; no sides. NO cheese.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-575ee4ed-c868-4d3c-869e-4860ac71e3b5.png",
+  "source_sha256": "f36fe6298168a1f422781e3dfb1be7e5b3ecaaf250f512d1c4675dc390090397",
+  "generated_at": "2026-10-04T21:12:53.157Z",
+  "elapsed_ms": 129866.99999999999,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-eb0e0bf539a86f29ae85-480.webp",
+      "sha256": "e69ea6ad5949dadeecd682aff4138b630f84ce2afc2e22995beed99cd563b7a1",
+      "bytes": 25510
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-eb0e0bf539a86f29ae85.webp",
+      "sha256": "d4dd7c3c5d9d774a983293a598d0c5a840f0a2f20fa1ea746942e8d50a1bfa41",
+      "bytes": 74252
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-bbq-turkey"
+    ],
+    "titles": [
+      "Shift BBQ Turkey Breakfast Wrap"
+    ],
+    "notes": "Cooked pale turkey pieces with mixed red/yellow peppers, wilted spinach and BBQ coating inside crisp wholemeal wrap; no unlisted garnish, cheese or sides.",
+    "alt": "Wholemeal breakfast wrap filled with BBQ turkey, peppers and spinach.",
+    "reviewed_at": "2026-10-04T21:16:10.393392+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/67-review.json",
+    "source_sha256": "f36fe6298168a1f422781e3dfb1be7e5b3ecaaf250f512d1c4675dc390090397"
+  },
+  "integrated": true,
+  "live": false
+}

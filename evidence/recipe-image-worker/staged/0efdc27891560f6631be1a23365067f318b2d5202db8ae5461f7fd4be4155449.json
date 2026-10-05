@@ -1,0 +1,85 @@
+{
+  "groupId": "0efdc27891560f6631be1a23365067f318b2d5202db8ae5461f7fd4be4155449",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-chocolate-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Chocolate Fruit Crunch Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Fruit Crunch Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup, cream or decorative garnish. Berries just small25g portion. All food inside frame. NO crackers, biscuits or cake anywhere. Cocoa measured5g fine powder lightly mixed into fruit/dairy, never chocolate syrup or melted chocolate. Chocolate chunks ONLY if explicitly listed. Yoghurt base smooth and stirred, no cottage-cheese curds. All exact ingredients combined in one finished dessert bowl, measured Greek yoghurt swirled through. No separate dairy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d07ed466-cfbd-47b6-9d6b-3c9849d2fcaf.png",
+  "source_sha256": "acf9cd20d8f33c82551feb4459f28ebb2db6b319fccb77e17601e1d1d068ef07",
+  "generated_at": "2026-10-05T00:33:01.070Z",
+  "elapsed_ms": 65436,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0efdc27891560f6631be-480-0b68f0abdeec.webp",
+      "sha256": "0b68f0abdeecc02c56a65e5cc125089ef26f880656126d34f4fc3137e1e586f4",
+      "bytes": 29060
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0efdc27891560f6631be-49cf3fb884f3.webp",
+      "sha256": "49cf3fb884f3497ab0ab90c5fca63a569fc1cb5fedb491a7774ced8d7db9cc1f",
+      "bytes": 84760
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "acf9cd20d8f33c82551feb4459f28ebb2db6b319fccb77e17601e1d1d068ef07",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-chocolate-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Chocolate Fruit Crunch Dessert Pot"
+    ],
+    "notes": "Apple and small berries with fine cocoa/oats/seeds combined and Greek yoghurt swirled through. No chocolate chunks or extra dairy.",
+    "alt": "Cocoa apple dessert with berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:39:18.506476+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/0efdc27891560f6631be1a23365067f318b2d5202db8ae5461f7fd4be4155449.json"
+  },
+  "integrated": true,
+  "live": false
+}

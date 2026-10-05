@@ -1,0 +1,101 @@
+{
+  "groupId": "ffe7ec271a913d3679d706f622599548f9591e97faebd360cce97bed289f224f",
+  "recipe_ids": [
+    "industrial-v3-stir-fry-lemon-herb-salmon"
+  ],
+  "titles": [
+    "Shift Lemon Herb Salmon Stir-Fry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Salmon Stir-Fry. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"75g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 90g mixed peppers. Check the 150g salmon fillet for bones. Keep it as a fillet for pan cooking, then flake it after cooking.\",\"Mix 20g light mayonnaise, 5ml lemon juice and 1g dried parsley in a small bowl. Keep this dressing cold until serving; it is not a cooking sauce and must not be simmered in the pan.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Put in the salmon fillet, skin-side down if it has skin. Cook for 4\u20135 minutes, turn carefully and cook for another 3\u20135 minutes until the centre is opaque, steaming hot and flakes easily; a thicker piece needs longer. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Flake the cooked salmon into large pieces and fold into the pan at the end; avoid breaking it up with vigorous stirring. Heat gently until the whole pan is steaming hot, folding carefully so the seafood stays intact. Divide the noodles, vegetables and salmon fillet between serving bowls. Take the pan off the heat and spoon the cold dressing over each serving; do not return it to the hob. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nHard ingredient/preparation accuracy: Keep the hot protein, rice/noodles and vegetables entirely plain with NO parsley flecks. Spoon the cold white mayonnaise dressing with tiny parsley flecks visibly on TOP of finished serving. Do not show a separate sauce bowl. No lemon wedges, fresh leaves, cheese, seeds, invented sauces, garnish or extra ingredients. Broccoli florets are the ONLY green hot vegetable where listed. Salmon fully cooked opaque, large flakes in pasta/pie/rice/noodles; wholefillet for roast/tray. Tofu 2cm browned cubes. Beef loose browned mince, pork/chicken form per exact method. Realistic delicious single portion with margin.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 90g mixed peppers. Check the 150g salmon fillet for bones. Keep it as a fillet for pan cooking, then flake it after cooking.",
+    "Mix 20g light mayonnaise, 5ml lemon juice and 1g dried parsley in a small bowl. Keep this dressing cold until serving; it is not a cooking sauce and must not be simmered in the pan.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Put in the salmon fillet, skin-side down if it has skin. Cook for 4\u20135 minutes, turn carefully and cook for another 3\u20135 minutes until the centre is opaque, steaming hot and flakes easily; a thicker piece needs longer. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Flake the cooked salmon into large pieces and fold into the pan at the end; avoid breaking it up with vigorous stirring. Heat gently until the whole pan is steaming hot, folding carefully so the seafood stays intact. Divide the noodles, vegetables and salmon fillet between serving bowls. Take the pan off the heat and spoon the cold dressing over each serving; do not return it to the hob. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-47b92526-e3c8-46c5-862d-b981b3b0effd.png",
+  "source_sha256": "65f0d2d4a397cf5087cd5a49bfb60c7368c5a37d74e2715e2630cc768708de16",
+  "generated_at": "2026-10-04T22:58:22.474Z",
+  "elapsed_ms": 236109.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ffe7ec271a913d3679d7-retry4-480-13f6349f6a39.webp",
+      "sha256": "13f6349f6a39946a5f26197cd09d8bb6120f017bba9f31821234984698189794",
+      "bytes": 28238
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ffe7ec271a913d3679d7-retry4-3ec7dd2ef3b3.webp",
+      "sha256": "3ec7dd2ef3b347d3994c451801fe6ee6ba3d973b2c7dde7dcebf16bb5ea9bc7e",
+      "bytes": 81906
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "65f0d2d4a397cf5087cd5a49bfb60c7368c5a37d74e2715e2630cc768708de16",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-lemon-herb-salmon"
+    ],
+    "titles": [
+      "Shift Lemon Herb Salmon Stir-Fry"
+    ],
+    "notes": "Large opaque salmon flakes with egg noodles, cooked thin peppers/broccoli. Cold white parsley mayonnaise spooned on top, herbs confined to dressing traces; no added garnish.",
+    "alt": "Salmon egg noodles with peppers, broccoli and cold lemon parsley dressing",
+    "reviewed_at": "2026-10-04T23:05:57.506852+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1008.json"
+  },
+  "integrated": true,
+  "live": false
+}

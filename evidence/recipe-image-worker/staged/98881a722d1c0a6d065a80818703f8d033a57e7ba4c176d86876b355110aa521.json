@@ -1,0 +1,86 @@
+{
+  "groupId": "98881a722d1c0a6d065a80818703f8d033a57e7ba4c176d86876b355110aa521",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-banana-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Banana Greek Yoghurt Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Banana Greek Yoghurt Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"sliced banana\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the 0% Greek yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the 0% Greek yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow every dry/separate and soaked/prepared instruction exactly.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sliced banana"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the 0% Greek yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the 0% Greek yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7333843c-8ff2-4541-a579-a16b1357df88.png",
+  "source_sha256": "353a0365cc30f46a42b15997989c7f5b1ee7100c58e7c5b3bca15c7941212144",
+  "generated_at": "2026-10-04T21:42:17.860Z",
+  "elapsed_ms": 320228,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-98881a722d1c0a6d065a-480.webp",
+      "sha256": "b29c1d654d3184e333adf6132f37223441ddada2a82cef920a1e2fe82d133658",
+      "bytes": 22888
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-98881a722d1c0a6d065a.webp",
+      "sha256": "027d9c10608c8625dae386090e74b4e35500d4085419e09f12aac8c17293e39a",
+      "bytes": 65650
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-banana-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Banana Greek Yoghurt Work Snack Box"
+    ],
+    "notes": "Greek yoghurt with banana and mixed berries; two plain round wholegrain crackers and separate rolled oats and pumpkin seeds; no unlisted food.",
+    "alt": "Greek yoghurt snack box with banana, berries, wholegrain crackers, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:44:56.120125+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/98881a722d1c0a6d065a80818703f8d033a57e7ba4c176d86876b355110aa521.json",
+    "source_sha256": "353a0365cc30f46a42b15997989c7f5b1ee7100c58e7c5b3bca15c7941212144"
+  },
+  "integrated": true,
+  "live": false
+}

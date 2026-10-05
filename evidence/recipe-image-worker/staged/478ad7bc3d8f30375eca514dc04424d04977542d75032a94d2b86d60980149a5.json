@@ -1,0 +1,92 @@
+{
+  "groupId": "478ad7bc3d8f30375eca514dc04424d04977542d75032a94d2b86d60980149a5",
+  "recipe_ids": [
+    "industrial-v3-meal-prep-bowl-smoky-ham"
+  ],
+  "titles": [
+    "Shift Smoky Ham Meal-Prep Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Ham Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"27g\"},{\"item\":\"lemon juice\",\"amount\":\"2g\"},{\"item\":\"smoked paprika\",\"amount\":\"1g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.\",\"Stir together all the measured 0% Greek yoghurt, lemon juice, smoked paprika and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel: no sesame/poppy seeds, cheese or unlisted food. Keep the raw spinach/tomato or rocket/tomato side salad separate where method reserves it. Spring onion belongs finely sliced in mixed salad beside jacket potatoes. Greek yoghurt/lemon/paprika dressing must be mixed and placed as method requires, no paprika dust or lemon wedge garnish. No mayo or melted cheese. Tuna remains fibrous flakes, ham thin strips where specified, turkey plain cooked breast without breadcrumb/batter coating.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "sweetcorn"
+    },
+    {
+      "item": "0% Greek yoghurt",
+      "amount": "27g"
+    },
+    {
+      "item": "lemon juice",
+      "amount": "2g"
+    },
+    {
+      "item": "smoked paprika",
+      "amount": "1g"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.",
+    "Stir together all the measured 0% Greek yoghurt, lemon juice, smoked paprika and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6f7aeeea-c0da-4859-9319-0613574eaeb6.png",
+  "source_sha256": "587a4737aa461469a364bf9f704238be7b14ad99341643660ff21a03b96db1f5",
+  "generated_at": "2026-10-05T00:10:33.583Z",
+  "elapsed_ms": 102177.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-478ad7bc3d8f30375eca-480-1c2b428da015.webp",
+      "sha256": "1c2b428da0152730bf4d095f502f8674dec2734e2617e19b83ee696c0452a150",
+      "bytes": 23034
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-478ad7bc3d8f30375eca-048b9e907ce9.webp",
+      "sha256": "048b9e907ce979fa63f09a9ba24f1ea844893c65193ffa16cc4db8799170f1d2",
+      "bytes": 70232
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "587a4737aa461469a364bf9f704238be7b14ad99341643660ff21a03b96db1f5",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-smoky-ham"
+    ],
+    "titles": [
+      "Shift Smoky Ham Meal-Prep Bowl"
+    ],
+    "notes": "Cooked brown rice with ready-to-eat thin ham strips, raw mixed pepper cubes and sweetcorn, Greek yoghurt/lemon/paprika dressing folded through. No garnish, lemon wedge, cheese or unlisted food.",
+    "alt": "Smoky ham rice bowl with peppers and sweetcorn",
+    "reviewed_at": "2026-10-05T00:16:22.592833+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2036.json"
+  },
+  "integrated": true,
+  "live": false
+}

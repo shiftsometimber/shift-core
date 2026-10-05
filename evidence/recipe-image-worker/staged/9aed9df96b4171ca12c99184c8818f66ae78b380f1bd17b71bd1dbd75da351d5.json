@@ -1,0 +1,87 @@
+{
+  "groupId": "9aed9df96b4171ca12c99184c8818f66ae78b380f1bd17b71bd1dbd75da351d5",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-banana-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Banana Cottage Cheese Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Banana Cottage Cheese Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"sliced banana\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sliced banana"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-52c0a727-eae7-4956-8f19-83371064b94d.png",
+  "source_sha256": "ab999bcc972ca8b385f55b620ba3c2fc81114b57ba6d5267136e222a3cb1aff9",
+  "generated_at": "2026-10-04T21:34:56.271Z",
+  "elapsed_ms": 411725,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9aed9df96b4171ca12c9-480.webp",
+      "sha256": "9c1eaafd65e7157a3e0ce676e16c21ede5634fce6c3620b85a11d70ac2e6ce1d",
+      "bytes": 25684
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9aed9df96b4171ca12c9.webp",
+      "sha256": "ddb0202cba0b0446d7974d0d9bc3c3a77d774813bdc0e055a1f3fd8304a89c65",
+      "bytes": 79248
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-banana-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Banana Cottage Cheese Big Feed Dessert"
+    ],
+    "notes": "Cottage cheese curds with sliced banana and mixed berries, rolled oats, pumpkin seeds and chopped dark chocolate topping; no apple.",
+    "alt": "Cottage cheese dessert with banana, berries, oats, pumpkin seeds and dark chocolate",
+    "reviewed_at": "2026-10-04T21:36:21.402873+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/9aed9df96b4171ca12c99184c8818f66ae78b380f1bd17b71bd1dbd75da351d5.json",
+    "source_sha256": "ab999bcc972ca8b385f55b620ba3c2fc81114b57ba6d5267136e222a3cb1aff9"
+  },
+  "integrated": true,
+  "live": false
+}

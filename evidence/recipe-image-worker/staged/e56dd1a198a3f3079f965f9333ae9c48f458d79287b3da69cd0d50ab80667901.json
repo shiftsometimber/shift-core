@@ -1,0 +1,89 @@
+{
+  "groupId": "e56dd1a198a3f3079f965f9333ae9c48f458d79287b3da69cd0d50ab80667901",
+  "recipe_ids": [
+    "industrial-v3-pasta-cajun-salmon"
+  ],
+  "titles": [
+    "Shift Cajun Salmon Proper Pasta"
+  ],
+  "prompt": "Edit this exact recipe photograph. All cherry tomatoes MUST be visibly cut into quartered or diced bite-size pieces with exposed cut faces, released tomato pulp and juices. Remove every whole round intact cherry tomato. Keep cooked browned large salmon flakes, tan wholewheat penne and softened diced courgette. Keep the light Cajun tomato coating. No added ingredients, herbs, garnish, cheese, sauce or side. Preserve believable single serving and generous landscape crop margins.\nExact recipe ingredients/method:\n{\"ingredients\":[{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"Cajun tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}],\"method\":[\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the Cajun tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured Cajun tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]}",
+  "original_generation_prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Salmon Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"Cajun tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the Cajun tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured Cajun tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; dried oregano cooked into protein only if listed, never fresh garnish.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the Cajun tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured Cajun tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-15c37974-d7bc-4dc0-abec-002a1ce8aee9.png",
+  "source_sha256": "9e3fc90e614bf193c429f670b972f292c51a09678ee65da6264685d4d603f053",
+  "generated_at": "2026-10-04T23:50:35.393Z",
+  "elapsed_ms": 30790.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e56dd1a198a3f3079f96-480.webp",
+      "sha256": "d03b56e41c574e43a28f36fed0c5135d87140df57450a814e510114bf9758604",
+      "bytes": 25908
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e56dd1a198a3f3079f96-4e96a7404ab4.webp",
+      "sha256": "4e96a7404ab49541e8d21dd5b1a4e11a37c16200fdc9f344859f5c7f69ab27bb",
+      "bytes": 78306
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "9e3fc90e614bf193c429f670b972f292c51a09678ee65da6264685d4d603f053",
+    "recipe_ids": [
+      "industrial-v3-pasta-cajun-salmon"
+    ],
+    "titles": [
+      "Shift Cajun Salmon Proper Pasta"
+    ],
+    "notes": "Edited after rejection of intact tomatoes: cooked large pink salmon flakes, tan wholewheat penne, softened diced courgette and visibly cut softened cherry-tomato pieces in light red coating; no garnish or cheese. One plausible serving with central food retained by responsive cropping.",
+    "alt": "Salmon flakes with wholewheat pasta, courgette and chopped tomatoes.",
+    "reviewed_at": "2026-10-04T23:51:53.542Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-656.json"
+  },
+  "integrated": true,
+  "live": false
+}

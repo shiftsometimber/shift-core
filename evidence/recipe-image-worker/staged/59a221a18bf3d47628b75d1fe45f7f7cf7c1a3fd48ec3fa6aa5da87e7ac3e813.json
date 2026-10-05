@@ -1,0 +1,86 @@
+{
+  "groupId": "59a221a18bf3d47628b75d1fe45f7f7cf7c1a3fd48ec3fa6aa5da87e7ac3e813",
+  "recipe_ids": [
+    "industrial-v3-roast-cajun-salmon"
+  ],
+  "titles": [
+    "Shift Cajun Salmon Sunday-Style Roast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Salmon Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"Cajun tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Place the salmon fillet on a separate lined tray and roast for approximately 12\u201315 minutes, until opaque at the thickest point and easy to flake. Check for bones before serving.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the Cajun tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked salmon fillet, roast potatoes, carrots and broccoli together. Spoon the hot Cajun tomato sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; dried oregano cooked into protein only if listed, never fresh garnish. Roast potatoes are peeled, plain golden chunks with ZERO pepper, herbs, green flecks or spices. Carrot batons and boiled broccoli equally plain: oil/oven only, no garnish. Sauce ONLY spooned over the cooked protein. Exactly two compact flattened mince portions if specified; never a roasting joint for mince.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Place the salmon fillet on a separate lined tray and roast for approximately 12\u201315 minutes, until opaque at the thickest point and easy to flake. Check for bones before serving.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the Cajun tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked salmon fillet, roast potatoes, carrots and broccoli together. Spoon the hot Cajun tomato sauce over the cooked protein."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-cf645e4a-84dd-4b89-a21e-9fe71806dc80.png",
+  "source_sha256": "c1d33edcfa4866372fb6b838a70bf6e9faf8dee40e8d9d6aa0f7d43c43be1a71",
+  "generated_at": "2026-10-04T23:41:16.612Z",
+  "elapsed_ms": 62897.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-59a221a18bf3d47628b7-480.webp",
+      "sha256": "875810a0830a21f8cc1ba42a7e8c60a6ed9028bfb9775d146b0360e239ca95be",
+      "bytes": 26822
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-59a221a18bf3d47628b7-bec473ba783d.webp",
+      "sha256": "bec473ba783de6d316013f20b95bb945441071f8a3839db05609fe5893b3e7ee",
+      "bytes": 79292
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c1d33edcfa4866372fb6b838a70bf6e9faf8dee40e8d9d6aa0f7d43c43be1a71",
+    "recipe_ids": [
+      "industrial-v3-roast-cajun-salmon"
+    ],
+    "titles": [
+      "Shift Cajun Salmon Sunday-Style Roast"
+    ],
+    "notes": "Intact salmon fillet with red sauce only on fish, plain peeled golden potato chunks, carrot batons and boiled broccoli; no herb or pepper garnish. One plausible serving with central food retained by responsive cropping.",
+    "alt": "Salmon with tomato sauce, potatoes, carrots and broccoli.",
+    "reviewed_at": "2026-10-04T23:51:53.542Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-660.json"
+  },
+  "integrated": true,
+  "live": false
+}

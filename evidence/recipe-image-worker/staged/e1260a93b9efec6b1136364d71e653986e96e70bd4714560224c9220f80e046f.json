@@ -1,0 +1,84 @@
+{
+  "groupId": "e1260a93b9efec6b1136364d71e653986e96e70bd4714560224c9220f80e046f",
+  "recipe_ids": [
+    "industrial-breakfast-protein-oats-blueberry-lemon-6"
+  ],
+  "titles": [
+    "Blueberry Lemon Protein Oats"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Blueberry Lemon Protein Oats. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"porridge oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"200ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"120g\",\"item\":\"blueberries\"},{\"amount\":\"1g\",\"item\":\"lemon zest\"}]. Preparation: [\"Add oats, milk and fruit to a saucepan.\",\"Cook gently for 5\u20136 minutes, stirring until thick.\",\"Take off the heat and stir through the yoghurt.\",\"Finish with the measured flavouring and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "50g",
+      "item": "porridge oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "200ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "120g",
+      "item": "blueberries"
+    },
+    {
+      "amount": "1g",
+      "item": "lemon zest"
+    }
+  ],
+  "method": [
+    "Add oats, milk and fruit to a saucepan.",
+    "Cook gently for 5\u20136 minutes, stirring until thick.",
+    "Take off the heat and stir through the yoghurt.",
+    "Finish with the measured flavouring and serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b53b6786-7ff6-4639-a7f7-a916e886a980.png",
+  "source_sha256": "b9cf07a0ab231c563d61085ebb0e607d0b285bd1059f38d243d8927ac05bc71b",
+  "generated_at": "2026-10-04T21:03:27.153Z",
+  "elapsed_ms": 87845,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e1260a93b9efec6b1136-480.webp",
+      "sha256": "a6fa1ca0986a01fb5e0382c4ce54f51af8aaae795234c78556e94815227d6409",
+      "bytes": 19418
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e1260a93b9efec6b1136.webp",
+      "sha256": "9a63b3aafd897c25946d30ccd0a65cdfcaa3ce0359ede15666853381000a55b7",
+      "bytes": 56946
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-protein-oats-blueberry-lemon-6"
+    ],
+    "titles": [
+      "Blueberry Lemon Protein Oats"
+    ],
+    "notes": "Cooked thick porridge with blueberries, yoghurt incorporated and measured lemon zest; no powder supplement or dry seed topping. Single credible serving with full food visible in phone/desktop 4:3 framing. Quantities, hidden temperature and nutrition cannot be verified visually.",
+    "alt": "Warm blueberry porridge with Greek yoghurt and lemon zest.",
+    "reviewed_at": "2026-10-04T21:21:38.765181+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "b9cf07a0ab231c563d61085ebb0e607d0b285bd1059f38d243d8927ac05bc71b"
+  }
+}

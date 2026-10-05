@@ -1,0 +1,87 @@
+{
+  "groupId": "d84a6512837bd8e4a2e2d7aaba262c40e926a4819371a95b3b0665e38b2086f8",
+  "recipe_ids": [
+    "industrial-v3-wrap-cajun-chickpea"
+  ],
+  "titles": [
+    "Shift Cajun Chickpea Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Chickpea Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"Cajun yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. If spices are mixed into a dressing, all spices remain in the smooth dressing: NO dry spice dust scattered over food, salad or plate. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty; cooked salmon and cooked cured ham retain their natural opaque colour.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-02589471-9efa-400c-aa4d-cd2ee4afb7d1.png",
+  "source_sha256": "f997fae292cbf48acb3bc57cc6d50db0ee1beef5cc7e356009e7cab2153b3d5d",
+  "generated_at": "2026-10-05T01:09:14.624Z",
+  "elapsed_ms": 75239.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d84a6512837bd8e4a2e2-480-0f3e92bff9ef.webp",
+      "sha256": "0f3e92bff9efd9bfe0bfa8f04f78625192f1656506a46e3833ef4bf87953f53b",
+      "bytes": 24330
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d84a6512837bd8e4a2e2-226c5160dd7b.webp",
+      "sha256": "226c5160dd7bb23c2b6b9818a53f50ad86c91f5b644ed6f53f36cd874b18ba60",
+      "bytes": 68428
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f997fae292cbf48acb3bc57cc6d50db0ee1beef5cc7e356009e7cab2153b3d5d",
+    "recipe_ids": [
+      "industrial-v3-wrap-cajun-chickpea"
+    ],
+    "titles": [
+      "Shift Cajun Chickpea Loaded Wrap"
+    ],
+    "notes": "Plain toasted wholemeal wrap holds lightly browned whole chickpeas coated in Cajun yoghurt, fresh lettuce and tomato. No mash substitution, cheese, seeds or scattered garnish; exact title and pan method match.",
+    "alt": "Cajun chickpea wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T01:15:53.322130+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1606-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

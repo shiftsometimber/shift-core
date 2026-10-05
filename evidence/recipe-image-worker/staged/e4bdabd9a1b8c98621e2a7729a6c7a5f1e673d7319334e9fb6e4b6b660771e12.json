@@ -1,0 +1,89 @@
+{
+  "groupId": "e4bdabd9a1b8c98621e2a7729a6c7a5f1e673d7319334e9fb6e4b6b660771e12",
+  "recipe_ids": [
+    "industrial-v3-bagel-tikka-turkey"
+  ],
+  "titles": [
+    "Shift Tikka Turkey Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Turkey Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"tikka yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured tikka yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nWholemeal bread/wrap/bagel/pitta plain unseeded; no sesame/poppy seed garnish or cheese unless explicitly listed. Tikka yoghurt only in the recipes listing it; no extra cream/mayo or coriander. Poultry plain cooked breast unbreaded; tuna fibrous drained flakes. Tofu specifically ready-to-eat pale unseared firm tofu: small cubes in grain salad, jacket, pasta and rice; thin slices in pitta, toastie, wrap. Never substitute feta, chicken or grilled tofu. Cheddar only listed Tofu Toastie, grated before toast. Preserve raw vegetables and all reserved side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not topping. Listed lemon/lime juice/dressing incorporated: no citrus wedges. Wholegrain mustard stays in grain-salad dressing, no seed garnish. Rice/pasta/couscous depicted cooked.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the measured tikka yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7c768abd-43ef-41df-9e57-bede296e7de1.png",
+  "source_sha256": "fd30a507c212cbc87f66e53aa0ea6075037b07c4858bd196deb5c4e77abd81f9",
+  "generated_at": "2026-10-05T00:55:19.532Z",
+  "elapsed_ms": 153446.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e4bdabd9a1b8c98621e2-480-8abf0727738e.webp",
+      "sha256": "8abf0727738e58d353a008e0be2da133c60fe9324dec6a77a3c70e99af7677e8",
+      "bytes": 25172
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e4bdabd9a1b8c98621e2-0da26d571759.webp",
+      "sha256": "0da26d5717593d122517b87c5ab79cb99ab3d0bc0b1db18520dbd8a23c1aac8e",
+      "bytes": 75466
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fd30a507c212cbc87f66e53aa0ea6075037b07c4858bd196deb5c4e77abd81f9",
+    "recipe_ids": [
+      "industrial-v3-bagel-tikka-turkey"
+    ],
+    "titles": [
+      "Shift Tikka Turkey Loaded Bagel"
+    ],
+    "notes": "Unseeded wholemeal bagel with plain ready-to-eat sliced/shredded turkey combined with listed tikka yoghurt, rocket/tomato and reserved rocket/tomato side salad. No cheese, breadcrumb coating or herb garnish. Exact title/method checked.",
+    "alt": "Tikka yoghurt turkey bagel with rocket and tomato salad",
+    "reviewed_at": "2026-10-05T01:01:44.850343+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2116.json"
+  },
+  "integrated": true,
+  "live": false
+}

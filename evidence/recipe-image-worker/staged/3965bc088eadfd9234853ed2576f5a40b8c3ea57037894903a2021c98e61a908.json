@@ -1,0 +1,81 @@
+{
+  "groupId": "3965bc088eadfd9234853ed2576f5a40b8c3ea57037894903a2021c98e61a908",
+  "recipe_ids": [
+    "industrial-v3-pie-balti-beef"
+  ],
+  "titles": [
+    "Shift Balti Beef Proper Pie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Beef Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Measure the balti-style sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Add the 5% beef mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Stir in the balti-style sauce, heat for 1\u20132 minutes, then spoon into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Appetising faithful editorial food photography, warm side light, generous framing. Follow exact method and protein form. No unlisted garnish or food. For listed brown rice, depict ordinary cooked WHOLEGRAIN BROWN RICE with distinctly medium-tan to light-brown intact bran on every grain; natural earthy brown rice, never polished white rice, risotto or pale glossy short grains. For basmati, retain its listed long-grain appearance. Show all ingredients in their specified placement and cooked/raw state.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Measure the balti-style sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Add the 5% beef mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Stir in the balti-style sauce, heat for 1\u20132 minutes, then spoon into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-91e3811f-4156-4c45-92f7-6b1e27a7962e.png",
+  "source_sha256": "528a89873ed0eb51470d1293bd2b0be05044e444bcd91289adca831caa96e939",
+  "generated_at": "2026-10-04T23:22:14.461Z",
+  "elapsed_ms": 438986,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3965bc088eadfd923485-480.webp",
+      "sha256": "28014bd8f4eab824bd170380ba24304c9af65a7e4236a0511c9a7c0bbe140211",
+      "bytes": 26248
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3965bc088eadfd923485.webp",
+      "sha256": "d0b36d0f9c81492ed5a8c0186fce2b0d7775b39ab1084988e3604f36e3be2b74",
+      "bytes": 82618
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "528a89873ed0eb51470d1293bd2b0be05044e444bcd91289adca831caa96e939",
+    "recipe_ids": [
+      "industrial-v3-pie-balti-beef"
+    ],
+    "titles": [
+      "Shift Balti Beef Proper Pie"
+    ],
+    "notes": "Cooked beef mince, diced carrots and peas beneath plain fork-roughened potato mash with browned ridges; no cheese or pastry.",
+    "alt": "Balti beef pie with carrots, peas and mashed potato",
+    "reviewed_at": "2026-10-04T23:32:39.072001+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

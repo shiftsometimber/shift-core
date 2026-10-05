@@ -1,0 +1,98 @@
+{
+  "groupId": "58fd080fd789ca250a23e4f93265549f2a904c2de6b21d2adc9e490b37a18c14",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-classic-chicken"
+  ],
+  "titles": [
+    "Shift Classic Chicken Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Chicken Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"chicken breast\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"15g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Mix the measured light mayonnaise, tomato ketchup and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Cut the chicken breast into strips about 1.5cm thick. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8\u201310 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.\",\"Pile the crisp oven chips onto a plate and spoon over the cooked chicken strips, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; any herbs listed in cold finishing sauce stay ONLY inside that sauce. No fresh herb garnish. Listed mayonnaise, ketchup and wholegrain mustard MIXED TOGETHER as one cold pale pink sauce with tiny mustard grains, added AFTER cooking. Do not portray these as three separate sauces or melted cheese. No extra herbs or spices on protein.",
+  "original_generation_prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Chicken Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"chicken breast\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"15g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Mix the measured light mayonnaise, tomato ketchup and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Cut the chicken breast into strips about 1.5cm thick. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8\u201310 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.\",\"Pile the crisp oven chips onto a plate and spoon over the cooked chicken strips, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "15g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Mix the measured light mayonnaise, tomato ketchup and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Cut the chicken breast into strips about 1.5cm thick. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8\u201310 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.",
+    "Pile the crisp oven chips onto a plate and spoon over the cooked chicken strips, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b8a4273c-f9bc-47ea-a763-9bcdab32b023.png",
+  "source_sha256": "f9adea7bbb6820d8d486f12cea622ec6b68d7cafe8453814edb02513b6a5d9e4",
+  "generated_at": "2026-10-05T00:14:46.575Z",
+  "elapsed_ms": 151456.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-58fd080fd789ca250a23-480.webp",
+      "sha256": "ca8d6c2207ff0929fa46e76af07ccfc514d334c34f08888ad25d2fdd64daab04",
+      "bytes": 32222
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-58fd080fd789ca250a23-5ee08b387707.webp",
+      "sha256": "5ee08b387707b522109739a4aae4a0286e264c0bd382dc9f4761099014bc3a70",
+      "bytes": 102036
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f9adea7bbb6820d8d486f12cea622ec6b68d7cafe8453814edb02513b6a5d9e4",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-classic-chicken"
+    ],
+    "titles": [
+      "Shift Classic Chicken Loaded Fries"
+    ],
+    "notes": "Seared intact chicken strips with visible pale cooked muscle fibres, softened red onion and mixed peppers over plain golden chips, mixed pale pink finishing sauce drizzled above; no cheese or garnish. Believable single serving; central food retained by responsive crops.",
+    "alt": "Golden chips with chicken strips, peppers, red onion and creamy mustard sauce.",
+    "reviewed_at": "2026-10-05T00:23:59.126Z",
+    "reviewer": "worker-c source visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-692.json"
+  },
+  "integrated": true,
+  "live": false
+}

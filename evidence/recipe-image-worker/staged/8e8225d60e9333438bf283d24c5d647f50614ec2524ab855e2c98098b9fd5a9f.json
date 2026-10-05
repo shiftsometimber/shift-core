@@ -1,0 +1,88 @@
+{
+  "groupId": "8e8225d60e9333438bf283d24c5d647f50614ec2524ab855e2c98098b9fd5a9f",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-pineapple-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Pineapple Greek Yoghurt Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pineapple Greek Yoghurt Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"pineapple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nShow only each exact recipe's ingredients, with appetising realistic textures. No honey, mint, coconut, nuts, syrup, other seeds or unlisted fruit. Pumpkin seeds are flat green pepitas. Rolled oats plain flakes, not granola containing unlisted foods. Cottage cheese visibly curdy, Greek yoghurt smooth; fruit-only pots have no creamy base unless 40g yoghurt is listed. Chocolate only recipes listing it. WORK SNACK BOX: juicy bite-size fruit and any listed dairy in separate compartment from dry oats, pumpkin seeds and TWO wholegrain crackers, no loose crunch mixed into wet fruit. OAT CRUNCH snack pot: dry-pan-toasted oats/seeds completely cooled and packed separately from cut fruit; no milk/cream/yoghurt. PROTEIN/SNACK pots: crunch may be added just before immediate serving as method allows. OVERNIGHT OATS: soft hydrated oats in measured milk; fruit mixed through, pumpkin seeds and any listed chopped chocolate added only at serving. Follow the exact listed method, not an invented garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "pineapple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2ff7f700-5f52-4e2a-a97e-4321a5e8bfbf.png",
+  "source_sha256": "749a26422b67c3b58b7808514d1f1586c1c44f28cd58cfd012d1387b2a203651",
+  "generated_at": "2026-10-05T01:15:44.752Z",
+  "elapsed_ms": 249212.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8e8225d60e9333438bf2-480-f60c93d8bfea.webp",
+      "sha256": "f60c93d8bfea105700e508be3a7d046da9f93c716848051dc0e53e0ba6f89602",
+      "bytes": 22064
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8e8225d60e9333438bf2-d5e0be5e14c2.webp",
+      "sha256": "d5e0be5e14c2ab2e2a5a7980f2c1ac7187edd04d6400c0dbac1763093070c5a6",
+      "bytes": 64064
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "749a26422b67c3b58b7808514d1f1586c1c44f28cd58cfd012d1387b2a203651",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-pineapple-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Pineapple Greek Yoghurt Big Feed Dessert"
+    ],
+    "notes": "Smooth Greek yoghurt combined with pineapple, mixed berries, plain rolled oats and green pumpkin seeds, finished with chopped dark chocolate. No curdy cottage cheese, honey, mint, nuts or unlisted fruit; exact title/method checked.",
+    "alt": "Pineapple Greek yoghurt dessert with berries, oats, pumpkin seeds and dark chocolate",
+    "reviewed_at": "2026-10-05T01:18:53.851455+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2565.json"
+  },
+  "integrated": true,
+  "live": false
+}

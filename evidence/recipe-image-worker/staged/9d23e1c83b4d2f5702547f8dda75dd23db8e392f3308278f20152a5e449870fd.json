@@ -1,0 +1,89 @@
+{
+  "groupId": "9d23e1c83b4d2f5702547f8dda75dd23db8e392f3308278f20152a5e449870fd",
+  "recipe_ids": [
+    "industrial-v3-wrap-peri-peri-egg"
+  ],
+  "titles": [
+    "Shift Peri-Peri Egg Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Egg Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the boiled eggs with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Mexican/peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish, tortilla chips or extra ingredients. Listed yoghurt sauces are ready-to-eat dressings, not melted cheese.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the boiled eggs with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c57f2b5d-2cb6-465a-bcc2-c8e9fddb55ea.png",
+  "source_sha256": "2162dfdf7ab6d62034dcc0947b90820aa38240b149aac83724e3b43a0d82f2f1",
+  "generated_at": "2026-10-04T23:20:23.579Z",
+  "elapsed_ms": 129401.00000000001,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9d23e1c83b4d2f570254-480-0d6df63428b9.webp",
+      "sha256": "0d6df63428b975427536cd874e8bb18a857732109902d7a142da97732bbdb153",
+      "bytes": 22624
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9d23e1c83b4d2f570254-2f6857eaf73f.webp",
+      "sha256": "2f6857eaf73f4297a988216df4262e3f46e47c4e4ce68e7fa98e8d2c702075ca",
+      "bytes": 64358
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2162dfdf7ab6d62034dcc0947b90820aa38240b149aac83724e3b43a0d82f2f1",
+    "recipe_ids": [
+      "industrial-v3-wrap-peri-peri-egg"
+    ],
+    "titles": [
+      "Shift Peri-Peri Egg Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap cut in halves, sliced boiled eggs with fresh lettuce/tomato and peri-peri yoghurt inside. No unlisted side, garnish, seeds or cheese; egg preparation and fresh vegetable state match method.",
+    "alt": "Peri-peri egg wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:24:58.503190+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1957.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,81 @@
+{
+  "groupId": "476d00c289395ce522849ad0b8246cc248c78ddb400c0e3449114bf528556ce1",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-coffee-savory-box"
+  ],
+  "titles": [
+    "Shift Coffee Banana Split Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Banana Split Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the banana in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only, no honey, nuts, mint, syrup or decorative garnish. Small25g mixed berries. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Instant espresso measured1g fully dissolved in tiny teaspoon water and cooled, mixed through fruit/dairy as subtle coffee tint; no whole coffee beans, granules, dry coffee grounds, separate coffee drink or chocolate syrup. Fruit snack pot at eating time, coffee subtly mixed through fruit, dry oats/seeds just added. No dairy base or chocolate.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the banana in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8a1cf2a4-19c7-4681-b376-d14d2fab8837.png",
+  "source_sha256": "a2343326d44d7a085a1b2f4fb483ca85b936c06c5fc38d7e18accd5803e02d61",
+  "generated_at": "2026-10-05T00:46:39.530Z",
+  "elapsed_ms": 261166,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-476d00c289395ce52284-480-021a095a0332.webp",
+      "sha256": "021a095a033224b09ffc3d2b64772c77ee9e3740971eda6cba3eda3c354bdce3",
+      "bytes": 26316
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-476d00c289395ce52284-bebd5154aeb5.webp",
+      "sha256": "bebd5154aeb57a25e077f2b5d8479bd19f9137a07e18178d378def27caf04e03",
+      "bytes": 83514
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a2343326d44d7a085a1b2f4fb483ca85b936c06c5fc38d7e18accd5803e02d61",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-coffee-savory-box"
+    ],
+    "titles": [
+      "Shift Coffee Banana Split Snack Pot"
+    ],
+    "notes": "Banana and small berries subtly coffee tinted, dry oats/seeds newly topped at serving. No dairy base, grounds or syrup.",
+    "alt": "Coffee banana snack pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:50:45.106987+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/476d00c289395ce522849ad0b8246cc248c78ddb400c0e3449114bf528556ce1.json"
+  },
+  "integrated": true,
+  "live": false
+}

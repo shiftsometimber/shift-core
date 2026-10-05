@@ -1,0 +1,96 @@
+{
+  "groupId": "784b7057c9957bb3e40c209fbdb3fadfe486f750a5edf7c662c546a890eb1714",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-peppery-turkey"
+  ],
+  "titles": [
+    "Shift Peppery Turkey Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppery Turkey Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Keep the already-cooked turkey refrigerated while preparing the vegetables. Add it near the end and heat until steaming hot throughout.\",\"Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the cooked turkey breast and heat gently until steaming hot throughout.\",\"Stir in the listed flavour ingredients (20g tomato ketchup, 1g black pepper, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Keep the already-cooked turkey refrigerated while preparing the vegetables. Add it near the end and heat until steaming hot throughout.",
+    "Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the cooked turkey breast and heat gently until steaming hot throughout.",
+    "Stir in the listed flavour ingredients (20g tomato ketchup, 1g black pepper, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e40057a7-1934-4b38-87eb-0a5cf7c4a0f8.png",
+  "source_sha256": "eb0607a0b2d5c5f1e657285a49579ae18acbc61f7a1ba661f7770b9baac1f166",
+  "generated_at": "2026-10-05T00:58:57.873Z",
+  "elapsed_ms": 91883,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-784b7057c9957bb3e40c-480.webp",
+      "sha256": "c699a54ca99d50a03117827ea0784283f6e4a1c60f085c205e79c8a44f962717",
+      "bytes": 24384
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-784b7057c9957bb3e40c-0db345f4ab02.webp",
+      "sha256": "0db345f4ab02a5900140552a3c47ce1a32993e7501892f47a229779ff13670d6",
+      "bytes": 77188
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "eb0607a0b2d5c5f1e657285a49579ae18acbc61f7a1ba661f7770b9baac1f166",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-peppery-turkey"
+    ],
+    "titles": [
+      "Shift Peppery Turkey Breakfast Toastie"
+    ],
+    "notes": "Crisp unseeded wholemeal toastie with cooked turkey breast, softened tomato and wilted spinach in listed ketchup, pepper and vinegar sauce.",
+    "alt": "Peppery turkey toastie with tomato and spinach",
+    "reviewed_at": "2026-10-05T01:04:21.491478+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/354.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "d43509871543d3c42c907c0464efeb99e085f771c6809fdcff6d7d98db5f7b8c",
+  "recipe_ids": [
+    "industrial-v3-wrap-house-chickpea"
+  ],
+  "titles": [
+    "Shift House Chickpea Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift House Chickpea Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"tomato pepper relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "tomato pepper relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-782b9a84-9f77-4e75-bfa5-6c4b68c79c3e.png",
+  "source_sha256": "a9699682cbad45a7d65474589c10c34494cd4299b2aff3dc8fef60f091352dd0",
+  "generated_at": null,
+  "elapsed_ms": null,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d43509871543d3c42c90-480-09404298d5ce.webp",
+      "sha256": "09404298d5ce4438798beb05c3a7bafe1dc5c943179840bbf3a2c47ed591caac",
+      "bytes": 23982
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d43509871543d3c42c90-5b041126e489.webp",
+      "sha256": "5b041126e48981afaa3a3427e636af3709adbe9e40ff93abeba2b3d4288a2e17",
+      "bytes": 68944
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a9699682cbad45a7d65474589c10c34494cd4299b2aff3dc8fef60f091352dd0",
+    "recipe_ids": [
+      "industrial-v3-wrap-house-chickpea"
+    ],
+    "titles": [
+      "Shift House Chickpea Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with chickpeas, drained, fresh lettuce and tomato, and tomato pepper relish. Every member title checked against exact ingredients/method. No cheese, seeds, invented side or scatter garnish; protein preparation and dressing placement match method.",
+    "alt": "House Chickpea Loaded Wrap with lettuce, tomato",
+    "reviewed_at": "2026-10-04T23:14:25.520688+00:00",
+    "reviewer": "worker-f visual reinspection of exact recovered original",
+    "receipt": "evidence/recipe-image-worker/worker-f/1844.json",
+    "recovery_reinspection": true
+  },
+  "integrated": true,
+  "live": false
+}

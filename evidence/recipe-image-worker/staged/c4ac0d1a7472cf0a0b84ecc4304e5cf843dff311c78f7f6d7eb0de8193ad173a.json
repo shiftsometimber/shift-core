@@ -1,0 +1,81 @@
+{
+  "groupId": "c4ac0d1a7472cf0a0b84ecc4304e5cf843dff311c78f7f6d7eb0de8193ad173a",
+  "index": 2253,
+  "recipe_ids": [
+    "industrial-v4-protein-pot-berry-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Berry Fruit Crunch Snack Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries",
+      "allergens": []
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the apple in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Fruit Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"105g\",\"item\":\"mixed berries\",\"allergens\":[]},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the apple in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy: use only listed foods. Plain unseeded wholegrain crackers: no sesame/poppy seeds, two clearly visible crackers when2listed. No cheese unless listed; no honey, nuts, mint or extra sauces. Follow preparation precisely: dry crunchy components in separate compartments/ramekins when method says kept separate; soft soaked oats only when milk listed. Protein pot crunchy topping can be freshly added just before eating. Single believable serving with food safely inside frame.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9ed8031b-a036-4bfe-a3fb-7e6c46f720d9.png",
+  "source_sha256": "299b215a427323f6c7a016a75f0992b95640a071f8cad585d7aed63eb4f6bf14",
+  "dispatched_at": "2026-10-04T22:58:40.044Z",
+  "generated_at": "2026-10-04T23:06:31.097Z",
+  "elapsed_ms": 471053,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c4ac0d1a7472cf0a0b84-480-a5895b089fde.webp",
+      "sha256": "a5895b089fde7552519ec2319d54ddec431c9f470e0bb5a619f3de2f4fab71e1",
+      "bytes": 25024,
+      "git_blob_sha": "c9323695119f79bd7ec69a8e70dbce8245ede62d"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c4ac0d1a7472cf0a0b84-b17029a2528d.webp",
+      "sha256": "b17029a2528d8c0e0fa08eeaf0662be5600086bb2bfdb82ebcc68fc1676ceb4f",
+      "bytes": 75612,
+      "git_blob_sha": "0fad475697d15341e9e28150e5fd10c0aac57dbd"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-berry-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Berry Fruit Crunch Snack Pot"
+    ],
+    "notes": "Apple and mixed berries in fruit pot with dry oats and pumpkin seeds separately; no dairy or banana.",
+    "alt": "Apple and berry snack pot with separate oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T23:08:43.377608+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/c4ac0d1a7472cf0a0b84ecc4304e5cf843dff311c78f7f6d7eb0de8193ad173a.json",
+    "source_sha256": "299b215a427323f6c7a016a75f0992b95640a071f8cad585d7aed63eb4f6bf14"
+  },
+  "integrated": true,
+  "live": false
+}

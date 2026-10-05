@@ -1,0 +1,79 @@
+{
+  "groupId": "269693d7a3da9ad30ffa99e0dd54c5af61357fcb7174ec3178fe0652e8297b22",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-balti-tofu"
+  ],
+  "titles": [
+    "Shift Balti Tofu Slow-Cooker Big Pot"
+  ],
+  "prompt": "Professional appetising close food photograph of this exact actual recipe. Believable home-cooked texture, thoughtful composition and natural light. Show its complete measured dish. Match ingredients, cut and preparation precisely. No invented garnish or side. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Tofu Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/root-517-55d623155a5d.png",
+  "source_sha256": "55d623155a5d3d45b8679f6bd0e269a43f6156272b8fcf0d376aa155cc43e3ab",
+  "generated_at": "2026-10-04T23:55:06.099Z",
+  "elapsed_ms": 518942,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-269693d7a3da9ad30ffa-480.webp",
+      "sha256": "83dedaf80ddb7a344b113a5f972914611a8bbc7b018d28e5cc5d6493e2ccea5e",
+      "bytes": 33236
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-269693d7a3da9ad30ffa.webp",
+      "sha256": "dd96bd5ae5507e0d7f68f7f4be3729aa6c01691f41342f2dba99d275f9f2c407",
+      "bytes": 107534
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "55d623155a5d3d45b8679f6bd0e269a43f6156272b8fcf0d376aa155cc43e3ab",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-balti-tofu"
+    ],
+    "titles": [
+      "Shift Balti Tofu Slow-Cooker Big Pot"
+    ],
+    "notes": "Browned firm tofu cubes with tender baby potatoes, carrots and onion in a light balti coating, matching slow-cooked preparation.",
+    "alt": "Shift Balti Tofu Slow-Cooker Big Pot: browned firm tofu cubes with tender baby potatoes, carrots and onion in a light balti coating, matching slow-cooked preparation.",
+    "reviewed_at": "2026-10-05T00:10:54.749538+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

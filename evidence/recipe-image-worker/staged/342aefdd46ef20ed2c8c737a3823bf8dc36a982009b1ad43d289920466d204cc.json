@@ -1,0 +1,81 @@
+{
+  "groupId": "342aefdd46ef20ed2c8c737a3823bf8dc36a982009b1ad43d289920466d204cc",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-mediterranean-turkey"
+  ],
+  "titles": [
+    "Shift Mediterranean Turkey Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mediterranean Turkey Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"tomato olive herb sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the turkey mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and turkey mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the turkey mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, sesame/poppy seeds, cheese, cream, fresh green herb leaves, coriander, parsley, lemon wedges, side dishes or dipping sauce. All buns/flatbreads entirely plain unseeded wholemeal. Tomato olive herb sauce is light reddish coating with tiny chopped olive and herb pieces ONLY WITHIN SAUCE, no extra whole olive side or fresh leaf garnish. Turkey mince loose cooked crumbles, never chunks or meatballs, except Sunday roast EXACTLY TWO flattened2cm portions. Tofu2cm cubes except roast2cm slabs. PIE: entirely PLAIN water-mashed potato top, ivory with natural golden fork ridges; NO dark/green flecks, NO herbs/pepper/cheese/butter on or mixed into topping. Sauce and herbs only in filling BELOW mash. Slowpot vegetables tender glossy not crispy. Rice exact brown or basmati. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "tomato olive herb sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the turkey mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and turkey mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the turkey mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-590ed033-2f15-4326-8507-bbde4609b764.png",
+  "source_sha256": "baf5cf3b9064a95a1128f68af93bfc71e9787d6327cae7f48bd7d71b58c87298",
+  "generated_at": "2026-10-05T00:10:09.245Z",
+  "elapsed_ms": 176575.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-342aefdd46ef20ed2c8c-retry4-480-513fc6c33d39.webp",
+      "sha256": "513fc6c33d39984dfe87c9c5dcfefee93e24c4959e3de1e0d6b77f92fe84493b",
+      "bytes": 28712
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-342aefdd46ef20ed2c8c-retry4-a48a7a02a2e7.webp",
+      "sha256": "a48a7a02a2e744df17d07a6e8bf8f5c208387e999328bc74f3b666b0c4ba3132",
+      "bytes": 89776
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "baf5cf3b9064a95a1128f68af93bfc71e9787d6327cae7f48bd7d71b58c87298",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-mediterranean-turkey"
+    ],
+    "titles": [
+      "Shift Mediterranean Turkey Slow-Cooker Big Pot"
+    ],
+    "notes": "Pass: cooked turkey mince loose crumbles, tender baby potatoes, carrot and translucent onion in glossy tomato olive herb cooking juices. Small herb and chopped olive pieces remain within sauce; no meat chunks, meatballs, fresh leaf garnish, cheese, cream or extra foods. Tender slow-pot appearance and centred crop.",
+    "alt": "Slow-cooked Mediterranean turkey mince with baby potatoes, carrots, onion and tomato olive herb sauce",
+    "reviewed_at": "2026-10-05T00:13:28.260004+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1101.json"
+  },
+  "integrated": true,
+  "live": false
+}

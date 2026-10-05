@@ -1,0 +1,83 @@
+{
+  "groupId": "0a6747bb2932e2984546b4a5ef071afdd871a47291e553e2cab59d7173317176",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-bbq-turkey"
+  ],
+  "titles": [
+    "Shift BBQ Turkey Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Turkey Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Show one wholemeal bap split and filled, with cooked filling visible. NO cheese or lettuce.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a62f1e52-1a42-45b6-a473-713bb4b613fa.png",
+  "source_sha256": "ab7dae147f951721bd4cb2a7bf254f7edf98efcc9b1d1ff0419c98490f3b98d6",
+  "generated_at": "2026-10-04T21:11:06.519Z",
+  "elapsed_ms": 23229.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0a6747bb2932e2984546-480.webp",
+      "sha256": "69b24aa3d76ce5f1ffd805c51aac00ea5e6ff5a8bca19c0daa500590c2b4b77c",
+      "bytes": 27446
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0a6747bb2932e2984546.webp",
+      "sha256": "faf85230c90805d47678ffa0980b9dc313d5a9b12cfddacf365831ef0b696b90",
+      "bytes": 91490
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-bbq-turkey"
+    ],
+    "titles": [
+      "Shift BBQ Turkey Breakfast Buttie"
+    ],
+    "notes": "Plain wholemeal bap with heated turkey slices, BBQ sauce, softened tomato and wilted spinach; no cheese or garnish.",
+    "alt": "Wholemeal breakfast bap filled with BBQ turkey, tomato and spinach.",
+    "reviewed_at": "2026-10-04T21:18:43.310671+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/64-review.json",
+    "source_sha256": "ab7dae147f951721bd4cb2a7bf254f7edf98efcc9b1d1ff0419c98490f3b98d6"
+  },
+  "integrated": true,
+  "live": false
+}

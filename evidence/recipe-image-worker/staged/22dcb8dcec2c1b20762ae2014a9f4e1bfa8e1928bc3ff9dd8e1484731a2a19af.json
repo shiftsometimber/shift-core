@@ -1,0 +1,90 @@
+{
+  "groupId": "22dcb8dcec2c1b20762ae2014a9f4e1bfa8e1928bc3ff9dd8e1484731a2a19af",
+  "recipe_ids": [
+    "industrial-v3-meal-prep-bowl-cajun-tuna"
+  ],
+  "titles": [
+    "Shift Cajun Tuna Meal-Prep Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Tuna Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"amount\":\"40g\",\"item\":\"Cajun yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Use the measured Cajun yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured Cajun yoghurt and olive oil dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. If spices are mixed into a dressing, all spices remain in the smooth dressing: NO dry spice dust scattered over food, salad or plate. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty; cooked salmon and cooked cured ham retain their natural opaque colour. For meal-prep bowls, all filling including egg slices is folded THROUGH the rice and vegetables, not arranged on top as a decorative row or fan.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.",
+    "Use the measured Cajun yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured Cajun yoghurt and olive oil dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-dd22e4f3-6304-47c2-9d91-a84207ce1249.png",
+  "source_sha256": "51cfa4cfda310120e3115a16381d3353f2fe884f340bb561e9537372a08d5d78",
+  "generated_at": "2026-10-05T01:22:02.243Z",
+  "elapsed_ms": 180683.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-22dcb8dcec2c1b20762a-480-48294abd0160.webp",
+      "sha256": "48294abd01604eda327b1f7c597f1c582ffdb2005a9103512e9aa35ce83da937",
+      "bytes": 25814
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-22dcb8dcec2c1b20762a-d855f0d0eb45.webp",
+      "sha256": "d855f0d0eb45b44ee7accf82a51456578c76b3cfba4b88f5f5da89ba68f256be",
+      "bytes": 75258
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "51cfa4cfda310120e3115a16381d3353f2fe884f340bb561e9537372a08d5d78",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-cajun-tuna"
+    ],
+    "titles": [
+      "Shift Cajun Tuna Meal-Prep Bowl"
+    ],
+    "notes": "Opaque drained tuna flakes are dispersed through cooked brown rice, diced mixed peppers and sweetcorn with Cajun yoghurt dressing. No separate topping, herbs or dry spice dust; exact meal prep bowl title and fold-through method match.",
+    "alt": "Cajun tuna rice bowl with peppers and sweetcorn",
+    "reviewed_at": "2026-10-05T01:24:01.751716+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1625-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

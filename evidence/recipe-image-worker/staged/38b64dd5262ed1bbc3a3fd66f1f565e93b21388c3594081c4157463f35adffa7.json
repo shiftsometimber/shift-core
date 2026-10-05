@@ -1,0 +1,88 @@
+{
+  "groupId": "38b64dd5262ed1bbc3a3fd66f1f565e93b21388c3594081c4157463f35adffa7",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-peri-peri-sausage"
+  ],
+  "titles": [
+    "Shift Peri-Peri Sausage Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Sausage Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use half the measured olive oil in a frying pan. Follow the sausage packet cooking guidance. Cook the reduced-fat pork sausages thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate. Slice the cooked sausages before assembling the toastie.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked reduced-fat pork sausages to the pan and heat through.\",\"Stir in the listed flavour ingredients (40g peri-peri sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use half the measured olive oil in a frying pan. Follow the sausage packet cooking guidance. Cook the reduced-fat pork sausages thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate. Slice the cooked sausages before assembling the toastie.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked reduced-fat pork sausages to the pan and heat through.",
+    "Stir in the listed flavour ingredients (40g peri-peri sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e71b6aad-c0bf-4ac5-aee3-b8a2eb465826.png",
+  "source_sha256": "9146f231e87e189079e3291e433d3968fbb2299c2482b2264d57be36bb2ff85a",
+  "generated_at": "2026-10-05T01:08:09.769Z",
+  "elapsed_ms": 48447,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-38b64dd5262ed1bbc3a3-480.webp",
+      "sha256": "114f41e8fad58c27e533b7514fd4104bacfaa7409c77ce98cbb726e6c4e91c1e",
+      "bytes": 27582
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-38b64dd5262ed1bbc3a3-f6f699e56542.webp",
+      "sha256": "f6f699e56542d8bf5a317d63d9fb42816d197251ede413713273f22f10a01607",
+      "bytes": 87062
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "9146f231e87e189079e3291e433d3968fbb2299c2482b2264d57be36bb2ff85a",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-peri-peri-sausage"
+    ],
+    "titles": [
+      "Shift Peri-Peri Sausage Breakfast Toastie"
+    ],
+    "notes": "Full-resolution inspection confirms sliced cooked sausages, softened tomato and wilted spinach in crisp wholemeal toastie halves with peri-peri coating; the matching leftover filling alongside follows the method.",
+    "alt": "Peri-peri sausage toastie with tomato and spinach",
+    "reviewed_at": "2026-10-05T01:15:37.678247+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/374.json"
+  },
+  "integrated": true,
+  "live": false
+}

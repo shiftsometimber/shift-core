@@ -1,0 +1,87 @@
+{
+  "groupId": "106a04b275b1fce87f6f4ee8a7b16234a11cbfd1f98a7b4ad6399416e41d276f",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-apple-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Apple Cottage Cheese Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Cottage Cheese Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"diced apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "diced apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-35f12e32-6ceb-4e81-80b1-e875d916f556.png",
+  "source_sha256": "4cf47d7abc2c38200d92cbb7c5dc846d8956c592abf36767fb90a5687db901f8",
+  "generated_at": "2026-10-04T21:23:20.237Z",
+  "elapsed_ms": 235073,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-106a04b275b1fce87f6f-480.webp",
+      "sha256": "1ea9df9cf944e81125a001f5b468307a3b7cedff408d23d6235c3bce9ff9d189",
+      "bytes": 18076
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-106a04b275b1fce87f6f.webp",
+      "sha256": "d076ad0f94953210653da4fed3c3dfa4bc3e9bb2a1c03518d40c1eddcfd020a7",
+      "bytes": 48082
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-apple-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Apple Cottage Cheese Dessert Pot"
+    ],
+    "notes": "Cottage cheese curds, apple and mixed berries with rolled oats and pumpkin seeds; smooth yoghurt folded through; no chocolate.",
+    "alt": "Cottage cheese and yoghurt pot with apple, mixed berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:27:27.105825+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/106a04b275b1fce87f6f4ee8a7b16234a11cbfd1f98a7b4ad6399416e41d276f.json",
+    "source_sha256": "4cf47d7abc2c38200d92cbb7c5dc846d8956c592abf36767fb90a5687db901f8"
+  },
+  "integrated": true,
+  "live": false
+}

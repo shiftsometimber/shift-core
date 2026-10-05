@@ -1,0 +1,88 @@
+{
+  "groupId": "be8ec3603e65f2c307f7df64cb47b31a4c9b97d1879d35bbe4840aab40de6058",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-apple-overnight-oats"
+  ],
+  "titles": [
+    "Shift Apple Overnight Oats Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Overnight Oats Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"diced apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 40g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g diced apple, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "diced apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Stir in 40g 0% Greek yoghurt until evenly mixed.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g diced apple, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3332d46d-cc70-4822-a685-404616b99e69.png",
+  "source_sha256": "4bc5ab0dc50d9be8eb274bdda8df3b161d5ca52466e9197808d918d0cb66c4bf",
+  "generated_at": "2026-10-04T21:31:27.858Z",
+  "elapsed_ms": 203313,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-be8ec3603e65f2c307f7-480.webp",
+      "sha256": "57cd975f4632392688c01d0581ae30551e98db84d657f27117c80c7f6f2957e0",
+      "bytes": 17068
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-be8ec3603e65f2c307f7.webp",
+      "sha256": "3427dc936909b3c2dac2d4950926968a9f5860afef068296a5ee999ae2694c43",
+      "bytes": 47094
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-apple-overnight-oats"
+    ],
+    "titles": [
+      "Shift Apple Overnight Oats Dessert Pot"
+    ],
+    "notes": "Soft overnight oats in milk and yoghurt with apple and mixed berries; pumpkin-seed topping; no dark chocolate.",
+    "alt": "Apple and berry overnight oats with yoghurt and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:36:20.945075+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/be8ec3603e65f2c307f7df64cb47b31a4c9b97d1879d35bbe4840aab40de6058.json",
+    "source_sha256": "4bc5ab0dc50d9be8eb274bdda8df3b161d5ca52466e9197808d918d0cb66c4bf"
+  },
+  "integrated": true,
+  "live": false
+}

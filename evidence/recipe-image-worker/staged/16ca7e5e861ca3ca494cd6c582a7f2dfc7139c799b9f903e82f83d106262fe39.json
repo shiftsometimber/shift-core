@@ -1,0 +1,80 @@
+{
+  "groupId": "16ca7e5e861ca3ca494cd6c582a7f2dfc7139c799b9f903e82f83d106262fe39",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-bbq-tofu"
+  ],
+  "titles": [
+    "Shift BBQ Tofu Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Tofu Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ glaze\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ glaze"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-aae21b33-342f-470d-a774-23f8e082dc49.png",
+  "source_sha256": "e68d563492b444c34f63abdbe0b89153c21627faf08e564cdcf7bdae0ad92479",
+  "generated_at": null,
+  "elapsed_ms": 45427.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-16ca7e5e861ca3ca494c-480.webp",
+      "sha256": "d43b97a70f0a034018a674e676725704a6127d1d3adc0f14098f3d400b171870",
+      "bytes": 26380
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-16ca7e5e861ca3ca494c.webp",
+      "sha256": "d42d8c3cbaf694d7d4c1a179dee531743fd09a9442a5c6c6a4c1c4a30fc6eab0",
+      "bytes": 83036
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-bbq-tofu"
+    ],
+    "titles": [
+      "Shift BBQ Tofu Slow-Cooker Big Pot"
+    ],
+    "notes": "Golden firm tofu chunks, tender baby-potato pieces, carrot chunks and translucent onions in moist BBQ glaze. No extra vegetables or garnish. Exact ingredient identity/preparation and all member titles checked; plausible single serving with central responsive crop.",
+    "alt": "Slow-cooked tofu with baby potatoes, carrots, onion and BBQ glaze.",
+    "reviewed_at": "2026-10-04T21:47:42.797Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-576-592.json",
+    "source_sha256": "e68d563492b444c34f63abdbe0b89153c21627faf08e564cdcf7bdae0ad92479"
+  },
+  "integrated": true,
+  "live": false
+}

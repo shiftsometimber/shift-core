@@ -1,0 +1,83 @@
+{
+  "groupId": "a082b639b873b1627d5e675a44c4b24249365102b196c21116b32855d3bce15a",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-curry-house-tofu"
+  ],
+  "titles": [
+    "Shift Curry House Tofu Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Curry House Tofu Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"medium curry sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; any herbs listed in cold finishing sauce stay ONLY inside that sauce. No fresh herb garnish.",
+  "original_generation_prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Curry House Tofu Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"medium curry sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "medium curry sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the firm tofu in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and firm tofu into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the firm tofu is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8bcde0f1-6f3b-4d2c-aefd-8881ec9ec313.png",
+  "source_sha256": "907f1be2c12b7e82de8bd38fe11a42c1e277b5524a598fc998041f5ca86cf15a",
+  "generated_at": "2026-10-05T00:54:32.887Z",
+  "elapsed_ms": 23138.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a082b639b873b1627d5e-480.webp",
+      "sha256": "3831d2f41250d57eb717146491a93fb0adcd2e05bae2ee41adf96dff25b29f63",
+      "bytes": 24346
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a082b639b873b1627d5e-3fedf762b2aa.webp",
+      "sha256": "3fedf762b2aaf58d74834c3209bfb83fdef30a66f4a3db719975bcfde5449121",
+      "bytes": 81612
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "907f1be2c12b7e82de8bd38fe11a42c1e277b5524a598fc998041f5ca86cf15a",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-curry-house-tofu"
+    ],
+    "titles": [
+      "Shift Curry House Tofu Slow-Cooker Big Pot"
+    ],
+    "notes": [
+      "Golden firm tofu cubes with tender baby potatoes, carrot chunks and softened onion have a glossy reduced curry coating; optional browning and slow-cooker presentation match, without garnish."
+    ],
+    "alt": "Curry House Tofu Slow-Cooker Big Pot with baby potatoes, carrots, onion",
+    "reviewed_at": "2026-10-05T01:05:33.319Z",
+    "reviewer": "worker-c individual source visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-736.json"
+  },
+  "integrated": true,
+  "live": false
+}

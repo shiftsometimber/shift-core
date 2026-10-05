@@ -1,0 +1,16 @@
+{
+  "groupId": "99a7089c934d85d92fbcfe2bf8b77a8cc8752e4e72e95a58c8ce925394d3012e",
+  "source_sha256": "b02c713d269a879c8525234fab73517d8cd402486a47b9464d3507e2e0b512ed",
+  "review": {
+    "decision": "reject",
+    "notes": "Full-resolution inspection: spring onion is on chickpea potato filling instead of solely in side salad, and grated cheddar is piled on top rather than stirred into dressing. Reject both assembly mismatches; whole chickpeas accurate.",
+    "source_sha256": "b02c713d269a879c8525234fab73517d8cd402486a47b9464d3507e2e0b512ed",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-caesar-chickpea"
+    ],
+    "titles": [
+      "Shift Creamy Cheddar Chickpea Loaded Jacket Potato"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

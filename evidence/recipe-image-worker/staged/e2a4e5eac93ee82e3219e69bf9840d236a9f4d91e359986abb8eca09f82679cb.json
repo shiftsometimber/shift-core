@@ -1,0 +1,85 @@
+{
+  "groupId": "e2a4e5eac93ee82e3219e69bf9840d236a9f4d91e359986abb8eca09f82679cb",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-classic-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Classic Fruit Crunch Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Fruit Crunch Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup, cream or decorative garnish. Berries just small25g portion. All food inside frame. NO crackers, biscuits or cake anywhere. Cinnamon only a light1g fine powder mixed into fruit/dairy; no cinnamon sticks anywhere. Finished combined dessert bowl; listed chopped dark chocolate topped, no melted sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b1050281-1cfd-4f12-af10-44109ed419b0.png",
+  "source_sha256": "4fbb360cdd2c0d581d0f4eb728a080ad860b394a80815fa7f536a227f6d18a40",
+  "generated_at": "2026-10-05T00:37:26.342Z",
+  "elapsed_ms": 330708,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e2a4e5eac93ee82e3219-480-cd3df8597a18.webp",
+      "sha256": "cd3df8597a18c7e90fdfa575768473c600673de1fa03e23153e23fbdbf57689f",
+      "bytes": 25192
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e2a4e5eac93ee82e3219-89205908ae38.webp",
+      "sha256": "89205908ae3802c889d492b92e926a170bd933a9ad512ab9dd74aa63cf7433ca",
+      "bytes": 77692
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "4fbb360cdd2c0d581d0f4eb728a080ad860b394a80815fa7f536a227f6d18a40",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-classic-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Classic Fruit Crunch Big Feed Dessert"
+    ],
+    "notes": "Apple and small berries lightly cinnamon seasoned, oats/seeds combined and listed chopped dark chocolate finishing. No dairy.",
+    "alt": "Cinnamon apple dessert with berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T00:39:17.701703+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/e2a4e5eac93ee82e3219e69bf9840d236a9f4d91e359986abb8eca09f82679cb.json"
+  },
+  "integrated": true,
+  "live": false
+}

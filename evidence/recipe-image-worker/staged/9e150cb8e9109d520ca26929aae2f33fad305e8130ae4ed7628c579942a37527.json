@@ -1,0 +1,84 @@
+{
+  "groupId": "9e150cb8e9109d520ca26929aae2f33fad305e8130ae4ed7628c579942a37527",
+  "recipe_ids": [
+    "industrial-v3-sandwich-caesar-ham"
+  ],
+  "titles": [
+    "Shift Caesar Ham Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Caesar Ham Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"light Caesar dressing\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the caesar flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. If spices are mixed into a dressing, all spices remain in the smooth dressing: NO dry spice dust scattered over food, salad or plate. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty; cooked salmon and cooked cured ham retain their natural opaque colour.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "light Caesar dressing"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the caesar flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-02317571-6418-407a-9a4a-a486b1996a66.png",
+  "source_sha256": "b7e72b0439d87744ccfb34d7bc954a9b0828ad0a3dfa609024f724178012b10e",
+  "generated_at": "2026-10-05T00:59:48.089Z",
+  "elapsed_ms": 91436.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9e150cb8e9109d520ca2-480-ae895ff05b45.webp",
+      "sha256": "ae895ff05b45ca1d6ac5062d0287b186125ffe4ee94485b569f2b4710d86c695",
+      "bytes": 26682
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9e150cb8e9109d520ca2-24430227109d.webp",
+      "sha256": "24430227109daea8f9b433f5833c4640b117e9fafcd8ab6315b87a6180e7279f",
+      "bytes": 80084
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b7e72b0439d87744ccfb34d7bc954a9b0828ad0a3dfa609024f724178012b10e",
+    "recipe_ids": [
+      "industrial-v3-sandwich-caesar-ham"
+    ],
+    "titles": [
+      "Shift Caesar Ham Proper Sandwich"
+    ],
+    "notes": "Plain wholemeal bread encloses cooked lean ham with naturally pink opaque interiors and lightly browned edges, lettuce, tomato and light Caesar dressing. No cheese, seeds or croutons; exact ham sandwich title matches.",
+    "alt": "Caesar ham sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-05T01:06:03.090990+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1592-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

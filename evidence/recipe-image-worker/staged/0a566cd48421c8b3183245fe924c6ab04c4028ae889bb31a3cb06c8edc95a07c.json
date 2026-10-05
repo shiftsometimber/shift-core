@@ -1,0 +1,85 @@
+{
+  "groupId": "0a566cd48421c8b3183245fe924c6ab04c4028ae889bb31a3cb06c8edc95a07c",
+  "recipe_ids": [
+    "industrial-v3-pasta-cajun-beef"
+  ],
+  "titles": [
+    "Shift Cajun Beef Proper Pasta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Beef Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"Cajun tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the Cajun tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Add the 5% beef mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured Cajun tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; dried oregano cooked into protein only if listed, never fresh garnish.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the Cajun tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Add the 5% beef mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured Cajun tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9ea2e385-1551-4491-832b-af0bfeadd245.png",
+  "source_sha256": "ed771a0fe3d8154830c49177f4e9cd96b47e14d7a842842db5a6c84f4bd118f1",
+  "generated_at": null,
+  "elapsed_ms": 351628.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0a566cd48421c8b31832-480.webp",
+      "sha256": "0b972ab2558d1b105bc19cbb0753d1ccfd6e47de6677f356f96de1209da907e6",
+      "bytes": 27410
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0a566cd48421c8b31832-2745b3490b77.webp",
+      "sha256": "2745b3490b774189f4497c940e0eb69d1a93fcc4ebea6828db5cdccf056e08f9",
+      "bytes": 93026
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ed771a0fe3d8154830c49177f4e9cd96b47e14d7a842842db5a6c84f4bd118f1",
+    "recipe_ids": [
+      "industrial-v3-pasta-cajun-beef"
+    ],
+    "titles": [
+      "Shift Cajun Beef Proper Pasta"
+    ],
+    "notes": "Tan wholewheat penne tossed with browned beef mince, cooked diced courgette and softened cherry tomato pieces in a light red coating; no cheese or garnish. One credible serving with central food retained by responsive crop.",
+    "alt": "Wholewheat pasta with beef mince, courgette and tomatoes in Cajun sauce.",
+    "reviewed_at": "2026-10-04T23:17:44.371Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-620.json"
+  },
+  "integrated": true,
+  "live": false
+}

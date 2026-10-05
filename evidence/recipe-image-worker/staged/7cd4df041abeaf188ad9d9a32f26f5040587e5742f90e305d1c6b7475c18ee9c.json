@@ -1,0 +1,79 @@
+{
+  "groupId": "7cd4df041abeaf188ad9d9a32f26f5040587e5742f90e305d1c6b7475c18ee9c",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-hoisin-beef"
+  ],
+  "titles": [
+    "Shift Hoisin Beef Slow-Cooker Big Pot"
+  ],
+  "prompt": "Photorealistic editorial food photography. Present the actual finished recipe appetisingly through natural window light and believable cooked texture in a plain dish. No invented garnish or additional ingredients. Wholegrain rice if listed must have naturally tan bran surfaces and visible bran seams, never polished white rice. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hoisin Beef Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"hoisin-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the 5% beef mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and 5% beef mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the 5% beef mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "hoisin-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the 5% beef mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and 5% beef mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the 5% beef mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c88c03bc-4b3b-4943-91d0-f6fb56ee6949.png",
+  "source_sha256": "1d4341dcd401ccf30f8e768bb31d2c15e488029c0176787e34f72d96159db786",
+  "generated_at": "2026-10-05T00:17:55.192Z",
+  "elapsed_ms": 135792,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7cd4df041abeaf188ad9-480.webp",
+      "sha256": "6024d6574f125cbb0281e780ea1b7330a36dd4d81f68730bdc18f8f24e791935",
+      "bytes": 29106
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7cd4df041abeaf188ad9.webp",
+      "sha256": "4ba8ec86508222f511598e3246a0e1e998f09d4e208e21b5519e823840d7f45f",
+      "bytes": 87484
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1d4341dcd401ccf30f8e768bb31d2c15e488029c0176787e34f72d96159db786",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-hoisin-beef"
+    ],
+    "titles": [
+      "Shift Hoisin Beef Slow-Cooker Big Pot"
+    ],
+    "notes": "Loose cooked beef mince crumbles with tender baby potatoes, carrots and onion in glossy hoisin cooking juices.",
+    "alt": "Shift Hoisin Beef Slow-Cooker Big Pot: loose cooked beef mince crumbles with tender baby potatoes, carrots and onion in glossy hoisin cooking juices.",
+    "reviewed_at": "2026-10-05T00:33:13.801819+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

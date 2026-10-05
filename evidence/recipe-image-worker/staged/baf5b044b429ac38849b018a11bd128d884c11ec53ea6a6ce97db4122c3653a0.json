@@ -1,0 +1,78 @@
+{
+  "groupId": "baf5b044b429ac38849b018a11bd128d884c11ec53ea6a6ce97db4122c3653a0",
+  "recipe_ids": [
+    "industrial-v3-traybake-jalfrezi-chicken"
+  ],
+  "titles": [
+    "Shift Jalfrezi Chicken Traybake"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe, appetising through natural window light and truthful texture. No invented garnish or additional ingredients. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Jalfrezi Chicken Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"pepper and tomato masala\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.\",\"Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "pepper and tomato masala"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.",
+    "Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-66bc2c8a-470a-4205-9f89-70109931c320.png",
+  "source_sha256": "1b2219b7d36605f0acf229966b81b71a8671e4c0de14d4705732fe8eed8818d2",
+  "generated_at": "2026-10-05T00:37:54.010Z",
+  "elapsed_ms": 47344,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-baf5b044b429ac38849b-480.webp",
+      "sha256": "b90aff47792b08f0aad6a3f3a8ed14d4ca77fb19467eaeee0a62063795910a77",
+      "bytes": 36678
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-baf5b044b429ac38849b.webp",
+      "sha256": "e80c5bbd64e1877893e5cb65b6e30909dd2fd7488ab452242bbbbe28fbb1d449",
+      "bytes": 114142
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Roasted jalfrezi chicken with baby potatoes, broccoli and red pepper",
+    "notes": "Full-resolution individual review against exact method and all titles: cooked browned chicken, golden baby potatoes, roasted broccoli and red pepper; light masala coating without pooled added sauce or garnish.",
+    "recipe_ids": [
+      "industrial-v3-traybake-jalfrezi-chicken"
+    ],
+    "titles": [
+      "Shift Jalfrezi Chicken Traybake"
+    ],
+    "source_sha256": "1b2219b7d36605f0acf229966b81b71a8671e4c0de14d4705732fe8eed8818d2",
+    "reviewed_at": "2026-10-05T00:54:17.962346+00:00"
+  }
+}

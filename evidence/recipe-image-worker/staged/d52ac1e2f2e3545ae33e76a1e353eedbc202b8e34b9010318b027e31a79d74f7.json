@@ -1,0 +1,90 @@
+{
+  "groupId": "d52ac1e2f2e3545ae33e76a1e353eedbc202b8e34b9010318b027e31a79d74f7",
+  "recipe_ids": [
+    "industrial-v3-sandwich-cajun-egg"
+  ],
+  "titles": [
+    "Shift Cajun Egg Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Egg Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"Cajun yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the boiled eggs are meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.\",\"Build the cajun flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the boiled eggs, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. If spices are mixed into a dressing, all spices remain in the smooth dressing: NO dry spice dust scattered over food, salad or plate. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty; cooked salmon and cooked cured ham retain their natural opaque colour.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the boiled eggs are meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.",
+    "Build the cajun flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the boiled eggs, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3b5cd2d8-6ccc-4bc7-a53d-5924b7766fc0.png",
+  "source_sha256": "ac3f480e92b82b0de9e06a285ea80d9110f39b743b07631314fcd661236addc2",
+  "generated_at": "2026-10-05T01:12:38.768Z",
+  "elapsed_ms": 279383.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d52ac1e2f2e3545ae33e-480-b2842fafc712.webp",
+      "sha256": "b2842fafc71242311acfa1338bdea276dbc16e4f6a106ab9d7a90b3eca7692cf",
+      "bytes": 24600
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d52ac1e2f2e3545ae33e-673fbf81797a.webp",
+      "sha256": "673fbf81797a88e4d0489964f14227facab8a26672542434e88177d7a9c1601c",
+      "bytes": 75234
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ac3f480e92b82b0de9e06a285ea80d9110f39b743b07631314fcd661236addc2",
+    "recipe_ids": [
+      "industrial-v3-sandwich-cajun-egg"
+    ],
+    "titles": [
+      "Shift Cajun Egg Proper Sandwich"
+    ],
+    "notes": "Plain wholemeal sandwich encloses hard-boiled egg slices, fresh lettuce, tomato and Cajun yoghurt dressing. Firm whites and yolks, no cheese, seeds or garnish; exact sandwich title matches.",
+    "alt": "Cajun egg sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-05T01:15:54.266089+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1614-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,86 @@
+{
+  "groupId": "a5ef6a2b22cdf12455d09d8c1927a227c7a623ae7ac2547b6156156ff0bc8c5f",
+  "recipe_ids": [
+    "industrial-v3-wrap-greek-chickpea"
+  ],
+  "titles": [
+    "Shift Greek Chickpea Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Greek Chickpea Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"lemon herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Never add a lemon wedge just because the sauce is lemon herb yoghurt.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "lemon herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b65b69d4-2327-4152-b877-31696ffd62ee.png",
+  "source_sha256": "c5b24a4e8f396f8997806b9476269c8c6090b7a200b261a898cb3f8333274b84",
+  "generated_at": "2026-10-04T21:36:15.456Z",
+  "elapsed_ms": 23216.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a5ef6a2b22cdf12455d0-480.webp",
+      "sha256": "fca67b22a7064109750c9e39161f14367aee527cb26ee79762292fbbbc9ac049",
+      "bytes": 22170
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a5ef6a2b22cdf12455d0.webp",
+      "sha256": "c85871b21766684dab2e1097f31f5b23a414f3f76d105e5b3f779fb1e3ed987a",
+      "bytes": 62924
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-wrap-greek-chickpea"
+    ],
+    "titles": [
+      "Shift Greek Chickpea Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with cooked chickpeas, fresh lettuce/tomato and lemon herb yoghurt; no cheese/lemon wedge.",
+    "alt": "Greek Chickpea Loaded Wrap with lettuce, tomato",
+    "reviewed_at": "2026-10-04T21:43:20.658001+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1808.json",
+    "source_sha256": "c5b24a4e8f396f8997806b9476269c8c6090b7a200b261a898cb3f8333274b84"
+  },
+  "integrated": true,
+  "live": false
+}

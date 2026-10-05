@@ -1,0 +1,78 @@
+{
+  "groupId": "b0456c95488f1a5576d0b2c0bcc95455463494e32ef99d92bf6aa891e71adf9d",
+  "recipe_ids": [
+    "industrial-v3-traybake-sweet-chilli-pork"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Pork Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Pork Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and lean pork loin. Get the pan properly hot first. Cook the lean pork loin until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the lean pork loin is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and lean pork loin. Get the pan properly hot first. Cook the lean pork loin until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the lean pork loin is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-814b4a22-3099-41ee-a444-8d9d4c23448a.png",
+  "source_sha256": "4e9d374ed2b65e37c7b7d445c801e739fc664ea449bfdead16d047d6688e304b",
+  "generated_at": "2026-10-05T01:12:53.488Z",
+  "elapsed_ms": 178074,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b0456c95488f1a5576d0-480.webp",
+      "sha256": "1ea052da3439aa435972a80ca550394598d046b0b88ae22fb605506fdb7e868a",
+      "bytes": 34808
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b0456c95488f1a5576d0.webp",
+      "sha256": "4645397d1413875ac1e26db777528a05d1199429cbd5c91a1cbf14e859faf8d3",
+      "bytes": 113726
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Sweet chilli pork traybake with baby potatoes, broccoli and red pepper",
+    "notes": "Individual full-resolution inspection against all titles, ingredients and method: browned lean pork loin pieces, roasted baby potatoes, broccoli and red pepper with roasted edges and thin sweet chilli coating.",
+    "source_sha256": "4e9d374ed2b65e37c7b7d445c801e739fc664ea449bfdead16d047d6688e304b",
+    "recipe_ids": [
+      "industrial-v3-traybake-sweet-chilli-pork"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Pork Traybake"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

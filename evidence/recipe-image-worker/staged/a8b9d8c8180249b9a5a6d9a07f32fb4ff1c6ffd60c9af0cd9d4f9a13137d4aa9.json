@@ -1,0 +1,79 @@
+{
+  "groupId": "a8b9d8c8180249b9a5a6d9a07f32fb4ff1c6ffd60c9af0cd9d4f9a13137d4aa9",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-balti-beef"
+  ],
+  "titles": [
+    "Shift Balti Beef Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Beef Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the 5% beef mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and 5% beef mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the 5% beef mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Appetising faithful editorial food photography, warm side light, generous framing. Follow exact method and protein form. No unlisted garnish or food. For listed brown rice, depict ordinary cooked WHOLEGRAIN BROWN RICE with distinctly medium-tan to light-brown intact bran on every grain; natural earthy brown rice, never polished white rice, risotto or pale glossy short grains. For basmati, retain its listed long-grain appearance. Show all ingredients in their specified placement and cooked/raw state.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the 5% beef mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and 5% beef mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the 5% beef mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-754098f9-32ae-4756-9516-3ba658c13745.png",
+  "source_sha256": "02cc532520fb8e5b57a77d26281742c446be25f0ab7c069f48830c0ffa38b9a1",
+  "generated_at": "2026-10-04T23:22:44.630Z",
+  "elapsed_ms": 469155,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a8b9d8c8180249b9a5a6-480.webp",
+      "sha256": "2c7c0b2bb37870eeace808a5e6dd20309dd30941a4844c66638f6e0bc7761864",
+      "bytes": 31748
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a8b9d8c8180249b9a5a6.webp",
+      "sha256": "033a7e694ce49fa9d07e3c850f8b240d09da748d55447325829a578a4476bc19",
+      "bytes": 104620
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "02cc532520fb8e5b57a77d26281742c446be25f0ab7c069f48830c0ffa38b9a1",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-balti-beef"
+    ],
+    "titles": [
+      "Shift Balti Beef Slow-Cooker Big Pot"
+    ],
+    "notes": "Fine cooked mince, tender baby potatoes, carrots and translucent onions in a modest balti coating; no extra sides.",
+    "alt": "Balti beef slow-cooked pot with potatoes, carrots and onions",
+    "reviewed_at": "2026-10-04T23:32:39.072222+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

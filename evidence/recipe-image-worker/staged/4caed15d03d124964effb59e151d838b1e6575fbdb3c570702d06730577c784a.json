@@ -1,0 +1,86 @@
+{
+  "groupId": "4caed15d03d124964effb59e151d838b1e6575fbdb3c570702d06730577c784a",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-bean-loaded-egg"
+  ],
+  "titles": [
+    "Shift Bean Loaded Egg Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Bean Loaded Egg Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"baked beans\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Beat the measured eggs in a clean bowl and set them aside while cooking the vegetables.\",\"Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the beaten eggs to the cooked vegetables and stir until fully set.\",\"Stir in the listed flavour ingredients (40g baked beans), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Show the listed cooked ingredients mixed together as a pan-fried breakfast hash, with 1 cm potato cubes. NO garnish or fried egg placed on top.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Beat the measured eggs in a clean bowl and set them aside while cooking the vegetables.",
+    "Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the beaten eggs to the cooked vegetables and stir until fully set.",
+    "Stir in the listed flavour ingredients (40g baked beans), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6dc64a27-e4d4-4122-8b3b-0bcba2254735.png",
+  "source_sha256": "544a3d4f7ef9350bd8e74ae8b98246d7a726dd23e90f89ba349ff73318acaff0",
+  "generated_at": "2026-10-04T21:16:50.086Z",
+  "elapsed_ms": 366795.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4caed15d03d124964eff-480.webp",
+      "sha256": "3b784c7efbaf0978e7d96847181b0906c5be9d6d1500871f2f66a22661fb1206",
+      "bytes": 29518
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4caed15d03d124964eff.webp",
+      "sha256": "9b5be4245425180aec0682eee0dd3a1184cab7608ae335ffec0485d769cc6633",
+      "bytes": 90750
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-bean-loaded-egg"
+    ],
+    "titles": [
+      "Shift Bean Loaded Egg Breakfast Hash"
+    ],
+    "notes": "Golden potato cubes mixed with set scrambled egg, onion, red/yellow peppers and baked beans; no fried egg topping or garnish.",
+    "alt": "Egg breakfast hash with potatoes, peppers, onion and baked beans.",
+    "reviewed_at": "2026-10-04T21:18:45.327691+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/77-review.json",
+    "source_sha256": "544a3d4f7ef9350bd8e74ae8b98246d7a726dd23e90f89ba349ff73318acaff0"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,89 @@
+{
+  "groupId": "1d10db0361c6f82582f84625e938eedc1ef0cb189b799d316403154ea7f3cf3d",
+  "recipe_ids": [
+    "industrial-v3-bagel-tikka-chicken"
+  ],
+  "titles": [
+    "Shift Tikka Chicken Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Chicken Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"tikka yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured tikka yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel. No sesame/poppy seeds, cheese, cream/mayo or unlisted food. Sweet chilli recipes: sauce translucent glossy red, no opaque creamy coating. Tikka recipes: only listed tikka yoghurt dressing, creamy orange-tinted; no additional herbs, coriander, rice sides, curry garnish or tikka grilling char invented. Poultry plain already-cooked breast, no breadcrumb/batter coating. Chickpeas coarse roughly mashed only for toastie/bagel, whole elsewhere. Keep reserved raw spinach/tomato or rocket/tomato salads alongside. Finely sliced spring onion mixed into salad alongside jacket potatoes, never scattered on potato. Rice cooked, peppers diced raw, corn ready-to-eat; measured dressing folded through rice.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the measured tikka yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-dfa40140-5786-4224-98fe-02d9c73a4008.png",
+  "source_sha256": "b37ab969dbcee8831da4f54a3c61bcc769dbb6e6c7f4dd3a87f3bc9948290e94",
+  "generated_at": "2026-10-05T00:38:56.616Z",
+  "elapsed_ms": 174217.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1d10db0361c6f82582f8-480-7198d173959a.webp",
+      "sha256": "7198d173959a3aa9a40c705c7b5a3b039896427af199c97ab0cd3bfd0faa7746",
+      "bytes": 24560
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1d10db0361c6f82582f8-efdd22d51bb0.webp",
+      "sha256": "efdd22d51bb0681fdd08f0a5f4d79a405e01eafcf8dd8e3bda7668ffb09a8c2e",
+      "bytes": 74416
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b37ab969dbcee8831da4f54a3c61bcc769dbb6e6c7f4dd3a87f3bc9948290e94",
+    "recipe_ids": [
+      "industrial-v3-bagel-tikka-chicken"
+    ],
+    "titles": [
+      "Shift Tikka Chicken Loaded Bagel"
+    ],
+    "notes": "Unseeded wholemeal bagel with shredded ready-to-eat chicken combined with listed tikka yoghurt, rocket/tomato; reserved rocket/tomato side salad alongside. No additional cream, cheese, garnish or curry side. Exact title/method checked.",
+    "alt": "Tikka yoghurt chicken bagel with rocket and tomato salad",
+    "reviewed_at": "2026-10-05T00:43:09.352589+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2086.json"
+  },
+  "integrated": true,
+  "live": false
+}

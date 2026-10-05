@@ -1,0 +1,95 @@
+{
+  "groupId": "17ac463a9aab4d5e88ec26f3947fe968f12b1950e34896ec7e144fa209117d44",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-garlic-herb-turkey"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Turkey Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Turkey Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"35g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Keep the already-cooked turkey refrigerated while preparing the vegetables. Add it near the end and heat until steaming hot throughout.\",\"Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the cooked turkey breast and heat gently until steaming hot throughout.\",\"Stir in the listed flavour ingredients (1g garlic powder, 1g dried parsley), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Take the pan off the heat before stirring through the 35g 0% Greek yoghurt.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "35g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Keep the already-cooked turkey refrigerated while preparing the vegetables. Add it near the end and heat until steaming hot throughout.",
+    "Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the cooked turkey breast and heat gently until steaming hot throughout.",
+    "Stir in the listed flavour ingredients (1g garlic powder, 1g dried parsley), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Take the pan off the heat before stirring through the 35g 0% Greek yoghurt.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f5da8109-441c-4742-a3e2-b8aa739bdb35.png",
+  "source_sha256": "b95005aa22773cd9d799b9332b9e0d2c3e370618342ce32c87e09c1b4d97a73a",
+  "generated_at": "2026-10-04T22:57:39.651Z",
+  "elapsed_ms": 187828,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-17ac463a9aab4d5e88ec-480.webp",
+      "sha256": "c6453f21e5071a4d4c321cd7c9db4c3f60e782a320a46ee1f1827ff24ea3cff4",
+      "bytes": 23396
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-17ac463a9aab4d5e88ec-retry2-8eb76fdaf34e.webp",
+      "sha256": "8eb76fdaf34e0121927640a9c719a543424475fecdb2ae326b2e37d55ac35eb2",
+      "bytes": 70734
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b95005aa22773cd9d799b9332b9e0d2c3e370618342ce32c87e09c1b4d97a73a",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Breakfast Hash"
+    ],
+    "notes": "Warmed cooked turkey breast, golden potato cubes, softened onion and mixed peppers with listed dried parsley and Greek yoghurt stirred throughout. No fresh garnish.",
+    "alt": "Garlic and herb turkey breakfast hash with potatoes, onion and peppers.",
+    "reviewed_at": "2026-10-04T22:58:06.496387+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/181.json"
+  },
+  "integrated": true,
+  "live": false
+}

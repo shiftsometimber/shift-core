@@ -1,0 +1,99 @@
+{
+  "groupId": "605e995d6953b32b4894a14def2ca2ebf01885ffdb6492cc811e39418b7cb78e",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-mexican-salmon"
+  ],
+  "titles": [
+    "Shift Mexican Salmon Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mexican Salmon Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured chilli powder and paprika. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot. Keep the salmon in large flakes rather than mashing it.\",\"Pile the crisp oven chips onto a plate and spoon over large flakes of the cooked salmon, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only this exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, sesame/poppy seeds, cheese, cream, fresh green herb leaves, coriander, parsley, lemon wedges, side dishes or dipping sauce. All buns and flatbreads entirely plain unseeded wholemeal. Mexican finish is ONLY cold tomato ketchup mixed with cider vinegar drizzled on TOP after cooking or inside burger, no sauce ramekin. Spice is paprika/chilli only. Protein form must match the method: pork burger thin opaque 1cm cutlets, pork other dishes opaque1cm strips; salmon burger intact opaque cooked FILLET, other salmon dishes large opaque cooked FLAKES, not raw slices/chunks; tofu burger golden1cm SLAB, other tofu dishes2cm CUBES; turkey burger ONE1.5cm mince patty, turkey kebab exactly THREE short cooked koftas without skewers, turkey fries/pizza loose mince; chicken fries/pizza opaque cooked1.5cm strips. Lettuce shredded and tomato sliced only where listed. Pizza is visibly CHEESE-FREE passata base with exact cooked protein and peppers, ketchup finish. Fries golden plain ovenchips, thin softened red onion and mixed pepper strips. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured chilli powder and paprika. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot. Keep the salmon in large flakes rather than mashing it.",
+    "Pile the crisp oven chips onto a plate and spoon over large flakes of the cooked salmon, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-28043d52-10d6-42f9-80e2-f6f1f1d4f776.png",
+  "source_sha256": "7a2b79834bb609612a860ca4d43ca7e63c6d81b31a6a46adf97fd0b0ee44134c",
+  "generated_at": "2026-10-05T00:21:02.425Z",
+  "elapsed_ms": 230956.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-605e995d6953b32b4894-retry4-480-2bbe5eb48425.webp",
+      "sha256": "2bbe5eb48425ecdc2f45be97cc6556eb308e025f13588fdb1ccf691c294b8603",
+      "bytes": 32236
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-605e995d6953b32b4894-retry4-fb66160b9d23.webp",
+      "sha256": "fb66160b9d23e8793891745425bd493d75b613303b3894b38d23fbf8b3b802a5",
+      "bytes": 109690
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "7a2b79834bb609612a860ca4d43ca7e63c6d81b31a6a46adf97fd0b0ee44134c",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-mexican-salmon"
+    ],
+    "titles": [
+      "Shift Mexican Salmon Loaded Fries"
+    ],
+    "notes": "Pass: large irregular opaque cooked salmon flakes with separated layers and chilli-paprika browning, plain golden oven chips, thin red onion and mixed pepper strips, red ketchup-cider drizzle on top. No raw translucent fish, cheese, white sauce, breading, green garnish or extra food. Correct loaded fries assembly with centred crop.",
+    "alt": "Mexican salmon loaded oven chips with red onion, mixed peppers and ketchup-cider sauce",
+    "reviewed_at": "2026-10-05T00:21:40.438632+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1119.json"
+  },
+  "integrated": true,
+  "live": false
+}

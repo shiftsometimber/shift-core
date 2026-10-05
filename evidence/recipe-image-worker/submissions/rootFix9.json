@@ -1,0 +1,447 @@
+[
+  {
+    "index": 1346,
+    "groupId": "f84d41194b61dbcdf1171d85683e6112120de2e0fc67c448943b2958f81b50ac",
+    "title": "Shift Smoky Chilli Turkey Sunday-Style Roast",
+    "ingredients": [
+      {
+        "amount": "170g",
+        "item": "100% turkey breast mince, raw"
+      },
+      {
+        "amount": "250g",
+        "item": "potatoes, peeled, raw"
+      },
+      {
+        "amount": "90g",
+        "item": "carrots"
+      },
+      {
+        "amount": "90g",
+        "item": "broccoli"
+      },
+      {
+        "amount": "40g",
+        "item": "smoked chilli tomato sauce"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+      "Heat the oven to 200°C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8–10 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35–40 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+      "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20–25 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+      "Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18–22 minutes, turning halfway, until steaming hot through the centre. Check 75°C for 30 seconds with a clean thermometer.",
+      "Cut the broccoli into small florets and boil for 4–6 minutes until tender with a little bite. Drain well.",
+      "Warm the smoked chilli tomato sauce in a small saucepan with 2 tablespoons of water for 1–2 minutes, stirring until hot.",
+      "Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot smoked chilli tomato sauce over the cooked protein."
+    ],
+    "attempt": 3,
+    "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Turkey Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Heat the oven to 200°C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8–10 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35–40 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20–25 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18–22 minutes, turning halfway, until steaming hot through the centre. Check 75°C for 30 seconds with a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4–6 minutes until tender with a little bite. Drain well.\",\"Warm the smoked chilli tomato sauce in a small saucepan with 2 tablespoons of water for 1–2 minutes, stirring until hot.\",\"Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot smoked chilli tomato sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+    "prompt": "Appetising realistic editorial food photograph, landscape4:3, warm soft natural light, cream ceramic plate or bowl with room around entire meal. Exactly TWO compact flattened patties made ONLY from unseasoned pure turkey breast mince, separate portions with a gap. Their exposed mince is plain pale golden with natural browning, NO pepper grains, NO green flecks, NO herbs. Smoked chilli tomato sauce spooned over each patty. Peeled golden roast potato chunks, roasted carrot batons and plain boiled broccoli alongside. Use only the exact recipe foods. No decorative ingredients, text, people or extra dishes."
+  },
+  {
+    "index": 1738,
+    "groupId": "70dc14cb3b8a558a67a1e89d3a886adc8a091819e4d7f22a59c71cb1851e26d9",
+    "title": "Shift Club Turkey Proper Sandwich",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked turkey breast"
+      },
+      {
+        "amount": "80g",
+        "item": "wholemeal bread",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "lettuce"
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "30g",
+        "item": "mustard mayo"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+      "Build the club flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+      "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can — nobody asked for a soggy lunch.",
+      "Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+    ],
+    "prompt": "Appetising realistic editorial food photograph, landscape4:3, warm soft natural light, cream ceramic plate or bowl with room around entire meal. Closed two-slice wholemeal sandwich with warmed plain cooked turkey breast, lettuce, sliced tomato and mustard mayonnaise. Turkey has gentle natural pan browning but is NOT pepper-coated: no dark spice grains, no herbs, no unlisted seasoning. Use only the exact recipe foods. No decorative ingredients, text, people or extra dishes.",
+    "attempt": 2,
+    "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Club Turkey Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"mustard mayo\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the club flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can — nobody asked for a soggy lunch.\",\"Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence."
+  },
+  {
+    "index": 1741,
+    "groupId": "8808abacc45e3b5b11e49334890f7a4dacd166ca840d36f0a81dd3bade804e88",
+    "title": "Shift Creamy Cheddar Chicken Loaded Jacket Potato",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked chicken breast"
+      },
+      {
+        "amount": "250g",
+        "item": "baking potato"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed salad"
+      },
+      {
+        "amount": "90g",
+        "item": "spring onion"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200°C (180°C fan), put the potato on a tray and bake for about 60–75 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+      "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+      "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+      "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+    ],
+    "prompt": "Appetising realistic editorial food photograph, landscape4:3, warm soft natural light, cream ceramic plate or bowl with room around entire meal. One fluffy split cooked jacket potato holding plain cooked chicken breast slices/shreds and smooth creamy dressing made from18g zero-fat Greek yoghurt,9g light mayonnaise,3g finely grated cheddar and5ml olive oil. Cheese fully STIRRED INTO dressing, no grated cheese topping. ALL finely sliced spring onion mixed with mixed salad in a SEPARATE SIDE SALAD. Absolutely NO spring onion, green garnish or cheese garnish on the potato/filling. Use only the exact recipe foods. No decorative ingredients, text, people or extra dishes.",
+    "attempt": 2,
+    "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Chicken Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200°C (180°C fan), put the potato on a tray and bake for about 60–75 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence."
+  },
+  {
+    "index": 1742,
+    "groupId": "a6b08d1d51e82a7902463a818488941df069f47a6ee98379557b2e93ea98155b",
+    "title": "Shift Creamy Cheddar Chicken Meal-Prep Bowl",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked chicken breast"
+      },
+      {
+        "amount": "75g",
+        "item": "brown rice, dry"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed peppers"
+      },
+      {
+        "amount": "90g",
+        "item": "sweetcorn"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+      "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+      "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+      "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.",
+      "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+    ],
+    "prompt": "Appetising realistic editorial food photograph, landscape4:3, warm soft natural light, cream ceramic plate or bowl with room around entire meal. A thoroughly mixed creamy brown rice salad: naturally tan UNPOLISHED BROWN RICE with clearly visible continuous bran coats and longitudinal brown seams, not polished ivory white grains. Plain cooked chicken breast sliced/shredded, diced mixed peppers and canned sweetcorn folded through a modest dressing made from 18g zero-fat Greek yoghurt,9g light mayonnaise,3g finely grated cheddar and5ml olive oil. NO separate cheese garnish, NO decorated ingredient rows, NO extra food. Use only the exact recipe foods. No decorative ingredients, text, people or extra dishes.",
+    "attempt": 2,
+    "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Chicken Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence."
+  },
+  {
+    "index": 1745,
+    "groupId": "99a7089c934d85d92fbcfe2bf8b77a8cc8752e4e72e95a58c8ce925394d3012e",
+    "title": "Shift Creamy Cheddar Chickpea Loaded Jacket Potato",
+    "ingredients": [
+      {
+        "amount": "150g",
+        "item": "chickpeas, drained"
+      },
+      {
+        "amount": "250g",
+        "item": "baking potato"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed salad"
+      },
+      {
+        "amount": "90g",
+        "item": "spring onion"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200°C (180°C fan), put the potato on a tray and bake for about 60–75 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+      "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+      "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+      "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+    ],
+    "prompt": "Appetising realistic editorial food photograph, landscape4:3, warm soft natural light, cream ceramic plate or bowl with room around entire meal. One fluffy split cooked jacket potato holding whole drained chickpeas and smooth creamy dressing made from18g zero-fat Greek yoghurt,9g light mayonnaise,3g finely grated cheddar and5ml olive oil. Cheese fully STIRRED INTO dressing, no grated cheese topping. ALL finely sliced spring onion mixed with mixed salad in a SEPARATE SIDE SALAD. Absolutely NO spring onion, green garnish or cheese garnish on the potato/filling. Use only the exact recipe foods. No decorative ingredients, text, people or extra dishes.",
+    "attempt": 2,
+    "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Chickpea Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200°C (180°C fan), put the potato on a tray and bake for about 60–75 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence."
+  },
+  {
+    "index": 1746,
+    "groupId": "c01900e4e7d26a71d593b03c0937017ca7404dcdd80917540f0ebed3f369df53",
+    "title": "Shift Creamy Cheddar Chickpea Meal-Prep Bowl",
+    "ingredients": [
+      {
+        "amount": "150g",
+        "item": "chickpeas, drained"
+      },
+      {
+        "amount": "75g",
+        "item": "brown rice, dry"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed peppers"
+      },
+      {
+        "amount": "90g",
+        "item": "sweetcorn"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+      "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+      "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+      "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.",
+      "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+    ],
+    "prompt": "Appetising realistic editorial food photograph, landscape4:3, warm soft natural light, cream ceramic plate or bowl with room around entire meal. A thoroughly mixed creamy brown rice salad: naturally tan UNPOLISHED BROWN RICE with clearly visible continuous bran coats and longitudinal brown seams, not polished ivory white grains. Drained ready-cooked whole chickpeas, diced mixed peppers and canned sweetcorn folded through a modest dressing made from 18g zero-fat Greek yoghurt,9g light mayonnaise,3g finely grated cheddar and5ml olive oil. NO separate cheese garnish, NO decorated ingredient rows, NO extra food. Use only the exact recipe foods. No decorative ingredients, text, people or extra dishes.",
+    "attempt": 2,
+    "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Chickpea Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence."
+  },
+  {
+    "index": 1749,
+    "groupId": "45f95bdf669102d16eaa66113cab76a239eb5dbf257c435b85ad98738f9cc96c",
+    "title": "Shift Creamy Cheddar Egg Loaded Jacket Potato",
+    "ingredients": [
+      {
+        "amount": "2 / 100g",
+        "item": "boiled eggs",
+        "allergens": [
+          "egg"
+        ]
+      },
+      {
+        "amount": "250g",
+        "item": "baking potato"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed salad"
+      },
+      {
+        "amount": "90g",
+        "item": "spring onion"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200°C (180°C fan), put the potato on a tray and bake for about 60–75 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+      "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+      "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+      "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+    ],
+    "prompt": "Appetising realistic editorial food photograph, landscape4:3, warm soft natural light, cream ceramic plate or bowl with room around entire meal. One fluffy split cooked jacket potato holding thin boiled egg slices and smooth creamy dressing made from18g zero-fat Greek yoghurt,9g light mayonnaise,3g finely grated cheddar and5ml olive oil. Cheese fully STIRRED INTO dressing, no grated cheese topping. ALL finely sliced spring onion mixed with mixed salad in a SEPARATE SIDE SALAD. Absolutely NO spring onion, green garnish or cheese garnish on the potato/filling. Use only the exact recipe foods. No decorative ingredients, text, people or extra dishes.",
+    "attempt": 2,
+    "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Egg Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200°C (180°C fan), put the potato on a tray and bake for about 60–75 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence."
+  },
+  {
+    "index": 1750,
+    "groupId": "e78e2a01d95f1524d2e1985fa198e8e134cc79438c7cfcb5096a06e8bbc3bcc1",
+    "title": "Shift Creamy Cheddar Egg Meal-Prep Bowl",
+    "ingredients": [
+      {
+        "amount": "2 / 100g",
+        "item": "boiled eggs",
+        "allergens": [
+          "egg"
+        ]
+      },
+      {
+        "amount": "75g",
+        "item": "brown rice, dry"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed peppers"
+      },
+      {
+        "amount": "90g",
+        "item": "sweetcorn"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+      "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+      "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+      "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.",
+      "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+    ],
+    "prompt": "Appetising realistic editorial food photograph, landscape4:3, warm soft natural light, cream ceramic plate or bowl with room around entire meal. A thoroughly mixed creamy brown rice salad: naturally tan UNPOLISHED BROWN RICE with clearly visible continuous bran coats and longitudinal brown seams, not polished ivory white grains. Thin boiled egg slices, diced mixed peppers and canned sweetcorn folded through a modest dressing made from 18g zero-fat Greek yoghurt,9g light mayonnaise,3g finely grated cheddar and5ml olive oil. NO separate cheese garnish, NO decorated ingredient rows, NO extra food. Use only the exact recipe foods. No decorative ingredients, text, people or extra dishes.",
+    "attempt": 2,
+    "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Egg Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence."
+  },
+  {
+    "index": 1753,
+    "groupId": "284dae24a0d4dd01462e2594cffc6255a5c68f48ed4b6252290930983e7d0f18",
+    "title": "Shift Creamy Cheddar Ham Loaded Jacket Potato",
+    "ingredients": [
+      {
+        "amount": "120g",
+        "item": "lean ham"
+      },
+      {
+        "amount": "250g",
+        "item": "baking potato"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed salad"
+      },
+      {
+        "amount": "90g",
+        "item": "spring onion"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200°C (180°C fan), put the potato on a tray and bake for about 60–75 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+      "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+      "Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+      "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+    ],
+    "prompt": "Appetising realistic editorial food photograph, landscape4:3, warm soft natural light, cream ceramic plate or bowl with room around entire meal. One fluffy split cooked jacket potato holding thin lean ham strips and smooth creamy dressing made from18g zero-fat Greek yoghurt,9g light mayonnaise,3g finely grated cheddar and5ml olive oil. Cheese fully STIRRED INTO dressing, no grated cheese topping. ALL finely sliced spring onion mixed with mixed salad in a SEPARATE SIDE SALAD. Absolutely NO spring onion, green garnish or cheese garnish on the potato/filling. Use only the exact recipe foods. No decorative ingredients, text, people or extra dishes.",
+    "attempt": 2,
+    "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Ham Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200°C (180°C fan), put the potato on a tray and bake for about 60–75 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence."
+  }
+]

@@ -1,0 +1,86 @@
+{
+  "groupId": "256d4437a91cc3a4e1eee655dfa622715eee1957981c65e6836656d80347242e",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-bbq-salmon"
+  ],
+  "titles": [
+    "Shift BBQ Salmon Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Salmon Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot. Keep the salmon in large flakes rather than mashing it.\",\"Put the measured reduced-sugar BBQ sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Pile the crisp oven chips onto a plate and spoon over large flakes of the cooked salmon, the red onion and peppers, followed by the warm sauce. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot. Keep the salmon in large flakes rather than mashing it.",
+    "Put the measured reduced-sugar BBQ sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Pile the crisp oven chips onto a plate and spoon over large flakes of the cooked salmon, the red onion and peppers, followed by the warm sauce. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8865bacd-4d67-4dc1-98fc-26ada13f2a5a.png",
+  "source_sha256": "8418f5ed37d898f30ff16c2dbfaf4f5d687acbd8ce7c63b9503bbedcce846dc5",
+  "generated_at": null,
+  "elapsed_ms": 69788.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-256d4437a91cc3a4e1ee-480.webp",
+      "sha256": "cf9f6f61c670ec7bcb1b5e22dd9497a51597dc1ceeb46915c4b260e22f25237e",
+      "bytes": 29448
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-256d4437a91cc3a4e1ee.webp",
+      "sha256": "6fa1d82d831755a1109a6b4c81da1d54ca8dc64cb2abf6d0fd5d85073a2a5364",
+      "bytes": 85140
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-bbq-salmon"
+    ],
+    "titles": [
+      "Shift BBQ Salmon Loaded Fries"
+    ],
+    "notes": "Golden oven chips topped with large cooked salmon flakes, softened red onion and mixed peppers with BBQ sauce. No cheese or herbs. Ingredients and finished state match actual method and title; plausible single serving, central responsive crop retains dish.",
+    "alt": "Oven chips topped with salmon flakes, red onion, peppers and BBQ sauce.",
+    "reviewed_at": "2026-10-04T21:39:05.896Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-560-576.json",
+    "source_sha256": "8418f5ed37d898f30ff16c2dbfaf4f5d687acbd8ce7c63b9503bbedcce846dc5"
+  },
+  "integrated": true,
+  "live": false
+}

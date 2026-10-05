@@ -1,0 +1,86 @@
+{
+  "groupId": "2af65aee66ec6e14c436fc90f96625345a22c00c5d43711f85949558473afe04",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-classic-egg"
+  ],
+  "titles": [
+    "Shift Classic Egg Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Egg Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"30g\",\"item\":\"brown sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "30g",
+      "item": "brown sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c23c3dcd-c1f8-45f8-92dc-212dd01398f7.png",
+  "source_sha256": "69945703d7da7cef38c245a19ebaeb860a0fff941a0982eeee1a9148c1acce72",
+  "generated_at": "2026-10-04T21:32:00.584Z",
+  "elapsed_ms": 164244,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2af65aee66ec6e14c436-480.webp",
+      "sha256": "130fb0ce7e0ab1473eb6dde13670e40d0155445efbb4a36b725df3a4a002ecf8",
+      "bytes": 19260
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2af65aee66ec6e14c436.webp",
+      "sha256": "1881c94242018ca70709f2337defd8d43efd2df6e8a05a052e772252bf42c9aa",
+      "bytes": 54966
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-classic-egg"
+    ],
+    "titles": [
+      "Shift Classic Egg Breakfast Wrap"
+    ],
+    "notes": "Plain lightly crisped wholemeal wrap contains set egg, softened mixed peppers, wilted spinach and glossy brown sauce. No cheese or added garnish.",
+    "alt": "Wholemeal wrap with egg, peppers, spinach and brown sauce.",
+    "reviewed_at": "2026-10-04T21:34:03.240368+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/151.json",
+    "source_sha256": "69945703d7da7cef38c245a19ebaeb860a0fff941a0982eeee1a9148c1acce72"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,76 @@
+{
+  "groupId": "3244597ecf52d9c93aee172007cf01321c767e4b915bad681a5ef901fce48543",
+  "recipe_ids": [
+    "industrial-breakfast-potato-hash-cherry-cocoa-5"
+  ],
+  "titles": [
+    "Turkey Spring Onion Breakfast Potato Hash"
+  ],
+  "prompt": "Photograph the actual completed recipe with careful food styling, natural side light and believable appetising texture. No added garnish or ingredient. Match protein cut, quantities and preparation exactly. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Turkey Spring Onion Breakfast Potato Hash. Ingredients, quantities and allergens: [{\"amount\":\"220g\",\"item\":\"baby potatoes\"},{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"spring onion\"},{\"amount\":\"60g\",\"item\":\"onion\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.\",\"Chop the onion and spring onion. Heat the measured olive oil in a wide non-stick frying pan; cook the onion and spring onion over medium heat for 4\u20135 minutes.\",\"Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.\",\"Add the cooked turkey breast in bite-size pieces and heat for 3\u20135 minutes, turning until steaming hot right through. It is already cooked; do not treat it as raw meat.\",\"Serve the turkey breast, potatoes and vegetables immediately. Do not cool and reheat this assembled hash again.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Exact ingredients and method are authoritative. No food outside these ingredients.",
+  "ingredients": [
+    {
+      "amount": "220g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "60g",
+      "item": "onion"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.",
+    "Chop the onion and spring onion. Heat the measured olive oil in a wide non-stick frying pan; cook the onion and spring onion over medium heat for 4\u20135 minutes.",
+    "Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.",
+    "Add the cooked turkey breast in bite-size pieces and heat for 3\u20135 minutes, turning until steaming hot right through. It is already cooked; do not treat it as raw meat.",
+    "Serve the turkey breast, potatoes and vegetables immediately. Do not cool and reheat this assembled hash again."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a06790d9-dd91-4cd8-bdba-86fa7a852c4e.png",
+  "source_sha256": "aa4319864bdd820cfc01dfdcecfb046efcd7629d3abbf8d24d60131f56ec4f60",
+  "generated_at": "2026-10-04T23:35:57.685Z",
+  "elapsed_ms": 154217,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3244597ecf52d9c93aee-480.webp",
+      "sha256": "ddde7c378401e2cf22284b5a39aaa8f053a4f9b32839e9f5dc2d5c4c10f338c0",
+      "bytes": 29164
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3244597ecf52d9c93aee.webp",
+      "sha256": "2636dc5ea5613f1bbb05ddc540c7513a118a8fd8818cea1aa63846f78fef3b45",
+      "bytes": 84460
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "aa4319864bdd820cfc01dfdcecfb046efcd7629d3abbf8d24d60131f56ec4f60",
+    "recipe_ids": [
+      "industrial-breakfast-potato-hash-cherry-cocoa-5"
+    ],
+    "titles": [
+      "Turkey Spring Onion Breakfast Potato Hash"
+    ],
+    "notes": "Opaque cooked turkey breast, golden potato pieces and softened spring onion and onion incorporated into hash; no raw garnish.",
+    "alt": "Turkey potato hash with spring onion",
+    "reviewed_at": "2026-10-04T23:45:25.953250+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "groupId": "c7d97cc1acd12e90bf0a44597645f549e96647676acb5671c85fc49993637a62",
+  "recipe_ids": [
+    "industrial-breakfast-egg-toast-pear-ginger-3"
+  ],
+  "titles": [
+    "Egg Red Pepper Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Red Pepper Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"red pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Wash the vegetables and slice or finely chop them before cooking.\",\"Toast the bread.\",\"Heat the oil and cook the vegetables until softened.\",\"Add the eggs and scramble until fully set.\",\"Serve the eggs and vegetables on the toast and season with the measured black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Wash the vegetables and slice or finely chop them before cooking.",
+    "Toast the bread.",
+    "Heat the oil and cook the vegetables until softened.",
+    "Add the eggs and scramble until fully set.",
+    "Serve the eggs and vegetables on the toast and season with the measured black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-582ba401-eaad-48f6-b519-14af11c712e5.png",
+  "source_sha256": "397131f85bf7c5d83153921deacd9d6349c1dd51a4fe1a6045f6ae4a1061c27f",
+  "generated_at": "2026-10-04T21:14:13.313Z",
+  "elapsed_ms": 734005,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c7d97cc1acd12e90bf0a-480.webp",
+      "sha256": "902b44bca04af6bc14b09643def93a71b35cf45cdd3447330e850d5210d7dcdf",
+      "bytes": 26406
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c7d97cc1acd12e90bf0a.webp",
+      "sha256": "7a6db902d045d7d3a2868e9231d9f2334a17ff42f45315c72298c048af94818c",
+      "bytes": 80608
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-egg-toast-pear-ginger-3"
+    ],
+    "titles": [
+      "Egg Red Pepper Wholemeal Toast"
+    ],
+    "notes": "Two wholemeal toast slices with set egg and softened red pepper pieces; no mixed peppers or decorative herbs. Single credible serving with full food visible in phone/desktop 4:3 framing. Quantities, hidden temperature and nutrition cannot be verified visually.",
+    "alt": "Scrambled egg and red pepper on two slices of wholemeal toast.",
+    "reviewed_at": "2026-10-04T21:21:38.766408+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "397131f85bf7c5d83153921deacd9d6349c1dd51a4fe1a6045f6ae4a1061c27f"
+  }
+}

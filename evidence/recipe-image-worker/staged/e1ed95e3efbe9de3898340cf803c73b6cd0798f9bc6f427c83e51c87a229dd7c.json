@@ -1,0 +1,90 @@
+{
+  "groupId": "e1ed95e3efbe9de3898340cf803c73b6cd0798f9bc6f427c83e51c87a229dd7c",
+  "recipe_ids": [
+    "industrial-v3-pizza-katsu-salmon"
+  ],
+  "titles": [
+    "Shift Katsu Salmon Proper Pizza"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Katsu Salmon Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"katsu-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Transfer large flakes of the cooked salmon to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Put the measured katsu-style sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and large flakes of the cooked salmon evenly on top, then spoon over the warm sauce. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "katsu-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Transfer large flakes of the cooked salmon to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Put the measured katsu-style sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and large flakes of the cooked salmon evenly on top, then spoon over the warm sauce. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Rest for one minute, cut and serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-adeabbad-e85e-49f8-aa2c-f64565f4f9ae.png",
+  "source_sha256": "c00738b6826cb3dadff2ec9df2333daf956418b2f01206e7f3484ad1ef78ffe8",
+  "generated_at": "2026-10-04T21:35:21.749Z",
+  "elapsed_ms": 63834.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e1ed95e3efbe9de38983-480.webp",
+      "sha256": "35b1244fbbafdeebdd584a1e890a8c0aba3cabf50ced6c2ce74b01ef222edc0b",
+      "bytes": 32170
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e1ed95e3efbe9de38983.webp",
+      "sha256": "04b1220ec9b6d2495626267b17a854b6c06de7ba3a089c67611342da68953dfd",
+      "bytes": 94226
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-pizza-katsu-salmon"
+    ],
+    "titles": [
+      "Shift Katsu Salmon Proper Pizza"
+    ],
+    "notes": "Individual baked pizza base with red passata, large opaque salmon flakes, cooked mixed peppers and katsu-style sauce. No cheese, herbs or breadcrumb crust. Flaked fish state matches method; crisp dough border, central single pizza.",
+    "alt": "Katsu salmon pizza with tomato passata and mixed peppers",
+    "reviewed_at": "2026-10-04T21:35:55.095100+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/978.json",
+    "source_sha256": "c00738b6826cb3dadff2ec9df2333daf956418b2f01206e7f3484ad1ef78ffe8"
+  },
+  "integrated": true,
+  "live": false
+}

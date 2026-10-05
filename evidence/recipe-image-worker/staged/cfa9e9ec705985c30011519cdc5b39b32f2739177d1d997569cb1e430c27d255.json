@@ -1,0 +1,86 @@
+{
+  "groupId": "cfa9e9ec705985c30011519cdc5b39b32f2739177d1d997569cb1e430c27d255",
+  "recipe_ids": [
+    "industrial-v3-meal-prep-bowl-bbq-egg"
+  ],
+  "titles": [
+    "Shift BBQ Egg Meal-Prep Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Egg Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Use the measured reduced-sugar BBQ sauce as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured reduced-sugar BBQ sauce and olive oil dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Follow exact ingredient placement and method. No decorative garnish. If method cuts a pitta into two halves, show TWO separately distinguishable filled half-pitta pockets, with remaining salad alongside.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+    "Use the measured reduced-sugar BBQ sauce as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured reduced-sugar BBQ sauce and olive oil dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-86ca4e2f-0401-43d6-8068-2fee4ce6679a.png",
+  "source_sha256": "cdd5c433e36502cfd4b465da7823db439be2e73c40f485f96cf6af55b334a06e",
+  "generated_at": "2026-10-04T22:48:07.394Z",
+  "elapsed_ms": 236632.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-cfa9e9ec705985c30011-480-36ec75ac81bd.webp",
+      "sha256": "36ec75ac81bdc6a76823e906b66bc4944ee59400e832573ddf8f6507d6e24a07",
+      "bytes": 25434
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-cfa9e9ec705985c30011-8c6221844551.webp",
+      "sha256": "8c62218445511a7a816351e4cdee79638482418e65cc1f75cf06666c33d8398a",
+      "bytes": 70274
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "cdd5c433e36502cfd4b465da7823db439be2e73c40f485f96cf6af55b334a06e",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-bbq-egg"
+    ],
+    "titles": [
+      "Shift BBQ Egg Meal-Prep Bowl"
+    ],
+    "notes": "Brown rice with diced peppers and sweetcorn in BBQ dressing and sliced boiled eggs; no extra garnish.",
+    "alt": "BBQ egg rice bowl with peppers and sweetcorn",
+    "reviewed_at": "2026-10-04T22:52:33.062212+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1529-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

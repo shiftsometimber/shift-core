@@ -1,0 +1,92 @@
+{
+  "groupId": "d29efb9c446524978f311fceee0b0818a47ead37267126524bdf70f917ce444c",
+  "recipe_ids": [
+    "industrial-v3-meal-prep-bowl-smoky-turkey"
+  ],
+  "titles": [
+    "Shift Smoky Turkey Meal-Prep Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Turkey Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"27g\"},{\"item\":\"lemon juice\",\"amount\":\"2g\"},{\"item\":\"smoked paprika\",\"amount\":\"1g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Stir together all the measured 0% Greek yoghurt, lemon juice, smoked paprika and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel: no sesame/poppy seeds, cheese or unlisted food. Keep the raw spinach/tomato or rocket/tomato side salad separate where method reserves it. Spring onion belongs finely sliced in mixed salad beside jacket potatoes. Greek yoghurt/lemon/paprika dressing must be mixed and placed as method requires, no paprika dust or lemon wedge garnish. No mayo or melted cheese. Chicken/turkey plain cooked breast without breadcrumb/batter coating. Sweet chilli sauce translucent reddish glossy, never creamy. Chickpeas roughly mashed only for toastie/bagel; whole elsewhere. Eggs are sliced hard-boiled eggs.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "sweetcorn"
+    },
+    {
+      "item": "0% Greek yoghurt",
+      "amount": "27g"
+    },
+    {
+      "item": "lemon juice",
+      "amount": "2g"
+    },
+    {
+      "item": "smoked paprika",
+      "amount": "1g"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Stir together all the measured 0% Greek yoghurt, lemon juice, smoked paprika and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5b3a7447-b3a4-4c6c-8e00-aa980d6b2530.png",
+  "source_sha256": "2b692775414588e2cb307a67975d4e3c109422254b4bc8064f7aecbcc092fbae",
+  "generated_at": "2026-10-05T00:20:33.494Z",
+  "elapsed_ms": 22294.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d29efb9c446524978f31-480-223c3f2bc9cb.webp",
+      "sha256": "223c3f2bc9cbd44f960de0215dc33c67fa36f91e631b553d2073ccedd75d3548",
+      "bytes": 22182
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d29efb9c446524978f31-70c4e44f08e8.webp",
+      "sha256": "70c4e44f08e869b29c15a9e3910d6da83c50cf51582c2a21f904787edafe6e19",
+      "bytes": 64108
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2b692775414588e2cb307a67975d4e3c109422254b4bc8064f7aecbcc092fbae",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-smoky-turkey"
+    ],
+    "titles": [
+      "Shift Smoky Turkey Meal-Prep Bowl"
+    ],
+    "notes": "Cooked brown rice, plain sliced/shredded turkey breast, raw diced red/yellow peppers and sweetcorn; yoghurt/lemon/smoked-paprika dressing visibly folded through rather than garnish. No herbs, cheese or lemon wedge. Single title checked.",
+    "alt": "Smoky turkey rice bowl with peppers, sweetcorn and paprika yoghurt dressing",
+    "reviewed_at": "2026-10-05T00:27:01.812013+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2048.json"
+  },
+  "integrated": true,
+  "live": false
+}

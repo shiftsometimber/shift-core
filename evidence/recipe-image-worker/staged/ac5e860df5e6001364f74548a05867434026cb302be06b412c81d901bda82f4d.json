@@ -1,0 +1,77 @@
+{
+  "groupId": "ac5e860df5e6001364f74548a05867434026cb302be06b412c81d901bda82f4d",
+  "index": 2259,
+  "recipe_ids": [
+    "industrial-v4-protein-pot-berry-overnight-oats"
+  ],
+  "titles": [
+    "Shift Berry Oat Crunch Snack Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "85g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries",
+      "allergens": []
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Toast the rolled oats and seeds in a dry frying pan over a medium heat for 4\u20135 minutes, stirring until they smell nutty and take on a little colour.",
+    "Tip the toasted crunch onto a plate and let it cool completely while you prepare the mixed berries and other measured fruit.",
+    "Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.",
+    "Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Oat Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"85g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"105g\",\"item\":\"mixed berries\",\"allergens\":[]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Toast the rolled oats and seeds in a dry frying pan over a medium heat for 4\u20135 minutes, stirring until they smell nutty and take on a little colour.\",\"Tip the toasted crunch onto a plate and let it cool completely while you prepare the mixed berries and other measured fruit.\",\"Pack the cooled oat crunch separately from the fruit so it stays crisp; this is a crunch pot, not overnight oats and does not pretend to contain a creamy protein base.\",\"Keep the cut fruit chilled and combine with the oat crunch only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed food; no honey, nuts, mint, syrup or decorative garnish. Plain unseeded crackers: exactly two visible crackers when listed, no sesame or poppy seeds. All food inside the serving margins. Clearly toasted dry oats and pumpkin seeds in a separate small pot from berries. No creamy base, no milk.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-84b150d6-705c-4d5b-8d5b-435e1672c476.png",
+  "source_sha256": "c74a33d4343af1de5d77b21cd397e38f9d4e44bc1c6af0bcced0fc32ab805a0c",
+  "dispatched_at": "2026-10-04T23:14:16.136Z",
+  "generated_at": "2026-10-04T23:16:52.719Z",
+  "elapsed_ms": 156583,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ac5e860df5e6001364f7-480.webp",
+      "sha256": "d7e5446ea6d683caec71f4d7dcf84507431cbe15f170719474f0a1f6336d7585",
+      "bytes": 25818,
+      "git_blob_sha": "7b11c706c768fee4851346e71664af924f868df9"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ac5e860df5e6001364f7.webp",
+      "sha256": "9a9d2ec94c42abd0cc3884477e3432d7247fa1e54cd92c9f92519a68b570060f",
+      "bytes": 82278,
+      "git_blob_sha": "6c8304a1c1ba5f4fe1ecc36a0ce62ae659b59dbc"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-berry-overnight-oats"
+    ],
+    "titles": [
+      "Shift Berry Oat Crunch Snack Pot"
+    ],
+    "notes": "Dry toasted oats and pumpkin seeds separately portioned from mixed berries; no creamy base or milk. Correct crunch-pot title and method.",
+    "alt": "Mixed berries beside toasted oat and pumpkin seed crunch.",
+    "reviewed_at": "2026-10-04T23:22:00.756871+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/ac5e860df5e6001364f74548a05867434026cb302be06b412c81d901bda82f4d.json",
+    "source_sha256": "c74a33d4343af1de5d77b21cd397e38f9d4e44bc1c6af0bcced0fc32ab805a0c"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,91 @@
+{
+  "groupId": "b83d1bf16bc24b412d52de55aa6bb475fa95d55227bf5c39e56c27a3fb14f16b",
+  "recipe_ids": [
+    "industrial-v3-traybake-lemon-herb-chicken"
+  ],
+  "titles": [
+    "Shift Lemon Herb Chicken Traybake"
+  ],
+  "prompt": "Edit this exact dish photograph. Remove EVERY green, black or brown herb/pepper/seasoning fleck from ALL HOT FOOD: protein, potato, pepper, carrot and pie filling surfaces. Keep natural browned crust and roast colour, but smooth plain clean surfaces WITHOUT tiny scattered seasoning specks. The listed dried parsley belongs ONLY in the cold white mayonnaise dressing in side ramekin; keep its green flecks there. Keep natural broccoli florets and whole peas where listed, these vegetables are not garnish. No invented ingredients, no lemon wedges, no cheese. Exact source recipe: Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Chicken Traybake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and chicken breast. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.",
+    "Check the chicken breast is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-bf0c8cd2-e2e4-473c-862e-77b9663a0974.png",
+  "source_sha256": "2daaf52a2834041f82bbf2d8fdefc775dbbc25d31c8814ba423ee3c6c3d846a7",
+  "generated_at": "2026-10-04T23:00:16.031Z",
+  "elapsed_ms": 34691.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b83d1bf16bc24b412d52-retry5-480-d0fe6a2ff7ac.webp",
+      "sha256": "d0fe6a2ff7acd3a92ecbac6f06ca2d4ff428ff5568dda838eef34aebd7c96b22",
+      "bytes": 29600
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b83d1bf16bc24b412d52-retry5-9461182fa750.webp",
+      "sha256": "9461182fa750c77981a48be1e0785cb828a6007018ee2a758710d9ede7fbca35",
+      "bytes": 91674
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2daaf52a2834041f82bbf2d8fdefc775dbbc25d31c8814ba423ee3c6c3d846a7",
+    "recipe_ids": [
+      "industrial-v3-traybake-lemon-herb-chicken"
+    ],
+    "titles": [
+      "Shift Lemon Herb Chicken Traybake"
+    ],
+    "notes": "Corrected image: plain browned whole chicken breast, smooth golden baby potatoes, roast broccoli/red pepper; parsley only cold white side dressing, no hot-food herb flecks.",
+    "alt": "Chicken traybake with baby potatoes, broccoli, red pepper and cold lemon parsley dressing",
+    "reviewed_at": "2026-10-04T23:05:58.971233+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/998.json"
+  },
+  "integrated": true,
+  "live": false
+}

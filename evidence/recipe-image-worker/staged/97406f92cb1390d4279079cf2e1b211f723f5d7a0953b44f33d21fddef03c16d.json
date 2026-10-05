@@ -1,0 +1,92 @@
+{
+  "groupId": "97406f92cb1390d4279079cf2e1b211f723f5d7a0953b44f33d21fddef03c16d",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-cheesecake-style-overnight-oats"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Overnight Oats Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Overnight Oats Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 30g light cream cheese until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds, 2 / 20g wholegrain crackers separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed foods; no honey, nuts, mint, syrup, garnish, cake or biscuit crust. Mixed berries just the measured25g. All food inside frame.  Exactly TWO entire plain unseeded crackers, visibly separated or offset so both full edges can be counted. No seeds on crackers. Measured30g light cream cheese smoothly folded through the fruit/base; no giant cream mound, no cake or crust. Fully softened overnight milk oats, cream cheese/yoghurt evenly stirred in where listed, berries mixed through, listed seeds/chocolate freshly topped. No dry oat heap.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Stir in 30g light cream cheese until evenly mixed.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds, 2 / 20g wholegrain crackers separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9ba8ca96-9787-4d29-ac3e-151189d5f48b.png",
+  "source_sha256": "86c0f0d7c038d57f15224febcf81612b7b5c2542529d275ab23fb13c62edd445",
+  "generated_at": "2026-10-04T23:51:58.265Z",
+  "elapsed_ms": 284302,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-97406f92cb1390d42790-480-d3509932c905.webp",
+      "sha256": "d3509932c90524ff4fe36962359c587e39721198f8195935f3c3dddfb9042bba",
+      "bytes": 29762
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-97406f92cb1390d42790-8c19d650d5db.webp",
+      "sha256": "8c19d650d5db316f7b7f87df7babae530754cdddc55288d87cb52f79dc5225f3",
+      "bytes": 87672
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "86c0f0d7c038d57f15224febcf81612b7b5c2542529d275ab23fb13c62edd445",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-cheesecake-style-overnight-oats"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Overnight Oats Work Snack Box"
+    ],
+    "notes": "Soft milk overnight oats with cream cheese mixed in, small berries and listed seed topping; exactly two plain crackers alongside.",
+    "alt": "Berry overnight oats with cream cheese, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-04T23:56:17.532988+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/97406f92cb1390d4279079cf2e1b211f723f5d7a0953b44f33d21fddef03c16d.json"
+  },
+  "integrated": true,
+  "live": false
+}

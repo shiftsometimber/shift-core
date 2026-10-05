@@ -1,0 +1,78 @@
+{
+  "groupId": "b58aba28fad9da658eb94f02c1b1cc826ced5e35d1189621e41bc974d08ff17b",
+  "recipe_ids": [
+    "industrial-dinner-salmon-curry"
+  ],
+  "titles": [
+    "Salmon Curry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Salmon Curry. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\"},{\"amount\":\"70g dry\",\"item\":\"basmati rice, dry\"},{\"amount\":\"120g\",\"item\":\"chopped tomatoes\"},{\"amount\":\"100g\",\"item\":\"spinach\"},{\"amount\":\"25g\",\"item\":\"medium curry paste\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 70g dry basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Wash and drain the 100g spinach. Check the 150g salmon fillet for bones. Keep it as a fillet for pan cooking, then flake it after cooking.\",\"Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Put in the salmon fillet, skin-side down if it has skin. Cook for 4\u20135 minutes, turn carefully and cook for another 3\u20135 minutes until the centre is opaque, steaming hot and flakes easily; a thicker piece needs longer. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Put the 120g chopped tomatoes and 25g medium curry paste into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.\",\"Add the washed spinach in two handfuls, cover for 1 minute, then stir. Cook for another 2\u20133 minutes until wilted throughout.\",\"Flake the cooked salmon into large pieces and fold into the pan at the end; avoid breaking it up with vigorous stirring. Heat everything together over a low heat for 2\u20133 minutes, stirring gently, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Appetising faithful editorial food photography, warm side light, generous framing. Follow exact method and protein form. No unlisted garnish or food. For listed brown rice, depict ordinary cooked WHOLEGRAIN BROWN RICE with distinctly medium-tan to light-brown intact bran on every grain; natural earthy brown rice, never polished white rice, risotto or pale glossy short grains. For basmati, retain its listed long-grain appearance. Show all ingredients in their specified placement and cooked/raw state.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet"
+    },
+    {
+      "amount": "70g dry",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "chopped tomatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "spinach"
+    },
+    {
+      "amount": "25g",
+      "item": "medium curry paste"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 70g dry basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Wash and drain the 100g spinach. Check the 150g salmon fillet for bones. Keep it as a fillet for pan cooking, then flake it after cooking.",
+    "Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Put in the salmon fillet, skin-side down if it has skin. Cook for 4\u20135 minutes, turn carefully and cook for another 3\u20135 minutes until the centre is opaque, steaming hot and flakes easily; a thicker piece needs longer. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Put the 120g chopped tomatoes and 25g medium curry paste into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.",
+    "Add the washed spinach in two handfuls, cover for 1 minute, then stir. Cook for another 2\u20133 minutes until wilted throughout.",
+    "Flake the cooked salmon into large pieces and fold into the pan at the end; avoid breaking it up with vigorous stirring. Heat everything together over a low heat for 2\u20133 minutes, stirring gently, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6dbb83c8-a267-4ce3-8804-79fa191238a2.png",
+  "source_sha256": "5219344d99818b99bfc2fdd8034e7971c1f55e394deb12ab9ae1b47a08f04f26",
+  "generated_at": "2026-10-04T23:20:00.556Z",
+  "elapsed_ms": 305081,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b58aba28fad9da658eb9-480.webp",
+      "sha256": "a1435f6e4a9cf0b354c1c18f0e0204835055083f8b5702a4ad317a2dab0e79cf",
+      "bytes": 27620
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b58aba28fad9da658eb9.webp",
+      "sha256": "61de9b8b004afc7d1214268db647d9d7716d6469354d9a6a8b3ce4dc55b25381",
+      "bytes": 85278
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "5219344d99818b99bfc2fdd8034e7971c1f55e394deb12ab9ae1b47a08f04f26",
+    "recipe_ids": [
+      "industrial-dinner-salmon-curry"
+    ],
+    "titles": [
+      "Salmon Curry"
+    ],
+    "notes": "Large opaque cooked salmon flakes with wilted spinach and tomato curry, white long-grain basmati; no fresh garnish.",
+    "alt": "Salmon and spinach curry with basmati rice",
+    "reviewed_at": "2026-10-04T23:32:39.070752+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "16e4db1b96a0128f1a12ddad520f948f975065be0c6c7dc1a6a8e646579acdcf",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-pineapple-protein-pudding"
+  ],
+  "titles": [
+    "Shift Pineapple Protein Pudding Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pineapple Protein Pudding Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"pineapple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed ingredients: no honey, mint, coconut, nuts, syrup, pineapple or banana/apple unless listed. Mixed berries only listed berry addition. Cottage cheese curdy, high-protein yoghurt smooth, fruit-only variants have no dairy unless 40g Greek yoghurt explicitly listed. Rolled oats plain flakes, no granola with invented foods. Pumpkin seeds flat green pepitas. Chocolate chips discrete small chips; Big Feed recipes that ALSO list chopped dark chocolate must show chopped pieces as the measured finishing element. WORK SNACK BOX: wet fruit/dairy separated from dry oats/pepitas/TWO wholegrain crackers. EXCEPTION overnight-oats work snack box: oats are milk-hydrated overnight with pineapple/berries mixed through; seeds separate until serving, crackers alongside dry. Fruit/Protein pots: dry crunch only added at immediate serving. Greek yoghurt swirled through dessert pots at end exactly as method requires, not an invented cream base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "pineapple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2c22a658-0e91-4d3f-9da6-c8c117062bd5.png",
+  "source_sha256": "2b7ef875da12efd459ef8204821565d0a01edb1e1168ac2545b7127cbf0cc38d",
+  "generated_at": "2026-10-05T01:21:23.478Z",
+  "elapsed_ms": 71323.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-16e4db1b96a0128f1a12-480-b7be604191f7.webp",
+      "sha256": "b7be604191f76bd406d76d4c2dc410ee15b7bb311b9f73b168d6627e3f4d1ece",
+      "bytes": 17418
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-16e4db1b96a0128f1a12-e2cc28f4a4e2.webp",
+      "sha256": "e2cc28f4a4e290ae1454b043209cf9fba5766f11285cc71f9f428b3c10230703",
+      "bytes": 50244
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2b7ef875da12efd459ef8204821565d0a01edb1e1168ac2545b7127cbf0cc38d",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-pineapple-protein-pudding"
+    ],
+    "titles": [
+      "Shift Pineapple Protein Pudding Protein Pot"
+    ],
+    "notes": "Smooth high-protein yoghurt with pineapple/mixed berries folded through and dry rolled oats/green pumpkin seeds added at immediate serving. No extra chocolate, honey, curdy cheese or garnish; exact title/method checked.",
+    "alt": "Pineapple protein yoghurt pot with berries and oat pumpkin seed crunch",
+    "reviewed_at": "2026-10-05T01:27:16.996517+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2575.json"
+  },
+  "integrated": true,
+  "live": false
+}

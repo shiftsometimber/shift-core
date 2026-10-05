@@ -1,0 +1,80 @@
+{
+  "groupId": "fc9d128a04bbde008d54b683abbb835ad47a5e1508322b84d519bf474d3585ee",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-biscoff-style-savory-box"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Banana Split Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Banana Split Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the banana in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nUse only listed foods, no honey, nuts, mint, syrup or garnish. Crushed wholegrain biscuit is modest irregular crumb pieces, no caramel spread or cookie butter. Berries just the listed25g, a small portion. All food safely inside frame. Exactly two plain unseeded wholegrain crackers where listed, no sesame/poppy seeds. Finished fruit snack pot at eating time: chopped fruit with biscuit crumbs, rolled oats and pumpkin seeds just added; no dairy base.",
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the banana in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0c43b35a-277e-4ab9-a8f8-d777d9ebbaab.png",
+  "source_sha256": "79d332807161289c6232b98520ea0059504e17b2cdc3945a46b3e70b99a32f05",
+  "generated_at": "2026-10-04T23:26:17.630Z",
+  "elapsed_ms": 55418,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fc9d128a04bbde008d54-480-2338eb2cc824.webp",
+      "sha256": "2338eb2cc8249f1fc29fea40855a6ec991361772d7cebdc10f72fafc503024f0",
+      "bytes": 25770
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fc9d128a04bbde008d54-3d5c45ef56dd.webp",
+      "sha256": "3d5c45ef56dd690846f5f8f4e76777e7a43dd21f0cddf9812941f58d6f8682cb",
+      "bytes": 75316
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "79d332807161289c6232b98520ea0059504e17b2cdc3945a46b3e70b99a32f05",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-biscoff-style-savory-box"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Banana Split Snack Pot"
+    ],
+    "notes": "Banana slices, small mixed berry portion, biscuit crumbs, rolled oats and pumpkin seeds combined at serving; no creamy protein base, chocolate or syrup.",
+    "alt": "Banana and berry snack pot with biscuit crumbs, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:32:46.940414+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/fc9d128a04bbde008d54b683abbb835ad47a5e1508322b84d519bf474d3585ee.json"
+  },
+  "integrated": true,
+  "live": false
+}

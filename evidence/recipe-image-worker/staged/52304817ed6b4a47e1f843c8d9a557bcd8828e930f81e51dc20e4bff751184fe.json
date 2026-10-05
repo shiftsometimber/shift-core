@@ -1,0 +1,87 @@
+{
+  "groupId": "52304817ed6b4a47e1f843c8d9a557bcd8828e930f81e51dc20e4bff751184fe",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-cheesecake-style-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Fruit Crunch Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Fruit Crunch Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.\",\"Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.\",\"Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.\",\"Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed foods; no honey, nuts, mint, syrup, garnish, cake or biscuit crust. Mixed berries just the measured25g. All food inside frame.  Exactly TWO entire plain unseeded crackers, visibly separated or offset so both full edges can be counted. No seeds on crackers. Measured30g light cream cheese smoothly folded through the fruit/base; no giant cream mound, no cake or crust. Real snack box with dry oats/seeds/crackers/biscuit crumbs if listed in separate compartments from fruit and smooth yoghurt or cream cheese-coated fruit. No curds unless cottage cheese actually listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.",
+    "Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.",
+    "Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.",
+    "Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5c3bd91b-59e4-4718-9da3-a1cd3e90ad22.png",
+  "source_sha256": "30543a87db5023669a5950e054c8659c1dea770eb5b29c59e231d6d4bf361539",
+  "generated_at": "2026-10-04T23:49:07.337Z",
+  "elapsed_ms": 113374,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-52304817ed6b4a47e1f8-480-9dc67343c04e.webp",
+      "sha256": "9dc67343c04ed0fed1e86708f269a7264eaf59ca351de902e921418c7214fa95",
+      "bytes": 26862
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-52304817ed6b4a47e1f8-a0296a6e2b19.webp",
+      "sha256": "a0296a6e2b19e21180cf62a12aac37d71179ddfe42f1931e601961bf710b615b",
+      "bytes": 81772
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "30543a87db5023669a5950e054c8659c1dea770eb5b29c59e231d6d4bf361539",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-cheesecake-style-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Fruit Crunch Work Snack Box"
+    ],
+    "notes": "Full-resolution review confirms exactly two plain crackers with apple and small berries lightly coated in measured cream cheese; dry oats and seeds in separate compartments.",
+    "alt": "Apple and berry snack box with cream cheese, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-04T23:56:16.532036+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/52304817ed6b4a47e1f843c8d9a557bcd8828e930f81e51dc20e4bff751184fe.json"
+  },
+  "integrated": true,
+  "live": false
+}

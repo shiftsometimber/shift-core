@@ -1,0 +1,80 @@
+{
+  "groupId": "20c2c365f6c6f20249482291b6ce09dfdc5e979005e11741edae86c95ec4b7a4",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-crunch-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Crunch Cottage Cheese Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Crunch Cottage Cheese Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"30g\",\"item\":\"pumpkin seeds\",\"allergens\":[]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]}]. Preparation: [\"Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed foods. No honey, nuts, mint, syrup, cinnamon, cocoa or garnish. Small25g berries; generous measured25-30g pumpkin seeds where listed. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Cottage cheese retains recognisable small curds. Correct dairy pot with small berries and dry rolled oats/generous pumpkin seeds newly topped at serving.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "30g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    }
+  ],
+  "method": [
+    "Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fd20014c-043b-41cb-a836-bbe954980472.png",
+  "source_sha256": "47675a91be0512cd2f549b285e827f21008058daa6d94440cdbfb064645134df",
+  "generated_at": "2026-10-05T01:08:08.953Z",
+  "elapsed_ms": 183840,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-20c2c365f6c6f2024948-480-da1c24b9f76b.webp",
+      "sha256": "da1c24b9f76b78d44875b1d792f6b0c018f2e5c5bfe32e6cbeb1ee23d4185d77",
+      "bytes": 25744
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-20c2c365f6c6f2024948-ca2c1438e927.webp",
+      "sha256": "ca2c1438e9276d3c85cb1800f48e906c5f9faed40d7de08dcf224bd36720e3b1",
+      "bytes": 75462
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "47675a91be0512cd2f549b285e827f21008058daa6d94440cdbfb064645134df",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-crunch-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Crunch Cottage Cheese Protein Pot"
+    ],
+    "notes": "Cottage cheese curds with small berries, dry oats and generous pumpkin seeds newly topped at serving. No added flavouring.",
+    "alt": "Cottage cheese crunch pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T01:12:45.649916+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/20c2c365f6c6f20249482291b6ce09dfdc5e979005e11741edae86c95ec4b7a4.json"
+  },
+  "integrated": true,
+  "live": false
+}

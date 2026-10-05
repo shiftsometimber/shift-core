@@ -1,0 +1,86 @@
+{
+  "groupId": "e76c4885bf3f2971f8b6cae0c91176f73ed97b29c79ce9e47a1501a69bfa2057",
+  "recipe_ids": [
+    "industrial-v3-burger-peri-peri-chicken"
+  ],
+  "titles": [
+    "Shift Peri-Peri Chicken Fakeaway Burger"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Chicken Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.\",\"Slice the chicken breast horizontally into cutlets about 1.5cm thick so they cook evenly and fit the bun. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the chicken cutlets over a medium heat for about 5\u20136 minutes on each side, lowering the heat if they brown too quickly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Put the lettuce and tomato in the toasted bun, add the cooked chicken cutlets and the warm sauce, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Food accuracy: any wholemeal bun/flatbread is plain entirely UNSEEDED, no sesame/poppy. No unlisted cheese, fresh herbs, garnish, cream, mayonnaise, mustard, ketchup, breading, lemon or extra foods. Peri-peri sauce warm reddish-orange chilli sauce, not white dressing. Beef mince ONE1.5cm patty for burger, THREE short1.5cm koftas for kebab without skewers, TWO flattened2cm portions for roast; all other forms LOOSE browned cooked mince crumbles. Chicken burger opaque browned1.5cm cutlets, kebab/fries/pizza opaque1.5cm STRIPS, pasta/pie/curry/chilli/stirfry2cm PIECES, roast intact breast. Rice chilli brownrice under mixture dicedredpepper/kidneybeans; curry basmati under mixture slicedonion/mixedpeppers no kidneybeans; stirfry eggnoodles mixedpeppers broccoli all tossed through measured sauce. Pasta wholewheat with courgette/cherrytomatoes sauce THROUGH, no cream. Pie plain WATER-MASHED potato forkroughened golden top, filling carrot peas protein with HOT red peri-peri sauce INSIDE, no side bowl or creamygravy. Roast sauce ONLY over protein, potatoes/carrotbatons/boiledbroccoli PLAIN. Slowpot tender baby potatoes carrots onion and protein withglossyperipericoating, no crispyroast. Traybake baby potatoes broccoli redpepper cookedroastededges red sauce stirredthrough nearend. Cheeseless pizza passata/mixedpeppers/protein with warm periperisauce on TOP before baking; nowhitecheese layer. Finished cookedproteinopaque no rawpink. Main serving fullview and cropmargins.",
+  "original_generation_prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Chicken Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.\",\"Slice the chicken breast horizontally into cutlets about 1.5cm thick so they cook evenly and fit the bun. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the chicken cutlets over a medium heat for about 5\u20136 minutes on each side, lowering the heat if they brown too quickly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Put the lettuce and tomato in the toasted bun, add the cooked chicken cutlets and the warm sauce, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal burger bun",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.",
+    "Slice the chicken breast horizontally into cutlets about 1.5cm thick so they cook evenly and fit the bun. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the chicken cutlets over a medium heat for about 5\u20136 minutes on each side, lowering the heat if they brown too quickly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Put the lettuce and tomato in the toasted bun, add the cooked chicken cutlets and the warm sauce, then close the bun and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-dbddcc6a-08bf-408a-8f8e-fb4417344990.png",
+  "source_sha256": "42c3171defda79051559008d2facfc84862c8b768d501efa70110099d8718c4f",
+  "generated_at": "2026-10-05T01:28:43.339Z",
+  "elapsed_ms": 283311.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e76c4885bf3f2971f8b6-retry4-480-55428261bc11.webp",
+      "sha256": "55428261bc116592aa20290e4762869215087423f42cc752138b0083d0ef1f77",
+      "bytes": 18524
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e76c4885bf3f2971f8b6-retry4-bdbf63d6ff1d.webp",
+      "sha256": "bdbf63d6ff1deb1b136c331a0cecbf4eb60ec339d609df164a07fbab51f5ecd3",
+      "bytes": 59982
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "42c3171defda79051559008d2facfc84862c8b768d501efa70110099d8718c4f",
+    "recipe_ids": [
+      "industrial-v3-burger-peri-peri-chicken"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chicken Fakeaway Burger"
+    ],
+    "notes": "Pass: opaque cooked browned chicken breast cutlet about 1.5cm thick inside toasted plain unseeded wholemeal bun. Shredded lettuce and tomato slices under cutlet, warm glossy reddish-orange peri-peri sauce inside bread. No crumbed patty, breading, cheese, white mayonnaise, mustard, herbs, raw pink meat or extra foods. Exact breast-cutlet burger and generous crop margin.",
+    "alt": "Peri-peri chicken burger with lettuce, tomato and warm chilli sauce in a wholemeal bun",
+    "reviewed_at": "2026-10-05T01:29:49.995802+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1219.json"
+  },
+  "integrated": true,
+  "live": false
+}

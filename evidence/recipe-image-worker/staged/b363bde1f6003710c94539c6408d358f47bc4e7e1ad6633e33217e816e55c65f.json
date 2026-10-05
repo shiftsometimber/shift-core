@@ -1,0 +1,89 @@
+{
+  "groupId": "b363bde1f6003710c94539c6408d358f47bc4e7e1ad6633e33217e816e55c65f",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-pineapple-overnight-oats"
+  ],
+  "titles": [
+    "Shift Pineapple Overnight Oats Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pineapple Overnight Oats Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"pineapple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 40g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g pineapple, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nShow only each exact recipe's ingredients, with appetising realistic textures. No honey, mint, coconut, nuts, syrup, other seeds or unlisted fruit. Pumpkin seeds are flat green pepitas. Rolled oats plain flakes, not granola containing unlisted foods. Cottage cheese visibly curdy, Greek yoghurt smooth; fruit-only pots have no creamy base unless 40g yoghurt is listed. Chocolate only recipes listing it. WORK SNACK BOX: juicy bite-size fruit and any listed dairy in separate compartment from dry oats, pumpkin seeds and TWO wholegrain crackers, no loose crunch mixed into wet fruit. OAT CRUNCH snack pot: dry-pan-toasted oats/seeds completely cooled and packed separately from cut fruit; no milk/cream/yoghurt. PROTEIN/SNACK pots: crunch may be added just before immediate serving as method allows. OVERNIGHT OATS: soft hydrated oats in measured milk; fruit mixed through, pumpkin seeds and any listed chopped chocolate added only at serving. Follow the exact listed method, not an invented garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "pineapple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Stir in 40g 0% Greek yoghurt until evenly mixed.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 80g pineapple, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d4ec4949-d256-4ef4-a7c9-1238248924c0.png",
+  "source_sha256": "6899bfffa61dbee291b2c92796bfc33c6b8413448aa372bec2551857e14bd20a",
+  "generated_at": "2026-10-05T01:18:24.390Z",
+  "elapsed_ms": 408850.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b363bde1f6003710c945-480-f2df8e230b53.webp",
+      "sha256": "f2df8e230b53cba28960ce6aeed5895d779747ee117d3fac9834b92361847de3",
+      "bytes": 21570
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b363bde1f6003710c945-9d482937c560.webp",
+      "sha256": "9d482937c56027711f72e8985203d4d0f4df56d5dc02a57a3d3bef846eaeb12d",
+      "bytes": 65948
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6899bfffa61dbee291b2c92796bfc33c6b8413448aa372bec2551857e14bd20a",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-pineapple-overnight-oats"
+    ],
+    "titles": [
+      "Shift Pineapple Overnight Oats Dessert Pot"
+    ],
+    "notes": "Soft milk/Greek-yoghurt hydrated overnight oats with pineapple/mixed berries folded through, green pumpkin seeds added at serving. No chocolate, dry oat pile, honey or unlisted garnish; exact title/method checked.",
+    "alt": "Pineapple berry overnight oats with Greek yoghurt and pumpkin seeds",
+    "reviewed_at": "2026-10-05T01:18:55.153802+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2571.json"
+  },
+  "integrated": true,
+  "live": false
+}

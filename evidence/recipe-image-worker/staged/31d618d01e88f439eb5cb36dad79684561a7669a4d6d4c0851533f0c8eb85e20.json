@@ -1,0 +1,86 @@
+{
+  "groupId": "31d618d01e88f439eb5cb36dad79684561a7669a4d6d4c0851533f0c8eb85e20",
+  "recipe_ids": [
+    "industrial-v3-pasta-cajun-tofu"
+  ],
+  "titles": [
+    "Shift Cajun Tofu Proper Pasta"
+  ],
+  "prompt": "Edit this exact recipe photograph. All cherry tomatoes MUST be visibly cut into quartered or diced bite-size pieces with exposed cut faces, released tomato pulp and juices. Remove every whole round intact cherry tomato. Keep cooked browned 2cm firm tofu cubes, tan wholewheat penne and softened diced courgette. Keep the light Cajun tomato coating. No added ingredients, herbs, garnish, cheese, sauce or side. Preserve believable single serving and generous landscape crop margins.\nExact recipe ingredients/method:\n{\"ingredients\":[{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"Cajun tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}],\"method\":[\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the Cajun tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured Cajun tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]}",
+  "original_generation_prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Tofu Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"Cajun tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the Cajun tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured Cajun tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; dried oregano cooked into protein only if listed, never fresh garnish.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the Cajun tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured Cajun tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-45c33ef7-b8f0-40e0-ae3f-9d3ba359d910.png",
+  "source_sha256": "0220b78336adfbb04459ede996112da8e35906626c6b04cf8f543ed2858e7d19",
+  "generated_at": "2026-10-04T23:51:01.615Z",
+  "elapsed_ms": 57012.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-31d618d01e88f439eb5c-480.webp",
+      "sha256": "f5c097fe4c3d4141aa7977320df3e35c8e912e65ca7c252e8828761a7bc3efbd",
+      "bytes": 31420
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-31d618d01e88f439eb5c-f76482059311.webp",
+      "sha256": "f76482059311e5bdb3dfb7fa9ebe1c799bd084e15709d43fec3221cb8143112a",
+      "bytes": 101746
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "0220b78336adfbb04459ede996112da8e35906626c6b04cf8f543ed2858e7d19",
+    "recipe_ids": [
+      "industrial-v3-pasta-cajun-tofu"
+    ],
+    "titles": [
+      "Shift Cajun Tofu Proper Pasta"
+    ],
+    "notes": "Edited after rejection of whole tomatoes: browned firm tofu cubes, tan wholewheat penne, softened diced courgette and cut cherry-tomato pieces with exposed cut faces and released pulp in light red coating; no cheese or garnish. One plausible serving with central food retained by responsive cropping.",
+    "alt": "Tofu with wholewheat pasta, courgette and chopped tomatoes.",
+    "reviewed_at": "2026-10-04T23:51:53.542Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-667.json"
+  },
+  "integrated": true,
+  "live": false
+}

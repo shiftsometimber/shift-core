@@ -1,0 +1,80 @@
+{
+  "groupId": "e504cf3b61bd0368775e5ed41d27604a12b7d0f26ae1e407849fadeb3f3dd01a",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-cajun-beef"
+  ],
+  "titles": [
+    "Shift Cajun Beef Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Beef Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"Cajun tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the 5% beef mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables, measured cooking liquid and 5% beef mince into the slow cooker. Stir once so everything is coated, then cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours.\",\"Keep the lid on while it cooks. In the final 30 minutes, check the texture: if the cooking liquid is still thin, leave the lid slightly ajar or finish uncovered where your cooker allows until it reduces.\",\"Check the 5% beef mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; dried oregano cooked into protein only if listed, never fresh garnish.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the 5% beef mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables, measured cooking liquid and 5% beef mince into the slow cooker. Stir once so everything is coated, then cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours.",
+    "Keep the lid on while it cooks. In the final 30 minutes, check the texture: if the cooking liquid is still thin, leave the lid slightly ajar or finish uncovered where your cooker allows until it reduces.",
+    "Check the 5% beef mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b6bf1f9c-eafc-4a4f-a7bc-da2f3c5437c5.png",
+  "source_sha256": "a3b627816a4737bf4926ada6ea4df6e68607b8f5ac1e7922102524024aec9f7b",
+  "generated_at": null,
+  "elapsed_ms": 397577.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e504cf3b61bd0368775e-480.webp",
+      "sha256": "3cebfc4bf68aba0d51d393e052eaa22139299870cf5c57d2c50bcf6eac4123ab",
+      "bytes": 29250
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e504cf3b61bd0368775e-ef7ebf5535b2.webp",
+      "sha256": "ef7ebf5535b2b61c500f19ba18f40dd1b073a73a6fa8cf42f78efd7caacc221f",
+      "bytes": 93190
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a3b627816a4737bf4926ada6ea4df6e68607b8f5ac1e7922102524024aec9f7b",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-cajun-beef"
+    ],
+    "titles": [
+      "Shift Cajun Beef Slow-Cooker Big Pot"
+    ],
+    "notes": "Loose cooked beef mince, baby potato halves, softened carrots and onion sit in a reduced red tomato stew, consistent with slow-cooker method; no extra garnish. One credible serving with central food retained by responsive crop.",
+    "alt": "Slow-cooked beef mince, baby potatoes, carrots and onion in tomato sauce.",
+    "reviewed_at": "2026-10-04T23:17:44.371Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-623.json"
+  },
+  "integrated": true,
+  "live": false
+}

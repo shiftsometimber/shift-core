@@ -1,0 +1,96 @@
+{
+  "groupId": "a056e2ca365052712ebdcf8abba393583207d61fcf1f4661ebe7addeb00e446e",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-mexican-turkey"
+  ],
+  "titles": [
+    "Shift Mexican Turkey Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mexican Turkey Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6ef6a2ff-7d59-4faa-85c0-6b317cef0dcc.png",
+  "source_sha256": "eab4e2741c52a5a3e8bb8e942bfe42842859953e0c1671a48f4561a750c6d667",
+  "generated_at": "2026-10-05T00:09:57.649Z",
+  "elapsed_ms": 190145,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a056e2ca365052712ebd-480.webp",
+      "sha256": "ca0e34489e02a119cede18f676e3e21d2b2976371c38f7db1cd5ba3089d7c15e",
+      "bytes": 22362
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a056e2ca365052712ebd-retry2-b249ecd813ca.webp",
+      "sha256": "b249ecd813caa6442db1e2387a9460c74c3ce37771c1a36cf22c530eaaaf187d",
+      "bytes": 69414
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "eab4e2741c52a5a3e8bb8e942bfe42842859953e0c1671a48f4561a750c6d667",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-mexican-turkey"
+    ],
+    "titles": [
+      "Shift Mexican Turkey Breakfast Buttie"
+    ],
+    "notes": "Unseeded wholemeal bap holds cooked white turkey breast, softened tomato and wilted spinach in listed chilli-paprika tomato sauce. No extra food.",
+    "alt": "Mexican turkey bap with tomato and spinach",
+    "reviewed_at": "2026-10-05T00:12:02.586749+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/280.json"
+  },
+  "integrated": true,
+  "live": false
+}

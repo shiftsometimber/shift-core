@@ -1,0 +1,92 @@
+{
+  "groupId": "8ae3132e528d7e27327591dbb0d1020349d15499d1ed9990cc6546717fc2bdc3",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-peppery-turkey"
+  ],
+  "titles": [
+    "Shift Peppery Turkey Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppery Turkey Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Keep the already-cooked turkey refrigerated while preparing the vegetables. Add it near the end and heat until steaming hot throughout.\",\"Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the cooked turkey breast and heat gently until steaming hot throughout.\",\"Stir in the listed flavour ingredients (20g tomato ketchup, 1g black pepper, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Keep the already-cooked turkey refrigerated while preparing the vegetables. Add it near the end and heat until steaming hot throughout.",
+    "Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the cooked turkey breast and heat gently until steaming hot throughout.",
+    "Stir in the listed flavour ingredients (20g tomato ketchup, 1g black pepper, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-dcd6b4a9-df83-43e9-915e-2d114d2e0d56.png",
+  "source_sha256": "0c173aa5299f93ca9dc2afb4da9adcec5a18b9316c3845f11bcdeef09a2ac009",
+  "generated_at": "2026-10-05T00:58:39.596Z",
+  "elapsed_ms": 73606,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8ae3132e528d7e273275-480.webp",
+      "sha256": "1c90ba038468b23b7d00797f2794948c4bc95c2cabf5acf10c92c23397b91fd1",
+      "bytes": 22400
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8ae3132e528d7e273275-6a1e5e8175fe.webp",
+      "sha256": "6a1e5e8175fec574224cb48ca6d6387768cd029e210a7b49b16af8466c5b2f6e",
+      "bytes": 65964
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "0c173aa5299f93ca9dc2afb4da9adcec5a18b9316c3845f11bcdeef09a2ac009",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-peppery-turkey"
+    ],
+    "titles": [
+      "Shift Peppery Turkey Breakfast Hash"
+    ],
+    "notes": "Cooked turkey breast pieces mixed with golden potato cubes, softened onion and mixed peppers in listed ketchup, pepper and vinegar sauce.",
+    "alt": "Peppery turkey hash with potatoes and peppers",
+    "reviewed_at": "2026-10-05T01:04:21.214020+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/353.json"
+  },
+  "integrated": true,
+  "live": false
+}

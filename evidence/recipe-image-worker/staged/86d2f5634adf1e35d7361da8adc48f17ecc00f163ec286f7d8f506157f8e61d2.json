@@ -1,0 +1,77 @@
+{
+  "groupId": "86d2f5634adf1e35d7361da8adc48f17ecc00f163ec286f7d8f506157f8e61d2",
+  "recipe_ids": [
+    "industrial-dinner-chicken-taco-bowl"
+  ],
+  "titles": [
+    "Chicken Taco Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Chicken Taco Bowl. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"70g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"120g\",\"item\":\"sweetcorn\"},{\"amount\":\"100g\",\"item\":\"tomato salsa\"},{\"amount\":\"50g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Cook the measured dry brown rice in boiling water according to its packet instructions, then drain if needed. Keep the yoghurt refrigerated while the hot components cook.\",\"Heat a non-stick frying pan over medium heat with 2 tablespoons of water; this recipe has no added oil. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Add a spoonful of water if the pan starts sticking.\",\"Add the sweetcorn and tomato salsa to the pan. Cook for 3\u20135 minutes, stirring until hot; if using frozen sweetcorn, follow its packet cooking time. Stir the cooked filling through and check it is steaming hot.\",\"Spoon the cooked rice into a bowl, add the hot filling and take it away from the heat before adding the measured Greek yoghurt as a cool topping.\",\"Eat immediately, or portion and cool leftovers promptly following the rice-storage instructions. Keep the yoghurt topping separate when packing a portion for reheating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nTargeted accuracy correction: the exact recipe specifies WHOLEGRAIN BROWN RICE. Show ordinary cooked medium-brown/tan wholegrain rice with clear intact bran texture on its grains. No polished white or pearly/glossy risotto rice. Keep the rice naturally appetising, with every other ingredient and preparation exactly as specified. No fresh herb garnish, extra vegetables, cheese, cream, unlisted oil or sides. Keep the specified protein form and all food within plate margins.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "70g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "100g",
+      "item": "tomato salsa"
+    },
+    {
+      "amount": "50g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Cook the measured dry brown rice in boiling water according to its packet instructions, then drain if needed. Keep the yoghurt refrigerated while the hot components cook.",
+    "Heat a non-stick frying pan over medium heat with 2 tablespoons of water; this recipe has no added oil. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Add a spoonful of water if the pan starts sticking.",
+    "Add the sweetcorn and tomato salsa to the pan. Cook for 3\u20135 minutes, stirring until hot; if using frozen sweetcorn, follow its packet cooking time. Stir the cooked filling through and check it is steaming hot.",
+    "Spoon the cooked rice into a bowl, add the hot filling and take it away from the heat before adding the measured Greek yoghurt as a cool topping.",
+    "Eat immediately, or portion and cool leftovers promptly following the rice-storage instructions. Keep the yoghurt topping separate when packing a portion for reheating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ad36c23f-a79f-4211-88f0-02db0f8b0b72.png",
+  "source_sha256": "e8b714007e169f03efafe1654bd55484a4590d1feabc66ec782bb5c1f2d1632f",
+  "generated_at": "2026-10-04T22:45:48.550Z",
+  "elapsed_ms": 194437,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-86d2f5634adf1e35d736-retry2-480.webp",
+      "sha256": "c4b345c745f725fae64970b34bd1e13e64e4780743b4831eb95b00b89c334ef8",
+      "bytes": 25230
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-86d2f5634adf1e35d736-retry2.webp",
+      "sha256": "82913c730dae00d022c969949726b4e0a998573f0456cc43ab82f8ffbd7f666f",
+      "bytes": 78002
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "e8b714007e169f03efafe1654bd55484a4590d1feabc66ec782bb5c1f2d1632f",
+    "recipe_ids": [
+      "industrial-dinner-chicken-taco-bowl"
+    ],
+    "titles": [
+      "Chicken Taco Bowl"
+    ],
+    "notes": "Full-resolution image inspected. Chicken pieces mixed with sweetcorn and tomato salsa over tan bran-textured wholegrain rice; cool white Greek yoghurt topping. No cheese, lettuce, lime or unlisted garnish.",
+    "alt": "Chicken, sweetcorn and salsa on wholegrain brown rice with a Greek yoghurt topping.",
+    "reviewed_at": "2026-10-04T22:59:37.230967+00:00",
+    "reviewer": "root full-resolution source inspection"
+  }
+}

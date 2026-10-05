@@ -1,0 +1,16 @@
+{
+  "groupId": "0d2a161bcbc0d60acbe18fd29d2cd71148a9f08464189d585d1f8d41703f6bbe",
+  "source_sha256": "1c6415974026b5a61df8c47544c69855515579bf88c7c94cfdcb26ec29c48372",
+  "review": {
+    "decision": "reject",
+    "notes": "Full-resolution inspection: spring onion is distributed on the tuna and potato although the method explicitly keeps all spring onion in the side salad. Reject incorrect assembly; preserve tuna mayonnaise filling and move all spring onion to side salad.",
+    "source_sha256": "1c6415974026b5a61df8c47544c69855515579bf88c7c94cfdcb26ec29c48372",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-club-tuna"
+    ],
+    "titles": [
+      "Shift Club Tuna Loaded Jacket Potato"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

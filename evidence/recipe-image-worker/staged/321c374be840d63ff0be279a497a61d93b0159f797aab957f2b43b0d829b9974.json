@@ -1,0 +1,85 @@
+{
+  "groupId": "321c374be840d63ff0be279a497a61d93b0159f797aab957f2b43b0d829b9974",
+  "recipe_ids": [
+    "industrial-v3-curry-balti-salmon"
+  ],
+  "titles": [
+    "Shift Balti Salmon Proper Curry"
+  ],
+  "prompt": "Professional appetising close food photograph of this exact actual recipe. Believable home-cooked texture, thoughtful composition and natural light. Show its complete measured dish. Match ingredients, cut and preparation precisely. No invented garnish or side. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Salmon Proper Curry. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Check the 150g salmon fillet for bones. Keep it as a fillet for pan cooking, then flake it after cooking.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Put in the salmon fillet, skin-side down if it has skin. Cook for 4\u20135 minutes, turn carefully and cook for another 3\u20135 minutes until the centre is opaque, steaming hot and flakes easily; a thicker piece needs longer. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Turn the heat to low and fold in the 40g balti-style sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Flake the cooked salmon into large pieces and fold into the pan at the end; avoid breaking it up with vigorous stirring. Heat gently until the whole pan is steaming hot, folding carefully so the seafood stays intact. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Check the 150g salmon fillet for bones. Keep it as a fillet for pan cooking, then flake it after cooking.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Put in the salmon fillet, skin-side down if it has skin. Cook for 4\u20135 minutes, turn carefully and cook for another 3\u20135 minutes until the centre is opaque, steaming hot and flakes easily; a thicker piece needs longer. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Turn the heat to low and fold in the 40g balti-style sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Flake the cooked salmon into large pieces and fold into the pan at the end; avoid breaking it up with vigorous stirring. Heat gently until the whole pan is steaming hot, folding carefully so the seafood stays intact. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-490e74cc-ed7e-49a5-8a47-9c04c00c3cea.png",
+  "source_sha256": "7c23cfc2631ec30747fb6d275b531052ad31e9bc9c9a8a1fd3de65337a50f8f8",
+  "generated_at": "2026-10-04T23:52:05.925Z",
+  "elapsed_ms": 338769,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-321c374be840d63ff0be-480.webp",
+      "sha256": "4b94de118d77e055fcfa73ec8039846eb08bd94676334df85e6d5235902c4e30",
+      "bytes": 32092
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-321c374be840d63ff0be.webp",
+      "sha256": "2f5be6296bb7b8f1c39d158df4bf2d83f9286c215afaf86c5294b8d273c86bda",
+      "bytes": 99874
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "7c23cfc2631ec30747fb6d275b531052ad31e9bc9c9a8a1fd3de65337a50f8f8",
+    "recipe_ids": [
+      "industrial-v3-curry-balti-salmon"
+    ],
+    "titles": [
+      "Shift Balti Salmon Proper Curry"
+    ],
+    "notes": "Large opaque salmon flakes with softened onion and peppers over white basmati rice.",
+    "alt": "Shift Balti Salmon Proper Curry: large opaque salmon flakes with softened onion and peppers over white basmati rice.",
+    "reviewed_at": "2026-10-05T00:07:14.142586+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

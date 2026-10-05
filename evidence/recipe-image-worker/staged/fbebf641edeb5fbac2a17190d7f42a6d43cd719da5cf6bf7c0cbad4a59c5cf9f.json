@@ -1,0 +1,92 @@
+{
+  "groupId": "fbebf641edeb5fbac2a17190d7f42a6d43cd719da5cf6bf7c0cbad4a59c5cf9f",
+  "recipe_ids": [
+    "industrial-v3-toastie-caesar-chicken"
+  ],
+  "titles": [
+    "Shift Creamy Cheddar Chicken Hot Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Chicken Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise and reduced-fat cheddar in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "item": "0% Greek yoghurt",
+      "amount": "18g"
+    },
+    {
+      "item": "light mayonnaise",
+      "amount": "9g"
+    },
+    {
+      "item": "reduced-fat cheddar",
+      "amount": "3g"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+    "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise and reduced-fat cheddar in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+    "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+    "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+    "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0ecf9529-16e6-48d6-addd-249123bb1f13.png",
+  "source_sha256": "ecdbf51709e3dc63dc0c518512985993292359c17e61850fe531f02c24989ad7",
+  "generated_at": "2026-10-05T01:21:14.634Z",
+  "elapsed_ms": 130733,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fbebf641edeb5fbac2a1-480.webp",
+      "sha256": "d53c55fa72308d1592b228c8e555c8e173d36105308fb72c2e26b1be9a924080",
+      "bytes": 31814
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fbebf641edeb5fbac2a1.webp",
+      "sha256": "7b95a1ced18f83ac93f7900bbe2735c77eb5e8141f8438a4f1f27ae41273a7f3",
+      "bytes": 93466
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Creamy cheddar chicken wholemeal toastie with spinach and tomato salad",
+    "notes": "Individual full-resolution inspection against exact recipe and all titles: crisp wholemeal toastie, sliced cooked chicken breast, tomato, spinach and creamy yoghurt/mayo/finely grated cheddar dressing; fresh spinach and tomato alongside.",
+    "source_sha256": "ecdbf51709e3dc63dc0c518512985993292359c17e61850fe531f02c24989ad7",
+    "recipe_ids": [
+      "industrial-v3-toastie-caesar-chicken"
+    ],
+    "titles": [
+      "Shift Creamy Cheddar Chicken Hot Toastie"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "groupId": "a9acbbdf8f62c2e1863c642ba376155d6abe341ef2a3f2f1915d7ff5766b10dd",
+  "recipe_ids": [
+    "industrial-breakfast-cottage-cheese-toast-peach-cinnamon-4"
+  ],
+  "titles": [
+    "Cottage Cheese Spring Onion Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cottage Cheese Spring Onion Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"spring onion\"},{\"amount\":\"1 tsp\",\"item\":\"lemon juice\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Toast the bread.\",\"Prepare the vegetables.\",\"Spoon cottage cheese over the toast.\",\"Top with vegetables, lemon juice and black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "1 tsp",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Toast the bread.",
+    "Prepare the vegetables.",
+    "Spoon cottage cheese over the toast.",
+    "Top with vegetables, lemon juice and black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c83d7573-4851-4686-aa2b-505c7dd0656e.png",
+  "source_sha256": "d92cb2415e1e113e98e072160ec032dcb9fc51e68e4a86774deabe8fd74d7bbf",
+  "generated_at": "2026-10-04T21:08:55.758Z",
+  "elapsed_ms": 416450,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a9acbbdf8f62c2e1863c-480.webp",
+      "sha256": "2995c07de3418322871584509ec10e7b23c47fc38c0c51d4a496e88173eb3de9",
+      "bytes": 27166
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a9acbbdf8f62c2e1863c.webp",
+      "sha256": "4b72ef6cc97d0e6a06abe946cadb900a0268a7244082e06a217674d5b2933c96",
+      "bytes": 79698
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-cottage-cheese-toast-peach-cinnamon-4"
+    ],
+    "titles": [
+      "Cottage Cheese Spring Onion Wholemeal Toast"
+    ],
+    "notes": "Two wholemeal toast slices topped with cottage cheese, chopped spring onion and pepper; no garnish absent from ingredients. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Cottage cheese on wholemeal toast topped with chopped spring onion and black pepper.",
+    "reviewed_at": "2026-10-04T21:13:56.961218+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "d92cb2415e1e113e98e072160ec032dcb9fc51e68e4a86774deabe8fd74d7bbf"
+  }
+}

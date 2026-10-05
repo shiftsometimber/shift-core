@@ -1,0 +1,88 @@
+{
+  "groupId": "76ab619a9dbfccd7128c75c75b375f7c0c56591a0845f4ade2620443557e66a2",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-pineapple-protein-pudding"
+  ],
+  "titles": [
+    "Shift Pineapple Protein Pudding Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pineapple Protein Pudding Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"pineapple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed ingredients: no honey, mint, coconut, nuts, syrup, pineapple or banana/apple unless listed. Mixed berries only listed berry addition. Cottage cheese curdy, high-protein yoghurt smooth, fruit-only variants have no dairy unless 40g Greek yoghurt explicitly listed. Rolled oats plain flakes, no granola with invented foods. Pumpkin seeds flat green pepitas. Chocolate chips discrete small chips; Big Feed recipes that ALSO list chopped dark chocolate must show chopped pieces as the measured finishing element. WORK SNACK BOX: wet fruit/dairy separated from dry oats/pepitas/TWO wholegrain crackers. EXCEPTION overnight-oats work snack box: oats are milk-hydrated overnight with pineapple/berries mixed through; seeds separate until serving, crackers alongside dry. Fruit/Protein pots: dry crunch only added at immediate serving. Greek yoghurt swirled through dessert pots at end exactly as method requires, not an invented cream base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "pineapple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ddc0dbf9-f3be-405a-a8bd-2b84967971fb.png",
+  "source_sha256": "1ad54e23bc85cf4b9b7fb14432e7248e4cca34d3dd5047a183dc486e816b8fa5",
+  "generated_at": "2026-10-05T01:20:59.254Z",
+  "elapsed_ms": 47099.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-76ab619a9dbfccd7128c-480-a61320c0ef8b.webp",
+      "sha256": "a61320c0ef8b5eb9adb39d862752a34e9b171ee39c76c7e56a6cda3fc12ef39e",
+      "bytes": 21978
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-76ab619a9dbfccd7128c-cb0c66ba1a17.webp",
+      "sha256": "cb0c66ba1a17fe9f90d35b405358f81b70914407bccf34c95ec9357b1c3eb799",
+      "bytes": 63900
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1ad54e23bc85cf4b9b7fb14432e7248e4cca34d3dd5047a183dc486e816b8fa5",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-pineapple-protein-pudding"
+    ],
+    "titles": [
+      "Shift Pineapple Protein Pudding Big Feed Dessert"
+    ],
+    "notes": "Smooth high-protein yoghurt combined with pineapple/mixed berries, plain rolled oats and green pumpkin seeds, finished with chopped dark chocolate. No curdy cottage-cheese substitution, honey, nuts or garnish; exact title/method checked.",
+    "alt": "Pineapple protein yoghurt dessert with berries, oats, pumpkin seeds and dark chocolate",
+    "reviewed_at": "2026-10-05T01:27:16.564339+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2573.json"
+  },
+  "integrated": true,
+  "live": false
+}

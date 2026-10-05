@@ -1,0 +1,89 @@
+{
+  "groupId": "dddc7d16d018e911e224ee3648196d25ce344b3498c00d12a4967ac4dad64c9c",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-peri-peri-bacon"
+  ],
+  "titles": [
+    "Shift Peri-Peri Bacon Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Bacon Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Trim visible fat from the back-bacon rashers and weigh the listed portion raw before cooking.\",\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use half the measured olive oil in a frying pan. Cut the bacon into bite-size pieces. Cook the lean back bacon thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked lean back bacon to the pan and heat through.\",\"Stir in the listed flavour ingredients (40g peri-peri sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Trim visible fat from the back-bacon rashers and weigh the listed portion raw before cooking.",
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use half the measured olive oil in a frying pan. Cut the bacon into bite-size pieces. Cook the lean back bacon thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked lean back bacon to the pan and heat through.",
+    "Stir in the listed flavour ingredients (40g peri-peri sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-256afb0d-2fea-4135-9ff8-33b15b1f5cdd.png",
+  "source_sha256": "031e57d82b3e400e2eb2763385d6b6c94bde5c4d1f90b4f8a185c5f20bf12353",
+  "generated_at": "2026-10-05T01:00:51.068Z",
+  "elapsed_ms": 205078,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-dddc7d16d018e911e224-480.webp",
+      "sha256": "d950e7d48c3aa006d7f1f747c2a7cdaf0148aa9f19be9c7d77df57c2724dd75e",
+      "bytes": 28226
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-dddc7d16d018e911e224-518e27647613.webp",
+      "sha256": "518e276476131aabece090522109b704143acfa965d09b0f66557a9d105a8ee6",
+      "bytes": 89812
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "031e57d82b3e400e2eb2763385d6b6c94bde5c4d1f90b4f8a185c5f20bf12353",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-peri-peri-bacon"
+    ],
+    "titles": [
+      "Shift Peri-Peri Bacon Breakfast Toastie"
+    ],
+    "notes": "Crisp unseeded wholemeal toastie with cooked lean back bacon pieces, cooked tomato and wilted spinach coated in peri-peri sauce.",
+    "alt": "Peri-peri bacon toastie with tomato and spinach",
+    "reviewed_at": "2026-10-05T01:02:07.727556+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/358.json"
+  },
+  "integrated": true,
+  "live": false
+}

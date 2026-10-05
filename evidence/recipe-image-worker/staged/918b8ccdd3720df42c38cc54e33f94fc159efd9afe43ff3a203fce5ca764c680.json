@@ -1,0 +1,76 @@
+{
+  "groupId": "918b8ccdd3720df42c38cc54e33f94fc159efd9afe43ff3a203fce5ca764c680",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-apple-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Apple Fruit Crunch Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Fruit Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"260g\",\"item\":\"apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the apple in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "260g",
+      "item": "apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the apple in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-222434e9-065c-419b-ad67-e02de355f378.png",
+  "source_sha256": "1ef195305260e9d6f0aa5f8d4529a627959aeb8d61dde2ab626e5aaf96309e8c",
+  "generated_at": "2026-10-04T21:25:57.217Z",
+  "elapsed_ms": 392053,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-918b8ccdd3720df42c38-480.webp",
+      "sha256": "e9ed152e7321e5c28bcbb59a850d58a55f973d52434e348f69583b4abb8e8b0e",
+      "bytes": 27260
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-918b8ccdd3720df42c38.webp",
+      "sha256": "080bf8f00633ec91f2ecb7f81859d2b58d61da5391b01d7caa35b725bdf67765",
+      "bytes": 84718
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-apple-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Apple Fruit Crunch Snack Pot"
+    ],
+    "notes": "Apple and mixed berries in fruit pot; rolled oats and pumpkin seeds dry and separate; no dairy.",
+    "alt": "Apple and berry snack pot with separate rolled oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:27:25.083980+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/918b8ccdd3720df42c38cc54e33f94fc159efd9afe43ff3a203fce5ca764c680.json",
+    "source_sha256": "1ef195305260e9d6f0aa5f8d4529a627959aeb8d61dde2ab626e5aaf96309e8c"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,16 @@
+{
+  "groupId": "f84d41194b61dbcdf1171d85683e6112120de2e0fc67c448943b2958f81b50ac",
+  "source_sha256": "8a5f1f07176667d0ed9650d1482daf8b8e3714f15e5523bf85d48ab9cfcde689",
+  "review": {
+    "decision": "reject",
+    "notes": "Corrected full-resolution source shows two portions now, but dense dark pepper/herb specks appear within and over exposed plain mince beneath sauce. Recipe requires unseasoned pure turkey breast mince and no extra spice/herb additions. Regenerate clean plain mince texture.",
+    "source_sha256": "8a5f1f07176667d0ed9650d1482daf8b8e3714f15e5523bf85d48ab9cfcde689",
+    "recipe_ids": [
+      "industrial-v3-roast-chilli-turkey"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Turkey Sunday-Style Roast"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

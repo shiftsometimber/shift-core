@@ -1,0 +1,88 @@
+{
+  "groupId": "4e4a5e180c4fee8797ce39ffdf302fd49b0243631093e78912b235cd1f057139",
+  "recipe_ids": [
+    "industrial-v3-bagel-peri-peri-ham"
+  ],
+  "titles": [
+    "Shift Peri-Peri Ham Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Ham Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.\",\"Use the measured peri-peri yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured peri-peri yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Mexican/peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish, tortilla chips or extra ingredients. Listed yoghurt sauces are ready-to-eat dressings, not melted cheese.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.",
+    "Use the measured peri-peri yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the measured peri-peri yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-57f0b78b-ce09-48d0-a052-5a5f1180b96f.png",
+  "source_sha256": "3049a474c58ddb51a87dfca9b2f8316aa99580343b860c7b58f86089eefab05e",
+  "generated_at": "2026-10-04T23:22:19.331Z",
+  "elapsed_ms": 245153.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4e4a5e180c4fee8797ce-480-66350a38213f.webp",
+      "sha256": "66350a38213f9de9142d86a41b79914aa4e8326fa7be145ae634df180cdd09b4",
+      "bytes": 27860
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4e4a5e180c4fee8797ce-25f8a445492f.webp",
+      "sha256": "25f8a445492fc03d6750b1ed921a58f4ff87c8a59ca1a9e95e2c596a0279e04e",
+      "bytes": 80248
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3049a474c58ddb51a87dfca9b2f8316aa99580343b860c7b58f86089eefab05e",
+    "recipe_ids": [
+      "industrial-v3-bagel-peri-peri-ham"
+    ],
+    "titles": [
+      "Shift Peri-Peri Ham Loaded Bagel"
+    ],
+    "notes": "Plain wholemeal bagel with thin ham strips, rocket, tomato and peri-peri yoghurt dressing combined in filling. Remaining raw rocket/tomato served alongside. No unlisted garnish, cheese or seeds.",
+    "alt": "Peri-peri ham bagel with rocket and tomato salad",
+    "reviewed_at": "2026-10-04T23:24:59.431050+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1961.json"
+  },
+  "integrated": true,
+  "live": false
+}

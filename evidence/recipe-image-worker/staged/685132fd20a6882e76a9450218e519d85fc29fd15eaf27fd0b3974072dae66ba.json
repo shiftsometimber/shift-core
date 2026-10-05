@@ -1,0 +1,87 @@
+{
+  "groupId": "685132fd20a6882e76a9450218e519d85fc29fd15eaf27fd0b3974072dae66ba",
+  "recipe_ids": [
+    "industrial-v3-meal-prep-bowl-tikka-chicken"
+  ],
+  "titles": [
+    "Shift Tikka Chicken Meal-Prep Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Chicken Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"amount\":\"40g\",\"item\":\"tikka yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured tikka yoghurt and olive oil dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel. No sesame/poppy seeds, cheese, cream/mayo or unlisted food. Sweet chilli recipes: sauce translucent glossy red, no opaque creamy coating. Tikka recipes: only listed tikka yoghurt dressing, creamy orange-tinted; no additional herbs, coriander, rice sides, curry garnish or tikka grilling char invented. Poultry plain already-cooked breast, no breadcrumb/batter coating. Chickpeas coarse roughly mashed only for toastie/bagel, whole elsewhere. Keep reserved raw spinach/tomato or rocket/tomato salads alongside. Finely sliced spring onion mixed into salad alongside jacket potatoes, never scattered on potato. Rice cooked, peppers diced raw, corn ready-to-eat; measured dressing folded through rice.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured tikka yoghurt and olive oil dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0b8e4231-e572-4a24-b097-8f3256ccf157.png",
+  "source_sha256": "75ccd5aa440a5c19c3501cf0b64d4382fcb549193aa04ec9da885228551c66ec",
+  "generated_at": "2026-10-05T00:40:23.250Z",
+  "elapsed_ms": 260851.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-685132fd20a6882e76a9-480-52103c9e01a3.webp",
+      "sha256": "52103c9e01a380fe4aecb6dbe70cd876890d24bf0e375b3eda5977e42117d400",
+      "bytes": 23666
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-685132fd20a6882e76a9-cfb7d69d4010.webp",
+      "sha256": "cfb7d69d4010a3a49d70685a88aa476a33449d4389786904e0a025e011ebcd0a",
+      "bytes": 66996
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "75ccd5aa440a5c19c3501cf0b64d4382fcb549193aa04ec9da885228551c66ec",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-tikka-chicken"
+    ],
+    "titles": [
+      "Shift Tikka Chicken Meal-Prep Bowl"
+    ],
+    "notes": "Cooked brown rice, plain chicken, raw diced mixed peppers and sweetcorn with listed tikka yoghurt/oil dressing folded through. No garnish, curry rice side, cheese or unlisted ingredient. Exact title/method checked.",
+    "alt": "Tikka yoghurt chicken rice bowl with peppers and sweetcorn",
+    "reviewed_at": "2026-10-05T00:43:10.101829+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2089.json"
+  },
+  "integrated": true,
+  "live": false
+}

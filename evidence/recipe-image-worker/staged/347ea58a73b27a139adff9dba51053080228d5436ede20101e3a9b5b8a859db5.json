@@ -1,0 +1,88 @@
+{
+  "groupId": "347ea58a73b27a139adff9dba51053080228d5436ede20101e3a9b5b8a859db5",
+  "recipe_ids": [
+    "industrial-v3-bagel-peri-peri-chickpea"
+  ],
+  "titles": [
+    "Shift Peri-Peri Chickpea Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Chickpea Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.\",\"Use the measured peri-peri yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured peri-peri yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Mexican/peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish, tortilla chips or extra ingredients. Listed yoghurt sauces are ready-to-eat dressings, not melted cheese.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.",
+    "Use the measured peri-peri yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the measured peri-peri yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-images/evidence/recipe-image-worker/worker-f/1949.recovered.png",
+  "source_sha256": "70465573f9540fe5ac2a80897f900c5ecb505bd31dad3611ec9c1c815820753e",
+  "generated_at": null,
+  "elapsed_ms": 0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-347ea58a73b27a139adf-480-d575273d821a.webp",
+      "sha256": "d575273d821a0850277eeba37868833466ebedf7cec49df2071f30508dc767b3",
+      "bytes": 32688
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-347ea58a73b27a139adf-89955ff98ee6.webp",
+      "sha256": "89955ff98ee6c662c2aa72dc5c7853fbd66d8f9d12ab654c95db85d9ed877258",
+      "bytes": 89520
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "70465573f9540fe5ac2a80897f900c5ecb505bd31dad3611ec9c1c815820753e",
+    "recipe_ids": [
+      "industrial-v3-bagel-peri-peri-chickpea"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chickpea Loaded Bagel"
+    ],
+    "notes": "Plain bagel with roughly mashed chickpeas, rocket/tomato and peri-peri yoghurt; raw rocket/tomato side salad. No unlisted garnish, cheese, seeds or substitutions. Dressing placement matches method.",
+    "alt": "Peri-Peri Chickpea Loaded Bagel with rocket, tomato",
+    "reviewed_at": "2026-10-04T22:50:59.733006+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1949.json"
+  },
+  "integrated": true,
+  "live": false
+}

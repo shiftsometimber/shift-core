@@ -1,0 +1,80 @@
+{
+  "groupId": "485eecbcd996361d7bb0abb611b4c65a67f92df22b9ee113d07c322bb9d68c25",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-apple-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Apple Fruit Crunch Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Fruit Crunch Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"260g\",\"item\":\"apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "260g",
+      "item": "apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a0c1c795-d560-4f4d-88ab-ed98eb745226.png",
+  "source_sha256": "6aeb035045f9107ddb151ea874655220a7d4776d75b0e0d338e224b7dfac6033",
+  "generated_at": "2026-10-04T21:25:03.831Z",
+  "elapsed_ms": 338667,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-485eecbcd996361d7bb0-480.webp",
+      "sha256": "ac9cebe0ebc5348911deb9894ece6afdc42299fe88e8089f4adb64714dad9895",
+      "bytes": 22840
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-485eecbcd996361d7bb0.webp",
+      "sha256": "7788f60c4818b7c90cbbbeb5c0172d1271e190c4419d698af7af0cf80d99db21",
+      "bytes": 70118
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-apple-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Apple Fruit Crunch Dessert Pot"
+    ],
+    "notes": "Apple and berries with oats and pumpkin seeds and light measured yoghurt coating; no cottage cheese or chocolate.",
+    "alt": "Apple fruit crunch pot with mixed berries, oats, pumpkin seeds and yoghurt",
+    "reviewed_at": "2026-10-04T21:27:27.531318+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/485eecbcd996361d7bb0abb611b4c65a67f92df22b9ee113d07c322bb9d68c25.json",
+    "source_sha256": "6aeb035045f9107ddb151ea874655220a7d4776d75b0e0d338e224b7dfac6033"
+  },
+  "integrated": true,
+  "live": false
+}

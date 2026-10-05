@@ -1,0 +1,86 @@
+{
+  "groupId": "c7afa461b0f94b4bee6e8fda1fb1407f7aacecf79a79db25023510fec2e95fdd",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-cheesecake-style-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Cottage Cheese Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Cottage Cheese Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup or garnish. No cake, pie or biscuit crust. Mixed berries just the listed25g, a small portion. All food safely inside frame. NO side crackers or whole biscuits anywhere. Crushed biscuit ONLY if explicitly listed, small irregular crumbs as topping; no intact biscuits. Light cream cheese only a modest measured30g smoothly folded through the fruit or cottage cheese, never a giant cream mound or cake. No biscuit crumb unless listed. Cottage cheese has distinct small curds if listed, listed flavour additions folded through with oats and seeds freshly topped at serving.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with low-fat cottage cheese in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fa10ef3b-3c78-4816-a829-3d6058932c63.png",
+  "source_sha256": "75925d3d543723a4998c4e33b889f4fcaeea064dfea1d87789d4a551262dca5e",
+  "generated_at": "2026-10-04T23:42:15.871Z",
+  "elapsed_ms": 374329,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c7afa461b0f94b4bee6e-480-5995491c4023.webp",
+      "sha256": "5995491c402338e96a6e66b651de5ffac97674981a07404f4adfaa94a5a8a788",
+      "bytes": 25682
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c7afa461b0f94b4bee6e-e9f8a5825d7b.webp",
+      "sha256": "e9f8a5825d7b55730770b2177a2ea7f2db3a33d2919ab49ba501a7d886b812ee",
+      "bytes": 83458
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "75925d3d543723a4998c4e33b889f4fcaeea064dfea1d87789d4a551262dca5e",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-cheesecake-style-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Cottage Cheese Protein Pot"
+    ],
+    "notes": "Cottage cheese curds with measured cream cheese, small berries and dry oats/seeds topped at serving. No biscuits or chocolate.",
+    "alt": "Cottage cheese pot with cream cheese, berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:44:03.838896+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/c7afa461b0f94b4bee6e8fda1fb1407f7aacecf79a79db25023510fec2e95fdd.json"
+  },
+  "integrated": true,
+  "live": false
+}

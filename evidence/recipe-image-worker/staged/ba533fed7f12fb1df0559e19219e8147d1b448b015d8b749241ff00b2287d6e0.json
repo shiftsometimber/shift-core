@@ -1,0 +1,82 @@
+{
+  "groupId": "ba533fed7f12fb1df0559e19219e8147d1b448b015d8b749241ff00b2287d6e0",
+  "recipe_ids": [
+    "industrial-lunch-chickpea-jacket-potato"
+  ],
+  "titles": [
+    "Chickpea Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Chickpea Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"300g\",\"item\":\"baking potato\"},{\"amount\":\"60g\",\"item\":\"mixed salad\"},{\"amount\":\"60g\",\"item\":\"spring onion\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Use the measured 0% Greek yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured 0% Greek yoghurt; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "300g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "60g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "60g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+    "Use the measured 0% Greek yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured 0% Greek yoghurt; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6cf9ae84-4895-4249-b184-e9b3ee88c746.png",
+  "source_sha256": "e7cfaf92cbb577c35b2c82c2d3fb9cdab1dc8248ddf00c8e09ddc8772314e71b",
+  "generated_at": "2026-10-04T23:51:51.947Z",
+  "elapsed_ms": 23351.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ba533fed7f12fb1df055-480-9cab77a97504.webp",
+      "sha256": "9cab77a9750411e638fe40e674febbda4276d519af2ab22965d4daf3b95d9cf0",
+      "bytes": 24574
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ba533fed7f12fb1df055-a86807730efa.webp",
+      "sha256": "a86807730efa746db2167b9bf8ed4d96c30a8e00d0669c4ca82e0728c1a16dfe",
+      "bytes": 65280
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "e7cfaf92cbb577c35b2c82c2d3fb9cdab1dc8248ddf00c8e09ddc8772314e71b",
+    "recipe_ids": [
+      "industrial-lunch-chickpea-jacket-potato"
+    ],
+    "titles": [
+      "Chickpea Jacket Potato"
+    ],
+    "notes": "Split fluffy jacket potato topped with chickpeas and plain Greek yoghurt; mixed leaves with spring onion strictly alongside. No extra garnish; exact title matches.",
+    "alt": "Chickpea jacket potato with Greek yoghurt and spring onion salad",
+    "reviewed_at": "2026-10-05T00:00:08.873475+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1494-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

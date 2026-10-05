@@ -1,0 +1,90 @@
+{
+  "groupId": "0eeda5bf6bcf1d862b056f1f8422ec02de330f0eec2c5413c1c2a5a3782df027",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-weekend-turkey"
+  ],
+  "titles": [
+    "Shift Weekend Turkey Breakfast Wrap"
+  ],
+  "prompt": "Photograph the actual completed recipe with careful food styling, natural side light and believable appetising texture. No added garnish or ingredient. Match protein cut, quantities and preparation exactly. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Turkey Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10g\",\"item\":\"tomato ketchup\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Exact ingredients and method are authoritative. No food outside these ingredients.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f0121957-98b8-4328-ad24-b40707f1a1ac.png",
+  "source_sha256": "1a484f0af29f9df0f95bf57846e570ed84d0f340f54c15547d9dd49538b95437",
+  "generated_at": "2026-10-04T23:35:31.294Z",
+  "elapsed_ms": 127826,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0eeda5bf6bcf1d862b05-480.webp",
+      "sha256": "ab77d3bb4d3a23d67eba9d366a778a12ebadc8bacfb836cd9e6d35b4dcd75426",
+      "bytes": 24556
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0eeda5bf6bcf1d862b05.webp",
+      "sha256": "7cd19238b1a4831983fc8ab4368e7de9f47859ad037dfea608b96c74c314d754",
+      "bytes": 71518
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1a484f0af29f9df0f95bf57846e570ed84d0f340f54c15547d9dd49538b95437",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-weekend-turkey"
+    ],
+    "titles": [
+      "Shift Weekend Turkey Breakfast Wrap"
+    ],
+    "notes": "One wholemeal wrap firmly rolled around heated cooked turkey, softened peppers, wilted spinach and onion; no extra sides.",
+    "alt": "Turkey breakfast wrap with peppers, spinach and onion",
+    "reviewed_at": "2026-10-04T23:45:25.952739+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

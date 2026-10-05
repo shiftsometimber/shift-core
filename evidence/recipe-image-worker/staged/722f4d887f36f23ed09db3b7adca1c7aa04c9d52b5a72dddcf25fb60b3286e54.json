@@ -1,0 +1,82 @@
+{
+  "groupId": "722f4d887f36f23ed09db3b7adca1c7aa04c9d52b5a72dddcf25fb60b3286e54",
+  "recipe_ids": [
+    "industrial-v3-curry-balti-pork"
+  ],
+  "titles": [
+    "Shift Balti Pork Proper Curry"
+  ],
+  "prompt": "Professional appetising close food photograph of this exact actual recipe. Believable home-cooked texture, thoughtful composition and natural light. Show its complete measured dish. Match ingredients, cut and preparation precisely. No invented garnish or side. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Pork Proper Curry. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Cut the 170g lean pork loin into pieces no larger than 2cm on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the lean pork loin in one layer and cook for 10\u201312 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Turn the heat to low and fold in the 40g balti-style sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked lean pork loin and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "75g",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Cut the 170g lean pork loin into pieces no larger than 2cm on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the lean pork loin in one layer and cook for 10\u201312 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Turn the heat to low and fold in the 40g balti-style sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked lean pork loin and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-10f4cdf3-3163-4dfe-a05d-1164ee5b46bf.png",
+  "source_sha256": "68147d77177e32d446ad7f444b25e0e068e987abebfcb78d2ce1fb4a14fd27a0",
+  "generated_at": "2026-10-04T23:49:25.815Z",
+  "elapsed_ms": 178658,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-722f4d887f36f23ed09d-480.webp",
+      "sha256": "36c7c86e2ff510f9233cb0d41b7cf4fd4f7ce0b53ff76b22a55ab31540e4935c",
+      "bytes": 30718
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-722f4d887f36f23ed09d.webp",
+      "sha256": "ec0ef7709b8cb4ec57405f55e4a48999e2b69c901c8a4964ab1ef0b0d6051d6c",
+      "bytes": 95018
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "68147d77177e32d446ad7f444b25e0e068e987abebfcb78d2ce1fb4a14fd27a0",
+    "recipe_ids": [
+      "industrial-v3-curry-balti-pork"
+    ],
+    "titles": [
+      "Shift Balti Pork Proper Curry"
+    ],
+    "notes": "Cooked opaque 2cm pork loin pieces, softened onion and pepper over white basmati rice; no extra garnish.",
+    "alt": "Shift Balti Pork Proper Curry: cooked opaque 2cm pork loin pieces, softened onion and pepper over white basmati rice",
+    "reviewed_at": "2026-10-05T00:07:14.070765+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

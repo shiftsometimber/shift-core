@@ -1,0 +1,83 @@
+{
+  "groupId": "3b24defd9dc8b215361abb02fb3283ed3161b1022c9492503de50dc37d1a267c",
+  "recipe_ids": [
+    "industrial-v3-wrap-mexican-turkey"
+  ],
+  "titles": [
+    "Shift Mexican Turkey Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mexican Turkey Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"tomato salsa\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the cooked turkey breast with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Mexican/peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish, tortilla chips or extra ingredients. Listed yoghurt sauces are ready-to-eat dressings, not melted cheese.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "tomato salsa"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the cooked turkey breast with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-images/evidence/recipe-image-worker/worker-f/1940.recovered.png",
+  "source_sha256": "fae080ee9bf8602a1d2197b0599c511fa2d44ade1d5eab2686dc43f24c1905fc",
+  "generated_at": "2026-10-04T22:47:08.749Z",
+  "elapsed_ms": 368802.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3b24defd9dc8b215361a-480-12fe6dd8a6f2.webp",
+      "sha256": "12fe6dd8a6f2730b420d3edd1c225daf302e7ebbdb25985e285c88c5906d5ef2",
+      "bytes": 21724
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3b24defd9dc8b215361a-d0117f477aaf.webp",
+      "sha256": "d0117f477aafc66c22a3e4d97895f12a6ca713adc6dee299ad5d5544105a23ae",
+      "bytes": 63480
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fae080ee9bf8602a1d2197b0599c511fa2d44ade1d5eab2686dc43f24c1905fc",
+    "recipe_ids": [
+      "industrial-v3-wrap-mexican-turkey"
+    ],
+    "titles": [
+      "Shift Mexican Turkey Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap halves with reheated turkey, fresh lettuce/tomato and tomato salsa. No unlisted garnish, cheese, seeds or substitutions. Dressing placement matches method.",
+    "alt": "Mexican Turkey Loaded Wrap with lettuce, tomato",
+    "reviewed_at": "2026-10-04T22:50:57.541804+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1940.json"
+  },
+  "integrated": true,
+  "live": false
+}

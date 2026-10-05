@@ -1,0 +1,98 @@
+{
+  "groupId": "0ccfaa1565d80dcf9c3fe99177031055fc322f3b608e5b7833c440e6394dfd73",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-mediterranean-egg"
+  ],
+  "titles": [
+    "Shift Mediterranean Egg Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mediterranean Egg Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"25g\",\"item\":\"tomato ketchup\"},{\"amount\":\"1g\",\"item\":\"dried oregano\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Beat the measured eggs in a clean bowl and set them aside while cooking the vegetables.\",\"Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the beaten eggs to the cooked vegetables and stir until fully set.\",\"Stir in the listed flavour ingredients (25g tomato ketchup, 1g dried oregano, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "25g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "1g",
+      "item": "dried oregano"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Beat the measured eggs in a clean bowl and set them aside while cooking the vegetables.",
+    "Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the beaten eggs to the cooked vegetables and stir until fully set.",
+    "Stir in the listed flavour ingredients (25g tomato ketchup, 1g dried oregano, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-bf62617b-ea09-4dd0-a4d5-e8131391783b.png",
+  "source_sha256": "0e50300eba231b70ce6148cf18b7d6c407b4f9d9ec3f08a98c39b1e224f16a00",
+  "generated_at": "2026-10-04T23:46:11.807Z",
+  "elapsed_ms": 242207,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0ccfaa1565d80dcf9c3f-480.webp",
+      "sha256": "fcb593ede3ea722f90c3d61b8dc172cb7a215c5de9d377fd78f52e65c445169e",
+      "bytes": 28174
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0ccfaa1565d80dcf9c3f-retry2-c9bc51822eb8.webp",
+      "sha256": "c9bc51822eb89b579dfdbe7dae7be46d65e46780a138ed5132aeed23c541cacb",
+      "bytes": 85158
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "0e50300eba231b70ce6148cf18b7d6c407b4f9d9ec3f08a98c39b1e224f16a00",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-mediterranean-egg"
+    ],
+    "titles": [
+      "Shift Mediterranean Egg Breakfast Toastie"
+    ],
+    "notes": "Crisp wholemeal toastie contains fully set egg curds, softened tomato and wilted spinach in listed tomato-oregano sauce. No cheese.",
+    "alt": "Mediterranean egg toastie with tomato and spinach",
+    "reviewed_at": "2026-10-04T23:47:36.223195+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/250.json"
+  },
+  "integrated": true,
+  "live": false
+}

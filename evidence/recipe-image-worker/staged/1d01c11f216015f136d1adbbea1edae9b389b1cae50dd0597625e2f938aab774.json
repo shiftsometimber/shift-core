@@ -1,0 +1,87 @@
+{
+  "groupId": "1d01c11f216015f136d1adbbea1edae9b389b1cae50dd0597625e2f938aab774",
+  "recipe_ids": [
+    "industrial-v3-wrap-cajun-turkey"
+  ],
+  "titles": [
+    "Shift Cajun Turkey Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Turkey Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"Cajun yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked turkey breast; if the filling is being served hot, reduce only the sauce-coated cooked turkey breast until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. If spices are mixed into a dressing, all spices remain in the smooth dressing: NO dry spice dust scattered over food, salad or plate. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty; cooked salmon and cooked cured ham retain their natural opaque colour. For meal-prep bowls, all filling including egg slices is folded THROUGH the rice and vegetables, not arranged on top as a decorative row or fan.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked turkey breast; if the filling is being served hot, reduce only the sauce-coated cooked turkey breast until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a365d016-ddac-42fe-b54b-3f8e63b10490.png",
+  "source_sha256": "11e3d37af8630acd3c0f98bb89b265f73163323336f470a9e0df49126b6e03ca",
+  "generated_at": "2026-10-05T01:29:29.775Z",
+  "elapsed_ms": 628214.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1d01c11f216015f136d1-480-5f1a4c4871e7.webp",
+      "sha256": "5f1a4c4871e7baf534efd592698736f22fafe9b05e779e44de78b01b58bb2401",
+      "bytes": 23576
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1d01c11f216015f136d1-516549b1393f.webp",
+      "sha256": "516549b1393f9036f3fb91e8290c3ff99e17a220ca146f3c154e442a284d0354",
+      "bytes": 68450
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "11e3d37af8630acd3c0f98bb89b265f73163323336f470a9e0df49126b6e03ca",
+    "recipe_ids": [
+      "industrial-v3-wrap-cajun-turkey"
+    ],
+    "titles": [
+      "Shift Cajun Turkey Loaded Wrap"
+    ],
+    "notes": "Plain toasted wholemeal wrap cut into halves shows opaque lightly browned turkey coated in Cajun yoghurt, fresh lettuce and tomato. No extra cheese, seeds or garnish; exact wrap title and sauce-coating method match.",
+    "alt": "Cajun turkey wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T01:31:17.520595+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1630-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

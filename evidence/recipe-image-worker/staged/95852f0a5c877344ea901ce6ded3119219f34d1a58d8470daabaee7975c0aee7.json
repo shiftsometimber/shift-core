@@ -1,0 +1,82 @@
+{
+  "groupId": "95852f0a5c877344ea901ce6ded3119219f34d1a58d8470daabaee7975c0aee7",
+  "recipe_ids": [
+    "industrial-breakfast-egg-toast-peach-cinnamon-4"
+  ],
+  "titles": [
+    "Egg Courgette Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Courgette Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"courgette\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Wash the vegetables and slice or finely chop them before cooking.\",\"Toast the bread.\",\"Heat the oil and cook the vegetables until softened.\",\"Add the eggs and scramble until fully set.\",\"Serve the eggs and vegetables on the toast and season with the measured black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "courgette"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Wash the vegetables and slice or finely chop them before cooking.",
+    "Toast the bread.",
+    "Heat the oil and cook the vegetables until softened.",
+    "Add the eggs and scramble until fully set.",
+    "Serve the eggs and vegetables on the toast and season with the measured black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-aed817b1-c472-46a4-b85f-a344725c3184.png",
+  "source_sha256": "993837c689215126ae358b1b2dfd300d5b4f215c09822c0cdb32d79c22057812",
+  "generated_at": "2026-10-04T21:10:51.339Z",
+  "elapsed_ms": 532031,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-95852f0a5c877344ea90-480.webp",
+      "sha256": "e3ad0459a5496fb7745b67f99724819aed69bcf1800dc9e1d2f5d40979d2620d",
+      "bytes": 30182
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-95852f0a5c877344ea90.webp",
+      "sha256": "b886af097ab6925e7bc1c57fb3b6c3988b1ee15f80247c534d74577830cd97c3",
+      "bytes": 92642
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-egg-toast-peach-cinnamon-4"
+    ],
+    "titles": [
+      "Egg Courgette Wholemeal Toast"
+    ],
+    "notes": "Two wholemeal toast slices with softly set egg and cooked courgette pieces; black pepper only, no leaves or extra garnish. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Softly cooked egg and courgette on two slices of wholemeal toast.",
+    "reviewed_at": "2026-10-04T21:13:56.961562+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "993837c689215126ae358b1b2dfd300d5b4f215c09822c0cdb32d79c22057812"
+  }
+}

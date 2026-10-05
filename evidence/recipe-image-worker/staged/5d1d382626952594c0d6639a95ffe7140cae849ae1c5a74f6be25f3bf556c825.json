@@ -1,0 +1,78 @@
+{
+  "groupId": "5d1d382626952594c0d6639a95ffe7140cae849ae1c5a74f6be25f3bf556c825",
+  "recipe_ids": [
+    "industrial-v3-traybake-hoisin-tofu"
+  ],
+  "titles": [
+    "Shift Hoisin Tofu Traybake"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe in natural window light, truthful appetising textures in a plain serving dish. No invented garnish or additions. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hoisin Tofu Traybake. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"hoisin-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "hoisin-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-bd49297b-b2f5-4dad-aa31-06ea7d2f07d4.png",
+  "source_sha256": "ccb62cd26ddb1b628683825f23cb293f03d9c1077433e3c36654f00388a8733f",
+  "generated_at": "2026-10-05T00:28:20.944Z",
+  "elapsed_ms": 54783,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5d1d382626952594c0d6-480.webp",
+      "sha256": "34d2ca2cf76c5d0b25b71eb970ad8d37b822a033f304a1d1dafc472ab47b50c7",
+      "bytes": 33818
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5d1d382626952594c0d6.webp",
+      "sha256": "15722c2a0474db70ec41072487f37e29adc2233375306bf7b7a9586380d2dd69",
+      "bytes": 104614
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Roasted hoisin tofu with baby potatoes, broccoli and red pepper",
+    "notes": "Full-resolution inspection: firm tofu cubes, golden roasted baby potatoes, broccoli and red pepper, light hoisin glaze with roasted edges; no extras. Exact ingredients, preparation and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-traybake-hoisin-tofu"
+    ],
+    "titles": [
+      "Shift Hoisin Tofu Traybake"
+    ],
+    "source_sha256": "ccb62cd26ddb1b628683825f23cb293f03d9c1077433e3c36654f00388a8733f",
+    "reviewed_at": "2026-10-05T00:50:10.471835+00:00"
+  }
+}

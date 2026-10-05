@@ -1,0 +1,94 @@
+{
+  "groupId": "8fd7464a0951e2ffffaf1d5419f247c84faf2489e422bb05b1f333249fc6dfed",
+  "recipe_ids": [
+    "industrial-v3-kebab-nashville-turkey"
+  ],
+  "titles": [
+    "Shift Nashville-Style Turkey Fakeaway Kebab"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Nashville-Style Turkey Fakeaway Kebab. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"80g\",\"item\":\"wholemeal flatbread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.\",\"Press the turkey breast mince firmly into three short koftas, each no thicker than 1.5cm; no skewers or binder are needed. Coat with all the measured paprika, chilli powder and garlic powder. After handling raw turkey breast mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the turkey koftas over a medium heat for about 10\u201312 minutes, turning them onto every side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the lettuce and tomato on the warm flatbread. Add the cooked turkey koftas, fold the bread around the filling and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, appetising professional natural daylight, ordinary one-person serving with generous crop margin. No invented garnish, fresh green herb flecks/leaves, sesame/poppy seeds, cheese, milk, butter, cream, breading, lemon wedges, extra sides. Plain unseeded wholemeal buns/flatbreads. Exact protein forms per method: beef/turkey burger ONE cooked1.5cm mince patty; kebab THREE short cooked mince koftas, no skewers; pasta/pie/fries/pizza/slowpot/traybake loose cooked mince crumbles; Sunday roast exactly TWO compact flattened2cm cooked mince portions, not roast joint. Chicken burger thin cooked opaque unbreaded1.5cm cutlets. Tofu burger1cm golden slabs, kebab/fries/pizza2cm golden cubes. Shredded lettuce and sliced tomato only where listed. Pizza CHEESE-FREE, passata base exact cooked protein and thin pepper strips. Fries golden plain oven chips, thin cooked red onion and mixed pepper strips. Nashville dry paprika/chilli/garlic spices only, no sauce whatsoever except listed passata UNDER pizza toppings; no ketchup, mayo, white/red drizzle, green garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal flatbread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.",
+    "Press the turkey breast mince firmly into three short koftas, each no thicker than 1.5cm; no skewers or binder are needed. Coat with all the measured paprika, chilli powder and garlic powder. After handling raw turkey breast mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the turkey koftas over a medium heat for about 10\u201312 minutes, turning them onto every side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the lettuce and tomato on the warm flatbread. Add the cooked turkey koftas, fold the bread around the filling and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e59c33e8-508d-4a7a-b967-247963f2b090.png",
+  "source_sha256": "ad56b61584693c9f3ff4399a9d09722a5701e20c6a3887537a8001ea4b208fa6",
+  "generated_at": "2026-10-05T00:40:30.178Z",
+  "elapsed_ms": 98716.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8fd7464a0951e2ffffaf-retry4-480-5d7a89ebd5c2.webp",
+      "sha256": "5d7a89ebd5c2928307d959cd0da087de1cdabdc10efd60d418f9dbef059b8e99",
+      "bytes": 23386
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8fd7464a0951e2ffffaf-retry4-ad4336acb826.webp",
+      "sha256": "ad4336acb826bd2d318277f3a1209a7a25a97e72ae40020c08aafbddcfef9347",
+      "bytes": 72414
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ad56b61584693c9f3ff4399a9d09722a5701e20c6a3887537a8001ea4b208fa6",
+    "recipe_ids": [
+      "industrial-v3-kebab-nashville-turkey"
+    ],
+    "titles": [
+      "Shift Nashville-Style Turkey Fakeaway Kebab"
+    ],
+    "notes": "Pass: exactly three short opaque cooked turkey breast mince koftas with dry paprika-chilli-garlic browned surfaces and fine mince texture, no skewers, inside folded plain wholemeal flatbread with shredded lettuce and sliced tomato. No ketchup, mayonnaise, cheese, breading, raw pink meat, green garnish or extra sides. Exact Nashville turkey kofta kebab and crop margin.",
+    "alt": "Nashville-style turkey mince koftas in wholemeal flatbread with lettuce and sliced tomato",
+    "reviewed_at": "2026-10-05T00:41:25.323362+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1150.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,85 @@
+{
+  "groupId": "05c4f2fd153299464917a2e532f9703c3fa24cc2406953999c97cb11bdab2a62",
+  "recipe_ids": [
+    "industrial-v3-bagel-pickle-chicken"
+  ],
+  "titles": [
+    "Shift Pickle Chicken Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pickle Chicken Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"pickle mustard relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured pickle mustard relish as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured pickle mustard relish and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish or extra ingredients. Listed yoghurt sauces are dressings, not melted cheese. Pickle mustard relish belongs in or on prescribed filling, never invented whole pickle sides. Chicken/turkey breast plain cooked, no breadcrumb or batter coating.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "pickle mustard relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured pickle mustard relish as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the measured pickle mustard relish and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-955cc77e-bb3d-41aa-b1d1-8a587a5b6303.png",
+  "source_sha256": "a4f3f78f8e57919babe53f1390b19a6b1dca822ef92ff0fc92fc85c09b4e55ff",
+  "generated_at": "2026-10-04T23:31:01.282Z",
+  "elapsed_ms": 284770.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-05c4f2fd153299464917-480-f6783457511a.webp",
+      "sha256": "f6783457511a68cf2b48281cd7ac8248332d4c52c9eb2e91606cd7064f6e977d",
+      "bytes": 24942
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-05c4f2fd153299464917-c1e7e2981f80.webp",
+      "sha256": "c1e7e2981f80e5c16976ffe67ded829d892a5d0914d1bcd887b4bfd167407979",
+      "bytes": 72878
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a4f3f78f8e57919babe53f1390b19a6b1dca822ef92ff0fc92fc85c09b4e55ff",
+    "recipe_ids": [
+      "industrial-v3-bagel-pickle-chicken"
+    ],
+    "titles": [
+      "Shift Pickle Chicken Loaded Bagel"
+    ],
+    "notes": "Plain unseeded wholemeal bagel containing shredded cooked chicken, pickle mustard relish, rocket and sliced tomato. Reserved raw rocket/tomato salad alongside. No cheese, extra pickle side or garnish.",
+    "alt": "Pickle chicken bagel with rocket and tomato salad",
+    "reviewed_at": "2026-10-04T23:33:35.578194+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1979.json"
+  },
+  "integrated": true,
+  "live": false
+}

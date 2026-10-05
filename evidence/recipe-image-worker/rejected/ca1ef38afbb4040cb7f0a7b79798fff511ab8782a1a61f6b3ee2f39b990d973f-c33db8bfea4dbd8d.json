@@ -1,0 +1,70 @@
+{
+  "groupId": "ca1ef38afbb4040cb7f0a7b79798fff511ab8782a1a61f6b3ee2f39b990d973f",
+  "recipe_ids": [
+    "industrial-dinner-pork-chilli"
+  ],
+  "titles": [
+    "Pork Chilli"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Pork Chilli. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"70g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"120g\",\"item\":\"chopped tomatoes\"},{\"amount\":\"100g\",\"item\":\"kidney beans\"},{\"amount\":\"5g\",\"item\":\"smoked paprika\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 70g dry brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Drain and rinse canned, ready-cooked kidney beans, then weigh out 100g; raw or dried kidney beans cannot be used in this method. Cut the 170g lean pork loin into pieces no larger than 2cm on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.\",\"Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the lean pork loin in one layer and cook for 10\u201312 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Put the 120g chopped tomatoes and 5g smoked paprika into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.\",\"Add the drained kidney beans, cover and simmer for 5 minutes, stirring halfway, until the beans are hot through.\",\"Return the cooked lean pork loin and its juices to the pan and stir through. Heat everything together over a low heat for 2\u20133 minutes, stirring gently, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Photorealistic appetising food; all ingredients exactly match. No garnish or extra food. Keep any listed brown rice distinctly wholegrain tan/brown with visible bran texture; no polished white grains. Match portion and method, natural warm light and generous framing.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "70g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "chopped tomatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "kidney beans"
+    },
+    {
+      "amount": "5g",
+      "item": "smoked paprika"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 70g dry brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Drain and rinse canned, ready-cooked kidney beans, then weigh out 100g; raw or dried kidney beans cannot be used in this method. Cut the 170g lean pork loin into pieces no larger than 2cm on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.",
+    "Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the lean pork loin in one layer and cook for 10\u201312 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Put the 120g chopped tomatoes and 5g smoked paprika into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.",
+    "Add the drained kidney beans, cover and simmer for 5 minutes, stirring halfway, until the beans are hot through.",
+    "Return the cooked lean pork loin and its juices to the pan and stir through. Heat everything together over a low heat for 2\u20133 minutes, stirring gently, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-31ac1093-dee8-42cd-a656-9c1d1c08ff96.png",
+  "source_sha256": "c33db8bfea4dbd8df874ec4c85ae94f4f01d55389527bd59d5a18275f9154661",
+  "generated_at": "2026-10-04T22:58:11.444Z",
+  "elapsed_ms": 233433,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "evidence/recipe-image-worker/assets/catalogue-ca1ef38afbb4040cb7f0-480.webp",
+      "sha256": "cd9a165afacecbebe57a13ed241be48b13ac6635c5d895c4523200cbe19c60a6",
+      "bytes": 24048
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "evidence/recipe-image-worker/assets/catalogue-ca1ef38afbb4040cb7f0.webp",
+      "sha256": "715747f136973e7dc01d23b9f00ca76955a45f6257447f71e447d3e202edd79a",
+      "bytes": 80476
+    }
+  ],
+  "review_status": "reject",
+  "integrated": false,
+  "live": false,
+  "review": {
+    "decision": "reject",
+    "source_sha256": "c33db8bfea4dbd8df874ec4c85ae94f4f01d55389527bd59d5a18275f9154661",
+    "notes": "Required wholegrain brown rice is not credibly depicted: pale/polished appearance. Regenerate with visible medium-tan intact bran.",
+    "reviewed_at": "2026-10-04T23:14:18.926785+00:00"
+  }
+}

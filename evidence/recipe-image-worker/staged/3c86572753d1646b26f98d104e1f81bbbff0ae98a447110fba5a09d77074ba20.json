@@ -1,0 +1,91 @@
+{
+  "groupId": "3c86572753d1646b26f98d104e1f81bbbff0ae98a447110fba5a09d77074ba20",
+  "recipe_ids": [
+    "industrial-v3-bagel-garlic-herb-egg"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Egg Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Egg Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured garlic herb yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+    "Use the measured garlic herb yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the measured garlic herb yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fd7021b8-5d46-4685-9a4d-92a394ab91ab.png",
+  "source_sha256": "52ed6dafd610be1af4fc9ce95969496c6df643e60bfc5f5a34bce6216980018f",
+  "generated_at": "2026-10-04T21:20:04.367Z",
+  "elapsed_ms": 24902.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3c86572753d1646b26f9-480.webp",
+      "sha256": "89469199b0ec2b0ac929c560363dad5cc756f91d43dc384143fd587c1136ac29",
+      "bytes": 29062
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3c86572753d1646b26f9.webp",
+      "sha256": "7cf29d3d38aac5cc0f86fa36da876af709fe23e6836899ea712b37232b47c3f2",
+      "bytes": 90880
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-bagel-garlic-herb-egg"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Egg Loaded Bagel"
+    ],
+    "notes": "Plain unseeded bagel with sliced boiled eggs, rocket, tomato and garlic herb yoghurt; remaining rocket/tomato side salad shown as instructed.",
+    "alt": "Garlic & Herb Egg Loaded Bagel with boiled egg and garlic herb yoghurt",
+    "reviewed_at": "2026-10-04T21:27:29.464890+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1776.json",
+    "source_sha256": "52ed6dafd610be1af4fc9ce95969496c6df643e60bfc5f5a34bce6216980018f"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,75 @@
+{
+  "groupId": "99f9a6ab7e916ea46477925a0f894a0546776676feba379027034c8c91ebfeeb",
+  "recipe_ids": [
+    "industrial-dinner-chicken-slow-cooker-stew"
+  ],
+  "titles": [
+    "Chicken Slow Cooker Stew"
+  ],
+  "prompt": "Photograph the actual completed recipe with careful food styling, natural side light and believable appetising texture. No added garnish or ingredient. Match protein cut, quantities and preparation exactly. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Chicken Slow Cooker Stew. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"120g\",\"item\":\"carrots\"},{\"amount\":\"100g\",\"item\":\"onion\"},{\"amount\":\"5g\",\"item\":\"reduced-salt vegetable stock cube (make up to 250ml with water)\"}]. Preparation: [\"If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables, measured cooking liquid and chicken breast into the slow cooker. Stir once so everything is coated, then cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours.\",\"Keep the lid on while it cooks. In the final 30 minutes, check the texture: if the cooking liquid is still thin, leave the lid slightly ajar or finish uncovered where your cooker allows until it reduces.\",\"Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Exact ingredients and method are authoritative. No food outside these ingredients.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "120g",
+      "item": "carrots"
+    },
+    {
+      "amount": "100g",
+      "item": "onion"
+    },
+    {
+      "amount": "5g",
+      "item": "reduced-salt vegetable stock cube (make up to 250ml with water)"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables, measured cooking liquid and chicken breast into the slow cooker. Stir once so everything is coated, then cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours.",
+    "Keep the lid on while it cooks. In the final 30 minutes, check the texture: if the cooking liquid is still thin, leave the lid slightly ajar or finish uncovered where your cooker allows until it reduces.",
+    "Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b6ec7d7f-0c49-4661-a89b-b4eea9751459.png",
+  "source_sha256": "5299a07ad45f3e48a1aa6a66a939ed2e1209bcb23011c32dae050064807f4218",
+  "generated_at": "2026-10-04T23:37:14.812Z",
+  "elapsed_ms": 231344,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-99f9a6ab7e916ea46477-480.webp",
+      "sha256": "6e6c9992f4c5d988996b7a26c6129718cd66f22ca924f38137bd5fc6b4f29d4a",
+      "bytes": 23834
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-99f9a6ab7e916ea46477.webp",
+      "sha256": "9de23d84c7cb5d7874f0486878538b7a9d5884f39a326e60ad5c2375fe91df41",
+      "bytes": 79804
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "5299a07ad45f3e48a1aa6a66a939ed2e1209bcb23011c32dae050064807f4218",
+    "recipe_ids": [
+      "industrial-dinner-chicken-slow-cooker-stew"
+    ],
+    "titles": [
+      "Chicken Slow Cooker Stew"
+    ],
+    "notes": "Cooked whole chicken breast in reduced vegetable-stock broth with tender baby potatoes, carrots and onions; small stock flecks belong to listed stock.",
+    "alt": "Chicken slow cooker stew with potatoes, carrots and onions",
+    "reviewed_at": "2026-10-04T23:45:25.954072+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

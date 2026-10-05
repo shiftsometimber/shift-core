@@ -1,0 +1,78 @@
+{
+  "groupId": "92292155e9a4a2739c1cc51fd1d86f6ddaea74248bce7669d2736b1b2b4b1577",
+  "recipe_ids": [
+    "industrial-v3-traybake-chilli-tofu"
+  ],
+  "titles": [
+    "Shift Smoky Chilli Tofu Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Tofu Traybake. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArt direction: exact ingredients and method, appealing natural textures, no decorative extras. Brown rice must depict visibly intact unpolished tan/brown bran coats on the entire grain, with brown longitudinal seams, never white grains with brown seasoning. Cooked diced vegetables remain diced.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-baa11741-4184-4e79-8edd-ec8552ceeb08.png",
+  "source_sha256": "e87bad57f4c1aa4b54a9e731064483099a000461e6647400e904eb62841498a6",
+  "generated_at": "2026-10-05T00:57:53.577Z",
+  "elapsed_ms": 18377,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-92292155e9a4a2739c1c-480.webp",
+      "sha256": "cb31cca261d70189452868069078393ec87298e41f64abcb60d7daea39cd7887",
+      "bytes": 38368
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-92292155e9a4a2739c1c.webp",
+      "sha256": "741a151e3344a9b2170edbcd33efbe7becb01e7c08c80d4a6316aa35b2b67a10",
+      "bytes": 118632
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Smoky chilli tofu with roasted baby potatoes, broccoli and red pepper",
+    "notes": "Individual full-resolution review: golden intact firm tofu cubes, roasted baby potatoes, broccoli and red pepper with light smoky tomato coating and browned edges; exact method and all titles reviewed.",
+    "source_sha256": "e87bad57f4c1aa4b54a9e731064483099a000461e6647400e904eb62841498a6",
+    "recipe_ids": [
+      "industrial-v3-traybake-chilli-tofu"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Tofu Traybake"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

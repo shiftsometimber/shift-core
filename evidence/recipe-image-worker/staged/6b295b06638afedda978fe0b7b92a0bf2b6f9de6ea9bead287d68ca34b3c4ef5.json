@@ -1,0 +1,79 @@
+{
+  "groupId": "6b295b06638afedda978fe0b7b92a0bf2b6f9de6ea9bead287d68ca34b3c4ef5",
+  "recipe_ids": [
+    "industrial-v3-traybake-balti-beef"
+  ],
+  "titles": [
+    "Shift Balti Beef Traybake"
+  ],
+  "prompt": "Photograph the actual completed recipe with careful food styling, natural side light and believable appetising texture. No added garnish or ingredient. Match protein cut, quantities and preparation exactly. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Beef Traybake. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and 5% beef mince. Get the pan properly hot first. Cook the 5% beef mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the 5% beef mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Exact ingredients and method are authoritative. No food outside these ingredients.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and 5% beef mince. Get the pan properly hot first. Cook the 5% beef mince until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the 5% beef mince is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5de504f4-bcd6-4025-b49a-0f4856eb3820.png",
+  "source_sha256": "a795665b17963763e0cf28b125a048abe5090bf0682aad26838962db36a122d3",
+  "generated_at": "2026-10-04T23:39:36.850Z",
+  "elapsed_ms": 373382,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6b295b06638afedda978-480.webp",
+      "sha256": "790e148716b523985a115c09fa5dccd0ef990fdd295e28c5d9b71303c57a5a4d",
+      "bytes": 38928
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6b295b06638afedda978.webp",
+      "sha256": "9b3aa2ec1dcf05c78e5fa6898283a62e05ab1ae6145f328b70227ad160e8acb4",
+      "bytes": 125236
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a795665b17963763e0cf28b125a048abe5090bf0682aad26838962db36a122d3",
+    "recipe_ids": [
+      "industrial-v3-traybake-balti-beef"
+    ],
+    "titles": [
+      "Shift Balti Beef Traybake"
+    ],
+    "notes": "Cooked loose beef mince with golden baby potato pieces, roast broccoli and red pepper; balti sauce stirred through, no invented meatballs.",
+    "alt": "Balti beef traybake with baby potatoes, broccoli and red pepper",
+    "reviewed_at": "2026-10-04T23:45:25.955115+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

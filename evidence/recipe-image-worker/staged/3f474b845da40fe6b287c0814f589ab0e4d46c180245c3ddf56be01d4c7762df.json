@@ -1,0 +1,88 @@
+{
+  "groupId": "3f474b845da40fe6b287c0814f589ab0e4d46c180245c3ddf56be01d4c7762df",
+  "index": 2261,
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-berry-overnight-oats"
+  ],
+  "titles": [
+    "Shift Berry Overnight Oats Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Stir in 40g 0% Greek yoghurt until evenly mixed.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 105g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Overnight Oats Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"105g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 40g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 105g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed food; no honey, nuts, mint, syrup or decorative garnish. Plain unseeded crackers: exactly two visible crackers when listed, no sesame or poppy seeds. All food inside the serving margins. Finished chilled overnight oats: oats fully softened in milk, fruit mixed through, listed seeds and chocolate may be freshly topped; exactly two plain crackers alongside only if listed. No dry oat heap.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2fc4ae46-fd45-4856-a236-77bdfb81a826.png",
+  "source_sha256": "6326ff4733963d92c8fad5fb21a0b1878eb4b3031428e90232c2106968160af3",
+  "dispatched_at": "2026-10-04T23:14:16.136Z",
+  "generated_at": "2026-10-04T23:17:37.478Z",
+  "elapsed_ms": 201342,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3f474b845da40fe6b287-480.webp",
+      "sha256": "424986bc41c7330ff3180ddddf2860809947b08136f2f95ba78947db0ce56ad9",
+      "bytes": 18740,
+      "git_blob_sha": "8d250d1935d9953f4f9f0d213a0a466a4eff60ba"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3f474b845da40fe6b287.webp",
+      "sha256": "8c0b95ee3330860666bb27a03907d67ce72eb8c4a3e89d4f52b235ed4908cf00",
+      "bytes": 57546,
+      "git_blob_sha": "07ce3b948ad3fe27b029d1d506765b0f043897e9"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-berry-overnight-oats"
+    ],
+    "titles": [
+      "Shift Berry Overnight Oats Dessert Pot"
+    ],
+    "notes": "Soft overnight oats with milk and Greek yoghurt evenly combined, berries mixed through and pumpkin seeds topped; no added chocolate.",
+    "alt": "Creamy berry overnight oats topped with pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:21:59.033853+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/3f474b845da40fe6b287c0814f589ab0e4d46c180245c3ddf56be01d4c7762df.json",
+    "source_sha256": "6326ff4733963d92c8fad5fb21a0b1878eb4b3031428e90232c2106968160af3"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,83 @@
+{
+  "groupId": "950d8465e0a65bf9e74d60b4c05d85421e32584e7d7ef2d2ce763ab779725225",
+  "recipe_ids": [
+    "industrial-v3-sandwich-mexican-turkey"
+  ],
+  "titles": [
+    "Shift Mexican Turkey Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mexican Turkey Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"tomato salsa\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the mexican flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Mexican/peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish, tortilla chips or extra ingredients. Listed yoghurt sauces are ready-to-eat dressings, not melted cheese.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "tomato salsa"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the mexican flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-images/evidence/recipe-image-worker/worker-f/1942.recovered.png",
+  "source_sha256": "78c5754e61044477639639c5bc91a58785f5cee28102559c2c4dd1107b08f6ea",
+  "generated_at": null,
+  "elapsed_ms": 0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-950d8465e0a65bf9e74d-480-7268de4705cf.webp",
+      "sha256": "7268de4705cf7fb71f17f53138bd76d25f19e0653fdb5f6dcbfc0aeed621ed42",
+      "bytes": 23234
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-950d8465e0a65bf9e74d-8c2f1e96194b.webp",
+      "sha256": "8c2f1e96194b16be8f562a98721c18b357981e42a80269d811e3f8346820adf1",
+      "bytes": 68666
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "78c5754e61044477639639c5bc91a58785f5cee28102559c2c4dd1107b08f6ea",
+    "recipe_ids": [
+      "industrial-v3-sandwich-mexican-turkey"
+    ],
+    "titles": [
+      "Shift Mexican Turkey Proper Sandwich"
+    ],
+    "notes": "Plain wholemeal sandwich with lightly coloured turkey, fresh lettuce/tomato and tomato salsa. No unlisted garnish, cheese, seeds or substitutions. Dressing placement matches method.",
+    "alt": "Mexican Turkey Proper Sandwich with lettuce, tomato",
+    "reviewed_at": "2026-10-04T22:50:58.002425+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1942.json"
+  },
+  "integrated": true,
+  "live": false
+}

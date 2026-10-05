@@ -1,0 +1,87 @@
+{
+  "groupId": "bee3ca05b84c82cbd9e7674c9e9042ab3be0fd3284dd550ae2ed906ced415836",
+  "recipe_ids": [
+    "industrial-v3-wrap-katsu-tuna"
+  ],
+  "titles": [
+    "Shift Katsu Tuna Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Katsu Tuna Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"katsu-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the tuna in spring water, drained; if the filling is being served hot, reduce only the sauce-coated tuna in spring water, drained until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Katsu-style sauce does NOT mean breadcrumb coating: no breadcrumbs/flour/batter absent from recipe.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "katsu-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the tuna in spring water, drained; if the filling is being served hot, reduce only the sauce-coated tuna in spring water, drained until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3f12f53d-eeb3-4379-8f4b-e41ea654ca37.png",
+  "source_sha256": "77f73f4a7ead3af49503deaf2ca32b48849e73b886c2a8c4275cef675667b9a2",
+  "generated_at": null,
+  "elapsed_ms": null,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bee3ca05b84c82cbd9e7-480-d85b023543bd.webp",
+      "sha256": "d85b023543bd4cb292669211868d261b52455a77fc0aa6b30da216611b2f683e",
+      "bytes": 22476
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bee3ca05b84c82cbd9e7-8a868dc25303.webp",
+      "sha256": "8a868dc2530306c2a9b927d4c24eabb9af10af56944b13dcf6d817aa74ff50d1",
+      "bytes": 64060
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "77f73f4a7ead3af49503deaf2ca32b48849e73b886c2a8c4275cef675667b9a2",
+    "recipe_ids": [
+      "industrial-v3-wrap-katsu-tuna"
+    ],
+    "titles": [
+      "Shift Katsu Tuna Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with tuna in spring water, drained, fresh lettuce and tomato, and katsu-style sauce. Every member title checked against exact ingredients/method. No cheese, seeds, invented side or scatter garnish; protein preparation and dressing placement match method.",
+    "alt": "Katsu Tuna Loaded Wrap with lettuce, tomato",
+    "reviewed_at": "2026-10-04T23:14:25.520688+00:00",
+    "reviewer": "worker-f visual reinspection of exact recovered original",
+    "receipt": "evidence/recipe-image-worker/worker-f/1898.json",
+    "recovery_reinspection": true
+  },
+  "integrated": true,
+  "live": false
+}

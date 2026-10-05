@@ -1,0 +1,78 @@
+{
+  "groupId": "11376ab95e12ef773e03a7f4ab3b9143da75e87992cc9cdc8ad465f70f2ff520",
+  "recipe_ids": [
+    "industrial-dinner-prawn-chilli"
+  ],
+  "titles": [
+    "Prawn Chilli"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Prawn Chilli. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"raw king prawns\"},{\"amount\":\"70g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"120g\",\"item\":\"chopped tomatoes\"},{\"amount\":\"100g\",\"item\":\"kidney beans\"},{\"amount\":\"5g\",\"item\":\"smoked paprika\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 70g dry brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Drain and rinse canned, ready-cooked kidney beans, then weigh out 100g; raw or dried kidney beans cannot be used in this method. Use 160g peeled raw king prawns. Fully defrost frozen prawns in the fridge and drain before cooking. Keep them separate from the prepared vegetables.\",\"Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the raw king prawns in one layer and cook for 3\u20135 minutes, turning, until every prawn is pink outside and opaque in the centre with no translucent flesh. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Put the 120g chopped tomatoes and 5g smoked paprika into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.\",\"Add the drained kidney beans, cover and simmer for 5 minutes, stirring halfway, until the beans are hot through.\",\"Return the cooked prawns at the end and heat for 1 minute until the whole dish is steaming hot; do not simmer them through the longer vegetable cooking stage. Spoon over the freshly cooked rice and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. ART DIRECTION: Appetising faithful editorial food photography, warm side light, generous framing. Follow exact method and protein form. No unlisted garnish or food. For listed brown rice, depict ordinary cooked WHOLEGRAIN BROWN RICE with distinctly medium-tan to light-brown intact bran on every grain; natural earthy brown rice, never polished white rice, risotto or pale glossy short grains. For basmati, retain its listed long-grain appearance. Show all ingredients in their specified placement and cooked/raw state.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "raw king prawns"
+    },
+    {
+      "amount": "70g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "chopped tomatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "kidney beans"
+    },
+    {
+      "amount": "5g",
+      "item": "smoked paprika"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 70g dry brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Drain and rinse canned, ready-cooked kidney beans, then weigh out 100g; raw or dried kidney beans cannot be used in this method. Use 160g peeled raw king prawns. Fully defrost frozen prawns in the fridge and drain before cooking. Keep them separate from the prepared vegetables.",
+    "Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the raw king prawns in one layer and cook for 3\u20135 minutes, turning, until every prawn is pink outside and opaque in the centre with no translucent flesh. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Put the 120g chopped tomatoes and 5g smoked paprika into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.",
+    "Add the drained kidney beans, cover and simmer for 5 minutes, stirring halfway, until the beans are hot through.",
+    "Return the cooked prawns at the end and heat for 1 minute until the whole dish is steaming hot; do not simmer them through the longer vegetable cooking stage. Spoon over the freshly cooked rice and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c74164f9-aa47-4bb3-8532-ee9cdfb9b1c4.png",
+  "source_sha256": "9e190db371066a88fa9c874a44815ae17ddd3c134b4be827a0112f045636838c",
+  "generated_at": "2026-10-04T23:16:35.346Z",
+  "elapsed_ms": 99871,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-11376ab95e12ef773e03-480.webp",
+      "sha256": "c7cc8353f1516b825d686a2a98cf55ecc40356eebfb043a4c147ef783312745e",
+      "bytes": 26886
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-11376ab95e12ef773e03.webp",
+      "sha256": "099ee0b9e83094ac0d637e8048166789d98f191f9eb11772b2d2adef194ab18c",
+      "bytes": 81914
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "9e190db371066a88fa9c874a44815ae17ddd3c134b4be827a0112f045636838c",
+    "recipe_ids": [
+      "industrial-dinner-prawn-chilli"
+    ],
+    "titles": [
+      "Prawn Chilli"
+    ],
+    "notes": "Peeled opaque cooked prawns, kidney beans and paprika tomato sauce over tan wholegrain rice; no tails or garnish.",
+    "alt": "Prawn and kidney bean chilli over brown rice",
+    "reviewed_at": "2026-10-04T23:32:39.068791+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "60562d40db45c74dd0cb012697ea66a84bce950ccec94f74bb17eb516913253b",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-classic-savory-box"
+  ],
+  "titles": [
+    "Shift Classic Banana Split Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Banana Split Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.\",\"Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.\",\"Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.\",\"Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup, cream or decorative garnish. Berries just small25g portion. All food inside frame. Exactly TWO plain unseeded wholegrain crackers visibly separated or offset with independent edges; no sesame/poppy seeds. Cinnamon only a light1g fine powder mixed into fruit/dairy; no cinnamon sticks anywhere. Real snack box: dry oats/seeds/crackers separate from juicy fruit or dairy. Flavour powder mixed into fruit/dairy.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.",
+    "Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.",
+    "Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.",
+    "Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-cc311ddb-4811-479b-b188-d32e3873a569.png",
+  "source_sha256": "df9d8171a5faa4c0d19c8a279c85ed6e9b826a48f4fcd167d82568646ccf84ac",
+  "generated_at": "2026-10-05T00:34:57.548Z",
+  "elapsed_ms": 181914,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-60562d40db45c74dd0cb-480-5ad9bac0f01a.webp",
+      "sha256": "5ad9bac0f01a77d36dc898c9285b936fbfe53b4bbdd354b5d32fb0bedf44e30c",
+      "bytes": 24994
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-60562d40db45c74dd0cb-8013d9fb5a44.webp",
+      "sha256": "8013d9fb5a445c44a03554ed56ed7763494a9fa31c8deee172ed1ef99a1f2ef7",
+      "bytes": 78722
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "df9d8171a5faa4c0d19c8a279c85ed6e9b826a48f4fcd167d82568646ccf84ac",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-classic-savory-box"
+    ],
+    "titles": [
+      "Shift Classic Banana Split Work Snack Box"
+    ],
+    "notes": "Banana/small berries lightly cinnamon-powder seasoned, dry oats/seeds separated and two plain crackers visible. No cinnamon sticks or dairy.",
+    "alt": "Cinnamon banana snack box with berries, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-05T00:39:15.712226+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/60562d40db45c74dd0cb012697ea66a84bce950ccec94f74bb17eb516913253b.json"
+  },
+  "integrated": true,
+  "live": false
+}

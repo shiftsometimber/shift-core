@@ -1,0 +1,84 @@
+{
+  "groupId": "31a70412c10ddf3b1bea538633a08a6d833e2c940d8197c407b0403a026ca949",
+  "recipe_ids": [
+    "industrial-v3-wrap-katsu-chickpea"
+  ],
+  "titles": [
+    "Shift Katsu Chickpea Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Katsu Chickpea Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"katsu-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Katsu-style sauce does NOT mean breaded chicken: use plain already-cooked breast, no breadcrumbs/flour/batter absent from recipe.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "katsu-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8152b0e1-479c-4de2-b3d9-5050b5cd482e.png",
+  "source_sha256": "ae924c3327e32bf55e663e49390b94e5c16ce2f44f6e3d8981938199c82ce055",
+  "generated_at": null,
+  "elapsed_ms": null,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-31a70412c10ddf3b1bea-480-76df2553fb4f.webp",
+      "sha256": "76df2553fb4f7c1f717de331eba596cc5e84a233370d6715221fd9ce1ade5978",
+      "bytes": 23814
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-31a70412c10ddf3b1bea-6e2280413f8f.webp",
+      "sha256": "6e2280413f8ffc4ac1067303509d65e2d1c13dc8954be14352aa6e90e64f99ba",
+      "bytes": 70018
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ae924c3327e32bf55e663e49390b94e5c16ce2f44f6e3d8981938199c82ce055",
+    "recipe_ids": [
+      "industrial-v3-wrap-katsu-chickpea"
+    ],
+    "titles": [
+      "Shift Katsu Chickpea Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with chickpeas, drained, fresh lettuce and tomato, and katsu-style sauce. Every member title checked against exact ingredients/method. No cheese, seeds, invented side or scatter garnish; protein preparation and dressing placement match method.",
+    "alt": "Katsu Chickpea Loaded Wrap with lettuce, tomato",
+    "reviewed_at": "2026-10-04T23:14:25.520688+00:00",
+    "reviewer": "worker-f visual reinspection of exact recovered original",
+    "receipt": "evidence/recipe-image-worker/worker-f/1880.json",
+    "recovery_reinspection": true
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,80 @@
+{
+  "groupId": "f80b66281eb278d6392224e166e2673a83934e621dfd2965409001cb7bd1918b",
+  "recipe_ids": [
+    "industrial-v3-pie-jalfrezi-chicken"
+  ],
+  "titles": [
+    "Shift Jalfrezi Chicken Proper Pie"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe in natural window light, truthful appetising textures in a plain serving dish. No invented garnish or additions. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Jalfrezi Chicken Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"40g\",\"item\":\"pepper and tomato masala\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Measure the pepper and tomato masala ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Stir in the pepper and tomato masala, heat for 1\u20132 minutes, then spoon into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "40g",
+      "item": "pepper and tomato masala"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Measure the pepper and tomato masala ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Stir in the pepper and tomato masala, heat for 1\u20132 minutes, then spoon into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ff8623cc-e3a5-47c5-b99b-040aac39f96a.png",
+  "source_sha256": "21e5666160335624206990c24ff3c3e0fba738eb71e374c668d933cf90592f3d",
+  "generated_at": "2026-10-05T00:33:35.040Z",
+  "elapsed_ms": 368879,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f80b66281eb278d63922-480.webp",
+      "sha256": "8480c76a3aa504c82132ddfe6295bb2333b6f891651bd9bfae1f1595ad8fe1f5",
+      "bytes": 27066
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f80b66281eb278d63922.webp",
+      "sha256": "a54ec7354f32e67398654de774c7207c0a5f0e773276cc209c92bbea88b8e3ec",
+      "bytes": 79100
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Jalfrezi chicken pie with golden mashed potato, carrots and peas",
+    "notes": "Full-resolution individual inspection: cooked chicken pieces, carrots and peas beneath fork-roughened browned mashed potato in red tomato masala filling; no added dairy topping; exact method and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-pie-jalfrezi-chicken"
+    ],
+    "titles": [
+      "Shift Jalfrezi Chicken Proper Pie"
+    ],
+    "source_sha256": "21e5666160335624206990c24ff3c3e0fba738eb71e374c668d933cf90592f3d",
+    "reviewed_at": "2026-10-05T00:50:10.491434+00:00"
+  }
+}

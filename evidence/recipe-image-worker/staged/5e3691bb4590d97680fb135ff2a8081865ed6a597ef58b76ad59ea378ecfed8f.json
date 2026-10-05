@@ -1,0 +1,89 @@
+{
+  "groupId": "5e3691bb4590d97680fb135ff2a8081865ed6a597ef58b76ad59ea378ecfed8f",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-coffee-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Coffee Yoghurt Crunch Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Yoghurt Crunch Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.\",\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact foods. Espresso measured1g fully dissolved, cooled and mixed through dairy/fruit, subtle coffee tint; no whole coffee beans, granules, dry grounds, coffee drinks or syrup. Small25g berries. No honey, mint, nuts or decorative garnish. Entire food inside frame. NO crackers, biscuits or cake anywhere. Yoghurt smooth and stirred, no cottage cheese curds. Combined single dessert bowl with listed chopped dark chocolate finishing; no melted chocolate sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.",
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-77e10a8f-37b7-406e-99dd-5cd8931393b3.png",
+  "source_sha256": "b4e846880bc3caa8776242bfdc871d2949ba9268eb9d493e6312bd9983614570",
+  "generated_at": "2026-10-05T01:00:31.439Z",
+  "elapsed_ms": 396860,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5e3691bb4590d97680fb-480-3c8740c11061.webp",
+      "sha256": "3c8740c110615f0be5ff4bc09d4feaf8b28a047eb1d4213f8561336bb3c6ca63",
+      "bytes": 24114
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5e3691bb4590d97680fb-29ad10acc0e3.webp",
+      "sha256": "29ad10acc0e3bc617c15b13a4fc8aa1762e63e2ed11abea0193a44d3613a130c",
+      "bytes": 69784
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b4e846880bc3caa8776242bfdc871d2949ba9268eb9d493e6312bd9983614570",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-coffee-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Coffee Yoghurt Crunch Big Feed Dessert"
+    ],
+    "notes": "Smooth coffee Greek yoghurt with small berries/oats/seeds combined, listed chopped dark chocolate finishing. Exact yoghurt-crunch title and content checked.",
+    "alt": "Coffee yoghurt crunch dessert with berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T01:02:13.148387+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/5e3691bb4590d97680fb135ff2a8081865ed6a597ef58b76ad59ea378ecfed8f.json"
+  },
+  "integrated": true,
+  "live": false
+}

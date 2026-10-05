@@ -1,0 +1,84 @@
+{
+  "groupId": "d91ec7202c1220a791fc7072f387cb0b0af92b99863f56dc2efa21eb6d53bf7a",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-crunch-protein-pudding"
+  ],
+  "titles": [
+    "Shift Crunch Protein Pudding Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Crunch Protein Pudding Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only; no nuts, mint, syrup, spices or decorative garnish. Small25g mixed berries. Pumpkin seeds the actual listed quantity. All food inside frame. NO honey or syrup. NO crackers, biscuits or cake. Yoghurt smooth and stirred, no cottage cheese curds. ONE finished dessert bowl, all measured ingredients combined with yoghurt visibly swirled through. No separate dairy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5adecb91-a0b9-467d-ab01-e795e106b4f2.png",
+  "source_sha256": "b689f9e973b6ec264a99a6f4b5252101095c34f06e7d12d870a3f8f02a9d7a77",
+  "generated_at": "2026-10-05T01:19:07.716Z",
+  "elapsed_ms": 185059,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d91ec7202c1220a791fc-480-f801701a3eab.webp",
+      "sha256": "f801701a3eab2962b88a1c1dd2253c6c9f6152e3df4cca43e2e09753f425dc70",
+      "bytes": 20966
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d91ec7202c1220a791fc-034b78844025.webp",
+      "sha256": "034b78844025f21014d91039fec23ffe6a99a45671de83d9785d45930bdf5253",
+      "bytes": 60510
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b689f9e973b6ec264a99a6f4b5252101095c34f06e7d12d870a3f8f02a9d7a77",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-crunch-protein-pudding"
+    ],
+    "titles": [
+      "Shift Crunch Protein Pudding Dessert Pot"
+    ],
+    "notes": "Smooth protein yoghurt dessert with small berries/oats/generous seeds combined, Greek yoghurt visibly swirled through. No chocolate.",
+    "alt": "Protein yoghurt crunch dessert with berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T01:23:15.672726+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/d91ec7202c1220a791fc7072f387cb0b0af92b99863f56dc2efa21eb6d53bf7a.json"
+  },
+  "integrated": true,
+  "live": false
+}

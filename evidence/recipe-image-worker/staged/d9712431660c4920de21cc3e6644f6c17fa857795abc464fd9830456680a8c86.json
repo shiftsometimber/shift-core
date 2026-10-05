@@ -1,0 +1,85 @@
+{
+  "groupId": "d9712431660c4920de21cc3e6644f6c17fa857795abc464fd9830456680a8c86",
+  "recipe_ids": [
+    "industrial-lunch-salmon-jacket-potato"
+  ],
+  "titles": [
+    "Salmon Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Salmon Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"110g\",\"item\":\"cooked salmon\",\"allergens\":[\"fish\"]},{\"amount\":\"300g\",\"item\":\"baking potato\"},{\"amount\":\"60g\",\"item\":\"mixed salad\"},{\"amount\":\"60g\",\"item\":\"spring onion\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use chilled, already-cooked salmon. Check for bones, remove any skin and break the flesh into small flakes.\",\"Use the measured 0% Greek yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured 0% Greek yoghurt; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "110g",
+      "item": "cooked salmon",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "300g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "60g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "60g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use chilled, already-cooked salmon. Check for bones, remove any skin and break the flesh into small flakes.",
+    "Use the measured 0% Greek yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured 0% Greek yoghurt; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-60f29fd8-d3db-4556-8947-270dfcecee13.png",
+  "source_sha256": "b64afd0707e87c4127012aa5f33e68f95436d9a10fc847d1808f73e038e489b1",
+  "generated_at": "2026-10-04T23:58:46.353Z",
+  "elapsed_ms": 437757.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d9712431660c4920de21-480-769db76e68c2.webp",
+      "sha256": "769db76e68c2c10e8b34ba082e309e06dd72ce3fec5548237afcdc591120e2e8",
+      "bytes": 25672
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d9712431660c4920de21-67b95a0af612.webp",
+      "sha256": "67b95a0af612afbfda7c6aa879b7aba2dd4890cdc037640aad2ca16b0820e336",
+      "bytes": 72722
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b64afd0707e87c4127012aa5f33e68f95436d9a10fc847d1808f73e038e489b1",
+    "recipe_ids": [
+      "industrial-lunch-salmon-jacket-potato"
+    ],
+    "titles": [
+      "Salmon Jacket Potato"
+    ],
+    "notes": "Split fluffy jacket potato with opaque skinless cooked salmon flakes and plain Greek yoghurt, mixed salad with finely sliced spring onion alongside. No garnish on potato; exact title matches.",
+    "alt": "Salmon jacket potato with Greek yoghurt and spring onion salad",
+    "reviewed_at": "2026-10-05T00:00:10.580973+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1508-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

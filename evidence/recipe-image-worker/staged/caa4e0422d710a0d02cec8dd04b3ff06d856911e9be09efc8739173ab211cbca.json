@@ -1,0 +1,84 @@
+{
+  "groupId": "caa4e0422d710a0d02cec8dd04b3ff06d856911e9be09efc8739173ab211cbca",
+  "recipe_ids": [
+    "industrial-v3-curry-chilli-salmon"
+  ],
+  "titles": [
+    "Shift Smoky Chilli Salmon Proper Curry"
+  ],
+  "prompt": "Photorealistic appetising exact recipe photography. NO extra garnish. If brown rice is listed, use genuine wholegrain rice with natural tan bran coats and longitudinal bran seams; never polished white rice. If vegetables are diced by the method, depict diced pieces, not whole tomatoes. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Salmon Proper Curry. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Check the 150g salmon fillet for bones. Keep it as a fillet for pan cooking, then flake it after cooking.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Put in the salmon fillet, skin-side down if it has skin. Cook for 4\u20135 minutes, turn carefully and cook for another 3\u20135 minutes until the centre is opaque, steaming hot and flakes easily; a thicker piece needs longer. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Turn the heat to low and fold in the 40g smoked chilli tomato sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Flake the cooked salmon into large pieces and fold into the pan at the end; avoid breaking it up with vigorous stirring. Heat gently until the whole pan is steaming hot, folding carefully so the seafood stays intact. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "smoked chilli tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Check the 150g salmon fillet for bones. Keep it as a fillet for pan cooking, then flake it after cooking.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Put in the salmon fillet, skin-side down if it has skin. Cook for 4\u20135 minutes, turn carefully and cook for another 3\u20135 minutes until the centre is opaque, steaming hot and flakes easily; a thicker piece needs longer. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Turn the heat to low and fold in the 40g smoked chilli tomato sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Flake the cooked salmon into large pieces and fold into the pan at the end; avoid breaking it up with vigorous stirring. Heat gently until the whole pan is steaming hot, folding carefully so the seafood stays intact. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-339a8796-df5b-4fc6-b3c4-5c2dd293e9b9.png",
+  "source_sha256": "bf959383d5f861d4ab1d61a0b09506bc8c5b87d27aefed4137cb22eccab2f743",
+  "generated_at": "2026-10-05T00:49:29.053Z",
+  "elapsed_ms": 126043,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-caa4e0422d710a0d02ce-480.webp",
+      "sha256": "f7b9fce883fe7b06d83d7d7bb2331c17f172f4d853f2877b9bdf6297e8ad255c",
+      "bytes": 32976
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-caa4e0422d710a0d02ce.webp",
+      "sha256": "1d0c6e34d9c573291889158d692b78fb47404f4c5d65c7f539c8dfcfe84d1e26",
+      "bytes": 102556
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Smoky chilli salmon flakes with sliced onion and peppers over basmati rice",
+    "notes": "Individually inspected full-resolution: cooked opaque large salmon flakes, softened onion and mixed pepper strips in red smoky tomato sauce over white basmati rice; exact method and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-curry-chilli-salmon"
+    ],
+    "titles": [
+      "Shift Smoky Chilli Salmon Proper Curry"
+    ],
+    "source_sha256": "bf959383d5f861d4ab1d61a0b09506bc8c5b87d27aefed4137cb22eccab2f743",
+    "reviewed_at": "2026-10-05T01:03:30.423826+00:00"
+  }
+}

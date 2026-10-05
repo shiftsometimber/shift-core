@@ -1,0 +1,81 @@
+{
+  "groupId": "3beaacbf4890752ec30032960282601ce5021f981a1c87987cde81f566485be5",
+  "recipe_ids": [
+    "industrial-breakfast-cottage-cheese-toast-blueberry-lemon-6"
+  ],
+  "titles": [
+    "Cottage Cheese Mixed Peppers Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cottage Cheese Mixed Peppers Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"mixed peppers\"},{\"amount\":\"1 tsp\",\"item\":\"lemon juice\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Toast the bread.\",\"Prepare the vegetables.\",\"Spoon cottage cheese over the toast.\",\"Top with vegetables, lemon juice and black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "1 tsp",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Toast the bread.",
+    "Prepare the vegetables.",
+    "Spoon cottage cheese over the toast.",
+    "Top with vegetables, lemon juice and black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-91bce938-a766-4bc4-a360-101025c2cabc.png",
+  "source_sha256": "1523ad405ec43e2b4cc28674761380f33d50cf9609dd1a052e817e66ffbe23ad",
+  "generated_at": "2026-10-04T21:07:09.335Z",
+  "elapsed_ms": 310027,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3beaacbf4890752ec300-480.webp",
+      "sha256": "c7697ed3d286b366fb46106041a32c7f1b61181f691a66e013c8ee08a5b3ad0b",
+      "bytes": 27460
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3beaacbf4890752ec300.webp",
+      "sha256": "e1f17a7601890a656c788e1af8034eb8427f1ba0054f9dd9f824aeea5add6eac",
+      "bytes": 82446
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-cottage-cheese-toast-blueberry-lemon-6"
+    ],
+    "titles": [
+      "Cottage Cheese Mixed Peppers Wholemeal Toast"
+    ],
+    "notes": "Two toasted wholemeal slices topped with cottage cheese, fresh mixed pepper pieces and black pepper; no added food. Full serving has margins for 4:3 phone and desktop presentation. Quantities and hidden cooking temperatures are not certified by appearance.",
+    "alt": "Cottage cheese on wholemeal toast with red, yellow and green peppers.",
+    "reviewed_at": "2026-10-04T21:13:56.961457+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "1523ad405ec43e2b4cc28674761380f33d50cf9609dd1a052e817e66ffbe23ad"
+  }
+}

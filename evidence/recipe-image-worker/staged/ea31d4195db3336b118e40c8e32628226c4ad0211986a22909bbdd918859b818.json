@@ -1,0 +1,80 @@
+{
+  "groupId": "ea31d4195db3336b118e40c8e32628226c4ad0211986a22909bbdd918859b818",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-biscoff-style-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Fruit Crunch Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Fruit Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the apple in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nUse only listed foods, no honey, nuts, mint, syrup or garnish. Crushed wholegrain biscuit is modest irregular crumb pieces, no caramel spread or cookie butter. Berries just the listed25g, a small portion. All food safely inside frame. Exactly two plain unseeded wholegrain crackers where listed, no sesame/poppy seeds. Finished fruit snack pot at eating time: chopped fruit with biscuit crumbs, rolled oats and pumpkin seeds just added; no dairy base.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the apple in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0f2a98f6-b3ca-437c-962b-3fce4fee1db2.png",
+  "source_sha256": "ac2b225568cbebae24ca4ed9b5a3602582e135cbe52c19000fc0dd7725c402be",
+  "generated_at": "2026-10-04T23:29:03.326Z",
+  "elapsed_ms": 221113,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ea31d4195db3336b118e-480-269e211359f2.webp",
+      "sha256": "269e211359f2a08a162fa293fecb2e61626ce554bcd2e930bdbc11ea9347f99f",
+      "bytes": 23132
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ea31d4195db3336b118e-d5688d354740.webp",
+      "sha256": "d5688d35474095055fbfde89515c5449a022b9217b13dfbd45bbec7f30005e19",
+      "bytes": 67324
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ac2b225568cbebae24ca4ed9b5a3602582e135cbe52c19000fc0dd7725c402be",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-biscoff-style-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Fruit Crunch Snack Pot"
+    ],
+    "notes": "Apple and berries fruit pot with biscuit crumbs, rolled oats and pumpkin seeds newly added at serving; no dairy or chocolate.",
+    "alt": "Apple and berry snack pot with biscuit crumbs, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:32:47.177341+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/ea31d4195db3336b118e40c8e32628226c4ad0211986a22909bbdd918859b818.json"
+  },
+  "integrated": true,
+  "live": false
+}

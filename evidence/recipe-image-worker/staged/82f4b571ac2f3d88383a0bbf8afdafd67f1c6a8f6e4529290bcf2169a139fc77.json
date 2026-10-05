@@ -1,0 +1,82 @@
+{
+  "groupId": "82f4b571ac2f3d88383a0bbf8afdafd67f1c6a8f6e4529290bcf2169a139fc77",
+  "recipe_ids": [
+    "industrial-breakfast-yoghurt-pot-pear-ginger-3"
+  ],
+  "titles": [
+    "Pear Ginger Yoghurt Crunch Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Pear Ginger Yoghurt Crunch Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"pear, diced\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"1/2 tsp\",\"item\":\"ground ginger\"}]. Preparation: [\"Spoon the yoghurt into a bowl or lidded pot.\",\"Wash and prepare the fruit, removing any stones, cores or inedible peel, then weigh the edible portion and add it to the yoghurt.\",\"Top with oats and pumpkin seeds.\",\"Finish with the flavouring just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "pear, diced"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "1/2 tsp",
+      "item": "ground ginger"
+    }
+  ],
+  "method": [
+    "Spoon the yoghurt into a bowl or lidded pot.",
+    "Wash and prepare the fruit, removing any stones, cores or inedible peel, then weigh the edible portion and add it to the yoghurt.",
+    "Top with oats and pumpkin seeds.",
+    "Finish with the flavouring just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-73c0f5be-a09d-41ab-8a9c-27a5234dac15.png",
+  "source_sha256": "65445070e6c6a4d0a3842153a05e7b21f7e7a0be3aaae3ea985f2eac75693ea9",
+  "generated_at": null,
+  "elapsed_ms": 78549.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-82f4b571ac2f3d88383a-480.webp",
+      "sha256": "452c073f2d938f30bb7706268a25515510b12906001f108cfc1790dcb30846ff",
+      "bytes": 19898
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-82f4b571ac2f3d88383a.webp",
+      "sha256": "76c1d4101b7c9eaa92aed313a9fedb377d22f6593eb520ffe7f9c2a30398cc1f",
+      "bytes": 60510
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-yoghurt-pot-pear-ginger-3"
+    ],
+    "titles": [
+      "Pear Ginger Yoghurt Crunch Pot"
+    ],
+    "notes": "Diced green-skinned pear sits on plain white yoghurt with dry rolled oats, green pumpkin seeds and a fine brown ground-ginger dusting. Fruit remains raw and toppings are separate as the method requires; no visible additional food. Bowl and title agree; one plausible serving. Centre crop retains food.",
+    "alt": "Greek yoghurt topped with diced pear, rolled oats, pumpkin seeds and ground ginger.",
+    "reviewed_at": "2026-10-04T21:12:01.688Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews.json",
+    "source_sha256": "65445070e6c6a4d0a3842153a05e7b21f7e7a0be3aaae3ea985f2eac75693ea9"
+  },
+  "integrated": true,
+  "live": false
+}

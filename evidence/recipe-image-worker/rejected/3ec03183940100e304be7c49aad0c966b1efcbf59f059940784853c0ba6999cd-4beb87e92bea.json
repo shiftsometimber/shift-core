@@ -1,0 +1,15 @@
+{
+  "groupId": "3ec03183940100e304be7c49aad0c966b1efcbf59f059940784853c0ba6999cd",
+  "decision": "reject",
+  "source_sha256": "4beb87e92bea0d3c76f8d46b9ec4901f400bcda93bb6f53202d8beb166a6fdae",
+  "recipe_ids": [
+    "industrial-v3-chilli-harissa-turkey"
+  ],
+  "titles": [
+    "Shift Harissa Turkey Big Chilli"
+  ],
+  "notes": "REJECT: rice remains pale ivory and polished rather than showing distinct medium tan wholegrain bran coats; mince, beans and red pepper otherwise match.",
+  "alt": "Shift Harissa Turkey Big Chilli: reject: rice remains pale ivory and polished rather than showing distinct medium tan wholegrain bran coats",
+  "reviewed_at": "2026-10-05T00:33:13.790701+00:00",
+  "reviewer": "root-full-resolution-visual-review"
+}

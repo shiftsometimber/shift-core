@@ -1,0 +1,96 @@
+{
+  "groupId": "364e9eb156d6c607ec00e5d5323a9155efcddea916165d7964bf6a94c07d6c5d",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-mexican-tofu"
+  ],
+  "titles": [
+    "Shift Mexican Tofu Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mexican Tofu Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"190g\",\"item\":\"firm tofu\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.\",\"Drain the firm tofu, pat it dry and cut it into 2cm cubes. Coat with all the measured chilli powder and paprika. Use clean utensils for the cooked tofu.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the tofu cubes over a medium-high heat for about 8\u201310 minutes, turning so several faces become golden and the centre is hot. Follow any longer cooking instruction on the tofu pack.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.\",\"Pile the crisp oven chips onto a plate and spoon over the browned tofu cubes, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only this exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, sesame/poppy seeds, cheese, cream, fresh green herb leaves, coriander, parsley, lemon wedges, side dishes or dipping sauce. All buns and flatbreads entirely plain unseeded wholemeal. Mexican finish is ONLY cold tomato ketchup mixed with cider vinegar drizzled on TOP after cooking or inside burger, no sauce ramekin. Spice is paprika/chilli only. Protein form must match the method: pork burger thin opaque 1cm cutlets, pork other dishes opaque1cm strips; salmon burger intact opaque cooked FILLET, other salmon dishes large opaque cooked FLAKES, not raw slices/chunks; tofu burger golden1cm SLAB, other tofu dishes2cm CUBES; turkey burger ONE1.5cm mince patty, turkey kebab exactly THREE short cooked koftas without skewers, turkey fries/pizza loose mince; chicken fries/pizza opaque cooked1.5cm strips. Lettuce shredded and tomato sliced only where listed. Pizza is visibly CHEESE-FREE passata base with exact cooked protein and peppers, ketchup finish. Fries golden plain ovenchips, thin softened red onion and mixed pepper strips. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "190g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.",
+    "Drain the firm tofu, pat it dry and cut it into 2cm cubes. Coat with all the measured chilli powder and paprika. Use clean utensils for the cooked tofu.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the tofu cubes over a medium-high heat for about 8\u201310 minutes, turning so several faces become golden and the centre is hot. Follow any longer cooking instruction on the tofu pack.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.",
+    "Pile the crisp oven chips onto a plate and spoon over the browned tofu cubes, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9242bc26-41a5-48b1-900f-8aa0d035d7ef.png",
+  "source_sha256": "1b675c38992c9d3aea4e59e00a3548ac850b0da3b75794c7090777297b6c3dd6",
+  "generated_at": "2026-10-05T00:22:43.476Z",
+  "elapsed_ms": 332007.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-364e9eb156d6c607ec00-retry4-480-89b9ac77e3e9.webp",
+      "sha256": "89b9ac77e3e9ed4eb0c026bb891eed8834e4f68d64adc12874a1a77d79c5e4ac",
+      "bytes": 30028
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-364e9eb156d6c607ec00-retry4-637bb1d1b7a8.webp",
+      "sha256": "637bb1d1b7a8c2230e014720c32373d56fe6e6c05ef09c5d78a4904a48133fb4",
+      "bytes": 96490
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1b675c38992c9d3aea4e59e00a3548ac850b0da3b75794c7090777297b6c3dd6",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-mexican-tofu"
+    ],
+    "titles": [
+      "Shift Mexican Tofu Loaded Fries"
+    ],
+    "notes": "Pass: golden firm tofu cubes with chilli-paprika browned surfaces over plain crisp oven chips, thin softened red onion and mixed peppers, red ketchup-cider finishing drizzle on top. No meat, slabs, breading, cheese, white sauce, green garnish or extra food. Correct cube loaded fries assembly and crop margin.",
+    "alt": "Mexican tofu loaded oven chips with red onion, mixed peppers and ketchup-cider sauce",
+    "reviewed_at": "2026-10-05T00:23:22.210280+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1123.json"
+  },
+  "integrated": true,
+  "live": false
+}

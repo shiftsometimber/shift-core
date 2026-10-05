@@ -1,0 +1,90 @@
+{
+  "groupId": "c51ee1cb3dca0c086f1764f63429a287f0b2dcd4c7fc9b193d168a7b5da253e7",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-nashville-beef"
+  ],
+  "titles": [
+    "Shift Nashville-Style Beef Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Nashville-Style Beef Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Keep the 5% beef mince ready to break into small pieces in the pan. Coat with all the measured paprika, chilli powder and garlic powder. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the beef mince over a medium-high heat for about 8\u201310 minutes, breaking up clumps and stirring until browned. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.\",\"Pile the crisp oven chips onto a plate and spoon over the cooked beef mince, the red onion and peppers. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy hard gates: photograph only listed ingredients, exactly the listed method. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No green herbs anywhere; these recipes contain none. No lime, jalapenos, mayonnaise, cream, invented garnish or side bowls. Protein fully cooked, exact form: beef/turkey burgers one mince patty, kebabs three short koftas without skewers, fries/pizza loose mince; chicken burger thin unbreaded cutlets, kebab/fries/pizza strips; salmon pizza large opaque cooked flakes; tofu burger browned 1cm slabs, other tofu browned 2cm cubes. Turkey breast mince plain without embedded herbs. Fries golden plain oven chips with cooked thin red onion and mixed pepper strips. Pizza crisp base, passata and thin cooked pepper strips, no cheese. Nashville-style dry paprika/chilli/garlic seasoning only: absolutely no ketchup, sauce or creamy condiment; no breading or batter. Burger/flatbread lettuce shredded and tomato sliced.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Keep the 5% beef mince ready to break into small pieces in the pan. Coat with all the measured paprika, chilli powder and garlic powder. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the beef mince over a medium-high heat for about 8\u201310 minutes, breaking up clumps and stirring until browned. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.",
+    "Pile the crisp oven chips onto a plate and spoon over the cooked beef mince, the red onion and peppers. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-85bcba25-7074-410d-91a5-c28a8252d81c.png",
+  "source_sha256": "b521da35893820998b8200463e26bcaea4afaf45491d48e310e1205ea1e76c95",
+  "generated_at": "2026-10-04T22:46:38.763Z",
+  "elapsed_ms": 363934.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c51ee1cb3dca0c086f17-480-c6c8588a8f26.webp",
+      "sha256": "c6c8588a8f2672940902234a6eebdccb9c763f78c0014663a7cc13709f3179e5",
+      "bytes": 31172
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c51ee1cb3dca0c086f17-a7fd9ac534ea.webp",
+      "sha256": "a7fd9ac534ea934d113ef4f520376ee041936ed93797f2276d9b453b1779b9fa",
+      "bytes": 104650
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b521da35893820998b8200463e26bcaea4afaf45491d48e310e1205ea1e76c95",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-nashville-beef"
+    ],
+    "titles": [
+      "Shift Nashville-Style Beef Loaded Fries"
+    ],
+    "notes": "Full-resolution review: loose browned beef mince over golden plain oven chips with cooked thin red onion and pepper strips. Dry paprika/chilli/garlic seasoning, no sauce, herbs, cheese or garnish.",
+    "alt": "Nashville-style beef loaded fries with peppers and red onion",
+    "reviewed_at": "2026-10-04T22:48:28.519834+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1131.json"
+  },
+  "integrated": true,
+  "live": false
+}

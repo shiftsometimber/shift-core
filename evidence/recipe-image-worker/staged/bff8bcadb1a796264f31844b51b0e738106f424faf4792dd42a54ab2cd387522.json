@@ -1,0 +1,85 @@
+{
+  "groupId": "bff8bcadb1a796264f31844b51b0e738106f424faf4792dd42a54ab2cd387522",
+  "recipe_ids": [
+    "industrial-v3-pasta-mediterranean-chicken"
+  ],
+  "titles": [
+    "Shift Mediterranean Chicken Proper Pasta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mediterranean Chicken Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"tomato olive herb sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the tomato olive herb sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured tomato olive herb sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, seeds, cheese, cream, fresh green herbs scattered on top, coriander, parsley leaves, lemon wedges, side dishes or dipping sauce. Tomato olive herb sauce must appear as a light reddish tomato coating with tiny olive and herb pieces only within sauce, no separate whole olives or fresh leaf garnish. Pie: plain water-mashed potato top fork roughened, visibly expose exact cooked filling at one edge; no buttery or cheese topping. Beef mince is loose cooked crumbles EXCEPT Sunday roast shapes exactly TWO compact flattened 2cm portions, never steak joint. Chicken/pork curry chilli pie pasta: fully opaque 2cm cubes, stir-fry thin1cm strips; slow pot tender opaque pieces. Slow cooker potatoes/carrot/onion tender and glossy, no crispy roasted edges. Rice exact brown or basmati per recipe. Listed sauce lightly coats finished dish per method, no sauce ramekin. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "tomato olive herb sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the tomato olive herb sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured tomato olive herb sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6f35f28d-fd11-4869-a9b7-1614c97a0f84.png",
+  "source_sha256": "6e30409a9d26f5d968cee60c41923b36bf094231fa6c23e0c4104941e1e268df",
+  "generated_at": "2026-10-04T23:42:35.601Z",
+  "elapsed_ms": 147208.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bff8bcadb1a796264f31-retry4-480-e673737fb0cf.webp",
+      "sha256": "e673737fb0cf9ea2a9a3085462302a4d188296dfbf11d9e1ddf1db7019c2db96",
+      "bytes": 26098
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bff8bcadb1a796264f31-retry4-084480f621f9.webp",
+      "sha256": "084480f621f9897401b9731168ffa092c1ba2b553f01804d8e83b5938d11a7fc",
+      "bytes": 82640
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6e30409a9d26f5d968cee60c41923b36bf094231fa6c23e0c4104941e1e268df",
+    "recipe_ids": [
+      "industrial-v3-pasta-mediterranean-chicken"
+    ],
+    "titles": [
+      "Shift Mediterranean Chicken Proper Pasta"
+    ],
+    "notes": "Pass: brown wholewheat penne, opaque chicken breast cubes, bite-size courgette and cherry tomato pieces coated in tomato olive herb sauce. Tiny olive and herb pieces are within sauce, no cheese, fresh leaf garnish, cream or extra food. Exact hot pasta assembly and centred crop.",
+    "alt": "Mediterranean chicken wholewheat pasta with courgette, cherry tomatoes and tomato olive herb sauce",
+    "reviewed_at": "2026-10-04T23:44:08.935546+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1068.json"
+  },
+  "integrated": true,
+  "live": false
+}

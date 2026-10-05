@@ -1,0 +1,83 @@
+{
+  "groupId": "34abcb76e0c6bf2bcd617c1ea9f7a629fd0a64b9bce28072fe3e42bfb0d6fb75",
+  "recipe_ids": [
+    "industrial-breakfast-egg-toast-berry-vanilla-2"
+  ],
+  "titles": [
+    "Egg Tomatoes Wholemeal Toast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Tomatoes Wholemeal Toast. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"2 slices / 80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"80g\",\"item\":\"tomatoes\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Wash the vegetables and slice or finely chop them before cooking.\",\"Toast the bread.\",\"Heat the oil and cook the vegetables until softened.\",\"Add the eggs and scramble until fully set.\",\"Serve the eggs and vegetables on the toast and season with the measured black pepper.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "2 slices / 80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "tomatoes"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Wash the vegetables and slice or finely chop them before cooking.",
+    "Toast the bread.",
+    "Heat the oil and cook the vegetables until softened.",
+    "Add the eggs and scramble until fully set.",
+    "Serve the eggs and vegetables on the toast and season with the measured black pepper."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-938332fd-e010-497a-a5a0-d1b337907ee3.png",
+  "source_sha256": "2b475f1da619e9499529e39c0fd7f3c2971bebe25dbc3250c71b6c8daa592e1a",
+  "generated_at": "2026-10-04T21:12:08.679Z",
+  "elapsed_ms": 24560,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-34abcb76e0c6bf2bcd61-480.webp",
+      "sha256": "c21d5cd291f50a486571284565331476e172438b7c1d86cff722c101aab6c2ca",
+      "bytes": 24426
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-34abcb76e0c6bf2bcd61.webp",
+      "sha256": "f85ac048667bc5bb18041b90e551611268046a98497fbb659c1028f1b15255d8",
+      "bytes": 71494
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-egg-toast-berry-vanilla-2"
+    ],
+    "titles": [
+      "Egg Tomatoes Wholemeal Toast"
+    ],
+    "notes": "Two plain unseeded wholemeal toast slices topped with fully scrambled egg, softened tomato and black pepper; seed invention corrected. No garnish or unlisted foods; believable single serving and cropping margins.",
+    "alt": "Scrambled eggs with softened tomatoes and black pepper on wholemeal toast.",
+    "reviewed_at": "2026-10-04T21:12:30.998Z",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/toast-retry.json",
+    "source_sha256": "2b475f1da619e9499529e39c0fd7f3c2971bebe25dbc3250c71b6c8daa592e1a"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "7312b49380fffec6a95c9b3a1660f4e8d06e3cb5e28896a446902b322718eb33",
+  "recipe_ids": [
+    "industrial-v3-sandwich-katsu-chicken"
+  ],
+  "titles": [
+    "Shift Katsu Chicken Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Katsu Chicken Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"katsu-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the cooked chicken breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the katsu flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the cooked chicken breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Katsu-style sauce does NOT mean breaded chicken: use plain already-cooked breast, no breadcrumbs/flour/batter absent from recipe.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "katsu-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the cooked chicken breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the katsu flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the cooked chicken breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6d8a10e7-f449-4ddb-a05c-4129955076ad.png",
+  "source_sha256": "eb470b0425e415f329eb2578a2af8297a3f8fe3953db2610b717dd9da7c8656b",
+  "generated_at": null,
+  "elapsed_ms": null,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7312b49380fffec6a95c-480-59d3c72c0c53.webp",
+      "sha256": "59d3c72c0c53ce0800a3b8572cbd8293147f7133f26864e6418165c98305be76",
+      "bytes": 26796
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7312b49380fffec6a95c-5f1a4792a129.webp",
+      "sha256": "5f1a4792a1298493f76bf62993b0dce7b849bf2e033e4e0febdea36589e9a7bc",
+      "bytes": 82854
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "eb470b0425e415f329eb2578a2af8297a3f8fe3953db2610b717dd9da7c8656b",
+    "recipe_ids": [
+      "industrial-v3-sandwich-katsu-chicken"
+    ],
+    "titles": [
+      "Shift Katsu Chicken Proper Sandwich"
+    ],
+    "notes": "Plain wholemeal sandwich with cooked chicken breast, fresh lettuce and tomato, and katsu-style sauce. Every member title checked against exact ingredients/method. No cheese, seeds, invented side or scatter garnish; protein preparation and dressing placement match method.",
+    "alt": "Katsu Chicken Proper Sandwich with lettuce, tomato",
+    "reviewed_at": "2026-10-04T23:14:25.520688+00:00",
+    "reviewer": "worker-f visual reinspection of exact recovered original",
+    "receipt": "evidence/recipe-image-worker/worker-f/1876.json",
+    "recovery_reinspection": true
+  },
+  "integrated": true,
+  "live": false
+}

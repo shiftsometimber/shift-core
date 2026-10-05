@@ -1,0 +1,84 @@
+{
+  "groupId": "16a403c95233b973bdb26ef832c179dc7bf1b3e16822e2a85ba201cc5f412a28",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-banana-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Banana Fruit Crunch Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Banana Fruit Crunch Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"80g\",\"item\":\"sliced banana\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow every dry/separate and soaked/prepared instruction exactly.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "80g",
+      "item": "sliced banana"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2e00b114-9d97-4a29-992f-59edb5d9dd0e.png",
+  "source_sha256": "a01f6115022fb82160283305d9940bbad905cfc6b0482f0dff590df65104e70c",
+  "generated_at": "2026-10-04T21:38:56.003Z",
+  "elapsed_ms": 118371,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-16a403c95233b973bdb2-480.webp",
+      "sha256": "22a19b93aa55133ae31592f46497dbd00b1e36e459fdcb4dc2a9cac11bfbd705",
+      "bytes": 26074
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-16a403c95233b973bdb2.webp",
+      "sha256": "7e9152b48be19a7ab8ee0eb6b8ecbee1ca7c55af792a4b385826fc13c728b6da",
+      "bytes": 76970
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-banana-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Banana Fruit Crunch Big Feed Dessert"
+    ],
+    "notes": "Apple and sliced banana fruit bowl with berries, oats, pumpkin seeds and chopped dark chocolate; no creamy base.",
+    "alt": "Apple and banana fruit dessert with mixed berries, oats, pumpkin seeds and dark chocolate",
+    "reviewed_at": "2026-10-04T21:44:55.663643+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/16a403c95233b973bdb26ef832c179dc7bf1b3e16822e2a85ba201cc5f412a28.json",
+    "source_sha256": "a01f6115022fb82160283305d9940bbad905cfc6b0482f0dff590df65104e70c"
+  },
+  "integrated": true,
+  "live": false
+}

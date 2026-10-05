@@ -1,0 +1,86 @@
+{
+  "groupId": "e366aa3e9477d72013b40554a907c4ff7f1906df89e6f7b021056ee2addd2bbc",
+  "recipe_ids": [
+    "industrial-v3-wrap-pickle-egg"
+  ],
+  "titles": [
+    "Shift Pickle Egg Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pickle Egg Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"pickle mustard relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the boiled eggs with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Pickle mustard relish belongs in or on prescribed filling; never invent whole pickle sides. Chickpeas roughly mashed only where method requires; boiled eggs sliced, ham thin strips for toastie/bagel/jacket. No extra ingredients.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "pickle mustard relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the boiled eggs with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-30dcc43c-12bd-4a05-87d3-6b5c3023522e.png",
+  "source_sha256": "2ec7d3289112bbeaf134dfb014dc679de83beb25babc56f8f1b3fc38914c7e3a",
+  "generated_at": "2026-10-04T23:39:03.499Z",
+  "elapsed_ms": 251579.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e366aa3e9477d72013b4-480-e18346948876.webp",
+      "sha256": "e183469488763a0fd3c9f4b5b67dabfefa93d27fe46d1752877f24d8ff75ee82",
+      "bytes": 23666
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e366aa3e9477d72013b4-a0863dc9a7a3.webp",
+      "sha256": "a0863dc9a7a38349ad66b140fac022d7b5eb0eee4ca25bc38bf5d721813b8660",
+      "bytes": 67354
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2ec7d3289112bbeaf134dfb014dc679de83beb25babc56f8f1b3fc38914c7e3a",
+    "recipe_ids": [
+      "industrial-v3-wrap-pickle-egg"
+    ],
+    "titles": [
+      "Shift Pickle Egg Loaded Wrap"
+    ],
+    "notes": "Plain toasted wholemeal wrap with sliced boiled egg, pickle mustard relish and fresh lettuce/tomato. No sauce reduction invented for egg, no cheese, extra side or bread seeds.",
+    "alt": "Pickle egg wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:41:55.420975+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1993.json"
+  },
+  "integrated": true,
+  "live": false
+}

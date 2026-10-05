@@ -1,0 +1,96 @@
+{
+  "groupId": "eaaa64ed3af3c31f2c8101511d55b508b98aae933f9e0c48561e807ea468732d",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-mexican-pork"
+  ],
+  "titles": [
+    "Shift Mexican Pork Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mexican Pork Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.\",\"Cut the lean pork loin across the grain into strips about 1cm thick. Coat with all the measured chilli powder and paprika. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the pork strips over a medium-high heat for about 7\u20139 minutes, turning regularly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.\",\"Pile the crisp oven chips onto a plate and spoon over the cooked pork strips, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only this exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, sesame/poppy seeds, cheese, cream, fresh green herb leaves, coriander, parsley, lemon wedges, side dishes or dipping sauce. All buns and flatbreads entirely plain unseeded wholemeal. Mexican finish is ONLY cold tomato ketchup mixed with cider vinegar drizzled on TOP after cooking or inside burger, no sauce ramekin. Spice is paprika/chilli only. Protein form must match the method: pork burger thin opaque 1cm cutlets, pork other dishes opaque1cm strips; salmon burger intact opaque cooked FILLET, other salmon dishes large opaque cooked FLAKES, not raw slices/chunks; tofu burger golden1cm SLAB, other tofu dishes2cm CUBES; turkey burger ONE1.5cm mince patty, turkey kebab exactly THREE short cooked koftas without skewers, turkey fries/pizza loose mince; chicken fries/pizza opaque cooked1.5cm strips. Lettuce shredded and tomato sliced only where listed. Pizza is visibly CHEESE-FREE passata base with exact cooked protein and peppers, ketchup finish. Fries golden plain ovenchips, thin softened red onion and mixed pepper strips. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.",
+    "Cut the lean pork loin across the grain into strips about 1cm thick. Coat with all the measured chilli powder and paprika. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the pork strips over a medium-high heat for about 7\u20139 minutes, turning regularly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.",
+    "Pile the crisp oven chips onto a plate and spoon over the cooked pork strips, the red onion and peppers. Drizzle the cold finishing sauce over the top after cooking. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-cb14d6aa-65e3-48ae-a9f5-2909fa8ff5ce.png",
+  "source_sha256": "5a979d7a8e619c111d7976422a29b109f82066ade8d079a6bbeac244e8edecbc",
+  "generated_at": "2026-10-05T00:19:54.961Z",
+  "elapsed_ms": 163492.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-eaaa64ed3af3c31f2c81-retry4-480-3408ab2ce765.webp",
+      "sha256": "3408ab2ce76505601bfdd22d61038c3a026577d9a079cf775fde72ee2a6923e8",
+      "bytes": 30028
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-eaaa64ed3af3c31f2c81-retry4-ec286de0b019.webp",
+      "sha256": "ec286de0b0198b5be78e63283afac5776eb65ed7ff1d6bbe74cb64d738c282df",
+      "bytes": 99286
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "5a979d7a8e619c111d7976422a29b109f82066ade8d079a6bbeac244e8edecbc",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-mexican-pork"
+    ],
+    "titles": [
+      "Shift Mexican Pork Loaded Fries"
+    ],
+    "notes": "Pass: opaque cooked pork loin strips with chilli-paprika browning over plain golden oven chips, thin softened red onion and red/yellow peppers, ketchup-cider finishing drizzle on top. No raw pink pork, breading, mince, cheese, white sauce, green garnish or extra sides. Correct pork strip loaded fries with centred crop.",
+    "alt": "Mexican pork loaded oven chips with red onion, mixed peppers and ketchup-cider sauce",
+    "reviewed_at": "2026-10-05T00:20:48.277989+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1115.json"
+  },
+  "integrated": true,
+  "live": false
+}

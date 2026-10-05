@@ -1,0 +1,86 @@
+{
+  "groupId": "d782a8e8158e0f716fd51bf3a5d58aa5759d38f814af9992cea4f83f2eb133db",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-bbq-egg"
+  ],
+  "titles": [
+    "Shift BBQ Egg Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Egg Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Beat the measured eggs in a clean bowl and set them aside while cooking the vegetables.\",\"Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the beaten eggs to the cooked vegetables and stir until fully set.\",\"Stir in the listed flavour ingredients (40g reduced-sugar BBQ sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Beat the measured eggs in a clean bowl and set them aside while cooking the vegetables.",
+    "Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the beaten eggs to the cooked vegetables and stir until fully set.",
+    "Stir in the listed flavour ingredients (40g reduced-sugar BBQ sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-475c1fc2-34e7-4ad7-b063-2c541b005b96.png",
+  "source_sha256": "71d5fa79da351bf7f55843fd922de5ffaf808b3624176469dbdbd98de11cd054",
+  "generated_at": "2026-10-04T21:14:14.970Z",
+  "elapsed_ms": 242953.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d782a8e8158e0f716fd5-480.webp",
+      "sha256": "be7ba07a6dcf9f1155477ea2dfad4d2cb06a3b9c8053a214641c723a21b9d57c",
+      "bytes": 25142
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d782a8e8158e0f716fd5.webp",
+      "sha256": "aeec8c883a8a63e2feff52332f65418a0376237a567fb82cff6595d74b5eccd7",
+      "bytes": 73058
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-bbq-egg"
+    ],
+    "titles": [
+      "Shift BBQ Egg Breakfast Hash"
+    ],
+    "notes": "Golden cubed potatoes, fully set scrambled eggs, cooked onion and mixed red/yellow peppers uniformly coated in barbecue sauce. Eggs stirred through rather than fried on top exactly matches method. No meat, cheese, leaves or unlisted garnish. Centre framed bowl with crop margin.",
+    "alt": "Barbecue egg hash with golden potatoes, onion and mixed peppers",
+    "reviewed_at": "2026-10-04T21:14:41.564455+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/57.json",
+    "source_sha256": "71d5fa79da351bf7f55843fd922de5ffaf808b3624176469dbdbd98de11cd054"
+  },
+  "integrated": true,
+  "live": false
+}

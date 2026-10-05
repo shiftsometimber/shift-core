@@ -1,0 +1,85 @@
+{
+  "groupId": "a31b19b7c4977a86da55f49dfedd0923f9d9af3690f34cb009d0cdab70e9bd14",
+  "recipe_ids": [
+    "industrial-v3-pie-tikka-salmon"
+  ],
+  "titles": [
+    "Shift Tikka Salmon Proper Pie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Salmon Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"40g\",\"item\":\"tikka masala sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Measure the tikka masala sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Stir in the tikka masala sauce, heat for 1\u20132 minutes, then spoon into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No spring onions, coriander, parsley, sesame or decorative garnish unless the exact ingredient list includes them.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka masala sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Measure the tikka masala sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Stir in the tikka masala sauce, heat for 1\u20132 minutes, then spoon into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-83dc6b43-2970-4e48-af4e-1ffd20ee729b.png",
+  "source_sha256": "909187487ad7c6c01e7f002ed0267ba588396182b9ad0239b413762df70d2819",
+  "generated_at": "2026-10-04T21:47:01.571Z",
+  "elapsed_ms": 242330.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a31b19b7c4977a86da55-480.webp",
+      "sha256": "55e5f1beb70e6e368fd24246caab0f9f2702ac465a65fcab210a16c6d17952bf",
+      "bytes": 25090
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a31b19b7c4977a86da55.webp",
+      "sha256": "43d5b769e3e940ceb1af8341b4f9e8e9af81ffbf43f480347b8f4a6e57145802",
+      "bytes": 74912
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-pie-tikka-salmon"
+    ],
+    "titles": [
+      "Shift Tikka Salmon Proper Pie"
+    ],
+    "notes": "Small ovenproof pie with golden roughened mashed potato top and visible cooked salmon flakes, carrots and peas in tikka sauce; no pastry, cheese or garnish.",
+    "alt": "Tikka salmon pie with carrots and peas beneath golden mashed potato.",
+    "reviewed_at": "2026-10-04T21:47:46.238967+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1417-review.json",
+    "source_sha256": "909187487ad7c6c01e7f002ed0267ba588396182b9ad0239b413762df70d2819"
+  },
+  "integrated": true,
+  "live": false
+}

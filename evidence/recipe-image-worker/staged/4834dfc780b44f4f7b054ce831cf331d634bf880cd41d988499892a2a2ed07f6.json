@@ -1,0 +1,83 @@
+{
+  "groupId": "4834dfc780b44f4f7b054ce831cf331d634bf880cd41d988499892a2a2ed07f6",
+  "recipe_ids": [
+    "industrial-v3-curry-cajun-beef"
+  ],
+  "titles": [
+    "Shift Cajun Beef Proper Curry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Beef Proper Curry. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"Cajun tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Turn the heat to low and fold in the 40g Cajun tomato sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked 5% beef mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; dried oregano cooked into protein only if listed, never fresh garnish.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "75g",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Turn the heat to low and fold in the 40g Cajun tomato sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked 5% beef mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4fb80f21-7865-4b3e-9cf8-251bae321313.png",
+  "source_sha256": "bf3e1d53237f42146dc88bbf8d9cdffcadf29f8342b3e40511f36662818b8e38",
+  "generated_at": null,
+  "elapsed_ms": 305328.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4834dfc780b44f4f7b05-480.webp",
+      "sha256": "665e31c8306e04b332df9125372dd8cb88e2614417afaf026c152edc69433158",
+      "bytes": 27826
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4834dfc780b44f4f7b05-4b706e496209.webp",
+      "sha256": "4b706e49620904f40c6abc70c2da6634b56109d05b96b68dbf99e099af831b36",
+      "bytes": 83034
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "bf3e1d53237f42146dc88bbf8d9cdffcadf29f8342b3e40511f36662818b8e38",
+    "recipe_ids": [
+      "industrial-v3-curry-cajun-beef"
+    ],
+    "titles": [
+      "Shift Cajun Beef Proper Curry"
+    ],
+    "notes": "Loose browned beef mince and softened sliced onion/mixed peppers lightly coated in Cajun tomato sauce over white basmati rice; no beans or garnish. One credible serving with central food retained by responsive crop.",
+    "alt": "Beef mince, onion and peppers in Cajun tomato sauce over basmati rice.",
+    "reviewed_at": "2026-10-04T23:17:44.371Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-619.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,92 @@
+{
+  "groupId": "e5264a4587d1e3d822a9a7f69ce60e9a45e3debacbec71d8cbdf6863f6f6e72e",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-nashville-turkey"
+  ],
+  "titles": [
+    "Shift Nashville-Style Turkey Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Nashville-Style Turkey Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Keep the turkey breast mince ready to break into small pieces in the pan. Coat with all the measured paprika, chilli powder and garlic powder. After handling raw turkey breast mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the turkey breast mince over a medium-high heat for about 8\u201310 minutes, breaking up clumps and stirring frequently. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.\",\"Pile the crisp oven chips onto a plate and spoon over the cooked turkey breast mince, the red onion and peppers. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, appetising professional natural daylight, ordinary one-person serving with generous crop margin. No invented garnish, fresh green herb flecks/leaves, sesame/poppy seeds, cheese, milk, butter, cream, breading, lemon wedges, extra sides. Plain unseeded wholemeal buns/flatbreads. Exact protein forms per method: beef/turkey burger ONE cooked1.5cm mince patty; kebab THREE short cooked mince koftas, no skewers; pasta/pie/fries/pizza/slowpot/traybake loose cooked mince crumbles; Sunday roast exactly TWO compact flattened2cm cooked mince portions, not roast joint. Chicken burger thin cooked opaque unbreaded1.5cm cutlets. Tofu burger1cm golden slabs, kebab/fries/pizza2cm golden cubes. Shredded lettuce and sliced tomato only where listed. Pizza CHEESE-FREE, passata base exact cooked protein and thin pepper strips. Fries golden plain oven chips, thin cooked red onion and mixed pepper strips. Nashville dry paprika/chilli/garlic spices only, no sauce whatsoever except listed passata UNDER pizza toppings; no ketchup, mayo, white/red drizzle, green garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Keep the turkey breast mince ready to break into small pieces in the pan. Coat with all the measured paprika, chilli powder and garlic powder. After handling raw turkey breast mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the turkey breast mince over a medium-high heat for about 8\u201310 minutes, breaking up clumps and stirring frequently. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.",
+    "Pile the crisp oven chips onto a plate and spoon over the cooked turkey breast mince, the red onion and peppers. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f3c8f0f1-34da-4792-8a45-47bf2d3a582c.png",
+  "source_sha256": "08e9e3975a1a64af45bc84c4c77373e49161e72dd196ce40ecebd79229717e3e",
+  "generated_at": "2026-10-05T00:41:01.964Z",
+  "elapsed_ms": 130502.00000000001,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e5264a4587d1e3d822a9-retry4-480-c34734af7034.webp",
+      "sha256": "c34734af7034600f18a9af1c1ceab7845306771ee46be3d2d5f24d5b1755ebc3",
+      "bytes": 34612
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e5264a4587d1e3d822a9-retry4-035ffa9b8a7b.webp",
+      "sha256": "035ffa9b8a7b0e0f7548988b202db062b68c59a6e7ab208725b4c9253e400bcf",
+      "bytes": 108284
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "08e9e3975a1a64af45bc84c4c77373e49161e72dd196ce40ecebd79229717e3e",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-nashville-turkey"
+    ],
+    "titles": [
+      "Shift Nashville-Style Turkey Loaded Fries"
+    ],
+    "notes": "Pass: opaque cooked turkey breast mince loose crumbles with dry paprika-chilli-garlic coating over golden plain oven chips, thin softened red onion and mixed pepper strips. No turkey chunks, koftas, ketchup or mayo finish, cheese, breading, green garnish or extra sides. Exact Nashville dry-spiced turkey mince fries assembly and crop margin.",
+    "alt": "Nashville-style turkey mince loaded oven chips with red onion and mixed peppers",
+    "reviewed_at": "2026-10-05T00:42:17.330469+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1151.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,77 @@
+{
+  "groupId": "a43bef4c4adf12226164b5c8a49e083454c91737e8fa3abfb335e39b828faa71",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-crunch-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Crunch Fruit Crunch Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Crunch Fruit Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"30g\",\"item\":\"pumpkin seeds\",\"allergens\":[]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]}]. Preparation: [\"Start with the apple in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed foods. No honey, nuts, mint, syrup, cinnamon, cocoa or garnish. Small25g berries; generous measured25-30g pumpkin seeds where listed. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Fruit snack pot at eating time with small berries and dry rolled oats/generous pumpkin seeds just added. No dairy base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "30g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    }
+  ],
+  "method": [
+    "Start with the apple in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e4587a21-9cc2-4aef-a5c8-2db2aed92595.png",
+  "source_sha256": "071e22d06413fa2bd26c26aa000d33346d37c0985cab9c8b7183c0cdd47fcdb8",
+  "generated_at": "2026-10-05T01:10:10.202Z",
+  "elapsed_ms": 305089,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a43bef4c4adf12226164-480-b31609957634.webp",
+      "sha256": "b31609957634b468d11caee4eb4938965b28165094c4c58c2277340e33cb07fc",
+      "bytes": 30342
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a43bef4c4adf12226164-a9cff2b5daf8.webp",
+      "sha256": "a9cff2b5daf8e1456b1c0d9927daaae4d8c680868d95c210ba17bf2ac4bb0440",
+      "bytes": 86178
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "071e22d06413fa2bd26c26aa000d33346d37c0985cab9c8b7183c0cdd47fcdb8",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-crunch-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Crunch Fruit Crunch Snack Pot"
+    ],
+    "notes": "Apple and small berries with dry oats/generous seeds freshly added at eating time. No dairy or extra flavouring.",
+    "alt": "Apple crunch snack pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T01:12:44.681869+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/a43bef4c4adf12226164b5c8a49e083454c91737e8fa3abfb335e39b828faa71.json"
+  },
+  "integrated": true,
+  "live": false
+}

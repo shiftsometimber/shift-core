@@ -1,0 +1,76 @@
+{
+  "groupId": "b5f5450e88dcdbc9a80858b5699d9f93d1a005e36426fd87e7d1ee83f7b53196",
+  "recipe_ids": [
+    "industrial-breakfast-potato-hash-banana-cocoa-1"
+  ],
+  "titles": [
+    "Turkey Courgette Breakfast Potato Hash"
+  ],
+  "prompt": "Photograph the actual completed recipe with careful food styling, natural side light and believable appetising texture. No added garnish or ingredient. Match protein cut, quantities and preparation exactly. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Turkey Courgette Breakfast Potato Hash. Ingredients, quantities and allergens: [{\"amount\":\"220g\",\"item\":\"baby potatoes\"},{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"courgette\"},{\"amount\":\"60g\",\"item\":\"onion\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.\",\"Chop the onion and courgette. Heat the measured olive oil in a wide non-stick frying pan; cook the onion and courgette over medium heat for 4\u20135 minutes.\",\"Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.\",\"Add the cooked turkey breast in bite-size pieces and heat for 3\u20135 minutes, turning until steaming hot right through. It is already cooked; do not treat it as raw meat.\",\"Serve the turkey breast, potatoes and vegetables immediately. Do not cool and reheat this assembled hash again.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Exact ingredients and method are authoritative. No food outside these ingredients.",
+  "ingredients": [
+    {
+      "amount": "220g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "courgette"
+    },
+    {
+      "amount": "60g",
+      "item": "onion"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.",
+    "Chop the onion and courgette. Heat the measured olive oil in a wide non-stick frying pan; cook the onion and courgette over medium heat for 4\u20135 minutes.",
+    "Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.",
+    "Add the cooked turkey breast in bite-size pieces and heat for 3\u20135 minutes, turning until steaming hot right through. It is already cooked; do not treat it as raw meat.",
+    "Serve the turkey breast, potatoes and vegetables immediately. Do not cool and reheat this assembled hash again."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a15592cd-73de-4793-9189-07f36001ef4d.png",
+  "source_sha256": "da4a7fbb3073b98713fbc828d5b13c58fbcface449153d22e0b5f4fe985cde5b",
+  "generated_at": "2026-10-04T23:36:20.860Z",
+  "elapsed_ms": 177392,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b5f5450e88dcdbc9a808-480.webp",
+      "sha256": "c31598538bec7441b4f9bae9d04b3a28f4b21e3e23fd87a58f14ea4d3ed38328",
+      "bytes": 31952
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b5f5450e88dcdbc9a808.webp",
+      "sha256": "22702449efc446ae361c4978c5de930a889a2fecba7bd8d4096f38f09f0dc680",
+      "bytes": 97292
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "da4a7fbb3073b98713fbc828d5b13c58fbcface449153d22e0b5f4fe985cde5b",
+    "recipe_ids": [
+      "industrial-breakfast-potato-hash-banana-cocoa-1"
+    ],
+    "titles": [
+      "Turkey Courgette Breakfast Potato Hash"
+    ],
+    "notes": "Opaque cooked turkey breast pieces, golden small baby potato pieces, softened courgette and onion; no garnish.",
+    "alt": "Turkey potato hash with courgette and onion",
+    "reviewed_at": "2026-10-04T23:45:25.953002+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

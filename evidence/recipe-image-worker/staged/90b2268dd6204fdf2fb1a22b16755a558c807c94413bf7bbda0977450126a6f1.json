@@ -1,0 +1,98 @@
+{
+  "groupId": "90b2268dd6204fdf2fb1a22b16755a558c807c94413bf7bbda0977450126a6f1",
+  "recipe_ids": [
+    "industrial-v3-stir-fry-lemon-herb-beef"
+  ],
+  "titles": [
+    "Shift Lemon Herb Beef Stir-Fry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Beef Stir-Fry. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"75g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 90g mixed peppers. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.\",\"Mix 20g light mayonnaise, 5ml lemon juice and 1g dried parsley in a small bowl. Keep this dressing cold until serving; it is not a cooking sauce and must not be simmered in the pan.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Return the cooked 5% beef mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and 5% beef mince between serving bowls. Take the pan off the heat and spoon the cold dressing over each serving; do not return it to the hob. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "75g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 90g mixed peppers. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.",
+    "Mix 20g light mayonnaise, 5ml lemon juice and 1g dried parsley in a small bowl. Keep this dressing cold until serving; it is not a cooking sauce and must not be simmered in the pan.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Return the cooked 5% beef mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and 5% beef mince between serving bowls. Take the pan off the heat and spoon the cold dressing over each serving; do not return it to the hob. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b864162d-2da3-4f7f-8731-7c5772bdbebc.png",
+  "source_sha256": "cfdb177d3f5c49adc21b5d6f4ccb2df2053bd7589706ff0cf3c75957d521c1ce",
+  "generated_at": "2026-10-04T21:40:25.392Z",
+  "elapsed_ms": 367477.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-90b2268dd6204fdf2fb1-480.webp",
+      "sha256": "966848811ba97c1c9c2fa95998bde2a656cb7c31b7a77e265a49da939bccc523",
+      "bytes": 27690
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-90b2268dd6204fdf2fb1.webp",
+      "sha256": "76b1b935c7be892a97e4c1d2cf16ed72702297ce983b43389612612221bccb11",
+      "bytes": 84628
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-lemon-herb-beef"
+    ],
+    "titles": [
+      "Shift Lemon Herb Beef Stir-Fry"
+    ],
+    "notes": "Browned beef mince, mixed pepper strips and cooked broccoli through egg noodles, cold mayonnaise lemon dried parsley dressing added over serving. Exact ingredient and preparation match, no garnish.",
+    "alt": "Beef mince, broccoli and mixed pepper noodles with lemon herb dressing",
+    "reviewed_at": "2026-10-04T21:42:25.067451+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/990.json",
+    "source_sha256": "cfdb177d3f5c49adc21b5d6f4ccb2df2053bd7589706ff0cf3c75957d521c1ce"
+  },
+  "integrated": true,
+  "live": false
+}

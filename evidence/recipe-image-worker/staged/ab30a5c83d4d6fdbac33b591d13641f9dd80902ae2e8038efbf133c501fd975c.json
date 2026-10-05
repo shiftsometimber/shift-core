@@ -1,0 +1,89 @@
+{
+  "groupId": "ab30a5c83d4d6fdbac33b591d13641f9dd80902ae2e8038efbf133c501fd975c",
+  "recipe_ids": [
+    "industrial-v3-stir-fry-balti-salmon"
+  ],
+  "titles": [
+    "Shift Balti Salmon Stir-Fry"
+  ],
+  "prompt": "Professional appetising close food photograph of this exact actual recipe. Believable home-cooked texture, thoughtful composition and natural light. Show its complete measured dish. Match ingredients, cut and preparation precisely. No invented garnish or side. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Balti Salmon Stir-Fry. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"75g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"balti-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 90g mixed peppers. Check the 150g salmon fillet for bones. Keep it as a fillet for pan cooking, then flake it after cooking.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Put in the salmon fillet, skin-side down if it has skin. Cook for 4\u20135 minutes, turn carefully and cook for another 3\u20135 minutes until the centre is opaque, steaming hot and flakes easily; a thicker piece needs longer. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Turn the heat to low and fold in the 40g balti-style sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Flake the cooked salmon into large pieces and fold into the pan at the end; avoid breaking it up with vigorous stirring. Heat gently until the whole pan is steaming hot, folding carefully so the seafood stays intact. Divide the noodles, vegetables and salmon fillet between serving bowls. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "balti-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 90g mixed peppers. Check the 150g salmon fillet for bones. Keep it as a fillet for pan cooking, then flake it after cooking.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Put in the salmon fillet, skin-side down if it has skin. Cook for 4\u20135 minutes, turn carefully and cook for another 3\u20135 minutes until the centre is opaque, steaming hot and flakes easily; a thicker piece needs longer. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Turn the heat to low and fold in the 40g balti-style sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Flake the cooked salmon into large pieces and fold into the pan at the end; avoid breaking it up with vigorous stirring. Heat gently until the whole pan is steaming hot, folding carefully so the seafood stays intact. Divide the noodles, vegetables and salmon fillet between serving bowls. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-10024032-e0b6-4d83-b69a-026202b0f4e7.png",
+  "source_sha256": "50e4f9fa5f27566c7525fa920bdefce067f829cf1cec53993d8a9b8ebae1d0c2",
+  "generated_at": "2026-10-04T23:52:26.686Z",
+  "elapsed_ms": 359529,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ab30a5c83d4d6fdbac33-480.webp",
+      "sha256": "120702352023694e5e20e95bc4a8c0017c24269dab3fcb18926b76dc16e2d56f",
+      "bytes": 31976
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ab30a5c83d4d6fdbac33.webp",
+      "sha256": "e385c6127fbbe733f2d8d2f627ffe42de40efbea248ff154a71ceba97b640599",
+      "bytes": 93778
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "50e4f9fa5f27566c7525fa920bdefce067f829cf1cec53993d8a9b8ebae1d0c2",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-balti-salmon"
+    ],
+    "titles": [
+      "Shift Balti Salmon Stir-Fry"
+    ],
+    "notes": "Large opaque cooked salmon flakes with egg noodles, pepper strips and broccoli, lightly balti-coated.",
+    "alt": "Shift Balti Salmon Stir-Fry: large opaque cooked salmon flakes with egg noodles, pepper strips and broccoli, lightly balti-coated.",
+    "reviewed_at": "2026-10-05T00:07:14.165814+00:00",
+    "reviewer": "root-full-resolution-visual-review"
+  }
+}

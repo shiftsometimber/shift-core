@@ -1,0 +1,100 @@
+{
+  "groupId": "b33085b0d3eae3292fccf7a12c24312b94ce7a867f53878646bb69ea380c6a92",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-mexican-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Mexican Chicken Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mexican Chicken Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked chicken breast to the pan and heat through.\",\"Stir in the listed flavour ingredients (20g tomato ketchup, 2g chilli powder, 1g paprika, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked chicken breast to the pan and heat through.",
+    "Stir in the listed flavour ingredients (20g tomato ketchup, 2g chilli powder, 1g paprika, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-24631ae9-dc9f-4505-9ab4-15f635ba8fbb.png",
+  "source_sha256": "0a9540f26a49a069869f1378f89fbf15bc46278cb375268c813fc860501fa53a",
+  "generated_at": "2026-10-04T23:56:52.667Z",
+  "elapsed_ms": 387798,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b33085b0d3eae3292fcc-480.webp",
+      "sha256": "758546a5bfaa412fc2be023792a8f991023da6289422ea761d8177e3da801f38",
+      "bytes": 29256
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b33085b0d3eae3292fcc-retry2-9ae30d9364bc.webp",
+      "sha256": "9ae30d9364bcdbf291e5dd5d5c0ea8113b70e142064f654fb991c414c76b632c",
+      "bytes": 90728
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "0a9540f26a49a069869f1378f89fbf15bc46278cb375268c813fc860501fa53a",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-mexican-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Mexican Chicken Breakfast Toastie"
+    ],
+    "notes": "Crisp wholemeal toastie with cooked white chicken chunks, softened tomato and wilted spinach in listed sauce, remaining measured filling alongside as method permits. No cheese.",
+    "alt": "Mexican chicken toastie with tomato and spinach",
+    "reviewed_at": "2026-10-05T00:00:55.356211+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/270.json"
+  },
+  "integrated": true,
+  "live": false
+}

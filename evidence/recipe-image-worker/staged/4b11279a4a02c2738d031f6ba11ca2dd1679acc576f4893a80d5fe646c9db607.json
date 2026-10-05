@@ -1,0 +1,90 @@
+{
+  "groupId": "4b11279a4a02c2738d031f6ba11ca2dd1679acc576f4893a80d5fe646c9db607",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-hash-brown-turkey"
+  ],
+  "titles": [
+    "Shift Hash Brown Turkey Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hash Brown Turkey Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"120g\",\"item\":\"baby potatoes\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10ml\",\"item\":\"olive oil\"}]. Preparation: [\"Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g mixed peppers, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.\",\"Put the diced potatoes into a saucepan of boiling water. Simmer for about 8\u201310 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.\",\"Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6\u20138 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.\",\"In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped mixed peppers for 5\u20137 minutes until softened, then add the spinach and stir until wilted. Finish the protein as described in the next step.\",\"Keep the listed already-cooked turkey refrigerated until the vegetables have softened as described above. Slice it thinly, then add it to those vegetables with the reserved 2ml olive oil and stir over a medium heat until steaming hot all the way through. This uses the single reheating of the cooked turkey: assemble and eat immediately.\",\"Warm the measured 65g wholemeal wrap in a clean dry pan for 20\u201330 seconds so it bends easily. Add a manageable amount of the hot filling and crumbled crisp potato, fold the sides in and roll firmly. Briefly place it seam-side down in the dry pan to seal. Serve all remaining potato and filling alongside; the nutrition includes the complete listed portion.\",\"Eat immediately. Do not cool and reheat the turkey filling or assembled meal again.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. There are exactly TWO small potato patties in the complete portion. Crumble ONE patty into the wrap; show ONLY ONE remaining intact patty alongside. Never show two intact patties alongside a wrap that already contains crumbled potato.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "120g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Peel the baby potatoes and weigh 120g of the raw peeled flesh, then dice it into roughly 1cm pieces. Peel and finely grate the measured 20g onion, chop the 90g mixed peppers, and wash the 90g spinach. Keep raw-meat preparation separate from these vegetables.",
+    "Put the diced potatoes into a saucepan of boiling water. Simmer for about 8\u201310 minutes until a fork passes easily through the centre. Drain thoroughly in a colander, leave to steam dry for 2 minutes, then roughly mash with a fork. Mix in the finely grated onion and press into two small, thin potato patties, about 1cm thick.",
+    "Heat 6ml of the measured 10ml olive oil in a non-stick frying pan over a medium heat. Fry the potato patties for about 6\u20138 minutes on each side, turning carefully with a wide spatula, until golden and crisp and the onion is soft. Lower the heat if they darken before the onion cooks. While they cook, prepare the protein and vegetables in the second pan using the steps below. Keep the finished patties warm on a clean plate until assembly.",
+    "In the second frying pan, heat 2ml of the measured oil over a medium heat. Cook the chopped mixed peppers for 5\u20137 minutes until softened, then add the spinach and stir until wilted. Finish the protein as described in the next step.",
+    "Keep the listed already-cooked turkey refrigerated until the vegetables have softened as described above. Slice it thinly, then add it to those vegetables with the reserved 2ml olive oil and stir over a medium heat until steaming hot all the way through. This uses the single reheating of the cooked turkey: assemble and eat immediately.",
+    "Warm the measured 65g wholemeal wrap in a clean dry pan for 20\u201330 seconds so it bends easily. Add a manageable amount of the hot filling and crumbled crisp potato, fold the sides in and roll firmly. Briefly place it seam-side down in the dry pan to seal. Serve all remaining potato and filling alongside; the nutrition includes the complete listed portion.",
+    "Eat immediately. Do not cool and reheat the turkey filling or assembled meal again."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2fad1557-e485-47df-8e8d-8b563933b1e3.png",
+  "source_sha256": "4e9ecb03a8052f618b5cc0883796e20f3ff879db8a42da6cd5687d7975cc27a6",
+  "generated_at": "2026-10-04T23:16:59.782Z",
+  "elapsed_ms": 423894,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4b11279a4a02c2738d03-480.webp",
+      "sha256": "2761e8d3b0a769d03ed52e07cbb8b3b322255105e026099f943ba83ca4585039",
+      "bytes": 27416
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4b11279a4a02c2738d03-retry2-15e6f74edb1e.webp",
+      "sha256": "15e6f74edb1ea3ee7368526743e94d0645850e7ed3d3efba1787ec1ab01e822e",
+      "bytes": 79386
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "4e9ecb03a8052f618b5cc0883796e20f3ff879db8a42da6cd5687d7975cc27a6",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-hash-brown-turkey"
+    ],
+    "titles": [
+      "Shift Hash Brown Turkey Breakfast Wrap"
+    ],
+    "notes": "Plain crisped wrap contains warmed thinly sliced turkey, softened mixed peppers and wilted spinach with crumbled crisp potato. Exactly one remaining potato onion patty alongside matches two patties total.",
+    "alt": "Hash brown turkey breakfast wrap with peppers, spinach and a patty alongside.",
+    "reviewed_at": "2026-10-04T23:20:44.371201+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/207.json"
+  },
+  "integrated": true,
+  "live": false
+}

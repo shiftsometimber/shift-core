@@ -1,0 +1,87 @@
+{
+  "groupId": "aebd78ebe3324558151eafca4642d01229a002d22bb23b3594437bf5894a4688",
+  "index": 2264,
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-berry-protein-pudding"
+  ],
+  "titles": [
+    "Shift Berry Protein Pudding Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Protein Pudding Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"105g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed food; no honey, nuts, mint, syrup or decorative garnish. Plain unseeded crackers: exactly two visible crackers when listed, no sesame or poppy seeds. All food inside the serving margins. Finished combined dessert in ONE bowl: cottage cheese or yoghurt base, fruit, oats and seeds combined in this bowl, yoghurt visibly swirled through. No separate yoghurt or crunch ramekins.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f62e5173-7a84-4d26-8c75-d808d0cfecaf.png",
+  "source_sha256": "05c03809c53df0513329a6a2a19202f19e1103206c9aa7ea90c4d471fd3f1cfa",
+  "dispatched_at": "2026-10-04T23:14:16.136Z",
+  "generated_at": "2026-10-04T23:19:15.065Z",
+  "elapsed_ms": 298929,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-aebd78ebe3324558151e-480.webp",
+      "sha256": "3b9e0cd6956829a8a61687c4bc19dd9623f618ac2231956b437331995ce75dcd",
+      "bytes": 19954,
+      "git_blob_sha": "a4c02e780b47b072b75cc0cd4516dc2ab4dfdfc1"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-aebd78ebe3324558151e.webp",
+      "sha256": "8e22c5e6e30ce93f7647e5f7d618246455e3ecf8d0da66e07b68179de2986f6f",
+      "bytes": 57742,
+      "git_blob_sha": "5995298e34c0a569752be2316604400cdf5d8723"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-berry-protein-pudding"
+    ],
+    "titles": [
+      "Shift Berry Protein Pudding Dessert Pot"
+    ],
+    "notes": "Finished combined high-protein yoghurt dessert, mixed berries, oats and seeds with Greek yoghurt swirled through. No separate dry ramekins.",
+    "alt": "Berry protein yoghurt dessert with Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:22:01.528123+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/aebd78ebe3324558151eafca4642d01229a002d22bb23b3594437bf5894a4688.json",
+    "source_sha256": "05c03809c53df0513329a6a2a19202f19e1103206c9aa7ea90c4d471fd3f1cfa"
+  },
+  "integrated": true,
+  "live": false
+}

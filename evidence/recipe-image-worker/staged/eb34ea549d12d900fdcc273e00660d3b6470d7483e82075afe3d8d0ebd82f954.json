@@ -1,0 +1,78 @@
+{
+  "groupId": "eb34ea549d12d900fdcc273e00660d3b6470d7483e82075afe3d8d0ebd82f954",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-jalfrezi-pork"
+  ],
+  "titles": [
+    "Shift Jalfrezi Pork Slow-Cooker Big Pot"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe, appetising through natural window light and truthful texture. No invented garnish or additional ingredients. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Jalfrezi Pork Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"pepper and tomato masala\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "pepper and tomato masala"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d27c1249-1079-43db-977c-f90aee5ab784.png",
+  "source_sha256": "06b4e2c4a86160f5312ae925430bee435a7b0cd483409fec587319c6c2d3a219",
+  "generated_at": "2026-10-05T00:39:32.676Z",
+  "elapsed_ms": 146010,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-eb34ea549d12d900fdcc-480.webp",
+      "sha256": "611e51d184bcd5bb9943832e184e9cb5e763a70b5e27d100107bc6215270c63f",
+      "bytes": 25926
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-eb34ea549d12d900fdcc.webp",
+      "sha256": "0581592e11db9d46876e1a401900ecf041751a9db55c4b0e3ac52e36c53be58c",
+      "bytes": 82260
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Jalfrezi pork with tender baby potatoes, carrots and onion",
+    "notes": "Full-resolution individual review: cooked lean pork pieces, tender baby potatoes, carrots and softened onion with reduced glossy masala cooking juices; exact method and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-jalfrezi-pork"
+    ],
+    "titles": [
+      "Shift Jalfrezi Pork Slow-Cooker Big Pot"
+    ],
+    "source_sha256": "06b4e2c4a86160f5312ae925430bee435a7b0cd483409fec587319c6c2d3a219",
+    "reviewed_at": "2026-10-05T00:54:17.968260+00:00"
+  }
+}

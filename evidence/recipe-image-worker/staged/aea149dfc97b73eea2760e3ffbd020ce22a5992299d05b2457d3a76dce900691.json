@@ -1,0 +1,100 @@
+{
+  "groupId": "aea149dfc97b73eea2760e3ffbd020ce22a5992299d05b2457d3a76dce900691",
+  "recipe_ids": [
+    "industrial-v3-pie-peppercorn-salmon"
+  ],
+  "titles": [
+    "Shift Peppercorn Salmon Proper Pie"
+  ],
+  "prompt": "Premium realistic food photo landscape4:3 cream small oval ovenproof dish mattecreambackground warm natural light crop margins ordinary single serving. A simple oven-baked potato-topped salmon pie. Top is PLAIN mashed peeled potatoes250g, mashed with hot WATER ONLY, fork-ridged and lightly golden browned. A small opening at front shows DRY MOIST large opaque cooked SALMON FLAKES150g, orange finely diced cooked CARROT90g and green PEAS90g. Filling has clear TRANSPARENT water cooking juices only; all fish flakes and vegetables have CLEAN smooth pure natural surfaces free from spice flecks. Browned fish plain, vegetables plain, not creamy. Pie cooked with5ml oliveoil, no dairy or seasonings in pie. At rear, a separate small bowl has cold ivory dip20g light mayonnaise4g wholegrainmustard1g blackpepper; DARK flecks only INSIDE bowl. Absolutely no creamy sauce, pepper, mustard or herbs INSIDE pie or on potato. No gravy, cheese, milk, butter, garnish or extra foods. Preserve clean plain salmon-pea-carrot water-cooked filling visible. Roast potato-mash top baked200Cfan15-20minutes after filling cooked; no pastry.",
+  "original_generation_prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Salmon Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, wholegrain mustard, black pepper dressing alongside.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Stir together the measured light mayonnaise, wholegrain mustard, black pepper in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, wholegrain mustard, black pepper dressing alongside."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-34a19e8d-5862-4e2f-bed1-06294efa99a4.png",
+  "source_sha256": "c54c8da14ef70322b160d327794727c9498a4589a3494fea55e502163cad946b",
+  "generated_at": "2026-10-05T01:07:21.346Z",
+  "elapsed_ms": 30548.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-aea149dfc97b73eea276-retry6-480-866840bd19f4.webp",
+      "sha256": "866840bd19f47a727a94641f2e5df242ab5bd4ccf9112c28cff4d74bce0487d0",
+      "bytes": 25678
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-aea149dfc97b73eea276-retry6-8e7e37c4ddfd.webp",
+      "sha256": "8e7e37c4ddfdb55ac5f432bbf4c790845861b444185333268144ce96238a9d51",
+      "bytes": 76298
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c54c8da14ef70322b160d327794727c9498a4589a3494fea55e502163cad946b",
+    "recipe_ids": [
+      "industrial-v3-pie-peppercorn-salmon"
+    ],
+    "titles": [
+      "Shift Peppercorn Salmon Proper Pie"
+    ],
+    "notes": "Pass after fresh targeted retry: clean plain fork-ridged water-mashed potato top with golden oven-browned ridges. Opening reveals large opaque cooked salmon flakes, diced carrots and peas with clear moist cooking juices; no creamy coat or pepper flecks on filling. All mayonnaise-wholegrain mustard-black pepper exclusively inside separate cold bowl alongside. No cheese, herbs, pastry or extra foods. Earlier inaccurate mash/filling variants retained as rejects; main pie centred and keep rear-right bowl in crop.",
+    "alt": "Salmon potato-topped pie with carrots, peas and separate mayonnaise-wholegrain mustard dressing",
+    "reviewed_at": "2026-10-05T01:10:48.422740+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1184.json"
+  },
+  "integrated": true,
+  "live": false
+}

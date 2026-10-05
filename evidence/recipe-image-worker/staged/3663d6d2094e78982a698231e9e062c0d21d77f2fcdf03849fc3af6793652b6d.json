@@ -1,0 +1,98 @@
+{
+  "groupId": "3663d6d2094e78982a698231e9e062c0d21d77f2fcdf03849fc3af6793652b6d",
+  "recipe_ids": [
+    "industrial-v3-stir-fry-lemon-herb-tofu"
+  ],
+  "titles": [
+    "Shift Lemon Herb Tofu Stir-Fry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Tofu Stir-Fry. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"75g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 90g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.\",\"Mix 20g light mayonnaise, 5ml lemon juice and 1g dried parsley in a small bowl. Keep this dressing cold until serving; it is not a cooking sauce and must not be simmered in the pan.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.\",\"Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and firm tofu between serving bowls. Take the pan off the heat and spoon the cold dressing over each serving; do not return it to the hob. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nHard ingredient/preparation accuracy: Keep the hot protein, rice/noodles and vegetables entirely plain with NO parsley flecks. Spoon the cold white mayonnaise dressing with tiny parsley flecks visibly on TOP of finished serving. Do not show a separate sauce bowl. No lemon wedges, fresh leaves, cheese, seeds, invented sauces, garnish or extra ingredients. Broccoli florets are the ONLY green hot vegetable where listed. Salmon fully cooked opaque, large flakes in pasta/pie/rice/noodles; wholefillet for roast/tray. Tofu 2cm browned cubes. Beef loose browned mince, pork/chicken form per exact method. Realistic delicious single portion with margin.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3\u20134 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 90g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.",
+    "Mix 20g light mayonnaise, 5ml lemon juice and 1g dried parsley in a small bowl. Keep this dressing cold until serving; it is not a cooking sauce and must not be simmered in the pan.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4\u20136 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1\u20132 minutes to combine without crushing the florets.",
+    "Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and firm tofu between serving bowls. Take the pan off the heat and spoon the cold dressing over each serving; do not return it to the hob. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6fd4c844-22da-48e5-abbe-7eddecbf9042.png",
+  "source_sha256": "5778fbdc8216e75fba2a3e9a3c4ea8840001cf219dd43b444cc7a75a80f5f86b",
+  "generated_at": "2026-10-04T23:01:30.994Z",
+  "elapsed_ms": 424629.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3663d6d2094e78982a69-retry4-480-22f06ca20587.webp",
+      "sha256": "22f06ca2058772ca2c07b6b4e57375edf77b78cf25eb83398c5f52cfb8fb7d62",
+      "bytes": 28278
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3663d6d2094e78982a69-retry4-a733df68c26a.webp",
+      "sha256": "a733df68c26a399a30330a5c57cab31f751ef30939c622cd4a37b8649a5e400d",
+      "bytes": 81308
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "5778fbdc8216e75fba2a3e9a3c4ea8840001cf219dd43b444cc7a75a80f5f86b",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-lemon-herb-tofu"
+    ],
+    "titles": [
+      "Shift Lemon Herb Tofu Stir-Fry"
+    ],
+    "notes": "Browned2cm tofu cubes in egg noodles with cooked pepper strips/broccoli; cold white parsley dressing spooned over finished dish, no added garnish.",
+    "alt": "Tofu egg noodles with peppers, broccoli and cold lemon parsley dressing",
+    "reviewed_at": "2026-10-04T23:05:58.663059+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1014.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "a077e5179a891f2c53fed0089722a7106b295b419b501e2f7261c6c2b548e10d",
+  "recipe_ids": [
+    "industrial-v3-meal-prep-bowl-house-chickpea"
+  ],
+  "titles": [
+    "Shift House Chickpea Meal-Prep Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift House Chickpea Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"amount\":\"30g\",\"item\":\"tomato pepper relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Use the measured tomato pepper relish as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured tomato pepper relish and olive oil dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "30g",
+      "item": "tomato pepper relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+    "Use the measured tomato pepper relish as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured tomato pepper relish and olive oil dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9a3ad952-575b-462e-a3d7-5e345fce4118.png",
+  "source_sha256": "ddb78e68c812a77e88cbdedbe050fb3f3dfc3aca91be736cbb6f6de869eeed26",
+  "generated_at": null,
+  "elapsed_ms": null,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a077e5179a891f2c53fe-480-e5f20fa201ca.webp",
+      "sha256": "e5f20fa201ca882719278bf5bfd50e840bdc1e69fee5b6fda6990fbddd8d3e07",
+      "bytes": 22610
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a077e5179a891f2c53fe-d8d095512d8a.webp",
+      "sha256": "d8d095512d8add8e76f0463ca028c1a20d36f0aa2995bfa0eb07357de1bce58b",
+      "bytes": 67046
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ddb78e68c812a77e88cbdedbe050fb3f3dfc3aca91be736cbb6f6de869eeed26",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-house-chickpea"
+    ],
+    "titles": [
+      "Shift House Chickpea Meal-Prep Bowl"
+    ],
+    "notes": "Cooked brown rice with chickpeas, drained, raw diced peppers, sweetcorn and tomato pepper relish folded through. Every member title checked against exact ingredients/method. No cheese, seeds, invented side or scatter garnish; protein preparation and dressing placement match method.",
+    "alt": "House Chickpea Meal-Prep Bowl with mixed peppers, sweetcorn",
+    "reviewed_at": "2026-10-04T23:14:25.520688+00:00",
+    "reviewer": "worker-f visual reinspection of exact recovered original",
+    "receipt": "evidence/recipe-image-worker/worker-f/1845.json",
+    "recovery_reinspection": true
+  },
+  "integrated": true,
+  "live": false
+}

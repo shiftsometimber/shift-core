@@ -1,0 +1,89 @@
+{
+  "groupId": "906457704b5e2a2043172e39ae85750452f1b3803a8286a98f9dc0cb17443fb6",
+  "recipe_ids": [
+    "industrial-v3-pasta-mediterranean-salmon"
+  ],
+  "titles": [
+    "Shift Mediterranean Salmon Proper Pasta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mediterranean Salmon Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"tomato olive herb sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the tomato olive herb sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured tomato olive herb sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, seeds, cheese, cream, fresh green herbs scattered on top, coriander, parsley leaves, lemon wedges, side dishes or dipping sauce. Tomato olive herb sauce is a light reddish tomato coating with tiny chopped olive and herb pieces ONLY WITHIN SAUCE, no separate whole olives or fresh leaf garnish. PIE HARD GATE: topping is PLAIN WATER-MASHED POTATO, ivory and golden naturally browned fork ridges only. NO HERBS, NO PEPPER, NO dark/green flecks, NO cheese or butter on OR mixed in potato topping. Listed sauce belongs only in exposed cooked filling BELOW potato topping. Salmon fully opaque cooked large flakes wherever method flakes, traybake and roast may keep opaque fillet. Pork stir-fry thin 1cm opaque strips; all other forms follow method. Tofu firm 2cm cubes EXCEPT roast uses 2cm slabs. Slow cooker potatoes/carrot/onion tender glossy not crispy. Rice exact brown or basmati per recipe. Listed sauce lightly coats finished dish per method, no sauce ramekin. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "tomato olive herb sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the tomato olive herb sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured tomato olive herb sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/recovered-1084-retry4.png",
+  "source_sha256": "07f2bd2f0dc858883e5b2994c8d19b6b64bcc07a0f5a2b36d2dc7ba62db4af6b",
+  "generated_at": "2026-10-04T23:55:06.092Z",
+  "elapsed_ms": 204021.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-906457704b5e2a204317-retry4-480-30c52ad1e755.webp",
+      "sha256": "30c52ad1e75521710e5051d4bf84e264e8ca803dfb60df730866db29f8550f68",
+      "bytes": 27258
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-906457704b5e2a204317-retry4-657ab73c10c5.webp",
+      "sha256": "657ab73c10c5888bae8dfb458b14adecaa7b1d4ec7f036158a698df816f323d3",
+      "bytes": 82886
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "07f2bd2f0dc858883e5b2994c8d19b6b64bcc07a0f5a2b36d2dc7ba62db4af6b",
+    "recipe_ids": [
+      "industrial-v3-pasta-mediterranean-salmon"
+    ],
+    "titles": [
+      "Shift Mediterranean Salmon Proper Pasta"
+    ],
+    "notes": "Pass: recovered exact PNG bytes show cooked opaque salmon large flakes, brown wholewheat penne, bite-size courgette and cherry tomatoes lightly coated in tomato olive herb sauce. Small herbs and olive pieces belong to listed sauce; no raw cubes, whole fillet assembly, cheese, cream, fresh leaf garnish or extra foods. Exact hot pasta assembly with useful centred crop.",
+    "alt": "Mediterranean salmon wholewheat pasta with courgette, cherry tomatoes and tomato olive herb sauce",
+    "reviewed_at": "2026-10-05T00:00:49.147250+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1084.json"
+  },
+  "integrated": true,
+  "live": false
+}

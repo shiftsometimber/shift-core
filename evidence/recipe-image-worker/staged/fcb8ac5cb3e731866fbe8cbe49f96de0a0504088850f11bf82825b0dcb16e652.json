@@ -1,0 +1,94 @@
+{
+  "groupId": "fcb8ac5cb3e731866fbe8cbe49f96de0a0504088850f11bf82825b0dcb16e652",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-hot-sauce-egg"
+  ],
+  "titles": [
+    "Shift Hot Sauce Egg Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hot Sauce Egg Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-eda540da-1ba2-46f8-a111-4c00c5edd09d.png",
+  "source_sha256": "94005ca010379c1b50880f91fab8fbc5e440ad06673edd9c412cca89cbb21b95",
+  "generated_at": "2026-10-04T23:31:22.322Z",
+  "elapsed_ms": 399800,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fcb8ac5cb3e731866fbe-480.webp",
+      "sha256": "d65c49cef08fe0808ad338c28226f0fb2d7823c637ce956b7387a2cd8cae0a4a",
+      "bytes": 24828
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fcb8ac5cb3e731866fbe-retry2-ee878f307418.webp",
+      "sha256": "ee878f3074186ef4ad72eb3b9dc6875743ce5b9690c96f8ccd3eb998b25b760c",
+      "bytes": 75752
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "94005ca010379c1b50880f91fab8fbc5e440ad06673edd9c412cca89cbb21b95",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-hot-sauce-egg"
+    ],
+    "titles": [
+      "Shift Hot Sauce Egg Breakfast Wrap"
+    ],
+    "notes": "Single lightly crisp wholemeal wrap contains set egg curds, cooked mixed peppers and spinach with listed hot sauce; no extra food.",
+    "alt": "Hot sauce egg wrap with peppers and spinach",
+    "reviewed_at": "2026-10-04T23:32:39.947364+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/223.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,86 @@
+{
+  "groupId": "02e3188ab6c7b24e5acffc95facd478201bdd21e7df3a7ecd10d677f40535b68",
+  "recipe_ids": [
+    "industrial-v3-pasta-mediterranean-tofu"
+  ],
+  "titles": [
+    "Shift Mediterranean Tofu Proper Pasta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mediterranean Tofu Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"tomato olive herb sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the tomato olive herb sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured tomato olive herb sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, seeds, cheese, cream, fresh green herbs scattered on top, coriander, parsley leaves, lemon wedges, side dishes or dipping sauce. Tomato olive herb sauce is a light reddish tomato coating with tiny chopped olive and herb pieces ONLY WITHIN SAUCE, no separate whole olives or fresh leaf garnish. PIE HARD GATE: topping is PLAIN WATER-MASHED POTATO, ivory and golden naturally browned fork ridges only. NO HERBS, NO PEPPER, NO dark/green flecks, NO cheese or butter on OR mixed in potato topping. Listed sauce belongs only in exposed cooked filling BELOW potato topping. Salmon fully opaque cooked large flakes wherever method flakes, traybake and roast may keep opaque fillet. Pork stir-fry thin 1cm opaque strips; all other forms follow method. Tofu firm 2cm cubes EXCEPT roast uses 2cm slabs. Slow cooker potatoes/carrot/onion tender glossy not crispy. Rice exact brown or basmati per recipe. Listed sauce lightly coats finished dish per method, no sauce ramekin. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "tomato olive herb sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the tomato olive herb sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured tomato olive herb sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-dc9c0abc-a109-4ef5-95a4-784eafa57a4e.png",
+  "source_sha256": "47f1442bfe0ab403b191b5fddad6d06161cac51ce3999b7328f960bc87577ab8",
+  "generated_at": "2026-10-04T23:58:04.256Z",
+  "elapsed_ms": 382185.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-02e3188ab6c7b24e5acf-retry4-480-d8b059e760cf.webp",
+      "sha256": "d8b059e760cf4c350226daa5d3561cb3ea04d8b5f9eed36c5cbd8a1dec508635",
+      "bytes": 30336
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-02e3188ab6c7b24e5acf-retry4-d628842b7f61.webp",
+      "sha256": "d628842b7f611cc368fe137e4b94c7dd0b887e0d34afc66b8eb533e94cba4619",
+      "bytes": 93684
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "47f1442bfe0ab403b191b5fddad6d06161cac51ce3999b7328f960bc87577ab8",
+    "recipe_ids": [
+      "industrial-v3-pasta-mediterranean-tofu"
+    ],
+    "titles": [
+      "Shift Mediterranean Tofu Proper Pasta"
+    ],
+    "notes": "Pass: brown wholewheat penne, firm tofu 2cm cubes with pale porous interiors, bite-size courgette and cooked cherry tomato pieces lightly coated in tomato olive herb sauce. Chopped olive pieces stay within listed sauce, no meat substitution, cheese, cream, fresh leaf garnish or extra food. Correct hot pasta assembly and centred crop.",
+    "alt": "Mediterranean tofu wholewheat pasta with courgette, cherry tomatoes and tomato olive herb sauce",
+    "reviewed_at": "2026-10-04T23:59:17.036710+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1091.json"
+  },
+  "integrated": true,
+  "live": false
+}

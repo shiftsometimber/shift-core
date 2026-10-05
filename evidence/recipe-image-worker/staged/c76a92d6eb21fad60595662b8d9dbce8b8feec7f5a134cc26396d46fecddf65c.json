@@ -1,0 +1,83 @@
+{
+  "groupId": "c76a92d6eb21fad60595662b8d9dbce8b8feec7f5a134cc26396d46fecddf65c",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-bbq-tofu"
+  ],
+  "titles": [
+    "Shift BBQ Tofu Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Tofu Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"190g\",\"item\":\"firm tofu\"},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Drain the firm tofu, pat it dry and cut it into 2cm cubes. Use clean utensils for the cooked tofu.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the tofu cubes over a medium-high heat for about 8\u201310 minutes, turning so several faces become golden and the centre is hot. Follow any longer cooking instruction on the tofu pack.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.\",\"Put the measured reduced-sugar BBQ sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Pile the crisp oven chips onto a plate and spoon over the browned tofu cubes, the red onion and peppers, followed by the warm sauce. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "190g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Drain the firm tofu, pat it dry and cut it into 2cm cubes. Use clean utensils for the cooked tofu.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the tofu cubes over a medium-high heat for about 8\u201310 minutes, turning so several faces become golden and the centre is hot. Follow any longer cooking instruction on the tofu pack.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot.",
+    "Put the measured reduced-sugar BBQ sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Pile the crisp oven chips onto a plate and spoon over the browned tofu cubes, the red onion and peppers, followed by the warm sauce. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-df7d387a-2cba-4169-b3ad-1772624bd919.png",
+  "source_sha256": "3e6a922e72706ee9cbc2d696ae22de84c1a1251419535f77431fa9416e10a344",
+  "generated_at": null,
+  "elapsed_ms": 305475.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c76a92d6eb21fad60595-480.webp",
+      "sha256": "47057dbbc98ac8a49d4853c87baaa843c0411bd977708f63a4d3a216a73afed6",
+      "bytes": 28128
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c76a92d6eb21fad60595.webp",
+      "sha256": "9e8efc3970669d63625716b0b742b9b19561dc933a70bdcad2f4534a8e24a9a7",
+      "bytes": 90326
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-bbq-tofu"
+    ],
+    "titles": [
+      "Shift BBQ Tofu Loaded Fries"
+    ],
+    "notes": "Golden oven chips topped with intact browned tofu cubes, softened red onion and sliced red/yellow peppers in BBQ sauce. No cheese, meat or garnish. Ingredients and finished state match actual method and title; plausible single serving, central responsive crop retains dish.",
+    "alt": "Oven chips topped with tofu cubes, red onion, peppers and BBQ sauce.",
+    "reviewed_at": "2026-10-04T21:39:05.896Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-560-576.json",
+    "source_sha256": "3e6a922e72706ee9cbc2d696ae22de84c1a1251419535f77431fa9416e10a344"
+  },
+  "integrated": true,
+  "live": false
+}

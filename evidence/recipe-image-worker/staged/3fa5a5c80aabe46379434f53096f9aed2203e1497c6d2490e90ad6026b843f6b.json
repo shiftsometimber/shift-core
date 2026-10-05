@@ -1,0 +1,86 @@
+{
+  "groupId": "3fa5a5c80aabe46379434f53096f9aed2203e1497c6d2490e90ad6026b843f6b",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-coffee-savory-box"
+  ],
+  "titles": [
+    "Shift Coffee Banana Split Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Banana Split Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.\",\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only, no honey, nuts, mint, syrup or decorative garnish. Small25g mixed berries. Entire serving inside frame. NO crackers, biscuits or cake anywhere. Instant espresso measured1g fully dissolved in tiny teaspoon water and cooled, mixed through fruit/dairy as subtle coffee tint; no whole coffee beans, granules, dry coffee grounds, separate coffee drink or chocolate syrup. All listed ingredients combined in dessert bowl; chopped dark chocolate finishing only if listed. No melted sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Dissolve the listed instant espresso in 1 teaspoon of freshly boiled water, then let it cool before mixing it into the snack.",
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e7143708-1c5c-4bb9-bf5e-bacdf6040f79.png",
+  "source_sha256": "3652ec1921b221cc97a472fa4cff64ef7f61ef08fa2d4d00966bf7cd910c67f6",
+  "generated_at": "2026-10-05T00:48:47.421Z",
+  "elapsed_ms": 389057,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3fa5a5c80aabe4637943-480-591d57afa8bf.webp",
+      "sha256": "591d57afa8bfa576401dbf98d151bdf1795d3f7dd42e7ab95e3858d542494501",
+      "bytes": 26278
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3fa5a5c80aabe4637943-534ae82d78a9.webp",
+      "sha256": "534ae82d78a9351de3d2b6237dfc940cd6d4b84705d5856d48f2bdb60118b7b0",
+      "bytes": 82790
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3652ec1921b221cc97a472fa4cff64ef7f61ef08fa2d4d00966bf7cd910c67f6",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-coffee-savory-box"
+    ],
+    "titles": [
+      "Shift Coffee Banana Split Big Feed Dessert"
+    ],
+    "notes": "Banana and small berries subtly coffee tinted with dissolved espresso, oats/seeds combined and listed chopped chocolate finishing. No coffee beans or syrup.",
+    "alt": "Coffee banana dessert with berries, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-05T00:50:44.558682+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/3fa5a5c80aabe46379434f53096f9aed2203e1497c6d2490e90ad6026b843f6b.json"
+  },
+  "integrated": true,
+  "live": false
+}

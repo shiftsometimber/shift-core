@@ -1,0 +1,87 @@
+{
+  "groupId": "7c13abd042b39551ee48e920704a2f7e920427c133b4e9365e8e10c0a27969c0",
+  "recipe_ids": [
+    "industrial-v3-sandwich-sweet-chilli-egg"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Egg Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Egg Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the boiled eggs are meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.\",\"Build the sweet chilli flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the boiled eggs, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel, no sesame/poppy seeds, cheese or food not listed. Sweet chilli sauce is translucent glossy red, never creamy: no mayo/yoghurt/cream. Tuna is loose fibrous drained flakes, never creamy tuna salad; ham thin cooked strips where method specifies. Eggs sliced hard-boiled. Turkey plain cooked breast not breaded. Keep reserved raw spinach/tomato or rocket/tomato side salads separate. Spring onion sliced finely mixed into salad alongside jacket potatoes, never garnish on potato. Cook rice; peppers raw diced, corn ready-to-eat. Sauce incorporated exactly as method states.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the boiled eggs are meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.",
+    "Build the sweet chilli flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the boiled eggs, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-01b39ba3-3626-4b09-ac58-69a770f1a2af.png",
+  "source_sha256": "acfb176944cba6952df950fc36bf98c6a94bbdfef2494ef3aa3aa131933183a1",
+  "generated_at": "2026-10-05T00:29:04.003Z",
+  "elapsed_ms": 47420.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7c13abd042b39551ee48-480-30e8a38759a4.webp",
+      "sha256": "30e8a38759a4c0899e5f8728ea99d3dc40bf5d25fbdde4d9317158ea0fe9b641",
+      "bytes": 29920
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7c13abd042b39551ee48-b4b936607b5c.webp",
+      "sha256": "b4b936607b5c50c1b17e4d931761c46c63a1a009ba4ca20e82fe9b9eeb20d935",
+      "bytes": 87436
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "acfb176944cba6952df950fc36bf98c6a94bbdfef2494ef3aa3aa131933183a1",
+    "recipe_ids": [
+      "industrial-v3-sandwich-sweet-chilli-egg"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Egg Proper Sandwich"
+    ],
+    "notes": "Two plain wholemeal bread slices enclose sliced hard-boiled eggs, fresh lettuce/tomato and translucent sweet chilli sauce. No mayonnaise, cheese, seeds or additional side; exact title/method checked.",
+    "alt": "Wholemeal sweet chilli boiled egg sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:34:57.145261+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2066.json"
+  },
+  "integrated": true,
+  "live": false
+}

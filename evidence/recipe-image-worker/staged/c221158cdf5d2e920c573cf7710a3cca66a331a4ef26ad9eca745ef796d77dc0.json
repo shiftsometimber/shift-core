@@ -1,0 +1,96 @@
+{
+  "groupId": "c221158cdf5d2e920c573cf7710a3cca66a331a4ef26ad9eca745ef796d77dc0",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-smoky-beans"
+  ],
+  "titles": [
+    "Shift Smoky Beans Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Beans Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.\",\"Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the baked beans and heat gently until steaming hot throughout.\",\"Stir in the listed flavour ingredients (20g tomato ketchup, 2g paprika, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.",
+    "Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the baked beans and heat gently until steaming hot throughout.",
+    "Stir in the listed flavour ingredients (20g tomato ketchup, 2g paprika, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d0a7dcbe-d817-4fec-840a-0a399bce9902.png",
+  "source_sha256": "e48042184be46dc6e4d92b2b6e08903ce28f52bdf90db57d5a57fddca03a7607",
+  "generated_at": "2026-10-05T01:19:11.706Z",
+  "elapsed_ms": 92742,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c221158cdf5d2e920c57-480.webp",
+      "sha256": "83bb8ca88fcdb56dc715848d7a8be54b395f30143835097456920693912d7827",
+      "bytes": 25776
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c221158cdf5d2e920c57-4d67d074f9dc.webp",
+      "sha256": "4d67d074f9dc9594e5aae7c9d7aad014b9393116897891d5b46e2509fdf7e27b",
+      "bytes": 83432
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "e48042184be46dc6e4d92b2b6e08903ce28f52bdf90db57d5a57fddca03a7607",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-smoky-beans"
+    ],
+    "titles": [
+      "Shift Smoky Beans Breakfast Toastie"
+    ],
+    "notes": "Full-resolution inspection confirms heated baked beans, cooked tomato and wilted spinach with smoky sauce inside crisp wholemeal toastie halves; matching leftover filling alongside follows the method.",
+    "alt": "Smoky baked bean toastie with tomato and spinach",
+    "reviewed_at": "2026-10-05T01:25:08.965211+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/386.json"
+  },
+  "integrated": true,
+  "live": false
+}

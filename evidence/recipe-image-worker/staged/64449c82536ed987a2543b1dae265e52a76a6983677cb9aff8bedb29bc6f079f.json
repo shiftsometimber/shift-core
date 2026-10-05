@@ -1,0 +1,75 @@
+{
+  "groupId": "64449c82536ed987a2543b1dae265e52a76a6983677cb9aff8bedb29bc6f079f",
+  "recipe_ids": [
+    "industrial-dinner-prawn-traybake"
+  ],
+  "titles": [
+    "Prawn Traybake"
+  ],
+  "prompt": "Photograph the actual completed recipe with careful food styling, natural side light and believable appetising texture. No added garnish or ingredient. Match protein cut, quantities and preparation exactly. Plain oil-roasted prawns and baby potatoes, red pepper and broccoli only. Absolutely no dried herbs, herb dust, seasoning granules, green flecks on potatoes, parsley or black pepper; show simple browned surfaces and natural potato skin. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Prawn Traybake. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"raw king prawns\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"120g\",\"item\":\"broccoli\"},{\"amount\":\"100g\",\"item\":\"red pepper\"},{\"amount\":\"5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and the filling. Get the pan properly hot first. Cook raw king prawns until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.\",\"Check raw king prawns is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Exact ingredients and method are authoritative. No food outside these ingredients.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "raw king prawns"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "120g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "100g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and the filling. Get the pan properly hot first. Cook raw king prawns until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Turn once if needed so the edges colour rather than steam; no extra sauce is required.",
+    "Check raw king prawns is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6d918c56-78b5-4ad3-ac5f-9f22f92599a8.png",
+  "source_sha256": "9615aa2dbab0ae8a8295199020596dee372cddb8d91814be895d45161234b7f7",
+  "generated_at": "2026-10-04T23:33:47.403Z",
+  "elapsed_ms": 23936,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-64449c82536ed987a254-retry2-480.webp",
+      "sha256": "7ea08ba25607f80e1b886c55235fc77c9acd42b7f7edce89cc02ee1d37335dbd",
+      "bytes": 36038
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-64449c82536ed987a254-retry2.webp",
+      "sha256": "a6d8d4bb079536b0f3708c29f678fcecfe9da03cbdb874545d73f6b0e05ba944",
+      "bytes": 112480
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "9615aa2dbab0ae8a8295199020596dee372cddb8d91814be895d45161234b7f7",
+    "recipe_ids": [
+      "industrial-dinner-prawn-traybake"
+    ],
+    "titles": [
+      "Prawn Traybake"
+    ],
+    "notes": "Plain oil-roasted baby potato pieces, browned opaque prawns, broccoli and red pepper. Corrective image removes dried herb-like flecks.",
+    "alt": "Prawn traybake with baby potatoes, broccoli and red pepper",
+    "reviewed_at": "2026-10-04T23:45:25.955006+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "groupId": "2183b2764515840df440ed844ffdc5a54d62725dc004e1442746b34ec0e91012",
+  "recipe_ids": [
+    "industrial-v3-loaded-fries-cajun-salmon",
+    "industrial-v3-loaded-fries-doner-salmon"
+  ],
+  "titles": [
+    "Shift Cajun Salmon Loaded Fries",
+    "Shift Doner-Style Salmon Loaded Fries"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Salmon Loaded Fries. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g cooked\",\"item\":\"oven chips\"},{\"amount\":\"90g\",\"item\":\"red onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"1g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried oregano\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.\",\"Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured paprika, chilli powder, garlic powder and dried oregano. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot. Keep the salmon in large flakes rather than mashing it.\",\"Pile the crisp oven chips onto a plate and spoon over large flakes of the cooked salmon, the red onion and peppers. Serve immediately while the chips are crisp.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; dried oregano cooked into protein only if listed, never fresh garnish. Absolutely no sauce, dressing, ketchup, mayo or white drizzle; the specified dry spice coating alone.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g cooked",
+      "item": "oven chips"
+    },
+    {
+      "amount": "90g",
+      "item": "red onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "1g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried oregano"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use plain, uncoated oven-ready chips without batter. Preheat the oven to the temperature on the oven-chips packet, commonly 220\u00b0C conventional or 200\u00b0C fan; use the packet setting if different. Spread enough oven chips on a tray in one layer to provide a 250g cooked portion, without adding extra oil, and bake for the packet time, usually about 20\u201330 minutes, turning halfway. They should be crisp and golden rather than dark brown. Weigh out 250g after cooking for this serving; the ingredient amount and nutrition use cooked chip weight.",
+    "Slice the red onion and mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat. Cook the vegetables for 6\u20138 minutes, stirring, until softened with a little colour; transfer to a clean bowl.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured paprika, chilli powder, garlic powder and dried oregano. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Return the cooked red onion and mixed peppers to the pan for 1\u20132 minutes, turning gently until hot. Keep the salmon in large flakes rather than mashing it.",
+    "Pile the crisp oven chips onto a plate and spoon over large flakes of the cooked salmon, the red onion and peppers. Serve immediately while the chips are crisp."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a61ac3b1-64e5-4b3e-9e21-5da4fcccb9a6.png",
+  "source_sha256": "1e5808a6d14717a1b15d9eff591f4e3de60879f40612a63542cad0effa1cf533",
+  "generated_at": null,
+  "elapsed_ms": 353330.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2183b2764515840df440-480.webp",
+      "sha256": "20b706dd6f7bedc8807c0f97b81803e85750a8c12121a6186a206d9dece44d9f",
+      "bytes": 31150
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2183b2764515840df440-e909a656878d.webp",
+      "sha256": "e909a656878d804f53e1477bb2896b817d8d3c0176b9009cfd6bfa15533e85f3",
+      "bytes": 99066
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1e5808a6d14717a1b15d9eff591f4e3de60879f40612a63542cad0effa1cf533",
+    "recipe_ids": [
+      "industrial-v3-loaded-fries-cajun-salmon",
+      "industrial-v3-loaded-fries-doner-salmon"
+    ],
+    "titles": [
+      "Shift Cajun Salmon Loaded Fries",
+      "Shift Doner-Style Salmon Loaded Fries"
+    ],
+    "notes": "Large cooked salmon flakes retain pink fish structure over golden chips, softened red onion and mixed peppers; cooked dry spice coating and no sauce or cheese. One plausible serving with central food retained by responsive cropping.",
+    "alt": "Golden chips topped with spiced salmon flakes, red onion and peppers.",
+    "reviewed_at": "2026-10-04T23:38:14.508Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-654.json"
+  },
+  "integrated": true,
+  "live": false
+}

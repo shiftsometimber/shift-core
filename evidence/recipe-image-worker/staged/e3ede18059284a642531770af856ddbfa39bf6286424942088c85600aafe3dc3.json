@@ -1,0 +1,87 @@
+{
+  "groupId": "e3ede18059284a642531770af856ddbfa39bf6286424942088c85600aafe3dc3",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-bbq-sausage"
+  ],
+  "titles": [
+    "Shift BBQ Sausage Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Sausage Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use half the measured olive oil in a frying pan. Follow the sausage packet cooking guidance. Cook the reduced-fat pork sausages thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate. Slice the cooked sausages before assembling the toastie.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked reduced-fat pork sausages to the pan and heat through.\",\"Stir in the listed flavour ingredients (40g reduced-sugar BBQ sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use half the measured olive oil in a frying pan. Follow the sausage packet cooking guidance. Cook the reduced-fat pork sausages thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate. Slice the cooked sausages before assembling the toastie.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked reduced-fat pork sausages to the pan and heat through.",
+    "Stir in the listed flavour ingredients (40g reduced-sugar BBQ sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4f82606f-294a-4e49-b720-0190e3d2e816.png",
+  "source_sha256": "003aaa13889ef082cb98cbebaf02036690d57ffb4e62e4cc3c415b23baa8fa43",
+  "generated_at": "2026-10-04T21:16:24.328Z",
+  "elapsed_ms": 372311.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e3ede18059284a642531-480.webp",
+      "sha256": "5a4eb65b7a7c49b7c29101fd86e8a47d09060dccca0a1c380376ca533576950f",
+      "bytes": 28868
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e3ede18059284a642531.webp",
+      "sha256": "160ca5de4683a1a837ee7b47fd633a80be382a37bc33e53a11c9e2c8f9c730e9",
+      "bytes": 89104
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-bbq-sausage"
+    ],
+    "titles": [
+      "Shift BBQ Sausage Breakfast Toastie"
+    ],
+    "notes": "Crisp wholemeal toastie with sliced browned cooked pork sausages, softened tomato and wilted spinach in barbecue sauce. Surplus filling alongside is explicitly permitted by method. No cheese, eggs or unlisted garnish. Single serving centred with margin.",
+    "alt": "Wholemeal barbecue sausage toastie with tomato, spinach and remaining filling alongside",
+    "reviewed_at": "2026-10-04T21:16:47.478249+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/62.json",
+    "source_sha256": "003aaa13889ef082cb98cbebaf02036690d57ffb4e62e4cc3c415b23baa8fa43"
+  },
+  "integrated": true,
+  "live": false
+}

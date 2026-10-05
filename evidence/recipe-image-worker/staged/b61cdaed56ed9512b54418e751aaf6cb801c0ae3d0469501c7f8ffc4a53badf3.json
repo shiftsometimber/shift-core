@@ -1,0 +1,83 @@
+{
+  "groupId": "b61cdaed56ed9512b54418e751aaf6cb801c0ae3d0469501c7f8ffc4a53badf3",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-classic-bacon"
+  ],
+  "titles": [
+    "Shift Classic Bacon Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Bacon Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"brown sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "brown sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2ae37146-6d4c-470e-b47b-377e7461a3af.png",
+  "source_sha256": "02d878ffaecd807d8c3b40fee122014f72a41a01b0b46634c3bce567e816c7c1",
+  "generated_at": "2026-10-04T21:24:15.310Z",
+  "elapsed_ms": 188493,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b61cdaed56ed9512b544-480.webp",
+      "sha256": "b8c094a828509aadbea7c5ade07e6d26ea382fca7743bcfdf8e72cf7864b620a",
+      "bytes": 26990
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b61cdaed56ed9512b544.webp",
+      "sha256": "38a6ab4e28670d55f47fb6ea6da7f82c95972c0879eacc68663079edd76929d1",
+      "bytes": 87786
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-classic-bacon"
+    ],
+    "titles": [
+      "Shift Classic Bacon Breakfast Buttie"
+    ],
+    "notes": "Plain wholemeal bap containing cooked back bacon, softened tomato, wilted spinach and brown sauce, without cheese or added garnish. Matches hot cooked sandwich method.",
+    "alt": "Wholemeal bap with bacon, tomato, spinach and brown sauce.",
+    "reviewed_at": "2026-10-04T21:25:51.061047+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/136.json",
+    "source_sha256": "02d878ffaecd807d8c3b40fee122014f72a41a01b0b46634c3bce567e816c7c1"
+  },
+  "integrated": true,
+  "live": false
+}

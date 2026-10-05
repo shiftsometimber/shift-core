@@ -1,0 +1,88 @@
+{
+  "groupId": "4e5cc9dbfd7bfbd88380665aedfe186dba99b4f0f158d91b89413c17391686c2",
+  "index": 2267,
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-biscoff-style-savory-box"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Banana Split Big Feed Dessert"
+  ],
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Banana Split Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed food; no honey, nuts, mint, syrup or decorative garnish. Plain unseeded crackers: exactly two visible crackers when listed, no sesame or poppy seeds. All food inside the serving margins. Single finished combined dessert bowl; listed chopped chocolate topping only, no melted chocolate sauce.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-525913ac-c602-4e0b-b97f-4f8e7494343d.png",
+  "source_sha256": "92365e7bea054a6abca4f8a5f3b5163193eaa8df926f96183920213baa553d16",
+  "dispatched_at": "2026-10-04T23:14:16.136Z",
+  "generated_at": "2026-10-04T23:20:32.297Z",
+  "elapsed_ms": 376161,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4e5cc9dbfd7bfbd88380-480.webp",
+      "sha256": "51d9e335ab5a2b5bc760bd3f27222a4ea0e58ef8520b07c40e2ea280cc761249",
+      "bytes": 29694,
+      "git_blob_sha": "fb506456feea8211331a5552cebfd45cdfa9a50f"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4e5cc9dbfd7bfbd88380.webp",
+      "sha256": "ff7753a2bec9786615f9e7406e037242ed653765897e50d44581318f1984702b",
+      "bytes": 86284,
+      "git_blob_sha": "7e01dd63835e8391a891214e5162abf9163f75a3"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-biscoff-style-savory-box"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Banana Split Big Feed Dessert"
+    ],
+    "notes": "Banana and measured berries combined with crushed wholegrain biscuit, rolled oats and pumpkin seeds, chopped dark chocolate topping. No dairy or syrup.",
+    "alt": "Banana and berry dessert with biscuit crumbs, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-04T23:21:59.511504+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/4e5cc9dbfd7bfbd88380665aedfe186dba99b4f0f158d91b89413c17391686c2.json",
+    "source_sha256": "92365e7bea054a6abca4f8a5f3b5163193eaa8df926f96183920213baa553d16"
+  },
+  "integrated": true,
+  "live": false
+}

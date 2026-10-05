@@ -1,0 +1,99 @@
+{
+  "groupId": "db1a56c4e581006a4c04426b8a645221784d5694955123bb87a0e97ce5660f8e",
+  "recipe_ids": [
+    "industrial-v3-pasta-lemon-herb-salmon"
+  ],
+  "titles": [
+    "Shift Lemon Herb Salmon Proper Pasta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Salmon Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, lemon juice, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, lemon juice, dried parsley dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nHard ingredient/preparation accuracy: The cold white mayonnaise-lemon-parsley dressing is gently folded through cooked pasta AFTER removal from heat; small parsley flecks only in that light white dressing coating, no additional garnish. No lemon wedges, fresh leaves, cheese, seeds, invented sauces, garnish or extra ingredients. Broccoli florets are the ONLY green hot vegetable where listed. Salmon fully cooked opaque, large flakes in pasta/pie/rice/noodles; wholefillet for roast/tray. Tofu 2cm browned cubes. Beef loose browned mince, pork/chicken form per exact method. Realistic delicious single portion with margin.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, lemon juice, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, lemon juice, dried parsley dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3a0de86f-b5d9-4d0e-937f-b6de50b67969.png",
+  "source_sha256": "45a7cc40cb2ef7f7855e81f27baf766caf86666c02db69a0e37cd36e325c0544",
+  "generated_at": "2026-10-04T22:57:35.541Z",
+  "elapsed_ms": 189176.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-db1a56c4e581006a4c04-retry4-480-60570ff6562f.webp",
+      "sha256": "60570ff6562f6be30e19e537872f03a1a9c2dc99a3b2ba92a3cb15b2a05c221c",
+      "bytes": 28794
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-db1a56c4e581006a4c04-retry4-ae0ea6731d20.webp",
+      "sha256": "ae0ea6731d207d145cd0a076fb387343bbaf3b75e8fcaa67fbdb159f4690cac7",
+      "bytes": 79990
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "45a7cc40cb2ef7f7855e81f27baf766caf86666c02db69a0e37cd36e325c0544",
+    "recipe_ids": [
+      "industrial-v3-pasta-lemon-herb-salmon"
+    ],
+    "titles": [
+      "Shift Lemon Herb Salmon Proper Pasta"
+    ],
+    "notes": "Full-resolution review: wholewheat fusilli with large opaque cooked salmon flakes, cooked courgette cubes and cherry tomatoes. Light white parsley mayonnaise visibly folded through after heat removal, consistent with method; no extra garnish or cheese.",
+    "alt": "Salmon wholewheat pasta with courgette, cherry tomatoes and lemon parsley dressing",
+    "reviewed_at": "2026-10-04T22:58:48.795243+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1005.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,80 @@
+{
+  "groupId": "8701b01d666992e48994dce566db737dbb930d63dd1476bff12a4361ce73148f",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-madras-turkey"
+  ],
+  "titles": [
+    "Shift Madras Turkey Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Madras Turkey Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"madras-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the turkey mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and turkey mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the turkey mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, seeds, cheese, cream, fresh green herbs scattered on top, coriander, parsley leaves, lemon wedges, side dishes or dipping sauce. Measured listed sauce lightly coats food, no separate sauce ramekin. Pie: plain water-mashed potato top fork roughened, visibly expose exact cooked filling at one edge; no buttery or cheese topping. Turkey and beef mince are loose cooked crumbles, NOT chunks or meatballs or patties. Tofu is 2cm firm cubes. Slow cooker potatoes/carrot/onion tender and glossy, no crispy roasted edges. Rice exact brown or basmati per recipe. Madras sauce coating, no tomato-olive sauce, no fresh herb garnish. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "madras-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the turkey mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and turkey mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the turkey mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-31658869-c290-466b-a593-d828cb4c9054.png",
+  "source_sha256": "2ed174f1cce1a85c3492f6f6a7aed347dbacb66c35b3030e9b4c4e80b3845e94",
+  "generated_at": "2026-10-04T23:32:51.607Z",
+  "elapsed_ms": 141477.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8701b01d666992e48994-retry4-480-1038b0c4b613.webp",
+      "sha256": "1038b0c4b6139b4be06cf9818ae560e3cef5179641375efd5e2f722327f4ce64",
+      "bytes": 29522
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8701b01d666992e48994-retry4-7bc255cb570d.webp",
+      "sha256": "7bc255cb570d324575f7edc8bb72a3d2c0770fc9ba4c2325af9404a2f98fab29",
+      "bytes": 96756
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2ed174f1cce1a85c3492f6f6a7aed347dbacb66c35b3030e9b4c4e80b3845e94",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-madras-turkey"
+    ],
+    "titles": [
+      "Shift Madras Turkey Slow-Cooker Big Pot"
+    ],
+    "notes": "Pass: cooked turkey mince loose crumbles with tender baby potato halves, carrots and translucent onion in glossy Madras juices. Correct mince and slow-pot preparation, no chunks, meatballs, fresh herbs or extra ingredients. Soft potato surfaces and centred bowl suit crop.",
+    "alt": "Slow-cooked Madras turkey mince with baby potatoes, carrots and onion",
+    "reviewed_at": "2026-10-04T23:33:22.430068+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1055.json"
+  },
+  "integrated": true,
+  "live": false
+}

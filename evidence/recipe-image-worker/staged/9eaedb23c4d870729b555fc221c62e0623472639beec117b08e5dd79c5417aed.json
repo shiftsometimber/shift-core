@@ -1,0 +1,80 @@
+{
+  "groupId": "9eaedb23c4d870729b555fc221c62e0623472639beec117b08e5dd79c5417aed",
+  "recipe_ids": [
+    "industrial-v3-traybake-bbq-tofu"
+  ],
+  "titles": [
+    "Shift BBQ Tofu Traybake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Tofu Traybake. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ glaze\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.\",\"Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ glaze"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and firm tofu. Get the pan properly hot, add the firm tofu and let it take on a little colour before you start moving it around.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes. Stir the measured sauce through near the end rather than drowning everything at the start; you want roasted edges, not steamed dinner.",
+    "Check the firm tofu is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-01d00a87-4937-4dd7-8eaf-2f9453018044.png",
+  "source_sha256": "4425ac8de3dff9aa9749f5f3f6b87ec7a04237cc8e76bf090aa6a0c6b208a689",
+  "generated_at": null,
+  "elapsed_ms": 108197.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9eaedb23c4d870729b55-480.webp",
+      "sha256": "4c64d90bae84fcf43af20f3d232e87452872b057ad3e94d4697fae466d32493f",
+      "bytes": 36090
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9eaedb23c4d870729b55.webp",
+      "sha256": "749914e0ac5e21d536869a372ddf82e6460746e69f03357b986a293445fa43ea",
+      "bytes": 117186
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-traybake-bbq-tofu"
+    ],
+    "titles": [
+      "Shift BBQ Tofu Traybake"
+    ],
+    "notes": "Browned firm tofu chunks with golden skin-on baby potatoes, roasted broccoli and red pepper in BBQ glaze; no additional food. Exact ingredient identity/preparation and all member titles checked; plausible single serving with central responsive crop.",
+    "alt": "BBQ tofu with roasted baby potatoes, broccoli and red pepper.",
+    "reviewed_at": "2026-10-04T21:47:42.797Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-576-592.json",
+    "source_sha256": "4425ac8de3dff9aa9749f5f3f6b87ec7a04237cc8e76bf090aa6a0c6b208a689"
+  },
+  "integrated": true,
+  "live": false
+}

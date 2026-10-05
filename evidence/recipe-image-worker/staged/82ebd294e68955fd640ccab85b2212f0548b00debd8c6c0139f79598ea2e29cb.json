@@ -1,0 +1,103 @@
+{
+  "groupId": "82ebd294e68955fd640ccab85b2212f0548b00debd8c6c0139f79598ea2e29cb",
+  "recipe_ids": [
+    "industrial-v3-pizza-buffalo-pork",
+    "industrial-v3-pizza-smoky-pork"
+  ],
+  "titles": [
+    "Shift Buffalo Pork Proper Pizza",
+    "Shift Smoky Pork Proper Pizza"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Buffalo Pork Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"lean pork loin\"},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.\",\"Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.\",\"Cut the lean pork loin across the grain into strips about 1cm thick. Coat with all the measured chilli powder and paprika. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the pork strips over a medium-high heat for about 7\u20139 minutes, turning regularly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Transfer the cooked pork strips to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked pork strips evenly on top. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; no fresh garnish. Cold ketchup and cider vinegar finishing sauce is red and lightly drizzled only on food as method directs; no creamy sauce. Exactly three short beef koftas where specified; proteins retain exact listed form.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.",
+    "Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.",
+    "Cut the lean pork loin across the grain into strips about 1cm thick. Coat with all the measured chilli powder and paprika. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the pork strips over a medium-high heat for about 7\u20139 minutes, turning regularly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Transfer the cooked pork strips to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked pork strips evenly on top. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6d033e11-0d5a-40ed-ab2d-30dc951b435a.png",
+  "source_sha256": "eee3b0469be89ee8a08999f830b14c921511770216888e73455ff769ff90bb32",
+  "generated_at": null,
+  "elapsed_ms": 248594.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-82ebd294e68955fd640c-480.webp",
+      "sha256": "19adcb1c5de65a6e0153f3422dadf73374d29c04d8916010814a30af405f40c2",
+      "bytes": 30996
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-82ebd294e68955fd640c-707f30275d45.webp",
+      "sha256": "707f30275d45bf1411d6310909309bc1b351a9897054514bf6e183b7ac2d331b",
+      "bytes": 93178
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "eee3b0469be89ee8a08999f830b14c921511770216888e73455ff769ff90bb32",
+    "recipe_ids": [
+      "industrial-v3-pizza-buffalo-pork",
+      "industrial-v3-pizza-smoky-pork"
+    ],
+    "titles": [
+      "Shift Buffalo Pork Proper Pizza",
+      "Shift Smoky Pork Proper Pizza"
+    ],
+    "notes": "Pork loin strips and cooked pepper strips are distributed over passata on an individual pizza base; red finishing drizzle, no cheese or garnish. One plausible serving, with central dish retained by responsive crops.",
+    "alt": "Pork and pepper pizza with tomato sauce on a golden individual base.",
+    "reviewed_at": "2026-10-04T23:01:45.783Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-602.json"
+  },
+  "integrated": true,
+  "live": false
+}

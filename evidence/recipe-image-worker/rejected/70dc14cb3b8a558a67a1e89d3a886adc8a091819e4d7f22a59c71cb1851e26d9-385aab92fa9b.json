@@ -1,0 +1,16 @@
+{
+  "groupId": "70dc14cb3b8a558a67a1e89d3a886adc8a091819e4d7f22a59c71cb1851e26d9",
+  "source_sha256": "385aab92fa9bae180a0f165ac201248e1e2d9a7f201bf52b687bf1eab283977a",
+  "review": {
+    "decision": "reject",
+    "notes": "Full-resolution inspection: cooked turkey breast has conspicuous coarse black pepper specks coating it although pepper is absent from exact ingredients and method. Reject unlisted seasoning; retain bread, lettuce, tomato and mustard mayonnaise.",
+    "source_sha256": "385aab92fa9bae180a0f165ac201248e1e2d9a7f201bf52b687bf1eab283977a",
+    "recipe_ids": [
+      "industrial-v3-sandwich-club-turkey"
+    ],
+    "titles": [
+      "Shift Club Turkey Proper Sandwich"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

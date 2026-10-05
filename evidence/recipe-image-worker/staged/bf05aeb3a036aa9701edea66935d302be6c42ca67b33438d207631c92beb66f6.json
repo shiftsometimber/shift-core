@@ -1,0 +1,87 @@
+{
+  "groupId": "bf05aeb3a036aa9701edea66935d302be6c42ca67b33438d207631c92beb66f6",
+  "recipe_ids": [
+    "industrial-v3-sandwich-pickle-tuna"
+  ],
+  "titles": [
+    "Shift Pickle Tuna Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pickle Tuna Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"pickle mustard relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the tuna in spring water, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the pickle flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the tuna in spring water, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nCritical accurate remake: two plain unseeded wholemeal bread slices. Show loose drained tuna flakes with translucent yellow-green chunky pickle mustard relish and olive oil. Absolutely no mayonnaise, yoghurt, cream, creamy white sauce, cheese, white coating, lemon wedge or whole pickle side. Fresh lettuce and sliced tomato inside only, no invented side salad. Tuna flakes remain visibly fibrous and uncoated by creamy sauce.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "pickle mustard relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the tuna in spring water, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the pickle flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the tuna in spring water, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-cceb5661-f8c5-4842-89e9-1dab7e1bd2c9.png",
+  "source_sha256": "2227a88b216155441523baeee135399d3e3c7ab4586b8961247be8833dbccaf5",
+  "generated_at": "2026-10-04T23:50:11.497Z",
+  "elapsed_ms": 22865.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bf05aeb3a036aa9701ed-480-ac4363045aef.webp",
+      "sha256": "ac4363045aef0cdca96fd889451140c7215b43b26f1a3418d2e34eac9b8975ed",
+      "bytes": 33306
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bf05aeb3a036aa9701ed-ce6c48a22fcb.webp",
+      "sha256": "ce6c48a22fcb84579b209d1f34b434e5b03662809a00519e5864567b62526bbe",
+      "bytes": 101770
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2227a88b216155441523baeee135399d3e3c7ab4586b8961247be8833dbccaf5",
+    "recipe_ids": [
+      "industrial-v3-sandwich-pickle-tuna"
+    ],
+    "titles": [
+      "Shift Pickle Tuna Proper Sandwich"
+    ],
+    "notes": "Replacement inspected at full resolution: loose fibrous drained tuna flakes with translucent yellow-green pickle mustard relish, no creamy white coating. Two plain wholemeal bread slices with fresh lettuce/tomato. No mayo, yoghurt, cheese, garnish or extra side.",
+    "alt": "Pickle tuna sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:51:38.904330+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2007.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,88 @@
+{
+  "groupId": "8e9e4570a17261cd0e73efeadf6837342d420dfa373a7a71959894a53a03834f",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-pineapple-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Pineapple Cottage Cheese Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pineapple Cottage Cheese Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"pineapple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nShow only each exact recipe's ingredients, with appetising realistic textures. No honey, mint, coconut, nuts, syrup, other seeds or unlisted fruit. Pumpkin seeds are flat green pepitas. Rolled oats plain flakes, not granola containing unlisted foods. Cottage cheese visibly curdy, Greek yoghurt smooth; fruit-only pots have no creamy base unless 40g yoghurt is listed. Chocolate only recipes listing it. WORK SNACK BOX: juicy bite-size fruit and any listed dairy in separate compartment from dry oats, pumpkin seeds and TWO wholegrain crackers, no loose crunch mixed into wet fruit. OAT CRUNCH snack pot: dry-pan-toasted oats/seeds completely cooled and packed separately from cut fruit; no milk/cream/yoghurt. PROTEIN/SNACK pots: crunch may be added just before immediate serving as method allows. OVERNIGHT OATS: soft hydrated oats in measured milk; fruit mixed through, pumpkin seeds and any listed chopped chocolate added only at serving. Follow the exact listed method, not an invented garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "pineapple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-224eb0a1-ffb4-4874-9dc8-1c19c97999a9.png",
+  "source_sha256": "c9c110a311b201f1df121641d0e70f2ec19bd537f1b2c0bb53f5cb4ad85ebbb0",
+  "generated_at": "2026-10-05T01:13:15.685Z",
+  "elapsed_ms": 100146.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8e9e4570a17261cd0e73-480-4b5e26ae5b69.webp",
+      "sha256": "4b5e26ae5b69dcaf07bbe62376dfb31b5c931f140a0abc695be8b4f02058e04e",
+      "bytes": 20778
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8e9e4570a17261cd0e73-cf6dd077d86e.webp",
+      "sha256": "cf6dd077d86eea2cffd01cf62a2195920fa4bcd317efc80f5967d29d8b96d040",
+      "bytes": 59516
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c9c110a311b201f1df121641d0e70f2ec19bd537f1b2c0bb53f5cb4ad85ebbb0",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-pineapple-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Pineapple Cottage Cheese Dessert Pot"
+    ],
+    "notes": "Curdy cottage cheese with pineapple/mixed berries, oats and green pumpkin seeds; listed Greek yoghurt visibly swirled through for creamy finish. No chocolate, honey, nuts or herb garnish; exact title/method checked.",
+    "alt": "Pineapple cottage cheese and yoghurt pot with berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-05T01:18:52.246445+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2558.json"
+  },
+  "integrated": true,
+  "live": false
+}

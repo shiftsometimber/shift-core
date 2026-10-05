@@ -1,0 +1,90 @@
+{
+  "groupId": "c11157a7904dcc2120bf41184bde3e748edd0099493a0f035d160dce27be55bc",
+  "recipe_ids": [
+    "industrial-v3-wrap-cajun-tuna"
+  ],
+  "titles": [
+    "Shift Cajun Tuna Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Tuna Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"Cajun yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the tuna in spring water, drained; if the filling is being served hot, reduce only the sauce-coated tuna in spring water, drained until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. If spices are mixed into a dressing, all spices remain in the smooth dressing: NO dry spice dust scattered over food, salad or plate. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty; cooked salmon and cooked cured ham retain their natural opaque colour. For meal-prep bowls, all filling including egg slices is folded THROUGH the rice and vegetables, not arranged on top as a decorative row or fan.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the tuna in spring water, drained; if the filling is being served hot, reduce only the sauce-coated tuna in spring water, drained until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f97067a8-d13f-462d-9a75-4622f36150bb.png",
+  "source_sha256": "a800c146587eb30a0040f0d4d63f3f9cc45b25d4ec367966d7fd3111ebec356f",
+  "generated_at": "2026-10-05T01:21:38.333Z",
+  "elapsed_ms": 156773.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c11157a7904dcc2120bf-480-d112dd45eadd.webp",
+      "sha256": "d112dd45eadd801039ae1a9935eab0121b361b7a19f135454029c42c895fba75",
+      "bytes": 24244
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c11157a7904dcc2120bf-22006b33dc01.webp",
+      "sha256": "22006b33dc0169ebda95486d983a606eeedd9fb9d91006090d8a79f9d5216311",
+      "bytes": 77510
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a800c146587eb30a0040f0d4d63f3f9cc45b25d4ec367966d7fd3111ebec356f",
+    "recipe_ids": [
+      "industrial-v3-wrap-cajun-tuna"
+    ],
+    "titles": [
+      "Shift Cajun Tuna Loaded Wrap"
+    ],
+    "notes": "Plain toasted wholemeal wrap cut into two holds opaque tuna flakes thickly coated in Cajun yoghurt, fresh lettuce and tomato. No cheese, seeds or garnish; exact tuna wrap title and sauce-coating method match.",
+    "alt": "Cajun tuna wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T01:24:01.506496+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1624-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,80 @@
+{
+  "groupId": "d810858d566a7eb2765dd3882bd482fc6526d11f562fe22fccdd83a967ad6eea",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-teriyaki-beef"
+  ],
+  "titles": [
+    "Shift Teriyaki Beef Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Teriyaki Beef Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"reduced-salt teriyaki sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the 5% beef mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and 5% beef mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the 5% beef mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No spring onions, coriander, parsley, sesame or decorative garnish unless the exact ingredient list includes them.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-salt teriyaki sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the 5% beef mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and 5% beef mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the 5% beef mince is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0840b508-ae64-4f4f-9f8c-1bc5f2c8ee4a.png",
+  "source_sha256": "9d40116234d4fa8b4e5b95dadc63a36b31bf50710cec7f6466aa7e9e1042c4f8",
+  "generated_at": "2026-10-04T21:21:14.404Z",
+  "elapsed_ms": 125908.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d810858d566a7eb2765d-480.webp",
+      "sha256": "6b60a9ab5b9b3517616ba81ddb5404c00144e52da4af7bb63265cd2799c8b730",
+      "bytes": 26606
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d810858d566a7eb2765d.webp",
+      "sha256": "aa0d52727cc93cd8270e03cc233b46a5b61940b00866fa94b5b64fade673504f",
+      "bytes": 79414
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-teriyaki-beef"
+    ],
+    "titles": [
+      "Shift Teriyaki Beef Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked beef mince with tender potatoes, carrots and onion in teriyaki cooking juices; no peppers, broccoli or garnish.",
+    "alt": "Slow-cooked teriyaki beef mince with baby potatoes, carrots and onion.",
+    "reviewed_at": "2026-10-04T21:24:35.478069+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1365-review.json",
+    "source_sha256": "9d40116234d4fa8b4e5b95dadc63a36b31bf50710cec7f6466aa7e9e1042c4f8"
+  },
+  "integrated": true,
+  "live": false
+}

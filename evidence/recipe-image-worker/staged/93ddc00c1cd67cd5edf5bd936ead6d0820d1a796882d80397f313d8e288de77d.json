@@ -1,0 +1,85 @@
+{
+  "groupId": "93ddc00c1cd67cd5edf5bd936ead6d0820d1a796882d80397f313d8e288de77d",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-weekend-treat-savory-box"
+  ],
+  "titles": [
+    "Shift Weekend Treat Banana Split Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Treat Banana Split Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"15g\",\"item\":\"dark chocolate chips\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed ingredients: no honey, mint, coconut, nuts, syrup, pineapple or banana/apple unless listed. Mixed berries only listed berry addition. Cottage cheese curdy, high-protein yoghurt smooth, fruit-only variants have no dairy unless 40g Greek yoghurt explicitly listed. Rolled oats plain flakes, no granola with invented foods. Pumpkin seeds flat green pepitas. Chocolate chips discrete small chips; Big Feed recipes that ALSO list chopped dark chocolate must show chopped pieces as the measured finishing element. WORK SNACK BOX: wet fruit/dairy separated from dry oats/pepitas/TWO wholegrain crackers. EXCEPTION overnight-oats work snack box: oats are milk-hydrated overnight with pineapple/berries mixed through; seeds separate until serving, crackers alongside dry. Fruit/Protein pots: dry crunch only added at immediate serving. Greek yoghurt swirled through dessert pots at end exactly as method requires, not an invented cream base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate chips"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f9c57b48-70ae-4457-a6fc-c8562337861d.png",
+  "source_sha256": "52bc95e73555fededb43714653b8b9a16149707948062c00692367b935f13092",
+  "generated_at": "2026-10-05T01:23:03.670Z",
+  "elapsed_ms": 171514.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-93ddc00c1cd67cd5edf5-480-9b2c79201feb.webp",
+      "sha256": "9b2c79201feb39222d8fbb0e59871834a83a391407c987bc1f2c55ed4f5c492b",
+      "bytes": 20202
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-93ddc00c1cd67cd5edf5-95290f7e918e.webp",
+      "sha256": "95290f7e918e9ebfe60820f9545e696a4353704fd535d4fae68208737ac538e3",
+      "bytes": 57370
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "52bc95e73555fededb43714653b8b9a16149707948062c00692367b935f13092",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-weekend-treat-savory-box"
+    ],
+    "titles": [
+      "Shift Weekend Treat Banana Split Dessert Pot"
+    ],
+    "notes": "Banana slices/mixed berries with dark chocolate chips, plain rolled oats and green pumpkin seeds; measured Greek yoghurt visibly swirled through. No large invented protein base, chopped extra chocolate, honey or nuts; exact title/method checked.",
+    "alt": "Banana berry yoghurt pot with oats, pumpkin seeds and chocolate chips",
+    "reviewed_at": "2026-10-05T01:27:17.712716+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2578.json"
+  },
+  "integrated": true,
+  "live": false
+}

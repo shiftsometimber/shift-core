@@ -1,0 +1,84 @@
+{
+  "groupId": "4ab3432fcbe8473263913c9eb0badbabc6d37eee02e8439b609592ae5b61edd7",
+  "recipe_ids": [
+    "industrial-v3-wrap-sweet-chilli-chicken"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Chicken Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Chicken Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked chicken breast; if the filling is being served hot, reduce only the sauce-coated cooked chicken breast until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel: no sesame/poppy seeds, cheese or unlisted food. Keep the raw spinach/tomato or rocket/tomato side salad separate where method reserves it. Spring onion belongs finely sliced in mixed salad beside jacket potatoes. Greek yoghurt/lemon/paprika dressing must be mixed and placed as method requires, no paprika dust or lemon wedge garnish. No mayo or melted cheese. Chicken/turkey plain cooked breast without breadcrumb/batter coating. Sweet chilli sauce translucent reddish glossy, never creamy. Chickpeas roughly mashed only for toastie/bagel; whole elsewhere. Eggs are sliced hard-boiled eggs.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked chicken breast; if the filling is being served hot, reduce only the sauce-coated cooked chicken breast until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fa6efd34-5a24-4043-a219-9d634bda1741.png",
+  "source_sha256": "c38119f8fe36f762ac71164b9077adcf2378477e3029bb55e1be281dce1bb69a",
+  "generated_at": "2026-10-05T00:22:39.405Z",
+  "elapsed_ms": 148204.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4ab3432fcbe847326391-480-1bb3af920f1a.webp",
+      "sha256": "1bb3af920f1a021bab5b9ab320ffb805ef0075e662490d577195de7e35c84e0d",
+      "bytes": 21322
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4ab3432fcbe847326391-19a5a70e3f45.webp",
+      "sha256": "19a5a70e3f457b4f9c8cde33c181087e9b51f2a3a79a488552efb51c6df001aa",
+      "bytes": 64092
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c38119f8fe36f762ac71164b9077adcf2378477e3029bb55e1be281dce1bb69a",
+    "recipe_ids": [
+      "industrial-v3-wrap-sweet-chilli-chicken"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Chicken Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal rolled wrap with lightly coloured plain chicken coated in translucent sweet chilli sauce and fresh lettuce/tomato. No breaded protein, cheese, mayonnaise or extra side; exact title/method checked.",
+    "alt": "Wholemeal sweet chilli chicken wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:27:03.037586+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2053.json"
+  },
+  "integrated": true,
+  "live": false
+}

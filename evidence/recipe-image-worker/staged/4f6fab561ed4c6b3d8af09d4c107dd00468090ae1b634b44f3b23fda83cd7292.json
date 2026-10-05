@@ -1,0 +1,84 @@
+{
+  "groupId": "4f6fab561ed4c6b3d8af09d4c107dd00468090ae1b634b44f3b23fda83cd7292",
+  "recipe_ids": [
+    "industrial-v3-sandwich-caesar-chickpea"
+  ],
+  "titles": [
+    "Shift Caesar Chickpea Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Caesar Chickpea Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"light Caesar dressing\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the chickpeas, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Build the caesar flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the chickpeas, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. If spices are mixed into a dressing, all spices remain in the smooth dressing: NO dry spice dust scattered over food, salad or plate. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty; cooked salmon and cooked cured ham retain their natural opaque colour.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "light Caesar dressing"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the chickpeas, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+    "Build the caesar flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the chickpeas, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-be136add-1b57-4e26-86af-11a6525df12f.png",
+  "source_sha256": "093429df5edf90679bc0f360e920f8a349bc405e71ae1ea6a18a711d9317f898",
+  "generated_at": "2026-10-05T00:58:44.327Z",
+  "elapsed_ms": 27674.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4f6fab561ed4c6b3d8af-480-6acedf632ae3.webp",
+      "sha256": "6acedf632ae3282b0636df856048cd472b9b4928c273135eced4c016d0faff0b",
+      "bytes": 21630
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4f6fab561ed4c6b3d8af-ee9c1e42980e.webp",
+      "sha256": "ee9c1e42980e09cc7ba267cae72de5405af93dac31f949dbf3971b481a7e2612",
+      "bytes": 67416
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "093429df5edf90679bc0f360e920f8a349bc405e71ae1ea6a18a711d9317f898",
+    "recipe_ids": [
+      "industrial-v3-sandwich-caesar-chickpea"
+    ],
+    "titles": [
+      "Shift Caesar Chickpea Proper Sandwich"
+    ],
+    "notes": "Plain wholemeal bread encloses lightly browned whole chickpeas with creamy Caesar dressing, lettuce and tomato. No chickpea mash substitution, cheese, seeds or croutons; exact sandwich title matches.",
+    "alt": "Caesar chickpea sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-05T01:06:02.639246+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1588-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

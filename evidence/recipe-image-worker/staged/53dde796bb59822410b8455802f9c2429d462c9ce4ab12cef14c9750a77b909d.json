@@ -1,0 +1,83 @@
+{
+  "groupId": "53dde796bb59822410b8455802f9c2429d462c9ce4ab12cef14c9750a77b909d",
+  "recipe_ids": [
+    "industrial-v3-curry-madras-tofu"
+  ],
+  "titles": [
+    "Shift Madras Tofu Proper Curry"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Madras Tofu Proper Curry. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"madras-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Turn the heat to low and fold in the 40g madras-style sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, seeds, cheese, cream, fresh green herbs scattered on top, coriander, parsley leaves, lemon wedges, side dishes or dipping sauce. Measured listed sauce lightly coats food, no separate sauce ramekin. Pie: plain water-mashed potato top fork roughened, visibly expose exact cooked filling at one edge; no buttery or cheese topping. Turkey and beef mince are loose cooked crumbles, NOT chunks or meatballs or patties. Tofu is 2cm firm cubes. Slow cooker potatoes/carrot/onion tender and glossy, no crispy roasted edges. Rice exact brown or basmati per recipe. Madras sauce coating, no tomato-olive sauce, no fresh herb garnish. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "madras-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Turn the heat to low and fold in the 40g madras-style sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e14e1a21-3726-4154-b871-f68848353543.png",
+  "source_sha256": "ed36080064506232a1f879b95208cce98c75080c45278913929fdfb70df63a12",
+  "generated_at": "2026-10-04T23:33:23.912Z",
+  "elapsed_ms": 173782.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-53dde796bb59822410b8-retry4-480-1bbf90065dc7.webp",
+      "sha256": "1bbf90065dc7194caf27b675fb01b879f70d88bbf2ca0c07fa43b75f4111d4ae",
+      "bytes": 27200
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-53dde796bb59822410b8-retry4-b0d0c7cf265a.webp",
+      "sha256": "b0d0c7cf265a9d1c2b95f48d58da24f497a5d2aa380f012a6b8878aa4b0f4752",
+      "bytes": 86192
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ed36080064506232a1f879b95208cce98c75080c45278913929fdfb70df63a12",
+    "recipe_ids": [
+      "industrial-v3-curry-madras-tofu"
+    ],
+    "titles": [
+      "Shift Madras Tofu Proper Curry"
+    ],
+    "notes": "Pass: firm tofu 2cm cubes with pale porous interiors and golden faces, thin onion and mixed peppers in Madras sauce over basmati rice. No kidney beans, meat substitution, cream, herbs or extra side. Exact curry assembly and centred crop.",
+    "alt": "Madras tofu curry with onion and mixed peppers over basmati rice",
+    "reviewed_at": "2026-10-04T23:33:51.421851+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1047.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,14 @@
+{
+  "started_at": "2026-10-04T23:36:19.470942+00:00",
+  "baseline_integrated_new_groups": 862,
+  "baseline_bindings": 913,
+  "basis": "Actual exact bindings with passing source-specific review and both SHA-verified variants; exclude queued and generated-only images.",
+  "observed_at": "2026-10-04T23:51:02.105225+00:00",
+  "elapsed_minutes": 14.710571383333333,
+  "additional_usable_distinct_images": 175,
+  "usable_images_per_minute": 11.896206846069223,
+  "integrated_new_groups": 1037,
+  "recipe_bindings": 1095,
+  "remaining_recipe_bindings": 1576,
+  "live_new": 0
+}

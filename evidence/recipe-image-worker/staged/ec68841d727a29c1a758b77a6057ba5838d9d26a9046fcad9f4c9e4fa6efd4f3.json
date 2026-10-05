@@ -1,0 +1,83 @@
+{
+  "groupId": "ec68841d727a29c1a758b77a6057ba5838d9d26a9046fcad9f4c9e4fa6efd4f3",
+  "recipe_ids": [
+    "industrial-v3-meal-prep-bowl-bbq-chickpea"
+  ],
+  "titles": [
+    "Shift BBQ Chickpea Meal-Prep Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Chickpea Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Use the measured reduced-sugar BBQ sauce as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured reduced-sugar BBQ sauce and olive oil dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Follow exact ingredient placement and method. No decorative garnish. If method cuts a pitta into two halves, show TWO separately distinguishable filled half-pitta pockets, with remaining salad alongside.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+    "Use the measured reduced-sugar BBQ sauce as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured reduced-sugar BBQ sauce and olive oil dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fc45de59-e1ff-438e-a009-ac5ed9aeda1d.png",
+  "source_sha256": "f58c5fb9ca95bfd14e9a07ec0265e294f3f92a7895f5ef3ad53cb5fefcb722d7",
+  "generated_at": "2026-10-04T22:45:45.681Z",
+  "elapsed_ms": 94919.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ec68841d727a29c1a758-480-cdc1216b1fe9.webp",
+      "sha256": "cdc1216b1fe917ed153419f2c053b2e40ac1bb72a64851112f69322dc2b80b1f",
+      "bytes": 30062
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ec68841d727a29c1a758-254de84ff7a9.webp",
+      "sha256": "254de84ff7a903dd43c0e798b944be982075246a8a8e901a840c8150818c656d",
+      "bytes": 86038
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f58c5fb9ca95bfd14e9a07ec0265e294f3f92a7895f5ef3ad53cb5fefcb722d7",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-bbq-chickpea"
+    ],
+    "titles": [
+      "Shift BBQ Chickpea Meal-Prep Bowl"
+    ],
+    "notes": "Cooked brown rice folded with chickpeas, raw diced peppers, sweetcorn and BBQ dressing; no garnish.",
+    "alt": "BBQ chickpea rice bowl with peppers and sweetcorn",
+    "reviewed_at": "2026-10-04T22:52:31.472329+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1523-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

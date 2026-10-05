@@ -1,0 +1,91 @@
+{
+  "groupId": "bdfac0608a6d45783be3916d8254d13349959458e007364ce0808959e02e46bc",
+  "index": 2356,
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-chocolate-overnight-oats"
+  ],
+  "titles": [
+    "Shift Chocolate Overnight Oats Big Feed Dessert"
+  ],
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 5g unsweetened cocoa, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds, 15g dark chocolate, chopped separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Overnight Oats Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 5g unsweetened cocoa, 25g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds, 15g dark chocolate, chopped separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: generic method references to food apply only when that food appears in the exact ingredient list. Plain wholegrain crackers unseeded, no seed garnish unless listed. No cheese unless listed. No extra sauce, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow dry/separate and soaked/prepared instructions exactly. Cocoa means measured cocoa powder folded or dusted on food, never liquid chocolate syrup or extra chocolate chunks unless chopped dark chocolate listed. Overnight oats cocoa must be fully mixed in milk, visibly soft soaked brown oats without dry cocoa pockets. Cinnamon means fine powder, no decorative cinnamon sticks.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b52748f2-cc14-4f79-8a7c-19e0e16acd47.png",
+  "source_sha256": "8ed0655d20e0cefbb3dc1b03110461d0b25590c6b65ea30a9de6074d90266464",
+  "dispatched_at": "2026-10-04T22:43:35.292Z",
+  "generated_at": "2026-10-04T22:47:02.433Z",
+  "elapsed_ms": 207141,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bdfac0608a6d45783be3-480.webp",
+      "sha256": "e2c1afeadd4ca1c858131bfaeefce9d71ba09e84e12f85e249960a6dee888515",
+      "bytes": 26536,
+      "git_blob_sha": "ab46cf583b7308598a1158c1356b4fad374017c4"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-bdfac0608a6d45783be3.webp",
+      "sha256": "a72618a8b0c0631fdb5d2afaaba7acf1b6c58216e85e97f3f53d13e1a476b41d",
+      "bytes": 83672,
+      "git_blob_sha": "0bb6227d951b3142bf84b70db5dfc29c8bdd4ae1"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-chocolate-overnight-oats"
+    ],
+    "titles": [
+      "Shift Chocolate Overnight Oats Big Feed Dessert"
+    ],
+    "notes": "Soft milk-soaked brown cocoa overnight oats with berries and pumpkin seeds, topped with listed chopped dark chocolate; no dry cocoa pockets.",
+    "alt": "Cocoa and berry overnight oats with pumpkin seeds and dark chocolate",
+    "reviewed_at": "2026-10-04T22:52:29.247654+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/bdfac0608a6d45783be3916d8254d13349959458e007364ce0808959e02e46bc.json",
+    "source_sha256": "8ed0655d20e0cefbb3dc1b03110461d0b25590c6b65ea30a9de6074d90266464"
+  },
+  "integrated": true,
+  "live": false
+}

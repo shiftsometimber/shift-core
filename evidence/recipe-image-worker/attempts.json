@@ -1,0 +1,12 @@
+{
+  "summary": {
+    "generated_attempts": 2205,
+    "generated_distinct_groups": 2099,
+    "reviewed_pass_attempts": 2026,
+    "reviewed_reject_attempts": 86,
+    "awaiting_review_attempts": 93
+  },
+  "attempts_archive": "attempts.json.gz",
+  "archive_sha256": "ed2ca5fa01c84415edef6189a8229f5a7052ff173f48c9cb6f53eedb49914467",
+  "archive_bytes": 1738862
+}

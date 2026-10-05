@@ -1,0 +1,88 @@
+{
+  "groupId": "50019b678ed2bf9e2f9ca556c4a357143c4bfd710d8f20affe2f10b86451ec75",
+  "recipe_ids": [
+    "industrial-v3-burger-dirty-beef"
+  ],
+  "titles": [
+    "Shift Dirty Beef Fakeaway Burger"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Dirty Beef Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"burger relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.\",\"Mix the measured burger relish in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.\",\"Press the 5% beef mince into a patty about 1.5cm thick, slightly wider than the bun; no binder is needed. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the beef patty over a medium heat for about 5\u20136 minutes on each side. Turn it carefully and leave it intact rather than repeatedly pressing it flat. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the lettuce and tomato in the toasted bun, add the cooked beef patty and the cold finishing sauce, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; any herbs listed in cold finishing sauce stay ONLY inside that sauce. No fresh herb garnish. Absolutely no sauce, dressing, ketchup, mayo or white drizzle; specified dry spice coating alone.",
+  "original_generation_prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Dirty Beef Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"burger relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.\",\"Mix the measured burger relish in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.\",\"Press the 5% beef mince into a patty about 1.5cm thick, slightly wider than the bun; no binder is needed. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the beef patty over a medium heat for about 5\u20136 minutes on each side. Turn it carefully and leave it intact rather than repeatedly pressing it flat. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the lettuce and tomato in the toasted bun, add the cooked beef patty and the cold finishing sauce, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal burger bun",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "burger relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1\u20132 minutes. Set it on a clean plate.",
+    "Mix the measured burger relish in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.",
+    "Press the 5% beef mince into a patty about 1.5cm thick, slightly wider than the bun; no binder is needed. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the beef patty over a medium heat for about 5\u20136 minutes on each side. Turn it carefully and leave it intact rather than repeatedly pressing it flat. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the lettuce and tomato in the toasted bun, add the cooked beef patty and the cold finishing sauce, then close the bun and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5703ef79-6121-417c-a983-444112bc3fc8.png",
+  "source_sha256": "9cb22253568071ffe3e5e4c31f0bdda32b9ff66afb881cce963732e4d7070f25",
+  "generated_at": "2026-10-05T00:57:34.368Z",
+  "elapsed_ms": 204618.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-50019b678ed2bf9e2f9c-480.webp",
+      "sha256": "840acb9af2e20d9cc5b395a46c2a95251f961afd0539d14080eef64560c6e390",
+      "bytes": 20958
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-50019b678ed2bf9e2f9c-7179cae10333.webp",
+      "sha256": "7179cae1033325dc790389afe812b69fc933cfd381b72597ff40cf17622829ae",
+      "bytes": 66554
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "9cb22253568071ffe3e5e4c31f0bdda32b9ff66afb881cce963732e4d7070f25",
+    "recipe_ids": [
+      "industrial-v3-burger-dirty-beef"
+    ],
+    "titles": [
+      "Shift Dirty Beef Fakeaway Burger"
+    ],
+    "notes": [
+      "Intact cooked beef patty, shredded lettuce, sliced tomato and chunky cold burger relish fill one plain unseeded wholemeal bun; no cheese or extra food."
+    ],
+    "alt": "Dirty Beef Fakeaway Burger with wholemeal burger bun, lettuce, tomato",
+    "reviewed_at": "2026-10-05T01:05:33.319Z",
+    "reviewer": "worker-c individual source visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-745.json"
+  },
+  "integrated": true,
+  "live": false
+}

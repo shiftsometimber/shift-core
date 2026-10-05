@@ -1,0 +1,84 @@
+{
+  "groupId": "88d10d736030c9b894b6a7349179cfd6e10f68c8b3e4ceb4a12c6d11a9fc6333",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-coffee-protein-pudding"
+  ],
+  "titles": [
+    "Shift Coffee Protein Pudding Protein Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Protein Pudding Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact foods. Espresso measured1g fully dissolved, cooled and mixed through dairy/fruit, subtle coffee tint; no whole coffee beans, granules, dry grounds, coffee drinks or syrup. Small25g berries. No honey, mint, nuts or decorative garnish. Entire food inside frame. NO crackers, biscuits or cake anywhere. Yoghurt smooth and stirred, no cottage cheese curds. Finished protein pot, coffee mixed into correct dairy base and small berries, dry oats/seeds just topped at eating time.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-01158141-ba5b-4ca2-a634-177d57ef28dd.png",
+  "source_sha256": "f3aec1213705b53b00f67f6e36fe77d45a4e5da376ce6d8b73a2199ecc4527f0",
+  "generated_at": "2026-10-05T00:59:59.902Z",
+  "elapsed_ms": 365323,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-88d10d736030c9b894b6-480-ca49ee2867ef.webp",
+      "sha256": "ca49ee2867efc81add5bfb2c1515a5e3e43d3461a3bb64972dca2456dfe19318",
+      "bytes": 18338
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-88d10d736030c9b894b6-ed8c25fc5331.webp",
+      "sha256": "ed8c25fc53316970d8d8c1e509055b30ab90069ac95fbf72aa3e1d2306e9a571",
+      "bytes": 52304
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f3aec1213705b53b00f67f6e36fe77d45a4e5da376ce6d8b73a2199ecc4527f0",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-coffee-protein-pudding"
+    ],
+    "titles": [
+      "Shift Coffee Protein Pudding Protein Pot"
+    ],
+    "notes": "Smooth coffee protein yoghurt with small berries and dry oats/seeds topped just before eating. No curd substitution or beans.",
+    "alt": "Coffee protein yoghurt pot with berries, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T01:02:14.796645+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/88d10d736030c9b894b6a7349179cfd6e10f68c8b3e4ceb4a12c6d11a9fc6333.json"
+  },
+  "integrated": true,
+  "live": false
+}

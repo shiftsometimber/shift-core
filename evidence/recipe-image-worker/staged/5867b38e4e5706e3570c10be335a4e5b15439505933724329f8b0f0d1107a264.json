@@ -1,0 +1,87 @@
+{
+  "groupId": "5867b38e4e5706e3570c10be335a4e5b15439505933724329f8b0f0d1107a264",
+  "recipe_ids": [
+    "industrial-v3-wrap-smoky-egg"
+  ],
+  "titles": [
+    "Shift Smoky Egg Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Egg Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"smoked paprika dressing\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the boiled eggs with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. All paprika and lemon juice are mixed into yoghurt dressing where method requires, no paprika dust or lemon wedge garnish. Chicken plain cooked breast, no breadcrumb/batter coating. Chickpeas roughly mashed for toastie/bagel only as method specifies; boiled eggs sliced. Show creamy yoghurt dressing, never melted cheese.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "smoked paprika dressing"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the boiled eggs with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fbb2cc10-e521-400b-9c6a-60410b7fb9a7.png",
+  "source_sha256": "953caca2334e313b96ce0f33576aef20a3b4295da28f918dac5a050cdbff3fb3",
+  "generated_at": "2026-10-05T00:00:01.420Z",
+  "elapsed_ms": 397536.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5867b38e4e5706e3570c-480-2c0cdd069552.webp",
+      "sha256": "2c0cdd0695523ecad3b4070d17457444de725145e71b8fea57fb8a32e10d1429",
+      "bytes": 19194
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5867b38e4e5706e3570c-eddef9b7ba74.webp",
+      "sha256": "eddef9b7ba741ec6738d6200514c7e1481c170a0a84aff14406b83a0418a84c3",
+      "bytes": 54618
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "953caca2334e313b96ce0f33576aef20a3b4295da28f918dac5a050cdbff3fb3",
+    "recipe_ids": [
+      "industrial-v3-wrap-smoky-egg"
+    ],
+    "titles": [
+      "Shift Smoky Egg Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with sliced boiled eggs, measured smoked paprika dressing, fresh lettuce and tomato. No sauce reduction, extra side, cheese or bread seeds; exact egg/fresh vegetable method matches.",
+    "alt": "Smoky egg wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:02:25.597637+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2029.json"
+  },
+  "integrated": true,
+  "live": false
+}

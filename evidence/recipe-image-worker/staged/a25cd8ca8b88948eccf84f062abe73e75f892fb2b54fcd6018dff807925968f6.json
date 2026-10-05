@@ -1,0 +1,83 @@
+{
+  "groupId": "a25cd8ca8b88948eccf84f062abe73e75f892fb2b54fcd6018dff807925968f6",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-bbq-bacon"
+  ],
+  "titles": [
+    "Shift BBQ Bacon Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Bacon Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-236b4621-8f4c-4548-ae85-2a4c09c1ac86.png",
+  "source_sha256": "6cf064afd4bc4eaea6113f0ba3bceb260ee1510a5ab6a983f9fbdaaf2538c40e",
+  "generated_at": null,
+  "elapsed_ms": 169968.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a25cd8ca8b88948eccf8-480.webp",
+      "sha256": "200076e94f065a884577c958c53ccf0dcfa8d8db9bd8a516c8314b607308bf7e",
+      "bytes": 23636
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a25cd8ca8b88948eccf8.webp",
+      "sha256": "926f3649b371e36fb4e2ec373b71b5d12e290514a6ddf1a4d941579d54862c2c",
+      "bytes": 71966
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-bbq-bacon"
+    ],
+    "titles": [
+      "Shift BBQ Bacon Breakfast Wrap"
+    ],
+    "notes": "A browned wholemeal wrap has a visible serving end containing cooked bacon, softened red and yellow peppers, wilted spinach and dark BBQ sauce. No rice, cheese or raw salad. Filling and browned wrap agree with recipe; open end reads as a serving cut and not an added ingredient. Plausible single wrap with central crop margin.",
+    "alt": "Lightly crisped wholemeal wrap with bacon, mixed peppers, spinach and BBQ sauce.",
+    "reviewed_at": "2026-10-04T21:12:01.688Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews.json",
+    "source_sha256": "6cf064afd4bc4eaea6113f0ba3bceb260ee1510a5ab6a983f9fbdaaf2538c40e"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,83 @@
+{
+  "groupId": "9046e39634e240263beb73ad0c0794c62d393b2fe076773c3b5f9b6423119f9b",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-cheesecake-style-savory-box"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Banana Split Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Banana Split Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the banana in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup or garnish. No cake, pie or biscuit crust. Mixed berries just the listed25g, a small portion. All food safely inside frame. NO side crackers or whole biscuits anywhere. Crushed biscuit ONLY if explicitly listed, small irregular crumbs as topping; no intact biscuits. Light cream cheese only a modest measured30g smoothly folded through the fruit or cottage cheese, never a giant cream mound or cake. No biscuit crumb unless listed. Finished fruit snack pot at eating time with measured light cream cheese folded through fruit, dry rolled oats and pumpkin seeds just added. No extra dairy.",
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the banana in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-af4979a8-c90a-4f04-bef9-e4852099eae9.png",
+  "source_sha256": "d41ae95409e801811695d9f762b43b1c7f95bf181db67aafe2fa7a272f2d75cb",
+  "generated_at": "2026-10-04T23:40:59.338Z",
+  "elapsed_ms": 297796,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9046e39634e240263beb-480-88835d74bd72.webp",
+      "sha256": "88835d74bd721c85780850d0bad7338e6b8089ca58363e0a663a65ca27b960e6",
+      "bytes": 23996
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-9046e39634e240263beb-6533ec65fba3.webp",
+      "sha256": "6533ec65fba388e74105f0e629056a254157c14c805afb1a6ad60d527c079860",
+      "bytes": 69810
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "d41ae95409e801811695d9f762b43b1c7f95bf181db67aafe2fa7a272f2d75cb",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-cheesecake-style-savory-box"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Banana Split Snack Pot"
+    ],
+    "notes": "Fruit pot banana and small berries with cream cheese folded through, oats and pumpkin seeds freshly added at serving. No cake or biscuit.",
+    "alt": "Banana and berry snack pot with cream cheese, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:44:01.672206+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/9046e39634e240263beb73ad0c0794c62d393b2fe076773c3b5f9b6423119f9b.json"
+  },
+  "integrated": true,
+  "live": false
+}

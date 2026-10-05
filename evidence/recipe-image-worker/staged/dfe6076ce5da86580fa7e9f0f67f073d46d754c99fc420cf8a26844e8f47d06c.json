@@ -1,0 +1,83 @@
+{
+  "groupId": "dfe6076ce5da86580fa7e9f0f67f073d46d754c99fc420cf8a26844e8f47d06c",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-bean-loaded-turkey"
+  ],
+  "titles": [
+    "Shift Bean Loaded Turkey Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Bean Loaded Turkey Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"baked beans\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Keep the already-cooked turkey refrigerated while preparing the vegetables. Add it near the end and heat until steaming hot throughout.\",\"Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the cooked turkey breast and heat gently until steaming hot throughout.\",\"Stir in the listed flavour ingredients (40g baked beans), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Keep the already-cooked turkey refrigerated while preparing the vegetables. Add it near the end and heat until steaming hot throughout.",
+    "Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the cooked turkey breast and heat gently until steaming hot throughout.",
+    "Stir in the listed flavour ingredients (40g baked beans), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6752d9bd-9713-49f1-b5b6-fdbd48ced142.png",
+  "source_sha256": "36fa8b1dae270d132ce0001f8e9138274c8234695aaf5bc7270cda2ada1bc77c",
+  "generated_at": "2026-10-04T21:13:51.607Z",
+  "elapsed_ms": 167688.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-dfe6076ce5da86580fa7-480.webp",
+      "sha256": "db7094edf32ef1e40cfb850c1c73f68a079a3dc5c6e0fd28d8815d2fa6895bef",
+      "bytes": 29322
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-dfe6076ce5da86580fa7.webp",
+      "sha256": "d54182b00d052bcc404614cce32fcfd126db1c638ba9e25ef2b54eeb9f2c23e5",
+      "bytes": 87490
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-bean-loaded-turkey"
+    ],
+    "titles": [
+      "Shift Bean Loaded Turkey Breakfast Hash"
+    ],
+    "notes": "Golden potato cubes, cooked turkey pieces, softened onion and mixed peppers with baked beans; no added food.",
+    "alt": "Turkey breakfast hash with potatoes, onion, peppers and baked beans",
+    "reviewed_at": "2026-10-04T21:19:12.924121+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/85.json",
+    "source_sha256": "36fa8b1dae270d132ce0001f8e9138274c8234695aaf5bc7270cda2ada1bc77c"
+  },
+  "integrated": true,
+  "live": false
+}

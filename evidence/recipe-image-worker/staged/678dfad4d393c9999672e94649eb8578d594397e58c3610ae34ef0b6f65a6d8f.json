@@ -1,0 +1,91 @@
+{
+  "groupId": "678dfad4d393c9999672e94649eb8578d594397e58c3610ae34ef0b6f65a6d8f",
+  "index": 2238,
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-banana-protein-pudding"
+  ],
+  "titles": [
+    "Shift Banana Protein Pudding Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sliced banana"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Banana Protein Pudding Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"sliced banana\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy: use only listed foods. Plain unseeded wholegrain crackers: no sesame/poppy seeds, two clearly visible crackers when2listed. No cheese unless listed; no honey, nuts, mint or extra sauces. Follow preparation precisely: dry crunchy components in separate compartments/ramekins when method says kept separate; soft soaked oats only when milk listed. Protein pot crunchy topping can be freshly added just before eating. Single believable serving with food safely inside frame.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ab2b3007-9c01-4939-b04d-1b925b470c3b.png",
+  "source_sha256": "d50fbe905fccdcb4ee5d3bcbe9cd06c727a4967715a4fda496875e0c40080f0f",
+  "dispatched_at": "2026-10-04T22:58:40.043Z",
+  "generated_at": "2026-10-04T22:59:09.301Z",
+  "elapsed_ms": 29258,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-678dfad4d393c9999672-480-7068cfdabcf3.webp",
+      "sha256": "7068cfdabcf364385564fc3d9521357d1bc074f6d5cbd6c0d157a2f5e6d8aa53",
+      "bytes": 19866,
+      "git_blob_sha": "5e30b90e3e930fdca5e73afa3de43e8f63fe4e39"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-678dfad4d393c9999672-d7802dfb6044.webp",
+      "sha256": "d7802dfb604464fdad7b29654134917db0400ba3bf9c27a6f3bc0c760827874d",
+      "bytes": 57344,
+      "git_blob_sha": "009e864efe7c87d9dbf0f09f6f672912fac778d2"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-banana-protein-pudding"
+    ],
+    "titles": [
+      "Shift Banana Protein Pudding Dessert Pot"
+    ],
+    "notes": "Smooth protein yoghurt combined with banana, mixed berries, oats and pumpkin seeds with yoghurt swirl; no chocolate or apple.",
+    "alt": "Protein yoghurt dessert pot with banana, berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T23:08:43.873372+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/678dfad4d393c9999672e94649eb8578d594397e58c3610ae34ef0b6f65a6d8f.json",
+    "source_sha256": "d50fbe905fccdcb4ee5d3bcbe9cd06c727a4967715a4fda496875e0c40080f0f"
+  },
+  "integrated": true,
+  "live": false
+}

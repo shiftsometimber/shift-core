@@ -1,0 +1,87 @@
+{
+  "groupId": "e4f57eee605ca954c5e95daf82f32922bb88a78e57bf44801c920311c481d1e5",
+  "index": 2262,
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-berry-overnight-oats"
+  ],
+  "titles": [
+    "Shift Berry Overnight Oats Work Snack Box"
+  ],
+  "ingredients": [
+    {
+      "amount": "70g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "105g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    },
+    {
+      "amount": "210ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 105g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep 10g pumpkin seeds, 2 / 20g wholegrain crackers separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Berry Overnight Oats Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"70g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"105g\",\"item\":\"mixed berries\"},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"},{\"amount\":\"210ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]}]. Preparation: [\"Put 70g rolled oats and 210ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 105g mixed berries. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep 10g pumpkin seeds, 2 / 20g wholegrain crackers separate until serving. Add seeds, biscuit or chocolate as a topping; serve any crackers alongside.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed food; no honey, nuts, mint, syrup or decorative garnish. Plain unseeded crackers: exactly two visible crackers when listed, no sesame or poppy seeds. All food inside the serving margins. Finished chilled overnight oats: oats fully softened in milk, fruit mixed through, listed seeds and chocolate may be freshly topped; exactly two plain crackers alongside only if listed. No dry oat heap.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6b5ded86-f7c7-458b-8a73-e3ab4b8dc71b.png",
+  "source_sha256": "b2cce0a457e1f4c863d2dec7506deb22cd9bca733eb67eaa60025574e9831dc7",
+  "dispatched_at": "2026-10-04T23:14:16.136Z",
+  "generated_at": "2026-10-04T23:18:31.808Z",
+  "elapsed_ms": 255672,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e4f57eee605ca954c5e9-480.webp",
+      "sha256": "8755b0ff176d2f1487bf672880e8c885d42d9c82d0b5a4a568bd0d64c785a818",
+      "bytes": 26730,
+      "git_blob_sha": "9dce8c3d8daae2f2764835c4a9ffe49e6b2b4571"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e4f57eee605ca954c5e9.webp",
+      "sha256": "4843a67cd796445b021d768ba7c9a0eef88d45899e43f89338ff8a13c681b063",
+      "bytes": 81006,
+      "git_blob_sha": "71fa5ddba0b7e38355ac57b3bff3194a93dd084b"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-berry-overnight-oats"
+    ],
+    "titles": [
+      "Shift Berry Overnight Oats Work Snack Box"
+    ],
+    "notes": "Soft milk-soaked berry oats with listed pumpkin seeds topped and exactly two plain wholegrain crackers alongside. Correct overnight preparation.",
+    "alt": "Berry overnight oats with pumpkin seeds and two wholegrain crackers.",
+    "reviewed_at": "2026-10-04T23:22:00.257672+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/e4f57eee605ca954c5e95daf82f32922bb88a78e57bf44801c920311c481d1e5.json",
+    "source_sha256": "b2cce0a457e1f4c863d2dec7506deb22cd9bca733eb67eaa60025574e9831dc7"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,87 @@
+{
+  "groupId": "80414665e832d0d0267a59af8c04ff7518a20b4c00616c42bddae41067e5b700",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-bbq-chicken-sausage"
+  ],
+  "titles": [
+    "Shift BBQ Chicken Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Chicken Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked chicken breast to the pan and heat through.\",\"Stir in the listed flavour ingredients (40g reduced-sugar BBQ sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked chicken breast to the pan and heat through.",
+    "Stir in the listed flavour ingredients (40g reduced-sugar BBQ sauce), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1707a46b-9a9d-4309-8cee-700b70f149a6.png",
+  "source_sha256": "dc1ebd8669c8c18f3b20c86c56b0b8411e708126fbf2450229d624d4e3e28779",
+  "generated_at": "2026-10-04T21:13:31.313Z",
+  "elapsed_ms": 199297.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-80414665e832d0d0267a-480.webp",
+      "sha256": "65f5aad3d7068f5e917d044a19f60c773835b1e9153c295aa09ef66a17174b25",
+      "bytes": 26514
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-80414665e832d0d0267a.webp",
+      "sha256": "077af8f89bce74ccc387e941507660052567547f9ae1d331331afbf1dbab8a1e",
+      "bytes": 84728
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-bbq-chicken-sausage"
+    ],
+    "titles": [
+      "Shift BBQ Chicken Breakfast Toastie"
+    ],
+    "notes": "Crisp wholemeal toastie halves show diced cooked white chicken, softened tomato and wilted spinach in barbecue sauce. Remaining measured filling alongside matches method. No cheese, sausage or unlisted garnish. Good crop margin.",
+    "alt": "Wholemeal barbecue chicken toastie with tomato, spinach and remaining filling alongside",
+    "reviewed_at": "2026-10-04T21:14:19.454107+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/54.json",
+    "source_sha256": "dc1ebd8669c8c18f3b20c86c56b0b8411e708126fbf2450229d624d4e3e28779"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,90 @@
+{
+  "groupId": "ac253e2a26fb1c9f0fb9c730174fa5dc723e8cdb288a566bdf10a7dd61e8714a",
+  "recipe_ids": [
+    "industrial-v3-sandwich-tikka-egg"
+  ],
+  "titles": [
+    "Shift Tikka Egg Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Egg Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"tikka yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the boiled eggs are meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.\",\"Build the tikka flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the boiled eggs, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel. No sesame/poppy seeds, cheese, mayo or extra food/herbs. The listed tikka yoghurt is the only creamy dressing, mixed as exact method specifies; no additional cream or coriander garnish. Chickpeas whole for proper sandwich, not hummus. Eggs sliced hard-boiled, never fried/scrambled. Ham thin cooked strips where required. Tuna small fibrous drained flakes mixed only with listed tikka yoghurt, never different protein. Keep reserved raw spinach/tomato or rocket/tomato side salads separate. Spring onion finely sliced mixed into salad alongside jacket potatoes, not garnish on potato. Rice cooked with raw diced peppers and ready-to-eat corn; dressing folded through rice.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the boiled eggs are meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.",
+    "Build the tikka flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the boiled eggs, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-27083e45-38a4-41b0-bb16-d1fa4bec5faa.png",
+  "source_sha256": "8de24b3c956b112d320ebea9ba0cdaa4080a622013870af5529c7b1546d51195",
+  "generated_at": "2026-10-05T00:46:49.241Z",
+  "elapsed_ms": 150103.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ac253e2a26fb1c9f0fb9-480-513d99dbaf5b.webp",
+      "sha256": "513d99dbaf5b91a0f1ee241bf2fc1e1f7c3bc9d57b1159ab4069ff2962b77537",
+      "bytes": 27274
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ac253e2a26fb1c9f0fb9-2952f895fa83.webp",
+      "sha256": "2952f895fa831e94858676bc1785ecfbe299c1a6915334061bdf857aa3eacdfe",
+      "bytes": 82952
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8de24b3c956b112d320ebea9ba0cdaa4080a622013870af5529c7b1546d51195",
+    "recipe_ids": [
+      "industrial-v3-sandwich-tikka-egg"
+    ],
+    "titles": [
+      "Shift Tikka Egg Proper Sandwich"
+    ],
+    "notes": "Two plain wholemeal slices with thin hard-boiled egg slices, fresh lettuce/tomato and listed tikka yoghurt. No scrambled egg, cheese, bread seeds or added side; exact title/method checked.",
+    "alt": "Wholemeal tikka yoghurt boiled egg sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:51:33.493974+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2102.json"
+  },
+  "integrated": true,
+  "live": false
+}

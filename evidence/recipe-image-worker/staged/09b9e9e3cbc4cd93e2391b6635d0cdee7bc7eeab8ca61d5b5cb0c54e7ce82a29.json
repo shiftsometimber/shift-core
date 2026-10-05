@@ -1,0 +1,91 @@
+{
+  "groupId": "09b9e9e3cbc4cd93e2391b6635d0cdee7bc7eeab8ca61d5b5cb0c54e7ce82a29",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-cheesecake-style-protein-pudding"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Protein Pudding Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Protein Pudding Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly listed foods; no honey, nuts, mint, syrup, garnish, cake or biscuit crust. Mixed berries just the measured25g. All food inside frame.  NO side crackers, whole biscuits or biscuit crumbs anywhere unless exact list explicitly includes crushed wholegrain biscuit. Measured30g light cream cheese smoothly folded through the fruit/base; no giant cream mound, no cake or crust. Yoghurt is SMOOTH and stirred, no cottage-cheese curds or rice-like grains. Finished dessert all ingredients combined in ONE bowl, measured yoghurt visibly swirled through. No separate creamy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7ca22b27-a66b-4217-9370-8bf059bae093.png",
+  "source_sha256": "f649127e637becb18c56be1f2d140973e6ace298085c818e72175c3fa95881af",
+  "generated_at": "2026-10-04T23:52:53.752Z",
+  "elapsed_ms": 339789,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-09b9e9e3cbc4cd93e239-480-afc017b8728a.webp",
+      "sha256": "afc017b8728a8a2dc5562eb829357479603a84df48f36f8bd16d5057c9fd2cdd",
+      "bytes": 18776
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-09b9e9e3cbc4cd93e239-bfe305d02168.webp",
+      "sha256": "bfe305d021683e6c7e0351d82c4b53dc06f7ea884450201ae6b97228abc3a94e",
+      "bytes": 53014
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f649127e637becb18c56be1f2d140973e6ace298085c818e72175c3fa95881af",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-cheesecake-style-protein-pudding"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Protein Pudding Dessert Pot"
+    ],
+    "notes": "Smooth protein yoghurt and cream cheese combined with berries/oats/seeds, Greek yoghurt swirled through. No separate cream or crust.",
+    "alt": "Protein yoghurt dessert with cream cheese, berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:56:16.806006+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/09b9e9e3cbc4cd93e2391b6635d0cdee7bc7eeab8ca61d5b5cb0c54e7ce82a29.json"
+  },
+  "integrated": true,
+  "live": false
+}

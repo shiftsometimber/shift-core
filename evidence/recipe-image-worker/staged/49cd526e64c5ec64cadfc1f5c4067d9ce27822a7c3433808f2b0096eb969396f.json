@@ -1,0 +1,78 @@
+{
+  "groupId": "49cd526e64c5ec64cadfc1f5c4067d9ce27822a7c3433808f2b0096eb969396f",
+  "recipe_ids": [
+    "industrial-dinner-chicken-chilli"
+  ],
+  "titles": [
+    "Chicken Chilli"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Chicken Chilli. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"70g dry\",\"item\":\"brown rice, dry\"},{\"amount\":\"120g\",\"item\":\"chopped tomatoes\"},{\"amount\":\"100g\",\"item\":\"kidney beans\"},{\"amount\":\"5g\",\"item\":\"smoked paprika\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 70g dry brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Drain and rinse canned, ready-cooked kidney beans, then weigh out 100g; raw or dried kidney beans cannot be used in this method. Cut the 170g chicken breast into pieces no larger than 2cm on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.\",\"Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the chicken breast in one layer and cook for 10\u201312 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Put the 120g chopped tomatoes and 5g smoked paprika into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.\",\"Add the drained kidney beans, cover and simmer for 5 minutes, stirring halfway, until the beans are hot through.\",\"Return the cooked chicken breast and its juices to the pan and stir through. Heat everything together over a low heat for 2\u20133 minutes, stirring gently, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nTargeted accuracy correction: the exact recipe specifies WHOLEGRAIN BROWN RICE. Show ordinary cooked medium-brown/tan wholegrain rice with clear intact bran texture on its grains. No polished white or pearly/glossy risotto rice. Keep the rice naturally appetising, with every other ingredient and preparation exactly as specified. No fresh herb garnish, extra vegetables, cheese, cream, unlisted oil or sides. Keep the specified protein form and all food within plate margins.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "70g dry",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "chopped tomatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "kidney beans"
+    },
+    {
+      "amount": "5g",
+      "item": "smoked paprika"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 70g dry brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Drain and rinse canned, ready-cooked kidney beans, then weigh out 100g; raw or dried kidney beans cannot be used in this method. Cut the 170g chicken breast into pieces no larger than 2cm on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.",
+    "Warm a non-stick frying pan over a medium-low heat; this recipe does not include frying oil. Add the chicken breast in one layer and cook for 10\u201312 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Put the 120g chopped tomatoes and 5g smoked paprika into the same frying pan. Stir over a medium-low heat, then cover and simmer gently for 5 minutes. Stir twice; keep the heat low enough that the tomato liquid does not boil dry.",
+    "Add the drained kidney beans, cover and simmer for 5 minutes, stirring halfway, until the beans are hot through.",
+    "Return the cooked chicken breast and its juices to the pan and stir through. Heat everything together over a low heat for 2\u20133 minutes, stirring gently, until steaming hot throughout. Spoon over the freshly cooked rice and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-615b2a6f-7952-4610-8e90-27b8ed5d7c21.png",
+  "source_sha256": "9ed2d4042287b85151e7677c1db1274d0eba3e2700c9058d69d6d3d83ff8f702",
+  "generated_at": "2026-10-04T22:46:17.550Z",
+  "elapsed_ms": 223437,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-49cd526e64c5ec64cadf-retry2-480.webp",
+      "sha256": "6a4b3e86e741c1221f038821ecf64f52db18274aaf06daab36998579efbe82b4",
+      "bytes": 31820
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-49cd526e64c5ec64cadf-retry2.webp",
+      "sha256": "95cb2c2f224caf8e2c33922a0f195b6abcc1bf911cf6d39a6fc654e4db505fe9",
+      "bytes": 100324
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "source_sha256": "9ed2d4042287b85151e7677c1db1274d0eba3e2700c9058d69d6d3d83ff8f702",
+    "recipe_ids": [
+      "industrial-dinner-chicken-chilli"
+    ],
+    "titles": [
+      "Chicken Chilli"
+    ],
+    "notes": "Full-resolution image inspected. Cooked chicken pieces, red kidney beans and chopped tomato paprika sauce spooned over visibly tan wholegrain rice with bran marks. No extra garnish or sides. Credible single serving.",
+    "alt": "Chicken and kidney bean tomato chilli over wholegrain brown rice.",
+    "reviewed_at": "2026-10-04T22:59:37.230883+00:00",
+    "reviewer": "root full-resolution source inspection"
+  }
+}

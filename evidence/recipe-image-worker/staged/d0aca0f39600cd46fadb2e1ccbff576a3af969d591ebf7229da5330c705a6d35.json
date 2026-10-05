@@ -1,0 +1,84 @@
+{
+  "groupId": "d0aca0f39600cd46fadb2e1ccbff576a3af969d591ebf7229da5330c705a6d35",
+  "recipe_ids": [
+    "industrial-v3-wrap-sweet-chilli-chickpea"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Chickpea Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Chickpea Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel: no sesame/poppy seeds, cheese or unlisted food. Keep the raw spinach/tomato or rocket/tomato side salad separate where method reserves it. Spring onion belongs finely sliced in mixed salad beside jacket potatoes. Greek yoghurt/lemon/paprika dressing must be mixed and placed as method requires, no paprika dust or lemon wedge garnish. No mayo or melted cheese. Chicken/turkey plain cooked breast without breadcrumb/batter coating. Sweet chilli sauce translucent reddish glossy, never creamy. Chickpeas roughly mashed only for toastie/bagel; whole elsewhere. Eggs are sliced hard-boiled eggs.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7be6b7d2-d9ef-4569-a5c2-fa735578d30b.png",
+  "source_sha256": "283e0575172ed33acce38e2f97a24a3fb400b8b5fff2fa84b3e0688db15620ce",
+  "generated_at": "2026-10-05T00:24:47.963Z",
+  "elapsed_ms": 276762.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d0aca0f39600cd46fadb-480-f44ed54c2398.webp",
+      "sha256": "f44ed54c2398d3fe45a75e0fa83cc18f65ed909c096b5091bfd4e745ce672286",
+      "bytes": 20364
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d0aca0f39600cd46fadb-bf9ef29dcd6d.webp",
+      "sha256": "bf9ef29dcd6da178ad53f9709d8fea5ba90a62d3c8d2bfbb4f6acdcd651255fa",
+      "bytes": 59620
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "283e0575172ed33acce38e2f97a24a3fb400b8b5fff2fa84b3e0688db15620ce",
+    "recipe_ids": [
+      "industrial-v3-wrap-sweet-chilli-chickpea"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Chickpea Loaded Wrap"
+    ],
+    "notes": "Wholemeal rolled wrap holds whole lightly coloured chickpeas coated in sweet chilli sauce, fresh lettuce and tomato. No mashed hummus, creamy sauce, seeds or additional side. Exact title/method checked.",
+    "alt": "Wholemeal sweet chilli chickpea wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:27:04.393110+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2058.json"
+  },
+  "integrated": true,
+  "live": false
+}

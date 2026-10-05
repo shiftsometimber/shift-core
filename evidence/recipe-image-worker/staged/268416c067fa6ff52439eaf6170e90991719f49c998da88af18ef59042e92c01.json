@@ -1,0 +1,89 @@
+{
+  "groupId": "268416c067fa6ff52439eaf6170e90991719f49c998da88af18ef59042e92c01",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-cherry-protein-pudding"
+  ],
+  "titles": [
+    "Shift Cherry Protein Pudding Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Protein Pudding Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.\",\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nOnly exact listed food; no honey, nuts, mint, syrup, sauces or decorative garnish. All food inside frame. Berries just small25g portion. NO crackers or biscuits anywhere. All cherries destoned stemless fresh halves with visible empty pit cavities. No whole cherries/stems. Yoghurt smooth and stirred, no cottage cheese curds. Finished dessert ONE bowl with all listed ingredients combined and measured Greek yoghurt swirled through, no separate creamy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Remove the stones from fresh cherries and weigh the edible fruit to match the listed quantity before assembling.",
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f67c8fff-e756-4d96-b764-3da3659cd7b6.png",
+  "source_sha256": "1751847e9d810f9fba3bf97047cc50b67ee99b838bbfb5a3848c8a4c34596476",
+  "generated_at": "2026-10-05T00:22:55.409Z",
+  "elapsed_ms": 165384,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-268416c067fa6ff52439-480-07e83945be4d.webp",
+      "sha256": "07e83945be4d6007c088c39997fb374605d39b0920186b85fd5eef809c111bf6",
+      "bytes": 26404
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-268416c067fa6ff52439-6b7cdb440c79.webp",
+      "sha256": "6b7cdb440c79cd082603c0b0ef4ad56ded238cb8e6c909df915d28bca458c92c",
+      "bytes": 74218
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1751847e9d810f9fba3bf97047cc50b67ee99b838bbfb5a3848c8a4c34596476",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-cherry-protein-pudding"
+    ],
+    "titles": [
+      "Shift Cherry Protein Pudding Dessert Pot"
+    ],
+    "notes": "Smooth protein yoghurt dessert combined with destoned cherry halves, berries/oats/seeds and Greek yoghurt swirl; no separate creamy component.",
+    "alt": "Cherry protein yoghurt dessert with berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:28:45.176448+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/268416c067fa6ff52439eaf6170e90991719f49c998da88af18ef59042e92c01.json"
+  },
+  "integrated": true,
+  "live": false
+}

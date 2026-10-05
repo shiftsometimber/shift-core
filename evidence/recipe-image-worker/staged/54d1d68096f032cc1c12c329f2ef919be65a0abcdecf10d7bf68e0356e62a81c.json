@@ -1,0 +1,87 @@
+{
+  "groupId": "54d1d68096f032cc1c12c329f2ef919be65a0abcdecf10d7bf68e0356e62a81c",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-apple-protein-pudding"
+  ],
+  "titles": [
+    "Shift Apple Protein Pudding Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Protein Pudding Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"80g\",\"item\":\"diced apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "diced apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-421afa06-d462-4e18-9109-2cc1e072ed07.png",
+  "source_sha256": "def2403c67a48a55d7afad12b82d46cb4baa7646f3155dee57e092f647625702",
+  "generated_at": "2026-10-04T21:32:50.193Z",
+  "elapsed_ms": 285648,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-54d1d68096f032cc1c12-480.webp",
+      "sha256": "d03404b68588fa21f459566e786c492bea9b5bb448ea00778edd6fb5c2c713a3",
+      "bytes": 17204
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-54d1d68096f032cc1c12.webp",
+      "sha256": "0766ea73ae3fdb71df7399d1f69dd6b6fa6d42dfaf8fad43bba08d51b152ddb2",
+      "bytes": 50280
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-apple-protein-pudding"
+    ],
+    "titles": [
+      "Shift Apple Protein Pudding Dessert Pot"
+    ],
+    "notes": "High-protein yoghurt folded with apple, mixed berries, oats and pumpkin seeds with Greek yoghurt swirl; no chocolate.",
+    "alt": "Protein yoghurt dessert pot with apple, berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:36:22.104616+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/54d1d68096f032cc1c12c329f2ef919be65a0abcdecf10d7bf68e0356e62a81c.json",
+    "source_sha256": "def2403c67a48a55d7afad12b82d46cb4baa7646f3155dee57e092f647625702"
+  },
+  "integrated": true,
+  "live": false
+}

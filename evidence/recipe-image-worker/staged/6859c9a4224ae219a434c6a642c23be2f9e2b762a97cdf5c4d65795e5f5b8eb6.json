@@ -1,0 +1,81 @@
+{
+  "groupId": "6859c9a4224ae219a434c6a642c23be2f9e2b762a97cdf5c4d65795e5f5b8eb6",
+  "recipe_ids": [
+    "industrial-v3-curry-jalfrezi-pork"
+  ],
+  "titles": [
+    "Shift Jalfrezi Pork Proper Curry"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe, appetising through natural window light and truthful texture. No invented garnish or additional ingredients. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Jalfrezi Pork Proper Curry. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"pepper and tomato masala\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Cut the 170g lean pork loin into pieces no larger than 2cm on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the lean pork loin in one layer and cook for 10\u201312 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Turn the heat to low and fold in the 40g pepper and tomato masala. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked lean pork loin and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "75g",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "pepper and tomato masala"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Cut the 170g lean pork loin into pieces no larger than 2cm on a separate board. Wash hands, the board and knife after handling the raw meat; do not rinse it.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the lean pork loin in one layer and cook for 10\u201312 minutes, turning regularly. Lower the heat if the outside browns too quickly. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Turn the heat to low and fold in the 40g pepper and tomato masala. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked lean pork loin and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-cb6506ee-9eae-425e-be23-9b1692cdb211.png",
+  "source_sha256": "944fffad4b4de6c5921b410ac2ecdc12e4f4c94f347dd89a6f5902d5fc5a802e",
+  "generated_at": "2026-10-05T00:38:38.037Z",
+  "elapsed_ms": 91371,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6859c9a4224ae219a434-480.webp",
+      "sha256": "d6dc628cfc537fff351309fa6d77dc66930e150bd0281c8fdd78c6f89a805d52",
+      "bytes": 30882
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6859c9a4224ae219a434.webp",
+      "sha256": "506b74a1bd9f844b448cfdfc6ebf67fe762bbf0bc251f383897bc16f50d307f2",
+      "bytes": 94112
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Jalfrezi pork with sliced onion and mixed peppers over basmati rice",
+    "notes": "Full-resolution individual review: cooked lean pork chunks, softened sliced onion and mixed pepper strips in red tomato masala over white basmati rice; exact method and all titles reviewed.",
+    "recipe_ids": [
+      "industrial-v3-curry-jalfrezi-pork"
+    ],
+    "titles": [
+      "Shift Jalfrezi Pork Proper Curry"
+    ],
+    "source_sha256": "944fffad4b4de6c5921b410ac2ecdc12e4f4c94f347dd89a6f5902d5fc5a802e",
+    "reviewed_at": "2026-10-05T00:54:17.965462+00:00"
+  }
+}

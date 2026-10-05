@@ -1,0 +1,84 @@
+{
+  "groupId": "71f6090780028e99314afee053ec17715a2c8ab1f04710e1e8d092f0722846bc",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-peri-peri-beans"
+  ],
+  "titles": [
+    "Shift Peri-Peri Beans Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Beans Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c84edb0d-7242-4b96-9c31-673ac093aa4b.png",
+  "source_sha256": "01b66ea9ef81d3411f7cd666df187c09c9961769f8e3dd27281f79bfeaa3f6b9",
+  "generated_at": "2026-10-05T01:02:34.054Z",
+  "elapsed_ms": 308064,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-71f6090780028e99314a-480.webp",
+      "sha256": "b43dda16e9ed332293a9c1b4270cad96401e22e96b6f6f5f6ce7a77366558d92",
+      "bytes": 20660
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-71f6090780028e99314a-79df8a493dd5.webp",
+      "sha256": "79df8a493dd549978bc5d856fe28c1527177c1b6b13b5625d9107fb4b9dc5453",
+      "bytes": 62542
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "01b66ea9ef81d3411f7cd666df187c09c9961769f8e3dd27281f79bfeaa3f6b9",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-peri-peri-beans"
+    ],
+    "titles": [
+      "Shift Peri-Peri Beans Breakfast Wrap"
+    ],
+    "notes": "Single toasted unseeded wholemeal wrap with hot baked beans, softened mixed peppers and wilted spinach coated in peri-peri sauce.",
+    "alt": "Peri-peri beans wrap with peppers and spinach",
+    "reviewed_at": "2026-10-05T01:04:45.023391+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/363.json"
+  },
+  "integrated": true,
+  "live": false
+}

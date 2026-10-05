@@ -1,0 +1,84 @@
+{
+  "groupId": "d4116a4b125612f2f806903553622e6387700a7358aa99f260bb66c6cc2ab046",
+  "recipe_ids": [
+    "industrial-v3-jacket-potato-club-turkey"
+  ],
+  "titles": [
+    "Shift Club Turkey Loaded Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Club Turkey Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"light mayonnaise\",\"amount\":\"24g\"},{\"item\":\"wholegrain mustard\",\"amount\":\"6g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Stir together all the measured light mayonnaise, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "90g",
+      "item": "spring onion"
+    },
+    {
+      "item": "light mayonnaise",
+      "amount": "24g"
+    },
+    {
+      "item": "wholegrain mustard",
+      "amount": "6g"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Stir together all the measured light mayonnaise, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e5e12866-25cf-44b5-81ad-4d8800988a88.png",
+  "source_sha256": "8ea6a196928b462b1e45823e21fb4203aba6c62904183983dfdf7aad8b5e7758",
+  "generated_at": "2026-10-05T01:15:36.071Z",
+  "elapsed_ms": 340657,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d4116a4b125612f2f806-480.webp",
+      "sha256": "2388befd50e4e8be102f43fa42de2c9801cb3bf3dc1a7f5d80c017efaa1f30b5",
+      "bytes": 28838
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d4116a4b125612f2f806.webp",
+      "sha256": "d77b26ff51f5f08243ecc1fe52dbf3099a462c40f97e9fba5b8615f8590897d4",
+      "bytes": 79334
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Jacket potato with turkey and mustard mayonnaise beside spring onion salad",
+    "notes": "Individual full-resolution inspection: Fluffy split jacket potato with cooked turkey breast and mustard mayonnaise. All spring onion remains in mixed side salad, with none on the potato. Every mapped title, exact ingredients and preparation reviewed.",
+    "source_sha256": "8ea6a196928b462b1e45823e21fb4203aba6c62904183983dfdf7aad8b5e7758",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-club-turkey"
+    ],
+    "titles": [
+      "Shift Club Turkey Loaded Jacket Potato"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

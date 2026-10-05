@@ -1,0 +1,82 @@
+{
+  "groupId": "24dcfa424faeb7e9f6f7e824efd2908626a0fb2660fff9282feaa23f3c996e61",
+  "recipe_ids": [
+    "industrial-breakfast-yoghurt-pot-peach-cinnamon-4"
+  ],
+  "titles": [
+    "Peach Cinnamon Yoghurt Crunch Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Peach Cinnamon Yoghurt Crunch Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"peach, diced\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"1/2 tsp\",\"item\":\"ground cinnamon\"}]. Preparation: [\"Spoon the yoghurt into a bowl or lidded pot.\",\"Wash and prepare the fruit, removing any stones, cores or inedible peel, then weigh the edible portion and add it to the yoghurt.\",\"Top with oats and pumpkin seeds.\",\"Finish with the flavouring just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "peach, diced"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "1/2 tsp",
+      "item": "ground cinnamon"
+    }
+  ],
+  "method": [
+    "Spoon the yoghurt into a bowl or lidded pot.",
+    "Wash and prepare the fruit, removing any stones, cores or inedible peel, then weigh the edible portion and add it to the yoghurt.",
+    "Top with oats and pumpkin seeds.",
+    "Finish with the flavouring just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1664baff-b2ff-4e80-a984-c1e9ca7e3d0f.png",
+  "source_sha256": "7b7074f1315e0a19231d82a46e71acc37c0f83b260abe28d9c567310c8849d3e",
+  "generated_at": "2026-10-04T21:09:28.477Z",
+  "elapsed_ms": 140772,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-24dcfa424faeb7e9f6f7-480.webp",
+      "sha256": "6ee56a57589236add89e35b68763078e06266bd5f155c230f666be6b1e847bad",
+      "bytes": 19222
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-24dcfa424faeb7e9f6f7.webp",
+      "sha256": "ff8226088cc9095e0d3c3e6e2d53be7aa08da7247d0a912f1be05f059522b10e",
+      "bytes": 60688
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-yoghurt-pot-peach-cinnamon-4"
+    ],
+    "titles": [
+      "Peach Cinnamon Yoghurt Crunch Pot"
+    ],
+    "notes": "Greek yoghurt base with diced peach, uncooked rolled oats and pumpkin seeds on top, finished with cinnamon; matches crunch-pot method; no unlisted foods.",
+    "alt": "Greek yoghurt topped with diced peach, rolled oats, pumpkin seeds and cinnamon.",
+    "reviewed_at": "2026-10-04T21:11:31.334680+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/batch.json",
+    "source_sha256": "7b7074f1315e0a19231d82a46e71acc37c0f83b260abe28d9c567310c8849d3e"
+  },
+  "integrated": true,
+  "live": false
+}

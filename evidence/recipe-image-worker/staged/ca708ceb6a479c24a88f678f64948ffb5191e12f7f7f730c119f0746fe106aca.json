@@ -1,0 +1,82 @@
+{
+  "groupId": "ca708ceb6a479c24a88f678f64948ffb5191e12f7f7f730c119f0746fe106aca",
+  "recipe_ids": [
+    "industrial-lunch-turkey-jacket-potato"
+  ],
+  "titles": [
+    "Turkey Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Turkey Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"300g\",\"item\":\"baking potato\"},{\"amount\":\"60g\",\"item\":\"mixed salad\"},{\"amount\":\"60g\",\"item\":\"spring onion\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured 0% Greek yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured 0% Greek yoghurt; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nBread/wrap/pitta plain unseeded, no sesame/poppy garnish. Cheese ONLY where cheddar is explicitly listed in toastie. Tuna fibrous drained flakes, turkey plain unbreaded cooked breast, no protein substitution. Greek yoghurt only recipes listing yoghurt; grain salads and tomato-pesto pasta have no added mayo/cream/yoghurt. Couscous, brown rice and wholewheat pasta cooked. Lemon/lime dressings incorporated, no citrus wedge. Preserve all reserved raw side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not potato garnish. Pitta shown as TWO distinct filled halves of ONE wholemeal pitta, each visible, with reserved lettuce/cucumber side. Wholemeal wraps here have reserved leaf/tomato side salad. Apple cottage cheese includes diced apple folded through, pineapple chunks, wholegrain crackers and measured black pepper. Overnight oats fruit/berries mixed through softened chilled oats, not dry oats or separate decorative toppings. No added fruit, honey, nuts, herbs or garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "300g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "60g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "60g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured 0% Greek yoghurt as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured 0% Greek yoghurt; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c6e68943-134c-4cd1-ae1f-e4fe876f1f97.png",
+  "source_sha256": "c3df58f825fde789e62262cbf776b8a6838aa41e7948044bffc7c36ca0cae0d9",
+  "generated_at": "2026-10-05T01:06:59.530Z",
+  "elapsed_ms": 234774.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ca708ceb6a479c24a88f-480-9923b75aa1a8.webp",
+      "sha256": "9923b75aa1a8184a6d7740b10e6cbd245929ee15e45c55e2fe8161c31d4af194",
+      "bytes": 26154
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ca708ceb6a479c24a88f-34b184588f28.webp",
+      "sha256": "34b184588f283667279bf3bf7d9c2f58724aeadc530412309da2614f93cf2936",
+      "bytes": 75406
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c3df58f825fde789e62262cbf776b8a6838aa41e7948044bffc7c36ca0cae0d9",
+    "recipe_ids": [
+      "industrial-lunch-turkey-jacket-potato"
+    ],
+    "titles": [
+      "Turkey Jacket Potato"
+    ],
+    "notes": "Fluffy split baked potato topped with plain ready-to-eat sliced/shredded turkey and plain Greek yoghurt. Spring onion finely sliced mixed into separate mixed-leaf salad alongside; no butter, cheese or unlisted herb. Exact title/method checked.",
+    "alt": "Turkey jacket potato with Greek yoghurt, mixed salad and spring onion",
+    "reviewed_at": "2026-10-05T01:10:20.019013+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2136.json"
+  },
+  "integrated": true,
+  "live": false
+}

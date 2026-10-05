@@ -1,0 +1,16 @@
+{
+  "groupId": "8808abacc45e3b5b11e49334890f7a4dacd166ca840d36f0a81dd3bade804e88",
+  "source_sha256": "9e35cfb35e6399e729984df15738244a2fce0bec9ad65f7d64a1b79a668f7687",
+  "review": {
+    "decision": "reject",
+    "notes": "Full-resolution inspection: cheddar is piled as visible grated cheese garnish over the chicken instead of being stirred into the measured yoghurt/mayonnaise/oil dressing. Reject assembly mismatch; no grated cheese topping in correction.",
+    "source_sha256": "9e35cfb35e6399e729984df15738244a2fce0bec9ad65f7d64a1b79a668f7687",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-caesar-chicken"
+    ],
+    "titles": [
+      "Shift Creamy Cheddar Chicken Loaded Jacket Potato"
+    ],
+    "reviewer": "root-full-resolution"
+  }
+}

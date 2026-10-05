@@ -1,0 +1,89 @@
+{
+  "groupId": "d4cb3f832c50420eba849ebb7dd2d824d3f783138a0348b19223e9662eed0ad0",
+  "recipe_ids": [
+    "industrial-v3-bagel-tikka-ham"
+  ],
+  "titles": [
+    "Shift Tikka Ham Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Ham Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"tikka yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.\",\"Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured tikka yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel. No sesame/poppy seeds, cheese, mayo or extra food/herbs. The listed tikka yoghurt is the only creamy dressing, mixed as exact method specifies; no additional cream or coriander garnish. Chickpeas whole for proper sandwich, not hummus. Eggs sliced hard-boiled, never fried/scrambled. Ham thin cooked strips where required. Tuna small fibrous drained flakes mixed only with listed tikka yoghurt, never different protein. Keep reserved raw spinach/tomato or rocket/tomato side salads separate. Spring onion finely sliced mixed into salad alongside jacket potatoes, not garnish on potato. Rice cooked with raw diced peppers and ready-to-eat corn; dressing folded through rice.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.",
+    "Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the measured tikka yoghurt and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4f081b73-439d-45f1-8c4b-1c86e7abea8c.png",
+  "source_sha256": "0e3c6820f6ed07937a3b040bb94721cb7368d4ae931f75e12f41dfe5d7f9c681",
+  "generated_at": "2026-10-05T00:45:35.690Z",
+  "elapsed_ms": 76552.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d4cb3f832c50420eba84-480-94581de56e80.webp",
+      "sha256": "94581de56e801ceff737326e123a2651564eecfea3aec6292b6ca3dbe8c1080d",
+      "bytes": 27502
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d4cb3f832c50420eba84-0606b14946a9.webp",
+      "sha256": "0606b14946a997b16efde6f28c0f903c0572838955e48113b8e970f2350f533a",
+      "bytes": 83834
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "0e3c6820f6ed07937a3b040bb94721cb7368d4ae931f75e12f41dfe5d7f9c681",
+    "recipe_ids": [
+      "industrial-v3-bagel-tikka-ham"
+    ],
+    "titles": [
+      "Shift Tikka Ham Loaded Bagel"
+    ],
+    "notes": "Full-resolution review confirms rocket leaves, thin cooked ham strips and listed tikka yoghurt in an unseeded wholemeal bagel; reserved rocket/tomato side salad alongside. No coriander garnish, cheese or extra food. Exact title/method checked.",
+    "alt": "Tikka yoghurt ham bagel with rocket and tomato salad",
+    "reviewed_at": "2026-10-05T00:51:33.991627+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2104.json"
+  },
+  "integrated": true,
+  "live": false
+}

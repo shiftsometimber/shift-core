@@ -1,0 +1,92 @@
+{
+  "groupId": "432268a9ea4891e0edce9435beac883215baff8f4c88c239d05a59487d955041",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-peppery-bacon"
+  ],
+  "titles": [
+    "Shift Peppery Bacon Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppery Bacon Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4b308a5f-726c-491e-8908-e928baa8f2d9.png",
+  "source_sha256": "aa6402d9c7c326e82060020b7772a122b12045b2cdce030a1cdae6e66beeb012",
+  "generated_at": "2026-10-05T00:48:53.195Z",
+  "elapsed_ms": 17829,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-432268a9ea4891e0edce-480.webp",
+      "sha256": "41bb4afd3d012b07e22432cdaf2dbcac795a96a4a2b6d8bf060299281f086fcf",
+      "bytes": 18672
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-432268a9ea4891e0edce-c14836625c63.webp",
+      "sha256": "c14836625c6357edd11cf74f360eec9e75433d8bc80741d2be00f42961ad3902",
+      "bytes": 53014
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "aa6402d9c7c326e82060020b7772a122b12045b2cdce030a1cdae6e66beeb012",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-peppery-bacon"
+    ],
+    "titles": [
+      "Shift Peppery Bacon Breakfast Wrap"
+    ],
+    "notes": "Broad lean cooked back bacon medallions with softened mixed peppers and wilted spinach in listed ketchup, pepper and vinegar sauce in one unseeded toasted wholemeal wrap.",
+    "alt": "Peppery bacon wrap with peppers and spinach",
+    "reviewed_at": "2026-10-05T00:55:16.230853+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/335.json"
+  },
+  "integrated": true,
+  "live": false
+}

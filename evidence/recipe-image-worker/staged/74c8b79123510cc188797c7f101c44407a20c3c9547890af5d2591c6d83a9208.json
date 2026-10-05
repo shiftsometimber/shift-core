@@ -1,0 +1,87 @@
+{
+  "groupId": "74c8b79123510cc188797c7f101c44407a20c3c9547890af5d2591c6d83a9208",
+  "index": 2361,
+  "recipe_ids": [
+    "industrial-v4-protein-pot-chocolate-protein-pudding"
+  ],
+  "titles": [
+    "Shift Chocolate Protein Pudding Protein Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "high-protein yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Protein Pudding Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"high-protein yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with high-protein yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: generic method references to food apply only when that food appears in the exact ingredient list. Plain wholegrain crackers unseeded, no seed garnish unless listed. No cheese unless listed. No extra sauce, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow dry/separate and soaked/prepared instructions exactly. Cocoa means measured cocoa powder folded or dusted on food, never liquid chocolate syrup or extra chocolate chunks unless chopped dark chocolate listed. Overnight oats cocoa must be fully mixed in milk, visibly soft soaked brown oats without dry cocoa pockets. Cinnamon means fine powder, no decorative cinnamon sticks.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-033ef428-d0a0-457c-92bd-a1822d512d55.png",
+  "source_sha256": "2322642a1ab65662c7bb8413d9721b19a3f50eb39d9735ae990c34fc44edb15b",
+  "dispatched_at": "2026-10-04T22:43:35.292Z",
+  "generated_at": "2026-10-04T22:48:24.021Z",
+  "elapsed_ms": 288729,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-74c8b79123510cc18879-480.webp",
+      "sha256": "b52cb007018090e3921b38565887a72c0b783658ff4472827533d1bfc0c011d3",
+      "bytes": 22950,
+      "git_blob_sha": "c416fed6a26fa099f7263e713c63be8c0dcae1e6"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-74c8b79123510cc18879.webp",
+      "sha256": "6e0c4d073771036c9a2dd7e0d8c1d1fb19456697f7c7d383e0b73db06a5bad8e",
+      "bytes": 71444,
+      "git_blob_sha": "4fb0226a16b51b54a776934d7c72dca313fc8123"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-chocolate-protein-pudding"
+    ],
+    "titles": [
+      "Shift Chocolate Protein Pudding Protein Pot"
+    ],
+    "notes": "Protein yoghurt with cocoa folded through and berries, rolled oats and pumpkin seeds added at serving; no unlisted chocolate.",
+    "alt": "Cocoa protein yoghurt pot with berries, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T22:52:30.059723+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/74c8b79123510cc188797c7f101c44407a20c3c9547890af5d2591c6d83a9208.json",
+    "source_sha256": "2322642a1ab65662c7bb8413d9721b19a3f50eb39d9735ae990c34fc44edb15b"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,86 @@
+{
+  "groupId": "88d7e2b8ebdb1d3ae36fde81e016d31c241fe18417e2c1e187d96b38ff886375",
+  "recipe_ids": [
+    "industrial-v3-jacket-potato-bbq-tuna"
+  ],
+  "titles": [
+    "Shift BBQ Tuna Loaded Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Tuna Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Use the measured reduced-sugar BBQ sauce as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured reduced-sugar BBQ sauce and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty; cooked salmon and cooked cured ham retain their natural opaque colour.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "90g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.",
+    "Use the measured reduced-sugar BBQ sauce as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured reduced-sugar BBQ sauce and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4c364593-ef8f-4b26-bbf4-780ebcafd042.png",
+  "source_sha256": "8b955fa2cea5868a78ad576488edc5f2684c334c6128062164b2626183c49d67",
+  "generated_at": "2026-10-05T00:20:23.072Z",
+  "elapsed_ms": 24704.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-88d7e2b8ebdb1d3ae36f-480-52981bf3ce2d.webp",
+      "sha256": "52981bf3ce2dc11139406714bdeae63cce551151abdbdef77d39a5643e10c27c",
+      "bytes": 33650
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-88d7e2b8ebdb1d3ae36f-c3279c614851.webp",
+      "sha256": "c3279c614851ef732bbcc1ad52af77444bee614487931a2b845f3ba9665a900a",
+      "bytes": 92612
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8b955fa2cea5868a78ad576488edc5f2684c334c6128062164b2626183c49d67",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-bbq-tuna"
+    ],
+    "titles": [
+      "Shift BBQ Tuna Loaded Jacket Potato"
+    ],
+    "notes": "Split fluffy jacket potato with drained canned tuna flakes and BBQ dressing; mixed salad and spring onion alongside only. No cheese, herbs or extra vegetables; exact title matches.",
+    "alt": "BBQ tuna jacket potato with spring onion salad",
+    "reviewed_at": "2026-10-05T00:28:57.268782+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1539-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

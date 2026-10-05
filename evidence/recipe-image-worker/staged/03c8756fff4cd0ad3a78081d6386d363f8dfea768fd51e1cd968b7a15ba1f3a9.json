@@ -1,0 +1,82 @@
+{
+  "groupId": "03c8756fff4cd0ad3a78081d6386d363f8dfea768fd51e1cd968b7a15ba1f3a9",
+  "recipe_ids": [
+    "industrial-v3-jacket-potato-pickle-chickpea"
+  ],
+  "titles": [
+    "Shift Pickle Chickpea Loaded Jacket Potato"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pickle Chickpea Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"amount\":\"30g\",\"item\":\"pickle mustard relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Use the measured pickle mustard relish as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured pickle mustard relish and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Pickle mustard relish belongs in or on prescribed filling; never invent whole pickle sides. Chickpeas roughly mashed only where method requires; boiled eggs sliced, ham thin strips for toastie/bagel/jacket. No extra ingredients.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "250g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "90g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "30g",
+      "item": "pickle mustard relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+    "Use the measured pickle mustard relish as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the measured pickle mustard relish and olive oil dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6b3d980a-bcba-4879-9989-ecceaad69694.png",
+  "source_sha256": "21f8ccdd35c001f85604e26496da4d2f5b6d05c9a79d16912c5280b29ae9afa2",
+  "generated_at": "2026-10-04T23:35:48.864Z",
+  "elapsed_ms": 56944.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-03c8756fff4cd0ad3a78-480-2dafed06a537.webp",
+      "sha256": "2dafed06a537a5676a88b4028cd37efcd6c8fc43ef2aeef0746ecf1e633367f2",
+      "bytes": 33316
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-03c8756fff4cd0ad3a78-cba3b0f7bb51.webp",
+      "sha256": "cba3b0f7bb51268c0431a2e86e8f2b6c0b35653d297673c7c2a723e089aa23cf",
+      "bytes": 94884
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "21f8ccdd35c001f85604e26496da4d2f5b6d05c9a79d16912c5280b29ae9afa2",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-pickle-chickpea"
+    ],
+    "titles": [
+      "Shift Pickle Chickpea Loaded Jacket Potato"
+    ],
+    "notes": "Fluffy split baked potato topped with whole ready-to-eat chickpeas and pickle mustard relish. Mixed leaves and finely sliced spring onion alongside. No scatter garnish, cheese or extra side; mustard grains are in listed relish.",
+    "alt": "Pickle chickpea jacket potato with salad and spring onion",
+    "reviewed_at": "2026-10-04T23:41:53.705663+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1986.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,87 @@
+{
+  "groupId": "8d64fc3ee74e036f0ad81d6636869cc2e04f6cea16def71e2e45f532913afbf8",
+  "recipe_ids": [
+    "industrial-v3-sandwich-tikka-chickpea"
+  ],
+  "titles": [
+    "Shift Tikka Chickpea Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Chickpea Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"tikka yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the chickpeas, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Build the tikka flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the chickpeas, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel. No sesame/poppy seeds, cheese, mayo or extra food/herbs. The listed tikka yoghurt is the only creamy dressing, mixed as exact method specifies; no additional cream or coriander garnish. Chickpeas whole for proper sandwich, not hummus. Eggs sliced hard-boiled, never fried/scrambled. Ham thin cooked strips where required. Tuna small fibrous drained flakes mixed only with listed tikka yoghurt, never different protein. Keep reserved raw spinach/tomato or rocket/tomato side salads separate. Spring onion finely sliced mixed into salad alongside jacket potatoes, not garnish on potato. Rice cooked with raw diced peppers and ready-to-eat corn; dressing folded through rice.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the chickpeas, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+    "Build the tikka flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the chickpeas, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7b23f0ce-9224-4598-9f55-65acb3b9e175.png",
+  "source_sha256": "5baecfa48009e142611598316c7782705165bdac5e52bf4bb6ba4e590a102567",
+  "generated_at": "2026-10-05T00:44:38.406Z",
+  "elapsed_ms": 19269.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8d64fc3ee74e036f0ad8-480-4136ccafa02d.webp",
+      "sha256": "4136ccafa02d508cbf837e2899f79622437fcb86a79c9705422a64aa8faa45e9",
+      "bytes": 27192
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8d64fc3ee74e036f0ad8-4a2766bd431e.webp",
+      "sha256": "4a2766bd431e9b85fb4599ed440f8a00290a4b8605e7876310d5d0189d5cde61",
+      "bytes": 85036
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "5baecfa48009e142611598316c7782705165bdac5e52bf4bb6ba4e590a102567",
+    "recipe_ids": [
+      "industrial-v3-sandwich-tikka-chickpea"
+    ],
+    "titles": [
+      "Shift Tikka Chickpea Proper Sandwich"
+    ],
+    "notes": "Two plain wholemeal slices contain whole lightly coloured chickpeas coated in listed tikka yoghurt with fresh lettuce/tomato. No mashed hummus, cheese, seeds or added side; exact title/method checked.",
+    "alt": "Wholemeal tikka yoghurt chickpea sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:51:31.983698+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2096.json"
+  },
+  "integrated": true,
+  "live": false
+}

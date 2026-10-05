@@ -1,0 +1,91 @@
+{
+  "groupId": "38507ff51285f57c67ed3a334e196211392a4e0f0a878fc65d10d632bae97e1d",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-mediterranean-beans"
+  ],
+  "titles": [
+    "Shift Mediterranean Beans Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mediterranean Beans Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"25g\",\"item\":\"tomato ketchup\"},{\"amount\":\"1g\",\"item\":\"dried oregano\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.\",\"Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the baked beans and heat gently until steaming hot throughout.\",\"Stir in the listed flavour ingredients (25g tomato ketchup, 1g dried oregano, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "25g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "1g",
+      "item": "dried oregano"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Use ready-cooked canned baked beans. Add them near the end and heat gently until steaming hot; do not try to brown the beans.",
+    "Heat all the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the baked beans and heat gently until steaming hot throughout.",
+    "Stir in the listed flavour ingredients (25g tomato ketchup, 1g dried oregano, 5ml cider vinegar), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5abb285d-c42d-4616-826a-18eadb87a605.png",
+  "source_sha256": "b614d04de327de0121dbab44f8184ffeeec31870cde0db8f20102d7204f7e134",
+  "generated_at": "2026-10-04T23:42:55.231Z",
+  "elapsed_ms": 45631,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-38507ff51285f57c67ed-480.webp",
+      "sha256": "65bb931e33a3b2f87c72d2f4f59444b603eb6ead14739e26abb93b148f79cfc1",
+      "bytes": 26016
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-38507ff51285f57c67ed-retry2-a6ea1380cb43.webp",
+      "sha256": "a6ea1380cb43cbd2c882a08e14da273466de069e3e59a4f2d72c08794f13d279",
+      "bytes": 83640
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b614d04de327de0121dbab44f8184ffeeec31870cde0db8f20102d7204f7e134",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-mediterranean-beans"
+    ],
+    "titles": [
+      "Shift Mediterranean Beans Breakfast Hash"
+    ],
+    "notes": "Hot baked beans with golden potato cubes, cooked onion and mixed peppers, dried oregano incorporated in listed sauce. No extra food.",
+    "alt": "Mediterranean baked bean hash with potatoes, onion and peppers",
+    "reviewed_at": "2026-10-04T23:48:31.523239+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/241.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,15 @@
+{
+  "groupId": "7d822e4214ebb03bb72d82e920dc1661c0d63bcdb2c1b46b81b951a45d76159f",
+  "decision": "reject",
+  "source_sha256": "32d2c3ee68260d999d1a95e085b3a8e0d7c955fac4ab5fe1a8f6305b58abf794",
+  "recipe_ids": [
+    "industrial-v3-chilli-balti-tofu"
+  ],
+  "titles": [
+    "Shift Balti Tofu Big Chilli"
+  ],
+  "notes": "Rice appears ivory and polished rather than credible wholegrain brown rice; reject although firm tofu, beans and red pepper match.",
+  "alt": "Shift Balti Tofu Big Chilli: rice appears ivory and polished rather than credible wholegrain brown rice",
+  "reviewed_at": "2026-10-05T00:07:14.213041+00:00",
+  "reviewer": "root-full-resolution-visual-review"
+}

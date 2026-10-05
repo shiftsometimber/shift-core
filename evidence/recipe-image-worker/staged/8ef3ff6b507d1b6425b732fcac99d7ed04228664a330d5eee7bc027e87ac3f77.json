@@ -1,0 +1,103 @@
+{
+  "groupId": "8ef3ff6b507d1b6425b732fcac99d7ed04228664a330d5eee7bc027e87ac3f77",
+  "recipe_ids": [
+    "industrial-v3-kebab-peppercorn-salmon"
+  ],
+  "titles": [
+    "Shift Peppercorn Salmon Fakeaway Kebab"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peppercorn Salmon Fakeaway Kebab. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"wholemeal flatbread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]},{\"amount\":\"1g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.\",\"Mix the measured light mayonnaise and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured black pepper. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Put the lettuce and tomato on the warm flatbread. Add large flakes of the cooked salmon and the cold finishing sauce, fold the bread around the filling and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Exact method gates: No garnish or unlisted cheese, herbs, seeds, breading, sauce or sides. Wholemeal bread, wrap and bun entirely plain unseeded. Peppercorn flavour uses LIGHT MAYONNAISE plus WHOLEGRAIN MUSTARD plus BLACK PEPPER only: no cream or ketchup. In roast and pie all three exclusively in separate small cold dressing bowl alongside; hot food must be PLAIN with no black pepper or mustard pieces, herbs or creamy coat. Roast salmon intact fully cooked opaque fillet; tofu roast 2cm slabs. Pie plain fork-roughened water-mashed potato top and plain filling carrot/pea/protein with clear cooking juices; never creamy filling. Salmon in pasta, pizza, kebab or fries large opaque cooked FLAKES. Tofu burger one 1cm slab, kebab/fries/pasta/pizza/slowpot/pie 2cm cubes. Burger or kebab cold dressing finish INSIDE bread; pizza and loaded fries cold finish ON TOP after cooking; cheeseless pizza with passata and mixed peppers only listed. Pasta mayonnaise/mustard/pepper folded THROUGH wholewheat pasta offheat, courgette and cherry tomatoes. Slowpot tender baby potatoes carrots onion and protein, light mayo final glossy coating after switch off; no crispy roast appearance. Traybake chilled mayo only added after oven. Show correct finished appearance and all ingredients where method places them. For roast especially plain golden surfaces, all black pepper strictly only INSIDE the separate cold bowl, no pepper rub or garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal flatbread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.",
+    "Mix the measured light mayonnaise and wholegrain mustard in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. Coat with all the measured black pepper. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Put the lettuce and tomato on the warm flatbread. Add large flakes of the cooked salmon and the cold finishing sauce, fold the bread around the filling and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-88ffb34a-48a4-41af-ae02-0a15928273d2.png",
+  "source_sha256": "8da7819b675929e5599edd1b2b8db0271888fbbf894d46f56cdd8259837fd5bb",
+  "generated_at": "2026-10-05T01:01:45.207Z",
+  "elapsed_ms": 77727.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8ef3ff6b507d1b6425b7-retry4-480-98da2664f4da.webp",
+      "sha256": "98da2664f4da244dac2831a8146020f7d21b6ea9c4ba27a85306e0e645275ed2",
+      "bytes": 26416
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8ef3ff6b507d1b6425b7-retry4-0403d0a90969.webp",
+      "sha256": "0403d0a909694eac1bf467531df785edb8bc1c47c87beb2b8f49c1d39de54fb8",
+      "bytes": 77990
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8da7819b675929e5599edd1b2b8db0271888fbbf894d46f56cdd8259837fd5bb",
+    "recipe_ids": [
+      "industrial-v3-kebab-peppercorn-salmon"
+    ],
+    "titles": [
+      "Shift Peppercorn Salmon Fakeaway Kebab"
+    ],
+    "notes": "Pass: large opaque cooked salmon flakes with browned peppered edges, shredded lettuce and sliced tomato inside flexible warmed unseeded wholemeal flatbread. Cold mayonnaise-wholegrain mustard finishing sauce inside bread with visible small mustard grains. No intact raw fillet, cheese, ketchup, extra salad ingredients, herb garnish or side food. Exact folded flatbread kebab and usable crop.",
+    "alt": "Peppercorn salmon flatbread kebab with lettuce, tomato and mayonnaise-wholegrain mustard sauce",
+    "reviewed_at": "2026-10-05T01:02:17.166453+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1181.json"
+  },
+  "integrated": true,
+  "live": false
+}

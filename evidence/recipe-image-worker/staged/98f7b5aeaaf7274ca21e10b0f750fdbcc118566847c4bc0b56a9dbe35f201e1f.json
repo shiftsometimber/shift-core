@@ -1,0 +1,90 @@
+{
+  "groupId": "98f7b5aeaaf7274ca21e10b0f750fdbcc118566847c4bc0b56a9dbe35f201e1f",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-cheesy-turkey"
+  ],
+  "titles": [
+    "Shift Cheesy Turkey Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Turkey Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Keep the already-cooked turkey refrigerated while preparing the vegetables. Add it near the end and heat until steaming hot throughout.\",\"Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Add the cooked turkey breast and heat gently until steaming hot throughout.\",\"Scatter over the 30g reduced-fat cheddar and let it melt over the hot filling.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Keep the already-cooked turkey refrigerated while preparing the vegetables. Add it near the end and heat until steaming hot throughout.",
+    "Heat all the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Add the cooked turkey breast and heat gently until steaming hot throughout.",
+    "Scatter over the 30g reduced-fat cheddar and let it melt over the hot filling.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7810b605-a25a-40ee-9629-3c78c5217b5f.png",
+  "source_sha256": "6aa442ae3535a12d952d74c5ac225a73cca55b65d0323579e2049088594e42e1",
+  "generated_at": "2026-10-04T21:23:50.220Z",
+  "elapsed_ms": 163403,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-98f7b5aeaaf7274ca21e-480.webp",
+      "sha256": "fbef564001923adab92f8ef80e12266ea476eefc3d94f4b72da9e73a6d45b6b4",
+      "bytes": 26600
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-98f7b5aeaaf7274ca21e.webp",
+      "sha256": "305eadeb1f13539c29759274c47a36ff78a0fa444d512867492b16624badc52b",
+      "bytes": 79516
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-cheesy-turkey"
+    ],
+    "titles": [
+      "Shift Cheesy Turkey Breakfast Toastie"
+    ],
+    "notes": "Crisp unseeded wholemeal toastie filled with cooked turkey, softened tomato, wilted spinach and cheddar; side is remaining measured filling allowed by method. No unlisted garnish.",
+    "alt": "Turkey, tomato, spinach and cheddar toastie with remaining filling alongside.",
+    "reviewed_at": "2026-10-04T21:25:50.697228+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/134.json",
+    "source_sha256": "6aa442ae3535a12d952d74c5ac225a73cca55b65d0323579e2049088594e42e1"
+  },
+  "integrated": true,
+  "live": false
+}

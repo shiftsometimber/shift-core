@@ -1,0 +1,94 @@
+{
+  "groupId": "3f60febd9077024cd897e913c19f2c8ef68629b74d17b947ec52818f3143e02d",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-hot-sauce-egg"
+  ],
+  "titles": [
+    "Shift Hot Sauce Egg Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hot Sauce Egg Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b6131569-edfd-42fd-9f26-49587e926ac0.png",
+  "source_sha256": "4fa3945a1f7544dc97a73611e157d7417d744e343f6da2ec3b8960fc9f402c09",
+  "generated_at": "2026-10-04T23:30:07.977Z",
+  "elapsed_ms": 325455,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3f60febd9077024cd897-480.webp",
+      "sha256": "de74e33c67083e1c6bc7ab9c18c578f2887fe76f1694064b0ef91e0ff518f55e",
+      "bytes": 20530
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-3f60febd9077024cd897-retry2-6b9001182f77.webp",
+      "sha256": "6b9001182f7765bbd1edbf3b88433eaea1dabaec39931500243234b6ffc9e1fc",
+      "bytes": 61448
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "4fa3945a1f7544dc97a73611e157d7417d744e343f6da2ec3b8960fc9f402c09",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-hot-sauce-egg"
+    ],
+    "titles": [
+      "Shift Hot Sauce Egg Breakfast Buttie"
+    ],
+    "notes": "Unseeded bap holds tender set egg curds, cooked tomato and wilted spinach with listed red hot sauce. No extra food.",
+    "alt": "Hot sauce egg breakfast bap with tomato and spinach",
+    "reviewed_at": "2026-10-04T23:30:40.931165+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/220.json"
+  },
+  "integrated": true,
+  "live": false
+}

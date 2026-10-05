@@ -1,0 +1,80 @@
+{
+  "groupId": "d537a0193c2e319dce67e1b71d481a806421563489f5b67df0dfbd9583f2deeb",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-apple-savory-box"
+  ],
+  "titles": [
+    "Shift Apple Banana Split Snack Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Apple Banana Split Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"80g\",\"item\":\"diced apple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the banana in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins.",
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "80g",
+      "item": "diced apple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the banana in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e5b41601-24d5-469e-80b3-16a892fdc866.png",
+  "source_sha256": "1669596923b31deec65156db34d626d8cbb87ff2f2d517fe8a9a80662d3f3f2b",
+  "generated_at": "2026-10-04T21:22:56.890Z",
+  "elapsed_ms": 211726,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d537a0193c2e319dce67-480.webp",
+      "sha256": "1e2d84ad511202b1aef3b1355b70c0a62b4e65156f27b4a7527faca70a9d6069",
+      "bytes": 23986
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d537a0193c2e319dce67.webp",
+      "sha256": "c28074237da8f3bf567c173af6b69058d09bf9261624fbd43584a0e9db28538c",
+      "bytes": 70458
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-apple-savory-box"
+    ],
+    "titles": [
+      "Shift Apple Banana Split Snack Pot"
+    ],
+    "notes": "Fruit pot contains banana, apple and mixed berries; rolled oats and pumpkin seeds served separately as specified; no dairy.",
+    "alt": "Banana and apple fruit pot with mixed berries and separate oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T21:27:27.851617+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/d537a0193c2e319dce67e1b71d481a806421563489f5b67df0dfbd9583f2deeb.json",
+    "source_sha256": "1669596923b31deec65156db34d626d8cbb87ff2f2d517fe8a9a80662d3f3f2b"
+  },
+  "integrated": true,
+  "live": false
+}

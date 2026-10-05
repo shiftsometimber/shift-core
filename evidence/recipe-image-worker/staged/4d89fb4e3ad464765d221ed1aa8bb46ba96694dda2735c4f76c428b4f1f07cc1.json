@@ -1,0 +1,82 @@
+{
+  "groupId": "4d89fb4e3ad464765d221ed1aa8bb46ba96694dda2735c4f76c428b4f1f07cc1",
+  "recipe_ids": [
+    "industrial-v3-roast-cajun-beef"
+  ],
+  "titles": [
+    "Shift Cajun Beef Sunday-Style Roast"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Beef Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"Cajun tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Shape the 5% beef mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the Cajun tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked 5% beef mince, roast potatoes, carrots and broccoli together. Spoon the hot Cajun tomato sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; dried oregano cooked into protein only if listed, never fresh garnish. Roast potatoes are peeled, plain golden chunks with ZERO pepper, herbs, green flecks or spices. Carrot batons and boiled broccoli equally plain: oil/oven only, no garnish. Tomato sauce ONLY spooned over the cooked protein. For beef mince EXACTLY TWO compact flattened portions, not a joint or steak.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Shape the 5% beef mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Warm the Cajun tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+    "Serve the cooked 5% beef mince, roast potatoes, carrots and broccoli together. Spoon the hot Cajun tomato sauce over the cooked protein."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1d8b52d5-77d1-440c-8549-0733436614bd.png",
+  "source_sha256": "fbc68901a16f8ee72aac4502896facb3c9516470aea540844246446af203905e",
+  "generated_at": null,
+  "elapsed_ms": 23308.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4d89fb4e3ad464765d22-480.webp",
+      "sha256": "160541bf3f295ce6c6faa9d8ae02f498b8c08f82c598c30469288af413c4bedc",
+      "bytes": 33292
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4d89fb4e3ad464765d22-5a812cc49012.webp",
+      "sha256": "5a812cc490129808bc88c54cf98678755649d461cc5240403b7f809590b7555a",
+      "bytes": 98956
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "fbc68901a16f8ee72aac4502896facb3c9516470aea540844246446af203905e",
+    "recipe_ids": [
+      "industrial-v3-roast-cajun-beef"
+    ],
+    "titles": [
+      "Shift Cajun Beef Sunday-Style Roast"
+    ],
+    "notes": "Exactly two compact flattened beef mince portions are oven-browned and covered with red tomato sauce; peeled golden potato chunks, carrot batons and boiled broccoli remain plain and separate. One plausible serving with central food retained by responsive cropping.",
+    "alt": "Two beef mince portions with tomato sauce, roast potatoes, carrot batons and broccoli.",
+    "reviewed_at": "2026-10-04T23:28:44.652Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-625.json"
+  },
+  "integrated": true,
+  "live": false
+}

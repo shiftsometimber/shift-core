@@ -1,0 +1,86 @@
+{
+  "groupId": "eab9286e213233ec2c6bfd84e2f4c65270df4a55fc5303b2ed2d9689c5a0d5c4",
+  "recipe_ids": [
+    "industrial-v3-bagel-house-chickpea"
+  ],
+  "titles": [
+    "Shift House Chickpea Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift House Chickpea Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"tomato pepper relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.\",\"Use the measured tomato pepper relish as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured tomato pepper relish and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "tomato pepper relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.",
+    "Use the measured tomato pepper relish as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the measured tomato pepper relish and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d60fd5a4-f719-4bf3-93bc-bf84b5914114.png",
+  "source_sha256": "7c5804d3967e9ccb2d9dc4cdf4ddda0cddcc9707da715524c4d36f8acddada60",
+  "generated_at": null,
+  "elapsed_ms": null,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-eab9286e213233ec2c6b-480-c04085d40ae9.webp",
+      "sha256": "c04085d40ae9271a9b755e814a63d93010646e39a261b279d21559615311ca18",
+      "bytes": 32242
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-eab9286e213233ec2c6b-d4fb5706bbf7.webp",
+      "sha256": "d4fb5706bbf7133f6a0be3e015dbb0283f056622cbea3a9fec9685db39a13249",
+      "bytes": 106092
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "7c5804d3967e9ccb2d9dc4cdf4ddda0cddcc9707da715524c4d36f8acddada60",
+    "recipe_ids": [
+      "industrial-v3-bagel-house-chickpea"
+    ],
+    "titles": [
+      "Shift House Chickpea Loaded Bagel"
+    ],
+    "notes": "Plain unseeded wholemeal bagel with chickpeas, drained and tomato pepper relish; reserved raw rocket and tomato side salad separate. Every member title checked against exact ingredients/method. No cheese, seeds, invented side or scatter garnish; protein preparation and dressing placement match method.",
+    "alt": "House Chickpea Loaded Bagel with rocket, tomato",
+    "reviewed_at": "2026-10-04T23:14:25.520688+00:00",
+    "reviewer": "worker-f visual reinspection of exact recovered original",
+    "receipt": "evidence/recipe-image-worker/worker-f/1842.json",
+    "recovery_reinspection": true
+  },
+  "integrated": true,
+  "live": false
+}

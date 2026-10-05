@@ -1,0 +1,84 @@
+{
+  "groupId": "1ccb1205cca60d3f1207516cf7d6a5db995387c0994f18cfa900bb7da14a3536",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-banana-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Banana Fruit Crunch Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Banana Fruit Crunch Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"80g\",\"item\":\"sliced banana\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: any generic method reference to food applies only when that food appears in the exact ingredient list. Wholemeal bread, wrap, bun or crackers plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. No extra sauce, meat, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow every dry/separate and soaked/prepared instruction exactly.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "80g",
+      "item": "sliced banana"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-117e51d9-0200-4b61-b360-a7f1b1f7edce.png",
+  "source_sha256": "69ed0c54d681b4f1bbdbe0f29daa13a80b7331da873a60e416b767b586c05fc4",
+  "generated_at": "2026-10-04T21:39:23.934Z",
+  "elapsed_ms": 146302,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1ccb1205cca60d3f1207-480.webp",
+      "sha256": "1cac65dc12f423d2bd0282584ad38d5e55df2711980c464959db77db5d37cb0a",
+      "bytes": 20024
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1ccb1205cca60d3f1207.webp",
+      "sha256": "afb95ed1915b88a74ba1f40a21e6ca410369a71458263d1d56b32a6394c49006",
+      "bytes": 55282
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-banana-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Banana Fruit Crunch Dessert Pot"
+    ],
+    "notes": "Apple and sliced banana fruit bowl with mixed berries, oats and pumpkin seeds lightly swirled with yoghurt; no chocolate.",
+    "alt": "Apple and banana fruit dessert pot with berries, oats, pumpkin seeds and yoghurt",
+    "reviewed_at": "2026-10-04T21:44:54.240119+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/1ccb1205cca60d3f1207516cf7d6a5db995387c0994f18cfa900bb7da14a3536.json",
+    "source_sha256": "69ed0c54d681b4f1bbdbe0f29daa13a80b7331da873a60e416b767b586c05fc4"
+  },
+  "integrated": true,
+  "live": false
+}

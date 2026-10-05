@@ -1,0 +1,90 @@
+{
+  "groupId": "ac40d01946d62746b5c902dbb1d81d3bedbbcec37709f9c7c4aadb8ed6d84730",
+  "index": 2354,
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-chocolate-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Chocolate Greek Yoghurt Work Snack Box"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "5g",
+      "item": "unsweetened cocoa"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the 0% Greek yoghurt, fruit and crunch so each part has a job rather than simply filling space.",
+    "Portion the 0% Greek yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.",
+    "Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.",
+    "Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Chocolate Greek Yoghurt Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"5g\",\"item\":\"unsweetened cocoa\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the 0% Greek yoghurt, fruit and crunch so each part has a job rather than simply filling space.\",\"Portion the 0% Greek yoghurt first, add the fruit in bite-size pieces and keep crackers, oats or seeds separate so they stay crisp.\",\"Taste the creamy element with the fruit before packing; the combination should work without needing mystery extras.\",\"Seal the box, keep it chilled, and add the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAccuracy note: generic method references to food apply only when that food appears in the exact ingredient list. Plain wholegrain crackers unseeded, no seed garnish unless listed. No cheese unless listed. No extra sauce, nuts, honey or mint garnish. A single finished serving with all food inside plate margins. When recipe lists two crackers show two plain crackers. Follow dry/separate and soaked/prepared instructions exactly. Cocoa means measured cocoa powder folded or dusted on food, never liquid chocolate syrup or extra chocolate chunks unless chopped dark chocolate listed. Overnight oats cocoa must be fully mixed in milk, visibly soft soaked brown oats without dry cocoa pockets. Cinnamon means fine powder, no decorative cinnamon sticks.",
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-080621bc-9bd7-45bd-a2dc-a08d55625536.png",
+  "source_sha256": "c0bb52b27a0ca78e0790d8701c04fb5a49b8ac15f22cab4a30e0f523eaecf268",
+  "dispatched_at": "2026-10-04T22:43:35.292Z",
+  "generated_at": "2026-10-04T22:45:41.528Z",
+  "elapsed_ms": 126236,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ac40d01946d62746b5c9-480.webp",
+      "sha256": "a71ee87444c3a91bf7bb92893bedc50ee8c17496f645be4951cd4569154035f9",
+      "bytes": 23980,
+      "git_blob_sha": "4da09c275a7fd64f0fb77047049b18b099b6ea53"
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ac40d01946d62746b5c9.webp",
+      "sha256": "f9df234e49a57bc0bb8951a189fd0fb87a899cf9744ec485e5ccd2becad97bdf",
+      "bytes": 74050,
+      "git_blob_sha": "e798c188501312f389a340ea854549f0689bf140"
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-chocolate-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Chocolate Greek Yoghurt Work Snack Box"
+    ],
+    "notes": "Smooth Greek yoghurt with cocoa folded through and berries; dry oats and pumpkin seeds separate, two plain crackers; no syrup or chocolate chunks.",
+    "alt": "Cocoa Greek yoghurt snack box with berries, crackers, oats and pumpkin seeds",
+    "reviewed_at": "2026-10-04T22:52:29.503579+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/staged/ac40d01946d62746b5c902dbb1d81d3bedbbcec37709f9c7c4aadb8ed6d84730.json",
+    "source_sha256": "c0bb52b27a0ca78e0790d8701c04fb5a49b8ac15f22cab4a30e0f523eaecf268"
+  },
+  "integrated": true,
+  "live": false
+}

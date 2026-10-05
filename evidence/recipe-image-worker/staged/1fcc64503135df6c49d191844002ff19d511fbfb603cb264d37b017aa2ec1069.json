@@ -1,0 +1,94 @@
+{
+  "groupId": "1fcc64503135df6c49d191844002ff19d511fbfb603cb264d37b017aa2ec1069",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-garlic-herb-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Chicken Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"35g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "35g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the chicken breast until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-397b395c-1263-4e2b-b292-f255038fe2a6.png",
+  "source_sha256": "6a51730ea3deb3f972cd6ab7f05b75343cbe24e3783efa183b6a149627f96447",
+  "generated_at": "2026-10-04T21:41:05.245Z",
+  "elapsed_ms": 229941,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1fcc64503135df6c49d1-480.webp",
+      "sha256": "c260c53727bc002c3328446a54dd612b45443c40404580e939ce37a2b97ebd21",
+      "bytes": 23902
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1fcc64503135df6c49d1.webp",
+      "sha256": "72e8218b2666ca0cc4b93ddf9909efdecbcdc27326c60b55c5dcaaa46f23cd0e",
+      "bytes": 75526
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-garlic-herb-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Breakfast Buttie"
+    ],
+    "notes": "Plain wholemeal bap containing fully cooked browned chicken, cooked tomato and wilted spinach lightly coated in yoghurt with dried parsley. No cheese, seeds or added garnish.",
+    "alt": "Wholemeal bap with chicken, tomato, spinach and garlic-herb yoghurt.",
+    "reviewed_at": "2026-10-04T21:42:37.016547+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/168.json",
+    "source_sha256": "6a51730ea3deb3f972cd6ab7f05b75343cbe24e3783efa183b6a149627f96447"
+  },
+  "integrated": true,
+  "live": false
+}

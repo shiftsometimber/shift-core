@@ -1,0 +1,86 @@
+{
+  "groupId": "4a296ded73c86fe84e991f390cd2a4bcf686568ed64d9d6e5c18fade7e3b7414",
+  "recipe_ids": [
+    "industrial-breakfast-overnight-oats-peach-cinnamon-4"
+  ],
+  "titles": [
+    "Peach Cinnamon Overnight Oats"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Peach Cinnamon Overnight Oats. Ingredients, quantities and allergens: [{\"amount\":\"50g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"150ml\",\"item\":\"semi-skimmed milk\",\"allergens\":[\"milk\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"120g\",\"item\":\"peach, diced\"},{\"amount\":\"1/2 tsp\",\"item\":\"ground cinnamon\"}]. Preparation: [\"Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.\",\"Stir in 100g 0% Greek yoghurt until evenly mixed.\",\"Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 120g peach, diced, 1/2 tsp ground cinnamon. Stir powder flavourings into the milk mixture so no dry pockets remain.\",\"Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.\",\"Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "50g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "150ml",
+      "item": "semi-skimmed milk",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "120g",
+      "item": "peach, diced"
+    },
+    {
+      "amount": "1/2 tsp",
+      "item": "ground cinnamon"
+    }
+  ],
+  "method": [
+    "Put 50g rolled oats and 150ml semi-skimmed milk into a clean lidded container and stir until all the oats are wet.",
+    "Stir in 100g 0% Greek yoghurt until evenly mixed.",
+    "Wash and prepare the fruit, removing any stones or inedible peel, then mix in the measured additions: 120g peach, diced, 1/2 tsp ground cinnamon. Stir powder flavourings into the milk mixture so no dry pockets remain.",
+    "Cover and refrigerate for at least 6 hours or overnight. Stir well before eating; the oats should be soft throughout.",
+    "Keep chilled and eat within 24 hours of preparation, following any shorter ingredient use-by date. The listed quantities include every topping and side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-bc912f56-0d6a-4dfd-bba2-9f0158a1f3a2.png",
+  "source_sha256": "838a967854c23f4ba6e863bdcc35918615d9ada23a1659671df710d07e70b0f0",
+  "generated_at": "2026-10-04T21:08:44.269Z",
+  "elapsed_ms": 96564,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4a296ded73c86fe84e99-480.webp",
+      "sha256": "b76cf9ef70135df57270a5a940990e0dd29ebff63f8be2586f6263379b16f349",
+      "bytes": 16400
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4a296ded73c86fe84e99.webp",
+      "sha256": "8a1ce1385c36a1c6a4951ab868cecad1f0e4bf6bb22252fe0fe25f2515105825",
+      "bytes": 49180
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-overnight-oats-peach-cinnamon-4"
+    ],
+    "titles": [
+      "Peach Cinnamon Overnight Oats"
+    ],
+    "notes": "Soft soaked oat flakes in a creamy milk-yoghurt mixture with diced peach mixed throughout and cinnamon specks; no separate toppings or unlisted garnish; single bowl and useful margins.",
+    "alt": "Creamy overnight oats with diced peach and cinnamon.",
+    "reviewed_at": "2026-10-04T21:11:31.022902+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/batch.json",
+    "source_sha256": "838a967854c23f4ba6e863bdcc35918615d9ada23a1659671df710d07e70b0f0"
+  },
+  "integrated": true,
+  "live": false
+}

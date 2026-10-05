@@ -1,0 +1,89 @@
+{
+  "groupId": "e8b29045b19eeccd3780b6db74db302752c7bf5a5dacf158cd206b0b5599e59a",
+  "recipe_ids": [
+    "industrial-v3-bagel-sweet-chilli-egg"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Egg Loaded Bagel"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Egg Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Use the measured sweet chilli sauce as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the measured sweet chilli sauce and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel: no sesame/poppy seeds, cheese or unlisted food. Keep the raw spinach/tomato or rocket/tomato side salad separate where method reserves it. Spring onion belongs finely sliced in mixed salad beside jacket potatoes. Greek yoghurt/lemon/paprika dressing must be mixed and placed as method requires, no paprika dust or lemon wedge garnish. No mayo or melted cheese. Chicken/turkey plain cooked breast without breadcrumb/batter coating. Sweet chilli sauce translucent reddish glossy, never creamy. Chickpeas roughly mashed only for toastie/bagel; whole elsewhere. Eggs are sliced hard-boiled eggs.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+    "Use the measured sweet chilli sauce as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the measured sweet chilli sauce and olive oil dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-294ad06a-7e38-47ef-93af-cece182a1c9f.png",
+  "source_sha256": "23ad58b8ed108bd85564b2469e09e59564a3f5e0d30b047bcab48f91b11cdaec",
+  "generated_at": "2026-10-05T00:26:17.832Z",
+  "elapsed_ms": 366631.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e8b29045b19eeccd3780-480-eda424c98cf3.webp",
+      "sha256": "eda424c98cf321fd6793b305cae61c32e730c702eb6cebe14b8ce2649288139c",
+      "bytes": 27546
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e8b29045b19eeccd3780-e105921d1e77.webp",
+      "sha256": "e105921d1e772fa0ba191515c7a1367fb4bb4010ca2023a935e997890fe37569",
+      "bytes": 82646
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "23ad58b8ed108bd85564b2469e09e59564a3f5e0d30b047bcab48f91b11cdaec",
+    "recipe_ids": [
+      "industrial-v3-bagel-sweet-chilli-egg"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Egg Loaded Bagel"
+    ],
+    "notes": "Unseeded wholemeal bagel shows sliced hard-boiled eggs, rocket/tomato and translucent sweet chilli dressing, with reserved rocket/tomato salad alongside. No mayonnaise, cheese or seeds. Exact title/method checked.",
+    "alt": "Sweet chilli boiled egg bagel with rocket and tomato salad",
+    "reviewed_at": "2026-10-05T00:27:05.382270+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2062.json"
+  },
+  "integrated": true,
+  "live": false
+}

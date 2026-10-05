@@ -1,0 +1,85 @@
+{
+  "groupId": "855c6f6baa6968053b38b6141f30ac80d6d327113946dc1b5f4c07a0c6029d45",
+  "recipe_ids": [
+    "industrial-v3-chilli-cajun-tofu"
+  ],
+  "titles": [
+    "Shift Cajun Tofu Big Chilli"
+  ],
+  "prompt": "The accompanying rice must unmistakably be cooked wholegrain BROWN RICE. Each elongated grain has continuous tan-brown bran skin over its surface; naturally brown not polished white with brown specks. Show generous exposed crescent of tan wholegrain rice. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Tofu Big Chilli. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"kidney beans\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"40g\",\"item\":\"Cajun tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Deseed and dice the 90g red pepper and drain and rinse canned, ready-cooked kidney beans, then weigh out 90g; raw or dried kidney beans cannot be used in this method. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g red pepper and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Add the drained kidney beans. Cover and heat for 3\u20134 minutes over a low heat, stirring halfway, until the beans are steaming hot.\",\"Turn the heat to low and fold in the 40g Cajun tomato sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; dried oregano cooked into protein only if listed, never fresh garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "kidney beans"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g brown rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Deseed and dice the 90g red pepper and drain and rinse canned, ready-cooked kidney beans, then weigh out 90g; raw or dried kidney beans cannot be used in this method. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g red pepper and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained kidney beans. Cover and heat for 3\u20134 minutes over a low heat, stirring halfway, until the beans are steaming hot.",
+    "Turn the heat to low and fold in the 40g Cajun tomato sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a6b0789d-f6d3-4e6f-8c4a-de347cb9e5f2.png",
+  "source_sha256": "ee06c4d54c154d57b38652b442929d35028b8a1c143a6bc68db62c988ec48b39",
+  "generated_at": "2026-10-04T23:42:50.462Z",
+  "elapsed_ms": 156747.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-855c6f6baa6968053b38-480.webp",
+      "sha256": "6eb437a4b33e8149e48aa7c7dd79b1484b2846360ac43b9b8952860487f856fa",
+      "bytes": 30484
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-855c6f6baa6968053b38-bc7e5652b113.webp",
+      "sha256": "bc7e5652b1132a4c79e3fa3bedd94d5fa0dd8e39dc05a934617cd72a0f8b0a3d",
+      "bytes": 96646
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ee06c4d54c154d57b38652b442929d35028b8a1c143a6bc68db62c988ec48b39",
+    "recipe_ids": [
+      "industrial-v3-chilli-cajun-tofu"
+    ],
+    "titles": [
+      "Shift Cajun Tofu Big Chilli"
+    ],
+    "notes": "Browned firm tofu cubes with pale interiors, kidney beans and diced red pepper in tomato coating over naturally tan wholegrain brown rice with visible bran; no garnish. One plausible serving with central food retained by responsive cropping.",
+    "alt": "Tofu and kidney bean chilli with wholegrain brown rice.",
+    "reviewed_at": "2026-10-04T23:51:53.542Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-662.json"
+  },
+  "integrated": true,
+  "live": false
+}

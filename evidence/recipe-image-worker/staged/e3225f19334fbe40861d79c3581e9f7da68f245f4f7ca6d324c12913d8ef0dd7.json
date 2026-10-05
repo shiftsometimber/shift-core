@@ -1,0 +1,96 @@
+{
+  "groupId": "e3225f19334fbe40861d79c3581e9f7da68f245f4f7ca6d324c12913d8ef0dd7",
+  "recipe_ids": [
+    "industrial-v3-roast-lemon-herb-salmon"
+  ],
+  "titles": [
+    "Shift Lemon Herb Salmon Sunday-Style Roast"
+  ],
+  "prompt": "Edit this exact salmon dish photograph. Remove EVERY tiny black, brown or green herb/pepper/seasoning fleck from salmon, all potatoes, onion and peppers. Preserve natural golden brown crust and food identity but smooth plain surfaces WITHOUT scattered seasoning specks. The only parsley is inside cold white mayonnaise dressing: preserve it in existing side ramekin for roast/tray, or spooned on top of rice bowl. No herbs on hot food. Preserve broccoli/whole vegetables, no invented ingredients or garnish. Exact recipe: Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Salmon Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Place the salmon fillet on a separate lined tray and roast for approximately 12\u201315 minutes, until opaque at the thickest point and easy to flake. Check for bones before serving.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Stir together the measured light mayonnaise, lemon juice, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Serve the cooked salmon fillet, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, lemon juice, dried parsley dressing alongside after cooking.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes, peeled, raw"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+    "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+    "Use the final quarter of the measured olive oil on the separate protein tray. Place the salmon fillet on a separate lined tray and roast for approximately 12\u201315 minutes, until opaque at the thickest point and easy to flake. Check for bones before serving.",
+    "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+    "Stir together the measured light mayonnaise, lemon juice, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Serve the cooked salmon fillet, roast potatoes, carrots and broccoli together. Spoon the chilled light mayonnaise, lemon juice, dried parsley dressing alongside after cooking."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c98fb0d3-084b-40be-a52a-b2ce4d2fa45e.png",
+  "source_sha256": "8e2b361b228ff9ca90e52e8dc1a0e48e5bd60cb6d425d27718b3d6527a2d2e7a",
+  "generated_at": "2026-10-04T23:07:51.866Z",
+  "elapsed_ms": 62406.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e3225f19334fbe40861d-retry5-480-e6e25de667b1.webp",
+      "sha256": "e6e25de667b1efb8c4642c76ba159cbbcb9f2fda1078a45a76fdb95a1c15d42b",
+      "bytes": 26104
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e3225f19334fbe40861d-retry5-a02a05539d4d.webp",
+      "sha256": "a02a05539d4db88f607783fd93446596aa9d1af3e1ea2f13d4677cf7055c45ea",
+      "bytes": 75300
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8e2b361b228ff9ca90e52e8dc1a0e48e5bd60cb6d425d27718b3d6527a2d2e7a",
+    "recipe_ids": [
+      "industrial-v3-roast-lemon-herb-salmon"
+    ],
+    "titles": [
+      "Shift Lemon Herb Salmon Sunday-Style Roast"
+    ],
+    "notes": "Corrected full-resolution review: plain cooked opaque salmon fillet, smooth golden peeled roast potato chunks, carrot batons and boiled broccoli; parsley only in cold white side dressing.",
+    "alt": "Salmon roast with potatoes, carrots, broccoli and cold lemon parsley dressing",
+    "reviewed_at": "2026-10-04T23:08:19.018121+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1009.json"
+  },
+  "integrated": true,
+  "live": false
+}

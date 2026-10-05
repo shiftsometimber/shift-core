@@ -1,0 +1,87 @@
+{
+  "groupId": "22899fce116dfb8c4509b06c8c3e6cf452656e3e808602580de9939136e3c447",
+  "recipe_ids": [
+    "industrial-v3-wrap-smoky-tuna"
+  ],
+  "titles": [
+    "Shift Smoky Tuna Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Tuna Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"smoked paprika dressing\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the tuna in spring water, drained with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel: no sesame/poppy seeds, cheese or unlisted food. Keep the raw spinach/tomato or rocket/tomato side salad separate where method reserves it. Spring onion belongs finely sliced in mixed salad beside jacket potatoes. Greek yoghurt/lemon/paprika dressing must be mixed and placed as method requires, no paprika dust or lemon wedge garnish. No mayo or melted cheese. Tuna remains fibrous flakes, ham thin strips where specified, turkey plain cooked breast without breadcrumb/batter coating.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "smoked paprika dressing"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Season the tuna in spring water, drained with the measured flavourings and keep the fresh ingredients fresh; there is no sauce reduction step to invent here.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-587962cf-17ea-4a97-b77a-dbaca11d4de6.png",
+  "source_sha256": "48c2adb27bec76e9348c3fa665dc758abbcbcbe25822fc4f63ce8c6ca30df55a",
+  "generated_at": "2026-10-05T00:12:55.591Z",
+  "elapsed_ms": 244185.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-22899fce116dfb8c4509-480-3071a13c9c90.webp",
+      "sha256": "3071a13c9c90601566bbf6e987686b2567eaa764f9237531579a913778c1562e",
+      "bytes": 18604
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-22899fce116dfb8c4509-03b61655b845.webp",
+      "sha256": "03b61655b845dfee1bd036de16fbaa7b9ec4641cba126b86fe94257de749d1cd",
+      "bytes": 56946
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "48c2adb27bec76e9348c3fa665dc758abbcbcbe25822fc4f63ce8c6ca30df55a",
+    "recipe_ids": [
+      "industrial-v3-wrap-smoky-tuna"
+    ],
+    "titles": [
+      "Shift Smoky Tuna Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with tuna flakes seasoned with listed smoked paprika dressing, fresh lettuce and tomato. No invented sauce reduction, cheese, seeds, garnish or extra side.",
+    "alt": "Smoky tuna wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:16:23.842694+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2041.json"
+  },
+  "integrated": true,
+  "live": false
+}

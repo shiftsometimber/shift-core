@@ -1,0 +1,86 @@
+{
+  "groupId": "72f13dc5ec583ef32e456fba4fe71edd72a6fbb7b2c419c6490fa3fcfc65210a",
+  "recipe_ids": [
+    "industrial-v3-sandwich-garlic-herb-turkey"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Turkey Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Turkey Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the garlic & herb flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Never add a lemon wedge just because the sauce is lemon herb yoghurt.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the garlic & herb flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-50335c1b-026f-49b9-b06b-c308cc6b4a79.png",
+  "source_sha256": "744066e84ce245f830c1d74ebab0aa696619982f64ff04c3c1b000bf976d2385",
+  "generated_at": "2026-10-04T21:31:15.585Z",
+  "elapsed_ms": 195348.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-72f13dc5ec583ef32e45-480.webp",
+      "sha256": "933903195fd4a05ec18e060a0c3f087f0b7eef55113c0cb1aaa77eaa7612ce10",
+      "bytes": 28206
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-72f13dc5ec583ef32e45.webp",
+      "sha256": "5ccd7ae6df78a8842c56ba7da9034da91169bcac2184801ac59095070d052f0c",
+      "bytes": 84774
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-sandwich-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Proper Sandwich"
+    ],
+    "notes": "Plain wholemeal sandwich with lightly coloured cooked turkey slices, fresh lettuce/tomato and garlic herb yoghurt; no additional food.",
+    "alt": "Garlic & Herb Turkey Proper Sandwich with lettuce, tomato",
+    "reviewed_at": "2026-10-04T21:35:29.622209+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1798.json",
+    "source_sha256": "744066e84ce245f830c1d74ebab0aa696619982f64ff04c3c1b000bf976d2385"
+  },
+  "integrated": true,
+  "live": false
+}

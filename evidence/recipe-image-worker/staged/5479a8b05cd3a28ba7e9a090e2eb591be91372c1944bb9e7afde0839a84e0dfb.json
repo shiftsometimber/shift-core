@@ -1,0 +1,86 @@
+{
+  "groupId": "5479a8b05cd3a28ba7e9a090e2eb591be91372c1944bb9e7afde0839a84e0dfb",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-cheesy-sausage"
+  ],
+  "titles": [
+    "Shift Cheesy Sausage Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Sausage Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6450b18f-7fbc-453a-bc15-cf72ac4867fe.png",
+  "source_sha256": "a0ce4e0c5cb29a8b7bc27e42c76d854cb540ed692ef1e30712ca14ddaaaf2b0c",
+  "generated_at": "2026-10-04T21:22:38.599Z",
+  "elapsed_ms": 91782,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5479a8b05cd3a28ba7e9-480.webp",
+      "sha256": "a37ff4b55cedc2a92506ecc1c6fcb51cbf1938bf038ece62e6726d772c35e53a",
+      "bytes": 25080
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5479a8b05cd3a28ba7e9.webp",
+      "sha256": "4100c6a0977d7a1ad673350505eac7125da82fbe9dd6c7c9204050d904308293",
+      "bytes": 73368
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-cheesy-sausage"
+    ],
+    "titles": [
+      "Shift Cheesy Sausage Breakfast Wrap"
+    ],
+    "notes": "Cooked sausage filling with softened mixed peppers, wilted spinach and cheddar in a plain crisped wholemeal wrap. No extra sides, seeds or garnish.",
+    "alt": "Wholemeal wrap with sausage, peppers, spinach and melted cheddar.",
+    "reviewed_at": "2026-10-04T21:28:49.843498+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/131.json",
+    "source_sha256": "a0ce4e0c5cb29a8b7bc27e42c76d854cb540ed692ef1e30712ca14ddaaaf2b0c"
+  },
+  "integrated": true,
+  "live": false
+}

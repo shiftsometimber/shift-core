@@ -1,0 +1,87 @@
+{
+  "groupId": "62266552aba311a3a65ffa0ba7039ae441271103aaf7e97319171114c35e59b5",
+  "recipe_ids": [
+    "industrial-v3-meal-prep-bowl-tikka-turkey"
+  ],
+  "titles": [
+    "Shift Tikka Turkey Meal-Prep Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Tikka Turkey Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"amount\":\"40g\",\"item\":\"tikka yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured tikka yoghurt and olive oil dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nWholemeal bread/wrap/bagel/pitta plain unseeded; no sesame/poppy seed garnish or cheese unless explicitly listed. Tikka yoghurt only in the recipes listing it; no extra cream/mayo or coriander. Poultry plain cooked breast unbreaded; tuna fibrous drained flakes. Tofu specifically ready-to-eat pale unseared firm tofu: small cubes in grain salad, jacket, pasta and rice; thin slices in pitta, toastie, wrap. Never substitute feta, chicken or grilled tofu. Cheddar only listed Tofu Toastie, grated before toast. Preserve raw vegetables and all reserved side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not topping. Listed lemon/lime juice/dressing incorporated: no citrus wedges. Wholegrain mustard stays in grain-salad dressing, no seed garnish. Rice/pasta/couscous depicted cooked.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "40g",
+      "item": "tikka yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured tikka yoghurt as a ready-to-eat sauce or dressing; stir in all the measured olive oil. Keep chilled sauces refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the measured tikka yoghurt and olive oil dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-f3d0f1c0-3801-43b0-b554-691454e1f1b5.png",
+  "source_sha256": "4c943202f85ea12ad19dd4c24a1926315e9f848cb3bbf9203e5ffcd86c4c64c6",
+  "generated_at": "2026-10-05T00:56:10.369Z",
+  "elapsed_ms": 204283.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-62266552aba311a3a65f-480-cdf60a5cdb12.webp",
+      "sha256": "cdf60a5cdb12885f5a627bc48553e599508881a4d5023a7bf70f92db47a689e3",
+      "bytes": 25466
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-62266552aba311a3a65f-a44a18b414cb.webp",
+      "sha256": "a44a18b414cb80ea08d3861eeb5d12ba88a96820c643125abe2dc17aaa00ce38",
+      "bytes": 74178
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "4c943202f85ea12ad19dd4c24a1926315e9f848cb3bbf9203e5ffcd86c4c64c6",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-tikka-turkey"
+    ],
+    "titles": [
+      "Shift Tikka Turkey Meal-Prep Bowl"
+    ],
+    "notes": "Cooked brown rice with plain cooked turkey slices, raw diced mixed peppers and sweetcorn; listed tikka yoghurt/oil dressing folded through. No herbs, cheese or unlisted ingredient; exact title/method checked.",
+    "alt": "Tikka yoghurt turkey rice bowl with peppers and sweetcorn",
+    "reviewed_at": "2026-10-05T01:01:45.628303+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2119.json"
+  },
+  "integrated": true,
+  "live": false
+}

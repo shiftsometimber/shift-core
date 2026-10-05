@@ -1,0 +1,84 @@
+{
+  "groupId": "a9948fd1927ec3cc701dc76bda7c891bccb1d6fbd4bb43d56724edcbf9a259c1",
+  "recipe_ids": [
+    "industrial-v3-sandwich-katsu-ham"
+  ],
+  "titles": [
+    "Shift Katsu Ham Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Katsu Ham Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"katsu-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the katsu flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Katsu-style sauce does NOT mean breadcrumb coating: no breadcrumbs/flour/batter absent from recipe.",
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "katsu-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the katsu flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b4ac5faa-39e2-446a-a96f-9795c3f48913.png",
+  "source_sha256": "6cc3d6dc3865afaaa94da0be0000ac59273e17c869dfa18780da0e2c79dcd6a3",
+  "generated_at": null,
+  "elapsed_ms": null,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a9948fd1927ec3cc701d-480-984a81c370f5.webp",
+      "sha256": "984a81c370f5c27d98586030434bc74b6a240ba5b6337e531d5363b23ccc9f54",
+      "bytes": 26980
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a9948fd1927ec3cc701d-4452216da240.webp",
+      "sha256": "4452216da240b099d4a2f70dd95720060991a845b5760b4949151f9587c50890",
+      "bytes": 81920
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6cc3d6dc3865afaaa94da0be0000ac59273e17c869dfa18780da0e2c79dcd6a3",
+    "recipe_ids": [
+      "industrial-v3-sandwich-katsu-ham"
+    ],
+    "titles": [
+      "Shift Katsu Ham Proper Sandwich"
+    ],
+    "notes": "Plain wholemeal sandwich with lean ham, fresh lettuce and tomato, and katsu-style sauce. Every member title checked against exact ingredients/method. No cheese, seeds, invented side or scatter garnish; protein preparation and dressing placement match method.",
+    "alt": "Katsu Ham Proper Sandwich with lettuce, tomato",
+    "reviewed_at": "2026-10-04T23:14:25.520688+00:00",
+    "reviewer": "worker-f visual reinspection of exact recovered original",
+    "receipt": "evidence/recipe-image-worker/worker-f/1894.json",
+    "recovery_reinspection": true
+  },
+  "integrated": true,
+  "live": false
+}

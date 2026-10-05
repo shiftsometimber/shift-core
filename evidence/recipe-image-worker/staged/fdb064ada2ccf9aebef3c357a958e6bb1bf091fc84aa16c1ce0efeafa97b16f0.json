@@ -1,0 +1,87 @@
+{
+  "groupId": "fdb064ada2ccf9aebef3c357a958e6bb1bf091fc84aa16c1ce0efeafa97b16f0",
+  "recipe_ids": [
+    "industrial-v3-sandwich-sweet-chilli-tuna"
+  ],
+  "titles": [
+    "Shift Sweet Chilli Tuna Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Sweet Chilli Tuna Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"sweet chilli sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the tuna in spring water, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the sweet chilli flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the tuna in spring water, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nPlain unseeded wholemeal bread, wrap and bagel, no sesame/poppy seeds, cheese or food not listed. Sweet chilli sauce is translucent glossy red, never creamy: no mayo/yoghurt/cream. Tuna is loose fibrous drained flakes, never creamy tuna salad; ham thin cooked strips where method specifies. Eggs sliced hard-boiled. Turkey plain cooked breast not breaded. Keep reserved raw spinach/tomato or rocket/tomato side salads separate. Spring onion sliced finely mixed into salad alongside jacket potatoes, never garnish on potato. Cook rice; peppers raw diced, corn ready-to-eat. Sauce incorporated exactly as method states.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "sweet chilli sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the tuna in spring water, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the tuna in spring water, drained through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the sweet chilli flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the tuna in spring water, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5a8f4a04-16d7-46ef-8d56-6c617ee980c9.png",
+  "source_sha256": "ce5285c0654a1c27bba587747efc3f5d491a1fa83648204ca53e3c33628f995b",
+  "generated_at": "2026-10-05T00:34:03.315Z",
+  "elapsed_ms": 346732.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fdb064ada2ccf9aebef3-480-1ce4c43c3759.webp",
+      "sha256": "1ce4c43c3759e13a28cdd434dd62a0e9ba1389a90f2171320d4f516809b46706",
+      "bytes": 27008
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-fdb064ada2ccf9aebef3-5ec5f1380503.webp",
+      "sha256": "5ec5f1380503e6ff252168e1dae9e77d66abacfc627eadbe188cdc07183e84d2",
+      "bytes": 80732
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ce5285c0654a1c27bba587747efc3f5d491a1fa83648204ca53e3c33628f995b",
+    "recipe_ids": [
+      "industrial-v3-sandwich-sweet-chilli-tuna"
+    ],
+    "titles": [
+      "Shift Sweet Chilli Tuna Proper Sandwich"
+    ],
+    "notes": "Two plain wholemeal bread slices enclosing loose tuna flakes with translucent sweet chilli sauce and fresh lettuce/tomato. No mayonnaise/yoghurt coating, cheese, seeds or extra side; exact title/method checked.",
+    "alt": "Wholemeal sweet chilli tuna sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:35:00.073636+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2078.json"
+  },
+  "integrated": true,
+  "live": false
+}

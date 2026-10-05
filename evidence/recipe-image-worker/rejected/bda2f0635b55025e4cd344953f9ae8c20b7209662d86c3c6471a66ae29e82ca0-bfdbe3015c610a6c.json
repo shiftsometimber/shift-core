@@ -1,0 +1,18 @@
+{
+  "groupId": "bda2f0635b55025e4cd344953f9ae8c20b7209662d86c3c6471a66ae29e82ca0",
+  "source_sha256": "bfdbe3015c610a6c2f73369406b426287de9ddf4d5d31de1083994f8fccd7a6b",
+  "review": {
+    "decision": "reject",
+    "source_sha256": "bfdbe3015c610a6c2f73369406b426287de9ddf4d5d31de1083994f8fccd7a6b",
+    "recipe_ids": [
+      "industrial-v3-chilli-balti-chicken"
+    ],
+    "titles": [
+      "Shift Balti Chicken Big Chilli"
+    ],
+    "notes": "Rice is ivory and polished-looking with insufficient visible bran; actual recipe requires brown rice. Replace only the rice while preserving the accurate cooked chicken, kidney beans, red pepper and balti coating.",
+    "reviewed_at": "2026-10-04T23:45:25.955299+00:00",
+    "reviewer": "root-individual-full-resolution-review"
+  },
+  "reason": "Rice is ivory and polished-looking with insufficient visible bran; actual recipe requires brown rice. Replace only the rice while preserving the accurate cooked chicken, kidney beans, red pepper and balti coating."
+}

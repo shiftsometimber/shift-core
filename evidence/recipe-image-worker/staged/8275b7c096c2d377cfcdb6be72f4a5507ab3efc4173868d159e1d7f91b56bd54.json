@@ -1,0 +1,84 @@
+{
+  "groupId": "8275b7c096c2d377cfcdb6be72f4a5507ab3efc4173868d159e1d7f91b56bd54",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-cherry-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Cherry Fruit Crunch Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cherry Fruit Crunch Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"80g\",\"item\":\"cherries\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.\",\"Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.\",\"Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.\",\"Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only, no honey, nuts, mint, syrup or garnish. Cherries ALL destoned stemless fresh HALVES with visible EMPTY pit cavities; no whole cherries, cherry stones, stems or glazed maraschino cherries. Small25g berries alongside measured80g cherry flesh. No cake or biscuit crumbs. All food inside frame. Exactly TWO entire plain unseeded crackers, visibly offset with independent edges for counting. No sesame/poppy seeds. Real snack box: dry oats/seeds/crackers in separate compartments from bite-size fruit and any dairy base.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "80g",
+      "item": "cherries"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.",
+    "Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.",
+    "Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.",
+    "Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ee1f8f27-9b89-4091-a33c-50ae9978a15b.png",
+  "source_sha256": "15128cb9e51e31809b63a87806fd677f53a2255dca3fa750bb1880140a6e8b22",
+  "generated_at": "2026-10-05T00:14:44.568Z",
+  "elapsed_ms": 434143,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8275b7c096c2d377cfcd-480-9ff8db81320e.webp",
+      "sha256": "9ff8db81320eed4c6aec0155b2fd10681ef7790bc36e88101e901ec36deb0bcd",
+      "bytes": 25408
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8275b7c096c2d377cfcd-c020d85a298a.webp",
+      "sha256": "c020d85a298a440603847cf0f93ab6e86341dc2486e6bcea1f86f194787f139e",
+      "bytes": 80624
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "15128cb9e51e31809b63a87806fd677f53a2255dca3fa750bb1880140a6e8b22",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-cherry-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Cherry Fruit Crunch Work Snack Box"
+    ],
+    "notes": "Bite-size apple and destoned cherry halves/small berries; dry oats/seeds and exactly two plain crackers separate from juicy fruit.",
+    "alt": "Apple and pitted cherry snack box with berries, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-05T00:16:56.086676+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/8275b7c096c2d377cfcdb6be72f4a5507ab3efc4173868d159e1d7f91b56bd54.json"
+  },
+  "integrated": true,
+  "live": false
+}

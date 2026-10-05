@@ -1,0 +1,91 @@
+{
+  "groupId": "26c4defcbd541bb25216ad9d531328a2edcefb072f60525caf0f38f11b445c7b",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-mediterranean-beans"
+  ],
+  "titles": [
+    "Shift Mediterranean Beans Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mediterranean Beans Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"baked beans\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"25g\",\"item\":\"tomato ketchup\"},{\"amount\":\"1g\",\"item\":\"dried oregano\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "25g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "1g",
+      "item": "dried oregano"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot, add the baked beans and let it take on a little colour before you start moving it around.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-d097666d-da08-4c8a-a707-34d33a4745f2.png",
+  "source_sha256": "41dcc9ebdf016b55d1dd5c3d50220abb92015a23c1f725e9eb6fbf1e1612cd42",
+  "generated_at": "2026-10-04T23:42:32.286Z",
+  "elapsed_ms": 22686,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-26c4defcbd541bb25216-480.webp",
+      "sha256": "d02340481c61dbfea24f7df5ed58f173d393b84bab4bc390ef2b6ee0b154d1be",
+      "bytes": 23188
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-26c4defcbd541bb25216-retry2-b6cd9e4dc49a.webp",
+      "sha256": "b6cd9e4dc49a66db1e217bf41f8d164bc3e5f3c5bfb23ff1ece959304ada580f",
+      "bytes": 73482
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "41dcc9ebdf016b55d1dd5c3d50220abb92015a23c1f725e9eb6fbf1e1612cd42",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-mediterranean-beans"
+    ],
+    "titles": [
+      "Shift Mediterranean Beans Breakfast Buttie"
+    ],
+    "notes": "Unseeded wholemeal bap filled with hot baked beans, softened tomato and wilted spinach in listed tomato-oregano sauce. No fresh garnish.",
+    "alt": "Mediterranean baked bean bap with tomato and spinach",
+    "reviewed_at": "2026-10-04T23:48:31.188990+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/240.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,81 @@
+{
+  "groupId": "206f4a5c0c181b6543417a303d648f479965807916e51864262bc3c417fbaa8b",
+  "recipe_ids": [
+    "industrial-v3-curry-jalfrezi-beef"
+  ],
+  "titles": [
+    "Shift Jalfrezi Beef Proper Curry"
+  ],
+  "prompt": "Photorealistic editorial food photography of the exact finished recipe in natural window light, truthful appetising textures in a plain serving dish. No invented garnish or additions. Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Jalfrezi Beef Proper Curry. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"pepper and tomato masala\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Turn the heat to low and fold in the 40g pepper and tomato masala. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked 5% beef mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "75g",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "pepper and tomato masala"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Turn the heat to low and fold in the 40g pepper and tomato masala. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked 5% beef mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-eb889eca-1860-4fee-af82-90fd99789a3d.png",
+  "source_sha256": "333d4c138937d4666e15a4f2073853708c9bd4157f4f3a6efba9fa25d0e52398",
+  "generated_at": "2026-10-05T00:30:44.588Z",
+  "elapsed_ms": 198427,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-206f4a5c0c181b654341-480.webp",
+      "sha256": "1037496f2b8b18e7465af64a70309868f6c5e3ca3d75eb55cb35531b4895091d",
+      "bytes": 30046
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-206f4a5c0c181b654341.webp",
+      "sha256": "2d9fd992eb0ae3f5ef8e8dcab1c153ce8ba287fef9e9274312983c729cca2a2f",
+      "bytes": 91962
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "alt": "Jalfrezi beef mince with sliced onion and peppers over basmati rice",
+    "notes": "Individually inspected full-resolution: loose browned beef mince, softened onion and mixed pepper strips in red tomato masala over white basmati rice; exact method and all titles checked, no extras.",
+    "recipe_ids": [
+      "industrial-v3-curry-jalfrezi-beef"
+    ],
+    "titles": [
+      "Shift Jalfrezi Beef Proper Curry"
+    ],
+    "source_sha256": "333d4c138937d4666e15a4f2073853708c9bd4157f4f3a6efba9fa25d0e52398",
+    "reviewed_at": "2026-10-05T00:50:10.479313+00:00"
+  }
+}

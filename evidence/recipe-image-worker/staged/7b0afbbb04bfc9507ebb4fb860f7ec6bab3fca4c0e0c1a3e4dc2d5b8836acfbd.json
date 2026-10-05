@@ -1,0 +1,87 @@
+{
+  "groupId": "7b0afbbb04bfc9507ebb4fb860f7ec6bab3fca4c0e0c1a3e4dc2d5b8836acfbd",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-biscoff-style-cottage-cheese"
+  ],
+  "titles": [
+    "Shift Biscuit-Style Cottage Cheese Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Biscuit-Style Cottage Cheese Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"low-fat cottage cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"20g\",\"item\":\"crushed wholegrain biscuit\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nUse only listed foods, no honey, nuts, mint, syrup or garnish. Crushed wholegrain biscuit is modest irregular crumb pieces, no caramel spread or cookie butter. Berries just the listed25g, a small portion. All food safely inside frame. Exactly two plain unseeded wholegrain crackers where listed, no sesame/poppy seeds. Finished combined dessert in ONE bowl: all ingredients combined, measured yoghurt visibly swirled through. No separate ramekins.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "low-fat cottage cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "20g",
+      "item": "crushed wholegrain biscuit"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-42d965ae-b6c2-4efe-918e-3f2bf17e2b57.png",
+  "source_sha256": "1a4419cfd0a4549712391efbc3063f1e6018670181e1c9c49b9c4a436f760506",
+  "generated_at": "2026-10-04T23:27:02.926Z",
+  "elapsed_ms": 100713,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7b0afbbb04bfc9507ebb-480-5e05ff182cc5.webp",
+      "sha256": "5e05ff182cc5b25c0fe58c1954e0b1e7b5097fe6584d091814841082d0cf4813",
+      "bytes": 23892
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-7b0afbbb04bfc9507ebb-6ec558736361.webp",
+      "sha256": "6ec558736361f69223965803e929676d63dc30e6561cb1a7e32f3d66717bb40d",
+      "bytes": 70946
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "1a4419cfd0a4549712391efbc3063f1e6018670181e1c9c49b9c4a436f760506",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-biscoff-style-cottage-cheese"
+    ],
+    "titles": [
+      "Shift Biscuit-Style Cottage Cheese Dessert Pot"
+    ],
+    "notes": "Combined cottage cheese dessert with modest berries, biscuit crumbs, oats and pumpkin seeds, Greek yoghurt swirled through. No separate creamy portion.",
+    "alt": "Cottage cheese dessert with berries, biscuit crumbs, oats, pumpkin seeds and Greek yoghurt.",
+    "reviewed_at": "2026-10-04T23:32:45.935513+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/7b0afbbb04bfc9507ebb4fb860f7ec6bab3fca4c0e0c1a3e4dc2d5b8836acfbd.json"
+  },
+  "integrated": true,
+  "live": false
+}

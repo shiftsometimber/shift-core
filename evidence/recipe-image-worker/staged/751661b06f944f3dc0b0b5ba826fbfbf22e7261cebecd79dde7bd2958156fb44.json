@@ -1,0 +1,89 @@
+{
+  "groupId": "751661b06f944f3dc0b0b5ba826fbfbf22e7261cebecd79dde7bd2958156fb44",
+  "recipe_ids": [
+    "industrial-v3-sandwich-garlic-herb-egg"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Egg Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Egg Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the boiled eggs are meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.\",\"Build the garlic & herb flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the boiled eggs, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the boiled eggs are meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.",
+    "Build the garlic & herb flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the boiled eggs, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6a537e8d-687c-4325-839c-e58c36bafea9.png",
+  "source_sha256": "76162a26902a5fef17b0896a18b4ae52f78e941f91ee12067f5c2ff4425a7c67",
+  "generated_at": "2026-10-04T21:21:43.438Z",
+  "elapsed_ms": 123973.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-751661b06f944f3dc0b0-480.webp",
+      "sha256": "274cfa90f5ae6f7298e0cd1fc7d2134273d09b3a0525b52e0f65a49854962150",
+      "bytes": 26736
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-751661b06f944f3dc0b0.webp",
+      "sha256": "91af8503bfbc1bf3e9e7991d95e191768ab986a93267b0f19ca2481e836b5b92",
+      "bytes": 78804
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-sandwich-garlic-herb-egg"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Egg Proper Sandwich"
+    ],
+    "notes": "Plain wholemeal sandwich with sliced boiled eggs, lettuce, tomato and garlic herb yoghurt; no unlisted garnish.",
+    "alt": "Garlic & Herb Egg Proper Sandwich with boiled egg and garlic herb yoghurt",
+    "reviewed_at": "2026-10-04T21:27:30.452118+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1780.json",
+    "source_sha256": "76162a26902a5fef17b0896a18b4ae52f78e941f91ee12067f5c2ff4425a7c67"
+  },
+  "integrated": true,
+  "live": false
+}

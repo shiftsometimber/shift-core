@@ -1,0 +1,86 @@
+{
+  "groupId": "86075aa3928cff1ddd46fc69145f88e99b60f8cc2c5d86baf8aa09c40f6ca37b",
+  "recipe_ids": [
+    "industrial-v3-sandwich-peri-peri-turkey"
+  ],
+  "titles": [
+    "Shift Peri-Peri Turkey Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Turkey Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the peri-peri flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish or extra ingredients. Listed yoghurt sauces are dressings, not melted cheese. Pickle mustard relish belongs in or on prescribed filling, never invented whole pickle sides. Chicken/turkey breast plain cooked, no breadcrumb or batter coating.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the peri-peri flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-fe1652ca-c5cd-4883-a4d2-8d3e1cb59c22.png",
+  "source_sha256": "6909ab5b55e40fef44ee672a86cefe8ee9d9553990a303bea7d0fe2c883fbfd6",
+  "generated_at": "2026-10-04T23:30:42.203Z",
+  "elapsed_ms": 265692.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-86075aa3928cff1ddd46-480-3a3fd39f0ca2.webp",
+      "sha256": "3a3fd39f0ca25d9078e7f9f9b5e46d1ffe1215795a9556b474437e5d3a4f594d",
+      "bytes": 25724
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-86075aa3928cff1ddd46-c496f0da7e3c.webp",
+      "sha256": "c496f0da7e3c13172aa12295f61acbe7df0369b26b14a8aed9163dbddf354b25",
+      "bytes": 77556
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6909ab5b55e40fef44ee672a86cefe8ee9d9553990a303bea7d0fe2c883fbfd6",
+    "recipe_ids": [
+      "industrial-v3-sandwich-peri-peri-turkey"
+    ],
+    "titles": [
+      "Shift Peri-Peri Turkey Proper Sandwich"
+    ],
+    "notes": "Lightly coloured cooked turkey slices in two plain wholemeal bread slices with fresh lettuce/tomato and peri-peri yoghurt. No breadcrumb coating, cheese, seeds or extra sides; preparation matches sandwich method.",
+    "alt": "Peri-peri turkey sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:33:35.072535+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1977.json"
+  },
+  "integrated": true,
+  "live": false
+}

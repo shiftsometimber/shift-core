@@ -1,0 +1,86 @@
+{
+  "groupId": "1999c4d0ca4b8e81aa157af4e07a5a9a8be82dc665ce1dbdaff75c306125f8cc",
+  "recipe_ids": [
+    "industrial-v3-pasta-bbq-turkey"
+  ],
+  "titles": [
+    "Shift BBQ Turkey Proper Pasta"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Turkey Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ glaze\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the reduced-sugar BBQ glaze ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured reduced-sugar BBQ glaze and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ glaze"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the reduced-sugar BBQ glaze ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured reduced-sugar BBQ glaze and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1fa1c48b-ccfc-4e1a-b8f8-0ce6cd84579f.png",
+  "source_sha256": "79a9f79aa0e0aa3f5ccc75b70c5310a6983a060515db38e2d73908ad0f8f5b31",
+  "generated_at": null,
+  "elapsed_ms": 297406.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1999c4d0ca4b8e81aa15-480.webp",
+      "sha256": "7b6b3e488d2f1f1d375d06f484f57eb083f28afa8ad4e665d9730b600824f26e",
+      "bytes": 28936
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1999c4d0ca4b8e81aa15.webp",
+      "sha256": "4bfb43a7901f4db7f587d8ece066763b6831253ceac79f458e8deab04b076fbe",
+      "bytes": 87460
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-pasta-bbq-turkey"
+    ],
+    "titles": [
+      "Shift BBQ Turkey Proper Pasta"
+    ],
+    "notes": "Brown wholewheat penne tossed with loose cooked turkey mince, diced courgette and softened cherry tomatoes in BBQ glaze. No cheese or herbs. Exact ingredient identity/preparation and all member titles checked; plausible single serving with central responsive crop.",
+    "alt": "Wholewheat pasta with turkey mince, courgette, cherry tomatoes and BBQ glaze.",
+    "reviewed_at": "2026-10-04T21:47:42.797Z",
+    "reviewer": "worker-c visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/reviews-576-592.json",
+    "source_sha256": "79a9f79aa0e0aa3f5ccc75b70c5310a6983a060515db38e2d73908ad0f8f5b31"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,78 @@
+{
+  "groupId": "14a2c1c8ce770fcc93838b9d6e10b3fe87f99a16229dab943f37462dfe0077b1",
+  "recipe_ids": [
+    "industrial-dinner-turkey-pasta-bake"
+  ],
+  "titles": [
+    "Turkey Pasta Bake"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Turkey Pasta Bake. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey breast\"},{\"amount\":\"70g dry\",\"item\":\"wholewheat pasta, dry\"},{\"amount\":\"120g\",\"item\":\"chopped tomatoes\"},{\"amount\":\"100g\",\"item\":\"courgette\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Heat the oven to 200\u00b0C fan. Cook the measured dry wholewheat pasta in boiling water for 2 minutes less than its packet time. Drain, saving a small cup of cooking water.\",\"Dice the courgette. Heat a non-stick frying pan over medium heat with 2 tablespoons of water; no oil is listed for this recipe. Cut the turkey breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Add another spoonful of water if needed to prevent sticking, then transfer the cooked filling to a clean plate.\",\"Add the courgette, chopped tomatoes and 3 tablespoons of pasta cooking water to the pan. Cover and simmer for 6\u20138 minutes until the courgette softens, then remove the lid.\",\"Fold in the drained pasta and cooked turkey breast. Transfer to a small ovenproof dish and scatter over the measured reduced-fat cheddar.\",\"Bake for 12\u201315 minutes until the cheese melts and the centre is bubbling and steaming hot. Rest for 2 minutes before serving.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey breast"
+    },
+    {
+      "amount": "70g dry",
+      "item": "wholewheat pasta, dry"
+    },
+    {
+      "amount": "120g",
+      "item": "chopped tomatoes"
+    },
+    {
+      "amount": "100g",
+      "item": "courgette"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Heat the oven to 200\u00b0C fan. Cook the measured dry wholewheat pasta in boiling water for 2 minutes less than its packet time. Drain, saving a small cup of cooking water.",
+    "Dice the courgette. Heat a non-stick frying pan over medium heat with 2 tablespoons of water; no oil is listed for this recipe. Cut the turkey breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Add another spoonful of water if needed to prevent sticking, then transfer the cooked filling to a clean plate.",
+    "Add the courgette, chopped tomatoes and 3 tablespoons of pasta cooking water to the pan. Cover and simmer for 6\u20138 minutes until the courgette softens, then remove the lid.",
+    "Fold in the drained pasta and cooked turkey breast. Transfer to a small ovenproof dish and scatter over the measured reduced-fat cheddar.",
+    "Bake for 12\u201315 minutes until the cheese melts and the centre is bubbling and steaming hot. Rest for 2 minutes before serving."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4bad1557-0dcf-4a6a-9461-9309f8be6793.png",
+  "source_sha256": "c5fbadf35f255a2b9a9a209a2bd73380e6ff7635c58ecb4322e4bdeb76ef7c9f",
+  "generated_at": "2026-10-04T23:34:23.893Z",
+  "elapsed_ms": 319252.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-14a2c1c8ce770fcc9383-480-59373a1b5346.webp",
+      "sha256": "59373a1b5346ede5e94d48a6b6cda0e82f14338e22f3faf67292dffb5e52f626",
+      "bytes": 24552
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-14a2c1c8ce770fcc9383-134eafe156e1.webp",
+      "sha256": "134eafe156e174c5bb0c1e4a33db913b8044e43a82f81ff8dbd90db03ed61e94",
+      "bytes": 72208
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c5fbadf35f255a2b9a9a209a2bd73380e6ff7635c58ecb4322e4bdeb76ef7c9f",
+    "recipe_ids": [
+      "industrial-dinner-turkey-pasta-bake"
+    ],
+    "titles": [
+      "Turkey Pasta Bake"
+    ],
+    "notes": "Cooked turkey breast pieces, wholewheat penne, diced courgette and chopped tomato baked under melted cheddar. No unlisted garnish; exact title matches.",
+    "alt": "Turkey pasta bake with courgette, tomato and melted cheddar",
+    "reviewed_at": "2026-10-04T23:39:18.728019+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1474-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

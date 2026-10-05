@@ -1,0 +1,91 @@
+{
+  "groupId": "a7e74344ccb898da4f8966141569be6c4463c09137152d753e1aa339d2d2f15b",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-hash-brown-chicken-sausage"
+  ],
+  "titles": [
+    "Shift Hash Brown Chicken Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Hash Brown Chicken Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"120g\",\"item\":\"baby potatoes\"},{\"amount\":\"20g\",\"item\":\"onion\"},{\"amount\":\"10ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 120g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the tomato, spinach, onion; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked chicken breast to the pan and heat through.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon.",
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "120g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "onion"
+    },
+    {
+      "amount": "10ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 120g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Use half the measured olive oil in a frying pan. Dice the chicken into roughly 2 cm pieces. Cook the chicken breast thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. The chicken must have no pink flesh and its juices should run clear. Transfer to a clean plate.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the tomato, spinach, onion; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked chicken breast to the pan and heat through.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-0bd890a3-3c57-4703-906f-e6db0534905c.png",
+  "source_sha256": "8380f5934ca5345931b24af6589058d34b3582976962b51f75ba3fa275b6081c",
+  "generated_at": "2026-10-04T23:10:35.238Z",
+  "elapsed_ms": 39350,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a7e74344ccb898da4f89-480.webp",
+      "sha256": "d291e7fe10409e0ce831681234aee38e6a1eab33b2b473fb7ba8c525e1322dd1",
+      "bytes": 29452
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a7e74344ccb898da4f89-retry2-34fde7a19430.webp",
+      "sha256": "34fde7a194300ac2e066f90fc339e9a4c4a6cd3455eb56bfd932dabe72599372",
+      "bytes": 96492
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8380f5934ca5345931b24af6589058d34b3582976962b51f75ba3fa275b6081c",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-hash-brown-chicken-sausage"
+    ],
+    "titles": [
+      "Shift Hash Brown Chicken Breakfast Toastie"
+    ],
+    "notes": "Crisp plain wholemeal toastie contains fully cooked diced chicken, golden potato cubes, softened tomato and onion with wilted spinach. No cheese, patties or unlisted garnish.",
+    "alt": "Hash brown chicken breakfast toastie with potato, tomato, onion and spinach.",
+    "reviewed_at": "2026-10-04T23:18:08.416365+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/194.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,98 @@
+{
+  "groupId": "8d6c82dfe3a20b3e6ad57a42a779925577f701cd4573edf8462c843a027bf077",
+  "recipe_ids": [
+    "industrial-v3-kebab-mexican-beef"
+  ],
+  "titles": [
+    "Shift Mexican Beef Fakeaway Kebab"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mexican Beef Fakeaway Kebab. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"80g\",\"item\":\"wholemeal flatbread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.\",\"Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.\",\"Press the 5% beef mince firmly into three short koftas, each no thicker than 1.5cm; no skewers or binder are needed. Coat with all the measured chilli powder and paprika. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the beef koftas over a medium heat for about 10\u201312 minutes, turning them onto every side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the lettuce and tomato on the warm flatbread. Add the cooked beef koftas and the cold finishing sauce, fold the bread around the filling and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Photograph only the exact finished recipe, credible one-person serving, appetising professional natural daylight, centred plating with generous crop margin. No unlisted garnish, sesame/poppy seeds, cheese, cream, fresh green herb leaves, coriander, parsley, lemon wedges, side dishes or dipping sauce. All buns/flatbreads entirely plain unseeded wholemeal. Mexican finish is ONLY cold tomato ketchup mixed with cider vinegar drizzled on TOP after cooking/inside burger, no sauce ramekin. Spice is paprika/chilli only. Beef burger exactly one cooked mince patty about1.5cmthick; beef kebab exactly THREE short cooked koftas without skewers; beef fries/pizza loose mince crumbles. Chicken burger thin opaque unbreaded cutlet, chicken kebab cooked1.5cm strips. Lettuce shredded and tomato sliced only where listed. Pizza is visibly CHEESE-FREE passata base with cooked mince and peppers, ketchup finish. Fries golden plain ovenchips, thin softened red onion and mixed pepper strips. No cheese unless listed.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal flatbread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.",
+    "Mix the measured tomato ketchup and cider vinegar in a clean small bowl. Keep this finishing sauce separate from the uncooked filling.",
+    "Press the 5% beef mince firmly into three short koftas, each no thicker than 1.5cm; no skewers or binder are needed. Coat with all the measured chilli powder and paprika. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the beef koftas over a medium heat for about 10\u201312 minutes, turning them onto every side. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the lettuce and tomato on the warm flatbread. Add the cooked beef koftas and the cold finishing sauce, fold the bread around the filling and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5bf02b1d-289c-4eba-ad58-d28caaf2beeb.png",
+  "source_sha256": "87d7277836f45b9e30489dbef65e202aa02e82f5aff6d473f9367396b81352e2",
+  "generated_at": "2026-10-05T00:12:44.692Z",
+  "elapsed_ms": 332022.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8d6c82dfe3a20b3e6ad5-retry4-480-4dabd2433942.webp",
+      "sha256": "4dabd24339422398132ca631107f6b385676603ca9a92030ee75c64cc60ab8c4",
+      "bytes": 26100
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8d6c82dfe3a20b3e6ad5-retry4-0b32e4eaa1cb.webp",
+      "sha256": "0b32e4eaa1cb30da17379cd72f15f6b24090f29582cc3b80f0e04e62cf87cb81",
+      "bytes": 80830
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "87d7277836f45b9e30489dbef65e202aa02e82f5aff6d473f9367396b81352e2",
+    "recipe_ids": [
+      "industrial-v3-kebab-mexican-beef"
+    ],
+    "titles": [
+      "Shift Mexican Beef Fakeaway Kebab"
+    ],
+    "notes": "Pass: exactly three short browned beef mince koftas, no skewers, inside folded plain unseeded wholemeal flatbread with shredded lettuce, sliced tomato and red ketchup-cider finishing sauce. No cheese, mayonnaise, fresh leaf garnish or side foods. Exact kebab form and centred crop.",
+    "alt": "Mexican beef koftas in wholemeal flatbread with shredded lettuce, sliced tomato and ketchup-cider sauce",
+    "reviewed_at": "2026-10-05T00:14:36.908111+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1106.json"
+  },
+  "integrated": true,
+  "live": false
+}

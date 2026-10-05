@@ -1,0 +1,83 @@
+{
+  "groupId": "aabcbba9dbd7b44c21e6cce991e0707355cf1183f3a8bbb8196f6c16bedfcd94",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-bean-loaded-sausage"
+  ],
+  "titles": [
+    "Shift Bean Loaded Sausage Breakfast Buttie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Bean Loaded Sausage Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"baked beans\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "baked beans"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Get the pan properly hot first. Cook the reduced-fat pork sausages until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-1d0e6c66-0c0f-4028-8765-f22ab8ad37e1.png",
+  "source_sha256": "c4c0be65d89fca30fb223244b2644194ba481614e4efb77752d38d5b9e6f47ec",
+  "generated_at": "2026-10-04T21:12:24.163Z",
+  "elapsed_ms": 80245.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-aabcbba9dbd7b44c21e6-480.webp",
+      "sha256": "f4690a8b8033e11bc8165e8f7ca2d47fe7012e8c835b468c9efee3cd9b8c5e1b",
+      "bytes": 33668
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-aabcbba9dbd7b44c21e6.webp",
+      "sha256": "207e976533de35a1e79217c26c85678da8fdb83c79633957cf36a411405395c4",
+      "bytes": 114760
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-bean-loaded-sausage"
+    ],
+    "titles": [
+      "Shift Bean Loaded Sausage Breakfast Buttie"
+    ],
+    "notes": "Browned pork sausages, wilted spinach, cooked tomato and baked beans inside plain wholemeal bap; no extra garnish.",
+    "alt": "Wholemeal bap with pork sausages, baked beans, spinach and tomato",
+    "reviewed_at": "2026-10-04T21:19:11.676792+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/80.json",
+    "source_sha256": "c4c0be65d89fca30fb223244b2644194ba481614e4efb77752d38d5b9e6f47ec"
+  },
+  "integrated": true,
+  "live": false
+}

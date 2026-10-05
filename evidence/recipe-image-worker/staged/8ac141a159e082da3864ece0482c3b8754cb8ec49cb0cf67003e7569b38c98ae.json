@@ -1,0 +1,84 @@
+{
+  "groupId": "8ac141a159e082da3864ece0482c3b8754cb8ec49cb0cf67003e7569b38c98ae",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-mustard-bacon"
+  ],
+  "titles": [
+    "Shift Mustard Bacon Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mustard Bacon Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"wholegrain mustard\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Respect exact garnish and herb placement in the method: dried herbs are incorporated into listed sauce/filling; do not scatter fresh herb garnish. Where lean back bacon is listed, show lean British back bacon with broad meat medallions and minimal fat, never fatty streaky bacon. Do not add salt, black pepper, herbs, spices or seasoning flecks unless listed in the ingredients.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "wholegrain mustard"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Get the pan properly hot first. Cook the lean back bacon until browned and cooked through \u2014 colour is flavour, so do not crowd the pan.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-340ccaf6-7688-4a61-8b1f-4b5788e63dc9.png",
+  "source_sha256": "187190e31d02d0b75ff3b99d2defa2a16ebbf16c250a5f6fc349113a9c79847a",
+  "generated_at": "2026-10-05T00:34:17.574Z",
+  "elapsed_ms": 189346,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8ac141a159e082da3864-480.webp",
+      "sha256": "2927c9fb010932a6b239f3300fda6bdfb28bfbdd766d700ff84b2e2a831f4ea0",
+      "bytes": 25884
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8ac141a159e082da3864-c9e1885c3020.webp",
+      "sha256": "c9e1885c3020b260d95c8f7fb87a71ddf886456d04f30f89c10b4e7ef116653f",
+      "bytes": 79374
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "187190e31d02d0b75ff3b99d2defa2a16ebbf16c250a5f6fc349113a9c79847a",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-mustard-bacon"
+    ],
+    "titles": [
+      "Shift Mustard Bacon Breakfast Wrap"
+    ],
+    "notes": "Single lightly toasted unseeded wholemeal wrap with broad lean back bacon medallions, cooked mixed peppers, wilted spinach and wholegrain mustard. No extra garnish.",
+    "alt": "Mustard bacon wrap with peppers and spinach",
+    "reviewed_at": "2026-10-05T00:35:48.492955+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/311.json"
+  },
+  "integrated": true,
+  "live": false
+}

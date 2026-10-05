@@ -1,0 +1,92 @@
+{
+  "groupId": "8010bc0eae33c1c6941088925d70fdd696076af9dac408df27fe44c5eedf357f",
+  "recipe_ids": [
+    "industrial-v3-meal-prep-bowl-smoky-chicken"
+  ],
+  "titles": [
+    "Shift Smoky Chicken Meal-Prep Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chicken Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"27g\"},{\"item\":\"lemon juice\",\"amount\":\"2g\"},{\"item\":\"smoked paprika\",\"amount\":\"1g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Stir together all the measured 0% Greek yoghurt, lemon juice, smoked paprika and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. All paprika and lemon juice are mixed into yoghurt dressing where method requires, no paprika dust or lemon wedge garnish. Chicken plain cooked breast, no breadcrumb/batter coating. Chickpeas roughly mashed for toastie/bagel only as method specifies; boiled eggs sliced. Show creamy yoghurt dressing, never melted cheese.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "75g",
+      "item": "brown rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "sweetcorn"
+    },
+    {
+      "item": "0% Greek yoghurt",
+      "amount": "27g"
+    },
+    {
+      "item": "lemon juice",
+      "amount": "2g"
+    },
+    {
+      "item": "smoked paprika",
+      "amount": "1g"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+    "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+    "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Stir together all the measured 0% Greek yoghurt, lemon juice, smoked paprika and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.",
+    "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-images/evidence/recipe-image-worker/worker-f/2018.recovered.png",
+  "source_sha256": "0fb2d665e9b92717098d88cc7371559745e2d55b597eff4b5d9aa119d4e6ad38",
+  "generated_at": null,
+  "elapsed_ms": null,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8010bc0eae33c1c69410-480-7b36d8055262.webp",
+      "sha256": "7b36d805526274abd595e8be53d0f22970b0d375fea74c93d4db968e2f22c405",
+      "bytes": 23582
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8010bc0eae33c1c69410-998da26a3125.webp",
+      "sha256": "998da26a3125dafdbdb8f1f6b1c756d6b78e91e43646b1b16957c1ec8af09824",
+      "bytes": 68838
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "0fb2d665e9b92717098d88cc7371559745e2d55b597eff4b5d9aa119d4e6ad38",
+    "recipe_ids": [
+      "industrial-v3-meal-prep-bowl-smoky-chicken"
+    ],
+    "titles": [
+      "Shift Smoky Chicken Meal-Prep Bowl"
+    ],
+    "notes": "Exact URI-recovered original visually inspected: cooked brown rice with plain cooked chicken, raw diced peppers and sweetcorn; Greek yoghurt/lemon/paprika dressing folded through. No lemon wedge, dust garnish or extra foods.",
+    "alt": "Smoky chicken rice bowl with peppers and sweetcorn",
+    "reviewed_at": "2026-10-05T00:02:22.902687+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2018.json"
+  },
+  "integrated": true,
+  "live": false
+}

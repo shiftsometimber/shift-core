@@ -1,0 +1,83 @@
+{
+  "groupId": "e2108cde3891a537d07913cff09920f15d0b66065d4c9b957c8fd7a5d06e7f2a",
+  "recipe_ids": [
+    "industrial-v3-sandwich-pickle-chicken"
+  ],
+  "titles": [
+    "Shift Pickle Chicken Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pickle Chicken Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"pickle mustard relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the cooked chicken breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the pickle flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the cooked chicken breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Peri-peri title does NOT authorise coriander, avocado, lime, whole chilli garnish or extra ingredients. Listed yoghurt sauces are dressings, not melted cheese. Pickle mustard relish belongs in or on prescribed filling, never invented whole pickle sides. Chicken/turkey breast plain cooked, no breadcrumb or batter coating.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "pickle mustard relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the cooked chicken breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the pickle flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the cooked chicken breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-46368df1-ebd2-4f74-a1a7-8e9f571816c6.png",
+  "source_sha256": "132d64a8741e2abf9571b4e4d0cd5e751dca1829c71eef92b2bce2dd4117da71",
+  "generated_at": "2026-10-04T23:33:06.652Z",
+  "elapsed_ms": 410140.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e2108cde3891a537d079-480-f1409acb8e96.webp",
+      "sha256": "f1409acb8e96d5352202bb6cf9255b8c8835984639fd8cbb3de7c9ef326e178e",
+      "bytes": 25908
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e2108cde3891a537d079-580cbf8a00d6.webp",
+      "sha256": "580cbf8a00d6932ad947151a891d9303c6e4e358f2fb263df5287bf578396c0c",
+      "bytes": 78986
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "132d64a8741e2abf9571b4e4d0cd5e751dca1829c71eef92b2bce2dd4117da71",
+    "recipe_ids": [
+      "industrial-v3-sandwich-pickle-chicken"
+    ],
+    "titles": [
+      "Shift Pickle Chicken Proper Sandwich"
+    ],
+    "notes": "Two plain wholemeal bread slices with lightly coloured chicken breast, chunky pickle mustard relish, fresh lettuce and tomato. No invented pickle side, coating, cheese or seeds on bread; exact sandwich method matches.",
+    "alt": "Pickle chicken sandwich with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:33:36.562079+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1983.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "cc2485673947b18f7d788d34b348917912b9d36efe5a5f3a9eb1a68abf3cae10",
+  "recipe_ids": [
+    "industrial-v3-wrap-katsu-chicken"
+  ],
+  "titles": [
+    "Shift Katsu Chicken Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Katsu Chicken Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"katsu-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked chicken breast; if the filling is being served hot, reduce only the sauce-coated cooked chicken breast until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Katsu-style sauce does NOT mean breaded chicken: use plain already-cooked breast, no breadcrumbs/flour/batter absent from recipe.",
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "katsu-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked chicken breast; if the filling is being served hot, reduce only the sauce-coated cooked chicken breast until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-577dcce5-b052-4d7a-9adb-bc8d0457efc0.png",
+  "source_sha256": "f35386b0babc1a7fd47148c71363c91f31ac0246ca206e15fecdca5a806752ad",
+  "generated_at": null,
+  "elapsed_ms": null,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-cc2485673947b18f7d78-480-533a05db353a.webp",
+      "sha256": "533a05db353a427a73114197901d244c439750e51fc5d4a1fef605e7f7ca2adf",
+      "bytes": 25176
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-cc2485673947b18f7d78-51e115a3888e.webp",
+      "sha256": "51e115a3888e8d371304302018d02aa1ed2a9d2b32d42672774bf839c07ae775",
+      "bytes": 74558
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f35386b0babc1a7fd47148c71363c91f31ac0246ca206e15fecdca5a806752ad",
+    "recipe_ids": [
+      "industrial-v3-wrap-katsu-chicken"
+    ],
+    "titles": [
+      "Shift Katsu Chicken Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap with cooked chicken breast, fresh lettuce and tomato, and katsu-style sauce. Every member title checked against exact ingredients/method. No cheese, seeds, invented side or scatter garnish; protein preparation and dressing placement match method.",
+    "alt": "Katsu Chicken Loaded Wrap with lettuce, tomato",
+    "reviewed_at": "2026-10-04T23:14:25.520688+00:00",
+    "reviewer": "worker-f visual reinspection of exact recovered original",
+    "receipt": "evidence/recipe-image-worker/worker-f/1874.json",
+    "recovery_reinspection": true
+  },
+  "integrated": true,
+  "live": false
+}

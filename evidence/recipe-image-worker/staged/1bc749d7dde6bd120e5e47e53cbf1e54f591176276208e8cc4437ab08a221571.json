@@ -1,0 +1,89 @@
+{
+  "groupId": "1bc749d7dde6bd120e5e47e53cbf1e54f591176276208e8cc4437ab08a221571",
+  "recipe_ids": [
+    "industrial-lunch-egg-toastie"
+  ],
+  "titles": [
+    "Egg Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Toastie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"tomato\"},{\"amount\":\"60g\",\"item\":\"spinach\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Finely grate the measured reduced-fat cheddar. Keep the cheese ready for assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the grated reduced-fat cheddar between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "tomato"
+    },
+    {
+      "amount": "60g",
+      "item": "spinach"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+    "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+    "Finely grate the measured reduced-fat cheddar. Keep the cheese ready for assembly.",
+    "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices.",
+    "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the grated reduced-fat cheddar between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+    "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+    "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-e01cd8a5-1419-429e-9a77-d00c3901cb13.png",
+  "source_sha256": "75f521bbd762e4bc6d73b74a33014acffdec2305028719e58a972c04fdefa46e",
+  "generated_at": "2026-10-04T23:57:07.934Z",
+  "elapsed_ms": 339338.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1bc749d7dde6bd120e5e-480-11f2f5e9f7da.webp",
+      "sha256": "11f2f5e9f7daba3ce4519a35e7b3cc1743c9f25e92085e57def7b44b6d00202c",
+      "bytes": 28952
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1bc749d7dde6bd120e5e-b8d202004e4d.webp",
+      "sha256": "b8d202004e4de5ea08afb73ead31aee4e9345ed2ae5f47d7dc7db51a7eb2baa5",
+      "bytes": 89110
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "75f521bbd762e4bc6d73b74a33014acffdec2305028719e58a972c04fdefa46e",
+    "recipe_ids": [
+      "industrial-lunch-egg-toastie"
+    ],
+    "titles": [
+      "Egg Toastie"
+    ],
+    "notes": "Crisp plain wholemeal toastie cut in two, with fully boiled egg slices, spinach, tomato and melted cheddar. Spinach and tomato alongside; no extra garnish. Exact title matches.",
+    "alt": "Egg toastie with spinach, tomato and cheddar",
+    "reviewed_at": "2026-10-04T23:59:04.406373+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1505-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

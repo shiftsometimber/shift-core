@@ -1,0 +1,83 @@
+{
+  "groupId": "183608b9bb3cf256f3f418c790aa69a0d42a4e66f3d2df7ca7c7f0f161192b12",
+  "recipe_ids": [
+    "industrial-lunch-bean-pasta-pot"
+  ],
+  "titles": [
+    "Bean Pasta Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Bean Pasta Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"mixed beans, drained\"},{\"amount\":\"75g dry\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"60g\",\"item\":\"rocket\"},{\"amount\":\"40g\",\"item\":\"tomato pesto\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed wholewheat pasta is a dry weight. Cook it in boiling water for the packet time until tender, then drain well.\",\"Wash and dry the cherry tomatoes and rocket. Halve the tomatoes and roughly chop the rocket.\",\"Use ready-cooked canned mixed beans. Drain and rinse before weighing.\",\"Use the measured tomato pesto as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Toss the drained cooked pasta with the measured tomato pesto, then fold in the tomatoes, rocket and prepared ready-to-eat filling. Eat immediately.\",\"For a packed lunch, cool the cooked pasta promptly before combining it with the chilled filling. Cover, refrigerate and eat within 24 hours, following any shorter ingredient use-by date. Keep the meal chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "mixed beans, drained"
+    },
+    {
+      "amount": "75g dry",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "60g",
+      "item": "rocket"
+    },
+    {
+      "amount": "40g",
+      "item": "tomato pesto"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "The listed wholewheat pasta is a dry weight. Cook it in boiling water for the packet time until tender, then drain well.",
+    "Wash and dry the cherry tomatoes and rocket. Halve the tomatoes and roughly chop the rocket.",
+    "Use ready-cooked canned mixed beans. Drain and rinse before weighing.",
+    "Use the measured tomato pesto as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Toss the drained cooked pasta with the measured tomato pesto, then fold in the tomatoes, rocket and prepared ready-to-eat filling. Eat immediately.",
+    "For a packed lunch, cool the cooked pasta promptly before combining it with the chilled filling. Cover, refrigerate and eat within 24 hours, following any shorter ingredient use-by date. Keep the meal chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3c75a398-3d83-4a78-9d7f-e8f139132f2b.png",
+  "source_sha256": "c61c31a29103aba1e7281071a68f74451a2bc7eac83cd062c266bf6d49a54526",
+  "generated_at": "2026-10-04T23:42:44.932Z",
+  "elapsed_ms": 95552.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-183608b9bb3cf256f3f4-480-a5cbd452f19f.webp",
+      "sha256": "a5cbd452f19f09237ad65a57bf41cd229df0088755a28b30a45ecf8aa164a78f",
+      "bytes": 24108
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-183608b9bb3cf256f3f4-ad4de9d7f65e.webp",
+      "sha256": "ad4de9d7f65e953f57064a199b7ad9b2d689532685ea098d5877e04dbf228d0d",
+      "bytes": 74900
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c61c31a29103aba1e7281071a68f74451a2bc7eac83cd062c266bf6d49a54526",
+    "recipe_ids": [
+      "industrial-lunch-bean-pasta-pot"
+    ],
+    "titles": [
+      "Bean Pasta Pot"
+    ],
+    "notes": "Wholewheat fusilli tossed in tomato pesto with mixed beans, halved cherry tomatoes and rocket folded through. No extra cheese or garnish; exact title matches.",
+    "alt": "Mixed bean pasta pot with cherry tomatoes, rocket and tomato pesto",
+    "reviewed_at": "2026-10-04T23:49:25.778890+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1481-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

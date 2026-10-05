@@ -1,0 +1,87 @@
+{
+  "groupId": "c62ec37e484d1bd38ba06a4b6149e8a1ac36d987b4cd9f4fd25bbbee964c542a",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-cheesecake-style-savory-box"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Banana Split Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Banana Split Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup or garnish. No cake, pie or biscuit crust. Mixed berries just the listed25g, a small portion. All food safely inside frame. NO side crackers or whole biscuits anywhere. Crushed biscuit ONLY if explicitly listed, small irregular crumbs as topping; no intact biscuits. Light cream cheese only a modest measured30g smoothly folded through the fruit or cottage cheese, never a giant cream mound or cake. No biscuit crumb unless listed. Finished dessert all combined in ONE bowl with Greek yoghurt visibly swirled through. No separate creamy ramekins.",
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-900ff35c-a620-4834-bd74-0f1797661353.png",
+  "source_sha256": "c59fe602ea4718608852cabfc8e77fda0667c9b6521e01b96876bde6f2307e04",
+  "generated_at": "2026-10-04T23:39:33.461Z",
+  "elapsed_ms": 211919,
+  "variants": [
+    {
+      "width": 480,
+      "height": 361,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c62ec37e484d1bd38ba0-480-29a4b0afb698.webp",
+      "sha256": "29a4b0afb698785fda462e5c25bbbf014ef55ff5af04e2175cc096172ae367b1",
+      "bytes": 19498
+    },
+    {
+      "width": 960,
+      "height": 721,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c62ec37e484d1bd38ba0-2d6ff7ceae26.webp",
+      "sha256": "2d6ff7ceae2688168a35e174e479d46ea9d99b24cc7e8b77436c925f79060750",
+      "bytes": 55914
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c59fe602ea4718608852cabfc8e77fda0667c9b6521e01b96876bde6f2307e04",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-cheesecake-style-savory-box"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Banana Split Dessert Pot"
+    ],
+    "notes": "Banana with small berries, light cream cheese, oats and seeds combined with measured Greek yoghurt swirl. No cake/crust or extra toppings.",
+    "alt": "Banana and berry dessert with cream cheese, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-04T23:44:01.970668+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/c62ec37e484d1bd38ba06a4b6149e8a1ac36d987b4cd9f4fd25bbbee964c542a.json"
+  },
+  "integrated": true,
+  "live": false
+}

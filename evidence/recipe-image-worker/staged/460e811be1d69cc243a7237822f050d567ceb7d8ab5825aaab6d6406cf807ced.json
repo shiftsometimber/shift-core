@@ -1,0 +1,84 @@
+{
+  "groupId": "460e811be1d69cc243a7237822f050d567ceb7d8ab5825aaab6d6406cf807ced",
+  "recipe_ids": [
+    "industrial-v3-sandwich-katsu-chickpea"
+  ],
+  "titles": [
+    "Shift Katsu Chickpea Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Katsu Chickpea Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"katsu-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the chickpeas, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Build the katsu flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the chickpeas, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Katsu-style sauce does NOT mean breaded chicken: use plain already-cooked breast, no breadcrumbs/flour/batter absent from recipe.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "katsu-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the chickpeas, drained is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+    "Build the katsu flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the chickpeas, drained, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-af584e05-6fa7-4647-850c-bb6a7566ddd6.png",
+  "source_sha256": "e03b36ad3bc8ed830dec6d9a30b305e6b34cc4cbfac3323bdc59e4ff0ce0793e",
+  "generated_at": null,
+  "elapsed_ms": null,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-460e811be1d69cc243a7-480-238e1ae412f4.webp",
+      "sha256": "238e1ae412f41a3d9d19df924b6abd039257c11e151f5ffdd4e44eff4fe9bb64",
+      "bytes": 25388
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-460e811be1d69cc243a7-23152e62cb26.webp",
+      "sha256": "23152e62cb26b005e60c72338887c6e27faba5caf348b34003709bafcc9a7210",
+      "bytes": 78268
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "e03b36ad3bc8ed830dec6d9a30b305e6b34cc4cbfac3323bdc59e4ff0ce0793e",
+    "recipe_ids": [
+      "industrial-v3-sandwich-katsu-chickpea"
+    ],
+    "titles": [
+      "Shift Katsu Chickpea Proper Sandwich"
+    ],
+    "notes": "Plain wholemeal sandwich with chickpeas, drained, fresh lettuce and tomato, and katsu-style sauce. Every member title checked against exact ingredients/method. No cheese, seeds, invented side or scatter garnish; protein preparation and dressing placement match method.",
+    "alt": "Katsu Chickpea Proper Sandwich with lettuce, tomato",
+    "reviewed_at": "2026-10-04T23:14:25.520688+00:00",
+    "reviewer": "worker-f visual reinspection of exact recovered original",
+    "receipt": "evidence/recipe-image-worker/worker-f/1882.json",
+    "recovery_reinspection": true
+  },
+  "integrated": true,
+  "live": false
+}

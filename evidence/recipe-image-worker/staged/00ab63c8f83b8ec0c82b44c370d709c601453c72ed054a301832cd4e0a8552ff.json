@@ -1,0 +1,88 @@
+{
+  "groupId": "00ab63c8f83b8ec0c82b44c370d709c601453c72ed054a301832cd4e0a8552ff",
+  "recipe_ids": [
+    "industrial-v3-kebab-katsu-salmon"
+  ],
+  "titles": [
+    "Shift Katsu Salmon Fakeaway Kebab"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Katsu Salmon Fakeaway Kebab. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"wholemeal flatbread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"katsu-style sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.\",\"Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.\",\"Put the measured katsu-style sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Put the lettuce and tomato on the warm flatbread. Add large flakes of the cooked salmon and the warm sauce, fold the bread around the filling and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal flatbread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "katsu-style sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.",
+    "Check the salmon fillet for pin bones and pat it dry. Keep it as a fillet for cooking. After handling raw salmon fillet, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the salmon over a medium heat for about 4\u20135 minutes on the first side and 3\u20134 minutes on the other; start skin-side down if it has skin. Turn with a wide spatula. Check the thickest part: the fish should be opaque through the centre and separate readily into flakes. Keep cooking if the centre is translucent.",
+    "Put the measured katsu-style sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Put the lettuce and tomato on the warm flatbread. Add large flakes of the cooked salmon and the warm sauce, fold the bread around the filling and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-7c8bdc43-f916-40af-9cdf-5e7dac254dfe.png",
+  "source_sha256": "3abc35996ffb63ae5f2b3a98ba4d6ea924e168dd8bd1c900b02244b83c24fc85",
+  "generated_at": "2026-10-04T21:34:37.801Z",
+  "elapsed_ms": 19886.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-00ab63c8f83b8ec0c82b-480.webp",
+      "sha256": "1ea05a8f0299002219d4a438a628948c262374312fe9067671a87086bfb44565",
+      "bytes": 23278
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-00ab63c8f83b8ec0c82b.webp",
+      "sha256": "ca406b56750089be7e781d408bb19cd84414f485c7b65b2061efc754ccf89843",
+      "bytes": 64808
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-kebab-katsu-salmon"
+    ],
+    "titles": [
+      "Shift Katsu Salmon Fakeaway Kebab"
+    ],
+    "notes": "Large opaque cooked salmon flakes in folded plain wholemeal flatbread with shredded lettuce, tomato slices and katsu-style sauce. Correct flaked salmon assembly; no whole fillet, breading, cheese or garnish. Single serving with margin.",
+    "alt": "Wholemeal flatbread with katsu salmon flakes, lettuce and tomato",
+    "reviewed_at": "2026-10-04T21:34:58.094764+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/976.json",
+    "source_sha256": "3abc35996ffb63ae5f2b3a98ba4d6ea924e168dd8bd1c900b02244b83c24fc85"
+  },
+  "integrated": true,
+  "live": false
+}

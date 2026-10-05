@@ -1,0 +1,87 @@
+{
+  "groupId": "dff779bba3b8d7fcc9f05b4ac45df289556004fc7c575f0d2d9761cc8ca2812a",
+  "recipe_ids": [
+    "industrial-v3-sandwich-house-egg"
+  ],
+  "titles": [
+    "Shift House Egg Proper Sandwich"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift House Egg Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"tomato pepper relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the boiled eggs are meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.\",\"Build the shift house flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the boiled eggs, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "tomato pepper relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the boiled eggs are meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Slice the boiled eggs and keep them chilled until assembly, or warm them gently if this dish is being served hot.",
+    "Build the shift house flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+    "Pile in the boiled eggs, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-983eb5f2-0338-4482-96fe-fc5a03443bff.png",
+  "source_sha256": "8ef4eb032bbf2444af99ab266ed7d681206e150de49fd6a9f7e5624035369dc2",
+  "generated_at": null,
+  "elapsed_ms": null,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-dff779bba3b8d7fcc9f0-480-544c607028fd.webp",
+      "sha256": "544c607028fdc8e02322477d167a89c470d8f14ad72b45ee5e232b9bd165e94c",
+      "bytes": 27474
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-dff779bba3b8d7fcc9f0-8621ed906aee.webp",
+      "sha256": "8621ed906aeea9e1464f53c16fe08b850a2d3b44cc96fdb28e3eb49c63f4c8f1",
+      "bytes": 83076
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8ef4eb032bbf2444af99ab266ed7d681206e150de49fd6a9f7e5624035369dc2",
+    "recipe_ids": [
+      "industrial-v3-sandwich-house-egg"
+    ],
+    "titles": [
+      "Shift House Egg Proper Sandwich"
+    ],
+    "notes": "Plain wholemeal sandwich with boiled eggs, fresh lettuce and tomato, and tomato pepper relish. Every member title checked against exact ingredients/method. No cheese, seeds, invented side or scatter garnish; protein preparation and dressing placement match method.",
+    "alt": "House Egg Proper Sandwich with lettuce, tomato",
+    "reviewed_at": "2026-10-04T23:14:25.520688+00:00",
+    "reviewer": "worker-f visual reinspection of exact recovered original",
+    "receipt": "evidence/recipe-image-worker/worker-f/1852.json",
+    "recovery_reinspection": true
+  },
+  "integrated": true,
+  "live": false
+}

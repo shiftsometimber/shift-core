@@ -1,0 +1,94 @@
+{
+  "groupId": "5d1a905a1d932e06f56f55587593f01e6e7bebdad9f990208ecd9a213f2f083b",
+  "recipe_ids": [
+    "industrial-v3-curry-lemon-herb-tofu"
+  ],
+  "titles": [
+    "Shift Lemon Herb Tofu Rice Bowl"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Tofu Rice Bowl. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.\",\"Mix 20g light mayonnaise, 5ml lemon juice and 1g dried parsley in a small bowl. Keep this dressing cold until serving; it is not a cooking sauce and must not be simmered in the pan.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Take the pan off the heat and spoon the cold dressing over each serving; do not return it to the hob. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nHard ingredient/preparation accuracy: Keep the hot protein, rice/noodles and vegetables entirely plain with NO parsley flecks. Spoon the cold white mayonnaise dressing with tiny parsley flecks visibly on TOP of finished serving. Do not show a separate sauce bowl. No lemon wedges, fresh leaves, cheese, seeds, invented sauces, garnish or extra ingredients. Broccoli florets are the ONLY green hot vegetable where listed. Salmon fully cooked opaque, large flakes in pasta/pie/rice/noodles; wholefillet for roast/tray. Tofu 2cm browned cubes. Beef loose browned mince, pork/chicken form per exact method. Realistic delicious single portion with margin.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g",
+      "item": "basmati rice, dry"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+    "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Drain and pat dry the 180g firm tofu, then cut into 2cm cubes.",
+    "Mix 20g light mayonnaise, 5ml lemon juice and 1g dried parsley in a small bowl. Keep this dressing cold until serving; it is not a cooking sauce and must not be simmered in the pan.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the firm tofu and cook for 8\u201310 minutes, turning carefully until lightly golden on several sides and hot through. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Return the cooked firm tofu and any collected juices to the pan; fold gently to keep the cubes intact. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Take the pan off the heat and spoon the cold dressing over each serving; do not return it to the hob. Serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b24f73e1-59f9-4fd8-8989-707b16080a05.png",
+  "source_sha256": "3131352ef586555981635c06fd8b964d246d8d0e636a8af10b14d2226078318f",
+  "generated_at": "2026-10-04T23:00:35.694Z",
+  "elapsed_ms": 369329.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5d1a905a1d932e06f56f-retry4-480-a7bde8dc1bb3.webp",
+      "sha256": "a7bde8dc1bb38cf036a3fe5326cfdc2d6c40bfbd2d26efaad33d0af81883abc4",
+      "bytes": 23146
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5d1a905a1d932e06f56f-retry4-5849a10bb2d0.webp",
+      "sha256": "5849a10bb2d0cb8ff343c8ea71f833b4c2a4ec84bd2c287daab29be4eea7c312",
+      "bytes": 63136
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "3131352ef586555981635c06fd8b964d246d8d0e636a8af10b14d2226078318f",
+    "recipe_ids": [
+      "industrial-v3-curry-lemon-herb-tofu"
+    ],
+    "titles": [
+      "Shift Lemon Herb Tofu Rice Bowl"
+    ],
+    "notes": "Browned tofu cubes, cooked onion/pepper strips over basmati rice; cold white parsley mayonnaise spooned on top. No added herbs on exposed tofu/rice.",
+    "alt": "Tofu rice bowl with onion, peppers and cold lemon parsley dressing",
+    "reviewed_at": "2026-10-04T23:05:58.351405+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1013.json"
+  },
+  "integrated": true,
+  "live": false
+}

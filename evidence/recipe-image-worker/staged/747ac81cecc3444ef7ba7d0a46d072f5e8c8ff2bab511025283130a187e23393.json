@@ -1,0 +1,94 @@
+{
+  "groupId": "747ac81cecc3444ef7ba7d0a46d072f5e8c8ff2bab511025283130a187e23393",
+  "recipe_ids": [
+    "industrial-v3-traybake-lemon-herb-salmon"
+  ],
+  "titles": [
+    "Shift Lemon Herb Salmon Traybake"
+  ],
+  "prompt": "Edit this exact salmon dish photograph. Remove EVERY tiny black, brown or green herb/pepper/seasoning fleck from salmon, all potatoes, onion and peppers. Preserve natural golden brown crust and food identity but smooth plain surfaces WITHOUT scattered seasoning specks. The only parsley is inside cold white mayonnaise dressing: preserve it in existing side ramekin for roast/tray, or spooned on top of rice bowl. No herbs on hot food. Preserve broccoli/whole vegetables, no invented ingredients or garnish. Exact recipe: Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Herb Salmon Traybake. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and salmon fillet. Cook the salmon fillet until opaque and just flaking at the thickest point; pull it from the heat before it dries out.\",\"Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the salmon fillet is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and salmon fillet. Cook the salmon fillet until opaque and just flaking at the thickest point; pull it from the heat before it dries out.",
+    "Add the vegetables to the hot tray and roast for another 15\u201320 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.",
+    "Check the salmon fillet is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-4873ff51-fdd8-4771-941a-b5e8086cf566.png",
+  "source_sha256": "dabebfd59622ab863b13cdda9d6f4b05a9c2db15b31f27b03d9e31c1659a3690",
+  "generated_at": "2026-10-04T23:08:21.091Z",
+  "elapsed_ms": 91631.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-747ac81cecc3444ef7ba-retry5-480-1bff03db2fdf.webp",
+      "sha256": "1bff03db2fdfd8bffbb604339fb3e818e0d889dfd80b8cec6e259794e362e6ec",
+      "bytes": 28172
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-747ac81cecc3444ef7ba-retry5-7f88321db784.webp",
+      "sha256": "7f88321db784bc11085aa587dfe524cc2ec15d175b4ec79a24d19f9bcf672834",
+      "bytes": 88060
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "dabebfd59622ab863b13cdda9d6f4b05a9c2db15b31f27b03d9e31c1659a3690",
+    "recipe_ids": [
+      "industrial-v3-traybake-lemon-herb-salmon"
+    ],
+    "titles": [
+      "Shift Lemon Herb Salmon Traybake"
+    ],
+    "notes": "Corrected full-resolution review: plain opaque cooked salmon fillet, smooth golden baby potatoes, roasted broccoli and red pepper. All parsley only in cold white side dressing; exposed fish/potatoes clean of herb and pepper flecks.",
+    "alt": "Salmon traybake with baby potatoes, broccoli, red pepper and cold lemon parsley dressing",
+    "reviewed_at": "2026-10-04T23:08:49.020617+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1010.json"
+  },
+  "integrated": true,
+  "live": false
+}

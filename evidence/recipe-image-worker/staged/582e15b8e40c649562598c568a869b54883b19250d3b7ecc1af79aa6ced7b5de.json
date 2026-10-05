@@ -1,0 +1,84 @@
+{
+  "groupId": "582e15b8e40c649562598c568a869b54883b19250d3b7ecc1af79aa6ced7b5de",
+  "recipe_ids": [
+    "industrial-v3-wrap-bbq-chicken"
+  ],
+  "titles": [
+    "Shift BBQ Chicken Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Chicken Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked chicken breast; if the filling is being served hot, reduce only the sauce-coated cooked chicken breast until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds unless listed. No cheese unless listed. Exact method placement: herbs for yoghurt dressing remain in the cold yoghurt dressing only, never sprinkled over protein, potatoes or pastry. Sauce alongside pie stays alongside, never inside filling. No decorative garnish or green herb flecks if no herbs explicitly listed. If specified, depict exactly THREE koftas. If the recipe slices a pitta into two halves, show TWO DISTINCT filled half pockets. Fully cooked meat, brown inside cooked beef patty, no pink.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked chicken breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Warm the cooked chicken breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the cooked chicken breast; if the filling is being served hot, reduce only the sauce-coated cooked chicken breast until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8291952c-ccd9-4b05-b997-254b87fa34e4.png",
+  "source_sha256": "cb09ec1a3529b9021c2a986ac00fbb56865b8973299ae193be5bfdd2e13f6ce0",
+  "generated_at": "2026-10-05T00:11:18.815Z",
+  "elapsed_ms": 194282.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-582e15b8e40c64956259-480-c0096a4157e5.webp",
+      "sha256": "c0096a4157e553db4cd0a0fc5fbed98cbcd4d6eeca5f8997d168f01ffe9a3a65",
+      "bytes": 21400
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-582e15b8e40c64956259-677f96b38c47.webp",
+      "sha256": "677f96b38c47098ab7c740a2d6fecad20585b0042b1638666d293b3b02575c29",
+      "bytes": 62052
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "cb09ec1a3529b9021c2a986ac00fbb56865b8973299ae193be5bfdd2e13f6ce0",
+    "recipe_ids": [
+      "industrial-v3-wrap-bbq-chicken"
+    ],
+    "titles": [
+      "Shift BBQ Chicken Loaded Wrap"
+    ],
+    "notes": "Plain wholemeal wrap lightly toasted, opaque warmed chicken coated with thick BBQ sauce, fresh lettuce and tomato. No extra sauce puddle or garnish; exact title matches.",
+    "alt": "Toasted BBQ chicken wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-05T00:12:45.620044+00:00",
+    "reviewer": "throughput_e",
+    "receipt": "evidence/recipe-image-worker/worker-e/1517-review.json"
+  },
+  "integrated": true,
+  "live": false
+}

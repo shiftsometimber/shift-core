@@ -1,0 +1,87 @@
+{
+  "groupId": "ae51e687e8b5e50fe7b1b620d0452dd9723e7955738b8fa261c1ce46c25a9cd8",
+  "recipe_ids": [
+    "industrial-v4-big-feed-dessert-cheesecake-style-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Cheesecake-Style Fruit Crunch Big Feed Dessert"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesecake-Style Fruit Crunch Big Feed Dessert. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"30g\",\"item\":\"light cream cheese\",\"allergens\":[\"milk\"]},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"15g\",\"item\":\"dark chocolate, chopped\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup or garnish. No cake, pie or biscuit crust. Mixed berries just the listed25g, a small portion. All food safely inside frame. NO side crackers or whole biscuits anywhere. Crushed biscuit ONLY if explicitly listed, small irregular crumbs as topping; no intact biscuits. Light cream cheese only a modest measured30g smoothly folded through the fruit or cottage cheese, never a giant cream mound or cake. No biscuit crumb unless listed. Combined single dessert bowl with chopped dark chocolate topping. Cottage cheese has recognisable small curds where listed. No melted chocolate sauce.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "30g",
+      "item": "light cream cheese",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate, chopped"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Finish with the measured chopped dark chocolate; this is the deliberate treat element, not an accidental free-pour.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-9a4fb62b-d5d3-4515-96bc-f1a3db1c0ca3.png",
+  "source_sha256": "48d2973482a8be6204dc3634bcfd660920569755e640fffeb955861116795da1",
+  "generated_at": "2026-10-04T23:42:40.414Z",
+  "elapsed_ms": 398872,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ae51e687e8b5e50fe7b1-480-b4ba9038cb2c.webp",
+      "sha256": "b4ba9038cb2ce802d5c11c4e5c1b0ec4b0cab88380daf3d6fdec76737420059e",
+      "bytes": 26446
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ae51e687e8b5e50fe7b1-7baf333d9e2c.webp",
+      "sha256": "7baf333d9e2ca9078b71aaca1508c6f381596cae7baa9c4445c7b809913f8fa2",
+      "bytes": 77000
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "48d2973482a8be6204dc3634bcfd660920569755e640fffeb955861116795da1",
+    "recipe_ids": [
+      "industrial-v4-big-feed-dessert-cheesecake-style-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Cheesecake-Style Fruit Crunch Big Feed Dessert"
+    ],
+    "notes": "Bite-size apple and small berries with measured cream cheese, oats, seeds and chopped chocolate combined; no biscuit crumb, cake or crust.",
+    "alt": "Apple and berry dessert with cream cheese, oats, pumpkin seeds and dark chocolate.",
+    "reviewed_at": "2026-10-04T23:44:04.324383+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/ae51e687e8b5e50fe7b1b620d0452dd9723e7955738b8fa261c1ce46c25a9cd8.json"
+  },
+  "integrated": true,
+  "live": false
+}

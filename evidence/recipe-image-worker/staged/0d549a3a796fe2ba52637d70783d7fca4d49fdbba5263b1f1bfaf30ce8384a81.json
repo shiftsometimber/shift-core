@@ -1,0 +1,79 @@
+{
+  "groupId": "0d549a3a796fe2ba52637d70783d7fca4d49fdbba5263b1f1bfaf30ce8384a81",
+  "recipe_ids": [
+    "industrial-breakfast-potato-hash-apple-cinnamon-0"
+  ],
+  "titles": [
+    "Egg Red Pepper Breakfast Potato Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Egg Red Pepper Breakfast Potato Hash. Ingredients, quantities and allergens: [{\"amount\":\"220g\",\"item\":\"baby potatoes\"},{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"red pepper\"},{\"amount\":\"60g\",\"item\":\"onion\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.\",\"Chop the onion and red pepper. Heat the measured olive oil in a wide non-stick frying pan; cook the onion and red pepper over medium heat for 4\u20135 minutes.\",\"Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.\",\"Beat the large eggs, pour them into the pan and stir gently for 2\u20133 minutes until fully set, with no liquid egg left.\",\"Serve the large eggs, potatoes and vegetables immediately. For another portion, follow the chilled-storage and single-reheat instructions.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "220g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "60g",
+      "item": "onion"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Cut the baby potatoes into even 1\u20132cm pieces. Boil for 8\u201310 minutes until just tender, then drain and let the steam escape for a minute.",
+    "Chop the onion and red pepper. Heat the measured olive oil in a wide non-stick frying pan; cook the onion and red pepper over medium heat for 4\u20135 minutes.",
+    "Add the potatoes in a single layer. Cook for 6\u20138 minutes, turning a few times, until the edges are golden.",
+    "Beat the large eggs, pour them into the pan and stir gently for 2\u20133 minutes until fully set, with no liquid egg left.",
+    "Serve the large eggs, potatoes and vegetables immediately. For another portion, follow the chilled-storage and single-reheat instructions."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-a07f70ca-dfbb-409a-ab86-6c393271b335.png",
+  "source_sha256": "28e0152e73d7943de47c4ec8189e6986099c26e80aebd80dc1e9906947ead362",
+  "generated_at": "2026-10-04T21:13:43.166Z",
+  "elapsed_ms": 703858,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0d549a3a796fe2ba5263-480.webp",
+      "sha256": "618b1d30c4cbe5807f95a3c71174b7318167796cb0037d6e3d1144d416cb65ff",
+      "bytes": 21892
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0d549a3a796fe2ba5263.webp",
+      "sha256": "91ec0b49cc00aa41ec7e661d44bd0dd4ce9a3245d20e43d5650e7811043bf720",
+      "bytes": 62330
+    }
+  ],
+  "review_status": "pass",
+  "integrated": true,
+  "live": false,
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-breakfast-potato-hash-apple-cinnamon-0"
+    ],
+    "titles": [
+      "Egg Red Pepper Breakfast Potato Hash"
+    ],
+    "notes": "Golden potato chunks, cooked egg, softened red pepper and onion; no beans, cheese or green garnish. Single credible serving with full food visible in phone/desktop 4:3 framing. Quantities, hidden temperature and nutrition cannot be verified visually.",
+    "alt": "Golden potato hash with cooked egg, red pepper and onion.",
+    "reviewed_at": "2026-10-04T21:21:38.764637+00:00",
+    "reviewer": "recipe-image-root",
+    "source_sha256": "28e0152e73d7943de47c4ec8189e6986099c26e80aebd80dc1e9906947ead362"
+  }
+}

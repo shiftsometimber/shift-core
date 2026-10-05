@@ -1,0 +1,84 @@
+{
+  "groupId": "8e211da6d8af27f236de4a04c05340252375c1bcb1f488a3cc9225ee022282d6",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-coffee-savory-box"
+  ],
+  "titles": [
+    "Shift Coffee Banana Split Work Snack Box"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Coffee Banana Split Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"1g\",\"item\":\"instant espresso\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.\",\"Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.\",\"Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.\",\"Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact listed foods only, no honey, nuts, mint, syrup or decorative garnish. Small25g mixed berries. Entire serving inside frame. Exactly TWO plain unseeded wholegrain crackers, independently visible offset edges, no sesame/poppy seeds. Instant espresso measured1g fully dissolved in tiny teaspoon water and cooled, mixed through fruit/dairy as subtle coffee tint; no whole coffee beans, granules, dry coffee grounds, separate coffee drink or chocolate syrup. Real snack box with dry oats/seeds/crackers separate from fruit/dairy. Coffee/cinnamon in fruit/dairy component.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "1g",
+      "item": "instant espresso"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.",
+    "Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.",
+    "Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.",
+    "Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-b144c4a3-de90-4de8-993e-9ba5a0bce35d.png",
+  "source_sha256": "33b2c4b22efd56aa9e22fc0a63c476a0c80f9df03c0b173530c8901fdc3dc8d7",
+  "generated_at": "2026-10-05T00:47:34.660Z",
+  "elapsed_ms": 316296,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8e211da6d8af27f236de-480-06694ac40568.webp",
+      "sha256": "06694ac40568dd3cda19724d9e619c10216c44af46a59ccb29276c93b6840d41",
+      "bytes": 28018
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8e211da6d8af27f236de-43b6283fe13d.webp",
+      "sha256": "43b6283fe13d097657a26fc724b145f5ab581b28a0049f92ece8d6f7b2a34564",
+      "bytes": 84980
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "33b2c4b22efd56aa9e22fc0a63c476a0c80f9df03c0b173530c8901fdc3dc8d7",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-coffee-savory-box"
+    ],
+    "titles": [
+      "Shift Coffee Banana Split Work Snack Box"
+    ],
+    "notes": "Coffee-tinted banana and small berries with dry oats/seeds separate, two plain crackers visible. No coffee beans, drink or chocolate sauce.",
+    "alt": "Coffee banana snack box with berries, oats, pumpkin seeds and two crackers.",
+    "reviewed_at": "2026-10-05T00:50:43.782704+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/8e211da6d8af27f236de4a04c05340252375c1bcb1f488a3cc9225ee022282d6.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,15 @@
+{
+  "groupId": "7d822e4214ebb03bb72d82e920dc1661c0d63bcdb2c1b46b81b951a45d76159f",
+  "decision": "reject",
+  "source_sha256": "fcbea55236005e9a5c49100ddcf35265a586f477cfe385b1dd4746fe11fd157b",
+  "recipe_ids": [
+    "industrial-v3-chilli-balti-tofu"
+  ],
+  "titles": [
+    "Shift Balti Tofu Big Chilli"
+  ],
+  "notes": "REJECT: firm tofu cubes are now credible, but rice still appears ivory and polished with no clear tan bran coats; replace only the rice.",
+  "alt": "Shift Balti Tofu Big Chilli: reject: firm tofu cubes are now credible, but rice still appears ivory and polished with no clear tan bran coats",
+  "reviewed_at": "2026-10-05T00:33:13.786009+00:00",
+  "reviewer": "root-full-resolution-visual-review"
+}

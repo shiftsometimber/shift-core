@@ -1,0 +1,83 @@
+{
+  "groupId": "cbe0c6e9cbd48995b43249a4b98479d90a1628f31364d42ce9e471b9c5af5a73",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-curry-house-pork"
+  ],
+  "titles": [
+    "Shift Curry House Pork Slow-Cooker Big Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Curry House Pork Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"medium curry sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Exact sauce/herb placement; any herbs listed in cold finishing sauce stay ONLY inside that sauce. No fresh herb garnish.",
+  "original_generation_prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Curry House Pork Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"medium curry sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "medium curry sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the lean pork loin in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and lean pork loin into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the lean pork loin is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-3bf537dd-5e15-4c8e-a0a0-b7dabee2ef04.png",
+  "source_sha256": "c24e5cfb90de3ac3fbd7268b5f07f18fb374f65fb21ab732912151bc8380f96c",
+  "generated_at": "2026-10-05T00:41:51.525Z",
+  "elapsed_ms": 123715.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-cbe0c6e9cbd48995b432-480.webp",
+      "sha256": "bc9e77dbd8620e4b80bd681378f57814e4e296bfeab88495d8f4ebebbcb8efca",
+      "bytes": 22924
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-cbe0c6e9cbd48995b432-cd130e2b1007.webp",
+      "sha256": "cd130e2b10079e4ff28aa46ea555036184bcade07dbc31bf1a411e4f76f72c9a",
+      "bytes": 73372
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c24e5cfb90de3ac3fbd7268b5f07f18fb374f65fb21ab732912151bc8380f96c",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-curry-house-pork"
+    ],
+    "titles": [
+      "Shift Curry House Pork Slow-Cooker Big Pot"
+    ],
+    "notes": [
+      "Tender cooked pork pieces, baby potatoes, carrot chunks and softened onion have a light reduced curry coating, consistent with the slow-cooker method; no extras."
+    ],
+    "alt": "Curry House Pork Slow-Cooker Big Pot with baby potatoes, carrots, onion",
+    "reviewed_at": "2026-10-05T00:53:10.097Z",
+    "reviewer": "worker-c individual source visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-c/receipt-725.json"
+  },
+  "integrated": true,
+  "live": false
+}

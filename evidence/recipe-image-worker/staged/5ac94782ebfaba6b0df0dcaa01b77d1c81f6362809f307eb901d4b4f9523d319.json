@@ -1,0 +1,85 @@
+{
+  "groupId": "5ac94782ebfaba6b0df0dcaa01b77d1c81f6362809f307eb901d4b4f9523d319",
+  "recipe_ids": [
+    "industrial-lunch-turkey-wholemeal-wrap"
+  ],
+  "titles": [
+    "Turkey Wholemeal Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Turkey Wholemeal Wrap. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"salad leaves\"},{\"amount\":\"60g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt dressing\",\"allergens\":[\"milk\"]}]. Preparation: [\"Wash and dry the salad leaves and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal wrap can close.\",\"Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Use the measured 0% Greek yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.\",\"Use a ready-to-eat wholemeal wrap and lay it flat on a clean plate.\",\"Combine the prepared filling with the measured 0% Greek yoghurt dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling down the centre, fold in the sides and roll up firmly. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nBread/wrap/pitta plain unseeded, no sesame/poppy garnish. Cheese ONLY where cheddar is explicitly listed in toastie. Tuna fibrous drained flakes, turkey plain unbreaded cooked breast, no protein substitution. Greek yoghurt only recipes listing yoghurt; grain salads and tomato-pesto pasta have no added mayo/cream/yoghurt. Couscous, brown rice and wholewheat pasta cooked. Lemon/lime dressings incorporated, no citrus wedge. Preserve all reserved raw side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not potato garnish. Pitta shown as TWO distinct filled halves of ONE wholemeal pitta, each visible, with reserved lettuce/cucumber side. Wholemeal wraps here have reserved leaf/tomato side salad. Apple cottage cheese includes diced apple folded through, pineapple chunks, wholegrain crackers and measured black pepper. Overnight oats fruit/berries mixed through softened chilled oats, not dry oats or separate decorative toppings. No added fruit, honey, nuts, herbs or garnish.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "salad leaves"
+    },
+    {
+      "amount": "60g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt dressing",
+      "allergens": [
+        "milk"
+      ]
+    }
+  ],
+  "method": [
+    "Wash and dry the salad leaves and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal wrap can close.",
+    "Use chilled, already-cooked turkey breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+    "Use the measured 0% Greek yoghurt dressing as a ready-to-eat sauce or dressing. Keep chilled sauces refrigerated until assembly.",
+    "Use a ready-to-eat wholemeal wrap and lay it flat on a clean plate.",
+    "Combine the prepared filling with the measured 0% Greek yoghurt dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling down the centre, fold in the sides and roll up firmly. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8ae5dbf3-50f6-47b0-a4d3-584c605e7250.png",
+  "source_sha256": "b3c0ba23a19e3f350ab47fbead5c1c67962a8366c4dabfe67104d5a8b63e4607",
+  "generated_at": "2026-10-05T01:09:01.831Z",
+  "elapsed_ms": 357074.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5ac94782ebfaba6b0df0-480-a67f12962149.webp",
+      "sha256": "a67f12962149b185ad43221d10aa741e7c9327b6fa735096b2f725e5267c8953",
+      "bytes": 27346
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-5ac94782ebfaba6b0df0-d4de53f9295a.webp",
+      "sha256": "d4de53f9295a4d7bdd26cd8d0e98befda4e7f9a612db89a3424313ecceb9ef12",
+      "bytes": 77380
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "b3c0ba23a19e3f350ab47fbead5c1c67962a8366c4dabfe67104d5a8b63e4607",
+    "recipe_ids": [
+      "industrial-lunch-turkey-wholemeal-wrap"
+    ],
+    "titles": [
+      "Turkey Wholemeal Wrap"
+    ],
+    "notes": "Plain wholemeal rolled wrap filled with ready-to-eat turkey combined with Greek yoghurt dressing, fresh salad leaves/tomato and reserved leaf/tomato side salad alongside. No cheese, seeds, breadcrumb coating or garnish; exact title/method checked.",
+    "alt": "Turkey wholemeal wrap with Greek yoghurt dressing and tomato leaf salad",
+    "reviewed_at": "2026-10-05T01:10:21.279566+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2141.json"
+  },
+  "integrated": true,
+  "live": false
+}

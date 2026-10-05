@@ -1,0 +1,86 @@
+{
+  "groupId": "d6d8489d992576e7fac87e12127dcabfbd86f0a9ab68482b78d781efd496991c",
+  "recipe_ids": [
+    "industrial-v3-breakfast-wrap-bbq-egg"
+  ],
+  "titles": [
+    "Shift BBQ Egg Breakfast Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift BBQ Egg Breakfast Wrap. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"large eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"40g\",\"item\":\"reduced-sugar BBQ sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.\",\"Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.\",\"Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.\",\"For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "large eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "40g",
+      "item": "reduced-sugar BBQ sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Get the pan to a medium-high heat and prepare the filling first. Cook the large eggs until just set, keeping it tender rather than hammering it dry.",
+    "Add the vegetables and cook until softened but still with a bit of bite. Stir the measured sauce or seasoning through for the final 30\u201360 seconds so it coats the filling rather than burning.",
+    "Warm the wrap for 20\u201330 seconds so it bends without splitting. Put the filling just below the centre, fold the sides in and roll it up firmly.",
+    "For a better finish, put the wrapped seam-side down in the dry pan for a minute to seal and lightly crisp it. Eat while hot."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-c89810dc-6b4e-4fd1-811a-3e3d54c259f9.png",
+  "source_sha256": "197ff9b7ae025b51a0e28af04eaf94a53b03bab70503784a0238b6188962f09b",
+  "generated_at": "2026-10-04T21:16:00.451Z",
+  "elapsed_ms": 348434.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d6d8489d992576e7fac8-480.webp",
+      "sha256": "df5aa5fdd2793e24d83c582783b9e5070d251b3eafe01ce8f3c701697e00284f",
+      "bytes": 22318
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d6d8489d992576e7fac8.webp",
+      "sha256": "74c83f3154096aadb7d9a99020a554f24129adf4b3b2734e804c4f893f067a32",
+      "bytes": 67498
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-wrap-bbq-egg"
+    ],
+    "titles": [
+      "Shift BBQ Egg Breakfast Wrap"
+    ],
+    "notes": "Lightly crisped rolled wholemeal wrap reveals just-set scrambled eggs, softened mixed peppers and wilted spinach coated in barbecue sauce. No meat, cheese or herbs. Credible single wrap, centred with margin.",
+    "alt": "Toasted wholemeal wrap filled with barbecue eggs, mixed peppers and spinach",
+    "reviewed_at": "2026-10-04T21:16:25.327523+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/59.json",
+    "source_sha256": "197ff9b7ae025b51a0e28af04eaf94a53b03bab70503784a0238b6188962f09b"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,86 @@
+{
+  "groupId": "ae353786921e01e7407a21e5d4355b82d0c3577958d61b3862f4207aca4d3807",
+  "recipe_ids": [
+    "industrial-v3-kebab-peri-peri-chicken"
+  ],
+  "titles": [
+    "Shift Peri-Peri Chicken Fakeaway Kebab"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Chicken Fakeaway Kebab. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal flatbread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.\",\"Cut the chicken breast into strips about 1.5cm thick. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8\u201310 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Put the lettuce and tomato on the warm flatbread. Add the cooked chicken strips and the warm sauce, fold the bread around the filling and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Food accuracy: any wholemeal bun/flatbread is plain entirely UNSEEDED, no sesame/poppy. No unlisted cheese, fresh herbs, garnish, cream, mayonnaise, mustard, ketchup, breading, lemon or extra foods. Peri-peri sauce warm reddish-orange chilli sauce, not white dressing. Beef mince ONE1.5cm patty for burger, THREE short1.5cm koftas for kebab without skewers, TWO flattened2cm portions for roast; all other forms LOOSE browned cooked mince crumbles. Chicken burger opaque browned1.5cm cutlets, kebab/fries/pizza opaque1.5cm STRIPS, pasta/pie/curry/chilli/stirfry2cm PIECES, roast intact breast. Rice chilli brownrice under mixture dicedredpepper/kidneybeans; curry basmati under mixture slicedonion/mixedpeppers no kidneybeans; stirfry eggnoodles mixedpeppers broccoli all tossed through measured sauce. Pasta wholewheat with courgette/cherrytomatoes sauce THROUGH, no cream. Pie plain WATER-MASHED potato forkroughened golden top, filling carrot peas protein with HOT red peri-peri sauce INSIDE, no side bowl or creamygravy. Roast sauce ONLY over protein, potatoes/carrotbatons/boiledbroccoli PLAIN. Slowpot tender baby potatoes carrots onion and protein withglossyperipericoating, no crispyroast. Traybake baby potatoes broccoli redpepper cookedroastededges red sauce stirredthrough nearend. Cheeseless pizza passata/mixedpeppers/protein with warm periperisauce on TOP before baking; nowhitecheese layer. Finished cookedproteinopaque no rawpink. Main serving fullview and cropmargins.",
+  "original_generation_prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Chicken Fakeaway Kebab. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal flatbread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.\",\"Cut the chicken breast into strips about 1.5cm thick. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8\u201310 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Put the lettuce and tomato on the warm flatbread. Add the cooked chicken strips and the warm sauce, fold the bread around the filling and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal flatbread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.",
+    "Cut the chicken breast into strips about 1.5cm thick. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8\u201310 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Put the lettuce and tomato on the warm flatbread. Add the cooked chicken strips and the warm sauce, fold the bread around the filling and serve immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5dc48177-fcc6-4676-8e18-cf482a5e9128.png",
+  "source_sha256": "2db76903bf2b68481b7b3eeba61bfe49e2fd5cbfb1e454c36a742675a7750220",
+  "generated_at": "2026-10-05T01:29:05.716Z",
+  "elapsed_ms": 305688.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ae353786921e01e7407a-retry4-480-96827bca9959.webp",
+      "sha256": "96827bca995997e2575ee0e8de7c96b81ab7dfc5a6cc4a60a4a5dacdee1df840",
+      "bytes": 26832
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ae353786921e01e7407a-retry4-20bce87b01b7.webp",
+      "sha256": "20bce87b01b791e52cf23dce2c3591a5e62e016f7eda346ae05cbcd1cc88fffb",
+      "bytes": 83856
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "2db76903bf2b68481b7b3eeba61bfe49e2fd5cbfb1e454c36a742675a7750220",
+    "recipe_ids": [
+      "industrial-v3-kebab-peri-peri-chicken"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chicken Fakeaway Kebab"
+    ],
+    "notes": "Pass: browned cooked chicken breast strips approximately 1.5cm thick with clearly opaque pale interior, shredded lettuce and sliced tomato inside warmed folded plain unseeded wholemeal flatbread. Warm glossy reddish-orange peri-peri sauce inside bread. No crumbed meat, raw pink interior, cheese, white mayonnaise, mustard, herbs or extra foods. Exact strip kebab preparation and full crop.",
+    "alt": "Peri-peri chicken flatbread kebab with lettuce, tomato and warm chilli sauce",
+    "reviewed_at": "2026-10-05T01:30:54.663627+00:00",
+    "reviewer": "worker-d",
+    "receipt": "evidence/recipe-image-worker/worker-d/1220.json"
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,85 @@
+{
+  "groupId": "0cab3ccb384448b65c440d153fad6a00d5b411c65a95d54db5e2f2851138aceb",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-classic-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Classic Fruit Crunch Dessert Pot"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Fruit Crunch Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"1g\",\"item\":\"cinnamon\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nExact foods only; no honey, nuts, mint, syrup, cream or decorative garnish. Berries just small25g portion. All food inside frame. NO crackers, biscuits or cake anywhere. Cinnamon only a light1g fine powder mixed into fruit/dairy; no cinnamon sticks anywhere. Yoghurt base smooth and stirred, no cottage-cheese curds. All exact ingredients combined in one finished dessert bowl, measured Greek yoghurt swirled through. No separate dairy ramekin.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "1g",
+      "item": "cinnamon"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-2452df3e-1d87-419b-922d-a924425cd533.png",
+  "source_sha256": "226d904a7b09fd7a5dfc0235642018c7b20cf2e98d8ed87171d4edee0812207f",
+  "generated_at": "2026-10-05T00:36:56.018Z",
+  "elapsed_ms": 300384,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0cab3ccb384448b65c44-480-5112f027fbe9.webp",
+      "sha256": "5112f027fbe9166dff2d01baf3530a04ee45c9fc4f77f76d8fa6fd6d78b2f0f2",
+      "bytes": 22096
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0cab3ccb384448b65c44-15fdba055c63.webp",
+      "sha256": "15fdba055c632cc706dc787e131dd10db82561dea2bfd91b039fd3d21ab7699d",
+      "bytes": 65206
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "226d904a7b09fd7a5dfc0235642018c7b20cf2e98d8ed87171d4edee0812207f",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-classic-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Classic Fruit Crunch Dessert Pot"
+    ],
+    "notes": "Apple and small berries with fine cinnamon/oats/seeds combined and measured Greek yoghurt swirled through. No chocolate or sticks.",
+    "alt": "Cinnamon apple dessert with berries, Greek yoghurt, oats and pumpkin seeds.",
+    "reviewed_at": "2026-10-05T00:39:16.965864+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/0cab3ccb384448b65c440d153fad6a00d5b411c65a95d54db5e2f2851138aceb.json"
+  },
+  "integrated": true,
+  "live": false
+}

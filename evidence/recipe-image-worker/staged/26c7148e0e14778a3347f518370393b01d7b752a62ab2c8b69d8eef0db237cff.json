@@ -1,0 +1,100 @@
+{
+  "groupId": "26c7148e0e14778a3347f518370393b01d7b752a62ab2c8b69d8eef0db237cff",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-cajun-bacon"
+  ],
+  "titles": [
+    "Shift Cajun Bacon Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Bacon Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"1g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried oregano\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Trim visible fat from the back-bacon rashers and weigh the listed portion raw before cooking.\",\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use half the measured olive oil in a frying pan. Cut the bacon into bite-size pieces. Cook the lean back bacon thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked lean back bacon to the pan and heat through.\",\"Stir in the listed flavour ingredients (2g paprika, 1g chilli powder, 1g garlic powder, 1g dried oregano), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "1g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried oregano"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Trim visible fat from the back-bacon rashers and weigh the listed portion raw before cooking.",
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use half the measured olive oil in a frying pan. Cut the bacon into bite-size pieces. Cook the lean back bacon thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked lean back bacon to the pan and heat through.",
+    "Stir in the listed flavour ingredients (2g paprika, 1g chilli powder, 1g garlic powder, 1g dried oregano), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6b74e4bb-9ac6-451e-a49d-104d32460f82.png",
+  "source_sha256": "d949ad380481b51e758e2f53e9a77b9e22326f5e8c83201fa92e137dbac106fa",
+  "generated_at": "2026-10-04T21:16:01.274Z",
+  "elapsed_ms": 297355.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-26c7148e0e14778a3347-480.webp",
+      "sha256": "0dc0a0deabcea5e80c61a14619ae362dd6fd31c7aca58b612669d7a7b12dd275",
+      "bytes": 28826
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-26c7148e0e14778a3347.webp",
+      "sha256": "cd04b3f0b1be16d8f858216c04e29450b91bf39ba6205c84e6a047a8166d822f",
+      "bytes": 90896
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-cajun-bacon"
+    ],
+    "titles": [
+      "Shift Cajun Bacon Breakfast Toastie"
+    ],
+    "notes": "Crisp wholemeal toastie with cooked bacon pieces, tomato and spinach; remaining measured filling alongside allowed by method.",
+    "alt": "Cajun back bacon, tomato and spinach wholemeal toastie",
+    "reviewed_at": "2026-10-04T21:19:14.162606+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/90.json",
+    "source_sha256": "d949ad380481b51e758e2f53e9a77b9e22326f5e8c83201fa92e137dbac106fa"
+  },
+  "integrated": true,
+  "live": false
+}

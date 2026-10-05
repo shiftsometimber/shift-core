@@ -1,0 +1,87 @@
+{
+  "groupId": "db49f76f9ab1a5ad19792781eb9e94fbfc79c6b116c9d39cee50c43be259da50",
+  "recipe_ids": [
+    "industrial-v3-breakfast-hash-cheesy-bacon"
+  ],
+  "titles": [
+    "Shift Cheesy Bacon Breakfast Hash"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Bacon Breakfast Hash. Ingredients, quantities and allergens: [{\"amount\":\"90g\",\"item\":\"lean back bacon\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Trim visible fat from the back-bacon rashers and weigh the listed portion raw before cooking.\",\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.\",\"Use half the measured olive oil in a frying pan. Cut the bacon into bite-size pieces. Cook the lean back bacon thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked lean back bacon to the pan and heat through.\",\"Scatter over the 30g reduced-fat cheddar and let it melt over the hot filling.\",\"Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Any wholemeal bread, wrap or bun is plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed.",
+  "ingredients": [
+    {
+      "amount": "90g",
+      "item": "lean back bacon"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Trim visible fat from the back-bacon rashers and weigh the listed portion raw before cooking.",
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Cut the 250g baby potatoes into roughly 1 cm cubes. Simmer in a saucepan of water for about 6\u20138 minutes, continuing until a knife enters the centre easily. Drain thoroughly and let steam escape.",
+    "Use half the measured olive oil in a frying pan. Cut the bacon into bite-size pieces. Cook the lean back bacon thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the drained potatoes and turn occasionally until golden. Add the onion, mixed peppers; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked lean back bacon to the pan and heat through.",
+    "Scatter over the 30g reduced-fat cheddar and let it melt over the hot filling.",
+    "Check the potatoes are tender inside, the vegetables are cooked and the whole hash is hot. Serve the full measured portion immediately."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-ca752e93-21c5-4672-bbce-60b6e818e51b.png",
+  "source_sha256": "21bb03056fb973fe12f0a92f05532e6d33687be62f220805a7eb97022c01d917",
+  "generated_at": "2026-10-04T21:13:44.528Z",
+  "elapsed_ms": 51357,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-db49f76f9ab1a5ad1979-480.webp",
+      "sha256": "c94c3ba33b3180f02a1826289dc32f48c7d3c4deaf5a4f6b80d76409d3fe9e69",
+      "bytes": 28712
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-db49f76f9ab1a5ad1979.webp",
+      "sha256": "354b046324f92858e1009226b0de741a4f7876065d32ef350347eecf171aa9bd",
+      "bytes": 87102
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-hash-cheesy-bacon"
+    ],
+    "titles": [
+      "Shift Cheesy Bacon Breakfast Hash"
+    ],
+    "notes": "Bite-size cooked back bacon, golden potato cubes, cooked onion and mixed peppers with melted cheddar match hash method. No additional ingredients or garnish; single bowl.",
+    "alt": "Bacon and potato hash with onion, peppers and melted cheddar.",
+    "reviewed_at": "2026-10-04T21:20:42.484358+00:00",
+    "reviewer": "worker-b visual model review",
+    "receipt": "evidence/recipe-image-worker/worker-b/113.json",
+    "source_sha256": "21bb03056fb973fe12f0a92f05532e6d33687be62f220805a7eb97022c01d917"
+  },
+  "integrated": true,
+  "live": false
+}

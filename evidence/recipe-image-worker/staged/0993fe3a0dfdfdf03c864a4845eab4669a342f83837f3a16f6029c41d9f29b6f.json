@@ -1,0 +1,99 @@
+{
+  "groupId": "0993fe3a0dfdfdf03c864a4845eab4669a342f83837f3a16f6029c41d9f29b6f",
+  "recipe_ids": [
+    "industrial-v3-breakfast-toastie-cajun-sausage"
+  ],
+  "titles": [
+    "Shift Cajun Sausage Breakfast Toastie"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Sausage Breakfast Toastie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"reduced-fat pork sausages\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"1g\",\"item\":\"chilli powder\"},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried oregano\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.\",\"Use half the measured olive oil in a frying pan. Follow the sausage packet cooking guidance. Cook the reduced-fat pork sausages thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate. Slice the cooked sausages before assembling the toastie.\",\"Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.\",\"Return the fully cooked reduced-fat pork sausages to the pan and heat through.\",\"Stir in the listed flavour ingredients (2g paprika, 1g chilli powder, 1g garlic powder, 1g dried oregano), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.\",\"Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.\",\"Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.\",\"Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "reduced-fat pork sausages"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "1g",
+      "item": "chilli powder"
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried oregano"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash the vegetables. Chop onion and peppers where listed; slice tomato where listed and keep raw meat preparation separate.",
+    "Use half the measured olive oil in a frying pan. Follow the sausage packet cooking guidance. Cook the reduced-fat pork sausages thoroughly, turning regularly. Check the thickest piece is steaming hot through the centre. A clean probe should read 70\u00b0C for 2 minutes. Transfer to a clean plate. Slice the cooked sausages before assembling the toastie.",
+    "Heat the remaining half of the measured olive oil in the frying pan. Add the tomato, spinach; cook until softened, with spinach wilted and excess liquid evaporated where listed.",
+    "Return the fully cooked reduced-fat pork sausages to the pan and heat through.",
+    "Stir in the listed flavour ingredients (2g paprika, 1g chilli powder, 1g garlic powder, 1g dried oregano), mixing powders and liquids evenly; heat any beans or mushrooms until steaming hot.",
+    "Heat the sandwich toaster. Spoon the cooked filling between the measured bread slices, spreading it evenly and keeping wetter ingredients away from the edges. Do not overfill; serve any remaining cooked filling alongside.",
+    "Toast for around 4\u20136 minutes, following the appliance guidance, until the bread is crisp and the filling is steaming hot in the centre. Rest for one minute before cutting.",
+    "Serve the toastie with any remaining measured filling. Nutrition includes the whole portion, including the side."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-6642d6c8-0f4b-43b9-bd6a-44c677d11761.png",
+  "source_sha256": "8807cd15f8e0ae8b584bf5c0b9b95792bc8ab752129fe4777718809c43376ce7",
+  "generated_at": "2026-10-04T21:15:47.280Z",
+  "elapsed_ms": 269801,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0993fe3a0dfdfdf03c86-480.webp",
+      "sha256": "425b93ecb3f11bb0a6611ec58d66da634945bc26e122ddbda859fc3254cca469",
+      "bytes": 34762
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-0993fe3a0dfdfdf03c86.webp",
+      "sha256": "9d814998b26f773c74adfdd52ff08d7b2f1889a3256ac472579e4e26a6a9851b",
+      "bytes": 109684
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "recipe_ids": [
+      "industrial-v3-breakfast-toastie-cajun-sausage"
+    ],
+    "titles": [
+      "Shift Cajun Sausage Breakfast Toastie"
+    ],
+    "notes": "Grilled wholemeal bread halves filled with sliced cooked sausage, softened tomato and wilted spinach; no cheese.",
+    "alt": "Cajun pork sausage toastie with tomato and spinach",
+    "reviewed_at": "2026-10-04T21:17:53.349976+00:00",
+    "reviewer": "worker-g",
+    "receipt": "evidence/recipe-image-worker/worker-g/0993fe3a0dfdfdf03c864a4845eab4669a342f83837f3a16f6029c41d9f29b6f.json",
+    "source_sha256": "8807cd15f8e0ae8b584bf5c0b9b95792bc8ab752129fe4777718809c43376ce7"
+  },
+  "integrated": true,
+  "live": false
+}

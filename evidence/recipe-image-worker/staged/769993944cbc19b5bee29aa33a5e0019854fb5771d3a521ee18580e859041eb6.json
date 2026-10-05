@@ -1,0 +1,94 @@
+{
+  "groupId": "769993944cbc19b5bee29aa33a5e0019854fb5771d3a521ee18580e859041eb6",
+  "recipe_ids": [
+    "industrial-lunch-tofu-grain-salad"
+  ],
+  "titles": [
+    "Tofu Grain Salad"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Tofu Grain Salad. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"firm tofu\"},{\"amount\":\"75g dry\",\"item\":\"couscous, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"60g\",\"item\":\"cucumber\"},{\"amount\":\"60g\",\"item\":\"tomato\"},{\"amount\":\"5ml\",\"item\":\"olive oil\"},{\"amount\":\"5ml\",\"item\":\"lemon juice\"},{\"amount\":\"4g\",\"item\":\"wholegrain mustard\",\"allergens\":[\"mustard\"]}]. Preparation: [\"The listed couscous quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Use instant couscous suitable for preparation with boiling water. Put the measured dry couscous in a heatproof bowl, pour over the boiling-water quantity stated on its packet, cover and leave for the packet time. Fluff with a fork; it should be tender with no hard grains.\",\"Wash the cucumber and tomato, then dice both into small pieces.\",\"Choose firm tofu labelled ready to eat. Drain and pat it dry, then cut it into small cubes; keep it chilled until assembly.\",\"Stir together all the measured lemon juice, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Fold the cooked couscous, cucumber, tomato and prepared ready-to-eat filling together with the prepared dressing. Eat immediately.\",\"For a packed lunch, cool the prepared couscous promptly before combining it with the chilled filling. Cover, refrigerate and eat within 24 hours, following any shorter ingredient use-by date. Keep the meal chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nWholemeal bread/wrap/bagel/pitta plain unseeded; no sesame/poppy seed garnish or cheese unless explicitly listed. Tikka yoghurt only in the recipes listing it; no extra cream/mayo or coriander. Poultry plain cooked breast unbreaded; tuna fibrous drained flakes. Tofu specifically ready-to-eat pale unseared firm tofu: small cubes in grain salad, jacket, pasta and rice; thin slices in pitta, toastie, wrap. Never substitute feta, chicken or grilled tofu. Cheddar only listed Tofu Toastie, grated before toast. Preserve raw vegetables and all reserved side salads exactly. Spring onion finely sliced mixed into salad beside jacket potatoes, not topping. Listed lemon/lime juice/dressing incorporated: no citrus wedges. Wholegrain mustard stays in grain-salad dressing, no seed garnish. Rice/pasta/couscous depicted cooked.",
+  "original_generation_prompt": null,
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g dry",
+      "item": "couscous, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "60g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "60g",
+      "item": "tomato"
+    },
+    {
+      "amount": "5ml",
+      "item": "olive oil"
+    },
+    {
+      "amount": "5ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "4g",
+      "item": "wholegrain mustard",
+      "allergens": [
+        "mustard"
+      ]
+    }
+  ],
+  "method": [
+    "The listed couscous quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Use instant couscous suitable for preparation with boiling water. Put the measured dry couscous in a heatproof bowl, pour over the boiling-water quantity stated on its packet, cover and leave for the packet time. Fluff with a fork; it should be tender with no hard grains.",
+    "Wash the cucumber and tomato, then dice both into small pieces.",
+    "Choose firm tofu labelled ready to eat. Drain and pat it dry, then cut it into small cubes; keep it chilled until assembly.",
+    "Stir together all the measured lemon juice, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "Fold the cooked couscous, cucumber, tomato and prepared ready-to-eat filling together with the prepared dressing. Eat immediately.",
+    "For a packed lunch, cool the prepared couscous promptly before combining it with the chilled filling. Cover, refrigerate and eat within 24 hours, following any shorter ingredient use-by date. Keep the meal chilled until eating."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-5d5192aa-0c9f-4b6b-a414-ecb36f07560f.png",
+  "source_sha256": "a27aea45aa5f86d9917b9d8d607d641650a2ed9dfab01e2f0e2749bb4db87f87",
+  "generated_at": "2026-10-05T00:57:03.458Z",
+  "elapsed_ms": 257372.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-769993944cbc19b5bee2-480-536b8c3c89bb.webp",
+      "sha256": "536b8c3c89bba05f3c95bd998feddb6d361fa53dad2e062252e0b333495a73d8",
+      "bytes": 25884
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-769993944cbc19b5bee2-1695316419f9.webp",
+      "sha256": "1695316419f97b8045c4369bdc29384a564500f4fe323f27796fdd50e2aca414",
+      "bytes": 76610
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "a27aea45aa5f86d9917b9d8d607d641650a2ed9dfab01e2f0e2749bb4db87f87",
+    "recipe_ids": [
+      "industrial-lunch-tofu-grain-salad"
+    ],
+    "titles": [
+      "Tofu Grain Salad"
+    ],
+    "notes": "Cooked fluffy couscous with small pale unseared firm tofu cubes, diced raw cucumber/tomato and lemon/wholegrain-mustard/oil dressing folded through. Mustard grains in dressing, no scatter garnish, feta or citrus wedge. Exact title/method checked.",
+    "alt": "Tofu couscous salad with cucumber, tomato and mustard lemon dressing",
+    "reviewed_at": "2026-10-05T01:01:46.168733+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/2121.json"
+  },
+  "integrated": true,
+  "live": false
+}

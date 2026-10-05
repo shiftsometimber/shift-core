@@ -1,0 +1,939 @@
+[
+  {
+    "index": 1341,
+    "groupId": "5ca20f68f9aa86e35c88fbb353fe5e3f36b21c71b8515127452c0611fe815db0",
+    "title": "Shift Smoky Chilli Turkey Proper Curry",
+    "ingredients": [
+      {
+        "amount": "170g",
+        "item": "100% turkey breast mince, raw"
+      },
+      {
+        "amount": "75g",
+        "item": "basmati rice, dry"
+      },
+      {
+        "amount": "90g",
+        "item": "onion"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed peppers"
+      },
+      {
+        "amount": "40g",
+        "item": "smoked chilli tomato sauce"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+      "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+      "Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.",
+      "Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Keep the 170g turkey breast mince chilled until the pan is ready. Do not rinse raw mince.",
+      "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the turkey breast mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+      "Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+      "Turn the heat to low and fold in the 40g smoked chilli tomato sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+      "Return the cooked turkey breast mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately."
+    ],
+    "attempt": 2,
+    "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Turkey Proper Curry. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"75g\",\"item\":\"basmati rice, dry\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\",\"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Keep the 170g turkey breast mince chilled until the pan is ready. Do not rinse raw mince.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the turkey breast mince, break it into small pieces with a spatula and cook for 8\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Turn the heat to low and fold in the 40g smoked chilli tomato sauce. Stir for 1\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked turkey breast mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+    "prompt": "Create an appetising photorealistic editorial food photograph. Landscape 4:3, warm natural daylight, cream ceramic plate, generous framing. The rice is WHITE BASMATI: long slim polished white grains, not brown rice. Cooked turkey breast MINCE crumbles, softened onion and mixed pepper, sweet red smoky chilli tomato sauce, with white basmati rice. Exact ingredients: [{\"amount\": \"170g\", \"item\": \"100% turkey breast mince, raw\"}, {\"amount\": \"75g\", \"item\": \"basmati rice, dry\"}, {\"amount\": \"90g\", \"item\": \"onion\"}, {\"amount\": \"90g\", \"item\": \"mixed peppers\"}, {\"amount\": \"40g\", \"item\": \"smoked chilli tomato sauce\"}, {\"amount\": \"1 tsp / 5ml\", \"item\": \"olive oil\"}]. Exact preparation: [\"The listed basmati rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\", \"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\", \"Start the 75g basmati rice first: this is the uncooked weight. Use the water quantity and cooking time on the rice packet; simmer until tender, then drain if the packet method requires it. Keep covered briefly while finishing the pan, then serve immediately.\", \"Peel and finely slice the 90g onion and deseed and thinly slice the 90g mixed peppers. Keep the 170g turkey breast mince chilled until the pan is ready. Do not rinse raw mince.\", \"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the turkey breast mince, break it into small pieces with a spatula and cook for 8\\u201310 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70\\u00b0C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\", \"Add the remaining half of the listed olive oil to the same pan. Add 90g onion and 90g mixed peppers and cook for 6\\u20138 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\", \"Turn the heat to low and fold in the 40g smoked chilli tomato sauce. Stir for 1\\u20132 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\", \"Return the cooked turkey breast mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Spoon the pan mixture over the freshly cooked rice. Serve immediately.\"]. Only these foods, no garnish or decorative ingredients. Credible cooked food texture."
+  },
+  {
+    "index": 1342,
+    "groupId": "ff063e4ee1c0747d173c3844a198e394b6776d7ee1860b6dba5909c6268d9773",
+    "title": "Shift Smoky Chilli Turkey Proper Pasta",
+    "ingredients": [
+      {
+        "amount": "170g",
+        "item": "100% turkey breast mince, raw"
+      },
+      {
+        "amount": "75g",
+        "item": "wholewheat pasta, dry",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "courgette"
+      },
+      {
+        "amount": "90g",
+        "item": "cherry tomatoes"
+      },
+      {
+        "amount": "40g",
+        "item": "smoked chilli tomato sauce"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+      "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+      "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+      "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the smoked chilli tomato sauce ready to add near the end of cooking.",
+      "Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.",
+      "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+      "Add the cooked pasta and filling. Stir in the measured smoked chilli tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+    ],
+    "attempt": 2,
+    "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Turkey Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the smoked chilli tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured smoked chilli tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+    "prompt": "Create an appetising photorealistic editorial food photograph. Landscape 4:3, warm natural daylight, cream ceramic plate, generous framing. Cooked turkey breast MINCE crumbles with WHOLEWHEAT pasta, cooked courgette and very small irregular DICED cherry tomato pieces. ALL cherry tomatoes are diced, no round halves or whole tomatoes. Exact ingredients: [{\"amount\": \"170g\", \"item\": \"100% turkey breast mince, raw\"}, {\"amount\": \"75g\", \"item\": \"wholewheat pasta, dry\", \"allergens\": [\"gluten\"]}, {\"amount\": \"90g\", \"item\": \"courgette\"}, {\"amount\": \"90g\", \"item\": \"cherry tomatoes\"}, {\"amount\": \"40g\", \"item\": \"smoked chilli tomato sauce\"}, {\"amount\": \"1 tsp / 5ml\", \"item\": \"olive oil\"}]. Exact preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\", \"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\", \"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\", \"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the smoked chilli tomato sauce ready to add near the end of cooking.\", \"Heat half the measured olive oil in a non-stick frying pan. Add the turkey breast mince, break it into small pieces with a spoon and fry over medium-high heat for about 8\\u201310 minutes. Keep turning until browned and steaming hot throughout; check the centre reaches 75\\u00b0C for 30 seconds with a clean thermometer. Transfer the cooked filling to a clean plate.\", \"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\", \"Add the cooked pasta and filling. Stir in the measured smoked chilli tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Only these foods, no garnish or decorative ingredients. Credible cooked food texture."
+  },
+  {
+    "index": 1346,
+    "groupId": "f84d41194b61dbcdf1171d85683e6112120de2e0fc67c448943b2958f81b50ac",
+    "title": "Shift Smoky Chilli Turkey Sunday-Style Roast",
+    "ingredients": [
+      {
+        "amount": "170g",
+        "item": "100% turkey breast mince, raw"
+      },
+      {
+        "amount": "250g",
+        "item": "potatoes, peeled, raw"
+      },
+      {
+        "amount": "90g",
+        "item": "carrots"
+      },
+      {
+        "amount": "90g",
+        "item": "broccoli"
+      },
+      {
+        "amount": "40g",
+        "item": "smoked chilli tomato sauce"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+      "Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.",
+      "Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.",
+      "Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.",
+      "Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.",
+      "Warm the smoked chilli tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.",
+      "Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot smoked chilli tomato sauce over the cooked protein."
+    ],
+    "attempt": 2,
+    "originalGenerationPrompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Chilli Turkey Sunday-Style Roast. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"250g\",\"item\":\"potatoes, peeled, raw\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"smoked chilli tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Heat the oven to 200\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\",\"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\",\"Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\u00b0C for 30 seconds with a clean thermometer.\",\"Cut the broccoli into small florets and boil for 4\u20136 minutes until tender with a little bite. Drain well.\",\"Warm the smoked chilli tomato sauce in a small saucepan with 2 tablespoons of water for 1\u20132 minutes, stirring until hot.\",\"Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot smoked chilli tomato sauce over the cooked protein.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+    "prompt": "Create an appetising photorealistic editorial food photograph. Landscape 4:3, warm natural daylight, cream ceramic plate, generous framing. Exactly TWO separate compact flattened plain turkey breast MINCE portions approximately 2 cm thick. Both are clearly visible with a gap between them, roast browned and glazed on top with measured smoky chilli tomato sauce. Separate peeled golden roast potato chunks, carrot batons and plain broccoli. No whole turkey fillet, no single large patty. Exact ingredients: [{\"amount\": \"170g\", \"item\": \"100% turkey breast mince, raw\"}, {\"amount\": \"250g\", \"item\": \"potatoes, peeled, raw\"}, {\"amount\": \"90g\", \"item\": \"carrots\"}, {\"amount\": \"90g\", \"item\": \"broccoli\"}, {\"amount\": \"40g\", \"item\": \"smoked chilli tomato sauce\"}, {\"amount\": \"1 tsp / 5ml\", \"item\": \"olive oil\"}]. Exact preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\", \"Heat the oven to 200\\u00b0C fan. Peel the potatoes and weigh the listed raw portion before cutting into even 3cm chunks. Parboil in water for 8\\u201310 minutes, drain and shake gently to roughen the edges. Toss with half the measured olive oil and roast on a non-stick tray for 35\\u201340 minutes, turning halfway, until golden and tender. Time the other components to finish alongside the potatoes.\", \"Cut the carrots into slim batons, toss them with one quarter of the measured olive oil and roast on the potato tray for the final 20\\u201325 minutes, turning once, until tender. Keep them separate from uncooked meat or fish.\", \"Use the final quarter of the measured olive oil on the separate protein tray. Shape the turkey breast mince into two compact, flattened portions about 2cm thick; this uses mince, not a roasting joint. Bake on a separate lined tray for approximately 18\\u201322 minutes, turning halfway, until steaming hot through the centre. Check 75\\u00b0C for 30 seconds with a clean thermometer.\", \"Cut the broccoli into small florets and boil for 4\\u20136 minutes until tender with a little bite. Drain well.\", \"Warm the smoked chilli tomato sauce in a small saucepan with 2 tablespoons of water for 1\\u20132 minutes, stirring until hot.\", \"Serve the cooked turkey breast mince, roast potatoes, carrots and broccoli together. Spoon the hot smoked chilli tomato sauce over the cooked protein.\"]. Only these foods, no garnish or decorative ingredients. Credible cooked food texture."
+  },
+  {
+    "index": 1738,
+    "groupId": "70dc14cb3b8a558a67a1e89d3a886adc8a091819e4d7f22a59c71cb1851e26d9",
+    "title": "Shift Club Turkey Proper Sandwich",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked turkey breast"
+      },
+      {
+        "amount": "80g",
+        "item": "wholemeal bread",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "lettuce"
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "30g",
+        "item": "mustard mayo"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+      "Build the club flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+      "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.",
+      "Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Club Turkey Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"mustard mayo\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the club flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can \u2014 nobody asked for a soggy lunch.\",\"Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1739,
+    "groupId": "fbebf641edeb5fbac2a17190d7f42a6d43cd719da5cf6bf7c0cbad4a59c5cf9f",
+    "title": "Shift Creamy Cheddar Chicken Hot Toastie",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked chicken breast"
+      },
+      {
+        "amount": "80g",
+        "item": "wholemeal bread",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "90g",
+        "item": "spinach"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+      "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise and reduced-fat cheddar in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+      "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+      "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+      "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Chicken Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise and reduced-fat cheddar in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1740,
+    "groupId": "c01956a1ad8deca697ea5cef30823947dc943e2226b4640ba162dfc019d2b39a",
+    "title": "Shift Creamy Cheddar Chicken Loaded Bagel",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked chicken breast"
+      },
+      {
+        "amount": "90g",
+        "item": "wholemeal bagel",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "rocket"
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+      "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+      "Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+      "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Chicken Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1741,
+    "groupId": "8808abacc45e3b5b11e49334890f7a4dacd166ca840d36f0a81dd3bade804e88",
+    "title": "Shift Creamy Cheddar Chicken Loaded Jacket Potato",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked chicken breast"
+      },
+      {
+        "amount": "250g",
+        "item": "baking potato"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed salad"
+      },
+      {
+        "amount": "90g",
+        "item": "spring onion"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+      "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+      "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+      "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Chicken Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1742,
+    "groupId": "a6b08d1d51e82a7902463a818488941df069f47a6ee98379557b2e93ea98155b",
+    "title": "Shift Creamy Cheddar Chicken Meal-Prep Bowl",
+    "ingredients": [
+      {
+        "amount": "130g",
+        "item": "cooked chicken breast"
+      },
+      {
+        "amount": "75g",
+        "item": "brown rice, dry"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed peppers"
+      },
+      {
+        "amount": "90g",
+        "item": "sweetcorn"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+      "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+      "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+      "Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.",
+      "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Chicken Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked chicken breast\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use chilled, already-cooked chicken breast; slice it thinly or shred it into small pieces. Keep it refrigerated until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1743,
+    "groupId": "9c3464df8366bc21782e07a328162528a7771ae662a247b216256b41afa335e1",
+    "title": "Shift Creamy Cheddar Chickpea Hot Toastie",
+    "ingredients": [
+      {
+        "amount": "150g",
+        "item": "chickpeas, drained"
+      },
+      {
+        "amount": "80g",
+        "item": "wholemeal bread",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "90g",
+        "item": "spinach"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+      "Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise and reduced-fat cheddar in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+      "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+      "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+      "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Chickpea Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise and reduced-fat cheddar in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1744,
+    "groupId": "5ce05fe65674e85bad008a1e91279bc0b563d193261f04647884591633e26dc6",
+    "title": "Shift Creamy Cheddar Chickpea Loaded Bagel",
+    "ingredients": [
+      {
+        "amount": "150g",
+        "item": "chickpeas, drained"
+      },
+      {
+        "amount": "90g",
+        "item": "wholemeal bagel",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "rocket"
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+      "Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+      "Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+      "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Chickpea Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1745,
+    "groupId": "99a7089c934d85d92fbcfe2bf8b77a8cc8752e4e72e95a58c8ce925394d3012e",
+    "title": "Shift Creamy Cheddar Chickpea Loaded Jacket Potato",
+    "ingredients": [
+      {
+        "amount": "150g",
+        "item": "chickpeas, drained"
+      },
+      {
+        "amount": "250g",
+        "item": "baking potato"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed salad"
+      },
+      {
+        "amount": "90g",
+        "item": "spring onion"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+      "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+      "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+      "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Chickpea Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1746,
+    "groupId": "c01900e4e7d26a71d593b03c0937017ca7404dcdd80917540f0ebed3f369df53",
+    "title": "Shift Creamy Cheddar Chickpea Meal-Prep Bowl",
+    "ingredients": [
+      {
+        "amount": "150g",
+        "item": "chickpeas, drained"
+      },
+      {
+        "amount": "75g",
+        "item": "brown rice, dry"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed peppers"
+      },
+      {
+        "amount": "90g",
+        "item": "sweetcorn"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+      "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+      "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+      "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.",
+      "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Chickpea Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1747,
+    "groupId": "7043c5532987138973a026e6984a4a7a2ae3f5bc7f8c796ca92f58147ffd3d42",
+    "title": "Shift Creamy Cheddar Egg Hot Toastie",
+    "ingredients": [
+      {
+        "amount": "2 / 100g",
+        "item": "boiled eggs",
+        "allergens": [
+          "egg"
+        ]
+      },
+      {
+        "amount": "80g",
+        "item": "wholemeal bread",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "90g",
+        "item": "spinach"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+      "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise and reduced-fat cheddar in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+      "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+      "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+      "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Egg Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise and reduced-fat cheddar in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1748,
+    "groupId": "c8ecdf74c166070fd7b1ac7fa5f79241e5cba53a6ee4c66d056f8fbae64a807e",
+    "title": "Shift Creamy Cheddar Egg Loaded Bagel",
+    "ingredients": [
+      {
+        "amount": "2 / 100g",
+        "item": "boiled eggs",
+        "allergens": [
+          "egg"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "wholemeal bagel",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "rocket"
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+      "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+      "Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+      "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Egg Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1749,
+    "groupId": "45f95bdf669102d16eaa66113cab76a239eb5dbf257c435b85ad98738f9cc96c",
+    "title": "Shift Creamy Cheddar Egg Loaded Jacket Potato",
+    "ingredients": [
+      {
+        "amount": "2 / 100g",
+        "item": "boiled eggs",
+        "allergens": [
+          "egg"
+        ]
+      },
+      {
+        "amount": "250g",
+        "item": "baking potato"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed salad"
+      },
+      {
+        "amount": "90g",
+        "item": "spring onion"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+      "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+      "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+      "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Egg Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1750,
+    "groupId": "e78e2a01d95f1524d2e1985fa198e8e134cc79438c7cfcb5096a06e8bbc3bcc1",
+    "title": "Shift Creamy Cheddar Egg Meal-Prep Bowl",
+    "ingredients": [
+      {
+        "amount": "2 / 100g",
+        "item": "boiled eggs",
+        "allergens": [
+          "egg"
+        ]
+      },
+      {
+        "amount": "75g",
+        "item": "brown rice, dry"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed peppers"
+      },
+      {
+        "amount": "90g",
+        "item": "sweetcorn"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+      "The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.",
+      "Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.",
+      "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.",
+      "For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Egg Meal-Prep Bowl. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"75g\",\"item\":\"brown rice, dry\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"sweetcorn\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed brown rice quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"The listed brown rice is a dry weight. Cook it in a saucepan using the water quantity and cooking time on its packet, until tender; drain if needed.\",\"Wash and dice the mixed peppers. Use ready-to-eat canned sweetcorn, drained before weighing; keep both ready for assembly.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"For immediate serving, put the hot cooked rice in a bowl, add the peppers, sweetcorn and chilled ready-to-eat filling, then fold through the prepared dressing. Eat immediately.\",\"For a cold packed lunch, spread the rice in a shallow container and chill quickly, ideally within one hour, before combining it with the chilled filling. Refrigerate the finished meal and eat within 24 hours, following any shorter ingredient use-by date. Keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1751,
+    "groupId": "5494c9fff663f2ba3fcd3430f8afd728b2449dd64f990eb766099f6039cb1ff0",
+    "title": "Shift Creamy Cheddar Ham Hot Toastie",
+    "ingredients": [
+      {
+        "amount": "120g",
+        "item": "lean ham"
+      },
+      {
+        "amount": "80g",
+        "item": "wholemeal bread",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "amount": "90g",
+        "item": "spinach"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+      "Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise and reduced-fat cheddar in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+      "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+      "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+      "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Ham Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise and reduced-fat cheddar in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the prepared dressing between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1752,
+    "groupId": "a7150c56eddd9729893e1d2c1236a96d1ce7abcdebc69c22238252fb00e9c937",
+    "title": "Shift Creamy Cheddar Ham Loaded Bagel",
+    "ingredients": [
+      {
+        "amount": "120g",
+        "item": "lean ham"
+      },
+      {
+        "amount": "90g",
+        "item": "wholemeal bagel",
+        "allergens": [
+          "gluten"
+        ]
+      },
+      {
+        "amount": "90g",
+        "item": "rocket"
+      },
+      {
+        "amount": "90g",
+        "item": "tomato"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+      "Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+      "Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+      "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Ham Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the prepared dressing. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  },
+  {
+    "index": 1753,
+    "groupId": "284dae24a0d4dd01462e2594cffc6255a5c68f48ed4b6252290930983e7d0f18",
+    "title": "Shift Creamy Cheddar Ham Loaded Jacket Potato",
+    "ingredients": [
+      {
+        "amount": "120g",
+        "item": "lean ham"
+      },
+      {
+        "amount": "250g",
+        "item": "baking potato"
+      },
+      {
+        "amount": "90g",
+        "item": "mixed salad"
+      },
+      {
+        "amount": "90g",
+        "item": "spring onion"
+      },
+      {
+        "item": "0% Greek yoghurt",
+        "amount": "18g"
+      },
+      {
+        "item": "light mayonnaise",
+        "amount": "9g"
+      },
+      {
+        "item": "reduced-fat cheddar",
+        "amount": "3g"
+      },
+      {
+        "amount": "1 tsp / 5ml",
+        "item": "olive oil"
+      }
+    ],
+    "method": [
+      "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+      "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+      "Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.",
+      "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+      "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+      "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+    ],
+    "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Ham Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use ready-to-eat cooked lean ham and cut it into thin strips. Keep it chilled until assembly.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: make the exact finished dish appetising with natural light and accurate cooked texture. Only the listed ingredients and the stated assembly."
+  }
+]

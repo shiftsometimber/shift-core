@@ -1,0 +1,83 @@
+{
+  "groupId": "ce1b0c288e76e4f2122a913717750c7faa790755db31c603bfd5499497cc05fc",
+  "recipe_ids": [
+    "industrial-v3-wrap-pickle-chickpea"
+  ],
+  "titles": [
+    "Shift Pickle Chickpea Loaded Wrap"
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pickle Chickpea Loaded Wrap. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"65g\",\"item\":\"wholemeal wrap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"pickle mustard relish\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.\",\"Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.\",\"Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.\",\"Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nAny wholemeal bread, wrap, bagel or bun plain unseeded: no sesame/poppy seeds or seed garnish unless listed. No cheese unless listed. Keep raw side salad separate whenever the method reserves it; show all listed filling and no unlisted food. Herbs and dressings belong only where method puts them, never scatter garnish. Pickle mustard relish belongs in or on prescribed filling; never invent whole pickle sides. Chickpeas roughly mashed only where method requires; boiled eggs sliced, ham thin strips for toastie/bagel/jacket. No extra ingredients.",
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "65g",
+      "item": "wholemeal wrap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "pickle mustard relish"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Make the filling first. Get the pan properly hot, add the chickpeas, drained and let it take on a little colour before you start moving it around.",
+    "Keep the lettuce, tomato and other fresh/crunchy ingredients out of the pan. Mix the measured sauce or dressing with the chickpeas, drained; if the filling is being served hot, reduce only the sauce-coated chickpeas, drained until it is no longer wet enough to soak the wrap.",
+    "Warm the wrap, then layer the filling through the centre with the fresh/crunchy elements last. Do not overfill it just because you can.",
+    "Fold in the sides, roll firmly and toast seam-side down in a dry pan for 1\u20132 minutes if you want a crisp finish."
+  ],
+  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-33be3ff7-8dbe-4b8f-9169-c1cc92c24f54.png",
+  "source_sha256": "9f5155ab97af68c2c36c98d80dcf7f6b69df19440fb6a69dcc900c09bcdaa953",
+  "generated_at": "2026-10-04T23:36:34.680Z",
+  "elapsed_ms": 102760.0,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ce1b0c288e76e4f2122a-480-b5d899c46417.webp",
+      "sha256": "b5d899c46417f67cef9a84630a59fa3e059df9db0bb987d57e653a019d8090a4",
+      "bytes": 22126
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ce1b0c288e76e4f2122a-bcac9aad520d.webp",
+      "sha256": "bcac9aad520d81d66598c92dc775dfadc142683731e8dce58e4256fb825f1190",
+      "bytes": 63522
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "9f5155ab97af68c2c36c98d80dcf7f6b69df19440fb6a69dcc900c09bcdaa953",
+    "recipe_ids": [
+      "industrial-v3-wrap-pickle-chickpea"
+    ],
+    "titles": [
+      "Shift Pickle Chickpea Loaded Wrap"
+    ],
+    "notes": "Plain toasted wholemeal wrap with lightly browned whole chickpeas coated in pickle mustard relish and fresh lettuce/tomato. No bread seeds, cheese, whole pickle side or garnish; exact warmed filling/fresh vegetable method matches.",
+    "alt": "Pickle chickpea wrap with lettuce and tomato",
+    "reviewed_at": "2026-10-04T23:41:53.983129+00:00",
+    "reviewer": "worker-f visual inspection",
+    "receipt": "evidence/recipe-image-worker/worker-f/1987.json"
+  },
+  "integrated": true,
+  "live": false
+}
