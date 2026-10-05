@@ -1,0 +1,91 @@
+{
+  "groupId": "2c0726343c89956266f2ea21153832b673b3572c630a1abba7c227e5e1005510",
+  "recipe_ids": [
+    "industrial-v3-pizza-garlic-herb-beef"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Beef Proper Pizza"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5–6 minutes until softened; transfer them to a clean bowl.",
+    "Mix the measured garlic herb yoghurt in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Keep the 5% beef mince ready to break into small pieces in the pan. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the beef mince over a medium-high heat for about 8–10 minutes, breaking up clumps and stirring until browned. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Transfer the cooked beef mince to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3–4 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked beef mince evenly on top. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Beef Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"5% beef mince\"},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5–6 minutes until softened; transfer them to a clean bowl.\",\"Mix the measured garlic herb yoghurt in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Keep the 5% beef mince ready to break into small pieces in the pan. After handling raw 5% beef mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the beef mince over a medium-high heat for about 8–10 minutes, breaking up clumps and stirring until browned. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Transfer the cooked beef mince to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3–4 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked beef mince evenly on top. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual preparation clarification: show the complete single serving with generous crop margin. Depict one complete individual baked pizza, cooked passata under the cooked protein and softened peppers, cold garlic herb yoghurt spooned on after baking. There is no cheese in this recipe.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/3/sources/010-a1.png",
+  "source_sha256": "d84e27783c25e75fbe45a0cb1f426ea2986e02e1f87a4a718094b20086139564",
+  "generated_at": "2026-10-05T12:48:40.067Z",
+  "elapsed_ms": 82426,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2c0726343c89956266f2-recovery20261005-480-8fa6d3ab9a37.webp",
+      "sha256": "8fa6d3ab9a3796b6cea54bdb76e827d76312f62a4dcc740f84746457fc80d808",
+      "bytes": 36286
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-2c0726343c89956266f2-recovery20261005-960-583d8023d46c.webp",
+      "sha256": "583d8023d46cee0e1e2c986ac8e812e92febddb81d695deb193a6e6cd030e1c9",
+      "bytes": 106766
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "d84e27783c25e75fbe45a0cb1f426ea2986e02e1f87a4a718094b20086139564",
+    "recipe_ids": [
+      "industrial-v3-pizza-garlic-herb-beef"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Beef Proper Pizza"
+    ],
+    "notes": "Whole individual baked pizza base with cooked passata, browned beef mince and softened mixed pepper strips; cold garlic herb yoghurt in distinct spoonfuls after baking. No melted cheese, additional vegetables or garnish. Credible complete serving.",
+    "alt": "Shift Garlic & Herb Beef Proper Pizza with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:52:50.660258+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:55:40.499633+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

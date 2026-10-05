@@ -1,0 +1,92 @@
+{
+  "groupId": "8f44977c5631d9fb0e123913cc8b9b228d669549335f9c8e5007559d6d9ecd94",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-garlic-herb-turkey"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Turkey Slow-Cooker Big Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "turkey mince"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the turkey mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables and turkey mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.",
+    "Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.",
+    "Check the turkey mince is safely cooked, switch the cooker off, then stir through the light mayonnaise and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Turkey Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"turkey mince\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the turkey mince in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables and turkey mince into the slow cooker with the measured glaze or seasoning. Cover and cook on LOW for 6\u20138 hours or HIGH for 3\u20134 hours; the sealed cooker and vegetables provide moisture, but a spoonful of dressing or citrus is not counted as cooking liquid.\",\"Keep the lid on while it cooks. Check once near the end: if the pot looks genuinely dry rather than glossy from released juices, add only a small splash of hot water and continue until the vegetables are tender.\",\"Check the turkey mince is safely cooked, switch the cooker off, then stir through the light mayonnaise and final flavourings away from the heat. Taste, season and cool leftovers quickly before refrigerating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Food-specific accuracy: make every listed major ingredient visually recognizable in the finished serving; preserve the exact protein and cooking form. Keep the entire edible serving centrally framed with generous empty margin on all four sides. No unlisted foods. Turkey mince is cooked pale crumbled mince; use the exact patty/kebab form if the method specifies it, not chicken pieces.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/4/sources/020.png",
+  "source_sha256": "48cf4103c273d349d1a14a34c38202f79ed6883d26dee56bf3a73bf85ef9b9e3",
+  "generated_at": "2026-10-05T12:52:12.739739+00:00",
+  "elapsed_ms": 153524,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8f44977c5631d9fb0e12-recovery20261005-480-df09c36ffcbf.webp",
+      "sha256": "df09c36ffcbfbb4edf94722957f11d021fae0e942cdff5fc056c6d272fc8cf20",
+      "bytes": 19144
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8f44977c5631d9fb0e12-recovery20261005-960-fa6dbc679965.webp",
+      "sha256": "fa6dbc67996505efc300d57b20968103f14b50c066566a13f9187a42c131723e",
+      "bytes": 58226
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "48cf4103c273d349d1a14a34c38202f79ed6883d26dee56bf3a73bf85ef9b9e3",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-garlic-herb-turkey"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Turkey Slow-Cooker Big Pot"
+    ],
+    "notes": "Cooked pale crumbled turkey mince surrounds tender skin-on baby potato pieces, cooked carrots and translucent onion in a lightly glossy mayonnaise coating with dried parsley. No meat chunks or extra foods. One slow-cooker bowl serving centrally framed.",
+    "alt": "Turkey mince with baby potatoes, carrots and onion in garlic-herb pot.",
+    "reviewed_at": "2026-10-05T12:54:25.322428+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:54:37.392442+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

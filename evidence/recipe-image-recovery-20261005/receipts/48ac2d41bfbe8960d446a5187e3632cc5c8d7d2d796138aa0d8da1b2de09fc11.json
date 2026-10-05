@@ -1,0 +1,97 @@
+{
+  "groupId": "48ac2d41bfbe8960d446a5187e3632cc5c8d7d2d796138aa0d8da1b2de09fc11",
+  "recipe_ids": [
+    "industrial-v3-pasta-garlic-herb-tofu"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Tofu Proper Pasta"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "firm tofu"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, garlic powder, dried parsley dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Tofu Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"firm tofu\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Pat the firm tofu dry, cut into 2cm cubes and cook over medium heat for 6\u20138 minutes, turning until the edges are golden and the middle is hot. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Take the pan off the heat before folding through the light mayonnaise, garlic powder, dried parsley dressing; do not boil it. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: Wholewheat pasta must have distinctly tan-brown wholegrain colour and texture. Firm tofu is cut into golden-edged 2cm cubes; courgette and tomatoes are cooked soft. Dressing is folded through after removing from heat.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/017-48ac2d41bfbe8960d446a5187e3632cc5c8d7d2d796138aa0d8da1b2de09fc11-b3.png",
+  "source_sha256": "8788ca4dfbdee9788df02688ff62b9e401db1fe58b34faf53e994a413855e0c4",
+  "generated_at": "2026-10-05T12:53:01.329Z",
+  "elapsed_ms": 54835,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-48ac2d41bfbe8960d446-recovery20261005-480-887be1fb3ace.webp",
+      "sha256": "887be1fb3ace1428ef3e138ba869290c39f9b4ba4a2dc683107fb66e5430c788",
+      "bytes": 28928
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-48ac2d41bfbe8960d446-recovery20261005-960-ae5d2f917df5.webp",
+      "sha256": "ae5d2f917df59e4ce23f6a25907db9c2e7ec02a2d65ccdaa12ee5bf760ddcd2a",
+      "bytes": 91830
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "8788ca4dfbdee9788df02688ff62b9e401db1fe58b34faf53e994a413855e0c4",
+    "recipe_ids": [
+      "industrial-v3-pasta-garlic-herb-tofu"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Tofu Proper Pasta"
+    ],
+    "notes": "Tan-brown wholewheat penne shows grain texture, tossed with golden-edged 2cm tofu cubes, softened courgette chunks and cooked cherry tomatoes. Pale garlic, dried parsley and mayonnaise dressing coats the components as required after removing from heat. No meat, cheese or fresh herb garnish. Entire bowl retained.",
+    "alt": "Wholewheat pasta with golden tofu cubes, courgette, cherry tomatoes and garlic parsley mayonnaise",
+    "reviewed_at": "2026-10-05T12:54:46.928889+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:54:59.613355+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

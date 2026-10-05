@@ -1,0 +1,89 @@
+{
+  "groupId": "20597f347b439e1eed526b3e61ead2cf1a3a444b6a79f65dec69d8e8f717cce5",
+  "recipe_ids": [
+    "industrial-v3-bagel-cheesy-chickpea"
+  ],
+  "titles": [
+    "Shift Cheesy Chickpea Loaded Bagel"
+  ],
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "90g",
+      "item": "wholemeal bagel",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "rocket"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.",
+    "Finely grate the measured reduced-fat cheddar. Use all the measured olive oil to dress the prepared vegetables.",
+    "Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.",
+    "Combine the prepared filling with the grated reduced-fat cheddar. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.",
+    "Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Chickpea Loaded Bagel. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"90g\",\"item\":\"wholemeal bagel\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"rocket\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the rocket and tomato; shred the leaves and slice the tomato thinly. Reserve most of the leaves and any excess tomato for a side salad so the wholemeal bagel can close.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.\",\"Finely grate the measured reduced-fat cheddar. Use all the measured olive oil to dress the prepared vegetables.\",\"Split the wholemeal bagel. Toast the cut halves lightly if desired, then let them cool slightly before filling.\",\"Combine the prepared filling with the grated reduced-fat cheddar. Add a small handful of the prepared leaves and some sliced tomato. Put a manageable layer of filling on the lower bagel half and add the top. Serve all remaining filling and vegetables alongside as the side salad.\",\"Eat now, or put the meal and any side salad into a covered container and refrigerate promptly. Eat within 24 hours and follow any shorter ingredient use-by date; keep it chilled until eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual method constraint: ONE closed wholemeal bagel with manageable modest filling and finely grated cheddar UNMELTED; remaining rocket/tomato and excess listed filling as a small side salad on same plate, as explicitly required by method. No mayonnaise, onions or other foods. Filling must follow exact sliced/shredded/rough-mashed state.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/5/sources/043.png",
+  "source_sha256": "ca0d5becb00698bfe0a0e7fabcd09dd0bdcce0b311f3fb5db9a122009861dc56",
+  "generated_at": "2026-10-05T13:05:13.708Z",
+  "elapsed_ms": 178249,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-20597f347b439e1eed52-recovery20261005-480-c169b06f42c0.webp",
+      "sha256": "c169b06f42c05de1214feaae9614b130ba8650abd8e8ad376edef82227ab1a77",
+      "bytes": 30720
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-20597f347b439e1eed52-recovery20261005-960-ac709e547c61.webp",
+      "sha256": "ac709e547c6172bc27ee84d24f4d5e165734f0e19e30b1025d20e09230968696",
+      "bytes": 87366
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "ca0d5becb00698bfe0a0e7fabcd09dd0bdcce0b311f3fb5db9a122009861dc56",
+    "recipe_ids": [
+      "industrial-v3-bagel-cheesy-chickpea"
+    ],
+    "titles": [
+      "Shift Cheesy Chickpea Loaded Bagel"
+    ],
+    "notes": "Rough-mashed chickpea filling and grated cheddar in wholemeal bagel with rocket and tomato, remaining filling and vegetables alongside. No meat, mayonnaise or extra salad foods.",
+    "alt": "Shift Cheesy Chickpea Loaded Bagel, prepared with chickpeas, drained, wholemeal bagel, rocket, tomato",
+    "reviewed_at": "2026-10-05T13:09:54.363002+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:10:15.958671+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

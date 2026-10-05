@@ -1,0 +1,81 @@
+{
+  "groupId": "21ed4ce7aee1ff2729048afd8cbf1314b5b03f0f254868436e2efe2bf285b6ae",
+  "recipe_ids": [
+    "industrial-v3-slow-cooker-harissa-chicken"
+  ],
+  "titles": [
+    "Shift Harissa Chicken Slow-Cooker Big Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "onion"
+    },
+    {
+      "amount": "40g",
+      "item": "harissa tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.",
+    "Put the vegetables, measured cooking liquid and chicken breast into the slow cooker. Stir once so everything is coated, then cook on LOW for 6–8 hours or HIGH for 3–4 hours.",
+    "Keep the lid on while it cooks. In the final 30 minutes, check the texture: if the cooking liquid is still thin, leave the lid slightly ajar or finish uncovered where your cooker allows until it reduces.",
+    "Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Harissa Chicken Slow-Cooker Big Pot. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"onion\"},{\"amount\":\"40g\",\"item\":\"harissa tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If you have five minutes, brown the chicken breast in a properly hot pan first. It is optional, but that bit of colour gives the finished dish far more depth.\",\"Put the vegetables, measured cooking liquid and chicken breast into the slow cooker. Stir once so everything is coated, then cook on LOW for 6–8 hours or HIGH for 3–4 hours.\",\"Keep the lid on while it cooks. In the final 30 minutes, check the texture: if the cooking liquid is still thin, leave the lid slightly ajar or finish uncovered where your cooker allows until it reduces.\",\"Check the chicken breast is safely cooked, taste the finished dish and adjust the seasoning before serving. Cool leftovers quickly and refrigerate.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Whole ordinary single portion and cream serving ware entirely in frame, wide empty crop margin. No unlisted ingredients or decorative fresh herbs. Cooked chicken breast pieces with tender baby potatoes, softened carrots and onions coated in lightly reduced harissa tomato cooking sauce. No broth-like flood, no garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/21ed4ce7aee1ff2729048afd8cbf1314b5b03f0f254868436e2efe2bf285b6ae.png",
+  "source_sha256": "5c191c66a4ce674c81a79d6332edcb42533eaf588791902dbc2dda2517f44a58",
+  "generated_at": "2026-10-05T12:55:23.477Z",
+  "elapsed_ms": 233656,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-21ed4ce7aee1ff272904-recovery20261005-480-9bc8bd934acb.webp",
+      "sha256": "9bc8bd934acbd3e5158ad9fad1efaa210bbdf0e608b774ebf5a3cf8cd3e3e1a9",
+      "bytes": 18124
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-21ed4ce7aee1ff272904-recovery20261005-960-a995a1e93bdd.webp",
+      "sha256": "a995a1e93bdd4a076f9d8f8824a806688a7a0dd3a5853e6ac3e8e47da394f7f9",
+      "bytes": 60236
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "5c191c66a4ce674c81a79d6332edcb42533eaf588791902dbc2dda2517f44a58",
+    "recipe_ids": [
+      "industrial-v3-slow-cooker-harissa-chicken"
+    ],
+    "titles": [
+      "Shift Harissa Chicken Slow-Cooker Big Pot"
+    ],
+    "notes": "Slow-cooked chicken breast pieces with tender skin-on baby potatoes, carrots and softened onion in reduced harissa tomato sauce, no added vegetables. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Harissa Chicken Slow-Cooker Big Pot, prepared with chicken breast, baby potatoes, carrots, onion",
+    "reviewed_at": "2026-10-05T12:56:24.783630+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:56:44.557790+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

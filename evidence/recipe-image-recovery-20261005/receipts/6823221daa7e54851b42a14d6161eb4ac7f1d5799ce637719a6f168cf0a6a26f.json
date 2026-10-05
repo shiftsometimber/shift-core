@@ -1,0 +1,83 @@
+{
+  "groupId": "6823221daa7e54851b42a14d6161eb4ac7f1d5799ce637719a6f168cf0a6a26f",
+  "recipe_ids": [
+    "industrial-v3-pie-harissa-pork"
+  ],
+  "titles": [
+    "Shift Harissa Pork Proper Pie"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "40g",
+      "item": "harissa tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Measure the harissa tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Stir in the harissa tomato sauce, heat for 1\u20132 minutes, then spoon into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve while hot."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Harissa Pork Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"lean pork loin\"},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"40g\",\"item\":\"harissa tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Measure the harissa tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cut the lean pork loin into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Stir in the harissa tomato sauce, heat for 1\u20132 minutes, then spoon into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve while hot.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual preparation clarification: A small single-serving mashed-potato topped baked pie, with fork-roughened browned mash and an opening showing cooked pork pieces, finely diced cooked carrot and hot peas in a light harissa tomato coating. No pastry, butter, cheese or added sauce. Show the complete single serving with crop margin, no unlisted food or garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/3/sources/024-a1.png",
+  "source_sha256": "5aae910e3f603bfa6c8c297ed47be8d744fa39d705f467081c4f78f0c97e6d8c",
+  "generated_at": "2026-10-05T12:59:59.522Z",
+  "elapsed_ms": 50742,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6823221daa7e54851b42-recovery20261005-480-6fad95a7d073.webp",
+      "sha256": "6fad95a7d073b90845a7632a2a7d07a013f1b6c2ff701fbb6a67e9712c3b40f0",
+      "bytes": 21272
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-6823221daa7e54851b42-recovery20261005-960-d891722a3821.webp",
+      "sha256": "d891722a3821a56b238c5710afeddeffd328d5534ab6e232f94c3ec77eddec95",
+      "bytes": 68942
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "5aae910e3f603bfa6c8c297ed47be8d744fa39d705f467081c4f78f0c97e6d8c",
+    "recipe_ids": [
+      "industrial-v3-pie-harissa-pork"
+    ],
+    "titles": [
+      "Shift Harissa Pork Proper Pie"
+    ],
+    "notes": "Small baked pie has a fork-roughened golden mashed potato lid and an exposed section showing opaque cooked pork pieces, diced carrots and peas in harissa tomato coating. No pastry or dairy topping; full single dish visible.",
+    "alt": "Shift Harissa Pork Proper Pie with its listed ingredients",
+    "reviewed_at": "2026-10-05T13:04:18.418929+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:07:46.371295+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

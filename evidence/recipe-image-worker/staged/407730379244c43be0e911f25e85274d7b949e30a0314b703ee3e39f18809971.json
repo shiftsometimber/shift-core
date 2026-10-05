@@ -1,0 +1,89 @@
+{
+  "groupId": "407730379244c43be0e911f25e85274d7b949e30a0314b703ee3e39f18809971",
+  "recipe_ids": [
+    "industrial-v3-pasta-peri-peri-salmon"
+  ],
+  "titles": [
+    "Shift Peri-Peri Salmon Proper Pasta"
+  ],
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the peri-peri sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4–5 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6–8 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured peri-peri sauce and 2 tablespoons of cooking water. Heat gently for 1–2 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Salmon Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the peri-peri sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4–5 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6–8 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured peri-peri sauce and 2 tablespoons of cooking water. Heat gently for 1–2 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Food-specific accuracy: make every listed major ingredient visually recognizable in the finished serving; preserve the exact protein and cooking form. Keep the entire edible serving centrally framed with generous empty margin on all four sides. No unlisted foods. Cooked pasta is tan/brown wholewheat pasta, never white pasta.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/4/sources/030.png",
+  "source_sha256": "27db5db374b83a2f34ca087847f13a35721eb2dde24077f9ea2f396c09ba24f6",
+  "generated_at": "2026-10-05T12:58:40.326437+00:00",
+  "elapsed_ms": 209247,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-407730379244c43be0e9-recovery20261005-480-912702754ce5.webp",
+      "sha256": "912702754ce5c96861d126deda10d117ba48a4168ebe9cf670e09c25350ddda1",
+      "bytes": 23908
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-407730379244c43be0e9-recovery20261005-960-a3c60f26baba.webp",
+      "sha256": "a3c60f26baba4da749434b7edb11c268c60b24db865ef4ce67b006c7149a33d6",
+      "bytes": 74234
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "27db5db374b83a2f34ca087847f13a35721eb2dde24077f9ea2f396c09ba24f6",
+    "recipe_ids": [
+      "industrial-v3-pasta-peri-peri-salmon"
+    ],
+    "titles": [
+      "Shift Peri-Peri Salmon Proper Pasta"
+    ],
+    "notes": "Opaque cooked salmon broken into large recognizable flakes is tossed among tan wholewheat penne with cooked courgette and softened cherry tomatoes in light peri-peri coating. No cheese, cream, garnish or other vegetables. Single bowl fully framed.",
+    "alt": "Wholewheat salmon pasta with courgette, cherry tomatoes and peri-peri sauce.",
+    "reviewed_at": "2026-10-05T13:01:34.931213+00:00",
+    "reviewer": "images_4",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:01:55.766218+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

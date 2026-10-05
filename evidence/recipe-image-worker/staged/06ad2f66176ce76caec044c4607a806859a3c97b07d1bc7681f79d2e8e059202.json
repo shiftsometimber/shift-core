@@ -1,0 +1,88 @@
+{
+  "groupId": "06ad2f66176ce76caec044c4607a806859a3c97b07d1bc7681f79d2e8e059202",
+  "recipe_ids": [
+    "industrial-v3-stir-fry-harissa-beef"
+  ],
+  "titles": [
+    "Shift Harissa Beef Stir-Fry"
+  ],
+  "ingredients": [
+    {
+      "amount": "160g",
+      "item": "5% beef mince"
+    },
+    {
+      "amount": "75g dry",
+      "item": "dried egg noodles",
+      "allergens": [
+        "egg",
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "40g",
+      "item": "harissa tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3–4 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.",
+    "Deseed and thinly slice the 90g mixed peppers. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.",
+    "Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8–10 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70°C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.",
+    "Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4–6 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.",
+    "Add the drained noodles and broccoli to the pan. Toss gently for 1–2 minutes to combine without crushing the florets.",
+    "Turn the heat to low and fold in the 40g harissa tomato sauce. Stir for 1–2 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.",
+    "Return the cooked 5% beef mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and 5% beef mince between serving bowls. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Harissa Beef Stir-Fry. Ingredients, quantities and allergens: [{\"amount\":\"160g\",\"item\":\"5% beef mince\"},{\"amount\":\"75g dry\",\"item\":\"dried egg noodles\",\"allergens\":[\"egg\",\"gluten\"]},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"40g\",\"item\":\"harissa tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed 75g dry egg noodles is an uncooked weight. Cut the 90g broccoli into small florets. Bring a saucepan of water to the boil, cook the broccoli for 3–4 minutes until just tender, then lift it onto a plate with a slotted spoon. Cook the noodles in the same boiling water for the time on their packet until tender, then drain well. Time this to finish shortly before the pan ingredients are ready.\",\"Deseed and thinly slice the 90g mixed peppers. Keep the 160g 5% beef mince chilled until the pan is ready. Do not rinse raw mince.\",\"Heat half the listed olive oil in a non-stick frying pan over a medium heat. Add the 5% beef mince, break it into small pieces with a spatula and cook for 8–10 minutes, stirring until no raw clumps remain and it is steaming hot throughout. Check the centre with a clean food thermometer: it must reach 70°C for 2 minutes. Keep cooking if it has not reached that endpoint; the suggested time is a guide. Transfer to a clean plate; keep the pan for the vegetables. Never reuse the plate or utensils that held the raw food without washing them.\",\"Add the remaining half of the listed olive oil to the same pan. Add 90g mixed peppers and cook for 4–6 minutes, stirring often, until softened with some bite. Keep the heat moderate so the small measured amount of oil does not smoke.\",\"Add the drained noodles and broccoli to the pan. Toss gently for 1–2 minutes to combine without crushing the florets.\",\"Turn the heat to low and fold in the 40g harissa tomato sauce. Stir for 1–2 minutes until hot, following any longer heating instruction on the sauce label. This measured sauce coats the food; do not boil it dry or add an unlisted jar of sauce.\",\"Return the cooked 5% beef mince and its juices to the pan and stir through. Heat gently until the whole pan is steaming hot, stirring to distribute the heat. Divide the noodles, vegetables and 5% beef mince between serving bowls. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Cooked soft egg noodles tossed with browned finely crumbled beef mince, cooked broccoli florets and softened thin red/yellow pepper strips. Measured harissa tomato sauce coats noodles and filling, oil integrated in cooking. No sesame, spring onion, coriander or other garnish. Full serving entirely inside the 4:3 landscape frame, generous margin for responsive crop. No unlisted garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/022.png",
+  "source_sha256": "6b930633dbd6260d8031aace48b00c3ca17ea8f9bb67fffb68a3a1d58ccc6c1b",
+  "generated_at": "2026-10-05T12:57:00.826878+00:00",
+  "elapsed_ms": 246208,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-06ad2f66176ce76caec0-recovery20261005-480-cd133666d232.webp",
+      "sha256": "cd133666d232bc4a4af192aa77735daa696e29edff7a73f05c305f3e91e7cf4c",
+      "bytes": 32752
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-06ad2f66176ce76caec0-recovery20261005-960-11f6f47aea7e.webp",
+      "sha256": "11f6f47aea7ef4a128b165c9f0683ea575d36bec27ba852c7c137b494306cfdb",
+      "bytes": 108010
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "6b930633dbd6260d8031aace48b00c3ca17ea8f9bb67fffb68a3a1d58ccc6c1b",
+    "recipe_ids": [
+      "industrial-v3-stir-fry-harissa-beef"
+    ],
+    "titles": [
+      "Shift Harissa Beef Stir-Fry"
+    ],
+    "notes": "Source viewed: cooked egg noodles with browned beef mince crumbles, cooked broccoli and softened thin red/yellow pepper strips all tossed with red harissa tomato coating and oil sheen. No sesame, coriander or other garnish; full ordinary bowl serving.",
+    "alt": "Shift Harissa Beef Stir-Fry served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:12.113256+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.912965+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

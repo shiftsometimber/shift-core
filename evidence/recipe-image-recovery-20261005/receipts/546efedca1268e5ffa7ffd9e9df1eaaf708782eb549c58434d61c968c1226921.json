@@ -1,0 +1,92 @@
+{
+  "groupId": "546efedca1268e5ffa7ffd9e9df1eaaf708782eb549c58434d61c968c1226921",
+  "recipe_ids": [
+    "industrial-v3-breakfast-buttie-smoky-turkey"
+  ],
+  "titles": [
+    "Shift Smoky Turkey Breakfast Buttie"
+  ],
+  "ingredients": [
+    {
+      "amount": "100g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bap",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "20g",
+      "item": "tomato ketchup"
+    },
+    {
+      "amount": "2g",
+      "item": "paprika"
+    },
+    {
+      "amount": "5ml",
+      "item": "cider vinegar"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Warm or toast the bap while you make the filling. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.",
+    "Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.",
+    "Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Smoky Turkey Breakfast Buttie. Ingredients, quantities and allergens: [{\"amount\":\"100g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bap\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"20g\",\"item\":\"tomato ketchup\"},{\"amount\":\"2g\",\"item\":\"paprika\"},{\"amount\":\"5ml\",\"item\":\"cider vinegar\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Warm or toast the bap while you make the filling. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Give the tomato/veg a minute in the same pan so it picks up the good bits, then add the measured sauce or seasoning and taste it.\",\"Split the bap, build the filling while it is hot and keep the wetter bits in the middle so the bread stays intact.\",\"Press it down, give it 30 seconds to settle, then get stuck in. If you are packing it, cool the filling before wrapping and refrigerate promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual preparation clarification: show the entire completed single serving centred with all plate edges inside the frame. Show lightly warmed sliced turkey breast, cooked tomato and wilted spinach inside a split wholemeal bap; paprika, ketchup and vinegar form the seasoning on the filling. Bread identity clarification: use a plain wholemeal bap with no oat flakes, seeds or decorative topping.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/3/sources/000-a2.png",
+  "source_sha256": "02f846e0bc2b17703c8008000d1647e57777fc8e129796973b1ce650444f9925",
+  "generated_at": "2026-10-05T12:47:40.179Z",
+  "elapsed_ms": 22538,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-546efedca1268e5ffa7f-recovery20261005-480-7ccd65c709d1.webp",
+      "sha256": "7ccd65c709d1136292e851460d2503f713fdd1779c09f241e4a51a6a27858a23",
+      "bytes": 27618
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-546efedca1268e5ffa7f-recovery20261005-960-f882dec84ce9.webp",
+      "sha256": "f882dec84ce913ffc5f33546b8568c0145bd85cda4b46ced72d945c85cbb491c",
+      "bytes": 89352
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "02f846e0bc2b17703c8008000d1647e57777fc8e129796973b1ce650444f9925",
+    "recipe_ids": [
+      "industrial-v3-breakfast-buttie-smoky-turkey"
+    ],
+    "titles": [
+      "Shift Smoky Turkey Breakfast Buttie"
+    ],
+    "notes": "Plain wholemeal bap now has no oat or seed topping. Warm sliced cooked turkey breast, wilted spinach and cooked tomato are clearly visible inside with paprika-ketchup-vinegar coating; oil incorporated. Single full sandwich, no additional food or garnish.",
+    "alt": "Shift Smoky Turkey Breakfast Buttie with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:52:48.708989+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:55:40.495857+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

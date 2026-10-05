@@ -1,0 +1,86 @@
+{
+  "groupId": "d22dcccb06a519933ea7fb7de73c9a6c60383d6cf07f48d17fc82b414d82c5ed",
+  "recipe_ids": [
+    "industrial-v3-pasta-harissa-chicken"
+  ],
+  "titles": [
+    "Shift Harissa Chicken Proper Pasta"
+  ],
+  "ingredients": [
+    {
+      "amount": "170g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "75g",
+      "item": "wholewheat pasta, dry",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "courgette"
+    },
+    {
+      "amount": "90g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "40g",
+      "item": "harissa tomato sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.",
+    "Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.",
+    "Dice the courgette, cherry tomatoes into bite-size pieces. Measure the harissa tomato sauce ready to add near the end of cooking.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.",
+    "Add the cooked pasta and filling. Stir in the measured harissa tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Harissa Chicken Proper Pasta. Ingredients, quantities and allergens: [{\"amount\":\"170g\",\"item\":\"chicken breast\"},{\"amount\":\"75g\",\"item\":\"wholewheat pasta, dry\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"courgette\"},{\"amount\":\"90g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"40g\",\"item\":\"harissa tomato sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"The listed wholewheat pasta quantity is the dry, uncooked weight. Follow the cooking and assembly steps below for this measured portion.\",\"Bring a saucepan of water to the boil. The 75g wholewheat pasta, dry is a dry weight: cook according to its packet until tender, then drain, saving a small cup of pasta water.\",\"Dice the courgette, cherry tomatoes into bite-size pieces. Measure the harissa tomato sauce ready to add near the end of cooking.\",\"Heat half the measured olive oil in a non-stick frying pan. Cut the chicken breast into even 2cm pieces. Fry over medium-high heat for about 8\u201312 minutes, turning regularly. Cook until no pink remains inside and the pieces are steaming hot throughout; a clean thermometer should read 75\u00b0C for 30 seconds at the centre. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil and courgette, cherry tomatoes to the pan. Cook over medium heat for 6\u20138 minutes, stirring until the courgette softens and the tomatoes release their juices.\",\"Add the cooked pasta and filling. Stir in the measured harissa tomato sauce and 2 tablespoons of cooking water. Heat gently for 1\u20132 minutes, stirring until the coating is hot. Toss gently, using another spoonful of reserved pasta water if it needs loosening. Serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: Wholewheat pasta must have distinctly tan-brown wholegrain colour and texture, coated in red harissa tomato sauce. Chicken breast is cooked in 2cm pieces; courgette and cherry tomatoes are cooked soft. No creamy sauce, cheese or herbs.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/022-d22dcccb06a519933ea7fb7de73c9a6c60383d6cf07f48d17fc82b414d82c5ed-b3.png",
+  "source_sha256": "d0db26b6db4b6e09608181bcfb427c33d4990bbba2030539729a299552097895",
+  "generated_at": "2026-10-05T12:56:29.698Z",
+  "elapsed_ms": 263204,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d22dcccb06a519933ea7-recovery20261005-480-db0480ef277b.webp",
+      "sha256": "db0480ef277b35efd1b3879dfa7ac8191f3e7ed78fd97c51bca40c8db02e9619",
+      "bytes": 30836
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d22dcccb06a519933ea7-recovery20261005-960-d4e434d05916.webp",
+      "sha256": "d4e434d05916bfc717a388a196454ec8d6d9ac3a71bf7ba85febb421e882e93c",
+      "bytes": 107694
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "d0db26b6db4b6e09608181bcfb427c33d4990bbba2030539729a299552097895",
+    "recipe_ids": [
+      "industrial-v3-pasta-harissa-chicken"
+    ],
+    "titles": [
+      "Shift Harissa Chicken Proper Pasta"
+    ],
+    "notes": "Tan-brown wholewheat penne with credible grain texture carries browned fully cooked 2cm chicken pieces, softened courgette chunks and cooked cherry tomatoes in red harissa tomato sauce. No white sauce, cheese or herb garnish. Whole single pasta bowl is framed with margin.",
+    "alt": "Harissa chicken wholewheat pasta with courgette and cherry tomatoes",
+    "reviewed_at": "2026-10-05T12:57:29.565927+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:57:57.790432+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

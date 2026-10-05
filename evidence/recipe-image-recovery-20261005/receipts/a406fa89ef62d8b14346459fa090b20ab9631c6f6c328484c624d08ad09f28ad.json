@@ -1,0 +1,91 @@
+{
+  "groupId": "a406fa89ef62d8b14346459fa090b20ab9631c6f6c328484c624d08ad09f28ad",
+  "recipe_ids": [
+    "industrial-v3-pizza-garlic-herb-pork"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Pork Proper Pizza"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.",
+    "Mix the measured garlic herb yoghurt in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Cut the lean pork loin across the grain into strips about 1cm thick. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the pork strips over a medium-high heat for about 7\u20139 minutes, turning regularly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Transfer the cooked pork strips to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked pork strips evenly on top. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Pork Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"lean pork loin\"},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.\",\"Mix the measured garlic herb yoghurt in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Cut the lean pork loin across the grain into strips about 1cm thick. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the pork strips over a medium-high heat for about 7\u20139 minutes, turning regularly. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Transfer the cooked pork strips to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked pork strips evenly on top. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Spoon over the cold finishing sauce after the pizza comes out of the oven. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual preparation clarification: show the complete single serving with generous crop margin. Depict one complete individual baked pizza, cooked passata under the cooked protein and softened peppers, cold garlic herb yoghurt spooned on after baking. There is no cheese in this recipe.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/3/sources/014-a1.png",
+  "source_sha256": "cb4fbca7219042ccd8ec180e9f060aa96367dbb8db4adb5f6b69fef94dfeb2bc",
+  "generated_at": "2026-10-05T12:51:16.103Z",
+  "elapsed_ms": 238462,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a406fa89ef62d8b14346-recovery20261005-480-3f17ea401a26.webp",
+      "sha256": "3f17ea401a26dcdef72540fcfbe1d81902d9d57f6c64a8009913c83b64db23c8",
+      "bytes": 32054
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a406fa89ef62d8b14346-recovery20261005-960-ce6b08c05496.webp",
+      "sha256": "ce6b08c054961e62249061f0d19292bea4d8d531bc3f3a850c010e4eaded3565",
+      "bytes": 100724
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "cb4fbca7219042ccd8ec180e9f060aa96367dbb8db4adb5f6b69fef94dfeb2bc",
+    "recipe_ids": [
+      "industrial-v3-pizza-garlic-herb-pork"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Pork Proper Pizza"
+    ],
+    "notes": "Whole baked individual pizza has cooked passata, browned cooked pork loin strips with beige interiors, and softened mixed peppers. Cold garlic herb yoghurt is spooned on after baking, with no cheese or unlisted topping. Complete single serving.",
+    "alt": "Shift Garlic & Herb Pork Proper Pizza with its listed ingredients",
+    "reviewed_at": "2026-10-05T12:52:53.238462+00:00",
+    "reviewer": "images_3",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:55:40.503247+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

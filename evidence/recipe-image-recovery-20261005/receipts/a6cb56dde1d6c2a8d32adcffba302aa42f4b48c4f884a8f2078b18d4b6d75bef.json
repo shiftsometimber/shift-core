@@ -1,0 +1,97 @@
+{
+  "groupId": "a6cb56dde1d6c2a8d32adcffba302aa42f4b48c4f884a8f2078b18d4b6d75bef",
+  "recipe_ids": [
+    "industrial-v3-pie-garlic-herb-salmon"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Salmon Proper Pie"
+  ],
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "carrots"
+    },
+    {
+      "amount": "90g",
+      "item": "peas"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.",
+    "Dice the carrots finely. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.",
+    "Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.",
+    "Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.",
+    "Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.",
+    "Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, garlic powder, dried parsley dressing alongside."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Salmon Proper Pie. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"potatoes\"},{\"amount\":\"90g\",\"item\":\"carrots\"},{\"amount\":\"90g\",\"item\":\"peas\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200\u00b0C fan. Peel and cut the potatoes into even 2cm chunks. Boil for 15\u201320 minutes until a knife goes through easily, then drain and mash with 2\u20133 tablespoons of the hot cooking water; no milk or butter is added.\",\"Dice the carrots finely. Stir together the measured light mayonnaise, garlic powder, dried parsley in a small bowl and keep this dressing chilled until serving.\",\"Heat half the measured olive oil in a non-stick frying pan. Cook the salmon fillet separately over medium heat for about 4\u20135 minutes on each side, adjusting for thickness, until the centre is opaque and flakes easily. Lift onto a clean plate and break into large flakes, checking for bones. Transfer the cooked filling to a clean plate.\",\"Add the remaining measured olive oil, carrots and 60ml water to the pan. Cover and simmer gently for 8\u201310 minutes until the carrots soften; add the peas for the final 3 minutes and cook until piping hot. Add a spoonful of water if the pan dries before the carrots are tender.\",\"Return the cooked filling to the vegetables. Keep the chilled dressing separate for serving; spoon the hot filling into a small ovenproof dish.\",\"Spread the mashed potato over the filling and roughen the top with a fork. Bake for 15\u201320 minutes, until the top colours and the centre of the pie is steaming hot. Rest for 2 minutes. Serve the light mayonnaise, garlic powder, dried parsley dressing alongside.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Whole ordinary single portion and cream serving ware entirely in frame, wide empty crop margin. No unlisted ingredients or decorative fresh herbs. Golden fork-roughened mashed POTATO top, no pastry or cheese. Expose filling edge showing large opaque cooked SALMON flakes, soft carrot dice and peas. Small separate ramekin of cold garlic/DRIED parsley mayonnaise.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/2/sources/a6cb56dde1d6c2a8d32adcffba302aa42f4b48c4f884a8f2078b18d4b6d75bef.png",
+  "source_sha256": "f8d70fba397e3cac660cd10d40c8e6d552760c29ee72328625541dad5696dbcd",
+  "generated_at": "2026-10-05T12:52:00.673Z",
+  "elapsed_ms": 30852,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a6cb56dde1d6c2a8d32a-recovery20261005-480-53ebbe10ba37.webp",
+      "sha256": "53ebbe10ba37bbda63e119d8688fcd2aebcf8cb5d5936889c506f9965fd504b5",
+      "bytes": 16324
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-a6cb56dde1d6c2a8d32a-recovery20261005-960-f7c817fbd258.webp",
+      "sha256": "f7c817fbd258dbec0cf786fa9b546653ade485ad4166999bce7a8e5cbcf3ee1f",
+      "bytes": 48502
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "f8d70fba397e3cac660cd10d40c8e6d552760c29ee72328625541dad5696dbcd",
+    "recipe_ids": [
+      "industrial-v3-pie-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Proper Pie"
+    ],
+    "notes": "Fork-ridged golden mashed potato pie exposes large opaque pink cooked salmon flakes, softened diced carrots and peas; separate garlic/dried parsley mayonnaise ramekin, no pastry. Full single serving on cream ware, no unlisted food or garnish; safe landscape crop margin.",
+    "alt": "Shift Garlic & Herb Salmon Proper Pie, prepared with salmon fillet, potatoes, carrots, peas",
+    "reviewed_at": "2026-10-05T12:56:22.454382+00:00",
+    "reviewer": "images_2",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:56:44.555490+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

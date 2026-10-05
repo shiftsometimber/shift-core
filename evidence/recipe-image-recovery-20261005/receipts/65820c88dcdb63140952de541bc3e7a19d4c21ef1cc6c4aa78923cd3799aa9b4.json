@@ -1,0 +1,88 @@
+{
+  "groupId": "65820c88dcdb63140952de541bc3e7a19d4c21ef1cc6c4aa78923cd3799aa9b4",
+  "recipe_ids": [
+    "industrial-v3-pizza-peri-peri-chicken"
+  ],
+  "titles": [
+    "Shift Peri-Peri Chicken Proper Pizza"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "150g",
+      "item": "individual pizza base",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato passata"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed peppers"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.",
+    "Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.",
+    "Cut the chicken breast into strips about 1.5cm thick. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8\u201310 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Transfer the cooked chicken strips to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.",
+    "Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked chicken strips evenly on top, then spoon over the warm sauce. Carefully slide onto the hot tray.",
+    "Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Rest for one minute, cut and serve."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Chicken Proper Pizza. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"chicken breast\"},{\"amount\":\"150g\",\"item\":\"individual pizza base\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato passata\"},{\"amount\":\"90g\",\"item\":\"mixed peppers\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Weigh the individual pizza base before cooking, using the raw weight listed in the ingredients. Preheat the oven to the temperature stated on its packet. Put a baking tray inside to heat. Keep the base ready on a board; follow any packet instruction to pre-bake it, and use its stated baking time for the final oven stage.\",\"Slice the mixed peppers thinly. Heat half of the measured olive oil in a non-stick frying pan over a medium heat and cook the peppers for 5\u20136 minutes until softened; transfer them to a clean bowl.\",\"Cut the chicken breast into strips about 1.5cm thick. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Add the remaining half of the measured olive oil to the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8\u201310 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Transfer the cooked chicken strips to the bowl of peppers. Add the measured tomato passata to the empty frying pan and simmer gently for 3\u20134 minutes, stirring, until slightly thickened so it will not soak the base.\",\"Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2\u20133 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Spread all the thickened tomato passata over the individual pizza base, leaving a narrow border. Arrange the cooked peppers and the cooked chicken strips evenly on top, then spoon over the warm sauce. Carefully slide onto the hot tray.\",\"Bake for the pizza base packet's stated time, until the dough is cooked through, the base is crisp underneath and the topping is hot throughout. Rest for one minute, cut and serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: Finished pizza MUST be visibly cut into four slices with one shifted slightly to expose the cooked crisp base. Show browned cooked chicken breast strips, softened mixed peppers, red tomato passata and peri-peri sauce; no cheese.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/026-65820c88dcdb63140952de541bc3e7a19d4c21ef1cc6c4aa78923cd3799aa9b4-b4.png",
+  "source_sha256": "009457a9d598bf97fa677cd1ebad377b1dbfe6d2805d3c2f5c06951833aab484",
+  "generated_at": "2026-10-05T13:00:15.996Z",
+  "elapsed_ms": 204768,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-65820c88dcdb63140952-recovery20261005-480-5bfb002f77c2.webp",
+      "sha256": "5bfb002f77c2a02264d5d0e525d9254f02ff40002de95d603f3db0aeaea8e781",
+      "bytes": 37542
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-65820c88dcdb63140952-recovery20261005-960-72610599c7fe.webp",
+      "sha256": "72610599c7fe895d0437a724b8720cdbb6dbdc5b697e847ca46544b40628a8da",
+      "bytes": 122560
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "009457a9d598bf97fa677cd1ebad377b1dbfe6d2805d3c2f5c06951833aab484",
+    "recipe_ids": [
+      "industrial-v3-pizza-peri-peri-chicken"
+    ],
+    "titles": [
+      "Shift Peri-Peri Chicken Proper Pizza"
+    ],
+    "notes": "Four cut pizza slices show cooked browned chicken breast strips, softened red/yellow/green mixed peppers, thick tomato passata and red peri-peri sauce over a crisp cooked individual base. No melted cheese, white drizzle or garnish. Entire pizza and cut base edges visible with margin.",
+    "alt": "Sliced peri-peri chicken pizza with mixed peppers and tomato passata",
+    "reviewed_at": "2026-10-05T13:02:23.393648+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:02:37.680541+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

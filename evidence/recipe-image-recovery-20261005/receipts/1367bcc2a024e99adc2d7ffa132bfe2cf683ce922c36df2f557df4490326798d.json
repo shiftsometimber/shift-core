@@ -1,0 +1,89 @@
+{
+  "groupId": "1367bcc2a024e99adc2d7ffa132bfe2cf683ce922c36df2f557df4490326798d",
+  "recipe_ids": [
+    "industrial-v3-kebab-garlic-herb-chicken"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Chicken Fakeaway Kebab"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "chicken breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal flatbread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "garlic herb yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.",
+    "Mix the measured garlic herb yoghurt in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.",
+    "Cut the chicken breast into strips about 1.5cm thick. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8\u201310 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the lettuce and tomato on the warm flatbread. Add the cooked chicken strips and the cold finishing sauce, fold the bread around the filling and serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Chicken Fakeaway Kebab. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"chicken breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal flatbread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"garlic herb yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30\u201360 seconds on each side, until flexible. Keep it covered on a clean plate.\",\"Mix the measured garlic herb yoghurt in a clean small bowl. Keep this finishing sauce separate from the uncooked filling and refrigerated until assembly.\",\"Cut the chicken breast into strips about 1.5cm thick. After handling raw chicken breast, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the chicken strips over a medium-high heat for about 8\u201310 minutes, turning regularly so every side colours. Check the centre with a clean food thermometer: it must stay at 75\u00b0C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the lettuce and tomato on the warm flatbread. Add the cooked chicken strips and the cold finishing sauce, fold the bread around the filling and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual constraint: one warmed wholemeal flatbread folded around visible cooked filling with shredded lettuce and tomato slices, yoghurt dressing on filling. No skewer, no rice or other side. ",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/5/sources/011.png",
+  "source_sha256": "c2f902e7d07c1ae77ae151c5f8187be2ff1c97c65696f279ee50b52900b2b3e5",
+  "generated_at": "2026-10-05T12:47:21.282Z",
+  "elapsed_ms": 184625,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1367bcc2a024e99adc2d-recovery20261005-480-545f07cce5c5.webp",
+      "sha256": "545f07cce5c5e76faaf2b2ba7b23dc7046fb9e2870cc9a5ead1a5058919fa45d",
+      "bytes": 32700
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1367bcc2a024e99adc2d-recovery20261005-960-fb9bb7834ec7.webp",
+      "sha256": "fb9bb7834ec77697d3e164309ca8490e8073ae94c0706fb56691a81a7fdecfdd",
+      "bytes": 95324
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "c2f902e7d07c1ae77ae151c5f8187be2ff1c97c65696f279ee50b52900b2b3e5",
+    "recipe_ids": [
+      "industrial-v3-kebab-garlic-herb-chicken"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Chicken Fakeaway Kebab"
+    ],
+    "notes": "Browned cooked chicken breast strips with pale fibrous centers in folded wholemeal flatbread, shredded lettuce, tomato and garlic-herb yoghurt dressing. No side dish, skewers or extra vegetables.",
+    "alt": "Shift Garlic & Herb Chicken Fakeaway Kebab, prepared with chicken breast, wholemeal flatbread, lettuce, tomato",
+    "reviewed_at": "2026-10-05T12:52:19.816337+00:00",
+    "reviewer": "images_5",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:52:44.063337+00:00"
+  },
+  "integrated": false,
+  "live": false
+}

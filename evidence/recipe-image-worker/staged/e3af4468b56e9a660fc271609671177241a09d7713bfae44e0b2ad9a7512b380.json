@@ -1,0 +1,95 @@
+{
+  "groupId": "e3af4468b56e9a660fc271609671177241a09d7713bfae44e0b2ad9a7512b380",
+  "recipe_ids": [
+    "industrial-v3-traybake-garlic-herb-salmon"
+  ],
+  "titles": [
+    "Shift Garlic & Herb Salmon Traybake"
+  ],
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "salmon fillet",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "baby potatoes"
+    },
+    {
+      "amount": "90g",
+      "item": "broccoli"
+    },
+    {
+      "amount": "90g",
+      "item": "red pepper"
+    },
+    {
+      "amount": "20g",
+      "item": "light mayonnaise",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "1g",
+      "item": "garlic powder"
+    },
+    {
+      "amount": "1g",
+      "item": "dried parsley"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Heat the oven to 200°C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.",
+    "While they start, prepare the vegetables and salmon fillet. Cook the salmon fillet until opaque and just flaking at the thickest point; pull it from the heat before it dries out.",
+    "Add the vegetables to the hot tray and roast for another 15–20 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.",
+    "Check the salmon fillet is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Garlic & Herb Salmon Traybake. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"salmon fillet\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"baby potatoes\"},{\"amount\":\"90g\",\"item\":\"broccoli\"},{\"amount\":\"90g\",\"item\":\"red pepper\"},{\"amount\":\"20g\",\"item\":\"light mayonnaise\",\"allergens\":[\"egg\"]},{\"amount\":\"1g\",\"item\":\"garlic powder\"},{\"amount\":\"1g\",\"item\":\"dried parsley\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Heat the oven to 200°C fan. Cut the baby potatoes into even pieces, toss with the measured oil and get them roasting first for 15 minutes so they actually have time to colour.\",\"While they start, prepare the vegetables and salmon fillet. Cook the salmon fillet until opaque and just flaking at the thickest point; pull it from the heat before it dries out.\",\"Add the vegetables to the hot tray and roast for another 15–20 minutes until the edges colour. Keep the light mayonnaise chilled and add it only after the tray comes out of the oven.\",\"Check the salmon fillet is properly cooked and the potatoes are golden and tender. Let the tray sit for 2 minutes, taste, season if it needs it, then serve.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Visual clarification: Single cooked salmon fillet, golden tender cut baby potatoes, roasted broccoli florets and red pepper pieces; measured mayonnaise with garlic/dried parsley added cold after cooking. No lemon or extra herbs. Full serving entirely inside the 4:3 landscape frame, generous margin for responsive crop. No unlisted garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/1/sources/017.png",
+  "source_sha256": "61648f17ff987cc7b098ec2f8f198af19177c569ea76afa6d7997bbeee2750da",
+  "generated_at": "2026-10-05T12:57:00.741840+00:00",
+  "elapsed_ms": 64531,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e3af4468b56e9a660fc2-recovery20261005-480-46c7508ec20c.webp",
+      "sha256": "46c7508ec20cfc765a98169ec934778104f167ea2c1f1ebd8c547f1d032711bd",
+      "bytes": 37406
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e3af4468b56e9a660fc2-recovery20261005-960-7a7533c424eb.webp",
+      "sha256": "7a7533c424eba9b79b4e36701b6070cbe91c775ad2b68632362d2e8cb94b15e4",
+      "bytes": 128212
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "61648f17ff987cc7b098ec2f8f198af19177c569ea76afa6d7997bbeee2750da",
+    "recipe_ids": [
+      "industrial-v3-traybake-garlic-herb-salmon"
+    ],
+    "titles": [
+      "Shift Garlic & Herb Salmon Traybake"
+    ],
+    "notes": "Source viewed: cooked opaque salmon fillet, golden skin-on baby potato halves, roasted broccoli and red pepper pieces. Cold mayonnaise garlic/dried parsley dressing separate beside food; oil sheen from cooking. No lemon or extra garnish; full single plate.",
+    "alt": "Shift Garlic & Herb Salmon Traybake served in cream ceramic ware",
+    "reviewed_at": "2026-10-05T12:58:08.507437+00:00",
+    "reviewer": "images_1",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T12:58:33.911081+00:00"
+  },
+  "integrated": true,
+  "live": false
+}

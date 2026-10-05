@@ -1,0 +1,86 @@
+{
+  "groupId": "ee4709a6f35d2d2bad53fc4ac444ef25b39016084ba9fc52b3a50d4265b38159",
+  "recipe_ids": [
+    "industrial-v3-jacket-potato-cheesy-chickpea"
+  ],
+  "titles": [
+    "Shift Cheesy Chickpea Loaded Jacket Potato"
+  ],
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "250g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "90g",
+      "item": "spring onion"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing.",
+    "Finely grate the measured reduced-fat cheddar. Use all the measured olive oil to dress the prepared vegetables.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the grated reduced-fat cheddar; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Chickpea Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing.\",\"Finely grate the measured reduced-fat cheddar. Use all the measured olive oil to dress the prepared vegetables.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the grated reduced-fat cheddar; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Use case: photorealistic-natural. Show every listed food component clearly in its stated cooked or fresh state; fillings exposed naturally by cutting sandwiches. No cheese, herbs, salad garnish or lemon wedges unless explicitly listed. Wholemeal bread has brown crumb, not white bread. Photograph the entire dish with all edges and generous crop margin. Method-derived clarification: one fully cooked jacket baking potato, split with fluffy cooked interior and crisp brown skin. Top with CHILLED chickpeas, drained in the exact prepared shape specified. Cheddar MUST be finely grated distinct strands added at serving, not grilled or baked into a melted cheese cap. Olive oil dresses the raw salad, not the cheese or filling. Alongside is a full raw mixed leafy salad with very finely sliced spring onion mixed into salad only, not sprinkled on potato. No butter, black pepper, parsley or extra garnish.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/6/sources/043-ee4709a6f35d2d2bad53fc4ac444ef25b39016084ba9fc52b3a50d4265b38159-b7.png",
+  "source_sha256": "af38556816e9a32f452fff4334edae99f9fb99cc216938d609bf3466e599e0c0",
+  "generated_at": "2026-10-05T13:10:03.289Z",
+  "elapsed_ms": 99178,
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ee4709a6f35d2d2bad53-recovery20261005-480-869a6914856d.webp",
+      "sha256": "869a6914856d339e101e120b3aff662c068ddef99c73ef1a6d1d61466aec9db5",
+      "bytes": 34208
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ee4709a6f35d2d2bad53-recovery20261005-960-58112ddcdab6.webp",
+      "sha256": "58112ddcdab658176d3fbbb9b6d9fa1f1a4a55677e5db65fc322c5379be30328",
+      "bytes": 104654
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "source_sha256": "af38556816e9a32f452fff4334edae99f9fb99cc216938d609bf3466e599e0c0",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-cheesy-chickpea"
+    ],
+    "titles": [
+      "Shift Cheesy Chickpea Loaded Jacket Potato"
+    ],
+    "notes": "Split cooked jacket potato holds ready-cooked chickpeas and distinct finely grated cheddar strands added at serving. Fresh mixed leafy salad and finely sliced spring onion sit alongside with olive oil dressing. No baked cheese cap, butter or garnish. Complete single potato and salad framed.",
+    "alt": "Jacket potato with chickpeas and grated cheddar beside mixed leaves and spring onion",
+    "reviewed_at": "2026-10-05T13:11:02.970528+00:00",
+    "reviewer": "images_6",
+    "final_crop_reviewed": true,
+    "final_crop_reviewed_at": "2026-10-05T13:11:35.192608+00:00"
+  },
+  "integrated": false,
+  "live": false
+}
