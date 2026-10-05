@@ -302,7 +302,8 @@
       "release/fit-300-scope.mjs",
       "release/app-manifest.json",
       "tests/six-topic-seo-release.test.mjs",
-      "release/app-preflight.mjs"
+      "release/app-preflight.mjs",
+      "shift-coach/scope.mjs"
     ]
   },
   "imageViewerComposition": {
