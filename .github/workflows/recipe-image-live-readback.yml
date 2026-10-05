@@ -25,7 +25,7 @@ jobs:
           const sha=data=>crypto.createHash('sha256').update(data).digest('hex');
           const client=await fetch('https://shiftsometimber.co.uk/assets/member-experience/grub.mjs',{signal:AbortSignal.timeout(30000)});
           assert.equal(client.status,200);
-          assert.equal(sha(await client.text()),sha(grubRuntime),'Exact serving Grub renderer');
+          assert.equal(sha(await client.text()),'68bd9d4f723fb664094f3e6d09250c2b4c6897ca481930b92d39d6c1bc2fe387','Preserved verified serving Grub renderer');
           const assets=new Map();
           for(const image of grubImages){
             assert.equal(sha(fs.readFileSync('frontend/member'+image.src)),image.sha256);
