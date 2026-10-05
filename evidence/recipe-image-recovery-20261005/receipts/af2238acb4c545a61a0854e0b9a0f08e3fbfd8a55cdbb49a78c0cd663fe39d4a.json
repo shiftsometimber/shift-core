@@ -1,0 +1,85 @@
+{
+  "groupId": "af2238acb4c545a61a0854e0b9a0f08e3fbfd8a55cdbb49a78c0cd663fe39d4a",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-pineapple-savory-box"
+  ],
+  "titles": [
+    "Shift Pineapple Banana Split Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "80g",
+      "item": "pineapple"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Pineapple Banana Split Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"80g\",\"item\":\"pineapple\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-c4a09bad-35b7-4373-a86e-b53a1d4dff59.png",
+  "source_sha256": "9e7bb8abe54a7a603440e90f34b57b85449237049a184b80076320ef7e90ef63",
+  "generated_at": "2026-10-05T18:42:56.623Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-af2238acb4c545a61a08-final20261005-480-babf6cd9cf33.webp",
+      "sha256": "babf6cd9cf3327fb7766d509cfd979524e706cc67a8e9e9c09b98f6381f56006",
+      "bytes": 22214
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-af2238acb4c545a61a08-final20261005-960-772578467d8c.webp",
+      "sha256": "772578467d8c0c5e23e60d4910d8d2e8eb6eeea29f77dfbc7281f4d897a68c07",
+      "bytes": 66228
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 019, item 175. The finished food, main ingredient identity and serving form agree with Shift Pineapple Banana Split Dessert Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Pineapple Banana Split Dessert Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "9e7bb8abe54a7a603440e90f34b57b85449237049a184b80076320ef7e90ef63",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-pineapple-savory-box"
+    ],
+    "titles": [
+      "Shift Pineapple Banana Split Dessert Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

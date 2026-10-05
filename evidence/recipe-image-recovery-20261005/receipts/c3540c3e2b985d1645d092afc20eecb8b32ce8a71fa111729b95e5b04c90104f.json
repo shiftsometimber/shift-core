@@ -1,0 +1,79 @@
+{
+  "groupId": "c3540c3e2b985d1645d092afc20eecb8b32ce8a71fa111729b95e5b04c90104f",
+  "recipe_ids": [
+    "industrial-snack-egg-snack-box-lemon"
+  ],
+  "titles": [
+    "Cucumber Egg Snack Box"
+  ],
+  "ingredients": [
+    {
+      "amount": "2",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "cherry tomatoes"
+    },
+    {
+      "amount": "140g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "25g",
+      "item": "wholegrain crackers",
+      "allergens": [
+        "gluten"
+      ]
+    }
+  ],
+  "method": [
+    "Measure everything before assembling the snack so the portion stays intentional.",
+    "Halve the eggs and pack them with the vegetables, crackers and measured savoury add-on.",
+    "Keep chilled protein and vegetables refrigerated until you are ready to eat.",
+    "Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Cucumber Egg Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"2\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"80g\",\"item\":\"cherry tomatoes\"},{\"amount\":\"140g\",\"item\":\"cucumber\"},{\"amount\":\"25g\",\"item\":\"wholegrain crackers\",\"allergens\":[\"gluten\"]}]. Preparation: [\"Measure everything before assembling the snack so the portion stays intentional.\",\"Halve the eggs and pack them with the vegetables, crackers and measured savoury add-on.\",\"Keep chilled protein and vegetables refrigerated until you are ready to eat.\",\"Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-cddf52ba-559b-4a5f-b3a7-8e730194f9ca.png",
+  "source_sha256": "3075c4f148657cda33d596265e3e8f05feb42c81ac51b1805eac66eb6174f35e",
+  "generated_at": "2026-10-05T18:28:32.856Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c3540c3e2b985d1645d0-final20261005-480-f7d6fbaf5f45.webp",
+      "sha256": "f7d6fbaf5f45abb53153a9301613be9fd580c4f65c9ab4762b8dafa8bc3e66a6",
+      "bytes": 25352
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c3540c3e2b985d1645d0-final20261005-960-887375f97e58.webp",
+      "sha256": "887375f97e58e676dc0b6091dfcf8589049a1ece38ef5b6bbec6455f1c3cd832",
+      "bytes": 84662
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 022, item 200. The finished food, main ingredient identity and serving form agree with Cucumber Egg Snack Box and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Cucumber Egg Snack Box served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "3075c4f148657cda33d596265e3e8f05feb42c81ac51b1805eac66eb6174f35e",
+    "recipe_ids": [
+      "industrial-snack-egg-snack-box-lemon"
+    ],
+    "titles": [
+      "Cucumber Egg Snack Box"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

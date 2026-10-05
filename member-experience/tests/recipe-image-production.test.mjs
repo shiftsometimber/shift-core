@@ -57,6 +57,6 @@ test('renderer emits responsive sizes, actual aspect ratio and escaped alt text'
  const html=vm.runInNewContext('('+recipeSource+')(meal)',{meal,esc});assert.match(html,/srcset="\/assets\/test-480.webp 480w, \/assets\/test.webp 960w"/);assert.match(html,/sizes="\(max-width: 600px\)/);assert.match(html,/width="960" height="720" loading="lazy" decoding="async"/);assert.match(html,/alt="A &quot;quoted&quot; &amp; accurate meal"/);
 });
 test('catalogue coverage is counted from exact bindings, not from queued jobs',()=>{
- const bound=new Set(grubImages.map(m=>m.id));const missing=inventory.recipes.filter(r=>!bound.has(r.id));assert.equal(bound.size+missing.length,2671);assert(missing.length>0,'Full coverage requires a fresh completeness review before changing this assertion');
+ const bound=new Set(grubImages.map(m=>m.id));const missing=inventory.recipes.filter(r=>!bound.has(r.id));assert.equal(bound.size+missing.length,2671);assert.equal(missing.length,0,'Every governed usable recipe must retain an exact reviewed image');assert.equal(grubImages.length,2671);
  console.log(JSON.stringify({usable:2671,integrated:bound.size,missing:missing.length,liveVerified:false}));
 });

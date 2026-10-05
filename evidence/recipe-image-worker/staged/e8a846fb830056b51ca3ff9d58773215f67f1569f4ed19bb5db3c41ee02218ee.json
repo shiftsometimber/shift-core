@@ -1,0 +1,80 @@
+{
+  "groupId": "e8a846fb830056b51ca3ff9d58773215f67f1569f4ed19bb5db3c41ee02218ee",
+  "recipe_ids": [
+    "industrial-snack-apple-protein-snack-apple"
+  ],
+  "titles": [
+    "Apple Protein Snack"
+  ],
+  "ingredients": [
+    {
+      "amount": "240g",
+      "item": "apple"
+    },
+    {
+      "amount": "15g",
+      "item": "peanut butter",
+      "allergens": [
+        "peanuts"
+      ]
+    },
+    {
+      "amount": "100g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1/2 tsp",
+      "item": "ground cinnamon"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare any fruit or vegetables and keep chilled ingredients cold.",
+    "Combine or pack the ingredients into a bowl or lidded container.",
+    "Fold through the measured diced apple.",
+    "Eat straight away or keep refrigerated until needed."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Apple Protein Snack. Ingredients, quantities and allergens: [{\"amount\":\"240g\",\"item\":\"apple\"},{\"amount\":\"15g\",\"item\":\"peanut butter\",\"allergens\":[\"peanuts\"]},{\"amount\":\"100g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1/2 tsp\",\"item\":\"ground cinnamon\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare any fruit or vegetables and keep chilled ingredients cold.\",\"Combine or pack the ingredients into a bowl or lidded container.\",\"Fold through the measured diced apple.\",\"Eat straight away or keep refrigerated until needed.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-faa51316-1edc-41be-b932-cece5afaaa83.png",
+  "source_sha256": "2916e8bae004f65d39a8b0c27cb9b5b1d7a98ee97c699f1c464f82655ea9c1b8",
+  "generated_at": "2026-10-05T18:21:34.103Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e8a846fb830056b51ca3-final20261005-480-f447dcdcce5e.webp",
+      "sha256": "f447dcdcce5e0b2f519de4dd144b3428b008569b33f9b8277184cc8941aaba5c",
+      "bytes": 17056
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-e8a846fb830056b51ca3-final20261005-960-59e65eec8b83.webp",
+      "sha256": "59e65eec8b8393694f2e568b12e1344f51a863233b3f2e35ce79457d437db284",
+      "bytes": 50876
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 027, item 248. The finished food, main ingredient identity and serving form agree with Apple Protein Snack and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Apple Protein Snack served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "2916e8bae004f65d39a8b0c27cb9b5b1d7a98ee97c699f1c464f82655ea9c1b8",
+    "recipe_ids": [
+      "industrial-snack-apple-protein-snack-apple"
+    ],
+    "titles": [
+      "Apple Protein Snack"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,87 @@
+{
+  "groupId": "339dadf742fc7ef0fd77b22d80a6cb863dccb274117728a5d3c69e1f875de197",
+  "recipe_ids": [
+    "industrial-v3-kebab-peri-peri-turkey"
+  ],
+  "titles": [
+    "Shift Peri-Peri Turkey Fakeaway Kebab"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "100% turkey breast mince, raw"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal flatbread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "peri-peri sauce"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.",
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30–60 seconds on each side, until flexible. Keep it covered on a clean plate.",
+    "Press the turkey breast mince firmly into three short koftas, each no thicker than 1.5cm; no skewers or binder are needed. After handling raw turkey breast mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the turkey koftas over a medium heat for about 10–12 minutes, turning them onto every side. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2–3 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.",
+    "Put the lettuce and tomato on the warm flatbread. Add the cooked turkey koftas and the warm sauce, fold the bread around the filling and serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peri-Peri Turkey Fakeaway Kebab. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"100% turkey breast mince, raw\"},{\"amount\":\"80g\",\"item\":\"wholemeal flatbread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"peri-peri sauce\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Use unseasoned mince made from 100% skinless turkey breast, weighed raw. Commercial mixed-cut turkey mince is not the specified ingredient; ask the butcher for breast mince or mince skinless breast at home.\",\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Warm the wholemeal flatbread in a dry frying pan over a medium heat for 30–60 seconds on each side, until flexible. Keep it covered on a clean plate.\",\"Press the turkey breast mince firmly into three short koftas, each no thicker than 1.5cm; no skewers or binder are needed. After handling raw turkey breast mince, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the turkey koftas over a medium heat for about 10–12 minutes, turning them onto every side. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the measured peri-peri sauce into a small saucepan. Warm over a low heat, stirring, for about 2–3 minutes until bubbling and hot throughout; follow a longer cooking time on the sauce label. Keep warm for serving.\",\"Put the lettuce and tomato on the warm flatbread. Add the cooked turkey koftas and the warm sauce, fold the bread around the filling and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-16a04719-aaa5-4eb2-8a95-2fa1cf3efc4a.png",
+  "source_sha256": "2e410ff969bf8751be8f6ae9e903c08770f1c5e8d87994fd359117ea4a9fa71b",
+  "generated_at": "2026-10-05T17:52:35.238Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-339dadf742fc7ef0fd77-final20261005-480-b9b02acc5746.webp",
+      "sha256": "b9b02acc5746c1f43be36dc270efe29ab01c6eb7cf5e7211195a58ff03372f14",
+      "bytes": 28290
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-339dadf742fc7ef0fd77-final20261005-960-31e5a0ca52b8.webp",
+      "sha256": "31e5a0ca52b89614f0491390395f486e4121aba30b215aaa14cd77eaedcbcabf",
+      "bytes": 80916
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Browned cooked turkey mince portions inside wholemeal flatbread with lettuce and tomato. No unlisted food or garnish; single serving remains inside the reviewed 4:3 crop.",
+    "alt": "Shift Peri-Peri Turkey Fakeaway Kebab on cream serving ware",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "2e410ff969bf8751be8f6ae9e903c08770f1c5e8d87994fd359117ea4a9fa71b",
+    "recipe_ids": [
+      "industrial-v3-kebab-peri-peri-turkey"
+    ],
+    "titles": [
+      "Shift Peri-Peri Turkey Fakeaway Kebab"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

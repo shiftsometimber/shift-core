@@ -1,0 +1,90 @@
+{
+  "groupId": "940a1e2dba679658021ab4ad9c17c2b6c7480e7c10e89ae766ee9e7b05888f02",
+  "recipe_ids": [
+    "industrial-v3-toastie-cheesy-chickpea"
+  ],
+  "titles": [
+    "Shift Cheesy Chickpea Hot Toastie"
+  ],
+  "ingredients": [
+    {
+      "amount": "150g",
+      "item": "chickpeas, drained"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "90g",
+      "item": "spinach"
+    },
+    {
+      "amount": "30g",
+      "item": "reduced-fat cheddar",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.",
+    "Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.",
+    "Finely grate the measured reduced-fat cheddar. Keep the cheese ready for assembly.",
+    "Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.",
+    "Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the grated reduced-fat cheddar between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.",
+    "Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.",
+    "Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cheesy Chickpea Hot Toastie. Ingredients, quantities and allergens: [{\"amount\":\"150g\",\"item\":\"chickpeas, drained\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"90g\",\"item\":\"spinach\"},{\"amount\":\"30g\",\"item\":\"reduced-fat cheddar\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the tomato and spinach. Slice the tomato thinly and shred the spinach. Reserve most of the leaves and any excess tomato for a side salad.\",\"Use ready-cooked canned chickpeas. Drain and rinse before weighing, then roughly mash with a fork so the filling holds together.\",\"Finely grate the measured reduced-fat cheddar. Keep the cheese ready for assembly.\",\"Preheat the sandwich toaster according to its instructions. Use the measured wholemeal bread as two slices and brush all the measured olive oil over the two outer faces.\",\"Put a thin, even layer of the prepared filling, a few spinach leaves, some tomato and the grated reduced-fat cheddar between the slices. Keep excess filling and vegetables chilled for the side salad; do not overfill the toaster.\",\"Toast following the appliance instructions until the bread is crisp and the filling is steaming hot through the centre. Check by cutting into the middle and continue heating if needed. This is the single reheating step for the already-cooked filling.\",\"Rest for a minute, cut and serve immediately with all the remaining filling and vegetables as a side salad. For a packed lunch, keep the components chilled and assemble and toast once just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence. Food-specific accuracy: make every listed major ingredient visually recognizable in the finished serving; preserve the exact protein and cooking form. Keep the entire edible serving centrally framed with generous empty margin on all four sides. No unlisted foods. All bread is visibly brown wholemeal with whole-wheat crumb, never white bread. Cut open the toasted wholemeal sandwich to expose its cooked filling. Serve remaining measured tomato, spinach and any excess filling as a separate fresh side salad beside the toastie, as instructed; no additional salad ingredients.",
+  "sourcePath": "/workspace/scratch/79490e627254/recipe-live-2093/work/recipe-recovery-20261005/workers/4/sources/043.png",
+  "source_sha256": "57d8bfb25b267d2e8ad3984124524dc56a19094fc56601fe636a8dae3887bc2a",
+  "generated_at": "2026-10-05T13:06:10.494386+00:00",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-940a1e2dba679658021a-final20261005-480-d23f454ecccd.webp",
+      "sha256": "d23f454ecccd47eba3a6b4a1a0356e26c778c25ee2010c7995bd3e7537987861",
+      "bytes": 32000
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-940a1e2dba679658021a-final20261005-960-a649ba99350f.webp",
+      "sha256": "a649ba99350f08e88dcfd1f012601bbaf6da56c1f9ea8d1addd2811e45f0b0a5",
+      "bytes": 111938
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Wholemeal toastie with chickpeas, tomato, spinach and melted cheddar; matching side filling. No unlisted food or garnish; single serving remains inside the reviewed 4:3 crop.",
+    "alt": "Shift Cheesy Chickpea Hot Toastie on cream serving ware",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "57d8bfb25b267d2e8ad3984124524dc56a19094fc56601fe636a8dae3887bc2a",
+    "recipe_ids": [
+      "industrial-v3-toastie-cheesy-chickpea"
+    ],
+    "titles": [
+      "Shift Cheesy Chickpea Hot Toastie"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

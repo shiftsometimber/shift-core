@@ -1,0 +1,81 @@
+{
+  "groupId": "ced38e0da8b3ddb5b816bb47e515254f2dcd64840d63233ba2b6be37731762bb",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-peanut-savory-box"
+  ],
+  "titles": [
+    "Shift Peanut Banana Split Snack Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "140g",
+      "item": "banana"
+    },
+    {
+      "amount": "15g",
+      "item": "peanut butter"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the banana in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peanut Banana Split Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"140g\",\"item\":\"banana\"},{\"amount\":\"15g\",\"item\":\"peanut butter\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the banana in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-123fc3f9-e769-4035-99a1-5ee83cfe5acf.png",
+  "source_sha256": "5d9acba1cc720a7cbf85543a9bfe8bd0bb84a91b0840996589d20a3707d595bc",
+  "generated_at": "2026-10-05T18:40:23.875Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ced38e0da8b3ddb5b816-final20261005-480-1bac2b210ba9.webp",
+      "sha256": "1bac2b210ba94076e09744d02b22a2813654dbf2f585d8f70b644b6e9911395a",
+      "bytes": 25448
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ced38e0da8b3ddb5b816-final20261005-960-3eff13efec26.webp",
+      "sha256": "3eff13efec268e5bb6fb270f9b4e1a1c7d958a3c2bbcbfadb49f9b784c08cfb0",
+      "bytes": 76536
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 024, item 216. The finished food, main ingredient identity and serving form agree with Shift Peanut Banana Split Snack Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Peanut Banana Split Snack Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "5d9acba1cc720a7cbf85543a9bfe8bd0bb84a91b0840996589d20a3707d595bc",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-peanut-savory-box"
+    ],
+    "titles": [
+      "Shift Peanut Banana Split Snack Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

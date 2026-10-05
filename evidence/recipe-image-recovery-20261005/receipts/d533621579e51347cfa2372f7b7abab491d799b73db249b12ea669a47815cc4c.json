@@ -1,0 +1,84 @@
+{
+  "groupId": "d533621579e51347cfa2372f7b7abab491d799b73db249b12ea669a47815cc4c",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-mango-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Mango Fruit Crunch Work Snack Box"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "80g",
+      "item": "mango"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.",
+    "Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.",
+    "Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.",
+    "Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Mango Fruit Crunch Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"80g\",\"item\":\"mango\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.\",\"Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.\",\"Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.\",\"Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-5d22a866-a967-4fda-955c-60c4c4d6be37.png",
+  "source_sha256": "ccd4b2958d1c9289ff3ebd34244fc3bcbac4b5d44491079b4f723487ea677cc5",
+  "generated_at": "2026-10-05T18:32:01.447Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d533621579e51347cfa2-final20261005-480-688e0690642d.webp",
+      "sha256": "688e0690642df35a3fdb3c0c6e7966d3d14a1d88bc2b1a47fd98a2eafeb5112f",
+      "bytes": 28178
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-d533621579e51347cfa2-final20261005-960-0475c617824b.webp",
+      "sha256": "0475c617824b8d6c03f80f358296ab7968fc7f7a05fba16a31290216a10b6dd6",
+      "bytes": 83354
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 025, item 227. The finished food, main ingredient identity and serving form agree with Shift Mango Fruit Crunch Work Snack Box and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Mango Fruit Crunch Work Snack Box served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "ccd4b2958d1c9289ff3ebd34244fc3bcbac4b5d44491079b4f723487ea677cc5",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-mango-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Mango Fruit Crunch Work Snack Box"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

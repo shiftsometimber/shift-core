@@ -1,0 +1,84 @@
+{
+  "groupId": "91084749dd19abce2cc07d3d78a34a3da5a60e37d41c94d4c53ead9a47b3f426",
+  "recipe_ids": [
+    "industrial-v4-work-snack-box-weekend-treat-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Weekend Treat Fruit Crunch Work Snack Box"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "15g",
+      "item": "dark chocolate chips"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "2 / 20g",
+      "item": "wholegrain crackers"
+    }
+  ],
+  "method": [
+    "Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.",
+    "Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.",
+    "Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.",
+    "Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Weekend Treat Fruit Crunch Work Snack Box. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"15g\",\"item\":\"dark chocolate chips\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"2 / 20g\",\"item\":\"wholegrain crackers\"}]. Preparation: [\"Build the snack box around the fruit and crunch that are actually listed. Cut the fruit into bite-size pieces and portion everything rather than piling it in loose.\",\"Keep crackers, oats and seeds dry and separate from juicy fruit until you are ready to eat.\",\"Taste the fruit combination before packing; if the flavours do not work together, that variant should not ship.\",\"Pack in a lidded container, chill any cut fruit promptly, and combine the crunchy pieces only when you are ready to eat.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-873d7b7c-ca58-4769-a84a-bc72c48f465a.png",
+  "source_sha256": "bab3341d5934c5df286159e4fee457cb4d436f413ebd73f6361cbd4ac77b98ca",
+  "generated_at": "2026-10-05T18:44:03.544Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-91084749dd19abce2cc0-final20261005-480-fc0ce5d0a79a.webp",
+      "sha256": "fc0ce5d0a79aba2d486b34c04faa8ca491c04f960a9c51168501faf30a63df48",
+      "bytes": 31576
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-91084749dd19abce2cc0-final20261005-960-4c0ef16038c5.webp",
+      "sha256": "4c0ef16038c5a2be824b9ede58545e901feb38fd4d986cb597f99d6a44547d00",
+      "bytes": 93690
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 016, item 146. The finished food, main ingredient identity and serving form agree with Shift Weekend Treat Fruit Crunch Work Snack Box and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Weekend Treat Fruit Crunch Work Snack Box served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "bab3341d5934c5df286159e4fee457cb4d436f413ebd73f6361cbd4ac77b98ca",
+    "recipe_ids": [
+      "industrial-v4-work-snack-box-weekend-treat-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Weekend Treat Fruit Crunch Work Snack Box"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

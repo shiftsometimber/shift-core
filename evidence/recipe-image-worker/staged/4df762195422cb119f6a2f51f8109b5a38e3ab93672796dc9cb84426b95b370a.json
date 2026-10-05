@@ -1,0 +1,89 @@
+{
+  "groupId": "4df762195422cb119f6a2f51f8109b5a38e3ab93672796dc9cb84426b95b370a",
+  "recipe_ids": [
+    "industrial-v3-burger-salt-pepper-pork"
+  ],
+  "titles": [
+    "Shift Salt & Pepper Pork Fakeaway Burger"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "lean pork loin"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal burger bun",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "3g",
+      "item": "salt"
+    },
+    {
+      "amount": "2g",
+      "item": "black pepper"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.",
+    "Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1–2 minutes. Set it on a clean plate.",
+    "Slice the lean pork loin across the grain into cutlets about 1cm thick. Coat with all the measured salt and black pepper. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.",
+    "Heat the measured olive oil in the non-stick frying pan. Cook the pork cutlets over a medium heat for about 4–5 minutes on each side. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.",
+    "Put the lettuce and tomato in the toasted bun, add the cooked pork cutlets, then close the bun and serve immediately."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Salt & Pepper Pork Fakeaway Burger. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"lean pork loin\"},{\"amount\":\"80g\",\"item\":\"wholemeal burger bun\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"3g\",\"item\":\"salt\"},{\"amount\":\"2g\",\"item\":\"black pepper\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Wash and dry the lettuce and tomato. Shred the lettuce and slice the tomato; put both on a clean plate, separate from the raw filling.\",\"Split the wholemeal burger bun and toast the cut faces in a dry frying pan over a medium heat for 1–2 minutes. Set it on a clean plate.\",\"Slice the lean pork loin across the grain into cutlets about 1cm thick. Coat with all the measured salt and black pepper. After handling raw lean pork loin, wash hands and clean the board, knife and work surface before touching the ready-to-eat ingredients.\",\"Heat the measured olive oil in the non-stick frying pan. Cook the pork cutlets over a medium heat for about 4–5 minutes on each side. Check the centre with a clean food thermometer: it must stay at 75°C or above for 30 seconds. Without a thermometer, cut the thickest piece open and check that it is steaming inside with no pink meat and the juices are clear. Continue cooking until these checks are met; the suggested pan time alone is not a safety check.\",\"Put the lettuce and tomato in the toasted bun, add the cooked pork cutlets, then close the bun and serve immediately.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-e67dc5d8-79ae-48af-924c-7a120c603561.png",
+  "source_sha256": "ce8e1937f0f4a17394c43d1d39f4e9a13c90b6fd165b810ff9441eb4052787df",
+  "generated_at": "2026-10-05T17:52:34.505Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4df762195422cb119f6a-final20261005-480-9fea2f074808.webp",
+      "sha256": "9fea2f074808e440fb5a4b7108eff81874f105ce6e97ef774197d1f18cdd14d3",
+      "bytes": 29186
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4df762195422cb119f6a-final20261005-960-5df3a5b4a8f7.webp",
+      "sha256": "5df3a5b4a8f76d070a995a97c01d1ac108940437080855a53f54ade93934a26a",
+      "bytes": 94406
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Browned lean pork loin in wholemeal burger bun with lettuce and tomato. No unlisted food or garnish; single serving remains inside the reviewed 4:3 crop.",
+    "alt": "Shift Salt & Pepper Pork Fakeaway Burger on cream serving ware",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "ce8e1937f0f4a17394c43d1d39f4e9a13c90b6fd165b810ff9441eb4052787df",
+    "recipe_ids": [
+      "industrial-v3-burger-salt-pepper-pork"
+    ],
+    "titles": [
+      "Shift Salt & Pepper Pork Fakeaway Burger"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

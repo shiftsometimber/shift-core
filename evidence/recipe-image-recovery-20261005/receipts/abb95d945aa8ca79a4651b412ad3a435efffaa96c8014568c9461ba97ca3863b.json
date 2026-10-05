@@ -1,0 +1,81 @@
+{
+  "groupId": "abb95d945aa8ca79a4651b412ad3a435efffaa96c8014568c9461ba97ca3863b",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-lemon-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Lemon Fruit Crunch Snack Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "1g",
+      "item": "lemon zest"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with the apple in a bowl or lidded pot and add the other measured fruit.",
+    "Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.",
+    "Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.",
+    "Chill the fruit pot until needed and add the crunchy ingredients just before eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Lemon Fruit Crunch Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"1g\",\"item\":\"lemon zest\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with the apple in a bowl or lidded pot and add the other measured fruit.\",\"Fold through the measured flavouring, then keep the oats, seeds or other crunchy ingredients separate until serving.\",\"Taste the fruit mixture before packing. It should make sense as a combination without pretending there is a creamy protein base.\",\"Chill the fruit pot until needed and add the crunchy ingredients just before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-c61525b7-ae3c-4593-a378-b7b3d04e3f3a.png",
+  "source_sha256": "0e8bb8ffc76dc59a9e7ced7f9eeb101a69e9baf85a18e969c002d7f999c02348",
+  "generated_at": "2026-10-05T18:30:46.212Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-abb95d945aa8ca79a465-final20261005-480-995f8d793841.webp",
+      "sha256": "995f8d793841c901f71f2dd1d42165fdff714655fbd21d924d9e50242fddaed1",
+      "bytes": 22412
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-abb95d945aa8ca79a465-final20261005-960-998b58a877ca.webp",
+      "sha256": "998b58a877cabc8e42c140d481c6ec495f225d94bdc4b0814e09b6c9074d5d97",
+      "bytes": 59976
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 019, item 174. The finished food, main ingredient identity and serving form agree with Shift Lemon Fruit Crunch Snack Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Lemon Fruit Crunch Snack Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "0e8bb8ffc76dc59a9e7ced7f9eeb101a69e9baf85a18e969c002d7f999c02348",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-lemon-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Lemon Fruit Crunch Snack Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

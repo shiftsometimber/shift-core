@@ -1,0 +1,80 @@
+{
+  "groupId": "c714eec573a6c546df863fedd5c224ac7e8716cde2e06445ac082030a009673a",
+  "recipe_ids": [
+    "industrial-snack-bean-dip-box-classic"
+  ],
+  "titles": [
+    "Pepper Bean Dip Box"
+  ],
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "chickpeas"
+    },
+    {
+      "amount": "10ml",
+      "item": "lemon juice"
+    },
+    {
+      "amount": "80g",
+      "item": "carrot sticks"
+    },
+    {
+      "amount": "25g",
+      "item": "wholegrain crackers",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "1/4 tsp",
+      "item": "black pepper"
+    }
+  ],
+  "method": [
+    "Measure everything before assembling the snack so the portion stays intentional.",
+    "Lightly crush the ready-cooked canned chickpeas with the measured lemon juice and savoury add-on, then pack with the vegetables and crackers.",
+    "Keep chilled protein and vegetables refrigerated until you are ready to eat.",
+    "Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Pepper Bean Dip Box. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"chickpeas\"},{\"amount\":\"10ml\",\"item\":\"lemon juice\"},{\"amount\":\"80g\",\"item\":\"carrot sticks\"},{\"amount\":\"25g\",\"item\":\"wholegrain crackers\",\"allergens\":[\"gluten\"]},{\"amount\":\"1/4 tsp\",\"item\":\"black pepper\"}]. Preparation: [\"Measure everything before assembling the snack so the portion stays intentional.\",\"Lightly crush the ready-cooked canned chickpeas with the measured lemon juice and savoury add-on, then pack with the vegetables and crackers.\",\"Keep chilled protein and vegetables refrigerated until you are ready to eat.\",\"Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-f208cd22-f2eb-458f-b842-c3fb7ecbf7c5.png",
+  "source_sha256": "6a0abade64231d83fd81d7279fb1d2c63c0638dfc238ae6afe2d2b3aae2c816f",
+  "generated_at": "2026-10-05T18:24:49.756Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c714eec573a6c546df86-final20261005-480-30102bb5b7f0.webp",
+      "sha256": "30102bb5b7f0efa4504450c0b1e9720f4ad6289d20d78efffe4bb0b7ac954f09",
+      "bytes": 26324
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-c714eec573a6c546df86-final20261005-960-30521fac004e.webp",
+      "sha256": "30521fac004e71cf044ce86e6f85326f12c3392c33a660bd8512709e84c83c06",
+      "bytes": 81694
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 022, item 206. The finished food, main ingredient identity and serving form agree with Pepper Bean Dip Box and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Pepper Bean Dip Box served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "6a0abade64231d83fd81d7279fb1d2c63c0638dfc238ae6afe2d2b3aae2c816f",
+    "recipe_ids": [
+      "industrial-snack-bean-dip-box-classic"
+    ],
+    "titles": [
+      "Pepper Bean Dip Box"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

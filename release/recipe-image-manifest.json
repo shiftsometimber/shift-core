@@ -1,9 +1,9 @@
 {
-  "source": "c26a1e5c247ba3624ccdeda064b812fa545822eb",
-  "base": "8d1100c21bdb61f7ba64913d8b5464018c412ea2",
-  "bindings": 2315,
+  "source": "a7378efeeaad44cf41fb5343666be767fb3aaf28",
+  "base": "780237abab45bf11ecb5785ce5a87b4e35088094",
+  "bindings": 2671,
   "usable": 2671,
-  "complete": false,
+  "complete": true,
   "entries": [
     {
       "path": "evidence/grub-image-coverage-2026-10-04",
@@ -15,7 +15,7 @@
       "path": "evidence/recipe-image-worker",
       "mode": "040000",
       "type": "tree",
-      "sha": "eef3313c6443ee444be14f0c88ee34e4e4ef32ff"
+      "sha": "67d964095b03c47e067ae7990a3271738718aa7e"
     },
     {
       "path": "evidence/prepared-recipe-images-2026-10-04.json",
@@ -27,7 +27,7 @@
       "path": "frontend/member/assets/member-experience/food",
       "mode": "040000",
       "type": "tree",
-      "sha": "2c0f1304f8ac4623e0e68e273edf5fecb45f4bb4"
+      "sha": "acd2144247dee55ec35375784e3274660fb8a7c9"
     },
     {
       "path": "member-experience/grub-client.mjs",
@@ -39,7 +39,7 @@
       "path": "member-experience/grub-image-map.mjs",
       "mode": "100644",
       "type": "blob",
-      "sha": "348dbae02a1e47e53db0973a920d3931e37aa8b3"
+      "sha": "306ef924d3a7ec0b95895dd352002df3d8d02011"
     },
     {
       "path": "member-experience/grub-intelligence-client.mjs",
@@ -57,7 +57,7 @@
       "path": "member-experience/tests/recipe-image-production.test.mjs",
       "mode": "100644",
       "type": "blob",
-      "sha": "456b054e63eb3fc0fb37a07b263a8b6c3984edec"
+      "sha": "c36d9c4ed7fe96e9c973eb17e92f73ae3e6ccfdc"
     },
     {
       "path": "scripts/build-grub-image-coverage.mjs",
@@ -75,7 +75,7 @@
       "path": "evidence/recipe-image-recovery-20261005",
       "mode": "040000",
       "type": "tree",
-      "sha": "ee9cd0aac94ca47f9f286c86eb07ab0eae21ffd8"
+      "sha": "0c7802bf954f7d89bfd73aecf77d2063dafc86de"
     },
     {
       "path": "release/recipe-image-scope.mjs",
@@ -87,7 +87,7 @@
       "path": "tests/recipe-image-release.test.mjs",
       "mode": "100644",
       "type": "blob",
-      "sha": "a13ae5c8c3fb1962cf9c763944579b2f05ec3bf9"
+      "sha": "3c1c669f1e4649df877e093866d33a000169dc84"
     }
   ],
   "followupSource": "0df8c4d69ba1a71f51bf9d5491d5ef2f554107b0",
@@ -99,14 +99,20 @@
     {
       "base": "6f994ba93f539cac9d5cf2767318d435b8f092fe",
       "source": "0af52424dc464356d3e429eea762f1bacb27fb48"
+    },
+    {
+      "base": "8d1100c21bdb61f7ba64913d8b5464018c412ea2",
+      "source": "c26a1e5c247ba3624ccdeda064b812fa545822eb"
     }
   ],
   "recovery": {
-    "previouslyDeployedBindings": 2093,
-    "addedBindings": 222,
-    "reviewedAssetsCheckpointed": 222,
-    "remainingBindings": 356,
+    "previouslyDeployedBindings": 2315,
+    "addedBindings": 356,
+    "reviewedAssetsCheckpointed": 356,
+    "remainingBindings": 0,
     "newBindingsVerifiedLive": 0,
-    "scope": "Exact recipe imagery only; current main retained; previous image scope preserved as immutable prior payload."
+    "sourceCoverageComplete": true,
+    "productionLiveVerification": "pending",
+    "scope": "Exact recipe imagery only; current main retained; all earlier image payloads preserved as immutable prior payloads."
   }
 }

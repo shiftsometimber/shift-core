@@ -1,0 +1,85 @@
+{
+  "groupId": "f739016be43b43ce0029523b8ee0a2d3dbe6d4549925e06c3ef00d1b78a7a383",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-orange-fruit-crunch"
+  ],
+  "titles": [
+    "Shift Orange Fruit Crunch Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "180g",
+      "item": "apple"
+    },
+    {
+      "amount": "15ml",
+      "item": "orange juice"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    },
+    {
+      "amount": "40g",
+      "item": "0% Greek yoghurt"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Orange Fruit Crunch Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"180g\",\"item\":\"apple\"},{\"amount\":\"15ml\",\"item\":\"orange juice\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"},{\"amount\":\"40g\",\"item\":\"0% Greek yoghurt\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-f63c880d-71af-47df-8b64-6d3d6b7ef071.png",
+  "source_sha256": "c839abb872633f273870d22fe6ec45550f68406304181cb5deedf24040d53615",
+  "generated_at": "2026-10-05T18:38:27.701Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f739016be43b43ce0029-final20261005-480-f3d9614de929.webp",
+      "sha256": "f3d9614de929adc84cd83f00e9b81e21eb3d08ce7ea01d5a07efdf73939e23cf",
+      "bytes": 21334
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f739016be43b43ce0029-final20261005-960-cb3db5d8baa9.webp",
+      "sha256": "cb3db5d8baa98449949ce949fa7558983158c86959d024b2848302dfb5e332d5",
+      "bytes": 61736
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 029, item 262. The finished food, main ingredient identity and serving form agree with Shift Orange Fruit Crunch Dessert Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Orange Fruit Crunch Dessert Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "c839abb872633f273870d22fe6ec45550f68406304181cb5deedf24040d53615",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-orange-fruit-crunch"
+    ],
+    "titles": [
+      "Shift Orange Fruit Crunch Dessert Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

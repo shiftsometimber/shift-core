@@ -1,0 +1,84 @@
+{
+  "groupId": "ceee22eadcf055dd902c78560891f9e147b09c75fc8aa651e3abee86c45a3718",
+  "recipe_ids": [
+    "industrial-v4-protein-pot-orange-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Orange Greek Yoghurt Protein Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "200g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "15ml",
+      "item": "orange juice"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "30g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "pumpkin seeds",
+      "allergens": []
+    }
+  ],
+  "method": [
+    "Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.",
+    "Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.",
+    "Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.",
+    "Chill until needed and add the crunchy topping just before eating so it stays crunchy."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Orange Greek Yoghurt Protein Pot. Ingredients, quantities and allergens: [{\"amount\":\"200g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"15ml\",\"item\":\"orange juice\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"30g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"15g\",\"item\":\"pumpkin seeds\",\"allergens\":[]}]. Preparation: [\"Start with 0% Greek yoghurt in a bowl or lidded pot and stir it smooth.\",\"Add the flavour ingredients in layers or fold them through depending on the texture you want; keep anything crunchy separate until the last minute.\",\"Taste it before you pack it. If the fruit is sharp or the flavour needs lifting, use the measured sweet element rather than guessing.\",\"Chill until needed and add the crunchy topping just before eating so it stays crunchy.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-a424983f-ef75-4385-a6f9-5489648118af.png",
+  "source_sha256": "6f8d52931ad95d23b6fa5996a5c9aeae0f7227fad0d936515096133a213ee36e",
+  "generated_at": "2026-10-05T18:35:06.890Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ceee22eadcf055dd902c-final20261005-480-f3246d5ed6a1.webp",
+      "sha256": "f3246d5ed6a141bc7cf348df89df79188ea957c1ee46bf9af413103dafd451bf",
+      "bytes": 22130
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-ceee22eadcf055dd902c-final20261005-960-c6a90cc80a35.webp",
+      "sha256": "c6a90cc80a35bccc40ca62fd4b045607e7498269493bf173ac5b78a08430dc35",
+      "bytes": 72658
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 024, item 217. The finished food, main ingredient identity and serving form agree with Shift Orange Greek Yoghurt Protein Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Orange Greek Yoghurt Protein Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "6f8d52931ad95d23b6fa5996a5c9aeae0f7227fad0d936515096133a213ee36e",
+    "recipe_ids": [
+      "industrial-v4-protein-pot-orange-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Orange Greek Yoghurt Protein Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

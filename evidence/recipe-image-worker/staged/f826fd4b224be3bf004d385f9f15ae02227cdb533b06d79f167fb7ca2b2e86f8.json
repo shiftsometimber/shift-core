@@ -1,0 +1,84 @@
+{
+  "groupId": "f826fd4b224be3bf004d385f9f15ae02227cdb533b06d79f167fb7ca2b2e86f8",
+  "recipe_ids": [
+    "industrial-v3-sandwich-classic-ham"
+  ],
+  "titles": [
+    "Shift Classic Ham Proper Sandwich"
+  ],
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "lean ham"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "30g",
+      "item": "light mayonnaise"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the classic flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can — nobody asked for a soggy lunch.",
+    "Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Classic Ham Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"lean ham\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"30g\",\"item\":\"light mayonnaise\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the lean ham is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the lean ham through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the classic flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can — nobody asked for a soggy lunch.\",\"Pile in the lean ham, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-f9552b78-6c76-4ac4-b460-17c4d326a8f9.png",
+  "source_sha256": "242dda1ab1f0caf6c7143d6954f78753345aaa286fa3696dec77f08d68a6fc88",
+  "generated_at": "2026-10-05T18:14:51.761Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f826fd4b224be3bf004d-final20261005-480-0e02984ea0f4.webp",
+      "sha256": "0e02984ea0f4494d67b289fd724e64c19145d0d349fb5be149ec8a3289978596",
+      "bytes": 27046
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f826fd4b224be3bf004d-final20261005-960-8dd2d9f35e07.webp",
+      "sha256": "8dd2d9f35e0754e8e249ee99287045f55f3721d798636eb222391dd429b5d232",
+      "bytes": 78380
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 029, item 263. The finished food, main ingredient identity and serving form agree with Shift Classic Ham Proper Sandwich and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Classic Ham Proper Sandwich served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "242dda1ab1f0caf6c7143d6954f78753345aaa286fa3696dec77f08d68a6fc88",
+    "recipe_ids": [
+      "industrial-v3-sandwich-classic-ham"
+    ],
+    "titles": [
+      "Shift Classic Ham Proper Sandwich"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

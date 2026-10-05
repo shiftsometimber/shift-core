@@ -1,0 +1,90 @@
+{
+  "groupId": "4fb573e7928c2c96235601b4deba26d2baff41fa334dda8e17a4c18638eb54f3",
+  "recipe_ids": [
+    "industrial-v3-jacket-potato-club-egg"
+  ],
+  "titles": [
+    "Shift Club Egg Loaded Jacket Potato"
+  ],
+  "ingredients": [
+    {
+      "amount": "2 / 100g",
+      "item": "boiled eggs",
+      "allergens": [
+        "egg"
+      ]
+    },
+    {
+      "amount": "250g",
+      "item": "baking potato"
+    },
+    {
+      "amount": "90g",
+      "item": "mixed salad"
+    },
+    {
+      "amount": "90g",
+      "item": "spring onion"
+    },
+    {
+      "item": "light mayonnaise",
+      "amount": "24g"
+    },
+    {
+      "item": "wholegrain mustard",
+      "amount": "6g"
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200°C (180°C fan), put the potato on a tray and bake for about 60–75 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
+    "Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.",
+    "Stir together all the measured light mayonnaise, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
+    "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
+    "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Club Egg Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"2 / 100g\",\"item\":\"boiled eggs\",\"allergens\":[\"egg\"]},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"light mayonnaise\",\"amount\":\"24g\"},{\"item\":\"wholegrain mustard\",\"amount\":\"6g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200°C (180°C fan), put the potato on a tray and bake for about 60–75 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use already-boiled, cooled eggs. Peel them and cut them into thin slices; the listed weight is the edible egg without shells.\",\"Stir together all the measured light mayonnaise, wholegrain mustard and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-2adf6466-8025-4490-97dc-6b2039282670.png",
+  "source_sha256": "2647f0d7395f5b76deee0abbe3b9f239c907d07913b6ccb1b7c844b2d27d1f8a",
+  "generated_at": "2026-10-05T18:14:53.327Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4fb573e7928c2c962356-final20261005-480-dd7647ac9563.webp",
+      "sha256": "dd7647ac95630fe0ee1fc1ca6885b04caffa7d7a8845323ef4391bc2eb20642a",
+      "bytes": 32508
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-4fb573e7928c2c962356-final20261005-960-dc84fa8ef7c9.webp",
+      "sha256": "dc84fa8ef7c940d6da91661a82679a161cefbc5e5cda02e6f7851db442be123b",
+      "bytes": 96878
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 008, item 74. The finished food, main ingredient identity and serving form agree with Shift Club Egg Loaded Jacket Potato and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Club Egg Loaded Jacket Potato served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "2647f0d7395f5b76deee0abbe3b9f239c907d07913b6ccb1b7c844b2d27d1f8a",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-club-egg"
+    ],
+    "titles": [
+      "Shift Club Egg Loaded Jacket Potato"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

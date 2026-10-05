@@ -6,7 +6,6 @@
   "titles": [
     "Shift Creamy Cheddar Tuna Loaded Jacket Potato"
   ],
-  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Tuna Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.\nArtist direction: exact ingredients and natural appetising food texture. Follow the stated assembly: all spring onion in side salad only for jacket potato; meal-prep bowl filling folded through rice, not decorative rows; cheddar is finely grated into dressing, not separate grated cheese garnish. No invented ingredients.",
   "ingredients": [
     {
       "amount": "120g",
@@ -45,34 +44,51 @@
     }
   ],
   "method": [
-    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200\u00b0C (180\u00b0C fan), put the potato on a tray and bake for about 60\u201375 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
+    "Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200°C (180°C fan), put the potato on a tray and bake for about 60–75 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.",
     "Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.",
     "Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.",
     "Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.",
     "Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.",
     "For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating."
   ],
-  "sourcePath": "/workspace/scratch/79490e627254/generated_images/exec-8999377c-34b7-4c35-89dd-392ead1d689f.png",
-  "source_sha256": "acbb5381adeb660af4fdb00336c98dd67ca111baed64df66ee1899bbad876a23",
-  "generated_at": "2026-10-05T01:27:51.418Z",
-  "elapsed_ms": 171246,
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Creamy Cheddar Tuna Loaded Jacket Potato. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"250g\",\"item\":\"baking potato\"},{\"amount\":\"90g\",\"item\":\"mixed salad\"},{\"amount\":\"90g\",\"item\":\"spring onion\"},{\"item\":\"0% Greek yoghurt\",\"amount\":\"18g\"},{\"item\":\"light mayonnaise\",\"amount\":\"9g\"},{\"item\":\"reduced-fat cheddar\",\"amount\":\"3g\"},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"Scrub the baking potato and pierce it several times with a fork. For an oven, heat to 200°C (180°C fan), put the potato on a tray and bake for about 60–75 minutes. For an 800W microwave, put it on a microwave-safe plate and cook for 8 minutes, turning halfway; continue in 1-minute bursts as needed. In either case, check the centre is completely soft when pierced and allow it to stand for 2 minutes; size and appliance affect the time.\",\"Wash and dry the mixed salad and spring onion. Trim and slice the spring onion very finely, then mix it with the salad to serve alongside the potato.\",\"Use canned tuna in spring water. Drain it before weighing, then break it into small flakes with a fork.\",\"Finely grate the measured reduced-fat cheddar. Stir together all the measured 0% Greek yoghurt, light mayonnaise, reduced-fat cheddar and olive oil in a small bowl to make the dressing. Keep it refrigerated until assembly.\",\"Split the cooked potato and fluff the centre with a fork. Add the prepared ready-to-eat filling and the prepared dressing; the filling is served chilled on the hot potato. Serve the full mixed salad and finely sliced spring onion alongside, and eat immediately.\",\"For a packed lunch, cool the cooked potato promptly before covering and refrigerating it; pack the chilled filling, dressing and salad separately. Eat within 24 hours and follow any shorter ingredient use-by date. Reheat the potato once until steaming hot throughout, then add the cold toppings immediately before eating.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-5f9d6d48-3472-4c6d-87b8-8b78a27cc06a.png",
+  "source_sha256": "9fb54b73a3708565830c2b053fe58766bf6215e97d95e92c9956b8733d20504d",
+  "generated_at": "2026-10-05T18:19:43.586Z",
   "variants": [
     {
       "width": 480,
       "height": 360,
-      "asset": "evidence/recipe-image-worker/assets/catalogue-b027357cec9b1b0afdff-480.webp",
-      "sha256": "24fdcef9c1e80964037c21b3381982a154bf21d803b3604992e149cc6e8a3420",
-      "bytes": 28964
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b027357cec9b1b0afdff-final20261005-480-8ab0370610e0.webp",
+      "sha256": "8ab0370610e037be1250bd9e283111ea0ecd85136b96b77ef844a3194265d372",
+      "bytes": 34258
     },
     {
       "width": 960,
       "height": 720,
-      "asset": "evidence/recipe-image-worker/assets/catalogue-b027357cec9b1b0afdff.webp",
-      "sha256": "0ed76e37636deaa801ee7b400b2be0cc774b65cb1aa6965fca9b52fd3e7a5cb4",
-      "bytes": 81866
+      "asset": "frontend/member/assets/member-experience/food/catalogue-b027357cec9b1b0afdff-final20261005-960-ea78039fbd0a.webp",
+      "sha256": "ea78039fbd0ad9c8b4fb66e81222992348ae2a15fa1230e5794a3e7ebe791956",
+      "bytes": 101728
     }
   ],
-  "review_status": "pending",
-  "integrated": false,
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 019, item 179. The finished food, main ingredient identity and serving form agree with Shift Creamy Cheddar Tuna Loaded Jacket Potato and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Creamy Cheddar Tuna Loaded Jacket Potato served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "9fb54b73a3708565830c2b053fe58766bf6215e97d95e92c9956b8733d20504d",
+    "recipe_ids": [
+      "industrial-v3-jacket-potato-caesar-tuna"
+    ],
+    "titles": [
+      "Shift Creamy Cheddar Tuna Loaded Jacket Potato"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
   "live": false
 }

@@ -1,0 +1,84 @@
+{
+  "groupId": "f17143ef5c159620c4df4bfea09ee1084d9d30f36a3d1d09fee3db08b8d2384c",
+  "recipe_ids": [
+    "industrial-snack-tuna-snack-pot-orange"
+  ],
+  "titles": [
+    "Brown Sauce Tuna Snack Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "120g",
+      "item": "tuna in spring water, drained",
+      "allergens": [
+        "fish"
+      ]
+    },
+    {
+      "amount": "80g",
+      "item": "sweetcorn"
+    },
+    {
+      "amount": "80g",
+      "item": "cucumber"
+    },
+    {
+      "amount": "25g",
+      "item": "wholegrain crackers",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "brown sauce"
+    }
+  ],
+  "method": [
+    "Use canned ready-to-eat sweetcorn, drained before weighing the listed portion. Keep it chilled until assembling the pot.",
+    "Measure everything before assembling the snack so the portion stays intentional.",
+    "Drain the tuna well, combine it with the vegetables and measured savoury add-on, and keep the crackers separate until eating.",
+    "Keep chilled protein and vegetables refrigerated until you are ready to eat.",
+    "Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Brown Sauce Tuna Snack Pot. Ingredients, quantities and allergens: [{\"amount\":\"120g\",\"item\":\"tuna in spring water, drained\",\"allergens\":[\"fish\"]},{\"amount\":\"80g\",\"item\":\"sweetcorn\"},{\"amount\":\"80g\",\"item\":\"cucumber\"},{\"amount\":\"25g\",\"item\":\"wholegrain crackers\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"brown sauce\"}]. Preparation: [\"Use canned ready-to-eat sweetcorn, drained before weighing the listed portion. Keep it chilled until assembling the pot.\",\"Measure everything before assembling the snack so the portion stays intentional.\",\"Drain the tuna well, combine it with the vegetables and measured savoury add-on, and keep the crackers separate until eating.\",\"Keep chilled protein and vegetables refrigerated until you are ready to eat.\",\"Eat immediately or cover and refrigerate; use within 24 hours and follow the shortest ingredient use-by date.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-fde1c9ad-3788-43e2-98b5-3619b4e891f0.png",
+  "source_sha256": "ff1a0037dd9016c58aaa2169527bb270e07cd00439858148318e3c99d9e3c04b",
+  "generated_at": "2026-10-05T18:22:04.598Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f17143ef5c159620c4df-final20261005-480-8f978cc3f38d.webp",
+      "sha256": "8f978cc3f38de115a6ad771ede872be3363023de6244ea04daab6c4c4220ba01",
+      "bytes": 24014
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-f17143ef5c159620c4df-final20261005-960-6184a5df28d2.webp",
+      "sha256": "6184a5df28d28bdd52d8d24c1d4758e933c5c8f5dbc562978ab0c3b8a51fa479",
+      "bytes": 75534
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 028, item 259. The finished food, main ingredient identity and serving form agree with Brown Sauce Tuna Snack Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Brown Sauce Tuna Snack Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "ff1a0037dd9016c58aaa2169527bb270e07cd00439858148318e3c99d9e3c04b",
+    "recipe_ids": [
+      "industrial-snack-tuna-snack-pot-orange"
+    ],
+    "titles": [
+      "Brown Sauce Tuna Snack Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": false,
+  "live": false
+}

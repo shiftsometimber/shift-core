@@ -1,0 +1,87 @@
+{
+  "groupId": "8623a7a6239d00fe7db43d9c39df8b260390bba8f7e9c994250fd60b7972d75c",
+  "recipe_ids": [
+    "industrial-v3-sandwich-cajun-turkey"
+  ],
+  "titles": [
+    "Shift Cajun Turkey Proper Sandwich"
+  ],
+  "ingredients": [
+    {
+      "amount": "130g",
+      "item": "cooked turkey breast"
+    },
+    {
+      "amount": "80g",
+      "item": "wholemeal bread",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "90g",
+      "item": "lettuce"
+    },
+    {
+      "amount": "90g",
+      "item": "tomato"
+    },
+    {
+      "amount": "40g",
+      "item": "Cajun yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "1 tsp / 5ml",
+      "item": "olive oil"
+    }
+  ],
+  "method": [
+    "If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.",
+    "Build the cajun flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.",
+    "Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can — nobody asked for a soggy lunch.",
+    "Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Cajun Turkey Proper Sandwich. Ingredients, quantities and allergens: [{\"amount\":\"130g\",\"item\":\"cooked turkey breast\"},{\"amount\":\"80g\",\"item\":\"wholemeal bread\",\"allergens\":[\"gluten\"]},{\"amount\":\"90g\",\"item\":\"lettuce\"},{\"amount\":\"90g\",\"item\":\"tomato\"},{\"amount\":\"40g\",\"item\":\"Cajun yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"1 tsp / 5ml\",\"item\":\"olive oil\"}]. Preparation: [\"If the cooked turkey breast is meant to be warm, sort that first; otherwise keep chilled fillings properly cold. Warm the cooked turkey breast through in the hot pan until piping hot and lightly coloured. It is already cooked, so stop before it dries out.\",\"Build the cajun flavour into the filling or dressing before it hits the bread, then taste it. It should taste good on its own before it becomes a sandwich.\",\"Lay out the bread, spread right to the edges and add the wetter ingredients away from the bread where you can — nobody asked for a soggy lunch.\",\"Pile in the cooked turkey breast, add the fresh bits for crunch, close it up and press gently so it holds together. Eat now, or wrap and chill promptly.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-c74de6fc-d185-4d9a-b026-d2a9c1d524dc.png",
+  "source_sha256": "1bdbda5bacbf748b03bcb09453b6a8ddb2ac5dcd2f6ca091c6920cdc9aaac68a",
+  "generated_at": "2026-10-05T17:57:12.102Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8623a7a6239d00fe7db4-final20261005-480-8a9daf77857b.webp",
+      "sha256": "8a9daf77857b4dee2a5c13dfc05352d6db43e17a12e94f125914c983d5d9f978",
+      "bytes": 30404
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-8623a7a6239d00fe7db4-final20261005-960-148bf9c30899.webp",
+      "sha256": "148bf9c3089920b5e0cd0e631a9d92bd0d24db38ae91b520801c8feca9928329",
+      "bytes": 90546
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Wholemeal sandwich with cooked turkey in Cajun yoghurt, lettuce and tomato. No unlisted foods or garnish; one full single serving remains inside the inspected 4:3 crop.",
+    "alt": "Shift Cajun Turkey Proper Sandwich on cream serving ware",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "1bdbda5bacbf748b03bcb09453b6a8ddb2ac5dcd2f6ca091c6920cdc9aaac68a",
+    "recipe_ids": [
+      "industrial-v3-sandwich-cajun-turkey"
+    ],
+    "titles": [
+      "Shift Cajun Turkey Proper Sandwich"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}

@@ -1,0 +1,84 @@
+{
+  "groupId": "1db22c89782c0105d81a7fa8abfd017b664457417078816728f8648edd2d7935",
+  "recipe_ids": [
+    "industrial-v4-dessert-pot-peanut-greek-yoghurt"
+  ],
+  "titles": [
+    "Shift Peanut Greek Yoghurt Dessert Pot"
+  ],
+  "ingredients": [
+    {
+      "amount": "240g",
+      "item": "0% Greek yoghurt",
+      "allergens": [
+        "milk"
+      ]
+    },
+    {
+      "amount": "15g",
+      "item": "peanut butter"
+    },
+    {
+      "amount": "25g",
+      "item": "mixed berries"
+    },
+    {
+      "amount": "15g",
+      "item": "rolled oats",
+      "allergens": [
+        "gluten"
+      ]
+    },
+    {
+      "amount": "10g",
+      "item": "pumpkin seeds"
+    }
+  ],
+  "method": [
+    "Measure the ingredients rather than eating from the packet.",
+    "Prepare the fruit or flavour component and keep chilled ingredients cold.",
+    "Combine the measured ingredients in a bowl or lidded pot.",
+    "Swirl the measured yoghurt through at the end for a thicker dessert-style finish.",
+    "Eat immediately or refrigerate until needed; treat versions are still food, not a moral event."
+  ],
+  "prompt": "Create one premium realistic food editorial photograph for SHIFT My Timber. Landscape 4:3; warm natural light, cream ceramic serving ware, matte black or muted cream background; an ordinary believable single serving with generous margin for responsive cropping. No text, logos, people or decorative ingredients. Exact recipe: Shift Peanut Greek Yoghurt Dessert Pot. Ingredients, quantities and allergens: [{\"amount\":\"240g\",\"item\":\"0% Greek yoghurt\",\"allergens\":[\"milk\"]},{\"amount\":\"15g\",\"item\":\"peanut butter\"},{\"amount\":\"25g\",\"item\":\"mixed berries\"},{\"amount\":\"15g\",\"item\":\"rolled oats\",\"allergens\":[\"gluten\"]},{\"amount\":\"10g\",\"item\":\"pumpkin seeds\"}]. Preparation: [\"Measure the ingredients rather than eating from the packet.\",\"Prepare the fruit or flavour component and keep chilled ingredients cold.\",\"Combine the measured ingredients in a bowl or lidded pot.\",\"Swirl the measured yoghurt through at the end for a thicker dessert-style finish.\",\"Eat immediately or refrigerate until needed; treat versions are still food, not a moral event.\"]. Depict the finished food in the state described by that method, including any ingredients kept separate. Do not add garnish, sauces, sides or food absent from those ingredients. Quantities are illustrative, not nutritional or allergen evidence.",
+  "sourcePath": "/workspace/scratch/63fd31005a0b/generated_images/exec-6e66be48-b355-4368-9d96-4157f27c6dae.png",
+  "source_sha256": "714fd48ca1043dcb7988a202128726f3263dc2e6535c0739c9d7435c221538be",
+  "generated_at": "2026-10-05T18:40:46.669Z",
+  "variants": [
+    {
+      "width": 480,
+      "height": 360,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1db22c89782c0105d81a-final20261005-480-bcd82ef01751.webp",
+      "sha256": "bcd82ef0175164f7c00346497cd90dbb08a39e0884bcf04f912ca621e52c345b",
+      "bytes": 20998
+    },
+    {
+      "width": 960,
+      "height": 720,
+      "asset": "frontend/member/assets/member-experience/food/catalogue-1db22c89782c0105d81a-final20261005-960-92f6e9d47138.webp",
+      "sha256": "92f6e9d471386e47fc6e65adfc73a6823560ae3e64abe87050386d58c0acd84a",
+      "bytes": 65042
+    }
+  ],
+  "review_status": "pass",
+  "review": {
+    "decision": "pass",
+    "notes": "Manually inspected final 4:3 crop in contact sheet 003, item 27. The finished food, main ingredient identity and serving form agree with Shift Peanut Greek Yoghurt Dessert Pot and its listed ingredients and method. No visible unlisted garnish, text, malformed serving ware or crop loss.",
+    "alt": "Shift Peanut Greek Yoghurt Dessert Pot served ready to eat",
+    "reviewer": "Codex visual inspection",
+    "final_crop_reviewed": true,
+    "source_sha256": "714fd48ca1043dcb7988a202128726f3263dc2e6535c0739c9d7435c221538be",
+    "recipe_ids": [
+      "industrial-v4-dessert-pot-peanut-greek-yoghurt"
+    ],
+    "titles": [
+      "Shift Peanut Greek Yoghurt Dessert Pot"
+    ],
+    "reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "final_crop_reviewed_at": "2026-10-05T18:50:01.471207+00:00",
+    "inspection_basis": "Exact 4:3 LANCZOS crop contact sheet manually inspected by Codex; same framing at both responsive widths."
+  },
+  "integrated": true,
+  "live": false
+}
