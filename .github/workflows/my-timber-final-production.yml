@@ -2,7 +2,7 @@ name: My Timber Final Production Candidate
 
 on:
   push:
-    branches: [main, verification/member-design-20261002, verification/member-finish-20261002, release/internal-closeout-20261004]
+    branches: [main, verification/member-design-20261002, verification/member-finish-20261002, release/internal-closeout-20261004, fix/passport-reload-readback-20261006]
     paths:
       - 'my-timber-final-production.mjs'
       - 'release/app-member-live.mjs'
@@ -38,7 +38,7 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - name: Prove prior successful runtime and test-only verification delta
-        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref != 'refs/heads/main' && github.ref != 'refs/heads/fix/passport-reload-readback-20261006'
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
@@ -53,12 +53,38 @@ jobs:
           assert(r.ok);const receipt=await r.json();assert.equal(receipt.head_sha,baseline);assert.equal(receipt.conclusion,'success');
           console.log('PASS unchanged serving source and exact prior successful production receipt before test authentication');
           NODE
+      - name: Verify exact reload-only delta and current live Passport assets
+        if: github.ref == 'refs/heads/fix/passport-reload-readback-20261006'
+        run: |
+          node --input-type=module - <<'NODE'
+          import assert from 'node:assert/strict';
+          import {execFileSync} from 'node:child_process';
+          const baseline='9694328474fb117b86cf5ac125eb9c41509a523e';
+          const expected=['health-passport/production-browser.mjs','rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs','.github/workflows/my-timber-final-production.yml'];
+          const changed=execFileSync('git',['diff','--name-only',baseline,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          assert.deepEqual(changed.sort(),expected.sort(),'Only reload verifier and its tests/workflow may change');
+          execFileSync('git',['diff','--exit-code',baseline,'HEAD','--','worker-entry-v6.js','worker.js','frontend','app-layout-live.mjs','wrangler.jsonc','release'],{stdio:'inherit'});
+          console.log('PASS exact four-file acceptance-only delta; no serving application source change');
+          NODE
+          npm ci --no-audit --no-fund
+          mkdir -p b1-runtime-release
+          node --test tests/rendered-member-acceptance-support.test.mjs tests/acceptance-diagnostics.test.mjs
+          node --input-type=module - <<'NODE'
+          import assert from 'node:assert/strict';
+          import {passportAssets} from './health-passport/presentation.mjs';
+          for(const path of ['/assets/member-experience/passport.js','/assets/member-experience/passport.css']){
+            const expected=passportAssets(new Request('https://shiftsometimber.co.uk'+path),{HEALTH_PASSPORT_V1_ENABLED:'true',MEMBER_EXPERIENCE_V1_ENABLED:'true'});
+            const r=await fetch('https://shiftsometimber.co.uk'+path,{cache:'no-store',signal:AbortSignal.timeout(30000)});
+            assert.equal(r.status,200);assert.equal(await r.text(),await expected.text(),'Current live Passport asset differs: '+path);
+          }
+          console.log('PASS current live Passport script and stylesheet exactly match the tested source');
+          NODE
       - name: Install phone journey browser
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
       - name: Install MP4 evidence encoder
-        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004')
+        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004' || github.ref == 'refs/heads/fix/passport-reload-readback-20261006')
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Acquire short-lived Shift commissioning identity
         id: oidc
@@ -69,7 +95,7 @@ jobs:
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: Prove activated Passport with synthetic production accounts
-        if: ${{ (github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004')) && hashFiles('health-passport/production-browser.mjs') != '' }}
+        if: ${{ (github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004' || github.ref == 'refs/heads/fix/passport-reload-readback-20261006')) && hashFiles('health-passport/production-browser.mjs') != '' }}
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           PASSPORT_RELEASE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
@@ -91,7 +117,7 @@ jobs:
           MY_TIMBER_FINAL_EVIDENCE_DIR: my-timber-final-evidence
         run: node my-timber-google-play-screenshots.mjs
       - name: Record and prove Billy's live production journey
-        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004')
+        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004' || github.ref == 'refs/heads/fix/passport-reload-readback-20261006')
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
@@ -99,7 +125,7 @@ jobs:
           MY_TIMBER_FINAL_EVIDENCE_DIR: my-timber-final-evidence
         run: node my-timber-final-production.mjs
       - name: Encode walkthrough video
-        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004')
+        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004' || github.ref == 'refs/heads/fix/passport-reload-readback-20261006')
         run: ffmpeg -y -i my-timber-final-evidence/my-timber-billy-iphone.webm -movflags +faststart -pix_fmt yuv420p my-timber-final-evidence/my-timber-billy-iphone.mp4
       - name: Upload production candidate and phone video
         if: always()

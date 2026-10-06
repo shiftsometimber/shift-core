@@ -42,6 +42,23 @@ export async function memberReady(page,{site,panel=null}){
   const identity=identities.get(page.context());
   if(!identity||identity.site!==site)throw new Error('Member readiness requires a verified commissioning session');
   await page.goto(`${site}/member/dashboard`,{waitUntil:'domcontentloaded',timeout:30000});
+  await waitForMemberUI(page,{panel});
+}
+
+export async function memberReload(page,{site,panel=null}){
+  const identity=identities.get(page.context());
+  if(!identity||identity.site!==site)throw new Error('Member reload requires a verified commissioning session');
+  // Reload the actual page; a new goto would not prove retained browser state.
+  // Readiness is the authenticated member UI, not every peripheral load event.
+  const response=await page.reload({waitUntil:'domcontentloaded',timeout:30000});
+  if(!response?.ok())throw new Error('Member reload document failed');
+  const me=await page.context().request.get(site+'/v1/me',{headers:{Origin:site,'Cache-Control':'no-cache'},timeout:30000});
+  const body=await me.json().catch(()=>null);
+  if(!me.ok()||String(body?.user?.email||'').toLowerCase()!==identity.email)throw new Error('Member reload lost the verified synthetic session');
+  await waitForMemberUI(page,{panel});
+}
+
+async function waitForMemberUI(page,{panel=null}={}){
   try{
     await page.waitForFunction(()=>{
       const member=document.querySelector('#previewMember'),auth=document.querySelector('#previewAuth');

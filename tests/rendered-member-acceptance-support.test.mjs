@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {commissioningLogin,memberReady,requireMemberPanel,chooseNecessaryCookies} from '../rendered-member-acceptance-support.mjs';
+import {commissioningLogin,memberReady,memberReload,requireMemberPanel,chooseNecessaryCookies} from '../rendered-member-acceptance-support.mjs';
 
 const site='https://shiftsometimber.co.uk',api='https://api.shiftsometimber.co.uk';
 const identity={site,api,oidc:'synthetic-oidc-test-value',email:'shiftsometimber+structured-acceptance-test@gmail.com',password:'test-only'};
@@ -104,4 +104,26 @@ test('normal Necessary only choice resolves the blocking dialog before member na
 test('missing Necessary only control remains a failure rather than hiding or bypassing consent',async()=>{
   const page={locator:selector=>selector.startsWith('script[')?{count:async()=>0}:{count:async()=>1,isVisible:async()=>true,locator:()=>({count:async()=>0})}};
   await assert.rejects(chooseNecessaryCookies(page),/visible Necessary only control/);
+});
+
+test('real reload waits for authenticated UI and retained identity, without a replacement goto',async()=>{
+  const h=harness();await commissioningLogin(h.page,identity);const reloads=[];
+  h.page.reload=async options=>{reloads.push(options);return{ok:()=>true}};
+  await memberReload(h.page,{site,panel:'journey'});
+  assert.deepEqual(reloads,[{waitUntil:'domcontentloaded',timeout:30000}]);
+  assert.deepEqual(h.navigations,[]);assert.equal(h.clicks.length,1);
+  assert.equal(h.requests.at(-1).url,site+'/v1/me');
+});
+test('reload rejects signed-out UI, changed identity, failed document and missing authority',async()=>{
+  const h=harness();h.page.reload=async()=>({ok:()=>true});
+  await assert.rejects(memberReload(h.page,{site}),/verified commissioning session/);
+  await commissioningLogin(h.page,identity);
+  h.page.reload=async()=>({ok:()=>false});
+  await assert.rejects(memberReload(h.page,{site}),/document failed/);
+  h.page.reload=async()=>({ok:()=>true});
+  h.page.context().request.get=async()=>({ok:()=>true,json:async()=>({user:{email:'unrelated@example.test'}})});
+  await assert.rejects(memberReload(h.page,{site}),/lost the verified/);
+  const signedOut=harness({shown:false});await commissioningLogin(signedOut.page,identity);
+  signedOut.page.reload=async()=>({ok:()=>true});
+  await assert.rejects(memberReload(signedOut.page,{site}),/UI did not become ready/);
 });
