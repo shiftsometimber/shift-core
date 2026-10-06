@@ -449,6 +449,7 @@
     ],
     "maintenancePaths": [
       ".github/workflows/seo-follow-through-proof.yml",
+      "editorial/five-articles/proof.mjs",
       "release/fit-300-scope.mjs",
       "release/seo-follow-through-scope.mjs",
       "release/sitewide-seo-scope.mjs",
