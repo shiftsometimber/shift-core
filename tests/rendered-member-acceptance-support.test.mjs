@@ -127,3 +127,18 @@ test('reload rejects signed-out UI, changed identity, failed document and missin
   signedOut.page.reload=async()=>({ok:()=>true});
   await assert.rejects(memberReload(signedOut.page,{site}),/UI did not become ready/);
 });
+
+test('one transient navigation timeout can recover only through a second real reload and exact session verification',async()=>{
+ const h=harness();await commissioningLogin(h.page,identity);let calls=0;
+ h.page.reload=async()=>{if(++calls===1)throw Object.assign(new Error('document navigation stalled'),{name:'TimeoutError'});return{ok:()=>true}};
+ const receipt=await memberReload(h.page,{site,panel:'journey'});
+ assert.deepEqual(receipt,{attempts:2,recoveredNavigation:true});assert.equal(calls,2);
+ assert.deepEqual(h.navigations,[]);assert.equal(h.requests.at(-1).url,site+'/v1/me');assert.equal(h.clicks.length,1);
+});
+test('persistent navigation timeout and non-timeout navigation errors still fail without further retries',async()=>{
+ const h=harness();await commissioningLogin(h.page,identity);let calls=0;
+ h.page.reload=async()=>{calls++;throw Object.assign(new Error('still stalled'),{name:'TimeoutError'})};
+ await assert.rejects(memberReload(h.page,{site}),/still stalled/);assert.equal(calls,2);
+ calls=0;h.page.reload=async()=>{calls++;throw new Error('certificate or document failure')};
+ await assert.rejects(memberReload(h.page,{site}),/certificate or document failure/);assert.equal(calls,1);
+});

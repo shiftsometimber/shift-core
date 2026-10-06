@@ -50,12 +50,21 @@ export async function memberReload(page,{site,panel=null}){
   if(!identity||identity.site!==site)throw new Error('Member reload requires a verified commissioning session');
   // Reload the actual page; a new goto would not prove retained browser state.
   // Readiness is the authenticated member UI, not every peripheral load event.
-  const response=await page.reload({waitUntil:'domcontentloaded',timeout:30000});
+  let response,attempts=1;
+  try{response=await page.reload({waitUntil:'domcontentloaded',timeout:30000});}
+  catch(error){
+    if(error?.name!=='TimeoutError')throw error;
+    // A transient document navigation may stall even after a confirmed save.
+    // Retry only the browser navigation once, never a save or an API mutation.
+    attempts=2;console.warn('Member reload navigation timed out; retrying the page once without repeating the save');
+    response=await page.reload({waitUntil:'domcontentloaded',timeout:30000});
+  }
   if(!response?.ok())throw new Error('Member reload document failed');
   const me=await page.context().request.get(site+'/v1/me',{headers:{Origin:site,'Cache-Control':'no-cache'},timeout:30000});
   const body=await me.json().catch(()=>null);
   if(!me.ok()||String(body?.user?.email||'').toLowerCase()!==identity.email)throw new Error('Member reload lost the verified synthetic session');
   await waitForMemberUI(page,{panel});
+  return {attempts,recoveredNavigation:attempts===2};
 }
 
 async function waitForMemberUI(page,{panel=null}={}){
