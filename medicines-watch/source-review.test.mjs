@@ -9,6 +9,7 @@ const nhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-24-mounjar
 const latestNhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-01-mounjaro-nhs-renewal.json', import.meta.url)));
 const foundayoReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-29-foundayo-nice-schedule.json', import.meta.url)));
 const overdueReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-30-overdue-source-renewal.json', import.meta.url)));
+const octoberOverdueReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-06-overdue-source-renewal.json', import.meta.url)));
 const foundayoPredictedRiskReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-03-authorised-foundayo-predicted-risk.json', import.meta.url)));
 const foundayoAttainMaintainReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-04-authorised-foundayo-attain-maintain.json', import.meta.url)));
 const wegovyMashReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-03-authorised-wegovy-mash-correction.json', import.meta.url)));
@@ -26,7 +27,8 @@ test('source-only review binds twelve complete primary responses without clinica
   assert.equal(new Set(receipt.sources.map(s => s.id)).size, 12);
   for (const proof of receipt.sources) {
     const source = sources.find(s => s.id === proof.id);
-    const currentProof = wegovyMashReceipt.sources.find(source => source.id === proof.id)
+    const currentProof = octoberOverdueReceipt.sources.find(source => source.id === proof.id)
+      ?? wegovyMashReceipt.sources.find(source => source.id === proof.id)
       ?? overdueReceipt.sources.find(source => source.id === proof.id)
       ?? (proof.id === 'foundayo-nice' ? foundayoReceipt.sources[0] : proof);
     assert.equal(source.url, currentProof.url);
@@ -73,6 +75,36 @@ test('sixteen overdue reviews are renewed only from complete unchanged evidence'
   assert.equal(overdueReceipt.clinicalApproval, null);
   assert.equal(overdueReceipt.transientChecks.length, 2);
   assert.ok(overdueReceipt.transientChecks.every(check => check.directFingerprintMatched && check.disposition.includes('retained')));
+});
+
+test('eight 6 October overdue reviews are renewed from unchanged primary evidence only', () => {
+  assert.equal(octoberOverdueReceipt.reviewType, 'AI-assisted factual source review; not clinical approval');
+  assert.equal(octoberOverdueReceipt.clinicalApproval, null);
+  assert.equal(octoberOverdueReceipt.disposition, 'source_reviews_renewed_without_wording_change');
+  assert.equal(octoberOverdueReceipt.sources.length, 8);
+  assert.equal(new Set(octoberOverdueReceipt.sources.map(source => source.id)).size, 8);
+  assert.deepEqual(new Set(octoberOverdueReceipt.liveObservation.reviewDue), new Set(octoberOverdueReceipt.sources.map(source => source.id)));
+  for (const proof of octoberOverdueReceipt.sources) {
+    const source = sources.find(candidate => candidate.id === proof.id);
+    assert.ok(source, proof.id);
+    for (const key of ['url', 'checkUrl', 'reviewedAt', 'reviewedFingerprint', 'sourcePublishedAt']) {
+      assert.equal(source[key], proof[key], `${proof.id} ${key}`);
+    }
+    assert.ok(Date.parse(proof.reviewedAt) > Date.parse(proof.previousReviewedAt) + REVIEW_INTERVAL_MS);
+    assert.equal(proof.previousReviewedFingerprint, proof.reviewedFingerprint);
+    assert.equal(proof.httpStatus, 200);
+    assert.ok(proof.bytes > 1000 && proof.bytes <= 2 * 1024 * 1024);
+    assert.match(proof.responseSha256, /^[a-f0-9]{64}$/);
+    assert.equal(proof.withdrawn, false);
+    assert.equal(proof.wordingChanged, false);
+    assert.ok(proof.assessment.length > 140);
+    const time = Date.parse(proof.reviewedAt);
+    assert.equal(projectSourceHealth(source, rowFor(source, time), time).status, 'current');
+    const old = {...source, reviewedAt: proof.previousReviewedAt};
+    assert.ok(projectSourceHealth(old, rowFor(old, time), time).reasons.includes('review_due'));
+  }
+  assert.equal(octoberOverdueReceipt.liveObservation.unchangedSeparateFailure.id, 'zealand-zp6590-pipeline');
+  assert.equal(octoberOverdueReceipt.liveObservation.unchangedSeparateFailure.error, 'http_403');
 });
 
 test('review expiry, changed content and failures still fail closed', () => {
