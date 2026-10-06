@@ -2,16 +2,16 @@ import assert from 'node:assert/strict';
 // Finite owner-authorised local release: hosted proof is NOT a deployment.
 // Its separately recorded live receipt and exact active deployment are required.
 export const catalogueRuntime=Object.freeze({run:37453081278,job:112234026421,source:'91b625b0e1e272cdc2e767fa4f4b9fdd06186854',version:'d5b99766-5d14-4002-bd96-18a512d41c19',deployment:'585674f7-ad7d-4cca-a6fc-64ab74da7244'});
-export const catalogueRollback=Object.freeze({run:37460283567,job:112257979138,source:'4c58a9c85747a2cc4f54af06ca387c94e50957d4',deployment:'69dbd197-28d2-4e7f-a643-83fb96ce0552',failedDeployment:'b50b6cb6-523b-4ffa-8787-8b133095b062',failedVersion:'3840a819-ed12-4a59-9e54-9d23fd7e82c1'});
+export const catalogueRollback=Object.freeze({run:37462426049,job:112265226356,source:'0180d98d6226ca62fabe49f1d1aba3feaa93ec84',deployment:'2a6754ac-33f2-4b5a-b7f7-d128e5555308',failedDeployment:'3fc1e26c-4850-41ce-8af2-6dfb8c47a0e4',failedVersion:'b2f93373-f722-4125-b856-30f577652022'});
 export function verifiedCatalogueRollback(active,run,job,logs,receipt){
  const p=catalogueRollback,c=catalogueRuntime,o=receipt?.owned,b=receipt?.rollback,i=receipt?.independentObservation;
  return active?.id===p.deployment&&active.versions?.length===1&&active.versions[0].version_id===c.version&&active.versions[0].percentage===100
   &&run?.id===p.run&&run.head_sha===p.source&&run.status==='completed'&&run.conclusion==='failure'&&run.run_attempt===1&&run.event==='push'&&run.head_branch==='main'&&run.path==='.github/workflows/cloudflare-production-promote.yml'
   &&job?.id===p.job&&job.run_id===p.run&&job.name==='promote'&&job.conclusion==='failure'
-  &&job.steps?.some(s=>s.number===66&&s.name==='Verify exact live app assets and website isolation'&&s.conclusion==='failure')&&job.steps?.some(s=>s.number===107&&s.name==='Restore the captured runtime if a post-deployment gate failed'&&s.conclusion==='success')
+  &&job.steps?.some(s=>s.number===68&&s.name==='Measure and retain live homepage mobile speed'&&s.conclusion==='failure')&&job.steps?.some(s=>s.number===107&&s.name==='Restore the captured runtime if a post-deployment gate failed'&&s.conclusion==='success')
   &&receipt?.kind==='verified_restore_of_catalogue_baseline'&&receipt.failedRun===p.run&&receipt.failedJob===p.job
-  &&receipt.artifact?.id===11412982340&&receipt.artifact.sha256==='255fe320eb199e3ee2e7f61c1adf3999530a4f201df6334413df1fd83e172f0b'
-  &&o?.kind==='owned_runtime_deployment'&&o.source===p.source&&String(o.run)===String(p.run)&&o.deploymentId===p.failedDeployment&&o.versionId===p.failedVersion&&o.previousDeploymentId===c.deployment&&o.previousVersionId===c.version&&o.dataRestored===false
+  &&receipt.artifact?.id===11413731078&&receipt.artifact.sha256==='47fad39017565b610e9fc19551750154e3782fc83f20ba75f0f7e801fb715761'
+  &&o?.kind==='owned_runtime_deployment'&&o.source===p.source&&String(o.run)===String(p.run)&&o.deploymentId===p.failedDeployment&&o.versionId===p.failedVersion&&o.previousDeploymentId==='69dbd197-28d2-4e7f-a643-83fb96ce0552'&&o.previousVersionId===c.version&&o.dataRestored===false
   &&b?.deployment===p.deployment&&b.restoredVersion===c.version&&b.dataRestored===false&&i?.deployment===p.deployment&&i.version===c.version&&i.percentage===100
   &&typeof logs==='string'&&logs.includes(JSON.stringify(o))&&logs.includes('SUCCESS')&&logs.includes('Worker Version '+c.version+' has been deployed to 100% of traffic.');
 }

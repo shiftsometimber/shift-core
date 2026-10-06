@@ -7,10 +7,10 @@ import {FIT_EXPANSION_SERVING_AUTHORITY} from '../fit-expansion-serving-manifest
 import {validateSixTopicSeoSource} from './six-topic-seo-scope.mjs';
 export const CATALOGUE_COPY_SOURCE='674101642d151a55889fe5391c1790f09e830f51';
 export const CATALOGUE_COPY_PATHS=['.github/workflows/catalogue-benefits-proof.yml','catalogue-benefits.mjs','docs/catalogue-benefits-20261006.md','docs/catalogue-benefits-live-receipt-20261006.json','scripts/verify-catalogue-handler.mjs','shift-coach/worker.mjs','tests/catalogue-benefits.test.mjs'];
-export const BASELINE_REPAIR_PATHS=['docs/catalogue-runtime-rollback-37460283567.json','release/app-live-http.mjs','release/book-voice-scope.mjs','release/fit-300-scope.mjs','release/growth-adopt-deployment.mjs','release/home-banner-scope.mjs','release/member-details-preservation.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/release-contract.mjs','shift-coach/release.test.mjs','tests/app-client-proof.test.mjs'];
+export const BASELINE_REPAIR_PATHS=['docs/catalogue-runtime-rollback-37460283567.json','docs/catalogue-runtime-rollback-37462426049.json','release/app-live-http.mjs','release/book-voice-scope.mjs','release/fit-300-scope.mjs','release/growth-adopt-deployment.mjs','release/home-banner-live.cjs','release/home-banner-scope.mjs','release/member-details-preservation.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/release-contract.mjs','shift-coach/release.test.mjs','tests/app-client-proof.test.mjs'];
 export function validateBaselineRepair(repair,read){
  if(!repair)return;
- assert.equal(repair.proof,'EXACT_CATALOGUE_BASELINE_REPAIR_V3');assert.equal(repair.base,'c2eaab9e0e1ddb39e116d6d3d625a7f51b6881b6');assert.deepEqual(repair.paths,BASELINE_REPAIR_PATHS);
+ assert.equal(repair.proof,'EXACT_CATALOGUE_BASELINE_REPAIR_V4');assert.equal(repair.base,'c2eaab9e0e1ddb39e116d6d3d625a7f51b6881b6');assert.deepEqual(repair.paths,BASELINE_REPAIR_PATHS);
  assert.match(repair.source,/^[a-f0-9]{40}$/);execFileSync('git',['merge-base','--is-ancestor',repair.source,'HEAD']);
  assert.deepEqual(execFileSync('git',['diff','--name-only',repair.base,repair.source],{encoding:'utf8'}).trim().split('\n').sort(),BASELINE_REPAIR_PATHS);
  for(const p of repair.paths)assert.equal(read('HEAD',p),read(repair.source,p),'Coaching release source drift (exact baseline repair): '+p);
