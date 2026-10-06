@@ -355,7 +355,7 @@
   "baselineRepairComposition": {
     "proof": "EXACT_CATALOGUE_BASELINE_REPAIR_V2",
     "base": "c2eaab9e0e1ddb39e116d6d3d625a7f51b6881b6",
-    "source": "2c25e53b6ea9ee3427d24e584d1447b69979c308",
+    "source": "61cd2d6a9743b4a71ec0057a70ce7d201ebfc831",
     "paths": [
       "release/book-voice-scope.mjs",
       "release/fit-300-scope.mjs",

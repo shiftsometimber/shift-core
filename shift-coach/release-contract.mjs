@@ -83,6 +83,7 @@ export function assertCoachingConfiguration(current,previous){
 // Historical comparisons still verify the reviewed old bytes; the exact new bytes
 // are independently pinned by validateCoachingSource below. No generic exclusion.
 export function coachingHistoricalRef(ref,path){
+ if(ref==='HEAD'&&['release/home-banner-scope.mjs','release/book-voice-scope.mjs'].includes(path))return 'c2eaab9e0e1ddb39e116d6d3d625a7f51b6881b6'; // Current verifier bytes are independently pinned by the exact baseline repair.
  if(ref==='HEAD'&&['shift-coach/fit-active-edit.mjs','shift-coach/fit-active-edit.test.mjs'].includes(path))return '4afdd2686d5a74dfeea9ca2d86aba71e62ed2320';
  if(ref==='HEAD'&&path==='shift-coach/release-contract.mjs')return '36749bd7c3e728ceb09a443366a7e2b933b7c144';
  // These two metadata files compose the separately approved book-copy gate.
