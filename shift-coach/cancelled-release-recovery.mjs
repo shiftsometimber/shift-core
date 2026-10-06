@@ -138,6 +138,23 @@ export async function verifyTechnicalCancelledRuntime(active,get,getLogs){
 // Retain only this exact owner-authorised local tablet release. Hosted source
 // proofs alone are never treated as deployment evidence.
 export const tabletRuntime=Object.freeze({run:37531933891,job:112503200497,source:'25ead1b54126e5596db11845efbcf3b888fc5a31',version:'2dd57a8f-8597-4f5c-ab5b-86d6e037a8f7',deployment:'b6fa58e8-4953-46ca-8983-06dff8a53fd2',previousRun:37525779266,previousSource:'4460ea56f931da4003ace68d5d404831c47e08f7',previousVersion:'33da329f-98ae-46ce-8090-150ad06b7ea9',previousDeployment:'f07a6f14-c7e7-497f-b7e5-23b6540ca42c',reviewRun:37531509514,reviewJob:112501762193,reviewSource:'a9707c463f7681d49068fa0319418e5630510ba9'});
+
+export const tabletOwnedRollback=Object.freeze({run:37536864936,job:112520112417,source:'23a737dbaa76a9619bea8b5c235e7c3e581c7c04',failedDeployment:'8d9879e1-d7ff-4daf-92d0-7aff65bb417a',failedVersion:'6ac4410b-288a-470b-bc80-3537cab41ea6',deployment:'00a7550b-4805-490b-a19f-1eef2435ded4',artifact:11447910447,digest:'sha256:4725c10d8eb322c3f72fe40a97fc470bf9d576366c3cc14012add9e5b6dcd54a'});
+// This failed promotion restored its captured, independently verified tablet
+// version. The failed candidate itself never becomes an approved runtime.
+export function verifiedTabletOwnedRollback(active,run,job,logs,artifact){
+ const p=tabletOwnedRollback,t=tabletRuntime;
+ if(active?.id!==p.deployment||JSON.stringify(active.versions)!==JSON.stringify([{version_id:t.version,percentage:100}]))return false;
+ if(run?.id!==p.run||run.head_sha!==p.source||run.run_attempt!==1||run.status!=='completed'||run.conclusion!=='failure'||run.event!=='push'||run.head_branch!=='main'||run.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
+ if(job?.id!==p.job||job.run_id!==p.run||job.name!=='promote'||job.status!=='completed'||job.conclusion!=='failure')return false;
+ for(const [number,name] of [[50,'Capture current Worker deployment for rollback'],[60,'Deploy current main to production'],[107,'Restore the captured runtime if a post-deployment gate failed']])if(!job.steps?.some(s=>s.number===number&&s.name===name&&s.conclusion==='success'))return false;
+ const owned=ownedFrom(logs);
+ if(owned.length!==1)return false;
+ const o=owned[0];if(o.source!==p.source||String(o.run)!==String(p.run)||o.deploymentId!==p.failedDeployment||o.versionId!==p.failedVersion||o.previousDeploymentId!==t.deployment||o.previousVersionId!==t.version||o.dataRestored!==false)return false;
+ if(!String(logs).includes('SUCCESS  Worker Version '+t.version+' has been deployed to 100% of traffic.'))return false;
+ return artifact?.id===p.artifact&&artifact.name==='b1-runtime-release-'+p.run&&artifact.digest===p.digest&&artifact.size_in_bytes===4291476&&artifact.workflow_run?.id===p.run&&artifact.workflow_run.head_sha===p.source&&artifact.workflow_run.head_branch==='main';
+}
+
 export const TABLET_RUNTIME_RECEIPT='docs/seo/tablet-runtime-receipt-20261006.json';
 const TABLET_RECEIPT_SHA256='8b0f7c50b619abeaa284d70e76de58e66ef95523ff654e06ea9baabb7e611b2d';
 export async function verifyTabletRuntime(active,version,text,get,getLogs){
@@ -147,7 +164,10 @@ export async function verifyTabletRuntime(active,version,text,get,getLogs){
  assert.equal(receipt.kind,'owner_authorised_isolated_tablet_runtime');
  assert.deepEqual(d,{at:'2026-10-06T21:11:33.552Z',source:p.source,isolatedBase:p.previousSource,hostedProof:p.reviewRun,previousDeployment:p.previousDeployment,previousVersion:p.previousVersion,deployment:p.deployment,version:p.version,databaseWrites:false,clinicalReview:false});
  assert.equal(receipt.independentClinicalAcceptance,false);
- assert.equal(active?.id,p.deployment);assert.equal(active.source,'wrangler');assert.equal(active.created_on,'2026-10-06T21:11:22.219924Z');
+ if(active?.id===tabletOwnedRollback.deployment){
+  const r=tabletOwnedRollback,run=await get('/actions/runs/'+r.run),jobs=await get('/actions/runs/'+r.run+'/jobs?filter=latest&per_page=100'),artifacts=await get('/actions/runs/'+r.run+'/artifacts?per_page=100');
+  assert(verifiedTabletOwnedRollback(active,run,jobs.jobs?.find(j=>j.id===r.job),await getLogs(r.job),artifacts.artifacts?.find(a=>a.id===r.artifact)),'Exact owned tablet rollback and immutable captured runtime artifact required');
+ }else{assert.equal(active?.id,p.deployment);assert.equal(active.source,'wrangler');assert.equal(active.created_on,'2026-10-06T21:11:22.219924Z');}
  assert.deepEqual(active.versions,[{version_id:p.version,percentage:100}]);
  assert.equal(version?.id,p.version);assert.equal(version.metadata?.created_on,'2026-10-06T21:11:18.582505Z');assert.equal(version.metadata?.source,'wrangler');
  assert.equal(version.annotations?.['workers/message'],'Tablet guidance source '+p.source+'; hosted proof '+p.reviewRun);
@@ -173,5 +193,5 @@ export async function verifyTabletRuntime(active,version,text,get,getLogs){
   for(const o of ownedFrom(await getLogs(job.id)))if(o.deploymentId===p.previousDeployment&&o.dataRestored===false&&verifiedOwnedRuntime(predecessor,previous,job,o))evidence.push(o);
  }
  assert.equal(evidence.length,1,'Exact successful tablet predecessor deployment required');
- return{run:p.run,source:p.source,version:p.version,deployment:p.deployment,evidenceKind:'exact-hosted-source-proofs-plus-recorded-local-deployment-and-live-receipt'};
+ return{run:p.run,source:p.source,version:p.version,deployment:active.id,evidenceKind:'exact-hosted-source-proofs-plus-recorded-local-deployment-and-live-receipt'};
 }

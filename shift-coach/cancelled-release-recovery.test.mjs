@@ -152,3 +152,23 @@ test('tablet adoption never infers deployment from a hosted source proof or an e
   await assert.rejects(verifyTabletRuntime(f.active,f.version,f.text,get,f.logs));
  }
 });
+
+import {tabletOwnedRollback,verifiedTabletOwnedRollback} from './cancelled-release-recovery.mjs';
+test('only the exact owned rollback may retain the earlier verified tablet version',()=>{
+ const p=tabletOwnedRollback,t=tabletRuntime;
+ const active={id:p.deployment,versions:[{version_id:t.version,percentage:100}]};
+ const run={id:p.run,head_sha:p.source,run_attempt:1,status:'completed',conclusion:'failure',event:'push',head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml'};
+ const job={id:p.job,run_id:p.run,name:'promote',status:'completed',conclusion:'failure',steps:[[50,'Capture current Worker deployment for rollback'],[60,'Deploy current main to production'],[107,'Restore the captured runtime if a post-deployment gate failed']].map(([number,name])=>({number,name,conclusion:'success'}))};
+ const owned={kind:'owned_runtime_deployment',source:p.source,run:String(p.run),deploymentId:p.failedDeployment,versionId:p.failedVersion,previousDeploymentId:t.deployment,previousVersionId:t.version,dataRestored:false};
+ const logs=JSON.stringify(owned)+'\nSUCCESS  Worker Version '+t.version+' has been deployed to 100% of traffic.';
+ const artifact={id:p.artifact,name:'b1-runtime-release-'+p.run,digest:p.digest,size_in_bytes:4291476,workflow_run:{id:p.run,head_sha:p.source,head_branch:'main'}};
+ const check=(a=active,r=run,j=job,l=logs,e=artifact)=>verifiedTabletOwnedRollback(a,r,j,l,e);
+ assert.equal(check(),true);
+ for(const patch of [{id:'unknown'},{versions:[{version_id:p.failedVersion,percentage:100}]},{versions:[{version_id:t.version,percentage:99}]}])assert.equal(check({...active,...patch}),false);
+ for(const patch of [{head_sha:'f'.repeat(40)},{run_attempt:2},{conclusion:'success'},{event:'pull_request'},{path:'other.yml'}])assert.equal(check(active,{...run,...patch}),false);
+ for(const patch of [{id:1},{conclusion:'success'},{steps:job.steps.filter(s=>s.number!==107)}])assert.equal(check(active,run,{...job,...patch}),false);
+ for(const patch of [{previousVersionId:'other'},{previousDeploymentId:'other'},{dataRestored:true}])assert.equal(check(active,run,job,JSON.stringify({...owned,...patch})+'\nSUCCESS  Worker Version '+t.version+' has been deployed to 100% of traffic.'),false);
+ assert.equal(check(active,run,job,logs+'\n'+JSON.stringify(owned)),false);
+ assert.equal(check(active,run,job,JSON.stringify(owned)),false);
+ for(const patch of [{id:1},{digest:'sha256:other'},{workflow_run:{...artifact.workflow_run,head_sha:'f'.repeat(40)}}])assert.equal(check(active,run,job,logs,{...artifact,...patch}),false);
+});
