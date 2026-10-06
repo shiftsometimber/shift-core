@@ -15,9 +15,9 @@ const OUT=process.env.MY_TIMBER_FINAL_EVIDENCE_DIR||'my-timber-final-evidence';
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
 const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+structured-authrender-final-billy-${Date.now()}@gmail.com`;
-const report={proof:'MY_TIMBER_FINAL_PRODUCTION_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
+const report={proof:'MY_TIMBER_FULL_INITIAL_WORKER_PANEL_FETCH_DIAGNOSTIC_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
 const resourcePath=value=>{try{const u=new URL(value);return u.origin+u.pathname}catch{return '[no resource URL]'}};
-const pass=(name,detail='')=>{report.checks.push({name,status:'PASS',detail});console.log('PASS '+name)};
+const pass=(name,detail='')=>report.checks.push({name,status:'PASS',detail});
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=My Timber final::${name} — ${detail}`)};
 const clean=value=>String(value||'').replace(/\s+/g,' ').trim();
 const write=()=>fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(report,null,2));
@@ -30,13 +30,7 @@ async function geometry(page){return page.evaluate(()=>{const root=document.quer
 
 await register();
 const browser=await chromium.launch({headless:true});
-const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',serviceWorkers:'allow',recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
-await context.addInitScript(()=>{
- window.__earlyTrace=[];const keep=(kind,detail)=>{window.__earlyTrace.push({kind,detail,at:performance.now()});if(window.__earlyTrace.length>120)window.__earlyTrace.shift()};
- for(const method of ['pushState','replaceState']){const orig=history[method];history[method]=function(...args){keep(method,{url:String(args[2]),stack:new Error().stack});return orig.apply(this,args)}}
- const orig=EventTarget.prototype.addEventListener;EventTarget.prototype.addEventListener=function(type,listener,options){if(type==='click'&&typeof listener==='function'){const stack=new Error().stack;const wrapped=function(e){const a=e.target.closest?.('.today-meal-action');if(a)keep('handler',{stack,href:a.getAttribute('href'),phase:e.eventPhase,prevented:e.defaultPrevented});return listener.call(this,e)};return orig.call(this,type,wrapped,options)}return orig.call(this,type,listener,options)};
- window.addEventListener('error',e=>keep('error',{message:e.message,filename:e.filename,lineno:e.lineno}));
-});
+const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
 report.workerPatchResponses=[];
 await context.route('**/shift-push-sw-v1.js',async route=>{
  const r=await route.fetch(),original=await r.text(),old="if(event.request.method!=='GET'||event.request.mode!=='navigate'||u.origin!==self.location.origin||!/^\\/member\\//.test(u.pathname)||u.search)return;",next="const panel=['/member/fit','/member/grub','/member/life-back'].includes(u.pathname)&&u.searchParams.get('app_panel')==='1'&&['app','web'].includes(u.searchParams.get('view'))&&u.searchParams.size===2;\n if(event.request.method!=='GET'||event.request.mode!=='navigate'||u.origin!==self.location.origin||!/^\\/member\\//.test(u.pathname)||(u.search&&!panel))return;";
@@ -46,11 +40,6 @@ await context.route('**/shift-push-sw-v1.js',async route=>{
  await route.fulfill({response:r,body:changed,headers:{...r.headers(),'content-type':'application/javascript; charset=utf-8','cache-control':'no-store'}});
 });
 const page=await context.newPage();
-report.proof='MY_TIMBER_GRUB_INITIAL_WORKER_PANEL_FETCH_V1';
-
-report.frameLifecycle=[];const cdp=await context.newCDPSession(page);await cdp.send('Page.enable');for(const kind of ['frameAttached','frameDetached','frameStartedLoading','frameStoppedLoading','frameRequestedNavigation','frameNavigated'])cdp.on('Page.'+kind,event=>{const x={kind,frame:event.frameId||event.frame?.id,reason:event.reason,url:event.url?resourcePath(event.url):event.frame?.url?resourcePath(event.frame.url):null};report.frameLifecycle.push(x);if(report.frameLifecycle.length>80)report.frameLifecycle.shift()});
-page.on('console',m=>{if(m.type()==='error'){report.frameLifecycle.push({kind:'console-error',detail:m.text().slice(0,500)});if(report.frameLifecycle.length>80)report.frameLifecycle.shift()}});
-
 const navigation=attachDiagnostics(page,report,write);
 const watchdog=setTimeout(()=>{fail('verification termination','Browser verification did not terminate within eight minutes');write();process.exit(1)},480000);watchdog.unref();
 try{
@@ -113,16 +102,72 @@ try{
   assert.equal(await page.locator('#todayActions>.mtm-hero img').filter({visible:true}).count(),0,'Today must not show the retired pub photograph');assert.equal(await page.locator('#todayActions>.mtm-hero').evaluate(e=>getComputedStyle(e).backgroundImage),'none','Today heading must have no repeated background photograph');
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Phone layout has no horizontal overflow');
   await screenshot(page,'01-billy-current-today');
-  await page.evaluate(()=>{window.__toolTrace=[];const keep=(kind,detail)=>{window.__toolTrace.push({kind,detail,at:performance.now()});if(window.__toolTrace.length>80)window.__toolTrace.shift()};new MutationObserver(records=>{for(const r of records){for(const n of r.removedNodes)if(n.nodeType===1&&(n.matches('iframe,#appToolPanels,#appTool-grub')||n.querySelector('iframe')))keep('removed',n.outerHTML.slice(0,1400));for(const n of r.addedNodes)if(n.nodeType===1&&(n.matches('iframe,#appToolPanels,#appTool-grub')||n.querySelector('iframe')))keep('added',n.outerHTML.slice(0,1400))}}).observe(document.body,{childList:true,subtree:true});document.addEventListener('click',e=>{const n=e.target.closest('a');if(n)keep('click',{href:n.getAttribute('href'),prevented:e.defaultPrevented,tool:document.body.dataset.appTool})});});
   assert(report.workerPatchResponses.length,'Prove initial service-worker module was patched');
-  assert(await page.evaluate(()=>Boolean(navigator.serviceWorker.controller)),'Service worker must control the normal member page');
+  assert(await page.evaluate(()=>Boolean(navigator.serviceWorker.controller)),'Service worker must control member page');
   await page.locator('.today-meal-action').click();
   const mealFrame=page.frameLocator('#appTool-grub iframe');
   await mealFrame.getByText(chosen.name,{exact:true}).filter({visible:true}).first().waitFor({state:'visible',timeout:45000});
   assert.equal(new URL(page.url()).pathname,'/member/dashboard','Grub opens in the containing member app');
   assert.deepEqual(await account('/v1/grub/workspace'),chosenWorkspace,'Opening a meal must preserve the saved workspace');
   pass('Approved shared Today shows the explicit saved meal and opens its real inline Grub control',chosen.name);
-}catch(error){report.toolTrace=await page.evaluate(()=>({early:window.__earlyTrace||[],trace:window.__toolTrace||[],tool:document.body.dataset.appTool,host:document.querySelector('#appToolPanels')?.outerHTML?.slice(0,2500),ready:document.readyState,frameDocuments:[...document.querySelectorAll('iframe')].map(f=>({src:f.getAttribute('src'),win:Boolean(f.contentWindow),doc:Boolean(f.contentDocument),url:(()=>{try{return f.contentWindow?.location.href}catch{return '[cross-origin]'}})(),html:f.contentDocument?.documentElement?.outerHTML.slice(0,1500)}))})).catch(()=>null);fail('journey exception',clean(error?.message||error).slice(0,1800));report.navigation=navigation();write();await boundedEvidence('failure screenshot',()=>page.screenshot({path:path.join(OUT,'journey-failure.png'),fullPage:false,timeout:10000}),11000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message);write()})}finally{
+  // Existing Ask Timber handoff opens the normal adjustment sheet. The member
+  // still chooses to save the change; no hidden click or forced UI state.
+  await page.goto(SITE+'/member/dashboard?reviewChange=working_late#today',{waitUntil:'domcontentloaded'});
+  await chooseNecessaryCookies(page);
+  await page.locator('[data-adjust="working_late"]').waitFor({state:'visible',timeout:30000});
+  await page.locator('[data-adjust="working_late"]').click();
+  await page.waitForFunction(()=>!document.querySelector('.mt-sheet-wrap'),null,{timeout:30000});
+  const dailyAfter=(await account('/v1/shift/daily-plan')).daily;
+  assert.equal(dailyAfter.daily_output?.adjustment,'working_late');
+  assert.equal(dailyAfter.daily_output?.workout?.minutes,10);
+  assert.equal(dailyAfter.connected?.meal?.recipeId,chosen.id,'An adjustment must preserve the chosen meal');
+  assert.deepEqual(await account('/v1/grub/workspace'),chosenWorkspace,'An adjustment must preserve the saved Grub workspace');
+  const savedFitBefore=await account('/v1/fit/activity');assert.equal(savedFitBefore.plan?.minutes_per_day,30,'Context must not silently replace the retained Fit plan');
+  await page.locator('#appTab-fit').click();
+  const fitFrame=page.frameLocator('#appTool-fit iframe');
+  await page.locator('#appTool-fit').waitFor({state:'visible',timeout:45000});
+  const fitSetup=fitFrame.locator('[data-app-fit-setup]'),fitSetupSummary=fitSetup.locator(':scope > summary');
+  await fitSetupSummary.waitFor({state:'visible',timeout:45000});
+  if(!await fitSetup.evaluate(e=>e.open))await fitSetupSummary.click();
+  async function revealFit(selector){const field=fitFrame.locator(selector);await field.waitFor({state:'attached',timeout:45000});for(let attempt=0;attempt<5;attempt++){const closed=field.locator('xpath=ancestor::details[not(@open)]');if(!await closed.count())break;let opened=false;for(let i=0;i<await closed.count();i++){const summary=closed.nth(i).locator(':scope > summary');if(await summary.isVisible()){await summary.click();opened=true;break;}}assert(opened,'Fit setup requires an ordinary visible disclosure');}await field.waitFor({state:'visible',timeout:45000});assert(await field.isVisible(),'Fit control must be visible: '+selector);return field;}
+  const minutes=await revealFit('#fitMinutes'),days=await revealFit('#fitDays');
+  if(await minutes.evaluate(e=>e.tagName)==='SELECT')await minutes.selectOption('10');else await minutes.fill('10');
+  if(await days.evaluate(e=>e.tagName)==='SELECT')await days.selectOption('1');else await days.fill('1');
+  assert.equal((await account('/v1/fit/activity')).plan?.minutes_per_day,30,'Editing setup must not replace a saved plan');
+  const generate=await revealFit('#fitGenerate'),savedResponse=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/fit/plan'&&r.request().method()==='POST',{timeout:45000});
+  await generate.click();assert((await savedResponse).ok(),'Chosen Fit replacement must save successfully');
+  const savedFitAfter=await account('/v1/fit/activity');assert.equal(savedFitAfter.plan?.minutes_per_day,10);
+  await fitFrame.getByText(savedFitAfter.plan.sessions[0].title,{exact:true}).filter({visible:true}).first().waitFor({timeout:30000});
+  assert.equal((await account('/v1/grub/workspace')).today?.recipeId,chosen.id);
+  pass('Working late preserves the chosen meal and retained plan until the member explicitly generates a ten-minute Fit replacement','Normal Ask Timber adjustment sheet and visible Fit setup controls.');
+
+  await screenshot(page,'02-billy-explicit-fit-plan');
+  await verifyLiveTools(page,SITE,OUT,report);
+  pass('App and website retain tool drafts and browser history, with one navigation, footer and cookie-choice owner','390px and 1440px; visible ordinary controls; no forced DOM or navigation');
+  await page.setViewportSize({width:390,height:844});
+  const storeDir=path.join(OUT,'google-play');fs.mkdirSync(storeDir,{recursive:true});
+  await page.setViewportSize({width:390,height:693});
+  async function dismissCookie(){
+    const necessary=page.getByRole('button',{name:/Necessary only/i});
+    if(await necessary.count()&&await necessary.first().isVisible().catch(()=>false))await necessary.first().click().catch(()=>{});
+    await page.waitForTimeout(250);
+  }
+  async function storeShot(index,slug,label){
+    await dismissCookie();await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(350);
+    const file=path.join(storeDir,String(index).padStart(2,'0')+'-'+slug+'.png');
+    await page.screenshot({path:file,fullPage:false});
+    report.googlePlayScreens.push({index,file,label,width:780,height:1386});
+  }
+  await memberReady(page,{site:SITE});await page.waitForSelector('#todayActions',{state:'visible',timeout:30000});await storeShot(1,'today','Today — one useful next step');
+  await requireMemberPanel(page,'journey');await storeShot(2,'journey','Journey — programme progress');
+  await requireMemberPanel(page,'visualise');await storeShot(3,'progress','Progress — visualise progress');
+  await page.goto(SITE+'/member/check-in',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await storeShot(4,'check-in','Check-in — quick member check-in');
+  await page.goto(SITE+'/member/grub',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(5,'grub','Grub — practical food support');
+  await page.goto(SITE+'/member/fit',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(6,'fit','Fit — practical movement support');
+  await page.goto(SITE+'/member/life-back',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(7,'life-back','Life Back — goals and wins');
+  await page.goto(SITE+'/member/settings',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(8,'settings','Settings — member details and privacy');
+  pass('Eight Google Play phone screenshots captured from production My Timber','Synthetic member only; 9:16 portrait UI; no real member data.');
+}catch(error){fail('journey exception',clean(error?.message||error).slice(0,1800));report.navigation=navigation();write();await boundedEvidence('failure screenshot',()=>page.screenshot({path:path.join(OUT,'journey-failure.png'),fullPage:false,timeout:10000}),11000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message);write()})}finally{
   const video=page.video();write();await boundedEvidence('context close',()=>context.close(),15000).catch(error=>fail('context close',clean(error.message)));if(video)await boundedEvidence('video save',()=>video.saveAs(path.join(OUT,'my-timber-billy-iphone.webm')),15000).catch(error=>fail('video save',clean(error.message)));await boundedEvidence('browser close',()=>browser.close(),10000).catch(error=>fail('browser close',clean(error.message)));write();clearTimeout(watchdog);setTimeout(()=>process.exit(report.failures.length?1:0),1000).unref();
 }
 console.log(JSON.stringify(report,null,2));
