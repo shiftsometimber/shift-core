@@ -1,3 +1,5 @@
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 // Finite owner-authorised local release: hosted proof is NOT a deployment.
 // Its separately recorded live receipt and exact active deployment are required.
@@ -133,20 +135,43 @@ export async function verifyTechnicalCancelledRuntime(active,get,getLogs){
  return{run:p.run,source:p.source,version:p.version,deployment:p.deployment,verifiedRun:p.verifiedRun,verifiedSource:p.verifiedSource,verifiedVersion:p.verifiedVersion,verifiedDeployment:p.verifiedDeployment};
 }
 
-// Exact earlier owner-authorised tablet release. Hosted tests and the local
-// deployment are distinct evidence; neither is represented as the other.
-export const tabletGuidanceRuntime=Object.freeze({run:37531509514,job:112501762193,source:'a9707c463f7681d49068fa0319418e5630510ba9',runtimeSource:'25ead1b54126e5596db11845efbcf3b888fc5a31',deployment:'b6fa58e8-4953-46ca-8983-06dff8a53fd2',version:'2dd57a8f-8597-4f5c-ab5b-86d6e037a8f7'});
-export const tabletGuidanceReceipt=Object.freeze({at:'2026-10-06T21:11:33.552Z',source:'25ead1b54126e5596db11845efbcf3b888fc5a31',isolatedBase:'4460ea56f931da4003ace68d5d404831c47e08f7',hostedProof:37531509514,previousDeployment:'f07a6f14-c7e7-497f-b7e5-23b6540ca42c',previousVersion:'33da329f-98ae-46ce-8090-150ad06b7ea9',deployment:'b6fa58e8-4953-46ca-8983-06dff8a53fd2',version:'2dd57a8f-8597-4f5c-ab5b-86d6e037a8f7',databaseWrites:false,clinicalReview:false});
-export function verifiedTabletGuidanceRuntime(active,run,job,version,receipt){
- const p=tabletGuidanceRuntime;
- return active?.id===p.deployment&&active.versions?.length===1&&active.versions[0].version_id===p.version&&active.versions[0].percentage===100
-  &&run?.id===p.run&&run.head_sha===p.source&&run.status==='completed'&&run.conclusion==='success'&&run.event==='pull_request'&&run.head_branch==='codex/tablet-guidance-20261006'&&run.path==='.github/workflows/practical-guides-proof.yml'
-  &&job?.id===p.job&&job.run_id===p.run&&job.name==='verify'&&job.conclusion==='success'
-  &&version?.id===p.version&&version.annotations?.['workers/message']==='Tablet guidance source '+p.runtimeSource+'; hosted proof '+p.run
-  &&JSON.stringify(receipt)===JSON.stringify(tabletGuidanceReceipt);
-}
-export async function verifyTabletGuidanceRuntime(active,get,version){
- const p=tabletGuidanceRuntime,run=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs');
- assert(verifiedTabletGuidanceRuntime(active,run,jobs.jobs?.find(j=>j.id===p.job),version,tabletGuidanceReceipt),'Exact tablet hosted proof, active version annotation and recorded local deployment must agree');
- return {run:p.run,source:p.source,runtimeSource:p.runtimeSource,version:p.version,deployment:p.deployment,evidenceKind:'hosted-source-proof-and-separate-owner-authorised-local-deployment'};
+// Retain only this exact owner-authorised local tablet release. Hosted source
+// proofs alone are never treated as deployment evidence.
+export const tabletRuntime=Object.freeze({run:37531933891,job:112503200497,source:'25ead1b54126e5596db11845efbcf3b888fc5a31',version:'2dd57a8f-8597-4f5c-ab5b-86d6e037a8f7',deployment:'b6fa58e8-4953-46ca-8983-06dff8a53fd2',previousRun:37525779266,previousSource:'4460ea56f931da4003ace68d5d404831c47e08f7',previousVersion:'33da329f-98ae-46ce-8090-150ad06b7ea9',previousDeployment:'f07a6f14-c7e7-497f-b7e5-23b6540ca42c',reviewRun:37531509514,reviewJob:112501762193,reviewSource:'a9707c463f7681d49068fa0319418e5630510ba9'});
+export const TABLET_RUNTIME_RECEIPT='docs/seo/tablet-runtime-receipt-20261006.json';
+const TABLET_RECEIPT_SHA256='8b0f7c50b619abeaa284d70e76de58e66ef95523ff654e06ea9baabb7e611b2d';
+export async function verifyTabletRuntime(active,version,text,get,getLogs){
+ const p=tabletRuntime;
+ assert.equal(createHash('sha256').update(text).digest('hex'),TABLET_RECEIPT_SHA256,'Exact recorded tablet deployment and live receipt required');
+ const receipt=JSON.parse(text),d=receipt.deployment,l=receipt.liveProof;
+ assert.equal(receipt.kind,'owner_authorised_isolated_tablet_runtime');
+ assert.deepEqual(d,{at:'2026-10-06T21:11:33.552Z',source:p.source,isolatedBase:p.previousSource,hostedProof:p.reviewRun,previousDeployment:p.previousDeployment,previousVersion:p.previousVersion,deployment:p.deployment,version:p.version,databaseWrites:false,clinicalReview:false});
+ assert.equal(receipt.independentClinicalAcceptance,false);
+ assert.equal(active?.id,p.deployment);assert.equal(active.source,'wrangler');assert.equal(active.created_on,'2026-10-06T21:11:22.219924Z');
+ assert.deepEqual(active.versions,[{version_id:p.version,percentage:100}]);
+ assert.equal(version?.id,p.version);assert.equal(version.metadata?.created_on,'2026-10-06T21:11:18.582505Z');assert.equal(version.metadata?.source,'wrangler');
+ assert.equal(version.annotations?.['workers/message'],'Tablet guidance source '+p.source+'; hosted proof '+p.reviewRun);
+ assert.equal(version.annotations?.['workers/triggered_by'],'version_upload');
+ assert.equal(l.mode,'live');assert.equal(l.pass,true);assert.deepEqual(l.failures,[]);assert.equal(l.pages.length,8);assert.equal(l.links.length,12);assert.equal(l.protected.length,8);
+ assert(l.links.every(x=>x.status===200));assert(l.protected.every(x=>x.unchanged===true));assert.equal(l.checkedAt,'2026-10-06T21:11:45.412Z');
+ assert.equal(l.protected.find(x=>x.path==='/')?.sha256,'a6aa39f2d44093d8174967b3d7b335ffa3da2ebf5dbff9c1ddb6cd378695e369');
+ assert.equal(l.protected.find(x=>x.path==='/start-here')?.sha256,'4ed4845f845239307ec66120c571d17a0c4fd348f7bb51d02fcd81d5f46fd6ab');
+ const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
+ for(const ref of [p.previousSource,p.reviewSource,p.source])git('merge-base','--is-ancestor',ref,'HEAD');
+ assert.equal(git('diff','--name-only',p.reviewSource,p.source),'shift-coach/release-manifest.json');
+ assert.equal(git('rev-parse',p.source+':wrangler.jsonc'),git('rev-parse',p.previousSource+':wrangler.jsonc'));
+ for(const [runId,jobId,source] of [[p.run,p.job,p.source],[p.reviewRun,p.reviewJob,p.reviewSource]]){
+  const run=await get('/actions/runs/'+runId),jobs=await get('/actions/runs/'+runId+'/jobs?filter=latest&per_page=100'),job=jobs.jobs?.find(x=>x.id===jobId);
+  assert.equal(run.id,runId);assert.equal(run.head_sha,source);assert.equal(run.path,'.github/workflows/practical-guides-proof.yml');assert.equal(run.head_branch,'codex/tablet-guidance-20261006');assert.equal(run.status,'completed');assert.equal(run.conclusion,'success');
+  assert.equal(job?.run_id,runId);assert.equal(job?.name,'verify');assert.equal(job?.status,'completed');assert.equal(job?.conclusion,'success');
+ }
+ const previous=await get('/actions/runs/'+p.previousRun),jobs=await get('/actions/runs/'+p.previousRun+'/jobs?filter=latest&per_page=100');
+ assert.equal(previous.head_sha,p.previousSource);
+ const predecessor={id:p.previousDeployment,versions:[{version_id:p.previousVersion,percentage:100}]};
+ const evidence=[];
+ for(const job of (jobs.jobs||[]).filter(j=>j.name==='promote'&&j.conclusion==='success')){
+  for(const o of ownedFrom(await getLogs(job.id)))if(o.deploymentId===p.previousDeployment&&o.dataRestored===false&&verifiedOwnedRuntime(predecessor,previous,job,o))evidence.push(o);
+ }
+ assert.equal(evidence.length,1,'Exact successful tablet predecessor deployment required');
+ return{run:p.run,source:p.source,version:p.version,deployment:p.deployment,evidenceKind:'exact-hosted-source-proofs-plus-recorded-local-deployment-and-live-receipt'};
 }
