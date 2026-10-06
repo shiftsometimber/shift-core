@@ -16,3 +16,12 @@ test('A failed, different or uncompleted preview cannot authorise release',async
  const valid={id:BOOK_VOICE_RUN,head_sha:BOOK_VOICE_PREVIEW,path:'.github/workflows/book-voice-preview.yml',conclusion:'success'};
  for(const wrong of [{conclusion:'failure'},{conclusion:null},{head_sha:'different'},{path:'.github/workflows/other.yml'}])await assert.rejects(verifyBookVoiceProof(async()=>({...valid,...wrong})));
 });
+
+test('Actual production Book Voice proof accepts exact approved SEO adapters and still rejects unrelated source drift',async()=>{
+ const valid={id:BOOK_VOICE_RUN,head_sha:BOOK_VOICE_PREVIEW,path:'.github/workflows/book-voice-preview.yml',conclusion:'success'};
+ const result=await verifyBookVoiceProof(async()=>valid);assert.equal(result.id,BOOK_VOICE_RUN);
+ const path='member-experience/public-preservation.mjs',current=readFileSync(path,'utf8'),preview=execFileSync('git',['show',BOOK_VOICE_PREVIEW+':'+path],{encoding:'utf8'});
+ assert.equal(originalBookVoiceGate(path,current),preview);
+ assert.notEqual(originalBookVoiceGate(path,current.replace("'/start-here'","'/changed-start-here'")),preview);
+ assert.throws(()=>originalBookVoiceGate(path,current+"import {preserveFollowThrough} from '../release/seo-follow-through-preservation.mjs';\n"),/Duplicate/);
+});
