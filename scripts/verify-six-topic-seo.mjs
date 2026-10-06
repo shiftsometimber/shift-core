@@ -18,8 +18,10 @@ await Promise.all(paths.map(async path=>{try{
  assert.equal((html.match(/rel=["']canonical["']/gi)||[]).length,1,'Single canonical');
  assert(!/<meta[^>]*(?:name=["']robots["'][^>]*content=["'][^"']*noindex|content=["'][^"']*noindex[^>]*name=["']robots)/i.test(html),'Unexpected noindex');
  const section=html.match(/<section class="shift-topic-guides"[\s\S]*?<\/section>/)[0];
+ const expected=withSixTopicGuides('<html><head><title>Original</title></head><body><main></main></body></html>',path).match(/<section class="shift-topic-guides"[\s\S]*?<\/section>/)[0];
+ assert.equal(section,expected,'Exact topic section changed');
  for(const m of section.matchAll(/href="([^"]+)"/g))targets.add(m[1]);
- if(!live){assert.equal(withSixTopicGuides(html,path),html,'Idempotence');const stripped=html.replace(section,'');assert.equal(stripped.match(/<main\b[\s\S]*?<\/main>/i)[0],before.match(/<main\b[\s\S]*?<\/main>/i)[0],'Existing article content changed');assert.equal(html.match(/<header\b[\s\S]*?<\/header>/i)?.[0],before.match(/<header\b[\s\S]*?<\/header>/i)?.[0],'Header changed');assert.equal(html.match(/<footer\b[\s\S]*?<\/footer>/i)?.[0],before.match(/<footer\b[\s\S]*?<\/footer>/i)?.[0],'Footer changed')}
+ if(!live){assert.equal(withSixTopicGuides(html,path),html,'Idempotence');if(before.includes(`data-six-topic-seo="${path}"`))assert.equal(html,before,'Existing exact topic transform changed');else{const stripped=html.replace(section,'');assert.equal(stripped.match(/<main\b[\s\S]*?<\/main>/i)[0],before.match(/<main\b[\s\S]*?<\/main>/i)[0],'Existing article content changed');}assert.equal(html.match(/<header\b[\s\S]*?<\/header>/i)?.[0],before.match(/<header\b[\s\S]*?<\/header>/i)?.[0],'Header changed');assert.equal(html.match(/<footer\b[\s\S]*?<\/footer>/i)?.[0],before.match(/<footer\b[\s\S]*?<\/footer>/i)?.[0],'Footer changed')}
  writeFileSync(`${out}/${path.slice(1).replaceAll('/','_')}.html`,html);
  proof.pages.push({path,sha256:sha(html),existingContentPreserved:!live,sectionPresent:true});
 }catch(e){proof.failures.push({path,error:e.message})}}));
