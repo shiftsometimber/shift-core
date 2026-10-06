@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-export const TECHNICAL_BASE='ddde14b19d6ef79547e27afb4ed76bf1f4e39f05';
-export const TECHNICAL_PAYLOAD='1ea9430e2ab79b2ae7b343bf19c4f9c8c976d932';
+export const TECHNICAL_BASE='02b2b3f22af72017985c865410f6a5e4484de0f6';
+export const TECHNICAL_PAYLOAD='1190a26dd5383f7435e59081ee7fbc7749253077';
 export const TECHNICAL_PAYLOAD_PATHS=["public-seo-technical-data.mjs","public-seo-technical.mjs","shift-coach/worker.mjs","tests/public-seo-technical.test.mjs"];
 export const TECHNICAL_MAINTENANCE_PATHS=[".github/workflows/seo-technical-proof.yml","release/app-scope.mjs","release/seo-follow-through-preservation.mjs","release/seo-follow-through-scope.mjs","release/seo-technical-preservation-data.mjs","release/seo-technical-preservation.mjs","release/seo-technical-scope.mjs","scripts/verify-seo-closeout-live.mjs","scripts/verify-seo-follow-through.mjs","shift-coach/release-contract.mjs","tests/seo-technical-release.test.mjs"];
 export const TECHNICAL_BASE_PATHS=["release/app-manifest.json","release/fit-300-scope.mjs","release/watch-registry-wave-scope.mjs","tests/b1-release-scope.test.mjs"];
