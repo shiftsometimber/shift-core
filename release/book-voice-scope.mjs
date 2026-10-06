@@ -11,6 +11,8 @@ export function originalBookVoiceGate(path,source){
  if(path==='member-experience/public-preservation.mjs'){
   source=originalSixTopicSeoPreservation(originalFollowThroughPreservation(source));
   source=source
+   .replace("import {restoreTrustCentre,restoreStoppingCitation,withdrawWeightIllustrations} from '../shift-coach/public-trust-repair.mjs';\n",'')
+   .replace(" // Apply only the exact already-withdrawn photo options to both comparison\n // sides. The rest of the complete sign-in document remains hash compared.\n if(path==='/member-login')preserved=Buffer.from(withdrawWeightIllustrations(preserved.toString('utf8')));\n",'')
    .replace("import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';\n",'')
    .replace("import {restoreTrustCentre} from '../shift-coach/public-trust-repair.mjs';\n",'')
    .replace(" const reviewedSource=restoreStoppingCitation(path,body,{required:Boolean(before)});\n",'')
