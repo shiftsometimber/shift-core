@@ -61,7 +61,7 @@ import {validateTabletGuidance,TABLET_GUIDANCE_BASE,TABLET_GUIDANCE_PATHS,follow
 test('tablet composition pins finite payload bytes without weakening previous SEO authority',()=>{
  const prior=JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition;
  const t={proof:'TABLET_GUIDANCE_EXACT_V1',base:TABLET_GUIDANCE_BASE,source:'a'.repeat(40),paths:TABLET_GUIDANCE_PATHS};
- const c={...prior,tabletGuidanceComposition:t};
+ const c={...prior,tabletGuidanceComposition:t};delete c.integrationComposition;
  assert.doesNotThrow(()=>validateFollowComposition(c));
  for(const p of t.paths)assert.equal(followPinnedRef(c,p),t.source);
  const historical=followHistoricalRead((ref,p)=>ref+':'+p,c);
@@ -69,4 +69,10 @@ test('tablet composition pins finite payload bytes without weakening previous SE
  assert.equal(historical('HEAD','release/seo-follow-through-scope.mjs'),prior.base+':release/seo-follow-through-scope.mjs');
  assert.equal(historical('HEAD','worker.js'),'HEAD:worker.js');
  for(const patch of [{base:'b'.repeat(40)},{paths:[...t.paths,'worker.js']},{source:'HEAD'},{run:0,proofSource:'c'.repeat(40)}])assert.throws(()=>validateTabletGuidance({...t,...patch}));
+});
+
+import {validateSeoIntegration,verifySeoIntegration,SEO_INTEGRATION_PATHS} from '../release/seo-follow-through-scope.mjs';
+test('combined SEO release pins exact conflict resolutions and preserves unrelated drift checks',()=>{
+ const c=JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition.integrationComposition;validateSeoIntegration(c);verifySeoIntegration(c);
+ assert(SEO_INTEGRATION_PATHS.includes('shift-coach/worker.mjs'));assert.throws(()=>validateSeoIntegration({...c,proof:'arbitrary'}));assert.throws(()=>validateSeoIntegration({...c,paths:[...c.paths,'other']}));assert.throws(()=>validateSeoIntegration({...c,base:'4460ea56f931da4003ace68d5d404831c47e08f7'}));
 });

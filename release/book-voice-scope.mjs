@@ -9,6 +9,7 @@ export const BOOK_VOICE_PATHS=paths;
 export function originalBookVoiceGate(path,source){
  if(path==='member-experience/verify-production-member.mjs')return source.replace("import {withTrustRepair} from '../shift-coach/public-trust-repair.mjs';\n",'').replace('expected=Buffer.from(await (await withTrustRepair(request,footerWrapped)).arrayBuffer());','expected=Buffer.from(await footerWrapped.arrayBuffer());');
  if(path==='member-experience/public-preservation.mjs'){
+  source=source.replace("import {restoreTrustCentre,restoreStoppingCitation,withdrawWeightIllustrations} from '../shift-coach/public-trust-repair.mjs';\n","import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';\n").replace(" // Apply only the exact already-withdrawn photo options to both comparison\n // sides. The rest of the complete sign-in document remains hash compared.\n if(path==='/member-login')preserved=Buffer.from(withdrawWeightIllustrations(preserved.toString('utf8')));\n",'');
   source=originalSixTopicSeoPreservation(originalFollowThroughPreservation(source));
   source=source
    .replace("import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';\n",'')

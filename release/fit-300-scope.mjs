@@ -1,8 +1,23 @@
+export const WATCH_RECONCILIATION_BASE='e723261284d733476370c0e19d3ac7c516d9b8b6';
+export const WATCH_RECONCILIATION_PATHS= ["release/fit-300-scope.mjs", "release/watch-registry-wave-scope.mjs", "shift-coach/release-contract.mjs", "tests/watch-ownership-release.test.mjs"];
+export const ZENAGAMTIDE_BASE='4460ea56f931da4003ace68d5d404831c47e08f7';
+export const ZENAGAMTIDE_SOURCE='99061a51a9540c611dc0795b858dad598b4304ac';
+export const ZENAGAMTIDE_PATHS= ["medicines-watch/README.md", "medicines-watch/credibility.mjs", "medicines-watch/credibility.test.mjs", "medicines-watch/evidence-desk.test.mjs", "medicines-watch/industry.mjs", "medicines-watch/industry.test.mjs", "medicines-watch/reviews/2026-10-06-authorised-zenagamtide-ambience.json"];
+export function validateWatchSourceComposition(c){
+ if(!c)return;
+ assert.equal(c.proof,'EXACT_MERGED_ZENAGAMTIDE_SOURCE_RECONCILIATION_V1');assert.equal(c.base,WATCH_RECONCILIATION_BASE);assert.deepEqual(c.paths,WATCH_RECONCILIATION_PATHS);assert.match(c.source,/^[a-f0-9]{40}$/);
+ const g=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
+ for(const ref of [c.base,c.source,ZENAGAMTIDE_SOURCE])g('merge-base','--is-ancestor',ref,'HEAD');
+ assert.deepEqual(g('diff','--name-only',c.base,c.source).split('\n').filter(Boolean).sort(),[...WATCH_RECONCILIATION_PATHS].sort());
+ assert.deepEqual(g('diff','--name-only',ZENAGAMTIDE_BASE,ZENAGAMTIDE_SOURCE).split('\n').filter(Boolean).sort(),[...ZENAGAMTIDE_PATHS].sort());
+ for(const path of ZENAGAMTIDE_PATHS)assert.equal(g('rev-parse','HEAD:'+path),g('rev-parse',ZENAGAMTIDE_SOURCE+':'+path),'Merged Watch evidence drift: '+path);
+ for(const path of WATCH_RECONCILIATION_PATHS)assert.equal(g('rev-parse','HEAD:'+path),g('rev-parse',c.source+':'+path),'Watch reconciliation source drift: '+path);
+ assert.equal(g('rev-parse',c.base+':.github/workflows/cloudflare-production-promote.yml'),g('rev-parse','HEAD:.github/workflows/cloudflare-production-promote.yml'));
+}
 export const ROLLOUT_PHOTO_BASE='4460ea56f931da4003ace68d5d404831c47e08f7';
 export const ROLLOUT_PHOTO_PATHS=['member-experience/public-preservation.mjs','release/fit-300-scope.mjs','shift-coach/public-trust-repair.mjs','shift-coach/public-trust-repair.test.mjs','shift-coach/release-contract.mjs'];
 export function validateRolloutPhotoComposition(c){
  if(!c)return;
- const w=c.watchComposition;if(w){assert.equal(w.proof,'EXACT_ALREADY_MERGED_WATCH_RECONCILIATION_V1');assert.equal(w.base,'c51387c34c22469cdbd9490666f4ea168023560b');assert.equal(w.payloadSource,'99061a51a9540c611dc0795b858dad598b4304ac');assert.deepEqual(w.paths,['release/app-manifest.json','release/app-scope.mjs','release/fit-300-scope.mjs','release/watch-registry-wave-scope.mjs','shift-coach/release-contract.mjs','tests/b1-release-scope.test.mjs']);assert.match(w.source,/^[a-f0-9]{40}$/);execFileSync('git',['merge-base','--is-ancestor',w.source,'HEAD']);assert.deepEqual(execFileSync('git',['diff','--name-only',w.base,w.source],{encoding:'utf8'}).trim().split('\n').sort(),w.paths);}
  assert.equal(c.proof,'WITHDRAWN_PHOTO_ENTRY_REPAIR_V1');assert.equal(c.base,ROLLOUT_PHOTO_BASE);assert.deepEqual(c.paths,ROLLOUT_PHOTO_PATHS);assert.match(c.source,/^[a-f0-9]{40}$/);
  execFileSync('git',['merge-base','--is-ancestor',c.base,c.source]);execFileSync('git',['merge-base','--is-ancestor',c.source,'HEAD']);
  assert.deepEqual(execFileSync('git',['diff','--name-only',c.base,c.source],{encoding:'utf8'}).trim().split('\n').filter(Boolean).sort(),ROLLOUT_PHOTO_PATHS,'Exact sign-in photo-withdrawal payload required');
@@ -33,7 +48,7 @@ export const SEO_FIT_COMPOSITION_PATHS=['scripts/b1-release-scope.mjs','release/
 const SEO_COMPOSED_PATHS=new Set(['.github/workflows/cloudflare-production-promote.yml','.github/workflows/six-topic-seo-proof.yml','.github/workflows/practical-guides-proof.yml','docs/seo/2026-10-05-six-priorities.md','docs/seo/2026-10-06-practical-guides.md','member-experience/public-preservation.mjs','public-practical-guides.mjs','public-seo-closeout.mjs','release/app-manifest.json','release/app-preflight.mjs','release/book-voice-scope.mjs','release/six-topic-seo-preservation.mjs','release/six-topic-seo-scope.mjs','scripts/b1-release-scope.mjs','scripts/verify-practical-guides-handler.mjs','scripts/verify-practical-guides.mjs','scripts/verify-six-topic-seo.mjs','shift-coach/release-contract.mjs','shift-coach/release-manifest.json','tests/practical-guides.test.mjs','tests/public-seo-closeout.test.mjs','tests/six-topic-seo-release.test.mjs','shift-coach/scope.mjs']);
 // Exact post-Fit Watch composition reviewed after Fit and SEO. The manifest itself
 // is pinned separately so its final source pointer can name this application.
-export const POST_FIT_WATCH_PATHS=new Set(['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/data.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/source-review.test.mjs','medicines-watch/reviews/2026-10-05-authorised-710go.json','medicines-watch/reviews/2026-10-06-authorised-survodutide-synchronize-jp.json','medicines-watch/reviews/2026-10-06-authorised-core-trial-lifecycle.json','medicines-watch/reviews/2026-10-06-authorised-gub-ucn2-mbl949.json','medicines-watch/reviews/2026-10-06-authorised-at7687-at673-alias.json','medicines-watch/reviews/2026-10-06-authorised-viking-rhythm-registry-review.json','medicines-watch/reviews/2026-10-06-overdue-source-renewal.json','medicines-watch/reviews/2026-10-06-authorised-zenagamtide-ambience.json','release/app-manifest.json','release/app-scope.mjs','release/watch-registry-wave-scope.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/release-contract.mjs','tests/b1-release-scope.test.mjs']);
+export const POST_FIT_WATCH_PATHS=new Set(['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/data.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/source-review.test.mjs','medicines-watch/reviews/2026-10-05-authorised-710go.json','medicines-watch/reviews/2026-10-06-authorised-survodutide-synchronize-jp.json','medicines-watch/reviews/2026-10-06-authorised-core-trial-lifecycle.json','medicines-watch/reviews/2026-10-06-authorised-gub-ucn2-mbl949.json','medicines-watch/reviews/2026-10-06-authorised-at7687-at673-alias.json','medicines-watch/reviews/2026-10-06-authorised-viking-rhythm-registry-review.json','medicines-watch/reviews/2026-10-06-overdue-source-renewal.json','release/app-manifest.json','release/app-scope.mjs','release/watch-registry-wave-scope.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/release-contract.mjs','tests/b1-release-scope.test.mjs']);
 // A finite verifier-only adoption. Runtime and owner launch decisions are unchanged.
 export const ACCEPTANCE_RELOAD_PATHS=['health-passport/production-browser.mjs','release/member-acceptance-scope.mjs','shift-coach/release-contract.mjs','release/fit-300-scope.mjs','release/app-manifest.json','shift-coach/release.test.mjs'];
 export const ACCEPTANCE_RELOAD_VERIFIER_PATHS=['health-passport/production-browser.mjs','rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs'];
@@ -76,16 +91,17 @@ export function validateFit300(){
  const coach=JSON.parse(readFileSync('shift-coach/release-manifest.json'));
  const reload=coach.acceptanceReloadComposition;
  const currentRead=(ref,p)=>git('rev-parse',ref+':'+p);
- const photo=coach.rolloutPhotoComposition;validateRolloutPhotoComposition(photo);const repairPin=p=>photo?.watchComposition?.paths.includes(p)?photo.watchComposition.source:photo?.paths.includes(p)?photo.source:null;
+ const photo=coach.rolloutPhotoComposition;validateRolloutPhotoComposition(photo);const watch=coach.watchSourceComposition;validateWatchSourceComposition(watch);const repairPin=p=>watch?.paths.includes(p)?watch.source:photo?.paths.includes(p)?photo.source:null;
  const follow=coach.seoFollowThroughComposition;if(follow){validateFollowComposition(follow);for(const p of FOLLOW_PATHS)assert.equal(currentRead('HEAD',p),currentRead(repairPin(p)||followPinnedRef(follow,p),p),'Owner-approved SEO v3 source drift: '+p);}
  const sitewide=coach.sitewideSeoComposition;if(sitewide){validateSitewideComposition(sitewide);for(const p of [...sitewide.payloadPaths,...sitewide.maintenancePaths])assert.equal(currentRead('HEAD',p),currentRead(repairPin(p)||followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p),p),'Coaching release source drift (site-wide SEO): '+p);}
- const read=sitewideHistoricalRead(followHistoricalRead(currentRead,follow),sitewide);
+ const watchPriorRead=(ref,p)=>currentRead(ref==='HEAD'&&watch&&ZENAGAMTIDE_PATHS.includes(p)?ZENAGAMTIDE_BASE:ref,p);
+ const read=sitewideHistoricalRead(followHistoricalRead(watchPriorRead,follow),sitewide);
  const repair=coach.baselineRepairComposition;validateBaselineRepair(repair,read);
  const beforeRepair=baselineHistoricalRead(read,repair);
  validateAcceptanceReloadComposition(reload,beforeRepair);
  const historical=acceptanceReloadHistoricalRead(beforeRepair,reload);
  const reloadPaths=new Set(reload?[...ACCEPTANCE_RELOAD_PATHS,...ACCEPTANCE_RELOAD_VERIFIER_PATHS]:[]);
- for(const path of POST_FIT_WATCH_PATHS)assert.equal(historical('HEAD',path),git('rev-parse',(["medicines-watch/README.md", "medicines-watch/credibility.mjs", "medicines-watch/credibility.test.mjs", "medicines-watch/evidence-desk.test.mjs", "medicines-watch/industry.mjs", "medicines-watch/industry.test.mjs", "medicines-watch/reviews/2026-10-06-authorised-zenagamtide-ambience.json"].includes(path)?'99061a51a9540c611dc0795b858dad598b4304ac':coach.applicationCommit)+':'+path),'Post-Fit Watch composition source drift: '+path);
+ for(const path of POST_FIT_WATCH_PATHS)assert.equal(historical('HEAD',path),git('rev-parse',coach.applicationCommit+':'+path),'Post-Fit Watch composition source drift: '+path);
  const composition=coach.seoFitComposition;
  if(composition){
   validateSeoFitComposition(composition,historical);
@@ -109,10 +125,10 @@ export function validateFit300(){
  assert.equal(viewer.ownerInstruction.quote,'No good these pics on a mobile ….. it doesn’t let you click on them to enlarge ? So can’t view what it is ? Assume perhaps same for grub');
  git('merge-base','--is-ancestor',viewer.base,viewer.source);git('merge-base','--is-ancestor',viewer.source,'HEAD');
  const viewerChanges=git('diff','--name-only',viewer.base,'HEAD').split('\n').filter(Boolean);
- assert(viewerChanges.every(p=>photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||IMAGE_VIEWER_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))||['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)),'Unrelated image viewer release change');
+ assert(viewerChanges.every(p=>watch?.paths.includes(p)||ZENAGAMTIDE_PATHS.includes(p)||photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||IMAGE_VIEWER_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))||['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)),'Unrelated image viewer release change');
  for(const p of IMAGE_VIEWER_PATHS)assert.equal(historical('HEAD',p),git('rev-parse',(composition?.paths.includes(p)?composition.source:viewer.source)+':'+p),'Image viewer source drift: '+p);
  const allowed=git('diff','--name-only',activation.base,'HEAD').split('\n').filter(Boolean);
- assert(allowed.every(p=>photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||FIT300_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))),'Unrelated change in Fit activation');
+ assert(allowed.every(p=>watch?.paths.includes(p)||ZENAGAMTIDE_PATHS.includes(p)||photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||FIT300_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))),'Unrelated change in Fit activation');
  for(const p of FIT300_PATHS)if(!['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)){
   const ref=composition?.paths.includes(p)?composition.source:IMAGE_VIEWER_PATHS.has(p)?viewer.source:activation.source;
   assert.equal(historical('HEAD',p),git('rev-parse',ref+':'+p),'Fit payload source drift: '+p);
@@ -160,7 +176,7 @@ export function validateFit300(){
  expectedCoach.decisions.ownerAcceptance.currentGubUcn2Mbl949VerificationEvidence=gubMblVerification;
  expectedCoach.decisions.ownerAcceptance.currentAt7687At673VerificationEvidence=at7687At673Verification;
  expectedCoach.decisions.ownerAcceptance.currentVikingRhythmVerificationEvidence=vikingRhythmVerification;
- const {fitComposition,seoFitComposition,imageViewerComposition,acceptanceReloadComposition,baselineRepairComposition,sitewideSeoComposition,seoFollowThroughComposition,rolloutPhotoComposition,...unchanged}=coach;
+ const {fitComposition,seoFitComposition,imageViewerComposition,acceptanceReloadComposition,baselineRepairComposition,sitewideSeoComposition,seoFollowThroughComposition,rolloutPhotoComposition,watchSourceComposition,...unchanged}=coach;
  assert.deepEqual(unchanged,expectedCoach,'Existing coaching launch decisions changed outside the exact Watch receipt');
  return {movements:300,servedProtocols:2688,approvedImages:300,databaseWrites:false,existingLayoutPreserved:true,tapToEnlarge:true};
 }

@@ -1,4 +1,5 @@
-import {DISCOVERY_BASE,DISCOVERY_PATHS,discoveryPinnedRef,validateDiscoveryComposition,verifyDiscoveryHistory} from './seo-discovery-scope.mjs';
+import {CONTEXT_BASE,CONTEXT_PATHS} from './seo-context-scope.mjs';
+import {DISCOVERY_BASE,DISCOVERY_PATHS,DISCOVERY_ORIGINAL_PATHS,discoveryPinnedRef,validateDiscoveryComposition,verifyDiscoveryHistory} from './seo-discovery-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 export const RANKING_BASE='115b4e53279aeffd9b8248909e2dda5bbf768f80';
@@ -20,4 +21,4 @@ export function verifyRankingHistory(c){
  assert.deepEqual(git('diff','--name-only',c.payloadSource,c.maintenanceSource).split('\n').filter(Boolean).sort(),[...RANKING_MAINTENANCE_PATHS,'shift-coach/release-manifest.json'].sort());
 }
 
-export function discoveryHistoricalRef(c,ref,path){return ref==='HEAD'&&c?.discoveryComposition&&DISCOVERY_PATHS.includes(path)?DISCOVERY_BASE:ref;}
+export function discoveryHistoricalRef(c,ref,path){if(ref!=='HEAD'||!c?.discoveryComposition)return ref;if(DISCOVERY_ORIGINAL_PATHS.includes(path))return DISCOVERY_BASE;return c.discoveryComposition.contextComposition&&CONTEXT_PATHS.includes(path)&&![...RANKING_PAYLOAD_PATHS,...RANKING_MAINTENANCE_PATHS].includes(path)?CONTEXT_BASE:ref;}

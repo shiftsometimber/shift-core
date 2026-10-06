@@ -1,8 +1,9 @@
+import {preserveContextLinks} from '../public-seo-context.mjs';
 import {preserveApprovedSeo} from '../public-seo-approved.mjs';
 import {TECHNICAL_SCHEMA_PAIRS} from './seo-technical-preservation-data.mjs';
 // Reverse exact reviewed JSON only. Content, scripts, links and unknown schema edits remain visible to the original hash checks.
 export function preserveTechnicalSeo(path,input){
- input=preserveApprovedSeo(path,input);
+ input=preserveApprovedSeo(path,preserveContextLinks(path,input));
  const pairs=TECHNICAL_SCHEMA_PAIRS[path];if(!pairs)return input;
  const html=input.toString('utf8');
  const restored=html.replace(/(<script\b[^>]*type=["']application\/ld\+json["'][^>]*>)([\s\S]*?)(<\/script>)/gi,(whole,open,json,close)=>{

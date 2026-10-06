@@ -18,6 +18,7 @@
     ".github/workflows/practical-guides-proof.yml",
     ".github/workflows/priority-closeout-proof.yml",
     ".github/workflows/production-completion-proof.yml",
+    ".github/workflows/seo-context-proof.yml",
     ".github/workflows/seo-discovery-proof.yml",
     ".github/workflows/seo-follow-through-proof.yml",
     ".github/workflows/seo-technical-proof.yml",
@@ -99,6 +100,8 @@
     "public-seo-approved-data.mjs",
     "public-seo-approved.mjs",
     "public-seo-closeout.mjs",
+    "public-seo-context-data.mjs",
+    "public-seo-context.mjs",
     "public-seo-discovery.mjs",
     "public-seo-follow-through.mjs",
     "public-seo-programme.mjs",
@@ -131,6 +134,7 @@
     "release/public-wording-scope.mjs",
     "release/query-log-redaction.mjs",
     "release/runtime-rollback-guard.mjs",
+    "release/seo-context-scope.mjs",
     "release/seo-discovery-scope.mjs",
     "release/seo-follow-through-preservation.mjs",
     "release/seo-follow-through-scope.mjs",
@@ -247,12 +251,14 @@
     "tests/production-completion-release.test.mjs",
     "tests/public-seo-approved.test.mjs",
     "tests/public-seo-closeout.test.mjs",
+    "tests/public-seo-context.test.mjs",
     "tests/public-seo-discovery.test.mjs",
     "tests/public-seo-programme.test.mjs",
     "tests/public-seo-technical.test.mjs",
     "tests/public-ticker-contrast-safety.test.mjs",
     "tests/rendered-member-acceptance-support.test.mjs",
     "tests/runtime-rollback-guard.test.mjs",
+    "tests/seo-context-release.test.mjs",
     "tests/seo-discovery-release.test.mjs",
     "tests/seo-follow-through-release.test.mjs",
     "tests/seo-technical-release.test.mjs",
@@ -623,6 +629,31 @@
               "instruction": "Look into this - also resolve all pages seo",
               "date": "2026-10-06",
               "scope": "Exact root IndexNow ownership-key endpoint, removal of the closed treatment-order discovery line and accurate 6 October lastmod for the two published articles; no new editorial wording, homepage, member route, outreach or clinical approval."
+            },
+            "contextComposition": {
+              "proof": "EXACT_RELEVANT_INTERNAL_LINKS_V1",
+              "base": "4460ea56f931da4003ace68d5d404831c47e08f7",
+              "payloadSource": "25efa17b1b21bea5c140b87707041eb728865e38",
+              "maintenanceSource": "50fbe2de9a3f575f4578a36f5209453109e2e3ad",
+              "payloadPaths": [
+                "public-seo-context-data.mjs",
+                "public-seo-context.mjs",
+                "shift-coach/worker.mjs",
+                "tests/public-seo-context.test.mjs"
+              ],
+              "maintenancePaths": [
+                "release/seo-context-scope.mjs",
+                "release/seo-discovery-scope.mjs",
+                "release/approved-ranking-scope.mjs",
+                "release/seo-technical-preservation.mjs",
+                "tests/seo-context-release.test.mjs",
+                ".github/workflows/seo-context-proof.yml"
+              ],
+              "request": {
+                "instruction": "Continue here now",
+                "date": "2026-10-06",
+                "scope": "Six internal links from five relevant existing pages to three indexed low-ranking guides, using existing titles and unchanged clinical sentences; accurate lastmod for those link sources. No homepage, Start Here, clinical-review attestation, external outreach or member change."
+              }
             }
           }
         }
@@ -648,6 +679,35 @@
       ],
       "run": 37531509514,
       "proofSource": "a9707c463f7681d49068fa0319418e5630510ba9"
+    },
+    "integrationComposition": {
+      "proof": "EXACT_COMBINED_SEO_CONTEXT_TABLET_AND_RELEASE_PINS_V1",
+      "base": "7ece5e502a70b5676ed0159a8a0da11fc7b37b2e",
+      "source": "67441dd7131b692fbd92f04396d2a9e960d493f5",
+      "paths": [
+        ".github/workflows/seo-context-proof.yml",
+        "public-seo-context-data.mjs",
+        "public-seo-context.mjs",
+        "release/app-scope.mjs",
+        "release/approved-ranking-scope.mjs",
+        "release/book-voice-scope.mjs",
+        "release/fit-300-scope.mjs",
+        "release/growth-scope.mjs",
+        "release/seo-context-scope.mjs",
+        "release/seo-discovery-scope.mjs",
+        "release/seo-follow-through-scope.mjs",
+        "release/seo-technical-preservation.mjs",
+        "release/watch-registry-wave-scope.mjs",
+        "shift-coach/release-contract.mjs",
+        "shift-coach/release-manifest.json",
+        "shift-coach/worker.mjs",
+        "tests/b1-release-scope.test.mjs",
+        "tests/public-seo-context.test.mjs",
+        "tests/seo-context-release.test.mjs",
+        "tests/seo-discovery-release.test.mjs",
+        "tests/seo-follow-through-release.test.mjs",
+        "tests/watch-ownership-release.test.mjs"
+      ]
     }
   },
   "rolloutPhotoComposition": {
@@ -660,20 +720,17 @@
       "shift-coach/public-trust-repair.mjs",
       "shift-coach/public-trust-repair.test.mjs",
       "shift-coach/release-contract.mjs"
-    ],
-    "watchComposition": {
-      "proof": "EXACT_ALREADY_MERGED_WATCH_RECONCILIATION_V1",
-      "base": "c51387c34c22469cdbd9490666f4ea168023560b",
-      "payloadSource": "99061a51a9540c611dc0795b858dad598b4304ac",
-      "source": "feaa23d40f2a0740954fea62ece2d6518c3b2a9e",
-      "paths": [
-        "release/app-manifest.json",
-        "release/app-scope.mjs",
-        "release/fit-300-scope.mjs",
-        "release/watch-registry-wave-scope.mjs",
-        "shift-coach/release-contract.mjs",
-        "tests/b1-release-scope.test.mjs"
-      ]
-    }
+    ]
+  },
+  "watchSourceComposition": {
+    "proof": "EXACT_MERGED_ZENAGAMTIDE_SOURCE_RECONCILIATION_V1",
+    "base": "e723261284d733476370c0e19d3ac7c516d9b8b6",
+    "source": "83059e9bc844cd845b9b7dbb3f7723830bccc0c6",
+    "paths": [
+      "release/fit-300-scope.mjs",
+      "release/watch-registry-wave-scope.mjs",
+      "shift-coach/release-contract.mjs",
+      "tests/watch-ownership-release.test.mjs"
+    ]
   }
 }
