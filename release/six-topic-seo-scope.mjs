@@ -6,8 +6,8 @@ export const SIX_TOPIC_SEO_SOURCE='7a121c5e86fc889168288d42952fb20d5dbb46fa';
 export const SIX_TOPIC_SEO_PATHS=['public-seo-closeout.mjs','tests/public-seo-closeout.test.mjs','scripts/verify-six-topic-seo.mjs','docs/seo/2026-10-05-six-priorities.md','.github/workflows/six-topic-seo-proof.yml'];
 export const PRACTICAL_GUIDES_SOURCE='e0b046c878e46d73ea8500e3dde78bf7d4c141fa';
 export const PRACTICAL_GUIDES_PATHS=['.github/workflows/practical-guides-proof.yml','docs/seo/2026-10-06-practical-guides.md','public-practical-guides.mjs','public-seo-closeout.mjs','scripts/verify-practical-guides-handler.mjs','scripts/verify-practical-guides.mjs','tests/practical-guides.test.mjs'];
-export function validateSixTopicSeoSource(read){
- for(const path of SIX_TOPIC_SEO_PATHS)assert.equal(read('HEAD',path),read(path==='public-seo-closeout.mjs'?PRACTICAL_GUIDES_SOURCE:SIX_TOPIC_SEO_SOURCE,path),'Six-topic SEO source drift: '+path);
+export function validateSixTopicSeoSource(read,composedSource=SIX_TOPIC_SEO_SOURCE){
+ for(const path of SIX_TOPIC_SEO_PATHS){const source=path==='public-seo-closeout.mjs'?PRACTICAL_GUIDES_SOURCE:path==='scripts/verify-six-topic-seo.mjs'?composedSource:SIX_TOPIC_SEO_SOURCE;assert.equal(read('HEAD',path),read(source,path),'Six-topic SEO source drift: '+path);}
  for(const path of PRACTICAL_GUIDES_PATHS)assert.equal(read('HEAD',path),read(PRACTICAL_GUIDES_SOURCE,path),'Practical-guides source drift: '+path);
 }
 export async function verifySixTopicSeoProof(get){
