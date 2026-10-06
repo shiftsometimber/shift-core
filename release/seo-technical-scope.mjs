@@ -1,3 +1,4 @@
+import {RANKING_BASE,RANKING_PATHS} from './approved-ranking-scope.mjs';
 import {COMPLETION_BASE,COMPLETION_PATHS,completionPinnedRef,validateCompletionComposition,verifyCompletionHistory} from './production-completion-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -29,4 +30,4 @@ export function verifyTechnicalHistory(c){
  assert.deepEqual(git('diff','--name-only',c.base,c.payloadSource).split('\n').filter(Boolean).sort(),[...TECHNICAL_PAYLOAD_PATHS].sort());
  assert.deepEqual(git('diff','--name-only',c.payloadSource,c.maintenanceSource).split('\n').filter(Boolean).sort(),[...TECHNICAL_MAINTENANCE_PATHS,'shift-coach/release-manifest.json'].sort());
 }
-export function completionHistoricalRef(c,ref,path){return ref==='HEAD'&&c?.completionComposition&&COMPLETION_PATHS.includes(path)?COMPLETION_BASE:ref;}
+export function completionHistoricalRef(c,ref,path){return ref==='HEAD'&&c?.completionComposition?.rankingComposition&&RANKING_PATHS.includes(path)?RANKING_BASE:ref==='HEAD'&&c?.completionComposition&&COMPLETION_PATHS.includes(path)?COMPLETION_BASE:ref;}

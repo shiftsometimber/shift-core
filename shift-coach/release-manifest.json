@@ -5,6 +5,7 @@
   "scope": "In-app prepared everyday actions, editable memory, feedback and opt-in preparation only. No clinical monitoring, external notification, calendar write, device import or pattern detection. Exact homepage font delivery subset only; approved wording, layout, styles, image and original font source retained. Optional prescribed-tablet routine, structured first-week reflection and practical follow-through under existing health-tracking consent. Explicit generic calendar-file download only; no dose advice, symptom assessment or monitoring. Member-reported working routines with current fit confirmation and repeated-fit escape; authenticated everyday support replies with member-confirmed resolution in the existing support queue. No new notification transport or clinical decision. Server-side calendar-date and adult-service validation on existing clinical intake and prepayment verification; no new clinical decision, source collection, email or homepage change. Correct one broken Roche primary-evidence PDF link; the medical summary, review date and monitor scope are unchanged. Bounded fresh AI stream completion, cancellation and deadline repair; saved personal-goal context retained. No homepage change or outgoing email. 4 October: preserve active Fit editing when saved-session markup arrives; unchanged approved composer and all other application bytes verified. Nineteen source-limited newsroom corrections published with original dates and explicit review limits. Current hosted WebKit toolchain retains original navigation assertions. 4 October action follow-through: event-specific transactional reply routing, safe mail markup/subject, nonfatal delivery-audit logging with explicit unverified inbox receipt. No mail sends or new order/clinical workflows. Current independent acceptance pack records concrete remaining evidence without a reviewer sign-off. 4 October close-all follow-through: exact Hansoh olatorepatide and Hengrui HRS1596 document checks receive a 20-second single-attempt deadline following ordinary 9.95/11.32-second reads. All other origin limits, no-refusal-retry policy, review state, source URLs and scheduler ownership remain unchanged. Bounded production acceptance evidence and cleanup only; original workflow branches restored, exact successful four-file harness and five-file one-off proof mandatory. No serving runtime, account flow or test deadline change. 5 October: exact coaching-retention operating-document correction and ten-round/four-concurrent/41-request bounded capacity harness. No runtime, homepage, image, source-review approval, stock or outgoing-mail change. One-off candidate push trigger is retired after its authorised run; original workflow branch retained. 5 October: owner requested immediate deployment of recovered exact recipe imagery; finite payload and source hashes bound by recipe-image-manifest. 2093 recipe bindings recovered; 578 final bindings unavailable, not claimed complete. Homepage preserved. 5 October: support and registered-interest emails use support@shiftsometimber.co.uk as From and Reply-To; internal support requests remain addressed to support. Other category and authentication senders are unchanged. No outgoing mail, homepage, recipe image, stock or clinical action. 5 October recipe deployment: resolve exact successful current image runtime by its recorded run when workflow history omits it; ownership, job, source, active version and rollback validation remain required. Reconcile concurrent already-reviewed TE8105 Watch payload from PR1118, preserving the exact recipe imagery and runtime recovery correction. Recipe image batch: all222 reviewed replacements are preserved; retain the exact successful 65-image runtime receipt while promoting157 additional bindings. 5 October TE-8105 release reconciliation: retain successful production run37323166189/source4c5e2352e0a0a4ac2b592ed2036357214d484a65 only for active deployment f49a97b9-01a7-45d9-a268-2be7a8dd6bbb/version6e704595-b395-4cc9-9671-6cd653e01405, with normal owned-receipt, job, source and active-version checks unchanged.",
   "pinnedPaths": [
     ".github/workflows/ai-lossless-proof.yml",
+    ".github/workflows/approved-ranking-proof.yml",
     ".github/workflows/book-voice-live-audit.yml",
     ".github/workflows/book-voice-preview.yml",
     ".github/workflows/calculators-navigation.yml",
@@ -82,6 +83,7 @@
     "my-timber-final-production.mjs",
     "my-timber-final-source-gate.mjs",
     "my-timber-pwa/verify-live.mjs",
+    "prescriber-questions.mjs",
     "preview/ai-context/fresh-reliability-proof.mjs",
     "preview/ai-context/sustained-reliability-proof.mjs",
     "preview/book-voice/host.mjs",
@@ -93,6 +95,8 @@
     "public-continuity.mjs",
     "public-navigation-policy.mjs",
     "public-practical-guides.mjs",
+    "public-seo-approved-data.mjs",
+    "public-seo-approved.mjs",
     "public-seo-closeout.mjs",
     "public-seo-follow-through.mjs",
     "public-seo-programme.mjs",
@@ -107,6 +111,7 @@
     "release/app-member-live.mjs",
     "release/app-preflight.mjs",
     "release/app-scope.mjs",
+    "release/approved-ranking-scope.mjs",
     "release/book-voice-scope.mjs",
     "release/device-health-scope.mjs",
     "release/fit-300-scope.mjs",
@@ -209,6 +214,7 @@
     "tests/ai-site-knowledge.test.mjs",
     "tests/ai-stream-reliability.test.mjs",
     "tests/app-client-proof.test.mjs",
+    "tests/approved-ranking-release.test.mjs",
     "tests/article-image-policy.test.mjs",
     "tests/auth-mail-delivery-reliability.test.mjs",
     "tests/b1-release-scope.test.mjs",
@@ -236,6 +242,7 @@
     "tests/my-timber-analytics-privacy.test.mjs",
     "tests/practical-guides.test.mjs",
     "tests/production-completion-release.test.mjs",
+    "tests/public-seo-approved.test.mjs",
     "tests/public-seo-closeout.test.mjs",
     "tests/public-seo-programme.test.mjs",
     "tests/public-seo-technical.test.mjs",
@@ -559,6 +566,37 @@
           "instruction": "let's get this properly working - and growing its organic reach. We also need to ensure our website authority grows in the correct way.",
           "date": "2026-10-06",
           "scope": "Exact cancelled SEO runtime recovery to its successful captured predecessor; complete original release checks; no customer-data rollback or public-wording change."
+        },
+        "rankingComposition": {
+          "proof": "EXACT_OWNER_APPROVED_FIVE_PAGE_RANKING_V1",
+          "base": "115b4e53279aeffd9b8248909e2dda5bbf768f80",
+          "payloadSource": "d8eb3a87f1e33a77cf22fbe6cd265f51b330b1a7",
+          "maintenanceSource": "4f11d72d2127d7233e0bc2f62e58044384f43748",
+          "payloadPaths": [
+            "public-seo-approved-data.mjs",
+            "public-seo-approved.mjs",
+            "prescriber-questions.mjs",
+            "shift-coach/worker.mjs",
+            "tests/public-seo-approved.test.mjs"
+          ],
+          "maintenancePaths": [
+            "release/approved-ranking-scope.mjs",
+            "release/production-completion-scope.mjs",
+            "release/seo-technical-scope.mjs",
+            "release/seo-technical-preservation.mjs",
+            "tests/production-completion-release.test.mjs",
+            "tests/seo-technical-release.test.mjs",
+            "tests/approved-ranking-release.test.mjs",
+            ".github/workflows/approved-ranking-proof.yml"
+          ],
+          "ownerApproval": {
+            "owner": "Matt O’Brien",
+            "at": "2026-10-06T19:52:25Z",
+            "instruction": "approved but need to really crack on now",
+            "review": "SST-Organic-Reach-Authority-Review-2026-10-06.html",
+            "reviewVersion": 1,
+            "scope": "Five exact reviewed page changes and prescriber worksheet web publication; no homepage, Start Here, outgoing message or clinical-review attestation."
+          }
         }
       }
     }
