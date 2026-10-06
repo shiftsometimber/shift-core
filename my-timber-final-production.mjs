@@ -31,6 +31,12 @@ async function geometry(page){return page.evaluate(()=>{const root=document.quer
 await register();
 const browser=await chromium.launch({headless:true});
 const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
+await context.addInitScript(()=>{
+ window.__earlyTrace=[];const keep=(kind,detail)=>{window.__earlyTrace.push({kind,detail,at:performance.now()});if(window.__earlyTrace.length>120)window.__earlyTrace.shift()};
+ for(const method of ['pushState','replaceState']){const orig=history[method];history[method]=function(...args){keep(method,{url:String(args[2]),stack:new Error().stack});return orig.apply(this,args)}}
+ const orig=EventTarget.prototype.addEventListener;EventTarget.prototype.addEventListener=function(type,listener,options){if(type==='click'&&typeof listener==='function'){const stack=new Error().stack;const wrapped=function(e){const a=e.target.closest?.('.today-meal-action');if(a)keep('handler',{stack,href:a.getAttribute('href'),phase:e.eventPhase,prevented:e.defaultPrevented});return listener.call(this,e)};return orig.call(this,type,wrapped,options)}return orig.call(this,type,listener,options)};
+ window.addEventListener('error',e=>keep('error',{message:e.message,filename:e.filename,lineno:e.lineno}));
+});
 const page=await context.newPage();
 const navigation=attachDiagnostics(page,report,write);
 const watchdog=setTimeout(()=>{fail('verification termination','Browser verification did not terminate within eight minutes');write();process.exit(1)},480000);watchdog.unref();
@@ -158,7 +164,7 @@ try{
   await page.goto(SITE+'/member/life-back',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(7,'life-back','Life Back — goals and wins');
   await page.goto(SITE+'/member/settings',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(8,'settings','Settings — member details and privacy');
   pass('Eight Google Play phone screenshots captured from production My Timber','Synthetic member only; 9:16 portrait UI; no real member data.');
-}catch(error){report.toolTrace=await page.evaluate(()=>({trace:window.__toolTrace||[],tool:document.body.dataset.appTool,host:document.querySelector('#appToolPanels')?.outerHTML?.slice(0,2500)})).catch(()=>null);fail('journey exception',clean(error?.message||error).slice(0,1800));report.navigation=navigation();write();await boundedEvidence('failure screenshot',()=>page.screenshot({path:path.join(OUT,'journey-failure.png'),fullPage:false,timeout:10000}),11000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message);write()})}finally{
+}catch(error){report.toolTrace=await page.evaluate(()=>({early:window.__earlyTrace||[],trace:window.__toolTrace||[],tool:document.body.dataset.appTool,host:document.querySelector('#appToolPanels')?.outerHTML?.slice(0,2500)})).catch(()=>null);fail('journey exception',clean(error?.message||error).slice(0,1800));report.navigation=navigation();write();await boundedEvidence('failure screenshot',()=>page.screenshot({path:path.join(OUT,'journey-failure.png'),fullPage:false,timeout:10000}),11000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message);write()})}finally{
   const video=page.video();write();await boundedEvidence('context close',()=>context.close(),15000).catch(error=>fail('context close',clean(error.message)));if(video)await boundedEvidence('video save',()=>video.saveAs(path.join(OUT,'my-timber-billy-iphone.webm')),15000).catch(error=>fail('video save',clean(error.message)));await boundedEvidence('browser close',()=>browser.close(),10000).catch(error=>fail('browser close',clean(error.message)));write();clearTimeout(watchdog);setTimeout(()=>process.exit(report.failures.length?1:0),1000).unref();
 }
 console.log(JSON.stringify(report,null,2));
