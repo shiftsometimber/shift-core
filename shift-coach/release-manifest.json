@@ -457,7 +457,7 @@
       "tests/sitewide-seo-release.test.mjs",
       "tests/fixtures/seo-public-articles.json"
     ],
-    "maintenanceSource": "fb2a225819a463941ccaf8ec1159b9bc37ab12a3",
+    "maintenanceSource": "77119987e65cf0279eb288e4236339d07bf00cb9",
     "ownerApproval": {
       "owner": "Matt O’Brien",
       "at": "2026-10-06T14:18:48Z",
