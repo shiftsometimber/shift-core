@@ -1,3 +1,4 @@
+import {followHistoricalRead} from '../release/seo-follow-through-scope.mjs';
 import {PRACTICAL_GUIDES_SOURCE,validateSixTopicSeoSource} from '../release/six-topic-seo-scope.mjs';
 import {FIT300_PATHS,READONLY_ORGANIC_PATHS,validateFit300} from '../release/fit-300-scope.mjs';
 import {RECIPE_IMAGE_PATHS,validateRecipeImages} from '../release/recipe-image-scope.mjs';
@@ -154,7 +155,7 @@ export function verifyScope(){
   git('merge-base','--is-ancestor',NICE_TIMEOUT_COMMIT,'HEAD');
   validateNiceTimeout((ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',FOUNDATION_CANDIDATE,'HEAD');
-  validateFoundation((ref,path)=>git('rev-parse',ref+':'+path));
+  validateFoundation(followHistoricalRead((ref,path)=>git('rev-parse',ref+':'+path),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition));
   git('merge-base','--is-ancestor',MEDICINES_REVIEW_COMMIT,'HEAD');
   validateMedicinesReview((ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',WATCH_EXPANSION_COMMIT,'HEAD');

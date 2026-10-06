@@ -455,7 +455,8 @@
       "shift-coach/release-contract.mjs",
       "tests/seo-follow-through-release.test.mjs",
       "tests/sitewide-seo-release.test.mjs",
-      "tests/fixtures/seo-public-articles.json"
+      "tests/fixtures/seo-public-articles.json",
+      "scripts/b1-release-scope.mjs"
     ],
     "maintenanceSource": "77119987e65cf0279eb288e4236339d07bf00cb9",
     "ownerApproval": {

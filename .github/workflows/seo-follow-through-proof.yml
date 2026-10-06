@@ -17,6 +17,8 @@ jobs:
       - run: npm ci
       - name: Validate exact source and release composition
         run: node --input-type=module -e "import {validateGrowthSource} from './release/growth-scope.mjs';validateGrowthSource()"
+      - name: Verify all production source gates
+        run: node scripts/b1-release-scope.mjs
       - name: Verify exact paragraphs, indexing and privacy boundaries
         run: node --test tests/seo-follow-through-release.test.mjs tests/sitewide-seo-release.test.mjs tests/public-seo-programme.test.mjs tests/ai-fast-stream.test.mjs tests/shift-ai-edge-proof.test.mjs tests/ai-stream-reliability.test.mjs
       - name: Verify complete public handler and preserve every archive
