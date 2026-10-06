@@ -9,6 +9,15 @@ export const BOOK_VOICE_PATHS=paths;
 export function originalBookVoiceGate(path,source){
  if(path==='member-experience/verify-production-member.mjs')return source.replace("import {withTrustRepair} from '../shift-coach/public-trust-repair.mjs';\n",'').replace('expected=Buffer.from(await (await withTrustRepair(request,footerWrapped)).arrayBuffer());','expected=Buffer.from(await footerWrapped.arrayBuffer());');
  if(path==='member-experience/public-preservation.mjs'){
+  // PR #1177 withdrew two unapproved member-login illustration options. That
+  // reviewed preservation-only delta is independent of the older Book Voice
+  // payload, so neutralise its exact signatures before the historical compare.
+  const withdrawnPhotoImport="import {restoreTrustCentre,restoreStoppingCitation,withdrawWeightIllustrations} from '../shift-coach/public-trust-repair.mjs';\n";
+  const priorTrustImport="import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';\n";
+  const withdrawnPhotoPreservation=" // Apply only the exact already-withdrawn photo options to both comparison\n // sides. The rest of the complete sign-in document remains hash compared.\n if(path==='/member-login')preserved=Buffer.from(withdrawWeightIllustrations(preserved.toString('utf8')));\n";
+  assert.equal(source.split(withdrawnPhotoImport).length-1,1,'Reviewed photo-withdrawal import changed');
+  assert.equal(source.split(withdrawnPhotoPreservation).length-1,1,'Reviewed photo-withdrawal preservation changed');
+  source=source.replace(withdrawnPhotoImport,priorTrustImport).replace(withdrawnPhotoPreservation,'');
   source=source.replace("import {restoreTrustCentre,restoreStoppingCitation,withdrawWeightIllustrations} from '../shift-coach/public-trust-repair.mjs';\n","import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';\n").replace(" // Apply only the exact already-withdrawn photo options to both comparison\n // sides. The rest of the complete sign-in document remains hash compared.\n if(path==='/member-login')preserved=Buffer.from(withdrawWeightIllustrations(preserved.toString('utf8')));\n",'');
   source=originalSixTopicSeoPreservation(originalFollowThroughPreservation(source));
   source=source
