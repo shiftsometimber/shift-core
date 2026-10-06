@@ -34,7 +34,7 @@ jobs:
           tablet=os.environ.get('GITHUB_HEAD_REF') == 'codex/tablet-guidance-20261006'
           baseline='4460ea56f931da4003ace68d5d404831c47e08f7' if tablet else '15194faf31d710f1fc5f31036af149d5925d3998'
           if tablet:
-            allowed={'public-practical-guides.mjs','tests/practical-guides.test.mjs','scripts/verify-practical-guides.mjs','scripts/verify-practical-guides-handler.mjs','.github/workflows/practical-guides-proof.yml','release/seo-follow-through-scope.mjs','release/six-topic-seo-scope.mjs','tests/seo-follow-through-release.test.mjs','docs/seo/2026-10-06-practical-guides.md','shift-coach/worker.mjs','shift-coach/release-manifest.json'}
+            allowed={'public-practical-guides.mjs','tests/practical-guides.test.mjs','scripts/verify-practical-guides.mjs','scripts/verify-practical-guides-handler.mjs','.github/workflows/practical-guides-proof.yml','release/seo-follow-through-scope.mjs','release/six-topic-seo-scope.mjs','tests/seo-follow-through-release.test.mjs','docs/seo/2026-10-06-practical-guides.md','shift-coach/worker.mjs','tests/approved-ranking-release.test.mjs','tests/production-completion-release.test.mjs','shift-coach/release-manifest.json'}
           changed=set(subprocess.check_output(['git','diff','--name-only',baseline,'HEAD'],text=True).splitlines())
           assert changed == allowed, changed
           protected=['wrangler.jsonc','frontend/member','member-experience','medicines-watch']
