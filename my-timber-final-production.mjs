@@ -30,7 +30,7 @@ async function geometry(page){return page.evaluate(()=>{const root=document.quer
 
 await register();
 const browser=await chromium.launch({headless:true});
-const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
+const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',serviceWorkers:'block',recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
 await context.addInitScript(()=>{
  window.__earlyTrace=[];const keep=(kind,detail)=>{window.__earlyTrace.push({kind,detail,at:performance.now()});if(window.__earlyTrace.length>120)window.__earlyTrace.shift()};
  for(const method of ['pushState','replaceState']){const orig=history[method];history[method]=function(...args){keep(method,{url:String(args[2]),stack:new Error().stack});return orig.apply(this,args)}}
@@ -38,14 +38,14 @@ await context.addInitScript(()=>{
  window.addEventListener('error',e=>keep('error',{message:e.message,filename:e.filename,lineno:e.lineno}));
 });
 const page=await context.newPage();
-await page.route('**/assets/my-timber-layout.mjs*',async route=>{
+await context.route('**/assets/my-timber-layout.mjs*',async route=>{
  const response=await route.fetch();let source=await response.text();
  const tail="if(push){const u=new URL(location.href);if(key==='today')u.searchParams.delete('tool');else u.searchParams.set('tool',key);u.hash='today';history.pushState(null,'',u)}";
  assert.equal(source.split(tail).length,2,'Exact current tab history integration required');
- source=source.replace(tail,'').replace("chosen=key;syncTabs();if(!host)return;","chosen=key;syncTabs();if(!host)return;"+tail);
+ const needle="chosen=key;syncTabs();if(!host)return;";assert.equal(source.split(needle).length,2);source=source.replace(tail,'').replace(needle,needle+tail);(report.patchResponses??=[]).push({url:resourcePath(route.request().url()),historyIndex:source.indexOf(tail),frameIndex:source.indexOf("host.hidden=key==='today'")});
  await route.fulfill({response,body:source});
 });
-report.proof='MY_TIMBER_GRUB_NAVIGATION_ORDER_DIAGNOSTIC_V1';
+report.proof='MY_TIMBER_GRUB_NO_SERVICE_WORKER_DIAGNOSTIC_V1';
 
 report.frameLifecycle=[];const cdp=await context.newCDPSession(page);await cdp.send('Page.enable');for(const kind of ['frameAttached','frameDetached','frameStartedLoading','frameStoppedLoading','frameRequestedNavigation','frameNavigated'])cdp.on('Page.'+kind,event=>{const x={kind,frame:event.frameId||event.frame?.id,reason:event.reason,url:event.url?resourcePath(event.url):event.frame?.url?resourcePath(event.frame.url):null};report.frameLifecycle.push(x);if(report.frameLifecycle.length>80)report.frameLifecycle.shift()});
 page.on('console',m=>{if(m.type()==='error'){report.frameLifecycle.push({kind:'console-error',detail:m.text().slice(0,500)});if(report.frameLifecycle.length>80)report.frameLifecycle.shift()}});
@@ -176,7 +176,7 @@ try{
   await page.goto(SITE+'/member/life-back',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(7,'life-back','Life Back — goals and wins');
   await page.goto(SITE+'/member/settings',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(8,'settings','Settings — member details and privacy');
   pass('Eight Google Play phone screenshots captured from production My Timber','Synthetic member only; 9:16 portrait UI; no real member data.');
-}catch(error){report.toolTrace=await page.evaluate(()=>({early:window.__earlyTrace||[],trace:window.__toolTrace||[],tool:document.body.dataset.appTool,host:document.querySelector('#appToolPanels')?.outerHTML?.slice(0,2500)})).catch(()=>null);fail('journey exception',clean(error?.message||error).slice(0,1800));report.navigation=navigation();write();await boundedEvidence('failure screenshot',()=>page.screenshot({path:path.join(OUT,'journey-failure.png'),fullPage:false,timeout:10000}),11000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message);write()})}finally{
+}catch(error){report.toolTrace=await page.evaluate(()=>({early:window.__earlyTrace||[],trace:window.__toolTrace||[],tool:document.body.dataset.appTool,host:document.querySelector('#appToolPanels')?.outerHTML?.slice(0,2500),ready:document.readyState,frameDocuments:[...document.querySelectorAll('iframe')].map(f=>({src:f.getAttribute('src'),win:Boolean(f.contentWindow),doc:Boolean(f.contentDocument),url:(()=>{try{return f.contentWindow?.location.href}catch{return '[cross-origin]'}})(),html:f.contentDocument?.documentElement?.outerHTML.slice(0,1500)}))})).catch(()=>null);fail('journey exception',clean(error?.message||error).slice(0,1800));report.navigation=navigation();write();await boundedEvidence('failure screenshot',()=>page.screenshot({path:path.join(OUT,'journey-failure.png'),fullPage:false,timeout:10000}),11000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message);write()})}finally{
   const video=page.video();write();await boundedEvidence('context close',()=>context.close(),15000).catch(error=>fail('context close',clean(error.message)));if(video)await boundedEvidence('video save',()=>video.saveAs(path.join(OUT,'my-timber-billy-iphone.webm')),15000).catch(error=>fail('video save',clean(error.message)));await boundedEvidence('browser close',()=>browser.close(),10000).catch(error=>fail('browser close',clean(error.message)));write();clearTimeout(watchdog);setTimeout(()=>process.exit(report.failures.length?1:0),1000).unref();
 }
 console.log(JSON.stringify(report,null,2));
