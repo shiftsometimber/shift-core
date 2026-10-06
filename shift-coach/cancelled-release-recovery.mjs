@@ -32,15 +32,25 @@ export function verifiedCatalogueRuntime(active,run,job,receipt){
   &&receipt?.kind==='owner_authorized_catalogue_copy_release'&&receipt.source===p.source&&receipt.deploymentId===p.deployment&&receipt.versionId===p.version&&receipt.percentage===100
   &&receipt.hostedProof?.run===p.run&&receipt.hostedProof?.job===p.job&&receipt.hostedProof?.conclusion==='success'&&receipt.liveProof?.allExact===true&&receipt.productionDatabaseWrites===0&&receipt.assetChanges===0;
 }
-export const recovery=Object.freeze({run:37047576206,source:'32a51925c6a7676887a3a59b042c15a8272ccc3c',unverified:'7204ee91-dc82-4f3f-90ce-ead305baf9ae',verified:'dee23ccf-be93-4aed-be76-02b724a4c470',verifiedRun:37081219787,verifiedSource:'4350e9a51fece40f5a260da0a847af2a7829c764'});
+export const recovery=Object.freeze({
+ run:37512509413,
+ source:'36301f661e9a2e220c15e7f1ccf070612186242b',
+ unverified:'81f4a3a8-9b25-4bb5-bd0d-1e870cfc0206',
+ unverifiedDeployment:'ec4aeeed-9656-4bc0-8e9d-6d751d6fac77',
+ verified:'35e9b183-12c6-4a22-a68b-1a9ee3c8cef4',
+ verifiedDeployment:'3f64ff03-76c6-4aaf-bc66-f4c3865711d9',
+ verifiedRun:37510903784,
+ verifiedSource:'ddde14b19d6ef79547e27afb4ed76bf1f4e39f05'
+});
 export const articleRuntime=Object.freeze({run:37147521854,source:'f5184e4ffefd6bc2eb105e86e7107e5c61f00327',version:'b25b6adb-1fc3-473e-97b7-88bfe3c27a48',workflow:'.github/workflows/evidence-based-article-live-release.yml'});
 export function recoveryDecision(active,failed,verified){
  assert.equal(active.versions?.length,1);assert.equal(active.versions[0].percentage,100);
- assert.equal(verified.id,recovery.verifiedRun);assert.equal(verified.head_sha,recovery.verifiedSource);assert.equal(verified.conclusion,'success');
+ assert.equal(verified.id,recovery.verifiedRun);assert.equal(verified.head_sha,recovery.verifiedSource);assert.equal(verified.status,'completed');assert.equal(verified.conclusion,'success');assert.equal(verified.event,'push');assert.equal(verified.head_branch,'main');assert.equal(verified.path,'.github/workflows/cloudflare-production-promote.yml');
  const current=active.versions[0].version_id;
  if(current===recovery.verified)return 'retain';
  assert.equal(current,recovery.unverified,'Unknown runtime: recovery is not authorised');
- assert.equal(failed.id,recovery.run);assert.equal(failed.head_sha,recovery.source);assert.equal(failed.run_attempt,1);assert.equal(failed.conclusion,'cancelled','Only the evidenced cancelled release may be recovered');
+ assert.equal(active.id,recovery.unverifiedDeployment,'Only the exact cancelled deployment may be recovered');
+ assert.equal(failed.id,recovery.run);assert.equal(failed.head_sha,recovery.source);assert.equal(failed.run_attempt,1);assert.equal(failed.status,'completed');assert.equal(failed.conclusion,'cancelled','Only the evidenced cancelled release may be recovered');assert.equal(failed.event,'push');assert.equal(failed.head_branch,'main');assert.equal(failed.path,'.github/workflows/cloudflare-production-promote.yml');
  return 'restore';
 }
 

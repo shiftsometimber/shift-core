@@ -49,7 +49,7 @@ else{
 }
 
 if(decision==='restore'){
- console.log(wrangler('rollback',recovery.verified,'--message','Restore verified runtime after run 37047576206 timed out during browser dependency installation'));
+ console.log(wrangler('rollback',recovery.verified,'--message','Restore verified runtime after evidenced cancelled production run '+recovery.run));
  assert.equal(recoveryDecision(active(),failed,verified),'retain','Recovery did not restore the verified runtime');
 }
 mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/cancelled-release-recovery.json',JSON.stringify({at:new Date().toISOString(),decision,run:recovery.run,from:before.versions[0].version_id,to:ownedProof?.version||recovery.verified,verifiedRun:ownedProof?.run||recovery.verifiedRun,ownedProof:ownedProof||null,customerRecordsRead:0,dataChanged:false},null,2));
