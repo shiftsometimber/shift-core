@@ -56,3 +56,17 @@ test('historical preservation reverses only exact approved paragraphs and reject
  }
  const privateBody=Buffer.from('<main>Private fixture</main>');assert.equal(preserveFollowThrough('/member/dashboard',privateBody,{required:true}),privateBody);
 });
+
+import {validateTabletGuidance,TABLET_GUIDANCE_BASE,TABLET_GUIDANCE_PATHS,followPinnedRef,followHistoricalRead} from '../release/seo-follow-through-scope.mjs';
+test('tablet composition pins finite payload bytes without weakening previous SEO authority',()=>{
+ const prior=JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition;
+ const t={proof:'TABLET_GUIDANCE_EXACT_V1',base:TABLET_GUIDANCE_BASE,source:'a'.repeat(40),paths:TABLET_GUIDANCE_PATHS};
+ const c={...prior,tabletGuidanceComposition:t};
+ assert.doesNotThrow(()=>validateFollowComposition(c));
+ for(const p of t.paths)assert.equal(followPinnedRef(c,p),t.source);
+ const historical=followHistoricalRead((ref,p)=>ref+':'+p,c);
+ assert.equal(historical('HEAD','public-practical-guides.mjs'),TABLET_GUIDANCE_BASE+':public-practical-guides.mjs');
+ assert.equal(historical('HEAD','release/seo-follow-through-scope.mjs'),prior.base+':release/seo-follow-through-scope.mjs');
+ assert.equal(historical('HEAD','worker.js'),'HEAD:worker.js');
+ for(const patch of [{base:'b'.repeat(40)},{paths:[...t.paths,'worker.js']},{source:'HEAD'},{run:0,proofSource:'c'.repeat(40)}])assert.throws(()=>validateTabletGuidance({...t,...patch}));
+});

@@ -3,7 +3,7 @@ import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {improvePracticalGuides,PRACTICAL_GUIDES} from '../public-practical-guides.mjs';
 const live=process.argv.includes('--live'),out='practical-guides-proof',base='https://shiftsometimber.co.uk';
-const paths=['/articles/weight-loss-after-40-men','/guides/mens-weight-management-guide','/mens-weight-management','/guides/mounjaro-ultimate-uk-guide','/mounjaro'];
+const paths=Object.keys(PRACTICAL_GUIDES);
 const sha=s=>createHash('sha256').update(s).digest('hex'),part=(h,t)=>h.match(new RegExp('<'+t+'\\b[\\s\\S]*?</'+t+'>','i'))?.[0]||'';
 mkdirSync(out,{recursive:true});
 const protectedPaths=['/','/start-here','/articles/wegovy-side-effects-timeline','/articles/nhs-weight-loss-drugs','/member-login','/member-fit-programme-v1.js','/member-grub-programme-v1.js','/member-my-timber-problem-v1.js'];
@@ -14,7 +14,7 @@ for(const p of paths){const slug=p.slice(1).replaceAll('/','_'),current=await re
  assert.equal((h.match(/<h1\b/gi)||[]).length,1);assert.equal((h.match(/rel=["']canonical["']/gi)||[]).length,1);
  assert(!/<meta[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(h));
  const canonical=h.match(/<link[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["']/i)?.[1]||h.match(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)?.[1];assert(canonical);
- if(!live){assert.equal(part(h,'main').replace(c.html,''),part(before,'main'),'Pre-existing guidance changed');for(const tag of ['header','footer'])assert.equal(part(h,tag),part(before,tag));const schemas=s=>[...s.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/g)].map(x=>x[0]);assert.deepEqual(schemas(h),schemas(before));writeFileSync(out+'/'+slug+'-before.html',before);}
+ if(!live){assert.equal(part(h,'main').replace(c.html,''),part(before,'main').replace(c.html,''),'Pre-existing guidance changed');for(const tag of ['header','footer'])assert.equal(part(h,tag),part(before,tag));const schemas=s=>[...s.matchAll(/<script[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/g)].map(x=>x[0]);assert.deepEqual(schemas(h),schemas(before));writeFileSync(out+'/'+slug+'-before.html',before);}
  for(const m of c.html.matchAll(/href="(\/[^"]+)"/g))targets.add(m[1]);
  writeFileSync(out+'/'+slug+(live?'-live':'-candidate')+'.html',h);
  report.pages.push({path:p,url:current.url,canonical,htmlSha256:sha(h),contentWords:c.html.replace(/<[^>]+>/g,' ').split(/\s+/).length,existingGuidancePreserved:!live});

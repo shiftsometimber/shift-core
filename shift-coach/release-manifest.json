@@ -627,6 +627,27 @@
           }
         }
       }
+    },
+    "tabletGuidanceComposition": {
+      "proof": "TABLET_GUIDANCE_EXACT_V1",
+      "base": "4460ea56f931da4003ace68d5d404831c47e08f7",
+      "source": "c67762d9705569243966e6862e4a5bd20d896ccf",
+      "paths": [
+        ".github/workflows/practical-guides-proof.yml",
+        "docs/seo/2026-10-06-practical-guides.md",
+        "public-practical-guides.mjs",
+        "release/seo-follow-through-scope.mjs",
+        "release/six-topic-seo-scope.mjs",
+        "scripts/verify-practical-guides-handler.mjs",
+        "scripts/verify-practical-guides.mjs",
+        "shift-coach/worker.mjs",
+        "tests/approved-ranking-release.test.mjs",
+        "tests/practical-guides.test.mjs",
+        "tests/production-completion-release.test.mjs",
+        "tests/seo-follow-through-release.test.mjs"
+      ],
+      "run": 37531509514,
+      "proofSource": "a9707c463f7681d49068fa0319418e5630510ba9"
     }
   },
   "rolloutPhotoComposition": {
@@ -639,6 +660,20 @@
       "shift-coach/public-trust-repair.mjs",
       "shift-coach/public-trust-repair.test.mjs",
       "shift-coach/release-contract.mjs"
-    ]
+    ],
+    "watchComposition": {
+      "proof": "EXACT_ALREADY_MERGED_WATCH_RECONCILIATION_V1",
+      "base": "c51387c34c22469cdbd9490666f4ea168023560b",
+      "payloadSource": "99061a51a9540c611dc0795b858dad598b4304ac",
+      "source": "feaa23d40f2a0740954fea62ece2d6518c3b2a9e",
+      "paths": [
+        "release/app-manifest.json",
+        "release/app-scope.mjs",
+        "release/fit-300-scope.mjs",
+        "release/watch-registry-wave-scope.mjs",
+        "shift-coach/release-contract.mjs",
+        "tests/b1-release-scope.test.mjs"
+      ]
+    }
   }
 }
