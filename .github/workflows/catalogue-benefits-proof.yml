@@ -1,0 +1,40 @@
+name: Catalogue benefits proof
+on:
+  push:
+    branches: [release/catalogue-benefits-20261006]
+  pull_request:
+    paths: [catalogue-benefits.mjs, tests/catalogue-benefits.test.mjs, scripts/verify-catalogue-handler.mjs]
+permissions:
+  contents: read
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Verify isolated production source
+        run: |
+          python3 - <<'PY'
+          import subprocess
+          allowed={'catalogue-benefits.mjs','tests/catalogue-benefits.test.mjs','shift-coach/worker.mjs','scripts/verify-catalogue-handler.mjs','docs/catalogue-benefits-20261006.md','.github/workflows/catalogue-benefits-proof.yml'}
+          changed=set(subprocess.check_output(['git','diff','--name-only','e0b046c878e46d73ea8500e3dde78bf7d4c141fa','HEAD'],text=True).splitlines())
+          assert changed==allowed,changed
+          PY
+      - run: node --test tests/catalogue-benefits.test.mjs tests/home-route-banner.test.mjs shift-coach/integration.test.mjs tests/member-image-viewer.test.mjs
+      - name: Compare complete responses to active production source
+        run: |
+          git worktree add --detach /tmp/catalogue-baseline e0b046c878e46d73ea8500e3dde78bf7d4c141fa
+          ln -s "$GITHUB_WORKSPACE/node_modules" /tmp/catalogue-baseline/node_modules
+          BASELINE_WORKER=/tmp/catalogue-baseline/shift-coach/worker.mjs node scripts/verify-catalogue-handler.mjs
+      - run: npx wrangler deploy --dry-run --config wrangler.jsonc --outdir work/catalogue-build
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: catalogue-benefits-proof
+          path: work/catalogue-proof/
