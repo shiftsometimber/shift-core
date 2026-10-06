@@ -1,0 +1,322 @@
+{
+  "source": "4460ea56f931da4003ace68d5d404831c47e08f7",
+  "at": "2026-10-06T20:56:42.679Z",
+  "method": "Actual in-process API calls against current source and isolated SQLite fictional records. No browser, email, real elapsed time, production writes or human satisfaction claimed.",
+  "results": [
+    {
+      "id": "S01",
+      "name": "No medication, tight budget, no cooker",
+      "status": "PASS",
+      "evidence": {
+        "action": {
+          "id": "ce239e83-b86e-4274-9ea9-233d32bd0224",
+          "type": "food-assemble",
+          "title": "Choose one familiar no-cook meal",
+          "minutes": 2,
+          "task": {
+            "title": "A meal without a cooker",
+            "steps": [
+              "Choose a no-cook meal you already like. One option is a sandwich using bread and a ready-to-eat filling that suits your preferences and allergies.",
+              "Check the label and storage instructions. Put the missing ingredients on your usual list.",
+              "Choose when you will use it; you do not need new cooking equipment."
+            ],
+            "link": {
+              "label": "Find another option in Grub",
+              "url": "/member/grub"
+            }
+          },
+          "reason": "You chose “Enjoy time with the family” and saved “Three late shifts and no free evenings”. Everyday support, with or without medication.",
+          "status": "prepared"
+        },
+        "constraints": {
+          "time": "short",
+          "budget": "tight",
+          "kitchen": "no-cook"
+        },
+        "treatment": {
+          "title": "Everyday support, with or without medication",
+          "text": "You can use My Timber without taking medication. Choose food, movement and routines that fit your day; tell us what helped.",
+          "clinical": "Treatment questions belong with a qualified clinician. This space is for everyday coaching."
+        }
+      }
+    },
+    {
+      "id": "S02",
+      "name": "Busy shifts: step does not fit",
+      "status": "PASS",
+      "evidence": {
+        "before": {
+          "id": "b48bebec-0f21-4304-bac3-84dc04b38f71",
+          "type": "food-backup",
+          "title": "Name one easy fallback meal",
+          "minutes": 2,
+          "task": {
+            "title": "Your rushed-day fallback",
+            "steps": [
+              "Choose one familiar meal with very little preparation. Use something that suits your preferences and allergies.",
+              "Save its name and the ingredients on the list you normally use.",
+              "Choose the busy part of your week when this fallback will be useful."
+            ],
+            "link": {
+              "label": "Choose a fallback in Grub",
+              "url": "/member/grub"
+            }
+          },
+          "reason": "You chose “Enjoy time with the family” and saved “Three late shifts and no free evenings”. You chose “Busy days and awkward shifts” as what is hardest right now. During treatment: make the week easier.",
+          "status": "prepared"
+        },
+        "after": {
+          "id": "67cdd835-8e61-47f8-a9cc-5d6a24fb9a89",
+          "type": "food-backup",
+          "title": "Name one fallback meal",
+          "minutes": 1,
+          "task": {
+            "title": "Name one fallback meal",
+            "steps": [
+              "Name a familiar meal you can put together quickly."
+            ],
+            "link": {
+              "label": "Choose a fallback in Grub",
+              "url": "/member/grub"
+            }
+          },
+          "reason": "You chose “Enjoy time with the family” and saved “Three late shifts and no free evenings”. You chose “Busy days and awkward shifts” as what is hardest right now. Your last step didn’t fit. This keeps the aim and makes the first step smaller. During treatment: make the week easier.",
+          "status": "prepared"
+        }
+      }
+    },
+    {
+      "id": "S03",
+      "name": "Medication elsewhere, then stops: retain context",
+      "status": "PASS",
+      "evidence": {
+        "historyRetained": true,
+        "treatment": {
+          "title": "After treatment: keep what works",
+          "text": "Your everyday support carries on here when medication purchases stop. Keep one routine you can repeat. If food noise returns, note when it gets in the way and plan one familiar meal for that part of the day. A setback is a reason to adjust the plan, not write off the week.",
+          "clinical": "Questions about restarting, symptoms or treatment belong with your prescriber or GP. Saving them here does not contact anyone."
+        },
+        "action": {
+          "id": "f9d3c1d2-1ae9-4be5-ad9d-6e0a25208c51",
+          "type": "food-plan",
+          "title": "After treatment: keep one meal routine",
+          "minutes": 2,
+          "task": {
+            "title": "After treatment: keep one meal routine",
+            "steps": [
+              "One option: beans on toast. You need bread and a tin of beans; use foods that suit your preferences and allergies.",
+              "Toast the bread, heat the beans following the tin instructions, and serve. Already have another familiar meal in mind? Use that instead.",
+              "Choose when it will fit your day.",
+              "Choose one day to repeat this meal routine. Keeping it familiar can make the week easier."
+            ],
+            "link": {
+              "label": "Choose another meal in Grub",
+              "url": "/member/grub"
+            }
+          },
+          "reason": "You chose “Enjoy time with the family” and saved “Three late shifts and no free evenings”. You said your last step helped. Keep that useful bit. After treatment: keep what works.",
+          "status": "prepared"
+        }
+      }
+    },
+    {
+      "id": "S04",
+      "name": "Return after 15 days without a backlog",
+      "status": "PASS",
+      "evidence": {
+        "simulatedClock": true,
+        "action": {
+          "id": "81aeb9d3-5dca-4a72-bc4f-ec895a20fb6a",
+          "type": "food-plan",
+          "title": "Pick one thing to restart your week",
+          "minutes": 2,
+          "task": {
+            "title": "Tonight: one familiar meal",
+            "steps": [
+              "One option: beans on toast. You need bread and a tin of beans; use foods that suit your preferences and allergies.",
+              "Toast the bread, heat the beans following the tin instructions, and serve. Already have another familiar meal in mind? Use that instead.",
+              "Choose when it will fit your day."
+            ],
+            "link": {
+              "label": "Choose another meal in Grub",
+              "url": "/member/grub"
+            }
+          },
+          "reason": "You chose “Enjoy time with the family” and saved “Three late shifts and no free evenings”. During treatment: make the week easier.",
+          "status": "prepared"
+        },
+        "queue": 0,
+        "externalNotifications": 0
+      }
+    },
+    {
+      "id": "S05",
+      "name": "Tried the step; it did not help",
+      "status": "PASS",
+      "evidence": {
+        "before": {
+          "id": "fcbfe55b-f3f0-4258-982e-03e867e8d252",
+          "type": "food-plan",
+          "title": "Pick a familiar meal for your busiest day",
+          "minutes": 2,
+          "task": {
+            "title": "Tonight: one familiar meal",
+            "steps": [
+              "One option: beans on toast. You need bread and a tin of beans; use foods that suit your preferences and allergies.",
+              "Toast the bread, heat the beans following the tin instructions, and serve. Already have another familiar meal in mind? Use that instead.",
+              "Choose when it will fit your day."
+            ],
+            "link": {
+              "label": "Choose another meal in Grub",
+              "url": "/member/grub"
+            }
+          },
+          "reason": "You chose “Enjoy time with the family” and saved “Three late shifts and no free evenings”. During treatment: make the week easier.",
+          "status": "prepared"
+        },
+        "after": {
+          "id": "c9b7c7c6-07e6-47ca-abc8-07a3dd84a5cd",
+          "type": "food-assemble",
+          "title": "Choose one familiar no-cook meal",
+          "minutes": 2,
+          "task": {
+            "title": "A meal without a cooker",
+            "steps": [
+              "Choose a no-cook meal you already like. One option is a sandwich using bread and a ready-to-eat filling that suits your preferences and allergies.",
+              "Check the label and storage instructions. Put the missing ingredients on your usual list.",
+              "Choose when you will use it; you do not need new cooking equipment."
+            ],
+            "link": {
+              "label": "Find another option in Grub",
+              "url": "/member/grub"
+            }
+          },
+          "reason": "You chose “Enjoy time with the family” and saved “Three late shifts and no free evenings”. You said “Tonight: one familiar meal” didn’t help. This tries a different approach. During treatment: make the week easier.",
+          "status": "prepared"
+        },
+        "rejected": [
+          "food-plan"
+        ]
+      }
+    },
+    {
+      "id": "S06",
+      "name": "Smaller action helped; saved result remains",
+      "status": "PASS",
+      "evidence": {
+        "smaller": {
+          "id": "99297098-c2af-4efd-aba8-e1fbf3c3fc33",
+          "type": "food-plan",
+          "title": "Name one familiar meal",
+          "minutes": 1,
+          "task": {
+            "title": "Name one familiar meal",
+            "steps": [
+              "Choose one meal you already know how to make. That is enough for today."
+            ],
+            "link": {
+              "label": "Choose another meal in Grub",
+              "url": "/member/grub"
+            }
+          },
+          "reason": "You chose “Enjoy time with the family” and saved “Three late shifts and no free evenings”. Your last step didn’t fit. This keeps the aim and makes the first step smaller. During treatment: make the week easier.",
+          "status": "prepared"
+        },
+        "returned": {
+          "id": "eaf83418-156d-4762-a26f-ebbc474b6193",
+          "type": "food-plan",
+          "title": "Name one familiar meal",
+          "minutes": 1,
+          "task": {
+            "title": "Name one familiar meal",
+            "steps": [
+              "Choose one meal you already know how to make. That is enough for today."
+            ],
+            "link": {
+              "label": "Choose another meal in Grub",
+              "url": "/member/grub"
+            }
+          },
+          "reason": "You chose “Enjoy time with the family” and saved “Three late shifts and no free evenings”. You said your last step helped. Keep that useful bit. During treatment: make the week easier.",
+          "status": "prepared"
+        },
+        "outcomes": [
+          "didnt-fit",
+          "helped"
+        ]
+      }
+    },
+    {
+      "id": "S07",
+      "name": "Tracking declined; cross-account isolation",
+      "status": "PASS",
+      "evidence": {
+        "optionalConsentHonoured": true,
+        "secondAccountHasNoMemory": true,
+        "rejectedSaveStatus": 409
+      }
+    },
+    {
+      "id": "S08",
+      "name": "Lost response, retry and a stale tab",
+      "status": "PASS",
+      "evidence": {
+        "sameOperationRetry": "deduplicated",
+        "staleOverwrite": "rejected",
+        "latestFactRetained": true
+      }
+    },
+    {
+      "id": "S09",
+      "name": "sore-knees relevant practical support",
+      "status": "PASS",
+      "evidence": {
+        "action": {
+          "id": "35db56c7-c537-444e-ad1a-6d5ea398f4c9",
+          "type": "movement-suitable",
+          "title": "Name one movement question",
+          "minutes": 2,
+          "task": {
+            "title": "Choose the movement advice you need first",
+            "steps": [
+              "Note one question for your GP or physiotherapist about movement with sore knees, and any advice you have already been given.",
+              "Use that professional advice before choosing activity. This step does not prescribe an exercise or ask you to push through pain."
+            ],
+            "link": {
+              "label": "Browse Fit",
+              "url": "/member/fit"
+            }
+          },
+          "reason": "You chose “Enjoy time with the family” and saved “Three late shifts and no free evenings”. You chose “Working around sore knees” as what is hardest right now. During treatment: make the week easier.",
+          "status": "prepared"
+        }
+      }
+    },
+    {
+      "id": "S10",
+      "name": "low-appetite relevant practical support",
+      "status": "PASS",
+      "evidence": {
+        "action": {
+          "id": "0bb2922b-3de8-4ba3-8db1-4816daee6210",
+          "type": "food-appetite",
+          "title": "Choose one manageable meal",
+          "minutes": 2,
+          "task": {
+            "title": "Keep one manageable meal in your day",
+            "steps": [
+              "Choose one familiar balanced meal in an amount you can manage. Do not make skipping meals the plan.",
+              "Choose when it fits and another opportunity to eat. Persistent difficulty eating belongs with a healthcare professional."
+            ],
+            "link": {
+              "label": "Find a meal in Grub",
+              "url": "/member/grub"
+            }
+          },
+          "reason": "You chose “Enjoy time with the family” and saved “Three late shifts and no free evenings”. You chose “A small appetite makes meals awkward” as what is hardest right now. During treatment: make the week easier.",
+          "status": "prepared"
+        }
+      }
+    }
+  ]
+}

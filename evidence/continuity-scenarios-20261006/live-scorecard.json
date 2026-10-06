@@ -1,0 +1,142 @@
+{
+  "source": "4460ea56f931da4003ace68d5d404831c47e08f7",
+  "startedAt": "2026-10-06T20:54:48.453Z",
+  "completedAt": "2026-10-06T20:54:54.124Z",
+  "method": "Existing continuityScorecard against production D1 using SELECT/PRAGMA only. No raw member records persisted or returned. Sequential reads are not a transactional snapshot.",
+  "queryReceipts": [
+    {
+      "rowsRead": 367,
+      "rowsWritten": 0
+    },
+    {
+      "rowsRead": 31186,
+      "rowsWritten": 0
+    },
+    {
+      "rowsRead": 22936,
+      "rowsWritten": 0
+    },
+    {
+      "rowsRead": 23003,
+      "rowsWritten": 0
+    },
+    {
+      "rowsRead": 22943,
+      "rowsWritten": 0
+    },
+    {
+      "rowsRead": 0,
+      "rowsWritten": 0
+    },
+    {
+      "rowsRead": 22925,
+      "rowsWritten": 0
+    }
+  ],
+  "scorecard": {
+    "available": true,
+    "version": "continuity-first-today-v1",
+    "asOf": "2026-10-06T20:54:48.453Z",
+    "timezone": "Europe/London",
+    "cohortSince": "2026-07-08T20:54:48.453Z",
+    "todayStarters": 4,
+    "day1Loop": {
+      "status": "unavailable",
+      "numerator": null,
+      "denominator": null,
+      "ratePct": null,
+      "reason": "Meal selection is not evidence of eating. The four completed stages cannot currently be established."
+    },
+    "firstWeekUsefulStep": {
+      "status": "observed",
+      "numerator": 0,
+      "denominator": 3,
+      "ratePct": 0,
+      "answeredMembers": 0,
+      "unansweredMembers": 3,
+      "window": "Days 1–7 after first Today exposure; full Day 7 must have ended.",
+      "definition": "Eligible Today starters who reported at least one saved help episode helpful within their first seven London calendar days. Each member counts once; missing feedback remains in the denominator. Latest answer per episode within the window is used. This is self-reported usefulness, not treatment effectiveness."
+    },
+    "week1": {
+      "status": "observed",
+      "numerator": 0,
+      "denominator": 3,
+      "ratePct": 0,
+      "window": "Days 2–7; full Day 7 must have ended."
+    },
+    "week4": {
+      "status": "not_yet_eligible",
+      "numerator": 0,
+      "denominator": 0,
+      "ratePct": null,
+      "window": "Days 22–28; full Day 28 must have ended."
+    },
+    "helped": {
+      "status": "observed",
+      "numerator": 1,
+      "denominator": 3,
+      "ratePct": 33.33
+    },
+    "feedbackCoverage": {
+      "status": "observed",
+      "numerator": 3,
+      "denominator": 8,
+      "ratePct": 37.5,
+      "unanswered": 5
+    },
+    "medicationElsewhere": {
+      "status": "unavailable",
+      "numerator": null,
+      "denominator": null,
+      "ratePct": null,
+      "reason": "No explicit cohort segment capture is available. Prescription/provider details are not inferred."
+    },
+    "recruitment": {
+      "status": "unavailable",
+      "numerator": null,
+      "denominator": null,
+      "ratePct": null,
+      "reason": "Invitation and enrolment register not supplied."
+    },
+    "openMemberP0s": {
+      "status": "unavailable",
+      "numerator": null,
+      "denominator": null,
+      "ratePct": null,
+      "reason": "A reviewed issue register is required."
+    },
+    "decision": {
+      "status": "not_assessed",
+      "reason": "Success thresholds have not been set; this report cannot open the expansion gate."
+    },
+    "privacy": "Aggregate only; no identities, health measurements, free text or episode contents returned.",
+    "definitions": {
+      "exposure": "First acknowledged visible Today panel, including members who never complete a check-in. Prospective capture; no registration/login backfill.",
+      "meaningfulAction": "Retained check-ins, completed Fit/Next Shift actions and feedback on saved help, including the new everyday coach. Login, refresh, planning and meal selection do not count.",
+      "episodes": "Persisted help offered by check-in/Next Shift or accepted everyday coaching, de-duplicated by linked episode ID; latest response per episode; skipping the question is unanswered. Window is episode delivery date.",
+      "helped": "Member-reported product signal, not clinical efficacy."
+    },
+    "limitations": [
+      "Historical first Today exposure is unavailable before this instrumentation.",
+      "Browser acknowledgement is evidence of rendering, not independent proof of attention.",
+      "Retained Fit entries are capped by the existing product; erasure or overwritten records can reduce historical evidence.",
+      "Historical coach actions without an acceptance timestamp use preparation time as the episode-date proxy; preparation alone does not count as return.",
+      "Unlabelled staff/test identities cannot be excluded reliably."
+    ],
+    "supportFollowThrough": {
+      "status": "observed",
+      "openRequests": 0,
+      "unassignedRequests": 0,
+      "withoutUpdate48Hours": 0,
+      "unknownUpdateTime": 0,
+      "teamMarkedClosed": 0,
+      "memberConfirmedResolution": {
+        "status": "observed",
+        "requests": 0,
+        "basis": "Member explicitly confirmed the latest team reply answered the request. This does not measure clinical benefit."
+      },
+      "responsePromise": null,
+      "scope": "All retained real-member coaching requests as of the report time, including requests older than the cohort window. Closed status is not proof that help was delivered. The 48-hour marker highlights waiting work; it is not a promised response time."
+    }
+  }
+}

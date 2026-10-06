@@ -109,3 +109,15 @@ test('reviewable functions and stable browser injection constants remain byte sy
     assert.equal(Buffer.from(encoded, 'base64').toString('utf8'), readable);
   }
 });
+
+test('timed legacy movement renders minutes or seconds, never repetitions, through every effort choice',()=>{
+ const {exercise,adjustSession}=runtimeFunctions();
+ for(const seconds of [300,30]){
+ const card=cardFromRenderedHtml(exercise({id:'timed',sets:1,reps:null,time_seconds:seconds,minutes:5,rest_seconds:75},0,0));
+ assert.doesNotMatch(card.metrics.innerHTML,/REPS/);
+ assert.match(card.metrics.innerHTML,seconds===300?/5 MIN/:/30 SEC/);
+ if(seconds===30)assert.doesNotMatch(card.metrics.innerHTML,/5 MIN/);
+ const session=effortSession([card]);
+ for(const button of session.buttons){adjustSession(button);assert.doesNotMatch(card.metrics.innerHTML,/REPS/);assert.match(card.metrics.innerHTML,/MIN|SEC/);}
+ }
+});

@@ -4,7 +4,8 @@ export function savedFitIssues(plan={}){
  for(const [index,session] of (plan.sessions||[]).entries()){
   const requested=Number(session.requested_minutes||plan.minutes_per_day),location=String(session.location||plan.location||'').toLowerCase();
   for(const item of session.exercises||[]){
-   const identity=String(item.id||'')+' '+String(item.name||'');
+   if(item.timing_review_required)issues.push({session:index,id:item.id,reason:'timing'});
+        const identity=String(item.id||'')+' '+String(item.name||'');
    const phase=/cool[- ]down/i.test(identity)?'cool-down':/warm[- ]up/i.test(identity)?'warm-up':null;
    const slot=String(item.group||'').toLowerCase().replace(/[ _]/g,'-');
    if(phase&&slot!==phase)issues.push({session:index,id:item.id,reason:'phase'});
@@ -22,6 +23,7 @@ export const savedFitReviewRuntime=String.raw`
     for(const [index,session] of (plan.sessions||[]).entries()){
       const requested=Number(session.requested_minutes||plan.minutes_per_day),location=String(session.location||plan.location||'').toLowerCase();
       for(const item of session.exercises||[]){
+        if(item.timing_review_required)issues.push({session:index,id:item.id,reason:'timing'});
         const identity=String(item.id||'')+' '+String(item.name||'');
         const phase=/cool[- ]down/i.test(identity)?'cool-down':/warm[- ]up/i.test(identity)?'warm-up':null;
         const slot=String(item.group||'').toLowerCase().replace(/[ _]/g,'-');

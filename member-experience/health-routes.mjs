@@ -1,3 +1,4 @@
+import {restoreSavedFitTiming} from './fit-timed-dose.mjs';
 import {unitSettingsRoute} from './unit-settings.mjs';
 import {deviceHealthRoutes,readDeviceHealth} from './device-health.mjs';
 import {saveCheckinWithAction,latestCheckinAction,reviewCheckinAction} from './checkin-followup.mjs';
@@ -92,7 +93,7 @@ export async function memberHealthRoutes(request,env){
  const current=parse(row?.preferences).fitJourney||{entries:{},sessionReviews:{}};
  if(method==='GET'){
   const saved=await env.DB.prepare("SELECT plan_json FROM shift_plans WHERE user_id=? AND plan_type='fit' AND status='active' ORDER BY id DESC LIMIT 1").bind(auth.userId).first();
-  return json({fitJourney:current,plan:saved?parse(saved.plan_json):null});
+  return json({fitJourney:current,plan:saved?await restoreSavedFitTiming(env.DB,parse(saved.plan_json)):null});
  }
  if(method!=='POST')return json({error:'method_not_allowed'},405);
  const activity=body.fitJourney;

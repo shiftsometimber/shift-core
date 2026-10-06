@@ -1,0 +1,19 @@
+✔ real original publisher produces all 1326 exact protected hashes accepted by pending authority (74.353834ms)
+✔ wire export reproduces every exact row and shared canonical hash without claiming trainer approval (34.773667ms)
+✔ 2688 served protocols cover all 300 movements while physical2868 preserve all old row bytes and saved IDs (196.545125ms)
+✔ paged serving retrieves beyond2500 and never drops additions (142.637375ms)
+✔ missing, stale, tampered or forged authority fails closed without changing protected originals (840.631083ms)
+✔ full original snapshot binds exact data and review bytes and rejects any existing addition ID (57.327833ms)
+✔ source doses retain total-side and timed units, with no numeric changes (1.463375ms)
+✔ stale or fabricated review and owner bindings are rejected before export (545.105375ms)
+✔ new protocol selection requires every listed kit item and never infers medical or advanced clearance (1.220333ms)
+✔ full timed work and rest must fit the remaining session; prescriptions are never shortened to fit (0.50925ms)
+✔ current member authority activates the exact 300-movement owner release (104.422291ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3417.064375
