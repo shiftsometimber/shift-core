@@ -23,6 +23,7 @@ export async function verifySixTopicSeoProof(get,composedSource=SIX_TOPIC_SEO_CO
  const read=(ref,path)=>execFileSync('git',['rev-parse',ref+':'+path],{encoding:'utf8'}).trim();
  const follow=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8')).seoFollowThroughComposition;
  if(follow)for(const path of [...SIX_TOPIC_SEO_PATHS,...PRACTICAL_GUIDES_PATHS]){const pin=followPinnedRef(follow,path);if(pin)assert.equal(read('HEAD',path),read(pin,path),'Exact composed SEO verifier drift: '+path);}
+ if(follow?.tabletGuidanceComposition){const t=follow.tabletGuidanceComposition;assert(t.run&&t.proofSource,'Hosted tablet guidance proof required');const run=await get('/actions/runs/'+t.run);assert.equal(run.head_sha,t.proofSource);assert.equal(run.path,'.github/workflows/practical-guides-proof.yml');assert.equal(run.conclusion,'success');}
  validateSixTopicSeoSource(followHistoricalRead(read,follow),composedSource);
  return {run:proof.id,source:proof.head_sha,rankingImprovementClaimed:false,clinicalApproval:false};
 }

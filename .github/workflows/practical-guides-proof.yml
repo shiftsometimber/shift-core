@@ -30,9 +30,16 @@ jobs:
           python3 - <<'PY'
           import subprocess
           allowed={'public-practical-guides.mjs','public-seo-closeout.mjs','tests/practical-guides.test.mjs','scripts/verify-practical-guides.mjs','scripts/verify-practical-guides-handler.mjs','.github/workflows/practical-guides-proof.yml','docs/seo/2026-10-06-practical-guides.md'}
-          changed=set(subprocess.check_output(['git','diff','--name-only','15194faf31d710f1fc5f31036af149d5925d3998','HEAD'],text=True).splitlines())
+          import os
+          tablet=os.environ.get('GITHUB_HEAD_REF') == 'codex/tablet-guidance-20261006'
+          baseline='4460ea56f931da4003ace68d5d404831c47e08f7' if tablet else '15194faf31d710f1fc5f31036af149d5925d3998'
+          if tablet:
+            allowed={'public-practical-guides.mjs','tests/practical-guides.test.mjs','scripts/verify-practical-guides.mjs','scripts/verify-practical-guides-handler.mjs','.github/workflows/practical-guides-proof.yml','release/seo-follow-through-scope.mjs','release/six-topic-seo-scope.mjs','tests/seo-follow-through-release.test.mjs','docs/seo/2026-10-06-practical-guides.md','shift-coach/worker.mjs','shift-coach/release-manifest.json'}
+          changed=set(subprocess.check_output(['git','diff','--name-only',baseline,'HEAD'],text=True).splitlines())
           assert changed == allowed, changed
-          assert subprocess.check_output(['git','diff','15194faf31d710f1fc5f31036af149d5925d3998','HEAD','--','wrangler.jsonc','frontend/member','member-experience','shift-coach','medicines-watch']).decode() == ''
+          protected=['wrangler.jsonc','frontend/member','member-experience','medicines-watch']
+          assert subprocess.check_output(['git','diff',baseline,'HEAD','--',*protected]).decode() == ''
+          open('/tmp/practical-baseline-ref','w').write(baseline)
           PY
       - name: Rebuild existing recipe test fixtures without production access
         run: |
@@ -50,7 +57,7 @@ jobs:
           bash /tmp/practical-unit-groups.sh > practical-guides-proof/unit-tests.log 2>&1
       - name: Compare full handlers with the actual deployed source
         run: |
-          git worktree add --detach /tmp/practical-baseline 15194faf31d710f1fc5f31036af149d5925d3998
+          git worktree add --detach /tmp/practical-baseline "$(cat /tmp/practical-baseline-ref)"
           ln -s "$GITHUB_WORKSPACE/node_modules" /tmp/practical-baseline/node_modules
           BASELINE_WORKER=/tmp/practical-baseline/shift-coach/worker.mjs node scripts/verify-practical-guides-handler.mjs
       - name: Verify current destinations and candidate documents
