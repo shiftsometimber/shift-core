@@ -1,0 +1,245 @@
+{
+  "reviewedAt": "2026-10-06T07:26:30Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add GUB-UCN2 as recruiting Phase 1/2a muscle-volume and muscle-function research and MBL949 as a terminated Phase 2 obesity programme after complete primary sponsor and registry review. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "gub-ucn2",
+      "name": "GUB-UCN2",
+      "developer": "Gubra",
+      "group": "research",
+      "stage": "Recruiting first-in-human Phase 1/2a research",
+      "summary": "GUB-UCN2 is an investigational subcutaneous urocortin-2 analogue and selective CRHR2 agonist. Gubra reported on 28 July 2026 that the first participant had completed the first visit in a three-part Phase 1/2a study. The sponsor-submitted registry records a recruiting study with an actual 27 July 2026 start, approximately 188 planned participants, and monotherapy and incretin-combination cohorts. Muscle volume and muscle function are planned study endpoints.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for GUB-UCN2, alone or in combination.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by this early research.",
+      "supply": "Clinical development in Germany does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "Recruitment, first visit and an actual study start are not efficacy or safety results. The 188-participant enrolment and December 2028 completion remain estimates, and the registry has no posted results. Muscle-volume, muscle-function and combination cohorts are planned research, not demonstrated preservation, improved function or added benefit. All reported fat-mass, lean-mass, cardiac, renal and metabolic effects in the 28 July announcement are preclinical, not human findings. The evidence establishes no approved dose, UK authorisation, NICE or NHS access, UK supply or clinical approval.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-06T07:26:30Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07702890: GUB-UCN2 Phase 1/2",
+          "url": "https://clinicaltrials.gov/study/NCT07702890",
+          "sourcePublishedAt": "2026-07-14",
+          "sourceUpdatedAt": "2026-09-10",
+          "reviewedAt": "2026-10-06T07:26:30Z",
+          "checkScope": "Automatic record-status checks for identity, phase, recruitment, typed dates, estimated enrolment and posted-results state; no assessment of clinical outcomes."
+        },
+        {
+          "title": "Gubra: GUB-UCN2 Phase 1/2a initiation",
+          "url": "https://www.gubra.dk/mfn_news/gubra-announces-initiation-of-ambitious-phase-1-2a-clinical-trial-of-lead-asset-gub-ucn2-in-obesity/",
+          "sourcePublishedAt": "2026-07-28",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-06T07:26:30Z",
+          "evidenceType": "Original sponsor trial-initiation announcement",
+          "checkScope": "Complete sponsor announcement read for first visit, design and planned cohorts. Preclinical body-composition statements are not human results. Not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "mbl949",
+      "name": "MBL949",
+      "developer": "Novartis",
+      "group": "discontinued",
+      "stage": "Phase 2 trial terminated early; obesity development not continued",
+      "summary": "The sponsor-submitted NCT05199090 record and Novartis patient summary describe a 126-participant Phase 2 obesity study that started in February 2022 and ended early in May 2023. Novartis says the observed tolerability-to-benefit balance was not favourable at the studied doses and that it decided not to continue studying MBL949 in obesity.",
+      "ukAuthorisation": "The reviewed evidence does not establish UK marketing authorisation for MBL949.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established. A stopped research programme is not an NHS treatment option.",
+      "supply": "The reviewed evidence does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The registry labels the study terminated and includes posted results, but this concise Watch entry does not independently reanalyse its efficacy or adverse-event tables. Novartis's patient summary says the early-stop decision was not related to the safety of MBL949 while also stating that the effect on weight loss was insufficient given the number of adverse events; both statements are retained without turning them into a broader safety conclusion. This programme must not be presented as active, authorised or supplied, and its outcome does not establish conclusions about other GDF15-pathway candidates.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-06T07:26:30Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT05199090: MBL949 Phase 2",
+          "url": "https://clinicaltrials.gov/study/NCT05199090#study-results",
+          "sourcePublishedAt": "2022-01-20",
+          "sourceUpdatedAt": "2024-10-09",
+          "reviewedAt": "2026-10-06T07:26:30Z",
+          "checkScope": "Complete sponsor-submitted registry record read for terminated status, stopping reason, actual dates, actual enrolment and posted-results state. Not automatically content-monitored because interpreting posted outcomes needs a separate factual review."
+        },
+        {
+          "title": "Novartis patient results summary: CMBL949A12201",
+          "url": "https://www.novctrd.com/ctrdweb/patientsummary/patientsummaries?patientSummaryId=2083",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-06T07:26:30Z",
+          "evidenceType": "Sponsor patient results summary",
+          "checkScope": "Complete eight-page sponsor PDF read for study population, early termination and the decision not to continue obesity development. The document does not state a publication or update date; both remain unknown. Not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct07702890",
+      "nctId": "NCT07702890",
+      "title": "ClinicalTrials.gov NCT07702890: GUB-UCN2 Phase 1/2",
+      "url": "https://clinicaltrials.gov/study/NCT07702890",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07702890",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07702890",
+        "Gubra A/S"
+      ],
+      "reviewedAt": "2026-10-06T07:26:30Z",
+      "sourcePublishedAt": "2026-07-14",
+      "sourceUpdatedAt": "2026-09-10",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07702890",
+        "title": "A Three-part First-in-human Trial to Assess Safety, Tolerability, Pharmacokinetics and Pharmacodynamics of GUB-UCN2 in Healthy Lean and Obese Participants and Participants With T2D",
+        "sponsor": "Gubra A/S",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1",
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 188,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-07-27",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2028-12",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2028-12",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2026-07-14",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-09-10",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "gub-ucn2"
+      ],
+      "rawResponseSha256": "2890c75bcd093fa5f0bb33348bf107dd714665ea36c481c1c91dc30d57fbb37a",
+      "reviewedFingerprint": "aed3c4ac92fe73b6fec4963b77900872b9213fe61c25a95e76599b4854028fa4"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07702890",
+      "publicationDate": "2026-07-14",
+      "updateDate": "2026-09-10",
+      "reviewedAt": "2026-10-06T07:26:30Z",
+      "rawResponseSha256": "2890c75bcd093fa5f0bb33348bf107dd714665ea36c481c1c91dc30d57fbb37a",
+      "outcome": "Complete primary API body read: recruiting Phase 1/2 research; actual 27 July 2026 start; 188 estimated participants; estimated December 2028 primary and final completion; no posted results."
+    },
+    {
+      "url": "https://www.gubra.dk/mfn_news/gubra-announces-initiation-of-ambitious-phase-1-2a-clinical-trial-of-lead-asset-gub-ucn2-in-obesity/",
+      "publicationDate": "2026-07-28",
+      "updateDate": null,
+      "reviewedAt": "2026-10-06T07:26:30Z",
+      "retrievedAt": "2026-10-06T07:26:04Z",
+      "httpStatus": 200,
+      "responseSha256": "46d5be7575b79019b4ac600bc14ea0f6f0f28772270b9fc5d6908acd1141cf5f",
+      "outcome": "Complete original sponsor announcement read. Human trial initiation, first visit and planned endpoints remain separate from the announcement's preclinical findings."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT05199090",
+      "publicationDate": "2022-01-20",
+      "updateDate": "2024-10-09",
+      "reviewedAt": "2026-10-06T07:26:30Z",
+      "rawResponseSha256": "bcb6ffdf4b0ec30246025fc9eca2e0360f81f4004af2289a2e9d47d0c6475060",
+      "outcome": "Complete primary API body read: terminated Phase 2 study; actual 10 February 2022 start and 11 May 2023 completion; 126 actual participants; posted results present."
+    },
+    {
+      "url": "https://www.novctrd.com/ctrdweb/patientsummary/patientsummaries?patientSummaryId=2083",
+      "publicationDate": null,
+      "updateDate": null,
+      "reviewedAt": "2026-10-06T07:26:30Z",
+      "retrievedAt": "2026-10-06T07:26:12Z",
+      "httpStatus": 200,
+      "contentType": "application/pdf",
+      "bytes": 866933,
+      "responseSha256": "c69cc34e4b505940ca422cabdf7289f73300ccbbceba9d98db258fbe640332a2",
+      "outcome": "Complete eight-page sponsor patient summary read. The document reports early termination and says Novartis did not continue studying MBL949 in obesity; its publication and update dates remain unverified."
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-06T07:18:41Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 176,
+    "currentSources": 174,
+    "overdueReviews": 0,
+    "withdrawnSources": 0,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "reviewStatus": "verification_pending",
+        "error": "http_403",
+        "lastAttemptAt": "2026-10-06T07:15:51.480Z",
+        "lastSuccessAt": null
+      },
+      {
+        "id": "apitegromab-embraze-paper",
+        "status": "check_delayed",
+        "reviewStatus": "reviewed",
+        "error": "http_503",
+        "lastAttemptAt": "2026-10-06T07:15:51.480Z",
+        "lastSuccessAt": "2026-10-06T06:01:25.029Z"
+      }
+    ],
+    "independentRecovery": {
+      "id": "apitegromab-embraze-paper",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13375528/fullTextXML",
+      "retrievedAt": "2026-10-06T07:22:21Z",
+      "httpStatus": 200,
+      "contentType": "application/xml",
+      "bytes": 84506,
+      "outcome": "The complete source route recovered independently after the single scheduled HTTP 503. The monitor warning remains until a later scheduled check succeeds; no review date or baseline is changed."
+    },
+    "boundary": "Availability checks do not renew factual or medical reviews, approve changed wording or establish complete industry coverage. The longstanding Zealand 403 and the transient EMBRAZE 503 remain explicit."
+  },
+  "discoveryPass": {
+    "method": "A separate current-date and broader undated pass covered early and late obesity programmes, muscle-preservation approaches, combinations, specialist indications, stopped programmes and smaller or international developers. Results were reconciled with current main and open review work before publication selection.",
+    "included": "GUB-UCN2 closes a current early-stage muscle-function and incretin-combination gap. MBL949 closes an older terminated-programme gap that would otherwise disappear from an active-pipeline-only view.",
+    "notDuplicated": "The current 103-programme main branch and zero open pull requests were checked. GUB-UCN2 and MBL949 were absent; 710GO and the latest core lifecycle receipts were already present in main and were not duplicated.",
+    "incompleteChecks": [
+      "Selected search results, sponsor pages and catalogue counts cannot exclude indexing delays, unpublished programmes or further older and international omissions.",
+      "MBL949's posted registry results and sponsor patient summary support programme status, but this concise Watch addition is not a new statistical or clinical interpretation of the trial.",
+      "GUB-UCN2 has no posted human results. Planned body-composition and function endpoints and sponsor preclinical findings are not human benefit claims."
+    ],
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "widerBefore": 97,
+    "widerAfter": 99,
+    "totalBefore": 103,
+    "totalAfter": 105,
+    "configuredSourcesBefore": 176,
+    "configuredSourcesAfter": 177,
+    "trialRecordsBefore": 114,
+    "trialRecordsAfter": 115
+  },
+  "nextAction": "Run the complete Watch and release-scope checks, publish the exact passing commit through a reviewable pull request and guarded production workflow, then verify GUB-UCN2, MBL949, the Treatments entry and the SELECT-only health endpoint on the live site."
+}
