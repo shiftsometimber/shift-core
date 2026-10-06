@@ -1,0 +1,195 @@
+{
+  "kind": "owner_authorised_isolated_tablet_runtime",
+  "deployment": {
+    "at": "2026-10-06T21:11:33.552Z",
+    "source": "25ead1b54126e5596db11845efbcf3b888fc5a31",
+    "isolatedBase": "4460ea56f931da4003ace68d5d404831c47e08f7",
+    "hostedProof": 37531509514,
+    "previousDeployment": "f07a6f14-c7e7-497f-b7e5-23b6540ca42c",
+    "previousVersion": "33da329f-98ae-46ce-8090-150ad06b7ea9",
+    "deployment": "b6fa58e8-4953-46ca-8983-06dff8a53fd2",
+    "version": "2dd57a8f-8597-4f5c-ab5b-86d6e037a8f7",
+    "databaseWrites": false,
+    "clinicalReview": false
+  },
+  "liveProof": {
+    "checkedAt": "2026-10-06T21:11:45.412Z",
+    "mode": "live",
+    "pages": [
+      {
+        "path": "/comparisons/medications/wegovy-injection-vs-tablets",
+        "url": "https://shiftsometimber.co.uk/comparisons/medications/wegovy-injection-vs-tablets",
+        "canonical": "https://shiftsometimber.co.uk/comparisons/medications/wegovy-injection-vs-tablets",
+        "htmlSha256": "67cabdf6221ab8939abd2e43e95eb4b235ef13ebe43d32bda3a3451cf9b553df",
+        "contentWords": 650,
+        "existingGuidancePreserved": false
+      },
+      {
+        "path": "/articles/oral-semaglutide-for-weight-loss",
+        "url": "https://shiftsometimber.co.uk/articles/oral-semaglutide-for-weight-loss",
+        "canonical": "https://shiftsometimber.co.uk/articles/oral-semaglutide-for-weight-loss",
+        "htmlSha256": "bd752054de400802428414fa8f402a186406b165b420ccc717049ef39fce177a",
+        "contentWords": 675,
+        "existingGuidancePreserved": false
+      },
+      {
+        "path": "/foundayo",
+        "url": "https://shiftsometimber.co.uk/foundayo",
+        "canonical": "https://shiftsometimber.co.uk/foundayo",
+        "htmlSha256": "24747b4ca8c737fb766d53b62230723792a522cae2495a15738e6e3b7c2583dd",
+        "contentWords": 302,
+        "existingGuidancePreserved": false
+      },
+      {
+        "path": "/articles/weight-loss-after-40-men",
+        "url": "https://shiftsometimber.co.uk/articles/weight-loss-after-40-men",
+        "canonical": "https://shiftsometimber.co.uk/articles/weight-loss-after-40-men",
+        "htmlSha256": "55f149c78e8e863d7d47ce23a44528fff482cca4f70f588517a4fdfb177b5792",
+        "contentWords": 620,
+        "existingGuidancePreserved": false
+      },
+      {
+        "path": "/guides/mens-weight-management-guide",
+        "url": "https://shiftsometimber.co.uk/mens-weight-management",
+        "canonical": "https://shiftsometimber.co.uk/mens-weight-management",
+        "htmlSha256": "a6adf76a98539c6604e759c62aeb42b42cbce81e1ef3f70c0c75611363580036",
+        "contentWords": 577,
+        "existingGuidancePreserved": false
+      },
+      {
+        "path": "/mens-weight-management",
+        "url": "https://shiftsometimber.co.uk/mens-weight-management",
+        "canonical": "https://shiftsometimber.co.uk/mens-weight-management",
+        "htmlSha256": "a6adf76a98539c6604e759c62aeb42b42cbce81e1ef3f70c0c75611363580036",
+        "contentWords": 577,
+        "existingGuidancePreserved": false
+      },
+      {
+        "path": "/guides/mounjaro-ultimate-uk-guide",
+        "url": "https://shiftsometimber.co.uk/mounjaro",
+        "canonical": "https://shiftsometimber.co.uk/mounjaro",
+        "htmlSha256": "26cba53d58bd937c14dd9f5ca161f0f2575eb868c56196efae6c46391f0a21a5",
+        "contentWords": 637,
+        "existingGuidancePreserved": false
+      },
+      {
+        "path": "/mounjaro",
+        "url": "https://shiftsometimber.co.uk/mounjaro",
+        "canonical": "https://shiftsometimber.co.uk/mounjaro",
+        "htmlSha256": "26cba53d58bd937c14dd9f5ca161f0f2575eb868c56196efae6c46391f0a21a5",
+        "contentWords": 637,
+        "existingGuidancePreserved": false
+      }
+    ],
+    "links": [
+      {
+        "path": "/articles/nhs-weight-loss-drugs",
+        "status": 200
+      },
+      {
+        "path": "/articles/oral-semaglutide-for-weight-loss",
+        "status": 200
+      },
+      {
+        "path": "/foundayo",
+        "status": 200
+      },
+      {
+        "path": "/articles/oral-semaglutide-for-weight-loss#tablet-first-month",
+        "status": 200
+      },
+      {
+        "path": "/member/dashboard?view=app#today",
+        "status": 200
+      },
+      {
+        "path": "/guides/nutrition-protein-calories-meal-planning",
+        "status": 200
+      },
+      {
+        "path": "/guides/mens-weight-management-guide",
+        "status": 200
+      },
+      {
+        "path": "/comparisons/medications/wegovy-injection-vs-tablets#tablets-and-injections-uk",
+        "status": 200
+      },
+      {
+        "path": "/foundayo#foundayo-first-month",
+        "status": 200
+      },
+      {
+        "path": "/mens-mental-health",
+        "status": 200
+      },
+      {
+        "path": "/articles/weight-loss-after-40-men",
+        "status": 200
+      },
+      {
+        "path": "/start-here",
+        "status": 200
+      }
+    ],
+    "protected": [
+      {
+        "path": "/",
+        "sha256": "a6aa39f2d44093d8174967b3d7b335ffa3da2ebf5dbff9c1ddb6cd378695e369",
+        "unchanged": true
+      },
+      {
+        "path": "/start-here",
+        "sha256": "4ed4845f845239307ec66120c571d17a0c4fd348f7bb51d02fcd81d5f46fd6ab",
+        "unchanged": true
+      },
+      {
+        "path": "/articles/wegovy-side-effects-timeline",
+        "sha256": "b2057feb6e1f4f7de126e68554c189fb833b5c2cd49f37341ec38365514fcfe1",
+        "unchanged": true
+      },
+      {
+        "path": "/articles/nhs-weight-loss-drugs",
+        "sha256": "cb0383478b64ca03bdd4d8b58ea26079460c8fac7a67e1ffeea6d017cbe31a1f",
+        "unchanged": true
+      },
+      {
+        "path": "/member-login",
+        "sha256": "848a2a7c2794c4358072983fd8c295668802da360959b91aaff94ab20c257f14",
+        "unchanged": true
+      },
+      {
+        "path": "/member-fit-programme-v1.js",
+        "sha256": "99149553ec5c0ed613fdc665fd24e054c79794965a20aeea7e12d2e1a7d9911e",
+        "unchanged": true
+      },
+      {
+        "path": "/member-grub-programme-v1.js",
+        "sha256": "68055e81ce50727713ae9e7fbbccc0f907a31e2db1d7967321fb2619b6edfca5",
+        "unchanged": true
+      },
+      {
+        "path": "/member-my-timber-problem-v1.js",
+        "sha256": "e86d1b18840e947fc833a4c3181347302c5622e5c1157fad2f95aca1429dcb2b",
+        "unchanged": true
+      }
+    ],
+    "failures": [],
+    "rankingImprovementClaimed": false,
+    "pass": true
+  },
+  "sourceProof": {
+    "run": 37531933891,
+    "job": 112503200497,
+    "source": "25ead1b54126e5596db11845efbcf3b888fc5a31"
+  },
+  "reviewProof": {
+    "run": 37531509514,
+    "job": 112501762193,
+    "source": "a9707c463f7681d49068fa0319418e5630510ba9"
+  },
+  "previousProof": {
+    "run": 37525779266,
+    "source": "4460ea56f931da4003ace68d5d404831c47e08f7"
+  },
+  "independentClinicalAcceptance": false
+}
