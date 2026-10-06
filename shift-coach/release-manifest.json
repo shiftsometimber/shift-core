@@ -465,7 +465,8 @@
       "editorial/five-articles/proof.mjs",
       "member-experience/public-preservation.mjs",
       "scripts/verify-public-continuity-live.mjs",
-      "scripts/verify-six-topic-seo.mjs"
+      "scripts/verify-six-topic-seo.mjs",
+      "release/six-topic-seo-scope.mjs"
     ],
     "maintenanceSource": "c41983f2a7b12771cea431f37ac73dd3c2bdc725",
     "ownerApproval": {

@@ -1,3 +1,5 @@
+import {followHistoricalRead,followPinnedRef} from './seo-follow-through-scope.mjs';
+import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 // Matt's 5 October Go covers only this finite informational SEO payload.
@@ -18,6 +20,9 @@ export async function verifySixTopicSeoProof(get,composedSource=SIX_TOPIC_SEO_CO
  const proof=await get('/actions/runs/37363778701');
  assert.equal(proof.head_sha,SIX_TOPIC_SEO_SOURCE);assert.equal(proof.path,'.github/workflows/six-topic-seo-proof.yml');assert.equal(proof.conclusion,'success');
  execFileSync('git',['merge-base','--is-ancestor',SIX_TOPIC_SEO_SOURCE,'HEAD']);
- validateSixTopicSeoSource((ref,path)=>execFileSync('git',['rev-parse',ref+':'+path],{encoding:'utf8'}).trim(),composedSource);
+ const read=(ref,path)=>execFileSync('git',['rev-parse',ref+':'+path],{encoding:'utf8'}).trim();
+ const follow=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8')).seoFollowThroughComposition;
+ if(follow)for(const path of [...SIX_TOPIC_SEO_PATHS,...PRACTICAL_GUIDES_PATHS]){const pin=followPinnedRef(follow,path);if(pin)assert.equal(read('HEAD',path),read(pin,path),'Exact composed SEO verifier drift: '+path);}
+ validateSixTopicSeoSource(followHistoricalRead(read,follow),composedSource);
  return {run:proof.id,source:proof.head_sha,rankingImprovementClaimed:false,clinicalApproval:false};
 }

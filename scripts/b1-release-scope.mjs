@@ -187,7 +187,7 @@ export function verifyScope(){
   git('merge-base','--is-ancestor',WATCH_REGISTRY_WAVE_COMMIT,'HEAD');
   validateWatchRegistryWave((ref,path)=>git('rev-parse',ref+':'+path));
   validateGrowthSource();
-  validateSixTopicSeoSource((ref,path)=>git('rev-parse',ref+':'+path),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFitComposition.source);
+  validateSixTopicSeoSource(followHistoricalRead((ref,path)=>git('rev-parse',ref+':'+path),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFitComposition.source);
   verifyHeadingRepair();
   verifyHomeSpeed();
   assert.equal(git('rev-parse','HEAD:release/seo794-preservation.mjs'),git('rev-parse','bcad2b051e932577a0b897f728610bdeb37282da:release/seo794-preservation.mjs'),'Exact homepage preservation correction drift');
