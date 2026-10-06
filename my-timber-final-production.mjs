@@ -32,17 +32,13 @@ await register();
 const browser=await chromium.launch({headless:true});
 const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',serviceWorkers:'allow',recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
 await context.addInitScript(()=>{
- const property=Object.getOwnPropertyDescriptor(HTMLIFrameElement.prototype,'src');
- Object.defineProperty(HTMLIFrameElement.prototype,'src',{...property,set(value){if(this.classList.contains('app-tool-frame'))queueMicrotask(()=>property.set.call(this,value));else property.set.call(this,value)}});
-});
-await context.addInitScript(()=>{
  window.__earlyTrace=[];const keep=(kind,detail)=>{window.__earlyTrace.push({kind,detail,at:performance.now()});if(window.__earlyTrace.length>120)window.__earlyTrace.shift()};
  for(const method of ['pushState','replaceState']){const orig=history[method];history[method]=function(...args){keep(method,{url:String(args[2]),stack:new Error().stack});return orig.apply(this,args)}}
  const orig=EventTarget.prototype.addEventListener;EventTarget.prototype.addEventListener=function(type,listener,options){if(type==='click'&&typeof listener==='function'){const stack=new Error().stack;const wrapped=function(e){const a=e.target.closest?.('.today-meal-action');if(a)keep('handler',{stack,href:a.getAttribute('href'),phase:e.eventPhase,prevented:e.defaultPrevented});return listener.call(this,e)};return orig.call(this,type,wrapped,options)}return orig.call(this,type,listener,options)};
  window.addEventListener('error',e=>keep('error',{message:e.message,filename:e.filename,lineno:e.lineno}));
 });
 const page=await context.newPage();
-report.proof='MY_TIMBER_GRUB_DEFERRED_FRAME_WITH_SERVICE_WORKER_V1';
+report.proof='MY_TIMBER_GRUB_EXPLICIT_PANEL_FETCH_DIAGNOSTIC_V1';
 
 report.frameLifecycle=[];const cdp=await context.newCDPSession(page);await cdp.send('Page.enable');for(const kind of ['frameAttached','frameDetached','frameStartedLoading','frameStoppedLoading','frameRequestedNavigation','frameNavigated'])cdp.on('Page.'+kind,event=>{const x={kind,frame:event.frameId||event.frame?.id,reason:event.reason,url:event.url?resourcePath(event.url):event.frame?.url?resourcePath(event.frame.url):null};report.frameLifecycle.push(x);if(report.frameLifecycle.length>80)report.frameLifecycle.shift()});
 page.on('console',m=>{if(m.type()==='error'){report.frameLifecycle.push({kind:'console-error',detail:m.text().slice(0,500)});if(report.frameLifecycle.length>80)report.frameLifecycle.shift()}});
@@ -110,6 +106,8 @@ try{
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Phone layout has no horizontal overflow');
   await screenshot(page,'01-billy-current-today');
   await page.evaluate(()=>{window.__toolTrace=[];const keep=(kind,detail)=>{window.__toolTrace.push({kind,detail,at:performance.now()});if(window.__toolTrace.length>80)window.__toolTrace.shift()};new MutationObserver(records=>{for(const r of records){for(const n of r.removedNodes)if(n.nodeType===1&&(n.matches('iframe,#appToolPanels,#appTool-grub')||n.querySelector('iframe')))keep('removed',n.outerHTML.slice(0,1400));for(const n of r.addedNodes)if(n.nodeType===1&&(n.matches('iframe,#appToolPanels,#appTool-grub')||n.querySelector('iframe')))keep('added',n.outerHTML.slice(0,1400))}}).observe(document.body,{childList:true,subtree:true});document.addEventListener('click',e=>{const n=e.target.closest('a');if(n)keep('click',{href:n.getAttribute('href'),prevented:e.defaultPrevented,tool:document.body.dataset.appTool})});});
+  const workers=context.serviceWorkers().filter(worker=>new URL(worker.url()).pathname==='/shift-push-sw-v1.js');assert(workers.length,'Existing member service worker must be active for this diagnostic');
+  for(const worker of workers)await worker.evaluate(()=>{self.addEventListener('fetch',event=>{const u=new URL(event.request.url),panel=/^\\/member\\/(fit|grub|life-back)$/.test(u.pathname)&&u.searchParams.get('app_panel')==='1'&&['app','web'].includes(u.searchParams.get('view'))&&u.searchParams.size===2;if(event.request.method==='GET'&&event.request.mode==='navigate'&&u.origin===self.location.origin&&panel)event.respondWith(fetch(event.request))})});
   await page.locator('.today-meal-action').click();
   const mealFrame=page.frameLocator('#appTool-grub iframe');
   await mealFrame.getByText(chosen.name,{exact:true}).filter({visible:true}).first().waitFor({state:'visible',timeout:45000});
@@ -121,4 +119,4 @@ try{
 }
 console.log(JSON.stringify(report,null,2));
 if(report.failures.length)throw new Error(`My Timber final production candidate failed ${report.failures.length} check(s)`);
-console.log('PASS isolated Grub saved-meal navigation diagnostic; no full acceptance or physical-device result.');
+console.log('PASS isolated Grub navigation with explicit existing-worker panel fetch; no full acceptance or physical-device result.');
