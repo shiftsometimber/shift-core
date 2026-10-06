@@ -147,7 +147,12 @@ export async function verifyTabletRuntime(active,version,text,get,getLogs){
  assert.equal(receipt.kind,'owner_authorised_isolated_tablet_runtime');
  assert.deepEqual(d,{at:'2026-10-06T21:11:33.552Z',source:p.source,isolatedBase:p.previousSource,hostedProof:p.reviewRun,previousDeployment:p.previousDeployment,previousVersion:p.previousVersion,deployment:p.deployment,version:p.version,databaseWrites:false,clinicalReview:false});
  assert.equal(receipt.independentClinicalAcceptance,false);
- assert.equal(active?.id,p.deployment);assert.equal(active.source,'wrangler');assert.equal(active.created_on,'2026-10-06T21:11:22.219924Z');
+ if(active?.id===tabletRollback.deployment){
+  const failed=await get('/actions/runs/'+tabletRollback.run),failedJobs=await get('/actions/runs/'+tabletRollback.run+'/jobs?filter=latest&per_page=100');
+  assert(verifiedTabletRollback(active,failed,failedJobs.jobs?.find(j=>j.id===tabletRollback.job),await getLogs(tabletRollback.job)),'Exact failed release and restoration evidence required');
+ }else{
+  assert.equal(active?.id,p.deployment);assert.equal(active.source,'wrangler');assert.equal(active.created_on,'2026-10-06T21:11:22.219924Z');
+ }
  assert.deepEqual(active.versions,[{version_id:p.version,percentage:100}]);
  assert.equal(version?.id,p.version);assert.equal(version.metadata?.created_on,'2026-10-06T21:11:18.582505Z');assert.equal(version.metadata?.source,'wrangler');
  assert.equal(version.annotations?.['workers/message'],'Tablet guidance source '+p.source+'; hosted proof '+p.reviewRun);
@@ -173,5 +178,22 @@ export async function verifyTabletRuntime(active,version,text,get,getLogs){
   for(const o of ownedFrom(await getLogs(job.id)))if(o.deploymentId===p.previousDeployment&&o.dataRestored===false&&verifiedOwnedRuntime(predecessor,previous,job,o))evidence.push(o);
  }
  assert.equal(evidence.length,1,'Exact successful tablet predecessor deployment required');
- return{run:p.run,source:p.source,version:p.version,deployment:p.deployment,evidenceKind:'exact-hosted-source-proofs-plus-recorded-local-deployment-and-live-receipt'};
+ return{run:p.run,source:p.source,version:p.version,deployment:active.id,evidenceKind:'exact-hosted-source-proofs-plus-recorded-local-deployment-and-live-receipt'};
+}
+
+// Exact restoration observed in the signed deployment API and artifact
+// 11447910447 (SHA256 4725c10d8eb322c3f72fe40a97fc470bf9d576366c3cc14012add9e5b6dcd54a).
+// A failed run is evidence of restoration only, never a successful release.
+export const tabletRollback=Object.freeze({run:37536864936,job:112520112417,source:'23a737dbaa76a9619bea8b5c235e7c3e581c7c04',deployment:'00a7550b-4805-490b-a19f-1eef2435ded4',createdOn:'2026-10-06T22:03:11.002439Z'});
+export function verifiedTabletRollback(active,run,job,logs){
+ const p=tabletRollback,t=tabletRuntime;
+ const owned={kind:'owned_runtime_deployment',at:'2026-10-06T22:00:56.998Z',source:p.source,run:String(p.run),deploymentId:'8d9879e1-d7ff-4daf-92d0-7aff65bb417a',versionId:'6ac4410b-288a-470b-bc80-3537cab41ea6',previousDeploymentId:t.deployment,previousVersionId:t.version,dataRestored:false};
+ if(active?.id!==p.deployment||active.source!=='wrangler'||active.created_on!==p.createdOn||active.versions?.length!==1||active.versions[0].version_id!==t.version||active.versions[0].percentage!==100)return false;
+ if(active.annotations?.['workers/message']!=='Owned release failed post-deployment checks; restore captured runtime and preserve current data')return false;
+ if(run?.id!==p.run||run.head_sha!==p.source||run.run_attempt!==1||run.status!=='completed'||run.conclusion!=='failure'||run.event!=='push'||run.head_branch!=='main'||run.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
+ if(job?.id!==p.job||job.run_id!==p.run||job.name!=='promote'||job.status!=='completed'||job.conclusion!=='failure')return false;
+ for(const [number,name,conclusion] of [[60,'Deploy current main to production','success'],[74,'Verify the reconciled oral semaglutide guide','failure'],[107,'Restore the captured runtime if a post-deployment gate failed','success']])if(!job.steps?.some(s=>s.number===number&&s.name===name&&s.conclusion===conclusion))return false;
+ return ownedFrom(logs).filter(o=>JSON.stringify(o)===JSON.stringify(owned)).length===1
+  &&String(logs).includes('catalogue_stale_main_rejected')
+  &&String(logs).includes('Worker Version '+t.version+' has been deployed to 100% of traffic.');
 }
