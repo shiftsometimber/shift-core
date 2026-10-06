@@ -648,6 +648,34 @@
       ],
       "run": 37531509514,
       "proofSource": "a9707c463f7681d49068fa0319418e5630510ba9"
+    },
+    "tabletUsefulnessComposition": {
+      "proof": "TABLET_USEFULNESS_OWNER_APPROVED_V1",
+      "payloadBase": "d71db6bf5f9a4ce2339bd3948686b93500e9ff04",
+      "payloadSource": "409f93612932ae9ff3715d04a8076dd4d1a9d3e7",
+      "maintenanceSource": "1b115bfedcddb200c9456e0bdf1480ada4044479",
+      "payloadPaths": [
+        "member-experience/tablet-routine-client.mjs",
+        "member-experience/tablet-routine.mjs",
+        "public-practical-guides.mjs",
+        "tests/tablet-routine-browser.mjs",
+        "tests/tablet-routine.test.mjs"
+      ],
+      "maintenancePaths": [
+        ".github/workflows/practical-guides-proof.yml",
+        "release/app-manifest.json",
+        "release/fit-300-scope.mjs",
+        "release/seo-follow-through-scope.mjs",
+        "scripts/verify-practical-guides-handler.mjs",
+        "shift-coach/release-contract.mjs",
+        "tests/seo-follow-through-release.test.mjs"
+      ],
+      "approval": {
+        "owner": "Matt",
+        "at": "2026-10-06T21:26:01Z",
+        "instruction": "Yes",
+        "review": "SHIFT-tablet-usefulness-review.html"
+      }
     }
   },
   "rolloutPhotoComposition": {
