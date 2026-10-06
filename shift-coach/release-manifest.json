@@ -422,7 +422,7 @@
       "shift-coach/release-contract.mjs",
       "tests/sitewide-seo-release.test.mjs"
     ],
-    "maintenanceSource": "98774b80b8c3c5bf90edbb8dc70974dac0235eaa",
+    "maintenanceSource": "0c868e03bcf9b4b46f85dcc7b9aab846b4f8d14b",
     "hostedProof": {
       "run": 37469309924,
       "job": 112288317760,
