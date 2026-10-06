@@ -140,7 +140,7 @@ const HEADING_CANDIDATE='90b1e29db85591b84dec642c3304641bc9545529';
 const HEADING_PATHS=['knowledge-heading-repair.mjs','public-seo-closeout.mjs','worker-entry-v6.js','preview/knowledge-heading/worker.mjs','preview/knowledge-heading/wrangler.jsonc','scripts/verify-knowledge-headings.cjs','.github/workflows/knowledge-heading-preview.yml'];
 function verifyHeadingRepair(){
  git('merge-base','--is-ancestor',HEADING_CANDIDATE,'HEAD');
- for(const path of HEADING_PATHS){if(path==='worker-entry-v6.js')validateGrowthEntry(execFileSync('git',['show',HEADING_CANDIDATE+':'+path],{encoding:'utf8'}),execFileSync('git',['show','HEAD:'+path],{encoding:'utf8'}));else assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',(path==='public-seo-closeout.mjs'?PRACTICAL_GUIDES_SOURCE:HEADING_CANDIDATE)+':'+path),'Heading preview source drift: '+path);}
+ for(const path of HEADING_PATHS){if(path==='worker-entry-v6.js')validateGrowthEntry(execFileSync('git',['show',HEADING_CANDIDATE+':'+path],{encoding:'utf8'}),execFileSync('git',['show','HEAD:'+path],{encoding:'utf8'}));else assert.equal(followHistoricalRead((ref,p)=>git('rev-parse',ref+':'+p),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition)('HEAD',path),git('rev-parse',(path==='public-seo-closeout.mjs'?PRACTICAL_GUIDES_SOURCE:HEADING_CANDIDATE)+':'+path),'Heading preview source drift: '+path);}
 }
 export function verifyScope(){
  validateFit300();

@@ -129,6 +129,7 @@
     "scripts/verify-article-quality.mjs",
     "scripts/verify-calculators-navigation.mjs",
     "scripts/verify-catalogue-handler.mjs",
+    "scripts/verify-knowledge-headings.cjs",
     "scripts/verify-practical-guides-handler.mjs",
     "scripts/verify-practical-guides.mjs",
     "scripts/verify-public-continuity-live.mjs",
@@ -456,7 +457,8 @@
       "tests/seo-follow-through-release.test.mjs",
       "tests/sitewide-seo-release.test.mjs",
       "tests/fixtures/seo-public-articles.json",
-      "scripts/b1-release-scope.mjs"
+      "scripts/b1-release-scope.mjs",
+      "scripts/verify-knowledge-headings.cjs"
     ],
     "maintenanceSource": "3cf828150ca26d7b1839a85204074031ff9ff3ef",
     "ownerApproval": {

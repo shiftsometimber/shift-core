@@ -61,10 +61,12 @@ export function sitewideProofMarker(receiptText){
 }
 export const SITEWIDE_ROLLBACK=Object.freeze({deployment:'6c2945ce-f9bd-4d80-84b1-f5f5a841c4ec',createdOn:'2026-10-06T13:28:49.849245Z',run:37469812171,job:112290194252,source:'34e74fdf590930504af55a6483d5bb72cf042dda',failedDeployment:'aaac9c6c-5275-476d-b87b-3f3fde25ab52',failedVersion:'00467e5c-09d1-4244-91da-b56198e7b262'});
 export const SITEWIDE_SECOND_ROLLBACK=Object.freeze({deployment:'c2f4c5da-d3a1-4b4e-b8d2-08eb426f7a05',createdOn:'2026-10-06T14:50:30.100744Z',run:37481087125,job:112329266723,source:'890458eb37caf13c13173f6bd94c3f3c25714fec',failedDeployment:'6fe4e99c-ec66-40b7-9371-7d1bf6b3375f',failedVersion:'e4d59c68-5502-4d09-aec6-02747f73968f'});
+export const SITEWIDE_THIRD_ROLLBACK=Object.freeze({deployment:'bc9db724-07f6-49e8-b467-87a0a71900c8',createdOn:'2026-10-06T15:09:32.899289Z',run:37484046906,job:112339578967,source:'df16996db4a079e58616785cef4535f91cde3c6c',failedDeployment:'571f1c98-0631-4097-987e-7110b22e5bff',failedVersion:'e0f676b4-2227-4769-9522-87b6dcc064ba'});
 export async function verifySitewideRollback(active,get,getLogs){
- const p=active.id===SITEWIDE_SECOND_ROLLBACK.deployment?SITEWIDE_SECOND_ROLLBACK:SITEWIDE_ROLLBACK;
+ const p=[SITEWIDE_ROLLBACK,SITEWIDE_SECOND_ROLLBACK,SITEWIDE_THIRD_ROLLBACK].find(x=>x.deployment===active.id)||SITEWIDE_ROLLBACK;
+ if(p===SITEWIDE_THIRD_ROLLBACK)await verifySitewideRollback({id:SITEWIDE_SECOND_ROLLBACK.deployment,created_on:SITEWIDE_SECOND_ROLLBACK.createdOn,versions:[{version_id:SITEWIDE_VERSION,percentage:100}]},get,getLogs);
  if(p===SITEWIDE_SECOND_ROLLBACK)await verifySitewideRollback({id:SITEWIDE_ROLLBACK.deployment,created_on:SITEWIDE_ROLLBACK.createdOn,versions:[{version_id:SITEWIDE_VERSION,percentage:100}]},get,getLogs);
- const previous=p===SITEWIDE_SECOND_ROLLBACK?SITEWIDE_ROLLBACK.deployment:SITEWIDE_DEPLOYMENT;assert.equal(active.id,p.deployment,'Unknown SEO rollback deployment');assert.equal(active.created_on,p.createdOn,'Exact SEO rollback timestamp required');
+ const previous=p===SITEWIDE_THIRD_ROLLBACK?SITEWIDE_SECOND_ROLLBACK.deployment:p===SITEWIDE_SECOND_ROLLBACK?SITEWIDE_ROLLBACK.deployment:SITEWIDE_DEPLOYMENT;assert.equal(active.id,p.deployment,'Unknown SEO rollback deployment');assert.equal(active.created_on,p.createdOn,'Exact SEO rollback timestamp required');
  assert.equal(active.versions?.length,1);assert.equal(active.versions[0].version_id,SITEWIDE_VERSION);assert.equal(active.versions[0].percentage,100);
  const run=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs');
  assert.equal(run.id,p.run);assert.equal(run.head_sha,p.source);assert.equal(run.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(run.head_branch,'main');assert.equal(run.event,'push');assert.equal(run.status,'completed');assert.equal(run.conclusion,'failure');
