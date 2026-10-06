@@ -77,13 +77,16 @@ test('sixteen overdue reviews are renewed only from complete unchanged evidence'
   assert.ok(overdueReceipt.transientChecks.every(check => check.directFingerprintMatched && check.disposition.includes('retained')));
 });
 
-test('eight 6 October overdue reviews are renewed from unchanged primary evidence only', () => {
+test('fourteen 6 October overdue reviews are renewed from unchanged primary evidence only', () => {
   assert.equal(octoberOverdueReceipt.reviewType, 'AI-assisted factual source review; not clinical approval');
   assert.equal(octoberOverdueReceipt.clinicalApproval, null);
   assert.equal(octoberOverdueReceipt.disposition, 'source_reviews_renewed_without_wording_change');
-  assert.equal(octoberOverdueReceipt.sources.length, 8);
-  assert.equal(new Set(octoberOverdueReceipt.sources.map(source => source.id)).size, 8);
-  assert.deepEqual(new Set(octoberOverdueReceipt.liveObservation.reviewDue), new Set(octoberOverdueReceipt.sources.map(source => source.id)));
+  assert.equal(octoberOverdueReceipt.sources.length, 14);
+  assert.equal(new Set(octoberOverdueReceipt.sources.map(source => source.id)).size, 14);
+  assert.deepEqual(new Set([
+    ...octoberOverdueReceipt.liveObservation.reviewDue,
+    ...octoberOverdueReceipt.followUpObservation.reviewDue,
+  ]), new Set(octoberOverdueReceipt.sources.map(source => source.id)));
   for (const proof of octoberOverdueReceipt.sources) {
     const source = sources.find(candidate => candidate.id === proof.id);
     assert.ok(source, proof.id);
@@ -105,6 +108,10 @@ test('eight 6 October overdue reviews are renewed from unchanged primary evidenc
   }
   assert.equal(octoberOverdueReceipt.liveObservation.unchangedSeparateFailure.id, 'zealand-zp6590-pipeline');
   assert.equal(octoberOverdueReceipt.liveObservation.unchangedSeparateFailure.error, 'http_403');
+  assert.deepEqual(new Set(octoberOverdueReceipt.followUpObservation.separateFailures.map(source => source.id)), new Set([
+    'survodutide-zealand', 'dapiglutide-zealand', 'apitegromab-embraze-paper', 'zealand-zp6590-pipeline',
+  ]));
+  assert.ok(octoberOverdueReceipt.followUpObservation.separateFailures.every(source => source.error));
 });
 
 test('review expiry, changed content and failures still fail closed', () => {
