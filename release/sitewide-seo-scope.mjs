@@ -96,7 +96,7 @@ export async function verifySitewideRuntime(active,c,receiptText,get,getLogs){
   assert.equal(deploymentReceipt.previousDeploymentId,SITEWIDE_DEPLOYMENT);assert.equal(deploymentReceipt.previousVersionId,SITEWIDE_VERSION);
   assert(rollbackLogs.includes('Worker Version '+SITEWIDE_VERSION+' has been deployed to 100% of traffic.'),'Exact SEO rollback success absent');
   assert(rollbackLogs.includes('Current Version ID: '+SITEWIDE_VERSION),'Exact SEO rollback version absent');
-  return {run:SITEWIDE_ROLLBACK.run,source:SITEWIDE_ROLLBACK.source,version:SITEWIDE_VERSION,deployment:SITEWIDE_ROLLBACK.deployment,evidenceKind:'owner-approved-manual-deployment-plus-independent-live-proof-and-exact-failed-release-rollback'};
+  return {run:p.run,source:p.source,version:SITEWIDE_VERSION,deployment:SITEWIDE_ROLLBACK.deployment,evidenceKind:'owner-approved-manual-deployment-plus-independent-live-proof-and-exact-failed-release-rollback'};
  }
  return {run:p.run,source:p.source,version:SITEWIDE_VERSION,deployment:SITEWIDE_DEPLOYMENT,evidenceKind:'owner-approved-manual-deployment-plus-independent-hosted-and-live-proof'};
 }
