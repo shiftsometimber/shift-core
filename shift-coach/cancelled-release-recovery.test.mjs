@@ -121,3 +121,34 @@ test('restored SEO starting point stays exact and never treats the cancelled sou
  for(const patch of [{decision:'retain'},{run:1},{from:'unknown'},{to:p.version},{verifiedRun:1},{dataChanged:true},{customerRecordsRead:1},{technicalRecovery:{...proof,source:'f'.repeat(40)}}])assert.throws(()=>verifiedStartingPoint({...r,...patch},active(p.verifiedVersion)));
  assert.throws(()=>verifiedStartingPoint(r,active(p.version)));
 });
+
+import {tabletRuntime,TABLET_RUNTIME_RECEIPT,verifyTabletRuntime} from './cancelled-release-recovery.mjs';
+const tabletFixture=()=>{
+ const p=tabletRuntime,active={id:p.deployment,source:'wrangler',created_on:'2026-10-06T21:11:22.219924Z',versions:[{version_id:p.version,percentage:100}]};
+ const version={id:p.version,metadata:{created_on:'2026-10-06T21:11:18.582505Z',source:'wrangler'},annotations:{'workers/message':'Tablet guidance source '+p.source+'; hosted proof '+p.reviewRun,'workers/triggered_by':'version_upload'}};
+ const text=readFileSync(TABLET_RUNTIME_RECEIPT,'utf8');
+ const get=async path=>{
+  const id=Number(path.split('/')[3]),previous=id===p.previousRun,review=id===p.reviewRun;
+  if(path.includes('/jobs'))return {jobs:[{id:previous?1:review?p.reviewJob:p.job,run_id:id,name:previous?'promote':'verify',status:'completed',conclusion:'success'}]};
+  return{id,head_sha:previous?p.previousSource:review?p.reviewSource:p.source,status:'completed',conclusion:'success',event:previous?'push':'pull_request',head_branch:previous?'main':'codex/tablet-guidance-20261006',path:previous?'.github/workflows/cloudflare-production-promote.yml':'.github/workflows/practical-guides-proof.yml'};
+ };
+ const logs=async()=>JSON.stringify({kind:'owned_runtime_deployment',source:p.previousSource,run:String(p.previousRun),deploymentId:p.previousDeployment,versionId:p.previousVersion,dataRestored:false});
+ return{p,active,version,text,get,logs};
+};
+test('exact tablet local receipt, active version, hosted source proofs and successful predecessor qualify only for retention',async()=>{
+ const f=tabletFixture(),proof=await verifyTabletRuntime(f.active,f.version,f.text,f.get,f.logs);
+ assert.equal(proof.source,f.p.source);assert.equal(proof.deployment,f.p.deployment);assert.match(proof.evidenceKind,/recorded-local-deployment/);
+});
+test('tablet adoption rejects other runtimes, traffic splits and annotation drift',async()=>{
+ const f=tabletFixture();
+ for(const active of [{...f.active,id:'other'},{...f.active,versions:[{version_id:f.p.version,percentage:99}]}])await assert.rejects(verifyTabletRuntime(active,f.version,f.text,f.get,f.logs));
+ await assert.rejects(verifyTabletRuntime(f.active,{...f.version,annotations:{}},f.text,f.get,f.logs));
+});
+test('tablet adoption never infers deployment from a hosted source proof or an edited local receipt',async()=>{
+ const f=tabletFixture();await assert.rejects(verifyTabletRuntime(f.active,f.version,f.text+' ',f.get,f.logs),/Exact recorded/);
+ await assert.rejects(verifyTabletRuntime(f.active,f.version,f.text,f.get,async()=>''),/predecessor deployment/);
+ for(const patch of [{head_sha:'f'.repeat(40)},{conclusion:'failure'}]){
+  const get=async path=>{const r=await f.get(path);return path==='/actions/runs/'+f.p.run?{...r,...patch}:r;};
+  await assert.rejects(verifyTabletRuntime(f.active,f.version,f.text,get,f.logs));
+ }
+});
