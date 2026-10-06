@@ -1,3 +1,4 @@
+import {validateTabletRuntimeComposition} from './tablet-runtime-scope.mjs';
 import {completionHistoricalRef,TECHNICAL_PATHS,TECHNICAL_BASE,technicalPinnedRef,validateTechnicalComposition,verifyTechnicalHistory} from './seo-technical-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -14,7 +15,8 @@ export function verifySeoIntegration(c){
  if(!c)return;validateSeoIntegration(c);const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
  git('merge-base','--is-ancestor',c.base,c.source);git('merge-base','--is-ancestor',c.source,'HEAD');
  assert.deepEqual(git('diff','--name-only',c.base,c.source).split('\n').filter(Boolean).sort(),SEO_INTEGRATION_PATHS,'Exact combined SEO release paths required');
- for(const p of c.paths)if(p!=='shift-coach/release-manifest.json')assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',c.source+':'+p),'Combined SEO source drift: '+p);
+ validateTabletRuntimeComposition(c.runtimeAdoptionComposition);
+ for(const p of c.paths)if(p!=='shift-coach/release-manifest.json')assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',(c.runtimeAdoptionComposition?.paths.includes(p)?c.runtimeAdoptionComposition.source:c.source)+':'+p),'Combined SEO source drift: '+p);
  assert.equal(git('rev-parse',c.base+':.github/workflows/cloudflare-production-promote.yml'),git('rev-parse','HEAD:.github/workflows/cloudflare-production-promote.yml'));
 }
 export const TABLET_GUIDANCE_BASE='4460ea56f931da4003ace68d5d404831c47e08f7';

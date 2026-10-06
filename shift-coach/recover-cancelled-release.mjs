@@ -1,3 +1,4 @@
+import {tabletRuntime,verifyTabletGuidanceRuntime} from '../release/tablet-runtime-scope.mjs';
 import {SITEWIDE_VERSION,verifySitewideRuntime} from '../release/sitewide-seo-scope.mjs';
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
 import {technicalRecovery,verifyTechnicalCancelledRuntime,catalogueRuntime,verifyCatalogueBaseline,articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime,recentSuccessfulPromotions} from './cancelled-release-recovery.mjs';import {verifyCoachingRelease} from './release-contract.mjs';
@@ -19,6 +20,11 @@ if(activeVersion===technicalRecovery.version){
 else 
 if([recovery.verified,recovery.unverified].includes(before.versions?.[0]?.version_id))decision=recoveryDecision(before,failed,verified);
 else{
+ if(activeVersion===tabletRuntime.version){
+  const receipt=JSON.parse(readFileSync('docs/tablet-guidance-runtime-receipt-20261006.json','utf8'));
+  const readLive=async path=>{const r=await fetch('https://shiftsometimber.co.uk'+path,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(30000)});return {status:r.status,body:await r.text()}};
+  ownedProof=await verifyTabletGuidanceRuntime(before,version,get,readLive,receipt);
+ }
  if(activeVersion===SITEWIDE_VERSION){
   const c=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8')).sitewideSeoComposition;
   const receiptText=readFileSync('docs/seo-sitewide-live-receipt-20261006.json','utf8');
