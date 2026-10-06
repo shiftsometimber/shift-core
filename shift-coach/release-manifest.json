@@ -51,6 +51,7 @@
     "editorial/book-voice/edits.json",
     "editorial/book-voice/live.cjs",
     "editorial/book-voice/payload.json",
+    "editorial/five-articles/proof.mjs",
     "editorial/source-review-20261004/build.mjs",
     "editorial/source-review-20261004/build.test.mjs",
     "editorial/source-review-20261004/corrections.json",
