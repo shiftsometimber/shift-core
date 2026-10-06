@@ -458,7 +458,7 @@
       "tests/fixtures/seo-public-articles.json",
       "scripts/b1-release-scope.mjs"
     ],
-    "maintenanceSource": "77119987e65cf0279eb288e4236339d07bf00cb9",
+    "maintenanceSource": "3cf828150ca26d7b1839a85204074031ff9ff3ef",
     "ownerApproval": {
       "owner": "Matt O’Brien",
       "at": "2026-10-06T14:18:48Z",
