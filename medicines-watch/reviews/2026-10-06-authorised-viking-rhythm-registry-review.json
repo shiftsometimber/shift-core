@@ -1,0 +1,252 @@
+{
+  "reviewedAt": "2026-10-06T13:43:02Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add bivamelagon and RM-718 as specialist hypothalamic-obesity research, record initiation of VK2735 oral-maintenance Part 2, and reconcile two changed ClinicalTrials.gov records. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "bivamelagon",
+      "name": "Bivamelagon / LB54640",
+      "developer": "Rhythm Pharmaceuticals",
+      "group": "research",
+      "stage": "Phase 2 specialist hypothalamic-obesity research",
+      "summary": "Bivamelagon is an investigational once-daily oral MC4R agonist studied in acquired hypothalamic obesity, not general obesity. Rhythm's 9 July 2025 announcement reports sponsor topline results from a 28-person randomized placebo-controlled Phase 2 study. A separate sponsor-submitted long-term extension is enrolling by invitation, with an actual 10 November 2025 start, 25 estimated participants and estimated April 2028 completion.",
+      "ukAuthorisation": "The reviewed sources do not establish UK marketing authorisation for bivamelagon. UK authorisation of setmelanotide for specified conditions must not be transferred to this separate investigational medicine.",
+      "nhsEngland": "No NICE recommendation or NHS England access for bivamelagon is established by the reviewed research sources.",
+      "supply": "Clinical research, including listed UK study sites, does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The Phase 2 findings are sponsor-reported topline results from 28 participants in a rare specialist indication. They do not establish efficacy or safety in general obesity, comparison with authorised treatment, an approved dose, long-term benefit, UK authorisation, NHS access or supply. The open-label extension has no posted registry results; its enrolment and completion remain estimates.",
+      "sourceIds": ["bivamelagon-rhythm-20250709"],
+      "reviewedAt": "2026-10-06T13:43:02Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07156578: bivamelagon long-term extension",
+          "url": "https://clinicaltrials.gov/study/NCT07156578",
+          "sourcePublishedAt": "2025-09-05",
+          "sourceUpdatedAt": "2026-02-10",
+          "reviewedAt": "2026-10-06T13:43:02Z",
+          "checkScope": "Automatic record-status checks for identity, phase, invitation-only enrolment, typed dates, estimated enrolment and posted-results state; no assessment of clinical outcomes."
+        }
+      ]
+    },
+    {
+      "id": "rm718",
+      "name": "RM-718",
+      "developer": "Rhythm Pharmaceuticals",
+      "group": "research",
+      "stage": "Phase 1/2 specialist hypothalamic-obesity research; preliminary sponsor data",
+      "summary": "RM-718 is an investigational once-weekly injectable MC4R agonist being studied in acquired hypothalamic obesity. Rhythm's 4 August 2026 announcement reports preliminary Phase 2 findings from an ongoing open-label study: 11 participants were enrolled and seven had reached 16 weeks for the reported mean BMI analysis.",
+      "ukAuthorisation": "The reviewed sponsor evidence does not establish UK marketing authorisation for RM-718 or transfer any authorisation held by setmelanotide.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by this early specialist research.",
+      "supply": "An ongoing clinical programme does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The sponsor announcement is preliminary, open-label and based on very small numbers; two participants discontinued treatment because of adverse events and one withdrew from the extension. It does not establish comparative or long-term benefit, general-obesity use, an approved dose, UK authorisation, NICE or NHS access, UK supply or clinical approval.",
+      "sourceIds": ["rm718-rhythm-20260804"],
+      "reviewedAt": "2026-10-06T13:43:02Z",
+      "clinicalApproval": null,
+      "additionalEvidence": []
+    }
+  ],
+  "changes": [
+    {
+      "id": "vk2735",
+      "fields": {
+        "stage": "Injectable Phase 3; oral and subcutaneous maintenance study ongoing; oral Phase 3 planned",
+        "summary": "Viking's 22 September 2026 announcement reports sponsor topline observations from Part 1 of a maintenance study in approximately 180 adults with obesity. Its 6 October announcement says Part 2 has now started in approximately 195 adults, testing daily or weekly oral maintenance and monthly or every-other-week subcutaneous maintenance after 21 weeks of weekly subcutaneous induction. Injectable VANQUISH Phase 3 studies are ongoing; oral Phase 3 initiation remains planned rather than completed.",
+        "limitations": "Part 1 findings and Part 2 initiation come from sponsor announcements, not peer-reviewed results, UK authorisation or approved dosing regimens. Part 2 has no posted results; body-weight changes are exploratory and results are expected in 2027. The studies follow VK2735 induction in otherwise healthy adults with BMI at least 30 and do not establish switching from another medicine, long-term durability, cardiovascular benefit, superiority or routine oral, monthly or every-other-week dosing."
+      },
+      "sourceIdsToAdd": ["vk2735-oral-maintenance-viking"],
+      "additionalEvidence": [
+        {
+          "title": "Viking: VK2735 oral-maintenance Part 2 initiation",
+          "url": "https://ir.vikingtherapeutics.com/2026-10-06-Viking-Therapeutics-Announces-Initiation-of-VK2735-Oral-Maintenance-Dosing-Clinical-Trial-in-Patients-with-Obesity",
+          "sourcePublishedAt": "2026-10-06",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-06T13:43:02Z",
+          "checkScope": "Complete original sponsor announcement reviewed for initiation, study population, induction and maintenance regimens, objectives, exploratory endpoint and expected-results timing. The sponsor's isolated VK2375 typo is not adopted as a separate programme."
+        }
+      ]
+    },
+    {
+      "id": "abbv295",
+      "fields": {
+        "summary": "AbbVie's sponsor-submitted NCT07752979 record, updated 6 October 2026, remains a recruiting Phase 2 dose-finding study of subcutaneous ABBV-295 versus placebo in adults with obesity or overweight and weight-related conditions. It records an actual 4 August 2026 start, 360 estimated participants and estimated March 2028 completion. The 30 September sponsor announcement reports separate Phase 1 findings.",
+        "limitations": "The sponsor's 30 September announcement described Phase 2 advancement prospectively, while the registry records an actual earlier start; both dated accounts are retained. The 6 October registry update does not change the programme's recruiting Phase 2 stage, estimated enrolment or estimated completion and still has no posted results. Recruitment does not establish efficacy, long-term safety, superiority, an approved dosing interval, UK authorisation, NHS access or supply. The reported Phase 1 cohorts were small and 88% male. No clinical approval is claimed."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07752979: 6 October 2026 record review",
+          "url": "https://clinicaltrials.gov/study/NCT07752979",
+          "sourcePublishedAt": "2026-08-07",
+          "sourceUpdatedAt": "2026-10-06",
+          "reviewedAt": "2026-10-06T13:43:02Z",
+          "checkScope": "Complete sponsor-submitted API record read. Recruiting Phase 2 status, actual start, estimated enrolment/completion and absence of posted results are unchanged; this factual review does not infer a new clinical milestone."
+        }
+      ]
+    },
+    {
+      "id": "mirabegron-alpha-lipoic-acid",
+      "fields": {
+        "summary": "NIDDK's NCT05713799 record describes an oral mirabegron and alpha-lipoic acid crossover pilot in adults with obesity. The 6 October 2026 update remains not yet recruiting, with its estimated start moved again to 11 October 2026, 60 estimated participants and estimated March 2030 completion. Its primary endpoint is insulin sensitivity, with metabolic and exploratory body-composition outcomes.",
+        "limitations": "First posted in February 2023: an older study, not an October medicine launch. The 11 October start remains estimated, not actual dosing, and no results are posted. The detailed protocol retains a 48-person target while the enrolment field estimates 60; this discrepancy is preserved. Metabolic study aims are not demonstrated weight-loss benefit, a prescribing recommendation or approval of this combination."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT05713799: 6 October 2026 record review",
+          "url": "https://clinicaltrials.gov/study/NCT05713799",
+          "sourcePublishedAt": "2023-02-06",
+          "sourceUpdatedAt": "2026-10-06",
+          "reviewedAt": "2026-10-06T13:43:02Z",
+          "checkScope": "Complete sponsor/investigator-submitted API record read for not-yet-recruiting status, estimated 11 October start, enrolment discrepancy, estimated completion and absence of posted results."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "bivamelagon-rhythm-20250709",
+      "title": "Rhythm: bivamelagon Phase 2 topline results",
+      "url": "https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-oral-mc4r-agonist-bivamelagon",
+      "checkUrl": "https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-oral-mc4r-agonist-bivamelagon",
+      "format": "html",
+      "sourcePublishedAt": "2025-07-09",
+      "sourceDateLabel": "Sponsor announcement date",
+      "reviewedAt": "2026-10-06T13:43:02Z",
+      "requiredTerms": ["Bivamelagon", "hypothalamic obesity", "Phase 2"],
+      "reviewedFingerprint": "9dae9e1e06d882975c3c8257e8d197b03c80627a06d1933f859df553e871b341",
+      "evidenceType": "Original sponsor announcement; topline results, not regulatory approval"
+    },
+    {
+      "id": "rm718-rhythm-20260804",
+      "title": "Rhythm: preliminary RM-718 Phase 2 data",
+      "url": "https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-preliminary-data-phase-2-trial",
+      "checkUrl": "https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-preliminary-data-phase-2-trial",
+      "format": "html",
+      "sourcePublishedAt": "2026-08-04",
+      "sourceDateLabel": "Sponsor announcement date",
+      "reviewedAt": "2026-10-06T13:43:02Z",
+      "requiredTerms": ["RM-718", "hypothalamic obesity", "Phase 2"],
+      "reviewedFingerprint": "0d8e5c4d20bfee3a25fb5fb81900669eb258cc47a317b238e92d7721e97e185c",
+      "evidenceType": "Original sponsor announcement; preliminary results, not regulatory approval"
+    },
+    {
+      "id": "vk2735-oral-maintenance-viking",
+      "title": "Viking: VK2735 oral-maintenance Part 2 initiation",
+      "url": "https://ir.vikingtherapeutics.com/2026-10-06-Viking-Therapeutics-Announces-Initiation-of-VK2735-Oral-Maintenance-Dosing-Clinical-Trial-in-Patients-with-Obesity",
+      "checkUrl": "https://ir.vikingtherapeutics.com/2026-10-06-Viking-Therapeutics-Announces-Initiation-of-VK2735-Oral-Maintenance-Dosing-Clinical-Trial-in-Patients-with-Obesity",
+      "format": "html",
+      "sourcePublishedAt": "2026-10-06",
+      "sourceDateLabel": "Sponsor announcement date",
+      "reviewedAt": "2026-10-06T13:43:02Z",
+      "requiredTerms": ["VK2735", "oral", "maintenance", "approximately 195"],
+      "reviewedFingerprint": "48243d7c4f0efb62fd86dbe8937116c0375cf7f4d14c9afde3531009d9e8cd44",
+      "evidenceType": "Original sponsor announcement; trial initiation, not regulatory approval"
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct07752979",
+      "nctId": "NCT07752979",
+      "title": "ClinicalTrials.gov NCT07752979",
+      "url": "https://clinicaltrials.gov/study/NCT07752979",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07752979",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07752979"],
+      "reviewedAt": "2026-10-06T13:43:02Z",
+      "sourcePublishedAt": "2026-08-07",
+      "sourceUpdatedAt": "2026-10-06",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {"nctId":"NCT07752979","title":"Safety and Efficacy of ABBV-295 in Adults With Obesity or Overweight With Weight-Related Comorbidities","sponsor":"AbbVie","status":"RECRUITING","whyStopped":null,"phases":["PHASE2"],"enrollment":{"count":360,"type":"ESTIMATED"},"start":{"date":"2026-08-04","type":"ACTUAL"},"primaryCompletion":{"date":"2028-03","type":"ESTIMATED"},"completion":{"date":"2028-03","type":"ESTIMATED"},"firstPosted":{"date":"2026-08-07","type":"ACTUAL"},"lastUpdated":{"date":"2026-10-06","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},
+      "entryIds": ["abbv295"],
+      "rawResponseSha256": "0421f70fbe94769a43a798f5525276579a2c04c1907dbe4280df95fd52cdcfee",
+      "reviewedFingerprint": "c229af3768743637658ab6f987b1fc50852a5447a184329f06882cec42553e16"
+    },
+    {
+      "id": "registry-nct05713799",
+      "nctId": "NCT05713799",
+      "title": "ClinicalTrials.gov NCT05713799",
+      "url": "https://clinicaltrials.gov/study/NCT05713799",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT05713799",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT05713799"],
+      "reviewedAt": "2026-10-06T13:43:02Z",
+      "sourcePublishedAt": "2023-02-06",
+      "sourceUpdatedAt": "2026-10-06",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {"nctId":"NCT05713799","title":"Trial of the Combination of Alpha-Lipoic Acid and Mirabegron in Women and in Men With Obesity","sponsor":"National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)","status":"NOT_YET_RECRUITING","whyStopped":null,"phases":["PHASE2"],"enrollment":{"count":60,"type":"ESTIMATED"},"start":{"date":"2026-10-11","type":"ESTIMATED"},"primaryCompletion":{"date":"2030-03-01","type":"ESTIMATED"},"completion":{"date":"2030-03-01","type":"ESTIMATED"},"firstPosted":{"date":"2023-02-06","type":"ACTUAL"},"lastUpdated":{"date":"2026-10-06","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},
+      "entryIds": ["mirabegron-alpha-lipoic-acid"],
+      "rawResponseSha256": "bc5b669df8cb19e2e7e668a02493d8c6198270a643bf5624ee0d7a10e3d664a2",
+      "reviewedFingerprint": "5380b7cbd154d5fda5a7c5ca7d1cbded541f6b736b1e52b632e7d728de2cd576"
+    },
+    {
+      "id": "registry-nct07156578",
+      "nctId": "NCT07156578",
+      "title": "ClinicalTrials.gov NCT07156578: bivamelagon long-term extension",
+      "url": "https://clinicaltrials.gov/study/NCT07156578",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07156578",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07156578", "Rhythm Pharmaceuticals, Inc."],
+      "reviewedAt": "2026-10-06T13:43:02Z",
+      "sourcePublishedAt": "2025-09-05",
+      "sourceUpdatedAt": "2026-02-10",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {"nctId":"NCT07156578","title":"A Long-Term Study of Bivamelagon in Participants With Hypothalamic Obesity (HO)","sponsor":"Rhythm Pharmaceuticals, Inc.","status":"ENROLLING_BY_INVITATION","whyStopped":null,"phases":["PHASE2"],"enrollment":{"count":25,"type":"ESTIMATED"},"start":{"date":"2025-11-10","type":"ACTUAL"},"primaryCompletion":{"date":"2028-04-15","type":"ESTIMATED"},"completion":{"date":"2028-04-15","type":"ESTIMATED"},"firstPosted":{"date":"2025-09-05","type":"ACTUAL"},"lastUpdated":{"date":"2026-02-10","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},
+      "entryIds": ["bivamelagon"],
+      "rawResponseSha256": "3b6be4e0c44ec2ec30c158f794315835aa9b2e809a4c9c1a540dd91ccd3c664d",
+      "reviewedFingerprint": "d5d506095563a56f37f8a6ef9b8b1d37bdbd0639bc4525d49c33253a5072cfa8"
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-06T13:31:17.416Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "awaiting_review",
+    "configuredSources": 177,
+    "currentSources": 174,
+    "overdueReviews": 0,
+    "withdrawnSources": 0,
+    "changedSources": [
+      {"id":"registry-nct07752979","status":"awaiting_review","reason":"source_changed"},
+      {"id":"registry-nct05713799","status":"awaiting_review","reason":"source_changed"}
+    ],
+    "delayedSources": [
+      {"id":"zealand-zp6590-pipeline","status":"check_delayed","reviewStatus":"verification_pending","reason":"source_not_verified/last_check_failed","httpStatus":403,"error":"http_403"}
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": true,
+    "boundary": "The two changed registry records received complete source review. The unchanged Zealand HTTP 403 remains explicit. Availability checks do not renew unrelated factual reviews, approve medical claims or establish complete industry coverage."
+  },
+  "discoveryPass": {
+    "method": "A separate current-date and broader undated search covered established and investigational medicines, combinations, muscle-preservation approaches, specialist indications, early and late trials, and stopped programmes across named and additional developers. Primary sponsor and ClinicalTrials.gov records were read before selection.",
+    "included": "The 6 October Viking announcement changes oral-maintenance Part 2 from planned to initiated. Bivamelagon and RM-718 close a specialist hypothalamic-obesity gap adjacent to, but distinct from, the existing setmelanotide entry.",
+    "notDuplicated": "Current main, the 105-programme live catalogue and zero open Watch review pull requests were checked. Resurfaced ALV-100, CRB-913, IBI3032, HDM1005, DA-302168S, CMS-D008, NNC0638-0355 and other known programmes were not duplicated.",
+    "incompleteChecks": [
+      "Search indexing, sponsor disclosure and trial-registry coverage remain incomplete and cannot prove an exhaustive industry universe.",
+      "Bivamelagon and RM-718 concern acquired hypothalamic obesity; neither is evidence for general-obesity use or UK access.",
+      "Viking's new announcement has no registry identifier or posted Part 2 results; expected 2027 reporting remains planned.",
+      "No exact public registry record was established for the cited RM-718 acquired-hypothalamic-obesity cohort in this pass, so no registry lifecycle is inferred."
+    ],
+    "failedChecks": [],
+    "preservedKnownFailures": "The unchanged Zealand ZP6590 HTTP 403 remains visible and is not cleared by unrelated successful source reads.",
+    "openReviewPrCheck": {"checkedAt":"2026-10-06T13:43:02Z","openWatchPullRequests":[],"duplicationFound":false},
+    "industryComplete": false
+  },
+  "catalogueCounts": {"detailedBefore":6,"detailedAfter":6,"widerBefore":99,"widerAfter":101,"totalBefore":105,"totalAfter":107,"configuredSourcesBefore":177,"configuredSourcesAfter":181,"trialRecordsBefore":115,"trialRecordsAfter":116},
+  "retrievalEvidence": [
+    {"id":"registry-nct07752979","retrievedAt":"2026-10-06T13:37:26.937Z","httpStatus":200,"contentType":"application/json","bytes":22367,"responseSha256":"0421f70fbe94769a43a798f5525276579a2c04c1907dbe4280df95fd52cdcfee"},
+    {"id":"registry-nct05713799","retrievedAt":"2026-10-06T13:37:27.116Z","httpStatus":200,"contentType":"application/json","bytes":16913,"responseSha256":"bc5b669df8cb19e2e7e668a02493d8c6198270a643bf5624ee0d7a10e3d664a2"},
+    {"id":"registry-nct07156578","retrievedAt":"2026-10-06T13:42:49.318Z","httpStatus":200,"contentType":"application/json","bytes":6642,"responseSha256":"3b6be4e0c44ec2ec30c158f794315835aa9b2e809a4c9c1a540dd91ccd3c664d"},
+    {"id":"bivamelagon-rhythm-20250709","retrievedAt":"2026-10-06T13:42:55.372Z","httpStatus":200,"contentType":"text/html; charset=UTF-8","bytes":56959,"responseSha256":"143575c2a2a6d1085d7e3cd2783e3158f857437348238a8ed42f13bf663a3f46"},
+    {"id":"rm718-rhythm-20260804","retrievedAt":"2026-10-06T13:43:01.725Z","httpStatus":200,"contentType":"text/html; charset=UTF-8","bytes":56858,"responseSha256":"d40aeb659720dbf3fdf3c9c0795d288debe6822bfa1dc4c5c0274c713f0a246c"},
+    {"id":"vk2735-oral-maintenance-viking","retrievedAt":"2026-10-06T13:43:01.976Z","httpStatus":200,"contentType":"text/html; charset=UTF-8","bytes":80058,"responseSha256":"e64bfa556c8ad9d9f7c2d03708580c6f191b94b1f1e37ce9c230bb9b3117e234"}
+  ],
+  "nextAction": "Run the complete Watch and release-scope checks, publish the exact passing commit through a reviewable pull request and guarded production workflow, then verify the new specialist entries, VK2735 update, Treatments entry and SELECT-only health endpoint on the live site."
+}
