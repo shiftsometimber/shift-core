@@ -658,6 +658,27 @@
           }
         }
       }
+    },
+    "tabletGuidanceComposition": {
+      "proof": "TABLET_GUIDANCE_EXACT_V1",
+      "base": "4460ea56f931da4003ace68d5d404831c47e08f7",
+      "source": "c67762d9705569243966e6862e4a5bd20d896ccf",
+      "paths": [
+        ".github/workflows/practical-guides-proof.yml",
+        "docs/seo/2026-10-06-practical-guides.md",
+        "public-practical-guides.mjs",
+        "release/seo-follow-through-scope.mjs",
+        "release/six-topic-seo-scope.mjs",
+        "scripts/verify-practical-guides-handler.mjs",
+        "scripts/verify-practical-guides.mjs",
+        "shift-coach/worker.mjs",
+        "tests/approved-ranking-release.test.mjs",
+        "tests/practical-guides.test.mjs",
+        "tests/production-completion-release.test.mjs",
+        "tests/seo-follow-through-release.test.mjs"
+      ],
+      "run": 37531509514,
+      "proofSource": "a9707c463f7681d49068fa0319418e5630510ba9"
     }
   },
   "rolloutPhotoComposition": {
