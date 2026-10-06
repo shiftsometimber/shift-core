@@ -38,6 +38,9 @@ COACH_ADDITIONS.add('tests/watch-ownership-release.test.mjs');
 COACH_AUDIT_CHANGES.add('docs/DATA-GOVERNANCE-OPERATING-PACK-2026-09-02.md');
 // Finite six-topic SEO composition; all bytes retain manifest pins.
 for(const path of ['scripts/verify-six-topic-seo.mjs','docs/seo/2026-10-05-six-priorities.md','.github/workflows/six-topic-seo-proof.yml','release/six-topic-seo-scope.mjs','release/six-topic-seo-preservation.mjs','tests/six-topic-seo-release.test.mjs'])COACH_ADDITIONS.add(path);
+// Exact practical-guide follow-through on the six owner priorities. The shared
+// public SEO transformer is already a pinned backend change above.
+for(const path of ['.github/workflows/practical-guides-proof.yml','docs/seo/2026-10-06-practical-guides.md','public-practical-guides.mjs','scripts/verify-practical-guides-handler.mjs','scripts/verify-practical-guides.mjs','tests/practical-guides.test.mjs'])COACH_ADDITIONS.add(path);
 for(const path of ['public-seo-closeout.mjs','tests/public-seo-closeout.test.mjs'])COACH_BACKEND_PATHS.add(path);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]);
 // Finite read-only release maintenance; not permission for more publication jobs.
