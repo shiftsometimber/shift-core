@@ -1,3 +1,4 @@
+import {withTechnicalSeo} from '../public-seo-technical.mjs';
 import {withProgrammeSeo} from '../public-seo-programme.mjs';
 import {withSeoFollowThrough} from '../public-seo-follow-through.mjs';
 import {withCatalogueBenefits} from '../catalogue-benefits.mjs';
@@ -30,7 +31,7 @@ export default {
    url.pathname='/v1/shift-coach';url.search='';
    try{const initial=await coachingRoutes(new Request(url,{method:'GET',headers:request.headers}),env);if(initial?.ok)seed=await initial.json();}catch{/* Client keeps its normal retry path; no unchecked snapshot is used. */}
   }
-  return withSeoFollowThrough(await withProgrammeSeo(await withCatalogueBenefits(request,await withCoaching(request,await withFitActiveEdit(request,response),seed)),request),request);
+  return withTechnicalSeo(await withSeoFollowThrough(await withProgrammeSeo(await withCatalogueBenefits(request,await withCoaching(request,await withFitActiveEdit(request,response),seed)),request),request),request);
  },
  async scheduled(controller,env,ctx){
   await core.scheduled(controller,env,ctx);

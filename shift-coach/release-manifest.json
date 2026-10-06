@@ -17,6 +17,7 @@
     ".github/workflows/practical-guides-proof.yml",
     ".github/workflows/priority-closeout-proof.yml",
     ".github/workflows/seo-follow-through-proof.yml",
+    ".github/workflows/seo-technical-proof.yml",
     ".github/workflows/shift-coach-integration.yml",
     ".github/workflows/sitewide-seo-proof.yml",
     ".github/workflows/six-topic-seo-proof.yml",
@@ -93,6 +94,8 @@
     "public-seo-closeout.mjs",
     "public-seo-follow-through.mjs",
     "public-seo-programme.mjs",
+    "public-seo-technical-data.mjs",
+    "public-seo-technical.mjs",
     "public-shell-contract.mjs",
     "public-site-stream.mjs",
     "public-startup-stability.mjs",
@@ -120,6 +123,9 @@
     "release/runtime-rollback-guard.mjs",
     "release/seo-follow-through-preservation.mjs",
     "release/seo-follow-through-scope.mjs",
+    "release/seo-technical-preservation-data.mjs",
+    "release/seo-technical-preservation.mjs",
+    "release/seo-technical-scope.mjs",
     "release/seo794-preservation.mjs",
     "release/shift-ai-scope.mjs",
     "release/sitewide-seo-scope.mjs",
@@ -137,6 +143,7 @@
     "scripts/verify-practical-guides-handler.mjs",
     "scripts/verify-practical-guides.mjs",
     "scripts/verify-public-continuity-live.mjs",
+    "scripts/verify-seo-closeout-live.mjs",
     "scripts/verify-seo-follow-through.mjs",
     "scripts/verify-shift-take-live.mjs",
     "scripts/verify-sitewide-seo.mjs",
@@ -227,10 +234,12 @@
     "tests/practical-guides.test.mjs",
     "tests/public-seo-closeout.test.mjs",
     "tests/public-seo-programme.test.mjs",
+    "tests/public-seo-technical.test.mjs",
     "tests/public-ticker-contrast-safety.test.mjs",
     "tests/rendered-member-acceptance-support.test.mjs",
     "tests/runtime-rollback-guard.test.mjs",
     "tests/seo-follow-through-release.test.mjs",
+    "tests/seo-technical-release.test.mjs",
     "tests/seo794-preservation.test.mjs",
     "tests/shift-ai-release.test.mjs",
     "tests/sitewide-seo-release.test.mjs",
@@ -487,6 +496,42 @@
       "at": "2026-10-06T14:18:48Z",
       "instruction": "fix it all",
       "review": "SHIFT-Sitewide-SEO-Review-v3-2026-10-06.html"
+    },
+    "technicalComposition": {
+      "proof": "EXACT_ARTICLE_IDENTITY_AND_NOINDEX_SITEMAP_V1",
+      "base": "ddde14b19d6ef79547e27afb4ed76bf1f4e39f05",
+      "payloadSource": "1ea9430e2ab79b2ae7b343bf19c4f9c8c976d932",
+      "payloadPaths": [
+        "public-seo-technical-data.mjs",
+        "public-seo-technical.mjs",
+        "shift-coach/worker.mjs",
+        "tests/public-seo-technical.test.mjs"
+      ],
+      "maintenancePaths": [
+        ".github/workflows/seo-technical-proof.yml",
+        "release/app-scope.mjs",
+        "release/seo-follow-through-preservation.mjs",
+        "release/seo-follow-through-scope.mjs",
+        "release/seo-technical-preservation-data.mjs",
+        "release/seo-technical-preservation.mjs",
+        "release/seo-technical-scope.mjs",
+        "scripts/verify-seo-closeout-live.mjs",
+        "scripts/verify-seo-follow-through.mjs",
+        "shift-coach/release-contract.mjs",
+        "tests/seo-technical-release.test.mjs"
+      ],
+      "maintenanceSource": "83e6dbf130b68c9cbe47049b3d103a7cb17fd5a6",
+      "request": {
+        "instruction": "Look into this - also resolve all pages seo",
+        "date": "2026-10-06",
+        "scope": "Existing article metadata and noindex sitemap exclusions; homepage and Start Here preserved; no new visible wording."
+      },
+      "basePaths": [
+        "release/app-manifest.json",
+        "release/fit-300-scope.mjs",
+        "release/watch-registry-wave-scope.mjs",
+        "tests/b1-release-scope.test.mjs"
+      ]
     }
   }
 }
