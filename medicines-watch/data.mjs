@@ -36,6 +36,7 @@ const reviewedFingerprints = {
 // Separate NHS tirzepatide renewal: reviews/2026-09-24-mounjaro-nhs-renewal.json.
 // Separate NICE Foundayo schedule review: reviews/2026-09-29-foundayo-nice-schedule.json.
 // Sixteen unchanged source renewals: reviews/2026-09-30-overdue-source-renewal.json.
+// Eight unchanged source renewals: reviews/2026-10-06-overdue-source-renewal.json.
 const sourceReviewedDates = {
   'mounjaro-mhra': '2026-09-30T16:55:00Z',
   'mounjaro-nice': '2026-09-30T16:55:00Z',
@@ -46,7 +47,7 @@ const sourceReviewedDates = {
   'wegovy-tablet-mhra': '2026-09-30T16:55:00Z',
   'orlistat-nhs': '2026-09-30T16:55:00Z',
   'foundayo-mhra': '2026-09-30T16:55:00Z',
-  'foundayo-nice': '2026-09-29T14:42:00Z',
+  'foundayo-nice': '2026-10-06T17:45:00Z',
   'retatrutide-mhra': '2026-09-30T16:55:00Z',
   'retatrutide-lilly': '2026-09-30T16:55:00Z',
   'mounjaro-nhs': '2026-10-01T06:30:54Z',
