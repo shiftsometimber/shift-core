@@ -476,7 +476,7 @@
       "tests/book-voice-release.test.mjs",
       "shift-coach/release.test.mjs"
     ],
-    "maintenanceSource": "5892dcac47b82b2f744ec0606c269698a37e7644",
+    "maintenanceSource": "de90754ed615fe43731cf172923f1d0cb3672108",
     "ownerApproval": {
       "owner": "Matt O’Brien",
       "at": "2026-10-06T14:18:48Z",
