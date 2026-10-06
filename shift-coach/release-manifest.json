@@ -143,6 +143,7 @@
     "scripts/verify-practical-guides-handler.mjs",
     "scripts/verify-practical-guides.mjs",
     "scripts/verify-public-continuity-live.mjs",
+    "scripts/verify-seo-closeout-live.mjs",
     "scripts/verify-seo-follow-through.mjs",
     "scripts/verify-shift-take-live.mjs",
     "scripts/verify-sitewide-seo.mjs",
@@ -517,12 +518,13 @@
         "release/seo-technical-scope.mjs",
         "release/watch-registry-wave-scope.mjs",
         "scripts/b1-release-scope.mjs",
+        "scripts/verify-seo-closeout-live.mjs",
         "scripts/verify-seo-follow-through.mjs",
         "shift-coach/release-contract.mjs",
         "tests/b1-release-scope.test.mjs",
         "tests/seo-technical-release.test.mjs"
       ],
-      "maintenanceSource": "8e87788306967abf72f12d9f156ad4052e98ae98",
+      "maintenanceSource": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "request": {
         "instruction": "Look into this - also resolve all pages seo",
         "date": "2026-10-06",

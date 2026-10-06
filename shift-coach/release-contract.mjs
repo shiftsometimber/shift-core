@@ -48,7 +48,7 @@ for(const path of ['public-seo-closeout.mjs','tests/public-seo-closeout.test.mjs
 for(const p of CATALOGUE_COPY_PATHS)if(p!=='shift-coach/worker.mjs')COACH_ADDITIONS.add(p);
 COACH_BACKEND_PATHS.add('scripts/verify-shift-take-live.mjs');
 COACH_BACKEND_PATHS.add('my-timber-pwa/verify-live.mjs');
-export const FOLLOW_MODIFIED_PATHS=new Set(['editorial/five-articles/proof.mjs','release/seo794-preservation.mjs','scripts/verify-knowledge-headings.cjs','tests/seo794-preservation.test.mjs']);
+export const FOLLOW_MODIFIED_PATHS=new Set(['editorial/five-articles/proof.mjs','release/seo794-preservation.mjs','scripts/verify-knowledge-headings.cjs','tests/seo794-preservation.test.mjs','scripts/verify-seo-closeout-live.mjs']);
 for(const p of FOLLOW_PATHS)if(!COACH_BACKEND_PATHS.has(p)&&!COACH_COMPOSED_BOOK_CHANGES.has(p)&&!COACH_AUDIT_CHANGES.has(p)&&!FOLLOW_MODIFIED_PATHS.has(p))COACH_ADDITIONS.add(p);
 COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37460283567.json');
 COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37462426049.json');
