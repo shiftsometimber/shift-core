@@ -66,9 +66,10 @@ jobs:
           TABLET_USEFULNESS_PROOF=1 BASELINE_WORKER=/tmp/practical-baseline/shift-coach/worker.mjs node scripts/verify-practical-guides-handler.mjs
       - name: Verify tablet routine in the full browser
         run: |
-          npx playwright install --with-deps chromium
+          npm install --prefix "$RUNNER_TEMP/tablet-qa" --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/tablet-qa/node_modules/.bin/playwright" install --with-deps chromium
           node --test tests/tablet-routine.test.mjs
-          node tests/tablet-routine-browser.mjs
+          PLAYWRIGHT_MODULE="$RUNNER_TEMP/tablet-qa/node_modules/playwright" node tests/tablet-routine-browser.mjs
       - name: Verify current destinations and candidate documents
         run: node scripts/verify-practical-guides.mjs
       - uses: actions/upload-artifact@v4
