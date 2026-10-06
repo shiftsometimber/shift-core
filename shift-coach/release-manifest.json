@@ -679,6 +679,32 @@
       ],
       "run": 37531509514,
       "proofSource": "a9707c463f7681d49068fa0319418e5630510ba9"
+    },
+    "integrationComposition": {
+      "proof": "EXACT_COMBINED_SEO_CONTEXT_TABLET_AND_RELEASE_PINS_V1",
+      "base": "7ece5e502a70b5676ed0159a8a0da11fc7b37b2e",
+      "source": "bf4af95bb784fe8ec5ae75c46116dd3ccaf4915d",
+      "paths": [
+        ".github/workflows/seo-context-proof.yml",
+        "public-seo-context-data.mjs",
+        "public-seo-context.mjs",
+        "release/app-scope.mjs",
+        "release/approved-ranking-scope.mjs",
+        "release/fit-300-scope.mjs",
+        "release/seo-context-scope.mjs",
+        "release/seo-discovery-scope.mjs",
+        "release/seo-follow-through-scope.mjs",
+        "release/seo-technical-preservation.mjs",
+        "release/watch-registry-wave-scope.mjs",
+        "shift-coach/release-contract.mjs",
+        "shift-coach/release-manifest.json",
+        "shift-coach/worker.mjs",
+        "tests/public-seo-context.test.mjs",
+        "tests/seo-context-release.test.mjs",
+        "tests/seo-discovery-release.test.mjs",
+        "tests/seo-follow-through-release.test.mjs",
+        "tests/watch-ownership-release.test.mjs"
+      ]
     }
   },
   "rolloutPhotoComposition": {
