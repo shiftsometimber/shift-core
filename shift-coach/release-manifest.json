@@ -467,7 +467,7 @@
       "scripts/verify-public-continuity-live.mjs",
       "scripts/verify-six-topic-seo.mjs"
     ],
-    "maintenanceSource": "cb283d0a26536de22145f4b6b146835bc13899a4",
+    "maintenanceSource": "c41983f2a7b12771cea431f37ac73dd3c2bdc725",
     "ownerApproval": {
       "owner": "Matt O’Brien",
       "at": "2026-10-06T14:18:48Z",
