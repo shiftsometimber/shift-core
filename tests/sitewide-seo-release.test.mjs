@@ -13,7 +13,7 @@ test('runtime adoption accepts only the exact current deployment produced by the
  const proofRun={id:p.run,head_sha:p.source,path:SITEWIDE_WORKFLOW,head_branch:SITEWIDE_BRANCH,event:'push',status:'completed',conclusion:'success'};
  const proofJob={id:p.job,name:'verify',status:'completed',conclusion:'success'};
  const rollbackRun={id:SITEWIDE_ROLLBACK.run,head_sha:SITEWIDE_ROLLBACK.source,path:'.github/workflows/cloudflare-production-promote.yml',head_branch:'main',event:'push',status:'completed',conclusion:'failure'};
- const rollbackJob={id:SITEWIDE_ROLLBACK.job,run_id:SITEWIDE_ROLLBACK.run,name:'promote',status:'completed',conclusion:'failure'};
+ const rollbackJob={id:SITEWIDE_ROLLBACK.job,run_id:SITEWIDE_ROLLBACK.run,run_attempt:1,name:'promote',status:'completed',conclusion:'failure'};
  const active={id:SITEWIDE_ROLLBACK.deployment,created_on:SITEWIDE_ROLLBACK.createdOn,versions:[{version_id:SITEWIDE_VERSION,percentage:100}]};
  const get=async path=>path===`/actions/runs/${p.run}`?proofRun:path===`/actions/runs/${p.run}/jobs`?{jobs:[proofJob]}:path===`/actions/runs/${SITEWIDE_ROLLBACK.run}`?rollbackRun:{jobs:[rollbackJob]};
  const proofMarker='SITEWIDE_SEO_PROOF '+JSON.stringify(sitewideProofMarker(receiptText));
@@ -45,14 +45,14 @@ test('only the exact owned failed release and proven rollback may retain the sam
  const {SITEWIDE_ROLLBACK:p,verifySitewideRollback}=await import('../release/sitewide-seo-scope.mjs');
  const active={id:p.deployment,created_on:p.createdOn,versions:[{version_id:SITEWIDE_VERSION,percentage:100}]};
  const run={id:p.run,head_sha:p.source,path:'.github/workflows/cloudflare-production-promote.yml',head_branch:'main',event:'push',status:'completed',conclusion:'failure'};
- const job={id:p.job,run_id:p.run,name:'promote',status:'completed',conclusion:'failure'};
+ const job={id:p.job,run_id:p.run,run_attempt:1,name:'promote',status:'completed',conclusion:'failure'};
  const receipt={kind:'owned_runtime_deployment',source:p.source,run:String(p.run),deploymentId:p.failedDeployment,versionId:p.failedVersion,previousDeploymentId:SITEWIDE_DEPLOYMENT,previousVersionId:SITEWIDE_VERSION,dataRestored:false};
  const logs=JSON.stringify({kind:'runtime_recovery_observation',deploymentId:SITEWIDE_DEPLOYMENT,activeVersion:SITEWIDE_VERSION,release:p.source})+'\n'+JSON.stringify(receipt)+'\nWorker Version '+SITEWIDE_VERSION+' has been deployed to 100% of traffic.\nCurrent Version ID: '+SITEWIDE_VERSION;
  const get=async path=>path.endsWith('/jobs')?{jobs:[job]}:run;
  assert.equal((await verifySitewideRollback(active,get,async()=>logs)).deployment,p.deployment);
  for(const patch of [{id:'unknown'},{created_on:'2026-10-06T13:28:50Z'},{versions:[{version_id:SITEWIDE_VERSION,percentage:99}]}])await assert.rejects(()=>verifySitewideRollback({...active,...patch},get,async()=>logs));
  for(const patch of [{head_sha:'a'.repeat(40)},{conclusion:'success'},{head_branch:'other'},{event:'workflow_dispatch'}])await assert.rejects(()=>verifySitewideRollback(active,async path=>path.endsWith('/jobs')?{jobs:[job]}:{...run,...patch},async()=>logs));
- for(const patch of [{run_id:1},{name:'verify'},{conclusion:'success'}])await assert.rejects(()=>verifySitewideRollback(active,async path=>path.endsWith('/jobs')?{jobs:[{...job,...patch}]}:run,async()=>logs));
+ for(const patch of [{run_id:1},{run_attempt:2},{name:'verify'},{conclusion:'success'}])await assert.rejects(()=>verifySitewideRollback(active,async path=>path.endsWith('/jobs')?{jobs:[{...job,...patch}]}:run,async()=>logs));
  for(const patch of [{previousVersionId:'unknown'},{source:'a'.repeat(40)},{dataRestored:true},{deploymentId:'unknown'}])await assert.rejects(()=>verifySitewideRollback(active,get,async()=>logs.replace(JSON.stringify(receipt),JSON.stringify({...receipt,...patch}))));
  await assert.rejects(()=>verifySitewideRollback(active,get,async()=>logs.split('\n')[0]+'\n'+JSON.stringify(receipt)),/rollback absent/);
 });
@@ -62,7 +62,7 @@ test('sixth owned rollback requires the complete earlier chain and rejects alter
  const chain=[SITEWIDE_ROLLBACK,SITEWIDE_SECOND_ROLLBACK,SITEWIDE_THIRD_ROLLBACK,SITEWIDE_FOURTH_ROLLBACK,SITEWIDE_FIFTH_ROLLBACK,SITEWIDE_SIXTH_ROLLBACK];
  const get=async path=>{
   const p=chain.find(x=>path.includes('/'+x.run));assert(p);
-  return path.endsWith('/jobs')?{jobs:[{id:p.job,run_id:p.run,name:'promote',status:'completed',conclusion:'failure'}]}:{id:p.run,head_sha:p.source,path:'.github/workflows/cloudflare-production-promote.yml',head_branch:'main',event:'push',status:'completed',conclusion:'failure'};
+  return path.endsWith('/attempts/1/jobs')?{jobs:[{id:p.job,run_id:p.run,run_attempt:1,name:'promote',status:'completed',conclusion:'failure'}]}:path.endsWith('/jobs')?{jobs:[]}:{id:p.run,head_sha:p.source,path:'.github/workflows/cloudflare-production-promote.yml',head_branch:'main',event:'push',status:'completed',conclusion:'failure'};
  };
  const logs=async id=>{
   const i=chain.findIndex(x=>x.job===id),p=chain[i],previous=i?chain[i-1].deployment:SITEWIDE_DEPLOYMENT;
