@@ -21,3 +21,24 @@ test('response transform strips stale validators; HEAD has no body; errors and P
  for(const [method,status] of [['POST',200],['GET',404],['GET',500]]){const original=new Response(shell(c),{status,headers}),out=await withPublicSeoCloseout(original,new Request('https://shiftsometimber.co.uk'+p,{method}));assert.equal(out,original);}
 });
 test('prescriber review timing and urgent stop instruction remain explicit',()=>{const h=PRACTICAL_GUIDES['/mounjaro'].html;assert(h.includes('stop using Mounjaro and seek urgent medical help'));assert(h.includes('six months at the highest dose the person can tolerate'));assert(h.includes('not a rule to stop by yourself'));assert(!/guaranteed|buy now|discount/i.test(h));});
+
+test('tablet support uses distinct missed-dose rules and a clinician-led switching plan',()=>{
+ const comparison=PRACTICAL_GUIDES['/comparisons/medications/wegovy-injection-vs-tablets'].html;
+ const month=PRACTICAL_GUIDES['/articles/oral-semaglutide-for-weight-loss'].html;
+ const foundayo=PRACTICAL_GUIDES['/foundayo'].html;
+ assert.match(comparison,/eight hours fasting[\s\S]*120 mL[\s\S]*30 minutes/);
+ assert.match(comparison,/No fasting or water timing restriction/);
+ assert.match(comparison,/Do not calculate a tablet dose from an injection dose/);
+ assert.match(comparison,/month one and the anticipated dose in month four/);
+ assert.match(month,/skip the missed dose; take the normal dose the next day/);
+ assert.match(month,/no more than one dose per day/);
+ assert.match(foundayo,/no more than one dose in a day and no double dose/);
+ assert.match(month,/Wegovy leaflet says to stop treatment and seek urgent help/);
+ for(const h of [comparison,month,foundayo]){
+  assert.match(h,/nobody monitors it for symptoms/);
+  assert.match(h,/view=app#today/);
+  assert.match(h,/Independent clinical review is not claimed/);
+  assert(!/buy now|discount|guaranteed|clinically reviewed by|NHS now available/i.test(h));
+ }
+ assert.match(comparison,/UK authorisation is separate from NHS funding/);
+});
