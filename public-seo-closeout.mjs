@@ -1,3 +1,4 @@
+import {improvePracticalGuides,PRACTICAL_GUIDES} from './public-practical-guides.mjs';
 const DESCRIPTIONS = new Map([
   ['/mental-health/medication-and-weight', 'Plain-English guidance on how mental-health medication can affect weight, practical next steps, and when to seek professional help.'],
   ['/mental-health/when-someone-refuses-help', 'Plain-English guidance for when someone refuses mental-health help, including safety concerns, practical boundaries and when to seek professional support.'],
@@ -76,13 +77,13 @@ export async function withPublicSeoCloseout(response, request) {
   const path = new URL(request.url).pathname.replace(/\/+$/, '') || '/';
   const description = DESCRIPTIONS.get(path);
   const type = String(response?.headers?.get('content-type') || '').toLowerCase();
-  if ((!description && !SIX_TOPIC_SEO[path]) || !response.ok || !type.includes('text/html') || !['GET','HEAD'].includes(request.method)) return response;
+  if ((!description && !SIX_TOPIC_SEO[path] && !PRACTICAL_GUIDES[path]) || !response.ok || !type.includes('text/html') || !['GET','HEAD'].includes(request.method)) return response;
   let html = await response.text();
   if(description) html = html
     .replace(/<meta\b(?=[^>]*\bname\s*=\s*["'](?:description|twitter:description)["'])[^>]*>/gi, '')
     .replace(/<meta\b(?=[^>]*\bproperty\s*=\s*["']og:description["'])[^>]*>/gi, '')
     .replace('</head>', `<meta name="description" content="${esc(description)}"><meta property="og:description" content="${esc(description)}"><meta name="twitter:description" content="${esc(description)}"></head>`);
-  html = withSixTopicGuides(html,path);
+  html = improvePracticalGuides(withSixTopicGuides(html,path),path);
   const headers = new Headers(response.headers);
   headers.delete('content-encoding');
   headers.delete('content-length');
