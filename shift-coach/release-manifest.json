@@ -481,7 +481,7 @@
       "my-timber-pwa/verify-live.mjs",
       "release/app-scope.mjs"
     ],
-    "maintenanceSource": "ce5983e6cb6ecc0aa9ff7ef017d7aee1a35cda4d",
+    "maintenanceSource": "2b437bd49273cbde7ca272497ddce31a1326b28d",
     "ownerApproval": {
       "owner": "Matt O’Brien",
       "at": "2026-10-06T14:18:48Z",
