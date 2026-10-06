@@ -1,7 +1,7 @@
 import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 import {reusablePublicIndex} from './app-index-freshness.mjs';
 // Use the same exact verified production receipt as cancelled-release recovery.
-import {catalogueRuntime,verifiedCatalogueRuntime,articleRuntime,verifiedStartingPoint} from '../shift-coach/cancelled-release-recovery.mjs';
+import {catalogueRuntime,verifyCatalogueBaseline,articleRuntime,verifiedStartingPoint} from '../shift-coach/cancelled-release-recovery.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync,writeFileSync,appendFileSync,mkdirSync} from 'node:fs';
@@ -14,9 +14,8 @@ const BASE=point.source,VERSION=point.version;
 const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+point.run,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
 assert(r.ok);const receipt=await r.json();assert.equal(receipt.id,point.run);assert.equal(receipt.head_sha,BASE);assert.equal(receipt.conclusion,'success');
 if(point.run===catalogueRuntime.run){
- const jr=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+point.run+'/jobs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(jr.ok);
- const jobs=await jr.json();const job=(jobs.jobs||[]).find(j=>j.id===catalogueRuntime.job);
- assert(verifiedCatalogueRuntime(active,receipt,job,JSON.parse(readFileSync('docs/catalogue-benefits-live-receipt-20261006.json','utf8'))),'Exact local deployment/live receipt and hosted source proof must still agree');
+ const request=async path=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r;};
+ assert(await verifyCatalogueBaseline(active,async path=>(await request(path)).json(),async id=>(await request('/actions/jobs/'+id+'/logs')).text(),JSON.parse(readFileSync('docs/catalogue-benefits-live-receipt-20261006.json','utf8')),JSON.parse(readFileSync('docs/catalogue-runtime-rollback-37460283567.json','utf8'))),'Exact catalogue proof, live receipt and any finite rollback evidence must still agree');
 }else{assert.equal(receipt.path,point.run===articleRuntime.run?articleRuntime.workflow:'.github/workflows/cloudflare-production-promote.yml');assert.equal(receipt.head_branch,'main');}
 assert.equal(withoutCoachEntrypoint(execFileSync('git',['show','HEAD:wrangler.jsonc'],{encoding:'utf8'})),execFileSync('git',['show','b23010cfca99b3ab05377062ad5b16984711111c:wrangler.jsonc'],{encoding:'utf8'}),'Configuration changed outside the separately pinned coaching entrypoint');
 mkdirSync('b1-runtime-release',{recursive:true});

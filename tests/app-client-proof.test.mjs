@@ -1,4 +1,14 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {buildSync} from 'esbuild';import vm from 'node:vm';import {appClient} from '../preview/app-layout/presentation.mjs';import {assertAppClient} from '../release/app-client-proof.mjs';
+import {liveAppClient} from '../app-layout-live.mjs';
+import {fitActiveEditAsset,withFitActiveEdit} from '../shift-coach/fit-active-edit.mjs';
+import {memberImageViewerRuntime} from '../shift-coach/member-image-viewer.mjs';
+test('live app expectation includes the exact approved image viewer and rejects missing or changed bytes',async()=>{
+ const response=await withFitActiveEdit(new Request('https://example.test/assets/my-timber-layout.mjs'),new Response(liveAppClient,{headers:{'Content-Type':'text/javascript'}}));
+ const actual=await response.text(),expected=fitActiveEditAsset(liveAppClient)+memberImageViewerRuntime;
+ assertAppClient(actual,expected);
+ assert.throws(()=>assertAppClient(actual,fitActiveEditAsset(liveAppClient)),/script changed/);
+ assert.throws(()=>assertAppClient(actual.replace('installMemberImageViewer','unreviewedViewer'),expected),/script changed/);
+});
 test('compiled first-week serialization matches while genuine code or copy changes fail',()=>{
  const code=buildSync({entryPoints:['preview/app-layout/presentation.mjs'],bundle:true,platform:'node',format:'cjs',write:false}).outputFiles[0].text;
  const context={module:{exports:{}},exports:{}};vm.runInNewContext(code,context);const compiled=context.module.exports.appClient;

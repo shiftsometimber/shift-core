@@ -1,0 +1,27 @@
+{
+  "kind": "verified_restore_of_catalogue_baseline",
+  "reviewedAt": "2026-10-06T12:12:41Z",
+  "failedRun": 37460283567,
+  "failedJob": 112257979138,
+  "artifact": {"id": 11412982340, "sha256": "255fe320eb199e3ee2e7f61c1adf3999530a4f201df6334413df1fd83e172f0b"},
+  "owned": {
+    "kind": "owned_runtime_deployment",
+    "at": "2026-10-06T12:08:38.144Z",
+    "source": "4c58a9c85747a2cc4f54af06ca387c94e50957d4",
+    "run": "37460283567",
+    "deploymentId": "b50b6cb6-523b-4ffa-8787-8b133095b062",
+    "versionId": "3840a819-ed12-4a59-9e54-9d23fd7e82c1",
+    "previousDeploymentId": "585674f7-ad7d-4cca-a6fc-64ab74da7244",
+    "previousVersionId": "d5b99766-5d14-4002-bd96-18a512d41c19",
+    "dataRestored": false
+  },
+  "rollback": {
+    "at": "2026-10-06T12:09:12.563Z",
+    "restoredVersion": "d5b99766-5d14-4002-bd96-18a512d41c19",
+    "deployment": "69dbd197-28d2-4e7f-a643-83fb96ce0552",
+    "dataRestored": false,
+    "reason": "Post-deployment gate failed; release remains failed."
+  },
+  "independentObservation": {"deployment": "69dbd197-28d2-4e7f-a643-83fb96ce0552", "createdOn": "2026-10-06T12:09:10.979788Z", "version": "d5b99766-5d14-4002-bd96-18a512d41c19", "percentage": 100, "method": "Fresh read-only Wrangler deployments list on authorised workstation"},
+  "meaning": "Retain the restored previously verified catalogue baseline only. The failed release is not approved or live. No data rollback, clinical approval or new restoration authority."
+}

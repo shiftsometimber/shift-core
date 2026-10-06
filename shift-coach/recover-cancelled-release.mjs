@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
-import {catalogueRuntime,verifiedCatalogueRuntime,articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime,recentSuccessfulPromotions} from './cancelled-release-recovery.mjs';import {verifyCoachingRelease} from './release-contract.mjs';
+import {catalogueRuntime,verifyCatalogueBaseline,articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime,recentSuccessfulPromotions} from './cancelled-release-recovery.mjs';import {verifyCoachingRelease} from './release-contract.mjs';
 assert.equal(process.env.GITHUB_REF,'refs/heads/main');verifyCoachingRelease({requireLaunch:true});
 const get=async path=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json();};
 const main=await get('/git/refs/heads/main');assert.equal(main.object.sha,process.env.GITHUB_SHA,'Do not recover from a stale release');
@@ -14,10 +14,9 @@ let decision,ownedProof;
 if([recovery.verified,recovery.unverified].includes(before.versions?.[0]?.version_id))decision=recoveryDecision(before,failed,verified);
 else{
  if(activeVersion===catalogueRuntime.version){
-  const run=await get('/actions/runs/'+catalogueRuntime.run),jobs=await get('/actions/runs/'+catalogueRuntime.run+'/jobs');
-  const job=(jobs.jobs||[]).find(j=>j.id===catalogueRuntime.job);
   const receipt=JSON.parse(readFileSync('docs/catalogue-benefits-live-receipt-20261006.json','utf8'));
-  if(verifiedCatalogueRuntime(before,run,job,receipt))ownedProof={run:run.id,source:run.head_sha,version:catalogueRuntime.version,deployment:catalogueRuntime.deployment,evidenceKind:'hosted-proof-plus-independent-live-receipt'};
+  const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact rollback job logs unavailable');return r.text();};
+  if(await verifyCatalogueBaseline(before,get,getLogs,receipt,JSON.parse(readFileSync('docs/catalogue-runtime-rollback-37460283567.json','utf8'))))ownedProof={run:catalogueRuntime.run,source:catalogueRuntime.source,version:catalogueRuntime.version,deployment:before.id,evidenceKind:'original-hosted-proof-plus-independent-live-receipt-and-exact-rollback'};
  }
  if(before.versions?.[0]?.version_id===articleRuntime.version){
   const run=await get('/actions/runs/'+articleRuntime.run),jobs=await get('/actions/runs/'+articleRuntime.run+'/jobs');
