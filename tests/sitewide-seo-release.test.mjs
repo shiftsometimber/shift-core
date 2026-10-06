@@ -22,3 +22,18 @@ test('runtime adoption requires matching successful independent hosted proof and
  await assert.rejects(()=>verifySitewideRuntime(active,composition,receiptText,get,async()=>''),/marker absent/);
  await assert.rejects(()=>verifySitewideRuntime(active,{...composition,hostedProof:null},receiptText,get,logs),/hosted SEO proof required/);
 });
+test('only the exact owned failed release and proven rollback may retain the same SEO version',async()=>{
+ const {SITEWIDE_ROLLBACK:p,verifySitewideRollback}=await import('../release/sitewide-seo-scope.mjs');
+ const active={id:p.deployment,created_on:p.createdOn,versions:[{version_id:SITEWIDE_VERSION,percentage:100}]};
+ const run={id:p.run,head_sha:p.source,path:'.github/workflows/cloudflare-production-promote.yml',head_branch:'main',event:'push',status:'completed',conclusion:'failure'};
+ const job={id:p.job,run_id:p.run,name:'promote',status:'completed',conclusion:'failure'};
+ const receipt={kind:'owned_runtime_deployment',source:p.source,run:String(p.run),deploymentId:p.failedDeployment,versionId:p.failedVersion,previousDeploymentId:SITEWIDE_DEPLOYMENT,previousVersionId:SITEWIDE_VERSION,dataRestored:false};
+ const logs=JSON.stringify(receipt)+'\nWorker Version '+SITEWIDE_VERSION+' has been deployed to 100% of traffic.\nCurrent Version ID: '+SITEWIDE_VERSION;
+ const get=async path=>path.endsWith('/jobs')?{jobs:[job]}:run;
+ assert.equal((await verifySitewideRollback(active,get,async()=>logs)).deployment,p.deployment);
+ for(const patch of [{id:'unknown'},{created_on:'2026-10-06T13:28:50Z'},{versions:[{version_id:SITEWIDE_VERSION,percentage:99}]}])await assert.rejects(()=>verifySitewideRollback({...active,...patch},get,async()=>logs));
+ for(const patch of [{head_sha:'a'.repeat(40)},{conclusion:'success'},{head_branch:'other'},{event:'workflow_dispatch'}])await assert.rejects(()=>verifySitewideRollback(active,async path=>path.endsWith('/jobs')?{jobs:[job]}:{...run,...patch},async()=>logs));
+ for(const patch of [{run_id:1},{name:'verify'},{conclusion:'success'}])await assert.rejects(()=>verifySitewideRollback(active,async path=>path.endsWith('/jobs')?{jobs:[{...job,...patch}]}:run,async()=>logs));
+ for(const patch of [{previousVersionId:'unknown'},{source:'a'.repeat(40)},{dataRestored:true},{deploymentId:'unknown'}])await assert.rejects(()=>verifySitewideRollback(active,get,async()=>logs.replace(JSON.stringify(receipt),JSON.stringify({...receipt,...patch}))));
+ await assert.rejects(()=>verifySitewideRollback(active,get,async()=>JSON.stringify(receipt)),/rollback absent/);
+});

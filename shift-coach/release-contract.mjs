@@ -1,3 +1,4 @@
+import {FOLLOW_PATHS,followPinnedRef,followHistoricalRead,validateFollowComposition,verifyFollowHistory} from '../release/seo-follow-through-scope.mjs';
 import {SITEWIDE_PAYLOAD_PATHS,SITEWIDE_MAINTENANCE_PATHS,sitewidePinnedRef,sitewideHistoricalRead,validateSitewideComposition,verifySitewideHistory} from '../release/sitewide-seo-scope.mjs';
 import {WATCH_SOURCE_LINK_SOURCE,WATCH_OWNERSHIP_PATHS,watchWaveRef} from '../release/watch-registry-wave-scope.mjs';
 import {DEVICE_HEALTH_DELTA,validateDeviceHealthSource} from '../release/device-health-scope.mjs';
@@ -44,6 +45,7 @@ for(const path of ['scripts/verify-six-topic-seo.mjs','docs/seo/2026-10-05-six-p
 for(const path of ['.github/workflows/practical-guides-proof.yml','docs/seo/2026-10-06-practical-guides.md','public-practical-guides.mjs','scripts/verify-practical-guides-handler.mjs','scripts/verify-practical-guides.mjs','tests/practical-guides.test.mjs'])COACH_ADDITIONS.add(path);
 for(const path of ['public-seo-closeout.mjs','tests/public-seo-closeout.test.mjs'])COACH_BACKEND_PATHS.add(path);
 for(const p of CATALOGUE_COPY_PATHS)if(p!=='shift-coach/worker.mjs')COACH_ADDITIONS.add(p);
+for(const p of FOLLOW_PATHS)COACH_ADDITIONS.add(p);
 COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37460283567.json');
 COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37462426049.json');
 for(const p of ['rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs'])COACH_BACKEND_PATHS.add(p);
@@ -110,14 +112,15 @@ export function validateCoachingSource(read,manifest){
  const viewer=manifest.imageViewerComposition;
  if(viewer){assert.equal(viewer.proof,'MEMBER_IMAGE_VIEWER_RELEASE_V1');assert.deepEqual(viewer.paths,['shift-coach/fit-active-edit.mjs','shift-coach/fit-active-edit.test.mjs','shift-coach/release-contract.mjs']);assert.match(viewer.source,/^[a-f0-9]{40}$/);execFileSync('git',['merge-base','--is-ancestor',viewer.source,'HEAD']);}
  const sitewide=manifest.sitewideSeoComposition;if(sitewide)validateSitewideComposition(sitewide);
- const priorSitewide=sitewideHistoricalRead(read,sitewide);
+ const follow=manifest.seoFollowThroughComposition;if(follow)validateFollowComposition(follow);
+ const priorSitewide=sitewideHistoricalRead(followHistoricalRead(read,follow),sitewide);
  const reload=manifest.acceptanceReloadComposition;
  const repair=manifest.baselineRepairComposition;validateBaselineRepair(repair,priorSitewide);
  const beforeRepair=baselineHistoricalRead(priorSitewide,repair);
  validateAcceptanceReloadComposition(reload,beforeRepair);
  const composition=manifest.seoFitComposition;
  if(composition)validateSeoFitComposition(composition,acceptanceReloadHistoricalRead(beforeRepair,reload));
- for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(sitewidePinnedRef(sitewide,p)|| (repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit),p),'Coaching release source drift: '+p);
+ for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p)|| (repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit),p),'Coaching release source drift: '+p);
  assert.equal(read('HEAD',ARTICLE_CLOSEOUT_PATH),read(ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH),'Read-only article closeout source drift');
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
  assert.equal(read('HEAD','public-continuity.mjs'),read('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
@@ -161,7 +164,7 @@ export function verifyCoachingRelease({requireLaunch=false}={}){
  const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
  const manifest=JSON.parse(readFileSync(new URL('./release-manifest.json',import.meta.url),'utf8'));
  git('merge-base','--is-ancestor',COACH_BASE,'HEAD');git('merge-base','--is-ancestor',WATCH_CURRENT_BASE,'HEAD');git('merge-base','--is-ancestor',manifest.applicationCommit,'HEAD');
- verifySitewideHistory(manifest.sitewideSeoComposition);
+ verifySitewideHistory(manifest.sitewideSeoComposition);verifyFollowHistory(manifest.seoFollowThroughComposition);
  const proof=validateCoachingSource((ref,p)=>git('rev-parse',ref+':'+p),manifest);
  assertCoachingConfiguration(readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'}));
  if(requireLaunch)assertLaunchDecisions(manifest);
