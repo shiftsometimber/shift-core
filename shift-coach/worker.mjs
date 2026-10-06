@@ -1,3 +1,4 @@
+import {withCatalogueBenefits} from '../catalogue-benefits.mjs';
 import {tabletRoutineRoutes} from '../member-experience/tablet-routine.mjs';
 import {trustRoute,withTrustRepair,pages,withContactReference} from './public-trust-repair.mjs';
 import core from '../worker-entry-v6.js';
@@ -27,7 +28,7 @@ export default {
    url.pathname='/v1/shift-coach';url.search='';
    try{const initial=await coachingRoutes(new Request(url,{method:'GET',headers:request.headers}),env);if(initial?.ok)seed=await initial.json();}catch{/* Client keeps its normal retry path; no unchecked snapshot is used. */}
   }
-  return withCoaching(request,await withFitActiveEdit(request,response),seed);
+  return withCatalogueBenefits(request,await withCoaching(request,await withFitActiveEdit(request,response),seed));
  },
  async scheduled(controller,env,ctx){
   await core.scheduled(controller,env,ctx);

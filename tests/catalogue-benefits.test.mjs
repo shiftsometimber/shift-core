@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {catalogueBenefitsHtml,removeCatalogueBenefits,withCatalogueBenefits,benefitsSection,BENEFIT_PATHS} from '../catalogue-benefits.mjs';
+import {banner,css} from '../home-route-banner.mjs';
+const home='<html><head>'+css+'</head><body><main id="main-content">'+banner+'</main></body></html>';
+const raw='<html><head></head><body><main><h1>Reviewed guidance</h1><p>Original guidance and links</p></main></body></html>';
+test('approved homepage copy and spacing restore every original byte',()=>{const out=catalogueBenefitsHtml(home,'/');assert.equal(removeCatalogueBenefits(out,'/'),home);assert.equal(catalogueBenefitsHtml(out,'/'),out);assert(out.includes('workouts to feel</span><br>better.'));assert(out.includes('margin-bottom:24px'));});
+test('relevant pages retain guidance and add one accessible linked benefit section',()=>{for(const path of BENEFIT_PATHS){const out=catalogueBenefitsHtml(raw,path);assert.equal(removeCatalogueBenefits(out,path),raw);assert.equal(catalogueBenefitsHtml(out,path),out);assert(out.includes(benefitsSection));assert(out.includes('300 illustrated exercises'));}});
+test('medicine, order, member and unrelated routes remain byte-identical',()=>{for(const path of ['/mounjaro','/wegovy','/start-here','/treatment-centre','/member/dashboard','/member/grub','/member/fit','/checkout','/terms','/v1/exercises'])assert.equal(catalogueBenefitsHtml(raw,path),raw);});
+test('authentication errors, redirects, API bodies and non-GET requests remain untouched',async()=>{for(const [method,status,type] of [['POST',200,'text/html'],['GET',401,'text/html'],['GET',302,'text/html'],['GET',200,'application/json']]){const response=new Response(raw,{status,headers:{'content-type':type}});assert.equal(await withCatalogueBenefits(new Request('https://example.com/programme',{method}),response),response);}});
