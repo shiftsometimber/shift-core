@@ -606,7 +606,7 @@
             "proof": "EXACT_INDEXNOW_AND_PUBLIC_DISCOVERY_V1",
             "base": "5c6bec0e59d914b234dffac400da9b6f3c0f1578",
             "payloadSource": "506dfd63d9267c936ab31c2a8ae167b3717b49f5",
-            "maintenanceSource": "506dfd63d9267c936ab31c2a8ae167b3717b49f5",
+            "maintenanceSource": "d7e1601b23b194246f476da30079fef20ed5e523",
             "payloadPaths": [
               "public-seo-discovery.mjs",
               "shift-coach/worker.mjs",
