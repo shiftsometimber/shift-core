@@ -3,9 +3,18 @@ import {createHash} from 'node:crypto';
 import {readFileSync,writeFileSync} from 'node:fs';
 const archive=JSON.parse(readFileSync('shift-take-archive-proof.json','utf8')),pending=[...archive.proof],results=[];
 await Promise.all(Array.from({length:4},async()=>{while(pending.length){
- const item=pending.shift();let response;
- for(let attempt=0;attempt<3;attempt++){response=await fetch('https://shiftsometimber.co.uk'+item.path+'?take-check='+process.env.GITHUB_SHA,{cache:'no-store',signal:AbortSignal.timeout(30000)});if(response.ok)break;if(attempt<2)await new Promise(r=>setTimeout(r,3000))}
- assert.equal(response.status,200,item.path);const html=await response.text();
+ const item=pending.shift();let response,html;
+ // Retry only the bounded read, including a dropped response body. Content
+ // assertions below remain outside this loop and fail without a retry.
+ for(let attempt=0;attempt<3;attempt++){
+  try{
+   response=await fetch('https://shiftsometimber.co.uk'+item.path+'?take-check='+process.env.GITHUB_SHA,{cache:'no-store',signal:AbortSignal.timeout(30000)});
+   html=await response.text();
+   if(response.ok||attempt===2)break;
+  }catch(error){if(attempt===2)throw error;}
+  await new Promise(r=>setTimeout(r,3000));
+ }
+ assert.equal(response.status,200,item.path);
  if(item.originalPublisherNotice){assert.equal((html.match(/data-shift-take/g)||[]).length,0,item.path);const main=html.match(/<main\b[\s\S]*?<\/main>/i)?.[0];assert.ok(main,item.path);assert.equal(createHash('sha256').update(main).digest('hex'),item.originalMainSha256,item.path+' exact original notice');}else{
  assert.equal((html.match(/data-shift-take/g)||[]).length,1,item.path);
  assert.ok(html.includes('<h2>SHIFT’s take</h2>'),item.path);}
