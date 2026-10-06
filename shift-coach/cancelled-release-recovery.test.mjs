@@ -1,10 +1,12 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime,verifiedStartingPoint} from './cancelled-release-recovery.mjs';
-const active=id=>({versions:[{version_id:id,percentage:100}]}),failed={id:recovery.run,head_sha:recovery.source,run_attempt:1,conclusion:'cancelled'},verified={id:recovery.verifiedRun,head_sha:recovery.verifiedSource,conclusion:'success'};
+const active=(id,deployment=id===recovery.unverified?recovery.unverifiedDeployment:'restored-deployment')=>({id:deployment,versions:[{version_id:id,percentage:100}]}),workflow={status:'completed',event:'push',head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml'},failed={...workflow,id:recovery.run,head_sha:recovery.source,run_attempt:1,conclusion:'cancelled'},verified={...workflow,id:recovery.verifiedRun,head_sha:recovery.verifiedSource,conclusion:'success'};
 test('recovery only restores the exact evidenced cancelled runtime to the verified source',()=>{
- assert.deepEqual({verified:recovery.verified,verifiedRun:recovery.verifiedRun,verifiedSource:recovery.verifiedSource},{verified:'dee23ccf-be93-4aed-be76-02b724a4c470',verifiedRun:37081219787,verifiedSource:'4350e9a51fece40f5a260da0a847af2a7829c764'});
+ assert.deepEqual(recovery,{run:37512509413,source:'36301f661e9a2e220c15e7f1ccf070612186242b',unverified:'81f4a3a8-9b25-4bb5-bd0d-1e870cfc0206',unverifiedDeployment:'ec4aeeed-9656-4bc0-8e9d-6d751d6fac77',verified:'35e9b183-12c6-4a22-a68b-1a9ee3c8cef4',verifiedDeployment:'3f64ff03-76c6-4aaf-bc66-f4c3865711d9',verifiedRun:37510903784,verifiedSource:'ddde14b19d6ef79547e27afb4ed76bf1f4e39f05'});
  assert.equal(recoveryDecision(active(recovery.unverified),failed,verified),'restore');assert.equal(recoveryDecision(active(recovery.verified),failed,verified),'retain');
- for(const change of [{conclusion:'success'},{head_sha:'f'.repeat(40)},{run_attempt:2},{id:1}])assert.throws(()=>recoveryDecision(active(recovery.unverified),{...failed,...change},verified));
+ for(const change of [{conclusion:'success'},{head_sha:'f'.repeat(40)},{run_attempt:2},{id:1},{status:'in_progress'},{event:'pull_request'},{head_branch:'preview'},{path:'other.yml'}])assert.throws(()=>recoveryDecision(active(recovery.unverified),{...failed,...change},verified));
+ assert.throws(()=>recoveryDecision(active(recovery.unverified,'unknown-deployment'),failed,verified));
  assert.throws(()=>recoveryDecision(active('unknown'),failed,verified));assert.throws(()=>recoveryDecision(active(recovery.unverified),failed,{...verified,conclusion:'failure'}));
+ for(const change of [{status:'in_progress'},{event:'pull_request'},{head_branch:'preview'},{path:'other.yml'}])assert.throws(()=>recoveryDecision(active(recovery.unverified),failed,{...verified,...change}));
  assert.throws(()=>recoveryDecision({versions:[{version_id:recovery.unverified,percentage:50}]},failed,verified));
 });
 
@@ -40,6 +42,39 @@ test('promotion carries the exact verified later runtime forward and rejects mov
 });
 
 import {recentSuccessfulPromotions} from './cancelled-release-recovery.mjs';
+import {catalogueRuntime,verifiedCatalogueRuntime} from './cancelled-release-recovery.mjs';
+import {catalogueRollback,verifiedCatalogueRollback} from './cancelled-release-recovery.mjs';
+import {readFileSync} from 'node:fs';
+import {validateBaselineRepair,BASELINE_REPAIR_PATHS,CATALOGUE_COPY_PATHS} from '../release/fit-300-scope.mjs';
+test('retain the restored catalogue baseline only with exact failed job, rollback and original runtime evidence',()=>{
+ const p=catalogueRollback,c=catalogueRuntime,receipt=JSON.parse(readFileSync('docs/catalogue-runtime-rollback-37462426049.json','utf8'));
+ const a={id:p.deployment,versions:[{version_id:c.version,percentage:100}]},run={id:p.run,head_sha:p.source,status:'completed',conclusion:'failure',run_attempt:1,event:'push',head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml'};
+ const job={id:p.job,run_id:p.run,name:'promote',conclusion:'failure',steps:[{number:68,name:'Measure and retain live homepage mobile speed',conclusion:'failure'},{number:107,name:'Restore the captured runtime if a post-deployment gate failed',conclusion:'success'}]};
+ const logs=JSON.stringify(receipt.owned)+'\nSUCCESS Worker Version '+c.version+' has been deployed to 100% of traffic.';
+ assert.equal(verifiedCatalogueRollback(a,run,job,logs,receipt),true);
+ for(const patch of [{id:'unknown'},{versions:[{version_id:p.failedVersion,percentage:100}]},{versions:[{version_id:c.version,percentage:50}]}])assert.equal(verifiedCatalogueRollback({...a,...patch},run,job,logs,receipt),false);
+ for(const patch of [{id:1},{head_sha:'f'.repeat(40)},{conclusion:'success'},{run_attempt:2},{path:'other.yml'},{head_branch:'preview'}])assert.equal(verifiedCatalogueRollback(a,{...run,...patch},job,logs,receipt),false);
+ assert.equal(verifiedCatalogueRollback(a,run,{...job,steps:job.steps.slice(0,1)},logs,receipt),false);
+ assert.equal(verifiedCatalogueRollback(a,run,job,'',receipt),false);
+ for(const patch of [{rollback:{...receipt.rollback,dataRestored:true}},{owned:{...receipt.owned,previousVersionId:p.failedVersion}},{artifact:{id:1,sha256:'bad'}},{independentObservation:{...receipt.independentObservation,percentage:50}}])assert.equal(verifiedCatalogueRollback(a,run,job,logs,{...receipt,...patch}),false);
+});
+test('composed baseline repair preserves newer verifier pins and rejects every finite payload drift',()=>{
+ const repair=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8')).baselineRepairComposition;
+ assert(repair,'Exact baseline composition required');
+ validateBaselineRepair(repair,()=> 'same-blob');
+ for(const patch of [{proof:'other'},{base:'f'.repeat(40)},{paths:[...repair.paths,'other.mjs']}])assert.throws(()=>validateBaselineRepair({...repair,...patch},()=> 'same-blob'));
+ for(const changed of [...BASELINE_REPAIR_PATHS,...CATALOGUE_COPY_PATHS])assert.throws(()=>validateBaselineRepair(repair,(ref,p)=>ref==='HEAD'&&p===changed?'changed':'same-blob'));
+});
+test('finite local catalogue release needs exact deployment, hosted proof and independent live receipt',()=>{
+ const p=catalogueRuntime,a={id:p.deployment,versions:[{version_id:p.version,percentage:100}]};
+ const r={id:p.run,head_sha:p.source,status:'completed',conclusion:'success',event:'push',head_branch:'release/catalogue-benefits-20261006',path:'.github/workflows/catalogue-benefits-proof.yml'},j={id:p.job,run_id:p.run,name:'proof',conclusion:'success'};
+ const receipt=JSON.parse(readFileSync('docs/catalogue-benefits-live-receipt-20261006.json','utf8'));
+ assert.equal(verifiedCatalogueRuntime(a,r,j,receipt),true);
+ for(const patch of [{id:'unknown'},{versions:[{version_id:p.version,percentage:50}]},{versions:[{version_id:recovery.unverified,percentage:100}]}])assert.equal(verifiedCatalogueRuntime({...a,...patch},r,j,receipt),false);
+ for(const patch of [{id:1},{head_sha:'f'.repeat(40)},{conclusion:'failure'},{event:'pull_request'},{head_branch:'main'},{path:'other.yml'}])assert.equal(verifiedCatalogueRuntime(a,{...r,...patch},j,receipt),false);
+ assert.equal(verifiedCatalogueRuntime(a,r,{...j,id:1},receipt),false);
+ for(const patch of [{versionId:'unknown'},{deploymentId:'unknown'},{source:'f'.repeat(40)},{liveProof:{allExact:false}},{productionDatabaseWrites:1},{hostedProof:{run:p.run,job:p.job,conclusion:'failure'}}])assert.equal(verifiedCatalogueRuntime(a,r,j,{...receipt,...patch}),false);
+});
 test('successful deployment evidence uses the exact production workflow instead of unrelated traffic',async()=>{
  const requests=[],production={id:37277280482,path:'.github/workflows/cloudflare-production-promote.yml'};
  const result=await recentSuccessfulPromotions(async path=>{requests.push(path);assert(path.startsWith('/actions/workflows/cloudflare-production-promote.yml/runs?'));return {workflow_runs:[production]}});

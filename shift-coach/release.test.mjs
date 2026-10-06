@@ -6,6 +6,17 @@ import {execFileSync} from 'node:child_process';
 import {COACH_BASE,COACH_PATHS,COACH_COMPOSED_BOOK_ADDITIONS,COACH_COMPOSED_BOOK_CHANGES,assertCoachingChangedPath,WATCH_CURRENT_PATHS,assertCoachingConfiguration,withoutCoachEntrypoint,coachingHistoricalRef,validateCoachingSource,assertLaunchDecisions} from './release-contract.mjs';
 const config=readFileSync('wrangler.jsonc','utf8'),before=execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'});
 const manifest=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8'));
+test('already-live catalogue copy is reversed before strict homepage banner preservation',async()=>{
+ const {banner,css}=await import('../home-route-banner.mjs');
+ const {addCatalogueCounts,benefitsSection}=await import('../catalogue-benefits.mjs');
+ const {preserveApprovedStartup}=await import('../release/member-details-preservation.mjs');
+ const plain='<html><head></head><body><main><section aria-labelledby="struggle-artwork-title" class="struggle-artwork-section">untouched</section></main></body></html>';
+ const approved=plain.replace('</head>',css+'</head>').replace('<section aria-labelledby=',banner+'<section aria-labelledby=');
+ assert.equal(preserveApprovedStartup('/',Buffer.from(addCatalogueCounts(approved))).toString(),plain);
+ assert.throws(()=>preserveApprovedStartup('/',Buffer.from(addCatalogueCounts(approved).replace('Over 2,500 recipes.','Over 9,999 recipes.'))),/Homepage banner differs/);
+ const programme='<html><head></head><main>unchanged</main></html>';
+ assert.equal(preserveApprovedStartup('/programme',Buffer.from(programme.replace('</main>',benefitsSection+'</main>'))).toString(),programme);
+});
 test('bounded member evidence rejects drift of every proven file, extra paths and a temporary production workflow',async()=>{
  const {MEMBER_DIAGNOSTICS_PATHS, MEMBER_DIAGNOSTICS_WORKFLOW, MEMBER_DIAGNOSTICS_SOURCE, MEMBER_DIAGNOSTICS_BASE, MEMBER_RELOAD_PATHS, MEMBER_RELOAD_SOURCE, validateMemberDiagnosticsSource}=await import('../release/member-acceptance-scope.mjs');
  const paths=[...MEMBER_DIAGNOSTICS_PATHS,MEMBER_DIAGNOSTICS_WORKFLOW],read=(ref,p)=>p;
@@ -61,7 +72,7 @@ test('launch preserves privacy and purpose gates; exact owner acceptance never c
 test('production path keeps the existing rollback/deploy checks and checks launch before any production work',()=>{const wf=readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8');assert(wf.includes('"shift-coach/**"'));assert(wf.indexOf('node shift-coach/release-contract.mjs --require-launch')<wf.indexOf('node release/growth-preflight.mjs'));assert(wf.includes('node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs'));assert.equal((wf.match(/node release\/member-runtime-deploy\.mjs/g)||[]).length,1);for(const s of ['Capture current Worker deployment for rollback','Verify exact current main before production mutations','Restore the captured runtime if a post-deployment gate failed'])assert(wf.includes(s));});
 
 test('composed book release accepts only exact named additions and modifications; unrelated paths and deletion fail',()=>{
- for(const path of COACH_COMPOSED_BOOK_ADDITIONS){assert.doesNotThrow(()=>assertCoachingChangedPath('A',path));assert.throws(()=>assertCoachingChangedPath('M',path));assert.equal(coachingHistoricalRef('HEAD',path),'HEAD');}
+ for(const path of COACH_COMPOSED_BOOK_ADDITIONS){assert.doesNotThrow(()=>assertCoachingChangedPath('A',path));assert.throws(()=>assertCoachingChangedPath('M',path));assert.equal(coachingHistoricalRef('HEAD',path),path==='release/book-voice-scope.mjs'?'c2eaab9e0e1ddb39e116d6d3d625a7f51b6881b6':'HEAD');}
  for(const path of COACH_COMPOSED_BOOK_CHANGES){assert.doesNotThrow(()=>assertCoachingChangedPath('M',path));assert.throws(()=>assertCoachingChangedPath('D',path));assert.equal(coachingHistoricalRef('HEAD',path),'HEAD');}
  for(const path of ['editorial/book-voice/unreviewed.mjs','worker-entry-v6.js','frontend/member/my-timber-preview.html','unknown.mjs'])assert.throws(()=>assertCoachingChangedPath('M',path),/Unlisted/);
 });
@@ -79,7 +90,7 @@ test('latest registry-wave proof and exact composed Watch bytes remain mandatory
 test('missing reviewed preview history is fetched by its exact immutable identity and still fails if unavailable',()=>{
  const calls=[],present=new Set([REVIEWED_HISTORY_REFS[0]]);
  ensureReviewedHistory((bin,args)=>{calls.push(args);if(args[0]==='cat-file'&&!present.has(args[2].replace('^{commit}','')))throw Error('missing');if(args[0]==='fetch')present.add(args[3]);});
- assert.deepEqual(calls.filter(a=>a[0]==='fetch'),[['fetch','--no-tags','origin',REVIEWED_HISTORY_REFS[1]]]);
+ assert.deepEqual(calls.filter(a=>a[0]==='fetch'),REVIEWED_HISTORY_REFS.slice(1).map(ref=>['fetch','--no-tags','origin',ref]));
  assert.throws(()=>ensureReviewedHistory((bin,args)=>{throw Error(args[0]==='fetch'?'fetch unavailable':'missing')}),/fetch unavailable/);
 });
 test('retained current-main continuity alias cannot be silently widened by repinning',()=>{
@@ -131,4 +142,11 @@ test('reload evidence requires its own completed successful live source, branch,
  const receipt={id:37454715342,head_sha:MEMBER_RELOAD_SOURCE,path:MEMBER_DIAGNOSTICS_WORKFLOW,head_branch:'fix/passport-reload-readback-20261006',event:'push',status:'completed',conclusion:'success'};
  assert.doesNotThrow(()=>assertMemberReloadReceipt(receipt));
  for(const change of [{id:37454715343},{head_sha:'a'.repeat(40)},{path:'.github/workflows/other.yml'},{head_branch:'main'},{event:'pull_request'},{status:'in_progress'},{conclusion:'failure'}])assert.throws(()=>assertMemberReloadReceipt({...receipt,...change}));
+});
+
+test('live homepage verifier reverses only exact catalogue text before its strict banner check',()=>{
+ const source=readFileSync('release/home-banner-live.cjs','utf8');
+ assert(source.includes("const html=removeCatalogueBenefits(restoreHomeFont('/',await (await fetch('https://shiftsometimber.co.uk/')).text()),'/');removeHomeBanner(html,{required:true});verifyApprovedHome(html);"));
+ assert(source.includes("assert.equal(state.overflow,false)"));
+ assert(source.includes("assert.equal(await page.locator('#sst-home-route-title').textContent(),'HOW SHIFT CAN HELP.')"));
 });
