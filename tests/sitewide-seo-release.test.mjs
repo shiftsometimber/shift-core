@@ -21,7 +21,7 @@ test('runtime adoption accepts only the exact current deployment produced by the
  const deployMarker=JSON.stringify({kind:'owned_runtime_deployment',source:SITEWIDE_ROLLBACK.source,run:String(SITEWIDE_ROLLBACK.run),deploymentId:SITEWIDE_ROLLBACK.failedDeployment,versionId:SITEWIDE_ROLLBACK.failedVersion,previousDeploymentId:SITEWIDE_DEPLOYMENT,previousVersionId:SITEWIDE_VERSION,dataRestored:false});
  const rollbackLogs=[rollbackMarker,deployMarker,'Worker Version '+SITEWIDE_VERSION+' has been deployed to 100% of traffic.','Current Version ID: '+SITEWIDE_VERSION].join('\n');
  const logs=async id=>id===p.job?proofMarker:rollbackLogs;
- assert.equal((await verifySitewideRuntime(active,composition,receiptText,get,logs)).deployment,SITEWIDE_ROLLBACK.deployment);
+ const adopted=await verifySitewideRuntime(active,composition,receiptText,get,logs);assert.equal(adopted.deployment,SITEWIDE_ROLLBACK.deployment);assert.equal(adopted.run,p.run);assert.equal(adopted.source,p.source);
  for(const change of [{id:1},{head_sha:'b'.repeat(40)},{path:'.github/workflows/other.yml'},{head_branch:'other'},{event:'pull_request'},{status:'in_progress'},{conclusion:'success'}])await assert.rejects(()=>verifySitewideRuntime(active,composition,receiptText,async path=>path===`/actions/runs/${p.run}`?proofRun:path===`/actions/runs/${p.run}/jobs`?{jobs:[proofJob]}:path===`/actions/runs/${SITEWIDE_ROLLBACK.run}`?{...rollbackRun,...change}:{jobs:[rollbackJob]},logs));
  for(const change of [{id:1},{name:'other'},{status:'in_progress'},{conclusion:'success'}])await assert.rejects(()=>verifySitewideRuntime(active,composition,receiptText,async path=>path===`/actions/runs/${p.run}`?proofRun:path===`/actions/runs/${p.run}/jobs`?{jobs:[proofJob]}:path===`/actions/runs/${SITEWIDE_ROLLBACK.run}`?rollbackRun:{jobs:[{...rollbackJob,...change}]},logs));
  await assert.rejects(()=>verifySitewideRuntime(active,composition,receiptText,get,async id=>id===p.job?proofMarker:''),/observation absent/);
@@ -54,5 +54,5 @@ test('only the exact owned failed release and proven rollback may retain the sam
  for(const patch of [{head_sha:'a'.repeat(40)},{conclusion:'success'},{head_branch:'other'},{event:'workflow_dispatch'}])await assert.rejects(()=>verifySitewideRollback(active,async path=>path.endsWith('/jobs')?{jobs:[job]}:{...run,...patch},async()=>logs));
  for(const patch of [{run_id:1},{name:'verify'},{conclusion:'success'}])await assert.rejects(()=>verifySitewideRollback(active,async path=>path.endsWith('/jobs')?{jobs:[{...job,...patch}]}:run,async()=>logs));
  for(const patch of [{previousVersionId:'unknown'},{source:'a'.repeat(40)},{dataRestored:true},{deploymentId:'unknown'}])await assert.rejects(()=>verifySitewideRollback(active,get,async()=>logs.replace(JSON.stringify(receipt),JSON.stringify({...receipt,...patch}))));
- await assert.rejects(()=>verifySitewideRollback(active,get,async()=>JSON.stringify(receipt)),/rollback absent/);
+ await assert.rejects(()=>verifySitewideRollback(active,get,async()=>logs.split('\n')[0]+'\n'+JSON.stringify(receipt)),/rollback absent/);
 });

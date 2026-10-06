@@ -60,18 +60,21 @@ export function sitewideProofMarker(receiptText){
  return {kind:'sitewide_seo_proof',payloadSource:SITEWIDE_PAYLOAD,runtimeVersion:SITEWIDE_VERSION,deployment:SITEWIDE_DEPLOYMENT,receiptSha256:createHash('sha256').update(receiptText).digest('hex'),fullHandlerResponses:21,liveResponses:21,databaseWrites:0};
 }
 export const SITEWIDE_ROLLBACK=Object.freeze({deployment:'6c2945ce-f9bd-4d80-84b1-f5f5a841c4ec',createdOn:'2026-10-06T13:28:49.849245Z',run:37469812171,job:112290194252,source:'34e74fdf590930504af55a6483d5bb72cf042dda',failedDeployment:'aaac9c6c-5275-476d-b87b-3f3fde25ab52',failedVersion:'00467e5c-09d1-4244-91da-b56198e7b262'});
+export const SITEWIDE_SECOND_ROLLBACK=Object.freeze({deployment:'c2f4c5da-d3a1-4b4e-b8d2-08eb426f7a05',createdOn:'2026-10-06T14:50:30.100744Z',run:37481087125,job:112329266723,source:'890458eb37caf13c13173f6bd94c3f3c25714fec',failedDeployment:'6fe4e99c-ec66-40b7-9371-7d1bf6b3375f',failedVersion:'e4d59c68-5502-4d09-aec6-02747f73968f'});
 export async function verifySitewideRollback(active,get,getLogs){
- const p=SITEWIDE_ROLLBACK;assert.equal(active.id,p.deployment,'Unknown SEO rollback deployment');assert.equal(active.created_on,p.createdOn,'Exact SEO rollback timestamp required');
+ const p=active.id===SITEWIDE_SECOND_ROLLBACK.deployment?SITEWIDE_SECOND_ROLLBACK:SITEWIDE_ROLLBACK;
+ if(p===SITEWIDE_SECOND_ROLLBACK)await verifySitewideRollback({id:SITEWIDE_ROLLBACK.deployment,created_on:SITEWIDE_ROLLBACK.createdOn,versions:[{version_id:SITEWIDE_VERSION,percentage:100}]},get,getLogs);
+ const previous=p===SITEWIDE_SECOND_ROLLBACK?SITEWIDE_ROLLBACK.deployment:SITEWIDE_DEPLOYMENT;assert.equal(active.id,p.deployment,'Unknown SEO rollback deployment');assert.equal(active.created_on,p.createdOn,'Exact SEO rollback timestamp required');
  assert.equal(active.versions?.length,1);assert.equal(active.versions[0].version_id,SITEWIDE_VERSION);assert.equal(active.versions[0].percentage,100);
  const run=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs');
  assert.equal(run.id,p.run);assert.equal(run.head_sha,p.source);assert.equal(run.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(run.head_branch,'main');assert.equal(run.event,'push');assert.equal(run.status,'completed');assert.equal(run.conclusion,'failure');
  const job=jobs.jobs.find(j=>j.id===p.job);assert(job);assert.equal(job.name,'promote');assert.equal(job.status,'completed');assert.equal(job.conclusion,'failure');assert.equal(job.run_id,p.run);
  const logs=await getLogs(p.job);
  const beforeLine=logs.split('\n').find(line=>line.includes('"kind":"runtime_recovery_observation"'));assert(beforeLine,'Exact pre-release SEO runtime observation absent');
- const beforeReceipt=JSON.parse(beforeLine.slice(beforeLine.indexOf('{')));assert.equal(beforeReceipt.deploymentId,SITEWIDE_DEPLOYMENT);assert.equal(beforeReceipt.activeVersion,SITEWIDE_VERSION);assert.equal(beforeReceipt.release,p.source);
+ const beforeReceipt=JSON.parse(beforeLine.slice(beforeLine.indexOf('{')));assert.equal(beforeReceipt.deploymentId,previous);assert.equal(beforeReceipt.activeVersion,SITEWIDE_VERSION);assert.equal(beforeReceipt.release,p.source);
  const marker=logs.split('\n').find(line=>line.includes('"kind":"owned_runtime_deployment"'));assert(marker,'Owned deployment receipt absent');
  const receipt=JSON.parse(marker.slice(marker.indexOf('{')));
- assert.equal(receipt.source,p.source);assert.equal(String(receipt.run),String(p.run));assert.equal(receipt.deploymentId,p.failedDeployment);assert.equal(receipt.versionId,p.failedVersion);assert.equal(receipt.previousDeploymentId,SITEWIDE_DEPLOYMENT);assert.equal(receipt.previousVersionId,SITEWIDE_VERSION);assert.equal(receipt.dataRestored,false);
+ assert.equal(receipt.source,p.source);assert.equal(String(receipt.run),String(p.run));assert.equal(receipt.deploymentId,p.failedDeployment);assert.equal(receipt.versionId,p.failedVersion);assert.equal(receipt.previousDeploymentId,previous);assert.equal(receipt.previousVersionId,SITEWIDE_VERSION);assert.equal(receipt.dataRestored,false);
  assert(logs.includes('Worker Version '+SITEWIDE_VERSION+' has been deployed to 100% of traffic.'),'Successful exact rollback absent');
  assert(logs.includes('Current Version ID: '+SITEWIDE_VERSION),'Current rollback version absent');
  return {run:p.run,job:p.job,source:p.source,deployment:p.deployment,version:SITEWIDE_VERSION};

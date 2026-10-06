@@ -209,6 +209,7 @@
     "tests/fixtures/public-seo-programme/maintenance-conversation-plan.html",
     "tests/fixtures/public-seo-programme/plateau-review-example.html",
     "tests/fixtures/public-seo-programme/stress-pressure-example.html",
+    "tests/fixtures/seo-public-articles.json",
     "tests/general-analytics-privacy.test.mjs",
     "tests/medicine-commerce-v1.test.mjs",
     "tests/medicine-purchase-e2e.test.mjs",
@@ -428,7 +429,7 @@
       "shift-coach/release-contract.mjs",
       "tests/sitewide-seo-release.test.mjs"
     ],
-    "maintenanceSource": "0c868e03bcf9b4b46f85dcc7b9aab846b4f8d14b",
+    "maintenanceSource": "afac076dd363e54cd901a12c1001dd7a1006228e",
     "hostedProof": {
       "run": 37469309924,
       "job": 112288317760,
@@ -453,7 +454,8 @@
       "scripts/verify-seo-follow-through.mjs",
       "shift-coach/release-contract.mjs",
       "tests/seo-follow-through-release.test.mjs",
-      "tests/sitewide-seo-release.test.mjs"
+      "tests/sitewide-seo-release.test.mjs",
+      "tests/fixtures/seo-public-articles.json"
     ],
     "maintenanceSource": "fb2a225819a463941ccaf8ec1159b9bc37ab12a3",
     "ownerApproval": {
