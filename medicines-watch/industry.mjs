@@ -5,6 +5,7 @@ import survodutideSynchronizeJp from './reviews/2026-10-06-authorised-survodutid
 import coreTrialLifecycle from './reviews/2026-10-06-authorised-core-trial-lifecycle.json' with {type:'json'};
 import at7687At673Correction from './reviews/2026-10-06-authorised-at7687-at673-alias.json' with {type:'json'};
 import vikingRhythmRegistryReview from './reviews/2026-10-06-authorised-viking-rhythm-registry-review.json' with {type:'json'};
+import zenagamtideAmbience from './reviews/2026-10-06-authorised-zenagamtide-ambience.json' with {type:'json'};
 import evidenceDesk from './reviews/2026-10-03-evidence-desk-zp6590.json' with {type:'json'};
 import srsd384Publication from './reviews/2026-10-04-authorised-srsd384.json' with {type:'json'};
 import fractylModalityGap from './reviews/2026-10-04-authorised-fractyl-modality-gap.json' with {type:'json'};
@@ -330,4 +331,14 @@ export const industry = [...originalIndustry.map(e => {
   return change?{...e,...change.fields,reviewedAt:vikingRhythmRegistryReview.reviewedAt,
    sourceIds:[...e.sourceIds,...(change.sourceIdsToAdd||[])],
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]}:e;
+ })
+ .map(e=>{
+  const change=zenagamtideAmbience.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  const {summaryToAppend,limitationsToAppend,...fields}=change.fields;
+  return {...e,...fields,
+   ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
+   ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
+   reviewedAt:zenagamtideAmbience.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
  });
