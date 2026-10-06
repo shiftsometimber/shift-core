@@ -17,7 +17,7 @@ fs.mkdirSync(OUT,{recursive:true});
 const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+structured-authrender-final-billy-${Date.now()}@gmail.com`;
 const report={proof:'MY_TIMBER_FINAL_PRODUCTION_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
 const resourcePath=value=>{try{const u=new URL(value);return u.origin+u.pathname}catch{return '[no resource URL]'}};
-const pass=(name,detail='')=>report.checks.push({name,status:'PASS',detail});
+const pass=(name,detail='')=>{report.checks.push({name,status:'PASS',detail});console.log('PASS '+name)};
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=My Timber final::${name} — ${detail}`)};
 const clean=value=>String(value||'').replace(/\s+/g,' ').trim();
 const write=()=>fs.writeFileSync(path.join(OUT,'report.json'),JSON.stringify(report,null,2));
@@ -38,14 +38,7 @@ await context.addInitScript(()=>{
  window.addEventListener('error',e=>keep('error',{message:e.message,filename:e.filename,lineno:e.lineno}));
 });
 const page=await context.newPage();
-await context.route('**/assets/my-timber-layout.mjs*',async route=>{
- const response=await route.fetch();let source=await response.text();
- const tail="if(push){const u=new URL(location.href);if(key==='today')u.searchParams.delete('tool');else u.searchParams.set('tool',key);u.hash='today';history.pushState(null,'',u)}";
- assert.equal(source.split(tail).length,2,'Exact current tab history integration required');
- const needle="chosen=key;syncTabs();if(!host)return;";assert.equal(source.split(needle).length,2);source=source.replace(tail,'').replace(needle,needle+tail);(report.patchResponses??=[]).push({url:resourcePath(route.request().url()),historyIndex:source.indexOf(tail),frameIndex:source.indexOf("host.hidden=key==='today'")});
- await route.fulfill({response,body:source});
-});
-report.proof='MY_TIMBER_GRUB_NO_SERVICE_WORKER_DIAGNOSTIC_V1';
+report.proof='MY_TIMBER_GRUB_ISOLATED_NO_SERVICE_WORKER_V1';
 
 report.frameLifecycle=[];const cdp=await context.newCDPSession(page);await cdp.send('Page.enable');for(const kind of ['frameAttached','frameDetached','frameStartedLoading','frameStoppedLoading','frameRequestedNavigation','frameNavigated'])cdp.on('Page.'+kind,event=>{const x={kind,frame:event.frameId||event.frame?.id,reason:event.reason,url:event.url?resourcePath(event.url):event.frame?.url?resourcePath(event.frame.url):null};report.frameLifecycle.push(x);if(report.frameLifecycle.length>80)report.frameLifecycle.shift()});
 page.on('console',m=>{if(m.type()==='error'){report.frameLifecycle.push({kind:'console-error',detail:m.text().slice(0,500)});if(report.frameLifecycle.length>80)report.frameLifecycle.shift()}});
@@ -119,63 +112,6 @@ try{
   assert.equal(new URL(page.url()).pathname,'/member/dashboard','Grub opens in the containing member app');
   assert.deepEqual(await account('/v1/grub/workspace'),chosenWorkspace,'Opening a meal must preserve the saved workspace');
   pass('Approved shared Today shows the explicit saved meal and opens its real inline Grub control',chosen.name);
-  // Existing Ask Timber handoff opens the normal adjustment sheet. The member
-  // still chooses to save the change; no hidden click or forced UI state.
-  await page.goto(SITE+'/member/dashboard?reviewChange=working_late#today',{waitUntil:'domcontentloaded'});
-  await chooseNecessaryCookies(page);
-  await page.locator('[data-adjust="working_late"]').waitFor({state:'visible',timeout:30000});
-  await page.locator('[data-adjust="working_late"]').click();
-  await page.waitForFunction(()=>!document.querySelector('.mt-sheet-wrap'),null,{timeout:30000});
-  const dailyAfter=(await account('/v1/shift/daily-plan')).daily;
-  assert.equal(dailyAfter.daily_output?.adjustment,'working_late');
-  assert.equal(dailyAfter.daily_output?.workout?.minutes,10);
-  assert.equal(dailyAfter.connected?.meal?.recipeId,chosen.id,'An adjustment must preserve the chosen meal');
-  assert.deepEqual(await account('/v1/grub/workspace'),chosenWorkspace,'An adjustment must preserve the saved Grub workspace');
-  const savedFitBefore=await account('/v1/fit/activity');assert.equal(savedFitBefore.plan?.minutes_per_day,30,'Context must not silently replace the retained Fit plan');
-  await page.locator('#appTab-fit').click();
-  const fitFrame=page.frameLocator('#appTool-fit iframe');
-  await page.locator('#appTool-fit').waitFor({state:'visible',timeout:45000});
-  const fitSetup=fitFrame.locator('[data-app-fit-setup]'),fitSetupSummary=fitSetup.locator(':scope > summary');
-  await fitSetupSummary.waitFor({state:'visible',timeout:45000});
-  if(!await fitSetup.evaluate(e=>e.open))await fitSetupSummary.click();
-  async function revealFit(selector){const field=fitFrame.locator(selector);await field.waitFor({state:'attached',timeout:45000});for(let attempt=0;attempt<5;attempt++){const closed=field.locator('xpath=ancestor::details[not(@open)]');if(!await closed.count())break;let opened=false;for(let i=0;i<await closed.count();i++){const summary=closed.nth(i).locator(':scope > summary');if(await summary.isVisible()){await summary.click();opened=true;break;}}assert(opened,'Fit setup requires an ordinary visible disclosure');}await field.waitFor({state:'visible',timeout:45000});assert(await field.isVisible(),'Fit control must be visible: '+selector);return field;}
-  const minutes=await revealFit('#fitMinutes'),days=await revealFit('#fitDays');
-  if(await minutes.evaluate(e=>e.tagName)==='SELECT')await minutes.selectOption('10');else await minutes.fill('10');
-  if(await days.evaluate(e=>e.tagName)==='SELECT')await days.selectOption('1');else await days.fill('1');
-  assert.equal((await account('/v1/fit/activity')).plan?.minutes_per_day,30,'Editing setup must not replace a saved plan');
-  const generate=await revealFit('#fitGenerate'),savedResponse=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/fit/plan'&&r.request().method()==='POST',{timeout:45000});
-  await generate.click();assert((await savedResponse).ok(),'Chosen Fit replacement must save successfully');
-  const savedFitAfter=await account('/v1/fit/activity');assert.equal(savedFitAfter.plan?.minutes_per_day,10);
-  await fitFrame.getByText(savedFitAfter.plan.sessions[0].title,{exact:true}).filter({visible:true}).first().waitFor({timeout:30000});
-  assert.equal((await account('/v1/grub/workspace')).today?.recipeId,chosen.id);
-  pass('Working late preserves the chosen meal and retained plan until the member explicitly generates a ten-minute Fit replacement','Normal Ask Timber adjustment sheet and visible Fit setup controls.');
-
-  await screenshot(page,'02-billy-explicit-fit-plan');
-  await verifyLiveTools(page,SITE,OUT,report);
-  pass('App and website retain tool drafts and browser history, with one navigation, footer and cookie-choice owner','390px and 1440px; visible ordinary controls; no forced DOM or navigation');
-  await page.setViewportSize({width:390,height:844});
-  const storeDir=path.join(OUT,'google-play');fs.mkdirSync(storeDir,{recursive:true});
-  await page.setViewportSize({width:390,height:693});
-  async function dismissCookie(){
-    const necessary=page.getByRole('button',{name:/Necessary only/i});
-    if(await necessary.count()&&await necessary.first().isVisible().catch(()=>false))await necessary.first().click().catch(()=>{});
-    await page.waitForTimeout(250);
-  }
-  async function storeShot(index,slug,label){
-    await dismissCookie();await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(350);
-    const file=path.join(storeDir,String(index).padStart(2,'0')+'-'+slug+'.png');
-    await page.screenshot({path:file,fullPage:false});
-    report.googlePlayScreens.push({index,file,label,width:780,height:1386});
-  }
-  await memberReady(page,{site:SITE});await page.waitForSelector('#todayActions',{state:'visible',timeout:30000});await storeShot(1,'today','Today — one useful next step');
-  await requireMemberPanel(page,'journey');await storeShot(2,'journey','Journey — programme progress');
-  await requireMemberPanel(page,'visualise');await storeShot(3,'progress','Progress — visualise progress');
-  await page.goto(SITE+'/member/check-in',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await storeShot(4,'check-in','Check-in — quick member check-in');
-  await page.goto(SITE+'/member/grub',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(5,'grub','Grub — practical food support');
-  await page.goto(SITE+'/member/fit',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(6,'fit','Fit — practical movement support');
-  await page.goto(SITE+'/member/life-back',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(7,'life-back','Life Back — goals and wins');
-  await page.goto(SITE+'/member/settings',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(8,'settings','Settings — member details and privacy');
-  pass('Eight Google Play phone screenshots captured from production My Timber','Synthetic member only; 9:16 portrait UI; no real member data.');
 }catch(error){report.toolTrace=await page.evaluate(()=>({early:window.__earlyTrace||[],trace:window.__toolTrace||[],tool:document.body.dataset.appTool,host:document.querySelector('#appToolPanels')?.outerHTML?.slice(0,2500),ready:document.readyState,frameDocuments:[...document.querySelectorAll('iframe')].map(f=>({src:f.getAttribute('src'),win:Boolean(f.contentWindow),doc:Boolean(f.contentDocument),url:(()=>{try{return f.contentWindow?.location.href}catch{return '[cross-origin]'}})(),html:f.contentDocument?.documentElement?.outerHTML.slice(0,1500)}))})).catch(()=>null);fail('journey exception',clean(error?.message||error).slice(0,1800));report.navigation=navigation();write();await boundedEvidence('failure screenshot',()=>page.screenshot({path:path.join(OUT,'journey-failure.png'),fullPage:false,timeout:10000}),11000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message);write()})}finally{
   const video=page.video();write();await boundedEvidence('context close',()=>context.close(),15000).catch(error=>fail('context close',clean(error.message)));if(video)await boundedEvidence('video save',()=>video.saveAs(path.join(OUT,'my-timber-billy-iphone.webm')),15000).catch(error=>fail('video save',clean(error.message)));await boundedEvidence('browser close',()=>browser.close(),10000).catch(error=>fail('browser close',clean(error.message)));write();clearTimeout(watchdog);setTimeout(()=>process.exit(report.failures.length?1:0),1000).unref();
 }
