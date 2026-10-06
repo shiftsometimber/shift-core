@@ -2,6 +2,7 @@ import kalohexis710go from './reviews/2026-10-05-authorised-710go.json' with {ty
 import gubUcn2Mbl949 from './reviews/2026-10-06-authorised-gub-ucn2-mbl949.json' with {type:'json'};
 import survodutideSynchronizeJp from './reviews/2026-10-06-authorised-survodutide-synchronize-jp.json' with {type:'json'};
 import coreTrialLifecycle from './reviews/2026-10-06-authorised-core-trial-lifecycle.json' with {type:'json'};
+import at7687At673Correction from './reviews/2026-10-06-authorised-at7687-at673-alias.json' with {type:'json'};
 import evidenceDesk from './reviews/2026-10-03-evidence-desk-zp6590.json' with {type:'json'};
 import srsd384Publication from './reviews/2026-10-04-authorised-srsd384.json' with {type:'json'};
 import fractylModalityGap from './reviews/2026-10-04-authorised-fractyl-modality-gap.json' with {type:'json'};
@@ -315,4 +316,7 @@ export const industry = [...originalIndustry.map(e => {
    ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
    reviewedAt:coreTrialLifecycle.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
- });
+ })
+ .map(e=>e.id===at7687At673Correction.change.id?{...e,...at7687At673Correction.change.fields,
+  reviewedAt:at7687At673Correction.reviewedAt,
+  additionalEvidence:[...(e.additionalEvidence||[]),...at7687At673Correction.change.additionalEvidence]}:e);

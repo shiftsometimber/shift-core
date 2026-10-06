@@ -1,0 +1,128 @@
+{
+  "reviewedAt": "2026-10-06T10:24:54Z",
+  "publicationStatus": "owner_authorised_factual_correction",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Reconcile Antag Therapeutics' AT7687 programme name with the AT673 intervention code in the sponsor-submitted NCT07724340 record. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted complete primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "medicineWordingChanged": true,
+  "change": {
+    "id": "at673-semaglutide",
+    "fields": {
+      "name": "AT7687 / AT673 with semaglutide",
+      "stage": "Active, not recruiting Phase 2; no posted results",
+      "summary": "Antag Therapeutics' 28 July 2026 announcement identifies AT7687 as its peptide GIP-receptor antagonist and links it directly to NCT07724340. The sponsor-submitted registry uses the intervention code AT673 for the same 13-week Phase 2 study of two once-weekly subcutaneous doses or placebo alongside semaglutide in adults with type 2 diabetes and overweight or obesity. The registry records an actual 19 June 2026 start, active-not-recruiting status, eight US locations and 150 estimated participants.",
+      "ukAuthorisation": "The reviewed sponsor announcement and registry record do not establish UK marketing authorisation for AT7687 or AT673, the investigational combination or a new semaglutide indication.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by these research sources.",
+      "supply": "Use of semaglutide within a US clinical trial does not establish lawful UK retail supply of AT7687 or AT673, combination availability, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The sponsor announcement and registry use different candidate codes for the same NCT07724340 study: Antag calls it AT7687, while ClinicalTrials.gov calls the intervention AT673. The reviewed sources do not explain the naming difference, so the Watch displays both names rather than silently replacing one or treating them as separate programmes. The sponsor describes AT7687 as a peptide GIP-receptor antagonist, but this mechanism is not stated in the registry. First dosing is sponsor-reported; the registry's active-not-recruiting status was verified in July 2026. Neither source has posted trial results. The actual start and first-dose announcement do not establish additional weight loss, glycaemic benefit, safety, superiority or successful co-administration. The eight listed locations are all in the United States. February/March 2027 completion and 150 participants remain estimates, and semaglutide use in the protocol is not evidence of UK access."
+    },
+    "additionalEvidence": [
+      {
+        "title": "Antag Therapeutics: first participant dosed in AT7687 Phase 2a study",
+        "url": "https://antagtx.com/antag-therapeutics-announces-dosing-of-first-patient-in-phase-2a-trial-of-first-in-class-gipr-antagonist-at7687/",
+        "sourcePublishedAt": "2026-07-28",
+        "sourceUpdatedAt": "2026-07-28",
+        "reviewedAt": "2026-10-06T10:24:54Z",
+        "checkScope": "Complete original sponsor announcement read for the AT7687 name, peptide GIP-receptor-antagonist description, first-participant statement, direct NCT07724340 link, 13-week combination design and planned 150 participants; not automatically content-monitored."
+      }
+    ]
+  },
+  "primaryEvidence": [
+    {
+      "title": "Antag Therapeutics: first participant dosed in AT7687 Phase 2a study",
+      "url": "https://antagtx.com/antag-therapeutics-announces-dosing-of-first-patient-in-phase-2a-trial-of-first-in-class-gipr-antagonist-at7687/",
+      "sourcePublishedAt": "2026-07-28",
+      "sourceUpdatedAt": "2026-07-28",
+      "retrievedAt": "2026-10-06T10:24:54Z",
+      "httpStatus": 200,
+      "responseBytes": 346653,
+      "responseSha256": "69b5b3675b1e8555c10e8db4cb1b84cbd0aa7a3abe4ba03b33038b5fb97b7416",
+      "completeResponseReviewed": true,
+      "automaticBaselineApproved": false
+    },
+    {
+      "title": "ClinicalTrials.gov NCT07724340: AT673 with semaglutide",
+      "url": "https://clinicaltrials.gov/study/NCT07724340",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07724340",
+      "sourcePublishedAt": "2026-07-24",
+      "sourceUpdatedAt": "2026-09-29",
+      "retrievedAt": "2026-10-06T10:24:54Z",
+      "httpStatus": 200,
+      "responseBytes": 14189,
+      "responseSha256": "f08a461ee080b77c073d0966953564afbc314ba6ca4efdb64d7e90889b773ff5",
+      "completeResponseReviewed": true,
+      "overallStatus": "ACTIVE_NOT_RECRUITING",
+      "phase": "PHASE2",
+      "actualStart": "2026-06-19",
+      "estimatedEnrollment": 150,
+      "estimatedPrimaryCompletion": "2027-02",
+      "estimatedCompletion": "2027-03",
+      "hasResults": false,
+      "locationCountries": ["United States"],
+      "automaticBaselineApproved": false
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-06T10:19:03Z",
+    "available": true,
+    "status": "check_delayed",
+    "liveConfiguredSources": 171,
+    "liveCurrentSources": 170,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "httpStatus": 403,
+        "reason": "source_not_verified"
+      }
+    ],
+    "mainConfiguredSources": 177,
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "A successful SELECT-only health observation checks configured-source availability, changed-content flags, withdrawals, review expiry and monitor operation. It does not renew a factual review, approve changed copy or establish industry completeness. Main and live counts differ because the latest reviewed Watch release has not passed guarded production promotion."
+  },
+  "discoveryPass": {
+    "method": "A separate configured-source pass was followed by current-date/current-month and broader undated searches across ClinicalTrials.gov, original sponsor announcements, oral peptides, incretin combinations, muscle-preservation approaches, specialist indications, small and international developers and stopped programmes. Results were compared with the 105-programme main catalogue, dated receipts, merged PR 851 and the repository's open review list before selecting this correction.",
+    "included": "Antag's directly linked NCT07724340 announcement resolves the earlier incomplete sponsor check and establishes that the sponsor calls this programme AT7687 while the registry calls the intervention AT673. The entry count stays unchanged because both sources identify one study, not two programmes.",
+    "failedOrIncomplete": [
+      "Neither reviewed primary source explains why AT7687 and AT673 differ, so both identifiers remain visible and no formal renaming history is inferred.",
+      "The sponsor-reported first-participant statement is not a registry-posted result and does not establish efficacy, safety or successful combination treatment.",
+      "Current-date and broader searches remain vulnerable to indexing delays and older omissions; selected domains, programme counts and source counts do not establish industry completeness.",
+      "The unchanged Zealand ZP6590 source remains unverified after HTTP 403 and is not silently renewed."
+    ],
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "mainDetailed": 6,
+    "mainWider": 99,
+    "mainTotal": 105,
+    "liveDetailed": 6,
+    "liveWider": 96,
+    "liveTotal": 102,
+    "configuredSourcesMain": 177,
+    "configuredSourcesLive": 171
+  },
+  "openReviewPrCheck": {
+    "checkedAt": "2026-10-06T10:22:00Z",
+    "pr851": "merged historical expansion",
+    "latestWatchPrs": [
+      "PR 1147 merged the GUB-UCN2 and MBL949 Watch change.",
+      "PR 1148 merged the guarded-promotion verifier repair."
+    ],
+    "openPullRequests": 0,
+    "duplicationFound": false
+  },
+  "deployment": {
+    "live": false,
+    "latestProductionRun": "https://github.com/shiftsometimber/shift-core/actions/runs/37436817235",
+    "latestProductionRunNumber": 1000,
+    "status": "failed_before_mutation",
+    "unchangedBlocker": "The active Worker version still lacks exact source-commit or owned-deployment provenance. This correction must not bypass that guard or be described as live before a passing promotion and public verification."
+  },
+  "nextAction": "Publish this correction through a reviewable PR. After exact hosted checks pass, merge it without bypassing the existing production-provenance guard; then verify both AT7687 and AT673 search the same live entry, the Treatments link and the SELECT-only health endpoint."
+}
