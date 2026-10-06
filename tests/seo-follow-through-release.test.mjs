@@ -61,7 +61,7 @@ import {validateTabletGuidance,TABLET_GUIDANCE_BASE,TABLET_GUIDANCE_PATHS,follow
 test('tablet composition pins finite payload bytes without weakening previous SEO authority',()=>{
  const prior=JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition;
  const t={proof:'TABLET_GUIDANCE_EXACT_V1',base:TABLET_GUIDANCE_BASE,source:'a'.repeat(40),paths:TABLET_GUIDANCE_PATHS};
- const c={...prior,tabletGuidanceComposition:t};delete c.integrationComposition;
+ const c={...prior,tabletUsefulnessComposition:undefined,tabletGuidanceComposition:t};delete c.integrationComposition;
  assert.doesNotThrow(()=>validateFollowComposition(c));
  for(const p of t.paths)assert.equal(followPinnedRef(c,p),t.source);
  const historical=followHistoricalRead((ref,p)=>ref+':'+p,c);
@@ -71,8 +71,24 @@ test('tablet composition pins finite payload bytes without weakening previous SE
  for(const patch of [{base:'b'.repeat(40)},{paths:[...t.paths,'worker.js']},{source:'HEAD'},{run:0,proofSource:'c'.repeat(40)}])assert.throws(()=>validateTabletGuidance({...t,...patch}));
 });
 
+
+import {validateTabletUsefulness,TABLET_USEFULNESS_PAYLOAD,TABLET_USEFULNESS_MAINTENANCE,usefulnessPinnedRef} from '../release/seo-follow-through-scope.mjs';
+test('tablet usefulness accepts only the exact approved five-file payload and bounded maintenance',()=>{
+ const u={proof:'TABLET_USEFULNESS_OWNER_APPROVED_V1',payloadBase:'d71db6bf5f9a4ce2339bd3948686b93500e9ff04',payloadSource:'409f93612932ae9ff3715d04a8076dd4d1a9d3e7',maintenanceSource:'a'.repeat(40),payloadPaths:TABLET_USEFULNESS_PAYLOAD,maintenancePaths:TABLET_USEFULNESS_MAINTENANCE,approval:{owner:'Matt',at:'2026-10-06T21:26:01Z',instruction:'Yes',review:'SHIFT-tablet-usefulness-review.html'}};
+ validateTabletUsefulness(u);
+ assert.equal(usefulnessPinnedRef({tabletUsefulnessComposition:u},'public-practical-guides.mjs'),u.payloadSource);
+ assert.equal(usefulnessPinnedRef({tabletUsefulnessComposition:u},'wrangler.jsonc'),null);
+ for(const change of [{payloadSource:'b'.repeat(40)},{payloadPaths:[...u.payloadPaths,'wrangler.jsonc']},{maintenancePaths:[]},{approval:{...u.approval,instruction:'different'}}])assert.throws(()=>validateTabletUsefulness({...u,...change}));
+});
 import {validateSeoIntegration,verifySeoIntegration,SEO_INTEGRATION_PATHS} from '../release/seo-follow-through-scope.mjs';
 test('combined SEO release pins exact conflict resolutions and preserves unrelated drift checks',()=>{
  const c=JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition.integrationComposition;validateSeoIntegration(c);verifySeoIntegration(c);
  assert(SEO_INTEGRATION_PATHS.includes('shift-coach/worker.mjs'));assert.throws(()=>validateSeoIntegration({...c,proof:'arbitrary'}));assert.throws(()=>validateSeoIntegration({...c,paths:[...c.paths,'other']}));assert.throws(()=>validateSeoIntegration({...c,base:'4460ea56f931da4003ace68d5d404831c47e08f7'}));
+});
+
+import {originalBookVoiceGate} from '../release/book-voice-scope.mjs';
+test('photo-withdrawal historical normalisation retains old sources and rejects partial new signatures',()=>{
+ const old="import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';\n";
+ assert.doesNotThrow(()=>originalBookVoiceGate('member-experience/public-preservation.mjs',old));
+ assert.throws(()=>originalBookVoiceGate('member-experience/public-preservation.mjs',old.replace('restoreStoppingCitation','restoreStoppingCitation,withdrawWeightIllustrations')),/photo-withdrawal preservation changed/);
 });

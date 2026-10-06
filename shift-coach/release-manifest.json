@@ -681,6 +681,40 @@
       "run": 37531509514,
       "proofSource": "a9707c463f7681d49068fa0319418e5630510ba9"
     },
+    "tabletUsefulnessComposition": {
+      "proof": "TABLET_USEFULNESS_OWNER_APPROVED_V1",
+      "payloadBase": "d71db6bf5f9a4ce2339bd3948686b93500e9ff04",
+      "payloadSource": "409f93612932ae9ff3715d04a8076dd4d1a9d3e7",
+      "maintenanceSource": "af392dfd6b3de074a263a1805bcc7f7c9d6ab769",
+      "payloadPaths": [
+        "member-experience/tablet-routine-client.mjs",
+        "member-experience/tablet-routine.mjs",
+        "public-practical-guides.mjs",
+        "tests/tablet-routine-browser.mjs",
+        "tests/tablet-routine.test.mjs"
+      ],
+      "maintenancePaths": [
+        ".github/workflows/practical-guides-proof.yml",
+        "docs/seo/tablet-runtime-receipt-20261006.json",
+        "release/book-voice-scope.mjs",
+        "release/fit-300-scope.mjs",
+        "release/growth-adopt-deployment.mjs",
+        "release/seo-follow-through-scope.mjs",
+        "scripts/verify-practical-guides-handler.mjs",
+        "scripts/verify-practical-guides.mjs",
+        "shift-coach/cancelled-release-recovery.mjs",
+        "shift-coach/cancelled-release-recovery.test.mjs",
+        "shift-coach/recover-cancelled-release.mjs",
+        "shift-coach/release-contract.mjs",
+        "tests/seo-follow-through-release.test.mjs"
+      ],
+      "approval": {
+        "owner": "Matt",
+        "at": "2026-10-06T21:26:01Z",
+        "instruction": "Yes",
+        "review": "SHIFT-tablet-usefulness-review.html"
+      }
+    },
     "integrationComposition": {
       "proof": "EXACT_COMBINED_SEO_CONTEXT_TABLET_AND_RELEASE_PINS_V1",
       "base": "7ece5e502a70b5676ed0159a8a0da11fc7b37b2e",

@@ -105,3 +105,35 @@ test('calendar export uses a real daily alarm and excludes all health data',asyn
 });
 
 test('tablet writes retain a complete Life Back state and advance its shared revision',async t=>{const f=fixture(t);await f.route('POST',setup);const prefs=JSON.parse(f.sql.prepare('SELECT preferences FROM member_state WHERE user_id=1').get().preferences);assert.equal(prefs.lifeBack.progress.revision,1);const changed=applyLifeBackOperation(prefs.lifeBack.progress,{operationId:'tablet-test-goal-20261003',action:'goal',revision:1,goal:'Enjoy family walks'});assert.equal(changed.tabletRoutine.medicine,'wegovy');assert.equal(changed.revision,2);f.sql.exec("UPDATE member_state SET preferences=json_remove(preferences,'$.lifeBack')");assert.equal((await(await f.route('GET')).json()).state,null)});
+
+test('not-started reviews and feedback never complete week one; confirmed actual start resets the clock',()=>{
+ let s=applyRoutine(null,setup,'2026-09-01T12:00:00Z');
+ s=applyRoutine(s,{kind:'review',routine:'not-started',difficulty:'none',prescriberHelp:false},'2026-09-10T12:00:00Z');
+ assert.equal(s.step.kind,'pre-start');
+ assert.equal(s.firstWeekReviewedAt,null);
+ assert.equal(viewRoutine(s,Date.parse('2026-09-11')).firstWeekDue,false);
+ assert.equal(viewRoutine(s,Date.parse('2026-09-11')).firstWeekComplete,false);
+ s=applyRoutine(s,{kind:'feedback',stepId:s.step.id,outcome:'didnt-fit'},'2026-09-11T12:00:00Z');
+ assert.equal(s.step.kind,'pre-start');
+ assert.throws(()=>applyRoutine(s,{kind:'review',routine:'manageable',difficulty:'none',prescriberHelp:false}),/actually started/);
+ s=applyRoutine(s,{...setup,startDate:'2026-09-11'},'2026-09-11T12:00:00Z');
+ assert.equal(s.awaitingStart,false);
+ assert.equal(viewRoutine(s,Date.parse('2026-09-16')).firstWeekDue,false);
+ assert.equal(viewRoutine(s,Date.parse('2026-09-17')).firstWeekDue,true);
+});
+test('pre-start symptoms and prescriber requests retain clinical contact steps after feedback',()=>{
+ for(const input of [{difficulty:'sideeffects',prescriberHelp:false},{difficulty:'hunger',prescriberHelp:false},{difficulty:'none',prescriberHelp:true}]){
+  let s=applyRoutine(null,setup);
+  s=applyRoutine(s,{kind:'review',routine:'not-started',...input});
+  assert.match(s.step.title,/prescriber|treatment review/);
+  s=applyRoutine(s,{kind:'feedback',stepId:s.step.id,outcome:'didnt-help'});
+  assert.match(s.step.title,/prescriber|treatment review/);
+  assert.equal(viewRoutine(s).firstWeekComplete,false);
+ }
+});
+test('confirming the same start date clears pre-start status',()=>{
+ let s=applyRoutine(null,setup);
+ s=applyRoutine(s,{kind:'review',routine:'not-started',difficulty:'none',prescriberHelp:false});
+ s=applyRoutine(s,setup);
+ assert.equal(s.awaitingStart,false);assert.equal(s.review,null);assert.equal(s.step.kind,'none:first');
+});
