@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {preserveSeo794,expectedSeo794ArticleBody} from '../release/seo794-preservation.mjs';
+import {preserveSeo794,expectedSeo794ArticleBody,expectedPublishedArticleBody} from '../release/seo794-preservation.mjs';
 import {repairSeoPresentation} from '../public-seo-presentation.mjs';
 import {stabilisePublicHtml} from '../public-startup-stability.mjs';
 import {preserveApprovedStartup} from '../release/member-details-preservation.mjs';
@@ -11,6 +11,15 @@ test('live article expectation allows only the exact reviewed direct support lin
  assert.equal(expectedSeo794ArticleBody(source,'/unrelated'),source);
  assert.notEqual(expectedSeo794ArticleBody(source,'/mental-health/mental-health-and-weight'),expected.replace('Keep this.','Lost copy'));
  assert.throws(()=>expectedSeo794ArticleBody(source.replace('SHIFT: Good to Talk','Other label'),'/mental-health/mental-health-and-weight'),/exactly/);
+});
+test('live article expectation composes only exact reviewed contextual links',()=>{
+ const path='/comparisons/medications/mounjaro-vs-saxenda';
+ const source='<main><p class="fa-lead">Mounjaro is a weekly injection; Saxenda is a daily injection. Tirzepatide produced larger average weight losses in the separate trials summarised below, but those studies did not compare it directly with liraglutide. The useful question is which option is appropriate, tolerable and sustainable for you—not which one wins an invented score out of ten.</p><p>Keep every other byte.</p></main>';
+ const expected=source.replace('Mounjaro is a weekly','<a href="/mounjaro" data-seo-context-link="2026-10-06">Mounjaro</a> is a weekly');
+ assert.equal(expectedPublishedArticleBody(source,path),expected);
+ assert.equal(expectedPublishedArticleBody(expected,path),expected);
+ assert.notEqual(expectedPublishedArticleBody(source,path),expected.replace('Keep every other byte.','Lost copy.'));
+ assert.equal(expectedPublishedArticleBody(source,'/unrelated'),source);
 });
 test('approved images and styles compare equal while unrelated content remains protected',()=>{
  const candidate=repairSeoPresentation(raw.replace('href="/good-to-talk"','href="/mens-mental-health"'),'/');

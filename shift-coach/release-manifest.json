@@ -119,6 +119,7 @@
     "release/runtime-rollback-guard.mjs",
     "release/seo-follow-through-preservation.mjs",
     "release/seo-follow-through-scope.mjs",
+    "release/seo794-preservation.mjs",
     "release/shift-ai-scope.mjs",
     "release/sitewide-seo-scope.mjs",
     "release/six-topic-seo-preservation.mjs",
@@ -228,6 +229,7 @@
     "tests/rendered-member-acceptance-support.test.mjs",
     "tests/runtime-rollback-guard.test.mjs",
     "tests/seo-follow-through-release.test.mjs",
+    "tests/seo794-preservation.test.mjs",
     "tests/shift-ai-release.test.mjs",
     "tests/sitewide-seo-release.test.mjs",
     "tests/six-topic-seo-release.test.mjs",
@@ -467,9 +469,11 @@
       "scripts/verify-public-continuity-live.mjs",
       "scripts/verify-six-topic-seo.mjs",
       "release/six-topic-seo-scope.mjs",
-      "release/growth-scope.mjs"
+      "release/growth-scope.mjs",
+      "release/seo794-preservation.mjs",
+      "tests/seo794-preservation.test.mjs"
     ],
-    "maintenanceSource": "daf597551b9bb97b5fe6a8ac0596febef4a392c7",
+    "maintenanceSource": "1f4b6360c1bc17c6b60d8a2ea4dff14050350698",
     "ownerApproval": {
       "owner": "Matt O’Brien",
       "at": "2026-10-06T14:18:48Z",
