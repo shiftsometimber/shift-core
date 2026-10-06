@@ -38,6 +38,15 @@ await context.addInitScript(()=>{
  window.addEventListener('error',e=>keep('error',{message:e.message,filename:e.filename,lineno:e.lineno}));
 });
 const page=await context.newPage();
+await page.route('**/assets/my-timber-layout.mjs*',async route=>{
+ const response=await route.fetch();let source=await response.text();
+ const tail="if(push){const u=new URL(location.href);if(key==='today')u.searchParams.delete('tool');else u.searchParams.set('tool',key);u.hash='today';history.pushState(null,'',u)}";
+ assert.equal(source.split(tail).length,2,'Exact current tab history integration required');
+ source=source.replace(tail,'').replace("chosen=key;syncTabs();if(!host)return;","chosen=key;syncTabs();if(!host)return;"+tail);
+ await route.fulfill({response,body:source});
+});
+report.proof='MY_TIMBER_GRUB_NAVIGATION_ORDER_DIAGNOSTIC_V1';
+
 report.frameLifecycle=[];const cdp=await context.newCDPSession(page);await cdp.send('Page.enable');for(const kind of ['frameAttached','frameDetached','frameStartedLoading','frameStoppedLoading','frameRequestedNavigation','frameNavigated'])cdp.on('Page.'+kind,event=>{const x={kind,frame:event.frameId||event.frame?.id,reason:event.reason,url:event.url?resourcePath(event.url):event.frame?.url?resourcePath(event.frame.url):null};report.frameLifecycle.push(x);if(report.frameLifecycle.length>80)report.frameLifecycle.shift()});
 page.on('console',m=>{if(m.type()==='error'){report.frameLifecycle.push({kind:'console-error',detail:m.text().slice(0,500)});if(report.frameLifecycle.length>80)report.frameLifecycle.shift()}});
 
