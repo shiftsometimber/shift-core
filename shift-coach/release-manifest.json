@@ -694,10 +694,13 @@
       ],
       "maintenancePaths": [
         ".github/workflows/practical-guides-proof.yml",
-        "release/app-manifest.json",
         "release/fit-300-scope.mjs",
+        "release/growth-adopt-deployment.mjs",
         "release/seo-follow-through-scope.mjs",
         "scripts/verify-practical-guides-handler.mjs",
+        "shift-coach/cancelled-release-recovery.mjs",
+        "shift-coach/cancelled-release-recovery.test.mjs",
+        "shift-coach/recover-cancelled-release.mjs",
         "shift-coach/release-contract.mjs",
         "tests/seo-follow-through-release.test.mjs"
       ],

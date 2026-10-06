@@ -2,7 +2,7 @@ import {SITEWIDE_VERSION,verifySitewideRuntime} from './sitewide-seo-scope.mjs';
 import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 import {reusablePublicIndex} from './app-index-freshness.mjs';
 // Use the same exact verified production receipt as cancelled-release recovery.
-import {catalogueRuntime,verifyCatalogueBaseline,articleRuntime,verifiedStartingPoint} from '../shift-coach/cancelled-release-recovery.mjs';
+import {tabletGuidanceRuntime,verifyTabletGuidanceRuntime,catalogueRuntime,verifyCatalogueBaseline,articleRuntime,verifiedStartingPoint} from '../shift-coach/cancelled-release-recovery.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync,writeFileSync,appendFileSync,mkdirSync} from 'node:fs';
@@ -14,7 +14,11 @@ const point=verifiedStartingPoint(JSON.parse(readFileSync('b1-runtime-release/ca
 const BASE=point.source,VERSION=point.version;
 const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+point.run,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
 assert(r.ok);const receipt=await r.json();assert.equal(receipt.id,point.run);assert.equal(receipt.head_sha,BASE);assert.equal(receipt.conclusion,'success');
-if(point.run===catalogueRuntime.run){
+if(point.version===tabletGuidanceRuntime.version){
+ const get=async path=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json();};
+ const proof=await verifyTabletGuidanceRuntime(active,get,JSON.parse(wrangler('versions','view',point.version,'--json')));
+ assert.equal(point.source,proof.source);assert.equal(point.run,proof.run);
+}else if(point.run===catalogueRuntime.run){
  const request=async path=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r;};
  assert(await verifyCatalogueBaseline(active,async path=>(await request(path)).json(),async id=>(await request('/actions/jobs/'+id+'/logs')).text(),JSON.parse(readFileSync('docs/catalogue-benefits-live-receipt-20261006.json','utf8')),JSON.parse(readFileSync('docs/catalogue-runtime-rollback-37462426049.json','utf8'))),'Exact catalogue proof, live receipt and any finite rollback evidence must still agree');
 }else if(point.version===SITEWIDE_VERSION){

@@ -38,7 +38,7 @@ jobs:
           usefulness=os.environ.get('GITHUB_HEAD_REF') == 'codex/tablet-usefulness-review-20261006'
           if usefulness:
             baseline='7befa850f2a77a38bfd08637184a1952fdf92483'
-            allowed={'scripts/verify-practical-guides-handler.mjs', '.github/workflows/practical-guides-proof.yml', 'shift-coach/release-manifest.json', 'public-practical-guides.mjs', 'member-experience/tablet-routine-client.mjs', 'release/seo-follow-through-scope.mjs', 'tests/tablet-routine-browser.mjs', 'shift-coach/release-contract.mjs', 'release/app-manifest.json', 'release/fit-300-scope.mjs', 'tests/seo-follow-through-release.test.mjs', 'tests/tablet-routine.test.mjs', 'member-experience/tablet-routine.mjs'}
+            allowed={'tests/seo-follow-through-release.test.mjs', 'member-experience/tablet-routine.mjs', 'tests/tablet-routine.test.mjs', 'public-practical-guides.mjs', '.github/workflows/practical-guides-proof.yml', 'shift-coach/release-contract.mjs', 'member-experience/tablet-routine-client.mjs', 'shift-coach/cancelled-release-recovery.mjs', 'release/seo-follow-through-scope.mjs', 'shift-coach/cancelled-release-recovery.test.mjs', 'shift-coach/recover-cancelled-release.mjs', 'shift-coach/release-manifest.json', 'tests/tablet-routine-browser.mjs', 'release/growth-adopt-deployment.mjs', 'scripts/verify-practical-guides-handler.mjs', 'release/fit-300-scope.mjs'}
           changed=set(subprocess.check_output(['git','diff','--name-only',baseline,'HEAD'],text=True).splitlines())
           assert changed == allowed, changed
           protected=['wrangler.jsonc','frontend/member','medicines-watch']+([] if usefulness else ['member-experience'])

@@ -132,3 +132,21 @@ export async function verifyTechnicalCancelledRuntime(active,get,getLogs){
  assert(verifiedTechnicalCancelledRecovery(active,failed,job,await getLogs(p.job),verified,verifiedJob,await getLogs(p.verifiedJob)),'Exact cancelled SEO runtime and successful captured predecessor evidence required');
  return{run:p.run,source:p.source,version:p.version,deployment:p.deployment,verifiedRun:p.verifiedRun,verifiedSource:p.verifiedSource,verifiedVersion:p.verifiedVersion,verifiedDeployment:p.verifiedDeployment};
 }
+
+// Exact earlier owner-authorised tablet release. Hosted tests and the local
+// deployment are distinct evidence; neither is represented as the other.
+export const tabletGuidanceRuntime=Object.freeze({run:37531509514,job:112501762193,source:'a9707c463f7681d49068fa0319418e5630510ba9',runtimeSource:'25ead1b54126e5596db11845efbcf3b888fc5a31',deployment:'b6fa58e8-4953-46ca-8983-06dff8a53fd2',version:'2dd57a8f-8597-4f5c-ab5b-86d6e037a8f7'});
+export const tabletGuidanceReceipt=Object.freeze({at:'2026-10-06T21:11:33.552Z',source:'25ead1b54126e5596db11845efbcf3b888fc5a31',isolatedBase:'4460ea56f931da4003ace68d5d404831c47e08f7',hostedProof:37531509514,previousDeployment:'f07a6f14-c7e7-497f-b7e5-23b6540ca42c',previousVersion:'33da329f-98ae-46ce-8090-150ad06b7ea9',deployment:'b6fa58e8-4953-46ca-8983-06dff8a53fd2',version:'2dd57a8f-8597-4f5c-ab5b-86d6e037a8f7',databaseWrites:false,clinicalReview:false});
+export function verifiedTabletGuidanceRuntime(active,run,job,version,receipt){
+ const p=tabletGuidanceRuntime;
+ return active?.id===p.deployment&&active.versions?.length===1&&active.versions[0].version_id===p.version&&active.versions[0].percentage===100
+  &&run?.id===p.run&&run.head_sha===p.source&&run.status==='completed'&&run.conclusion==='success'&&run.event==='pull_request'&&run.head_branch==='codex/tablet-guidance-20261006'&&run.path==='.github/workflows/practical-guides-proof.yml'
+  &&job?.id===p.job&&job.run_id===p.run&&job.name==='verify'&&job.conclusion==='success'
+  &&version?.id===p.version&&version.annotations?.['workers/message']==='Tablet guidance source '+p.runtimeSource+'; hosted proof '+p.run
+  &&JSON.stringify(receipt)===JSON.stringify(tabletGuidanceReceipt);
+}
+export async function verifyTabletGuidanceRuntime(active,get,version){
+ const p=tabletGuidanceRuntime,run=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs');
+ assert(verifiedTabletGuidanceRuntime(active,run,jobs.jobs?.find(j=>j.id===p.job),version,tabletGuidanceReceipt),'Exact tablet hosted proof, active version annotation and recorded local deployment must agree');
+ return {run:p.run,source:p.source,runtimeSource:p.runtimeSource,version:p.version,deployment:p.deployment,evidenceKind:'hosted-source-proof-and-separate-owner-authorised-local-deployment'};
+}

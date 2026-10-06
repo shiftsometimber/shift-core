@@ -121,3 +121,15 @@ test('restored SEO starting point stays exact and never treats the cancelled sou
  for(const patch of [{decision:'retain'},{run:1},{from:'unknown'},{to:p.version},{verifiedRun:1},{dataChanged:true},{customerRecordsRead:1},{technicalRecovery:{...proof,source:'f'.repeat(40)}}])assert.throws(()=>verifiedStartingPoint({...r,...patch},active(p.verifiedVersion)));
  assert.throws(()=>verifiedStartingPoint(r,active(p.version)));
 });
+
+
+import {tabletGuidanceRuntime,tabletGuidanceReceipt,verifiedTabletGuidanceRuntime} from './cancelled-release-recovery.mjs';
+test('earlier tablet deployment requires its exact independent source proof, deployment, annotation and receipt',()=>{
+ const p=tabletGuidanceRuntime,a={id:p.deployment,versions:[{version_id:p.version,percentage:100}]},r={id:p.run,head_sha:p.source,status:'completed',conclusion:'success',event:'pull_request',head_branch:'codex/tablet-guidance-20261006',path:'.github/workflows/practical-guides-proof.yml'},j={id:p.job,run_id:p.run,name:'verify',conclusion:'success'},v={id:p.version,annotations:{'workers/message':'Tablet guidance source '+p.runtimeSource+'; hosted proof '+p.run}};
+ assert(verifiedTabletGuidanceRuntime(a,r,j,v,tabletGuidanceReceipt));
+ for(const x of [{...a,id:'other'},{...a,versions:[{version_id:p.version,percentage:50}]}])assert.equal(verifiedTabletGuidanceRuntime(x,r,j,v,tabletGuidanceReceipt),false);
+ for(const x of [{...r,conclusion:'failure'},{...r,head_sha:'a'.repeat(40)},{...r,event:'push'}])assert.equal(verifiedTabletGuidanceRuntime(a,x,j,v,tabletGuidanceReceipt),false);
+ assert.equal(verifiedTabletGuidanceRuntime(a,r,{...j,id:0},v,tabletGuidanceReceipt),false);
+ assert.equal(verifiedTabletGuidanceRuntime(a,r,j,{...v,annotations:{}},tabletGuidanceReceipt),false);
+ assert.equal(verifiedTabletGuidanceRuntime(a,r,j,v,{...tabletGuidanceReceipt,databaseWrites:true}),false);
+});
