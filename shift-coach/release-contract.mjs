@@ -47,7 +47,7 @@ for(const path of ['public-seo-closeout.mjs','tests/public-seo-closeout.test.mjs
 for(const p of CATALOGUE_COPY_PATHS)if(p!=='shift-coach/worker.mjs')COACH_ADDITIONS.add(p);
 COACH_BACKEND_PATHS.add('scripts/verify-shift-take-live.mjs');
 COACH_BACKEND_PATHS.add('my-timber-pwa/verify-live.mjs');
-export const FOLLOW_MODIFIED_PATHS=new Set(['editorial/five-articles/proof.mjs','release/seo794-preservation.mjs','scripts/verify-knowledge-headings.cjs','tests/seo794-preservation.test.mjs']);
+export const FOLLOW_MODIFIED_PATHS=new Set(['editorial/five-articles/proof.mjs','release/seo794-preservation.mjs','scripts/verify-knowledge-headings.cjs','tests/seo794-preservation.test.mjs','scripts/verify-seo-closeout-live.mjs']);
 for(const p of FOLLOW_PATHS)if(!COACH_BACKEND_PATHS.has(p)&&!COACH_COMPOSED_BOOK_CHANGES.has(p)&&!COACH_AUDIT_CHANGES.has(p)&&!FOLLOW_MODIFIED_PATHS.has(p))COACH_ADDITIONS.add(p);
 COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37460283567.json');
 COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37462426049.json');
@@ -82,6 +82,8 @@ WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-core
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-gub-ucn2-mbl949.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-at7687-at673-alias.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-viking-rhythm-registry-review.json');
+WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-overdue-source-renewal.json');
+WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-zenagamtide-ambience.json');
 export const WATCH_CURRENT_PATHS=new Set([...WATCH_OWNERSHIP_PATHS,...WATCH_COMPOSED_CHANGES,'medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
 export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
