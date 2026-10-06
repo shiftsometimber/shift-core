@@ -698,6 +698,7 @@
         "release/growth-adopt-deployment.mjs",
         "release/seo-follow-through-scope.mjs",
         "scripts/verify-practical-guides-handler.mjs",
+        "scripts/verify-practical-guides.mjs",
         "shift-coach/cancelled-release-recovery.mjs",
         "shift-coach/cancelled-release-recovery.test.mjs",
         "shift-coach/recover-cancelled-release.mjs",
