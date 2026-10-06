@@ -694,6 +694,7 @@
       ],
       "maintenancePaths": [
         ".github/workflows/practical-guides-proof.yml",
+        "release/book-voice-scope.mjs",
         "release/fit-300-scope.mjs",
         "release/growth-adopt-deployment.mjs",
         "release/seo-follow-through-scope.mjs",

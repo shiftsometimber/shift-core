@@ -27,7 +27,7 @@ export function validateTabletGuidance(c){
  return c;
 }
 export const TABLET_USEFULNESS_PAYLOAD=["member-experience/tablet-routine-client.mjs", "member-experience/tablet-routine.mjs", "public-practical-guides.mjs", "tests/tablet-routine-browser.mjs", "tests/tablet-routine.test.mjs"];
-export const TABLET_USEFULNESS_MAINTENANCE=[".github/workflows/practical-guides-proof.yml", "release/fit-300-scope.mjs", "release/growth-adopt-deployment.mjs", "release/seo-follow-through-scope.mjs", "scripts/verify-practical-guides-handler.mjs", "scripts/verify-practical-guides.mjs", "shift-coach/cancelled-release-recovery.mjs", "shift-coach/cancelled-release-recovery.test.mjs", "shift-coach/recover-cancelled-release.mjs", "shift-coach/release-contract.mjs", "tests/seo-follow-through-release.test.mjs"];
+export const TABLET_USEFULNESS_MAINTENANCE=[".github/workflows/practical-guides-proof.yml", "release/book-voice-scope.mjs", "release/fit-300-scope.mjs", "release/growth-adopt-deployment.mjs", "release/seo-follow-through-scope.mjs", "scripts/verify-practical-guides-handler.mjs", "scripts/verify-practical-guides.mjs", "shift-coach/cancelled-release-recovery.mjs", "shift-coach/cancelled-release-recovery.test.mjs", "shift-coach/recover-cancelled-release.mjs", "shift-coach/release-contract.mjs", "tests/seo-follow-through-release.test.mjs"];
 export function validateTabletUsefulness(c){
  assert.equal(c.proof,'TABLET_USEFULNESS_OWNER_APPROVED_V1');
  assert.equal(c.payloadBase,'d71db6bf5f9a4ce2339bd3948686b93500e9ff04');
