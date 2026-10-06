@@ -61,6 +61,7 @@ import gubUcn2Mbl949 from './reviews/2026-10-06-authorised-gub-ucn2-mbl949.json'
 import vikingRhythmRegistryReview from './reviews/2026-10-06-authorised-viking-rhythm-registry-review.json' with {type:'json'};
 import zenagamtideAmbience from './reviews/2026-10-06-authorised-zenagamtide-ambience.json' with {type:'json'};
 import gs4571TirzepatideMenopause from './reviews/2026-10-06-authorised-gs4571-tirzepatide-menopause.json' with {type:'json'};
+import registryLifecycleFollowup from './reviews/2026-10-07-authorised-registry-lifecycle-followup.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('new semaglutide specialist and sarcopenia records remain bounded research evidence',()=>{
  assert.equal(semaglutideSpecialistSarcopeniaWave.publicationStatus,'owner_authorised_factual_publication');
@@ -468,7 +469,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,103);assert.equal(sources.length,184);
+ assert.equal(medicines.length,6);assert.equal(industry.length,103);assert.equal(sources.length,190);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,109);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
@@ -1519,4 +1520,48 @@ test('GS-4571 and the tirzepatide menopause pilot remain bounded research eviden
  }
  assert.equal(gs4571TirzepatideMenopause.configuredSourcePass.reviewRenewals,false);
  assert.equal(gs4571TirzepatideMenopause.discoveryPass.industryComplete,false);
+});
+
+test('registry follow-up adds exact lifecycles without duplicating programmes or implying results',()=>{
+ assert.equal(registryLifecycleFollowup.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(registryLifecycleFollowup.clinicalApproval,null);
+ assert.equal(registryLifecycleFollowup.industryComplete,false);
+ assert.deepEqual(registryLifecycleFollowup.catalogueCounts,{detailedBefore:6,detailedAfter:6,widerBefore:103,widerAfter:103,totalBefore:109,totalAfter:109,configuredSourcesBefore:184,configuredSourcesAfter:190,trialRecordsBefore:119,trialRecordsAfter:125});
+ assert.equal(industry.length,103);
+ const ribupatide=industry.find(entry=>entry.id==='ribupatide-injection');
+ assert.match(ribupatide.summary,/2,530 participants/);
+ assert.match(ribupatide.summary,/1,270 with diabetes/);
+ assert.match(ribupatide.limitations,/not results/);
+ assert.match(ribupatide.limitations,/not evidence of superiority/);
+ const maritide=industry.find(entry=>entry.id==='maritide');
+ assert.match(maritide.summary,/obstructive sleep apnoea/);
+ assert.match(maritide.summary,/positive-airway-pressure therapy/);
+ assert.match(maritide.limitations,/no posted results/);
+ const amg513=industry.find(entry=>entry.id==='amg513');
+ assert.match(amg513.stage,/Future development discontinued; Phase 1 completed without posted results/);
+ assert.match(amg513.summary,/82 actual participants/);
+ assert.match(amg513.limitations,/does not reverse Amgen's separate decision to discontinue future development/);
+ const enicepatide=industry.find(entry=>entry.id==='enicepatide');
+ assert.match(enicepatide.summary,/447 actual participants/);
+ assert.match(enicepatide.summary,/actual 30 September 2026 study completion/);
+ assert.match(enicepatide.limitations,/no posted results/);
+ const expected={
+  NCT07284875:['ACTIVE_NOT_RECRUITING',2530,'ACTUAL','ESTIMATED'],
+  NCT07284901:['ACTIVE_NOT_RECRUITING',1270,'ACTUAL','ESTIMATED'],
+  NCT07284979:['ACTIVE_NOT_RECRUITING',1270,'ACTUAL','ESTIMATED'],
+  NCT07225686:['ACTIVE_NOT_RECRUITING',250,'ESTIMATED','ESTIMATED'],
+  NCT06585462:['COMPLETED',82,'ACTUAL','ACTUAL'],
+  NCT06628362:['COMPLETED',447,'ACTUAL','ACTUAL']
+ };
+ for(const source of registryLifecycleFollowup.registrySources){
+  const [status,count,enrollmentType,completionType]=expected[source.nctId];
+  assert.equal(source.lifecycle.status,status);
+  assert.deepEqual(source.lifecycle.enrollment,{count,type:enrollmentType});
+  assert.equal(source.lifecycle.completion.type,completionType);
+  assert.equal(source.lifecycle.hasResults,false);
+  assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
+  assert.ok(registrySources.some(item=>item.id===source.id));
+ }
+ assert.equal(registryLifecycleFollowup.configuredSourcePass.reviewRenewals,false);
+ assert.equal(registryLifecycleFollowup.discoveryPass.industryComplete,false);
 });
