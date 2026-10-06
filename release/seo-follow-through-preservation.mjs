@@ -1,8 +1,10 @@
+import {preserveTechnicalSeo} from './seo-technical-preservation.mjs';
 import assert from 'node:assert/strict';
 import {FOLLOW_THROUGH,FOLLOW_THROUGH_PATHS} from '../public-seo-follow-through.mjs';
 // Reverse only the exact approved v3 additions for historical full-body hashes.
 // Unknown copy, markup, links and indexing controls stay in the comparison.
 export function preserveFollowThrough(path,input,{required=false}={}){
+ input=preserveTechnicalSeo(path,input);
  if(!FOLLOW_THROUGH_PATHS.includes(path))return input;
  let html=input.toString('utf8');if(!/<main\b/i.test(html))return input;
  for(const c of [...FOLLOW_THROUGH.contextLinks,...FOLLOW_THROUGH.ownerCopy].filter(c=>c.path===path)){

@@ -1,3 +1,4 @@
+import {NOINDEX_SITEMAP_PATHS} from '../public-seo-technical-data.mjs';
 import assert from 'node:assert/strict';
 import {writeFile} from 'node:fs/promises';
 import {healthSlugs} from '../shift-health-public.mjs';
@@ -25,13 +26,17 @@ const organizations=value=>{
 
 const sitemap=await fetchText('/sitemap.xml');assert.equal(sitemap.response.status,200);
 const locations=[...sitemap.text.matchAll(/<loc>(https:\/\/shiftsometimber\.co\.uk[^<]+)<\/loc>/g)].map(match=>new URL(match[1]).pathname);
-const newsPaths=locations.filter(path=>/^\/medicine-news\/[^/]+$/.test(path));
+const indexedNewsPaths=locations.filter(path=>/^\/medicine-news\/[^/]+$/.test(path));
+const knownNoindexNews=NOINDEX_SITEMAP_PATHS.filter(path=>/^\/medicine-news\/[^/]+$/.test(path));
+for(const path of NOINDEX_SITEMAP_PATHS)assert(!locations.includes(path),'Noindex URL remains in sitemap: '+path);
+const newsPaths=[...new Set([...indexedNewsPaths,...knownNoindexNews])];
 assert.ok(newsPaths.length>=166,`Expected at least 166 newsroom articles; found ${newsPaths.length}`);
 const newsroomFailures=[];
 for(let start=0;start<newsPaths.length;start+=12){
   await Promise.all(newsPaths.slice(start,start+12).map(async path=>{
     const {response,text}=await fetchText(path);if(response.status!==200){newsroomFailures.push(`${path}: HTTP ${response.status}`);return;}
     let records;try{records=jsonLd(text)}catch(error){newsroomFailures.push(`${path}: invalid JSON-LD ${error.message}`);return;}
+    if(knownNoindexNews.includes(path)&&!(response.headers.get('x-robots-tag')?.includes('noindex')||/<meta\b(?=[^>]*name=["']robots["'])(?=[^>]*content=["'][^"']*noindex)[^>]*>/i.test(text)))newsroomFailures.push(`${path}: archive noindex restriction lost`);
     const orgs=records.flatMap(organizations);
     if(!orgs.length)newsroomFailures.push(`${path}: no Organization`);
     else if(orgs.some(org=>org.logo?.url!=='https://shiftsometimber.co.uk/assets/shift-wordmark.png'))newsroomFailures.push(`${path}: Organization.logo incomplete`);
