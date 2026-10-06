@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {SIX_TOPIC_SEO_SOURCE,SIX_TOPIC_SEO_PATHS,validateSixTopicSeoSource,verifySixTopicSeoProof} from '../release/six-topic-seo-scope.mjs';
+import {SIX_TOPIC_SEO_SOURCE,SIX_TOPIC_SEO_COMPOSED_SOURCE,SIX_TOPIC_SEO_PATHS,validateSixTopicSeoSource,verifySixTopicSeoProof} from '../release/six-topic-seo-scope.mjs';
 import {preserveSixTopicSeo,originalSixTopicSeoPreservation} from '../release/six-topic-seo-preservation.mjs';
 import {withSixTopicGuides} from '../public-seo-closeout.mjs';
 import {SEO_FIT_COMPOSITION_PATHS,validateSeoFitComposition} from '../release/fit-300-scope.mjs';
@@ -12,6 +12,10 @@ test('combined SEO and Fit source rejects any guard drift or broadened compositi
 test('each finite SEO source path rejects unrelated source drift',()=>{
  validateSixTopicSeoSource((ref,path)=>path);
  for(const changed of SIX_TOPIC_SEO_PATHS)assert.throws(()=>validateSixTopicSeoSource((ref,path)=>ref==='HEAD'&&path===changed?'changed':path),/source drift/);
+});
+test('production proof pins the repaired verifier without widening approved SEO copy',()=>{
+ assert.equal(SIX_TOPIC_SEO_COMPOSED_SOURCE,'46bdabe82077fe471bd5157ef1ba46e31a0f8829');
+ validateSixTopicSeoSource((ref,path)=>path==='scripts/verify-six-topic-seo.mjs'&&(ref==='HEAD'||ref===SIX_TOPIC_SEO_COMPOSED_SOURCE)?'repaired-verifier':path,SIX_TOPIC_SEO_COMPOSED_SOURCE);
 });
 test('failed or wrong-source hosted proof cannot authorise promotion',async()=>{
  for(const delta of [{head_sha:'f'.repeat(40)},{path:'.github/workflows/other.yml'},{conclusion:'failure'}])await assert.rejects(verifySixTopicSeoProof(async()=>({head_sha:SIX_TOPIC_SEO_SOURCE,path:'.github/workflows/six-topic-seo-proof.yml',conclusion:'success',...delta})));
