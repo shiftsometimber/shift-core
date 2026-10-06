@@ -524,7 +524,7 @@
         "tests/b1-release-scope.test.mjs",
         "tests/seo-technical-release.test.mjs"
       ],
-      "maintenanceSource": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "maintenanceSource": "b47b9da454b236b76809cedd2c9a0afdf232f19f",
       "request": {
         "instruction": "Look into this - also resolve all pages seo",
         "date": "2026-10-06",
