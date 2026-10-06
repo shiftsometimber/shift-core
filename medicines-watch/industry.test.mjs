@@ -55,6 +55,7 @@ import hansohOlatorepatideReview from './reviews/2026-10-05-authorised-hansoh-ol
 import gzc8072Publication from './reviews/2026-10-05-authorised-gzc8072.json' with {type:'json'};
 import te8105Phase2b from './reviews/2026-10-05-authorised-te8105-phase2b.json' with {type:'json'};
 import semaglutideSpecialistSarcopeniaWave from './reviews/2026-10-05-authorised-semaglutide-specialist-sarcopenia-wave.json' with {type:'json'};
+import coreTrialLifecycle from './reviews/2026-10-06-authorised-core-trial-lifecycle.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('new semaglutide specialist and sarcopenia records remain bounded research evidence',()=>{
  assert.equal(semaglutideSpecialistSarcopeniaWave.publicationStatus,'owner_authorised_factual_publication');
@@ -427,7 +428,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,97);assert.equal(sources.length,172);
+ assert.equal(medicines.length,6);assert.equal(industry.length,97);assert.equal(sources.length,176);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,103);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
@@ -1330,4 +1331,28 @@ test('SYNCHRONIZE-JP keeps sponsor results separate from the registry lifecycle 
  assert.equal(registry.sourcePublishedAt,'2023-12-19');assert.equal(registry.sourceUpdatedAt,'2026-04-30');
  assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
  const sponsor=entry.additionalEvidence.find(s=>s.url==='https://www.boehringer-ingelheim.com/jp/press-26-1005');assert.ok(sponsor);assert.match(sponsor.checkScope,/HTTP 403/);
+});
+
+test('MariTide and enicepatide lifecycle additions preserve status, estimates and absent results',()=>{
+ assert.equal(coreTrialLifecycle.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(coreTrialLifecycle.clinicalApproval,null);
+ assert.equal(coreTrialLifecycle.industryComplete,false);
+ assert.equal(coreTrialLifecycle.catalogueCounts.totalAfter,103);
+ assert.equal(coreTrialLifecycle.catalogueCounts.configuredSourcesAfter,176);
+ assert.equal(coreTrialLifecycle.registrySources.length,4);
+ const maritide=industry.find(e=>e.id==='maritide');
+ assert.match(maritide.stage,/extension and cardiovascular-outcomes studies recruiting/);
+ assert.match(maritide.summary,/MARITIME-1-EXTENSION/);
+ assert.match(maritide.summary,/cardiovascular-outcomes study/);
+ assert.match(maritide.limitations,/enrolment of 12,800 remain estimates/);
+ assert.match(maritide.limitations,/study arms, not approved regimens/);
+ const enicepatide=industry.find(e=>e.id==='enicepatide');
+ assert.match(enicepatide.summary,/NCT06525935/);
+ assert.match(enicepatide.summary,/469 actual participants/);
+ assert.match(enicepatide.limitations,/no posted results/);
+ for(const source of coreTrialLifecycle.registrySources){
+  assert.equal(source.lifecycle.hasResults,false);
+  assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
+  assert.ok(registrySources.some(item=>item.id===source.id));
+ }
 });
