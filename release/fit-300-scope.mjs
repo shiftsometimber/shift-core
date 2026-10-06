@@ -1,3 +1,11 @@
+export const ROLLOUT_PHOTO_BASE='4460ea56f931da4003ace68d5d404831c47e08f7';
+export const ROLLOUT_PHOTO_PATHS=['member-experience/public-preservation.mjs','release/fit-300-scope.mjs','shift-coach/public-trust-repair.mjs','shift-coach/public-trust-repair.test.mjs','shift-coach/release-contract.mjs'];
+export function validateRolloutPhotoComposition(c){
+ if(!c)return;
+ assert.equal(c.proof,'WITHDRAWN_PHOTO_ENTRY_REPAIR_V1');assert.equal(c.base,ROLLOUT_PHOTO_BASE);assert.deepEqual(c.paths,ROLLOUT_PHOTO_PATHS);assert.match(c.source,/^[a-f0-9]{40}$/);
+ execFileSync('git',['merge-base','--is-ancestor',c.base,c.source]);execFileSync('git',['merge-base','--is-ancestor',c.source,'HEAD']);
+ assert.deepEqual(execFileSync('git',['diff','--name-only',c.base,c.source],{encoding:'utf8'}).trim().split('\n').filter(Boolean).sort(),ROLLOUT_PHOTO_PATHS,'Exact sign-in photo-withdrawal payload required');
+}
 import {FOLLOW_PATHS,followPinnedRef,followHistoricalRead,validateFollowComposition} from './seo-follow-through-scope.mjs';
 import {sitewidePinnedRef,sitewideHistoricalRead,validateSitewideComposition} from './sitewide-seo-scope.mjs';
 import assert from 'node:assert/strict';
@@ -67,8 +75,9 @@ export function validateFit300(){
  const coach=JSON.parse(readFileSync('shift-coach/release-manifest.json'));
  const reload=coach.acceptanceReloadComposition;
  const currentRead=(ref,p)=>git('rev-parse',ref+':'+p);
- const follow=coach.seoFollowThroughComposition;if(follow){validateFollowComposition(follow);for(const p of FOLLOW_PATHS)assert.equal(currentRead('HEAD',p),currentRead(followPinnedRef(follow,p),p),'Owner-approved SEO v3 source drift: '+p);}
- const sitewide=coach.sitewideSeoComposition;if(sitewide){validateSitewideComposition(sitewide);for(const p of [...sitewide.payloadPaths,...sitewide.maintenancePaths])assert.equal(currentRead('HEAD',p),currentRead(followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p),p),'Coaching release source drift (site-wide SEO): '+p);}
+ const photo=coach.rolloutPhotoComposition;validateRolloutPhotoComposition(photo);const repairPin=p=>photo?.paths.includes(p)?photo.source:null;
+ const follow=coach.seoFollowThroughComposition;if(follow){validateFollowComposition(follow);for(const p of FOLLOW_PATHS)assert.equal(currentRead('HEAD',p),currentRead(repairPin(p)||followPinnedRef(follow,p),p),'Owner-approved SEO v3 source drift: '+p);}
+ const sitewide=coach.sitewideSeoComposition;if(sitewide){validateSitewideComposition(sitewide);for(const p of [...sitewide.payloadPaths,...sitewide.maintenancePaths])assert.equal(currentRead('HEAD',p),currentRead(repairPin(p)||followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p),p),'Coaching release source drift (site-wide SEO): '+p);}
  const read=sitewideHistoricalRead(followHistoricalRead(currentRead,follow),sitewide);
  const repair=coach.baselineRepairComposition;validateBaselineRepair(repair,read);
  const beforeRepair=baselineHistoricalRead(read,repair);
@@ -99,10 +108,10 @@ export function validateFit300(){
  assert.equal(viewer.ownerInstruction.quote,'No good these pics on a mobile ….. it doesn’t let you click on them to enlarge ? So can’t view what it is ? Assume perhaps same for grub');
  git('merge-base','--is-ancestor',viewer.base,viewer.source);git('merge-base','--is-ancestor',viewer.source,'HEAD');
  const viewerChanges=git('diff','--name-only',viewer.base,'HEAD').split('\n').filter(Boolean);
- assert(viewerChanges.every(p=>(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||IMAGE_VIEWER_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))||['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)),'Unrelated image viewer release change');
+ assert(viewerChanges.every(p=>photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||IMAGE_VIEWER_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))||['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)),'Unrelated image viewer release change');
  for(const p of IMAGE_VIEWER_PATHS)assert.equal(historical('HEAD',p),git('rev-parse',(composition?.paths.includes(p)?composition.source:viewer.source)+':'+p),'Image viewer source drift: '+p);
  const allowed=git('diff','--name-only',activation.base,'HEAD').split('\n').filter(Boolean);
- assert(allowed.every(p=>(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||FIT300_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))),'Unrelated change in Fit activation');
+ assert(allowed.every(p=>photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||FIT300_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))),'Unrelated change in Fit activation');
  for(const p of FIT300_PATHS)if(!['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)){
   const ref=composition?.paths.includes(p)?composition.source:IMAGE_VIEWER_PATHS.has(p)?viewer.source:activation.source;
   assert.equal(historical('HEAD',p),git('rev-parse',ref+':'+p),'Fit payload source drift: '+p);
@@ -150,7 +159,7 @@ export function validateFit300(){
  expectedCoach.decisions.ownerAcceptance.currentGubUcn2Mbl949VerificationEvidence=gubMblVerification;
  expectedCoach.decisions.ownerAcceptance.currentAt7687At673VerificationEvidence=at7687At673Verification;
  expectedCoach.decisions.ownerAcceptance.currentVikingRhythmVerificationEvidence=vikingRhythmVerification;
- const {fitComposition,seoFitComposition,imageViewerComposition,acceptanceReloadComposition,baselineRepairComposition,sitewideSeoComposition,seoFollowThroughComposition,...unchanged}=coach;
+ const {fitComposition,seoFitComposition,imageViewerComposition,acceptanceReloadComposition,baselineRepairComposition,sitewideSeoComposition,seoFollowThroughComposition,rolloutPhotoComposition,...unchanged}=coach;
  assert.deepEqual(unchanged,expectedCoach,'Existing coaching launch decisions changed outside the exact Watch receipt');
  return {movements:300,servedProtocols:2688,approvedImages:300,databaseWrites:false,existingLayoutPreserved:true,tapToEnlarge:true};
 }

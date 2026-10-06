@@ -51,3 +51,14 @@ test('release comparison recognises only exact reviewed MOT guide wording',()=>{
  assert.throws(()=>restoreTrustCentre('/treatment-centre',current+'<a>Read the Health MOT guide</a>'));
  assert.notEqual(restoreTrustCentre('/treatment-centre',current.replace('<main>','<main>UNRELATED')),before);
 });
+
+test('withdrawn weight illustrations also leave sign-in and registration while real photo saving remains',async()=>{
+ const source='<html><body><main><form id="login"><input name="email"></form><input id="saveOriginal"><label class="consent"><input id="visualConsent" type="checkbox">Generate consent</label><h3>Weight illustrations</h3><div><button class="visual-gen">−25%</button></div><h3>Saved real progress photos</h3><div id="savedPhotos"></div></main><footer>ORIGINAL</footer></body></html>';
+ for(const path of ['/member-login','/member-login.html','/member-register','/member-register.html']){
+  const r=await withTrustRepair(req(path),new Response(source,{headers:{'Content-Type':'text/html','ETag':'old'}})),out=await r.text();
+  assert.doesNotMatch(out,/visual-gen|−25%|Weight illustrations/);assert.match(out,/<form id="login"><input name="email"><\/form>/);assert.match(out,/<footer>ORIGINAL<\/footer>/);assert.match(out,/id="saveOriginal"/);assert.match(out,/id="savedPhotos"/);assert.match(out,/id="visualConsent"[^>]*hidden disabled/);assert.equal(r.headers.get('ETag'),null);
+  assert.equal(repairHtml(out,path.replace(/\.html$/,'')),out,'entry repair is idempotent');
+ }
+ const r=new Response(source,{status:403,headers:{'Content-Type':'text/html'}});assert.equal(await withTrustRepair(req('/member-login'),r),r);
+ assert.equal(repairHtml(source,'/'),source);assert.equal(repairHtml(source,'/about'),source);
+});
