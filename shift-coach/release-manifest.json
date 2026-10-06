@@ -308,7 +308,7 @@
     "proof": "SEO_FIT_EXACT_COMPOSITION_V1",
     "base": "82c433486152e61833639efeffc3bac7dbe1713e",
     "seoSource": "36749bd7c3e728ceb09a443366a7e2b933b7c144",
-    "source": "eed870e6b0da6642d485e32418ae2aa733f139b8",
+    "source": "b42a541b523d379d5ad691ca25a96786e3c28a62",
     "paths": [
       "scripts/b1-release-scope.mjs",
       "release/app-scope.mjs",
