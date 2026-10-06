@@ -152,3 +152,29 @@ test('tablet adoption never infers deployment from a hosted source proof or an e
   await assert.rejects(verifyTabletRuntime(f.active,f.version,f.text,get,f.logs));
  }
 });
+
+import {tabletRollback,verifiedTabletRollback} from './cancelled-release-recovery.mjs';
+const restoredTabletFixture=()=>{
+ const f=tabletFixture(),p=tabletRollback,t=f.p;
+ const active={...f.active,id:p.deployment,created_on:p.createdOn,annotations:{'workers/message':'Owned release failed post-deployment checks; restore captured runtime and preserve current data'}};
+ const run={id:p.run,head_sha:p.source,run_attempt:1,status:'completed',conclusion:'failure',event:'push',head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml'};
+ const job={id:p.job,run_id:p.run,name:'promote',status:'completed',conclusion:'failure',steps:[[60,'Deploy current main to production','success'],[74,'Verify the reconciled oral semaglutide guide','failure'],[107,'Restore the captured runtime if a post-deployment gate failed','success']].map(([number,name,conclusion])=>({number,name,conclusion}))};
+ const owned={kind:'owned_runtime_deployment',at:'2026-10-06T22:00:56.998Z',source:p.source,run:String(p.run),deploymentId:'8d9879e1-d7ff-4daf-92d0-7aff65bb417a',versionId:'6ac4410b-288a-470b-bc80-3537cab41ea6',previousDeploymentId:t.deployment,previousVersionId:t.version,dataRestored:false};
+ const logs=JSON.stringify(owned)+'\ncatalogue_stale_main_rejected\nWorker Version '+t.version+' has been deployed to 100% of traffic.';
+ return {...f,active,run,job,owned,failedLogs:logs,get:async path=>path==='/actions/runs/'+p.run?run:path.startsWith('/actions/runs/'+p.run+'/jobs')?{jobs:[job]}:f.get(path),logs:async id=>id===p.job?logs:f.logs(id)};
+};
+test('only the exact restored tablet deployment retains the independently verified tablet source',async()=>{
+ const f=restoredTabletFixture();assert.equal(verifiedTabletRollback(f.active,f.run,f.job,f.failedLogs),true);
+ const p=await verifyTabletRuntime(f.active,f.version,f.text,f.get,f.logs);
+ assert.equal(p.source,tabletRuntime.source);assert.equal(p.run,tabletRuntime.run);assert.equal(p.deployment,tabletRollback.deployment);
+});
+test('restored tablet evidence rejects drift, incomplete rollback and treating a failed source as verified',async()=>{
+ const f=restoredTabletFixture(),check=(a=f.active,r=f.run,j=f.job,l=f.failedLogs)=>verifiedTabletRollback(a,r,j,l);
+ for(const patch of [{id:'other'},{created_on:'other'},{versions:[{version_id:f.p.version,percentage:99}]},{annotations:{}}])assert.equal(check({...f.active,...patch}),false);
+ for(const patch of [{head_sha:'f'.repeat(40)},{run_attempt:2},{conclusion:'success'},{event:'pull_request'},{head_branch:'other'},{path:'other'}])assert.equal(check(f.active,{...f.run,...patch}),false);
+ for(const patch of [{id:1},{status:'in_progress'},{steps:f.job.steps.filter(s=>s.number!==107)}])assert.equal(check(f.active,f.run,{...f.job,...patch}),false);
+ for(const logs of ['',f.failedLogs.replace('catalogue_stale_main_rejected',''),f.failedLogs.replace('100%','99%'),f.failedLogs+'\n'+JSON.stringify(f.owned)])assert.equal(check(f.active,f.run,f.job,logs),false);
+ for(const patch of [{previousDeploymentId:'unknown'},{previousVersionId:'unknown'},{dataRestored:true}])assert.equal(check(f.active,f.run,f.job,f.failedLogs.replace(JSON.stringify(f.owned),JSON.stringify({...f.owned,...patch}))),false);
+ await assert.rejects(verifyTabletRuntime(f.active,f.version,f.text,f.get,async()=>''),/restoration evidence/);
+ await assert.rejects(verifyTabletRuntime(f.active,f.version,f.text,f.get,async id=>id===tabletRollback.job?f.failedLogs:''),/predecessor deployment/);
+});
