@@ -1,5 +1,6 @@
 import kalohexis710go from './reviews/2026-10-05-authorised-710go.json' with {type:'json'};
 import survodutideSynchronizeJp from './reviews/2026-10-06-authorised-survodutide-synchronize-jp.json' with {type:'json'};
+import coreTrialLifecycle from './reviews/2026-10-06-authorised-core-trial-lifecycle.json' with {type:'json'};
 import evidenceDesk from './reviews/2026-10-03-evidence-desk-zp6590.json' with {type:'json'};
 import srsd384Publication from './reviews/2026-10-04-authorised-srsd384.json' with {type:'json'};
 import fractylModalityGap from './reviews/2026-10-04-authorised-fractyl-modality-gap.json' with {type:'json'};
@@ -302,5 +303,15 @@ export const industry = [...originalIndustry.map(e => {
    ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
    ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
    reviewedAt:survodutideSynchronizeJp.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
+ })
+ .map(e=>{
+  const change=coreTrialLifecycle.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  const {summaryToAppend,limitationsToAppend,...fields}=change.fields;
+  return {...e,...fields,
+   ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
+   ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
+   reviewedAt:coreTrialLifecycle.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
  });

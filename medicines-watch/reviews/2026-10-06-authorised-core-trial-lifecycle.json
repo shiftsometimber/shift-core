@@ -1,0 +1,300 @@
+{
+  "reviewedAt": "2026-10-06T01:41:26Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add exact ClinicalTrials.gov lifecycle monitoring to the existing MariTide and enicepatide summaries after complete review of four sponsor-submitted records updated on 5 October 2026. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "changes": [
+    {
+      "id": "maritide",
+      "fields": {
+        "stage": "Phase 3 MARITIME programme; extension and cardiovascular-outcomes studies recruiting",
+        "summaryToAppend": "Three sponsor-submitted records updated on 5 October 2026 identify recruiting Phase 3 research: MARITIME-1-EXTENSION in adults with obesity or overweight, MARITIME-2-EXTENSION in adults with obesity or overweight and type 2 diabetes, and a separate cardiovascular-outcomes study in adults with atherosclerotic cardiovascular disease and obesity or overweight. The two extension records report actual July 2026 starts; the cardiovascular record reports an actual July 2025 start.",
+        "limitationsToAppend": "Recruiting status and actual start dates do not establish efficacy, safety, completed enrolment or results. The extension enrolments of 3,200 and 950 and the cardiovascular-study enrolment of 12,800 remain estimates; completion dates are also estimates and none of the three records has posted results. Extension dosing intervals are study arms, not approved regimens. Separate type 2 diabetes and cardiovascular-outcomes research must not be generalized to every weight-management population. These records establish no UK marketing authorisation, NICE or NHS access, UK supply or clinical approval."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07684235: MARITIME-1-EXTENSION",
+          "url": "https://clinicaltrials.gov/study/NCT07684235",
+          "sourcePublishedAt": "2026-07-06",
+          "sourceUpdatedAt": "2026-10-05",
+          "reviewedAt": "2026-10-06T01:41:26Z",
+          "checkScope": "Automatic record-status checks for identity, phase, recruitment, typed dates, estimated enrolment and posted-results state; no assessment of clinical outcomes."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07684144: MARITIME-2-EXTENSION",
+          "url": "https://clinicaltrials.gov/study/NCT07684144",
+          "sourcePublishedAt": "2026-07-06",
+          "sourceUpdatedAt": "2026-10-05",
+          "reviewedAt": "2026-10-06T01:41:26Z",
+          "checkScope": "Automatic record-status checks for identity, phase, recruitment, typed dates, estimated enrolment and posted-results state; no assessment of clinical outcomes."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07037433: MariTide cardiovascular-outcomes study",
+          "url": "https://clinicaltrials.gov/study/NCT07037433",
+          "sourcePublishedAt": "2025-06-25",
+          "sourceUpdatedAt": "2026-10-05",
+          "reviewedAt": "2026-10-06T01:41:26Z",
+          "checkScope": "Automatic record-status checks for identity, phase, recruitment, typed dates, estimated enrolment and posted-results state; no assessment of cardiovascular or clinical outcomes."
+        }
+      ]
+    },
+    {
+      "id": "enicepatide",
+      "fields": {
+        "summaryToAppend": "The sponsor-submitted NCT06525935 record now describes the 48-week Phase 2 obesity study as completed after an actual 16 August 2024 start and 8 December 2025 completion, with 469 actual participants.",
+        "limitationsToAppend": "ClinicalTrials.gov has no posted results for NCT06525935. Completion and actual enrolment do not independently confirm the sponsor-reported Phase 2 findings, establish an approved dose or replace separate outcome review. The registry record does not change the investigational status of enicepatide or establish UK marketing authorisation, NICE or NHS access, UK supply or clinical approval."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT06525935: enicepatide Phase 2 obesity study",
+          "url": "https://clinicaltrials.gov/study/NCT06525935",
+          "sourcePublishedAt": "2024-07-29",
+          "sourceUpdatedAt": "2026-10-05",
+          "reviewedAt": "2026-10-06T01:41:26Z",
+          "checkScope": "Automatic record-status checks for identity, phase, completed status, typed dates, actual enrolment and posted-results state; no assessment of sponsor-reported clinical outcomes."
+        }
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct07684235",
+      "nctId": "NCT07684235",
+      "title": "ClinicalTrials.gov NCT07684235: MARITIME-1-EXTENSION",
+      "url": "https://clinicaltrials.gov/study/NCT07684235",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07684235",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07684235", "Amgen"],
+      "reviewedAt": "2026-10-06T01:41:26Z",
+      "sourcePublishedAt": "2026-07-06",
+      "sourceUpdatedAt": "2026-10-05",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07684235",
+        "title": "Extension Trial to Evaluate the Long-term Efficacy, Safety, and Tolerability of Maridebart Cafraglutide (MARITIME-1-EXTENSION)",
+        "sponsor": "Amgen",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE3"],
+        "enrollment": {"count": 3200, "type": "ESTIMATED"},
+        "start": {"date": "2026-07-23", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2027-12-26", "type": "ESTIMATED"},
+        "completion": {"date": "2028-03-19", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2026-07-06", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-10-05", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["maritide"],
+      "rawResponseSha256": "2973b9181ea0b4c2d910756136a3672568893a704938c5aa66482005e9b7a900",
+      "reviewedFingerprint": "60134137d39eca846ac9c039b896e2e1fb503294eeadb909b97b5d376b9b6621"
+    },
+    {
+      "id": "registry-nct07684144",
+      "nctId": "NCT07684144",
+      "title": "ClinicalTrials.gov NCT07684144: MARITIME-2-EXTENSION",
+      "url": "https://clinicaltrials.gov/study/NCT07684144",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07684144",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07684144", "Amgen"],
+      "reviewedAt": "2026-10-06T01:41:26Z",
+      "sourcePublishedAt": "2026-07-06",
+      "sourceUpdatedAt": "2026-10-05",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07684144",
+        "title": "Extension Trial to Evaluate the Long-term Efficacy, Safety, and Tolerability of Maridebart Cafraglutide (MARITIME-2-EXTENSION)",
+        "sponsor": "Amgen",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE3"],
+        "enrollment": {"count": 950, "type": "ESTIMATED"},
+        "start": {"date": "2026-07-29", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2027-12-26", "type": "ESTIMATED"},
+        "completion": {"date": "2028-03-19", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2026-07-06", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-10-05", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["maritide"],
+      "rawResponseSha256": "0888c220ce42de9a366b810a0cbaaae2c454eb3add6cc1300fc618b4e67255a8",
+      "reviewedFingerprint": "53e2d4eca461de0d3927a329093a811ff27b4469426f66c6706460f628d766ce"
+    },
+    {
+      "id": "registry-nct07037433",
+      "nctId": "NCT07037433",
+      "title": "ClinicalTrials.gov NCT07037433: MariTide cardiovascular-outcomes study",
+      "url": "https://clinicaltrials.gov/study/NCT07037433",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07037433",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07037433", "Amgen"],
+      "reviewedAt": "2026-10-06T01:41:26Z",
+      "sourcePublishedAt": "2025-06-25",
+      "sourceUpdatedAt": "2026-10-05",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of cardiovascular or clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07037433",
+        "title": "Evaluating the Impact of Maridebart Cafraglutide on Cardiovascular Outcomes in Participants With Atherosclerotic Cardiovascular Disease and Overweight or Obesity",
+        "sponsor": "Amgen",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE3"],
+        "enrollment": {"count": 12800, "type": "ESTIMATED"},
+        "start": {"date": "2025-07-25", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2028-06-30", "type": "ESTIMATED"},
+        "completion": {"date": "2030-09-29", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2025-06-25", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-10-05", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["maritide"],
+      "rawResponseSha256": "876258716c330c276e12e14f3ecafa98586978e7501cbe073ecb5f766003442c",
+      "reviewedFingerprint": "299bc19a12a8ff5d537d208271d988975197c65bbf2d7386d6a9de8296854e98"
+    },
+    {
+      "id": "registry-nct06525935",
+      "nctId": "NCT06525935",
+      "title": "ClinicalTrials.gov NCT06525935: enicepatide Phase 2 obesity study",
+      "url": "https://clinicaltrials.gov/study/NCT06525935",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06525935",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT06525935", "Carmot Therapeutics, Inc."],
+      "reviewedAt": "2026-10-06T01:41:26Z",
+      "sourcePublishedAt": "2024-07-29",
+      "sourceUpdatedAt": "2026-10-05",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of sponsor-reported clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT06525935",
+        "title": "A Study of Enicepatide (CT-388) in Participants With Obesity or Overweight With at Least One Weight-Related Comorbidity",
+        "sponsor": "Carmot Therapeutics, Inc.",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": ["PHASE2"],
+        "enrollment": {"count": 469, "type": "ACTUAL"},
+        "start": {"date": "2024-08-16", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2025-12-08", "type": "ACTUAL"},
+        "completion": {"date": "2025-12-08", "type": "ACTUAL"},
+        "firstPosted": {"date": "2024-07-29", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-10-05", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["enicepatide"],
+      "rawResponseSha256": "d5641a9a2301e83e553f87a5b9d216bed5f5a51c360f85c011494e35e3e9661e",
+      "reviewedFingerprint": "d147573198b8f34bfdec37d19c02c2524ae1e8d81c00b2b53beaf9fdfe2bd52f"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07684235",
+      "publicationDate": "2026-07-06",
+      "updateDate": "2026-10-05",
+      "reviewedAt": "2026-10-06T01:41:26Z",
+      "outcome": "Complete sponsor-submitted API body read: recruiting Phase 3 MARITIME-1 extension; actual 23 July 2026 start; 3,200 estimated participants; estimated December 2027 primary completion and March 2028 completion; no posted results."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07684144",
+      "publicationDate": "2026-07-06",
+      "updateDate": "2026-10-05",
+      "reviewedAt": "2026-10-06T01:41:26Z",
+      "outcome": "Complete sponsor-submitted API body read: recruiting Phase 3 MARITIME-2 extension in participants with type 2 diabetes; actual 29 July 2026 start; 950 estimated participants; estimated December 2027 primary completion and March 2028 completion; no posted results."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07037433",
+      "publicationDate": "2025-06-25",
+      "updateDate": "2026-10-05",
+      "reviewedAt": "2026-10-06T01:41:26Z",
+      "outcome": "Complete sponsor-submitted API body read: recruiting Phase 3 cardiovascular-outcomes study; actual 25 July 2025 start; 12,800 estimated participants; estimated June 2028 primary completion and September 2030 completion; no posted results."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06525935",
+      "publicationDate": "2024-07-29",
+      "updateDate": "2026-10-05",
+      "reviewedAt": "2026-10-06T01:41:26Z",
+      "outcome": "Complete sponsor-submitted API body read: completed 48-week Phase 2 enicepatide study; 469 actual participants; actual 16 August 2024 start and 8 December 2025 completion; no registry-posted results."
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-06T01:41:26Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 171,
+    "currentSources": 170,
+    "overdueReviews": 0,
+    "lastAttemptAt": "2026-10-06T01:15:43.932Z",
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "checkStatus": "check_delayed",
+        "reviewStatus": "verification_pending",
+        "reasons": ["source_not_verified", "last_check_failed"],
+        "reviewedAt": "2026-10-03T20:05:13.956Z",
+        "lastAttemptAt": "2026-10-06T00:30:59.623Z",
+        "lastSuccessAt": null,
+        "error": "http_403",
+        "httpStatus": 403
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only public response verifies configured-source monitoring only. It does not renew factual reviews, approve changed wording or prove complete industry coverage. The unchanged Zealand 403 remains explicit."
+  },
+  "discoveryPass": {
+    "method": "A separate configured-source pass checked availability, changes, withdrawals, overdue reviews and monitor failures. Current-date and undated topic searches then covered weight-management medicines, peptides, combinations, muscle-preservation approaches, specialist indications, early and late trials, pauses and discontinuations across named and additional developers. The ClinicalTrials.gov current-date pass reviewed all obesity or overweight records updated on 5 October 2026.",
+    "included": "The existing MariTide and enicepatide summaries did not contain the exact lifecycle records for NCT07684235, NCT07684144, NCT07037433 or NCT06525935. The four complete primary records support bounded monitoring and a more precise programme summary without adding duplicate medicines.",
+    "notDuplicated": "PR #851, subsequent dated Watch receipts and all currently open pull requests were checked. GitHub reported no open pull requests at review time, and none of the four registry identities was already configured.",
+    "incompleteChecks": [
+      "Current-date searches can miss indexing delays, older omissions, unannounced programmes and additional international developers; selected domains and programme counts do not establish industry completeness.",
+      "None of the four registry records has posted results. Recruiting, completion and outcome definitions are not substituted for a reviewed results module, paper or clinical conclusion.",
+      "No new MHRA authorisation, NICE recommendation, NHS access decision, verified UK supply change or clinical approval was established."
+    ],
+    "failedChecks": [],
+    "openReviewPrCheck": {
+      "checkedAt": "2026-10-06T01:35:27Z",
+      "openWatchPullRequests": [],
+      "duplicationFound": false
+    },
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "widerBefore": 97,
+    "widerAfter": 97,
+    "totalBefore": 103,
+    "totalAfter": 103,
+    "configuredSourcesBefore": 172,
+    "configuredSourcesAfter": 176,
+    "trialRecordsBefore": 110,
+    "trialRecordsAfter": 114
+  },
+  "retrievalEvidence": [
+    {"nctId": "NCT07684235", "retrievedAt": "2026-10-06T01:37:00Z", "httpStatus": 200, "responseSha256": "2973b9181ea0b4c2d910756136a3672568893a704938c5aa66482005e9b7a900", "responseBytes": 31483},
+    {"nctId": "NCT07684144", "retrievedAt": "2026-10-06T01:38:00Z", "httpStatus": 200, "responseSha256": "0888c220ce42de9a366b810a0cbaaae2c454eb3add6cc1300fc618b4e67255a8", "responseBytes": 22638},
+    {"nctId": "NCT07037433", "retrievedAt": "2026-10-06T01:39:00Z", "httpStatus": 200, "responseSha256": "876258716c330c276e12e14f3ecafa98586978e7501cbe073ecb5f766003442c", "responseBytes": 156115},
+    {"nctId": "NCT06525935", "retrievedAt": "2026-10-06T01:37:00Z", "httpStatus": 200, "responseSha256": "d5641a9a2301e83e553f87a5b9d216bed5f5a51c360f85c011494e35e3e9661e", "responseBytes": 14787}
+  ],
+  "deploymentState": {
+    "mainCommit": "efe19ec227a47aeed13d17fff70d2d5815f3571f",
+    "observedAt": "2026-10-06T01:41:26Z",
+    "pendingEarlierPublication": "The live page remains at 102 programmes and 171 sources; 710GO and the SYNCHRONIZE-JP evidence merged into main are still absent. This independent supported source addition does not clear or hide the unverified-Worker production blocker."
+  },
+  "nextAction": "Run the complete Watch and release gates, merge the exact passing review, then resolve the separate Worker provenance blocker before guarded production promotion and actual live verification."
+}
