@@ -8,7 +8,7 @@ export const SITEWIDE_WORKFLOW='.github/workflows/sitewide-seo-proof.yml';
 export const SITEWIDE_VERSION='d6a715ef-1940-4236-91fc-c25b064ca6f1';
 export const SITEWIDE_DEPLOYMENT='181d1800-a5aa-44bd-8eed-36fa549c641b';
 export const SITEWIDE_PAYLOAD_PATHS=["public-seo-programme.mjs","shift-coach/worker.mjs","tests/fixtures/public-seo-programme/anger-pause-and-support.html","tests/fixtures/public-seo-programme/food-noise-worked-situations.html","tests/fixtures/public-seo-programme/food-that-fits-your-week.html","tests/fixtures/public-seo-programme/loneliness-small-reconnection.html","tests/fixtures/public-seo-programme/low-mood-first-conversation.html","tests/fixtures/public-seo-programme/maintenance-conversation-plan.html","tests/fixtures/public-seo-programme/plateau-review-example.html","tests/fixtures/public-seo-programme/stress-pressure-example.html","tests/public-seo-programme.test.mjs"];
-export const SITEWIDE_MAINTENANCE_PATHS=['.github/workflows/sitewide-seo-proof.yml','docs/seo-sitewide-live-receipt-20261006.json','release/growth-adopt-deployment.mjs','release/sitewide-seo-scope.mjs','scripts/verify-sitewide-seo.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/release-contract.mjs','tests/sitewide-seo-release.test.mjs'];
+export const SITEWIDE_MAINTENANCE_PATHS=['.github/workflows/sitewide-seo-proof.yml','docs/seo-sitewide-live-receipt-20261006.json','release/fit-300-scope.mjs','release/growth-adopt-deployment.mjs','release/sitewide-seo-scope.mjs','scripts/verify-sitewide-seo.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/release-contract.mjs','tests/sitewide-seo-release.test.mjs'];
 export function validateSitewideComposition(c){
  assert(c,'Exact site-wide SEO composition required');
  assert.equal(c.proof,'SITEWIDE_SEO_OWNER_APPROVED_V2');
@@ -26,7 +26,7 @@ export function sitewidePinnedRef(c,path){
 // current bytes remain independently required by the exact immutable pin above.
 export function sitewideHistoricalRead(read,c){
  if(!c)return read;validateSitewideComposition(c);
- return (ref,path)=>read(ref==='HEAD'&&c.maintenancePaths.includes(path)?SITEWIDE_BASE:ref,path);
+ return (ref,path)=>read(ref==='HEAD'&&(c.maintenancePaths.includes(path)||path==='shift-coach/worker.mjs')?SITEWIDE_BASE:ref,path);
 }
 export function verifySitewideHistory(c){
  if(!c)return;validateSitewideComposition(c);
