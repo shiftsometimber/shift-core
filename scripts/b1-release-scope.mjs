@@ -1,3 +1,4 @@
+import {TECHNICAL_BASE,CONCURRENT_RENEWAL_PATHS} from '../release/seo-technical-scope.mjs';
 import {followHistoricalRead} from '../release/seo-follow-through-scope.mjs';
 import {PRACTICAL_GUIDES_SOURCE,validateSixTopicSeoSource} from '../release/six-topic-seo-scope.mjs';
 import {FIT300_PATHS,READONLY_ORGANIC_PATHS,validateFit300} from '../release/fit-300-scope.mjs';
@@ -103,6 +104,7 @@ export function validateWatchEnobosarm(read){
  for(const path of WATCH_ENOBOSARM_PATHS)assert.equal(read('HEAD',path),read(currentWatchRef(path,WATCH_ENOBOSARM_COMMIT),path),'Watch enobosarm/semaglutide source drift: '+path);
 }
 function currentWatchRef(path,fallback){
+ if(CONCURRENT_RENEWAL_PATHS.includes(path))return TECHNICAL_BASE;
  if(path==='medicines-watch/industry.mjs')return watchCurrentSource(path);
  return WATCH_REGISTRY_WAVE_PATHS.includes(path)?watchWaveRef(path):PUBLIC_WORDING_PATHS.includes(path)?PUBLIC_WORDING_PREVIEW:WATCH_ENOBOSARM_PATHS.includes(path)?WATCH_ENOBOSARM_COMMIT:WATCH_PFIZER_PDF_REPAIR_PATHS.includes(path)?WATCH_PFIZER_PDF_REPAIR_COMMIT:WATCH_REGISTRY_PATHS.includes(path)?WATCH_REGISTRY_COMMIT:WATCH_SOURCE_REPAIR_PATHS.includes(path)?WATCH_SOURCE_REPAIR_COMMIT:WATCH_ABBV_ASC30_PATHS.includes(path)?WATCH_ABBV_ASC30_COMMIT:WATCH_SGB7342_PATHS.includes(path)?WATCH_SGB7342_COMMIT:WATCH_UBT251_PATHS.includes(path)?WATCH_UBT251_COMMIT:WATCH_EXPANDED_PATHS.includes(path)?WATCH_EXPANDED_COMMIT:WATCH_INTERNATIONAL_PATHS.includes(path)?WATCH_INTERNATIONAL_COMMIT:WATCH_SYNT101_PATHS.includes(path)?WATCH_SYNT101_COMMIT:WATCH_BROADER_PATHS.includes(path)?WATCH_BROADER_COMMIT:fallback;
 }

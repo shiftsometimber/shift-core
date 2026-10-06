@@ -1,3 +1,4 @@
+import {TECHNICAL_BASE,CONCURRENT_RENEWAL_PATHS} from './seo-technical-scope.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
@@ -34,7 +35,7 @@ for(const path of WATCH_OWNERSHIP_PATHS)if(!WATCH_REGISTRY_WAVE_PATHS.includes(p
 // Exact 4 October timeout repair: all scheduler ownership and other source bytes remain pinned.
 export const WATCH_DEADLINE_SOURCE='817cfc1a1957e0bd23fd2bfb6b6d2ed95bb0d976';
 export const WATCH_DEADLINE_PATHS=['medicines-watch/monitor.mjs','medicines-watch/monitor.test.mjs'];
-export const watchWaveRef=path=>WATCH_DEADLINE_PATHS.includes(path)?WATCH_DEADLINE_SOURCE:WATCH_OWNERSHIP_PATHS.includes(path)?WATCH_OWNERSHIP_SOURCE:WATCH_REGISTRY_WAVE_COMMIT;
+export const watchWaveRef=path=>CONCURRENT_RENEWAL_PATHS.includes(path)?TECHNICAL_BASE:WATCH_DEADLINE_PATHS.includes(path)?WATCH_DEADLINE_SOURCE:WATCH_OWNERSHIP_PATHS.includes(path)?WATCH_OWNERSHIP_SOURCE:WATCH_REGISTRY_WAVE_COMMIT;
 export function originalWatchOwnershipEntry(source){
  const change='      // Production promotion seeds reviewed URL replacements before the new\n      // runtime is exposed.  An invocation already in flight on the previous\n      // runtime must not switch that row back to its older configuration.\n      const medicinesWatch = await checkSources(env, { allowSourceReplacement: false }).catch((error) => ({';
  if(!source.includes(change))return source;
