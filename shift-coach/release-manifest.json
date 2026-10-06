@@ -450,10 +450,12 @@
       ".github/workflows/seo-follow-through-proof.yml",
       "release/fit-300-scope.mjs",
       "release/seo-follow-through-scope.mjs",
+      "release/shift-ai-scope.mjs",
       "release/sitewide-seo-scope.mjs",
       "scripts/verify-seo-follow-through.mjs",
       "shift-coach/release-contract.mjs",
       "tests/seo-follow-through-release.test.mjs",
+      "tests/shift-ai-release.test.mjs",
       "tests/sitewide-seo-release.test.mjs",
       "tests/fixtures/seo-public-articles.json"
     ],

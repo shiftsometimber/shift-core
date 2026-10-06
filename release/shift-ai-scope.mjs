@@ -28,5 +28,10 @@ export const PRIVACY_FALLBACK_PATHS=new Set(['ask-timber-v1.js','tests/ai-fast-s
 // Owner-authorised fresh-stream repair, proved with real hosted inference.
 export const STREAM_RELIABILITY_CANDIDATE='e501cf536a07c34975d98b621b36c5978e1d9250';
 export const STREAM_RELIABILITY_PATHS=new Set(['ask-timber-v1.js','member-experience/ai-stream.mjs','tests/ai-fast-stream.test.mjs','tests/ai-stream-reliability.test.mjs','preview/ai-context/fresh-reliability-proof.mjs','.github/workflows/priority-closeout-proof.yml']);
+// Owner-approved public SEO v3 work reduced only the public Life Back stream
+// prompt. Keep its exact integration byte pinned without widening the earlier
+// reliability source for private, clinical or other foundation files.
+export const PUBLIC_SITE_STREAM_CANDIDATE='98220aae8b1c7135e43d1e100b32e6895eec7b34';
 FOUNDATION_PATHS.push('tests/ai-stream-reliability.test.mjs','preview/ai-context/fresh-reliability-proof.mjs','.github/workflows/priority-closeout-proof.yml');
-export function validateFoundation(read){for(const path of FOUNDATION_PATHS)assert.equal(read('HEAD',path),read(STREAM_RELIABILITY_PATHS.has(path)?STREAM_RELIABILITY_CANDIDATE:PRIVACY_FALLBACK_PATHS.has(path)?PRIVACY_FALLBACK_CANDIDATE:LOSSLESS_PATHS.has(path)?LOSSLESS_CANDIDATE:FOUNDATION_CANDIDATE,path),'Foundation source drift: '+path)}
+export function foundationSource(path){return path==='ask-timber-v1.js'?PUBLIC_SITE_STREAM_CANDIDATE:STREAM_RELIABILITY_PATHS.has(path)?STREAM_RELIABILITY_CANDIDATE:PRIVACY_FALLBACK_PATHS.has(path)?PRIVACY_FALLBACK_CANDIDATE:LOSSLESS_PATHS.has(path)?LOSSLESS_CANDIDATE:FOUNDATION_CANDIDATE}
+export function validateFoundation(read){for(const path of FOUNDATION_PATHS)assert.equal(read('HEAD',path),read(foundationSource(path),path),'Foundation source drift: '+path)}

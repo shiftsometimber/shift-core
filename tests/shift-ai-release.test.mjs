@@ -15,5 +15,10 @@ test('application drift, frontend changes, missing flags and unrelated config ch
  assert.equal(withoutAiFlags(config),base);
 });
 
-import {validateFoundation,FOUNDATION_PATHS} from '../release/shift-ai-scope.mjs';
+import {validateFoundation,FOUNDATION_PATHS,foundationSource,PUBLIC_SITE_STREAM_CANDIDATE,STREAM_RELIABILITY_CANDIDATE} from '../release/shift-ai-scope.mjs';
 test('foundation release requires exact source equality for every pinned application file',()=>{assert.doesNotThrow(()=>validateFoundation((ref,path)=>path));for(const changed of FOUNDATION_PATHS)assert.throws(()=>validateFoundation((ref,path)=>ref==='HEAD'&&path===changed?'drift':path),/Foundation source drift/);});
+test('public SEO stream integration is pinned without widening the earlier reliability source',()=>{
+ assert.equal(foundationSource('ask-timber-v1.js'),PUBLIC_SITE_STREAM_CANDIDATE);
+ assert.equal(foundationSource('member-experience/ai-stream.mjs'),STREAM_RELIABILITY_CANDIDATE);
+ assert.notEqual(PUBLIC_SITE_STREAM_CANDIDATE,STREAM_RELIABILITY_CANDIDATE);
+});
