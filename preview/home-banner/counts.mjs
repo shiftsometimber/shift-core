@@ -2,6 +2,6 @@ export const countsCss='<style id="sst-banner-counts-css">html body main#main-co
 export function addCatalogueCounts(html){
  const food='<p>Simple, proper<br>meals for real life.</p>',movement='<p>Doable workouts<br>to feel better.</p>';
  if(html.split(food).length!==2||html.split(movement).length!==2||html.split('</head>').length!==2)throw Error('Existing banner text does not match');
- return html.replace(food,'<p>Over 2,500 recipes.<br>Simple, proper meals<br>for real life.</p>').replace(movement,'<p>Over 2,500 exercise<br>variations. Doable workouts<br>to feel better.</p>').replace('</head>',countsCss+'</head>');
+ return html.replace(food,'<p>Over 2,500 recipes.<br>Simple, proper meals<br>for real life.</p>').replace(movement,'<p>Over 2,500 exercise<br>variations. Doable<br><span style="white-space:nowrap">workouts to feel</span><br>better.</p>').replace('</head>',countsCss+'</head>');
 }
-export function removeCatalogueCounts(html){return html.replace('<p>Over 2,500 recipes.<br>Simple, proper meals<br>for real life.</p>','<p>Simple, proper<br>meals for real life.</p>').replace('<p>Over 2,500 exercise<br>variations. Doable workouts<br>to feel better.</p>','<p>Doable workouts<br>to feel better.</p>').replace(countsCss,'');}
+export function removeCatalogueCounts(html){return html.replace('<p>Over 2,500 recipes.<br>Simple, proper meals<br>for real life.</p>','<p>Simple, proper<br>meals for real life.</p>').replace('<p>Over 2,500 exercise<br>variations. Doable<br><span style="white-space:nowrap">workouts to feel</span><br>better.</p>','<p>Doable workouts<br>to feel better.</p>').replace(countsCss,'');}
