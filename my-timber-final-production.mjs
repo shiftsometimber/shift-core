@@ -15,7 +15,7 @@ const OUT=process.env.MY_TIMBER_FINAL_EVIDENCE_DIR||'my-timber-final-evidence';
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
 const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+structured-authrender-final-billy-${Date.now()}@gmail.com`;
-const report={proof:'MY_TIMBER_STABLE_INITIAL_WORKER_EXACT_LAYOUT_DIAGNOSTIC_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
+const report={proof:'MY_TIMBER_UNMODIFIED_LIVE_MEMBER_DIAGNOSTIC_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
 const resourcePath=value=>{try{const u=new URL(value);return u.origin+u.pathname}catch{return '[no resource URL]'}};
 const pass=(name,detail='')=>report.checks.push({name,status:'PASS',detail});
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=My Timber final::${name} — ${detail}`)};
@@ -31,40 +31,6 @@ async function geometry(page){return page.evaluate(()=>{const root=document.quer
 await register();
 const browser=await chromium.launch({headless:true});
 const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
-report.workerPatchResponses=[];
-await context.route('**/shift-push-sw-v1.js',async route=>{
- const r=await route.fetch(),original=await r.text(),old="if(event.request.method!=='GET'||event.request.mode!=='navigate'||u.origin!==self.location.origin||!/^\\/member\\//.test(u.pathname)||u.search)return;",next="const panel=['/member/fit','/member/grub','/member/life-back'].includes(u.pathname)&&u.searchParams.get('app_panel')==='1'&&['app','web'].includes(u.searchParams.get('view'))&&u.searchParams.size===2;\n if(event.request.method!=='GET'||event.request.mode!=='navigate'||u.origin!==self.location.origin||!/^\\/member\\//.test(u.pathname)||(u.search&&!panel))return;";
- assert.equal(original.split(old).length-1,1,'Exact deployed worker fetch guard required');
- const changed=original.replace(old,next)+"\nself.addEventListener('message',event=>{if(event.data?.inlineDiagnostic===true)event.ports[0]?.postMessage('exact-panel-worker-v1')});\n";
- report.workerPatchResponses.push({url:route.request().url(),exactDelta:true,status:r.status()});
- await route.fulfill({response:r,body:changed,headers:{...r.headers(),'content-type':'application/javascript; charset=utf-8','cache-control':'no-store'}});
-});
-report.layoutPatchResponses=[];
-await context.route('**/assets/my-timber-layout.mjs',async route=>{
- const r=await route.fetch(),original=await r.text(),block="if(push){const u=new URL(location.href);if(key==='today')u.searchParams.delete('tool');else u.searchParams.set('tool',key);u.hash='today';history.pushState(null,'',u)}";
- assert.equal(original.split(block).length-1,1,'Exact deployed history branch required');
- const changed=original.replace(block,'').replace("host.hidden=key==='today';",block+"host.hidden=key==='today';");
- report.layoutPatchResponses.push({url:route.request().url(),status:r.status(),exactDelta:true});
- await route.fulfill({response:r,body:changed,headers:{...r.headers(),'cache-control':'no-store'}});
-});
-report.workerIdentities=[];
-await context.exposeBinding('__recordInlineWorkerIdentity',(_source,identity)=>report.workerIdentities.push(identity));
-await context.addInitScript(()=>{
- const original=navigator.serviceWorker.register.bind(navigator.serviceWorker);
- // Playwright cannot route updated worker main scripts. Keep this diagnostic's
- // initially registered exact worker throughout the unchanged UI journey.
- navigator.serviceWorker.register=function(url,...args){
-  if(new URL(url,location.href).pathname!=='/shift-push-sw-v1.js')return original(url,...args);
-  return navigator.serviceWorker.getRegistration('/').then(r=>r?.active?r:original(url,...args));
- };
- document.addEventListener('click',event=>{
-  const control=event.target.closest?.('[data-app-tab],[data-app-open]');if(!control)return;
-  const channel=new MessageChannel(),key=control.dataset.appTab||control.dataset.appOpen;
-  const timeout=setTimeout(()=>window.__recordInlineWorkerIdentity({tool:key,identity:'no patched worker reply'}),2000);
-  channel.port1.onmessage=event=>{clearTimeout(timeout);window.__recordInlineWorkerIdentity({tool:key,identity:event.data})};
-  navigator.serviceWorker.controller?.postMessage({inlineDiagnostic:true},[channel.port2]);
- },true);
-});
 const page=await context.newPage();
 const navigation=attachDiagnostics(page,report,write);
 const watchdog=setTimeout(()=>{fail('verification termination','Browser verification did not terminate within eight minutes');write();process.exit(1)},480000);watchdog.unref();
@@ -128,8 +94,6 @@ try{
   assert.equal(await page.locator('#todayActions>.mtm-hero img').filter({visible:true}).count(),0,'Today must not show the retired pub photograph');assert.equal(await page.locator('#todayActions>.mtm-hero').evaluate(e=>getComputedStyle(e).backgroundImage),'none','Today heading must have no repeated background photograph');
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Phone layout has no horizontal overflow');
   await screenshot(page,'01-billy-current-today');
-  assert(report.workerPatchResponses.length,'Prove initial service-worker module was patched');
-  assert(await page.evaluate(()=>Boolean(navigator.serviceWorker.controller)),'Service worker must control member page');
   await page.locator('.today-meal-action').click();
   const mealFrame=page.frameLocator('#appTool-grub iframe');
   await mealFrame.getByText(chosen.name,{exact:true}).filter({visible:true}).first().waitFor({state:'visible',timeout:45000});
