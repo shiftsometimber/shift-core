@@ -40,6 +40,26 @@ test('promotion carries the exact verified later runtime forward and rejects mov
 });
 
 import {recentSuccessfulPromotions} from './cancelled-release-recovery.mjs';
+import {catalogueRuntime,verifiedCatalogueRuntime} from './cancelled-release-recovery.mjs';
+import {readFileSync} from 'node:fs';
+import {validateBaselineRepair,BASELINE_REPAIR_PATHS,CATALOGUE_COPY_PATHS} from '../release/fit-300-scope.mjs';
+test('composed baseline repair preserves newer verifier pins and rejects every finite payload drift',()=>{
+ const repair=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8')).baselineRepairComposition;
+ assert(repair,'Exact baseline composition required');
+ validateBaselineRepair(repair,()=> 'same-blob');
+ for(const patch of [{proof:'other'},{base:'f'.repeat(40)},{paths:[...repair.paths,'other.mjs']}])assert.throws(()=>validateBaselineRepair({...repair,...patch},()=> 'same-blob'));
+ for(const changed of [...BASELINE_REPAIR_PATHS,...CATALOGUE_COPY_PATHS])assert.throws(()=>validateBaselineRepair(repair,(ref,p)=>ref==='HEAD'&&p===changed?'changed':'same-blob'));
+});
+test('finite local catalogue release needs exact deployment, hosted proof and independent live receipt',()=>{
+ const p=catalogueRuntime,a={id:p.deployment,versions:[{version_id:p.version,percentage:100}]};
+ const r={id:p.run,head_sha:p.source,status:'completed',conclusion:'success',event:'push',head_branch:'release/catalogue-benefits-20261006',path:'.github/workflows/catalogue-benefits-proof.yml'},j={id:p.job,run_id:p.run,name:'proof',conclusion:'success'};
+ const receipt=JSON.parse(readFileSync('docs/catalogue-benefits-live-receipt-20261006.json','utf8'));
+ assert.equal(verifiedCatalogueRuntime(a,r,j,receipt),true);
+ for(const patch of [{id:'unknown'},{versions:[{version_id:p.version,percentage:50}]},{versions:[{version_id:recovery.unverified,percentage:100}]}])assert.equal(verifiedCatalogueRuntime({...a,...patch},r,j,receipt),false);
+ for(const patch of [{id:1},{head_sha:'f'.repeat(40)},{conclusion:'failure'},{event:'pull_request'},{head_branch:'main'},{path:'other.yml'}])assert.equal(verifiedCatalogueRuntime(a,{...r,...patch},j,receipt),false);
+ assert.equal(verifiedCatalogueRuntime(a,r,{...j,id:1},receipt),false);
+ for(const patch of [{versionId:'unknown'},{deploymentId:'unknown'},{source:'f'.repeat(40)},{liveProof:{allExact:false}},{productionDatabaseWrites:1},{hostedProof:{run:p.run,job:p.job,conclusion:'failure'}}])assert.equal(verifiedCatalogueRuntime(a,r,j,{...receipt,...patch}),false);
+});
 test('successful deployment evidence uses the exact production workflow instead of unrelated traffic',async()=>{
  const requests=[],production={id:37277280482,path:'.github/workflows/cloudflare-production-promote.yml'};
  const result=await recentSuccessfulPromotions(async path=>{requests.push(path);assert(path.startsWith('/actions/workflows/cloudflare-production-promote.yml/runs?'));return {workflow_runs:[production]}});

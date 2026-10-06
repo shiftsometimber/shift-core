@@ -1,6 +1,6 @@
 import {WATCH_SOURCE_LINK_SOURCE,WATCH_OWNERSHIP_PATHS,watchWaveRef} from '../release/watch-registry-wave-scope.mjs';
 import {DEVICE_HEALTH_DELTA,validateDeviceHealthSource} from '../release/device-health-scope.mjs';
-import {validateSeoFitComposition,validateAcceptanceReloadComposition,acceptanceReloadHistoricalRead} from '../release/fit-300-scope.mjs';
+import {validateSeoFitComposition,validateAcceptanceReloadComposition,acceptanceReloadHistoricalRead,ACCEPTANCE_RELOAD_VERIFIER_PATHS,validateBaselineRepair,baselineHistoricalRead,CATALOGUE_COPY_PATHS,CATALOGUE_COPY_SOURCE} from '../release/fit-300-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
@@ -42,6 +42,8 @@ for(const path of ['scripts/verify-six-topic-seo.mjs','docs/seo/2026-10-05-six-p
 // public SEO transformer is already a pinned backend change above.
 for(const path of ['.github/workflows/practical-guides-proof.yml','docs/seo/2026-10-06-practical-guides.md','public-practical-guides.mjs','scripts/verify-practical-guides-handler.mjs','scripts/verify-practical-guides.mjs','tests/practical-guides.test.mjs'])COACH_ADDITIONS.add(path);
 for(const path of ['public-seo-closeout.mjs','tests/public-seo-closeout.test.mjs'])COACH_BACKEND_PATHS.add(path);
+for(const p of CATALOGUE_COPY_PATHS)if(p!=='shift-coach/worker.mjs')COACH_ADDITIONS.add(p);
+for(const p of ['rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs'])COACH_BACKEND_PATHS.add(p);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]);
 // Finite read-only release maintenance; not permission for more publication jobs.
 export const ARTICLE_CLOSEOUT_SOURCE='69886cec987aed15a1a7e6340953cd7a5372dfee';
@@ -85,7 +87,7 @@ export function coachingHistoricalRef(ref,path){
  if(ref==='HEAD'&&path==='shift-coach/release-contract.mjs')return '36749bd7c3e728ceb09a443366a7e2b933b7c144';
  // These two metadata files compose the separately approved book-copy gate.
  // Their complete current bytes remain required by the coaching pin and app hashes.
- const composedBookGates=new Set(['release/growth-scope.mjs','release/home-banner-scope.mjs','release/watch-registry-wave-scope.mjs','tests/b1-release-scope.test.mjs']);
+ const composedBookGates=new Set(['release/growth-scope.mjs','release/home-banner-scope.mjs','release/watch-registry-wave-scope.mjs','tests/b1-release-scope.test.mjs','rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs']);
  return ref==='HEAD'&&COACH_BACKEND_PATHS.has(path)&&!composedBookGates.has(path)?COACH_BASE:ref;
 }
 export function validateCoachingSource(read,manifest){
@@ -102,10 +104,12 @@ export function validateCoachingSource(read,manifest){
  const viewer=manifest.imageViewerComposition;
  if(viewer){assert.equal(viewer.proof,'MEMBER_IMAGE_VIEWER_RELEASE_V1');assert.deepEqual(viewer.paths,['shift-coach/fit-active-edit.mjs','shift-coach/fit-active-edit.test.mjs','shift-coach/release-contract.mjs']);assert.match(viewer.source,/^[a-f0-9]{40}$/);execFileSync('git',['merge-base','--is-ancestor',viewer.source,'HEAD']);}
  const reload=manifest.acceptanceReloadComposition;
- validateAcceptanceReloadComposition(reload,read);
+ const repair=manifest.baselineRepairComposition;validateBaselineRepair(repair,read);
+ const beforeRepair=baselineHistoricalRead(read,repair);
+ validateAcceptanceReloadComposition(reload,beforeRepair);
  const composition=manifest.seoFitComposition;
- if(composition)validateSeoFitComposition(composition,acceptanceReloadHistoricalRead(read,reload));
- for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit,p),'Coaching release source drift: '+p);
+ if(composition)validateSeoFitComposition(composition,acceptanceReloadHistoricalRead(beforeRepair,reload));
+ for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit,p),'Coaching release source drift: '+p);
  assert.equal(read('HEAD',ARTICLE_CLOSEOUT_PATH),read(ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH),'Read-only article closeout source drift');
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
  assert.equal(read('HEAD','public-continuity.mjs'),read('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
@@ -136,7 +140,7 @@ export function assertLaunchDecisions(manifest){
 }
 // Reviewed preview commits can become unreachable from branch refs after merge.
 // Fetch only these fixed identities when absent; never substitute current HEAD.
-export const REVIEWED_HISTORY_REFS=Object.freeze(['2a26480aaadcbd7177d2671d21de35b4028de2d8','a3e2ebb4c585b0731e12511bf0325e6425ddc7b2']);
+export const REVIEWED_HISTORY_REFS=Object.freeze(['2a26480aaadcbd7177d2671d21de35b4028de2d8','a3e2ebb4c585b0731e12511bf0325e6425ddc7b2','1d198f6d097eb126ef630984d4a43a15fa83823c']);
 export function ensureReviewedHistory(run=execFileSync){
  for(const ref of REVIEWED_HISTORY_REFS){
   try{run('git',['cat-file','-e',ref+'^{commit}'],{stdio:'ignore'});}
