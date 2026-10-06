@@ -46,12 +46,13 @@ for(const path of ['.github/workflows/practical-guides-proof.yml','docs/seo/2026
 for(const path of ['public-seo-closeout.mjs','tests/public-seo-closeout.test.mjs'])COACH_BACKEND_PATHS.add(path);
 for(const p of CATALOGUE_COPY_PATHS)if(p!=='shift-coach/worker.mjs')COACH_ADDITIONS.add(p);
 COACH_BACKEND_PATHS.add('scripts/verify-shift-take-live.mjs');
-for(const p of FOLLOW_PATHS)if(!COACH_BACKEND_PATHS.has(p)&&!COACH_COMPOSED_BOOK_CHANGES.has(p)&&!COACH_AUDIT_CHANGES.has(p))COACH_ADDITIONS.add(p);
+export const FOLLOW_MODIFIED_PATHS=new Set(['editorial/five-articles/proof.mjs','release/seo794-preservation.mjs','scripts/verify-knowledge-headings.cjs','tests/seo794-preservation.test.mjs']);
+for(const p of FOLLOW_PATHS)if(!COACH_BACKEND_PATHS.has(p)&&!COACH_COMPOSED_BOOK_CHANGES.has(p)&&!COACH_AUDIT_CHANGES.has(p)&&!FOLLOW_MODIFIED_PATHS.has(p))COACH_ADDITIONS.add(p);
 COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37460283567.json');
 COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37462426049.json');
 for(const p of ['rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs'])COACH_BACKEND_PATHS.add(p);
 for(const p of [...SITEWIDE_PAYLOAD_PATHS,...SITEWIDE_MAINTENANCE_PATHS])if(!COACH_BACKEND_PATHS.has(p))COACH_ADDITIONS.add(p);
-export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]);
+export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES,...FOLLOW_MODIFIED_PATHS]);
 // Finite read-only release maintenance; not permission for more publication jobs.
 export const ARTICLE_CLOSEOUT_SOURCE='69886cec987aed15a1a7e6340953cd7a5372dfee';
 export const ARTICLE_CLOSEOUT_PATH='.github/workflows/babylove-mounjaro-876303-live.yml';
@@ -62,7 +63,7 @@ export function assertCoachingChangedPath(status,path){
  if(health){assert.equal(status,health[0],'Unexpected native health composition status: '+path);return;}
  if(WATCH_COMPOSED_CHANGES.has(path)||WATCH_COMPOSED_ADDITIONS.has(path)){assert.equal(status,WATCH_COMPOSED_ADDITIONS.has(path)?'A':'M','Unexpected Watch composition status: '+path);return;}
  const added=COACH_ADDITIONS.has(path)||COACH_COMPOSED_BOOK_ADDITIONS.has(path);
- assert(added||COACH_BACKEND_PATHS.has(path)||COACH_COMPOSED_BOOK_CHANGES.has(path)||COACH_AUDIT_CHANGES.has(path),'Unlisted coaching release change: '+path);
+ assert(added||COACH_BACKEND_PATHS.has(path)||COACH_COMPOSED_BOOK_CHANGES.has(path)||COACH_AUDIT_CHANGES.has(path)||FOLLOW_MODIFIED_PATHS.has(path),'Unlisted coaching release change: '+path);
  assert.equal(status,added?'A':'M','Unexpected change status: '+path);
 }
 // Preserve the exact reviewed Survodutide abstract correction alongside current coaching.

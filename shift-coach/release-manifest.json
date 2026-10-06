@@ -478,7 +478,7 @@
       "shift-coach/release.test.mjs",
       "scripts/verify-shift-take-live.mjs"
     ],
-    "maintenanceSource": "8c5d9c50ba2262545ce3e0f1f14ccd77e056b159",
+    "maintenanceSource": "3b49115f71ec211d2f6172268239d649fe56580c",
     "ownerApproval": {
       "owner": "Matt O’Brien",
       "at": "2026-10-06T14:18:48Z",
