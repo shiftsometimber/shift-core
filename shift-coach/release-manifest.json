@@ -755,7 +755,7 @@
       "inlineToolComposition": {
         "proof": "EXACT_AUTHENTICATED_INLINE_TOOL_WORKER_V1",
         "base": "f3a5a28e49d148512e4323bd9a58a2232520382e",
-        "source": "b79058b58846b3f587883d49a59b2b5dbf077c9b",
+        "source": "85a552a065a88d6005e5cab054cb720d8c9f441e",
         "paths": [
           "my-timber-pwa/presentation.mjs",
           "my-timber-pwa/service-worker.mjs",
