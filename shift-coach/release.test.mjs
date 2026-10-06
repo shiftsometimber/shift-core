@@ -6,6 +6,17 @@ import {execFileSync} from 'node:child_process';
 import {COACH_BASE,COACH_PATHS,COACH_COMPOSED_BOOK_ADDITIONS,COACH_COMPOSED_BOOK_CHANGES,assertCoachingChangedPath,WATCH_CURRENT_PATHS,assertCoachingConfiguration,withoutCoachEntrypoint,coachingHistoricalRef,validateCoachingSource,assertLaunchDecisions} from './release-contract.mjs';
 const config=readFileSync('wrangler.jsonc','utf8'),before=execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'});
 const manifest=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8'));
+test('already-live catalogue copy is reversed before strict homepage banner preservation',async()=>{
+ const {banner,css}=await import('../home-route-banner.mjs');
+ const {addCatalogueCounts,benefitsSection}=await import('../catalogue-benefits.mjs');
+ const {preserveApprovedStartup}=await import('../release/member-details-preservation.mjs');
+ const plain='<html><head></head><body><main><section aria-labelledby="struggle-artwork-title" class="struggle-artwork-section">untouched</section></main></body></html>';
+ const approved=plain.replace('</head>',css+'</head>').replace('<section aria-labelledby=',banner+'<section aria-labelledby=');
+ assert.equal(preserveApprovedStartup('/',Buffer.from(addCatalogueCounts(approved))).toString(),plain);
+ assert.throws(()=>preserveApprovedStartup('/',Buffer.from(addCatalogueCounts(approved).replace('Over 2,500 recipes.','Over 9,999 recipes.'))),/Homepage banner differs/);
+ const programme='<html><head></head><main>unchanged</main></html>';
+ assert.equal(preserveApprovedStartup('/programme',Buffer.from(programme.replace('</main>',benefitsSection+'</main>'))).toString(),programme);
+});
 test('bounded member evidence rejects drift of every proven file, extra paths and a temporary production workflow',async()=>{
  const {MEMBER_DIAGNOSTICS_PATHS, MEMBER_DIAGNOSTICS_WORKFLOW, MEMBER_DIAGNOSTICS_SOURCE, MEMBER_DIAGNOSTICS_BASE, MEMBER_RELOAD_PATHS, MEMBER_RELOAD_SOURCE, validateMemberDiagnosticsSource}=await import('../release/member-acceptance-scope.mjs');
  const paths=[...MEMBER_DIAGNOSTICS_PATHS,MEMBER_DIAGNOSTICS_WORKFLOW],read=(ref,p)=>p;
@@ -61,7 +72,7 @@ test('launch preserves privacy and purpose gates; exact owner acceptance never c
 test('production path keeps the existing rollback/deploy checks and checks launch before any production work',()=>{const wf=readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8');assert(wf.includes('"shift-coach/**"'));assert(wf.indexOf('node shift-coach/release-contract.mjs --require-launch')<wf.indexOf('node release/growth-preflight.mjs'));assert(wf.includes('node --test shift-coach/integration.test.mjs shift-coach/release.test.mjs'));assert.equal((wf.match(/node release\/member-runtime-deploy\.mjs/g)||[]).length,1);for(const s of ['Capture current Worker deployment for rollback','Verify exact current main before production mutations','Restore the captured runtime if a post-deployment gate failed'])assert(wf.includes(s));});
 
 test('composed book release accepts only exact named additions and modifications; unrelated paths and deletion fail',()=>{
- for(const path of COACH_COMPOSED_BOOK_ADDITIONS){assert.doesNotThrow(()=>assertCoachingChangedPath('A',path));assert.throws(()=>assertCoachingChangedPath('M',path));assert.equal(coachingHistoricalRef('HEAD',path),'HEAD');}
+ for(const path of COACH_COMPOSED_BOOK_ADDITIONS){assert.doesNotThrow(()=>assertCoachingChangedPath('A',path));assert.throws(()=>assertCoachingChangedPath('M',path));assert.equal(coachingHistoricalRef('HEAD',path),path==='release/book-voice-scope.mjs'?'c2eaab9e0e1ddb39e116d6d3d625a7f51b6881b6':'HEAD');}
  for(const path of COACH_COMPOSED_BOOK_CHANGES){assert.doesNotThrow(()=>assertCoachingChangedPath('M',path));assert.throws(()=>assertCoachingChangedPath('D',path));assert.equal(coachingHistoricalRef('HEAD',path),'HEAD');}
  for(const path of ['editorial/book-voice/unreviewed.mjs','worker-entry-v6.js','frontend/member/my-timber-preview.html','unknown.mjs'])assert.throws(()=>assertCoachingChangedPath('M',path),/Unlisted/);
 });
