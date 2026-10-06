@@ -15,7 +15,7 @@ const OUT=process.env.MY_TIMBER_FINAL_EVIDENCE_DIR||'my-timber-final-evidence';
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
 const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+structured-authrender-final-billy-${Date.now()}@gmail.com`;
-const report={proof:'MY_TIMBER_FULL_INITIAL_WORKER_PANEL_FETCH_DIAGNOSTIC_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
+const report={proof:'MY_TIMBER_INLINE_NAVIGATION_CAUSE_TRACE_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
 const resourcePath=value=>{try{const u=new URL(value);return u.origin+u.pathname}catch{return '[no resource URL]'}};
 const pass=(name,detail='')=>report.checks.push({name,status:'PASS',detail});
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=My Timber final::${name} — ${detail}`)};
@@ -46,6 +46,13 @@ await context.route('**/assets/my-timber-layout.mjs',async route=>{
  const changed=original.replace(block,'').replace("host.hidden=key==='today';",block+"host.hidden=key==='today';");
  report.layoutPatchResponses.push({url:route.request().url(),status:r.status(),exactDelta:true});
  await route.fulfill({response:r,body:changed,headers:{...r.headers(),'cache-control':'no-store'}});
+});
+await context.addInitScript(()=>{
+ window.__inlineNavigationTrace=[];
+ const record=(event,data={})=>{window.__inlineNavigationTrace.push({at:performance.now(),event,frame:window===window.top?'top':'panel',url:location.pathname+location.search+location.hash,...data});window.__inlineNavigationTrace=window.__inlineNavigationTrace.slice(-80);};
+ for(const method of ['pushState','replaceState']){const original=history[method];history[method]=function(...args){record(method,{target:String(args[2]||''),stack:new Error().stack?.split('\n').slice(2,5)});return original.apply(this,args)}}
+ addEventListener('popstate',()=>record('popstate'));addEventListener('hashchange',()=>record('hashchange'));
+ new MutationObserver(records=>{for(const r of records){for(const n of r.addedNodes)if(n.nodeType===1&&(n.matches('iframe')||n.querySelector('iframe')))record('frame-added',{html:n.outerHTML.slice(0,700)});for(const n of r.removedNodes)if(n.nodeType===1&&(n.matches('iframe')||n.querySelector('iframe')))record('frame-removed',{html:n.outerHTML.slice(0,700)})}}).observe(document,{childList:true,subtree:true});
 });
 const page=await context.newPage();
 const navigation=attachDiagnostics(page,report,write);
@@ -175,7 +182,7 @@ try{
   await page.goto(SITE+'/member/life-back',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(7,'life-back','Life Back — goals and wins');
   await page.goto(SITE+'/member/settings',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(8,'settings','Settings — member details and privacy');
   pass('Eight Google Play phone screenshots captured from production My Timber','Synthetic member only; 9:16 portrait UI; no real member data.');
-}catch(error){fail('journey exception',clean(error?.message||error).slice(0,1800));report.navigation=navigation();write();await boundedEvidence('failure screenshot',()=>page.screenshot({path:path.join(OUT,'journey-failure.png'),fullPage:false,timeout:10000}),11000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message);write()})}finally{
+}catch(error){fail('journey exception',clean(error?.message||error).slice(0,1800));report.navigation=navigation();report.clientNavigationTrace=await page.evaluate(()=>window.__inlineNavigationTrace).catch(()=>[]);write();await boundedEvidence('failure screenshot',()=>page.screenshot({path:path.join(OUT,'journey-failure.png'),fullPage:false,timeout:10000}),11000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message);write()})}finally{
   const video=page.video();write();await boundedEvidence('context close',()=>context.close(),15000).catch(error=>fail('context close',clean(error.message)));if(video)await boundedEvidence('video save',()=>video.saveAs(path.join(OUT,'my-timber-billy-iphone.webm')),15000).catch(error=>fail('video save',clean(error.message)));await boundedEvidence('browser close',()=>browser.close(),10000).catch(error=>fail('browser close',clean(error.message)));write();clearTimeout(watchdog);setTimeout(()=>process.exit(report.failures.length?1:0),1000).unref();
 }
 console.log(JSON.stringify(report,null,2));
