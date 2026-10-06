@@ -67,6 +67,8 @@ export async function verifySitewideRollback(active,get,getLogs){
  assert.equal(run.id,p.run);assert.equal(run.head_sha,p.source);assert.equal(run.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(run.head_branch,'main');assert.equal(run.event,'push');assert.equal(run.status,'completed');assert.equal(run.conclusion,'failure');
  const job=jobs.jobs.find(j=>j.id===p.job);assert(job);assert.equal(job.name,'promote');assert.equal(job.status,'completed');assert.equal(job.conclusion,'failure');assert.equal(job.run_id,p.run);
  const logs=await getLogs(p.job);
+ const beforeLine=logs.split('\n').find(line=>line.includes('"kind":"runtime_recovery_observation"'));assert(beforeLine,'Exact pre-release SEO runtime observation absent');
+ const beforeReceipt=JSON.parse(beforeLine.slice(beforeLine.indexOf('{')));assert.equal(beforeReceipt.deploymentId,SITEWIDE_DEPLOYMENT);assert.equal(beforeReceipt.activeVersion,SITEWIDE_VERSION);assert.equal(beforeReceipt.release,p.source);
  const marker=logs.split('\n').find(line=>line.includes('"kind":"owned_runtime_deployment"'));assert(marker,'Owned deployment receipt absent');
  const receipt=JSON.parse(marker.slice(marker.indexOf('{')));
  assert.equal(receipt.source,p.source);assert.equal(String(receipt.run),String(p.run));assert.equal(receipt.deploymentId,p.failedDeployment);assert.equal(receipt.versionId,p.failedVersion);assert.equal(receipt.previousDeploymentId,SITEWIDE_DEPLOYMENT);assert.equal(receipt.previousVersionId,SITEWIDE_VERSION);assert.equal(receipt.dataRestored,false);

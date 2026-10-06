@@ -1,12 +1,30 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {SITEWIDE_BRANCH,SITEWIDE_WORKFLOW,SITEWIDE_VERSION,SITEWIDE_DEPLOYMENT,assertSitewideLiveReceipt,sitewideProofMarker,verifySitewideRuntime} from '../release/sitewide-seo-scope.mjs';
+import {SITEWIDE_BRANCH,SITEWIDE_WORKFLOW,SITEWIDE_VERSION,SITEWIDE_DEPLOYMENT,SITEWIDE_ROLLBACK,assertSitewideLiveReceipt,sitewideProofMarker,verifySitewideRuntime} from '../release/sitewide-seo-scope.mjs';
 const receiptText=readFileSync('docs/seo-sitewide-live-receipt-20261006.json','utf8'),r=JSON.parse(receiptText);
 const c=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8')).sitewideSeoComposition;
 test('manual SEO receipt requires all eight owned and thirteen protected complete document checks',()=>{
  assert.doesNotThrow(()=>assertSitewideLiveReceipt(r));
  for(const change of [{source:'a'.repeat(40)},{version:'unknown'},{deployment:'unknown'},{trafficPercentage:99},{sitemapChanged:true},{homepageChanged:true},{startHereChanged:true},{d1Writes:1},{bindingsChanged:['DB']},{tests:{pass:40,fail:1}},{fullHandler:r.fullHandler.slice(1)},{liveProof:{...r.liveProof,pass:false}},{liveLayouts:r.liveLayouts.slice(1)}])assert.throws(()=>assertSitewideLiveReceipt({...r,...change}));
+});
+test('runtime adoption accepts only the exact current deployment produced by the evidenced failed-release rollback',async()=>{
+ const p={run:123,job:456,source:'a'.repeat(40)},composition={...c,hostedProof:p};
+ const proofRun={id:p.run,head_sha:p.source,path:SITEWIDE_WORKFLOW,head_branch:SITEWIDE_BRANCH,event:'push',status:'completed',conclusion:'success'};
+ const proofJob={id:p.job,name:'verify',status:'completed',conclusion:'success'};
+ const rollbackRun={id:SITEWIDE_ROLLBACK.run,head_sha:SITEWIDE_ROLLBACK.source,path:'.github/workflows/cloudflare-production-promote.yml',head_branch:'main',event:'push',status:'completed',conclusion:'failure'};
+ const rollbackJob={id:SITEWIDE_ROLLBACK.job,run_id:SITEWIDE_ROLLBACK.run,name:'promote',status:'completed',conclusion:'failure'};
+ const active={id:SITEWIDE_ROLLBACK.deployment,created_on:SITEWIDE_ROLLBACK.createdOn,versions:[{version_id:SITEWIDE_VERSION,percentage:100}]};
+ const get=async path=>path===`/actions/runs/${p.run}`?proofRun:path===`/actions/runs/${p.run}/jobs`?{jobs:[proofJob]}:path===`/actions/runs/${SITEWIDE_ROLLBACK.run}`?rollbackRun:{jobs:[rollbackJob]};
+ const proofMarker='SITEWIDE_SEO_PROOF '+JSON.stringify(sitewideProofMarker(receiptText));
+ const rollbackMarker=JSON.stringify({kind:'runtime_recovery_observation',deploymentId:SITEWIDE_DEPLOYMENT,activeVersion:SITEWIDE_VERSION,release:SITEWIDE_ROLLBACK.source,version:{}});
+ const deployMarker=JSON.stringify({kind:'owned_runtime_deployment',source:SITEWIDE_ROLLBACK.source,run:String(SITEWIDE_ROLLBACK.run),deploymentId:SITEWIDE_ROLLBACK.failedDeployment,versionId:SITEWIDE_ROLLBACK.failedVersion,previousDeploymentId:SITEWIDE_DEPLOYMENT,previousVersionId:SITEWIDE_VERSION,dataRestored:false});
+ const rollbackLogs=[rollbackMarker,deployMarker,'Worker Version '+SITEWIDE_VERSION+' has been deployed to 100% of traffic.','Current Version ID: '+SITEWIDE_VERSION].join('\n');
+ const logs=async id=>id===p.job?proofMarker:rollbackLogs;
+ assert.equal((await verifySitewideRuntime(active,composition,receiptText,get,logs)).deployment,SITEWIDE_ROLLBACK.deployment);
+ for(const change of [{id:1},{head_sha:'b'.repeat(40)},{path:'.github/workflows/other.yml'},{head_branch:'other'},{event:'pull_request'},{status:'in_progress'},{conclusion:'success'}])await assert.rejects(()=>verifySitewideRuntime(active,composition,receiptText,async path=>path===`/actions/runs/${p.run}`?proofRun:path===`/actions/runs/${p.run}/jobs`?{jobs:[proofJob]}:path===`/actions/runs/${SITEWIDE_ROLLBACK.run}`?{...rollbackRun,...change}:{jobs:[rollbackJob]},logs));
+ for(const change of [{id:1},{name:'other'},{status:'in_progress'},{conclusion:'success'}])await assert.rejects(()=>verifySitewideRuntime(active,composition,receiptText,async path=>path===`/actions/runs/${p.run}`?proofRun:path===`/actions/runs/${p.run}/jobs`?{jobs:[proofJob]}:path===`/actions/runs/${SITEWIDE_ROLLBACK.run}`?rollbackRun:{jobs:[{...rollbackJob,...change}]},logs));
+ await assert.rejects(()=>verifySitewideRuntime(active,composition,receiptText,get,async id=>id===p.job?proofMarker:''),/observation absent/);
 });
 test('runtime adoption requires matching successful independent hosted proof and exact live deployment',async()=>{
  const p={run:123,job:456,source:'a'.repeat(40)},composition={...c,hostedProof:p};
@@ -22,13 +40,14 @@ test('runtime adoption requires matching successful independent hosted proof and
  await assert.rejects(()=>verifySitewideRuntime(active,composition,receiptText,get,async()=>''),/marker absent/);
  await assert.rejects(()=>verifySitewideRuntime(active,{...composition,hostedProof:null},receiptText,get,logs),/hosted SEO proof required/);
 });
+
 test('only the exact owned failed release and proven rollback may retain the same SEO version',async()=>{
  const {SITEWIDE_ROLLBACK:p,verifySitewideRollback}=await import('../release/sitewide-seo-scope.mjs');
  const active={id:p.deployment,created_on:p.createdOn,versions:[{version_id:SITEWIDE_VERSION,percentage:100}]};
  const run={id:p.run,head_sha:p.source,path:'.github/workflows/cloudflare-production-promote.yml',head_branch:'main',event:'push',status:'completed',conclusion:'failure'};
  const job={id:p.job,run_id:p.run,name:'promote',status:'completed',conclusion:'failure'};
  const receipt={kind:'owned_runtime_deployment',source:p.source,run:String(p.run),deploymentId:p.failedDeployment,versionId:p.failedVersion,previousDeploymentId:SITEWIDE_DEPLOYMENT,previousVersionId:SITEWIDE_VERSION,dataRestored:false};
- const logs=JSON.stringify(receipt)+'\nWorker Version '+SITEWIDE_VERSION+' has been deployed to 100% of traffic.\nCurrent Version ID: '+SITEWIDE_VERSION;
+ const logs=JSON.stringify({kind:'runtime_recovery_observation',deploymentId:SITEWIDE_DEPLOYMENT,activeVersion:SITEWIDE_VERSION,release:p.source})+'\n'+JSON.stringify(receipt)+'\nWorker Version '+SITEWIDE_VERSION+' has been deployed to 100% of traffic.\nCurrent Version ID: '+SITEWIDE_VERSION;
  const get=async path=>path.endsWith('/jobs')?{jobs:[job]}:run;
  assert.equal((await verifySitewideRollback(active,get,async()=>logs)).deployment,p.deployment);
  for(const patch of [{id:'unknown'},{created_on:'2026-10-06T13:28:50Z'},{versions:[{version_id:SITEWIDE_VERSION,percentage:99}]}])await assert.rejects(()=>verifySitewideRollback({...active,...patch},get,async()=>logs));
