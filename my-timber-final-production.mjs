@@ -30,7 +30,11 @@ async function geometry(page){return page.evaluate(()=>{const root=document.quer
 
 await register();
 const browser=await chromium.launch({headless:true});
-const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',serviceWorkers:'block',recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
+const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',serviceWorkers:'allow',recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
+await context.addInitScript(()=>{
+ const property=Object.getOwnPropertyDescriptor(HTMLIFrameElement.prototype,'src');
+ Object.defineProperty(HTMLIFrameElement.prototype,'src',{...property,set(value){if(this.classList.contains('app-tool-frame'))queueMicrotask(()=>property.set.call(this,value));else property.set.call(this,value)}});
+});
 await context.addInitScript(()=>{
  window.__earlyTrace=[];const keep=(kind,detail)=>{window.__earlyTrace.push({kind,detail,at:performance.now()});if(window.__earlyTrace.length>120)window.__earlyTrace.shift()};
  for(const method of ['pushState','replaceState']){const orig=history[method];history[method]=function(...args){keep(method,{url:String(args[2]),stack:new Error().stack});return orig.apply(this,args)}}
@@ -38,7 +42,7 @@ await context.addInitScript(()=>{
  window.addEventListener('error',e=>keep('error',{message:e.message,filename:e.filename,lineno:e.lineno}));
 });
 const page=await context.newPage();
-report.proof='MY_TIMBER_GRUB_ISOLATED_NO_SERVICE_WORKER_V1';
+report.proof='MY_TIMBER_GRUB_DEFERRED_FRAME_WITH_SERVICE_WORKER_V1';
 
 report.frameLifecycle=[];const cdp=await context.newCDPSession(page);await cdp.send('Page.enable');for(const kind of ['frameAttached','frameDetached','frameStartedLoading','frameStoppedLoading','frameRequestedNavigation','frameNavigated'])cdp.on('Page.'+kind,event=>{const x={kind,frame:event.frameId||event.frame?.id,reason:event.reason,url:event.url?resourcePath(event.url):event.frame?.url?resourcePath(event.frame.url):null};report.frameLifecycle.push(x);if(report.frameLifecycle.length>80)report.frameLifecycle.shift()});
 page.on('console',m=>{if(m.type()==='error'){report.frameLifecycle.push({kind:'console-error',detail:m.text().slice(0,500)});if(report.frameLifecycle.length>80)report.frameLifecycle.shift()}});
@@ -117,4 +121,4 @@ try{
 }
 console.log(JSON.stringify(report,null,2));
 if(report.failures.length)throw new Error(`My Timber final production candidate failed ${report.failures.length} check(s)`);
-console.log('PASS My Timber final production candidate: authenticated fictional contact save and fresh-login return, explicit published Grub choice, approved shared Today and inline tools, retained drafts and history, one navigation/footer/consent owner, zero phone overflow and eight real production screenshots.');
+console.log('PASS isolated Grub saved-meal navigation diagnostic; no full acceptance or physical-device result.');
