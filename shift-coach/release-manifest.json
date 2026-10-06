@@ -52,6 +52,7 @@
     "docs/seo-sitewide-live-receipt-20261006.json",
     "docs/seo/2026-10-05-six-priorities.md",
     "docs/seo/2026-10-06-practical-guides.md",
+    "docs/tablet-guidance-runtime-receipt-20261006.json",
     "editorial/book-voice/SAMPLES.md",
     "editorial/book-voice/VOICE.md",
     "editorial/book-voice/edits.json",
@@ -84,6 +85,7 @@
     "my-journey-observation-v1.js",
     "my-timber-final-production.mjs",
     "my-timber-final-source-gate.mjs",
+    "my-timber-pwa/service-worker.mjs",
     "my-timber-pwa/verify-live.mjs",
     "prescriber-questions.mjs",
     "preview/ai-context/fresh-reliability-proof.mjs",
@@ -146,6 +148,7 @@
     "release/sitewide-seo-scope.mjs",
     "release/six-topic-seo-preservation.mjs",
     "release/six-topic-seo-scope.mjs",
+    "release/tablet-runtime-scope.mjs",
     "release/treatment-guidance-scope.mjs",
     "release/watch-registry-wave-scope.mjs",
     "rendered-member-acceptance-support.mjs",
@@ -240,6 +243,7 @@
     "tests/fixtures/public-seo-programme/stress-pressure-example.html",
     "tests/fixtures/seo-public-articles.json",
     "tests/general-analytics-privacy.test.mjs",
+    "tests/inline-tool-service-worker.test.mjs",
     "tests/medicine-commerce-v1.test.mjs",
     "tests/medicine-purchase-e2e.test.mjs",
     "tests/member-details-release.test.mjs",
@@ -268,6 +272,7 @@
     "tests/six-topic-seo-release.test.mjs",
     "tests/tablet-routine-browser.mjs",
     "tests/tablet-routine.test.mjs",
+    "tests/tablet-runtime-release.test.mjs",
     "tests/testosterone-public.test.mjs",
     "tests/transactional-mail-reliability.test.mjs",
     "tests/watch-ownership-release.test.mjs",
@@ -707,7 +712,27 @@
         "tests/seo-discovery-release.test.mjs",
         "tests/seo-follow-through-release.test.mjs",
         "tests/watch-ownership-release.test.mjs"
-      ]
+      ],
+      "runtimeAdoptionComposition": {
+        "proof": "EXACT_TABLET_RUNTIME_RETAIN_AND_PHOTO_GATES_V1",
+        "base": "24b7ed9ce1064c4d60fbd41ab0173bfe4f4d607c",
+        "source": "3bbc54ad4e49dfd0f1ae0437d56c8d9d85ee4f00",
+        "paths": [
+          "docs/tablet-guidance-runtime-receipt-20261006.json",
+          "my-timber-pwa/service-worker.mjs",
+          "release/app-scope.mjs",
+          "release/book-voice-scope.mjs",
+          "release/fit-300-scope.mjs",
+          "release/footer-scope.mjs",
+          "release/seo-follow-through-scope.mjs",
+          "release/tablet-runtime-scope.mjs",
+          "shift-coach/recover-cancelled-release.mjs",
+          "shift-coach/release-contract.mjs",
+          "tests/inline-tool-service-worker.test.mjs",
+          "tests/tablet-runtime-release.test.mjs",
+          "tests/watch-ownership-release.test.mjs"
+        ]
+      }
     }
   },
   "rolloutPhotoComposition": {
@@ -730,6 +755,26 @@
       "release/fit-300-scope.mjs",
       "release/watch-registry-wave-scope.mjs",
       "shift-coach/release-contract.mjs",
+      "tests/watch-ownership-release.test.mjs"
+    ]
+  },
+  "tabletRuntimeComposition": {
+    "proof": "EXACT_TABLET_RUNTIME_RETAIN_AND_PHOTO_GATES_V1",
+    "base": "24b7ed9ce1064c4d60fbd41ab0173bfe4f4d607c",
+    "source": "3bbc54ad4e49dfd0f1ae0437d56c8d9d85ee4f00",
+    "paths": [
+      "docs/tablet-guidance-runtime-receipt-20261006.json",
+      "my-timber-pwa/service-worker.mjs",
+      "release/app-scope.mjs",
+      "release/book-voice-scope.mjs",
+      "release/fit-300-scope.mjs",
+      "release/footer-scope.mjs",
+      "release/seo-follow-through-scope.mjs",
+      "release/tablet-runtime-scope.mjs",
+      "shift-coach/recover-cancelled-release.mjs",
+      "shift-coach/release-contract.mjs",
+      "tests/inline-tool-service-worker.test.mjs",
+      "tests/tablet-runtime-release.test.mjs",
       "tests/watch-ownership-release.test.mjs"
     ]
   }
