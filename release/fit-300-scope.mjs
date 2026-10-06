@@ -38,7 +38,7 @@ export function validateFit300(){
   validateSeoFitComposition(composition,(ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',composition.base,composition.source);git('merge-base','--is-ancestor',composition.source,'HEAD');
   git('merge-base','--is-ancestor',composition.seoSource,composition.source);
-  validateSixTopicSeoSource((ref,path)=>git('rev-parse',ref+':'+path));
+  validateSixTopicSeoSource((ref,path)=>git('rev-parse',ref+':'+path),composition.source);
  }
  assert.equal(activation.proof,'FIT_300_RUNTIME_ACTIVATION_V1');
  assert.equal(activation.base,'eecd31ba0f3eb06e8de829d3415d7f86e954a162');
