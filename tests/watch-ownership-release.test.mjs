@@ -11,3 +11,11 @@ test('historical entry comparison removes only the exact reviewed scheduler owne
 test('ownership and finite timeout repair files retain exact references and fail on drift',()=>{
  for(const path of WATCH_OWNERSHIP_PATHS){assert.equal(watchWaveRef(path),WATCH_DEADLINE_PATHS.includes(path)?WATCH_DEADLINE_SOURCE:WATCH_OWNERSHIP_SOURCE);assert.throws(()=>validateWatchRegistryWave((ref,p)=>ref==='HEAD'&&p===path?'drift':read(watchWaveRef(p),p)),/Watch registry-wave source drift/)}
 });
+
+import {readFileSync} from 'node:fs';
+import {validateWatchSourceComposition,WATCH_RECONCILIATION_PATHS,ZENAGAMTIDE_PATHS} from '../release/fit-300-scope.mjs';
+test('merged AMBIENCE source reconciliation is finite and cannot authorise unrelated changes',()=>{
+ const c=JSON.parse(readFileSync('shift-coach/release-manifest.json')).watchSourceComposition;validateWatchSourceComposition(c);
+ assert.equal(WATCH_RECONCILIATION_PATHS.length,4);assert.equal(ZENAGAMTIDE_PATHS.length,7);
+ assert.throws(()=>validateWatchSourceComposition({...c,proof:'any'}));assert.throws(()=>validateWatchSourceComposition({...c,paths:[...c.paths,'unrelated']}));assert.throws(()=>validateWatchSourceComposition({...c,base:'4460ea56f931da4003ace68d5d404831c47e08f7'}));
+});

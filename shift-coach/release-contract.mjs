@@ -2,7 +2,7 @@ import {FOLLOW_PATHS,followPinnedRef,followHistoricalRead,validateFollowComposit
 import {SITEWIDE_PAYLOAD_PATHS,SITEWIDE_MAINTENANCE_PATHS,sitewidePinnedRef,sitewideHistoricalRead,validateSitewideComposition,verifySitewideHistory} from '../release/sitewide-seo-scope.mjs';
 import {WATCH_SOURCE_LINK_SOURCE,WATCH_OWNERSHIP_PATHS,watchWaveRef} from '../release/watch-registry-wave-scope.mjs';
 import {DEVICE_HEALTH_DELTA,validateDeviceHealthSource} from '../release/device-health-scope.mjs';
-import {validateRolloutPhotoComposition,validateSeoFitComposition,validateAcceptanceReloadComposition,acceptanceReloadHistoricalRead,ACCEPTANCE_RELOAD_VERIFIER_PATHS,validateBaselineRepair,baselineHistoricalRead,CATALOGUE_COPY_PATHS,CATALOGUE_COPY_SOURCE} from '../release/fit-300-scope.mjs';
+import {validateWatchSourceComposition,validateRolloutPhotoComposition,validateSeoFitComposition,validateAcceptanceReloadComposition,acceptanceReloadHistoricalRead,ACCEPTANCE_RELOAD_VERIFIER_PATHS,validateBaselineRepair,baselineHistoricalRead,CATALOGUE_COPY_PATHS,CATALOGUE_COPY_SOURCE} from '../release/fit-300-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
@@ -83,6 +83,7 @@ WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-gub-
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-at7687-at673-alias.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-viking-rhythm-registry-review.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-overdue-source-renewal.json');
+WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-zenagamtide-ambience.json');
 export const WATCH_CURRENT_PATHS=new Set([...WATCH_OWNERSHIP_PATHS,...WATCH_COMPOSED_CHANGES,'medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
 export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
@@ -110,6 +111,7 @@ export function validateCoachingSource(read,manifest){
  assert.equal(manifest.recordedMain,COACH_BASE);
  assert.match(manifest.applicationCommit,/^[a-f0-9]{40}$/,'Recorded coaching application source required');
  assert.deepEqual(manifest.pinnedPaths,[...COACH_PATHS].filter(p=>p!=='shift-coach/release-manifest.json').sort(),'Exact coaching path list required');
+ const watch=manifest.watchSourceComposition;validateWatchSourceComposition(watch);
  const photo=manifest.rolloutPhotoComposition;validateRolloutPhotoComposition(photo);
  const fit=manifest.fitComposition;
  if(fit){
@@ -129,7 +131,7 @@ export function validateCoachingSource(read,manifest){
  validateAcceptanceReloadComposition(reload,beforeRepair);
  const composition=manifest.seoFitComposition;
  if(composition)validateSeoFitComposition(composition,acceptanceReloadHistoricalRead(beforeRepair,reload));
- for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read((photo?.paths.includes(p)?photo.source:null)||followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p)|| (repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit),p),'Coaching release source drift: '+p);
+ for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read((watch?.paths.includes(p)?watch.source:null)||(photo?.paths.includes(p)?photo.source:null)||followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p)|| (repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit),p),'Coaching release source drift: '+p);
  assert.equal(read('HEAD',ARTICLE_CLOSEOUT_PATH),read(ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH),'Read-only article closeout source drift');
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
  assert.equal(read('HEAD','public-continuity.mjs'),read('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
