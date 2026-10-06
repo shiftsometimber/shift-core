@@ -143,3 +143,10 @@ test('reload evidence requires its own completed successful live source, branch,
  assert.doesNotThrow(()=>assertMemberReloadReceipt(receipt));
  for(const change of [{id:37454715343},{head_sha:'a'.repeat(40)},{path:'.github/workflows/other.yml'},{head_branch:'main'},{event:'pull_request'},{status:'in_progress'},{conclusion:'failure'}])assert.throws(()=>assertMemberReloadReceipt({...receipt,...change}));
 });
+
+test('live homepage verifier reverses only exact catalogue text before its strict banner check',()=>{
+ const source=readFileSync('release/home-banner-live.cjs','utf8');
+ assert(source.includes("const html=removeCatalogueBenefits(restoreHomeFont('/',await (await fetch('https://shiftsometimber.co.uk/')).text()),'/');removeHomeBanner(html,{required:true});verifyApprovedHome(html);"));
+ assert(source.includes("assert.equal(state.overflow,false)"));
+ assert(source.includes("assert.equal(await page.locator('#sst-home-route-title').textContent(),'HOW SHIFT CAN HELP.')"));
+});

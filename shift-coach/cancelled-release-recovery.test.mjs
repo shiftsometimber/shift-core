@@ -45,9 +45,9 @@ import {catalogueRollback,verifiedCatalogueRollback} from './cancelled-release-r
 import {readFileSync} from 'node:fs';
 import {validateBaselineRepair,BASELINE_REPAIR_PATHS,CATALOGUE_COPY_PATHS} from '../release/fit-300-scope.mjs';
 test('retain the restored catalogue baseline only with exact failed job, rollback and original runtime evidence',()=>{
- const p=catalogueRollback,c=catalogueRuntime,receipt=JSON.parse(readFileSync('docs/catalogue-runtime-rollback-37460283567.json','utf8'));
+ const p=catalogueRollback,c=catalogueRuntime,receipt=JSON.parse(readFileSync('docs/catalogue-runtime-rollback-37462426049.json','utf8'));
  const a={id:p.deployment,versions:[{version_id:c.version,percentage:100}]},run={id:p.run,head_sha:p.source,status:'completed',conclusion:'failure',run_attempt:1,event:'push',head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml'};
- const job={id:p.job,run_id:p.run,name:'promote',conclusion:'failure',steps:[{number:66,name:'Verify exact live app assets and website isolation',conclusion:'failure'},{number:107,name:'Restore the captured runtime if a post-deployment gate failed',conclusion:'success'}]};
+ const job={id:p.job,run_id:p.run,name:'promote',conclusion:'failure',steps:[{number:68,name:'Measure and retain live homepage mobile speed',conclusion:'failure'},{number:107,name:'Restore the captured runtime if a post-deployment gate failed',conclusion:'success'}]};
  const logs=JSON.stringify(receipt.owned)+'\nSUCCESS Worker Version '+c.version+' has been deployed to 100% of traffic.';
  assert.equal(verifiedCatalogueRollback(a,run,job,logs,receipt),true);
  for(const patch of [{id:'unknown'},{versions:[{version_id:p.failedVersion,percentage:100}]},{versions:[{version_id:c.version,percentage:50}]}])assert.equal(verifiedCatalogueRollback({...a,...patch},run,job,logs,receipt),false);

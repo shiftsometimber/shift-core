@@ -16,7 +16,7 @@ else{
  if(activeVersion===catalogueRuntime.version){
   const receipt=JSON.parse(readFileSync('docs/catalogue-benefits-live-receipt-20261006.json','utf8'));
   const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact rollback job logs unavailable');return r.text();};
-  if(await verifyCatalogueBaseline(before,get,getLogs,receipt,JSON.parse(readFileSync('docs/catalogue-runtime-rollback-37460283567.json','utf8'))))ownedProof={run:catalogueRuntime.run,source:catalogueRuntime.source,version:catalogueRuntime.version,deployment:before.id,evidenceKind:'original-hosted-proof-plus-independent-live-receipt-and-exact-rollback'};
+  if(await verifyCatalogueBaseline(before,get,getLogs,receipt,JSON.parse(readFileSync('docs/catalogue-runtime-rollback-37462426049.json','utf8'))))ownedProof={run:catalogueRuntime.run,source:catalogueRuntime.source,version:catalogueRuntime.version,deployment:before.id,evidenceKind:'original-hosted-proof-plus-independent-live-receipt-and-exact-rollback'};
  }
  if(before.versions?.[0]?.version_id===articleRuntime.version){
   const run=await get('/actions/runs/'+articleRuntime.run),jobs=await get('/actions/runs/'+articleRuntime.run+'/jobs');
