@@ -1,10 +1,12 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime,verifiedStartingPoint} from './cancelled-release-recovery.mjs';
-const active=id=>({versions:[{version_id:id,percentage:100}]}),failed={id:recovery.run,head_sha:recovery.source,run_attempt:1,conclusion:'cancelled'},verified={id:recovery.verifiedRun,head_sha:recovery.verifiedSource,conclusion:'success'};
+const active=(id,deployment=id===recovery.unverified?recovery.unverifiedDeployment:'restored-deployment')=>({id:deployment,versions:[{version_id:id,percentage:100}]}),workflow={status:'completed',event:'push',head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml'},failed={...workflow,id:recovery.run,head_sha:recovery.source,run_attempt:1,conclusion:'cancelled'},verified={...workflow,id:recovery.verifiedRun,head_sha:recovery.verifiedSource,conclusion:'success'};
 test('recovery only restores the exact evidenced cancelled runtime to the verified source',()=>{
- assert.deepEqual({verified:recovery.verified,verifiedRun:recovery.verifiedRun,verifiedSource:recovery.verifiedSource},{verified:'dee23ccf-be93-4aed-be76-02b724a4c470',verifiedRun:37081219787,verifiedSource:'4350e9a51fece40f5a260da0a847af2a7829c764'});
+ assert.deepEqual(recovery,{run:37512509413,source:'36301f661e9a2e220c15e7f1ccf070612186242b',unverified:'81f4a3a8-9b25-4bb5-bd0d-1e870cfc0206',unverifiedDeployment:'ec4aeeed-9656-4bc0-8e9d-6d751d6fac77',verified:'35e9b183-12c6-4a22-a68b-1a9ee3c8cef4',verifiedDeployment:'3f64ff03-76c6-4aaf-bc66-f4c3865711d9',verifiedRun:37510903784,verifiedSource:'ddde14b19d6ef79547e27afb4ed76bf1f4e39f05'});
  assert.equal(recoveryDecision(active(recovery.unverified),failed,verified),'restore');assert.equal(recoveryDecision(active(recovery.verified),failed,verified),'retain');
- for(const change of [{conclusion:'success'},{head_sha:'f'.repeat(40)},{run_attempt:2},{id:1}])assert.throws(()=>recoveryDecision(active(recovery.unverified),{...failed,...change},verified));
+ for(const change of [{conclusion:'success'},{head_sha:'f'.repeat(40)},{run_attempt:2},{id:1},{status:'in_progress'},{event:'pull_request'},{head_branch:'preview'},{path:'other.yml'}])assert.throws(()=>recoveryDecision(active(recovery.unverified),{...failed,...change},verified));
+ assert.throws(()=>recoveryDecision(active(recovery.unverified,'unknown-deployment'),failed,verified));
  assert.throws(()=>recoveryDecision(active('unknown'),failed,verified));assert.throws(()=>recoveryDecision(active(recovery.unverified),failed,{...verified,conclusion:'failure'}));
+ for(const change of [{status:'in_progress'},{event:'pull_request'},{head_branch:'preview'},{path:'other.yml'}])assert.throws(()=>recoveryDecision(active(recovery.unverified),failed,{...verified,...change}));
  assert.throws(()=>recoveryDecision({versions:[{version_id:recovery.unverified,percentage:50}]},failed,verified));
 });
 
