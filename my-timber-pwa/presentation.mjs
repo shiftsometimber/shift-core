@@ -46,11 +46,26 @@ export function pwaAssets(request){
  if(!['GET','HEAD'].includes(request.method))return new Response('Method not allowed',{status:405,headers:{...headers,Allow:'GET, HEAD'}});
  return new Response(request.method==='HEAD'?null:asset[0],{headers:{...headers,'Content-Type':asset[1]+'; charset=utf-8',...(path==='/shift-push-sw-v1.js'?{'Service-Worker-Allowed':'/'}:{})}});
 }
+
+export function memberWorkerHtml(html){
+ return html.replace(/(<script\b[^>]*\bsrc=["'])(\/(?:app\.js|register-sw-v3a\.js)(?:\?[^"']*)?)(["'][^>]*>)/gi,(_,before,src,after)=>before+src+(/[?&](?:amp;)?member_worker=1(?:&|$)/.test(src)?'':(src.includes('?')?'&amp;':'?')+'member_worker=1')+after);
+}
+export async function memberWorkerAsset(request,response){
+ const u=new URL(request.url);
+ if(request.method!=='GET'||u.searchParams.get('member_worker')!=='1'||!['/app.js','/register-sw-v3a.js'].includes(u.pathname))return null;
+ if(!response.ok||!/(?:javascript|ecmascript)/i.test(response.headers.get('Content-Type')||''))return response;
+ const before=await response.text(),legacy=u.pathname==='/app.js'?"navigator.serviceWorker.register('/service-worker.js')":"navigator.serviceWorker.register('/service-worker-v3a.js?v=cos-live-recovery-20260909-r2',{updateViaCache:'none'})",shared="navigator.serviceWorker.register('/shift-push-sw-v1.js',{scope:'/',updateViaCache:'none'})";
+ const h=new Headers(response.headers);for(const k of ['Content-Length','Content-Encoding','ETag','Last-Modified'])h.delete(k);h.set('Cache-Control','no-store');
+ if(before.split(legacy).length!==2)return new Response('Member worker registration source changed; please retry later.',{status:503,headers:h});
+ return new Response(before.replace(legacy,shared),{status:response.status,statusText:response.statusText,headers:h});
+}
 export async function withPwa(request,response){
+ const memberAsset=await memberWorkerAsset(request,response);if(memberAsset)return memberAsset;
  const path=new URL(request.url).pathname;
  if(request.method!=='GET'||!response.ok||!response.headers.get('Content-Type')?.includes('text/html')||/^\/(?:v1|api|hq|admin)(?:\/|$)/.test(path))return response;
  const member=/^\/(?:my-timber|member-login|member-register|member\/[^/]+)(?:\.html)?\/?$/.test(path);
  let html=await response.text();
+ if(/^\/member\//.test(path))html=memberWorkerHtml(html);
  if(!html.includes('</head>')||!html.includes('</body>'))return new Response(html,response);
  if(!member&&!html.includes('</footer>'))return new Response(html,response);
  if(!html.includes('data-my-timber-app-footer'))html=html.replace('</footer>',footerLink+'</footer>');
