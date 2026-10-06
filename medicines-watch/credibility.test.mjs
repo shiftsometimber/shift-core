@@ -10,8 +10,8 @@ const fingerprint=data=>fingerprintSource(source,JSON.stringify(data),'applicati
 test('registry monitoring covers all exact linked records, with bounded reviewed identities',()=>{
  const links=[...medicines.flatMap(e=>e.evidenceLinks||[]),...industry.flatMap(e=>e.additionalEvidence||[])];
  const urls=new Set(links.filter(l=>/^https:\/\/clinicaltrials.gov\/study\/NCT\d{8}$/.test(l.url)).map(l=>l.url));
- assert.equal(urls.size,109);assert.deepEqual(new Set(registrySources.map(s=>s.url)),urls);
- assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);assert.equal(sources.length,171);
+ assert.equal(urls.size,110);assert.deepEqual(new Set(registrySources.map(s=>s.url)),urls);
+ assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);assert.equal(sources.length,172);
  for(const s of registrySources){assert.match(s.reviewedFingerprint,/^[a-f0-9]{64}$/);assert.equal(s.nctId,s.lifecycle.nctId);assert.ok(s.reviewedAt);}
  const taldefgrobep=registrySources.find(s=>s.id==='registry-nct07281495');assert.ok(taldefgrobep);assert.equal(taldefgrobep.lifecycle.status,'ACTIVE_NOT_RECRUITING');assert.equal(taldefgrobep.lifecycle.completion.type,'ESTIMATED');assert.equal(taldefgrobep.lifecycle.hasResults,false);
  const attainMaintain=registrySources.find(s=>s.id==='registry-nct06584916');assert.ok(attainMaintain);assert.equal(attainMaintain.lifecycle.status,'COMPLETED');assert.equal(attainMaintain.lifecycle.completion.type,'ACTUAL');assert.equal(attainMaintain.lifecycle.hasResults,false);
@@ -22,6 +22,7 @@ test('registry monitoring covers all exact linked records, with bounded reviewed
  const nnc0662Obesity=registrySources.find(s=>s.id==='registry-nct07184632');assert.ok(nnc0662Obesity);assert.equal(nnc0662Obesity.lifecycle.status,'ACTIVE_NOT_RECRUITING');assert.equal(nnc0662Obesity.lifecycle.enrollment.type,'ACTUAL');assert.equal(nnc0662Obesity.lifecycle.hasResults,false);
  const nnc0662Diabetes=registrySources.find(s=>s.id==='registry-nct07415954');assert.ok(nnc0662Diabetes);assert.equal(nnc0662Diabetes.lifecycle.status,'RECRUITING');assert.equal(nnc0662Diabetes.lifecycle.enrollment.type,'ESTIMATED');assert.equal(nnc0662Diabetes.lifecycle.hasResults,false);
  const survodutideDiabetes=registrySources.find(s=>s.id==='registry-nct07754461');assert.ok(survodutideDiabetes);assert.equal(survodutideDiabetes.lifecycle.status,'RECRUITING');assert.equal(survodutideDiabetes.lifecycle.completion.type,'ESTIMATED');assert.equal(survodutideDiabetes.lifecycle.hasResults,false);
+ const survodutideJapan=registrySources.find(s=>s.id==='registry-nct06176365');assert.ok(survodutideJapan);assert.equal(survodutideJapan.lifecycle.status,'COMPLETED');assert.equal(survodutideJapan.lifecycle.enrollment.count,274);assert.equal(survodutideJapan.lifecycle.completion.type,'ACTUAL');assert.equal(survodutideJapan.lifecycle.hasResults,false);
  for(const id of ['NCT07843498','NCT07843485','NCT07843472']){const zupreme=registrySources.find(s=>s.nctId===id);assert.ok(zupreme);assert.equal(zupreme.lifecycle.status,'NOT_YET_RECRUITING');assert.equal(zupreme.lifecycle.start.type,'ESTIMATED');assert.equal(zupreme.lifecycle.hasResults,false);}
  for(const id of ['NCT06974851','NCT06994650','NCT07551492','NCT07670884','NCT07660848']){const ribupatide=registrySources.find(s=>s.nctId===id);assert.ok(ribupatide);assert.equal(ribupatide.lifecycle.status,'RECRUITING');assert.equal(ribupatide.lifecycle.start.type,'ACTUAL');assert.equal(ribupatide.lifecycle.hasResults,false);}
  const adolescent=registrySources.find(s=>s.nctId==='NCT07559136');assert.equal(adolescent.lifecycle.status,'ACTIVE_NOT_RECRUITING');assert.equal(adolescent.lifecycle.enrollment.type,'ACTUAL');

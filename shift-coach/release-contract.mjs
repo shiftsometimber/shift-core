@@ -63,6 +63,7 @@ WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-05-authorised-te81
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-05-authorised-nct05713799-start-correction.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-05-authorised-semaglutide-specialist-sarcopenia-wave.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-05-authorised-710go.json');
+WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-survodutide-synchronize-jp.json');
 export const WATCH_CURRENT_PATHS=new Set([...WATCH_OWNERSHIP_PATHS,...WATCH_COMPOSED_CHANGES,'medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
 export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
