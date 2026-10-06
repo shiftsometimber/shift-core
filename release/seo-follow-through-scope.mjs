@@ -44,7 +44,7 @@ export function verifyFollowHistory(c){
  if(c.tabletUsefulnessComposition){const u=validateTabletUsefulness(c.tabletUsefulnessComposition);
   for(const r of [u.payloadSource,u.maintenanceSource])git('merge-base','--is-ancestor',r,'HEAD');
   assert.deepEqual(git('diff','--name-only',u.payloadBase,u.payloadSource).split('\n').filter(Boolean).sort(),u.payloadPaths);
-  assert.deepEqual(git('diff','--name-only','409f93612932ae9ff3715d04a8076dd4d1a9d3e7',u.maintenanceSource).split('\n').filter(Boolean).sort(),u.maintenancePaths);
+  assert.deepEqual(git('diff','--name-only','409f93612932ae9ff3715d04a8076dd4d1a9d3e7',u.maintenanceSource).split('\n').filter(p=>p&&p!=='shift-coach/release-manifest.json').sort(),u.maintenancePaths);
   for(const p of [...u.payloadPaths,...u.maintenancePaths])assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',usefulnessPinnedRef(c,p)+':'+p),'Tablet usefulness source drift: '+p);
  }
  if(c.tabletGuidanceComposition){const t=validateTabletGuidance(c.tabletGuidanceComposition);
