@@ -572,7 +572,7 @@
           "proof": "EXACT_OWNER_APPROVED_FIVE_PAGE_RANKING_V1",
           "base": "115b4e53279aeffd9b8248909e2dda5bbf768f80",
           "payloadSource": "d8eb3a87f1e33a77cf22fbe6cd265f51b330b1a7",
-          "maintenanceSource": "d8eb3a87f1e33a77cf22fbe6cd265f51b330b1a7",
+          "maintenanceSource": "4f11d72d2127d7233e0bc2f62e58044384f43748",
           "payloadPaths": [
             "public-seo-approved-data.mjs",
             "public-seo-approved.mjs",
