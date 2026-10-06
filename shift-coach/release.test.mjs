@@ -79,7 +79,7 @@ test('latest registry-wave proof and exact composed Watch bytes remain mandatory
 test('missing reviewed preview history is fetched by its exact immutable identity and still fails if unavailable',()=>{
  const calls=[],present=new Set([REVIEWED_HISTORY_REFS[0]]);
  ensureReviewedHistory((bin,args)=>{calls.push(args);if(args[0]==='cat-file'&&!present.has(args[2].replace('^{commit}','')))throw Error('missing');if(args[0]==='fetch')present.add(args[3]);});
- assert.deepEqual(calls.filter(a=>a[0]==='fetch'),[['fetch','--no-tags','origin',REVIEWED_HISTORY_REFS[1]]]);
+ assert.deepEqual(calls.filter(a=>a[0]==='fetch'),REVIEWED_HISTORY_REFS.slice(1).map(ref=>['fetch','--no-tags','origin',ref]));
  assert.throws(()=>ensureReviewedHistory((bin,args)=>{throw Error(args[0]==='fetch'?'fetch unavailable':'missing')}),/fetch unavailable/);
 });
 test('retained current-main continuity alias cannot be silently widened by repinning',()=>{

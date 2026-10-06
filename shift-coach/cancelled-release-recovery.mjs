@@ -1,4 +1,15 @@
 import assert from 'node:assert/strict';
+// Finite owner-authorised local release: hosted proof is NOT a deployment.
+// Its separately recorded live receipt and exact active deployment are required.
+export const catalogueRuntime=Object.freeze({run:37453081278,job:112234026421,source:'91b625b0e1e272cdc2e767fa4f4b9fdd06186854',version:'d5b99766-5d14-4002-bd96-18a512d41c19',deployment:'585674f7-ad7d-4cca-a6fc-64ab74da7244'});
+export function verifiedCatalogueRuntime(active,run,job,receipt){
+ const p=catalogueRuntime;
+ return active?.id===p.deployment&&active?.versions?.length===1&&active.versions[0].percentage===100&&active.versions[0].version_id===p.version
+  &&run?.id===p.run&&run.head_sha===p.source&&run.status==='completed'&&run.conclusion==='success'&&run.event==='push'&&run.head_branch==='release/catalogue-benefits-20261006'&&run.path==='.github/workflows/catalogue-benefits-proof.yml'
+  &&job?.id===p.job&&job.run_id===p.run&&job.name==='proof'&&job.conclusion==='success'
+  &&receipt?.kind==='owner_authorized_catalogue_copy_release'&&receipt.source===p.source&&receipt.deploymentId===p.deployment&&receipt.versionId===p.version&&receipt.percentage===100
+  &&receipt.hostedProof?.run===p.run&&receipt.hostedProof?.job===p.job&&receipt.hostedProof?.conclusion==='success'&&receipt.liveProof?.allExact===true&&receipt.productionDatabaseWrites===0&&receipt.assetChanges===0;
+}
 export const recovery=Object.freeze({run:37047576206,source:'32a51925c6a7676887a3a59b042c15a8272ccc3c',unverified:'7204ee91-dc82-4f3f-90ce-ead305baf9ae',verified:'dee23ccf-be93-4aed-be76-02b724a4c470',verifiedRun:37081219787,verifiedSource:'4350e9a51fece40f5a260da0a847af2a7829c764'});
 export const articleRuntime=Object.freeze({run:37147521854,source:'f5184e4ffefd6bc2eb105e86e7107e5c61f00327',version:'b25b6adb-1fc3-473e-97b7-88bfe3c27a48',workflow:'.github/workflows/evidence-based-article-live-release.yml'});
 export function recoveryDecision(active,failed,verified){
