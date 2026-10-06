@@ -1,0 +1,143 @@
+{
+  "reviewedAt": "2026-10-06T20:51:25Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add the newly posted AMBIENCE Phase 3 cardiovascular-outcomes registry record to the existing zenagamtide programme. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": true,
+  "changes": [
+    {
+      "id": "zenagamtide",
+      "fields": {
+        "stage": "Phase 3 weight-management and cardiovascular-outcomes development; AMBIENCE not yet recruiting",
+        "summaryToAppend": "Novo Nordisk's sponsor-submitted AMBIENCE record, first posted 6 October 2026, plans a placebo-controlled Phase 3 cardiovascular-outcomes study of once-weekly subcutaneous zenagamtide in an estimated 8,500 adults with established atherosclerotic cardiovascular disease and overweight or obesity. The primary endpoint is time to first four-point major adverse cardiovascular event, including cardiovascular death, non-fatal myocardial infarction, non-fatal stroke, or heart-failure hospitalisation or urgent visit.",
+        "limitationsToAppend": "AMBIENCE remains not yet recruiting, has no posted results, and lists 26 October 2026 as an estimated start and 16 September 2030 as an estimated completion. Its 23 listed UK facilities do not establish that UK recruitment, appointments or treatment access are open. Planned cardiovascular outcomes do not establish cardiovascular benefit, UK marketing authorisation, NICE or NHS access, UK supply, an approved dose or clinical approval."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07861100: AMBIENCE zenagamtide cardiovascular-outcomes study",
+          "url": "https://clinicaltrials.gov/study/NCT07861100",
+          "sourcePublishedAt": "2026-10-06",
+          "sourceUpdatedAt": "2026-10-06",
+          "reviewedAt": "2026-10-06T20:51:25Z",
+          "checkScope": "Sponsor-submitted Phase 3 record read for not-yet-recruiting status, estimated enrolment and dates, subcutaneous intervention, primary cardiovascular endpoint, listed UK facilities and absence of posted results; automatic monitoring covers record lifecycle only, not clinical outcomes."
+        }
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct07861100",
+      "nctId": "NCT07861100",
+      "title": "ClinicalTrials.gov NCT07861100: AMBIENCE zenagamtide cardiovascular-outcomes study",
+      "url": "https://clinicaltrials.gov/study/NCT07861100",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07861100",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07861100", "Novo Nordisk A/S"],
+      "reviewedAt": "2026-10-06T20:51:25Z",
+      "sourcePublishedAt": "2026-10-06",
+      "sourceUpdatedAt": "2026-10-06",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of cardiovascular, weight, kidney, safety or other clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07861100",
+        "title": "A Research Study to Look at How Well Zenagamtide Works Compared to Placebo in People With Established Atherosclerotic Cardiovascular Disease and Either Overweight or Obesity",
+        "sponsor": "Novo Nordisk A/S",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE3"],
+        "enrollment": {"count": 8500, "type": "ESTIMATED"},
+        "start": {"date": "2026-10-26", "type": "ESTIMATED"},
+        "primaryCompletion": {"date": "2030-09-16", "type": "ESTIMATED"},
+        "completion": {"date": "2030-09-16", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2026-10-06", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-10-06", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["zenagamtide"],
+      "rawResponseSha256": "0bb7d3be508a7663c3df38db8d574fd734c6861ee18cf91889737c7aaf03ba8f",
+      "reviewedFingerprint": "11dcac9919551c647b0cb775e57632285349775919967d8f4e22f0590019902c"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07861100",
+      "publicationDate": "2026-10-06",
+      "updateDate": "2026-10-06",
+      "reviewedAt": "2026-10-06T20:51:25Z",
+      "outcome": "Complete primary registry response read: not-yet-recruiting Phase 3; 8,500 estimated participants; estimated 26 October 2026 start and 16 September 2030 completion; once-weekly subcutaneous zenagamtide; cardiovascular-event primary endpoint; 23 listed UK facilities; no posted results."
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-06T20:31:09.395Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 181,
+    "currentSources": 180,
+    "overdueReviews": 0,
+    "lastAttemptAt": "2026-10-06T20:31:09.395Z",
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "checkStatus": "check_delayed",
+        "reviewStatus": "verification_pending",
+        "reasons": ["source_not_verified", "last_check_failed"],
+        "lastAttemptAt": "2026-10-06T20:01:08.159Z",
+        "lastSuccessAt": null,
+        "error": "http_403",
+        "httpStatus": 403
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only public response verifies configured-source monitoring only. It does not renew factual reviews, approve changed wording or prove complete industry coverage. The longstanding Zealand 403 remains explicit."
+  },
+  "discoveryPass": {
+    "method": "A separate configured-source pass checked availability, changes, withdrawals, overdue reviews and monitor failures. A current-date ClinicalTrials.gov pass then reviewed every obesity or overweight record posted or updated on 6 October 2026, followed by broader sponsor, regulator, formulation, combination, muscle-preservation, specialist-indication, paused and discontinued programme searches.",
+    "included": "NCT07861100 is a newly posted, sponsor-submitted Phase 3 cardiovascular-outcomes record that adds indication-specific evidence to the existing zenagamtide programme. It does not create a duplicate programme.",
+    "notDuplicated": "PR #851, all dated Watch receipts and the open pull-request list were checked. No open review work or live additional-evidence link contains NCT07861100.",
+    "incompleteChecks": [
+      "Search indexing can lag, and selected current-date and undated searches cannot exclude older omissions, unannounced programmes or every international developer.",
+      "ClinicalTrials.gov has no posted results for NCT07861100. Planned endpoints and listed facilities are not substituted for recruitment, outcomes or access evidence.",
+      "No new MHRA authorisation, NICE recommendation, NHS access decision or verified UK supply change was established."
+    ],
+    "failedChecks": [],
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "widerBefore": 101,
+    "widerAfter": 101,
+    "totalBefore": 107,
+    "totalAfter": 107,
+    "configuredSourcesBefore": 181,
+    "configuredSourcesAfter": 182,
+    "trialRecordsBefore": 116,
+    "trialRecordsAfter": 117
+  },
+  "retrievalEvidence": {
+    "registry": {
+      "retrievedAt": "2026-10-06T20:51:25.076Z",
+      "httpStatus": 200,
+      "responseSha256": "0bb7d3be508a7663c3df38db8d574fd734c6861ee18cf91889737c7aaf03ba8f",
+      "responseBytes": 132835
+    }
+  },
+  "deploymentState": {
+    "mainCommit": "4460ea56",
+    "observedAt": "2026-10-06T20:51:25Z",
+    "liveProgrammes": 107,
+    "liveConfiguredSources": 181,
+    "openPullRequests": 0
+  },
+  "nextAction": "Run the complete Watch and release gates, publish the exact passing head through the guarded production workflow, and verify AMBIENCE, the Treatments entry and SELECT-only health response on actual live traffic."
+}
