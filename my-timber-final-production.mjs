@@ -2,7 +2,7 @@ import {chromium} from 'playwright';
 import {boundedEvidence,attachDiagnostics} from './health-passport/acceptance-diagnostics.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
-import {randomUUID} from 'node:crypto';
+import {randomUUID,createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import {commissioningLogin,memberReady,requireMemberPanel,chooseNecessaryCookies} from './rendered-member-acceptance-support.mjs';
 
@@ -15,7 +15,7 @@ const OUT=process.env.MY_TIMBER_FINAL_EVIDENCE_DIR||'my-timber-final-evidence';
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
 const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+structured-authrender-final-billy-${Date.now()}@gmail.com`;
-const report={proof:'MY_TIMBER_UNMODIFIED_POST_RELEASE_LIVE_MEMBER_DIAGNOSTIC_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
+const report={proof:'MY_TIMBER_ACTUAL_RELEASE_NAVIGATION_TRACE_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
 const resourcePath=value=>{try{const u=new URL(value);return u.origin+u.pathname}catch{return '[no resource URL]'}};
 const pass=(name,detail='')=>report.checks.push({name,status:'PASS',detail});
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=My Timber final::${name} — ${detail}`)};
@@ -33,6 +33,15 @@ const browser=await chromium.launch({headless:true});
 const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
 const page=await context.newPage();
 const navigation=attachDiagnostics(page,report,write);
+report.actualTrace=[];const trace=(kind,detail)=>{if(report.actualTrace.length<100)report.actualTrace.push({at:Date.now(),kind,...detail})};
+page.on('response',async r=>{if(new URL(r.url()).pathname==='/__app-layout.mjs'){const text=await r.text().catch(()=>''),i=text.indexOf('function select(key');report.servingLayout={sha256:createHash('sha256').update(text).digest('hex'),select:text.slice(i,i+1000),status:r.status()};}});
+const cdp=await context.newCDPSession(page);await cdp.send('Network.enable');await cdp.send('Page.enable');
+cdp.on('Page.navigatedWithinDocument',x=>trace('history',{url:x.url,frameId:x.frameId}));
+const navIds=new Set();cdp.on('Network.requestWillBeSent',x=>{if(x.type==='Document'){navIds.add(x.requestId);trace('documentRequest',{requestId:x.requestId,url:x.request.url,frameId:x.frameId,initiator:x.initiator});}});
+cdp.on('Network.responseReceived',x=>{if(navIds.has(x.requestId))trace('documentResponse',{requestId:x.requestId,url:x.response.url,status:x.response.status,fromServiceWorker:x.response.fromServiceWorker});});
+cdp.on('Network.loadingFailed',x=>{if(navIds.has(x.requestId))trace('documentFailed',x);});
+async function actualSnapshot(label){report[label]=await page.evaluate(()=>({url:location.href,body:{...document.body.dataset},meal:document.querySelector('.today-meal-action')?.outerHTML,tools:[...document.querySelectorAll('#appToolPanels iframe')].map(x=>({src:x.src,attached:x.isConnected})),scripts:[...document.scripts].map(x=>x.src).filter(Boolean),controller:navigator.serviceWorker.controller?.scriptURL})).catch(e=>({error:e.message}));report[label].workers=[];for(const w of context.serviceWorkers()){report[label].workers.push(await w.evaluate(()=>({url:self.location.href,requests:self.__actualNavTrace||[]})).catch(e=>({error:e.message})));}}
+
 const watchdog=setTimeout(()=>{fail('verification termination','Browser verification did not terminate within eight minutes');write();process.exit(1)},480000);watchdog.unref();
 try{
   await login(page);
@@ -94,6 +103,7 @@ try{
   assert.equal(await page.locator('#todayActions>.mtm-hero img').filter({visible:true}).count(),0,'Today must not show the retired pub photograph');assert.equal(await page.locator('#todayActions>.mtm-hero').evaluate(e=>getComputedStyle(e).backgroundImage),'none','Today heading must have no repeated background photograph');
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Phone layout has no horizontal overflow');
   await screenshot(page,'01-billy-current-today');
+  await actualSnapshot('beforeMeal');for(const w of context.serviceWorkers())await w.evaluate(()=>{self.__actualNavTrace=[];self.addEventListener('fetch',e=>{if(e.request.mode==='navigate')self.__actualNavTrace.push({url:e.request.url,mode:e.request.mode,client:e.clientId,result:e.resultingClientId});});}).catch(()=>{});
   await page.locator('.today-meal-action').click();
   const mealFrame=page.frameLocator('#appTool-grub iframe');
   await mealFrame.getByText(chosen.name,{exact:true}).filter({visible:true}).first().waitFor({state:'visible',timeout:45000});
@@ -157,7 +167,7 @@ try{
   await page.goto(SITE+'/member/life-back',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(7,'life-back','Life Back — goals and wins');
   await page.goto(SITE+'/member/settings',{waitUntil:'domcontentloaded'});await page.locator('main').first().waitFor({state:'visible'});await page.waitForTimeout(700);await storeShot(8,'settings','Settings — member details and privacy');
   pass('Eight Google Play phone screenshots captured from production My Timber','Synthetic member only; 9:16 portrait UI; no real member data.');
-}catch(error){fail('journey exception',clean(error?.message||error).slice(0,1800));report.navigation=navigation();write();await boundedEvidence('failure screenshot',()=>page.screenshot({path:path.join(OUT,'journey-failure.png'),fullPage:false,timeout:10000}),11000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message);write()})}finally{
+}catch(error){await actualSnapshot('afterFailure');fail('journey exception',clean(error?.message||error).slice(0,1800));report.navigation=navigation();write();await boundedEvidence('failure screenshot',()=>page.screenshot({path:path.join(OUT,'journey-failure.png'),fullPage:false,timeout:10000}),11000).catch(error=>{(report.evidenceWarnings??=[]).push(error.message);write()})}finally{
   const video=page.video();write();await boundedEvidence('context close',()=>context.close(),15000).catch(error=>fail('context close',clean(error.message)));if(video)await boundedEvidence('video save',()=>video.saveAs(path.join(OUT,'my-timber-billy-iphone.webm')),15000).catch(error=>fail('video save',clean(error.message)));await boundedEvidence('browser close',()=>browser.close(),10000).catch(error=>fail('browser close',clean(error.message)));write();clearTimeout(watchdog);setTimeout(()=>process.exit(report.failures.length?1:0),1000).unref();
 }
 console.log(JSON.stringify(report,null,2));
