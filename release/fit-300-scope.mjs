@@ -7,7 +7,7 @@ import {FIT_EXPANSION_SERVING_AUTHORITY} from '../fit-expansion-serving-manifest
 import {validateSixTopicSeoSource} from './six-topic-seo-scope.mjs';
 export const CATALOGUE_COPY_SOURCE='674101642d151a55889fe5391c1790f09e830f51';
 export const CATALOGUE_COPY_PATHS=['.github/workflows/catalogue-benefits-proof.yml','catalogue-benefits.mjs','docs/catalogue-benefits-20261006.md','docs/catalogue-benefits-live-receipt-20261006.json','scripts/verify-catalogue-handler.mjs','shift-coach/worker.mjs','tests/catalogue-benefits.test.mjs'];
-export const BASELINE_REPAIR_PATHS=['release/fit-300-scope.mjs','release/growth-adopt-deployment.mjs','release/member-details-preservation.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/release-contract.mjs','shift-coach/release.test.mjs'];
+export const BASELINE_REPAIR_PATHS=['release/book-voice-scope.mjs','release/fit-300-scope.mjs','release/growth-adopt-deployment.mjs','release/home-banner-scope.mjs','release/member-details-preservation.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/release-contract.mjs','shift-coach/release.test.mjs'];
 export function validateBaselineRepair(repair,read){
  if(!repair)return;
  assert.equal(repair.proof,'EXACT_CATALOGUE_BASELINE_REPAIR_V2');assert.equal(repair.base,'c2eaab9e0e1ddb39e116d6d3d625a7f51b6881b6');assert.deepEqual(repair.paths,BASELINE_REPAIR_PATHS);
