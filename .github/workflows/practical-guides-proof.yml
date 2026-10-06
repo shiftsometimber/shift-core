@@ -23,6 +23,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Install locked runtime dependencies
+        run: npm ci --ignore-scripts
       - name: Require the exact isolated runtime scope
         run: |
           python3 - <<'PY'
@@ -49,6 +51,7 @@ jobs:
       - name: Compare full handlers with the actual deployed source
         run: |
           git worktree add --detach /tmp/practical-baseline 15194faf31d710f1fc5f31036af149d5925d3998
+          ln -s "$GITHUB_WORKSPACE/node_modules" /tmp/practical-baseline/node_modules
           BASELINE_WORKER=/tmp/practical-baseline/shift-coach/worker.mjs node scripts/verify-practical-guides-handler.mjs
       - name: Verify current destinations and candidate documents
         run: node scripts/verify-practical-guides.mjs
