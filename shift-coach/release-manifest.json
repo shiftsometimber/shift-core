@@ -258,6 +258,7 @@
     "tests/public-seo-technical.test.mjs",
     "tests/public-ticker-contrast-safety.test.mjs",
     "tests/rendered-member-acceptance-support.test.mjs",
+    "tests/rollout-recovery-release.test.mjs",
     "tests/runtime-rollback-guard.test.mjs",
     "tests/seo-context-release.test.mjs",
     "tests/seo-discovery-release.test.mjs",
@@ -747,7 +748,21 @@
         "tests/seo-discovery-release.test.mjs",
         "tests/seo-follow-through-release.test.mjs",
         "tests/watch-ownership-release.test.mjs"
-      ]
+      ],
+      "rolloutRecoveryComposition": {
+        "proof": "EXACT_OWNED_TABLET_ROLLBACK_V1",
+        "base": "44d85afafd71d11e85be2cf90f54cce9c58aef35",
+        "source": "839a2e364dfef893dd6cc4a5e05c61588a2e7640",
+        "paths": [
+          "release/fit-300-scope.mjs",
+          "release/seo-follow-through-scope.mjs",
+          "shift-coach/cancelled-release-recovery.mjs",
+          "shift-coach/cancelled-release-recovery.test.mjs",
+          "shift-coach/release-contract.mjs",
+          "tests/rollout-recovery-release.test.mjs",
+          "tests/watch-ownership-release.test.mjs"
+        ]
+      }
     }
   },
   "rolloutPhotoComposition": {
