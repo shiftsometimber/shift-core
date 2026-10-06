@@ -4,14 +4,25 @@ import {createHash} from 'node:crypto';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {manifest,pwaAssets} from './presentation.mjs';
 const origin='https://shiftsometimber.co.uk',proof={source:process.env.GITHUB_SHA,at:new Date().toISOString(),checks:[],productionWrites:0,physicalAndroidVerified:false};
+// Three bounded attempts for complete GET reads. Assertions and POST origin
+// probes below retain their original behaviour and are never retried.
+async function readPublicPage(url){
+ for(let attempt=0;attempt<3;attempt++){
+  try{
+   const response=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(30000)});
+   return {response,body:await response.text()};
+  }catch(error){if(attempt===2)throw error;}
+  await new Promise(resolve=>setTimeout(resolve,1000));
+ }
+}
 const sha=value=>createHash('sha256').update(value).digest('hex');
 for(const path of ['/my-timber.webmanifest','/manifest.webmanifest','/assets/my-timber-pwa.js','/assets/my-timber-pwa.css','/shift-push-sw-v1.js']){
- const r=await fetch(origin+path);assert.equal(r.status,200,path);const body=await r.text();assert.equal(body,await pwaAssets(new Request(origin+path)).text(),path+' exact source');proof.checks.push({path,sha256:sha(body)});
+ const {response:r,body}=await readPublicPage(origin+path);assert.equal(r.status,200,path);assert.equal(body,await pwaAssets(new Request(origin+path)).text(),path+' exact source');proof.checks.push({path,sha256:sha(body)});
  if(path==='/shift-push-sw-v1.js')assert.equal(r.headers.get('Service-Worker-Allowed'),'/');
 }
 assert.equal(manifest.start_url,'/member/dashboard#today');
 for(const path of ['/','/programme','/shift-health','/treatment-centre','/member-login','/member/dashboard','/member/grub','/member/fit','/member/check-in']){
- const r=await fetch(origin+path);assert.equal(r.status,200,path);const body=await r.text();assert(body.includes('data-my-timber-app-footer'),path+' footer');
+ const {response:r,body}=await readPublicPage(origin+path);assert.equal(r.status,200,path);assert(body.includes('data-my-timber-app-footer'),path+' footer');
  if(path.startsWith('/member')){assert(body.includes('id="myTimberApp"'));assert(body.includes('href="/my-timber.webmanifest"'));}
  proof.checks.push({path,footer:true,setup:body.includes('id="myTimberApp"'),sha256:sha(body)});
 }
