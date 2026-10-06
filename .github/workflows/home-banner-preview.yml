@@ -1,7 +1,7 @@
 name: Homepage banner sign-off preview
 on:
   push:
-    branches: [preview/home-banner-20260930]
+    branches: [preview/my-timber-banner-counts-20261006]
 permissions:
   contents: read
 concurrency:
@@ -26,10 +26,10 @@ jobs:
         run: |
           npx wrangler deploy --config preview/home-banner/wrangler.jsonc | tee home-banner-proof/deploy.log
           echo "PREVIEW_URL=$(grep -oE 'https://shift-home-banner-preview\.[a-z0-9-]+\.workers\.dev' home-banner-proof/deploy.log | head -1)" >> "$GITHUB_ENV"
-      - run: npm install --prefix "$RUNNER_TEMP/browser" --no-audit --no-fund playwright@1.63.0
+      - run: npm install --prefix "$RUNNER_TEMP/browser" --no-audit --no-fund playwright@1.58.2
       - run: '"$RUNNER_TEMP/browser/node_modules/.bin/playwright" install --with-deps chromium webkit'
       - name: Desktop and mobile layout, original-page preservation and controls
-        run: BROWSER_TOOLS="$RUNNER_TEMP/browser" node preview/home-banner/verify-spacing.cjs
+        run: BROWSER_TOOLS="$RUNNER_TEMP/browser" node preview/home-banner/verify-counts.cjs
       - name: Checksum evidence
         if: always()
         run: find home-banner-proof -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > home-banner-proof/SHA256SUMS

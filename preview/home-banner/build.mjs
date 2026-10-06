@@ -1,13 +1,12 @@
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
-import {banner,css,addHomeBanner as insertBanner,removeHomeBanner} from '../../home-route-banner.mjs';
-import {addCreamNavigation,removeCreamNavigation} from '../../cream-navigation.mjs';
+import {addCatalogueCounts,removeCatalogueCounts} from './counts.mjs';
 mkdirSync('preview/home-banner/generated',{recursive:true});mkdirSync('home-banner-proof',{recursive:true});
-const r=await fetch('https://shiftsometimber.co.uk/');assert(r.ok);const baseline=await r.text(),candidate=addCreamNavigation(insertBanner(baseline));
-assert.equal(removeHomeBanner(removeCreamNavigation(candidate)),removeHomeBanner(removeCreamNavigation(baseline)),'Only the exact approved banner and navigation may change');
+const r=await fetch('https://shiftsometimber.co.uk/');assert(r.ok);const baseline=await r.text(),candidate=addCatalogueCounts(baseline);
+assert.equal(removeCatalogueCounts(candidate),baseline,'Outside the two descriptions and scoped spacing CSS, homepage must be identical');
 const sha=s=>createHash('sha256').update(s).digest('hex');
 writeFileSync('preview/home-banner/generated/page.mjs','export const baseline='+JSON.stringify(baseline)+';export const candidate='+JSON.stringify(candidate)+';');
 writeFileSync('home-banner-proof/baseline.html',baseline);writeFileSync('home-banner-proof/candidate.html',candidate);
-writeFileSync('home-banner-proof/capture.json',JSON.stringify({capturedAt:new Date().toISOString(),source:'https://shiftsometimber.co.uk/',sourceCommit:process.env.GITHUB_SHA||null,baseline:sha(baseline),candidate:sha(candidate),exactRestorationAfterRemovingBanner:true},null,2));
-console.log('PASS: removing only banner and its scoped CSS restores exact current homepage bytes');
+writeFileSync('home-banner-proof/capture.json',JSON.stringify({capturedAt:new Date().toISOString(),source:'https://shiftsometimber.co.uk/',sourceCommit:process.env.GITHUB_SHA||null,baseline:sha(baseline),candidate:sha(candidate),exactRestoration:true},null,2));
+console.log('PASS: only agreed catalogue descriptions and scoped strip spacing change');
