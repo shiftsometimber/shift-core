@@ -74,9 +74,10 @@ export async function verifySitewideRollback(active,get,getLogs){
  if(p===SITEWIDE_SECOND_ROLLBACK)await verifySitewideRollback({id:SITEWIDE_ROLLBACK.deployment,created_on:SITEWIDE_ROLLBACK.createdOn,versions:[{version_id:SITEWIDE_VERSION,percentage:100}]},get,getLogs);
  const previous=p===SITEWIDE_SIXTH_ROLLBACK?SITEWIDE_FIFTH_ROLLBACK.deployment:p===SITEWIDE_FIFTH_ROLLBACK?SITEWIDE_FOURTH_ROLLBACK.deployment:p===SITEWIDE_FOURTH_ROLLBACK?SITEWIDE_THIRD_ROLLBACK.deployment:p===SITEWIDE_THIRD_ROLLBACK?SITEWIDE_SECOND_ROLLBACK.deployment:p===SITEWIDE_SECOND_ROLLBACK?SITEWIDE_ROLLBACK.deployment:SITEWIDE_DEPLOYMENT;assert.equal(active.id,p.deployment,'Unknown SEO rollback deployment');assert.equal(active.created_on,p.createdOn,'Exact SEO rollback timestamp required');
  assert.equal(active.versions?.length,1);assert.equal(active.versions[0].version_id,SITEWIDE_VERSION);assert.equal(active.versions[0].percentage,100);
- const run=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs');
+ // Each recorded deployment was in attempt 1. A later retry must not hide its immutable job evidence.
+ const run=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/attempts/1/jobs');
  assert.equal(run.id,p.run);assert.equal(run.head_sha,p.source);assert.equal(run.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(run.head_branch,'main');assert.equal(run.event,'push');assert.equal(run.status,'completed');assert.equal(run.conclusion,'failure');
- const job=jobs.jobs.find(j=>j.id===p.job);assert(job);assert.equal(job.name,'promote');assert.equal(job.status,'completed');assert.equal(job.conclusion,'failure');assert.equal(job.run_id,p.run);
+ const job=jobs.jobs.find(j=>j.id===p.job);assert(job);assert.equal(job.name,'promote');assert.equal(job.status,'completed');assert.equal(job.conclusion,'failure');assert.equal(job.run_id,p.run);assert.equal(job.run_attempt,1,'Exact original rollback attempt required');
  const logs=await getLogs(p.job);
  const beforeLine=logs.split('\n').find(line=>line.includes('"kind":"runtime_recovery_observation"'));assert(beforeLine,'Exact pre-release SEO runtime observation absent');
  const beforeReceipt=JSON.parse(beforeLine.slice(beforeLine.indexOf('{')));assert.equal(beforeReceipt.deploymentId,previous);assert.equal(beforeReceipt.activeVersion,SITEWIDE_VERSION);assert.equal(beforeReceipt.release,p.source);
