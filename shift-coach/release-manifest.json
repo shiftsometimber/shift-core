@@ -194,7 +194,6 @@
     "shift-coach/public-trust-repair.test.mjs",
     "shift-coach/recover-cancelled-release.mjs",
     "shift-coach/release-contract.mjs",
-    "shift-coach/release-manifest.json",
     "shift-coach/release.test.mjs",
     "shift-coach/routes.mjs",
     "shift-coach/safety.mjs",
