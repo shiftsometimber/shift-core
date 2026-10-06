@@ -296,7 +296,8 @@
     "shift-coach/release-contract.mjs": "e7c58c5bc978b2b03b1df47a1e3f0e43cabfd8361e9d1f296786b2dc954c5afe",
     "medicines-watch/reviews/2026-10-05-authorised-te8105-phase2b.json": "19832c6d157f39a1619ce1ab5fa77a0019195f26b53b2f7e57b2ece3d6c57dac",
     "medicines-watch/reviews/2026-10-05-authorised-nct05713799-start-correction.json": "e612c4d574ccefb788eca7fdff4e262f528f36e44ac328fad0d832e62adeb041",
-    "medicines-watch/reviews/2026-10-05-authorised-semaglutide-specialist-sarcopenia-wave.json": "dc0e3ee79682c5be6206027778092d55d6cb5a4032ef211dc124f9b21fe721e7"
+    "medicines-watch/reviews/2026-10-05-authorised-semaglutide-specialist-sarcopenia-wave.json": "dc0e3ee79682c5be6206027778092d55d6cb5a4032ef211dc124f9b21fe721e7",
+    "medicines-watch/reviews/2026-10-07-authorised-registry-lifecycle-followup.json": "83575be86063f42c239e9121e4ced9f84d3970acefcfbf630292dfa5a09b9a73"
   },
   "homepageRelease": {
     "approvedPreview": "3102fe0f11dcb7450bd59109d3f6c36db65463c7",
@@ -377,7 +378,7 @@
   "memberPanelLayout": {
     "candidate": "72f0796f7de9ccfc42f46ec203a6c00b04d17aba",
     "previewRun": 36987513488,
-    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404\u2013IMG_2406 and the 07:57 screen recording.",
+    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404–IMG_2406 and the 07:57 screen recording.",
     "scope": "Three exact presentation/preview files; existing records, controls and clinical/commercial gates preserved."
   },
   "watchCredibility": {
