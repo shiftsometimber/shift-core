@@ -1,0 +1,549 @@
+{
+  "status": "deployed_and_verified",
+  "date": "2026-10-06",
+  "ownerApproval": "Execute the SEO patch; version 2 exact-copy scope",
+  "source": "26e9a5c004d5f580b5c4587035cd39117d966c6b",
+  "sourceBranch": "seo/full-programme-review-20261006",
+  "mainMerged": false,
+  "baselineSource": "cd2f16af13097f6987087d1cf16b007f7114f017",
+  "baselineSuccessfulRun": 37464401711,
+  "previousVersion": "e60518fa-f569-4028-907d-d31533efca48",
+  "version": "d6a715ef-1940-4236-91fc-c25b064ca6f1",
+  "deployment": "181d1800-a5aa-44bd-8eed-36fa549c641b",
+  "trafficPercentage": 100,
+  "tests": {
+    "pass": 41,
+    "fail": 0
+  },
+  "fullHandler": [
+    {
+      "path": "/guides/nutrition-protein-calories-meal-planning",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": true,
+      "protected": false
+    },
+    {
+      "path": "/articles/stopping-glp1",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": true,
+      "protected": false
+    },
+    {
+      "path": "/articles/food-noise-after-stopping-glp1",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": true,
+      "protected": false
+    },
+    {
+      "path": "/articles/weight-loss-plateau-men",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": true,
+      "protected": false
+    },
+    {
+      "path": "/mental-health/feeling-low",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": true,
+      "protected": false
+    },
+    {
+      "path": "/mental-health/loneliness-isolation",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": true,
+      "protected": false
+    },
+    {
+      "path": "/mental-health/stress-overwhelm",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": true,
+      "protected": false
+    },
+    {
+      "path": "/mental-health/anger-irritability",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": true,
+      "protected": false
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": false,
+      "protected": true
+    },
+    {
+      "path": "/start-here",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": false,
+      "protected": true
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": false,
+      "protected": true
+    },
+    {
+      "path": "/wegovy",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": false,
+      "protected": true
+    },
+    {
+      "path": "/mounjaro",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": false,
+      "protected": true
+    },
+    {
+      "path": "/mens-weight-management",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": false,
+      "protected": true
+    },
+    {
+      "path": "/mens-mental-health",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": false,
+      "protected": true
+    },
+    {
+      "path": "/explore-knowledge",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": false,
+      "protected": true
+    },
+    {
+      "path": "/guides/retatrutide-uk-guide",
+      "status": 200,
+      "exactTransform": true,
+      "additionPresent": false,
+      "protected": true
+    },
+    {
+      "path": "/member-login",
+      "status": 503,
+      "exactTransform": true,
+      "additionPresent": false,
+      "protected": true
+    },
+    {
+      "path": "/member-fit-programme-v1.js",
+      "status": 404,
+      "exactTransform": true,
+      "additionPresent": false,
+      "protected": true
+    },
+    {
+      "path": "/member-grub-programme-v1.js",
+      "status": 404,
+      "exactTransform": true,
+      "additionPresent": false,
+      "protected": true
+    },
+    {
+      "path": "/medicine-news/bolt-pharmacy-ads-banned-asa",
+      "status": 404,
+      "exactTransform": true,
+      "additionPresent": false,
+      "protected": true
+    }
+  ],
+  "liveProof": {
+    "checkedAt": "2026-10-06T12:53:54.643Z",
+    "pass": true,
+    "responses": 21,
+    "owned": 8,
+    "protected": 13,
+    "checks": [
+      {
+        "path": "/guides/nutrition-protein-calories-meal-planning",
+        "exact": true,
+        "protected": false,
+        "addition": true,
+        "robotsUnchanged": true,
+        "sha256": "b6e44b50a656d02965e44719314010f6d24e4379e4a6f334e61e16bb58c80e12"
+      },
+      {
+        "path": "/articles/stopping-glp1",
+        "exact": true,
+        "protected": false,
+        "addition": true,
+        "robotsUnchanged": true,
+        "sha256": "e1038abf77d39f0776521da38cb57f691b906ffb6abdb2c3a11cd6feebba9bc2"
+      },
+      {
+        "path": "/articles/food-noise-after-stopping-glp1",
+        "exact": true,
+        "protected": false,
+        "addition": true,
+        "robotsUnchanged": true,
+        "sha256": "c5466d2aa5e8b67928d118263dab844a696a30f6e75abba939b8db0930b8fe6b"
+      },
+      {
+        "path": "/articles/weight-loss-plateau-men",
+        "exact": true,
+        "protected": false,
+        "addition": true,
+        "robotsUnchanged": true,
+        "sha256": "06b44f934e2a42107012687cfeb5031a7dd8219528d4a6eb150a90e9abb14e6c"
+      },
+      {
+        "path": "/mental-health/feeling-low",
+        "exact": true,
+        "protected": false,
+        "addition": true,
+        "robotsUnchanged": true,
+        "sha256": "fe37745f51aa76718ddfa55665dff03c21533cb4f0ac3c78b2f2dcdeee707f00"
+      },
+      {
+        "path": "/mental-health/loneliness-isolation",
+        "exact": true,
+        "protected": false,
+        "addition": true,
+        "robotsUnchanged": true,
+        "sha256": "f3ff599ef2c66c7daeb7f6cf46ce28acd36c52ca77ac2d45211b46310779823c"
+      },
+      {
+        "path": "/mental-health/stress-overwhelm",
+        "exact": true,
+        "protected": false,
+        "addition": true,
+        "robotsUnchanged": true,
+        "sha256": "968a5308e9011bfa65430dcdc1f982414cc1120b16b5642633f2188171863697"
+      },
+      {
+        "path": "/mental-health/anger-irritability",
+        "exact": true,
+        "protected": false,
+        "addition": true,
+        "robotsUnchanged": true,
+        "sha256": "43be7bee4bf7eb35b89edd11c31b16fb9d33272a68ce9be5c5ff1fb40421c5c0"
+      },
+      {
+        "path": "/",
+        "exact": true,
+        "protected": true,
+        "addition": false,
+        "robotsUnchanged": true,
+        "sha256": "a6aa39f2d44093d8174967b3d7b335ffa3da2ebf5dbff9c1ddb6cd378695e369"
+      },
+      {
+        "path": "/start-here",
+        "exact": true,
+        "protected": true,
+        "addition": false,
+        "robotsUnchanged": true,
+        "sha256": "4ed4845f845239307ec66120c571d17a0c4fd348f7bb51d02fcd81d5f46fd6ab"
+      },
+      {
+        "path": "/sitemap.xml",
+        "exact": true,
+        "protected": true,
+        "addition": false,
+        "robotsUnchanged": true,
+        "sha256": "c49e5a7f4163a707d5aeec920eaf0d768938fac29752c07d6f00a9fd7f8c1571"
+      },
+      {
+        "path": "/wegovy",
+        "exact": true,
+        "protected": true,
+        "addition": false,
+        "robotsUnchanged": true,
+        "sha256": "a0de30e2e63832576dcb777f17ced8c29fddd2b6d27ea4b3003f2161e1a8c61b"
+      },
+      {
+        "path": "/mounjaro",
+        "exact": true,
+        "protected": true,
+        "addition": false,
+        "robotsUnchanged": true,
+        "sha256": "e8e07097a37d183a936e0f1c5c04776892dd1eebf85753b63ff6b44942b7e855"
+      },
+      {
+        "path": "/mens-weight-management",
+        "exact": true,
+        "protected": true,
+        "addition": false,
+        "robotsUnchanged": true,
+        "sha256": "eb3e5f8063e9cbda2978e626de99d2b42f38377bb2926e113ef61309a1b526c5"
+      },
+      {
+        "path": "/mens-mental-health",
+        "exact": true,
+        "protected": true,
+        "addition": false,
+        "robotsUnchanged": true,
+        "sha256": "4ce2933578781759fb581a98a9dac3dcabdcfecaab7e2e9507383ddda58a1734"
+      },
+      {
+        "path": "/explore-knowledge",
+        "exact": true,
+        "protected": true,
+        "addition": false,
+        "robotsUnchanged": true,
+        "sha256": "8b56fab783149261257980c9591572b9957a01ac268372c5d1f6addd56bd2922"
+      },
+      {
+        "path": "/guides/retatrutide-uk-guide",
+        "exact": true,
+        "protected": true,
+        "addition": false,
+        "robotsUnchanged": true,
+        "sha256": "7356b52504b6fb2f826d6f5f52297230d0d6a6b08230d7d887eca1840a46b312"
+      },
+      {
+        "path": "/member-login",
+        "exact": true,
+        "protected": true,
+        "addition": false,
+        "robotsUnchanged": true,
+        "sha256": "848a2a7c2794c4358072983fd8c295668802da360959b91aaff94ab20c257f14"
+      },
+      {
+        "path": "/member-fit-programme-v1.js",
+        "exact": true,
+        "protected": true,
+        "addition": false,
+        "robotsUnchanged": true,
+        "sha256": "99149553ec5c0ed613fdc665fd24e054c79794965a20aeea7e12d2e1a7d9911e"
+      },
+      {
+        "path": "/member-grub-programme-v1.js",
+        "exact": true,
+        "protected": true,
+        "addition": false,
+        "robotsUnchanged": true,
+        "sha256": "68055e81ce50727713ae9e7fbbccc0f907a31e2db1d7967321fb2619b6edfca5"
+      },
+      {
+        "path": "/medicine-news/bolt-pharmacy-ads-banned-asa",
+        "exact": true,
+        "protected": true,
+        "addition": false,
+        "robotsUnchanged": true,
+        "sha256": "95712e267c19ad7a5938ffe3e65d4b618a3ad2b464c9a8648c344f1ea379ac33"
+      }
+    ]
+  },
+  "liveLayouts": [
+    {
+      "path": "/guides/nutrition-protein-calories-meal-planning",
+      "viewport": 390,
+      "width": 342,
+      "client": 340,
+      "scroll": 340,
+      "text": 2374,
+      "links": 5,
+      "h1": 1,
+      "pageWidth": 390,
+      "pass": true
+    },
+    {
+      "path": "/guides/nutrition-protein-calories-meal-planning",
+      "viewport": 1440,
+      "width": 820,
+      "client": 818,
+      "scroll": 818,
+      "text": 2374,
+      "links": 5,
+      "h1": 1,
+      "pageWidth": 1440,
+      "pass": true
+    },
+    {
+      "path": "/articles/stopping-glp1",
+      "viewport": 390,
+      "width": 354,
+      "client": 352,
+      "scroll": 352,
+      "text": 2176,
+      "links": 4,
+      "h1": 1,
+      "pageWidth": 390,
+      "pass": true
+    },
+    {
+      "path": "/articles/stopping-glp1",
+      "viewport": 1440,
+      "width": 820,
+      "client": 818,
+      "scroll": 818,
+      "text": 2176,
+      "links": 4,
+      "h1": 1,
+      "pageWidth": 1440,
+      "pass": true
+    },
+    {
+      "path": "/articles/food-noise-after-stopping-glp1",
+      "viewport": 390,
+      "width": 354,
+      "client": 352,
+      "scroll": 352,
+      "text": 2161,
+      "links": 4,
+      "h1": 1,
+      "pageWidth": 390,
+      "pass": true
+    },
+    {
+      "path": "/articles/food-noise-after-stopping-glp1",
+      "viewport": 1440,
+      "width": 980,
+      "client": 978,
+      "scroll": 978,
+      "text": 2161,
+      "links": 4,
+      "h1": 1,
+      "pageWidth": 1440,
+      "pass": true
+    },
+    {
+      "path": "/articles/weight-loss-plateau-men",
+      "viewport": 390,
+      "width": 354,
+      "client": 352,
+      "scroll": 352,
+      "text": 2167,
+      "links": 5,
+      "h1": 1,
+      "pageWidth": 390,
+      "pass": true
+    },
+    {
+      "path": "/articles/weight-loss-plateau-men",
+      "viewport": 1440,
+      "width": 820,
+      "client": 818,
+      "scroll": 818,
+      "text": 2167,
+      "links": 5,
+      "h1": 1,
+      "pageWidth": 1440,
+      "pass": true
+    },
+    {
+      "path": "/mental-health/feeling-low",
+      "viewport": 390,
+      "width": 318,
+      "client": 316,
+      "scroll": 316,
+      "text": 2037,
+      "links": 4,
+      "h1": 1,
+      "pageWidth": 390,
+      "pass": true
+    },
+    {
+      "path": "/mental-health/feeling-low",
+      "viewport": 1440,
+      "width": 820,
+      "client": 818,
+      "scroll": 818,
+      "text": 2037,
+      "links": 4,
+      "h1": 1,
+      "pageWidth": 1440,
+      "pass": true
+    },
+    {
+      "path": "/mental-health/loneliness-isolation",
+      "viewport": 390,
+      "width": 318,
+      "client": 316,
+      "scroll": 316,
+      "text": 1971,
+      "links": 4,
+      "h1": 1,
+      "pageWidth": 390,
+      "pass": true
+    },
+    {
+      "path": "/mental-health/loneliness-isolation",
+      "viewport": 1440,
+      "width": 820,
+      "client": 818,
+      "scroll": 818,
+      "text": 1971,
+      "links": 4,
+      "h1": 1,
+      "pageWidth": 1440,
+      "pass": true
+    },
+    {
+      "path": "/mental-health/stress-overwhelm",
+      "viewport": 390,
+      "width": 318,
+      "client": 316,
+      "scroll": 316,
+      "text": 1934,
+      "links": 4,
+      "h1": 1,
+      "pageWidth": 390,
+      "pass": true
+    },
+    {
+      "path": "/mental-health/stress-overwhelm",
+      "viewport": 1440,
+      "width": 820,
+      "client": 818,
+      "scroll": 818,
+      "text": 1934,
+      "links": 4,
+      "h1": 1,
+      "pageWidth": 1440,
+      "pass": true
+    },
+    {
+      "path": "/mental-health/anger-irritability",
+      "viewport": 390,
+      "width": 318,
+      "client": 316,
+      "scroll": 316,
+      "text": 1943,
+      "links": 4,
+      "h1": 1,
+      "pageWidth": 390,
+      "pass": true
+    },
+    {
+      "path": "/mental-health/anger-irritability",
+      "viewport": 1440,
+      "width": 820,
+      "client": 818,
+      "scroll": 818,
+      "text": 1943,
+      "links": 4,
+      "h1": 1,
+      "pageWidth": 1440,
+      "pass": true
+    }
+  ],
+  "bindingsChanged": [],
+  "sitemapChanged": false,
+  "homepageChanged": false,
+  "startHereChanged": false,
+  "d1Writes": 0,
+  "outgoingMessages": 0,
+  "limitations": [
+    "Source published on release branch; main integration and adoption by the automated release contract remain outstanding.",
+    "Wider site editorial/internal-link remediation is not complete; 167 excluded articles remain awaiting individual review.",
+    "No ranking impact or independent clinical review claimed."
+  ]
+}

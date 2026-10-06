@@ -1,3 +1,4 @@
+import {SITEWIDE_PAYLOAD_PATHS,SITEWIDE_MAINTENANCE_PATHS,sitewidePinnedRef,sitewideHistoricalRead,validateSitewideComposition,verifySitewideHistory} from '../release/sitewide-seo-scope.mjs';
 import {WATCH_SOURCE_LINK_SOURCE,WATCH_OWNERSHIP_PATHS,watchWaveRef} from '../release/watch-registry-wave-scope.mjs';
 import {DEVICE_HEALTH_DELTA,validateDeviceHealthSource} from '../release/device-health-scope.mjs';
 import {validateSeoFitComposition,validateAcceptanceReloadComposition,acceptanceReloadHistoricalRead,ACCEPTANCE_RELOAD_VERIFIER_PATHS,validateBaselineRepair,baselineHistoricalRead,CATALOGUE_COPY_PATHS,CATALOGUE_COPY_SOURCE} from '../release/fit-300-scope.mjs';
@@ -46,6 +47,7 @@ for(const p of CATALOGUE_COPY_PATHS)if(p!=='shift-coach/worker.mjs')COACH_ADDITI
 COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37460283567.json');
 COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37462426049.json');
 for(const p of ['rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs'])COACH_BACKEND_PATHS.add(p);
+for(const p of [...SITEWIDE_PAYLOAD_PATHS,...SITEWIDE_MAINTENANCE_PATHS])if(!COACH_BACKEND_PATHS.has(p))COACH_ADDITIONS.add(p);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]);
 // Finite read-only release maintenance; not permission for more publication jobs.
 export const ARTICLE_CLOSEOUT_SOURCE='69886cec987aed15a1a7e6340953cd7a5372dfee';
@@ -74,6 +76,7 @@ WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-surv
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-core-trial-lifecycle.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-gub-ucn2-mbl949.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-at7687-at673-alias.json');
+WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-viking-rhythm-registry-review.json');
 export const WATCH_CURRENT_PATHS=new Set([...WATCH_OWNERSHIP_PATHS,...WATCH_COMPOSED_CHANGES,'medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
 export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
@@ -106,13 +109,15 @@ export function validateCoachingSource(read,manifest){
  }
  const viewer=manifest.imageViewerComposition;
  if(viewer){assert.equal(viewer.proof,'MEMBER_IMAGE_VIEWER_RELEASE_V1');assert.deepEqual(viewer.paths,['shift-coach/fit-active-edit.mjs','shift-coach/fit-active-edit.test.mjs','shift-coach/release-contract.mjs']);assert.match(viewer.source,/^[a-f0-9]{40}$/);execFileSync('git',['merge-base','--is-ancestor',viewer.source,'HEAD']);}
+ const sitewide=manifest.sitewideSeoComposition;if(sitewide)validateSitewideComposition(sitewide);
+ const priorSitewide=sitewideHistoricalRead(read,sitewide);
  const reload=manifest.acceptanceReloadComposition;
- const repair=manifest.baselineRepairComposition;validateBaselineRepair(repair,read);
- const beforeRepair=baselineHistoricalRead(read,repair);
+ const repair=manifest.baselineRepairComposition;validateBaselineRepair(repair,priorSitewide);
+ const beforeRepair=baselineHistoricalRead(priorSitewide,repair);
  validateAcceptanceReloadComposition(reload,beforeRepair);
  const composition=manifest.seoFitComposition;
  if(composition)validateSeoFitComposition(composition,acceptanceReloadHistoricalRead(beforeRepair,reload));
- for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit,p),'Coaching release source drift: '+p);
+ for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(sitewidePinnedRef(sitewide,p)|| (repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit),p),'Coaching release source drift: '+p);
  assert.equal(read('HEAD',ARTICLE_CLOSEOUT_PATH),read(ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH),'Read-only article closeout source drift');
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
  assert.equal(read('HEAD','public-continuity.mjs'),read('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
@@ -156,6 +161,7 @@ export function verifyCoachingRelease({requireLaunch=false}={}){
  const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
  const manifest=JSON.parse(readFileSync(new URL('./release-manifest.json',import.meta.url),'utf8'));
  git('merge-base','--is-ancestor',COACH_BASE,'HEAD');git('merge-base','--is-ancestor',WATCH_CURRENT_BASE,'HEAD');git('merge-base','--is-ancestor',manifest.applicationCommit,'HEAD');
+ verifySitewideHistory(manifest.sitewideSeoComposition);
  const proof=validateCoachingSource((ref,p)=>git('rev-parse',ref+':'+p),manifest);
  assertCoachingConfiguration(readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'}));
  if(requireLaunch)assertLaunchDecisions(manifest);

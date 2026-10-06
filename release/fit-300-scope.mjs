@@ -1,3 +1,4 @@
+import {sitewidePinnedRef,sitewideHistoricalRead,validateSitewideComposition} from './sitewide-seo-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync,existsSync} from 'node:fs';
@@ -22,7 +23,7 @@ export const SEO_FIT_COMPOSITION_PATHS=['scripts/b1-release-scope.mjs','release/
 const SEO_COMPOSED_PATHS=new Set(['.github/workflows/cloudflare-production-promote.yml','.github/workflows/six-topic-seo-proof.yml','.github/workflows/practical-guides-proof.yml','docs/seo/2026-10-05-six-priorities.md','docs/seo/2026-10-06-practical-guides.md','member-experience/public-preservation.mjs','public-practical-guides.mjs','public-seo-closeout.mjs','release/app-manifest.json','release/app-preflight.mjs','release/book-voice-scope.mjs','release/six-topic-seo-preservation.mjs','release/six-topic-seo-scope.mjs','scripts/b1-release-scope.mjs','scripts/verify-practical-guides-handler.mjs','scripts/verify-practical-guides.mjs','scripts/verify-six-topic-seo.mjs','shift-coach/release-contract.mjs','shift-coach/release-manifest.json','tests/practical-guides.test.mjs','tests/public-seo-closeout.test.mjs','tests/six-topic-seo-release.test.mjs','shift-coach/scope.mjs']);
 // Exact post-Fit Watch composition reviewed after Fit and SEO. The manifest itself
 // is pinned separately so its final source pointer can name this application.
-export const POST_FIT_WATCH_PATHS=new Set(['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-05-authorised-710go.json','medicines-watch/reviews/2026-10-06-authorised-survodutide-synchronize-jp.json','medicines-watch/reviews/2026-10-06-authorised-core-trial-lifecycle.json','medicines-watch/reviews/2026-10-06-authorised-gub-ucn2-mbl949.json','medicines-watch/reviews/2026-10-06-authorised-at7687-at673-alias.json','release/app-manifest.json','release/app-scope.mjs','release/watch-registry-wave-scope.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/release-contract.mjs','tests/b1-release-scope.test.mjs']);
+export const POST_FIT_WATCH_PATHS=new Set(['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-05-authorised-710go.json','medicines-watch/reviews/2026-10-06-authorised-survodutide-synchronize-jp.json','medicines-watch/reviews/2026-10-06-authorised-core-trial-lifecycle.json','medicines-watch/reviews/2026-10-06-authorised-gub-ucn2-mbl949.json','medicines-watch/reviews/2026-10-06-authorised-at7687-at673-alias.json','medicines-watch/reviews/2026-10-06-authorised-viking-rhythm-registry-review.json','release/app-manifest.json','release/app-scope.mjs','release/watch-registry-wave-scope.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/release-contract.mjs','tests/b1-release-scope.test.mjs']);
 // A finite verifier-only adoption. Runtime and owner launch decisions are unchanged.
 export const ACCEPTANCE_RELOAD_PATHS=['health-passport/production-browser.mjs','release/member-acceptance-scope.mjs','shift-coach/release-contract.mjs','release/fit-300-scope.mjs','release/app-manifest.json','shift-coach/release.test.mjs'];
 export const ACCEPTANCE_RELOAD_VERIFIER_PATHS=['health-passport/production-browser.mjs','rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs'];
@@ -64,7 +65,9 @@ export function validateFit300(){
  const activation=JSON.parse(readFileSync('release/fit-300-activation.json'));
  const coach=JSON.parse(readFileSync('shift-coach/release-manifest.json'));
  const reload=coach.acceptanceReloadComposition;
- const read=(ref,p)=>git('rev-parse',ref+':'+p);
+ const currentRead=(ref,p)=>git('rev-parse',ref+':'+p);
+ const sitewide=coach.sitewideSeoComposition;if(sitewide){validateSitewideComposition(sitewide);for(const p of [...sitewide.payloadPaths,...sitewide.maintenancePaths])assert.equal(currentRead('HEAD',p),currentRead(sitewidePinnedRef(sitewide,p),p),'Coaching release source drift (site-wide SEO): '+p);}
+ const read=sitewideHistoricalRead(currentRead,sitewide);
  const repair=coach.baselineRepairComposition;validateBaselineRepair(repair,read);
  const beforeRepair=baselineHistoricalRead(read,repair);
  validateAcceptanceReloadComposition(reload,beforeRepair);
@@ -94,10 +97,10 @@ export function validateFit300(){
  assert.equal(viewer.ownerInstruction.quote,'No good these pics on a mobile ….. it doesn’t let you click on them to enlarge ? So can’t view what it is ? Assume perhaps same for grub');
  git('merge-base','--is-ancestor',viewer.base,viewer.source);git('merge-base','--is-ancestor',viewer.source,'HEAD');
  const viewerChanges=git('diff','--name-only',viewer.base,'HEAD').split('\n').filter(Boolean);
- assert(viewerChanges.every(p=>(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||IMAGE_VIEWER_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))||['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)),'Unrelated image viewer release change');
+ assert(viewerChanges.every(p=>(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||IMAGE_VIEWER_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))||['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)),'Unrelated image viewer release change');
  for(const p of IMAGE_VIEWER_PATHS)assert.equal(historical('HEAD',p),git('rev-parse',(composition?.paths.includes(p)?composition.source:viewer.source)+':'+p),'Image viewer source drift: '+p);
  const allowed=git('diff','--name-only',activation.base,'HEAD').split('\n').filter(Boolean);
- assert(allowed.every(p=>(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||FIT300_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))),'Unrelated change in Fit activation');
+ assert(allowed.every(p=>(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||FIT300_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))),'Unrelated change in Fit activation');
  for(const p of FIT300_PATHS)if(!['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)){
   const ref=composition?.paths.includes(p)?composition.source:IMAGE_VIEWER_PATHS.has(p)?viewer.source:activation.source;
   assert.equal(historical('HEAD',p),git('rev-parse',ref+':'+p),'Fit payload source drift: '+p);
@@ -125,6 +128,8 @@ export function validateFit300(){
  const gubMblVerification='166 Watch tests passed locally and exact source head 4107f1d372ac68bcca352ab38e6000ce39415d5d passed hosted Medicines Watch run 37430844694. Master Integration run 37430844464 and Whole-Estate run 37430844416 also passed. Release reconciliation and actual live verification remain mandatory; no clinical or independent acceptance is asserted.';
  const at7687At673Evidence="6 October: standing editorial authority covers the bounded reconciliation of Antag Therapeutics' AT7687 sponsor name with ClinicalTrials.gov's AT673 name for the same NCT07724340 programme. The unresolved code discrepancy stays visible; this remains one programme, no results are posted, and no UK authorisation, NICE/NHS access, supply, approved regimen or clinical approval is claimed. Exact hosted Watch proof 37450158527 is mandatory before production.";
  const at7687At673Verification='167 Watch tests passed locally and exact source head c6bd125264b6490633441ed07e0a3e583e14a023 passed hosted Medicines Watch run 37450158527. Master Integration run 37450158602 and Whole-Estate run 37450158601 also passed. Production run 37450565976 stopped before mutation at the stale current-Watch source pin. This receipt reconciles that pin only; actual deployment and live verification remain mandatory, and no clinical or independent acceptance is asserted.';
+ const vikingRhythmEvidence='6 October: standing editorial authority covers the bounded VK2735 oral-maintenance initiation update, the Bivamelagon acquired-hypothalamic-obesity addition and the preliminary RM-718 specialist-indication addition. Sponsor announcements remain separate from registry status; the small preliminary RM-718 analysis and planned VK2735 outcomes do not establish efficacy, safety, an approved regimen, UK authorisation, NICE/NHS access, supply or clinical approval. Exact hosted Watch proof 37474170741 is mandatory before production.';
+ const vikingRhythmVerification='168 Watch tests passed locally and exact source head d8dae8ca4ec4431a1d1d77bc3727bfafe68735d5 passed hosted Medicines Watch run 37474170741. Master Integration run 37474170595 and Whole-Estate run 37474170803 also passed. Production run 37474807327 stopped before mutation at the stale current-Watch source pin. This receipt reconciles that pin only; actual deployment and live verification remain mandatory, and no clinical or independent acceptance is asserted.';
  const expectedCoach=structuredClone(priorCoach);
  expectedCoach.applicationCommit=coach.applicationCommit;
  // The six exact practical-guide additions are independently source-pinned
@@ -136,12 +141,14 @@ export function validateFit300(){
  expectedCoach.decisions.productionLaunch.currentCoreTrialEvidence=coreTrialEvidence;
  expectedCoach.decisions.productionLaunch.currentGubUcn2Mbl949Evidence=gubMblEvidence;
  expectedCoach.decisions.productionLaunch.currentAt7687At673Evidence=at7687At673Evidence;
+ expectedCoach.decisions.productionLaunch.currentVikingRhythmEvidence=vikingRhythmEvidence;
  expectedCoach.decisions.ownerAcceptance.verificationEvidence+=watchVerificationSuffix;
  expectedCoach.decisions.ownerAcceptance.currentSurvodutideVerificationEvidence=synchronizeJpVerification;
  expectedCoach.decisions.ownerAcceptance.currentCoreTrialVerificationEvidence=coreTrialVerification;
  expectedCoach.decisions.ownerAcceptance.currentGubUcn2Mbl949VerificationEvidence=gubMblVerification;
  expectedCoach.decisions.ownerAcceptance.currentAt7687At673VerificationEvidence=at7687At673Verification;
- const {fitComposition,seoFitComposition,imageViewerComposition,acceptanceReloadComposition,baselineRepairComposition,...unchanged}=coach;
+ expectedCoach.decisions.ownerAcceptance.currentVikingRhythmVerificationEvidence=vikingRhythmVerification;
+ const {fitComposition,seoFitComposition,imageViewerComposition,acceptanceReloadComposition,baselineRepairComposition,sitewideSeoComposition,...unchanged}=coach;
  assert.deepEqual(unchanged,expectedCoach,'Existing coaching launch decisions changed outside the exact Watch receipt');
  return {movements:300,servedProtocols:2688,approvedImages:300,databaseWrites:false,existingLayoutPreserved:true,tapToEnlarge:true};
 }
