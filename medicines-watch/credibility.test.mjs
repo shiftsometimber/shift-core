@@ -10,8 +10,8 @@ const fingerprint=data=>fingerprintSource(source,JSON.stringify(data),'applicati
 test('registry monitoring covers all exact linked records, with bounded reviewed identities',()=>{
  const links=[...medicines.flatMap(e=>e.evidenceLinks||[]),...industry.flatMap(e=>e.additionalEvidence||[])];
  const urls=new Set(links.filter(l=>/^https:\/\/clinicaltrials.gov\/study\/NCT\d{8}$/.test(l.url)).map(l=>l.url));
- assert.equal(urls.size,116);assert.deepEqual(new Set(registrySources.map(s=>s.url)),urls);
- assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);assert.equal(sources.length,181);
+ assert.equal(urls.size,117);assert.deepEqual(new Set(registrySources.map(s=>s.url)),urls);
+ assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);assert.equal(sources.length,182);
  for(const s of registrySources){assert.match(s.reviewedFingerprint,/^[a-f0-9]{64}$/);assert.equal(s.nctId,s.lifecycle.nctId);assert.ok(s.reviewedAt);}
  const taldefgrobep=registrySources.find(s=>s.id==='registry-nct07281495');assert.ok(taldefgrobep);assert.equal(taldefgrobep.lifecycle.status,'ACTIVE_NOT_RECRUITING');assert.equal(taldefgrobep.lifecycle.completion.type,'ESTIMATED');assert.equal(taldefgrobep.lifecycle.hasResults,false);
  const attainMaintain=registrySources.find(s=>s.id==='registry-nct06584916');assert.ok(attainMaintain);assert.equal(attainMaintain.lifecycle.status,'COMPLETED');assert.equal(attainMaintain.lifecycle.completion.type,'ACTUAL');assert.equal(attainMaintain.lifecycle.hasResults,false);
@@ -25,6 +25,7 @@ test('registry monitoring covers all exact linked records, with bounded reviewed
  const survodutideJapan=registrySources.find(s=>s.id==='registry-nct06176365');assert.ok(survodutideJapan);assert.equal(survodutideJapan.lifecycle.status,'COMPLETED');assert.equal(survodutideJapan.lifecycle.enrollment.count,274);assert.equal(survodutideJapan.lifecycle.completion.type,'ACTUAL');assert.equal(survodutideJapan.lifecycle.hasResults,false);
  for(const id of ['NCT07684235','NCT07684144','NCT07037433']){const maritide=registrySources.find(s=>s.nctId===id);assert.ok(maritide);assert.equal(maritide.lifecycle.status,'RECRUITING');assert.equal(maritide.lifecycle.start.type,'ACTUAL');assert.equal(maritide.lifecycle.enrollment.type,'ESTIMATED');assert.equal(maritide.lifecycle.hasResults,false);}
  const enicepatide=registrySources.find(s=>s.nctId==='NCT06525935');assert.ok(enicepatide);assert.equal(enicepatide.lifecycle.status,'COMPLETED');assert.deepEqual(enicepatide.lifecycle.enrollment,{count:469,type:'ACTUAL'});assert.equal(enicepatide.lifecycle.completion.type,'ACTUAL');assert.equal(enicepatide.lifecycle.hasResults,false);
+ const ambience=registrySources.find(s=>s.nctId==='NCT07861100');assert.ok(ambience);assert.equal(ambience.lifecycle.status,'NOT_YET_RECRUITING');assert.deepEqual(ambience.lifecycle.enrollment,{count:8500,type:'ESTIMATED'});assert.equal(ambience.lifecycle.start.type,'ESTIMATED');assert.equal(ambience.lifecycle.hasResults,false);
  for(const id of ['NCT07843498','NCT07843485','NCT07843472']){const zupreme=registrySources.find(s=>s.nctId===id);assert.ok(zupreme);assert.equal(zupreme.lifecycle.status,'NOT_YET_RECRUITING');assert.equal(zupreme.lifecycle.start.type,'ESTIMATED');assert.equal(zupreme.lifecycle.hasResults,false);}
  for(const id of ['NCT06974851','NCT06994650','NCT07551492','NCT07670884','NCT07660848']){const ribupatide=registrySources.find(s=>s.nctId===id);assert.ok(ribupatide);assert.equal(ribupatide.lifecycle.status,'RECRUITING');assert.equal(ribupatide.lifecycle.start.type,'ACTUAL');assert.equal(ribupatide.lifecycle.hasResults,false);}
  const adolescent=registrySources.find(s=>s.nctId==='NCT07559136');assert.equal(adolescent.lifecycle.status,'ACTIVE_NOT_RECRUITING');assert.equal(adolescent.lifecycle.enrollment.type,'ACTUAL');
@@ -59,6 +60,7 @@ test('HTML comparator text cannot hide a later required indication; fingerprint 
 test('public status distinguishes record review, summary review, results and uncertain access',()=>{
  const s=registrySources[0];const markup=registryEvidenceMarkup({url:s.url,title:'A <record>',reviewedAt:'2026-09-01'},{});
  assert.match(markup,/A &lt;record&gt;/);assert.match(markup,/Medical evidence summary reviewed 1 September 2026/);assert.match(markup,/Record status reviewed 3 October 2026/);assert.match(markup,/Verification pending/);
- const entry=industry.find(e=>s.entryIds.includes(e.id));assert.match(industryReviewFlag(entry,{},Date.parse('2026-10-12')),/due for factual review/);
+ const overdueSource=registrySources.find(source=>source.nctId==='NCT07721597');
+ const entry=industry.find(e=>overdueSource.entryIds.includes(e.id));assert.match(industryReviewFlag(entry,{},Date.parse('2026-10-12')),/due for factual review/);
  const html=credibilityMarkup({});for(const id of ['watch-changes','watch-safety','watch-uk-access'])assert.match(html,new RegExp(id));assert.match(html,/Current operational access remains unverified/);assert.match(html,/Reporting does not replace urgent medical care/);assert.match(html,/International maintenance and combination evidence/);assert.match(html,/catalogue now contains 96 programmes/);assert.match(html,/industry-zynergy-petrelintide-enicepatide/);assert.match(html,/VK2735 maintenance study/);assert.match(html,/industry-vk2735/);
 });

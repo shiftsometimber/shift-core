@@ -29,15 +29,19 @@ export function trustRoute(request){
  if(p==='/.well-known/security.txt'||p==='/security.txt')return new Response('Contact: mailto:hello@shiftsometimber.co.uk\nExpires: 2027-04-03T00:00:00Z\nPreferred-Languages: en\nCanonical: https://shiftsometimber.co.uk/.well-known/security.txt\n',{headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'public, max-age=3600'}});
  return null;
 }
-export function repairHtml(html,path){
- if(path==='/')return html;
- if(path==='/articles/stopping-glp1')return repairStoppingCitation(html);
- html=html.replace(/(<(?:p|nav)\b[^>]*class=["']footer-legal-links["'][^>]*>)/i,'$1<a href="/terms-of-sale">Sale terms</a><a href="/refunds">Cancellations &amp; refunds</a><a href="/accessibility">Accessibility statement</a>');
- if(path.startsWith('/member/')){
+const photoEntry=path=>['/member-login','/member-register'].includes(path);
+export function withdrawWeightIllustrations(html){
   html=html.replace(/<h3>Weight illustrations<\/h3>[\s\S]*?(?=<h3>Saved real progress photos<\/h3>)/,'');
   html=html.replace(/<label class="consent"><input id="visualConsent"[^>]*>[\s\S]*?<\/label>/,'<input id="visualConsent" type="checkbox" hidden disabled aria-hidden="true">');
   html=html.replace('Save a real progress photo privately, then choose whether to create clearly labelled AI illustrations. Nothing here is a prediction or clinical assessment.','Save real progress photos privately. Your progress is personal: no generated weight-change images or predicted results.');
- }
+ return html;
+}
+export function repairHtml(html,path){
+ if(photoEntry(path))return withdrawWeightIllustrations(html);
+ if(path==='/')return html;
+ if(path==='/articles/stopping-glp1')return repairStoppingCitation(html);
+ html=html.replace(/(<(?:p|nav)\b[^>]*class=["']footer-legal-links["'][^>]*>)/i,'$1<a href="/terms-of-sale">Sale terms</a><a href="/refunds">Cancellations &amp; refunds</a><a href="/accessibility">Accessibility statement</a>');
+ if(path.startsWith('/member/'))html=withdrawWeightIllustrations(html);
  if(path==='/contact')html=html.replace(/<script\b[^>]*src=["']\/assets\/contact-submit-v4\.js[^"']*["'][^>]*><\/script>/gi,'<script defer src="/assets/contact-reference-init.js"></script>');
  if(path==='/lounge')html=html
   .replace(/<meta\b(?=[^>]*http-equiv=["']refresh["'])[^>]*>/gi,'')
@@ -55,7 +59,7 @@ export function repairHtml(html,path){
 }
 export async function withTrustRepair(request,response){
  const path=pathOf(request);if(path==='/')return response;
- const relevant=pages[path]||path.startsWith('/member/')||/^\/(?:medicine-news|newsroom)(?:\/|$)/.test(path)||/urgent-help|crisis|suicid/.test(path)||['/robots.txt','/lounge','/contact','/treatment-centre','/advertise-with-us','/commercial-principles','/articles/stopping-glp1'].includes(path);
+ const relevant=pages[path]||photoEntry(path)||path.startsWith('/member/')||/^\/(?:medicine-news|newsroom)(?:\/|$)/.test(path)||/urgent-help|crisis|suicid/.test(path)||['/robots.txt','/lounge','/contact','/treatment-centre','/advertise-with-us','/commercial-principles','/articles/stopping-glp1'].includes(path);
  if(!relevant)return response;
  const headers=new Headers(response.headers);
  if(path==='/robots.txt'&&response.ok){let body=await response.text();body=body.replace(/^.*clinician-dashboard-v3d.*\n?/gm,'');headers.delete('Content-Length');headers.delete('ETag');return new Response(body,{status:200,headers});}

@@ -59,6 +59,7 @@ import semaglutideSpecialistSarcopeniaWave from './reviews/2026-10-05-authorised
 import coreTrialLifecycle from './reviews/2026-10-06-authorised-core-trial-lifecycle.json' with {type:'json'};
 import gubUcn2Mbl949 from './reviews/2026-10-06-authorised-gub-ucn2-mbl949.json' with {type:'json'};
 import vikingRhythmRegistryReview from './reviews/2026-10-06-authorised-viking-rhythm-registry-review.json' with {type:'json'};
+import zenagamtideAmbience from './reviews/2026-10-06-authorised-zenagamtide-ambience.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('new semaglutide specialist and sarcopenia records remain bounded research evidence',()=>{
  assert.equal(semaglutideSpecialistSarcopeniaWave.publicationStatus,'owner_authorised_factual_publication');
@@ -466,7 +467,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,101);assert.equal(sources.length,181);
+ assert.equal(medicines.length,6);assert.equal(industry.length,101);assert.equal(sources.length,182);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,107);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
@@ -993,6 +994,29 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.ok(survodutide.additionalEvidence.some(source=>source.url==='https://clinicaltrials.gov/study/NCT07855900'));
  assert.ok(switchingStudies.registryEvidence.every(record=>record.overallStatus==='NOT_YET_RECRUITING'));
  assert.ok(switchingStudies.registryEvidence.every(record=>record.hasResults===false));
+});
+
+test('AMBIENCE adds planned cardiovascular-outcomes evidence without claiming results or access',()=>{
+ assert.equal(zenagamtideAmbience.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(zenagamtideAmbience.clinicalApproval,null);
+ assert.equal(zenagamtideAmbience.industryComplete,false);
+ assert.equal(zenagamtideAmbience.catalogueCounts.totalAfter,107);
+ assert.equal(zenagamtideAmbience.catalogueCounts.configuredSourcesAfter,182);
+ const registry=zenagamtideAmbience.registrySources[0];
+ assert.equal(registry.nctId,'NCT07861100');
+ assert.equal(registry.lifecycle.status,'NOT_YET_RECRUITING');
+ assert.equal(registry.lifecycle.enrollment.count,8500);
+ assert.equal(registry.lifecycle.enrollment.type,'ESTIMATED');
+ assert.deepEqual(registry.lifecycle.start,{date:'2026-10-26',type:'ESTIMATED'});
+ assert.equal(registry.lifecycle.hasResults,false);
+ assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
+ assert.match(zenagamtide.stage,/AMBIENCE not yet recruiting/);
+ assert.match(zenagamtide.summary,/8,500 adults/);
+ assert.match(zenagamtide.summary,/four-point major adverse cardiovascular event/);
+ assert.match(zenagamtide.limitations,/23 listed UK facilities do not establish/);
+ assert.match(zenagamtide.limitations,/no posted results/);
+ assert.ok(zenagamtide.additionalEvidence.some(source=>source.url==='https://clinicaltrials.gov/study/NCT07861100'));
 });
 
 test('NA-931 preserves the sponsor and registry discrepancy without implying access or results',()=>{

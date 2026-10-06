@@ -1,6 +1,6 @@
 import {preserveFollowThrough} from '../release/seo-follow-through-preservation.mjs';
 import {preserveSixTopicSeo} from '../release/six-topic-seo-preservation.mjs';
-import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';
+import {restoreTrustCentre,restoreStoppingCitation,withdrawWeightIllustrations} from '../shift-coach/public-trust-repair.mjs';
 import {restoreBookVoiceCopy} from '../book-voice.mjs';
 import {applySharedFooter} from '../shared-footer.mjs';
 import {preserveGrowthCopy} from '../release/growth-preservation.mjs';
@@ -65,6 +65,9 @@ for(const path of paths){
  preserved=preserveSeo794(path,preserved,{required:Boolean(before)});
  preserved=preserveReviewedContrastGuard(path,preserved,{required:Boolean(before)});
  preserved=preserveSixTopicSeo(path,preserved,{required:Boolean(before)});
+ // Apply only the exact already-withdrawn photo options to both comparison
+ // sides. The rest of the complete sign-in document remains hash compared.
+ if(path==='/member-login')preserved=Buffer.from(withdrawWeightIllustrations(preserved.toString('utf8')));
  pages.push({...publicPageEvidence(path,r.status,preserved,{requireTreatmentsEntry:Boolean(before),hash}),actualSha256:hash(body),actualBytes:body.length,continuityAdditionRemoved:!preserved.equals(body)});
 }
 let comparison='baseline';
