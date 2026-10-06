@@ -755,15 +755,18 @@
       "inlineToolComposition": {
         "proof": "EXACT_AUTHENTICATED_INLINE_TOOL_WORKER_V1",
         "base": "f3a5a28e49d148512e4323bd9a58a2232520382e",
-        "source": "b6978887ecc8f37f3749584a54420f20963f322b",
+        "source": "aa1137c5a1cb8fe2f0a33be434a0b2312a279441",
         "paths": [
+          "my-timber-pwa/presentation.mjs",
           "my-timber-pwa/service-worker.mjs",
           "preview/app-layout/tabs.mjs",
           "release/app-scope.mjs",
           "release/fit-300-scope.mjs",
           "release/footer-scope.mjs",
           "release/seo-follow-through-scope.mjs",
+          "release/watch-registry-wave-scope.mjs",
           "shift-coach/release-contract.mjs",
+          "tests/b1-release-scope.test.mjs",
           "tests/inline-tool-release.test.mjs",
           "tests/inline-tool-service-worker.test.mjs",
           "tests/watch-ownership-release.test.mjs"

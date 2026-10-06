@@ -29,7 +29,11 @@ APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-gub-ucn2-mbl949.jso
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-at7687-at673-alias.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-viking-rhythm-registry-review.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-overdue-source-renewal.json');
-export const originalAppHashRef=p=>historicalDeviceHealthRef(coachingHistoricalRef(historicalFooterRef(p==='tests/watch-ownership-release.test.mjs'?WATCH_RECONCILIATION_BASE:ZENAGAMTIDE_PATHS.includes(p)?ZENAGAMTIDE_BASE:'HEAD',p),p),p);
+APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-gs4571-tirzepatide-menopause.json');
+export const originalAppHashRef=p=>p==='my-timber-pwa/presentation.mjs'?PWA_DISMISS_APPROVED:historicalDeviceHealthRef(coachingHistoricalRef(historicalFooterRef(p==='tests/watch-ownership-release.test.mjs'?WATCH_RECONCILIATION_BASE:ZENAGAMTIDE_PATHS.includes(p)?ZENAGAMTIDE_BASE:'HEAD',p),p),p);
+export function originalMemberWorkerPresentation(source){
+ return source.replace("\nexport function memberWorkerHtml(html){\n return html.replace(/(<script\\b[^>]*\\bsrc=[\"'])(\\/(?:app\\.js|register-sw-v3a\\.js)(?:\\?[^\"']*)?)([\"'][^>]*>)/gi,(_,before,src,after)=>before+src+(/[?&](?:amp;)?member_worker=1(?:&|$)/.test(src)?'':(src.includes('?')?'&amp;':'?')+'member_worker=1')+after);\n}\nexport async function memberWorkerAsset(request,response){\n const u=new URL(request.url);\n if(request.method!=='GET'||u.searchParams.get('member_worker')!=='1'||!['/app.js','/register-sw-v3a.js'].includes(u.pathname))return null;\n if(!response.ok||!/(?:javascript|ecmascript)/i.test(response.headers.get('Content-Type')||''))return response;\n const before=await response.text(),legacy=u.pathname==='/app.js'?\"navigator.serviceWorker.register('/service-worker.js')\":\"navigator.serviceWorker.register('/service-worker-v3a.js?v=cos-live-recovery-20260909-r2',{updateViaCache:'none'})\",shared=\"navigator.serviceWorker.register('/shift-push-sw-v1.js',{scope:'/',updateViaCache:'none'})\";\n const h=new Headers(response.headers);for(const k of ['Content-Length','Content-Encoding','ETag','Last-Modified'])h.delete(k);h.set('Cache-Control','no-store');\n if(before.split(legacy).length!==2)return new Response('Member worker registration source changed; please retry later.',{status:503,headers:h});\n return new Response(before.replace(legacy,shared),{status:response.status,statusText:response.statusText,headers:h});\n}\n",'').replace("\n const memberAsset=await memberWorkerAsset(request,response);if(memberAsset)return memberAsset;",'').replace("\n if(/^\\/member\\//.test(path))html=memberWorkerHtml(html);",'');
+}
 export function validateAppSource(){
  validateFit300();
  validateRecipeImages();
@@ -40,7 +44,7 @@ export function validateAppSource(){
  validateFooterSource();
  validateMemberDesignSource();
  validateHomeBanner();
- for(const p of PWA_DISMISS_PATHS)assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',PWA_DISMISS_APPROVED+':'+p),'Reviewed PWA install dismissal drift: '+p);
+ for(const p of PWA_DISMISS_PATHS)if(p==='my-timber-pwa/presentation.mjs')assert.equal(originalMemberWorkerPresentation(execFileSync('git',['show','HEAD:'+p],{encoding:'utf8'})),execFileSync('git',['show',PWA_DISMISS_APPROVED+':'+p],{encoding:'utf8'}),'Complete PWA presentation differs beyond exact shared member worker registration');else assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',PWA_DISMISS_APPROVED+':'+p),'Reviewed PWA install dismissal drift: '+p);
  validateMemberFocus((ref,path)=>git('rev-parse',(ref==='HEAD'&&path==='preview/app-layout/tabs.mjs'?FOOTER_CANDIDATE:ref)+':'+path));
  const changed=git('diff','--name-only',APP_BASE,'HEAD').split('\n').filter(Boolean);
  assert(changed.every(p=>APP_PATHS.has(p)),'Unapproved files in app release: '+changed.filter(p=>!APP_PATHS.has(p)).join(','));

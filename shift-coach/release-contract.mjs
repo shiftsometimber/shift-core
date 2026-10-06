@@ -61,6 +61,7 @@ export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...C
 export const ARTICLE_CLOSEOUT_SOURCE='69886cec987aed15a1a7e6340953cd7a5372dfee';
 export const ARTICLE_CLOSEOUT_PATH='.github/workflows/babylove-mounjaro-876303-live.yml';
 export function assertCoachingChangedPath(status,path){
+ if(path==='my-timber-pwa/presentation.mjs'){assert.equal(status,'M','Unexpected member worker presentation status');const inline=JSON.parse(readFileSync(new URL('./release-manifest.json',import.meta.url),'utf8')).seoFollowThroughComposition?.integrationComposition?.inlineToolComposition;assert(inline?.paths.includes(path),'Exact member worker presentation composition required');validateInlineToolComposition(inline);return;}
  if(path===ARTICLE_CLOSEOUT_PATH){assert.equal(status,'M','Unexpected article closeout status');return;}
  if(COACH_ARTICLE_ADDITIONS.has(path)||COACH_ARTICLE_CHANGES.has(path)){assert.equal(status,COACH_ARTICLE_ADDITIONS.has(path)?'A':'M','Unexpected article repair composition status: '+path);return;}
  const health=DEVICE_HEALTH_DELTA.find(([,p])=>p===path);
@@ -87,6 +88,7 @@ WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-at76
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-viking-rhythm-registry-review.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-overdue-source-renewal.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-zenagamtide-ambience.json');
+WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-gs4571-tirzepatide-menopause.json');
 export const WATCH_CURRENT_PATHS=new Set([...WATCH_OWNERSHIP_PATHS,...WATCH_COMPOSED_CHANGES,'medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
 export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
