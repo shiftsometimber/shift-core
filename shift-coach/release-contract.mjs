@@ -1,6 +1,6 @@
 import {WATCH_SOURCE_LINK_SOURCE,WATCH_OWNERSHIP_PATHS,watchWaveRef} from '../release/watch-registry-wave-scope.mjs';
 import {DEVICE_HEALTH_DELTA,validateDeviceHealthSource} from '../release/device-health-scope.mjs';
-import {validateSeoFitComposition} from '../release/fit-300-scope.mjs';
+import {validateSeoFitComposition,validateAcceptanceReloadComposition,acceptanceReloadHistoricalRead} from '../release/fit-300-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
@@ -101,9 +101,11 @@ export function validateCoachingSource(read,manifest){
  }
  const viewer=manifest.imageViewerComposition;
  if(viewer){assert.equal(viewer.proof,'MEMBER_IMAGE_VIEWER_RELEASE_V1');assert.deepEqual(viewer.paths,['shift-coach/fit-active-edit.mjs','shift-coach/fit-active-edit.test.mjs','shift-coach/release-contract.mjs']);assert.match(viewer.source,/^[a-f0-9]{40}$/);execFileSync('git',['merge-base','--is-ancestor',viewer.source,'HEAD']);}
+ const reload=manifest.acceptanceReloadComposition;
+ validateAcceptanceReloadComposition(reload,read);
  const composition=manifest.seoFitComposition;
- if(composition)validateSeoFitComposition(composition,read);
- for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit,p),'Coaching release source drift: '+p);
+ if(composition)validateSeoFitComposition(composition,acceptanceReloadHistoricalRead(read,reload));
+ for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit,p),'Coaching release source drift: '+p);
  assert.equal(read('HEAD',ARTICLE_CLOSEOUT_PATH),read(ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH),'Read-only article closeout source drift');
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
  assert.equal(read('HEAD','public-continuity.mjs'),read('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
