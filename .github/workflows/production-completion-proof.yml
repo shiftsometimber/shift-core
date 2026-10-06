@@ -1,0 +1,28 @@
+name: Exact production completion proof
+on:
+  push:
+    branches: [codex/seo-production-completion-20261006]
+  pull_request:
+    paths:
+      - 'release/production-completion-scope.mjs'
+      - 'shift-coach/cancelled-release-recovery*'
+      - 'shift-coach/recover-cancelled-release.mjs'
+      - 'tests/production-completion-release.test.mjs'
+      - '.github/workflows/cloudflare-production-promote.yml'
+permissions:
+  contents: read
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --check shift-coach/recover-cancelled-release.mjs
+      - run: node --test shift-coach/cancelled-release-recovery.test.mjs tests/production-completion-release.test.mjs
+      - run: node shift-coach/release-contract.mjs --require-launch
+      - run: node scripts/b1-release-scope.mjs --check
