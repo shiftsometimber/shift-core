@@ -1,0 +1,111 @@
+{
+  "kind": "exact_isolated_tablet_guidance_runtime",
+  "source": "25ead1b54126e5596db11845efbcf3b888fc5a31",
+  "deployment": "b6fa58e8-4953-46ca-8983-06dff8a53fd2",
+  "version": "2dd57a8f-8597-4f5c-ab5b-86d6e037a8f7",
+  "createdOn": "2026-10-06T21:11:18.582505Z",
+  "hostedProof": {
+    "run": 37531509514,
+    "job": 112501762193,
+    "source": "a9707c463f7681d49068fa0319418e5630510ba9",
+    "artifact": 11444592383,
+    "digest": "sha256:04faf329155c27330b6410588fa672e7bfe7340dcaea470f567f9f90e0f1453b"
+  },
+  "responses": [
+    {
+      "path": "/comparisons/medications/wegovy-injection-vs-tablets",
+      "sha256": "5f75c0890c9a4eec05100206bf1e14de32da96fb06d166f3608800db9c18c530",
+      "protected": false,
+      "rawCandidateSha256": "5f75c0890c9a4eec05100206bf1e14de32da96fb06d166f3608800db9c18c530",
+      "normalization": {
+        "kind": "exact_practical_style_order_v1",
+        "styleSha256": "a791b3ea0e7a45605d6bf846369e5069bb6b4a02ef6bc034a38421dba3983cc4"
+      }
+    },
+    {
+      "path": "/articles/oral-semaglutide-for-weight-loss",
+      "sha256": "bd752054de400802428414fa8f402a186406b165b420ccc717049ef39fce177a",
+      "protected": false
+    },
+    {
+      "path": "/foundayo",
+      "sha256": "f3fbac04094c01e5dc5e2517c401563e93069c03b36e28c410d9fa4ad65bc929",
+      "protected": false,
+      "rawCandidateSha256": "f3fbac04094c01e5dc5e2517c401563e93069c03b36e28c410d9fa4ad65bc929",
+      "normalization": {
+        "kind": "exact_practical_style_order_v1",
+        "styleSha256": "a791b3ea0e7a45605d6bf846369e5069bb6b4a02ef6bc034a38421dba3983cc4"
+      }
+    },
+    {
+      "path": "/articles/weight-loss-after-40-men",
+      "sha256": "55f149c78e8e863d7d47ce23a44528fff482cca4f70f588517a4fdfb177b5792",
+      "protected": false
+    },
+    {
+      "path": "/guides/mens-weight-management-guide",
+      "sha256": "a6adf76a98539c6604e759c62aeb42b42cbce81e1ef3f70c0c75611363580036",
+      "protected": false
+    },
+    {
+      "path": "/mens-weight-management",
+      "sha256": "a6adf76a98539c6604e759c62aeb42b42cbce81e1ef3f70c0c75611363580036",
+      "protected": false
+    },
+    {
+      "path": "/guides/mounjaro-ultimate-uk-guide",
+      "sha256": "26cba53d58bd937c14dd9f5ca161f0f2575eb868c56196efae6c46391f0a21a5",
+      "protected": false
+    },
+    {
+      "path": "/mounjaro",
+      "sha256": "26cba53d58bd937c14dd9f5ca161f0f2575eb868c56196efae6c46391f0a21a5",
+      "protected": false
+    },
+    {
+      "path": "/",
+      "sha256": "a6aa39f2d44093d8174967b3d7b335ffa3da2ebf5dbff9c1ddb6cd378695e369",
+      "protected": true
+    },
+    {
+      "path": "/start-here",
+      "sha256": "4ed4845f845239307ec66120c571d17a0c4fd348f7bb51d02fcd81d5f46fd6ab",
+      "protected": true
+    },
+    {
+      "path": "/articles/wegovy-side-effects-timeline",
+      "sha256": "b2057feb6e1f4f7de126e68554c189fb833b5c2cd49f37341ec38365514fcfe1",
+      "protected": true
+    },
+    {
+      "path": "/articles/nhs-weight-loss-drugs",
+      "sha256": "cb0383478b64ca03bdd4d8b58ea26079460c8fac7a67e1ffeea6d017cbe31a1f",
+      "protected": true
+    },
+    {
+      "path": "/member-login",
+      "sha256": "848a2a7c2794c4358072983fd8c295668802da360959b91aaff94ab20c257f14",
+      "protected": true
+    },
+    {
+      "path": "/member-fit-programme-v1.js",
+      "sha256": "99149553ec5c0ed613fdc665fd24e054c79794965a20aeea7e12d2e1a7d9911e",
+      "protected": true
+    },
+    {
+      "path": "/member-grub-programme-v1.js",
+      "sha256": "68055e81ce50727713ae9e7fbbccc0f907a31e2db1d7967321fb2619b6edfca5",
+      "protected": true
+    },
+    {
+      "path": "/member-my-timber-problem-v1.js",
+      "sha256": "e86d1b18840e947fc833a4c3181347302c5622e5c1157fad2f95aca1429dcb2b",
+      "protected": true
+    }
+  ],
+  "sourceMetadataOnlyDiff": [
+    "shift-coach/release-manifest.json"
+  ],
+  "customerRecordsRead": 0,
+  "databaseWrites": 0
+}
