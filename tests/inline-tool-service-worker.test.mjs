@@ -53,3 +53,12 @@ test('unknown member loader source fails closed and other requests are untouched
  for(const url of ['/other.js?member_worker=1','/app.js?member_worker=2'])assert.equal(await memberWorkerAsset(new Request('https://shiftsometimber.co.uk'+url),new Response('retained')),null);
  assert.equal(await memberWorkerAsset(new Request('https://shiftsometimber.co.uk/app.js?member_worker=1',{method:'POST'}),new Response('retained')),null);
 });
+
+import {originalMemberWorkerPresentation,PWA_DISMISS_APPROVED} from '../release/app-scope.mjs';
+import {execFileSync} from 'node:child_process';
+test('historical PWA comparison reverses only the exact member registration additions',()=>{
+ const current=execFileSync('git',['show','HEAD:my-timber-pwa/presentation.mjs'],{encoding:'utf8'}),prior=execFileSync('git',['show',PWA_DISMISS_APPROVED+':my-timber-pwa/presentation.mjs'],{encoding:'utf8'});
+ assert.equal(originalMemberWorkerPresentation(current),prior);
+ assert.notEqual(originalMemberWorkerPresentation(current.replace('Your full My Timber account','Unreviewed account copy')),prior);
+ assert.notEqual(originalMemberWorkerPresentation(current.replace("scope:'/',updateViaCache:'none'","scope:'/member/',updateViaCache:'none'")),prior);
+});
