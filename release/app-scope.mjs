@@ -29,6 +29,7 @@ APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-gub-ucn2-mbl949.jso
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-at7687-at673-alias.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-viking-rhythm-registry-review.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-overdue-source-renewal.json');
+export const originalAppHashRef=p=>historicalDeviceHealthRef(coachingHistoricalRef(historicalFooterRef(p==='tests/watch-ownership-release.test.mjs'?WATCH_RECONCILIATION_BASE:ZENAGAMTIDE_PATHS.includes(p)?ZENAGAMTIDE_BASE:'HEAD',p),p),p);
 export function validateAppSource(){
  validateFit300();
  validateRecipeImages();
@@ -43,7 +44,7 @@ export function validateAppSource(){
  validateMemberFocus((ref,path)=>git('rev-parse',ref+':'+path));
  const changed=git('diff','--name-only',APP_BASE,'HEAD').split('\n').filter(Boolean);
  assert(changed.every(p=>APP_PATHS.has(p)),'Unapproved files in app release: '+changed.filter(p=>!APP_PATHS.has(p)).join(','));
- for(const [p,sha]of Object.entries(APP_HASHES))assert.equal(createHash('sha256').update(execFileSync('git',['show',historicalDeviceHealthRef(coachingHistoricalRef(historicalFooterRef(p==='tests/watch-ownership-release.test.mjs'?WATCH_RECONCILIATION_BASE:ZENAGAMTIDE_PATHS.includes(p)?ZENAGAMTIDE_BASE:'HEAD',p),p),p)+':'+p])).digest('hex'),sha,'App release drift: '+p);
+ for(const [p,sha]of Object.entries(APP_HASHES))assert.equal(createHash('sha256').update(execFileSync('git',['show',originalAppHashRef(p)+':'+p])).digest('hex'),sha,'App release drift: '+p);
  for(const p of ['presentation.mjs','screens.mjs','tabs.mjs','refinement.mjs','verify.cjs'])assert.equal(git('rev-parse',historicalFooterRef('HEAD','preview/app-layout/'+p)+':preview/app-layout/'+p),git('rev-parse',APP_APPROVED+':preview/app-layout/'+p),'Approved app design changed: '+p);
  assert.equal(originalPwaLiveReadVerifier(execFileSync('git',['show','HEAD:my-timber-pwa/verify-live.mjs'],{encoding:'utf8'})),execFileSync('git',['show',APP_BASE+':my-timber-pwa/verify-live.mjs'],{encoding:'utf8'}),'PWA verifier differs beyond the exact bounded GET retry repair');
  assert.equal(git('diff',APP_BASE,'HEAD','--','member-experience','my-timber-pwa','migrations',':(exclude)my-timber-pwa/verify-live.mjs',':(exclude)member-experience/orders.mjs',':(exclude)member-experience/tablet-routine.mjs',':(exclude)member-experience/tablet-routine-client.mjs',':(exclude)member-experience/ai-site-knowledge.mjs',':(exclude)member-experience/ai-stream.mjs',':(exclude)member-experience/tests/lookup-continuation.test.mjs',':(exclude)member-experience/tests/continuity-measurement.test.mjs',':(exclude)member-experience/public-preservation.mjs',':(exclude)member-experience/verify-production-member.mjs',':(exclude)member-experience/dashboard-tools.mjs',':(exclude)member-experience/tests/dashboard-tools.test.mjs',...[...DEVICE_HEALTH_PATHS].map(p=>':(exclude)'+p),...[...FOOTER_RUNTIME_PATHS].map(p=>':(exclude)'+p),...PWA_DISMISS_PATHS.map(p=>':(exclude)'+p),...MEMBER_FOCUS_PATHS.map(p=>':(exclude)'+p),...[...RECIPE_IMAGE_PATHS].map(p=>':(exclude)'+p)),'','Protected runtime, data and PWA source changed');
