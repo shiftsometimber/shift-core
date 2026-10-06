@@ -98,6 +98,7 @@ export function coachingHistoricalRef(ref,path){
  const composedBookGates=new Set(['release/growth-scope.mjs','release/home-banner-scope.mjs','release/watch-registry-wave-scope.mjs','tests/b1-release-scope.test.mjs','rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs']);
  const historical=ref==='HEAD'&&COACH_BACKEND_PATHS.has(path)&&!composedBookGates.has(path)?COACH_BASE:ref;
  if(historical!=='HEAD')return historical;
+ if(path==='release/growth-scope.mjs')return 'f30d9111387fd8fa438d8ece9417336ec7d3e297'; // Exact concurrent-main verifier before this pinned SEO composition.
  const follow=JSON.parse(readFileSync(new URL('./release-manifest.json',import.meta.url),'utf8')).seoFollowThroughComposition;
  return followHistoricalRead((r)=>r,follow)(historical,path);
 }
