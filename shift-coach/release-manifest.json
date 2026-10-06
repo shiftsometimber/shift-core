@@ -628,5 +628,17 @@
         }
       }
     }
+  },
+  "rolloutPhotoComposition": {
+    "proof": "WITHDRAWN_PHOTO_ENTRY_REPAIR_V1",
+    "base": "4460ea56f931da4003ace68d5d404831c47e08f7",
+    "source": "4d0c2cd44880b29e93211572fcc53e0af2906afd",
+    "paths": [
+      "member-experience/public-preservation.mjs",
+      "release/fit-300-scope.mjs",
+      "shift-coach/public-trust-repair.mjs",
+      "shift-coach/public-trust-repair.test.mjs",
+      "shift-coach/release-contract.mjs"
+    ]
   }
 }
