@@ -671,5 +671,16 @@
       "shift-coach/public-trust-repair.test.mjs",
       "shift-coach/release-contract.mjs"
     ]
+  },
+  "watchSourceComposition": {
+    "proof": "EXACT_MERGED_ZENAGAMTIDE_SOURCE_RECONCILIATION_V1",
+    "base": "e723261284d733476370c0e19d3ac7c516d9b8b6",
+    "source": "83059e9bc844cd845b9b7dbb3f7723830bccc0c6",
+    "paths": [
+      "release/fit-300-scope.mjs",
+      "release/watch-registry-wave-scope.mjs",
+      "shift-coach/release-contract.mjs",
+      "tests/watch-ownership-release.test.mjs"
+    ]
   }
 }
