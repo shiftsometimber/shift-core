@@ -1,0 +1,196 @@
+{
+  "reviewedAt": "2026-10-06T22:37:33Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add the previously untracked oral GS-4571 Phase 1 programme and a separate tirzepatide menopause-specific pilot after complete primary-registry review. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "gs4571",
+      "name": "GS-4571 oral tablets",
+      "developer": "Gilead Sciences",
+      "group": "research",
+      "stage": "Recruiting oral Phase 1; no posted results",
+      "summary": "Gilead's sponsor-submitted record describes recruiting Phase 1 research of oral GS-4571. The study uses single and multiple ascending doses across healthy participants, adults with obesity without diabetes and adults with type 2 diabetes who do not have obesity. It has an actual 28 August 2024 start, 134 estimated participants and estimated February 2027 completion.",
+      "ukAuthorisation": "The reviewed trial record does not establish UK marketing authorisation for GS-4571.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by this early research record.",
+      "supply": "A recruiting US Phase 1 trial does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "No results are posted. The primary questions concern pharmacokinetics, safety and tolerability; planned oral dosing, food-effect and omeprazole cohorts are not efficacy findings or an approved regimen. Estimated enrolment and completion are not completed events, and the record does not establish weight loss, comparative benefit, UK authorisation, NHS access, supply or clinical approval.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-06T22:37:33Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT06562907: oral GS-4571 Phase 1",
+          "url": "https://clinicaltrials.gov/study/NCT06562907",
+          "sourcePublishedAt": "2024-08-20",
+          "sourceUpdatedAt": "2026-10-06",
+          "reviewedAt": "2026-10-06T22:37:33Z",
+          "checkScope": "Sponsor-submitted Phase 1 record read for oral formulation, recruiting status, participant groups, typed dates, estimated enrolment, pharmacokinetic and safety outcomes and absence of posted results; automatic monitoring covers lifecycle facts only, not clinical outcomes."
+        }
+      ]
+    },
+    {
+      "id": "tirzepatide-menopause-research",
+      "name": "Tirzepatide in menopausal vasomotor-symptom research",
+      "developer": "Mayo Clinic",
+      "group": "research",
+      "stage": "Recruiting Phase 4 pilot in post-menopausal women with obesity",
+      "summary": "Mayo Clinic's investigator-submitted record describes a 24-week placebo-controlled pilot of tirzepatide in 40 estimated post-menopausal women with obesity. The study has an actual 8 April 2026 start and measures vasomotor-symptom frequency and severity alongside exploratory biological-age markers.",
+      "ukAuthorisation": "Tirzepatide has a separate UK adult weight-management authorisation, but this research record does not establish a UK indication for menopausal vasomotor symptoms or biological ageing.",
+      "nhsEngland": "The reviewed record does not establish NICE or NHS England access for tirzepatide to treat menopausal symptoms or alter biological-age markers.",
+      "supply": "A recruiting single-site US study does not establish a new UK treatment route, pharmacy stock or supply for this specialist research question.",
+      "limitations": "The study is a small single-site pilot with no posted results. Phase 4 labels the study stage; it does not mean that tirzepatide is approved for vasomotor symptoms or biological ageing. Planned symptom and biomarker outcomes do not establish benefit, disease modification, an approved regimen, UK authorisation for this indication, NHS access, supply or clinical approval.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-06T22:37:33Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07218445: tirzepatide menopause pilot",
+          "url": "https://clinicaltrials.gov/study/NCT07218445",
+          "sourcePublishedAt": "2025-10-20",
+          "sourceUpdatedAt": "2026-10-06",
+          "reviewedAt": "2026-10-06T22:37:33Z",
+          "checkScope": "Investigator-submitted Phase 4 record read for recruiting status, post-menopausal population, estimated enrolment, actual start, estimated completion, symptom and exploratory ageing-marker outcomes and absence of posted results; automatic monitoring covers lifecycle facts only."
+        }
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct06562907",
+      "nctId": "NCT06562907",
+      "title": "ClinicalTrials.gov NCT06562907: oral GS-4571 Phase 1",
+      "url": "https://clinicaltrials.gov/study/NCT06562907",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06562907",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT06562907", "Gilead Sciences"],
+      "reviewedAt": "2026-10-06T22:37:33Z",
+      "sourcePublishedAt": "2024-08-20",
+      "sourceUpdatedAt": "2026-10-06",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment, typed dates, enrolment and results-posting status. They do not evaluate pharmacokinetic, safety, weight or other clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT06562907",
+        "title": "Study of GS-4571 in Healthy Participants, Nondiabetic Obese Participants, and Nonobese Participants With Type 2 Diabetes Mellitus (T2DM)",
+        "sponsor": "Gilead Sciences",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE1"],
+        "enrollment": {"count": 134, "type": "ESTIMATED"},
+        "start": {"date": "2024-08-28", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2027-02", "type": "ESTIMATED"},
+        "completion": {"date": "2027-02", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2024-08-20", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-10-06", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["gs4571"],
+      "rawResponseSha256": "39d1db4738e5f6dd49dc0f31e1c12d99ef0bedd2fbcaa1187b650e2da7c02613",
+      "reviewedFingerprint": "58678a00ee499380c2413922a076e6984f94dedf07f105e69d18ead2b07be892"
+    },
+    {
+      "id": "registry-nct07218445",
+      "nctId": "NCT07218445",
+      "title": "ClinicalTrials.gov NCT07218445: tirzepatide menopause pilot",
+      "url": "https://clinicaltrials.gov/study/NCT07218445",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07218445",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07218445", "Mayo Clinic"],
+      "reviewedAt": "2026-10-06T22:37:33Z",
+      "sourcePublishedAt": "2025-10-20",
+      "sourceUpdatedAt": "2026-10-06",
+      "evidenceType": "Investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment, typed dates, enrolment and results-posting status. They do not evaluate vasomotor, ageing, weight, safety or other clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT07218445",
+        "title": "The Effect of Tirzepatide on Menopausal Vasomotor Symptoms and Biological Aging in Post-menopausal Women With Obesity",
+        "sponsor": "Mayo Clinic",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE4"],
+        "enrollment": {"count": 40, "type": "ESTIMATED"},
+        "start": {"date": "2026-04-08", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2027-09-18", "type": "ESTIMATED"},
+        "completion": {"date": "2027-09-18", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2025-10-20", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-10-06", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["tirzepatide-menopause-research"],
+      "rawResponseSha256": "d7dfb399f7a04aced8861ccd30518cd58f95e5ec951f133331cfdeb320f17fd4",
+      "reviewedFingerprint": "6896ceb840a2fa8d3e0ea196a7cd6cf96fbf6edaca4c2ab6be45fb15caf3b7f2"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06562907",
+      "publicationDate": "2024-08-20",
+      "updateDate": "2026-10-06",
+      "reviewedAt": "2026-10-06T22:37:33Z",
+      "outcome": "Complete primary registry response read: recruiting oral Phase 1; actual 28 August 2024 start; 134 estimated participants; estimated February 2027 completion; pharmacokinetic and safety focus; no posted results."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07218445",
+      "publicationDate": "2025-10-20",
+      "updateDate": "2026-10-06",
+      "reviewedAt": "2026-10-06T22:37:33Z",
+      "outcome": "Complete primary registry response read: recruiting Phase 4 pilot; actual 8 April 2026 start; 40 estimated participants; estimated 18 September 2027 completion; planned symptom and biomarker outcomes; no posted results."
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-06T22:01:20.921Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 182,
+    "currentSources": 181,
+    "overdueReviews": 0,
+    "withdrawnSources": 0,
+    "attention": [{"id":"zealand-zp6590-pipeline","status":"check_delayed","reviewStatus":"verification_pending","error":"http_403","httpStatus":403}],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only response verifies configured-source monitoring only. It does not renew factual reviews, approve changed claims or prove complete industry coverage. The longstanding Zealand HTTP 403 remains explicit."
+  },
+  "discoveryPass": {
+    "method": "A separate current-date ClinicalTrials.gov pass reviewed obesity and overweight records posted or updated on 6 October 2026. Broader dated and undated searches covered medicines, peptides, oral approaches, combinations, muscle preservation, specialist indications, early and late trials and stopped programmes across named and additional developers.",
+    "included": "GS-4571 closes an older oral-programme omission. NCT07218445 adds a distinct specialist tirzepatide research question without changing the established UK weight-management medicine card.",
+    "notDuplicated": "Current main, PR #851, all dated review receipts and the open pull-request list were checked. Neither NCT06562907 nor NCT07218445 was present in live entries, proposals or open review work.",
+    "incompleteChecks": [
+      "Search indexing, sponsor disclosure and registry coverage remain incomplete and cannot establish an exhaustive industry universe.",
+      "Neither record has posted results; planned outcomes and estimated dates are not substituted for results or completed events.",
+      "No new MHRA authorisation, NICE recommendation, NHS access decision or verified UK supply change was established."
+    ],
+    "failedChecks": [],
+    "preservedKnownFailures": "The unchanged Zealand ZP6590 HTTP 403 remains visible and is not cleared by the two successful registry reads.",
+    "openReviewPrCheck": {"checkedAt":"2026-10-06T22:37:33Z","openWatchPullRequests":[],"duplicationFound":false},
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "detailedAfter": 6,
+    "widerBefore": 101,
+    "widerAfter": 103,
+    "totalBefore": 107,
+    "totalAfter": 109,
+    "configuredSourcesBefore": 182,
+    "configuredSourcesAfter": 184,
+    "trialRecordsBefore": 117,
+    "trialRecordsAfter": 119
+  },
+  "retrievalEvidence": [
+    {"id":"registry-nct06562907","retrievedAt":"2026-10-06T22:37:33Z","httpStatus":200,"contentType":"application/json","bytes":12511,"responseSha256":"39d1db4738e5f6dd49dc0f31e1c12d99ef0bedd2fbcaa1187b650e2da7c02613"},
+    {"id":"registry-nct07218445","retrievedAt":"2026-10-06T22:37:33Z","httpStatus":200,"contentType":"application/json","bytes":17737,"responseSha256":"d7dfb399f7a04aced8861ccd30518cd58f95e5ec951f133331cfdeb320f17fd4"}
+  ],
+  "deploymentState": {"mainCommit":"6a7fd0b7","observedAt":"2026-10-06T22:37:33Z","liveProgrammes":107,"liveConfiguredSources":182,"openPullRequests":0},
+  "nextAction": "Run the complete Watch and release gates, publish the exact passing commit through a reviewable pull request and guarded production workflow, then verify both new entries, the Treatments link and SELECT-only health endpoint on live traffic."
+}
