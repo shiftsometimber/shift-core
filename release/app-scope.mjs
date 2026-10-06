@@ -23,6 +23,7 @@ export const APP_PATHS=new Set([...FIT300_PATHS,...READONLY_ORGANIC_PATHS,...REC
 APP_PATHS.add('medicines-watch/reviews/2026-10-05-authorised-710go.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-survodutide-synchronize-jp.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-core-trial-lifecycle.json');
+APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-gub-ucn2-mbl949.json');
 export function validateAppSource(){
  validateFit300();
  validateRecipeImages();
