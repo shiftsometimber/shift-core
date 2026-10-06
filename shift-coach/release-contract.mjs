@@ -45,7 +45,10 @@ for(const path of ['scripts/verify-six-topic-seo.mjs','docs/seo/2026-10-05-six-p
 for(const path of ['.github/workflows/practical-guides-proof.yml','docs/seo/2026-10-06-practical-guides.md','public-practical-guides.mjs','scripts/verify-practical-guides-handler.mjs','scripts/verify-practical-guides.mjs','tests/practical-guides.test.mjs'])COACH_ADDITIONS.add(path);
 for(const path of ['public-seo-closeout.mjs','tests/public-seo-closeout.test.mjs'])COACH_BACKEND_PATHS.add(path);
 for(const p of CATALOGUE_COPY_PATHS)if(p!=='shift-coach/worker.mjs')COACH_ADDITIONS.add(p);
-for(const p of FOLLOW_PATHS)COACH_ADDITIONS.add(p);
+// Four follow-through files pre-date the coaching baseline and are modified,
+// not newly added. Keep the status contract exact for the integration scope.
+for(const p of ['editorial/five-articles/proof.mjs','scripts/verify-knowledge-headings.cjs'])COACH_BACKEND_PATHS.add(p);
+for(const p of FOLLOW_PATHS)if(!COACH_BACKEND_PATHS.has(p))COACH_ADDITIONS.add(p);
 COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37460283567.json');
 COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37462426049.json');
 for(const p of ['rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs'])COACH_BACKEND_PATHS.add(p);

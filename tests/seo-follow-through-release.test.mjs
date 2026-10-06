@@ -1,5 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {FOLLOW_THROUGH,FOLLOW_THROUGH_PATHS,applyFollowThrough,withSeoFollowThrough} from '../public-seo-follow-through.mjs';
+import {expectedSeo794ArticleBody} from '../release/seo794-preservation.mjs';
+import {assertCoachingChangedPath} from '../shift-coach/release-contract.mjs';
 import {publicSiteStreamMessages} from '../public-site-stream.mjs';
 import {validateFollowComposition} from '../release/seo-follow-through-scope.mjs';
 import {readFileSync} from 'node:fs';
@@ -11,6 +13,18 @@ test('reviewed v3 composition and exact bounded public changes remain fixed',()=
 test('contextual links preserve visible words, do not repeat, and fail closed on ambiguous paragraphs',()=>{
  const text=s=>s.replace(/<[^>]*>/g,'');
  for(const c of FOLLOW_THROUGH.contextLinks){assert.equal(text(c.before),text(c.after));assert.equal(applyFollowThrough(c.before,c.path),c.after);assert.equal(applyFollowThrough(c.after,c.path),c.after);assert.equal(applyFollowThrough(c.before+c.before,c.path),c.before+c.before);}
+});
+test('five-article live expectation composes both approved publication layers and no copy change',()=>{
+ const path='/comparisons/medications/mounjaro-vs-saxenda',change=FOLLOW_THROUGH.contextLinks.find(c=>c.path===path);
+ const source='<main>'+change.before+'<p>Keep every other byte.</p></main>',expected='<main>'+change.after+'<p>Keep every other byte.</p></main>';
+ const published=applyFollowThrough(expectedSeo794ArticleBody(source,path),path);
+ assert.equal(published,expected);assert.equal(published.replace(/<[^>]*>/g,''),source.replace(/<[^>]*>/g,''));
+ assert.notEqual(published,expected.replace('Keep every other byte.','Lost copy.'));
+});
+test('coaching scope distinguishes existing follow-through files from additions',()=>{
+ for(const path of ['ask-timber-v1.js','editorial/five-articles/proof.mjs','scripts/b1-release-scope.mjs','scripts/verify-knowledge-headings.cjs'])assert.doesNotThrow(()=>assertCoachingChangedPath('M',path));
+ assert.doesNotThrow(()=>assertCoachingChangedPath('A','public-seo-follow-through.mjs'));
+ assert.throws(()=>assertCoachingChangedPath('A','editorial/five-articles/proof.mjs'));
 });
 test('only four reviewed archive paths may change indexing and unrelated restrictions remain',async()=>{
  for(const path of [...FOLLOW_THROUGH.restoreArchives,'/medicine-news/bolt-pharmacy-ads-banned-asa']){

@@ -51,6 +51,7 @@
     "editorial/book-voice/edits.json",
     "editorial/book-voice/live.cjs",
     "editorial/book-voice/payload.json",
+    "editorial/five-articles/proof.mjs",
     "editorial/source-review-20261004/build.mjs",
     "editorial/source-review-20261004/build.test.mjs",
     "editorial/source-review-20261004/corrections.json",
@@ -449,6 +450,7 @@
     ],
     "maintenancePaths": [
       ".github/workflows/seo-follow-through-proof.yml",
+      "editorial/five-articles/proof.mjs",
       "release/fit-300-scope.mjs",
       "release/seo-follow-through-scope.mjs",
       "release/sitewide-seo-scope.mjs",
@@ -460,7 +462,7 @@
       "scripts/b1-release-scope.mjs",
       "scripts/verify-knowledge-headings.cjs"
     ],
-    "maintenanceSource": "cb283d0a26536de22145f4b6b146835bc13899a4",
+    "maintenanceSource": "d5108bfcbcbd2e8c14617168e776e3e27aaee9b4",
     "ownerApproval": {
       "owner": "Matt O’Brien",
       "at": "2026-10-06T14:18:48Z",
