@@ -3,6 +3,7 @@ import gubUcn2Mbl949 from './reviews/2026-10-06-authorised-gub-ucn2-mbl949.json'
 import survodutideSynchronizeJp from './reviews/2026-10-06-authorised-survodutide-synchronize-jp.json' with {type:'json'};
 import coreTrialLifecycle from './reviews/2026-10-06-authorised-core-trial-lifecycle.json' with {type:'json'};
 import at7687At673Correction from './reviews/2026-10-06-authorised-at7687-at673-alias.json' with {type:'json'};
+import vikingRhythmRegistryReview from './reviews/2026-10-06-authorised-viking-rhythm-registry-review.json' with {type:'json'};
 import evidenceDesk from './reviews/2026-10-03-evidence-desk-zp6590.json' with {type:'json'};
 import srsd384Publication from './reviews/2026-10-04-authorised-srsd384.json' with {type:'json'};
 import fractylModalityGap from './reviews/2026-10-04-authorised-fractyl-modality-gap.json' with {type:'json'};
@@ -63,7 +64,7 @@ import specialistRegistryWave from './reviews/2026-10-03-authorised-specialist-r
 import leanMassEnergyFollowup from './reviews/2026-10-03-authorised-lean-mass-energy-followup.json' with {type:'json'};
 import vikingAntagFollowup from './reviews/2026-10-03-authorised-vk3019-at673.json' with {type:'json'};
 export const INDUSTRY_REVIEWED_AT = evidence.reviewedAt;
-export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources,kainetic.source,...evidenceDesk.sources,...vk2735Maintenance.sources,...azelapragDiscontinuation.sources,...ribupatideSpecialistWave.sources,...gzc8072Publication.sources,...asc30AuroraCorrection.sources,...asc36OralPublication.sources].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===eloraTZP.source.id?eloraTZP.source:s).map(s => monitorRepairs.sources.find(r=>r.id===s.id)||s).map(s => pfizerPdfRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===hansohOlatorepatideReview.source.id?hansohOlatorepatideReview.source:s).map(s => ({
+export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources,kainetic.source,...evidenceDesk.sources,...vk2735Maintenance.sources,...azelapragDiscontinuation.sources,...ribupatideSpecialistWave.sources,...gzc8072Publication.sources,...asc30AuroraCorrection.sources,...asc36OralPublication.sources,...vikingRhythmRegistryReview.sources].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===eloraTZP.source.id?eloraTZP.source:s).map(s => monitorRepairs.sources.find(r=>r.id===s.id)||s).map(s => pfizerPdfRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===hansohOlatorepatideReview.source.id?hansohOlatorepatideReview.source:s).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.sourceDateLabel||(s.id.endsWith('-smpc')?'Product information updated':'Source publication date'),
  reviewedAt:s.reviewedAt,requiredTerms:s.requiredTerms,
@@ -141,7 +142,7 @@ export const industry = [...originalIndustry.map(e => {
  const update=followup.updates.find(u=>u.id===e.id);
  return update ? {...e,...update.fields,reviewedAt:followup.reviewedAt,sourceIds:[...e.sourceIds,...update.sourceIdsToAdd]} : e;
 }),...followup.entries,...continuing.entries,...biPublication.entries,...macupatide.entries,...evening.entries,...broaderDiscovery.entries,...internationalOmissions.entries,...expandedDiscovery.entries,...ubt251Publication.entries,...sgb7342Publication.entries,...abbvAsc30TernBimagrumab.entries,...registryOmissions.entries,...enobosarmSemaglutide.entries,...expandedRegistryWave.entries,...semaglutideSpecialistTrials.entries,...glimrCopd.entries,...specialistRegistryFollowup.entries,...na931Publication.entries]
- .concat(amylinMetabolicFollowup.entries,azd1043Publication.entries,wve007Publication.entries,specialistRegistryWave.entries,leanMassEnergyFollowup.entries,vikingAntagFollowup.entries,evidenceDesk.entries,srsd384Publication.entries,fractylModalityGap.entries,arteloMuscleGap.entries,rgt075Publication.entries,vct220Publication.entries,azelapragDiscontinuation.entries,taldefgrobepRv8451.entries,internationalMaintenanceWave.entries,novoSpecialistWave.entries,gzc8072Publication.entries,ard201Pause.entries,asc36OralPublication.entries,te8105Phase2b.entries,semaglutideSpecialistSarcopeniaWave.entries,kalohexis710go.entries,gubUcn2Mbl949.entries)
+ .concat(amylinMetabolicFollowup.entries,azd1043Publication.entries,wve007Publication.entries,specialistRegistryWave.entries,leanMassEnergyFollowup.entries,vikingAntagFollowup.entries,evidenceDesk.entries,srsd384Publication.entries,fractylModalityGap.entries,arteloMuscleGap.entries,rgt075Publication.entries,vct220Publication.entries,azelapragDiscontinuation.entries,taldefgrobepRv8451.entries,internationalMaintenanceWave.entries,novoSpecialistWave.entries,gzc8072Publication.entries,ard201Pause.entries,asc36OralPublication.entries,te8105Phase2b.entries,semaglutideSpecialistSarcopeniaWave.entries,kalohexis710go.entries,gubUcn2Mbl949.entries,vikingRhythmRegistryReview.entries)
  .map(e=>{const update=repairs.updates.find(u=>u.id===e.id);return update?{...e,...update,reviewedAt:repairs.reviewedAt}:e;})
  .map(e=>e.id===berobenatide.change.id?{...e,...berobenatide.change.fields,reviewedAt:berobenatide.reviewedAt,
   sourceIds:[...e.sourceIds,...berobenatide.change.sourceIdsToAdd],additionalEvidence:berobenatide.change.additionalEvidence}:e)
@@ -319,4 +320,10 @@ export const industry = [...originalIndustry.map(e => {
  })
  .map(e=>e.id===at7687At673Correction.change.id?{...e,...at7687At673Correction.change.fields,
   reviewedAt:at7687At673Correction.reviewedAt,
-  additionalEvidence:[...(e.additionalEvidence||[]),...at7687At673Correction.change.additionalEvidence]}:e);
+  additionalEvidence:[...(e.additionalEvidence||[]),...at7687At673Correction.change.additionalEvidence]}:e)
+ .map(e=>{
+  const change=vikingRhythmRegistryReview.changes.find(c=>c.id===e.id);
+  return change?{...e,...change.fields,reviewedAt:vikingRhythmRegistryReview.reviewedAt,
+   sourceIds:[...e.sourceIds,...(change.sourceIdsToAdd||[])],
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]}:e;
+ });

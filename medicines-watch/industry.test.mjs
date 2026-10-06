@@ -58,6 +58,7 @@ import te8105Phase2b from './reviews/2026-10-05-authorised-te8105-phase2b.json' 
 import semaglutideSpecialistSarcopeniaWave from './reviews/2026-10-05-authorised-semaglutide-specialist-sarcopenia-wave.json' with {type:'json'};
 import coreTrialLifecycle from './reviews/2026-10-06-authorised-core-trial-lifecycle.json' with {type:'json'};
 import gubUcn2Mbl949 from './reviews/2026-10-06-authorised-gub-ucn2-mbl949.json' with {type:'json'};
+import vikingRhythmRegistryReview from './reviews/2026-10-06-authorised-viking-rhythm-registry-review.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('new semaglutide specialist and sarcopenia records remain bounded research evidence',()=>{
  assert.equal(semaglutideSpecialistSarcopeniaWave.publicationStatus,'owner_authorised_factual_publication');
@@ -110,15 +111,15 @@ test('VK2735 maintenance evidence stays sponsor-reported and does not create an 
  assert.equal(vk2735Maintenance.publicationStatus,'owner_authorised_factual_publication');
  assert.equal(vk2735Maintenance.clinicalApproval,null);
  assert.equal(vk2735Maintenance.industryComplete,false);
- assert.match(e.stage,/sponsor-reported maintenance study completed/);
+ assert.match(e.stage,/maintenance study ongoing/);
  assert.match(e.stage,/oral Phase 3 planned/);
  assert.match(e.summary,/approximately 180 adults/);
- assert.match(e.summary,/12 weeks/);
- assert.match(e.limitations,/sponsor-reported topline/);
+ assert.match(e.summary,/approximately 195 adults/);
+ assert.match(e.limitations,/sponsor announcements/);
  assert.match(e.limitations,/not peer-reviewed results/);
  assert.match(e.limitations,/do not establish switching from another medicine/);
  assert.ok(e.sourceIds.includes('vk2735-maintenance-viking'));
- assert.equal(e.reviewedAt,vk2735Maintenance.reviewedAt);
+ assert.equal(e.reviewedAt,vikingRhythmRegistryReview.reviewedAt);
  const source=industrySources.find(s=>s.id==='vk2735-maintenance-viking');
  assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
  assert.equal(vk2735Maintenance.catalogueCounts.configuredSourcesAfter,132);
@@ -438,21 +439,21 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.match(azd.summary,/262 actual participants/);
  const pilot=industry.find(e=>e.id==='mirabegron-alpha-lipoic-acid');
  assert.match(pilot.stage,/not yet recruiting/);
- assert.match(pilot.summary,/estimated 8 October 2026 start/);
+ assert.match(pilot.summary,/estimated start moved again to 11 October 2026/);
  assert.match(pilot.summary,/primary endpoint is insulin sensitivity/);
  assert.match(pilot.limitations,/48-person target.*estimates 60/);
  for(const e of [abbv,azd,pilot]){
   assert.equal(e.clinicalApproval,null);
-  assert.equal(e.reviewedAt,e.id==='azd6234'?seleneCorrection.reviewedAt:e.id==='mirabegron-alpha-lipoic-acid'?nct05713799Correction.reviewedAt:amylinMetabolicFollowup.reviewedAt);
+  assert.equal(e.reviewedAt,e.id==='azd6234'?seleneCorrection.reviewedAt:vikingRhythmRegistryReview.reviewedAt);
   assert.equal(e.sourceIds.length,0);
   for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k]);
   const html=industryMarkup({},new URLSearchParams({q:e.name}));
   assert.match(html,/Status checks do not assess clinical outcomes/);
  }
  const correctedSource=registrySources.find(s=>s.id==='registry-nct05713799');
- assert.equal(correctedSource.lifecycle.start.date,'2026-10-08');
- assert.equal(correctedSource.sourceUpdatedAt,'2026-10-05');
- assert.equal(correctedSource.reviewedFingerprint,'f1f1502b85ec20feb6fa3aaa46b023e7a42a2a2c0ecba7f775b4bd77ff83471d');
+ assert.equal(correctedSource.lifecycle.start.date,'2026-10-11');
+ assert.equal(correctedSource.sourceUpdatedAt,'2026-10-06');
+ assert.equal(correctedSource.reviewedFingerprint,'5380b7cbd154d5fda5a7c5ca7d1cbded541f6b736b1e52b632e7d728de2cd576');
  assert.equal(nct05713799Correction.clinicalApproval,null);
  assert.equal(nct05713799Correction.industryComplete,false);
  assert.equal(amylinMetabolicFollowup.automatedMonitorChanges,false);
@@ -465,8 +466,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,99);assert.equal(sources.length,177);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,105);
+ assert.equal(medicines.length,6);assert.equal(industry.length,101);assert.equal(sources.length,181);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,107);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -974,7 +975,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,99);
+ assert.equal(industry.length,101);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -1429,4 +1430,39 @@ test('GUB-UCN2 and MBL949 preserve research, discontinuation and access boundari
  assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
  assert.ok(industryMarkup({},new URLSearchParams({q:'GUB-UCN2'})).includes('GUB-UCN2'));
  assert.ok(industryMarkup({},new URLSearchParams({q:'MBL949'})).includes('MBL949'));
+});
+
+test('Viking, Rhythm and changed registry evidence stays formulation and indication specific',()=>{
+ assert.equal(vikingRhythmRegistryReview.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(vikingRhythmRegistryReview.clinicalApproval,null);
+ assert.equal(vikingRhythmRegistryReview.industryComplete,false);
+ assert.deepEqual(vikingRhythmRegistryReview.catalogueCounts,{detailedBefore:6,detailedAfter:6,widerBefore:99,widerAfter:101,totalBefore:105,totalAfter:107,configuredSourcesBefore:177,configuredSourcesAfter:181,trialRecordsBefore:115,trialRecordsAfter:116});
+ const bivamelagon=industry.find(entry=>entry.id==='bivamelagon');
+ assert.ok(bivamelagon);assert.equal(bivamelagon.group,'research');
+ assert.match(bivamelagon.stage,/Phase 2 specialist hypothalamic-obesity research/);
+ assert.match(bivamelagon.summary,/not general obesity/);
+ assert.match(bivamelagon.limitations,/28 participants/);
+ assert.match(bivamelagon.ukAuthorisation,/do not establish UK marketing authorisation/);
+ const rm718=industry.find(entry=>entry.id==='rm718');
+ assert.ok(rm718);assert.equal(rm718.group,'research');
+ assert.match(rm718.summary,/seven had reached 16 weeks/);
+ assert.match(rm718.limitations,/very small numbers/);
+ const viking=industry.find(entry=>entry.id==='vk2735');
+ assert.match(viking.stage,/oral and subcutaneous maintenance study ongoing/);
+ assert.match(viking.summary,/Part 2 has now started/);
+ assert.match(viking.limitations,/no posted results/);
+ assert.ok(viking.sourceIds.includes('vk2735-oral-maintenance-viking'));
+ for(const id of ['bivamelagon-rhythm-20250709','rm718-rhythm-20260804','vk2735-oral-maintenance-viking']){
+  const source=industrySources.find(item=>item.id===id);assert.ok(source);assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ }
+ const bivRegistry=registrySources.find(source=>source.nctId==='NCT07156578');
+ assert.ok(bivRegistry);assert.equal(bivRegistry.lifecycle.status,'ENROLLING_BY_INVITATION');
+ assert.deepEqual(bivRegistry.lifecycle.start,{date:'2025-11-10',type:'ACTUAL'});
+ assert.equal(bivRegistry.lifecycle.hasResults,false);
+ const abbv=registrySources.find(source=>source.nctId==='NCT07752979');
+ assert.equal(abbv.sourceUpdatedAt,'2026-10-06');assert.equal(abbv.lifecycle.status,'RECRUITING');assert.equal(abbv.lifecycle.hasResults,false);
+ const pilot=registrySources.find(source=>source.nctId==='NCT05713799');
+ assert.deepEqual(pilot.lifecycle.start,{date:'2026-10-11',type:'ESTIMATED'});assert.equal(pilot.lifecycle.hasResults,false);
+ assert.equal(vikingRhythmRegistryReview.configuredSourcePass.reviewRenewals,false);
+ assert.equal(vikingRhythmRegistryReview.discoveryPass.industryComplete,false);
 });
