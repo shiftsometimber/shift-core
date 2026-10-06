@@ -660,6 +660,20 @@
       "shift-coach/public-trust-repair.mjs",
       "shift-coach/public-trust-repair.test.mjs",
       "shift-coach/release-contract.mjs"
-    ]
+    ],
+    "watchComposition": {
+      "proof": "EXACT_ALREADY_MERGED_WATCH_RECONCILIATION_V1",
+      "base": "c51387c34c22469cdbd9490666f4ea168023560b",
+      "payloadSource": "99061a51a9540c611dc0795b858dad598b4304ac",
+      "source": "feaa23d40f2a0740954fea62ece2d6518c3b2a9e",
+      "paths": [
+        "release/app-manifest.json",
+        "release/app-scope.mjs",
+        "release/fit-300-scope.mjs",
+        "release/watch-registry-wave-scope.mjs",
+        "shift-coach/release-contract.mjs",
+        "tests/b1-release-scope.test.mjs"
+      ]
+    }
   }
 }
