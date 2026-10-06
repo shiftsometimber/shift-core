@@ -1,0 +1,33 @@
+name: Exact all-page technical SEO proof
+on:
+  push:
+    branches: [seo/all-pages-technical-20261006]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci
+      - name: Validate immutable source compositions and production scope
+        run: |
+          node --input-type=module -e "import {validateGrowthSource} from './release/growth-scope.mjs';validateGrowthSource()"
+          node scripts/b1-release-scope.mjs
+      - name: Verify metadata, noindex exclusions, historical preservation and privacy
+        run: node --test tests/public-seo-technical.test.mjs tests/seo-technical-release.test.mjs tests/seo-follow-through-release.test.mjs tests/sitewide-seo-release.test.mjs tests/public-seo-programme.test.mjs medicines-watch/*.test.mjs
+      - name: Verify complete handler against the immutable original SEO baseline
+        run: |
+          git worktree add --detach /tmp/seo-original-baseline b4392ca89d9388352c0b29117488d44e9886c6c1
+          ln -s "$GITHUB_WORKSPACE/node_modules" /tmp/seo-original-baseline/node_modules
+          BASELINE_WORKER=/tmp/seo-original-baseline/shift-coach/worker.mjs node scripts/verify-seo-follow-through.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: all-page-technical-seo-proof
+          path: seo-follow-through-proof/
+          if-no-files-found: error

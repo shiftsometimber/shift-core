@@ -27,6 +27,7 @@ APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-core-trial-lifecycl
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-gub-ucn2-mbl949.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-at7687-at673-alias.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-viking-rhythm-registry-review.json');
+APP_PATHS.add('medicines-watch/reviews/2026-10-06-overdue-source-renewal.json');
 export function validateAppSource(){
  validateFit300();
  validateRecipeImages();
