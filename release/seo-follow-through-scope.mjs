@@ -1,3 +1,12 @@
+export const INLINE_TOOL_BASE='f3a5a28e49d148512e4323bd9a58a2232520382e';
+export const INLINE_TOOL_PATHS=["my-timber-pwa/service-worker.mjs","preview/app-layout/tabs.mjs","release/app-scope.mjs","release/fit-300-scope.mjs","release/footer-scope.mjs","release/seo-follow-through-scope.mjs","shift-coach/release-contract.mjs","tests/inline-tool-release.test.mjs","tests/inline-tool-service-worker.test.mjs","tests/watch-ownership-release.test.mjs"];
+export function validateInlineToolComposition(c,read=(ref,p)=>execFileSync('git',['rev-parse',ref+':'+p],{encoding:'utf8'}).trim()){
+ if(!c)return;
+ assert.equal(c.proof,'EXACT_AUTHENTICATED_INLINE_TOOL_WORKER_V1');assert.equal(c.base,INLINE_TOOL_BASE);assert.deepEqual(c.paths,INLINE_TOOL_PATHS);assert.match(c.source,/^[a-f0-9]{40}$/);
+ execFileSync('git',['merge-base','--is-ancestor',c.base,c.source]);execFileSync('git',['merge-base','--is-ancestor',c.source,'HEAD']);
+ assert.deepEqual(execFileSync('git',['diff','--name-only',c.base,c.source],{encoding:'utf8'}).trim().split('\n').filter(Boolean).sort(),INLINE_TOOL_PATHS,'Exact inline tool worker payload required');
+ for(const p of c.paths)assert.equal(read('HEAD',p),read(c.source,p),'Coaching release source drift (inline tool worker): '+p);
+}
 import {readFileSync} from 'node:fs';
 import {completionHistoricalRef,TECHNICAL_PATHS,TECHNICAL_BASE,technicalPinnedRef,validateTechnicalComposition,verifyTechnicalHistory} from './seo-technical-scope.mjs';
 import assert from 'node:assert/strict';
@@ -15,7 +24,8 @@ export function verifySeoIntegration(c){
  if(!c)return;validateSeoIntegration(c);const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
  git('merge-base','--is-ancestor',c.base,c.source);git('merge-base','--is-ancestor',c.source,'HEAD');
  assert.deepEqual(git('diff','--name-only',c.base,c.source).split('\n').filter(Boolean).sort(),SEO_INTEGRATION_PATHS,'Exact combined SEO release paths required');
- for(const p of c.paths)if(p!=='shift-coach/release-manifest.json')assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',(usefulnessPinnedRef(JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition,p)||c.source)+':'+p),'Combined SEO source drift: '+p);
+ validateInlineToolComposition(c.inlineToolComposition);
+ for(const p of c.paths)if(p!=='shift-coach/release-manifest.json')assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',((c.inlineToolComposition?.paths.includes(p)?c.inlineToolComposition.source:null)||usefulnessPinnedRef(JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition,p)||c.source)+':'+p),'Combined SEO source drift: '+p);
  assert.equal(git('rev-parse',c.base+':.github/workflows/cloudflare-production-promote.yml'),git('rev-parse','HEAD:.github/workflows/cloudflare-production-promote.yml'));
 }
 export const TABLET_GUIDANCE_BASE='4460ea56f931da4003ace68d5d404831c47e08f7';
@@ -51,7 +61,7 @@ export function validateFollowComposition(c){
  if(c.integrationComposition)validateSeoIntegration(c.integrationComposition);
  return c;
 }
-export function followPinnedRef(c,path){if(!c)return null;validateFollowComposition(c);return usefulnessPinnedRef(c,path)||(c.integrationComposition?.paths.includes(path)?c.integrationComposition.source:null)||(c.tabletGuidanceComposition?.paths.includes(path)?c.tabletGuidanceComposition.source:null)||technicalPinnedRef(c.technicalComposition,path)|| (c.payloadPaths.includes(path)?c.payloadSource:c.maintenancePaths.includes(path)?c.maintenanceSource:null);}
+export function followPinnedRef(c,path){if(!c)return null;validateFollowComposition(c);return (c.integrationComposition?.inlineToolComposition?.paths.includes(path)?c.integrationComposition.inlineToolComposition.source:null)||usefulnessPinnedRef(c,path)||(c.integrationComposition?.paths.includes(path)?c.integrationComposition.source:null)||(c.tabletGuidanceComposition?.paths.includes(path)?c.tabletGuidanceComposition.source:null)||technicalPinnedRef(c.technicalComposition,path)|| (c.payloadPaths.includes(path)?c.payloadSource:c.maintenancePaths.includes(path)?c.maintenanceSource:null);}
 export function followHistoricalRead(read,c){if(!c)return read;validateFollowComposition(c);return(ref,path)=>read(ref==='HEAD'&&ORIGINAL_FOLLOW_PATHS.includes(path)?FOLLOW_BASE:completionHistoricalRef(c.technicalComposition,ref,path)!==ref?completionHistoricalRef(c.technicalComposition,ref,path):ref==='HEAD'&&c.technicalComposition&&TECHNICAL_PATHS.includes(path)?TECHNICAL_BASE:ref==='HEAD'&&c.tabletGuidanceComposition?.paths.includes(path)?TABLET_GUIDANCE_BASE:ref,path);}
 export function verifyFollowHistory(c){
  if(!c)return;validateFollowComposition(c);verifySeoIntegration(c.integrationComposition);verifyTechnicalHistory(c.technicalComposition);const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
@@ -59,7 +69,7 @@ export function verifyFollowHistory(c){
   for(const r of [u.payloadSource,u.maintenanceSource])git('merge-base','--is-ancestor',r,'HEAD');
   assert.deepEqual(git('diff','--name-only',u.payloadBase,u.payloadSource).split('\n').filter(Boolean).sort(),u.payloadPaths);
   assert.deepEqual(git('diff','--name-only','7befa850f2a77a38bfd08637184a1952fdf92483',u.maintenanceSource).split('\n').filter(p=>p&&p!=='shift-coach/release-manifest.json'&&!u.payloadPaths.includes(p)).sort(),u.maintenancePaths);
-  for(const p of [...u.payloadPaths,...u.maintenancePaths])assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',usefulnessPinnedRef(c,p)+':'+p),'Tablet usefulness source drift: '+p);
+  for(const p of [...u.payloadPaths,...u.maintenancePaths])assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',followPinnedRef(c,p)+':'+p),'Tablet usefulness source drift: '+p);
  }
  if(c.tabletGuidanceComposition){const t=validateTabletGuidance(c.tabletGuidanceComposition);
   git('merge-base','--is-ancestor',t.base,t.source);git('merge-base','--is-ancestor',t.source,'HEAD');
