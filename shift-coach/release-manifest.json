@@ -471,9 +471,12 @@
       "release/six-topic-seo-scope.mjs",
       "release/growth-scope.mjs",
       "release/seo794-preservation.mjs",
-      "tests/seo794-preservation.test.mjs"
+      "tests/seo794-preservation.test.mjs",
+      "release/book-voice-scope.mjs",
+      "tests/book-voice-release.test.mjs",
+      "shift-coach/release.test.mjs"
     ],
-    "maintenanceSource": "1eb8a3f4f2a318cb3ffd7590a8d94adc149b1e29",
+    "maintenanceSource": "5892dcac47b82b2f744ec0606c269698a37e7644",
     "ownerApproval": {
       "owner": "Matt O’Brien",
       "at": "2026-10-06T14:18:48Z",
