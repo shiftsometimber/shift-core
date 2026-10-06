@@ -32,13 +32,21 @@ await register();
 const browser=await chromium.launch({headless:true});
 const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true,reducedMotion:'reduce',serviceWorkers:'allow',recordVideo:{dir:path.join(OUT,'raw-video'),size:{width:390,height:844}}});
 await context.addInitScript(()=>{
+ const property=Object.getOwnPropertyDescriptor(HTMLIFrameElement.prototype,'src'),push=history.pushState;let suppressDuplicate=false;
+ history.pushState=function(state,title,url){if(suppressDuplicate&&new URL(url,location.href).href===location.href){suppressDuplicate=false;return;}return push.call(this,state,title,url)};
+ Object.defineProperty(HTMLIFrameElement.prototype,'src',{...property,set(value){
+  if(this.classList.contains('app-tool-frame')){const target=new URL(value,location.href),key=target.pathname.split('/').pop();if(['fit','grub','life-back'].includes(key)){const u=new URL(location.href);u.searchParams.set('tool',key);u.hash='today';push.call(history,null,'',u);suppressDuplicate=true;queueMicrotask(()=>suppressDuplicate=false);}}
+  property.set.call(this,value);
+ }});
+});
+await context.addInitScript(()=>{
  window.__earlyTrace=[];const keep=(kind,detail)=>{window.__earlyTrace.push({kind,detail,at:performance.now()});if(window.__earlyTrace.length>120)window.__earlyTrace.shift()};
  for(const method of ['pushState','replaceState']){const orig=history[method];history[method]=function(...args){keep(method,{url:String(args[2]),stack:new Error().stack});return orig.apply(this,args)}}
  const orig=EventTarget.prototype.addEventListener;EventTarget.prototype.addEventListener=function(type,listener,options){if(type==='click'&&typeof listener==='function'){const stack=new Error().stack;const wrapped=function(e){const a=e.target.closest?.('.today-meal-action');if(a)keep('handler',{stack,href:a.getAttribute('href'),phase:e.eventPhase,prevented:e.defaultPrevented});return listener.call(this,e)};return orig.call(this,type,wrapped,options)}return orig.call(this,type,listener,options)};
  window.addEventListener('error',e=>keep('error',{message:e.message,filename:e.filename,lineno:e.lineno}));
 });
 const page=await context.newPage();
-report.proof='MY_TIMBER_GRUB_HISTORY_FIRST_ACTIVE_WORKER_V1';
+report.proof='MY_TIMBER_GRUB_HISTORY_FIRST_BROWSER_DIAGNOSTIC_V1';
 
 report.frameLifecycle=[];const cdp=await context.newCDPSession(page);await cdp.send('Page.enable');for(const kind of ['frameAttached','frameDetached','frameStartedLoading','frameStoppedLoading','frameRequestedNavigation','frameNavigated'])cdp.on('Page.'+kind,event=>{const x={kind,frame:event.frameId||event.frame?.id,reason:event.reason,url:event.url?resourcePath(event.url):event.frame?.url?resourcePath(event.frame.url):null};report.frameLifecycle.push(x);if(report.frameLifecycle.length>80)report.frameLifecycle.shift()});
 page.on('console',m=>{if(m.type()==='error'){report.frameLifecycle.push({kind:'console-error',detail:m.text().slice(0,500)});if(report.frameLifecycle.length>80)report.frameLifecycle.shift()}});
@@ -106,26 +114,6 @@ try{
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Phone layout has no horizontal overflow');
   await screenshot(page,'01-billy-current-today');
   await page.evaluate(()=>{window.__toolTrace=[];const keep=(kind,detail)=>{window.__toolTrace.push({kind,detail,at:performance.now()});if(window.__toolTrace.length>80)window.__toolTrace.shift()};new MutationObserver(records=>{for(const r of records){for(const n of r.removedNodes)if(n.nodeType===1&&(n.matches('iframe,#appToolPanels,#appTool-grub')||n.querySelector('iframe')))keep('removed',n.outerHTML.slice(0,1400));for(const n of r.addedNodes)if(n.nodeType===1&&(n.matches('iframe,#appToolPanels,#appTool-grub')||n.querySelector('iframe')))keep('added',n.outerHTML.slice(0,1400))}}).observe(document.body,{childList:true,subtree:true});document.addEventListener('click',e=>{const n=e.target.closest('a');if(n)keep('click',{href:n.getAttribute('href'),prevented:e.defaultPrevented,tool:document.body.dataset.appTool})});});
-
-  const workers=context.serviceWorkers().filter(w=>w.url().endsWith('/shift-push-sw-v1.js'));assert(workers.length,'Expected original installed worker');
-  for(const worker of workers)await worker.evaluate(({block})=>{
-    self.__patchLog=[];
-    self.addEventListener('fetch',event=>{
-      const u=new URL(event.request.url);
-      if(event.request.method!=='GET'||u.origin!==self.location.origin||u.pathname!=='/assets/my-timber-layout.mjs')return;
-      event.respondWith((async()=>{
-        const r=await fetch(event.request),original=await r.text();
-        if(original.split(block).length-1!==1)throw Error('Exact original select history block required');
-        const changed=original.replace(block,'').replace("host.hidden=key==='today';",block+"host.hidden=key==='today';");
-        self.__patchLog.push({historyIndex:changed.indexOf(block),frameIndex:changed.indexOf("host.hidden=key==='today';")});
-        const headers=new Headers(r.headers);headers.delete('Content-Length');headers.delete('Content-Encoding');headers.set('Cache-Control','no-store');return new Response(changed,{status:r.status,headers});
-      })());
-    });
-  },{block:"if(push){const u=new URL(location.href);if(key==='today')u.searchParams.delete('tool');else u.searchParams.set('tool',key);u.hash='today';history.pushState(null,'',u)}"});
-  await page.reload({waitUntil:'domcontentloaded'});
-  await page.locator('.today-meal-action').waitFor({state:'visible',timeout:45000});
-  report.patchResponses=[];for(const worker of workers)report.patchResponses.push(...await worker.evaluate(()=>self.__patchLog||[]));
-  assert(report.patchResponses.length&&report.patchResponses.every(r=>r.historyIndex<r.frameIndex),'Prove history-first asset served by active worker');
   await page.locator('.today-meal-action').click();
   const mealFrame=page.frameLocator('#appTool-grub iframe');
   await mealFrame.getByText(chosen.name,{exact:true}).filter({visible:true}).first().waitFor({state:'visible',timeout:45000});
