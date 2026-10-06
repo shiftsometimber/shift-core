@@ -2,11 +2,18 @@ import test from 'node:test';import assert from 'node:assert/strict';
 import {FOLLOW_THROUGH,FOLLOW_THROUGH_PATHS,applyFollowThrough,withSeoFollowThrough} from '../public-seo-follow-through.mjs';
 import {publicSiteStreamMessages} from '../public-site-stream.mjs';
 import {validateFollowComposition} from '../release/seo-follow-through-scope.mjs';
+import {assertCoachingChangedPath,FOLLOW_MODIFIED_PATHS} from '../shift-coach/release-contract.mjs';
 import {readFileSync} from 'node:fs';
 test('reviewed v3 composition and exact bounded public changes remain fixed',()=>{
  const c=JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition;assert.doesNotThrow(()=>validateFollowComposition(c));
  assert.equal(FOLLOW_THROUGH.contextLinks.flatMap(c=>c.links).length,191);assert.equal(new Set(FOLLOW_THROUGH.contextLinks.map(c=>c.path)).size,150);assert.equal(FOLLOW_THROUGH.ownerCopy.length,2);assert.equal(FOLLOW_THROUGH.restoreArchives.length,4);assert.equal(FOLLOW_THROUGH_PATHS.length,155);
  for(const change of [{payloadSource:'a'.repeat(40)},{base:'a'.repeat(40)},{payloadPaths:['unknown']},{maintenancePaths:['unknown']},{ownerApproval:{...c.ownerApproval,instruction:'unseen draft'}}])assert.throws(()=>validateFollowComposition({...c,...change}));
+});
+test('coaching scope preserves exact added versus modified follow-through statuses',()=>{
+ for(const path of FOLLOW_MODIFIED_PATHS)assert.doesNotThrow(()=>assertCoachingChangedPath('M',path));
+ for(const path of ['public-seo-follow-through.mjs','release/seo-follow-through-scope.mjs','tests/seo-follow-through-release.test.mjs'])assert.doesNotThrow(()=>assertCoachingChangedPath('A',path));
+ assert.throws(()=>assertCoachingChangedPath('A','editorial/five-articles/proof.mjs'));
+ assert.throws(()=>assertCoachingChangedPath('M','public-seo-follow-through.mjs'));
 });
 test('contextual links preserve visible words, do not repeat, and fail closed on ambiguous paragraphs',()=>{
  const text=s=>s.replace(/<[^>]*>/g,'');
