@@ -83,6 +83,7 @@ WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-gub-
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-at7687-at673-alias.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-viking-rhythm-registry-review.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-overdue-source-renewal.json');
+WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-zenagamtide-ambience.json');
 export const WATCH_CURRENT_PATHS=new Set([...WATCH_OWNERSHIP_PATHS,...WATCH_COMPOSED_CHANGES,'medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
 export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
@@ -129,7 +130,7 @@ export function validateCoachingSource(read,manifest){
  validateAcceptanceReloadComposition(reload,beforeRepair);
  const composition=manifest.seoFitComposition;
  if(composition)validateSeoFitComposition(composition,acceptanceReloadHistoricalRead(beforeRepair,reload));
- for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read((photo?.paths.includes(p)?photo.source:null)||followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p)|| (repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit),p),'Coaching release source drift: '+p);
+ for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read((photo?.watchComposition?.paths.includes(p)?photo.watchComposition.source:photo?.paths.includes(p)?photo.source:null)||followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p)|| (repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit),p),'Coaching release source drift: '+p);
  assert.equal(read('HEAD',ARTICLE_CLOSEOUT_PATH),read(ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH),'Read-only article closeout source drift');
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
  assert.equal(read('HEAD','public-continuity.mjs'),read('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
