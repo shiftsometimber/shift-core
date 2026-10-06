@@ -353,12 +353,15 @@
     ]
   },
   "baselineRepairComposition": {
-    "proof": "EXACT_CATALOGUE_BASELINE_REPAIR_V1",
+    "proof": "EXACT_CATALOGUE_BASELINE_REPAIR_V2",
     "base": "c2eaab9e0e1ddb39e116d6d3d625a7f51b6881b6",
-    "source": "372c0af21dc3a450346f4c65e1c42e762f4ed774",
+    "source": "c8c34614f37a51c5da7ca3e54062bec73353a1ff",
     "paths": [
+      "release/book-voice-scope.mjs",
       "release/fit-300-scope.mjs",
       "release/growth-adopt-deployment.mjs",
+      "release/home-banner-scope.mjs",
+      "release/member-details-preservation.mjs",
       "shift-coach/cancelled-release-recovery.mjs",
       "shift-coach/cancelled-release-recovery.test.mjs",
       "shift-coach/recover-cancelled-release.mjs",

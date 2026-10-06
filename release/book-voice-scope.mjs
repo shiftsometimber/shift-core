@@ -44,6 +44,7 @@ export function preserveReviewedContrastGuard(path,input,{required=false}={}){
    .replace("\n}\nif(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)await runPublicPreservation();\n",'\n');
  }
  if(path!=='release/home-banner-scope.mjs')return source;
+ source=source.replace(" if(path==='release/member-details-preservation.mjs')source=source.replace(\"import {removeCatalogueBenefits} from '../catalogue-benefits.mjs';\\n\",'').replace(\" // Reverse the exact already-live catalogue copy before the older banner.\\n // The banner's strict signatures and the full-page comparison still reject drift.\\n\",'').replace(\"removeCatalogueBenefits(body.toString('utf8'),path)\",\"body.toString('utf8')\");\n",'');
  source=source.replace(" if(path==='release/member-details-preservation.mjs')source=source.replace(\"import {restoreHomeFont} from '../shift-coach/public-font-delivery.mjs';\\n\",'').replace(\"removeCreamNavigation(restoreHomeFont(path,body.toString('utf8')))\",\"removeCreamNavigation(body.toString('utf8'))\");\n",'');
  return source.replace("import {coachingHistoricalRef,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';\n",'').replace(' verifyCoachingRelease();\n','').replace("read(coachingHistoricalRef('HEAD','.github/workflows/cloudflare-production-promote.yml'),'.github/workflows/cloudflare-production-promote.yml')","read('HEAD','.github/workflows/cloudflare-production-promote.yml')");
 }
