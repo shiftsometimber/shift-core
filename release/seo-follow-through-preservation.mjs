@@ -19,3 +19,11 @@ export function preserveFollowThrough(path,input,{required=false}={}){
  }
  return Buffer.from(html);
 }
+
+// Historical source checks reverse only the exact approved v3 adapter lines.
+export function originalFollowThroughPreservation(source){
+ const imported="import {preserveFollowThrough} from '../release/seo-follow-through-preservation.mjs';\n";
+ const composed='restoreStoppingCitation(path,preserveFollowThrough(path,body,{required:Boolean(before)}),{required:Boolean(before)})';
+ for(const exact of [imported,composed])assert(source.split(exact).length-1<=1,'Duplicate SEO v3 source integration');
+ return source.replace(imported,'').replace(composed,'restoreStoppingCitation(path,body,{required:Boolean(before)})');
+}
