@@ -1,0 +1,60 @@
+name: Practical SEO guides isolated runtime proof
+on:
+  pull_request:
+    paths:
+      - public-practical-guides.mjs
+      - public-seo-closeout.mjs
+      - tests/practical-guides.test.mjs
+      - scripts/verify-practical-guides*.mjs
+      - .github/workflows/practical-guides-proof.yml
+  push:
+    branches: ['seo/practical-guides-live-20261006']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Require the exact isolated runtime scope
+        run: |
+          python3 - <<'PY'
+          import subprocess
+          allowed={'public-practical-guides.mjs','public-seo-closeout.mjs','tests/practical-guides.test.mjs','scripts/verify-practical-guides.mjs','scripts/verify-practical-guides-handler.mjs','.github/workflows/practical-guides-proof.yml','docs/seo/2026-10-06-practical-guides.md'}
+          changed=set(subprocess.check_output(['git','diff','--name-only','15194faf31d710f1fc5f31036af149d5925d3998','HEAD'],text=True).splitlines())
+          assert changed == allowed, changed
+          assert subprocess.check_output(['git','diff','15194faf31d710f1fc5f31036af149d5925d3998','HEAD','--','wrangler.jsonc','frontend/member','member-experience','shift-coach','medicines-watch']).decode() == ''
+          PY
+      - name: Rebuild existing recipe test fixtures without production access
+        run: |
+          node grub-expansion-review-pack.mjs > /tmp/grub-fixture-build.log
+          node scripts/verify-grub-closeout-reviews.mjs
+      - name: Run the existing production unit-test groups and new content tests
+        run: |
+          mkdir -p practical-guides-proof
+          python3 - <<'PY'
+          from pathlib import Path
+          commands=[l.strip().removeprefix('run: ') for l in Path('.github/workflows/cloudflare-production-promote.yml').read_text().splitlines() if 'node --test ' in l]
+          assert len(commands)==28
+          Path('/tmp/practical-unit-groups.sh').write_text('set -eu\n'+'\n'.join(commands)+'\nnode --test tests/practical-guides.test.mjs\n')
+          PY
+          bash /tmp/practical-unit-groups.sh > practical-guides-proof/unit-tests.log 2>&1
+      - name: Compare full handlers with the actual deployed source
+        run: |
+          git worktree add --detach /tmp/practical-baseline 15194faf31d710f1fc5f31036af149d5925d3998
+          BASELINE_WORKER=/tmp/practical-baseline/shift-coach/worker.mjs node scripts/verify-practical-guides-handler.mjs
+      - name: Verify current destinations and candidate documents
+        run: node scripts/verify-practical-guides.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: practical-guides-proof-${{ github.sha }}
+          path: practical-guides-proof/
+          retention-days: 30
