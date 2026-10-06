@@ -755,7 +755,7 @@
       "inlineToolComposition": {
         "proof": "EXACT_AUTHENTICATED_INLINE_TOOL_WORKER_V1",
         "base": "f3a5a28e49d148512e4323bd9a58a2232520382e",
-        "source": "c77ccf1362d2214ddd5035f7b0bec76c84dcb4e5",
+        "source": "4295a4a204e999bd5e20ed72ea8bdc95062510ea",
         "paths": [
           "my-timber-pwa/presentation.mjs",
           "my-timber-pwa/service-worker.mjs",
@@ -764,6 +764,7 @@
           "release/fit-300-scope.mjs",
           "release/footer-scope.mjs",
           "release/seo-follow-through-scope.mjs",
+          "release/watch-registry-wave-scope.mjs",
           "shift-coach/release-contract.mjs",
           "tests/inline-tool-release.test.mjs",
           "tests/inline-tool-service-worker.test.mjs",

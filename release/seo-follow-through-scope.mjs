@@ -1,5 +1,5 @@
 export const INLINE_TOOL_BASE='f3a5a28e49d148512e4323bd9a58a2232520382e';
-export const INLINE_TOOL_PATHS=["my-timber-pwa/presentation.mjs","my-timber-pwa/service-worker.mjs","preview/app-layout/tabs.mjs","release/app-scope.mjs","release/fit-300-scope.mjs","release/footer-scope.mjs","release/seo-follow-through-scope.mjs","shift-coach/release-contract.mjs","tests/inline-tool-release.test.mjs","tests/inline-tool-service-worker.test.mjs","tests/watch-ownership-release.test.mjs"];
+export const INLINE_TOOL_PATHS=["my-timber-pwa/presentation.mjs","my-timber-pwa/service-worker.mjs","preview/app-layout/tabs.mjs","release/app-scope.mjs","release/fit-300-scope.mjs","release/footer-scope.mjs","release/seo-follow-through-scope.mjs","release/watch-registry-wave-scope.mjs","shift-coach/release-contract.mjs","tests/inline-tool-release.test.mjs","tests/inline-tool-service-worker.test.mjs","tests/watch-ownership-release.test.mjs"];
 export function validateInlineToolComposition(c,read=(ref,p)=>execFileSync('git',['rev-parse',ref+':'+p],{encoding:'utf8'}).trim()){
  if(!c)return;
  assert.equal(c.proof,'EXACT_AUTHENTICATED_INLINE_TOOL_WORKER_V1');assert.equal(c.base,INLINE_TOOL_BASE);assert.deepEqual(c.paths,INLINE_TOOL_PATHS);assert.match(c.source,/^[a-f0-9]{40}$/);

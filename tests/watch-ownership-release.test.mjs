@@ -19,3 +19,6 @@ test('merged AMBIENCE source reconciliation is finite and cannot authorise unrel
  assert.equal(WATCH_RECONCILIATION_PATHS.length,4);assert.equal(ZENAGAMTIDE_PATHS.length,7);
  assert.throws(()=>validateWatchSourceComposition({...c,proof:'any'}));assert.throws(()=>validateWatchSourceComposition({...c,paths:[...c.paths,'unrelated']}));assert.throws(()=>validateWatchSourceComposition({...c,base:'4460ea56f931da4003ace68d5d404831c47e08f7'}));
 });
+
+import {WATCH_MERGED_UPDATE_PATHS,validateWatchMergedUpdate} from '../release/watch-registry-wave-scope.mjs';
+test('already-merged Watch update retains an exact seven-file source receipt',()=>{assert.equal(WATCH_MERGED_UPDATE_PATHS.length,7);validateWatchMergedUpdate();});
