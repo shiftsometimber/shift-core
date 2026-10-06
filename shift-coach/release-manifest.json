@@ -16,6 +16,7 @@
     ".github/workflows/online-privacy-recovery-proof.yml",
     ".github/workflows/practical-guides-proof.yml",
     ".github/workflows/priority-closeout-proof.yml",
+    ".github/workflows/production-completion-proof.yml",
     ".github/workflows/seo-follow-through-proof.yml",
     ".github/workflows/seo-technical-proof.yml",
     ".github/workflows/shift-coach-integration.yml",
@@ -44,6 +45,7 @@
     "docs/content-review/2026-10-03-health-safety.json",
     "docs/content-review/2026-10-03-public-copy-preview.json",
     "docs/content-review/2026-10-03-public-copy-residual.json",
+    "docs/runtime-cancelled-37512509413.json",
     "docs/seo-sitewide-live-receipt-20261006.json",
     "docs/seo/2026-10-05-six-priorities.md",
     "docs/seo/2026-10-06-practical-guides.md",
@@ -118,6 +120,7 @@
     "release/member-details-preservation.mjs",
     "release/member-details-rollback.mjs",
     "release/member-runtime-deploy.mjs",
+    "release/production-completion-scope.mjs",
     "release/public-wording-scope.mjs",
     "release/query-log-redaction.mjs",
     "release/runtime-rollback-guard.mjs",
@@ -232,6 +235,7 @@
     "tests/my-health-plan-v2.test.mjs",
     "tests/my-timber-analytics-privacy.test.mjs",
     "tests/practical-guides.test.mjs",
+    "tests/production-completion-release.test.mjs",
     "tests/public-seo-closeout.test.mjs",
     "tests/public-seo-programme.test.mjs",
     "tests/public-seo-technical.test.mjs",
@@ -531,7 +535,32 @@
         "release/fit-300-scope.mjs",
         "release/watch-registry-wave-scope.mjs",
         "tests/b1-release-scope.test.mjs"
-      ]
+      ],
+      "completionComposition": {
+        "proof": "EXACT_CANCELLED_SEO_RUNTIME_RECOVERY_V1",
+        "base": "a224c1ece7c27f157900902ad6866028e17192a1",
+        "payloadSource": "fb354901af50d24cb35217ceecd308b8ec7fce77",
+        "maintenanceSource": "015d7178bc764f0deb52882913753e9be3ecb2c7",
+        "payloadPaths": [
+          ".github/workflows/cloudflare-production-promote.yml",
+          "shift-coach/cancelled-release-recovery.mjs",
+          "shift-coach/cancelled-release-recovery.test.mjs",
+          "shift-coach/recover-cancelled-release.mjs"
+        ],
+        "maintenancePaths": [
+          ".github/workflows/production-completion-proof.yml",
+          "release/production-completion-scope.mjs",
+          "release/seo-technical-scope.mjs",
+          "release/seo-follow-through-scope.mjs",
+          "tests/production-completion-release.test.mjs",
+          "docs/runtime-cancelled-37512509413.json"
+        ],
+        "request": {
+          "instruction": "let's get this properly working - and growing its organic reach. We also need to ensure our website authority grows in the correct way.",
+          "date": "2026-10-06",
+          "scope": "Exact cancelled SEO runtime recovery to its successful captured predecessor; complete original release checks; no customer-data rollback or public-wording change."
+        }
+      }
     }
   }
 }

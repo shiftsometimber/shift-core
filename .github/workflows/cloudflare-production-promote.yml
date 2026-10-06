@@ -228,7 +228,7 @@ jobs:
     needs: select-current
     if: ${{ needs.select-current.outputs.current == 'true' && (github.event_name == 'push' || inputs.confirm == 'PROMOTE_CURRENT_MAIN') }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     env:
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
