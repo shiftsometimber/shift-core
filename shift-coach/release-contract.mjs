@@ -45,6 +45,7 @@ for(const path of ['scripts/verify-six-topic-seo.mjs','docs/seo/2026-10-05-six-p
 for(const path of ['.github/workflows/practical-guides-proof.yml','docs/seo/2026-10-06-practical-guides.md','public-practical-guides.mjs','scripts/verify-practical-guides-handler.mjs','scripts/verify-practical-guides.mjs','tests/practical-guides.test.mjs'])COACH_ADDITIONS.add(path);
 for(const path of ['public-seo-closeout.mjs','tests/public-seo-closeout.test.mjs'])COACH_BACKEND_PATHS.add(path);
 for(const p of CATALOGUE_COPY_PATHS)if(p!=='shift-coach/worker.mjs')COACH_ADDITIONS.add(p);
+COACH_BACKEND_PATHS.add('scripts/verify-shift-take-live.mjs');
 for(const p of FOLLOW_PATHS)if(!COACH_BACKEND_PATHS.has(p)&&!COACH_COMPOSED_BOOK_CHANGES.has(p)&&!COACH_AUDIT_CHANGES.has(p))COACH_ADDITIONS.add(p);
 COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37460283567.json');
 COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37462426049.json');
