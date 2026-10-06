@@ -201,7 +201,7 @@ test('treatment release binds every browser-tested eligibility and information f
 
 test('registry wave retains exact reviewed Watch credibility files',async()=>{
  const {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,WATCH_SOURCE_LINK_SOURCE,validateWatchRegistryWave}=await import('../release/watch-registry-wave-scope.mjs');
- assert.equal(WATCH_REGISTRY_WAVE_COMMIT,'99061a51a9540c611dc0795b858dad598b4304ac');assert.equal(WATCH_REGISTRY_WAVE_PATHS.length,68);
+ assert.equal(WATCH_REGISTRY_WAVE_COMMIT,'c89fcadc2a3025d2ea40ae6e1fb80c0cf2dd03b7');assert.equal(WATCH_REGISTRY_WAVE_PATHS.length,69);
  validateWatchRegistryWave((ref,path)=>path);
  for(const drift of WATCH_REGISTRY_WAVE_PATHS)assert.throws(()=>validateWatchRegistryWave((ref,path)=>ref==='HEAD'&&path===drift?'changed':path),/registry-wave source drift/);
 });
