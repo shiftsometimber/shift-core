@@ -62,14 +62,15 @@ test('sixth owned rollback requires the complete earlier chain and rejects alter
  const chain=[SITEWIDE_ROLLBACK,SITEWIDE_SECOND_ROLLBACK,SITEWIDE_THIRD_ROLLBACK,SITEWIDE_FOURTH_ROLLBACK,SITEWIDE_FIFTH_ROLLBACK,SITEWIDE_SIXTH_ROLLBACK];
  const get=async path=>{
   const p=chain.find(x=>path.includes('/'+x.run));assert(p);
-  return path.endsWith('/jobs')?{jobs:[{id:p.job,run_id:p.run,name:'promote',status:'completed',conclusion:'failure'}]}:{id:p.run,head_sha:p.source,path:'.github/workflows/cloudflare-production-promote.yml',head_branch:'main',event:'push',status:'completed',conclusion:'failure'};
+  return path.endsWith('/jobs')?{jobs:[{id:p.job,run_id:p.run,run_attempt:p.jobAttempt,name:'promote',status:'completed',conclusion:'failure',steps:p.failureStep?[{name:p.failureStep,status:'completed',conclusion:'failure'}]:[]}]}:{id:p.run,head_sha:p.source,path:'.github/workflows/cloudflare-production-promote.yml',head_branch:'main',event:'push',status:'completed',conclusion:'failure',run_attempt:p.runAttempt};
  };
  const logs=async id=>{
   const i=chain.findIndex(x=>x.job===id),p=chain[i],previous=i?chain[i-1].deployment:SITEWIDE_DEPLOYMENT;
   return [
    JSON.stringify({kind:'runtime_recovery_observation',deploymentId:previous,activeVersion:SITEWIDE_VERSION,release:p.source}),
    JSON.stringify({kind:'owned_runtime_deployment',source:p.source,run:String(p.run),deploymentId:p.failedDeployment,versionId:p.failedVersion,previousDeploymentId:previous,previousVersionId:SITEWIDE_VERSION,dataRestored:false}),
-   'Worker Version '+SITEWIDE_VERSION+' has been deployed to 100% of traffic.','Current Version ID: '+SITEWIDE_VERSION
+   'Worker Version '+SITEWIDE_VERSION+' has been deployed to 100% of traffic.','Current Version ID: '+SITEWIDE_VERSION,
+   ...(p.failureEvidence||[])
   ].join('\n');
  };
  const p=SITEWIDE_SIXTH_ROLLBACK,active={id:p.deployment,created_on:p.createdOn,versions:[{version_id:SITEWIDE_VERSION,percentage:100}]},seen=[];
@@ -81,6 +82,8 @@ test('sixth owned rollback requires the complete earlier chain and rejects alter
   await assert.rejects(()=>verifySitewideRollback(active,async path=>path==='/actions/runs/'+bad.run?{...await get(path),head_sha:'a'.repeat(40)}:get(path),logs));
  }
  await assert.rejects(()=>verifySitewideRollback(active,get,async id=>id===p.job?(await logs(id)).replace('"dataRestored":false','"dataRestored":true'):logs(id)));
+ await assert.rejects(()=>verifySitewideRollback(active,get,async id=>id===p.job?(await logs(id)).replace("code: 'ECONNRESET'",''):logs(id)),/transient failure evidence absent/);
+ await assert.rejects(()=>verifySitewideRollback(active,async path=>path.includes('/attempts/1/jobs')?{jobs:[{id:p.job,run_id:p.run,run_attempt:1,name:'promote',status:'completed',conclusion:'failure',steps:[]}]}:get(path),logs),/failure step absent/);
 });
 
 test('live article checker retries dropped headers and bodies but fails persistent errors or incorrect content',async()=>{
