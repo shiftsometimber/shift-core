@@ -13,6 +13,18 @@ export function validateTabletGuidance(c){
  if(c.run!==undefined){assert(Number.isSafeInteger(c.run)&&c.run>0);assert.match(c.proofSource,/^[a-f0-9]{40}$/);}
  return c;
 }
+export const TABLET_USEFULNESS_PAYLOAD=["member-experience/tablet-routine-client.mjs", "member-experience/tablet-routine.mjs", "public-practical-guides.mjs", "tests/tablet-routine-browser.mjs", "tests/tablet-routine.test.mjs"];
+export const TABLET_USEFULNESS_MAINTENANCE=[".github/workflows/practical-guides-proof.yml", "release/app-manifest.json", "release/fit-300-scope.mjs", "release/seo-follow-through-scope.mjs", "scripts/verify-practical-guides-handler.mjs", "shift-coach/release-contract.mjs", "tests/seo-follow-through-release.test.mjs"];
+export function validateTabletUsefulness(c){
+ assert.equal(c.proof,'TABLET_USEFULNESS_OWNER_APPROVED_V1');
+ assert.equal(c.payloadBase,'d71db6bf5f9a4ce2339bd3948686b93500e9ff04');
+ assert.equal(c.payloadSource,'409f93612932ae9ff3715d04a8076dd4d1a9d3e7');
+ assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.deepEqual(c.payloadPaths,TABLET_USEFULNESS_PAYLOAD);assert.deepEqual(c.maintenancePaths,TABLET_USEFULNESS_MAINTENANCE);
+ assert.deepEqual(c.approval,{owner:'Matt',at:'2026-10-06T21:26:01Z',instruction:'Yes',review:'SHIFT-tablet-usefulness-review.html'});
+ return c;
+}
+export function usefulnessPinnedRef(c,path){const u=c?.tabletUsefulnessComposition;if(!u)return null;validateTabletUsefulness(u);return u.payloadPaths.includes(path)?u.payloadSource:u.maintenancePaths.includes(path)?u.maintenanceSource:null;}
 const ORIGINAL_FOLLOW_PATHS=[...FOLLOW_PAYLOAD_PATHS,...FOLLOW_MAINTENANCE_PATHS];
 export const FOLLOW_PATHS=[...new Set([...ORIGINAL_FOLLOW_PATHS,...TECHNICAL_PATHS])];
 export function validateFollowComposition(c){
@@ -22,16 +34,23 @@ export function validateFollowComposition(c){
  assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.ownerApproval,{owner:'Matt O’Brien',at:'2026-10-06T14:18:48Z',instruction:'fix it all',review:'SHIFT-Sitewide-SEO-Review-v3-2026-10-06.html'});
  if(c.technicalComposition)validateTechnicalComposition(c.technicalComposition);
  if(c.tabletGuidanceComposition)validateTabletGuidance(c.tabletGuidanceComposition);
+ if(c.tabletUsefulnessComposition)validateTabletUsefulness(c.tabletUsefulnessComposition);
  return c;
 }
-export function followPinnedRef(c,path){if(!c)return null;validateFollowComposition(c);return (c.tabletGuidanceComposition?.paths.includes(path)?c.tabletGuidanceComposition.source:null)||technicalPinnedRef(c.technicalComposition,path)|| (c.payloadPaths.includes(path)?c.payloadSource:c.maintenancePaths.includes(path)?c.maintenanceSource:null);}
+export function followPinnedRef(c,path){if(!c)return null;validateFollowComposition(c);return usefulnessPinnedRef(c,path)||(c.tabletGuidanceComposition?.paths.includes(path)?c.tabletGuidanceComposition.source:null)||technicalPinnedRef(c.technicalComposition,path)|| (c.payloadPaths.includes(path)?c.payloadSource:c.maintenancePaths.includes(path)?c.maintenanceSource:null);}
 export function followHistoricalRead(read,c){if(!c)return read;validateFollowComposition(c);return(ref,path)=>read(ref==='HEAD'&&ORIGINAL_FOLLOW_PATHS.includes(path)?FOLLOW_BASE:completionHistoricalRef(c.technicalComposition,ref,path)!==ref?completionHistoricalRef(c.technicalComposition,ref,path):ref==='HEAD'&&c.technicalComposition&&TECHNICAL_PATHS.includes(path)?TECHNICAL_BASE:ref==='HEAD'&&c.tabletGuidanceComposition?.paths.includes(path)?TABLET_GUIDANCE_BASE:ref,path);}
 export function verifyFollowHistory(c){
  if(!c)return;validateFollowComposition(c);verifyTechnicalHistory(c.technicalComposition);const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
+ if(c.tabletUsefulnessComposition){const u=validateTabletUsefulness(c.tabletUsefulnessComposition);
+  for(const r of [u.payloadSource,u.maintenanceSource])git('merge-base','--is-ancestor',r,'HEAD');
+  assert.deepEqual(git('diff','--name-only',u.payloadBase,u.payloadSource).split('\n').filter(Boolean).sort(),u.payloadPaths);
+  assert.deepEqual(git('diff','--name-only','409f93612932ae9ff3715d04a8076dd4d1a9d3e7',u.maintenanceSource).split('\n').filter(Boolean).sort(),u.maintenancePaths);
+  for(const p of [...u.payloadPaths,...u.maintenancePaths])assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',usefulnessPinnedRef(c,p)+':'+p),'Tablet usefulness source drift: '+p);
+ }
  if(c.tabletGuidanceComposition){const t=validateTabletGuidance(c.tabletGuidanceComposition);
   git('merge-base','--is-ancestor',t.base,t.source);git('merge-base','--is-ancestor',t.source,'HEAD');
   assert.deepEqual(git('diff','--name-only',t.base,t.source).split('\n').filter(Boolean).sort(),[...TABLET_GUIDANCE_PATHS].sort(),'Exact tablet guidance payload required');
-  for(const p of t.paths)assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',t.source+':'+p),'Tablet guidance source drift: '+p);
+  for(const p of t.paths)assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',(usefulnessPinnedRef(c,p)||t.source)+':'+p),'Tablet guidance source drift: '+p);
   if(t.proofSource){git('merge-base','--is-ancestor',t.source,t.proofSource);git('merge-base','--is-ancestor',t.proofSource,'HEAD');assert.deepEqual(git('diff','--name-only',t.source,t.proofSource).split('\n').filter(Boolean),['shift-coach/release-manifest.json']);}
  }
  for(const ref of [FOLLOW_BASE,FOLLOW_PAYLOAD,c.maintenanceSource])git('merge-base','--is-ancestor',ref,'HEAD');

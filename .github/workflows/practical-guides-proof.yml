@@ -35,9 +35,13 @@ jobs:
           baseline='4460ea56f931da4003ace68d5d404831c47e08f7' if tablet else '15194faf31d710f1fc5f31036af149d5925d3998'
           if tablet:
             allowed={'public-practical-guides.mjs','tests/practical-guides.test.mjs','scripts/verify-practical-guides.mjs','scripts/verify-practical-guides-handler.mjs','.github/workflows/practical-guides-proof.yml','release/seo-follow-through-scope.mjs','release/six-topic-seo-scope.mjs','tests/seo-follow-through-release.test.mjs','docs/seo/2026-10-06-practical-guides.md','shift-coach/worker.mjs','tests/approved-ranking-release.test.mjs','tests/production-completion-release.test.mjs','shift-coach/release-manifest.json'}
+          usefulness=os.environ.get('GITHUB_HEAD_REF') == 'codex/tablet-usefulness-review-20261006'
+          if usefulness:
+            baseline='d71db6bf'
+            allowed={'scripts/verify-practical-guides-handler.mjs', '.github/workflows/practical-guides-proof.yml', 'shift-coach/release-manifest.json', 'public-practical-guides.mjs', 'member-experience/tablet-routine-client.mjs', 'release/seo-follow-through-scope.mjs', 'tests/tablet-routine-browser.mjs', 'shift-coach/release-contract.mjs', 'release/app-manifest.json', 'release/fit-300-scope.mjs', 'tests/seo-follow-through-release.test.mjs', 'tests/tablet-routine.test.mjs', 'member-experience/tablet-routine.mjs'}
           changed=set(subprocess.check_output(['git','diff','--name-only',baseline,'HEAD'],text=True).splitlines())
           assert changed == allowed, changed
-          protected=['wrangler.jsonc','frontend/member','member-experience','medicines-watch']
+          protected=['wrangler.jsonc','frontend/member','medicines-watch']+([] if usefulness else ['member-experience'])
           assert subprocess.check_output(['git','diff',baseline,'HEAD','--',*protected]).decode() == ''
           open('/tmp/practical-baseline-ref','w').write(baseline)
           PY
@@ -59,7 +63,12 @@ jobs:
         run: |
           git worktree add --detach /tmp/practical-baseline "$(cat /tmp/practical-baseline-ref)"
           ln -s "$GITHUB_WORKSPACE/node_modules" /tmp/practical-baseline/node_modules
-          BASELINE_WORKER=/tmp/practical-baseline/shift-coach/worker.mjs node scripts/verify-practical-guides-handler.mjs
+          TABLET_USEFULNESS_PROOF=1 BASELINE_WORKER=/tmp/practical-baseline/shift-coach/worker.mjs node scripts/verify-practical-guides-handler.mjs
+      - name: Verify tablet routine in the full browser
+        run: |
+          npx playwright install --with-deps chromium
+          node --test tests/tablet-routine.test.mjs
+          node tests/tablet-routine-browser.mjs
       - name: Verify current destinations and candidate documents
         run: node scripts/verify-practical-guides.mjs
       - uses: actions/upload-artifact@v4

@@ -7,7 +7,7 @@ export function validateRolloutPhotoComposition(c){
  execFileSync('git',['merge-base','--is-ancestor',c.base,c.source]);execFileSync('git',['merge-base','--is-ancestor',c.source,'HEAD']);
  assert.deepEqual(execFileSync('git',['diff','--name-only',c.base,c.source],{encoding:'utf8'}).trim().split('\n').filter(Boolean).sort(),ROLLOUT_PHOTO_PATHS,'Exact sign-in photo-withdrawal payload required');
 }
-import {FOLLOW_PATHS,followPinnedRef,followHistoricalRead,validateFollowComposition} from './seo-follow-through-scope.mjs';
+import {usefulnessPinnedRef,FOLLOW_PATHS,followPinnedRef,followHistoricalRead,validateFollowComposition} from './seo-follow-through-scope.mjs';
 import {sitewidePinnedRef,sitewideHistoricalRead,validateSitewideComposition} from './sitewide-seo-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -76,7 +76,7 @@ export function validateFit300(){
  const coach=JSON.parse(readFileSync('shift-coach/release-manifest.json'));
  const reload=coach.acceptanceReloadComposition;
  const currentRead=(ref,p)=>git('rev-parse',ref+':'+p);
- const photo=coach.rolloutPhotoComposition;validateRolloutPhotoComposition(photo);const repairPin=p=>photo?.watchComposition?.paths.includes(p)?photo.watchComposition.source:photo?.paths.includes(p)?photo.source:null;
+ const photo=coach.rolloutPhotoComposition;validateRolloutPhotoComposition(photo);const repairPin=p=>usefulnessPinnedRef(coach.seoFollowThroughComposition,p)||(photo?.watchComposition?.paths.includes(p)?photo.watchComposition.source:photo?.paths.includes(p)?photo.source:null);
  const follow=coach.seoFollowThroughComposition;if(follow){validateFollowComposition(follow);for(const p of FOLLOW_PATHS)assert.equal(currentRead('HEAD',p),currentRead(repairPin(p)||followPinnedRef(follow,p),p),'Owner-approved SEO v3 source drift: '+p);}
  const sitewide=coach.sitewideSeoComposition;if(sitewide){validateSitewideComposition(sitewide);for(const p of [...sitewide.payloadPaths,...sitewide.maintenancePaths])assert.equal(currentRead('HEAD',p),currentRead(repairPin(p)||followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p),p),'Coaching release source drift (site-wide SEO): '+p);}
  const read=sitewideHistoricalRead(followHistoricalRead(currentRead,follow),sitewide);
