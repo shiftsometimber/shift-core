@@ -27,3 +27,13 @@ export function originalFollowThroughPreservation(source){
  for(const exact of [imported,composed])assert(source.split(exact).length-1<=1,'Duplicate SEO v3 source integration');
  return source.replace(imported,'').replace(composed,'restoreStoppingCitation(path,body,{required:Boolean(before)})');
 }
+
+const PWA_READ_HELPER="// Three bounded attempts for complete GET reads. Assertions and POST origin\n// probes below retain their original behaviour and are never retried.\nasync function readPublicPage(url){\n for(let attempt=0;attempt<3;attempt++){\n  try{\n   const response=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(30000)});\n   return {response,body:await response.text()};\n  }catch(error){if(attempt===2)throw error;}\n  await new Promise(resolve=>setTimeout(resolve,1000));\n }\n}\n";
+const PWA_RETRY_READ="const {response:r,body}=await readPublicPage(origin+path);assert.equal(r.status,200,path);";
+const PWA_ORIGINAL_READ="const r=await fetch(origin+path);assert.equal(r.status,200,path);const body=await r.text();";
+export function originalPwaLiveReadVerifier(source){
+ if(!source.includes(PWA_READ_HELPER))return source;
+ assert.equal(source.split(PWA_READ_HELPER).length,2,'Exactly one PWA read helper required');
+ assert.equal(source.split(PWA_RETRY_READ).length,3,'Exactly two bounded PWA GET integrations required');
+ return source.replace(PWA_READ_HELPER,'').replaceAll(PWA_RETRY_READ,PWA_ORIGINAL_READ);
+}
