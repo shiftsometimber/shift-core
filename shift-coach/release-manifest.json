@@ -51,6 +51,7 @@
     "editorial/book-voice/edits.json",
     "editorial/book-voice/live.cjs",
     "editorial/book-voice/payload.json",
+    "editorial/five-articles/proof.mjs",
     "editorial/source-review-20261004/build.mjs",
     "editorial/source-review-20261004/build.test.mjs",
     "editorial/source-review-20261004/corrections.json",
@@ -116,6 +117,7 @@
     "release/public-wording-scope.mjs",
     "release/query-log-redaction.mjs",
     "release/runtime-rollback-guard.mjs",
+    "release/seo-follow-through-preservation.mjs",
     "release/seo-follow-through-scope.mjs",
     "release/shift-ai-scope.mjs",
     "release/sitewide-seo-scope.mjs",
@@ -440,7 +442,7 @@
   "seoFollowThroughComposition": {
     "proof": "SITEWIDE_SEO_OWNER_APPROVED_V3",
     "base": "b4392ca89d9388352c0b29117488d44e9886c6c1",
-    "payloadSource": "98220aae8b1c7135e43d1e100b32e6895eec7b34",
+    "payloadSource": "c72474347df03dd1e55178721be02ad85bf80889",
     "payloadPaths": [
       "ask-timber-v1.js",
       "public-seo-follow-through.mjs",
@@ -458,7 +460,12 @@
       "tests/sitewide-seo-release.test.mjs",
       "tests/fixtures/seo-public-articles.json",
       "scripts/b1-release-scope.mjs",
-      "scripts/verify-knowledge-headings.cjs"
+      "scripts/verify-knowledge-headings.cjs",
+      "release/seo-follow-through-preservation.mjs",
+      "editorial/five-articles/proof.mjs",
+      "member-experience/public-preservation.mjs",
+      "scripts/verify-public-continuity-live.mjs",
+      "scripts/verify-six-topic-seo.mjs"
     ],
     "maintenanceSource": "cb283d0a26536de22145f4b6b146835bc13899a4",
     "ownerApproval": {

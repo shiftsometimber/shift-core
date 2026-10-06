@@ -1,3 +1,4 @@
+import {preserveFollowThrough} from '../release/seo-follow-through-preservation.mjs';
 import assert from 'node:assert/strict';
 import {execFile} from 'node:child_process';
 import {promisify} from 'node:util';
@@ -12,7 +13,7 @@ const out='six-topic-seo-proof';mkdirSync(out,{recursive:true});
 const proof={checkedAt:new Date().toISOString(),mode:live?'live':'candidate',pages:[],links:[],failures:[],searchRankingClaim:false};
 const paths=Object.keys(SIX_TOPIC_SEO),targets=new Set();
 await Promise.all(paths.map(async path=>{try{
- const before=await read(path),html=live?before:withSixTopicGuides(before,path);
+ const before=preserveFollowThrough(path,Buffer.from(await read(path)),{required:live}).toString(),html=live?before:withSixTopicGuides(before,path);
  assert(html.includes(`data-six-topic-seo="${path}"`),'Topic section absent');
  assert.equal((html.match(/<h1\b/gi)||[]).length,1,'Single existing H1');
  assert.equal((html.match(/rel=["']canonical["']/gi)||[]).length,1,'Single canonical');

@@ -31,3 +31,21 @@ test('short public stream prompt cannot replace clinical, private, historical or
  for(const patch of [{journeyUsed:true},{history:[{role:'user',content:'saved'}]},{message:'What is Life Back? Tell me my dose'},{message:'Should I stop Wegovy?'},{evidence:[{...source,reviewState:'external_unreviewed'}]},{evidence:[{...source,citation:'https://shiftsometimber.co.uk/other'}]},{evidence:[source,source]}])assert.equal(publicSiteStreamMessages({...args,...patch}),original);
  assert.equal(publicSiteStreamMessages({...args,message:'WHAT  IS LIFE BACK'}).length,2);
 });
+
+import {preserveFollowThrough} from '../release/seo-follow-through-preservation.mjs';
+test('historical preservation reverses only exact approved paragraphs and rejects missing or duplicate additions',()=>{
+ for(const c of [...FOLLOW_THROUGH.contextLinks,...FOLLOW_THROUGH.ownerCopy]){
+  const before=Buffer.from('<main>'+c.before+'</main>'),after=Buffer.from('<main>'+c.after+'</main>');
+  // Some pages own multiple paragraphs: use their complete reviewed fixture.
+  const changes=[...FOLLOW_THROUGH.contextLinks,...FOLLOW_THROUGH.ownerCopy].filter(x=>x.path===c.path);
+  const archive=FOLLOW_THROUGH.restoreArchives.includes(c.path),oldHead=archive?'<meta name="robots" content="noindex,follow">':'',newHead=archive?'<meta name="robots" content="index,follow">':'';
+  const old=Buffer.from(oldHead+'<main>'+changes.map(x=>x.before).join('')+'</main>'),current=Buffer.from(newHead+'<main>'+changes.map(x=>x.after).join('')+'</main>');
+  assert.equal(preserveFollowThrough(c.path,current,{required:true}).toString(),old.toString());
+  assert.equal(preserveFollowThrough(c.path,old).toString(),old.toString());
+  assert.throws(()=>preserveFollowThrough(c.path,old,{required:true}));
+  assert.throws(()=>preserveFollowThrough(c.path,Buffer.from(current.toString().replace(c.after,c.after+c.after)),{required:true}));
+  const extra=Buffer.from(current.toString().replace('</main>','<p>Unapproved additional copy remains visible to the hash gate.</p></main>'));
+  assert.notEqual(preserveFollowThrough(c.path,extra,{required:true}).toString(),old.toString());
+ }
+ const privateBody=Buffer.from('<main>Private fixture</main>');assert.equal(preserveFollowThrough('/member/dashboard',privateBody,{required:true}),privateBody);
+});

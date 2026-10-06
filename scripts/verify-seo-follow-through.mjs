@@ -19,4 +19,4 @@ let next=0;await Promise.all(Array.from({length:6},async()=>{while(next<paths.le
 }}));
 assert.equal(rows.filter(x=>x.owned).length,155);assert.equal(rows.filter(x=>x.restored).length,4);assert.equal(ARCHIVES.length,167);
 fs.mkdirSync('seo-follow-through-proof',{recursive:true});fs.writeFileSync('seo-follow-through-proof/full-handler.json',JSON.stringify(rows.toSorted((a,b)=>a.path.localeCompare(b.path)),null,2));
-console.log('SEO_FOLLOW_THROUGH_PROOF '+JSON.stringify({kind:'owner_approved_seo_v3',payloadSource:'98220aae8b1c7135e43d1e100b32e6895eec7b34',base:'b4392ca89d9388352c0b29117488d44e9886c6c1',fullHandlerResponses:paths.length,ownedPages:155,contextualLinks:191,archivePagesPreserved:167,indexRestorations:4,databaseWrites:0}));
+console.log('SEO_FOLLOW_THROUGH_PROOF '+JSON.stringify({kind:'owner_approved_seo_v3',payloadSource:'c72474347df03dd1e55178721be02ad85bf80889',base:'b4392ca89d9388352c0b29117488d44e9886c6c1',fullHandlerResponses:paths.length,ownedPages:155,contextualLinks:191,archivePagesPreserved:167,indexRestorations:4,databaseWrites:0}));

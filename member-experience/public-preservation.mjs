@@ -1,3 +1,4 @@
+import {preserveFollowThrough} from '../release/seo-follow-through-preservation.mjs';
 import {preserveSixTopicSeo} from '../release/six-topic-seo-preservation.mjs';
 import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';
 import {restoreBookVoiceCopy} from '../book-voice.mjs';
@@ -52,7 +53,7 @@ for(const path of paths){
  const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,path+' must return HTTP 200');
  const body=Buffer.from(await r.arrayBuffer());
- const reviewedSource=restoreStoppingCitation(path,body,{required:Boolean(before)});
+ const reviewedSource=restoreStoppingCitation(path,preserveFollowThrough(path,body,{required:Boolean(before)}),{required:Boolean(before)});
  const footerPreserved=Buffer.from(applySharedFooter(restoreBookVoiceCopy(path,restoreTrustCentre(path,reviewedSource.toString('utf8'),{required:Boolean(before)}))));
  const pwaPreserved=preservePwaPresentation(path,preserveApprovedStartup(path,preserveGrowthCopy(path,footerPreserved,{required:Boolean(before)})),{required:Boolean(before)});
  let preserved=preservePassportHead(path,preserveContinuityContent(path,preserveHealthCardOrder(path,preserveTickerVersion(preserveBabyLoveKnowledge(path,preserveOralKnowledge(path,pwaPreserved),{required:Boolean(before)}))),{required:Boolean(before)}),{required:Boolean(before)&&passportEnabled});

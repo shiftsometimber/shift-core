@@ -1,3 +1,4 @@
+import {applyFollowThrough} from '../../public-seo-follow-through.mjs';
 import assert from 'node:assert/strict';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -19,7 +20,7 @@ function checkDocument(html,path){
  const canonical=[...html.matchAll(/<link\b[^>]*>/gi)].map(m=>attributes(m[0])).filter(x=>(x.rel||'').toLowerCase()==='canonical');assert.equal(canonical.length,1);assert.equal(canonical[0].href,origin+path);
  const nodes=[];for(const m of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)){if(attributes(m[0].split('>')[0]).type==='application/ld+json'){const obj=JSON.parse(m[1]);nodes.push(...(obj['@graph']||[obj]))}}
  const article=nodes.filter(n=>n['@type']==='Article');assert.equal(article.length,1);assert.equal(article[0].headline,ARTICLES[path].title);assert.equal(article[0].dateModified,UPDATED);assert.equal(article[0].reviewedBy,undefined);assert.ok(!nodes.some(n=>n['@type']==='FAQPage'));
- const rewritten=rewriteArticle(html,path);assert.equal(main(html),live?expectedSeo794ArticleBody(main(rewritten),path):main(rewritten),'Article body must match exact approved source and the approved direct Good to Talk link');
+ const rewritten=rewriteArticle(html,path);assert.equal(main(html),applyFollowThrough(live?expectedSeo794ArticleBody(main(rewritten),path):main(rewritten),path),'Article body must match exact approved source, direct Good to Talk link and approved SEO v3 links');
  const ids=[...main(html).matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size);for(const m of main(html).matchAll(/href="#([^"]+)"/g))assert.ok(ids.includes(m[1]),'Missing anchor '+m[1]);
  return {title:ARTICLES[path].title,canonical:canonical[0].href,articleSha256:hash(main(html)),wordCount:main(html).replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length,sourceCount:ARTICLES[path].sources.length,metadataUnique:true,bodyMatchesSource:true};
 }
