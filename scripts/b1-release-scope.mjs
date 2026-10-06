@@ -1,4 +1,4 @@
-import {SIX_TOPIC_SEO_SOURCE,validateSixTopicSeoSource} from '../release/six-topic-seo-scope.mjs';
+import {PRACTICAL_GUIDES_SOURCE,validateSixTopicSeoSource} from '../release/six-topic-seo-scope.mjs';
 import {FIT300_PATHS,READONLY_ORGANIC_PATHS,validateFit300} from '../release/fit-300-scope.mjs';
 import {RECIPE_IMAGE_PATHS,validateRecipeImages} from '../release/recipe-image-scope.mjs';
 import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,watchCurrentSource,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
@@ -139,7 +139,7 @@ const HEADING_CANDIDATE='90b1e29db85591b84dec642c3304641bc9545529';
 const HEADING_PATHS=['knowledge-heading-repair.mjs','public-seo-closeout.mjs','worker-entry-v6.js','preview/knowledge-heading/worker.mjs','preview/knowledge-heading/wrangler.jsonc','scripts/verify-knowledge-headings.cjs','.github/workflows/knowledge-heading-preview.yml'];
 function verifyHeadingRepair(){
  git('merge-base','--is-ancestor',HEADING_CANDIDATE,'HEAD');
- for(const path of HEADING_PATHS){if(path==='worker-entry-v6.js')validateGrowthEntry(execFileSync('git',['show',HEADING_CANDIDATE+':'+path],{encoding:'utf8'}),execFileSync('git',['show','HEAD:'+path],{encoding:'utf8'}));else assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',(path==='public-seo-closeout.mjs'?SIX_TOPIC_SEO_SOURCE:HEADING_CANDIDATE)+':'+path),'Heading preview source drift: '+path);}
+ for(const path of HEADING_PATHS){if(path==='worker-entry-v6.js')validateGrowthEntry(execFileSync('git',['show',HEADING_CANDIDATE+':'+path],{encoding:'utf8'}),execFileSync('git',['show','HEAD:'+path],{encoding:'utf8'}));else assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',(path==='public-seo-closeout.mjs'?PRACTICAL_GUIDES_SOURCE:HEADING_CANDIDATE)+':'+path),'Heading preview source drift: '+path);}
 }
 export function verifyScope(){
  validateFit300();
