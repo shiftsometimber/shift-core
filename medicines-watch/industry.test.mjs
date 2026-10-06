@@ -427,7 +427,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,97);assert.equal(sources.length,171);
+ assert.equal(medicines.length,6);assert.equal(industry.length,97);assert.equal(sources.length,172);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,103);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
@@ -1314,3 +1314,20 @@ test('oral ASC36 promotion stays formulation-specific and does not invent regist
 });
 
 test("710GO keeps sponsor dosing separate from animal findings and unknown registry",()=>{const e=industry.find(e=>e.id==='710go');assert.ok(e);assert.equal(e.clinicalApproval,null);assert.deepEqual(e.sourceIds,[]);assert.match(e.stage,/Sponsor-reported first dosing in Phase 1/);assert.match(e.limitations,/no human trial results/);assert.match(e.limitations,/registry discovery remains incomplete/);assert.match(e.limitations,/preclinical studies/);assert.match(e.additionalEvidence[0].checkScope,/HTTP 403/);assert.equal(e.additionalEvidence[0].sourcePublishedAt,'2026-05-28');assert.equal(e.additionalEvidence[0].sourceUpdatedAt,null);const html=industryMarkup({},new URLSearchParams({q:'710GO'}));assert.match(html,/710GO/);assert.match(html,/prnewswire.com/);});
+
+test('SYNCHRONIZE-JP keeps sponsor results separate from the registry lifecycle and UK status',()=>{
+ const entry=industry.find(e=>e.id==='survodutide');
+ const registry=registrySources.find(s=>s.id==='registry-nct06176365');
+ assert.ok(entry);assert.ok(registry);assert.equal(entry.clinicalApproval,null);
+ assert.match(entry.stage,/Japanese Phase 3 sponsor results reported/);
+ assert.match(entry.summary,/SYNCHRONIZE-JP/);assert.match(entry.summary,/274 participants/);
+ assert.match(entry.summary,/-12\.5%/);assert.match(entry.summary,/-13\.1%/);
+ assert.match(entry.limitations,/sponsor-reported conference results/);
+ assert.match(entry.limitations,/MRI findings concern a subset/);
+ assert.match(entry.limitations,/do not establish muscle strength, function or a muscle-preservation benefit/);
+ assert.match(entry.limitations,/must not be treated as a UK indication/);
+ assert.equal(registry.lifecycle.status,'COMPLETED');assert.equal(registry.lifecycle.enrollment.type,'ACTUAL');assert.equal(registry.lifecycle.hasResults,false);
+ assert.equal(registry.sourcePublishedAt,'2023-12-19');assert.equal(registry.sourceUpdatedAt,'2026-04-30');
+ assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ const sponsor=entry.additionalEvidence.find(s=>s.url==='https://www.boehringer-ingelheim.com/jp/press-26-1005');assert.ok(sponsor);assert.match(sponsor.checkScope,/HTTP 403/);
+});

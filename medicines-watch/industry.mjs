@@ -1,4 +1,5 @@
 import kalohexis710go from './reviews/2026-10-05-authorised-710go.json' with {type:'json'};
+import survodutideSynchronizeJp from './reviews/2026-10-06-authorised-survodutide-synchronize-jp.json' with {type:'json'};
 import evidenceDesk from './reviews/2026-10-03-evidence-desk-zp6590.json' with {type:'json'};
 import srsd384Publication from './reviews/2026-10-04-authorised-srsd384.json' with {type:'json'};
 import fractylModalityGap from './reviews/2026-10-04-authorised-fractyl-modality-gap.json' with {type:'json'};
@@ -292,4 +293,14 @@ export const industry = [...originalIndustry.map(e => {
   const change=nct05713799Correction.changes.find(c=>c.id===e.id);
   return change?{...e,...change.fields,reviewedAt:nct05713799Correction.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]}:e;
+ })
+ .map(e=>{
+  const change=survodutideSynchronizeJp.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  const {summaryToAppend,limitationsToAppend,...fields}=change.fields;
+  return {...e,...fields,
+   ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
+   ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
+   reviewedAt:survodutideSynchronizeJp.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
  });

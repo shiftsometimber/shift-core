@@ -1,0 +1,169 @@
+{
+  "reviewedAt": "2026-10-06T00:40:21Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Update the existing survodutide programme after complete review of the sponsor's 5 October SYNCHRONIZE-JP announcement and the exact sponsor-submitted registry lifecycle. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "changes": [
+    {
+      "id": "survodutide",
+      "fields": {
+        "stage": "Phase 3 obesity, MASH and type 2 diabetes programmes; Japanese Phase 3 sponsor results reported",
+        "summaryToAppend": "Boehringer Ingelheim's 5 October 2026 Japanese announcement reports SYNCHRONIZE-JP results after 76 weeks in 274 participants. It reports mean body-weight changes of -12.5% with 3.6 mg and -13.1% with 6.0 mg versus -1.6% with placebo. In a separate MRI-assessed subset it also reports reductions in visceral and liver fat. The sponsor-submitted NCT06176365 record is completed after an actual 16 January 2024 start and 3 December 2025 completion, but has no registry-posted results.",
+        "limitationsToAppend": "These are sponsor-reported conference results, not ClinicalTrials.gov-posted outcomes or a reviewed full results paper. The MRI findings concern a subset and must not be generalized to every participant; changes in fat measures do not establish muscle strength, function or a muscle-preservation benefit. The Japanese population and local obesity-disease criteria must not be treated as a UK indication. Completed research and reported group averages do not establish individual benefit, UK marketing authorisation, NICE or NHS access, UK supply, an approved dose or clinical approval."
+      },
+      "additionalEvidence": [
+        {
+          "title": "Boehringer Ingelheim Japan: SYNCHRONIZE-JP Phase III results",
+          "url": "https://www.boehringer-ingelheim.com/jp/press-26-1005",
+          "sourcePublishedAt": "2026-10-05",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-06T00:40:21Z",
+          "checkScope": "Original sponsor announcement read for the Japanese Phase III population, completed 76-week comparison, reported group-level weight and MRI-subset findings and gastrointestinal adverse-event summary. Direct retrieval returned HTTP 403, so this page is not assigned an automatic green baseline."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT06176365: SYNCHRONIZE-JP",
+          "url": "https://clinicaltrials.gov/study/NCT06176365",
+          "sourcePublishedAt": "2023-12-19",
+          "sourceUpdatedAt": "2026-04-30",
+          "reviewedAt": "2026-10-06T00:40:21Z",
+          "checkScope": "Automatic record-status checks for identity, phase, completed status, typed dates, actual enrolment and posted-results state; no assessment of sponsor-reported clinical outcomes."
+        }
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct06176365",
+      "nctId": "NCT06176365",
+      "title": "ClinicalTrials.gov NCT06176365: SYNCHRONIZE-JP",
+      "url": "https://clinicaltrials.gov/study/NCT06176365",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06176365",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT06176365", "Boehringer Ingelheim"],
+      "reviewedAt": "2026-10-06T00:40:21Z",
+      "sourcePublishedAt": "2023-12-19",
+      "sourceUpdatedAt": "2026-04-30",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks; no assessment of sponsor-reported clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT06176365",
+        "title": "A Study to Test Whether Survodutide Helps Japanese People Living With Obesity Disease",
+        "sponsor": "Boehringer Ingelheim",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": ["PHASE3"],
+        "enrollment": {"count": 274, "type": "ACTUAL"},
+        "start": {"date": "2024-01-16", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2025-12-03", "type": "ACTUAL"},
+        "completion": {"date": "2025-12-03", "type": "ACTUAL"},
+        "firstPosted": {"date": "2023-12-19", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-04-30", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["survodutide"],
+      "rawResponseSha256": "747a8409902fb797a812c12fd5c656263278ba0d47e41b5750d473ac9d066adb",
+      "reviewedFingerprint": "c597c75b139b453188e091715e00f0dfa925d84b23c467fe2a3136f973bb45dc"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://www.boehringer-ingelheim.com/jp/press-26-1005",
+      "publicationDate": "2026-10-05",
+      "updateDate": null,
+      "reviewedAt": "2026-10-06T00:40:21Z",
+      "outcome": "Original Japanese sponsor announcement read for the completed 76-week Phase III comparison, reported body-weight findings, MRI-subset visceral- and liver-fat findings and gastrointestinal adverse-event summary. It does not establish UK authorisation, access, supply, individual benefit or clinical approval."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06176365",
+      "publicationDate": "2023-12-19",
+      "updateDate": "2026-04-30",
+      "reviewedAt": "2026-10-06T00:40:21Z",
+      "outcome": "Complete primary API body read: completed Phase III; 274 actual participants; actual 16 January 2024 start and 3 December 2025 primary completion/completion; no registry-posted results."
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-06T00:36:00Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 171,
+    "currentSources": 170,
+    "overdueReviews": 0,
+    "lastAttemptAt": "2026-10-06T00:30:59.623Z",
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "checkStatus": "check_delayed",
+        "reviewStatus": "verification_pending",
+        "reasons": ["source_not_verified", "last_check_failed"],
+        "reviewedAt": "2026-10-03T20:05:13.956Z",
+        "lastAttemptAt": "2026-10-06T00:30:59.623Z",
+        "lastSuccessAt": null,
+        "error": "http_403",
+        "httpStatus": 403
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only public response verifies configured-source monitoring only. It does not renew factual reviews, approve changed wording or prove complete industry coverage. The Zealand 403 remains explicit."
+  },
+  "discoveryPass": {
+    "method": "A separate configured-source pass checked availability, changes, withdrawals, overdue reviews and monitor failures. Current-date and undated topic searches then covered weight-management medicines, peptides, combinations, muscle-preservation claims, specialist indications, early and late trials, pauses and discontinuations across named and additional developers.",
+    "included": "The existing survodutide programme did not contain SYNCHRONIZE-JP or NCT06176365. The 5 October sponsor result changes the evidence summary and the complete registry lifecycle supports one new monitored record without adding a duplicate programme.",
+    "notDuplicated": "PR #851 and subsequent dated Watch receipts were inspected. No open Watch review pull request contains this Japanese result or registry record.",
+    "incompleteChecks": [
+      "Search indexing can lag and selected searches cannot exclude older omissions, unannounced programmes or additional international developers.",
+      "ClinicalTrials.gov has no posted results for NCT06176365. The sponsor announcement is not substituted for a registry results module or full results paper.",
+      "No new MHRA authorisation, NICE recommendation, NHS access decision or verified UK supply change was established."
+    ],
+    "failedChecks": [
+      {
+        "url": "https://www.boehringer-ingelheim.com/jp/press-26-1005",
+        "attemptedAt": "2026-10-06T00:40:26Z",
+        "outcome": "Complete primary announcement was readable through web retrieval, but direct retrieval returned HTTP 403.",
+        "impact": "No automatic fingerprint or green monitoring baseline is created for the sponsor page; the exact registry lifecycle is monitored separately."
+      }
+    ],
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "widerBefore": 97,
+    "widerAfter": 97,
+    "totalBefore": 103,
+    "totalAfter": 103,
+    "configuredSourcesBefore": 171,
+    "configuredSourcesAfter": 172,
+    "trialRecordsBefore": 109,
+    "trialRecordsAfter": 110
+  },
+  "retrievalEvidence": {
+    "registry": {
+      "retrievedAt": "2026-10-06T00:40:21Z",
+      "httpStatus": 200,
+      "responseSha256": "747a8409902fb797a812c12fd5c656263278ba0d47e41b5750d473ac9d066adb",
+      "responseBytes": 20227
+    },
+    "sponsorPage": {
+      "retrievedAt": "2026-10-06T00:40:26Z",
+      "httpStatus": 403,
+      "responseBytes": 959,
+      "webRetrievalReadable": true
+    }
+  },
+  "deploymentState": {
+    "mainCommit": "4b9065dfdb50cf060cb2d1facb7a1b8594e47109",
+    "observedAt": "2026-10-06T00:36:00Z",
+    "pendingEarlierPublication": "The merged 710GO programme is still absent from the live page, which remains at 102 programmes. This independent supported correction does not clear or hide that production blocker."
+  },
+  "nextAction": "Run the full Watch and release gates, publish the exact passing head through the guarded production workflow, and verify 710GO, the updated survodutide evidence, the Treatments entry and SELECT-only health response on the actual live site."
+}
