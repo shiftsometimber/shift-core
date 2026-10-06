@@ -137,6 +137,7 @@
     "scripts/verify-practical-guides.mjs",
     "scripts/verify-public-continuity-live.mjs",
     "scripts/verify-seo-follow-through.mjs",
+    "scripts/verify-shift-take-live.mjs",
     "scripts/verify-sitewide-seo.mjs",
     "scripts/verify-six-topic-seo.mjs",
     "shift-coach/README.md",
@@ -474,9 +475,10 @@
       "tests/seo794-preservation.test.mjs",
       "release/book-voice-scope.mjs",
       "tests/book-voice-release.test.mjs",
-      "shift-coach/release.test.mjs"
+      "shift-coach/release.test.mjs",
+      "scripts/verify-shift-take-live.mjs"
     ],
-    "maintenanceSource": "5892dcac47b82b2f744ec0606c269698a37e7644",
+    "maintenanceSource": "8c5d9c50ba2262545ce3e0f1f14ccd77e056b159",
     "ownerApproval": {
       "owner": "Matt O’Brien",
       "at": "2026-10-06T14:18:48Z",
