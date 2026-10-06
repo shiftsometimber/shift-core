@@ -60,6 +60,7 @@ import coreTrialLifecycle from './reviews/2026-10-06-authorised-core-trial-lifec
 import gubUcn2Mbl949 from './reviews/2026-10-06-authorised-gub-ucn2-mbl949.json' with {type:'json'};
 import vikingRhythmRegistryReview from './reviews/2026-10-06-authorised-viking-rhythm-registry-review.json' with {type:'json'};
 import zenagamtideAmbience from './reviews/2026-10-06-authorised-zenagamtide-ambience.json' with {type:'json'};
+import gs4571TirzepatideMenopause from './reviews/2026-10-06-authorised-gs4571-tirzepatide-menopause.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('new semaglutide specialist and sarcopenia records remain bounded research evidence',()=>{
  assert.equal(semaglutideSpecialistSarcopeniaWave.publicationStatus,'owner_authorised_factual_publication');
@@ -467,8 +468,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,101);assert.equal(sources.length,182);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,107);
+ assert.equal(medicines.length,6);assert.equal(industry.length,103);assert.equal(sources.length,184);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,109);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -976,7 +977,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,101);
+ assert.equal(industry.length,103);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -1489,4 +1490,33 @@ test('Viking, Rhythm and changed registry evidence stays formulation and indicat
  assert.deepEqual(pilot.lifecycle.start,{date:'2026-10-11',type:'ESTIMATED'});assert.equal(pilot.lifecycle.hasResults,false);
  assert.equal(vikingRhythmRegistryReview.configuredSourcePass.reviewRenewals,false);
  assert.equal(vikingRhythmRegistryReview.discoveryPass.industryComplete,false);
+});
+
+test('GS-4571 and the tirzepatide menopause pilot remain bounded research evidence',()=>{
+ assert.equal(gs4571TirzepatideMenopause.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(gs4571TirzepatideMenopause.clinicalApproval,null);
+ assert.equal(gs4571TirzepatideMenopause.industryComplete,false);
+ assert.deepEqual(gs4571TirzepatideMenopause.catalogueCounts,{detailedBefore:6,detailedAfter:6,widerBefore:101,widerAfter:103,totalBefore:107,totalAfter:109,configuredSourcesBefore:182,configuredSourcesAfter:184,trialRecordsBefore:117,trialRecordsAfter:119});
+ const gs=industry.find(entry=>entry.id==='gs4571');
+ assert.ok(gs);assert.equal(gs.group,'research');
+ assert.match(gs.stage,/Recruiting oral Phase 1/);
+ assert.match(gs.summary,/actual 28 August 2024 start/);
+ assert.match(gs.limitations,/No results are posted/);
+ assert.match(gs.limitations,/does not establish weight loss/);
+ assert.match(gs.ukAuthorisation,/does not establish UK marketing authorisation/);
+ const menopause=industry.find(entry=>entry.id==='tirzepatide-menopause-research');
+ assert.ok(menopause);assert.equal(menopause.group,'research');
+ assert.match(menopause.stage,/Recruiting Phase 4 pilot/);
+ assert.match(menopause.summary,/40 estimated post-menopausal women/);
+ assert.match(menopause.limitations,/does not mean that tirzepatide is approved for vasomotor symptoms or biological ageing/);
+ assert.match(menopause.ukAuthorisation,/does not establish a UK indication/);
+ for(const source of gs4571TirzepatideMenopause.registrySources){
+  assert.ok(registrySources.some(item=>item.id===source.id));
+  assert.equal(source.lifecycle.status,'RECRUITING');
+  assert.equal(source.lifecycle.start.type,'ACTUAL');
+  assert.equal(source.lifecycle.hasResults,false);
+  assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ }
+ assert.equal(gs4571TirzepatideMenopause.configuredSourcePass.reviewRenewals,false);
+ assert.equal(gs4571TirzepatideMenopause.discoveryPass.industryComplete,false);
 });

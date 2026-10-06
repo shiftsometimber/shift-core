@@ -27,7 +27,7 @@ test('ZP6590 review preserves conflicts, estimates and absent results',()=>{
  assert.equal(s.lifecycle.status,'RECRUITING');assert.deepEqual(s.lifecycle.start,{date:'2026-07-09',type:'ACTUAL'});assert.equal(s.lifecycle.hasResults,false);assert.equal(entry.clinicalApproval,null);assert.match(entry.limitations,/next step/);assert.match(entry.limitations,/not human combination benefits/);
  assert.match(registryEvidenceMarkup(entry.additionalEvidence[0],{}),/Last reviewed record: Recruiting/);assert.match(registryEvidenceMarkup(entry.additionalEvidence[0],{}),/6 September 2027 \(estimated\)/);
  assert.equal(receipt.monitorObservationsSeeded,false);assert.equal(receipt.industryComplete,false);assert.match(receipt.discovery.rejectedLeads[0].outcome,/eloralintide/);
- assert.equal(medicines.length+industry.length,107);assert.equal(sources.length,182);
+ assert.equal(medicines.length+industry.length,109);assert.equal(sources.length,184);
 });
 test('topic discovery requires dated and undated attempts; failure is never completion',()=>{
  const date=new Date(now),plan=topicQueriesForDate(date);assert.equal(plan.length,discoveryTopics.length*2);assert.ok(plan.every(q=>!q.q.includes('site:')));

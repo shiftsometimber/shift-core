@@ -10,8 +10,8 @@ const fingerprint=data=>fingerprintSource(source,JSON.stringify(data),'applicati
 test('registry monitoring covers all exact linked records, with bounded reviewed identities',()=>{
  const links=[...medicines.flatMap(e=>e.evidenceLinks||[]),...industry.flatMap(e=>e.additionalEvidence||[])];
  const urls=new Set(links.filter(l=>/^https:\/\/clinicaltrials.gov\/study\/NCT\d{8}$/.test(l.url)).map(l=>l.url));
- assert.equal(urls.size,117);assert.deepEqual(new Set(registrySources.map(s=>s.url)),urls);
- assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);assert.equal(sources.length,182);
+ assert.equal(urls.size,119);assert.deepEqual(new Set(registrySources.map(s=>s.url)),urls);
+ assert.equal(new Set(sources.map(s=>s.id)).size,sources.length);assert.equal(sources.length,184);
  for(const s of registrySources){assert.match(s.reviewedFingerprint,/^[a-f0-9]{64}$/);assert.equal(s.nctId,s.lifecycle.nctId);assert.ok(s.reviewedAt);}
  const taldefgrobep=registrySources.find(s=>s.id==='registry-nct07281495');assert.ok(taldefgrobep);assert.equal(taldefgrobep.lifecycle.status,'ACTIVE_NOT_RECRUITING');assert.equal(taldefgrobep.lifecycle.completion.type,'ESTIMATED');assert.equal(taldefgrobep.lifecycle.hasResults,false);
  const attainMaintain=registrySources.find(s=>s.id==='registry-nct06584916');assert.ok(attainMaintain);assert.equal(attainMaintain.lifecycle.status,'COMPLETED');assert.equal(attainMaintain.lifecycle.completion.type,'ACTUAL');assert.equal(attainMaintain.lifecycle.hasResults,false);
