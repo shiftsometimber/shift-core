@@ -96,7 +96,10 @@ export function coachingHistoricalRef(ref,path){
  // These two metadata files compose the separately approved book-copy gate.
  // Their complete current bytes remain required by the coaching pin and app hashes.
  const composedBookGates=new Set(['release/growth-scope.mjs','release/home-banner-scope.mjs','release/watch-registry-wave-scope.mjs','tests/b1-release-scope.test.mjs','rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs']);
- return ref==='HEAD'&&COACH_BACKEND_PATHS.has(path)&&!composedBookGates.has(path)?COACH_BASE:ref;
+ const historical=ref==='HEAD'&&COACH_BACKEND_PATHS.has(path)&&!composedBookGates.has(path)?COACH_BASE:ref;
+ if(historical!=='HEAD')return historical;
+ const follow=JSON.parse(readFileSync(new URL('./release-manifest.json',import.meta.url),'utf8')).seoFollowThroughComposition;
+ return followHistoricalRead((r)=>r,follow)(historical,path);
 }
 export function validateCoachingSource(read,manifest){
  assert.equal(manifest.recordedMain,COACH_BASE);

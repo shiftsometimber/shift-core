@@ -466,7 +466,8 @@
       "member-experience/public-preservation.mjs",
       "scripts/verify-public-continuity-live.mjs",
       "scripts/verify-six-topic-seo.mjs",
-      "release/six-topic-seo-scope.mjs"
+      "release/six-topic-seo-scope.mjs",
+      "release/growth-scope.mjs"
     ],
     "maintenanceSource": "d6d4dedfe4c30b99cd77ce8e7c1add2718c153c0",
     "ownerApproval": {
