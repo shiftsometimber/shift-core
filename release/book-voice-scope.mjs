@@ -15,10 +15,11 @@ export function originalBookVoiceGate(path,source){
   const withdrawnPhotoImport="import {restoreTrustCentre,restoreStoppingCitation,withdrawWeightIllustrations} from '../shift-coach/public-trust-repair.mjs';\n";
   const priorTrustImport="import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';\n";
   const withdrawnPhotoPreservation=" // Apply only the exact already-withdrawn photo options to both comparison\n // sides. The rest of the complete sign-in document remains hash compared.\n if(path==='/member-login')preserved=Buffer.from(withdrawWeightIllustrations(preserved.toString('utf8')));\n";
+  if(source.includes('withdrawWeightIllustrations')){
   assert.equal(source.split(withdrawnPhotoImport).length-1,1,'Reviewed photo-withdrawal import changed');
   assert.equal(source.split(withdrawnPhotoPreservation).length-1,1,'Reviewed photo-withdrawal preservation changed');
   source=source.replace(withdrawnPhotoImport,priorTrustImport).replace(withdrawnPhotoPreservation,'');
-  source=source.replace("import {restoreTrustCentre,restoreStoppingCitation,withdrawWeightIllustrations} from '../shift-coach/public-trust-repair.mjs';\n","import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';\n").replace(" // Apply only the exact already-withdrawn photo options to both comparison\n // sides. The rest of the complete sign-in document remains hash compared.\n if(path==='/member-login')preserved=Buffer.from(withdrawWeightIllustrations(preserved.toString('utf8')));\n",'');
+  }
   source=originalSixTopicSeoPreservation(originalFollowThroughPreservation(source));
   source=source
    .replace("import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';\n",'')

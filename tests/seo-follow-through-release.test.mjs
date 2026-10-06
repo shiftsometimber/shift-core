@@ -85,3 +85,10 @@ test('combined SEO release pins exact conflict resolutions and preserves unrelat
  const c=JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition.integrationComposition;validateSeoIntegration(c);verifySeoIntegration(c);
  assert(SEO_INTEGRATION_PATHS.includes('shift-coach/worker.mjs'));assert.throws(()=>validateSeoIntegration({...c,proof:'arbitrary'}));assert.throws(()=>validateSeoIntegration({...c,paths:[...c.paths,'other']}));assert.throws(()=>validateSeoIntegration({...c,base:'4460ea56f931da4003ace68d5d404831c47e08f7'}));
 });
+
+import {originalBookVoiceGate} from '../release/book-voice-scope.mjs';
+test('photo-withdrawal historical normalisation retains old sources and rejects partial new signatures',()=>{
+ const old="import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';\n";
+ assert.doesNotThrow(()=>originalBookVoiceGate('member-experience/public-preservation.mjs',old));
+ assert.throws(()=>originalBookVoiceGate('member-experience/public-preservation.mjs',old.replace('restoreStoppingCitation','restoreStoppingCitation,withdrawWeightIllustrations')),/photo-withdrawal preservation changed/);
+});
