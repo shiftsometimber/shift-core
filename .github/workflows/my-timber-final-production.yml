@@ -2,7 +2,7 @@ name: My Timber Final Production Candidate
 
 on:
   push:
-    branches: [main, verification/member-design-20261002, verification/member-finish-20261002, release/internal-closeout-20261004]
+    branches: [verification/rollout-grub-20261006, main, verification/member-design-20261002, verification/member-finish-20261002, release/internal-closeout-20261004]
     paths:
       - 'my-timber-final-production.mjs'
       - 'release/app-member-live.mjs'
@@ -45,11 +45,11 @@ jobs:
           node --input-type=module - <<'NODE'
           import assert from 'node:assert/strict';
           import {execFileSync} from 'node:child_process';
-          const internal=process.env.GITHUB_REF==='refs/heads/release/internal-closeout-20261004',baseline=internal?'ccb669ea75837fd8c713a899a76956b2b3b5808a':'dc02728aaa6637e1e2570f66af83d594a4176f54',allowed=new Set(internal?["release/app-member-live.mjs","shift-coach/browser-proof.mjs",".github/workflows/my-timber-final-production.yml","my-timber-final-source-gate.mjs","shift-coach/release-manifest.json"]:["rendered-member-acceptance-support.mjs","tests/rendered-member-acceptance-support.test.mjs","health-passport/production-browser.mjs","my-timber-final-production.mjs",".github/workflows/rendered-member-production-acceptance.yml",".github/workflows/my-timber-final-production.yml","g2-014-progress-picture-premium-production.mjs","my-timber-final-source-gate.mjs","release/app-member-live.mjs"]);
+          const internal=process.env.GITHUB_REF==='refs/heads/release/internal-closeout-20261004',diagnostic=process.env.GITHUB_REF==='refs/heads/verification/rollout-grub-20261006',baseline=diagnostic?'6a7fd0b7d9baa226d100c74cc7bbd0c6ca155ee8':internal?'ccb669ea75837fd8c713a899a76956b2b3b5808a':'dc02728aaa6637e1e2570f66af83d594a4176f54',allowed=new Set(diagnostic?['my-timber-final-production.mjs','.github/workflows/my-timber-final-production.yml']:internal?["release/app-member-live.mjs","shift-coach/browser-proof.mjs",".github/workflows/my-timber-final-production.yml","my-timber-final-source-gate.mjs","shift-coach/release-manifest.json"]:["rendered-member-acceptance-support.mjs","tests/rendered-member-acceptance-support.test.mjs","health-passport/production-browser.mjs","my-timber-final-production.mjs",".github/workflows/rendered-member-production-acceptance.yml",".github/workflows/my-timber-final-production.yml","g2-014-progress-picture-premium-production.mjs","my-timber-final-source-gate.mjs","release/app-member-live.mjs"]);
 
           const changed=execFileSync('git',['diff','--name-only',baseline,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
           assert(changed.every(p=>allowed.has(p)),'Verification branch changes serving application source');
-          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+(internal?'37194594995':'36947732832'),{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});
+          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+(diagnostic?'37540568116':internal?'37194594995':'36947732832'),{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});
           assert(r.ok);const receipt=await r.json();assert.equal(receipt.head_sha,baseline);assert.equal(receipt.conclusion,'success');
           console.log('PASS unchanged serving source and exact prior successful production receipt before test authentication');
           NODE
@@ -58,7 +58,7 @@ jobs:
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
       - name: Install MP4 evidence encoder
-        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004')
+        if: github.ref != 'refs/heads/verification/rollout-grub-20261006' && ( github.event_name != 'push' || (github.ref == 'refs/heads/verification/rollout-grub-20261006' || github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004'))
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Acquire short-lived Shift commissioning identity
         id: oidc
@@ -69,7 +69,7 @@ jobs:
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
       - name: Prove activated Passport with synthetic production accounts
-        if: ${{ (github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004')) && hashFiles('health-passport/production-browser.mjs') != '' }}
+        if: ${{ github.ref != 'refs/heads/verification/rollout-grub-20261006' && (github.event_name != 'push' || (github.ref == 'refs/heads/verification/rollout-grub-20261006' || github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004')) && hashFiles('health-passport/production-browser.mjs') != '' }}
         env:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           PASSPORT_RELEASE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
@@ -91,7 +91,7 @@ jobs:
           MY_TIMBER_FINAL_EVIDENCE_DIR: my-timber-final-evidence
         run: node my-timber-google-play-screenshots.mjs
       - name: Record and prove Billy's live production journey
-        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004')
+        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/rollout-grub-20261006' || github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004')
         env:
           SHIFT_SITE_BASE: https://shiftsometimber.co.uk
           SHIFT_API_BASE: https://api.shiftsometimber.co.uk
@@ -99,7 +99,7 @@ jobs:
           MY_TIMBER_FINAL_EVIDENCE_DIR: my-timber-final-evidence
         run: node my-timber-final-production.mjs
       - name: Encode walkthrough video
-        if: github.event_name != 'push' || (github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004')
+        if: github.ref != 'refs/heads/verification/rollout-grub-20261006' && (github.event_name != 'push' || (github.ref == 'refs/heads/verification/rollout-grub-20261006' || github.ref == 'refs/heads/verification/member-design-20261002' || github.ref == 'refs/heads/verification/member-finish-20261002' || github.ref == 'refs/heads/release/internal-closeout-20261004'))
         run: ffmpeg -y -i my-timber-final-evidence/my-timber-billy-iphone.webm -movflags +faststart -pix_fmt yuv420p my-timber-final-evidence/my-timber-billy-iphone.mp4
       - name: Upload production candidate and phone video
         if: always()

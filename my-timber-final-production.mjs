@@ -15,7 +15,7 @@ const OUT=process.env.MY_TIMBER_FINAL_EVIDENCE_DIR||'my-timber-final-evidence';
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
 const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+structured-authrender-final-billy-${Date.now()}@gmail.com`;
-const report={proof:'MY_TIMBER_FINAL_PRODUCTION_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
+const report={proof:'MY_TIMBER_UNMODIFIED_POST_RELEASE_LIVE_MEMBER_DIAGNOSTIC_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
 const resourcePath=value=>{try{const u=new URL(value);return u.origin+u.pathname}catch{return '[no resource URL]'}};
 const pass=(name,detail='')=>report.checks.push({name,status:'PASS',detail});
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=My Timber final::${name} — ${detail}`)};
