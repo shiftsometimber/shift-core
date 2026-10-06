@@ -684,7 +684,7 @@
       "proof": "TABLET_USEFULNESS_OWNER_APPROVED_V1",
       "payloadBase": "d71db6bf5f9a4ce2339bd3948686b93500e9ff04",
       "payloadSource": "409f93612932ae9ff3715d04a8076dd4d1a9d3e7",
-      "maintenanceSource": "bac565953b77dabbdb23c204664a72a1a5a5d891",
+      "maintenanceSource": "385e29dc8379070cae72789bb8a22aa9d6d9659e",
       "payloadPaths": [
         "member-experience/tablet-routine-client.mjs",
         "member-experience/tablet-routine.mjs",
