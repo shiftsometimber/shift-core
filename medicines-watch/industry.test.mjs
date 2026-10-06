@@ -36,6 +36,7 @@ import wve007Publication from './reviews/2026-10-03-authorised-wve007.json' with
 import specialistRegistryWave from './reviews/2026-10-03-authorised-specialist-registry-wave.json' with {type:'json'};
 import leanMassEnergyFollowup from './reviews/2026-10-03-authorised-lean-mass-energy-followup.json' with {type:'json'};
 import vikingAntagFollowup from './reviews/2026-10-03-authorised-vk3019-at673.json' with {type:'json'};
+import at7687At673Correction from './reviews/2026-10-06-authorised-at7687-at673-alias.json' with {type:'json'};
 import srsd384Publication from './reviews/2026-10-04-authorised-srsd384.json' with {type:'json'};
 import fractylModalityGap from './reviews/2026-10-04-authorised-fractyl-modality-gap.json' with {type:'json'};
 import arteloMuscleGap from './reviews/2026-10-04-authorised-art2713-muscle-gap.json' with {type:'json'};
@@ -304,18 +305,53 @@ test('Viking and Antag follow-up separates actual starts, registry status and un
  assert.match(at.stage,/Active, not recruiting Phase 2/);
  assert.match(at.summary,/actual 19 June 2026 start/);
  assert.match(at.summary,/150 estimated participants/);
- assert.match(at.limitations,/does not identify AT673's mechanism/);
+ assert.match(at.name,/AT7687 \/ AT673/);
+ assert.match(at.summary,/sponsor-submitted registry uses the intervention code AT673/);
+ assert.match(at.limitations,/sources do not explain the naming difference/);
  assert.match(at.limitations,/do not establish additional weight loss/);
  for(const e of [vk,at]){
   assert.equal(e.sourceIds.length,0);
   assert.equal(e.clinicalApproval,null);
-  assert.equal(e.reviewedAt,vikingAntagFollowup.reviewedAt);
   for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k]);
   assert.match(industryMarkup({},new URLSearchParams({q:e.name})),/Status checks do not assess clinical outcomes/);
  }
+ assert.equal(vk.reviewedAt,vikingAntagFollowup.reviewedAt);
+ assert.equal(at.reviewedAt,at7687At673Correction.reviewedAt);
  assert.ok(vikingAntagFollowup.registryEvidence.every(record=>record.hasResults===false));
  assert.ok(vikingAntagFollowup.registryEvidence.every(record=>/^[a-f0-9]{64}$/.test(record.responseSha256)));
  assert.equal(vikingAntagFollowup.discoveryPass.currentDateRegistryMatches,0);
+});
+test('Antag correction reconciles AT7687 and AT673 without duplicating the programme or implying results',()=>{
+ assert.equal(at7687At673Correction.publicationStatus,'owner_authorised_factual_correction');
+ assert.equal(at7687At673Correction.clinicalApproval,null);
+ assert.equal(at7687At673Correction.industryComplete,false);
+ assert.equal(at7687At673Correction.automatedMonitorChanges,false);
+ assert.equal(at7687At673Correction.catalogueCounts.mainTotal,105);
+ assert.equal(at7687At673Correction.catalogueCounts.liveTotal,102);
+ assert.equal(at7687At673Correction.catalogueCounts.configuredSourcesMain,177);
+ assert.equal(at7687At673Correction.catalogueCounts.configuredSourcesLive,171);
+ assert.equal(industry.filter(e=>e.id==='at673-semaglutide').length,1);
+ const at=industry.find(e=>e.id==='at673-semaglutide');
+ assert.equal(at.name,'AT7687 / AT673 with semaglutide');
+ assert.match(at.summary,/Antag Therapeutics' 28 July 2026 announcement identifies AT7687/);
+ assert.match(at.summary,/NCT07724340/);
+ assert.match(at.summary,/active-not-recruiting status/);
+ assert.match(at.limitations,/AT7687, while ClinicalTrials.gov calls the intervention AT673/);
+ assert.match(at.limitations,/Neither source has posted trial results/);
+ assert.match(at.ukAuthorisation,/do not establish UK marketing authorisation/);
+ assert.match(at.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(at.supply,/does not establish lawful UK retail supply/);
+ assert.equal(at.reviewedAt,at7687At673Correction.reviewedAt);
+ assert.equal(at.clinicalApproval,null);
+ assert.ok(at.additionalEvidence.some(e=>e.url.includes('antag-therapeutics-announces-dosing')));
+ assert.equal(at7687At673Correction.primaryEvidence.length,2);
+ assert.ok(at7687At673Correction.primaryEvidence.every(e=>e.httpStatus===200&&e.completeResponseReviewed));
+ assert.ok(at7687At673Correction.primaryEvidence.every(e=>/^[a-f0-9]{64}$/.test(e.responseSha256)));
+ assert.equal(at7687At673Correction.primaryEvidence[1].hasResults,false);
+ assert.equal(at7687At673Correction.openReviewPrCheck.openPullRequests,0);
+ assert.equal(at7687At673Correction.openReviewPrCheck.duplicationFound,false);
+ assert.match(industryMarkup({},new URLSearchParams({q:'AT7687'})),/AT7687 \/ AT673 with semaglutide/);
+ assert.match(industryMarkup({},new URLSearchParams({q:'AT673'})),/AT7687 \/ AT673 with semaglutide/);
 });
 test('specialist registry wave adds one programme and updates existing indications without implying results',()=>{
  assert.equal(specialistRegistryWave.publicationStatus,'owner_authorised_factual_publication');
