@@ -97,3 +97,27 @@ test('recorded current image deployment remains discoverable when workflow histo
  for(const patch of [{head_sha:'f'.repeat(40)},{conclusion:'failure'},{status:'in_progress'},{event:'pull_request'},{head_branch:'other'},{path:'other.yml'}])await assert.rejects(recentSuccessfulPromotions(async path=>path==='/actions/runs/'+record.id?{...record,...patch}:{workflow_runs:[]},active(recordedImageRuntime.version)));
  requests.length=0;assert.deepEqual(await recentSuccessfulPromotions(get,active('unknown')),[]);assert.equal(requests.length,1);
 });
+
+import {technicalRecovery,verifiedTechnicalCancelledRecovery} from './cancelled-release-recovery.mjs';
+test('cancelled SEO recovery needs exact cancelled ownership and the successful captured predecessor',()=>{
+ const e=JSON.parse(readFileSync('docs/runtime-cancelled-37512509413.json')),p=technicalRecovery;
+ const a={id:p.deployment,versions:[{version_id:p.version,percentage:100}]},fl=JSON.stringify(e.cancelled.owned),vl=JSON.stringify(e.verified.owned);
+ const check=(a2=a,r=e.cancelled.run,j=e.cancelled.job,f=fl,v=e.verified.run,vj=e.verified.job,l=vl)=>verifiedTechnicalCancelledRecovery(a2,r,j,f,v,vj,l);
+ assert.equal(check(),true);
+ for(const patch of [{id:'unknown'},{versions:[{version_id:p.version,percentage:50}]},{versions:[{version_id:p.verifiedVersion,percentage:100}]}])assert.equal(check({...a,...patch}),false);
+ for(const patch of [{id:1},{head_sha:'f'.repeat(40)},{run_attempt:2},{conclusion:'success'},{event:'pull_request'},{path:'other.yml'},{head_branch:'preview'}])assert.equal(check(a,{...e.cancelled.run,...patch}),false);
+ for(const patch of [{id:1},{run_id:1},{conclusion:'success'},{steps:e.cancelled.job.steps.filter(s=>s.number!==107)}])assert.equal(check(a,e.cancelled.run,{...e.cancelled.job,...patch}),false);
+ assert.equal(check(a,e.cancelled.run,e.cancelled.job,''),false);
+ for(const patch of [{previousVersionId:'unknown'},{previousDeploymentId:'unknown'},{deploymentId:'unknown'},{source:'f'.repeat(40)},{dataRestored:true}])assert.equal(check(a,e.cancelled.run,e.cancelled.job,JSON.stringify({...e.cancelled.owned,...patch})),false);
+ for(const patch of [{conclusion:'cancelled'},{head_sha:'f'.repeat(40)},{run_attempt:2},{id:1}])assert.equal(check(a,e.cancelled.run,e.cancelled.job,fl,{...e.verified.run,...patch}),false);
+ assert.equal(check(a,e.cancelled.run,e.cancelled.job,fl,e.verified.run,{...e.verified.job,id:1}),false);
+ assert.equal(check(a,e.cancelled.run,e.cancelled.job,fl,e.verified.run,e.verified.job,''),false);
+ assert.equal(check(a,e.cancelled.run,e.cancelled.job,fl+'\n'+fl),false);
+});
+test('restored SEO starting point stays exact and never treats the cancelled source as verified',()=>{
+ const p=technicalRecovery,proof={run:p.run,source:p.source,version:p.version,deployment:p.deployment,verifiedRun:p.verifiedRun,verifiedSource:p.verifiedSource,verifiedVersion:p.verifiedVersion,verifiedDeployment:p.verifiedDeployment};
+ const r={decision:'restore',run:p.run,from:p.version,to:p.verifiedVersion,verifiedRun:p.verifiedRun,technicalRecovery:proof,ownedProof:null,customerRecordsRead:0,dataChanged:false};
+ assert.deepEqual(verifiedStartingPoint(r,active(p.verifiedVersion)),{source:p.verifiedSource,version:p.verifiedVersion,run:p.verifiedRun});
+ for(const patch of [{decision:'retain'},{run:1},{from:'unknown'},{to:p.version},{verifiedRun:1},{dataChanged:true},{customerRecordsRead:1},{technicalRecovery:{...proof,source:'f'.repeat(40)}}])assert.throws(()=>verifiedStartingPoint({...r,...patch},active(p.verifiedVersion)));
+ assert.throws(()=>verifiedStartingPoint(r,active(p.version)));
+});
