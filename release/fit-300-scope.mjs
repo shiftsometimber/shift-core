@@ -8,9 +8,9 @@ import {validateSixTopicSeoSource} from './six-topic-seo-scope.mjs';
 
 export const SEO_FIT_COMPOSITION_PATHS=['scripts/b1-release-scope.mjs','release/app-scope.mjs','shift-coach/release-contract.mjs','release/fit-300-scope.mjs','release/app-manifest.json','tests/six-topic-seo-release.test.mjs','release/app-preflight.mjs','shift-coach/scope.mjs'];
 const SEO_COMPOSED_PATHS=new Set(['.github/workflows/cloudflare-production-promote.yml','.github/workflows/six-topic-seo-proof.yml','docs/seo/2026-10-05-six-priorities.md','member-experience/public-preservation.mjs','public-seo-closeout.mjs','release/app-manifest.json','release/app-preflight.mjs','release/book-voice-scope.mjs','release/six-topic-seo-preservation.mjs','release/six-topic-seo-scope.mjs','scripts/b1-release-scope.mjs','scripts/verify-six-topic-seo.mjs','shift-coach/release-contract.mjs','shift-coach/release-manifest.json','tests/public-seo-closeout.test.mjs','tests/six-topic-seo-release.test.mjs','shift-coach/scope.mjs']);
-// Exact 710GO Watch composition reviewed after Fit and SEO. The manifest itself
+// Exact post-Fit Watch composition reviewed after Fit and SEO. The manifest itself
 // is pinned separately so its final source pointer can name this application.
-export const POST_FIT_WATCH_PATHS=new Set(['medicines-watch/README.md','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-05-authorised-710go.json','release/app-manifest.json','release/app-scope.mjs','release/watch-registry-wave-scope.mjs','shift-coach/release-contract.mjs','tests/b1-release-scope.test.mjs']);
+export const POST_FIT_WATCH_PATHS=new Set(['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-05-authorised-710go.json','medicines-watch/reviews/2026-10-06-authorised-survodutide-synchronize-jp.json','release/app-manifest.json','release/app-scope.mjs','release/watch-registry-wave-scope.mjs','shift-coach/release-contract.mjs','tests/b1-release-scope.test.mjs']);
 export function validateSeoFitComposition(composition,read){
  assert.equal(composition.proof,'SEO_FIT_EXACT_COMPOSITION_V1');
  assert.equal(composition.base,'82c433486152e61833639efeffc3bac7dbe1713e');
@@ -75,16 +75,20 @@ export function validateFit300(){
  const priorCoach=JSON.parse(execFileSync('git',['show',(composition?composition.seoSource:activation.base)+':shift-coach/release-manifest.json'],{encoding:'utf8'}));
  assert.deepEqual(coach.imageViewerComposition,{proof:'MEMBER_IMAGE_VIEWER_RELEASE_V1',source:viewer.source,paths:['shift-coach/fit-active-edit.mjs','shift-coach/fit-active-edit.test.mjs','shift-coach/release-contract.mjs']});
  // Preserve the complete prior coaching decision record while admitting only
- // the two exact, non-clinical 710GO review notes and the bounded source pin.
+ // the exact, non-clinical Watch review notes and the bounded source pin.
  // This deliberately avoids a generic "ignore manifest changes" escape hatch.
  const watchEvidenceSuffix=' 5 October: standing editorial authority applies to the source-limited 710GO research omission. Animal findings, missing registry evidence and direct HTTP403 remain visible; no clinical approval. Exact hosted Watch proof 37365867158 and earlier SEO proof remain mandatory before production.';
  const watchVerificationSuffix=' 710GO: 163 Watch tests and 53 focused release tests passed locally before final receipt reconciliation; exact mandatory hosted proof is not yet passed. No clinical or independent acceptance is asserted.';
+ const synchronizeJpEvidence='6 October: standing editorial authority covers the bounded SYNCHRONIZE-JP factual addition. Sponsor-reported conference findings remain separate from the ClinicalTrials.gov record, which posts no results; direct sponsor retrieval returned HTTP403. No UK authorisation, NHS access, supply, approved dose, muscle-preservation or clinical-approval claim. Exact hosted Watch proof 37396065615 is mandatory before production.';
+ const synchronizeJpVerification='164 Watch tests passed locally and exact source head 2dc54ba8bfcc4b757bd2e06bb3c240ae41313280 passed hosted Medicines Watch run 37396065615. Release reconciliation and actual live verification remain mandatory; no clinical or independent acceptance is asserted.';
  const expectedCoach=structuredClone(priorCoach);
  expectedCoach.applicationCommit=coach.applicationCommit;
  expectedCoach.decisions.ownerAcceptance.applicationCommit=coach.decisions.ownerAcceptance.applicationCommit;
  expectedCoach.decisions.productionLaunch.evidence+=watchEvidenceSuffix;
+ expectedCoach.decisions.productionLaunch.currentSurvodutideEvidence=synchronizeJpEvidence;
  expectedCoach.decisions.ownerAcceptance.verificationEvidence+=watchVerificationSuffix;
+ expectedCoach.decisions.ownerAcceptance.currentSurvodutideVerificationEvidence=synchronizeJpVerification;
  const {fitComposition,seoFitComposition,imageViewerComposition,...unchanged}=coach;
- assert.deepEqual(unchanged,expectedCoach,'Existing coaching launch decisions changed outside the exact 710GO receipt');
+ assert.deepEqual(unchanged,expectedCoach,'Existing coaching launch decisions changed outside the exact Watch receipt');
  return {movements:300,servedProtocols:2688,approvedImages:300,databaseWrites:false,existingLayoutPreserved:true,tapToEnlarge:true};
 }
