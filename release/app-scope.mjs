@@ -25,6 +25,7 @@ APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-survodutide-synchro
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-core-trial-lifecycle.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-gub-ucn2-mbl949.json');
 APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-at7687-at673-alias.json');
+APP_PATHS.add('medicines-watch/reviews/2026-10-06-authorised-viking-rhythm-registry-review.json');
 export function validateAppSource(){
  validateFit300();
  validateRecipeImages();
