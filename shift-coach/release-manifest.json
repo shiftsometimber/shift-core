@@ -680,40 +680,6 @@
       ],
       "run": 37531509514,
       "proofSource": "a9707c463f7681d49068fa0319418e5630510ba9"
-    },
-    "integrationComposition": {
-      "proof": "EXACT_COMBINED_SEO_CONTEXT_TABLET_AND_RELEASE_PINS_V1",
-      "base": "7ece5e502a70b5676ed0159a8a0da11fc7b37b2e",
-      "source": "a2429cff570b19ced3b01ee20a90daf3282b9637",
-      "paths": [
-        ".github/workflows/seo-context-proof.yml",
-        "docs/seo/tablet-runtime-receipt-20261006.json",
-        "public-seo-context-data.mjs",
-        "public-seo-context.mjs",
-        "release/app-scope.mjs",
-        "release/approved-ranking-scope.mjs",
-        "release/book-voice-scope.mjs",
-        "release/fit-300-scope.mjs",
-        "release/growth-adopt-deployment.mjs",
-        "release/growth-scope.mjs",
-        "release/seo-context-scope.mjs",
-        "release/seo-discovery-scope.mjs",
-        "release/seo-follow-through-scope.mjs",
-        "release/seo-technical-preservation.mjs",
-        "release/watch-registry-wave-scope.mjs",
-        "shift-coach/cancelled-release-recovery.mjs",
-        "shift-coach/cancelled-release-recovery.test.mjs",
-        "shift-coach/recover-cancelled-release.mjs",
-        "shift-coach/release-contract.mjs",
-        "shift-coach/release-manifest.json",
-        "shift-coach/worker.mjs",
-        "tests/b1-release-scope.test.mjs",
-        "tests/public-seo-context.test.mjs",
-        "tests/seo-context-release.test.mjs",
-        "tests/seo-discovery-release.test.mjs",
-        "tests/seo-follow-through-release.test.mjs",
-        "tests/watch-ownership-release.test.mjs"
-      ]
     }
   },
   "rolloutPhotoComposition": {

@@ -9,7 +9,16 @@ export const BOOK_VOICE_PATHS=paths;
 export function originalBookVoiceGate(path,source){
  if(path==='member-experience/verify-production-member.mjs')return source.replace("import {withTrustRepair} from '../shift-coach/public-trust-repair.mjs';\n",'').replace('expected=Buffer.from(await (await withTrustRepair(request,footerWrapped)).arrayBuffer());','expected=Buffer.from(await footerWrapped.arrayBuffer());');
  if(path==='member-experience/public-preservation.mjs'){
-  source=source.replace("import {restoreTrustCentre,restoreStoppingCitation,withdrawWeightIllustrations} from '../shift-coach/public-trust-repair.mjs';\n","import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';\n").replace(" // Apply only the exact already-withdrawn photo options to both comparison\n // sides. The rest of the complete sign-in document remains hash compared.\n if(path==='/member-login')preserved=Buffer.from(withdrawWeightIllustrations(preserved.toString('utf8')));\n",'');
+  // PR #1177 withdrew two unapproved member-login illustration options. That
+  // reviewed preservation-only delta is independent of the older Book Voice
+  // payload, so neutralise its exact signatures before the historical compare.
+  const withdrawnPhotoImport="import {restoreTrustCentre,restoreStoppingCitation,withdrawWeightIllustrations} from '../shift-coach/public-trust-repair.mjs';\n";
+  const priorTrustImport="import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';\n";
+  const withdrawnPhotoPreservation=" // Apply only the exact already-withdrawn photo options to both comparison\n // sides. The rest of the complete sign-in document remains hash compared.\n if(path==='/member-login')preserved=Buffer.from(withdrawWeightIllustrations(preserved.toString('utf8')));\n";
+  const imports=source.split(withdrawnPhotoImport).length-1,blocks=source.split(withdrawnPhotoPreservation).length-1;
+  assert(imports<=1&&blocks<=1,'Duplicate reviewed photo-withdrawal source');
+  assert.equal(imports,blocks,'Partial reviewed photo-withdrawal source');
+  source=source.replace(withdrawnPhotoImport,priorTrustImport).replace(withdrawnPhotoPreservation,'');
   source=originalSixTopicSeoPreservation(originalFollowThroughPreservation(source));
   source=source
    .replace("import {restoreTrustCentre,restoreStoppingCitation} from '../shift-coach/public-trust-repair.mjs';\n",'')
