@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {WATCH_OWNERSHIP_BASE,WATCH_OWNERSHIP_SOURCE,WATCH_OWNERSHIP_PATHS,WATCH_DEADLINE_SOURCE,WATCH_DEADLINE_PATHS,watchWaveRef,originalWatchOwnershipEntry,validateWatchRegistryWave} from '../release/watch-registry-wave-scope.mjs';
+import {WATCH_OWNERSHIP_BASE,WATCH_OWNERSHIP_SOURCE,WATCH_OWNERSHIP_PATHS,WATCH_DEADLINE_SOURCE,WATCH_DEADLINE_PATHS,WATCH_LATEST_SOURCE,WATCH_LATEST_PATHS,watchWaveRef,watchLatestRef,originalWatchOwnershipEntry,validateWatchRegistryWave} from '../release/watch-registry-wave-scope.mjs';
 const read=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'});
 test('historical entry comparison removes only the exact reviewed scheduler ownership change',()=>{
  const current=read(WATCH_OWNERSHIP_SOURCE,'worker-entry-v6.js');assert.equal(originalWatchOwnershipEntry(current),read(WATCH_OWNERSHIP_BASE,'worker-entry-v6.js'));
@@ -13,9 +13,10 @@ test('ownership and finite timeout repair files retain exact references and fail
 });
 
 import {readFileSync} from 'node:fs';
-import {validateWatchSourceComposition,WATCH_RECONCILIATION_PATHS,ZENAGAMTIDE_PATHS} from '../release/fit-300-scope.mjs';
-test('merged AMBIENCE source reconciliation is finite and cannot authorise unrelated changes',()=>{
+import {validateWatchSourceComposition,WATCH_RECONCILIATION_PATHS,ZENAGAMTIDE_PATHS,GS4571_MENOPAUSE_PATHS} from '../release/fit-300-scope.mjs';
+test('merged Watch source reconciliation is finite and cannot authorise unrelated changes',()=>{
  const manifest=JSON.parse(readFileSync('shift-coach/release-manifest.json')),c=manifest.watchSourceComposition;validateWatchSourceComposition(c,manifest.seoFollowThroughComposition?.integrationComposition?.inlineToolComposition);
- assert.equal(WATCH_RECONCILIATION_PATHS.length,4);assert.equal(ZENAGAMTIDE_PATHS.length,7);
+ assert.equal(WATCH_RECONCILIATION_PATHS.length,4);assert.equal(ZENAGAMTIDE_PATHS.length,7);assert.equal(GS4571_MENOPAUSE_PATHS.length,7);
+ for(const path of WATCH_LATEST_PATHS)assert.equal(watchLatestRef(path),WATCH_LATEST_SOURCE);
  assert.throws(()=>validateWatchSourceComposition({...c,proof:'any'}));assert.throws(()=>validateWatchSourceComposition({...c,paths:[...c.paths,'unrelated']}));assert.throws(()=>validateWatchSourceComposition({...c,base:'4460ea56f931da4003ace68d5d404831c47e08f7'}));
 });
