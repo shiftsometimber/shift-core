@@ -722,7 +722,7 @@
     "integrationComposition": {
       "proof": "EXACT_COMBINED_SEO_CONTEXT_TABLET_AND_RELEASE_PINS_V1",
       "base": "7ece5e502a70b5676ed0159a8a0da11fc7b37b2e",
-      "source": "25c7e354c648ce0b2db25e70fd6b5fdb4a9bb9c4",
+      "source": "cfd069d7a975924f6a522eabedb47fce91c432bc",
       "paths": [
         ".github/workflows/seo-context-proof.yml",
         "docs/seo/tablet-runtime-receipt-20261006.json",
@@ -755,7 +755,7 @@
       "inlineToolComposition": {
         "proof": "EXACT_AUTHENTICATED_INLINE_TOOL_WORKER_V1",
         "base": "f3a5a28e49d148512e4323bd9a58a2232520382e",
-        "source": "b6978887ecc8f37f3749584a54420f20963f322b",
+        "source": "103c6c30c35bb094e9f74b5a5e3f6a92c59b1c97",
         "paths": [
           "my-timber-pwa/service-worker.mjs",
           "preview/app-layout/tabs.mjs",
@@ -784,9 +784,9 @@
     ]
   },
   "watchSourceComposition": {
-    "proof": "EXACT_MERGED_ZENAGAMTIDE_SOURCE_RECONCILIATION_V1",
-    "base": "e723261284d733476370c0e19d3ac7c516d9b8b6",
-    "source": "83059e9bc844cd845b9b7dbb3f7723830bccc0c6",
+    "proof": "EXACT_MERGED_GS4571_MENOPAUSE_SOURCE_RECONCILIATION_V1",
+    "base": "c89fcadc2a3025d2ea40ae6e1fb80c0cf2dd03b7",
+    "source": "1eedfc2d938fb489407af751c4648ebcb30bbfaf",
     "paths": [
       "release/fit-300-scope.mjs",
       "release/watch-registry-wave-scope.mjs",

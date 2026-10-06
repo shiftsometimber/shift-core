@@ -28,7 +28,12 @@ WATCH_REGISTRY_WAVE_PATHS.push('medicines-watch/reviews/2026-10-06-authorised-vi
 WATCH_REGISTRY_WAVE_PATHS.push('medicines-watch/reviews/2026-10-06-overdue-source-renewal.json');
 WATCH_REGISTRY_WAVE_PATHS.push('medicines-watch/reviews/2026-10-06-authorised-zenagamtide-ambience.json');
 // The new registry wave keeps planned interventional work separate from an observational sarcopenia study, and preserves absent UK access and unrelated source failures.
-export const WATCH_SOURCE_LINK_SOURCE=WATCH_REGISTRY_WAVE_COMMIT;
+// Exact standing-authorised Watch evidence merged after the earlier registry
+// wave. This is a finite content pin, not clinical approval or a generic pass
+// for future changes.
+export const WATCH_LATEST_SOURCE='c89fcadc2a3025d2ea40ae6e1fb80c0cf2dd03b7';
+export const WATCH_SOURCE_LINK_SOURCE=WATCH_LATEST_SOURCE;
+export const WATCH_LATEST_PATHS=['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-06-authorised-gs4571-tirzepatide-menopause.json'];
 export const WATCH_OWNERSHIP_SOURCE='1eca49505836ac99e5b1cb929660f1e108213781';
 export const WATCH_OWNERSHIP_BASE='725e4bb0d27d4cbd52e85c27bfa9e27841a166b0';
 export const WATCH_OWNERSHIP_PATHS=['worker-entry-v6.js','medicines-watch/monitor.mjs','medicines-watch/monitor.test.mjs','medicines-watch/scheduler.test.mjs'];
@@ -37,6 +42,7 @@ for(const path of WATCH_OWNERSHIP_PATHS)if(!WATCH_REGISTRY_WAVE_PATHS.includes(p
 export const WATCH_DEADLINE_SOURCE='817cfc1a1957e0bd23fd2bfb6b6d2ed95bb0d976';
 export const WATCH_DEADLINE_PATHS=['medicines-watch/monitor.mjs','medicines-watch/monitor.test.mjs'];
 export const watchWaveRef=path=>WATCH_DEADLINE_PATHS.includes(path)?WATCH_DEADLINE_SOURCE:WATCH_OWNERSHIP_PATHS.includes(path)?WATCH_OWNERSHIP_SOURCE:WATCH_REGISTRY_WAVE_COMMIT;
+export const watchLatestRef=path=>WATCH_LATEST_PATHS.includes(path)?WATCH_LATEST_SOURCE:watchWaveRef(path);
 export function originalWatchOwnershipEntry(source){
  const change='      // Production promotion seeds reviewed URL replacements before the new\n      // runtime is exposed.  An invocation already in flight on the previous\n      // runtime must not switch that row back to its older configuration.\n      const medicinesWatch = await checkSources(env, { allowSourceReplacement: false }).catch((error) => ({';
  if(!source.includes(change))return source;
