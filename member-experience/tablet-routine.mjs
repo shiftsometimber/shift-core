@@ -17,6 +17,8 @@ export function routineStep(difficulty,alternative=false){
  };
  return {id:crypto.randomUUID(),kind:difficulty+':'+(alternative?'alternative':'first'),difficulty,alternative,title:steps[difficulty][0],detail:steps[difficulty][1]};
 }
+const preStartStep=()=>({id:crypto.randomUUID(),kind:'pre-start',difficulty:'none',alternative:false,title:'Get ready for your first tablet',detail:'Check your prescribed starting instructions and keep your prescriber’s contact details handy. Once you have started, open Edit my routine and save the date you actually started. Your first-week check-in will count from that date.'});
+const waitingToStart=s=>s?.awaitingStart===true||s?.review?.routine==='not-started';
 const dayUK=at=>new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(at));
 const laterDay=(at,days)=>new Date(Date.parse(dayUK(at)+'T12:00:00Z')+days*86400000).toISOString().slice(0,10);
 const weekDate=state=>new Date(Date.parse(state.startDate+'T12:00:00Z')+6*86400000).toISOString().slice(0,10);
@@ -29,34 +31,38 @@ function nextStep(difficulty,outcomes=[]){
 }
 export function viewRoutine(raw,now=Date.now()){
  const state=raw?.enabled?raw:null,day=dayUK(now),firstWeekDate=state?weekDate(state):null;
- const weekDone=!!state&&(!!state.firstWeekReviewedAt||!!state.review?.at&&dayUK(state.review.at)>=firstWeekDate);
+ const weekDone=!!state&&!waitingToStart(state)&&(!!state.firstWeekReviewedAt||!!state.review?.at&&dayUK(state.review.at)>=firstWeekDate);
  const nextCheckDate=state?.step?(state.nextCheckDate||laterDay(state.updatedAt||now,2)):null;
  const helpedKinds=new Set((state?.outcomes||[]).filter(o=>o.outcome==='helped').map(o=>o.title));
- return {state,revision:raw?.revision||0,firstWeekDate,firstWeekComplete:weekDone,firstWeekDue:!!state&&!weekDone&&day>=firstWeekDate,nextCheckDate,feedbackDue:!!state?.step&&!!nextCheckDate&&day>=nextCheckDate,helpfulSteps:helpedKinds.size,medicines,difficulties};
+ return {state,revision:raw?.revision||0,firstWeekDate,firstWeekComplete:weekDone,firstWeekDue:!!state&&!waitingToStart(state)&&!weekDone&&day>=firstWeekDate,nextCheckDate,feedbackDue:!!state?.step&&!!nextCheckDate&&day>=nextCheckDate,helpfulSteps:helpedKinds.size,medicines,difficulties};
 }
 export function applyRoutine(old,input,at=new Date().toISOString()){
  if(input.kind==='erase')return {revision:(old?.revision||0)+1,enabled:false};
  let next=structuredClone(old||{revision:0});
  if(input.kind==='setup'){
   if(!medicines[input.medicine]||input.prescribed!==true||!/^\d{4}-\d{2}-\d{2}$/.test(input.startDate||'')||!Number.isFinite(Date.parse(input.startDate))||new Date(input.startDate).toISOString().slice(0,10)!==input.startDate||input.startDate<'2020-01-01'||input.startDate>today()||!(input.time===''||/^([01]\d|2[0-3]):[0-5]\d$/.test(input.time||'')))fail('Check the medicine, start date and optional routine time.');
-  const reset=next.medicine!==input.medicine||next.startDate!==input.startDate;
-  next={...next,enabled:true,medicine:input.medicine,startDate:input.startDate,time:input.time,updatedAt:at,...(reset?{review:null,firstWeekReviewedAt:null,step:routineStep('none'),outcomes:[],nextCheckDate:laterDay(at,2)}:{})};
+  const reset=next.medicine!==input.medicine||next.startDate!==input.startDate||waitingToStart(next);
+  next={...next,enabled:true,medicine:input.medicine,startDate:input.startDate,time:input.time,updatedAt:at,...(reset?{awaitingStart:false,review:null,firstWeekReviewedAt:null,step:routineStep('none'),outcomes:[],nextCheckDate:laterDay(at,2)}:{})};
   if(!next.step){next.step=routineStep('none');next.nextCheckDate=laterDay(at,2)}
  }else{
   if(!next.enabled)fail('Save your tablet routine first.',409);
   if(input.kind==='review'){
    if(!['manageable','difficult','not-started'].includes(input.routine)||!Object.hasOwn(difficulties,input.difficulty)||typeof input.prescriberHelp!=='boolean')fail('Choose your routine and difficulty.');
+   if(waitingToStart(next)&&input.routine!=='not-started')fail('Open Edit my routine and save the date you actually started before checking in.');
    const difficulty=input.prescriberHelp?'sideeffects':input.difficulty;
+   next.awaitingStart=input.routine==='not-started';
    next.review={routine:input.routine,difficulty:input.difficulty,prescriberHelp:input.prescriberHelp,at};
-   if(dayUK(at)>=weekDate(next))next.firstWeekReviewedAt=at;
-   if(next.step?.difficulty!==difficulty)next.step=nextStep(difficulty,next.outcomes);
+   if(next.awaitingStart)next.firstWeekReviewedAt=null;
+   if(!next.awaitingStart&&dayUK(at)>=weekDate(next))next.firstWeekReviewedAt=at;
+   if(next.awaitingStart&&!['sideeffects','hunger'].includes(difficulty))next.step=preStartStep();
+   else if(next.step?.difficulty!==difficulty||next.step?.kind==='pre-start')next.step=nextStep(difficulty,next.outcomes);
    next.updatedAt=at;next.nextCheckDate=laterDay(at,2);
   }else if(input.kind==='feedback'){
    if(!next.step||input.stepId!==next.step.id||!['helped','didnt-help','didnt-fit','not-tried'].includes(input.outcome))fail('This step changed. Reload before answering.',409);
    const answer={stepId:next.step.id,kind:next.step.kind||next.step.difficulty+':'+(next.step.alternative?'alternative':'first'),difficulty:next.step.difficulty,title:next.step.title,outcome:input.outcome,at};
    const last=next.outcomes?.at(-1);
    if(!(last?.stepId===answer.stepId&&last.outcome===answer.outcome&&dayUK(last.at)===dayUK(at)))next.outcomes=[...(next.outcomes||[]),answer].slice(-12);
-   if(['didnt-help','didnt-fit'].includes(input.outcome))next.step=nextStep(next.step.difficulty,next.outcomes);
+   if(['didnt-help','didnt-fit'].includes(input.outcome))next.step=waitingToStart(next)&&!['sideeffects','hunger'].includes(next.step.difficulty)?preStartStep():nextStep(next.step.difficulty,next.outcomes);
    else next.step={...next.step,answered:input.outcome,answeredAt:at};
    next.updatedAt=at;next.nextCheckDate=laterDay(at,input.outcome==='not-tried'?1:2);
   }else fail('Unsupported routine action.');
