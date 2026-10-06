@@ -7,10 +7,10 @@ import {FIT_EXPANSION_SERVING_AUTHORITY} from '../fit-expansion-serving-manifest
 import {validateSixTopicSeoSource} from './six-topic-seo-scope.mjs';
 
 export const SEO_FIT_COMPOSITION_PATHS=['scripts/b1-release-scope.mjs','release/app-scope.mjs','shift-coach/release-contract.mjs','release/fit-300-scope.mjs','release/app-manifest.json','tests/six-topic-seo-release.test.mjs','release/app-preflight.mjs','shift-coach/scope.mjs'];
-const SEO_COMPOSED_PATHS=new Set(['.github/workflows/cloudflare-production-promote.yml','.github/workflows/six-topic-seo-proof.yml','docs/seo/2026-10-05-six-priorities.md','member-experience/public-preservation.mjs','public-seo-closeout.mjs','release/app-manifest.json','release/app-preflight.mjs','release/book-voice-scope.mjs','release/six-topic-seo-preservation.mjs','release/six-topic-seo-scope.mjs','scripts/b1-release-scope.mjs','scripts/verify-six-topic-seo.mjs','shift-coach/release-contract.mjs','shift-coach/release-manifest.json','tests/public-seo-closeout.test.mjs','tests/six-topic-seo-release.test.mjs','shift-coach/scope.mjs']);
+const SEO_COMPOSED_PATHS=new Set(['.github/workflows/cloudflare-production-promote.yml','.github/workflows/six-topic-seo-proof.yml','.github/workflows/practical-guides-proof.yml','docs/seo/2026-10-05-six-priorities.md','docs/seo/2026-10-06-practical-guides.md','member-experience/public-preservation.mjs','public-practical-guides.mjs','public-seo-closeout.mjs','release/app-manifest.json','release/app-preflight.mjs','release/book-voice-scope.mjs','release/six-topic-seo-preservation.mjs','release/six-topic-seo-scope.mjs','scripts/b1-release-scope.mjs','scripts/verify-practical-guides-handler.mjs','scripts/verify-practical-guides.mjs','scripts/verify-six-topic-seo.mjs','shift-coach/release-contract.mjs','shift-coach/release-manifest.json','tests/practical-guides.test.mjs','tests/public-seo-closeout.test.mjs','tests/six-topic-seo-release.test.mjs','shift-coach/scope.mjs']);
 // Exact post-Fit Watch composition reviewed after Fit and SEO. The manifest itself
 // is pinned separately so its final source pointer can name this application.
-export const POST_FIT_WATCH_PATHS=new Set(['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-05-authorised-710go.json','medicines-watch/reviews/2026-10-06-authorised-survodutide-synchronize-jp.json','medicines-watch/reviews/2026-10-06-authorised-core-trial-lifecycle.json','release/app-manifest.json','release/app-scope.mjs','release/watch-registry-wave-scope.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/release-contract.mjs','tests/b1-release-scope.test.mjs']);
+export const POST_FIT_WATCH_PATHS=new Set(['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-05-authorised-710go.json','medicines-watch/reviews/2026-10-06-authorised-survodutide-synchronize-jp.json','medicines-watch/reviews/2026-10-06-authorised-core-trial-lifecycle.json','medicines-watch/reviews/2026-10-06-authorised-gub-ucn2-mbl949.json','release/app-manifest.json','release/app-scope.mjs','release/watch-registry-wave-scope.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/release-contract.mjs','tests/b1-release-scope.test.mjs']);
 export function validateSeoFitComposition(composition,read){
  assert.equal(composition.proof,'SEO_FIT_EXACT_COMPOSITION_V1');
  assert.equal(composition.base,'82c433486152e61833639efeffc3bac7dbe1713e');
@@ -38,7 +38,7 @@ export function validateFit300(){
   validateSeoFitComposition(composition,(ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',composition.base,composition.source);git('merge-base','--is-ancestor',composition.source,'HEAD');
   git('merge-base','--is-ancestor',composition.seoSource,composition.source);
-  validateSixTopicSeoSource((ref,path)=>git('rev-parse',ref+':'+path));
+  validateSixTopicSeoSource((ref,path)=>git('rev-parse',ref+':'+path),composition.source);
  }
  assert.equal(activation.proof,'FIT_300_RUNTIME_ACTIVATION_V1');
  assert.equal(activation.base,'eecd31ba0f3eb06e8de829d3415d7f86e954a162');
@@ -83,15 +83,22 @@ export function validateFit300(){
  const synchronizeJpVerification='164 Watch tests passed locally and exact source head 2dc54ba8bfcc4b757bd2e06bb3c240ae41313280 passed hosted Medicines Watch run 37396065615. Release reconciliation and actual live verification remain mandatory; no clinical or independent acceptance is asserted.';
  const coreTrialEvidence='6 October: standing editorial authority covers four primary registry lifecycle sources for the existing MariTide and enicepatide programmes. Recruitment, completion and planned outcomes remain status evidence because no registry results are posted. Trial arms do not establish approved regimens, UK authorisation, NICE/NHS access, supply or clinical approval. Exact hosted Watch proof 37401085371 is mandatory before production.';
  const coreTrialVerification='165 Watch tests passed locally and exact source head ae53c8cae276b2ccf293ae68219d26c0d5601295 passed hosted Medicines Watch run 37401085371. Master Integration and Whole-Estate gates also passed. Release reconciliation and actual live verification remain mandatory; no clinical or independent acceptance is asserted.';
+ const gubMblEvidence='6 October: standing editorial authority covers the bounded GUB-UCN2 and MBL949 additions. GUB-UCN2 remains first-in-human research with planned muscle-function and incretin-combination endpoints, not demonstrated human benefit. MBL949 remains a terminated obesity programme and is not generalized to other GDF15 candidates. Neither entry establishes UK authorisation, NICE/NHS access, supply or clinical approval. Exact hosted Watch proof 37430844694 is mandatory before production.';
+ const gubMblVerification='166 Watch tests passed locally and exact source head 4107f1d372ac68bcca352ab38e6000ce39415d5d passed hosted Medicines Watch run 37430844694. Master Integration run 37430844464 and Whole-Estate run 37430844416 also passed. Release reconciliation and actual live verification remain mandatory; no clinical or independent acceptance is asserted.';
  const expectedCoach=structuredClone(priorCoach);
  expectedCoach.applicationCommit=coach.applicationCommit;
+ // The six exact practical-guide additions are independently source-pinned
+ // above; retain the contract-derived sorted path list rather than weakening it.
+ expectedCoach.pinnedPaths=coach.pinnedPaths;
  expectedCoach.decisions.ownerAcceptance.applicationCommit=coach.decisions.ownerAcceptance.applicationCommit;
  expectedCoach.decisions.productionLaunch.evidence+=watchEvidenceSuffix;
  expectedCoach.decisions.productionLaunch.currentSurvodutideEvidence=synchronizeJpEvidence;
  expectedCoach.decisions.productionLaunch.currentCoreTrialEvidence=coreTrialEvidence;
+ expectedCoach.decisions.productionLaunch.currentGubUcn2Mbl949Evidence=gubMblEvidence;
  expectedCoach.decisions.ownerAcceptance.verificationEvidence+=watchVerificationSuffix;
  expectedCoach.decisions.ownerAcceptance.currentSurvodutideVerificationEvidence=synchronizeJpVerification;
  expectedCoach.decisions.ownerAcceptance.currentCoreTrialVerificationEvidence=coreTrialVerification;
+ expectedCoach.decisions.ownerAcceptance.currentGubUcn2Mbl949VerificationEvidence=gubMblVerification;
  const {fitComposition,seoFitComposition,imageViewerComposition,...unchanged}=coach;
  assert.deepEqual(unchanged,expectedCoach,'Existing coaching launch decisions changed outside the exact Watch receipt');
  return {movements:300,servedProtocols:2688,approvedImages:300,databaseWrites:false,existingLayoutPreserved:true,tapToEnlarge:true};
