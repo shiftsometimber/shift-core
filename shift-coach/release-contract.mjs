@@ -43,6 +43,7 @@ for(const path of ['scripts/verify-six-topic-seo.mjs','docs/seo/2026-10-05-six-p
 for(const path of ['.github/workflows/practical-guides-proof.yml','docs/seo/2026-10-06-practical-guides.md','public-practical-guides.mjs','scripts/verify-practical-guides-handler.mjs','scripts/verify-practical-guides.mjs','tests/practical-guides.test.mjs'])COACH_ADDITIONS.add(path);
 for(const path of ['public-seo-closeout.mjs','tests/public-seo-closeout.test.mjs'])COACH_BACKEND_PATHS.add(path);
 for(const p of CATALOGUE_COPY_PATHS)if(p!=='shift-coach/worker.mjs')COACH_ADDITIONS.add(p);
+COACH_ADDITIONS.add('docs/catalogue-runtime-rollback-37460283567.json');
 for(const p of ['rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs'])COACH_BACKEND_PATHS.add(p);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES]);
 // Finite read-only release maintenance; not permission for more publication jobs.

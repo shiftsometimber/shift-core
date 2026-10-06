@@ -36,6 +36,7 @@
     "docs/DATA-GOVERNANCE-OPERATING-PACK-2026-09-02.md",
     "docs/catalogue-benefits-20261006.md",
     "docs/catalogue-benefits-live-receipt-20261006.json",
+    "docs/catalogue-runtime-rollback-37460283567.json",
     "docs/content-review/2026-10-03-health-safety.json",
     "docs/content-review/2026-10-03-public-copy-preview.json",
     "docs/content-review/2026-10-03-public-copy-residual.json",
@@ -353,10 +354,12 @@
     ]
   },
   "baselineRepairComposition": {
-    "proof": "EXACT_CATALOGUE_BASELINE_REPAIR_V2",
+    "proof": "EXACT_CATALOGUE_BASELINE_REPAIR_V3",
     "base": "c2eaab9e0e1ddb39e116d6d3d625a7f51b6881b6",
-    "source": "c8c34614f37a51c5da7ca3e54062bec73353a1ff",
+    "source": "9faccd0e9ddb78bddb6d720e410c43fdab4cd0be",
     "paths": [
+      "docs/catalogue-runtime-rollback-37460283567.json",
+      "release/app-live-http.mjs",
       "release/book-voice-scope.mjs",
       "release/fit-300-scope.mjs",
       "release/growth-adopt-deployment.mjs",
@@ -366,7 +369,8 @@
       "shift-coach/cancelled-release-recovery.test.mjs",
       "shift-coach/recover-cancelled-release.mjs",
       "shift-coach/release-contract.mjs",
-      "shift-coach/release.test.mjs"
+      "shift-coach/release.test.mjs",
+      "tests/app-client-proof.test.mjs"
     ]
   }
 }
