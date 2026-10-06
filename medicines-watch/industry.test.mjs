@@ -56,6 +56,7 @@ import gzc8072Publication from './reviews/2026-10-05-authorised-gzc8072.json' wi
 import te8105Phase2b from './reviews/2026-10-05-authorised-te8105-phase2b.json' with {type:'json'};
 import semaglutideSpecialistSarcopeniaWave from './reviews/2026-10-05-authorised-semaglutide-specialist-sarcopenia-wave.json' with {type:'json'};
 import coreTrialLifecycle from './reviews/2026-10-06-authorised-core-trial-lifecycle.json' with {type:'json'};
+import gubUcn2Mbl949 from './reviews/2026-10-06-authorised-gub-ucn2-mbl949.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('new semaglutide specialist and sarcopenia records remain bounded research evidence',()=>{
  assert.equal(semaglutideSpecialistSarcopeniaWave.publicationStatus,'owner_authorised_factual_publication');
@@ -428,8 +429,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,97);assert.equal(sources.length,176);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,103);
+ assert.equal(medicines.length,6);assert.equal(industry.length,99);assert.equal(sources.length,177);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,105);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -937,7 +938,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,97);
+ assert.equal(industry.length,99);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -1355,4 +1356,41 @@ test('MariTide and enicepatide lifecycle additions preserve status, estimates an
   assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
   assert.ok(registrySources.some(item=>item.id===source.id));
  }
+});
+
+test('GUB-UCN2 and MBL949 preserve research, discontinuation and access boundaries',()=>{
+ assert.equal(gubUcn2Mbl949.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(gubUcn2Mbl949.clinicalApproval,null);
+ assert.equal(gubUcn2Mbl949.industryComplete,false);
+ assert.equal(gubUcn2Mbl949.catalogueCounts.totalAfter,105);
+ assert.equal(gubUcn2Mbl949.catalogueCounts.configuredSourcesAfter,177);
+ const gub=industry.find(entry=>entry.id==='gub-ucn2');
+ assert.ok(gub);assert.equal(gub.group,'research');
+ assert.match(gub.stage,/Recruiting first-in-human Phase 1\/2a/);
+ assert.match(gub.summary,/actual 27 July 2026 start/);
+ assert.match(gub.summary,/approximately 188 planned participants/);
+ assert.match(gub.summary,/monotherapy and incretin-combination cohorts/);
+ assert.match(gub.limitations,/planned research, not demonstrated preservation/);
+ assert.match(gub.limitations,/preclinical, not human findings/);
+ assert.match(gub.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.match(gub.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(gub.supply,/does not establish lawful UK retail supply/);
+ const mbl=industry.find(entry=>entry.id==='mbl949');
+ assert.ok(mbl);assert.equal(mbl.group,'discontinued');
+ assert.match(mbl.stage,/Phase 2 trial terminated early/);
+ assert.match(mbl.summary,/126-participant/);
+ assert.match(mbl.summary,/not to continue studying MBL949 in obesity/);
+ assert.match(mbl.limitations,/decision was not related to the safety of MBL949/);
+ assert.match(mbl.limitations,/does not establish conclusions about other GDF15-pathway candidates/);
+ assert.match(mbl.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.match(mbl.nhsEngland,/not an NHS treatment option/);
+ assert.match(mbl.supply,/does not establish lawful UK retail supply/);
+ const registry=registrySources.find(source=>source.id==='registry-nct07702890');
+ assert.ok(registry);assert.equal(registry.lifecycle.status,'RECRUITING');
+ assert.deepEqual(registry.lifecycle.enrollment,{count:188,type:'ESTIMATED'});
+ assert.deepEqual(registry.lifecycle.start,{date:'2026-07-27',type:'ACTUAL'});
+ assert.equal(registry.lifecycle.hasResults,false);
+ assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ assert.ok(industryMarkup({},new URLSearchParams({q:'GUB-UCN2'})).includes('GUB-UCN2'));
+ assert.ok(industryMarkup({},new URLSearchParams({q:'MBL949'})).includes('MBL949'));
 });
