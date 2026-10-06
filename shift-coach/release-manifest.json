@@ -460,7 +460,7 @@
       "scripts/b1-release-scope.mjs",
       "scripts/verify-knowledge-headings.cjs"
     ],
-    "maintenanceSource": "3cf828150ca26d7b1839a85204074031ff9ff3ef",
+    "maintenanceSource": "cb283d0a26536de22145f4b6b146835bc13899a4",
     "ownerApproval": {
       "owner": "Matt O’Brien",
       "at": "2026-10-06T14:18:48Z",
