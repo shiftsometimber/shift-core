@@ -1,9 +1,9 @@
-import {RANKING_BASE,RANKING_PATHS} from './approved-ranking-scope.mjs';
+import {RANKING_BASE,RANKING_PATHS,discoveryHistoricalRef} from './approved-ranking-scope.mjs';
 import {COMPLETION_BASE,COMPLETION_PATHS,completionPinnedRef,validateCompletionComposition,verifyCompletionHistory} from './production-completion-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-export const TECHNICAL_BASE='02b2b3f22af72017985c865410f6a5e4484de0f6';
-export const TECHNICAL_PAYLOAD='1190a26dd5383f7435e59081ee7fbc7749253077';
+export const TECHNICAL_BASE='381a613082007f5674668dcc96f096d1c732d9ea';
+export const TECHNICAL_PAYLOAD='39348e3c8a1c422af2c1729258702e946a5b4af2';
 export const TECHNICAL_PAYLOAD_PATHS=["public-seo-technical-data.mjs","public-seo-technical.mjs","shift-coach/worker.mjs","tests/public-seo-technical.test.mjs"];
 export const TECHNICAL_MAINTENANCE_PATHS=[".github/workflows/seo-technical-proof.yml","release/app-scope.mjs","release/seo-follow-through-preservation.mjs","release/seo-follow-through-scope.mjs","release/seo-technical-preservation-data.mjs","release/seo-technical-preservation.mjs","release/seo-technical-scope.mjs","scripts/verify-seo-closeout-live.mjs","scripts/verify-seo-follow-through.mjs","shift-coach/release-contract.mjs","tests/seo-technical-release.test.mjs"];
 export const TECHNICAL_BASE_PATHS=["release/app-manifest.json","release/fit-300-scope.mjs","release/watch-registry-wave-scope.mjs","tests/b1-release-scope.test.mjs"];
@@ -30,4 +30,4 @@ export function verifyTechnicalHistory(c){
  assert.deepEqual(git('diff','--name-only',c.base,c.payloadSource).split('\n').filter(Boolean).sort(),[...TECHNICAL_PAYLOAD_PATHS].sort());
  assert.deepEqual(git('diff','--name-only',c.payloadSource,c.maintenanceSource).split('\n').filter(Boolean).sort(),[...TECHNICAL_MAINTENANCE_PATHS,'shift-coach/release-manifest.json'].sort());
 }
-export function completionHistoricalRef(c,ref,path){return ref==='HEAD'&&c?.completionComposition?.rankingComposition&&RANKING_PATHS.includes(path)?RANKING_BASE:ref==='HEAD'&&c?.completionComposition&&COMPLETION_PATHS.includes(path)?COMPLETION_BASE:ref;}
+export function completionHistoricalRef(c,ref,path){const discovery=discoveryHistoricalRef(c?.completionComposition?.rankingComposition,ref,path);return discovery!==ref?discovery:ref==='HEAD'&&c?.completionComposition?.rankingComposition&&RANKING_PATHS.includes(path)?RANKING_BASE:ref==='HEAD'&&c?.completionComposition&&COMPLETION_PATHS.includes(path)?COMPLETION_BASE:ref;}
