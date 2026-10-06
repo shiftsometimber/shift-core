@@ -85,10 +85,12 @@
     "my-journey-observation-v1.js",
     "my-timber-final-production.mjs",
     "my-timber-final-source-gate.mjs",
+    "my-timber-pwa/service-worker.mjs",
     "my-timber-pwa/verify-live.mjs",
     "prescriber-questions.mjs",
     "preview/ai-context/fresh-reliability-proof.mjs",
     "preview/ai-context/sustained-reliability-proof.mjs",
+    "preview/app-layout/tabs.mjs",
     "preview/book-voice/host.mjs",
     "preview/book-voice/member-host.mjs",
     "preview/book-voice/provision.mjs",
@@ -241,6 +243,8 @@
     "tests/fixtures/public-seo-programme/stress-pressure-example.html",
     "tests/fixtures/seo-public-articles.json",
     "tests/general-analytics-privacy.test.mjs",
+    "tests/inline-tool-release.test.mjs",
+    "tests/inline-tool-service-worker.test.mjs",
     "tests/medicine-commerce-v1.test.mjs",
     "tests/medicine-purchase-e2e.test.mjs",
     "tests/member-details-release.test.mjs",
@@ -713,7 +717,24 @@
         "tests/seo-discovery-release.test.mjs",
         "tests/seo-follow-through-release.test.mjs",
         "tests/watch-ownership-release.test.mjs"
-      ]
+      ],
+      "inlineToolComposition": {
+        "proof": "EXACT_AUTHENTICATED_INLINE_TOOL_WORKER_V1",
+        "base": "23a737dbaa76a9619bea8b5c235e7c3e581c7c04",
+        "source": "c1b1f7e90b6ee2d053d8f30c7a6c2b30ada44c62",
+        "paths": [
+          "my-timber-pwa/service-worker.mjs",
+          "preview/app-layout/tabs.mjs",
+          "release/app-scope.mjs",
+          "release/fit-300-scope.mjs",
+          "release/footer-scope.mjs",
+          "release/seo-follow-through-scope.mjs",
+          "shift-coach/release-contract.mjs",
+          "tests/inline-tool-release.test.mjs",
+          "tests/inline-tool-service-worker.test.mjs",
+          "tests/watch-ownership-release.test.mjs"
+        ]
+      }
     }
   },
   "rolloutPhotoComposition": {
