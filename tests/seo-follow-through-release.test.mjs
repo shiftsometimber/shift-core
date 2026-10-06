@@ -61,7 +61,7 @@ import {validateTabletGuidance,TABLET_GUIDANCE_BASE,TABLET_GUIDANCE_PATHS,follow
 test('tablet composition pins finite payload bytes without weakening previous SEO authority',()=>{
  const prior=JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition;
  const t={proof:'TABLET_GUIDANCE_EXACT_V1',base:TABLET_GUIDANCE_BASE,source:'a'.repeat(40),paths:TABLET_GUIDANCE_PATHS};
- const c={...prior,tabletUsefulnessComposition:undefined,tabletGuidanceComposition:t};
+ const c={...prior,tabletUsefulnessComposition:undefined,tabletGuidanceComposition:t};delete c.integrationComposition;
  assert.doesNotThrow(()=>validateFollowComposition(c));
  for(const p of t.paths)assert.equal(followPinnedRef(c,p),t.source);
  const historical=followHistoricalRead((ref,p)=>ref+':'+p,c);
@@ -79,4 +79,9 @@ test('tablet usefulness accepts only the exact approved five-file payload and bo
  assert.equal(usefulnessPinnedRef({tabletUsefulnessComposition:u},'public-practical-guides.mjs'),u.payloadSource);
  assert.equal(usefulnessPinnedRef({tabletUsefulnessComposition:u},'wrangler.jsonc'),null);
  for(const change of [{payloadSource:'b'.repeat(40)},{payloadPaths:[...u.payloadPaths,'wrangler.jsonc']},{maintenancePaths:[]},{approval:{...u.approval,instruction:'different'}}])assert.throws(()=>validateTabletUsefulness({...u,...change}));
+});
+import {validateSeoIntegration,verifySeoIntegration,SEO_INTEGRATION_PATHS} from '../release/seo-follow-through-scope.mjs';
+test('combined SEO release pins exact conflict resolutions and preserves unrelated drift checks',()=>{
+ const c=JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition.integrationComposition;validateSeoIntegration(c);verifySeoIntegration(c);
+ assert(SEO_INTEGRATION_PATHS.includes('shift-coach/worker.mjs'));assert.throws(()=>validateSeoIntegration({...c,proof:'arbitrary'}));assert.throws(()=>validateSeoIntegration({...c,paths:[...c.paths,'other']}));assert.throws(()=>validateSeoIntegration({...c,base:'4460ea56f931da4003ace68d5d404831c47e08f7'}));
 });

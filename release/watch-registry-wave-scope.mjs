@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
-// Exact standing-authorised factual research updates through PR #1167, including
+// Exact standing-authorised factual research updates through PR #1176, including
 // the specialist semaglutide and sarcopenia registry wave; prior reviewed claims are preserved.
 // Research listings do not establish supply, sale, clinical approval or UK access.
 export const WATCH_REGISTRY_WAVE_COMMIT='99061a51a9540c611dc0795b858dad598b4304ac';
