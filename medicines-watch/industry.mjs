@@ -7,6 +7,7 @@ import at7687At673Correction from './reviews/2026-10-06-authorised-at7687-at673-
 import vikingRhythmRegistryReview from './reviews/2026-10-06-authorised-viking-rhythm-registry-review.json' with {type:'json'};
 import zenagamtideAmbience from './reviews/2026-10-06-authorised-zenagamtide-ambience.json' with {type:'json'};
 import gs4571TirzepatideMenopause from './reviews/2026-10-06-authorised-gs4571-tirzepatide-menopause.json' with {type:'json'};
+import registryLifecycleFollowup from './reviews/2026-10-07-authorised-registry-lifecycle-followup.json' with {type:'json'};
 import evidenceDesk from './reviews/2026-10-03-evidence-desk-zp6590.json' with {type:'json'};
 import srsd384Publication from './reviews/2026-10-04-authorised-srsd384.json' with {type:'json'};
 import fractylModalityGap from './reviews/2026-10-04-authorised-fractyl-modality-gap.json' with {type:'json'};
@@ -341,5 +342,15 @@ export const industry = [...originalIndustry.map(e => {
    ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
    ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
    reviewedAt:zenagamtideAmbience.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
+ })
+ .map(e=>{
+  const change=registryLifecycleFollowup.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  const {summaryToAppend,limitationsToAppend,...fields}=change.fields;
+  return {...e,...fields,
+   ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
+   ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
+   reviewedAt:registryLifecycleFollowup.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
  });

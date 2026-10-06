@@ -1,0 +1,112 @@
+{
+  "reviewedAt": "2026-10-06T23:40:00Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add six previously unmonitored sponsor-submitted trial lifecycles to four existing programme entries. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "changes": [
+    {
+      "id": "ribupatide-injection",
+      "fields": {
+        "summaryToAppend": "The three global KaiNETIC records updated on 6 October 2026 now report actual enrolment of 2,530 participants without diabetes and weight-related comorbidities, 1,270 with diabetes, and 1,270 in the semaglutide-and-placebo comparator study. All three are active, not recruiting after actual December 2025 or January 2026 starts.",
+        "limitationsToAppend": "These status and actual-enrolment updates are not results. All three global records have no posted results and retain estimated 2028 completion dates; the semaglutide arm is a study comparator, not evidence of superiority or an approved switching regimen."
+      },
+      "additionalEvidence": [
+        {"title":"ClinicalTrials.gov NCT07284875: KaiNETIC obesity or overweight without diabetes","url":"https://clinicaltrials.gov/study/NCT07284875","sourcePublishedAt":"2025-12-16","sourceUpdatedAt":"2026-10-06","reviewedAt":"2026-10-06T23:40:00Z","checkScope":"Automatic record-status checks cover identity, sponsor, Phase 3 status, typed dates, actual enrolment and results-posting status; no assessment of efficacy, safety or outcomes."},
+        {"title":"ClinicalTrials.gov NCT07284901: KaiNETIC obesity or overweight with diabetes","url":"https://clinicaltrials.gov/study/NCT07284901","sourcePublishedAt":"2025-12-16","sourceUpdatedAt":"2026-10-06","reviewedAt":"2026-10-06T23:40:00Z","checkScope":"Automatic record-status checks cover identity, sponsor, Phase 3 status, typed dates, actual enrolment and results-posting status; no assessment of efficacy, safety or outcomes."},
+        {"title":"ClinicalTrials.gov NCT07284979: KaiNETIC ribupatide, semaglutide and placebo study","url":"https://clinicaltrials.gov/study/NCT07284979","sourcePublishedAt":"2025-12-16","sourceUpdatedAt":"2026-10-06","reviewedAt":"2026-10-06T23:40:00Z","checkScope":"Automatic record-status checks cover identity, sponsor, Phase 3 comparator design, typed dates, actual enrolment and results-posting status; no assessment of comparative outcomes."}
+      ]
+    },
+    {
+      "id": "maritide",
+      "fields": {
+        "summaryToAppend": "A separate Phase 3 record updated on 6 October 2026 studies maridebart cafraglutide in 250 estimated adults with obstructive sleep apnoea using positive-airway-pressure therapy and overweight or obesity. It is active, not recruiting after an actual 19 December 2025 start.",
+        "limitationsToAppend": "This PAP-treated specialist-indication study has no posted results and retains estimated completion dates. It does not establish sleep-apnoea benefit, an authorised indication, a completed event or a general weight-management outcome."
+      },
+      "additionalEvidence": [
+        {"title":"ClinicalTrials.gov NCT07225686: MariTide in obstructive sleep apnoea on PAP therapy","url":"https://clinicaltrials.gov/study/NCT07225686","sourcePublishedAt":"2025-11-10","sourceUpdatedAt":"2026-10-06","reviewedAt":"2026-10-06T23:40:00Z","checkScope":"Automatic record-status checks cover identity, sponsor, Phase 3 status, specialist population, typed dates, estimated enrolment and results-posting status; no assessment of sleep-apnoea or weight outcomes."}
+      ]
+    },
+    {
+      "id": "amg513",
+      "fields": {
+        "stage": "Future development discontinued; Phase 1 completed without posted results",
+        "summaryToAppend": "The sponsor-submitted Phase 1 record was updated on 6 October 2026 and now reports completed status after an actual 16 September 2026 completion, with 82 actual participants.",
+        "limitationsToAppend": "Completed trial status does not reverse Amgen's separate decision to discontinue future development and does not mean results were posted. The registry has no posted results and establishes no approved use, UK access or supply."
+      },
+      "additionalEvidence": [
+        {"title":"ClinicalTrials.gov NCT06585462: completed AMG 513 Phase 1 study","url":"https://clinicaltrials.gov/study/NCT06585462","sourcePublishedAt":"2024-09-05","sourceUpdatedAt":"2026-10-06","reviewedAt":"2026-10-06T23:40:00Z","checkScope":"Automatic record-status checks cover identity, sponsor, completed Phase 1 status, typed dates, actual enrolment and results-posting status; no assessment of efficacy or safety outcomes."}
+      ]
+    },
+    {
+      "id": "enicepatide",
+      "fields": {
+        "summaryToAppend": "A separate enicepatide Phase 2 study in 447 actual participants with type 2 diabetes and overweight or obesity was updated on 6 October 2026. The record reports an actual 21 November 2024 start, actual 29 May 2026 primary completion and actual 30 September 2026 study completion.",
+        "limitationsToAppend": "This completed registry record has no posted results. Completion and actual enrolment do not establish clinical benefit, confirm sponsor-reported findings from another study, advance Phase 3 events or establish an approved dose or indication."
+      },
+      "additionalEvidence": [
+        {"title":"ClinicalTrials.gov NCT06628362: completed enicepatide Phase 2 diabetes study","url":"https://clinicaltrials.gov/study/NCT06628362","sourcePublishedAt":"2024-10-08","sourceUpdatedAt":"2026-10-06","reviewedAt":"2026-10-06T23:40:00Z","checkScope":"Automatic record-status checks cover identity, sponsor, completed Phase 2 status, typed dates, actual enrolment and results-posting status; no assessment of efficacy, safety or sponsor-reported outcomes."}
+      ]
+    }
+  ],
+  "registrySources": [
+    {"id":"registry-nct07284875","nctId":"NCT07284875","title":"ClinicalTrials.gov NCT07284875: KaiNETIC obesity or overweight without diabetes","url":"https://clinicaltrials.gov/study/NCT07284875","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07284875","format":"ctgov-lifecycle","requiredTerms":["NCT07284875","Kailera"],"reviewedAt":"2026-10-06T23:40:00Z","sourcePublishedAt":"2025-12-16","sourceUpdatedAt":"2026-10-06","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic lifecycle monitoring only; no assessment of clinical outcomes.","lifecycle":{"nctId":"NCT07284875","title":"Efficacy and Safety of Ribupatide in Participants Living With Obesity or Overweight With Weight-Related Comorbidities Who Do Not Have Diabetes","sponsor":"Kailera","status":"ACTIVE_NOT_RECRUITING","whyStopped":null,"phases":["PHASE3"],"enrollment":{"count":2530,"type":"ACTUAL"},"start":{"date":"2025-12-18","type":"ACTUAL"},"primaryCompletion":{"date":"2028-02","type":"ESTIMATED"},"completion":{"date":"2028-03","type":"ESTIMATED"},"firstPosted":{"date":"2025-12-16","type":"ACTUAL"},"lastUpdated":{"date":"2026-10-06","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},"entryIds":["ribupatide-injection"],"rawResponseSha256":"23b174859b1406c34457c22a01ed2b4aa6263d7419fe9f34afca0653281ad2bc","reviewedFingerprint":"2440eedc7b9c086461926f2c8c26dc540c3e76a37175439b7d12bbe130c92a93"},
+    {"id":"registry-nct07284901","nctId":"NCT07284901","title":"ClinicalTrials.gov NCT07284901: KaiNETIC obesity or overweight with diabetes","url":"https://clinicaltrials.gov/study/NCT07284901","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07284901","format":"ctgov-lifecycle","requiredTerms":["NCT07284901","Kailera"],"reviewedAt":"2026-10-06T23:40:00Z","sourcePublishedAt":"2025-12-16","sourceUpdatedAt":"2026-10-06","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic lifecycle monitoring only; no assessment of clinical outcomes.","lifecycle":{"nctId":"NCT07284901","title":"Efficacy and Safety of Ribupatide Administered Once Weekly in Participants Living With Obesity or Overweight and Diabetes","sponsor":"Kailera","status":"ACTIVE_NOT_RECRUITING","whyStopped":null,"phases":["PHASE3"],"enrollment":{"count":1270,"type":"ACTUAL"},"start":{"date":"2026-01-12","type":"ACTUAL"},"primaryCompletion":{"date":"2028-03-27","type":"ESTIMATED"},"completion":{"date":"2028-04-24","type":"ESTIMATED"},"firstPosted":{"date":"2025-12-16","type":"ACTUAL"},"lastUpdated":{"date":"2026-10-06","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},"entryIds":["ribupatide-injection"],"rawResponseSha256":"48e71bb3021af126fbba3ebdbecd9fa7dae0263fabc4bd07e7fb0befc37c1504","reviewedFingerprint":"5e345a7311b158215e9b237b7f7cf0b75086943d92227777a4d645209d3ea151"},
+    {"id":"registry-nct07284979","nctId":"NCT07284979","title":"ClinicalTrials.gov NCT07284979: KaiNETIC ribupatide, semaglutide and placebo study","url":"https://clinicaltrials.gov/study/NCT07284979","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07284979","format":"ctgov-lifecycle","requiredTerms":["NCT07284979","Kailera"],"reviewedAt":"2026-10-06T23:40:00Z","sourcePublishedAt":"2025-12-16","sourceUpdatedAt":"2026-10-06","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic lifecycle monitoring only; no assessment of comparative outcomes.","lifecycle":{"nctId":"NCT07284979","title":"Efficacy and Safety of Ribupatide Administered Once Weekly Compared With Semaglutide and Placebo in Participants Living With Obesity Who Do Not Have Diabetes","sponsor":"Kailera","status":"ACTIVE_NOT_RECRUITING","whyStopped":null,"phases":["PHASE3"],"enrollment":{"count":1270,"type":"ACTUAL"},"start":{"date":"2025-12-30","type":"ACTUAL"},"primaryCompletion":{"date":"2028-03","type":"ESTIMATED"},"completion":{"date":"2028-04","type":"ESTIMATED"},"firstPosted":{"date":"2025-12-16","type":"ACTUAL"},"lastUpdated":{"date":"2026-10-06","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},"entryIds":["ribupatide-injection"],"rawResponseSha256":"d21f82c0dd2a8af137fb654b1a551bb3532cef2e9979a9b026209c377b9aaf7a","reviewedFingerprint":"0ea37c19cc6b59eaeb615d022072f0ff15042e0054213a21de934832ad5c6575"},
+    {"id":"registry-nct07225686","nctId":"NCT07225686","title":"ClinicalTrials.gov NCT07225686: MariTide in obstructive sleep apnoea on PAP therapy","url":"https://clinicaltrials.gov/study/NCT07225686","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07225686","format":"ctgov-lifecycle","requiredTerms":["NCT07225686","Amgen"],"reviewedAt":"2026-10-06T23:40:00Z","sourcePublishedAt":"2025-11-10","sourceUpdatedAt":"2026-10-06","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic lifecycle monitoring only; no assessment of sleep-apnoea or weight outcomes.","lifecycle":{"nctId":"NCT07225686","title":"Maridebart Cafraglutide Versus Placebo in Adult Participants With Obstructive Sleep Apnea on Positive Airway Pressure Therapy","sponsor":"Amgen","status":"ACTIVE_NOT_RECRUITING","whyStopped":null,"phases":["PHASE3"],"enrollment":{"count":250,"type":"ESTIMATED"},"start":{"date":"2025-12-19","type":"ACTUAL"},"primaryCompletion":{"date":"2027-08-20","type":"ESTIMATED"},"completion":{"date":"2028-07-21","type":"ESTIMATED"},"firstPosted":{"date":"2025-11-10","type":"ACTUAL"},"lastUpdated":{"date":"2026-10-06","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},"entryIds":["maritide"],"rawResponseSha256":"337c265ba717801180a8a84a0fdea814c779074dcba97b7fbadf792567076473","reviewedFingerprint":"77f341e90cf00504f4744a8b4d542b45efe42a24a613ec509df89069f9f70125"},
+    {"id":"registry-nct06585462","nctId":"NCT06585462","title":"ClinicalTrials.gov NCT06585462: completed AMG 513 Phase 1 study","url":"https://clinicaltrials.gov/study/NCT06585462","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT06585462","format":"ctgov-lifecycle","requiredTerms":["NCT06585462","Amgen"],"reviewedAt":"2026-10-06T23:40:00Z","sourcePublishedAt":"2024-09-05","sourceUpdatedAt":"2026-10-06","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic lifecycle monitoring only; no assessment of clinical outcomes.","lifecycle":{"nctId":"NCT06585462","title":"Single and Multiple Ascending Dose Study of AMG 513 in Participants With Obesity","sponsor":"Amgen","status":"COMPLETED","whyStopped":null,"phases":["PHASE1"],"enrollment":{"count":82,"type":"ACTUAL"},"start":{"date":"2024-09-09","type":"ACTUAL"},"primaryCompletion":{"date":"2026-09-16","type":"ACTUAL"},"completion":{"date":"2026-09-16","type":"ACTUAL"},"firstPosted":{"date":"2024-09-05","type":"ACTUAL"},"lastUpdated":{"date":"2026-10-06","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},"entryIds":["amg513"],"rawResponseSha256":"26b08afb7c6cf8bad1720632838a8ff25fb539efe5d38c7fd8fe4f7bd659b586","reviewedFingerprint":"af151180bc1800c152fdef16c14df32713bbbd2587ff9606d264321cd248f6e1"},
+    {"id":"registry-nct06628362","nctId":"NCT06628362","title":"ClinicalTrials.gov NCT06628362: completed enicepatide Phase 2 diabetes study","url":"https://clinicaltrials.gov/study/NCT06628362","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT06628362","format":"ctgov-lifecycle","requiredTerms":["NCT06628362","Carmot Therapeutics, Inc."],"reviewedAt":"2026-10-06T23:40:00Z","sourcePublishedAt":"2024-10-08","sourceUpdatedAt":"2026-10-06","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic lifecycle monitoring only; no assessment of clinical outcomes.","lifecycle":{"nctId":"NCT06628362","title":"A Study of Enicepatide (CT-388) in Participants Who Are Overweight or Obese With Type 2 Diabetes Mellitus","sponsor":"Carmot Therapeutics, Inc.","status":"COMPLETED","whyStopped":null,"phases":["PHASE2"],"enrollment":{"count":447,"type":"ACTUAL"},"start":{"date":"2024-11-21","type":"ACTUAL"},"primaryCompletion":{"date":"2026-05-29","type":"ACTUAL"},"completion":{"date":"2026-09-30","type":"ACTUAL"},"firstPosted":{"date":"2024-10-08","type":"ACTUAL"},"lastUpdated":{"date":"2026-10-06","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},"entryIds":["enicepatide"],"rawResponseSha256":"595dab78f7a586e8e3c8145947b2548b1e636cf8b7a262499b45bc6e836d505b","reviewedFingerprint":"081b9a38d45a20dde4382df6beb9e9647f0c124b4fda06ceaf766c42637c7dec"}
+  ],
+  "sourceReviews": [
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07284875","publicationDate":"2025-12-16","updateDate":"2026-10-06","reviewedAt":"2026-10-06T23:40:00Z","outcome":"Complete primary registry response read: active-not-recruiting Phase 3; actual start and enrolment; estimated 2028 completion; no posted results."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07284901","publicationDate":"2025-12-16","updateDate":"2026-10-06","reviewedAt":"2026-10-06T23:40:00Z","outcome":"Complete primary registry response read: active-not-recruiting diabetes Phase 3; actual start and enrolment; estimated 2028 completion; no posted results."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07284979","publicationDate":"2025-12-16","updateDate":"2026-10-06","reviewedAt":"2026-10-06T23:40:00Z","outcome":"Complete primary registry response read: active-not-recruiting Phase 3 comparator research; actual start and enrolment; estimated 2028 completion; no posted results."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07225686","publicationDate":"2025-11-10","updateDate":"2026-10-06","reviewedAt":"2026-10-06T23:40:00Z","outcome":"Complete primary registry response read: active-not-recruiting Phase 3 PAP-treated obstructive-sleep-apnoea research; actual start; estimated enrolment/completion; no posted results."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT06585462","publicationDate":"2024-09-05","updateDate":"2026-10-06","reviewedAt":"2026-10-06T23:40:00Z","outcome":"Complete primary registry response read: completed Phase 1 after an actual 16 September 2026 completion; 82 actual participants; no posted results; future programme development remains discontinued."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT06628362","publicationDate":"2024-10-08","updateDate":"2026-10-06","reviewedAt":"2026-10-06T23:40:00Z","outcome":"Complete primary registry response read: completed Phase 2 diabetes study after an actual 30 September 2026 completion; 447 actual participants; no posted results."}
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-06T23:36:00Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 184,
+    "currentSources": 183,
+    "overdueReviews": 0,
+    "withdrawnSources": 0,
+    "attention": [{"id":"zealand-zp6590-pipeline","status":"check_delayed","reviewStatus":"verification_pending","error":"http_403","httpStatus":403}],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only response verifies configured-source monitoring only. It does not renew factual reviews, approve changed wording or prove complete industry coverage. The longstanding Zealand HTTP 403 remains explicit."
+  },
+  "discoveryPass": {
+    "method": "A separate current-date ClinicalTrials.gov pass reviewed obesity and overweight records posted or updated on 6 October 2026, followed by broader programme, formulation, specialist-indication and stopped-programme reconciliation across current main and dated receipts.",
+    "included": "Six exact trial lifecycles extend existing ribupatide, MariTide, AMG 513 and enicepatide entries. They add global KaiNETIC status, PAP-treated obstructive-sleep-apnoea research and completed-but-result-free Phase 1/2 records without creating duplicate programmes.",
+    "notDuplicated": "PR #851 is merged, no open Watch review PR was present, and all six NCT identities were absent from live entries, dated receipts and proposals.",
+    "incompleteChecks": [
+      "Search indexing, sponsor disclosure and registry coverage remain incomplete and cannot establish an exhaustive industry universe.",
+      "None of the six records has posted results; actual starts, enrolment or completion are not efficacy or safety findings.",
+      "No new MHRA authorisation, NICE recommendation, NHS access decision or verified UK supply change was established."
+    ],
+    "failedChecks": [],
+    "preservedKnownFailures": "The unchanged Zealand ZP6590 HTTP 403 remains visible and is not cleared by six successful registry reads.",
+    "openReviewPrCheck": {"checkedAt":"2026-10-06T23:36:00Z","openWatchPullRequests":[],"duplicationFound":false},
+    "industryComplete": false
+  },
+  "catalogueCounts": {"detailedBefore":6,"detailedAfter":6,"widerBefore":103,"widerAfter":103,"totalBefore":109,"totalAfter":109,"configuredSourcesBefore":184,"configuredSourcesAfter":190,"trialRecordsBefore":119,"trialRecordsAfter":125},
+  "retrievalEvidence": [
+    {"id":"registry-nct07284875","retrievedAt":"2026-10-06T23:40:00Z","httpStatus":200,"contentType":"application/json","bytes":26114,"responseSha256":"23b174859b1406c34457c22a01ed2b4aa6263d7419fe9f34afca0653281ad2bc"},
+    {"id":"registry-nct07284901","retrievedAt":"2026-10-06T23:40:00Z","httpStatus":200,"contentType":"application/json","bytes":37289,"responseSha256":"48e71bb3021af126fbba3ebdbecd9fa7dae0263fabc4bd07e7fb0befc37c1504"},
+    {"id":"registry-nct07284979","retrievedAt":"2026-10-06T23:40:00Z","httpStatus":200,"contentType":"application/json","bytes":17880,"responseSha256":"d21f82c0dd2a8af137fb654b1a551bb3532cef2e9979a9b026209c377b9aaf7a"},
+    {"id":"registry-nct07225686","retrievedAt":"2026-10-06T23:40:00Z","httpStatus":200,"contentType":"application/json","bytes":20305,"responseSha256":"337c265ba717801180a8a84a0fdea814c779074dcba97b7fbadf792567076473"},
+    {"id":"registry-nct06585462","retrievedAt":"2026-10-06T23:40:00Z","httpStatus":200,"contentType":"application/json","bytes":8889,"responseSha256":"26b08afb7c6cf8bad1720632838a8ff25fb539efe5d38c7fd8fe4f7bd659b586"},
+    {"id":"registry-nct06628362","retrievedAt":"2026-10-06T23:40:00Z","httpStatus":200,"contentType":"application/json","bytes":22973,"responseSha256":"595dab78f7a586e8e3c8145947b2548b1e636cf8b7a262499b45bc6e836d505b"}
+  ],
+  "deploymentState": {"mainCommit":"0f30ca95a5c71bc0cad5df60c782433708f3af60","observedAt":"2026-10-06T23:36:00Z","liveProgrammes":109,"liveConfiguredSources":184,"openWatchPullRequests":0},
+  "nextAction": "Run the full Watch and release gates, publish the exact passing head through a reviewable pull request and guarded production workflow, then verify the updated entries, Treatments link and SELECT-only health endpoint on live traffic."
+}
