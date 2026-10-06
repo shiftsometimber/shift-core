@@ -683,8 +683,9 @@
     "integrationComposition": {
       "proof": "EXACT_COMBINED_SEO_CONTEXT_TABLET_AND_RELEASE_PINS_V1",
       "base": "7ece5e502a70b5676ed0159a8a0da11fc7b37b2e",
-      "source": "67441dd7131b692fbd92f04396d2a9e960d493f5",
+      "source": "e3e22389033c7e1332d172faa5ce5ec967addd2c",
       "paths": [
+        ".github/workflows/cloudflare-production-promote.yml",
         ".github/workflows/seo-context-proof.yml",
         "public-seo-context-data.mjs",
         "public-seo-context.mjs",

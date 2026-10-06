@@ -26,6 +26,7 @@ on:
       - "preview/app-layout/**"
       - "release/app-*"
       - "release/growth-*"
+      - "release/book-voice-scope.mjs"
       - "home-speed-repair.mjs"
       - "home-critical-styles.mjs"
       - "home-blocking-styles.mjs"
