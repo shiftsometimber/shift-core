@@ -18,6 +18,7 @@
     ".github/workflows/practical-guides-proof.yml",
     ".github/workflows/priority-closeout-proof.yml",
     ".github/workflows/production-completion-proof.yml",
+    ".github/workflows/seo-discovery-proof.yml",
     ".github/workflows/seo-follow-through-proof.yml",
     ".github/workflows/seo-technical-proof.yml",
     ".github/workflows/shift-coach-integration.yml",
@@ -98,6 +99,7 @@
     "public-seo-approved-data.mjs",
     "public-seo-approved.mjs",
     "public-seo-closeout.mjs",
+    "public-seo-discovery.mjs",
     "public-seo-follow-through.mjs",
     "public-seo-programme.mjs",
     "public-seo-technical-data.mjs",
@@ -129,6 +131,7 @@
     "release/public-wording-scope.mjs",
     "release/query-log-redaction.mjs",
     "release/runtime-rollback-guard.mjs",
+    "release/seo-discovery-scope.mjs",
     "release/seo-follow-through-preservation.mjs",
     "release/seo-follow-through-scope.mjs",
     "release/seo-technical-preservation-data.mjs",
@@ -244,11 +247,13 @@
     "tests/production-completion-release.test.mjs",
     "tests/public-seo-approved.test.mjs",
     "tests/public-seo-closeout.test.mjs",
+    "tests/public-seo-discovery.test.mjs",
     "tests/public-seo-programme.test.mjs",
     "tests/public-seo-technical.test.mjs",
     "tests/public-ticker-contrast-safety.test.mjs",
     "tests/rendered-member-acceptance-support.test.mjs",
     "tests/runtime-rollback-guard.test.mjs",
+    "tests/seo-discovery-release.test.mjs",
     "tests/seo-follow-through-release.test.mjs",
     "tests/seo-technical-release.test.mjs",
     "tests/seo794-preservation.test.mjs",
@@ -596,6 +601,29 @@
             "review": "SST-Organic-Reach-Authority-Review-2026-10-06.html",
             "reviewVersion": 1,
             "scope": "Five exact reviewed page changes and prescriber worksheet web publication; no homepage, Start Here, outgoing message or clinical-review attestation."
+          },
+          "discoveryComposition": {
+            "proof": "EXACT_INDEXNOW_AND_PUBLIC_DISCOVERY_V1",
+            "base": "5c6bec0e59d914b234dffac400da9b6f3c0f1578",
+            "payloadSource": "264c280990dbb66756a7767bd4efa06bb9b48b6f",
+            "maintenanceSource": "264c280990dbb66756a7767bd4efa06bb9b48b6f",
+            "payloadPaths": [
+              "public-seo-discovery.mjs",
+              "shift-coach/worker.mjs",
+              "tests/public-seo-discovery.test.mjs"
+            ],
+            "maintenancePaths": [
+              "release/seo-discovery-scope.mjs",
+              "release/approved-ranking-scope.mjs",
+              "release/seo-technical-scope.mjs",
+              "tests/seo-discovery-release.test.mjs",
+              ".github/workflows/seo-discovery-proof.yml"
+            ],
+            "request": {
+              "instruction": "Look into this - also resolve all pages seo",
+              "date": "2026-10-06",
+              "scope": "Exact root IndexNow ownership-key endpoint and removal of the closed treatment-order discovery line; no new editorial wording, homepage, member route, outreach or clinical approval."
+            }
           }
         }
       }
