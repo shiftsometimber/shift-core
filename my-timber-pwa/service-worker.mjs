@@ -20,7 +20,8 @@ self.addEventListener('notificationclick',event=>{
 });
 self.addEventListener('fetch',event=>{
  const u=new URL(event.request.url);
- if(event.request.method!=='GET'||event.request.mode!=='navigate'||u.origin!==self.location.origin||!/^\/member\//.test(u.pathname)||u.search)return;
+ const panel=['/member/fit','/member/grub','/member/life-back'].includes(u.pathname)&&u.searchParams.get('app_panel')==='1'&&['app','web'].includes(u.searchParams.get('view'))&&u.searchParams.size===2;
+ if(event.request.method!=='GET'||event.request.mode!=='navigate'||u.origin!==self.location.origin||!/^\/member\//.test(u.pathname)||(u.search&&!panel))return;
  event.respondWith(fetch(event.request).catch(()=>new Response(${JSON.stringify(offlinePage)},{status:503,headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'}})));
 });
 `;
