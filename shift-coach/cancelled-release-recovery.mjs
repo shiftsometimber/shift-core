@@ -65,7 +65,14 @@ export function verifiedArticleRuntime(active,run,job){
 // verified newer runtime to the historical fallback pointer.
 export function verifiedStartingPoint(record,active){
  assert(['retain','restore'].includes(record?.decision),'Recovery decision absent');
- assert.equal(record.run,recovery.run);assert.equal(record.dataChanged,false);
+ assert.equal(record.dataChanged,false);
+ if(record.technicalRecovery){
+  const p=technicalRecovery;assert.equal(record.decision,'restore');assert.equal(record.run,p.run);assert.equal(record.from,p.version);assert.equal(record.to,p.verifiedVersion);assert.equal(record.verifiedRun,p.verifiedRun);assert.equal(record.customerRecordsRead,0);assert.equal(record.ownedProof,null);
+  assert.deepEqual(record.technicalRecovery,{run:p.run,source:p.source,version:p.version,deployment:p.deployment,verifiedRun:p.verifiedRun,verifiedSource:p.verifiedSource,verifiedVersion:p.verifiedVersion,verifiedDeployment:p.verifiedDeployment});
+  assert.equal(active?.versions?.length,1);assert.equal(active.versions[0].percentage,100);assert.equal(active.versions[0].version_id,p.verifiedVersion,'Runtime moved since exact cancelled SEO recovery');
+  return{source:p.verifiedSource,version:p.verifiedVersion,run:p.verifiedRun};
+ }
+ assert.equal(record.run,recovery.run);
  assert.equal(active?.versions?.length,1);assert.equal(active.versions[0].percentage,100);
  assert.equal(active.versions[0].version_id,record.to,'Runtime moved since recovery verification');
  if(record.ownedProof){
@@ -89,4 +96,30 @@ export async function recentSuccessfulPromotions(get,active){
  if(recorded){assert.equal(recorded.id,recordedImageRuntime.run);assert.equal(recorded.head_sha,recordedImageRuntime.source);assert.equal(recorded.conclusion,'success');assert.equal(recorded.status,'completed');assert.equal(recorded.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(recorded.event,'push');assert.equal(recorded.head_branch,'main');}
  const result=await get('/actions/workflows/cloudflare-production-promote.yml/runs?branch=main&event=push&status=success&per_page=100');
  return [...(recorded?[recorded]:[]),...(result.workflow_runs||[]).filter(run=>run.path==='.github/workflows/cloudflare-production-promote.yml'&&run.id!==recorded?.id).slice(0,5)];
+}
+
+
+// Only this cancelled SEO deployment may be restored. A cancelled run is never
+// promoted to verified status; its captured predecessor must have succeeded.
+export const technicalRecovery=Object.freeze({run:37512509413,job:112437645245,source:'36301f661e9a2e220c15e7f1ccf070612186242b',deployment:'ec4aeeed-9656-4bc0-8e9d-6d751d6fac77',version:'81f4a3a8-9b25-4bb5-bd0d-1e870cfc0206',verifiedRun:37510903784,verifiedJob:112431598699,verifiedSource:'ddde14b19d6ef79547e27afb4ed76bf1f4e39f05',verifiedDeployment:'3f64ff03-76c6-4aaf-bc66-f4c3865711d9',verifiedVersion:'35e9b183-12c6-4a22-a68b-1a9ee3c8cef4'});
+const ownedFrom=logs=>String(logs).split('\n').flatMap(line=>{const at=line.indexOf('{"kind":"owned_runtime_deployment"');if(at<0)return[];try{return[JSON.parse(line.slice(at))]}catch{return[]}});
+export function verifiedTechnicalCancelledRecovery(active,failed,job,failedLogs,verified,verifiedJob,verifiedLogs){
+ const p=technicalRecovery;
+ if(active?.id!==p.deployment||active.versions?.length!==1||active.versions[0].percentage!==100||active.versions[0].version_id!==p.version)return false;
+ if(failed?.id!==p.run||failed.head_sha!==p.source||failed.run_attempt!==1||failed.status!=='completed'||failed.conclusion!=='cancelled'||failed.event!=='push'||failed.head_branch!=='main'||failed.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
+ if(job?.id!==p.job||job.run_id!==p.run||job.name!=='promote'||job.conclusion!=='cancelled'||job.status!=='completed')return false;
+ for(const [number,name,conclusion] of [[60,'Deploy current main to production','success'],[86,'Prove exact member scripts and authentication on live traffic','cancelled'],[107,'Restore the captured runtime if a post-deployment gate failed','skipped']])if(!job.steps?.some(s=>s.number===number&&s.name===name&&s.conclusion===conclusion))return false;
+ if(verified?.id!==p.verifiedRun||verified.head_sha!==p.verifiedSource||verified.run_attempt!==1||verifiedJob?.id!==p.verifiedJob)return false;
+ const predecessor={id:p.verifiedDeployment,versions:[{version_id:p.verifiedVersion,percentage:100}]};
+ const successful=ownedFrom(verifiedLogs).filter(o=>o.deploymentId===p.verifiedDeployment&&verifiedOwnedRuntime(predecessor,verified,verifiedJob,o));
+ const cancelled=ownedFrom(failedLogs).filter(o=>o.source===p.source&&String(o.run)===String(p.run)&&o.deploymentId===p.deployment&&o.versionId===p.version&&o.previousDeploymentId===p.verifiedDeployment&&o.previousVersionId===p.verifiedVersion&&o.dataRestored===false);
+ return successful.length===1&&cancelled.length===1;
+}
+export async function verifyTechnicalCancelledRuntime(active,get,getLogs){
+ const p=technicalRecovery;
+ const failed=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs?filter=latest&per_page=100');
+ const verified=await get('/actions/runs/'+p.verifiedRun),verifiedJobs=await get('/actions/runs/'+p.verifiedRun+'/jobs?filter=latest&per_page=100');
+ const job=jobs.jobs?.find(j=>j.id===p.job),verifiedJob=verifiedJobs.jobs?.find(j=>j.id===p.verifiedJob);
+ assert(verifiedTechnicalCancelledRecovery(active,failed,job,await getLogs(p.job),verified,verifiedJob,await getLogs(p.verifiedJob)),'Exact cancelled SEO runtime and successful captured predecessor evidence required');
+ return{run:p.run,source:p.source,version:p.version,deployment:p.deployment,verifiedRun:p.verifiedRun,verifiedSource:p.verifiedSource,verifiedVersion:p.verifiedVersion,verifiedDeployment:p.verifiedDeployment};
 }
