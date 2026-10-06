@@ -6,6 +6,17 @@ import {execFileSync} from 'node:child_process';
 import {COACH_BASE,COACH_PATHS,COACH_COMPOSED_BOOK_ADDITIONS,COACH_COMPOSED_BOOK_CHANGES,assertCoachingChangedPath,WATCH_CURRENT_PATHS,assertCoachingConfiguration,withoutCoachEntrypoint,coachingHistoricalRef,validateCoachingSource,assertLaunchDecisions} from './release-contract.mjs';
 const config=readFileSync('wrangler.jsonc','utf8'),before=execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'});
 const manifest=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8'));
+test('already-live catalogue copy is reversed before strict homepage banner preservation',async()=>{
+ const {banner,css}=await import('../home-route-banner.mjs');
+ const {addCatalogueCounts,benefitsSection}=await import('../catalogue-benefits.mjs');
+ const {preserveApprovedStartup}=await import('../release/member-details-preservation.mjs');
+ const plain='<html><head></head><body><main><section aria-labelledby="struggle-artwork-title" class="struggle-artwork-section">untouched</section></main></body></html>';
+ const approved=plain.replace('</head>',css+'</head>').replace('<section aria-labelledby=',banner+'<section aria-labelledby=');
+ assert.equal(preserveApprovedStartup('/',Buffer.from(addCatalogueCounts(approved))).toString(),plain);
+ assert.throws(()=>preserveApprovedStartup('/',Buffer.from(addCatalogueCounts(approved).replace('Over 2,500 recipes.','Over 9,999 recipes.'))),/Homepage banner differs/);
+ const programme='<html><head></head><main>unchanged</main></html>';
+ assert.equal(preserveApprovedStartup('/programme',Buffer.from(programme.replace('</main>',benefitsSection+'</main>'))).toString(),programme);
+});
 test('bounded member evidence rejects drift of every proven file, extra paths and a temporary production workflow',async()=>{
  const {MEMBER_DIAGNOSTICS_PATHS, MEMBER_DIAGNOSTICS_WORKFLOW, MEMBER_DIAGNOSTICS_SOURCE, MEMBER_DIAGNOSTICS_BASE, MEMBER_RELOAD_PATHS, MEMBER_RELOAD_SOURCE, validateMemberDiagnosticsSource}=await import('../release/member-acceptance-scope.mjs');
  const paths=[...MEMBER_DIAGNOSTICS_PATHS,MEMBER_DIAGNOSTICS_WORKFLOW],read=(ref,p)=>p;
