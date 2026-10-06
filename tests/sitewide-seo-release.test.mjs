@@ -57,9 +57,9 @@ test('only the exact owned failed release and proven rollback may retain the sam
  await assert.rejects(()=>verifySitewideRollback(active,get,async()=>logs.split('\n')[0]+'\n'+JSON.stringify(receipt)),/rollback absent/);
 });
 
-test('fifth owned rollback requires the complete earlier chain and rejects altered evidence',async()=>{
- const {SITEWIDE_SECOND_ROLLBACK,SITEWIDE_THIRD_ROLLBACK,SITEWIDE_FOURTH_ROLLBACK,SITEWIDE_FIFTH_ROLLBACK,verifySitewideRollback}=await import('../release/sitewide-seo-scope.mjs');
- const chain=[SITEWIDE_ROLLBACK,SITEWIDE_SECOND_ROLLBACK,SITEWIDE_THIRD_ROLLBACK,SITEWIDE_FOURTH_ROLLBACK,SITEWIDE_FIFTH_ROLLBACK];
+test('sixth owned rollback requires the complete earlier chain and rejects altered evidence',async()=>{
+ const {SITEWIDE_SECOND_ROLLBACK,SITEWIDE_THIRD_ROLLBACK,SITEWIDE_FOURTH_ROLLBACK,SITEWIDE_FIFTH_ROLLBACK,SITEWIDE_SIXTH_ROLLBACK,verifySitewideRollback}=await import('../release/sitewide-seo-scope.mjs');
+ const chain=[SITEWIDE_ROLLBACK,SITEWIDE_SECOND_ROLLBACK,SITEWIDE_THIRD_ROLLBACK,SITEWIDE_FOURTH_ROLLBACK,SITEWIDE_FIFTH_ROLLBACK,SITEWIDE_SIXTH_ROLLBACK];
  const get=async path=>{
   const p=chain.find(x=>path.includes('/'+x.run));assert(p);
   return path.endsWith('/jobs')?{jobs:[{id:p.job,run_id:p.run,name:'promote',status:'completed',conclusion:'failure'}]}:{id:p.run,head_sha:p.source,path:'.github/workflows/cloudflare-production-promote.yml',head_branch:'main',event:'push',status:'completed',conclusion:'failure'};
@@ -72,7 +72,7 @@ test('fifth owned rollback requires the complete earlier chain and rejects alter
    'Worker Version '+SITEWIDE_VERSION+' has been deployed to 100% of traffic.','Current Version ID: '+SITEWIDE_VERSION
   ].join('\n');
  };
- const p=SITEWIDE_FIFTH_ROLLBACK,active={id:p.deployment,created_on:p.createdOn,versions:[{version_id:SITEWIDE_VERSION,percentage:100}]},seen=[];
+ const p=SITEWIDE_SIXTH_ROLLBACK,active={id:p.deployment,created_on:p.createdOn,versions:[{version_id:SITEWIDE_VERSION,percentage:100}]},seen=[];
  assert.equal((await verifySitewideRollback(active,get,async id=>{seen.push(id);return logs(id)})).run,p.run);
  assert.deepEqual(seen,chain.map(x=>x.job));
  for(const patch of [{id:'unrecorded'},{created_on:'wrong'},{versions:[{version_id:SITEWIDE_VERSION,percentage:99}]}])await assert.rejects(()=>verifySitewideRollback({...active,...patch},get,logs));
@@ -112,4 +112,57 @@ test('live article checker retries dropped headers and bodies but fails persiste
    if(result.ok)assert.equal(JSON.parse(readFileSync(join(dir,'shift-take-live-proof.json'),'utf8')).articles,1);
   }finally{rmSync(dir,{recursive:true,force:true});}
  }
+});
+
+test('PWA live proof retries only complete GET reads and still fails incorrect assets or POST probes',async()=>{
+ const {mkdtempSync,rmSync,readFileSync:read}=await import('node:fs');
+ const {tmpdir}=await import('node:os');
+ const {join}=await import('node:path');
+ const {spawnSync}=await import('node:child_process');
+ const script=new URL('../my-timber-pwa/verify-live.mjs',import.meta.url).href;
+ const presentation=new URL('../my-timber-pwa/presentation.mjs',import.meta.url).href;
+ for(const scenario of ['header','body','persistent','wrongAsset','postReset']){
+  const dir=mkdtempSync(join(tmpdir(),'pwa-live-read-'));
+  try{
+   const code=[
+    'import{pwaAssets}from '+JSON.stringify(presentation)+';',
+    'let calls=0,getCalls=0,postCalls=0;const scenario='+JSON.stringify(scenario)+';',
+    'globalThis.setTimeout=(fn)=>{queueMicrotask(fn);return 0;};',
+    "globalThis.fetch=async(url,init={})=>{calls++;if(init.method==='POST'){postCalls++;if(scenario==='postReset')throw new TypeError('fetch failed',{cause:{code:'ECONNRESET'}});return new Response('',{status:init.headers.Origin==='https://shiftsometimber.co.uk'?401:403});}",
+    "getCalls++;if(scenario==='persistent'||scenario==='header'&&getCalls===1)throw new TypeError('fetch failed',{cause:{code:'ECONNRESET'}});",
+    "if(scenario==='body'&&getCalls===1)return {status:200,text:async()=>{throw new TypeError('terminated',{cause:{code:'ECONNRESET'}})}};",
+    "if(scenario==='wrongAsset'&&getCalls===1)return new Response('incorrect asset');",
+    "const path=new URL(url).pathname;if(['/my-timber.webmanifest','/manifest.webmanifest','/assets/my-timber-pwa.js','/assets/my-timber-pwa.css','/shift-push-sw-v1.js'].includes(path))return pwaAssets(new Request(url));",
+    "return new Response('<html data-my-timber-app-footer id=\"myTimberApp\"><link href=\"/my-timber.webmanifest\"></html>');};",
+    'try{await import('+JSON.stringify(script)+");console.log('RESULT '+JSON.stringify({ok:true,calls,getCalls,postCalls}));}",
+    "catch(e){console.log('RESULT '+JSON.stringify({ok:false,calls,getCalls,postCalls,error:e.message}));}"
+   ].join('\n');
+   const child=spawnSync(process.execPath,['--input-type=module','-e',code],{cwd:dir,encoding:'utf8'});
+   assert.equal(child.status,0,child.stderr);
+   const result=JSON.parse(child.stdout.split('\n').find(x=>x.startsWith('RESULT ')).slice(7));
+   assert.equal(result.ok,['header','body'].includes(scenario),scenario);
+   assert.equal(result.getCalls,scenario==='persistent'?3:scenario==='wrongAsset'?1:['header','body'].includes(scenario)?15:14,scenario);
+   assert.equal(result.postCalls,['header','body'].includes(scenario)?2:scenario==='postReset'?1:0,scenario);
+   if(result.ok){const proof=JSON.parse(read(join(dir,'b1-runtime-release/pwa-live.json'),'utf8'));assert.equal(proof.productionWrites,0);assert.equal(proof.checks.length,15);}
+  }finally{rmSync(dir,{recursive:true,force:true});}
+ }
+});
+
+test('app preservation recognises only the exact PWA GET retry repair and retains both POST probes',async()=>{
+ const {execFileSync}=await import('node:child_process');
+ const {originalPwaLiveReadVerifier}=await import('../release/seo-follow-through-preservation.mjs');
+ const {APP_BASE}=await import('../release/app-scope.mjs');
+ const source=readFileSync('my-timber-pwa/verify-live.mjs','utf8'),original=execFileSync('git',['show',APP_BASE+':my-timber-pwa/verify-live.mjs'],{encoding:'utf8'});
+ assert.equal(originalPwaLiveReadVerifier(source),original);
+ assert.equal(originalPwaLiveReadVerifier(original),original);
+ for(const changed of [
+  source.replace('attempt<3','attempt<9'),
+  source.replace('unauth.status,401','unauth.status,200'),
+  source.replace('foreign.status,403','foreign.status,200'),
+  source.replace("path+' exact source'","path+' ignore source'"),
+  source+'\n// unexpected source drift\n'
+ ])assert.notEqual(originalPwaLiveReadVerifier(changed),original);
+ const helper=source.slice(source.indexOf('// Three bounded attempts'),source.indexOf('const sha=value'));
+ assert.throws(()=>originalPwaLiveReadVerifier(source.replace(helper,helper+helper)),/Exactly one PWA read helper/);
+ assert.throws(()=>originalPwaLiveReadVerifier(source.replace('const {response:r,body}=await readPublicPage(origin+path);assert.equal(r.status,200,path);','const r=await fetch(origin+path);')),/Exactly two bounded PWA GET integrations/);
 });
