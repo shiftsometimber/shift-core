@@ -1,0 +1,37 @@
+name: Approved site-wide SEO isolated read-only proof
+on:
+  push:
+    branches: ['seo/full-programme-review-20261006']
+    paths-ignore: ['shift-coach/release-manifest.json']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install locked runtime dependencies
+        run: npm ci --ignore-scripts
+      - name: Validate every production source and scope pin
+        run: node --input-type=module -e "import {validateGrowthSource} from './release/growth-scope.mjs';validateGrowthSource();"
+      - name: Run SEO transformation and exact release receipt tests
+        run: |
+          mkdir -p sitewide-seo-proof
+          node --test tests/public-seo-programme.test.mjs tests/public-seo-closeout.test.mjs tests/practical-guides.test.mjs tests/sitewide-seo-release.test.mjs shift-coach/release.test.mjs > sitewide-seo-proof/tests.log 2>&1
+      - name: Compare full handlers and independently verify actual live documents
+        run: |
+          git worktree add --detach /tmp/sitewide-seo-baseline cd2f16af13097f6987087d1cf16b007f7114f017
+          ln -s "$GITHUB_WORKSPACE/node_modules" /tmp/sitewide-seo-baseline/node_modules
+          BASELINE_WORKER=/tmp/sitewide-seo-baseline/shift-coach/worker.mjs node scripts/verify-sitewide-seo.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sitewide-seo-proof-${{ github.sha }}
+          path: sitewide-seo-proof/
+          retention-days: 30

@@ -1,3 +1,4 @@
+import {SITEWIDE_VERSION,verifySitewideRuntime} from './sitewide-seo-scope.mjs';
 import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 import {reusablePublicIndex} from './app-index-freshness.mjs';
 // Use the same exact verified production receipt as cancelled-release recovery.
@@ -16,6 +17,11 @@ assert(r.ok);const receipt=await r.json();assert.equal(receipt.id,point.run);ass
 if(point.run===catalogueRuntime.run){
  const request=async path=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r;};
  assert(await verifyCatalogueBaseline(active,async path=>(await request(path)).json(),async id=>(await request('/actions/jobs/'+id+'/logs')).text(),JSON.parse(readFileSync('docs/catalogue-benefits-live-receipt-20261006.json','utf8')),JSON.parse(readFileSync('docs/catalogue-runtime-rollback-37462426049.json','utf8'))),'Exact catalogue proof, live receipt and any finite rollback evidence must still agree');
+}else if(point.version===SITEWIDE_VERSION){
+ const c=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8')).sitewideSeoComposition;
+ const request=async path=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r;};
+ const proof=await verifySitewideRuntime(active,c,readFileSync('docs/seo-sitewide-live-receipt-20261006.json','utf8'),async path=>(await request(path)).json(),async id=>(await request('/actions/jobs/'+id+'/logs')).text());
+ assert.equal(point.source,proof.source);assert.equal(point.run,proof.run);
 }else{assert.equal(receipt.path,point.run===articleRuntime.run?articleRuntime.workflow:'.github/workflows/cloudflare-production-promote.yml');assert.equal(receipt.head_branch,'main');}
 assert.equal(withoutCoachEntrypoint(execFileSync('git',['show','HEAD:wrangler.jsonc'],{encoding:'utf8'})),execFileSync('git',['show','b23010cfca99b3ab05377062ad5b16984711111c:wrangler.jsonc'],{encoding:'utf8'}),'Configuration changed outside the separately pinned coaching entrypoint');
 mkdirSync('b1-runtime-release',{recursive:true});
