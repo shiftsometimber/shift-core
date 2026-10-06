@@ -38,6 +38,9 @@ await context.addInitScript(()=>{
  window.addEventListener('error',e=>keep('error',{message:e.message,filename:e.filename,lineno:e.lineno}));
 });
 const page=await context.newPage();
+report.frameLifecycle=[];const cdp=await context.newCDPSession(page);await cdp.send('Page.enable');for(const kind of ['frameAttached','frameDetached','frameStartedLoading','frameStoppedLoading','frameRequestedNavigation','frameNavigated'])cdp.on('Page.'+kind,event=>{const x={kind,frame:event.frameId||event.frame?.id,reason:event.reason,url:event.url?resourcePath(event.url):event.frame?.url?resourcePath(event.frame.url):null};report.frameLifecycle.push(x);if(report.frameLifecycle.length>80)report.frameLifecycle.shift()});
+page.on('console',m=>{if(m.type()==='error'){report.frameLifecycle.push({kind:'console-error',detail:m.text().slice(0,500)});if(report.frameLifecycle.length>80)report.frameLifecycle.shift()}});
+
 const navigation=attachDiagnostics(page,report,write);
 const watchdog=setTimeout(()=>{fail('verification termination','Browser verification did not terminate within eight minutes');write();process.exit(1)},480000);watchdog.unref();
 try{
