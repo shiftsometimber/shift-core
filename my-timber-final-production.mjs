@@ -15,7 +15,7 @@ const OUT=process.env.MY_TIMBER_FINAL_EVIDENCE_DIR||'my-timber-final-evidence';
 if(!OIDC)throw new Error('SHIFT_COMMISSIONING_OIDC required');
 fs.mkdirSync(OUT,{recursive:true});
 const password=`Sst-${randomUUID()}-Aa1!`,email=`shiftsometimber+structured-authrender-final-billy-${Date.now()}@gmail.com`;
-const report={proof:'MY_TIMBER_FINAL_PRODUCTION_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
+const report={proof:'MY_TIMBER_UNMODIFIED_FINAL_MEMBER_UPGRADE_PROOF_V1',device:{width:390,height:844,label:'Chromium phone viewport (not a Safari device test)'},checks:[],failures:[],networkErrors:[],screens:[],googlePlayScreens:[]};
 const resourcePath=value=>{try{const u=new URL(value);return u.origin+u.pathname}catch{return '[no resource URL]'}};
 const pass=(name,detail='')=>report.checks.push({name,status:'PASS',detail});
 const fail=(name,detail)=>{report.failures.push({name,detail});console.error(`::error title=My Timber final::${name} — ${detail}`)};
@@ -35,6 +35,7 @@ const page=await context.newPage();
 const navigation=attachDiagnostics(page,report,write);
 const watchdog=setTimeout(()=>{fail('verification termination','Browser verification did not terminate within eight minutes');write();process.exit(1)},480000);watchdog.unref();
 try{
+  await page.goto(SITE+'/',{waitUntil:'domcontentloaded'});await chooseNecessaryCookies(page);await page.evaluate(()=>Promise.race([navigator.serviceWorker.ready,new Promise((_,reject)=>setTimeout(()=>reject(Error('Public site worker did not become ready')),20000))]));await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:10000});report.publicWorkerBeforeMember=await page.evaluate(()=>navigator.serviceWorker.controller.scriptURL);
   await login(page);
   // PR790: real new fictional-account contact save on production; no customer
   // account or clinical/payment operation. Existing OIDC/registration guard stays.
@@ -94,6 +95,7 @@ try{
   assert.equal(await page.locator('#todayActions>.mtm-hero img').filter({visible:true}).count(),0,'Today must not show the retired pub photograph');assert.equal(await page.locator('#todayActions>.mtm-hero').evaluate(e=>getComputedStyle(e).backgroundImage),'none','Today heading must have no repeated background photograph');
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Phone layout has no horizontal overflow');
   await screenshot(page,'01-billy-current-today');
+  report.memberWorkerBeforeMeal=await page.evaluate(()=>navigator.serviceWorker.controller?.scriptURL||'');
   await page.locator('.today-meal-action').click();
   const mealFrame=page.frameLocator('#appTool-grub iframe');
   await mealFrame.getByText(chosen.name,{exact:true}).filter({visible:true}).first().waitFor({state:'visible',timeout:45000});
