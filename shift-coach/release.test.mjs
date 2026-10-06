@@ -7,10 +7,10 @@ import {COACH_BASE,COACH_PATHS,COACH_COMPOSED_BOOK_ADDITIONS,COACH_COMPOSED_BOOK
 const config=readFileSync('wrangler.jsonc','utf8'),before=execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'});
 const manifest=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8'));
 test('bounded member evidence rejects drift of every proven file, extra paths and a temporary production workflow',async()=>{
- const {MEMBER_DIAGNOSTICS_PATHS, MEMBER_DIAGNOSTICS_WORKFLOW, MEMBER_DIAGNOSTICS_SOURCE, MEMBER_DIAGNOSTICS_BASE, validateMemberDiagnosticsSource}=await import('../release/member-acceptance-scope.mjs');
+ const {MEMBER_DIAGNOSTICS_PATHS, MEMBER_DIAGNOSTICS_WORKFLOW, MEMBER_DIAGNOSTICS_SOURCE, MEMBER_DIAGNOSTICS_BASE, MEMBER_RELOAD_PATHS, MEMBER_RELOAD_SOURCE, validateMemberDiagnosticsSource}=await import('../release/member-acceptance-scope.mjs');
  const paths=[...MEMBER_DIAGNOSTICS_PATHS,MEMBER_DIAGNOSTICS_WORKFLOW],read=(ref,p)=>p;
  assert.doesNotThrow(()=>validateMemberDiagnosticsSource(read,paths));
- for(const path of MEMBER_DIAGNOSTICS_PATHS)assert.throws(()=>validateMemberDiagnosticsSource((ref,p)=>ref===MEMBER_DIAGNOSTICS_SOURCE&&p===path?'changed':p,paths),/source drift/);
+ for(const path of MEMBER_DIAGNOSTICS_PATHS)assert.throws(()=>validateMemberDiagnosticsSource((ref,p)=>ref===(MEMBER_RELOAD_PATHS.includes(path)?MEMBER_RELOAD_SOURCE:MEMBER_DIAGNOSTICS_SOURCE)&&p===path?'changed':p,paths),/source drift/);
  assert.throws(()=>validateMemberDiagnosticsSource((ref,p)=>ref===MEMBER_DIAGNOSTICS_BASE&&p===MEMBER_DIAGNOSTICS_WORKFLOW?'temporary':p,paths),/must not enter production/);
  assert.throws(()=>validateMemberDiagnosticsSource(read,[...paths,'worker.js']),/exact five-file/);
  assert.throws(()=>validateMemberDiagnosticsSource(read,paths.slice(1)),/exact five-file/);
@@ -116,4 +116,19 @@ test('current-shell Health Plan mount preserves only the exact named dashboard c
   for(const status of ['A','D','R'])assert.throws(()=>assertCoachingChangedPath(status,p));
   assert.throws(()=>validateCoachingSource((ref,path)=>ref==='5bf5a7febae1a6bab3a549507306669456a8aaa6'&&path===p?'changed-mount':path,m),/Merged Health Plan dashboard mount source drift/);
  }
+});
+
+test('reload evidence rejects every changed verifier and requires the restored original workflow',async()=>{
+ const {MEMBER_RELOAD_PATHS,MEMBER_RELOAD_SOURCE,MEMBER_RELOAD_BASE,MEMBER_DIAGNOSTICS_WORKFLOW,validateMemberReloadSource}=await import('../release/member-acceptance-scope.mjs');
+ const paths=[...MEMBER_RELOAD_PATHS,MEMBER_DIAGNOSTICS_WORKFLOW],read=(ref,p)=>p;
+ assert.doesNotThrow(()=>validateMemberReloadSource(read,paths));
+ for(const path of MEMBER_RELOAD_PATHS)assert.throws(()=>validateMemberReloadSource((ref,p)=>ref===MEMBER_RELOAD_SOURCE&&p===path?'changed':p,paths),/verifier drift/);
+ assert.throws(()=>validateMemberReloadSource((ref,p)=>ref===MEMBER_RELOAD_BASE&&p===MEMBER_DIAGNOSTICS_WORKFLOW?'temporary':p,paths),/must not enter production/);
+ assert.throws(()=>validateMemberReloadSource(read,[...paths,'worker-entry-v6.js']),/exact four-file/);
+});
+test('reload evidence requires its own completed successful live source, branch, workflow and event',async()=>{
+ const {MEMBER_RELOAD_SOURCE,MEMBER_DIAGNOSTICS_WORKFLOW,assertMemberReloadReceipt}=await import('../release/member-acceptance-scope.mjs');
+ const receipt={id:37454715342,head_sha:MEMBER_RELOAD_SOURCE,path:MEMBER_DIAGNOSTICS_WORKFLOW,head_branch:'fix/passport-reload-readback-20261006',event:'push',status:'completed',conclusion:'success'};
+ assert.doesNotThrow(()=>assertMemberReloadReceipt(receipt));
+ for(const change of [{id:37454715343},{head_sha:'a'.repeat(40)},{path:'.github/workflows/other.yml'},{head_branch:'main'},{event:'pull_request'},{status:'in_progress'},{conclusion:'failure'}])assert.throws(()=>assertMemberReloadReceipt({...receipt,...change}));
 });

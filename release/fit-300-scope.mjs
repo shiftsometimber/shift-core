@@ -11,6 +11,25 @@ const SEO_COMPOSED_PATHS=new Set(['.github/workflows/cloudflare-production-promo
 // Exact post-Fit Watch composition reviewed after Fit and SEO. The manifest itself
 // is pinned separately so its final source pointer can name this application.
 export const POST_FIT_WATCH_PATHS=new Set(['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-05-authorised-710go.json','medicines-watch/reviews/2026-10-06-authorised-survodutide-synchronize-jp.json','medicines-watch/reviews/2026-10-06-authorised-core-trial-lifecycle.json','medicines-watch/reviews/2026-10-06-authorised-gub-ucn2-mbl949.json','medicines-watch/reviews/2026-10-06-authorised-at7687-at673-alias.json','release/app-manifest.json','release/app-scope.mjs','release/watch-registry-wave-scope.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/release-contract.mjs','tests/b1-release-scope.test.mjs']);
+// A finite verifier-only adoption. Runtime and owner launch decisions are unchanged.
+export const ACCEPTANCE_RELOAD_PATHS=['health-passport/production-browser.mjs','release/member-acceptance-scope.mjs','shift-coach/release-contract.mjs','release/fit-300-scope.mjs','release/app-manifest.json','shift-coach/release.test.mjs'];
+export const ACCEPTANCE_RELOAD_VERIFIER_PATHS=['health-passport/production-browser.mjs','rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs'];
+export function validateAcceptanceReloadComposition(reload,read){
+ if(!reload)return;
+ assert.equal(reload.proof,'MEMBER_RELOAD_LIVE_VERIFIER_V1');
+ assert.equal(reload.base,'674101642d151a55889fe5391c1790f09e830f51');
+ assert.equal(reload.verifierSource,'1d198f6d097eb126ef630984d4a43a15fa83823c');
+ assert.equal(reload.run,37454715342);assert.deepEqual(reload.paths,ACCEPTANCE_RELOAD_PATHS);
+ assert.match(reload.source,/^[a-f0-9]{40}$/);
+ execFileSync('git',['merge-base','--is-ancestor',reload.source,'HEAD']);
+ for(const p of reload.paths)assert.equal(read('HEAD',p),read(reload.source,p),'Coaching release source drift (reload adoption): '+p);
+ for(const p of ACCEPTANCE_RELOAD_VERIFIER_PATHS)assert.equal(read('HEAD',p),read(reload.verifierSource,p),'Coaching release source drift (reload verifier): '+p);
+ const paths=execFileSync('git',['diff','--name-only',reload.base,reload.source],{encoding:'utf8'}).trim().split('\n').filter(Boolean).sort();
+ assert.deepEqual(paths,[...new Set([...ACCEPTANCE_RELOAD_PATHS,...ACCEPTANCE_RELOAD_VERIFIER_PATHS])].sort(),'Reload adoption changed outside its eight exact verifier/metadata files');
+}
+export function acceptanceReloadHistoricalRead(read,reload){
+ return (ref,p)=>read(ref==='HEAD'&&reload?.paths.includes(p)?reload.base:ref,p);
+}
 export function validateSeoFitComposition(composition,read){
  assert.equal(composition.proof,'SEO_FIT_EXACT_COMPOSITION_V1');
  assert.equal(composition.base,'82c433486152e61833639efeffc3bac7dbe1713e');
@@ -32,10 +51,15 @@ export function validateFit300(){
  assert(existsSync('release/fit-300-activation.json'),'Exact Fit activation receipt required');
  const activation=JSON.parse(readFileSync('release/fit-300-activation.json'));
  const coach=JSON.parse(readFileSync('shift-coach/release-manifest.json'));
- for(const path of POST_FIT_WATCH_PATHS)assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',coach.applicationCommit+':'+path),'Post-Fit Watch composition source drift: '+path);
+ const reload=coach.acceptanceReloadComposition;
+ const read=(ref,p)=>git('rev-parse',ref+':'+p);
+ validateAcceptanceReloadComposition(reload,read);
+ const historical=acceptanceReloadHistoricalRead(read,reload);
+ const reloadPaths=new Set(reload?[...ACCEPTANCE_RELOAD_PATHS,...ACCEPTANCE_RELOAD_VERIFIER_PATHS]:[]);
+ for(const path of POST_FIT_WATCH_PATHS)assert.equal(historical('HEAD',path),git('rev-parse',coach.applicationCommit+':'+path),'Post-Fit Watch composition source drift: '+path);
  const composition=coach.seoFitComposition;
  if(composition){
-  validateSeoFitComposition(composition,(ref,path)=>git('rev-parse',ref+':'+path));
+  validateSeoFitComposition(composition,historical);
   git('merge-base','--is-ancestor',composition.base,composition.source);git('merge-base','--is-ancestor',composition.source,'HEAD');
   git('merge-base','--is-ancestor',composition.seoSource,composition.source);
   validateSixTopicSeoSource((ref,path)=>git('rev-parse',ref+':'+path),composition.source);
@@ -56,15 +80,15 @@ export function validateFit300(){
  assert.equal(viewer.ownerInstruction.quote,'No good these pics on a mobile ….. it doesn’t let you click on them to enlarge ? So can’t view what it is ? Assume perhaps same for grub');
  git('merge-base','--is-ancestor',viewer.base,viewer.source);git('merge-base','--is-ancestor',viewer.source,'HEAD');
  const viewerChanges=git('diff','--name-only',viewer.base,'HEAD').split('\n').filter(Boolean);
- assert(viewerChanges.every(p=>IMAGE_VIEWER_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))||['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)),'Unrelated image viewer release change');
- for(const p of IMAGE_VIEWER_PATHS)assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',(composition?.paths.includes(p)?composition.source:viewer.source)+':'+p),'Image viewer source drift: '+p);
+ assert(viewerChanges.every(p=>reloadPaths.has(p)||IMAGE_VIEWER_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))||['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)),'Unrelated image viewer release change');
+ for(const p of IMAGE_VIEWER_PATHS)assert.equal(historical('HEAD',p),git('rev-parse',(composition?.paths.includes(p)?composition.source:viewer.source)+':'+p),'Image viewer source drift: '+p);
  const allowed=git('diff','--name-only',activation.base,'HEAD').split('\n').filter(Boolean);
- assert(allowed.every(p=>FIT300_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))),'Unrelated change in Fit activation');
+ assert(allowed.every(p=>reloadPaths.has(p)||FIT300_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))),'Unrelated change in Fit activation');
  for(const p of FIT300_PATHS)if(!['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)){
   const ref=composition?.paths.includes(p)?composition.source:IMAGE_VIEWER_PATHS.has(p)?viewer.source:activation.source;
-  assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',ref+':'+p),'Fit payload source drift: '+p);
+  assert.equal(historical('HEAD',p),git('rev-parse',ref+':'+p),'Fit payload source drift: '+p);
  }
- for(const p of READONLY_ORGANIC_PATHS)assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',activation.base+':'+p),'Organic baseline source drift: '+p);
+ for(const p of READONLY_ORGANIC_PATHS)assert.equal(historical('HEAD',p),git('rev-parse',activation.base+':'+p),'Organic baseline source drift: '+p);
  const wire=JSON.parse(gunzipSync(readFileSync('evidence/fit-publication-2026-09-16/owner-release.json.gz')));
  assert.deepEqual(FIT_EXPANSION_SERVING_AUTHORITY,wire.manifest,'Only exact existing owner release may be activated');
  assert.equal(wire.manifest.canonical_movements,300);assert.equal(wire.manifest.served_count,2688);
@@ -103,7 +127,7 @@ export function validateFit300(){
  expectedCoach.decisions.ownerAcceptance.currentCoreTrialVerificationEvidence=coreTrialVerification;
  expectedCoach.decisions.ownerAcceptance.currentGubUcn2Mbl949VerificationEvidence=gubMblVerification;
  expectedCoach.decisions.ownerAcceptance.currentAt7687At673VerificationEvidence=at7687At673Verification;
- const {fitComposition,seoFitComposition,imageViewerComposition,...unchanged}=coach;
+ const {fitComposition,seoFitComposition,imageViewerComposition,acceptanceReloadComposition,...unchanged}=coach;
  assert.deepEqual(unchanged,expectedCoach,'Existing coaching launch decisions changed outside the exact Watch receipt');
  return {movements:300,servedProtocols:2688,approvedImages:300,databaseWrites:false,existingLayoutPreserved:true,tapToEnlarge:true};
 }
