@@ -468,7 +468,7 @@
       "scripts/verify-six-topic-seo.mjs",
       "release/six-topic-seo-scope.mjs"
     ],
-    "maintenanceSource": "c41983f2a7b12771cea431f37ac73dd3c2bdc725",
+    "maintenanceSource": "d6d4dedfe4c30b99cd77ce8e7c1add2718c153c0",
     "ownerApproval": {
       "owner": "Matt O’Brien",
       "at": "2026-10-06T14:18:48Z",
