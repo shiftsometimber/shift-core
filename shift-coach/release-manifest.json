@@ -421,6 +421,10 @@
       "tests/sitewide-seo-release.test.mjs"
     ],
     "maintenanceSource": "383385923719a7e46276f9b7e81ceb743cabaf63",
-    "hostedProof": null
+    "hostedProof": {
+      "run": 37469309924,
+      "job": 112288317760,
+      "source": "fc7f5f2201988fa3527988b9fa7acb868fa86f5b"
+    }
   }
 }
