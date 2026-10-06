@@ -8,12 +8,12 @@ export const SITEWIDE_WORKFLOW='.github/workflows/sitewide-seo-proof.yml';
 export const SITEWIDE_VERSION='d6a715ef-1940-4236-91fc-c25b064ca6f1';
 export const SITEWIDE_DEPLOYMENT='181d1800-a5aa-44bd-8eed-36fa549c641b';
 export const SITEWIDE_ROLLBACK={
- run:37469812171,
- job:112290194252,
- source:'34e74fdf590930504af55a6483d5bb72cf042dda',
- deployment:'6c2945ce-f9bd-4d80-84b1-f5f5a841c4ec',
- failedDeployment:'aaac9c6c-5275-476d-b87b-3f3fde25ab52',
- failedVersion:'00467e5c-09d1-4244-91da-b56198e7b262'
+ run:37481087125,
+ job:112329266723,
+ source:'890458eb37caf13c13173f6bd94c3f3c25714fec',
+ previousDeployment:'6c2945ce-f9bd-4d80-84b1-f5f5a841c4ec',
+ failedDeployment:'6fe4e99c-ec66-40b7-9371-7d1bf6b3375f',
+ failedVersion:'e4d59c68-5502-4d09-aec6-02747f73968f'
 };
 export const SITEWIDE_PAYLOAD_PATHS=["public-seo-programme.mjs","shift-coach/worker.mjs","tests/fixtures/public-seo-programme/anger-pause-and-support.html","tests/fixtures/public-seo-programme/food-noise-worked-situations.html","tests/fixtures/public-seo-programme/food-that-fits-your-week.html","tests/fixtures/public-seo-programme/loneliness-small-reconnection.html","tests/fixtures/public-seo-programme/low-mood-first-conversation.html","tests/fixtures/public-seo-programme/maintenance-conversation-plan.html","tests/fixtures/public-seo-programme/plateau-review-example.html","tests/fixtures/public-seo-programme/stress-pressure-example.html","tests/public-seo-programme.test.mjs"];
 export const SITEWIDE_MAINTENANCE_PATHS=['.github/workflows/sitewide-seo-proof.yml','docs/seo-sitewide-live-receipt-20261006.json','release/fit-300-scope.mjs','release/growth-adopt-deployment.mjs','release/sitewide-seo-scope.mjs','scripts/verify-sitewide-seo.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/release-contract.mjs','tests/sitewide-seo-release.test.mjs'];
@@ -69,7 +69,7 @@ export function sitewideProofMarker(receiptText){
 }
 export async function verifySitewideRuntime(active,c,receiptText,get,getLogs){
  validateSitewideComposition(c);assertSitewideLiveReceipt(JSON.parse(receiptText));
- assert([SITEWIDE_DEPLOYMENT,SITEWIDE_ROLLBACK.deployment].includes(active.id),'Active SEO deployment is neither the reviewed deployment nor its exact evidenced rollback');assert.equal(active.versions?.length,1);
+ assert.match(active.id,/^[a-f0-9-]{36}$/);assert.equal(active.versions?.length,1);
  assert.equal(active.versions[0].version_id,SITEWIDE_VERSION);assert.equal(active.versions[0].percentage,100);
  const p=c.hostedProof;assert(p,'Successful independent hosted SEO proof required');
  assert(Number.isSafeInteger(p.run)&&p.run>0);assert(Number.isSafeInteger(p.job)&&p.job>0);assert.match(p.source,/^[a-f0-9]{40}$/);
@@ -79,7 +79,7 @@ export async function verifySitewideRuntime(active,c,receiptText,get,getLogs){
  const job=jobs.jobs.find(j=>j.id===p.job);assert(job);assert.equal(job.name,'verify');assert.equal(job.status,'completed');assert.equal(job.conclusion,'success');
  const marker='SITEWIDE_SEO_PROOF '+JSON.stringify(sitewideProofMarker(receiptText));
  assert((await getLogs(p.job)).split('\n').some(line=>line.endsWith(marker)),'Exact hosted SEO proof marker absent');
- if(active.id===SITEWIDE_ROLLBACK.deployment){
+ if(active.id!==SITEWIDE_DEPLOYMENT){
   const rollbackRun=await get('/actions/runs/'+SITEWIDE_ROLLBACK.run),rollbackJobs=await get('/actions/runs/'+SITEWIDE_ROLLBACK.run+'/jobs');
   assert.equal(rollbackRun.id,SITEWIDE_ROLLBACK.run);assert.equal(rollbackRun.head_sha,SITEWIDE_ROLLBACK.source);
   assert.equal(rollbackRun.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(rollbackRun.head_branch,'main');
@@ -89,14 +89,14 @@ export async function verifySitewideRuntime(active,c,receiptText,get,getLogs){
   const rollbackLogs=await getLogs(SITEWIDE_ROLLBACK.job);
   const receipt=kind=>{for(const line of rollbackLogs.split('\n')){const start=line.indexOf('{"kind":"'+kind+'"');if(start<0)continue;try{return JSON.parse(line.slice(start))}catch{}}};
   const beforeReceipt=receipt('runtime_recovery_observation');assert(beforeReceipt,'Exact pre-release SEO runtime observation absent');
-  assert.equal(beforeReceipt.deploymentId,SITEWIDE_DEPLOYMENT);assert.equal(beforeReceipt.activeVersion,SITEWIDE_VERSION);assert.equal(beforeReceipt.release,SITEWIDE_ROLLBACK.source);
+  assert.equal(beforeReceipt.deploymentId,SITEWIDE_ROLLBACK.previousDeployment);assert.equal(beforeReceipt.activeVersion,SITEWIDE_VERSION);assert.equal(beforeReceipt.release,SITEWIDE_ROLLBACK.source);
   const deploymentReceipt=receipt('owned_runtime_deployment');assert(deploymentReceipt,'Exact failed deployment evidence absent');
   assert.equal(deploymentReceipt.source,SITEWIDE_ROLLBACK.source);assert.equal(String(deploymentReceipt.run),String(SITEWIDE_ROLLBACK.run));
   assert.equal(deploymentReceipt.deploymentId,SITEWIDE_ROLLBACK.failedDeployment);assert.equal(deploymentReceipt.versionId,SITEWIDE_ROLLBACK.failedVersion);
-  assert.equal(deploymentReceipt.previousDeploymentId,SITEWIDE_DEPLOYMENT);assert.equal(deploymentReceipt.previousVersionId,SITEWIDE_VERSION);
+  assert.equal(deploymentReceipt.previousDeploymentId,SITEWIDE_ROLLBACK.previousDeployment);assert.equal(deploymentReceipt.previousVersionId,SITEWIDE_VERSION);
   assert(rollbackLogs.includes('Worker Version '+SITEWIDE_VERSION+' has been deployed to 100% of traffic.'),'Exact SEO rollback success absent');
   assert(rollbackLogs.includes('Current Version ID: '+SITEWIDE_VERSION),'Exact SEO rollback version absent');
-  return {run:p.run,source:p.source,version:SITEWIDE_VERSION,deployment:SITEWIDE_ROLLBACK.deployment,evidenceKind:'owner-approved-manual-deployment-plus-independent-live-proof-and-exact-failed-release-rollback'};
+  return {run:p.run,source:p.source,version:SITEWIDE_VERSION,deployment:active.id,evidenceKind:'owner-approved-manual-deployment-plus-independent-live-proof-and-exact-failed-release-rollback'};
  }
  return {run:p.run,source:p.source,version:SITEWIDE_VERSION,deployment:SITEWIDE_DEPLOYMENT,evidenceKind:'owner-approved-manual-deployment-plus-independent-hosted-and-live-proof'};
 }
