@@ -30,3 +30,26 @@ test('plain member navigation and the existing offline response stay intact',asy
  assert.equal(r.status,503);assert.equal(r.headers.get('Cache-Control'),'no-store');
  const body=await r.text();assert.match(body,/Reconnect to open My Timber/);assert.doesNotMatch(body,/synthetic-session/);
 });
+
+import {memberWorkerHtml,memberWorkerAsset} from '../my-timber-pwa/presentation.mjs';
+test('member legacy bootstrap aliases are bounded, preserve the shell and are idempotent',()=>{
+ const before='<main><form>member details</form></main><script defer src="/app.js?v=phase8v10"></script><script src="/register-sw-v3a.js?v=32u5"></script><script src="/other.js"></script><footer>retained</footer>';
+ const after=memberWorkerHtml(before);
+ assert.equal(after,before.replace('/app.js?v=phase8v10','/app.js?v=phase8v10&amp;member_worker=1').replace('/register-sw-v3a.js?v=32u5','/register-sw-v3a.js?v=32u5&amp;member_worker=1'));
+ assert.equal(memberWorkerHtml(after),after);
+});
+test('both member legacy loaders use the existing root registration without changing other code',async()=>{
+ const shared="navigator.serviceWorker.register('/shift-push-sw-v1.js',{scope:'/',updateViaCache:'none'})";
+ for(const [path,legacy] of [['/app.js',"navigator.serviceWorker.register('/service-worker.js')"],['/register-sw-v3a.js',"navigator.serviceWorker.register('/service-worker-v3a.js?v=cos-live-recovery-20260909-r2',{updateViaCache:'none'})"]]){
+  const body='const retained=1;'+legacy+'.catch(()=>{});const footer=2;';
+  const r=await memberWorkerAsset(new Request('https://shiftsometimber.co.uk'+path+'?v=old&member_worker=1'),new Response(body,{headers:{'Content-Type':'application/javascript','Content-Length':'100','ETag':'old','Cache-Control':'public'}}));
+  assert.equal(r.status,200);assert.equal(await r.text(),body.replace(legacy,shared));assert.equal(r.headers.get('Cache-Control'),'no-store');assert.equal(r.headers.get('ETag'),null);assert.equal(r.headers.get('Content-Length'),null);
+  const publicResponse=new Response(body,{headers:{'Content-Type':'application/javascript'}});
+  assert.equal(await memberWorkerAsset(new Request('https://shiftsometimber.co.uk'+path+'?v=old'),publicResponse),null);assert.equal(await publicResponse.text(),body);
+ }
+});
+test('unknown member loader source fails closed and other requests are untouched',async()=>{
+ const r=await memberWorkerAsset(new Request('https://shiftsometimber.co.uk/app.js?member_worker=1'),new Response('changed upstream',{headers:{'Content-Type':'application/javascript'}}));assert.equal(r.status,503);
+ for(const url of ['/other.js?member_worker=1','/app.js?member_worker=2'])assert.equal(await memberWorkerAsset(new Request('https://shiftsometimber.co.uk'+url),new Response('retained')),null);
+ assert.equal(await memberWorkerAsset(new Request('https://shiftsometimber.co.uk/app.js?member_worker=1',{method:'POST'}),new Response('retained')),null);
+});
