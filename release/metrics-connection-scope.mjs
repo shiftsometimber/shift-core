@@ -4,7 +4,7 @@ import {existsSync,readFileSync} from 'node:fs';
 export const METRICS_BASE='a5cca19e89abc04ac8ecb063fcafb4f66004f504';
 export const METRICS_PAYLOAD='82214a6b0219d2ef1c876aedcbc960cb526118fb';
 export const METRICS_PAYLOAD_PATHS=['acquisition-activation/ai-referrals.test.mjs','acquisition-activation/client.mjs','acquisition-activation/model.mjs'];
-export const METRICS_MAINTENANCE_PATHS=['acquisition-activation/metrics-release.test.mjs','release/app-scope.mjs','release/fit-300-scope.mjs','release/metrics-connection-scope.mjs','release/seo-growth-scope.mjs','scripts/b1-release-scope.mjs','shift-coach/release-contract.mjs'];
+export const METRICS_MAINTENANCE_PATHS=['acquisition-activation/metrics-release.test.mjs','release/app-preflight.mjs','release/app-scope.mjs','release/fit-300-scope.mjs','release/metrics-connection-scope.mjs','release/seo-growth-scope.mjs','scripts/b1-release-scope.mjs','shift-coach/release-contract.mjs'];
 export const METRICS_MANIFEST='release/metrics-connection.json';
 export const METRICS_PATHS=new Set([...METRICS_PAYLOAD_PATHS,...METRICS_MAINTENANCE_PATHS,METRICS_MANIFEST]);
 export const METRICS_EXISTING=new Set(['release/app-scope.mjs','release/fit-300-scope.mjs','release/seo-growth-scope.mjs','scripts/b1-release-scope.mjs','shift-coach/release-contract.mjs']);
@@ -59,3 +59,5 @@ export function metricsChangedPath(status,path){
  if(path==='release/seo-growth-scope.mjs')assert(['A','M'].includes(status),'Unexpected metrics change status: '+path);
  else assert.equal(status,added?'A':'M','Unexpected metrics change status: '+path);return true;
 }
+
+export function metricsPreflightPath(path){return METRICS_PATHS.has(path)&&ensure();}
