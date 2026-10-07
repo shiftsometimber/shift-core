@@ -4,10 +4,10 @@ import {existsSync,readFileSync} from 'node:fs';
 export const METRICS_BASE='a5cca19e89abc04ac8ecb063fcafb4f66004f504';
 export const METRICS_PAYLOAD='82214a6b0219d2ef1c876aedcbc960cb526118fb';
 export const METRICS_PAYLOAD_PATHS=['acquisition-activation/ai-referrals.test.mjs','acquisition-activation/client.mjs','acquisition-activation/model.mjs'];
-export const METRICS_MAINTENANCE_PATHS=["acquisition-activation/metrics-release.test.mjs","member-experience/public-preservation.mjs","release/app-preflight.mjs","release/app-scope.mjs","release/book-voice-scope.mjs","release/fit-300-scope.mjs","release/metrics-connection-scope.mjs","release/metrics-inline-preservation.mjs","release/seo-growth-scope.mjs","scripts/b1-release-scope.mjs","shift-coach/cancelled-release-recovery.mjs","shift-coach/cancelled-release-recovery.test.mjs","shift-coach/release-contract.mjs","shift-coach/release.test.mjs"];
+export const METRICS_MAINTENANCE_PATHS=["acquisition-activation/metrics-release.test.mjs","member-experience/public-preservation.mjs","release/app-preflight.mjs","release/app-scope.mjs","release/book-voice-scope.mjs","release/fit-300-scope.mjs","release/growth-public-live.cjs","release/live-request-retry.cjs","release/live-request-retry.test.mjs","release/metrics-connection-scope.mjs","release/metrics-inline-preservation.mjs","release/seo-growth-scope.mjs","scripts/b1-release-scope.mjs","scripts/verify-seo-closeout-live.mjs","shift-coach/cancelled-release-recovery.mjs","shift-coach/cancelled-release-recovery.test.mjs","shift-coach/release-contract.mjs","shift-coach/release.test.mjs"];
 export const METRICS_MANIFEST='release/metrics-connection.json';
 export const METRICS_PATHS=new Set([...METRICS_PAYLOAD_PATHS,...METRICS_MAINTENANCE_PATHS,METRICS_MANIFEST]);
-export const METRICS_EXISTING=new Set(['member-experience/public-preservation.mjs','release/app-preflight.mjs','release/app-scope.mjs','release/book-voice-scope.mjs','release/fit-300-scope.mjs','release/seo-growth-scope.mjs','scripts/b1-release-scope.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/release-contract.mjs','shift-coach/release.test.mjs']);
+export const METRICS_EXISTING=new Set(['release/growth-public-live.cjs','scripts/verify-seo-closeout-live.mjs','member-experience/public-preservation.mjs','release/app-preflight.mjs','release/app-scope.mjs','release/book-voice-scope.mjs','release/fit-300-scope.mjs','release/seo-growth-scope.mjs','scripts/b1-release-scope.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/release-contract.mjs','shift-coach/release.test.mjs']);
 const manifestPath=new URL('./metrics-connection.json',import.meta.url);
 export function metricsRecord(){return existsSync(manifestPath)?JSON.parse(readFileSync(manifestPath,'utf8')):null;}
 export function validateMetricsConnection(c){
@@ -54,9 +54,9 @@ export function metricsHistoricalRef(ref,p){
 }
 export function metricsChangedPath(status,path){
  if(!METRICS_PATHS.has(path)||!ensure())return false;
- const added=[METRICS_MANIFEST,'release/metrics-connection-scope.mjs','release/metrics-inline-preservation.mjs','acquisition-activation/ai-referrals.test.mjs','acquisition-activation/metrics-release.test.mjs'].includes(path);
+ const added=['release/live-request-retry.cjs','release/live-request-retry.test.mjs',METRICS_MANIFEST,'release/metrics-connection-scope.mjs','release/metrics-inline-preservation.mjs','acquisition-activation/ai-referrals.test.mjs','acquisition-activation/metrics-release.test.mjs'].includes(path);
  // This verifier was added after COACH_BASE, but is modified from METRICS_BASE.
- if(['release/seo-growth-scope.mjs','member-experience/public-preservation.mjs','release/book-voice-scope.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/release.test.mjs'].includes(path))assert(['A','M'].includes(status),'Unexpected metrics change status: '+path);
+ if(['release/growth-public-live.cjs','scripts/verify-seo-closeout-live.mjs','release/seo-growth-scope.mjs','member-experience/public-preservation.mjs','release/book-voice-scope.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/release.test.mjs'].includes(path))assert(['A','M'].includes(status),'Unexpected metrics change status: '+path);
  else assert.equal(status,added?'A':'M','Unexpected metrics change status: '+path);return true;
 }
 

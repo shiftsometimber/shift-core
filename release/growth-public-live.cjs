@@ -1,12 +1,14 @@
+const {withLiveRequestRetry}=require('./live-request-retry.cjs');
 const fs=require('node:fs'),assert=require('node:assert/strict');
 const {chromium}=require(process.env.RUNNER_TEMP+'/heading-tools/node_modules/playwright');
 const dir='b1-runtime-release/growth-public';fs.mkdirSync(dir,{recursive:true});
 (async()=>{
  const browser=await chromium.launch();const results=[];
+ const navigate=(page,url)=>withLiveRequestRetry(()=>page.goto(url,{waitUntil:'domcontentloaded',timeout:30000}),{label:url});
  try{for(const width of [390,1440]){
   const context=await browser.newContext({viewport:{width,height:900}}),page=await context.newPage();
   try{for(const path of ['/programme','/help']){
-   const r=await page.goto('https://shiftsometimber.co.uk'+path,{waitUntil:'domcontentloaded'});assert.equal(r.status(),200);
+   const r=await navigate(page,'https://shiftsometimber.co.uk'+path);assert.equal(r.status(),200);
    await page.locator(path==='/programme'?'[data-growth-week]':'[data-growth-promise]').waitFor();
    assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('.desktop-nav a').count(),5);
    assert.equal(await page.locator('#preview-only').count(),0);
@@ -18,7 +20,7 @@ const dir='b1-runtime-release/growth-public';fs.mkdirSync(dir,{recursive:true});
    await page.screenshot({path:dir+'/'+width+path.replaceAll('/','-')+'.png',fullPage:true});
    results.push({path,width,status:'pass',checks:['approved copy','one H1','five navigation links','cream links','no overflow','menu','no preview banner']});
   }
-  await page.goto('https://shiftsometimber.co.uk'+'/mens-mental-health',{waitUntil:'domcontentloaded'});
+  await navigate(page,'https://shiftsometimber.co.uk'+'/mens-mental-health');
   await page.locator('.shift-guided-front__inner').waitFor();
   const alignment=await page.evaluate(()=>{
    const root=document.querySelector('.shift-guided-front__inner'),intro=document.querySelector('.shift-guided-intro'),r=root.getBoundingClientRect(),p=intro.getBoundingClientRect(),h=root.querySelector('h1').getBoundingClientRect();
@@ -33,7 +35,7 @@ const dir='b1-runtime-release/growth-public';fs.mkdirSync(dir,{recursive:true});
   await page.locator('.shift-guided-library summary').click();assert(await page.locator('.shift-guided-library').evaluate(el=>el.open));
   results.push('Good to Talk: centred heading, intro and layout; no overflow; four support choices, urgent link and library disclosure preserved');
   for(const path of ['/clinic-gone-quiet','/provider-switch']){
-   const response=await page.goto('https://shiftsometimber.co.uk'+path,{waitUntil:'domcontentloaded'});assert.equal(response.status(),200);
+   const response=await navigate(page,'https://shiftsometimber.co.uk'+path);assert.equal(response.status(),200);
    assert.equal(await page.locator('[data-growth-continuity]').count(),1);
    assert.equal(await page.locator('h1').count(),1);
    assert.equal(await page.locator('[data-continuity-primary]').getAttribute('href'),'/member/dashboard?entry=continuity#today');
