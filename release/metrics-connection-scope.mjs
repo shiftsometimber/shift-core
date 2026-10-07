@@ -7,7 +7,7 @@ export const METRICS_PAYLOAD_PATHS=['acquisition-activation/ai-referrals.test.mj
 export const METRICS_MAINTENANCE_PATHS=['acquisition-activation/metrics-release.test.mjs','release/app-preflight.mjs','release/app-scope.mjs','release/fit-300-scope.mjs','release/metrics-connection-scope.mjs','release/seo-growth-scope.mjs','scripts/b1-release-scope.mjs','shift-coach/release-contract.mjs'];
 export const METRICS_MANIFEST='release/metrics-connection.json';
 export const METRICS_PATHS=new Set([...METRICS_PAYLOAD_PATHS,...METRICS_MAINTENANCE_PATHS,METRICS_MANIFEST]);
-export const METRICS_EXISTING=new Set(['release/app-scope.mjs','release/fit-300-scope.mjs','release/seo-growth-scope.mjs','scripts/b1-release-scope.mjs','shift-coach/release-contract.mjs']);
+export const METRICS_EXISTING=new Set(['release/app-preflight.mjs','release/app-scope.mjs','release/fit-300-scope.mjs','release/seo-growth-scope.mjs','scripts/b1-release-scope.mjs','shift-coach/release-contract.mjs']);
 const manifestPath=new URL('./metrics-connection.json',import.meta.url);
 export function metricsRecord(){return existsSync(manifestPath)?JSON.parse(readFileSync(manifestPath,'utf8')):null;}
 export function validateMetricsConnection(c){
