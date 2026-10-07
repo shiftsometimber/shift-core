@@ -131,12 +131,12 @@ export function validateFit300(){
  git('merge-base','--is-ancestor',viewer.base,viewer.source);git('merge-base','--is-ancestor',viewer.source,'HEAD');
  const viewerChanges=git('diff','--name-only',viewer.base,'HEAD').split('\n').filter(Boolean);
  assert(viewerChanges.every(p=>inline?.paths.includes(p)||usefulnessPinnedRef(follow,p)||watch?.paths.includes(p)||ZENAGAMTIDE_PATHS.includes(p)||WATCH_MERGED_UPDATE_PATHS.includes(p)||WATCH_LATEST_UPDATE_PATHS.includes(p)||photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||IMAGE_VIEWER_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))||['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)),'Unrelated image viewer release change');
- for(const p of IMAGE_VIEWER_PATHS)assert.equal(historical('HEAD',p),git('rev-parse',(composition?.paths.includes(p)?composition.source:viewer.source)+':'+p),'Image viewer source drift: '+p);
+ for(const p of IMAGE_VIEWER_PATHS)assert.equal(currentManifestRead('HEAD',p),git('rev-parse',(composition?.paths.includes(p)?composition.source:viewer.source)+':'+p),'Image viewer source drift: '+p);
  const allowed=git('diff','--name-only',activation.base,'HEAD').split('\n').filter(Boolean);
  assert(allowed.every(p=>inline?.paths.includes(p)||usefulnessPinnedRef(follow,p)||watch?.paths.includes(p)||ZENAGAMTIDE_PATHS.includes(p)||WATCH_MERGED_UPDATE_PATHS.includes(p)||WATCH_LATEST_UPDATE_PATHS.includes(p)||photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||FIT300_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))),'Unrelated change in Fit activation');
  for(const p of FIT300_PATHS)if(!['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)){
   const ref=composition?.paths.includes(p)?composition.source:IMAGE_VIEWER_PATHS.has(p)?viewer.source:activation.source;
-  assert.equal(historical('HEAD',p),git('rev-parse',ref+':'+p),'Fit payload source drift: '+p);
+  assert.equal(currentManifestRead('HEAD',p),git('rev-parse',ref+':'+p),'Fit payload source drift: '+p);
  }
  for(const p of READONLY_ORGANIC_PATHS)assert.equal(historical('HEAD',p),git('rev-parse',activation.base+':'+p),'Organic baseline source drift: '+p);
  const wire=JSON.parse(gunzipSync(readFileSync('evidence/fit-publication-2026-09-16/owner-release.json.gz')));
