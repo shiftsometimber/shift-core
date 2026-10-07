@@ -1,3 +1,4 @@
+import {LINK_PATHS,linkMarkHistoricalReader,linkHistoricalRead,linkHistoricalRef,linkHistoricalHead,linkChangedPath,linkPreflightPath} from './seo-link-repairs-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {existsSync,readFileSync} from 'node:fs';
@@ -6,7 +7,7 @@ export const METRICS_PAYLOAD='82214a6b0219d2ef1c876aedcbc960cb526118fb';
 export const METRICS_PAYLOAD_PATHS=['acquisition-activation/ai-referrals.test.mjs','acquisition-activation/client.mjs','acquisition-activation/model.mjs'];
 export const METRICS_MAINTENANCE_PATHS=["acquisition-activation/metrics-release.test.mjs","member-experience/public-preservation.mjs","release/app-preflight.mjs","release/app-scope.mjs","release/book-voice-scope.mjs","release/fit-300-scope.mjs","release/growth-public-live.cjs","release/growth-scope.mjs","release/live-request-retry.cjs","release/live-request-retry.test.mjs","release/metrics-connection-scope.mjs","release/metrics-inline-preservation.mjs","release/seo-growth-scope.mjs","scripts/b1-release-scope.mjs","scripts/verify-seo-closeout-live.mjs","shift-coach/cancelled-release-recovery.mjs","shift-coach/cancelled-release-recovery.test.mjs","shift-coach/release-contract.mjs","shift-coach/release.test.mjs"];
 export const METRICS_MANIFEST='release/metrics-connection.json';
-export const METRICS_PATHS=new Set([...METRICS_PAYLOAD_PATHS,...METRICS_MAINTENANCE_PATHS,METRICS_MANIFEST]);
+export const METRICS_PATHS=new Set([...METRICS_PAYLOAD_PATHS,...METRICS_MAINTENANCE_PATHS,METRICS_MANIFEST,...LINK_PATHS]);
 export const METRICS_EXISTING=new Set(['release/growth-scope.mjs','release/growth-public-live.cjs','scripts/verify-seo-closeout-live.mjs','member-experience/public-preservation.mjs','release/app-preflight.mjs','release/app-scope.mjs','release/book-voice-scope.mjs','release/fit-300-scope.mjs','release/seo-growth-scope.mjs','scripts/b1-release-scope.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/release-contract.mjs','shift-coach/release.test.mjs']);
 const manifestPath=new URL('./metrics-connection.json',import.meta.url);
 export function metricsRecord(){return existsSync(manifestPath)?JSON.parse(readFileSync(manifestPath,'utf8')):null;}
@@ -29,14 +30,14 @@ const immutableCache=new Map();
 const immutableGit=(...args)=>{const key=JSON.stringify([process.cwd(),...args]);if(!immutableCache.has(key))immutableCache.set(key,rawGit(...args));return immutableCache.get(key);};
 const rawRead=(ref,p)=>rawGit('rev-parse',ref+':'+p);
 export function verifyMetricsConnection(c=metricsRecord(),read=rawRead){
- if(!c)return null;validateMetricsConnection(c);
+ if(!c)return null;read=linkHistoricalRead(read);validateMetricsConnection(c);
  const head=rawGit('rev-parse','HEAD');
  const sourceRead=read===rawRead?(ref,p)=>immutableGit('rev-parse',(ref==='HEAD'?head:ref)+':'+p):read;
  for(const ref of [c.base,c.payloadSource,c.maintenanceSource])immutableGit('merge-base','--is-ancestor',ref,head);
  const paths=(from,to)=>immutableGit('diff','--name-only',from,to).split('\n').filter(Boolean).sort();
  assert.deepEqual(paths(c.base,c.payloadSource),c.payloadPaths,'Unrelated metrics payload change');
  assert.deepEqual(paths(c.payloadSource,c.maintenanceSource).filter(p=>p!==METRICS_MANIFEST),c.maintenancePaths,'Unrelated metrics maintenance change');
- assert.deepEqual(paths(c.maintenanceSource,head).filter(p=>METRICS_PATHS.has(p)),[METRICS_MANIFEST],'Metrics receipt changed outside its exact final file');
+ assert.deepEqual(paths(c.maintenanceSource,linkHistoricalHead()).filter(p=>[...METRICS_PAYLOAD_PATHS,...METRICS_MAINTENANCE_PATHS,METRICS_MANIFEST].includes(p)),[METRICS_MANIFEST],'Metrics receipt changed outside its exact final file');
  for(const p of c.payloadPaths)assert.equal(sourceRead('HEAD',p),sourceRead(c.payloadSource,p),'Coaching release source drift: Metrics payload source drift: '+p);
  for(const p of c.maintenancePaths)assert.equal(sourceRead('HEAD',p),sourceRead(c.maintenanceSource,p),'Coaching release source drift: Metrics maintenance source drift: '+p);
  for(const p of ['activation-measurement/assets.mjs','acquisition-activation/consent.mjs','frontend/member/api-adapter-v33d.js','wrangler.jsonc','.github/workflows/cloudflare-production-promote.yml','shift-coach/release-manifest.json','worker-entry-v6.js','shift-coach/worker.mjs']){
@@ -47,12 +48,14 @@ export function verifyMetricsConnection(c=metricsRecord(),read=rawRead){
 let verified=false;
 function ensure(){if(!metricsRecord())return false;if(!verified){verifyMetricsConnection();verified=true;}return true;}
 export function metricsHistoricalRead(read){
- return (ref,p)=>read(ref==='HEAD'&&METRICS_EXISTING.has(p)&&ensure()?METRICS_BASE:ref,p);
+ read=linkHistoricalRead(read);
+ return linkMarkHistoricalReader((ref,p)=>read(ref==='HEAD'&&METRICS_EXISTING.has(p)&&ensure()?METRICS_BASE:ref,p));
 }
 export function metricsHistoricalRef(ref,p){
- return ref==='HEAD'&&METRICS_EXISTING.has(p)&&ensure()?METRICS_BASE:ref;
+ if(ref==='HEAD'&&METRICS_EXISTING.has(p)&&ensure())return METRICS_BASE;return linkHistoricalRef(ref,p);
 }
 export function metricsChangedPath(status,path){
+ if(linkChangedPath(status,path))return true;
  if(!METRICS_PATHS.has(path)||!ensure())return false;
  const added=['release/live-request-retry.cjs','release/live-request-retry.test.mjs',METRICS_MANIFEST,'release/metrics-connection-scope.mjs','release/metrics-inline-preservation.mjs','acquisition-activation/ai-referrals.test.mjs','acquisition-activation/metrics-release.test.mjs'].includes(path);
  // This verifier was added after COACH_BASE, but is modified from METRICS_BASE.
@@ -60,4 +63,4 @@ export function metricsChangedPath(status,path){
  else assert.equal(status,added?'A':'M','Unexpected metrics change status: '+path);return true;
 }
 
-export function metricsPreflightPath(path){return METRICS_PATHS.has(path)&&ensure();}
+export function metricsPreflightPath(path){return linkPreflightPath(path)||(METRICS_PATHS.has(path)&&ensure());}
