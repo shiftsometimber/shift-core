@@ -62,6 +62,7 @@ import vikingRhythmRegistryReview from './reviews/2026-10-06-authorised-viking-r
 import zenagamtideAmbience from './reviews/2026-10-06-authorised-zenagamtide-ambience.json' with {type:'json'};
 import gs4571TirzepatideMenopause from './reviews/2026-10-06-authorised-gs4571-tirzepatide-menopause.json' with {type:'json'};
 import registryLifecycleFollowup from './reviews/2026-10-07-authorised-registry-lifecycle-followup.json' with {type:'json'};
+import enicepatideEmugrobartRegistry from './reviews/2026-10-07-authorised-enicepatide-emugrobart-registry.json' with {type:'json'};
 import {readFileSync} from 'node:fs';
 test('new semaglutide specialist and sarcopenia records remain bounded research evidence',()=>{
  assert.equal(semaglutideSpecialistSarcopeniaWave.publicationStatus,'owner_authorised_factual_publication');
@@ -469,7 +470,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,103);assert.equal(sources.length,190);
+ assert.equal(medicines.length,6);assert.equal(industry.length,103);assert.equal(sources.length,193);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,109);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
@@ -1564,4 +1565,39 @@ test('registry follow-up adds exact lifecycles without duplicating programmes or
  }
  assert.equal(registryLifecycleFollowup.configuredSourcePass.reviewRenewals,false);
  assert.equal(registryLifecycleFollowup.discoveryPass.industryComplete,false);
+});
+
+test('ENITH Phase 3 and specialist emugrobart lifecycles preserve results and discontinuation boundaries',()=>{
+ assert.equal(enicepatideEmugrobartRegistry.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(enicepatideEmugrobartRegistry.clinicalApproval,null);
+ assert.equal(enicepatideEmugrobartRegistry.industryComplete,false);
+ assert.deepEqual(enicepatideEmugrobartRegistry.catalogueCounts,{detailedBefore:6,detailedAfter:6,widerBefore:103,widerAfter:103,totalBefore:109,totalAfter:109,configuredSourcesBefore:190,configuredSourcesAfter:193,trialRecordsBefore:125,trialRecordsAfter:128});
+ assert.equal(industry.length,103);
+ const enicepatide=industry.find(entry=>entry.id==='enicepatide');
+ assert.match(enicepatide.summary,/ENITH-1 and ENITH-2 Phase 3 records are recruiting/);
+ assert.match(enicepatide.summary,/2,000 participants without type 2 diabetes/);
+ assert.match(enicepatide.summary,/1,600 participants with type 2 diabetes/);
+ assert.match(enicepatide.limitations,/Neither ENITH record has posted results/);
+ const emugrobart=industry.find(entry=>entry.id==='emugrobart');
+ assert.match(emugrobart.summary,/insulin sensitivity, muscle composition and muscle function/);
+ assert.match(emugrobart.summary,/actual 14 September 2026 primary completion/);
+ assert.match(emugrobart.limitations,/does not reverse Chugai's later 28 September 2026 statement/);
+ assert.match(emugrobart.limitations,/does not establish muscle preservation/);
+ const expected={
+  NCT07351045:['RECRUITING',2000,'ACTUAL','ESTIMATED'],
+  NCT07351058:['RECRUITING',1600,'ACTUAL','ESTIMATED'],
+  NCT07137585:['ACTIVE_NOT_RECRUITING',30,'ACTUAL','ESTIMATED']
+ };
+ for(const source of enicepatideEmugrobartRegistry.registrySources){
+  const [status,count,startType,completionType]=expected[source.nctId];
+  assert.equal(source.lifecycle.status,status);
+  assert.deepEqual(source.lifecycle.enrollment,{count,type:'ESTIMATED'});
+  assert.equal(source.lifecycle.start.type,startType);
+  assert.equal(source.lifecycle.completion.type,completionType);
+  assert.equal(source.lifecycle.hasResults,false);
+  assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
+  assert.ok(registrySources.some(item=>item.id===source.id));
+ }
+ assert.equal(enicepatideEmugrobartRegistry.configuredSourcePass.reviewRenewals,false);
+ assert.equal(enicepatideEmugrobartRegistry.discoveryPass.industryComplete,false);
 });

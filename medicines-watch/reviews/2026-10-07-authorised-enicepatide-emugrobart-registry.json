@@ -1,0 +1,93 @@
+{
+  "reviewedAt": "2026-10-07T01:45:55Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add two exact Phase 3 enicepatide lifecycles and one specialist emugrobart lifecycle to existing programme entries. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "changes": [
+    {
+      "id": "enicepatide",
+      "fields": {
+        "summaryToAppend": "The exact ENITH-1 and ENITH-2 Phase 3 records are recruiting after actual 16 and 23 March 2026 starts. ENITH-1 estimates 2,000 participants without type 2 diabetes and ENITH-2 estimates 1,600 participants with type 2 diabetes; both retain estimated 2028 completion dates.",
+        "limitationsToAppend": "Neither ENITH record has posted results. Recruiting status, actual starts and estimated enrolment do not establish efficacy, safety, completed enrolment, UK authorisation, NICE or NHS access, actual supply or an approved dose."
+      },
+      "additionalEvidence": [
+        {"title":"ClinicalTrials.gov NCT07351045: ENITH-1 without type 2 diabetes","url":"https://clinicaltrials.gov/study/NCT07351045","sourcePublishedAt":"2026-01-20","sourceUpdatedAt":"2026-09-14","reviewedAt":"2026-10-07T01:45:55Z","checkScope":"Automatic record-status checks cover identity, sponsor, Phase 3 status, typed dates, estimated enrolment and results-posting status; no assessment of efficacy, safety or outcomes."},
+        {"title":"ClinicalTrials.gov NCT07351058: ENITH-2 with type 2 diabetes","url":"https://clinicaltrials.gov/study/NCT07351058","sourcePublishedAt":"2026-01-20","sourceUpdatedAt":"2026-09-14","reviewedAt":"2026-10-07T01:45:55Z","checkScope":"Automatic record-status checks cover identity, sponsor, Phase 3 status, typed dates, estimated enrolment and results-posting status; no assessment of efficacy, safety or outcomes."},
+        {"title":"Roche for Patients: ENITH-1","url":"https://forpatients.roche.com/en/trials/metabolic-disorder/obesity/a-clinical-study-to-evaluate-the-effects-of-ro7795068-i-22715.html","sourcePublishedAt":null,"sourceUpdatedAt":null,"reviewedAt":"2026-10-07T01:45:55Z","checkScope":"Official sponsor study page reviewed for programme identity and study population; publication and update dates were not verified and the page is not automatically monitored."},
+        {"title":"Roche for Patients: ENITH-2","url":"https://forpatients.roche.com/en/trials/metabolic-disorder/t2d/a-clinical-study-to-evaluate-the-effects-of-ro7795068-i-18274.html","sourcePublishedAt":null,"sourceUpdatedAt":null,"reviewedAt":"2026-10-07T01:45:55Z","checkScope":"Official sponsor study page reviewed for programme identity and study population; publication and update dates were not verified and the page is not automatically monitored."}
+      ]
+    },
+    {
+      "id": "emugrobart",
+      "fields": {
+        "summaryToAppend": "A separate Phase 1 record studies emugrobart effects on insulin sensitivity, muscle composition and muscle function in 30 estimated participants with type 2 diabetes and overweight or obesity. It is active, not recruiting after an actual 30 September 2025 start and actual 14 September 2026 primary completion; overall completion remains estimated for 28 February 2027.",
+        "limitationsToAppend": "This record has no posted results and does not establish muscle preservation, strength, metabolic or weight benefit. Its active-not-recruiting follow-up status does not reverse Chugai's later 28 September 2026 statement that Roche ended future obesity development, establish a restart or support an approved use."
+      },
+      "additionalEvidence": [
+        {"title":"ClinicalTrials.gov NCT07137585: emugrobart insulin-sensitivity and muscle-composition study","url":"https://clinicaltrials.gov/study/NCT07137585","sourcePublishedAt":"2025-08-22","sourceUpdatedAt":"2026-09-29","reviewedAt":"2026-10-07T01:45:55Z","checkScope":"Automatic record-status checks cover identity, sponsor, Phase 1 status, typed dates, estimated enrolment and results-posting status; no assessment of muscle, metabolic, weight, efficacy or safety outcomes."},
+        {"title":"Roche for Patients: RO7204239 insulin-sensitivity and muscle-composition study","url":"https://forpatients.roche.com/en/trials/metabolic-disorder/obesity/a-study-to-evaluate-the-effect-of-ro7204239-on-insulin--95286.html","sourcePublishedAt":null,"sourceUpdatedAt":null,"reviewedAt":"2026-10-07T01:45:55Z","checkScope":"Official sponsor study page reviewed for study identity and endpoints; publication and update dates were not verified and the page is not automatically monitored."}
+      ]
+    }
+  ],
+  "registrySources": [
+    {"id":"registry-nct07351045","nctId":"NCT07351045","title":"ClinicalTrials.gov NCT07351045: ENITH-1 without type 2 diabetes","url":"https://clinicaltrials.gov/study/NCT07351045","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07351045","format":"ctgov-lifecycle","requiredTerms":["NCT07351045","Hoffmann-La Roche"],"reviewedAt":"2026-10-07T01:45:55Z","sourcePublishedAt":"2026-01-20","sourceUpdatedAt":"2026-09-14","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic lifecycle monitoring only; no assessment of clinical outcomes.","lifecycle":{"nctId":"NCT07351045","title":"A Clinical Study to Evaluate the Effects of Enicepatide (RO7795068) in Participants With Obesity or Overweight Without Type 2 Diabetes","sponsor":"Hoffmann-La Roche","status":"RECRUITING","whyStopped":null,"phases":["PHASE3"],"enrollment":{"count":2000,"type":"ESTIMATED"},"start":{"date":"2026-03-16","type":"ACTUAL"},"primaryCompletion":{"date":"2028-07-24","type":"ESTIMATED"},"completion":{"date":"2028-08-28","type":"ESTIMATED"},"firstPosted":{"date":"2026-01-20","type":"ACTUAL"},"lastUpdated":{"date":"2026-09-14","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},"entryIds":["enicepatide"],"rawResponseSha256":"038f2b9ccbb28cfbbb4d6ed482c94e8a3a43a62b546bef72d110462c74ac0b17","reviewedFingerprint":"51be0da71e552dbf29f5639fb316e92a6c57c19ea398391b02e7ee52adf3f2af"},
+    {"id":"registry-nct07351058","nctId":"NCT07351058","title":"ClinicalTrials.gov NCT07351058: ENITH-2 with type 2 diabetes","url":"https://clinicaltrials.gov/study/NCT07351058","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07351058","format":"ctgov-lifecycle","requiredTerms":["NCT07351058","Hoffmann-La Roche"],"reviewedAt":"2026-10-07T01:45:55Z","sourcePublishedAt":"2026-01-20","sourceUpdatedAt":"2026-09-14","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic lifecycle monitoring only; no assessment of clinical outcomes.","lifecycle":{"nctId":"NCT07351058","title":"A Clinical Study to Evaluate the Effects of Enicepatide (RO7795068) in Participants With Obesity or Overweight and Type 2 Diabetes","sponsor":"Hoffmann-La Roche","status":"RECRUITING","whyStopped":null,"phases":["PHASE3"],"enrollment":{"count":1600,"type":"ESTIMATED"},"start":{"date":"2026-03-23","type":"ACTUAL"},"primaryCompletion":{"date":"2028-08-07","type":"ESTIMATED"},"completion":{"date":"2028-08-07","type":"ESTIMATED"},"firstPosted":{"date":"2026-01-20","type":"ACTUAL"},"lastUpdated":{"date":"2026-09-14","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},"entryIds":["enicepatide"],"rawResponseSha256":"3a20db261c71ecd43323cf7cdfcbd69fbb4159cfb4fa86b5c3900880e962c1c8","reviewedFingerprint":"0b6b02b712911561abb35bccba509c019118ec7a5cc2610a0fb2751c6de39d10"},
+    {"id":"registry-nct07137585","nctId":"NCT07137585","title":"ClinicalTrials.gov NCT07137585: emugrobart insulin-sensitivity and muscle-composition study","url":"https://clinicaltrials.gov/study/NCT07137585","checkUrl":"https://clinicaltrials.gov/api/v2/studies/NCT07137585","format":"ctgov-lifecycle","requiredTerms":["NCT07137585","Hoffmann-La Roche"],"reviewedAt":"2026-10-07T01:45:55Z","sourcePublishedAt":"2025-08-22","sourceUpdatedAt":"2026-09-29","evidenceType":"Sponsor-submitted trial registry; status review only","checkScope":"Automatic lifecycle monitoring only; no assessment of muscle, metabolic, weight, efficacy or safety outcomes.","lifecycle":{"nctId":"NCT07137585","title":"A Study to Evaluate the Effect of RO7204239 on Insulin Sensitivity and Muscle Composition in Participants With Type 2 Diabetes Mellitus (T2DM) and Overweight or Obesity","sponsor":"Hoffmann-La Roche","status":"ACTIVE_NOT_RECRUITING","whyStopped":null,"phases":["PHASE1"],"enrollment":{"count":30,"type":"ESTIMATED"},"start":{"date":"2025-09-30","type":"ACTUAL"},"primaryCompletion":{"date":"2026-09-14","type":"ACTUAL"},"completion":{"date":"2027-02-28","type":"ESTIMATED"},"firstPosted":{"date":"2025-08-22","type":"ACTUAL"},"lastUpdated":{"date":"2026-09-29","type":"ACTUAL"},"hasResults":false,"resultsFirstPosted":null,"resultsLastUpdated":null},"entryIds":["emugrobart"],"rawResponseSha256":"0f38e14079f6a20de6d99dcb11da70d20fdb9c9ac15d896ea6a5d9f3645f0f83","reviewedFingerprint":"ee6da67ac0d15a6a5cd4b5b6b196771d9c9dd0520fb64b8e7ee35f2878b58229"}
+  ],
+  "sourceReviews": [
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07351045","publicationDate":"2026-01-20","updateDate":"2026-09-14","reviewedAt":"2026-10-07T01:45:55Z","outcome":"Complete primary registry response read: recruiting Phase 3 without type 2 diabetes; actual start; estimated enrolment and 2028 completion; no posted results."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07351058","publicationDate":"2026-01-20","updateDate":"2026-09-14","reviewedAt":"2026-10-07T01:45:55Z","outcome":"Complete primary registry response read: recruiting Phase 3 with type 2 diabetes; actual start; estimated enrolment and 2028 completion; no posted results."},
+    {"url":"https://clinicaltrials.gov/api/v2/studies/NCT07137585","publicationDate":"2025-08-22","updateDate":"2026-09-29","reviewedAt":"2026-10-07T01:45:55Z","outcome":"Complete primary registry response read: active-not-recruiting specialist Phase 1 study; actual start and primary completion; estimated enrolment and overall completion; no posted results."},
+    {"url":"https://forpatients.roche.com/en/trials/metabolic-disorder/obesity/a-clinical-study-to-evaluate-the-effects-of-ro7795068-i-22715.html","publicationDate":null,"updateDate":null,"reviewedAt":"2026-10-07T01:45:55Z","outcome":"Official sponsor study page read for ENITH-1 identity and population; page publication and update dates were not verified."},
+    {"url":"https://forpatients.roche.com/en/trials/metabolic-disorder/t2d/a-clinical-study-to-evaluate-the-effects-of-ro7795068-i-18274.html","publicationDate":null,"updateDate":null,"reviewedAt":"2026-10-07T01:45:55Z","outcome":"Official sponsor study page read for ENITH-2 identity and population; page publication and update dates were not verified."},
+    {"url":"https://forpatients.roche.com/en/trials/metabolic-disorder/obesity/a-study-to-evaluate-the-effect-of-ro7204239-on-insulin--95286.html","publicationDate":null,"updateDate":null,"reviewedAt":"2026-10-07T01:45:55Z","outcome":"Official sponsor study page read for specialist emugrobart identity and endpoints; page publication and update dates were not verified."}
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-07T01:15:59.556Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 190,
+    "currentSources": 189,
+    "overdueReviews": 0,
+    "withdrawnSources": 0,
+    "attention": [{"id":"zealand-zp6590-pipeline","status":"check_delayed","reviewStatus":"verification_pending","error":"http_403","httpStatus":403}],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only response verifies configured-source monitoring only. It does not renew factual reviews, approve changed wording or prove complete industry coverage. The longstanding Zealand HTTP 403 remains explicit."
+  },
+  "discoveryPass": {
+    "method": "A separate current-date search was followed by broader undated topic and exact-registry discovery across late-stage weight management, specialist indications and muscle-preservation approaches, then reconciled against current main and dated receipts.",
+    "included": "Two exact ENITH Phase 3 records extend the existing enicepatide entry. A separate emugrobart Phase 1 record adds muscle-composition, muscle-function and insulin-sensitivity research while retaining the later sponsor discontinuation as controlling evidence for future obesity development.",
+    "notDuplicated": "PR #851 is merged, no open Watch review PR was present, and all three NCT identities were absent from live entries, dated receipts and proposals.",
+    "incompleteChecks": [
+      "Search indexing, sponsor disclosure and registry coverage remain incomplete and cannot establish an exhaustive industry universe.",
+      "None of the three records has posted results; actual starts or primary completion and estimated enrolment or completion are not efficacy or safety findings.",
+      "The emugrobart registry's active-not-recruiting status may reflect ongoing follow-up and does not override the later sponsor decision to end future obesity development.",
+      "No new MHRA authorisation, NICE recommendation, NHS access decision or verified UK supply change was established."
+    ],
+    "failedChecks": [],
+    "preservedKnownFailures": "The unchanged Zealand ZP6590 HTTP 403 remains visible and is not cleared by three successful registry reads.",
+    "openReviewPrCheck": {"checkedAt":"2026-10-07T01:15:59.556Z","openWatchPullRequests":[],"duplicationFound":false},
+    "industryComplete": false
+  },
+  "catalogueCounts": {"detailedBefore":6,"detailedAfter":6,"widerBefore":103,"widerAfter":103,"totalBefore":109,"totalAfter":109,"configuredSourcesBefore":190,"configuredSourcesAfter":193,"trialRecordsBefore":125,"trialRecordsAfter":128},
+  "retrievalEvidence": [
+    {"id":"registry-nct07351045","retrievedAt":"2026-10-07T01:45:55Z","httpStatus":200,"contentType":"application/json","bytes":51195,"responseSha256":"038f2b9ccbb28cfbbb4d6ed482c94e8a3a43a62b546bef72d110462c74ac0b17"},
+    {"id":"registry-nct07351058","retrievedAt":"2026-10-07T01:45:55Z","httpStatus":200,"contentType":"application/json","bytes":50294,"responseSha256":"3a20db261c71ecd43323cf7cdfcbd69fbb4159cfb4fa86b5c3900880e962c1c8"},
+    {"id":"registry-nct07137585","retrievedAt":"2026-10-07T01:45:55Z","httpStatus":200,"contentType":"application/json","bytes":7954,"responseSha256":"0f38e14079f6a20de6d99dcb11da70d20fdb9c9ac15d896ea6a5d9f3645f0f83"}
+  ],
+  "deploymentState": {
+    "mainCommitBeforeReview": "4c8055ca",
+    "liveCataloguePrograms": 109,
+    "liveConfiguredSources": 190,
+    "openWatchPullRequests": 0,
+    "boundary": "This receipt records reviewed proposed additions. Merge and successful checks alone are not live deployment evidence."
+  }
+}
