@@ -2,7 +2,7 @@
   "proof": "CONSENTED_AI_ATTRIBUTION_EXACT_V1",
   "base": "a5cca19e89abc04ac8ecb063fcafb4f66004f504",
   "payloadSource": "82214a6b0219d2ef1c876aedcbc960cb526118fb",
-  "maintenanceSource": "2ccbf31b99cb6ddb5ebb1070cd98599eacea9b64",
+  "maintenanceSource": "27cad0272e8366247ea7ff3536f663469bc72fb5",
   "payloadPaths": [
     "acquisition-activation/ai-referrals.test.mjs",
     "acquisition-activation/client.mjs",
