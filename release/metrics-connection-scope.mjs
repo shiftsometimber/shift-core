@@ -23,17 +23,24 @@ export function validateMetricsConnection(c){
  return c;
 }
 const rawGit=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
-export function verifyMetricsConnection(c=metricsRecord(),read=(ref,p)=>rawGit('rev-parse',ref+':'+p)){
+// Cache only immutable object identities. Resolve HEAD afresh for each verification;
+// never cache supplied readers, which can intentionally expose source drift.
+const immutableCache=new Map();
+const immutableGit=(...args)=>{const key=JSON.stringify([process.cwd(),...args]);if(!immutableCache.has(key))immutableCache.set(key,rawGit(...args));return immutableCache.get(key);};
+const rawRead=(ref,p)=>rawGit('rev-parse',ref+':'+p);
+export function verifyMetricsConnection(c=metricsRecord(),read=rawRead){
  if(!c)return null;validateMetricsConnection(c);
- for(const ref of [c.base,c.payloadSource,c.maintenanceSource])rawGit('merge-base','--is-ancestor',ref,'HEAD');
- const paths=(from,to)=>rawGit('diff','--name-only',from,to).split('\n').filter(Boolean).sort();
+ const head=rawGit('rev-parse','HEAD');
+ const sourceRead=read===rawRead?(ref,p)=>immutableGit('rev-parse',(ref==='HEAD'?head:ref)+':'+p):read;
+ for(const ref of [c.base,c.payloadSource,c.maintenanceSource])immutableGit('merge-base','--is-ancestor',ref,head);
+ const paths=(from,to)=>immutableGit('diff','--name-only',from,to).split('\n').filter(Boolean).sort();
  assert.deepEqual(paths(c.base,c.payloadSource),c.payloadPaths,'Unrelated metrics payload change');
  assert.deepEqual(paths(c.payloadSource,c.maintenanceSource).filter(p=>p!==METRICS_MANIFEST),c.maintenancePaths,'Unrelated metrics maintenance change');
- assert.deepEqual(paths(c.maintenanceSource,'HEAD').filter(p=>METRICS_PATHS.has(p)),[METRICS_MANIFEST],'Metrics receipt changed outside its exact final file');
- for(const p of c.payloadPaths)assert.equal(read('HEAD',p),read(c.payloadSource,p),'Coaching release source drift: Metrics payload source drift: '+p);
- for(const p of c.maintenancePaths)assert.equal(read('HEAD',p),read(c.maintenanceSource,p),'Coaching release source drift: Metrics maintenance source drift: '+p);
+ assert.deepEqual(paths(c.maintenanceSource,head).filter(p=>METRICS_PATHS.has(p)),[METRICS_MANIFEST],'Metrics receipt changed outside its exact final file');
+ for(const p of c.payloadPaths)assert.equal(sourceRead('HEAD',p),sourceRead(c.payloadSource,p),'Coaching release source drift: Metrics payload source drift: '+p);
+ for(const p of c.maintenancePaths)assert.equal(sourceRead('HEAD',p),sourceRead(c.maintenanceSource,p),'Coaching release source drift: Metrics maintenance source drift: '+p);
  for(const p of ['activation-measurement/assets.mjs','acquisition-activation/consent.mjs','frontend/member/api-adapter-v33d.js','wrangler.jsonc','.github/workflows/cloudflare-production-promote.yml','shift-coach/release-manifest.json','worker-entry-v6.js','shift-coach/worker.mjs']){
-  assert.equal(read('HEAD',p),read(c.base,p),'Protected metrics boundary drift: '+p);
+  assert.equal(sourceRead('HEAD',p),sourceRead(c.base,p),'Protected metrics boundary drift: '+p);
  }
  return {base:c.base,payload:c.payloadSource,maintenance:c.maintenanceSource,publicCopyChanged:false,consentChanged:false,thirdPartyCollectionChanged:false};
 }
