@@ -129,7 +129,7 @@ jobs:
           import assert from 'node:assert/strict';
           import {execFileSync} from 'node:child_process';
           const baseline='bf3af86de87f0a04568805a2372b4e5124a325c5';
-          const allowed=new Set(['rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs','health-passport/production-browser.mjs','health-passport/acceptance-diagnostics.mjs','.github/workflows/my-timber-final-production.yml','my-timber-final-source-gate.mjs']);
+          const allowed=new Set(['rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs','health-passport/production-browser.mjs','health-passport/acceptance-diagnostics.mjs','tests/acceptance-diagnostics.test.mjs','tests/member-reload-browser.test.mjs','.github/workflows/my-timber-final-production.yml','my-timber-final-source-gate.mjs']);
           const changed=execFileSync('git',['diff','--name-only',baseline,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
           assert(changed.every(path=>allowed.has(path)),'Diagnostic branch changed serving application source');
           const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/37645910777',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});
@@ -137,11 +137,13 @@ jobs:
           console.log('PASS exact promoted baseline and test-only source delta');
           NODE
       - name: Test session and navigation rejection controls
-        run: node --test tests/rendered-member-acceptance-support.test.mjs
+        run: node --test tests/rendered-member-acceptance-support.test.mjs tests/acceptance-diagnostics.test.mjs
       - name: Install diagnostic browser
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
+      - name: Reproduce unfinished navigation and prove cancellation in real Chromium
+        run: node --test tests/member-reload-browser.test.mjs
       - name: Acquire existing short-lived commissioning identity
         id: oidc
         shell: bash
