@@ -379,7 +379,7 @@
   "memberPanelLayout": {
     "candidate": "72f0796f7de9ccfc42f46ec203a6c00b04d17aba",
     "previewRun": 36987513488,
-    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404\u2013IMG_2406 and the 07:57 screen recording.",
+    "request": "2 October 2026: repair the repeated remembered card, empty tool gaps, clipped Fit content and tab-switch scroll shown in IMG_2404–IMG_2406 and the 07:57 screen recording.",
     "scope": "Three exact presentation/preview files; existing records, controls and clinical/commercial gates preserved."
   },
   "watchCredibility": {
@@ -474,7 +474,7 @@
     "base": "e9d8ca70c6cd969bbd02caee31deb1f8b12bb67f",
     "verifierSource": "68407a75bff92359082b7a1154866fc91bef94e7",
     "run": 37680334004,
-    "source": "43aa99546a74da703998bca4d82cd465fda6ea2b",
+    "source": "5c4aaf2ae0107d58c9eaaddeb6266c5a633628ed",
     "payloadPaths": [
       "rendered-member-acceptance-support.mjs",
       "tests/rendered-member-acceptance-support.test.mjs",
