@@ -2,7 +2,7 @@
   "proof": "CONSENTED_AI_ATTRIBUTION_EXACT_V1",
   "base": "a5cca19e89abc04ac8ecb063fcafb4f66004f504",
   "payloadSource": "82214a6b0219d2ef1c876aedcbc960cb526118fb",
-  "maintenanceSource": "6f9cb2cb182cf67bb1e00d934b191c6b9a61d694",
+  "maintenanceSource": "c1a31307eb0aa87c7ff497790c24eb785fc1559d",
   "payloadPaths": [
     "acquisition-activation/ai-referrals.test.mjs",
     "acquisition-activation/client.mjs",
@@ -10,10 +10,10 @@
   ],
   "maintenancePaths": [
     "acquisition-activation/metrics-release.test.mjs",
+    "member-experience/public-preservation.mjs",
     "release/app-preflight.mjs",
     "release/app-scope.mjs",
     "release/fit-300-scope.mjs",
-    "release/member-details-preservation.mjs",
     "release/metrics-connection-scope.mjs",
     "release/metrics-inline-preservation.mjs",
     "release/seo-growth-scope.mjs",
