@@ -9,7 +9,7 @@ test('extra paths, changed consent and third-party collection cannot be authoris
  for(const mutate of [c=>c.payloadPaths.push('worker-entry-v6.js'),c=>c.maintenancePaths.push('.github/workflows/cloudflare-production-promote.yml'),c=>c.consentChanged=true,c=>c.thirdPartyCollectionChanged=true,c=>c.publicCopyChanged=true,c=>c.base='0'.repeat(40),c=>c.authority.scope='anything']){
   const c=structuredClone(metricsRecord());mutate(c);assert.throws(()=>validateMetricsConnection(c));
  }
- assert.equal(METRICS_PATHS.has('public-seo-growth-data.mjs'),false);assert.equal(METRICS_PAYLOAD_PATHS.length,3);assert.equal(METRICS_MAINTENANCE_PATHS.length,13);
+ assert.equal(METRICS_PATHS.has('public-seo-growth-data.mjs'),false);assert.equal(METRICS_PAYLOAD_PATHS.length,3);assert.equal(METRICS_MAINTENANCE_PATHS.length,14);
 });
 test('source comparison rejects a modified runtime payload after the verified source commit',()=>{
  const c=metricsRecord();const read=(ref,p)=>ref==='HEAD'&&p==='acquisition-activation/model.mjs'?'tampered':ref===c.payloadSource&&p==='acquisition-activation/model.mjs'?'approved':'same';
