@@ -22,11 +22,11 @@ export function validateNavigationAdoption(c=navigationRecord(),read=rawRead){
  for(const ref of [c.base,c.verifierSource,c.source])git('merge-base','--is-ancestor',ref,'HEAD');
  const changed=git('diff','--name-only',c.base,c.source).split('\n').filter(Boolean).sort();
  assert.deepEqual(changed,[...NAVIGATION_PATHS].sort(),'Reload adoption changes outside the exact harness and release records');
- for(const path of NAVIGATION_PAYLOAD_PATHS)assert.equal(read('HEAD',path),read(c.verifierSource,path),'Tested reload harness drift: '+path);
+ for(const path of NAVIGATION_PAYLOAD_PATHS)assert.equal(read('HEAD',path),read(c.verifierSource,path),'Coaching release source drift: Tested reload harness drift: '+path);
  for(const path of NAVIGATION_MAINTENANCE_PATHS)assert.equal(read('HEAD',path),read(c.source,path),'Coaching release source drift: Metrics maintenance source drift / Reload adoption metadata source drift: '+path);
  const previous=JSON.parse(execFileSync('git',['show',c.source+':release/app-manifest.json'],{encoding:'utf8'}));previous.memberReloadNavigationComposition.source=c.source;
  assert.deepEqual(JSON.parse(readFileSync(new URL('./app-manifest.json',import.meta.url))),previous,'Reload adoption manifest changed beyond its exact source pointer');
- for(const path of ['.github/workflows/my-timber-final-production.yml','.github/workflows/cloudflare-production-promote.yml','my-timber-final-source-gate.mjs','health-passport/production-browser.mjs','health-passport/acceptance-diagnostics.mjs','tests/acceptance-diagnostics.test.mjs','worker-entry-v6.js','wrangler.jsonc','shift-coach/release-manifest.json'])assert.equal(read('HEAD',path),read(c.base,path),'Reload adoption protected boundary drift: '+path);
+ for(const path of ['.github/workflows/my-timber-final-production.yml','.github/workflows/cloudflare-production-promote.yml','my-timber-final-source-gate.mjs','health-passport/production-browser.mjs','health-passport/acceptance-diagnostics.mjs','tests/acceptance-diagnostics.test.mjs','worker-entry-v6.js','wrangler.jsonc','shift-coach/release-manifest.json'])assert.equal(read('HEAD',path),read(c.base,path),'Coaching release source drift: '+(path==='worker-entry-v6.js'?'Current Watch source drift / ':'')+'Reload adoption protected boundary drift: '+path);
  if(read===rawRead)verifiedKey=key;return c;
 }
 const mapped=new WeakSet();
