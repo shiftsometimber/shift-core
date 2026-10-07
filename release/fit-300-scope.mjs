@@ -3,7 +3,7 @@ export const WATCH_RECONCILIATION_PATHS= ["release/fit-300-scope.mjs", "release/
 export const ZENAGAMTIDE_BASE='4460ea56f931da4003ace68d5d404831c47e08f7';
 export const ZENAGAMTIDE_SOURCE='99061a51a9540c611dc0795b858dad598b4304ac';
 export const ZENAGAMTIDE_PATHS= ["medicines-watch/README.md", "medicines-watch/credibility.mjs", "medicines-watch/credibility.test.mjs", "medicines-watch/evidence-desk.test.mjs", "medicines-watch/industry.mjs", "medicines-watch/industry.test.mjs", "medicines-watch/reviews/2026-10-06-authorised-zenagamtide-ambience.json"];
-import {validateWatchMergedUpdate,WATCH_MERGED_UPDATE_PATHS,WATCH_REGISTRY_WAVE_PROOF_SOURCE} from './watch-registry-wave-scope.mjs';
+import {validateWatchMergedUpdate,WATCH_MERGED_UPDATE_PATHS,WATCH_LATEST_UPDATE_PATHS,WATCH_REGISTRY_WAVE_PROOF_SOURCE} from './watch-registry-wave-scope.mjs';
 export function validateWatchSourceComposition(c,inline){
  validateWatchMergedUpdate();
  if(inline)validateInlineToolComposition(inline);
@@ -94,7 +94,7 @@ export function validateFit300(){
  const coach=JSON.parse(readFileSync('shift-coach/release-manifest.json'));
  const reload=coach.acceptanceReloadComposition;
  const currentRead=(ref,p)=>git('rev-parse',ref+':'+p);
- const photo=coach.rolloutPhotoComposition;validateRolloutPhotoComposition(photo);const inline=coach.seoFollowThroughComposition?.integrationComposition?.inlineToolComposition;validateInlineToolComposition(inline);const watch=coach.watchSourceComposition;validateWatchSourceComposition(watch,inline);const repairPin=p=>(inline?.paths.includes(p)?inline.source:null)||usefulnessPinnedRef(coach.seoFollowThroughComposition,p)||(watch?.paths.includes(p)?watch.source:photo?.paths.includes(p)?photo.source:null);
+ const photo=coach.rolloutPhotoComposition;validateRolloutPhotoComposition(photo);const inline=coach.seoFollowThroughComposition?.integrationComposition?.inlineToolComposition;validateInlineToolComposition(inline);const watch=coach.watchSourceComposition;validateWatchSourceComposition(watch,inline);const repairPin=p=>(inline?.paths.includes(p)?inline.source:null)||(p==='release/app-manifest.json'?coach.seoFitComposition?.source:null)||usefulnessPinnedRef(coach.seoFollowThroughComposition,p)||(watch?.paths.includes(p)?watch.source:photo?.paths.includes(p)?photo.source:null);
  const follow=coach.seoFollowThroughComposition;if(follow){validateFollowComposition(follow);for(const p of FOLLOW_PATHS)assert.equal(currentRead('HEAD',p),currentRead(repairPin(p)||followPinnedRef(follow,p),p),'Owner-approved SEO v3 source drift: '+p);}
  const sitewide=coach.sitewideSeoComposition;if(sitewide){validateSitewideComposition(sitewide);for(const p of [...sitewide.payloadPaths,...sitewide.maintenancePaths])assert.equal(currentRead('HEAD',p),currentRead(repairPin(p)||followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p),p),'Coaching release source drift (site-wide SEO): '+p);}
  const watchPriorRead=(ref,p)=>currentRead(ref==='HEAD'&&watch&&ZENAGAMTIDE_PATHS.includes(p)?ZENAGAMTIDE_BASE:ref,p);
@@ -104,10 +104,12 @@ export function validateFit300(){
  validateAcceptanceReloadComposition(reload,beforeRepair);
  const historical=acceptanceReloadHistoricalRead(beforeRepair,reload);
  const reloadPaths=new Set(reload?[...ACCEPTANCE_RELOAD_PATHS,...ACCEPTANCE_RELOAD_VERIFIER_PATHS]:[]);
- for(const path of POST_FIT_WATCH_PATHS)assert.equal(historical('HEAD',path),git('rev-parse',coach.applicationCommit+':'+path),'Post-Fit Watch composition source drift: '+path);
+ const currentApplicationPaths=new Set(['release/app-manifest.json','release/app-scope.mjs','release/fit-300-scope.mjs','shift-coach/release-contract.mjs']);
+ const currentManifestRead=(ref,path)=>ref==='HEAD'&&currentApplicationPaths.has(path)?currentRead(ref,path):historical(ref,path);
+ for(const path of POST_FIT_WATCH_PATHS)assert.equal(currentManifestRead('HEAD',path),git('rev-parse',coach.applicationCommit+':'+path),'Post-Fit Watch composition source drift: '+path);
  const composition=coach.seoFitComposition;
  if(composition){
-  validateSeoFitComposition(composition,historical);
+  validateSeoFitComposition(composition,currentManifestRead);
   git('merge-base','--is-ancestor',composition.base,composition.source);git('merge-base','--is-ancestor',composition.source,'HEAD');
   git('merge-base','--is-ancestor',composition.seoSource,composition.source);
   validateSixTopicSeoSource(followHistoricalRead((ref,path)=>git('rev-parse',ref+':'+path),follow),composition.source);
@@ -128,13 +130,13 @@ export function validateFit300(){
  assert.equal(viewer.ownerInstruction.quote,'No good these pics on a mobile ….. it doesn’t let you click on them to enlarge ? So can’t view what it is ? Assume perhaps same for grub');
  git('merge-base','--is-ancestor',viewer.base,viewer.source);git('merge-base','--is-ancestor',viewer.source,'HEAD');
  const viewerChanges=git('diff','--name-only',viewer.base,'HEAD').split('\n').filter(Boolean);
- assert(viewerChanges.every(p=>inline?.paths.includes(p)||usefulnessPinnedRef(follow,p)||watch?.paths.includes(p)||ZENAGAMTIDE_PATHS.includes(p)||WATCH_MERGED_UPDATE_PATHS.includes(p)||photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||IMAGE_VIEWER_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))||['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)),'Unrelated image viewer release change');
- for(const p of IMAGE_VIEWER_PATHS)assert.equal(historical('HEAD',p),git('rev-parse',(composition?.paths.includes(p)?composition.source:viewer.source)+':'+p),'Image viewer source drift: '+p);
+ assert(viewerChanges.every(p=>inline?.paths.includes(p)||usefulnessPinnedRef(follow,p)||watch?.paths.includes(p)||ZENAGAMTIDE_PATHS.includes(p)||WATCH_MERGED_UPDATE_PATHS.includes(p)||WATCH_LATEST_UPDATE_PATHS.includes(p)||photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||IMAGE_VIEWER_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))||['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)),'Unrelated image viewer release change');
+ for(const p of IMAGE_VIEWER_PATHS)assert.equal(currentManifestRead('HEAD',p),git('rev-parse',(composition?.paths.includes(p)?composition.source:viewer.source)+':'+p),'Image viewer source drift: '+p);
  const allowed=git('diff','--name-only',activation.base,'HEAD').split('\n').filter(Boolean);
- assert(allowed.every(p=>inline?.paths.includes(p)||usefulnessPinnedRef(follow,p)||watch?.paths.includes(p)||ZENAGAMTIDE_PATHS.includes(p)||WATCH_MERGED_UPDATE_PATHS.includes(p)||photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||FIT300_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))),'Unrelated change in Fit activation');
+ assert(allowed.every(p=>inline?.paths.includes(p)||usefulnessPinnedRef(follow,p)||watch?.paths.includes(p)||ZENAGAMTIDE_PATHS.includes(p)||WATCH_MERGED_UPDATE_PATHS.includes(p)||WATCH_LATEST_UPDATE_PATHS.includes(p)||photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||FIT300_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))),'Unrelated change in Fit activation');
  for(const p of FIT300_PATHS)if(!['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)){
   const ref=composition?.paths.includes(p)?composition.source:IMAGE_VIEWER_PATHS.has(p)?viewer.source:activation.source;
-  assert.equal(historical('HEAD',p),git('rev-parse',ref+':'+p),'Fit payload source drift: '+p);
+  assert.equal(currentManifestRead('HEAD',p),git('rev-parse',ref+':'+p),'Fit payload source drift: '+p);
  }
  for(const p of READONLY_ORGANIC_PATHS)assert.equal(historical('HEAD',p),git('rev-parse',activation.base+':'+p),'Organic baseline source drift: '+p);
  const wire=JSON.parse(gunzipSync(readFileSync('evidence/fit-publication-2026-09-16/owner-release.json.gz')));

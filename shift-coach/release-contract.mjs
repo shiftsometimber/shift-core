@@ -89,6 +89,7 @@ WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-viki
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-overdue-source-renewal.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-zenagamtide-ambience.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-gs4571-tirzepatide-menopause.json');
+WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-07-authorised-registry-lifecycle-followup.json');
 export const WATCH_CURRENT_PATHS=new Set([...WATCH_OWNERSHIP_PATHS,...WATCH_COMPOSED_CHANGES,'medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
 export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
@@ -136,8 +137,11 @@ export function validateCoachingSource(read,manifest){
  const beforeRepair=baselineHistoricalRead(priorSitewide,repair);
  validateAcceptanceReloadComposition(reload,beforeRepair);
  const composition=manifest.seoFitComposition;
- if(composition)validateSeoFitComposition(composition,acceptanceReloadHistoricalRead(beforeRepair,reload));
- for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read((inline?.paths.includes(p)?inline.source:null)||usefulnessPinnedRef(follow,p)||(watch?.paths.includes(p)?watch.source:null)||(photo?.paths.includes(p)?photo.source:null)||followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p)|| (repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit),p),'Coaching release source drift: '+p);
+ const compositionHistory=acceptanceReloadHistoricalRead(beforeRepair,reload);
+ const currentApplicationPaths=new Set(['release/app-manifest.json','release/app-scope.mjs','release/fit-300-scope.mjs','shift-coach/release-contract.mjs']);
+ const compositionRead=(ref,path)=>ref==='HEAD'&&currentApplicationPaths.has(path)?read(ref,path):compositionHistory(ref,path);
+ if(composition)validateSeoFitComposition(composition,compositionRead);
+ for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read((inline?.paths.includes(p)?inline.source:null)||(p==='release/app-manifest.json'?composition?.source:null)||usefulnessPinnedRef(follow,p)||(watch?.paths.includes(p)?watch.source:null)||(photo?.paths.includes(p)?photo.source:null)||followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p)|| (repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit),p),'Coaching release source drift: '+p);
  assert.equal(read('HEAD',ARTICLE_CLOSEOUT_PATH),read(ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH),'Read-only article closeout source drift');
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
  assert.equal(read('HEAD','public-continuity.mjs'),read('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
