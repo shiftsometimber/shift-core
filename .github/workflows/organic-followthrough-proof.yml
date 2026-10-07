@@ -1,0 +1,22 @@
+name: Approved public alias follow-through proof
+on:
+  push:
+    branches: [fix/organic-followthrough-20261007]
+  pull_request:
+    paths: ['public-seo-organic*.mjs', 'public-seo-context.mjs', 'release/organic-followthrough*', 'release/seo-link-repairs-scope.mjs', 'member-experience/public-preservation.mjs', 'tests/*organic*']
+permissions:
+  contents: read
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test tests/organic-followthrough-live.test.mjs tests/public-seo-organic-links.test.mjs tests/organic-followthrough-release.test.mjs tests/public-seo-link-repairs.test.mjs tests/seo-link-repairs-release.test.mjs acquisition-activation/metrics-release.test.mjs tests/seo-growth-release.test.mjs tests/seo-context-release.test.mjs tests/seo-discovery-release.test.mjs tests/approved-ranking-release.test.mjs shift-coach/release.test.mjs tests/b1-release-scope.test.mjs
+      - run: node shift-coach/release-contract.mjs --require-launch
+      - run: node scripts/b1-release-scope.mjs --check

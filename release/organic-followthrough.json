@@ -1,0 +1,28 @@
+{
+  "proof": "APPROVED_PUBLIC_ALIAS_FOLLOWTHROUGH_V1",
+  "base": "bf3af86de87f0a04568805a2372b4e5124a325c5",
+  "payloadSource": "351738995ce8bb0fa191f57cc6e291a31019ae8b",
+  "maintenanceSource": "e12c1e2995005be254f22fa79143c6386d8f46e0",
+  "payloadPaths": [
+    "public-seo-context.mjs",
+    "public-seo-organic-link-data.mjs",
+    "public-seo-organic-links.mjs",
+    "tests/public-seo-organic-links.test.mjs"
+  ],
+  "maintenancePaths": [
+    ".github/workflows/organic-followthrough-proof.yml",
+    "member-experience/public-preservation.mjs",
+    "release/organic-followthrough-scope.mjs",
+    "release/seo-link-repairs-scope.mjs",
+    "tests/organic-followthrough-release.test.mjs",
+    "release/organic-followthrough-20261007.md",
+    "release/organic-followthrough-live.mjs",
+    "tests/organic-followthrough-live.test.mjs"
+  ],
+  "approval": {
+    "owner": "Matt O’Brien",
+    "date": "2026-10-07",
+    "instruction": "Approved.",
+    "scope": "Nine exact current public alias anchors and removal of only /treatments/compare from the sitemap; existing redirects and archive exclusions retained. No clinical-copy, homepage, Start Here, consent, event, member or commercial changes."
+  }
+}
