@@ -1,3 +1,4 @@
+import {rankingGrowthHistoricalRef} from '../release/seo-growth-scope.mjs';
 import {followPinnedRef} from '../release/seo-follow-through-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -9,7 +10,7 @@ test('completion source is finite and every previous production step remains int
  const c=follow.technicalComposition.completionComposition;
  validateCompletionComposition(c);verifyCompletionHistory(c);
  for(const patch of [{proof:'other'},{base:'f'.repeat(40)},{payloadSource:'f'.repeat(40)},{payloadPaths:[...COMPLETION_PAYLOAD_PATHS,'other.mjs']},{maintenancePaths:[...COMPLETION_MAINTENANCE_PATHS,'other.mjs']}])assert.throws(()=>validateCompletionComposition({...c,...patch}));
- for(const p of [...c.payloadPaths,...c.maintenancePaths])assert.equal(execFileSync('git',['rev-parse','HEAD:'+p],{encoding:'utf8'}).trim(),execFileSync('git',['rev-parse',(followPinnedRef(follow,p)||completionPinnedRef(c,p))+':'+p],{encoding:'utf8'}).trim(),'Completion payload drift: '+p);
+ for(const p of [...c.payloadPaths,...c.maintenancePaths])assert.equal(execFileSync('git',['rev-parse',rankingGrowthHistoricalRef('HEAD',p)+':'+p],{encoding:'utf8'}).trim(),execFileSync('git',['rev-parse',(followPinnedRef(follow,p)||completionPinnedRef(c,p))+':'+p],{encoding:'utf8'}).trim(),'Completion payload drift: '+p);
 });
 test('recovery is checked before browser setup and is never a generic unknown-runtime adoption',()=>{
  const s=readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8');

@@ -1,3 +1,4 @@
+import {preserveRankingGrowth,repairRankingGrowth,RANKING_GROWTH_PATHS,RANKING_GROWTH_DATE} from '../../public-seo-growth.mjs';
 import assert from 'node:assert/strict';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -14,6 +15,8 @@ const attributes=tag=>Object.fromEntries([...tag.matchAll(/([\w:-]+)\s*=\s*(?:"(
 const evidence={checkedAt:new Date().toISOString(),mode:live?'actual_live_GET':'captured_public_shell_with_candidate_transform',revision:VERSION,articles:[],controls:[],downloads:[],failures:[],productionWrites:false};
 async function read(path){const response=await fetch(origin+path,{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(25000)});assert.equal(response.status,200,path);assert.equal(new URL(response.url).pathname.replace(/\/+$/,''),path.replace(/\/+$/,''),'Unexpected redirect '+path);return response}
 function checkDocument(html,path){
+ const current=html;html=preserveRankingGrowth(path,html);
+ if(RANKING_GROWTH_PATHS.includes(path))assert.equal(repairRankingGrowth(path,html),current,'Exact owner-approved growth copy absent or changed: '+path);
  assert.equal([...html.matchAll(/<main\b/gi)].length,1);assert.equal([...html.matchAll(/<h1\b/gi)].length,1);assert.ok(html.includes('data-five-article="'+VERSION+'"'));
  const tags=[...html.matchAll(/<meta\b[^>]*>/gi)].map(m=>attributes(m[0]));for(const name of ['description','og:title','og:description','og:url','twitter:title','twitter:description'])assert.equal(tags.filter(x=>(x.name||x.property||'').toLowerCase()===name).length,1,'One '+name+' '+path);
  const canonical=[...html.matchAll(/<link\b[^>]*>/gi)].map(m=>attributes(m[0])).filter(x=>(x.rel||'').toLowerCase()==='canonical');assert.equal(canonical.length,1);assert.equal(canonical[0].href,origin+path);
@@ -25,7 +28,7 @@ function checkDocument(html,path){
 }
 for(const [index,path] of PATHS.entries()){
  try{const response=await read(path),before=await response.text();let after=before;
- if(!live){after=await(await withEditorialResources(new Response(before,{headers:{'Content-Type':'text/html'}}),new Request(origin+path))).text();assert.equal(header(after),header(before),'Header changed');assert.equal(footer(after),footer(before),'Footer changed');writeFileSync(root+'/'+index+'-before.html',before)}
+ if(!live){after=await(await withEditorialResources(new Response(before,{headers:{'Content-Type':'text/html'}}),new Request(origin+path))).text();after=repairRankingGrowth(path,after);assert.equal(header(after),header(before),'Header changed');assert.equal(footer(after),footer(before),'Footer changed');writeFileSync(root+'/'+index+'-before.html',before)}
  const check=checkDocument(after,path);writeFileSync(root+'/'+index+'-after.html',after);evidence.articles.push({index,path,status:response.status,headers:Object.fromEntries(['content-type','x-shift-article-revision','cache-control'].map(k=>[k,response.headers.get(k)])),...check,...(!live?{headerUnchanged:true,footerUnchanged:true,beforeWordCount:main(before).replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length}:{})});
  }catch(error){evidence.failures.push({path,error:error.message})}
 }
@@ -33,5 +36,5 @@ for(const path of ['/','/programme','/start-here','/treatment-centre','/editoria
  try{const r=await read(path),html=await r.text();if(path!=='/editorial-standards'){const input=new Response(html,{headers:{'Content-Type':'text/html'}});assert.equal(await withEditorialResources(input,new Request(origin+path)),input)}assert.ok(!html.includes('data-five-article="'),'Article content leaked to '+path);evidence.controls.push({path,status:r.status,sha256:hash(html),fiveArticleMarkerAbsent:true})}catch(e){evidence.failures.push({path,error:e.message})}
 }
 for(const [suffix,expected] of [['/data.csv',CSV],['/chart.svg',CHART]]){try{const r=await read(STATS+suffix),body=await r.text();assert.equal(body,expected,'Existing data asset changed');evidence.downloads.push({path:STATS+suffix,sha256:hash(body),unchanged:true})}catch(e){evidence.failures.push({path:STATS+suffix,error:e.message})}}
-if(live){try{const xml=await(await read('/sitemap.xml')).text();const urls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);assert.equal(urls.length,new Set(urls).size);for(const path of PATHS){const block=[...xml.matchAll(/<url\b[^>]*>[\s\S]*?<\/url>/g)].map(m=>m[0]).find(x=>x.includes('<loc>'+origin+path+'</loc>'));assert.ok(block);assert.ok(block.includes('<lastmod>'+UPDATED+'</lastmod>'),path+' lastmod')}evidence.sitemap={urls:urls.length,mentalHealthUrls:urls.filter(x=>x.includes('/mental-health/')).length,fiveDatesCorrect:true}}catch(e){evidence.failures.push({path:'/sitemap.xml',error:e.message})}}
+if(live){try{const xml=await(await read('/sitemap.xml')).text();const urls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);assert.equal(urls.length,new Set(urls).size);for(const path of PATHS){const block=[...xml.matchAll(/<url\b[^>]*>[\s\S]*?<\/url>/g)].map(m=>m[0]).find(x=>x.includes('<loc>'+origin+path+'</loc>'));assert.ok(block);assert.ok(block.includes('<lastmod>'+(RANKING_GROWTH_PATHS.includes(path)?RANKING_GROWTH_DATE:UPDATED)+'</lastmod>'),path+' lastmod')}evidence.sitemap={urls:urls.length,mentalHealthUrls:urls.filter(x=>x.includes('/mental-health/')).length,fiveDatesCorrect:true}}catch(e){evidence.failures.push({path:'/sitemap.xml',error:e.message})}}
 evidence.pass=evidence.articles.length===5&&!evidence.failures.length;writeFileSync(root+'/document-proof.json',JSON.stringify(evidence,null,2));console.log(JSON.stringify(evidence,null,2));if(!evidence.pass)process.exitCode=1;

@@ -1,3 +1,4 @@
+import {withRankingGrowth} from './public-seo-growth.mjs';
 import {CONTEXT_LINK_PAIRS} from './public-seo-context-data.mjs';
 const ORIGIN='https://shiftsometimber.co.uk';
 export const CONTEXT_UPDATED_PATHS=Object.keys(CONTEXT_LINK_PAIRS);
@@ -17,6 +18,7 @@ export function repairContextSitemap(xml){
  });
 }
 export async function withContextSeo(response,request){
+ response=await withRankingGrowth(response,request);
  const u=new URL(request.url),sitemap=u.pathname==='/sitemap.xml',type=response.headers.get('Content-Type')||'';
  if(u.origin!==ORIGIN||request.method!=='GET'||response.status!==200||!(sitemap?type.includes('xml'):type.includes('text/html'))||(!sitemap&&!CONTEXT_LINK_PAIRS[u.pathname]))return response;
  const before=await response.text(),after=sitemap?repairContextSitemap(before):repairContextLinks(u.pathname,before),headers=new Headers(response.headers);

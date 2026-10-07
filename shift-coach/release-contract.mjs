@@ -1,3 +1,4 @@
+import {RANKING_GROWTH_PATHS,RANKING_GROWTH_EXISTING,verifyRankingGrowth,rankingGrowthHistoricalRead,rankingGrowthPinnedRef} from '../release/seo-growth-scope.mjs';
 import {validateInlineToolComposition,usefulnessPinnedRef,FOLLOW_PATHS,followPinnedRef,followHistoricalRead,validateFollowComposition,verifyFollowHistory} from '../release/seo-follow-through-scope.mjs';
 import {SITEWIDE_PAYLOAD_PATHS,SITEWIDE_MAINTENANCE_PATHS,sitewidePinnedRef,sitewideHistoricalRead,validateSitewideComposition,verifySitewideHistory} from '../release/sitewide-seo-scope.mjs';
 import {WATCH_SOURCE_LINK_SOURCE,WATCH_OWNERSHIP_PATHS,watchWaveRef} from '../release/watch-registry-wave-scope.mjs';
@@ -56,6 +57,7 @@ for(const p of [...SITEWIDE_PAYLOAD_PATHS,...SITEWIDE_MAINTENANCE_PATHS])if(!COA
 COACH_BACKEND_PATHS.add('my-timber-pwa/service-worker.mjs');
 COACH_BACKEND_PATHS.add('preview/app-layout/tabs.mjs');
 for(const p of ['tests/inline-tool-service-worker.test.mjs','tests/inline-tool-release.test.mjs'])COACH_ADDITIONS.add(p);
+for(const path of RANKING_GROWTH_PATHS)if(!RANKING_GROWTH_EXISTING.includes(path))COACH_ADDITIONS.add(path);else if(!COACH_ADDITIONS.has(path))COACH_BACKEND_PATHS.add(path);
 export const COACH_PATHS=new Set([...COACH_ADDITIONS,...COACH_BACKEND_PATHS,...COACH_COMPOSED_BOOK_ADDITIONS,...COACH_COMPOSED_BOOK_CHANGES,...COACH_AUDIT_CHANGES,...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES,...FOLLOW_MODIFIED_PATHS]);
 // Finite read-only release maintenance; not permission for more publication jobs.
 export const ARTICLE_CLOSEOUT_SOURCE='69886cec987aed15a1a7e6340953cd7a5372dfee';
@@ -115,6 +117,7 @@ export function coachingHistoricalRef(ref,path){
  return followHistoricalRead((r)=>r,follow)(historical,path);
 }
 export function validateCoachingSource(read,manifest){
+ const growth=manifest.rankingGrowthComposition;verifyRankingGrowth(growth,read);read=rankingGrowthHistoricalRead(read,growth);
  assert.equal(manifest.recordedMain,COACH_BASE);
  assert.match(manifest.applicationCommit,/^[a-f0-9]{40}$/,'Recorded coaching application source required');
  assert.deepEqual(manifest.pinnedPaths,[...COACH_PATHS].filter(p=>p!=='shift-coach/release-manifest.json').sort(),'Exact coaching path list required');
@@ -142,7 +145,7 @@ export function validateCoachingSource(read,manifest){
  const currentApplicationPaths=new Set(SEO_FIT_COMPOSITION_PATHS);
  const compositionRead=(ref,path)=>ref==='HEAD'&&currentApplicationPaths.has(path)?read(ref,path):compositionHistory(ref,path);
  if(composition)validateSeoFitComposition(composition,compositionRead);
- for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read((inline?.paths.includes(p)?inline.source:null)||(p==='release/app-manifest.json'?composition?.source:null)||usefulnessPinnedRef(follow,p)||(watch?.paths.includes(p)?watch.source:null)||(photo?.paths.includes(p)?photo.source:null)||followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p)|| (repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit),p),'Coaching release source drift: '+p);
+ for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read(rankingGrowthPinnedRef(growth,p)||(inline?.paths.includes(p)?inline.source:null)||(p==='release/app-manifest.json'?composition?.source:null)||usefulnessPinnedRef(follow,p)||(watch?.paths.includes(p)?watch.source:null)||(photo?.paths.includes(p)?photo.source:null)||followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p)|| (repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit),p),'Coaching release source drift: '+p);
  assert.equal(read('HEAD',ARTICLE_CLOSEOUT_PATH),read(ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH),'Read-only article closeout source drift');
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
  assert.equal(read('HEAD','public-continuity.mjs'),read('71383ce716abc9c8c937e48c87f59a2e9fe2d618','public-continuity.mjs'),'Merged continuity alias source drift');
