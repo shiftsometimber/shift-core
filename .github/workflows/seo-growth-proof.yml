@@ -23,6 +23,6 @@ jobs:
         with:
           node-version: '24'
       - run: node --check shift-coach/worker.mjs
-      - run: node --test tests/public-seo-growth.test.mjs tests/seo-growth-release.test.mjs tests/public-seo-context.test.mjs tests/seo-context-release.test.mjs tests/public-seo-approved.test.mjs tests/approved-ranking-release.test.mjs tests/seo-technical-release.test.mjs tests/seo-follow-through-release.test.mjs tests/inline-tool-release.test.mjs tests/watch-ownership-release.test.mjs tests/b1-release-scope.test.mjs
+      - run: node --test tests/public-seo-growth.test.mjs tests/seo-growth-release.test.mjs tests/production-completion-release.test.mjs tests/seo-discovery-release.test.mjs shift-coach/release.test.mjs tests/public-seo-context.test.mjs tests/seo-context-release.test.mjs tests/public-seo-approved.test.mjs tests/approved-ranking-release.test.mjs tests/seo-technical-release.test.mjs tests/seo-follow-through-release.test.mjs tests/inline-tool-release.test.mjs tests/watch-ownership-release.test.mjs tests/b1-release-scope.test.mjs
       - run: node shift-coach/release-contract.mjs --require-launch
       - run: node scripts/b1-release-scope.mjs --check

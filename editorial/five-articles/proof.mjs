@@ -28,7 +28,7 @@ function checkDocument(html,path){
 }
 for(const [index,path] of PATHS.entries()){
  try{const response=await read(path),before=await response.text();let after=before;
- if(!live){after=await(await withEditorialResources(new Response(before,{headers:{'Content-Type':'text/html'}}),new Request(origin+path))).text();assert.equal(header(after),header(before),'Header changed');assert.equal(footer(after),footer(before),'Footer changed');writeFileSync(root+'/'+index+'-before.html',before)}
+ if(!live){after=await(await withEditorialResources(new Response(before,{headers:{'Content-Type':'text/html'}}),new Request(origin+path))).text();after=repairRankingGrowth(path,after);assert.equal(header(after),header(before),'Header changed');assert.equal(footer(after),footer(before),'Footer changed');writeFileSync(root+'/'+index+'-before.html',before)}
  const check=checkDocument(after,path);writeFileSync(root+'/'+index+'-after.html',after);evidence.articles.push({index,path,status:response.status,headers:Object.fromEntries(['content-type','x-shift-article-revision','cache-control'].map(k=>[k,response.headers.get(k)])),...check,...(!live?{headerUnchanged:true,footerUnchanged:true,beforeWordCount:main(before).replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length}:{})});
  }catch(error){evidence.failures.push({path,error:error.message})}
 }
