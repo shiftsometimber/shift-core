@@ -1,7 +1,6 @@
 import {restoreHomeFont} from '../shift-coach/public-font-delivery.mjs';
 import {removeCatalogueBenefits} from '../catalogue-benefits.mjs';
 import {removeCreamNavigation} from '../cream-navigation.mjs';
-import {preserveExactMetricsBootstrap} from './metrics-inline-preservation.mjs';
 // Reverse only the two exact owner-approved startup transforms for the existing
 // full-page preservation gate. Any other byte or route change still fails.
 import {removeHomeBanner} from '../home-route-banner.mjs';
@@ -12,7 +11,7 @@ const status='<section id="memberSessionStatus" aria-label="Account access"><p r
 export function preserveApprovedStartup(path,body){
  // Reverse the exact already-live catalogue copy before the older banner.
  // The banner's strict signatures and the full-page comparison still reject drift.
- const original=removeCreamNavigation(restoreHomeFont(path,removeCatalogueBenefits(preserveExactMetricsBootstrap(body.toString('utf8')),path)));const text=path==='/'?removeHomeBanner(original):original;body=Buffer.from(text);let before=text;
+ const original=removeCreamNavigation(restoreHomeFont(path,removeCatalogueBenefits(body.toString('utf8'),path)));const text=path==='/'?removeHomeBanner(original):original;body=Buffer.from(text);let before=text;
  const once=(a,b='')=>{assert.equal(before.split(a).length,2,'Unexpected startup preservation signature: '+path);before=before.replace(a,b);};
  if(path==='/'&&text.includes('data-home-inline-css="/assets/my-timber-pwa.css"')){
   const css=HOME_BLOCKING_STYLES['/assets/my-timber-pwa.css'].replace(/\/\*[\s\S]*?\*\//g,c=>c.replaceAll('<','&lt;'));
