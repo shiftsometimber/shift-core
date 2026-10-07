@@ -2,7 +2,7 @@
   "proof": "CONSENTED_AI_ATTRIBUTION_EXACT_V1",
   "base": "a5cca19e89abc04ac8ecb063fcafb4f66004f504",
   "payloadSource": "82214a6b0219d2ef1c876aedcbc960cb526118fb",
-  "maintenanceSource": "4801db722785d018cc458f98053ae5d05f8a710a",
+  "maintenanceSource": "7d2cc0ebc579a62fd0abecb5596799e56c269507",
   "payloadPaths": [
     "acquisition-activation/ai-referrals.test.mjs",
     "acquisition-activation/client.mjs",
@@ -21,7 +21,8 @@
     "scripts/b1-release-scope.mjs",
     "shift-coach/cancelled-release-recovery.mjs",
     "shift-coach/cancelled-release-recovery.test.mjs",
-    "shift-coach/release-contract.mjs"
+    "shift-coach/release-contract.mjs",
+    "shift-coach/release.test.mjs"
   ],
   "productionWrites": false,
   "publicCopyChanged": false,
