@@ -2,7 +2,7 @@
   "proof": "CONSENTED_AI_ATTRIBUTION_EXACT_V1",
   "base": "a5cca19e89abc04ac8ecb063fcafb4f66004f504",
   "payloadSource": "82214a6b0219d2ef1c876aedcbc960cb526118fb",
-  "maintenanceSource": "189095a28cdb0e3b513ae6c119a7141156b5ec5a",
+  "maintenanceSource": "b28c027a74478932e13dae7921320b5a3c6d0efb",
   "payloadPaths": [
     "acquisition-activation/ai-referrals.test.mjs",
     "acquisition-activation/client.mjs",
@@ -16,6 +16,7 @@
     "release/book-voice-scope.mjs",
     "release/fit-300-scope.mjs",
     "release/growth-public-live.cjs",
+    "release/growth-scope.mjs",
     "release/live-request-retry.cjs",
     "release/live-request-retry.test.mjs",
     "release/metrics-connection-scope.mjs",
