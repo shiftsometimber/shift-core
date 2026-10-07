@@ -1,3 +1,4 @@
+import {linkHistoricalRead} from './seo-link-repairs-scope.mjs';
 import {metricsRecord,metricsHistoricalRef,metricsHistoricalRead,verifyMetricsConnection} from './metrics-connection-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -20,7 +21,7 @@ export const rankingGrowthHistoricalRead=(read,c)=>(ref,path)=>read(rankingGrowt
 export function rankingGrowthGitArgs(args){if(!['rev-parse','show'].includes(args[0])||!args[1]?.startsWith('HEAD:'))return args;const p=args[1].slice(5),ref=rankingGrowthHistoricalRef('HEAD',p);return ref==='HEAD'?args:[args[0],ref+':'+p,...args.slice(2)];}
 export function rankingGrowthPinnedRef(c,path){if(!c||RANKING_GROWTH_EXISTING.includes(path))return null;validateRankingGrowth(c);return c.payloadPaths.includes(path)?c.payloadSource:c.maintenancePaths.includes(path)?c.maintenanceSource:null;}
 export function verifyRankingGrowth(c,read=(ref,p)=>execFileSync('git',['rev-parse',ref+':'+p],{encoding:'utf8'}).trim()){
- if(!c)return;const metrics=metricsRecord();verifyMetricsConnection(metrics);
+ if(!c)return;read=linkHistoricalRead(read);const metrics=metricsRecord();verifyMetricsConnection(metrics);
  // Verify new source bytes through the supplied reader before historical mapping.
  // Existing protected paths retain their original, more specific drift checks.
  if(metrics)for(const p of [...metrics.payloadPaths,...metrics.maintenancePaths])assert.equal(read('HEAD',p),read(metrics.payloadPaths.includes(p)?metrics.payloadSource:metrics.maintenanceSource,p),'Coaching release source drift: Metrics source drift: '+p);
