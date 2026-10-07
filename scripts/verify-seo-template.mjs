@@ -1,3 +1,4 @@
+import {RANKING_GROWTH_PATHS,RANKING_GROWTH_DATE} from '../public-seo-growth.mjs';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -50,7 +51,7 @@ for(let start=0;start<paths.length;start+=5){
    if(path==='/articles/wegovy-cost-uk')assert.equal((html.match(/class="drawer-backdrop"/g)||[]).length,1);
    const article=records.find(n=>['Article','BlogPosting'].includes(n['@type']));
    if(PATHS.includes(path)){
-    assert.equal(article.dateModified,'2026-09-19');
+    assert.equal(article.dateModified,live&&RANKING_GROWTH_PATHS.includes(path)?RANKING_GROWTH_DATE:'2026-09-19');
     if(path===STATS)assert.equal(article.image,origin+STATS+'/chart.svg');
     if(!article.datePublished)proof.advisories.push({path,field:'datePublished',reason:path===STATS?'No original publication date in source.':'Source has conflicting original publication dates; verified update date retained.'});
     if(!article.image)proof.advisories.push({path,field:'image',reason:'No representative image in the visible article; publisher logo is not an article image.'});
