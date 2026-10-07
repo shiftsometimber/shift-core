@@ -2,7 +2,7 @@ import {validateInlineToolComposition,usefulnessPinnedRef,FOLLOW_PATHS,followPin
 import {SITEWIDE_PAYLOAD_PATHS,SITEWIDE_MAINTENANCE_PATHS,sitewidePinnedRef,sitewideHistoricalRead,validateSitewideComposition,verifySitewideHistory} from '../release/sitewide-seo-scope.mjs';
 import {WATCH_SOURCE_LINK_SOURCE,WATCH_OWNERSHIP_PATHS,watchWaveRef} from '../release/watch-registry-wave-scope.mjs';
 import {DEVICE_HEALTH_DELTA,validateDeviceHealthSource} from '../release/device-health-scope.mjs';
-import {validateWatchSourceComposition,validateRolloutPhotoComposition,validateSeoFitComposition,validateAcceptanceReloadComposition,acceptanceReloadHistoricalRead,ACCEPTANCE_RELOAD_VERIFIER_PATHS,validateBaselineRepair,baselineHistoricalRead,CATALOGUE_COPY_PATHS,CATALOGUE_COPY_SOURCE} from '../release/fit-300-scope.mjs';
+import {validateWatchSourceComposition,validateRolloutPhotoComposition,validateSeoFitComposition,SEO_FIT_COMPOSITION_PATHS,validateAcceptanceReloadComposition,acceptanceReloadHistoricalRead,ACCEPTANCE_RELOAD_VERIFIER_PATHS,validateBaselineRepair,baselineHistoricalRead,CATALOGUE_COPY_PATHS,CATALOGUE_COPY_SOURCE} from '../release/fit-300-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
@@ -90,6 +90,7 @@ WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-overdue-source-
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-zenagamtide-ambience.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-06-authorised-gs4571-tirzepatide-menopause.json');
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-07-authorised-registry-lifecycle-followup.json');
+WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-07-authorised-enicepatide-emugrobart-registry.json');
 export const WATCH_CURRENT_PATHS=new Set([...WATCH_OWNERSHIP_PATHS,...WATCH_COMPOSED_CHANGES,'medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
 export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
@@ -138,7 +139,7 @@ export function validateCoachingSource(read,manifest){
  validateAcceptanceReloadComposition(reload,beforeRepair);
  const composition=manifest.seoFitComposition;
  const compositionHistory=acceptanceReloadHistoricalRead(beforeRepair,reload);
- const currentApplicationPaths=new Set(['release/app-manifest.json','release/app-scope.mjs','release/fit-300-scope.mjs','shift-coach/release-contract.mjs']);
+ const currentApplicationPaths=new Set(SEO_FIT_COMPOSITION_PATHS);
  const compositionRead=(ref,path)=>ref==='HEAD'&&currentApplicationPaths.has(path)?read(ref,path):compositionHistory(ref,path);
  if(composition)validateSeoFitComposition(composition,compositionRead);
  for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read((inline?.paths.includes(p)?inline.source:null)||(p==='release/app-manifest.json'?composition?.source:null)||usefulnessPinnedRef(follow,p)||(watch?.paths.includes(p)?watch.source:null)||(photo?.paths.includes(p)?photo.source:null)||followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p)|| (repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit),p),'Coaching release source drift: '+p);
