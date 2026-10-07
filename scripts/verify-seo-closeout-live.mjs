@@ -1,3 +1,4 @@
+import {withLiveRequestRetry} from '../release/live-request-retry.cjs';
 import {NOINDEX_SITEMAP_PATHS} from '../public-seo-technical-data.mjs';
 import assert from 'node:assert/strict';
 import {writeFile} from 'node:fs/promises';
@@ -5,17 +6,11 @@ import {healthSlugs} from '../shift-health-public.mjs';
 import {mentalHealthDescription} from '../public-seo-closeout.mjs';
 
 const origin=(process.argv[2]||'https://shiftsometimber.co.uk').replace(/\/+$/,'');
-const fetchText=async(path,options={})=>{
-  let last;
-  for(let attempt=1;attempt<=3;attempt++){
-    try{
-      const response=await fetch(origin+path,{redirect:'manual',headers:{'cache-control':'no-cache'},...options});
-      const text=options.method==='HEAD'?'':await response.text();
-      return {response,text};
-    }catch(error){last=error;if(attempt<3)await new Promise(resolve=>setTimeout(resolve,1000*attempt));}
-  }
-  throw last;
-};
+const fetchText=(path,options={})=>withLiveRequestRetry(async()=>{
+ const response=await fetch(origin+path,{redirect:'manual',headers:{'cache-control':'no-cache'},signal:AbortSignal.timeout(30000),...options});
+ const text=options.method==='HEAD'?'':await response.text();
+ return {response,text};
+},{label:path});
 const meta=(html,key,attribute='name')=>[...html.matchAll(new RegExp(`<meta\\b(?=[^>]*\\b${attribute}\\s*=\\s*["']${key.replace(':','\\:')}["'])[^>]*\\bcontent\\s*=\\s*["']([^"']*)["'][^>]*>`,'gi'))].map(match=>match[1]);
 const jsonLd=html=>[...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)].map(match=>JSON.parse(match[1]));
 const organizations=value=>{
