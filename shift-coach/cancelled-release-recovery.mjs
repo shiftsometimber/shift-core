@@ -102,10 +102,12 @@ export function verifiedStartingPoint(record,active){
 // never push the current owned runtime beyond a repository-wide page limit.
 // This exact successful Watch deployment supersedes the preceding image runtime.
 export const recordedImageRuntime=Object.freeze({run:37336998330,source:'9d2b9e146063d634ac7ce058258c00dd7d804d2c',version:'f81ab965-f6aa-4655-be7d-b29f4ac29d67'});
+export const recordedSeoRuntime=Object.freeze({run:37592938543,source:'a5cca19e89abc04ac8ecb063fcafb4f66004f504',version:'d8f51d84-d973-40ad-9097-c112935d8cb8'});
 export async function recentSuccessfulPromotions(get,active){
- const recorded=active?.versions?.length===1&&active.versions[0].percentage===100&&active.versions[0].version_id===recordedImageRuntime.version
-  ?await get('/actions/runs/'+recordedImageRuntime.run):null;
- if(recorded){assert.equal(recorded.id,recordedImageRuntime.run);assert.equal(recorded.head_sha,recordedImageRuntime.source);assert.equal(recorded.conclusion,'success');assert.equal(recorded.status,'completed');assert.equal(recorded.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(recorded.event,'push');assert.equal(recorded.head_branch,'main');}
+ const pinned=active?.versions?.length===1&&active.versions[0].percentage===100
+  ?[recordedImageRuntime,recordedSeoRuntime].find(p=>p.version===active.versions[0].version_id):null;
+ const recorded=pinned?await get('/actions/runs/'+pinned.run):null;
+ if(recorded){assert.equal(recorded.id,pinned.run);assert.equal(recorded.head_sha,pinned.source);assert.equal(recorded.conclusion,'success');assert.equal(recorded.status,'completed');assert.equal(recorded.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(recorded.event,'push');assert.equal(recorded.head_branch,'main');}
  const result=await get('/actions/workflows/cloudflare-production-promote.yml/runs?branch=main&event=push&status=success&per_page=100');
  return [...(recorded?[recorded]:[]),...(result.workflow_runs||[]).filter(run=>run.path==='.github/workflows/cloudflare-production-promote.yml'&&run.id!==recorded?.id).slice(0,5)];
 }
