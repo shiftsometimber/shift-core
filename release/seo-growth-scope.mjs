@@ -23,7 +23,7 @@ export function verifyRankingGrowth(c,read=(ref,p)=>execFileSync('git',['rev-par
  for(const r of [c.base,c.payloadSource,c.maintenanceSource])git('merge-base','--is-ancestor',r,'HEAD');
  assert.deepEqual(git('diff','--name-only',c.base,c.payloadSource).split('\n').filter(Boolean).sort(),c.payloadPaths);
  assert.deepEqual(git('diff','--name-only',c.payloadSource,c.maintenanceSource).split('\n').filter(Boolean).sort(),c.maintenancePaths);
- for(const p of c.payloadPaths)assert.equal(read('HEAD',p),read(c.payloadSource,p),'Approved SEO growth payload drift: '+p);
- for(const p of c.maintenancePaths)assert.equal(read('HEAD',p),read(c.maintenanceSource,p),'Approved SEO growth maintenance drift: '+p);
+ for(const p of c.payloadPaths)assert.equal(read('HEAD',p),read(c.payloadSource,p),'Coaching release source drift: Approved SEO growth payload drift: '+p);
+ for(const p of c.maintenancePaths)assert.equal(read('HEAD',p),read(c.maintenanceSource,p),'Coaching release source drift: Approved SEO growth maintenance drift: '+p);
  assert.equal(read('HEAD','.github/workflows/cloudflare-production-promote.yml'),read(c.base,'.github/workflows/cloudflare-production-promote.yml'),'Coaching release source drift: Original production workflow changed');
 }
