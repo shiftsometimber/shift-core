@@ -1,3 +1,4 @@
+import {rankingGrowthHistoricalRef} from '../release/seo-growth-scope.mjs';
 import {followPinnedRef} from '../release/seo-follow-through-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -8,6 +9,6 @@ test('owner-approved publication has finite exact source pins and retained appro
  const follow=JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition;
  const c=follow.technicalComposition.completionComposition.rankingComposition;
  validateRankingComposition(c);verifyRankingHistory(c);
- for(const p of RANKING_PATHS)assert.equal(execFileSync('git',['rev-parse','HEAD:'+p],{encoding:'utf8'}).trim(),execFileSync('git',['rev-parse',(followPinnedRef(follow,p)||rankingPinnedRef(c,p))+':'+p],{encoding:'utf8'}).trim(),p);
+ for(const p of RANKING_PATHS)assert.equal(execFileSync('git',['rev-parse',rankingGrowthHistoricalRef('HEAD',p)+':'+p],{encoding:'utf8'}).trim(),execFileSync('git',['rev-parse',(followPinnedRef(follow,p)||rankingPinnedRef(c,p))+':'+p],{encoding:'utf8'}).trim(),p);
  for(const patch of [{proof:'other'},{payloadPaths:[...c.payloadPaths,'arbitrary']},{ownerApproval:{...c.ownerApproval,scope:'Any communication'}}])assert.throws(()=>validateRankingComposition({...c,...patch}));
 });

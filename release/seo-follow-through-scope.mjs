@@ -1,6 +1,7 @@
+import {rankingGrowthHistoricalRef,rankingGrowthGitArgs} from './seo-growth-scope.mjs';
 export const INLINE_TOOL_BASE='f3a5a28e49d148512e4323bd9a58a2232520382e';
 export const INLINE_TOOL_PATHS=["my-timber-pwa/presentation.mjs","my-timber-pwa/service-worker.mjs","preview/app-layout/tabs.mjs","release/app-scope.mjs","release/fit-300-scope.mjs","release/footer-scope.mjs","release/seo-follow-through-scope.mjs","release/watch-registry-wave-scope.mjs","shift-coach/release-contract.mjs","tests/b1-release-scope.test.mjs","tests/inline-tool-release.test.mjs","tests/inline-tool-service-worker.test.mjs","tests/watch-ownership-release.test.mjs"];
-export function validateInlineToolComposition(c,read=(ref,p)=>execFileSync('git',['rev-parse',ref+':'+p],{encoding:'utf8'}).trim()){
+export function validateInlineToolComposition(c,read=(ref,p)=>execFileSync('git',['rev-parse',rankingGrowthHistoricalRef(ref,p)+':'+p],{encoding:'utf8'}).trim()){
  if(!c)return;
  assert.equal(c.proof,'EXACT_AUTHENTICATED_INLINE_TOOL_WORKER_V1');assert.equal(c.base,INLINE_TOOL_BASE);assert.deepEqual(c.paths,INLINE_TOOL_PATHS);assert.match(c.source,/^[a-f0-9]{40}$/);
  execFileSync('git',['merge-base','--is-ancestor',c.base,c.source]);execFileSync('git',['merge-base','--is-ancestor',c.source,'HEAD']);
@@ -21,7 +22,7 @@ export function validateSeoIntegration(c){
  assert.equal(c.proof,'EXACT_COMBINED_SEO_CONTEXT_TABLET_AND_RELEASE_PINS_V1');assert.equal(c.base,SEO_INTEGRATION_BASE);assert.deepEqual(c.paths,SEO_INTEGRATION_PATHS);assert.match(c.source,/^[a-f0-9]{40}$/);return c;
 }
 export function verifySeoIntegration(c){
- if(!c)return;validateSeoIntegration(c);const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
+ if(!c)return;validateSeoIntegration(c);const git=(...a)=>execFileSync('git',rankingGrowthGitArgs(a),{encoding:'utf8'}).trim();
  git('merge-base','--is-ancestor',c.base,c.source);git('merge-base','--is-ancestor',c.source,'HEAD');
  assert.deepEqual(git('diff','--name-only',c.base,c.source).split('\n').filter(Boolean).sort(),SEO_INTEGRATION_PATHS,'Exact combined SEO release paths required');
  validateInlineToolComposition(c.inlineToolComposition);
@@ -64,7 +65,7 @@ export function validateFollowComposition(c){
 export function followPinnedRef(c,path){if(!c)return null;validateFollowComposition(c);return (c.integrationComposition?.inlineToolComposition?.paths.includes(path)?c.integrationComposition.inlineToolComposition.source:null)||usefulnessPinnedRef(c,path)||(c.integrationComposition?.paths.includes(path)?c.integrationComposition.source:null)||(c.tabletGuidanceComposition?.paths.includes(path)?c.tabletGuidanceComposition.source:null)||technicalPinnedRef(c.technicalComposition,path)|| (c.payloadPaths.includes(path)?c.payloadSource:c.maintenancePaths.includes(path)?c.maintenanceSource:null);}
 export function followHistoricalRead(read,c){if(!c)return read;validateFollowComposition(c);return(ref,path)=>read(ref==='HEAD'&&ORIGINAL_FOLLOW_PATHS.includes(path)?FOLLOW_BASE:completionHistoricalRef(c.technicalComposition,ref,path)!==ref?completionHistoricalRef(c.technicalComposition,ref,path):ref==='HEAD'&&c.technicalComposition&&TECHNICAL_PATHS.includes(path)?TECHNICAL_BASE:ref==='HEAD'&&c.tabletGuidanceComposition?.paths.includes(path)?TABLET_GUIDANCE_BASE:ref,path);}
 export function verifyFollowHistory(c){
- if(!c)return;validateFollowComposition(c);verifySeoIntegration(c.integrationComposition);verifyTechnicalHistory(c.technicalComposition);const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
+ if(!c)return;validateFollowComposition(c);verifySeoIntegration(c.integrationComposition);verifyTechnicalHistory(c.technicalComposition);const git=(...args)=>execFileSync('git',rankingGrowthGitArgs(args),{encoding:'utf8'}).trim();
  if(c.tabletUsefulnessComposition){const u=validateTabletUsefulness(c.tabletUsefulnessComposition);
   for(const r of [u.payloadSource,u.maintenanceSource])git('merge-base','--is-ancestor',r,'HEAD');
   assert.deepEqual(git('diff','--name-only',u.payloadBase,u.payloadSource).split('\n').filter(Boolean).sort(),u.payloadPaths);
