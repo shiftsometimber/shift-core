@@ -104,10 +104,11 @@ export function validateFit300(){
  validateAcceptanceReloadComposition(reload,beforeRepair);
  const historical=acceptanceReloadHistoricalRead(beforeRepair,reload);
  const reloadPaths=new Set(reload?[...ACCEPTANCE_RELOAD_PATHS,...ACCEPTANCE_RELOAD_VERIFIER_PATHS]:[]);
- for(const path of POST_FIT_WATCH_PATHS)assert.equal(historical('HEAD',path),git('rev-parse',coach.applicationCommit+':'+path),'Post-Fit Watch composition source drift: '+path);
+ const currentManifestRead=(ref,path)=>ref==='HEAD'&&path==='release/app-manifest.json'?currentRead(ref,path):historical(ref,path);
+ for(const path of POST_FIT_WATCH_PATHS)assert.equal(currentManifestRead('HEAD',path),git('rev-parse',coach.applicationCommit+':'+path),'Post-Fit Watch composition source drift: '+path);
  const composition=coach.seoFitComposition;
  if(composition){
-  validateSeoFitComposition(composition,historical);
+  validateSeoFitComposition(composition,currentManifestRead);
   git('merge-base','--is-ancestor',composition.base,composition.source);git('merge-base','--is-ancestor',composition.source,'HEAD');
   git('merge-base','--is-ancestor',composition.seoSource,composition.source);
   validateSixTopicSeoSource(followHistoricalRead((ref,path)=>git('rev-parse',ref+':'+path),follow),composition.source);
