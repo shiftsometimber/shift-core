@@ -21,6 +21,7 @@
     ".github/workflows/seo-context-proof.yml",
     ".github/workflows/seo-discovery-proof.yml",
     ".github/workflows/seo-follow-through-proof.yml",
+    ".github/workflows/seo-growth-proof.yml",
     ".github/workflows/seo-technical-proof.yml",
     ".github/workflows/shift-coach-integration.yml",
     ".github/workflows/sitewide-seo-proof.yml",
@@ -107,6 +108,8 @@
     "public-seo-context.mjs",
     "public-seo-discovery.mjs",
     "public-seo-follow-through.mjs",
+    "public-seo-growth-data.mjs",
+    "public-seo-growth.mjs",
     "public-seo-programme.mjs",
     "public-seo-technical-data.mjs",
     "public-seo-technical.mjs",
@@ -141,6 +144,7 @@
     "release/seo-discovery-scope.mjs",
     "release/seo-follow-through-preservation.mjs",
     "release/seo-follow-through-scope.mjs",
+    "release/seo-growth-scope.mjs",
     "release/seo-technical-preservation-data.mjs",
     "release/seo-technical-preservation.mjs",
     "release/seo-technical-scope.mjs",
@@ -163,6 +167,8 @@
     "scripts/verify-public-continuity-live.mjs",
     "scripts/verify-seo-closeout-live.mjs",
     "scripts/verify-seo-follow-through.mjs",
+    "scripts/verify-seo-growth-template-candidate.mjs",
+    "scripts/verify-seo-template.mjs",
     "scripts/verify-shift-take-live.mjs",
     "scripts/verify-sitewide-seo.mjs",
     "scripts/verify-six-topic-seo.mjs",
@@ -241,6 +247,7 @@
     "tests/fixtures/public-seo-programme/maintenance-conversation-plan.html",
     "tests/fixtures/public-seo-programme/plateau-review-example.html",
     "tests/fixtures/public-seo-programme/stress-pressure-example.html",
+    "tests/fixtures/seo-growth-20261007.json",
     "tests/fixtures/seo-public-articles.json",
     "tests/general-analytics-privacy.test.mjs",
     "tests/inline-tool-release.test.mjs",
@@ -258,6 +265,7 @@
     "tests/public-seo-closeout.test.mjs",
     "tests/public-seo-context.test.mjs",
     "tests/public-seo-discovery.test.mjs",
+    "tests/public-seo-growth.test.mjs",
     "tests/public-seo-programme.test.mjs",
     "tests/public-seo-technical.test.mjs",
     "tests/public-ticker-contrast-safety.test.mjs",
@@ -266,6 +274,7 @@
     "tests/seo-context-release.test.mjs",
     "tests/seo-discovery-release.test.mjs",
     "tests/seo-follow-through-release.test.mjs",
+    "tests/seo-growth-release.test.mjs",
     "tests/seo-technical-release.test.mjs",
     "tests/seo794-preservation.test.mjs",
     "tests/shift-ai-release.test.mjs",
@@ -796,5 +805,44 @@
       "shift-coach/release-contract.mjs",
       "tests/watch-ownership-release.test.mjs"
     ]
+  },
+  "rankingGrowthComposition": {
+    "proof": "OWNER_APPROVED_THREE_PAGE_SEO_GROWTH_V1",
+    "base": "33868cbae7be4f10b9fa4d89b9a81f0773761ef4",
+    "payloadSource": "98f29282d53beb9f4b37c5d793082a09c69a189b",
+    "maintenanceSource": "4974bebc427532a4ab5dff4d1ed531d2438cee07",
+    "payloadPaths": [
+      "public-seo-context.mjs",
+      "public-seo-growth-data.mjs",
+      "public-seo-growth.mjs",
+      "tests/fixtures/seo-growth-20261007.json",
+      "tests/public-seo-growth.test.mjs"
+    ],
+    "maintenancePaths": [
+      ".github/workflows/seo-growth-proof.yml",
+      "editorial/five-articles/proof.mjs",
+      "release/app-scope.mjs",
+      "release/fit-300-scope.mjs",
+      "release/seo-follow-through-scope.mjs",
+      "release/seo-growth-scope.mjs",
+      "release/seo-technical-preservation.mjs",
+      "scripts/verify-seo-growth-template-candidate.mjs",
+      "scripts/verify-seo-template.mjs",
+      "shift-coach/release-contract.mjs",
+      "tests/approved-ranking-release.test.mjs",
+      "tests/production-completion-release.test.mjs",
+      "tests/seo-context-release.test.mjs",
+      "tests/seo-discovery-release.test.mjs",
+      "tests/seo-growth-release.test.mjs"
+    ],
+    "ownerApproval": {
+      "owner": "Matt O’Brien",
+      "at": "2026-10-07T07:13:24Z",
+      "instruction": "Publish",
+      "review": "SST-SEO-Growth-Review-2026-10-07.html",
+      "reviewVersion": 1,
+      "reviewSHA256": "a6d729b562ee516c78f18a257900dceea297686feae971046b9f884af49e8b8a",
+      "scope": "Exact three reviewed title/description pairs and body changes; preserved H1s, historical source-check labels and other clinical content; accurate modification dates. No homepage, Start Here, Wegovy edit, external outreach, clinical-review claim or new cost."
+    }
   }
 }
