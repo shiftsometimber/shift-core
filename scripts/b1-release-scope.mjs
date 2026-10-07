@@ -1,3 +1,4 @@
+import {followHistoricalRead} from '../release/seo-follow-through-scope.mjs';
 import {PRACTICAL_GUIDES_SOURCE,validateSixTopicSeoSource} from '../release/six-topic-seo-scope.mjs';
 import {FIT300_PATHS,READONLY_ORGANIC_PATHS,validateFit300} from '../release/fit-300-scope.mjs';
 import {RECIPE_IMAGE_PATHS,validateRecipeImages} from '../release/recipe-image-scope.mjs';
@@ -132,14 +133,14 @@ const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 const dir='b1-runtime-release';
 const SPEED_CANDIDATE='bcad2b051e932577a0b897f728610bdeb37282da';
 const SPEED_PATHS=["tests/seo794-preservation.test.mjs","home-v42-critical.mjs","home-blocking-styles.mjs","release/member-details-preservation.mjs","tests/home-speed-green.test.mjs","public-startup-stability.mjs","home-critical-styles.mjs","home-speed-repair.mjs", ".github/workflows/home-speed-preview.yml", "preview/home-speed/wrangler.jsonc", "preview/home-speed/worker.mjs", "preview/home-speed/build.mjs", "preview/home-speed/verify.cjs", "public-seo-presentation.mjs"];
-function verifyHomeSpeed(){git('merge-base','--is-ancestor',SPEED_CANDIDATE,'HEAD');for(const path of SPEED_PATHS)assert.equal(originalHomeSpeedSource(path,execFileSync('git',['show','HEAD:'+path],{encoding:'utf8'})),execFileSync('git',['show',SPEED_CANDIDATE+':'+path],{encoding:'utf8'}),'Home speed source drift: '+path);}
+function verifyHomeSpeed(){git('merge-base','--is-ancestor',SPEED_CANDIDATE,'HEAD');for(const path of SPEED_PATHS)assert.equal(originalHomeSpeedSource(path,followHistoricalRead((ref,p)=>execFileSync('git',['show',ref+':'+p],{encoding:'utf8'}),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition)('HEAD',path)),execFileSync('git',['show',SPEED_CANDIDATE+':'+path],{encoding:'utf8'}),'Home speed source drift: '+path);}
 
 // Owner authorised this exact preview-tested repair on 27 September.
 const HEADING_CANDIDATE='90b1e29db85591b84dec642c3304641bc9545529';
 const HEADING_PATHS=['knowledge-heading-repair.mjs','public-seo-closeout.mjs','worker-entry-v6.js','preview/knowledge-heading/worker.mjs','preview/knowledge-heading/wrangler.jsonc','scripts/verify-knowledge-headings.cjs','.github/workflows/knowledge-heading-preview.yml'];
 function verifyHeadingRepair(){
  git('merge-base','--is-ancestor',HEADING_CANDIDATE,'HEAD');
- for(const path of HEADING_PATHS){if(path==='worker-entry-v6.js')validateGrowthEntry(execFileSync('git',['show',HEADING_CANDIDATE+':'+path],{encoding:'utf8'}),execFileSync('git',['show','HEAD:'+path],{encoding:'utf8'}));else assert.equal(git('rev-parse','HEAD:'+path),git('rev-parse',(path==='public-seo-closeout.mjs'?PRACTICAL_GUIDES_SOURCE:HEADING_CANDIDATE)+':'+path),'Heading preview source drift: '+path);}
+ for(const path of HEADING_PATHS){if(path==='worker-entry-v6.js')validateGrowthEntry(execFileSync('git',['show',HEADING_CANDIDATE+':'+path],{encoding:'utf8'}),execFileSync('git',['show','HEAD:'+path],{encoding:'utf8'}));else assert.equal(followHistoricalRead((ref,p)=>git('rev-parse',ref+':'+p),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition)('HEAD',path),git('rev-parse',(path==='public-seo-closeout.mjs'?PRACTICAL_GUIDES_SOURCE:HEADING_CANDIDATE)+':'+path),'Heading preview source drift: '+path);}
 }
 export function verifyScope(){
  validateFit300();
@@ -154,7 +155,7 @@ export function verifyScope(){
   git('merge-base','--is-ancestor',NICE_TIMEOUT_COMMIT,'HEAD');
   validateNiceTimeout((ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',FOUNDATION_CANDIDATE,'HEAD');
-  validateFoundation((ref,path)=>git('rev-parse',ref+':'+path));
+  validateFoundation(followHistoricalRead((ref,path)=>git('rev-parse',ref+':'+path),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition));
   git('merge-base','--is-ancestor',MEDICINES_REVIEW_COMMIT,'HEAD');
   validateMedicinesReview((ref,path)=>git('rev-parse',ref+':'+path));
   git('merge-base','--is-ancestor',WATCH_EXPANSION_COMMIT,'HEAD');
@@ -186,10 +187,10 @@ export function verifyScope(){
   git('merge-base','--is-ancestor',WATCH_REGISTRY_WAVE_COMMIT,'HEAD');
   validateWatchRegistryWave((ref,path)=>git('rev-parse',ref+':'+path));
   validateGrowthSource();
-  validateSixTopicSeoSource((ref,path)=>git('rev-parse',ref+':'+path),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFitComposition.source);
+  validateSixTopicSeoSource(followHistoricalRead((ref,path)=>git('rev-parse',ref+':'+path),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFitComposition.source);
   verifyHeadingRepair();
   verifyHomeSpeed();
-  assert.equal(git('rev-parse','HEAD:release/seo794-preservation.mjs'),git('rev-parse','bcad2b051e932577a0b897f728610bdeb37282da:release/seo794-preservation.mjs'),'Exact homepage preservation correction drift');
+  assert.equal(followHistoricalRead((ref,p)=>git('rev-parse',ref+':'+p),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition)('HEAD','release/seo794-preservation.mjs'),git('rev-parse','bcad2b051e932577a0b897f728610bdeb37282da:release/seo794-preservation.mjs'),'Exact homepage preservation correction drift');
   const approved=validateAiRelease(manifest,changed.filter(path=>!FIT300_PATHS.has(path)&&!READONLY_ORGANIC_PATHS.has(path)&&!RECIPE_IMAGE_PATHS.has(path)&&!WATCH_CURRENT_PATHS.has(path)&&!COACH_PATHS.has(path)&&!GROWTH_PATHS.has(path)&&path!=='release/seo794-preservation.mjs'&&!SPEED_PATHS.includes(path)&&!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)&&!WATCH_EXPANSION_PATHS.includes(path)&&!WATCH_BROADER_PATHS.includes(path)&&!WATCH_SYNT101_PATHS.includes(path)&&!WATCH_INTERNATIONAL_PATHS.includes(path)&&!WATCH_EXPANDED_PATHS.includes(path)&&!WATCH_UBT251_PATHS.includes(path)&&!WATCH_SGB7342_PATHS.includes(path)&&!WATCH_ABBV_ASC30_PATHS.includes(path)&&!WATCH_SOURCE_REPAIR_PATHS.includes(path)&&!WATCH_REGISTRY_PATHS.includes(path)&&!WATCH_PFIZER_PDF_REPAIR_PATHS.includes(path)&&!WATCH_ENOBOSARM_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
   assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
   const report={...approved,releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
