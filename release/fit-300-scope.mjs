@@ -104,7 +104,8 @@ export function validateFit300(){
  validateAcceptanceReloadComposition(reload,beforeRepair);
  const historical=acceptanceReloadHistoricalRead(beforeRepair,reload);
  const reloadPaths=new Set(reload?[...ACCEPTANCE_RELOAD_PATHS,...ACCEPTANCE_RELOAD_VERIFIER_PATHS]:[]);
- const currentManifestRead=(ref,path)=>ref==='HEAD'&&POST_FIT_WATCH_PATHS.has(path)?currentRead(ref,path):historical(ref,path);
+ const currentApplicationPaths=new Set(['release/app-manifest.json','release/app-scope.mjs','release/fit-300-scope.mjs','shift-coach/release-contract.mjs']);
+ const currentManifestRead=(ref,path)=>ref==='HEAD'&&currentApplicationPaths.has(path)?currentRead(ref,path):historical(ref,path);
  for(const path of POST_FIT_WATCH_PATHS)assert.equal(currentManifestRead('HEAD',path),git('rev-parse',coach.applicationCommit+':'+path),'Post-Fit Watch composition source drift: '+path);
  const composition=coach.seoFitComposition;
  if(composition){
