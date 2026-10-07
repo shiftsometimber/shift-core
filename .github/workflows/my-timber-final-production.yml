@@ -2,7 +2,7 @@ name: My Timber Final Production Candidate
 
 on:
   push:
-    branches: [main, verification/member-design-20261002, verification/member-finish-20261002, release/internal-closeout-20261004]
+    branches: [main, verification/member-design-20261002, verification/member-finish-20261002, release/internal-closeout-20261004, fix/member-reload-navigation-20261007]
     paths:
       - 'my-timber-final-production.mjs'
       - 'release/app-member-live.mjs'
@@ -26,7 +26,7 @@ concurrency:
 
 jobs:
   billy-iphone-candidate:
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.workflow_run.conclusion == 'success'
+    if: github.ref != 'refs/heads/fix/member-reload-navigation-20261007' && (github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -109,3 +109,69 @@ jobs:
           path: my-timber-final-evidence
           if-no-files-found: error
           retention-days: 30
+
+  reload-navigation-diagnostics:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/fix/member-reload-navigation-20261007'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Verify exact successful serving source and bounded test-only changes
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module - <<'NODE'
+          import assert from 'node:assert/strict';
+          import {execFileSync} from 'node:child_process';
+          const baseline='bf3af86de87f0a04568805a2372b4e5124a325c5';
+          const allowed=new Set(['rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs','health-passport/production-browser.mjs','health-passport/acceptance-diagnostics.mjs','.github/workflows/my-timber-final-production.yml','my-timber-final-source-gate.mjs']);
+          const changed=execFileSync('git',['diff','--name-only',baseline,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          assert(changed.every(path=>allowed.has(path)),'Diagnostic branch changed serving application source');
+          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/37645910777',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});
+          assert(r.ok);const receipt=await r.json();assert.equal(receipt.head_sha,baseline);assert.equal(receipt.conclusion,'success');
+          console.log('PASS exact promoted baseline and test-only source delta');
+          NODE
+      - name: Test session and navigation rejection controls
+        run: node --test tests/rendered-member-acceptance-support.test.mjs
+      - name: Install diagnostic browser
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
+      - name: Acquire existing short-lived commissioning identity
+        id: oidc
+        shell: bash
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+      - name: Require three consecutive current-production Passport and complete member journeys
+        env:
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          PASSPORT_RELEASE_SHA: bf3af86de87f0a04568805a2372b4e5124a325c5
+          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
+          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
+        run: |
+          mkdir -p reload-navigation-evidence
+          for attempt in 1 2 3; do
+            set +e
+            node health-passport/production-browser.mjs
+            result=$?
+            set -e
+            mv passport-production-evidence "reload-navigation-evidence/passport-$attempt"
+            if [ "$result" -ne 0 ]; then exit "$result"; fi
+            MY_TIMBER_FINAL_EVIDENCE_DIR="reload-navigation-evidence/member-$attempt" node my-timber-final-production.mjs
+          done
+      - name: Retain navigation and synthetic-account evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reload-navigation-${{ github.run_id }}
+          path: reload-navigation-evidence
+          retention-days: 30
+          if-no-files-found: warn
