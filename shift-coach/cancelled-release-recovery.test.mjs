@@ -178,3 +178,12 @@ test('restored tablet evidence rejects drift, incomplete rollback and treating a
  await assert.rejects(verifyTabletRuntime(f.active,f.version,f.text,f.get,async()=>''),/restoration evidence/);
  await assert.rejects(verifyTabletRuntime(f.active,f.version,f.text,f.get,async id=>id===tabletRollback.job?f.failedLogs:''),/predecessor deployment/);
 });
+
+import {recordedSeoRuntime} from './cancelled-release-recovery.mjs';
+test('exact current SEO runtime is discoverable without recent-list results; ownership proof remains separate',async()=>{
+ const p=recordedSeoRuntime,r={id:p.run,head_sha:p.source,conclusion:'success',status:'completed',path:'.github/workflows/cloudflare-production-promote.yml',event:'push',head_branch:'main'};
+ const get=async path=>path==='/actions/runs/'+p.run?r:{workflow_runs:[]};
+ assert.deepEqual(await recentSuccessfulPromotions(get,active(p.version)),[r]);
+ for(const patch of [{head_sha:'f'.repeat(40)},{conclusion:'failure'},{status:'in_progress'},{event:'pull_request'},{head_branch:'other'},{path:'other.yml'}])await assert.rejects(recentSuccessfulPromotions(async path=>path==='/actions/runs/'+p.run?{...r,...patch}:{workflow_runs:[]},active(p.version)));
+ assert.deepEqual(await recentSuccessfulPromotions(get,active('unknown')),[]);
+});
