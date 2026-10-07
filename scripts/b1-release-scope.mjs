@@ -1,3 +1,4 @@
+import {METRICS_PATHS,verifyMetricsConnection} from '../release/metrics-connection-scope.mjs';
 import {followHistoricalRead} from '../release/seo-follow-through-scope.mjs';
 import {PRACTICAL_GUIDES_SOURCE,validateSixTopicSeoSource} from '../release/six-topic-seo-scope.mjs';
 import {FIT300_PATHS,READONLY_ORGANIC_PATHS,validateFit300} from '../release/fit-300-scope.mjs';
@@ -143,6 +144,7 @@ function verifyHeadingRepair(){
  for(const path of HEADING_PATHS){if(path==='worker-entry-v6.js')validateGrowthEntry(execFileSync('git',['show',HEADING_CANDIDATE+':'+path],{encoding:'utf8'}),execFileSync('git',['show','HEAD:'+path],{encoding:'utf8'}));else assert.equal(followHistoricalRead((ref,p)=>git('rev-parse',ref+':'+p),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition)('HEAD',path),git('rev-parse',(path==='public-seo-closeout.mjs'?PRACTICAL_GUIDES_SOURCE:HEADING_CANDIDATE)+':'+path),'Heading preview source drift: '+path);}
 }
 export function verifyScope(){
+ const metricsConnection=verifyMetricsConnection();
  validateFit300();
  validateRecipeImages();
  verifyCoachingRelease();
@@ -191,9 +193,9 @@ export function verifyScope(){
   verifyHeadingRepair();
   verifyHomeSpeed();
   assert.equal(followHistoricalRead((ref,p)=>git('rev-parse',ref+':'+p),JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition)('HEAD','release/seo794-preservation.mjs'),git('rev-parse','bcad2b051e932577a0b897f728610bdeb37282da:release/seo794-preservation.mjs'),'Exact homepage preservation correction drift');
-  const approved=validateAiRelease(manifest,changed.filter(path=>!FIT300_PATHS.has(path)&&!READONLY_ORGANIC_PATHS.has(path)&&!RECIPE_IMAGE_PATHS.has(path)&&!WATCH_CURRENT_PATHS.has(path)&&!COACH_PATHS.has(path)&&!GROWTH_PATHS.has(path)&&path!=='release/seo794-preservation.mjs'&&!SPEED_PATHS.includes(path)&&!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)&&!WATCH_EXPANSION_PATHS.includes(path)&&!WATCH_BROADER_PATHS.includes(path)&&!WATCH_SYNT101_PATHS.includes(path)&&!WATCH_INTERNATIONAL_PATHS.includes(path)&&!WATCH_EXPANDED_PATHS.includes(path)&&!WATCH_UBT251_PATHS.includes(path)&&!WATCH_SGB7342_PATHS.includes(path)&&!WATCH_ABBV_ASC30_PATHS.includes(path)&&!WATCH_SOURCE_REPAIR_PATHS.includes(path)&&!WATCH_REGISTRY_PATHS.includes(path)&&!WATCH_PFIZER_PDF_REPAIR_PATHS.includes(path)&&!WATCH_ENOBOSARM_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
+  const approved=validateAiRelease(manifest,changed.filter(path=>!METRICS_PATHS.has(path)&&!FIT300_PATHS.has(path)&&!READONLY_ORGANIC_PATHS.has(path)&&!RECIPE_IMAGE_PATHS.has(path)&&!WATCH_CURRENT_PATHS.has(path)&&!COACH_PATHS.has(path)&&!GROWTH_PATHS.has(path)&&path!=='release/seo794-preservation.mjs'&&!SPEED_PATHS.includes(path)&&!HEADING_PATHS.includes(path)&&!NICE_TIMEOUT_PATHS.includes(path)&&!FOUNDATION_PATHS.includes(path)&&!MEDICINES_REVIEW_PATHS.includes(path)&&!WATCH_EXPANSION_PATHS.includes(path)&&!WATCH_BROADER_PATHS.includes(path)&&!WATCH_SYNT101_PATHS.includes(path)&&!WATCH_INTERNATIONAL_PATHS.includes(path)&&!WATCH_EXPANDED_PATHS.includes(path)&&!WATCH_UBT251_PATHS.includes(path)&&!WATCH_SGB7342_PATHS.includes(path)&&!WATCH_ABBV_ASC30_PATHS.includes(path)&&!WATCH_SOURCE_REPAIR_PATHS.includes(path)&&!WATCH_REGISTRY_PATHS.includes(path)&&!WATCH_PFIZER_PDF_REPAIR_PATHS.includes(path)&&!WATCH_ENOBOSARM_PATHS.includes(path)),readFileSync('wrangler.jsonc','utf8'),execFileSync('git',['show',AI_CANDIDATE+':wrangler.jsonc'],{encoding:'utf8'}));
   assert.equal(git('diff','--name-only'),'','Working source changed during release gates');
-  const report={...approved,releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
+  const report={...approved,metricsConnection,releaseCommit:git('rev-parse','HEAD'),tree:git('rev-parse','HEAD^{tree}'),checkedAt:new Date().toISOString(),databaseMigrations:false,contentPublication:false};
   mkdirSync(dir,{recursive:true});writeFileSync(dir+'/scope.json',JSON.stringify(report,null,2));
   if(process.env.GITHUB_OUTPUT)appendFileSync(process.env.GITHUB_OUTPUT,'runtime_only=true\ngrub_publication=false\n');
   return report;

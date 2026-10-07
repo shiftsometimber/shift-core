@@ -1,3 +1,4 @@
+import {METRICS_PATHS,verifyMetricsConnection} from './metrics-connection-scope.mjs';
 import {RANKING_GROWTH_PATHS,rankingGrowthGitArgs} from './seo-growth-scope.mjs';
 export const WATCH_RECONCILIATION_BASE='e723261284d733476370c0e19d3ac7c516d9b8b6';
 export const WATCH_RECONCILIATION_PATHS= ["release/fit-300-scope.mjs", "release/watch-registry-wave-scope.mjs", "shift-coach/release-contract.mjs", "tests/watch-ownership-release.test.mjs"];
@@ -90,6 +91,7 @@ const git=(...args)=>execFileSync('git',rankingGrowthGitArgs(args),{encoding:'ut
 const sha=b=>createHash('sha256').update(b).digest('hex');
 
 export function validateFit300(){
+ verifyMetricsConnection();
  assert(existsSync('release/fit-300-activation.json'),'Exact Fit activation receipt required');
  const activation=JSON.parse(readFileSync('release/fit-300-activation.json'));
  const coach=JSON.parse(readFileSync('shift-coach/release-manifest.json'));
@@ -130,10 +132,10 @@ export function validateFit300(){
  assert.equal(viewer.ownerInstruction.quote,'No good these pics on a mobile ….. it doesn’t let you click on them to enlarge ? So can’t view what it is ? Assume perhaps same for grub');
  git('merge-base','--is-ancestor',viewer.base,viewer.source);git('merge-base','--is-ancestor',viewer.source,'HEAD');
  const viewerChanges=git('diff','--name-only',viewer.base,'HEAD').split('\n').filter(Boolean);
- assert(viewerChanges.every(p=>RANKING_GROWTH_PATHS.includes(p)||inline?.paths.includes(p)||usefulnessPinnedRef(follow,p)||watch?.paths.includes(p)||ZENAGAMTIDE_PATHS.includes(p)||WATCH_MERGED_UPDATE_PATHS.includes(p)||WATCH_PREVIOUS_LATEST_UPDATE_PATHS.includes(p)||WATCH_LATEST_UPDATE_PATHS.includes(p)||photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||IMAGE_VIEWER_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))||['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)),'Unrelated image viewer release change');
+ assert(viewerChanges.every(p=>METRICS_PATHS.has(p)||RANKING_GROWTH_PATHS.includes(p)||inline?.paths.includes(p)||usefulnessPinnedRef(follow,p)||watch?.paths.includes(p)||ZENAGAMTIDE_PATHS.includes(p)||WATCH_MERGED_UPDATE_PATHS.includes(p)||WATCH_PREVIOUS_LATEST_UPDATE_PATHS.includes(p)||WATCH_LATEST_UPDATE_PATHS.includes(p)||photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||IMAGE_VIEWER_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))||['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)),'Unrelated image viewer release change');
  for(const p of IMAGE_VIEWER_PATHS)assert.equal(currentManifestRead('HEAD',p),git('rev-parse',(composition?.paths.includes(p)?composition.source:viewer.source)+':'+p),'Image viewer source drift: '+p);
  const allowed=git('diff','--name-only',activation.base,'HEAD').split('\n').filter(Boolean);
- assert(allowed.every(p=>RANKING_GROWTH_PATHS.includes(p)||inline?.paths.includes(p)||usefulnessPinnedRef(follow,p)||watch?.paths.includes(p)||ZENAGAMTIDE_PATHS.includes(p)||WATCH_MERGED_UPDATE_PATHS.includes(p)||WATCH_PREVIOUS_LATEST_UPDATE_PATHS.includes(p)||WATCH_LATEST_UPDATE_PATHS.includes(p)||photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||FIT300_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))),'Unrelated change in Fit activation');
+ assert(allowed.every(p=>METRICS_PATHS.has(p)||RANKING_GROWTH_PATHS.includes(p)||inline?.paths.includes(p)||usefulnessPinnedRef(follow,p)||watch?.paths.includes(p)||ZENAGAMTIDE_PATHS.includes(p)||WATCH_MERGED_UPDATE_PATHS.includes(p)||WATCH_PREVIOUS_LATEST_UPDATE_PATHS.includes(p)||WATCH_LATEST_UPDATE_PATHS.includes(p)||photo?.paths.includes(p)||(follow&&FOLLOW_PATHS.includes(p))||(sitewide&&(sitewide.payloadPaths.includes(p)||sitewide.maintenancePaths.includes(p)))||(repair&&(BASELINE_REPAIR_PATHS.includes(p)||CATALOGUE_COPY_PATHS.includes(p)))||reloadPaths.has(p)||FIT300_PATHS.has(p)||POST_FIT_WATCH_PATHS.has(p)||(composition&&SEO_COMPOSED_PATHS.has(p))),'Unrelated change in Fit activation');
  for(const p of FIT300_PATHS)if(!['release/fit-300-activation.json','shift-coach/release-manifest.json'].includes(p)){
   const ref=composition?.paths.includes(p)?composition.source:IMAGE_VIEWER_PATHS.has(p)?viewer.source:activation.source;
   assert.equal(currentManifestRead('HEAD',p),git('rev-parse',ref+':'+p),'Fit payload source drift: '+p);
