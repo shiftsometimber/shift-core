@@ -137,7 +137,10 @@ export function validateCoachingSource(read,manifest){
  const beforeRepair=baselineHistoricalRead(priorSitewide,repair);
  validateAcceptanceReloadComposition(reload,beforeRepair);
  const composition=manifest.seoFitComposition;
- if(composition)validateSeoFitComposition(composition,acceptanceReloadHistoricalRead(beforeRepair,reload));
+ const compositionHistory=acceptanceReloadHistoricalRead(beforeRepair,reload);
+ const currentApplicationPaths=new Set(['release/app-manifest.json','release/app-scope.mjs','release/fit-300-scope.mjs','shift-coach/release-contract.mjs']);
+ const compositionRead=(ref,path)=>ref==='HEAD'&&currentApplicationPaths.has(path)?read(ref,path):compositionHistory(ref,path);
+ if(composition)validateSeoFitComposition(composition,compositionRead);
  for(const p of manifest.pinnedPaths)assert.equal(read('HEAD',p),read((inline?.paths.includes(p)?inline.source:null)||usefulnessPinnedRef(follow,p)||(watch?.paths.includes(p)?watch.source:null)||(photo?.paths.includes(p)?photo.source:null)||followPinnedRef(follow,p)||sitewidePinnedRef(sitewide,p)|| (repair?.paths.includes(p)?repair.source:CATALOGUE_COPY_PATHS.includes(p)?CATALOGUE_COPY_SOURCE:reload&&ACCEPTANCE_RELOAD_VERIFIER_PATHS.includes(p)?reload.verifierSource:reload?.paths.includes(p)?reload.source:composition?.paths.includes(p)?composition.source:viewer?.paths.includes(p)?viewer.source:fit?.paths.includes(p)?fit.source:manifest.applicationCommit),p),'Coaching release source drift: '+p);
  assert.equal(read('HEAD',ARTICLE_CLOSEOUT_PATH),read(ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH),'Read-only article closeout source drift');
  for(const p of [...COACH_ARTICLE_ADDITIONS,...COACH_ARTICLE_CHANGES])assert.equal(read('HEAD',p),read(COACH_ARTICLE_BASE,p),'Merged article repair source drift: '+p);
