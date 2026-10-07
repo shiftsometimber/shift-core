@@ -9,7 +9,8 @@ const currentPairs='PAIRS='+JSON.stringify(PAIRS)+',AI_HOSTS='+JSON.stringify(AI
 const priorPairs='PAIRS='+JSON.stringify(previousPairs)+';';
 const aiLoop="  for(var aiHost in AI_HOSTS)if(h===aiHost||h==='www.'+aiHost)return{source:AI_HOSTS[aiHost],medium:'referral'};\n";
 const once=(text,signature,replacement)=>{assert.equal(text.split(signature).length,2,'Metrics bootstrap signature drift');return text.replace(signature,replacement);};
-export const previousMetricsBootstrap=once(once(bootstrap,currentPairs,priorPairs),aiLoop,'');
+const protocolGuard="if(ref.protocol!=='https:'&&ref.protocol!=='http:')return null;";
+export const previousMetricsBootstrap=once(once(once(bootstrap,currentPairs,priorPairs),aiLoop,''),protocolGuard,'');
 assert.equal(createHash('sha256').update(previousMetricsBootstrap).digest('hex'),'271feebb7a9040b1bbeb9011e958651d86e8266ddde3f7c55cce4fe9e4b38881','Prior live metrics bootstrap drift');
 assert.equal(createHash('sha256').update(bootstrap).digest('hex'),'1c04156865c81cf052ba9dfd94022ad9c24bb4a2dcfd63a1f674e23c8562e5d3','Candidate metrics bootstrap drift');
 const tag=client=>'<script data-shift-inline-bootstrap>'+client+'</script>';
