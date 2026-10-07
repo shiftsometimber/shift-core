@@ -9,7 +9,7 @@ test('extra paths, changed consent and third-party collection cannot be authoris
  for(const mutate of [c=>c.payloadPaths.push('worker-entry-v6.js'),c=>c.maintenancePaths.push('.github/workflows/cloudflare-production-promote.yml'),c=>c.consentChanged=true,c=>c.thirdPartyCollectionChanged=true,c=>c.publicCopyChanged=true,c=>c.base='0'.repeat(40),c=>c.authority.scope='anything']){
   const c=structuredClone(metricsRecord());mutate(c);assert.throws(()=>validateMetricsConnection(c));
  }
- assert.equal(METRICS_PATHS.has('public-seo-growth-data.mjs'),false);assert.equal(METRICS_PAYLOAD_PATHS.length,3);assert.equal(METRICS_MAINTENANCE_PATHS.length,10);
+ assert.equal(METRICS_PATHS.has('public-seo-growth-data.mjs'),false);assert.equal(METRICS_PAYLOAD_PATHS.length,3);assert.equal(METRICS_MAINTENANCE_PATHS.length,11);
 });
 test('source comparison rejects a modified runtime payload after the verified source commit',()=>{
  const c=metricsRecord();const read=(ref,p)=>ref==='HEAD'&&p==='acquisition-activation/model.mjs'?'tampered':ref===c.payloadSource&&p==='acquisition-activation/model.mjs'?'approved':'same';
@@ -40,4 +40,12 @@ test('inline comparison accepts only exact prior and candidate scripts and prese
  assert.equal(preserveExactMetricsBootstrap(current),current);
  assert.equal(preserveExactMetricsBootstrap('<h1>Unchanged</h1>'),'<h1>Unchanged</h1>');
  for(const html of [tag(bootstrap+'alert(1);'),tag(previousMetricsBootstrap+' '),tag(bootstrap)+tag(bootstrap),tag(previousMetricsBootstrap)+tag(bootstrap),tag(bootstrap).replace('data-shift-inline-bootstrap','data-shift-inline-bootstrap other')])assert.throws(()=>preserveExactMetricsBootstrap(html));
+});
+
+import {validateBookVoice} from '../release/book-voice-scope.mjs';
+import {execFileSync} from 'node:child_process';
+test('Book Voice accepts exact independently verified measurement maintenance and rejects tampering',()=>{
+ const read=(ref,p)=>execFileSync('git',['show',ref+':'+p],{encoding:'utf8'});
+ validateBookVoice(read);
+ assert.throws(()=>verifyMetricsConnection(metricsRecord(),(ref,p)=>ref==='HEAD'&&p==='member-experience/public-preservation.mjs'?'tampered':read(ref,p)),/Metrics maintenance source drift/);
 });
