@@ -1,9 +1,9 @@
-import {PAIRS,VERSION,BROWSER_TTL} from './model.mjs';
+import {PAIRS,VERSION,BROWSER_TTL,AI_REFERRER_HOSTS} from './model.mjs';
 // The existing bootstrap loads this first-party helper, including on account
 // pages, without loading GTM there. It never intercepts generic fetch or forms.
 export const acquisitionClient=String.raw`(function(w,d){
 'use strict'; if(w.SSTAcquisition)return;
-var KEY='sstAcquisitionV1',CONSENT='sstConsentV3',VERSION=${JSON.stringify(VERSION)},TTL=${BROWSER_TTL},PAIRS=${JSON.stringify(PAIRS)};
+var KEY='sstAcquisitionV1',CONSENT='sstConsentV3',VERSION=${JSON.stringify(VERSION)},TTL=${BROWSER_TTL},PAIRS=${JSON.stringify(PAIRS)},AI_HOSTS=${JSON.stringify(AI_REFERRER_HOSTS)};
 function read(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
 function clear(){try{localStorage.removeItem(KEY)}catch(e){}}
 function consumed(){clear();if(choice())try{sessionStorage.setItem('sstAcquisitionConsumed','1')}catch(e){}}
@@ -23,7 +23,8 @@ function originSource(){
   return Object.prototype.hasOwnProperty.call(PAIRS,source)&&PAIRS[source].indexOf(medium)>=0?{source:source,medium:medium}:null;
  }
  if(!d.referrer)return{source:'direct_or_unknown',medium:'none'};
- try{var ref=new URL(d.referrer),h=ref.hostname.toLowerCase();if(h==='shiftsometimber.co.uk'||h.endsWith('.shiftsometimber.co.uk'))return null;
+ try{var ref=new URL(d.referrer),h=ref.hostname.toLowerCase();if(ref.protocol!=='https:'&&ref.protocol!=='http:')return null;if(h==='shiftsometimber.co.uk'||h.endsWith('.shiftsometimber.co.uk'))return null;
+  for(var aiHost in AI_HOSTS)if(h===aiHost||h==='www.'+aiHost)return{source:AI_HOSTS[aiHost],medium:'referral'};
   if(['www.google.com','www.google.co.uk','google.com','google.co.uk'].indexOf(h)>=0)return{source:'google',medium:'organic'};
   if(['www.bing.com','bing.com'].indexOf(h)>=0)return{source:'bing',medium:'organic'};
   var social={'facebook.com':'facebook','instagram.com':'instagram','t.co':'x','x.com':'x','linkedin.com':'linkedin','tiktok.com':'tiktok'};
