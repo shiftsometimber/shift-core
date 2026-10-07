@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {metricsRecord,validateMetricsConnection,verifyMetricsConnection,METRICS_BASE,METRICS_PAYLOAD_PATHS,METRICS_MAINTENANCE_PATHS,METRICS_PATHS} from '../release/metrics-connection-scope.mjs';
+import {metricsRecord,validateMetricsConnection,verifyMetricsConnection,METRICS_BASE,METRICS_PAYLOAD_PATHS,METRICS_MAINTENANCE_PATHS,METRICS_PATHS,metricsChangedPath} from '../release/metrics-connection-scope.mjs';
 test('metrics adoption binds the exact runtime delta and preserves unrelated boundaries',()=>{
  const receipt=metricsRecord();assert.ok(receipt);assert.equal(validateMetricsConnection(receipt).base,METRICS_BASE);
  const result=verifyMetricsConnection();assert.equal(result.publicCopyChanged,false);assert.equal(result.thirdPartyCollectionChanged,false);
@@ -14,4 +14,10 @@ test('extra paths, changed consent and third-party collection cannot be authoris
 test('source comparison rejects a modified runtime payload after the verified source commit',()=>{
  const c=metricsRecord();const read=(ref,p)=>ref==='HEAD'&&p==='acquisition-activation/model.mjs'?'tampered':ref===c.payloadSource&&p==='acquisition-activation/model.mjs'?'approved':'same';
  assert.throws(()=>verifyMetricsConnection(c,read),/Metrics payload source drift/);
+});
+
+test('historical added verifier and current modified verifier both require exact pinned bytes',()=>{
+ for(const status of ['A','M'])assert.equal(metricsChangedPath(status,'release/seo-growth-scope.mjs'),true);
+ for(const status of ['D','R','T'])assert.throws(()=>metricsChangedPath(status,'release/seo-growth-scope.mjs'));
+ assert.equal(metricsChangedPath('M','unlisted.mjs'),false);
 });

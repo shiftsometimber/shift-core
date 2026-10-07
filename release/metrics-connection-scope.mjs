@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {existsSync,readFileSync} from 'node:fs';
 export const METRICS_BASE='a5cca19e89abc04ac8ecb063fcafb4f66004f504';
-export const METRICS_PAYLOAD='82214a6b0219d2ef1c876aedcbc960cb526118fb';
+export const METRICS_PAYLOAD='7905a8914d06af3ed0204564da671bd4a6e9b0f8';
 export const METRICS_PAYLOAD_PATHS=['acquisition-activation/ai-referrals.test.mjs','acquisition-activation/client.mjs','acquisition-activation/model.mjs'];
 export const METRICS_MAINTENANCE_PATHS=['acquisition-activation/metrics-release.test.mjs','release/app-scope.mjs','release/fit-300-scope.mjs','release/metrics-connection-scope.mjs','release/seo-growth-scope.mjs','scripts/b1-release-scope.mjs','shift-coach/release-contract.mjs'];
 export const METRICS_MANIFEST='release/metrics-connection.json';
@@ -30,8 +30,8 @@ export function verifyMetricsConnection(c=metricsRecord(),read=(ref,p)=>rawGit('
  assert.deepEqual(paths(c.base,c.payloadSource),c.payloadPaths,'Unrelated metrics payload change');
  assert.deepEqual(paths(c.payloadSource,c.maintenanceSource).filter(p=>p!==METRICS_MANIFEST),c.maintenancePaths,'Unrelated metrics maintenance change');
  assert.deepEqual(paths(c.maintenanceSource,'HEAD').filter(p=>METRICS_PATHS.has(p)),[METRICS_MANIFEST],'Metrics receipt changed outside its exact final file');
- for(const p of c.payloadPaths)assert.equal(read('HEAD',p),read(c.payloadSource,p),'Metrics payload source drift: '+p);
- for(const p of c.maintenancePaths)assert.equal(read('HEAD',p),read(c.maintenanceSource,p),'Metrics maintenance source drift: '+p);
+ for(const p of c.payloadPaths)assert.equal(read('HEAD',p),read(c.payloadSource,p),'Coaching release source drift: Metrics payload source drift: '+p);
+ for(const p of c.maintenancePaths)assert.equal(read('HEAD',p),read(c.maintenanceSource,p),'Coaching release source drift: Metrics maintenance source drift: '+p);
  for(const p of ['activation-measurement/assets.mjs','acquisition-activation/consent.mjs','frontend/member/api-adapter-v33d.js','wrangler.jsonc','.github/workflows/cloudflare-production-promote.yml','shift-coach/release-manifest.json','worker-entry-v6.js','shift-coach/worker.mjs']){
   assert.equal(read('HEAD',p),read(c.base,p),'Protected metrics boundary drift: '+p);
  }
@@ -48,5 +48,7 @@ export function metricsHistoricalRef(ref,p){
 export function metricsChangedPath(status,path){
  if(!METRICS_PATHS.has(path)||!ensure())return false;
  const added=[METRICS_MANIFEST,'release/metrics-connection-scope.mjs','acquisition-activation/ai-referrals.test.mjs','acquisition-activation/metrics-release.test.mjs'].includes(path);
- assert.equal(status,added?'A':'M','Unexpected metrics change status: '+path);return true;
+ // This verifier was added after COACH_BASE, but is modified from METRICS_BASE.
+ if(path==='release/seo-growth-scope.mjs')assert(['A','M'].includes(status),'Unexpected metrics change status: '+path);
+ else assert.equal(status,added?'A':'M','Unexpected metrics change status: '+path);return true;
 }
