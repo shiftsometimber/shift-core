@@ -1,0 +1,30 @@
+{
+  "proof": "CONSENTED_AI_ATTRIBUTION_EXACT_V1",
+  "base": "a5cca19e89abc04ac8ecb063fcafb4f66004f504",
+  "payloadSource": "82214a6b0219d2ef1c876aedcbc960cb526118fb",
+  "maintenanceSource": "202b5dfbb02d91713f8783277ca0362b8cff5d6c",
+  "payloadPaths": [
+    "acquisition-activation/ai-referrals.test.mjs",
+    "acquisition-activation/client.mjs",
+    "acquisition-activation/model.mjs"
+  ],
+  "maintenancePaths": [
+    "acquisition-activation/metrics-release.test.mjs",
+    "release/app-scope.mjs",
+    "release/fit-300-scope.mjs",
+    "release/metrics-connection-scope.mjs",
+    "release/seo-growth-scope.mjs",
+    "scripts/b1-release-scope.mjs",
+    "shift-coach/release-contract.mjs"
+  ],
+  "productionWrites": false,
+  "publicCopyChanged": false,
+  "consentChanged": false,
+  "thirdPartyCollectionChanged": false,
+  "authority": {
+    "owner": "Matt",
+    "instruction": "We need to connect all metrics and then ensure we are doing as much as we can re; SEO for google/search engines and AI",
+    "date": "2026-10-07",
+    "scope": "Bounded first-party AI source classification and exact release reconciliation only; no new public wording, external communication or cost."
+  }
+}
