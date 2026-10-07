@@ -56,7 +56,7 @@ export function metricsChangedPath(status,path){
  if(!METRICS_PATHS.has(path)||!ensure())return false;
  const added=[METRICS_MANIFEST,'release/metrics-connection-scope.mjs','release/metrics-inline-preservation.mjs','acquisition-activation/ai-referrals.test.mjs','acquisition-activation/metrics-release.test.mjs'].includes(path);
  // This verifier was added after COACH_BASE, but is modified from METRICS_BASE.
- if(['release/seo-growth-scope.mjs','member-experience/public-preservation.mjs'].includes(path))assert(['A','M'].includes(status),'Unexpected metrics change status: '+path);
+ if(['release/seo-growth-scope.mjs','member-experience/public-preservation.mjs','release/book-voice-scope.mjs'].includes(path))assert(['A','M'].includes(status),'Unexpected metrics change status: '+path);
  else assert.equal(status,added?'A':'M','Unexpected metrics change status: '+path);return true;
 }
 

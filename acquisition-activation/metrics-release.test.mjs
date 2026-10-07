@@ -17,8 +17,8 @@ test('source comparison rejects a modified runtime payload after the verified so
 });
 
 test('historical added verifier and current modified verifier both require exact pinned bytes',()=>{
- for(const status of ['A','M'])assert.equal(metricsChangedPath(status,'release/seo-growth-scope.mjs'),true);
- for(const status of ['D','R','T'])assert.throws(()=>metricsChangedPath(status,'release/seo-growth-scope.mjs'));
+ for(const path of ['release/seo-growth-scope.mjs','release/book-voice-scope.mjs'])for(const status of ['A','M'])assert.equal(metricsChangedPath(status,path),true);
+ for(const path of ['release/seo-growth-scope.mjs','release/book-voice-scope.mjs'])for(const status of ['D','R','T'])assert.throws(()=>metricsChangedPath(status,path));
  assert.equal(metricsChangedPath('M','unlisted.mjs'),false);
 });
 
