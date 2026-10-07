@@ -2,7 +2,7 @@ name: My Timber Final Production Candidate
 
 on:
   push:
-    branches: [main, verification/member-design-20261002, verification/member-finish-20261002, release/internal-closeout-20261004, fix/member-reload-navigation-20261007]
+    branches: [main, verification/member-design-20261002, verification/member-finish-20261002, release/internal-closeout-20261004]
     paths:
       - 'my-timber-final-production.mjs'
       - 'release/app-member-live.mjs'
@@ -26,7 +26,7 @@ concurrency:
 
 jobs:
   billy-iphone-candidate:
-    if: github.ref != 'refs/heads/fix/member-reload-navigation-20261007' && (github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.workflow_run.conclusion == 'success')
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -109,146 +109,3 @@ jobs:
           path: my-timber-final-evidence
           if-no-files-found: error
           retention-days: 30
-
-  reload-navigation-diagnostics:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/fix/member-reload-navigation-20261007'
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-      - name: Verify exact successful serving source and bounded test-only changes
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: |
-          node --input-type=module - <<'NODE'
-          import assert from 'node:assert/strict';
-          import {execFileSync} from 'node:child_process';
-          const baseline='bf3af86de87f0a04568805a2372b4e5124a325c5';
-          const allowed=new Set(['rendered-member-acceptance-support.mjs','tests/rendered-member-acceptance-support.test.mjs','health-passport/production-browser.mjs','health-passport/acceptance-diagnostics.mjs','tests/acceptance-diagnostics.test.mjs','tests/member-reload-browser.test.mjs','.github/workflows/my-timber-final-production.yml','my-timber-final-source-gate.mjs']);
-          const changed=execFileSync('git',['diff','--name-only',baseline,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
-          assert(changed.every(path=>allowed.has(path)),'Diagnostic branch changed serving application source');
-          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/37645910777',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});
-          assert(r.ok);const receipt=await r.json();assert.equal(receipt.head_sha,baseline);assert.equal(receipt.conclusion,'success');
-          console.log('PASS exact promoted baseline and test-only source delta');
-          NODE
-      - name: Test session and navigation rejection controls
-        run: node --test tests/rendered-member-acceptance-support.test.mjs tests/acceptance-diagnostics.test.mjs
-      - name: Install diagnostic browser
-        run: |
-          npm install --no-save --ignore-scripts playwright
-          npx playwright install --with-deps chromium
-      - name: Reproduce unfinished navigation and prove cancellation in real Chromium
-        run: node --test tests/member-reload-browser.test.mjs
-      - name: Passport save, reload and privacy journey 1 of 3
-        env:
-          PASSPORT_RELEASE_SHA: bf3af86de87f0a04568805a2372b4e5124a325c5
-        run: |
-          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
-          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
-          echo "::add-mask::$token"
-          export SHIFT_COMMISSIONING_OIDC="$token"
-          mkdir -p reload-navigation-evidence
-          set +e
-          node health-passport/production-browser.mjs
-          result=$?
-          set -e
-          mv passport-production-evidence "reload-navigation-evidence/passport-1"
-          exit "$result"
-      - name: Complete Today, Grub and Fit journey 1 of 3
-        env:
-          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
-          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
-          MY_TIMBER_FINAL_EVIDENCE_DIR: reload-navigation-evidence/member-1
-        run: |
-          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
-          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
-          echo "::add-mask::$token"
-          export SHIFT_COMMISSIONING_OIDC="$token"
-          node my-timber-final-production.mjs
-      - name: Retain journey 1 evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: reload-navigation-${{ github.run_id }}-1
-          path: |
-            reload-navigation-evidence/passport-1
-            reload-navigation-evidence/member-1
-          retention-days: 30
-          if-no-files-found: warn
-      - name: Passport save, reload and privacy journey 2 of 3
-        env:
-          PASSPORT_RELEASE_SHA: bf3af86de87f0a04568805a2372b4e5124a325c5
-        run: |
-          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
-          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
-          echo "::add-mask::$token"
-          export SHIFT_COMMISSIONING_OIDC="$token"
-          mkdir -p reload-navigation-evidence
-          set +e
-          node health-passport/production-browser.mjs
-          result=$?
-          set -e
-          mv passport-production-evidence "reload-navigation-evidence/passport-2"
-          exit "$result"
-      - name: Complete Today, Grub and Fit journey 2 of 3
-        env:
-          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
-          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
-          MY_TIMBER_FINAL_EVIDENCE_DIR: reload-navigation-evidence/member-2
-        run: |
-          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
-          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
-          echo "::add-mask::$token"
-          export SHIFT_COMMISSIONING_OIDC="$token"
-          node my-timber-final-production.mjs
-      - name: Retain journey 2 evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: reload-navigation-${{ github.run_id }}-2
-          path: |
-            reload-navigation-evidence/passport-2
-            reload-navigation-evidence/member-2
-          retention-days: 30
-          if-no-files-found: warn
-      - name: Passport save, reload and privacy journey 3 of 3
-        env:
-          PASSPORT_RELEASE_SHA: bf3af86de87f0a04568805a2372b4e5124a325c5
-        run: |
-          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
-          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
-          echo "::add-mask::$token"
-          export SHIFT_COMMISSIONING_OIDC="$token"
-          mkdir -p reload-navigation-evidence
-          set +e
-          node health-passport/production-browser.mjs
-          result=$?
-          set -e
-          mv passport-production-evidence "reload-navigation-evidence/passport-3"
-          exit "$result"
-      - name: Complete Today, Grub and Fit journey 3 of 3
-        env:
-          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
-          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
-          MY_TIMBER_FINAL_EVIDENCE_DIR: reload-navigation-evidence/member-3
-        run: |
-          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
-          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
-          echo "::add-mask::$token"
-          export SHIFT_COMMISSIONING_OIDC="$token"
-          node my-timber-final-production.mjs
-      - name: Retain journey 3 evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: reload-navigation-${{ github.run_id }}-3
-          path: |
-            reload-navigation-evidence/passport-3
-            reload-navigation-evidence/member-3
-          retention-days: 30
-          if-no-files-found: warn

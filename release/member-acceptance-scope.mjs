@@ -1,3 +1,4 @@
+import {navigationGitArgs,validateNavigationAdoption,assertNavigationReceipt,NAVIGATION_RUN} from './member-reload-navigation-scope.mjs';
 import {COACH_BASE,COACH_BACKEND_PATHS,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 // Acceptance only. Bind the exact reviewed scripts to independent live evidence.
 import assert from 'node:assert/strict';
@@ -34,9 +35,9 @@ export function assertMemberDiagnosticsReceipt(receipt){
  assert.equal(receipt.path,MEMBER_DIAGNOSTICS_WORKFLOW);assert.equal(receipt.head_branch,'codex/member-acceptance-diagnostics-20261004');
  assert.equal(receipt.event,'push');assert.equal(receipt.status,'completed');assert.equal(receipt.conclusion,'success','Exact bounded member acceptance must pass');
 }
-const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
+const git=(...a)=>execFileSync('git',navigationGitArgs(a),{encoding:'utf8'}).trim();
 export function validateMemberAcceptanceSource(){
- verifyCoachingRelease();
+ validateNavigationAdoption();verifyCoachingRelease();
  git('merge-base','--is-ancestor',MEMBER_ACCEPTANCE_CANDIDATE,'HEAD');
  assert.deepEqual(git('diff','--name-only',MEMBER_ACCEPTANCE_BASE,MEMBER_ACCEPTANCE_CANDIDATE).split('\n').filter(Boolean).sort(),[...MEMBER_ACCEPTANCE_PATHS].sort(),'Acceptance changed outside its exact nine scripts/workflows');
  for(const p of MEMBER_ACCEPTANCE_PATHS)assert.equal(git('rev-parse',(MEMBER_RELOAD_PATHS.includes(p)?'HEAD':COACH_BACKEND_PATHS.has(p)?COACH_BASE:'HEAD')+':'+p),git('rev-parse',(MEMBER_RELOAD_PATHS.includes(p)?MEMBER_RELOAD_SOURCE:MEMBER_ACCEPTANCE_CANDIDATE)+':'+p),'Verified acceptance source drift: '+p);
@@ -61,5 +62,6 @@ export async function verifyMemberAcceptanceProof(get){
  const diagnostics=await get('/actions/runs/37216938436');assertMemberDiagnosticsReceipt(diagnostics);
  const production=await get('/actions/runs/37213204839');assert.equal(production.head_sha,MEMBER_DIAGNOSTICS_BASE);assert.equal(production.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(production.conclusion,'success');
  receipts.push({id:diagnostics.id,sha:diagnostics.head_sha,path:diagnostics.path,conclusion:diagnostics.conclusion,unchangedServingSource:production.head_sha});
+ if(validateNavigationAdoption()){const navigation=await get('/actions/runs/'+NAVIGATION_RUN);assertNavigationReceipt(navigation);receipts.push({id:navigation.id,sha:navigation.head_sha,scope:'Three consecutive production Passport and full member journeys'});}
  return receipts;
 }

@@ -1,3 +1,4 @@
+import {NAVIGATION_PATHS,validateNavigationAdoption} from './member-reload-navigation-scope.mjs';
 import {LINK_PATHS,linkMarkHistoricalReader,linkHistoricalRead,linkHistoricalRef,linkHistoricalHead,linkChangedPath,linkPreflightPath} from './seo-link-repairs-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -7,7 +8,7 @@ export const METRICS_PAYLOAD='82214a6b0219d2ef1c876aedcbc960cb526118fb';
 export const METRICS_PAYLOAD_PATHS=['acquisition-activation/ai-referrals.test.mjs','acquisition-activation/client.mjs','acquisition-activation/model.mjs'];
 export const METRICS_MAINTENANCE_PATHS=["acquisition-activation/metrics-release.test.mjs","member-experience/public-preservation.mjs","release/app-preflight.mjs","release/app-scope.mjs","release/book-voice-scope.mjs","release/fit-300-scope.mjs","release/growth-public-live.cjs","release/growth-scope.mjs","release/live-request-retry.cjs","release/live-request-retry.test.mjs","release/metrics-connection-scope.mjs","release/metrics-inline-preservation.mjs","release/seo-growth-scope.mjs","scripts/b1-release-scope.mjs","scripts/verify-seo-closeout-live.mjs","shift-coach/cancelled-release-recovery.mjs","shift-coach/cancelled-release-recovery.test.mjs","shift-coach/release-contract.mjs","shift-coach/release.test.mjs"];
 export const METRICS_MANIFEST='release/metrics-connection.json';
-export const METRICS_PATHS=new Set([...METRICS_PAYLOAD_PATHS,...METRICS_MAINTENANCE_PATHS,METRICS_MANIFEST,...LINK_PATHS]);
+export const METRICS_PATHS=new Set([...METRICS_PAYLOAD_PATHS,...METRICS_MAINTENANCE_PATHS,METRICS_MANIFEST,...LINK_PATHS,...NAVIGATION_PATHS]);
 export const METRICS_EXISTING=new Set(['release/growth-scope.mjs','release/growth-public-live.cjs','scripts/verify-seo-closeout-live.mjs','member-experience/public-preservation.mjs','release/app-preflight.mjs','release/app-scope.mjs','release/book-voice-scope.mjs','release/fit-300-scope.mjs','release/seo-growth-scope.mjs','scripts/b1-release-scope.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/release-contract.mjs','shift-coach/release.test.mjs']);
 const manifestPath=new URL('./metrics-connection.json',import.meta.url);
 export function metricsRecord(){return existsSync(manifestPath)?JSON.parse(readFileSync(manifestPath,'utf8')):null;}
@@ -55,6 +56,7 @@ export function metricsHistoricalRef(ref,p){
  if(ref==='HEAD'&&METRICS_EXISTING.has(p)&&ensure())return METRICS_BASE;return linkHistoricalRef(ref,p);
 }
 export function metricsChangedPath(status,path){
+ if(NAVIGATION_PATHS.has(path)&&validateNavigationAdoption()){assert(['A','M'].includes(status),'Unexpected reload adoption change status: '+path);return true;}
  if(linkChangedPath(status,path))return true;
  if(!METRICS_PATHS.has(path)||!ensure())return false;
  const added=['release/live-request-retry.cjs','release/live-request-retry.test.mjs',METRICS_MANIFEST,'release/metrics-connection-scope.mjs','release/metrics-inline-preservation.mjs','acquisition-activation/ai-referrals.test.mjs','acquisition-activation/metrics-release.test.mjs'].includes(path);
@@ -63,4 +65,4 @@ export function metricsChangedPath(status,path){
  else assert.equal(status,added?'A':'M','Unexpected metrics change status: '+path);return true;
 }
 
-export function metricsPreflightPath(path){return linkPreflightPath(path)||(METRICS_PATHS.has(path)&&ensure());}
+export function metricsPreflightPath(path){return (NAVIGATION_PATHS.has(path)&&!!validateNavigationAdoption())||linkPreflightPath(path)||(METRICS_PATHS.has(path)&&ensure());}
