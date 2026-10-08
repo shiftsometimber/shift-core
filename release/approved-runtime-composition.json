@@ -113,5 +113,28 @@
     "ratingsInvented": false,
     "homepageChanged": false,
     "privateCacheChanged": false
+  },
+  "programmeDay": {
+    "proof": "EXACT_PROGRAMME_DAY_V1",
+    "base": "d2ff6e0ef00d0a1a3907d9184afd64a3aa40c374",
+    "payloadSource": "0fe0bc85717b60bdcf7b0a75c9e96b2c3644409a",
+    "payloadPaths": [
+      ".github/workflows/programme-day-preview.yml",
+      "growth-member-public.mjs",
+      "programme-day.mjs",
+      "release/growth-preservation.mjs",
+      "scripts/verify-programme-day.cjs",
+      "tests/programme-day.test.mjs",
+      "tests/growth-release.test.mjs"
+    ],
+    "maintenanceSource": "c59c85f60441ffeaaa7c4556e9c78dbcd72962e9",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/programme-day-release.test.mjs"
+    ],
+    "approval": "Go",
+    "homepageChanged": false,
+    "clinicalAvailabilityChanged": false,
+    "memberBehaviourChanged": false
   }
 }
