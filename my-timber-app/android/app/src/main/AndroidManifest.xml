@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
   <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
   <uses-permission android:name="android.permission.health.READ_HEART_RATE" />
   <uses-permission android:name="android.permission.health.READ_BLOOD_PRESSURE" />
   <uses-permission android:name="android.permission.health.READ_WEIGHT" />
@@ -13,6 +14,8 @@
     <activity-alias android:name="ViewPermissionUsageActivity" android:exported="true" android:targetActivity=".PermissionsRationaleActivity" android:permission="android.permission.START_VIEW_PERMISSION_USAGE">
       <intent-filter><action android:name="android.intent.action.VIEW_PERMISSION_USAGE" /><category android:name="android.intent.category.HEALTH_PERMISSIONS" /></intent-filter>
     </activity-alias>
+    <receiver android:name=".TreatmentReminderReceiver" android:exported="false" />
+    <provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.treatment-files" android:exported="false" android:grantUriPermissions="true"><meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/treatment_files" /></provider>
     <activity android:name=".MainActivity" android:exported="true"
         android:windowSoftInputMode="adjustResize">
       <intent-filter>

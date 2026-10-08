@@ -7,6 +7,7 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
     private var timer:Timer?
     private var failed=false
     private var healthBridge:HealthBridge!
+    private var treatmentBridge:TreatmentBridge!
     private let cream=UIColor(red:231/255,green:227/255,blue:218/255,alpha:1)
     override var preferredStatusBarStyle:UIStatusBarStyle{.lightContent}
     override func viewDidLoad(){
@@ -25,7 +26,11 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
         if let url=Bundle.main.url(forResource:"native-health",withExtension:"js"),let source=try? String(contentsOf:url,encoding:.utf8){
             config.userContentController.addUserScript(WKUserScript(source:source,injectionTime:.atDocumentEnd,forMainFrameOnly:true))
         }
+        treatmentBridge=TreatmentBridge(owner:self)
+        config.userContentController.add(treatmentBridge,name:"sstTreatment")
+        if let url=Bundle.main.url(forResource:"native-treatment",withExtension:"js"),let source=try? String(contentsOf:url,encoding:.utf8){config.userContentController.addUserScript(WKUserScript(source:source,injectionTime:.atDocumentEnd,forMainFrameOnly:true))}
         web=WKWebView(frame:.zero,configuration:config)
+        treatmentBridge.attach(web)
         healthBridge.attach(web)
         web.isOpaque=false;web.backgroundColor=view.backgroundColor
         web.navigationDelegate=self;web.uiDelegate=self;web.allowsBackForwardNavigationGestures=true
@@ -52,6 +57,7 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
         loadToday()
         startup.playAndRemove()
     }
+    func openTreatment(){web.load(URLRequest(url:URL(string:"https://shiftsometimber.co.uk/member/treatment")!))}
     private func loadToday(){
         web.load(URLRequest(url:NavigationPolicy.start,cachePolicy:.reloadIgnoringLocalCacheData,timeoutInterval:30))
     }
@@ -94,7 +100,7 @@ final class MyTimberViewController:UIViewController,WKNavigationDelegate,WKUIDel
     }
     func webView(_ webView:WKWebView,createWebViewWith configuration:WKWebViewConfiguration,for action:WKNavigationAction,windowFeatures:WKWindowFeatures)->WKWebView?{nil}
     func webView(_ webView:WKWebView,didStartProvisionalNavigation navigation:WKNavigation!){
-        healthBridge.cancel()
+        healthBridge.cancel();treatmentBridge.cancel()
         failed=false;errorBox.isHidden=true;timer?.invalidate()
         timer=Timer.scheduledTimer(withTimeInterval:30,repeats:false){[weak self] _ in
             self?.showFailure("A connection is needed. Nothing has been confirmed as saved by this app. Check your account before repeating any save or payment.")

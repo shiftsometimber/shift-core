@@ -43,7 +43,7 @@ test('Final store identities are prepared but submission remains explicitly disa
  assert.match(project,/Release:\s*\n\s*PRODUCT_BUNDLE_IDENTIFIER: uk\.co\.shiftsometimber\.mytimber/);
  assert.match(project,/Debug:\s*\n\s*PRODUCT_BUNDLE_IDENTIFIER: uk\.co\.shiftsometimber\.mytimber\.dev/);
  assert.match(project,/TARGETED_DEVICE_FAMILY: '1'/);
- assert.match(project,/CURRENT_PROJECT_VERSION: 3/);
+ assert.match(project,/CURRENT_PROJECT_VERSION: 4/);
  assert.match(project,/MARKETING_VERSION: 1\.0\.0/);
  assert.match(project,/CFBundleShortVersionString: \$\(MARKETING_VERSION\)/);
  assert.match(project,/CFBundleVersion: \$\(CURRENT_PROJECT_VERSION\)/);

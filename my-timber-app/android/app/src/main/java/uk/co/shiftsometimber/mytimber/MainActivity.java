@@ -25,6 +25,8 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
     private LinearLayout failure;
     private String presentation;
     private String healthPresentation;
+    private String treatmentPresentation;
+    private TreatmentBridge treatmentBridge;
     private HealthBridge healthBridge;
     private final Handler timer = new Handler(Looper.getMainLooper());
     private final Runnable timeout = () -> showFailure("My Timber is taking longer than expected. Nothing has been confirmed as saved by this app.");
@@ -71,6 +73,8 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
             while((n=stream.read(block))!=-1)bytes.write(block,0,n);
             healthPresentation=bytes.toString(StandardCharsets.UTF_8.name());
         } catch (Exception e) { showFailure("Health controls could not load securely."); return; }
+        try (InputStream stream=getAssets().open("native-treatment.js")) { ByteArrayOutputStream bytes=new ByteArrayOutputStream();byte[] block=new byte[4096];int n;while((n=stream.read(block))!=-1)bytes.write(block,0,n);treatmentPresentation=bytes.toString(StandardCharsets.UTF_8.name()); } catch (Exception e) { showFailure("Treatment controls could not load securely."); return; }
+        treatmentBridge=new TreatmentBridge(this,web);treatmentBridge.attach();
         healthBridge=new HealthBridge(this,web);healthBridge.attach();
         WebView.setWebContentsDebuggingEnabled(false);
         WebSettings settings = web.getSettings();
@@ -109,7 +113,7 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
                 return true;
             }
             @Override public void onPageStarted(WebView view, String url, android.graphics.Bitmap icon) {
-                healthBridge.cancel();
+                healthBridge.cancel();treatmentBridge.cancel();
                 // Also guard navigations (including forms) not passed to the URL override.
                 if (NavigationPolicy.classify(url) != NavigationPolicy.Decision.INTERNAL) {
                     timer.removeCallbacks(timeout);
@@ -125,6 +129,7 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
                 if (!pageFailed && NavigationPolicy.classify(url)==NavigationPolicy.Decision.INTERNAL) {
                     view.evaluateJavascript(presentation,null);
                     view.evaluateJavascript(healthPresentation,null);
+                    view.evaluateJavascript(treatmentPresentation,null);
                     CookieManager.getInstance().flush();
                 }
             }
@@ -167,7 +172,7 @@ public final class MainActivity extends androidx.activity.ComponentActivity {
             }
         });
         // Never restore/replay form history from a Bundle, or copy Safari/Chrome cookies.
-        web.loadUrl(NavigationPolicy.START);
+        web.loadUrl(getIntent().getBooleanExtra("treatmentReminder",false)?"https://shiftsometimber.co.uk/member/treatment":NavigationPolicy.START);
         if (Build.VERSION.SDK_INT >= 33) getOnBackInvokedDispatcher().registerOnBackInvokedCallback(
             android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT, () -> {if(web.canGoBack())web.goBack();else finish();});
     }

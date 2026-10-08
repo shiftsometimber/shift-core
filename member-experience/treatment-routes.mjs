@@ -28,11 +28,18 @@ export async function treatmentRoutes(request,env){
  const path=new URL(request.url).pathname;if(!path.startsWith(root))return null;
  // Isolated preview feature until clinical-source, retention and reminder acceptance pass.
  if(env.MY_TREATMENT_PREVIEW_ENABLED!=='true')return reply({error:'not_enabled'},404);
- if(![root,root+'/records',root+'/events',root+'/medical',root+'/summary.pdf'].includes(path))return reply({error:'not_found'},404);
- if(!['GET','POST'].includes(request.method)||request.method==='GET'&&![root,root+'/summary.pdf'].includes(path))return reply({error:'method_not_allowed'},405);
+ if(![root,root+'/records',root+'/events',root+'/medical',root+'/summary.pdf',root+'/native-reminders'].includes(path))return reply({error:'not_found'},404);
+ if(!['GET','POST'].includes(request.method)||request.method==='GET'&&![root,root+'/summary.pdf',root+'/native-reminders'].includes(path))return reply({error:'method_not_allowed'},405);
  if(request.method==='POST'&&(request.headers.get('Origin')!==new URL(request.url).origin||!request.headers.get('Content-Type')?.startsWith('application/json')))return reply({error:'origin_not_allowed'},403);
  let auth;try{auth=await authenticateMember(request,env);}catch{return reply({error:'authentication_unavailable'},503);}if(auth.response)return reply({error:'authentication_required'},401);
  try{
+ if(path===root+'/native-reminders'){
+ if(request.method!=='GET')return reply({error:'method_not_allowed'},405);
+ const data=await readTreatment(env.DB,auth.userId),now=Date.now(),expires=Math.min(Date.parse(auth.user.expires_at),now+86400000);
+ const enabled=await trackingConsent(env.DB,auth.userId);
+ const reminders=enabled?data.treatments.filter(t=>t.status==='active'&&t.reminder_enabled&&Date.parse(t.next_at)>now&&Date.parse(t.next_at)<=expires&&!data.events.some(e=>e.treatment_id===t.id&&e.kind==='dose_taken'&&Date.parse(e.occurred_at)>=Date.parse(t.next_at))).slice(0,32).map(t=>({id:t.id,at:Date.parse(t.next_at)})):[];
+ return reply({account:String(auth.userId),reminders});
+ }
  if(path===root+'/summary.pdf'){
  if(request.method!=='GET')return reply({error:'method_not_allowed'},405);
  const query=new URL(request.url).searchParams,period=query.get('period')||'28',selected=query.get('treatment')||'all';if(!['28','84','all'].includes(period))return reply({error:'invalid_period'},400);const data=await readTreatment(env.DB,auth.userId);if(selected!=='all'&&!data.treatments.some(t=>t.id===selected))return reply({error:'treatment_not_found'},404);const since=period==='all'?0:Date.now()-Number(period)*86400000;const fmt=v=>v?new Date(v).toLocaleString('en-GB',{timeZone:'Europe/London'}):'Not recorded';const lines=['My Timber - personal summary','Fictional preview records - not a clinical assessment','Generated: '+fmt(new Date().toISOString())+' (Europe/London)','Period: '+(period==='all'?'Full history':'Last '+period+' days'),''];

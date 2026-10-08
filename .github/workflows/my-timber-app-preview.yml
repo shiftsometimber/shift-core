@@ -5,7 +5,7 @@ on:
       - 'my-timber-app/**'
       - '.github/workflows/my-timber-app-preview.yml'
   push:
-    branches: [main, feat/my-timber-store-20260923]
+    branches: [main, feat/my-timber-store-20260923, feat/my-treatment-preview-20261008]
     paths:
       - 'my-timber-app/**'
       - '.github/workflows/my-timber-app-preview.yml'
@@ -44,7 +44,7 @@ jobs:
       - name: Source and presentation checks
         run: |
           mkdir -p my-timber-app/evidence
-          node --test my-timber-app/tests/source.test.mjs | tee my-timber-app/evidence/source-tests.txt
+          node --test my-timber-app/tests/*.test.mjs | tee my-timber-app/evidence/source-tests.txt
           git rev-parse HEAD > my-timber-app/evidence/commit.txt
           java -version 2> my-timber-app/evidence/java-version.txt
           gradle --version > my-timber-app/evidence/gradle-version.txt
@@ -97,7 +97,7 @@ jobs:
       - name: Source and native-policy checks
         run: |
           mkdir -p my-timber-app/evidence
-          node --test my-timber-app/tests/source.test.mjs | tee my-timber-app/evidence/source-tests.txt
+          node --test my-timber-app/tests/*.test.mjs | tee my-timber-app/evidence/source-tests.txt
           python3 my-timber-app/tests/run-policies.py | tee my-timber-app/evidence/native-policy-tests.txt
           git rev-parse HEAD > my-timber-app/evidence/commit.txt
           xcodebuild -version > my-timber-app/evidence/xcode-version.txt
