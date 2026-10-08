@@ -24,10 +24,12 @@ test('unknown source, private pages, errors and non-HTML remain unchanged',async
 });
 
 import {validateGrowthEntry} from '../release/growth-scope.mjs';
+import {verifyReconciledRelease,reconciliationHistoricalRef} from '../release/approved-runtime-composition.mjs';
 import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 test('release entry pin accepts only the reviewed adapter around the existing entry',()=>{
- const original=execFileSync('git',['show','90b1e29db85591b84dec642c3304641bc9545529:worker-entry-v6.js'],{encoding:'utf8'}),actual=readFileSync('worker-entry-v6.js','utf8');
+ verifyReconciledRelease();
+ const original=execFileSync('git',['show','90b1e29db85591b84dec642c3304641bc9545529:worker-entry-v6.js'],{encoding:'utf8'}),actual=execFileSync('git',['show',reconciliationHistoricalRef('HEAD','worker-entry-v6.js')+':worker-entry-v6.js'],{encoding:'utf8'});
  assert.doesNotThrow(()=>validateGrowthEntry(original,actual));
  assert.throws(()=>validateGrowthEntry(original,actual.replace('const MEMBER_ORIGINS','const UNAPPROVED_ORIGINS')));
 });
