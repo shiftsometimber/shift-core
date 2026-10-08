@@ -1,7 +1,7 @@
 import {PROGRAMME_DRAFTS,programmeSection} from '../public-seo-programme.mjs';
 import {preserveFollowThrough} from '../release/seo-follow-through-preservation.mjs';
 import {restoreBookVoiceCopy} from '../book-voice.mjs';
-import {improveContinuityEntry} from '../preview/growth-member/continuity-journey.mjs';
+import {assertApprovedContinuityBody,approvedContinuityMinimumWords} from '../release/public-continuity-body-proof.mjs';
 import assert from 'node:assert/strict';
 import {writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -26,7 +26,7 @@ const pages=[],links=new Set();
 for(const path of CONTINUITY_PATHS){
  const {r,html}=await get(path);assert.equal((html.match(/<h1\b/g)||[]).length,1,path);assert.equal((html.match(/rel="canonical"/g)||[]).length,1,path);assert.ok(html.includes('href="'+production+path+'"'));assert.ok(html.includes(continuityPages[path].heading));assert.ok(html.includes('/consent-v4a.js'));assert.equal((html.match(/id="shift-public-news"/g)||[]).length,1,path);assert.ok(!/complete interactive route loads below|noindex/i.test(html));assert.equal(r.headers.get('x-robots-tag')?.includes('noindex')||false,preview);
  if(NUTRITION_PATHS.has(path))assert.equal(html.split(NUTRITION_NOTE).length,2,path+' must contain exactly the approved My Timber signpost');
- const main=html.match(/<main\b[\s\S]*?<\/main>/i)[0];let approvedMain=preserveNutritionSignposting(path,Buffer.from(main)).toString();const support=PROGRAMME_DRAFTS.find(d=>d.path===path);if(support){const section=programmeSection(support);assert.equal(approvedMain.split(section).length-1,1,path+' exact approved v2 support section');approvedMain=approvedMain.replace(section,'');}assert.ok(approvedMain.includes(improveContinuityEntry('<main>'+continuityPages[path].body+'</main>',path).slice(6,-7)),path+' must contain the exact approved body');const words=approvedMain.replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length;const minimum=['/clinic-gone-quiet','/provider-switch','/husband-help'].includes(path)?180:400;assert.ok(words>minimum,path);
+ const main=html.match(/<main\b[\s\S]*?<\/main>/i)[0];let approvedMain=preserveNutritionSignposting(path,Buffer.from(main)).toString();const support=PROGRAMME_DRAFTS.find(d=>d.path===path);if(support){const section=programmeSection(support);assert.equal(approvedMain.split(section).length-1,1,path+' exact approved v2 support section');approvedMain=approvedMain.replace(section,'');}assertApprovedContinuityBody(path,approvedMain);const words=approvedMain.replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length;const minimum=approvedContinuityMinimumWords(path);assert.ok(words>=minimum,path);
  for(const m of main.matchAll(/href="(\/[^"#]*)/g))links.add(m[1].split('#')[0]);
  pages.push({path,status:r.status,words,sha256:hash(html)});
  for(const method of ['GET','HEAD']){const redirect=await fetch(origin+path+'.html?from=proof',{method,redirect:'manual'});assert.equal(redirect.status,301);assert.equal(redirect.headers.get('location'),origin+path+'?from=proof')}

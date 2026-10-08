@@ -594,6 +594,8 @@ jobs:
         run: node member-experience/public-preservation.mjs public-after.json public-before.json
       - name: Prove public Life Back, food-noise guidance and their linked journeys
         run: node scripts/verify-public-continuity-live.mjs
+      - name: Verify approved Programme day and catalogue artwork live
+        run: PROGRAMME_DAY_LIVE=true PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-programme-day.cjs
       - name: Prove newsroom publication order on live traffic
         run: node scripts/verify-newsroom-order-live.mjs
       - name: Verify SHIFT take labels and original dates on every live news article
