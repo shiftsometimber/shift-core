@@ -1,0 +1,267 @@
+{
+  "at": "2026-10-08T21:22:16.582Z",
+  "production": "a2349561-6daa-404d-9185-aa2e8ef5b0be",
+  "assetHashesPreserved": 876,
+  "originChecks": [
+    {
+      "path": "/assets/shift-recovery-v6.css",
+      "sha256": "3edc9ac6a663ef3bd16bd7bc13215275dd8c86c46f2f550d3aac4cf0c500d632",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      },
+      "assetBytesPreserved": true
+    },
+    {
+      "path": "/assets/shift-calculator-flow-v1.css",
+      "sha256": "9dac5b39085267d066f9f8a5212010696514b115558106d3866e193f9deb0f59",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      },
+      "assetBytesPreserved": true
+    },
+    {
+      "path": "/assets/ask-timber-drawer-v2.css",
+      "sha256": "776b4381973eb9605e8b72f3fed61428c361b13702f35e35a02426376ec37142",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      },
+      "assetBytesPreserved": true
+    },
+    {
+      "path": "/seo-wave2-v15.css",
+      "sha256": "e97720b39d98dd38864b4df6698e487b8fa85ac2efcb49ede162f89b34eafb8f",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      },
+      "assetBytesPreserved": true
+    },
+    {
+      "path": "/assets/v136-desolation-recovery.css",
+      "sha256": "28a814a60931993d1aab212058f889e11fc638608561c1dd091a76f78af43585",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      },
+      "assetBytesPreserved": true
+    },
+    {
+      "path": "/assets/v137-estate-closeout.css",
+      "sha256": "a0e9927ac92becaf57f2c787985c78c5d4acea3b3b54c4a1c78b5f479358346f",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      },
+      "assetBytesPreserved": true
+    },
+    {
+      "path": "/assets/header-navigation-v2.css",
+      "sha256": "fede0fcbc334af6c4183765006c2fde71909ed5e3bd0db365f77a8e21e2fefc4",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      },
+      "assetBytesPreserved": true
+    },
+    {
+      "path": "/assets/shift-service-bridge-v1.css",
+      "sha256": "8c7b60f77137d5d5694a3338b84e3492fff09ed06e1b86c246d6ea51ee9c57e9",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      },
+      "assetBytesPreserved": true
+    },
+    {
+      "path": "/index.html",
+      "sha256": "a9b0d24223e4970add90b941339f42daf556fd0e4d30d454f2f8d05d58b82b6a",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "cache": "public, max-age=0, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      },
+      "assetBytesPreserved": true
+    },
+    {
+      "path": "/start-here.html",
+      "sha256": "062a735314767ba976a71d8ab79c14b5c1b93990f4a3c05c1bff15ba37c0db34",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "cache": "public, max-age=0, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      },
+      "assetBytesPreserved": true
+    },
+    {
+      "path": "/tools/bmi.html",
+      "sha256": "3adcc238db7e3ff8663615f03f22c4c7230dbbb77916502afd081570e07f98d1",
+      "status": 200,
+      "type": "text/html; charset=utf-8",
+      "cache": "public, max-age=0, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      },
+      "assetBytesPreserved": true
+    }
+  ],
+  "liveChecks": [
+    {
+      "path": "/assets/shift-recovery-v6.css",
+      "sha256": "3edc9ac6a663ef3bd16bd7bc13215275dd8c86c46f2f550d3aac4cf0c500d632",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      }
+    },
+    {
+      "path": "/assets/shift-calculator-flow-v1.css",
+      "sha256": "9dac5b39085267d066f9f8a5212010696514b115558106d3866e193f9deb0f59",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      }
+    },
+    {
+      "path": "/assets/ask-timber-drawer-v2.css",
+      "sha256": "776b4381973eb9605e8b72f3fed61428c361b13702f35e35a02426376ec37142",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      }
+    },
+    {
+      "path": "/seo-wave2-v15.css",
+      "sha256": "e97720b39d98dd38864b4df6698e487b8fa85ac2efcb49ede162f89b34eafb8f",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      }
+    },
+    {
+      "path": "/assets/v136-desolation-recovery.css",
+      "sha256": "28a814a60931993d1aab212058f889e11fc638608561c1dd091a76f78af43585",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      }
+    },
+    {
+      "path": "/assets/v137-estate-closeout.css",
+      "sha256": "a0e9927ac92becaf57f2c787985c78c5d4acea3b3b54c4a1c78b5f479358346f",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      }
+    },
+    {
+      "path": "/assets/header-navigation-v2.css",
+      "sha256": "fede0fcbc334af6c4183765006c2fde71909ed5e3bd0db365f77a8e21e2fefc4",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      }
+    },
+    {
+      "path": "/assets/shift-service-bridge-v1.css",
+      "sha256": "8c7b60f77137d5d5694a3338b84e3492fff09ed06e1b86c246d6ea51ee9c57e9",
+      "status": 200,
+      "type": "text/css; charset=utf-8",
+      "cache": "public, max-age=300, must-revalidate",
+      "security": {
+        "content-security-policy": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "referrer-policy": "strict-origin-when-cross-origin"
+      }
+    }
+  ]
+}
