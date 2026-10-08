@@ -1,0 +1,30 @@
+{
+  "proof": "EXACT_APPROVED_RUNTIME_COMPOSITION_V1",
+  "base": "e9d8ca70c6cd969bbd02caee31deb1f8b12bb67f",
+  "source": "63993a0ce480a4aa5c7a1d47017c682dccc837f1",
+  "maintenanceSource": "be82d80569a96581b0c231362730eb09f3e53e82",
+  "maintenancePaths": [
+    "release/approved-runtime-composition.mjs",
+    "tests/approved-runtime-composition.test.mjs",
+    "release/organic-followthrough-scope.mjs",
+    "release/seo-link-repairs-scope.mjs",
+    "release/seo-growth-scope.mjs",
+    "release/app-scope.mjs",
+    "scripts/b1-release-scope.mjs",
+    "tests/organic-followthrough-release.test.mjs",
+    "release/device-health-scope.mjs",
+    "release/footer-scope.mjs",
+    "tests/seo-growth-release.test.mjs",
+    "release/owner-captured-runtime.mjs",
+    "tests/owner-captured-runtime.test.mjs",
+    "shift-coach/cancelled-release-recovery.mjs",
+    "shift-coach/recover-cancelled-release.mjs",
+    "release/growth-adopt-deployment.mjs",
+    "release/member-acceptance-scope.mjs",
+    "shift-coach/scope.mjs",
+    "shift-me-source-gate.mjs",
+    "rendered-member-acceptance-support.mjs",
+    "tests/rendered-member-acceptance-support.test.mjs",
+    "tests/member-reload-browser.test.mjs"
+  ]
+}
