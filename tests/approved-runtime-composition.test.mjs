@@ -130,7 +130,7 @@ import {ORAL_LIVE_DISPATCH_SOURCE,ORAL_LIVE_DISPATCH_PATHS,ORAL_LIVE_DISPATCH_MA
 test('oral live dispatch verifier repair is a finite immutable engineering receipt',()=>{
  const receipt=verifyReconciledRelease();assert.equal(receipt.oralLiveDispatchGuard.source,ORAL_LIVE_DISPATCH_SOURCE);
  for(const path of [...ORAL_LIVE_DISPATCH_PATHS,...ORAL_LIVE_DISPATCH_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/Oral dispatch .*source drift/);
+  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/Approved composition (?:source \/ boundary|maintenance source) drift/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
   let existedAtBase=true;
   try{directGit('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});}catch{existedAtBase=false;}
