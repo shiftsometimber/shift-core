@@ -582,8 +582,8 @@ const worker = {
     }
     const path = requestUrl.pathname.replace(/\/+$/, "") || "/";
     const oralPage = await oralPublicRoute(request,env); if(oralPage){if(oralPage.status===200&&request.method==='GET')ctx.waitUntil(notifyArticlePublication(env));return oralPage;}
-    const articlePage = await babyLovePublicRoute(request,env); if(articlePage)return articlePage;
-    const dynamicArticlePage = await dynamicBabyLovePublicRoute(request,env); if(dynamicArticlePage)return dynamicArticlePage;
+    const articlePage = await babyLovePublicRoute(request,env); if(articlePage)return withPublicSeoCloseout(articlePage,request);
+    const dynamicArticlePage = await dynamicBabyLovePublicRoute(request,env); if(dynamicArticlePage)return withPublicSeoCloseout(dynamicArticlePage,request);
     const babyLove = await babyLoveRoutes(request,env); if(babyLove)return babyLove;
     const measurement = measurementAsset(request); if(measurement)return measurement;
     const publicNavigation = myTimberRedirect(request) || publicTickerAsset(request);
@@ -1191,8 +1191,8 @@ export default {
       const url = new URL(request.url); url.pathname = '/programme'; url.search = '';
       return worker.fetch(new Request(url, {method:'GET',headers:request.headers}), env, ctx);
     });
-    const response = await withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, await withPassportPresentation(request, env, page || await worker.fetch(request, env, ctx)))));
+    const response = await withPublicSeoCloseout(await withPublicShellContract(request, await withPublicTicker(request, await withPublicContinuity(request, await withPassportPresentation(request, env, page || await worker.fetch(request, env, ctx))))),request);
     const final=await withNutritionSignposting(request,await withOralDiscovery(await withDynamicBabyLoveDiscovery(await withBabyLoveDiscovery(response,request,env),request,env),request,env));
-    return withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final))));
+    return withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy(request,await withStartupStability(request,await singleDispatchHtmlAsset(request,env.MY_TIMBER_PWA_ENABLED==='true'?await withPwa(request,final):final)))),request);
   },
 };

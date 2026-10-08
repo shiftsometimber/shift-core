@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mentalHealthDescription,withPublicSeoCloseout,SHARING_IMAGE_PATHS,PUBLIC_TWITTER_IMAGE,completePublicSharingImage,repairPublicSeoLinks} from '../public-seo-closeout.mjs';
+import {mentalHealthDescription,withPublicSeoCloseout,SHARING_IMAGE_PATHS,PUBLIC_TWITTER_IMAGE,completePublicSharingImage,repairPublicSeoLinks,PERFORMANCE_SNIPPETS,repairPerformanceSnippet,repairArticleImageSchema} from '../public-seo-closeout.mjs';
 
 const old='Plain-English guidance ending professional or.';
 const shell=`<html><head><meta content="${old}" name="description"><meta name="twitter:description" content="${old}"><meta content="${old}" property="og:description"></head><body>Preserved page</body></html>`;
@@ -63,5 +63,31 @@ test('failed and non-HTML responses and mutations are not rewritten',async()=>{
  for(const [status,type,method] of [[404,'text/html','GET'],[200,'application/json','GET'],[200,'text/html','POST']]){
   const response=new Response(topicShell,{status,headers:{'content-type':type}});
   assert.equal(await withPublicSeoCloseout(response,new Request('https://shiftsometimber.co.uk/mounjaro',{method})),response);
+ }
+});
+
+test('data-led performance snippets change only title and search/share descriptions',()=>{
+ const article='<html><head><title>Old title</title><meta name="description" content="Old description"><meta property="og:title" content="Old title"><meta property="og:description" content="Old description"><meta name="twitter:title" content="Old title"><meta name="twitter:description" content="Old description"></head><body><main><h1>Keep this H1</h1><p>Keep this clinical body.</p></main></body></html>';
+ for(const pair of Object.entries(PERFORMANCE_SNIPPETS)){
+  const path=pair[0],item=pair[1],html=repairPerformanceSnippet(article,path);
+  assert.ok(html.includes('<title>'+item.title.replaceAll('&','&amp;')+'</title>'));
+  assert.ok(html.includes(item.description));
+  assert.match(html,/<h1>Keep this H1<\/h1>/);assert.match(html,/Keep this clinical body/);
+  assert.equal(repairPerformanceSnippet(html,path),html);
+ }
+ assert.equal(repairPerformanceSnippet(article,'/articles/unrelated'),article);
+});
+test('article image schema repair uses the existing public OG image without changing article copy',()=>{
+ const source='<html><head><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Keep headline"}</script></head><body><main><p>Keep body</p></main></body></html>';
+ const html=repairArticleImageSchema(source,'/articles/wegovy-side-effects-timeline');
+ const data=JSON.parse(html.split('<script type="application/ld+json">')[1].split('</script>')[0]);
+ assert.equal(data.image,'https://shiftsometimber.co.uk/assets/og-default.jpg');assert.equal(data.headline,'Keep headline');assert.match(html,/Keep body/);
+ assert.equal(repairArticleImageSchema(html,'/articles/wegovy-side-effects-timeline'),html);
+ assert.equal(repairArticleImageSchema(source,'/about'),source);
+});
+test('performance closeout preserves homepage, Start Here and unrelated articles',async()=>{
+ for(const path of ['/','/start-here','/articles/unrelated']){
+  const response=new Response(topicShell,{headers:{'content-type':'text/html'}});
+  assert.equal(await withPublicSeoCloseout(response,new Request('https://shiftsometimber.co.uk'+path)),response);
  }
 });

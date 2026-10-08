@@ -4,6 +4,22 @@ const DESCRIPTIONS = new Map([
   ['/mental-health/when-someone-refuses-help', 'Plain-English guidance for when someone refuses mental-health help, including safety concerns, practical boundaries and when to seek professional support.'],
 ]);
 
+export const PERFORMANCE_SNIPPETS=Object.freeze({
+  '/articles/wegovy-side-effects-timeline':{
+    title:'Do Wegovy Side Effects Go Away? How Long They Last | SHIFT',
+    description:'Do Wegovy side effects go away? They often ease over time, but timing varies. See common effects, warning signs and when to get medical help.'
+  },
+  '/articles/nhs-weight-loss-drugs':{
+    title:'NHS Weight-Loss Drugs: Eligibility & Access in the UK | SHIFT',
+    description:'Can you get weight-loss medication on the NHS? See current eligibility, England’s phased access, GP questions and what support to ask for if you do not qualify.'
+  }
+});
+export const ARTICLE_IMAGE_REPAIR_PATHS=Object.freeze([
+  '/articles/wegovy-side-effects-timeline',
+  '/articles/nhs-weight-loss-drugs',
+  '/articles/stopping-glp1'
+]);
+
 const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
 export const PUBLIC_TWITTER_IMAGE='<meta name="twitter:image" content="https://shiftsometimber.co.uk/assets/og-default.jpg">';
@@ -73,17 +89,35 @@ export function withSixTopicGuides(html,path){
  return html.replace(/<\/main\s*>/i,`<section class="shift-topic-guides" data-six-topic-seo="${esc(path)}" aria-label="Related guides">${relatedLinks[path]}</section></main>`);
 }
 
+export function repairPerformanceSnippet(html,path){
+ const item=PERFORMANCE_SNIPPETS[path];if(!item)return html;
+ html=html.replace(/<title>[\s\S]*?<\/title>/i,`<title>${esc(item.title)}</title>`);
+ html=html.replace(/<meta\b(?=[^>]*(?:name|property)\s*=\s*["'](?:description|og:title|twitter:title|og:description|twitter:description)["'])[^>]*>/gi,'');
+ return html.replace('</head>',`<meta name="description" content="${esc(item.description)}"><meta property="og:title" content="${esc(item.title)}"><meta name="twitter:title" content="${esc(item.title)}"><meta property="og:description" content="${esc(item.description)}"><meta name="twitter:description" content="${esc(item.description)}"></head>`);
+}
+export function repairArticleImageSchema(html,path){
+ if(!ARTICLE_IMAGE_REPAIR_PATHS.includes(path))return html;
+ const image='https://shiftsometimber.co.uk/assets/og-default.jpg';
+ return html.replace(/<script\b([^>]*)type=["']application\/ld\+json["']([^>]*)>([\s\S]*?)<\/script>/gi,(whole,a,b,json)=>{
+  try{
+   const data=JSON.parse(json),nodes=Array.isArray(data)?data:Array.isArray(data?.['@graph'])?data['@graph']:[data];let changed=false;
+   for(const node of nodes){const types=Array.isArray(node?.['@type'])?node['@type']:[node?.['@type']];if(types.includes('Article')&&!node.image){node.image=image;changed=true}}
+   return changed?`<script${a}type="application/ld+json"${b}>${JSON.stringify(data).replace(/</g,'\\u003c')}</script>`:whole;
+  }catch{return whole}
+ });
+}
+
 export async function withPublicSeoCloseout(response, request) {
   const path = new URL(request.url).pathname.replace(/\/+$/, '') || '/';
   const description = DESCRIPTIONS.get(path);
   const type = String(response?.headers?.get('content-type') || '').toLowerCase();
-  if ((!description && !SIX_TOPIC_SEO[path] && !PRACTICAL_GUIDES[path]) || !response.ok || !type.includes('text/html') || !['GET','HEAD'].includes(request.method)) return response;
+  if ((!description && !SIX_TOPIC_SEO[path] && !PRACTICAL_GUIDES[path] && !PERFORMANCE_SNIPPETS[path] && !ARTICLE_IMAGE_REPAIR_PATHS.includes(path)) || !response.ok || !type.includes('text/html') || !['GET','HEAD'].includes(request.method)) return response;
   let html = await response.text();
   if(description) html = html
     .replace(/<meta\b(?=[^>]*\bname\s*=\s*["'](?:description|twitter:description)["'])[^>]*>/gi, '')
     .replace(/<meta\b(?=[^>]*\bproperty\s*=\s*["']og:description["'])[^>]*>/gi, '')
     .replace('</head>', `<meta name="description" content="${esc(description)}"><meta property="og:description" content="${esc(description)}"><meta name="twitter:description" content="${esc(description)}"></head>`);
-  html = improvePracticalGuides(withSixTopicGuides(html,path),path);
+  html = repairArticleImageSchema(repairPerformanceSnippet(improvePracticalGuides(withSixTopicGuides(html,path),path),path),path);
   const headers = new Headers(response.headers);
   headers.delete('content-encoding');
   headers.delete('content-length');
