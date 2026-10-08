@@ -48,7 +48,7 @@ export const RECONCILIATION_MAINTENANCE=[
  'release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs',
  'release/organic-followthrough-scope.mjs','release/seo-link-repairs-scope.mjs',
  'release/seo-growth-scope.mjs','release/app-scope.mjs',
- 'scripts/b1-release-scope.mjs','tests/organic-followthrough-release.test.mjs','release/device-health-scope.mjs','release/footer-scope.mjs','tests/seo-growth-release.test.mjs','release/owner-captured-runtime.mjs','tests/owner-captured-runtime.test.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','release/growth-adopt-deployment.mjs','release/member-acceptance-scope.mjs','shift-coach/scope.mjs','shift-me-source-gate.mjs','release/seo-context-scope.mjs','release/seo-discovery-scope.mjs','release/seo-follow-through-scope.mjs','release/fit-300-scope.mjs','tests/production-completion-release.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/online-privacy-recovery-proof.yml','.github/workflows/shift-coach-integration.yml','.github/workflows/organic-followthrough-proof.yml','.github/workflows/seo-link-repairs-proof.yml','.github/workflows/seo-growth-proof.yml','acquisition-activation/metrics-release.test.mjs','shift-coach/release.test.mjs',...RELOAD_PAYLOAD];
+ 'scripts/b1-release-scope.mjs','tests/organic-followthrough-release.test.mjs','release/device-health-scope.mjs','release/footer-scope.mjs','tests/seo-growth-release.test.mjs','release/owner-captured-runtime.mjs','tests/owner-captured-runtime.test.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','release/growth-adopt-deployment.mjs','release/member-acceptance-scope.mjs','shift-coach/scope.mjs','shift-me-source-gate.mjs','release/metrics-connection-scope.mjs','release/seo-context-scope.mjs','release/seo-discovery-scope.mjs','release/seo-follow-through-scope.mjs','release/fit-300-scope.mjs','tests/production-completion-release.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/online-privacy-recovery-proof.yml','.github/workflows/shift-coach-integration.yml','.github/workflows/organic-followthrough-proof.yml','.github/workflows/seo-link-repairs-proof.yml','.github/workflows/seo-growth-proof.yml','acquisition-activation/metrics-release.test.mjs','shift-coach/release.test.mjs',...RELOAD_PAYLOAD];
 export const RECONCILIATION_PATHS=new Set([...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE,RECONCILIATION_MANIFEST]);
 const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
 export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
@@ -58,6 +58,7 @@ export function assertProductionProofBudget(before,current){
  assert.equal(current,before.replace(marker,marker.replace('25','60')),'Only the production verification time budget may change');
 }
 let productionProofBefore;
+const verifiedImmutableStructures=new Set();
 export function verifyReconciledRelease(read=(ref,path)=>git('rev-parse',ref+':'+path)){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -65,11 +66,17 @@ export function verifyReconciledRelease(read=(ref,path)=>git('rev-parse',ref+':'
  assert.deepEqual(c.maintenancePaths,RECONCILIATION_MAINTENANCE);
  assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
  const head=git('rev-parse','HEAD');
- for(const ref of [COMPOSITION_BASE,SUPPORT_SOURCE,HQ_SOURCE,COMPOSITION_SOURCE,c.maintenanceSource,RELOAD_VERIFIER])git('merge-base','--is-ancestor',ref,head);
- const diff=(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean).sort();
- assert.deepEqual(diff(COMPOSITION_BASE,COMPOSITION_SOURCE),sorted(COMPOSITION_PATHS));
- assert.deepEqual(diff(COMPOSITION_SOURCE,c.maintenanceSource).filter(p=>p!==RECONCILIATION_MANIFEST),sorted(RECONCILIATION_MAINTENANCE));
- assert.deepEqual(diff(c.maintenanceSource,head),[RECONCILIATION_MANIFEST]);
+ // Cache only Git graph facts for resolved immutable commits and this exact
+ // receipt. Supplied readers, current bytes and working-tree checks stay fresh.
+ const structureKey=JSON.stringify([process.cwd(),head,c]);
+ if(!verifiedImmutableStructures.has(structureKey)){
+  for(const ref of [COMPOSITION_BASE,SUPPORT_SOURCE,HQ_SOURCE,COMPOSITION_SOURCE,c.maintenanceSource,RELOAD_VERIFIER])git('merge-base','--is-ancestor',ref,head);
+  const diff=(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean).sort();
+  assert.deepEqual(diff(COMPOSITION_BASE,COMPOSITION_SOURCE),sorted(COMPOSITION_PATHS));
+  assert.deepEqual(diff(COMPOSITION_SOURCE,c.maintenanceSource).filter(p=>p!==RECONCILIATION_MANIFEST),sorted(RECONCILIATION_MAINTENANCE));
+  assert.deepEqual(diff(c.maintenanceSource,head),[RECONCILIATION_MANIFEST]);
+  verifiedImmutableStructures.add(structureKey);
+ }
  // Verify current bytes before exposing historical views to older guards.
  for(const path of COMPOSITION_PATHS)assert.equal(read('HEAD',path),read(COMPOSITION_SOURCE,path),'Approved composition source / boundary drift: '+path);
  for(const path of RECONCILIATION_MAINTENANCE)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: '+path);
@@ -77,6 +84,7 @@ export function verifyReconciledRelease(read=(ref,path)=>git('rev-parse',ref+':'
  productionProofBefore??=execFileSync('git',['show',COMPOSITION_BASE+':.github/workflows/cloudflare-production-promote.yml'],{encoding:'utf8'});
  assertProductionProofBudget(productionProofBefore,readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8'));
  assert.equal(git('diff','--name-only'),'','Working source changed during composition verification');
+ assert.equal(git('rev-parse','HEAD'),head,'Source HEAD changed during composition verification');
  return c;
 }
 const mappedCompositionReaders=new WeakSet();
