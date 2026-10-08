@@ -63,8 +63,14 @@ export async function verifyMemberAcceptanceProof(get){
  const production=await get('/actions/runs/37213204839');assert.equal(production.head_sha,MEMBER_DIAGNOSTICS_BASE);assert.equal(production.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(production.conclusion,'success');
  receipts.push({id:diagnostics.id,sha:diagnostics.head_sha,path:diagnostics.path,conclusion:diagnostics.conclusion,unchangedServingSource:production.head_sha});
  if(reconciliationRecord()){
-  const run=await get('/actions/runs/'+RELOAD_RUN),jobs=await get('/actions/runs/'+RELOAD_RUN+'/jobs?filter=latest&per_page=100');
-  receipts.push(assertReconciledReloadReceipt(run,jobs.jobs?.find(j=>j.id===113266037954)));
+  receipts.push(await verifyReconciledReloadAttempt(get));
  }
  return receipts;
+}
+
+// The accepted receipt is attempt 1, not the mutable status of a later rerun.
+export async function verifyReconciledReloadAttempt(get){
+ const base='/actions/runs/'+RELOAD_RUN+'/attempts/1';
+ const run=await get(base),jobs=await get(base+'/jobs?per_page=100');
+ return assertReconciledReloadReceipt(run,jobs.jobs?.find(j=>j.id===113266037954));
 }
