@@ -1,10 +1,11 @@
+import {projectTreatment} from './treatment-model.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {trackingConsent} from './health-routes.mjs';
 const root='/v1/member/treatment';
 const reply=(data,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store, must-revalidate','Vary':'Cookie','X-Content-Type-Options':'nosniff'}});
 const object=v=>v&&typeof v==='object'&&!Array.isArray(v);
 const text=(v,n=2000)=>typeof v==='string'&&v.length<=n?v.trim():null;
-export const medicines=['Mounjaro','Wegovy','Orlistat','Liraglutide'];
+export const medicines=['Mounjaro','Wegovy','Orlistat','Liraglutide','Prescribed testosterone','Blood test','Health appointment'];
 export function validateTreatment(body){
  if(!object(body)||Object.keys(body).some(k=>!['medicine','prescriptionDetails','supply','nextAt'].includes(k)))throw Error('invalid_treatment');
  if(!medicines.includes(body.medicine)||!text(body.prescriptionDetails)||!Number.isInteger(body.supply)||body.supply<0||body.supply>1000)throw Error('invalid_treatment');
@@ -18,9 +19,10 @@ export function validateMedical(body){
 }
 export async function readTreatment(DB,userId){
  const treatments=(await DB.prepare('SELECT * FROM member_treatment_records WHERE user_id=? ORDER BY created_at DESC').bind(userId).all()).results;
- const events=(await DB.prepare('SELECT * FROM member_treatment_events WHERE user_id=? ORDER BY occurred_at DESC LIMIT 500').bind(userId).all()).results;
+ const events=(await DB.prepare('SELECT * FROM member_treatment_events WHERE user_id=? ORDER BY occurred_at DESC').bind(userId).all()).results;
  const medical=(await DB.prepare('SELECT revision,body_json,confirmed_at FROM member_medical_disclosures WHERE user_id=? ORDER BY revision DESC').bind(userId).all()).results;
- return {treatments,events:events.map(e=>({...e,details:JSON.parse(e.body_json),body_json:undefined})),medical:medical.map(e=>({revision:e.revision,details:JSON.parse(e.body_json),confirmedAt:e.confirmed_at,source:'member'})),reminderDeliveryAvailable:false};
+ const parsed=events.map(e=>({...e,details:JSON.parse(e.body_json)}));
+ return {treatments:treatments.map(t=>projectTreatment(t,parsed)),events:events.map(e=>({...e,details:JSON.parse(e.body_json),body_json:undefined})),medical:medical.map(e=>({revision:e.revision,details:JSON.parse(e.body_json),confirmedAt:e.confirmed_at,source:'member'})),reminderDeliveryAvailable:false};
 }
 export async function treatmentRoutes(request,env){
  const path=new URL(request.url).pathname;if(!path.startsWith(root))return null;
@@ -49,10 +51,16 @@ export async function treatmentRoutes(request,env){
   if(result.meta.changes!==1)return reply({error:'record_changed',message:'Reload the current medical details before saving.'},409);
   return reply({ok:true,revision:body.revision+1},201);
  }
- if(!object(body)||Object.keys(body).some(k=>!['treatmentId','kind','occurredAt','note','operationId'].includes(k))||!['dose_taken','repeat_order','prescription_record','paused','finished','note'].includes(body.kind)||!text(body.note,2000)||!text(body.treatmentId,100)||!text(body.operationId,100)||!text(body.occurredAt,40)||!Number.isFinite(Date.parse(body.occurredAt))||Date.parse(body.occurredAt)>Date.now()+60000)return reply({error:'invalid_event'},400);
+ if(!object(body)||Object.keys(body).some(k=>!['treatmentId','kind','occurredAt','note','operationId','supply','nextAt','enabled','checkin'].includes(k))||!['dose_taken','repeat_order','prescription_record','paused','finished','resumed','note','supply_updated','schedule_updated','reminder_updated','checkin'].includes(body.kind)||!text(body.note,2000)||!text(body.treatmentId,100)||!text(body.operationId,100)||!text(body.occurredAt,40)||!Number.isFinite(Date.parse(body.occurredAt))||Date.parse(body.occurredAt)>Date.now()+60000)return reply({error:'invalid_event'},400);
+ if(body.kind==='supply_updated'&&(!Number.isInteger(body.supply)||body.supply<0||body.supply>1000))return reply({error:'invalid_supply'},400);
+ if(body.kind==='schedule_updated'&&body.nextAt!==null&&(!text(body.nextAt,40)||!Number.isFinite(Date.parse(body.nextAt))))return reply({error:'invalid_schedule'},400);
+ if(body.kind==='reminder_updated'&&typeof body.enabled!=='boolean')return reply({error:'invalid_reminder'},400);
+ if(body.kind==='checkin'){
+  const c=body.checkin;if(!object(c)||Object.keys(c).some(k=>!['weight','appetite','energy','sideEffects'].includes(k))||c.weight!==null&&(!Number.isFinite(c.weight)||c.weight<20||c.weight>400)||!['Low','Usual','High'].includes(c.appetite)||!['Low','Usual','High'].includes(c.energy)||text(c.sideEffects,2000)===null)return reply({error:'invalid_checkin'},400);
+ }
  const record=await env.DB.prepare('SELECT id FROM member_treatment_records WHERE id=? AND user_id=?').bind(body.treatmentId,auth.userId).first();if(!record)return reply({error:'treatment_not_found'},404);
  const previous=await env.DB.prepare('SELECT * FROM member_treatment_events WHERE id=?').bind(body.operationId).first();
- const details=JSON.stringify({note:body.note});if(previous){if(previous.user_id!==auth.userId||previous.treatment_id!==body.treatmentId||previous.kind!==body.kind||previous.body_json!==details||previous.occurred_at!==body.occurredAt)return reply({error:'operation_conflict'},409);return reply({ok:true,id:previous.id});}
+ const eventDetails={note:body.note};if(body.kind==='supply_updated')eventDetails.supply=body.supply;if(body.kind==='schedule_updated')eventDetails.nextAt=body.nextAt;if(body.kind==='reminder_updated')eventDetails.enabled=body.enabled;if(body.kind==='checkin')eventDetails.checkin=body.checkin;const details=JSON.stringify(eventDetails);if(previous){if(previous.user_id!==auth.userId||previous.treatment_id!==body.treatmentId||previous.kind!==body.kind||previous.body_json!==details||previous.occurred_at!==body.occurredAt)return reply({error:'operation_conflict'},409);return reply({ok:true,id:previous.id});}
  await env.DB.prepare('INSERT INTO member_treatment_events(id,user_id,treatment_id,kind,body_json,occurred_at,created_at) VALUES(?,?,?,?,?,?,?)').bind(body.operationId,auth.userId,body.treatmentId,body.kind,details,body.occurredAt,at).run();
  // Dose logs do not invent stock, schedules or a prescription change. Each is separate.
  return reply({ok:true,id:body.operationId},201);
