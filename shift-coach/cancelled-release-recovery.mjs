@@ -1,3 +1,4 @@
+import {SUPPORT_RUNTIME,assertSupportStartingPoint} from '../release/live-support-runtime.mjs';
 import {assertOwnerStartingPoint} from '../release/owner-captured-runtime.mjs';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
@@ -77,7 +78,7 @@ export function verifiedArticleRuntime(active,run,job){
 // Carry the earlier same-job recovery proof forward without reverting its
 // verified newer runtime to the historical fallback pointer.
 export function verifiedStartingPoint(record,active){
- if(record?.ownerCapturedProof)return assertOwnerStartingPoint(record,active);
+ if(record?.ownerCapturedProof)return record.ownerCapturedProof.kind===SUPPORT_RUNTIME.kind?assertSupportStartingPoint(record,active):assertOwnerStartingPoint(record,active);
  assert(['retain','restore'].includes(record?.decision),'Recovery decision absent');
  assert.equal(record.dataChanged,false);
  if(record.technicalRecovery){
