@@ -11,3 +11,10 @@ test('extra files, missing ancestry, changed receipt and later changes fail clos
  assert.throws(()=>verifyPublicToolProofRetry(record(),{...options(),diff:()=>[...paths,'extra']}));
  assert.throws(()=>verifyPublicToolProofRetry(record(),{...options(),diff:(a)=>a===base?paths:['release/approved-runtime-composition.json','extra']}));
 });
+
+import {verifyProgrammeDayPreflightExtension,PROGRAMME_PREFLIGHT_BASE,PROGRAMME_PREFLIGHT_SOURCE,PROGRAMME_PREFLIGHT_PAYLOAD,PROGRAMME_PREFLIGHT_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+test('Programme preflight drift retains the shared release rejection contract',()=>{
+ const c={proof:'EXACT_PROGRAMME_PREFLIGHT_V1',base:PROGRAMME_PREFLIGHT_BASE,payloadSource:PROGRAMME_PREFLIGHT_SOURCE,maintenanceSource:source,payloadPaths:PROGRAMME_PREFLIGHT_PAYLOAD,maintenancePaths:PROGRAMME_PREFLIGHT_MAINTENANCE};
+ const opts={head,read:(_r,p)=>p,diff:(a)=>a===c.base?c.payloadPaths:a===c.payloadSource?c.maintenancePaths:['release/approved-runtime-composition.json'],ancestor:()=>{}};
+ for(const dirty of [...c.payloadPaths,...c.maintenancePaths])assert.throws(()=>verifyProgrammeDayPreflightExtension(c,{...opts,read:(r,p)=>r==='HEAD'&&p===dirty?'drift':p}),/Approved composition (?:source \/ boundary|maintenance source) drift/);
+});

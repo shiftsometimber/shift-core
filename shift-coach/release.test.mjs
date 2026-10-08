@@ -154,3 +154,9 @@ test('live homepage verifier reverses only exact catalogue text before its stric
  assert(source.includes("assert.equal(state.overflow,false)"));
  assert(source.includes("assert.equal(await page.locator('#sst-home-route-title').textContent(),'HOW SHIFT CAN HELP.')"));
 });
+
+// Keep the full coaching integration boundary in the Programme regression proof.
+test('coaching release rejects Programme preflight drift before historical mapping',()=>{
+ const m={...manifest,applicationCommit:'a'.repeat(40)};
+ assert.throws(()=>validateCoachingSource((ref,path)=>ref==='HEAD'&&path==='release/growth-preflight.mjs'?'drift':path,m),/Approved composition source \/ boundary drift: Programme preflight source drift: release\/growth-preflight\.mjs/);
+});
