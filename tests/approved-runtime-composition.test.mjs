@@ -126,11 +126,28 @@ test('finite GitHub transport amendment stays byte-pinned with fresh readers and
 });
 
 
+import {SUPPORT_ROLLBACK_SOURCE,SUPPORT_ROLLBACK_PATHS,SUPPORT_ROLLBACK_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+test('serving rollback receipt refresh is finite and changes no public or medical content',()=>{
+ const receipt=verifyReconciledRelease();assert.equal(receipt.supportRollbackRefresh.source,SUPPORT_ROLLBACK_SOURCE);
+ for(const path of [...SUPPORT_ROLLBACK_PATHS,...SUPPORT_ROLLBACK_MAINTENANCE]){
+  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/Serving rollback .*source drift/);
+  for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
+  let existedAtBase=true;
+  try{directGit('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});}catch{existedAtBase=false;}
+  assert.equal(reconciliationChangedPath(existedAtBase?'M':'A',path),true);
+  if(!existedAtBase)assert.throws(()=>reconciliationChangedPath('M',path),/Unexpected/);
+ }
+ assert.equal(receipt.supportRollbackRefresh.publicCopyChanged,false);
+ assert.equal(receipt.supportRollbackRefresh.runtimeChanged,false);
+ assert.equal(receipt.supportRollbackRefresh.medicalContentChanged,false);
+ assert.equal(receipt.supportRollbackRefresh.customerDataChanged,false);
+});
+
 import {ORAL_LIVE_DISPATCH_SOURCE,ORAL_LIVE_DISPATCH_PATHS,ORAL_LIVE_DISPATCH_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
 test('oral live dispatch verifier repair is a finite immutable engineering receipt',()=>{
  const receipt=verifyReconciledRelease();assert.equal(receipt.oralLiveDispatchGuard.source,ORAL_LIVE_DISPATCH_SOURCE);
  for(const path of [...ORAL_LIVE_DISPATCH_PATHS,...ORAL_LIVE_DISPATCH_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/Oral dispatch .*source drift/);
+  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/(?:Oral dispatch|Serving rollback) .*source drift/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
   let existedAtBase=true;
   try{directGit('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});}catch{existedAtBase=false;}
