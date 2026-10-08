@@ -80,14 +80,21 @@ function ensureReconciliation(){
  if(verifiedHead!==head){verifyReconciledRelease();verifiedHead=head;}
  return true;
 }
-export function reconciliationHistoricalRef(ref,path){
- if(ref!=='HEAD'||!RECONCILIATION_PATHS.has(path)||!ensureReconciliation())return ref;
+function checkedHistoricalRef(ref,path){
+ if(ref!=='HEAD'||!RECONCILIATION_PATHS.has(path))return ref;
  if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
  return existsAtBase.get(path)?COMPOSITION_BASE:ref;
 }
+export function reconciliationHistoricalRef(ref,path){
+ if(ref!=='HEAD'||!RECONCILIATION_PATHS.has(path)||!ensureReconciliation())return ref;
+ return checkedHistoricalRef(ref,path);
+}
 export function reconciliationHistoricalRead(read,verifyReader=false){
  if(!ensureReconciliation()||mappedCompositionReaders.has(read))return read;if(verifyReader)verifyReconciledRelease(read);
- return reconciliationMarkHistoricalReader((ref,path)=>read(reconciliationHistoricalRef(ref,path),path));
+ // This synchronous validation reader is created only after the actual HEAD and
+ // all current source blobs pass. Its immutable base map needs no per-blob Git
+ // subprocess. Fresh readers still recheck current source before this mapping.
+ return reconciliationMarkHistoricalReader((ref,path)=>read(checkedHistoricalRef(ref,path),path));
 }
 export function reconciliationGitArgs(args){
  if(!['show','rev-parse'].includes(args[0])||!args[1]?.startsWith('HEAD:'))return args;
