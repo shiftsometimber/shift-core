@@ -1,5 +1,8 @@
 import {withSharedFooter} from './shared-footer.mjs';
 import {withGrowthPublicCopy} from './growth-member-public.mjs';
+import {treatmentRoutes} from './member-experience/treatment-routes.mjs';
+import {treatmentNotificationRoutes,runTreatmentReminders} from './member-experience/treatment-reminders.mjs';
+import {appendTreatmentExport} from './member-experience/treatment-privacy.mjs';
 import {appendAiMemoryExport} from './member-experience/ai-memory-bridge.mjs';
 import {articleSitemapResponse} from './babylove/article-sitemap.mjs';
 import {singleDispatchHtmlAsset} from './activation-measurement/single-dispatch.mjs';
@@ -905,6 +908,8 @@ const worker = {
 
     const lifeBack = await lifeBackRoutes(request,env); if(lifeBack)return lifeBack;
     const passport = await passportRoutes(request, env); if(passport)return withMemberCors(passport,request);
+    const treatmentNotifications=await treatmentNotificationRoutes(request,env);if(treatmentNotifications)return treatmentNotifications;
+    const treatment=await treatmentRoutes(request,env);if(treatment)return treatment;
     const memberHealth = await memberHealthRoutes(request, env);
     if (memberHealth) return withMemberCors(memberHealth, request);
     const grubWorkspace = await grubWorkspaceRoutes(request, env);
@@ -993,6 +998,7 @@ const worker = {
     fallback = await appendPenDayExport(request, env, fallback);
     fallback = await appendPassportExport(request, env, fallback);
     fallback = await appendAiMemoryExport(request, env, fallback);
+    fallback = await appendTreatmentExport(request, env, fallback);
     if (fallback.ok && (path === "/v1/member-state" || path === "/v1/progress"))
       await recordLegacyJourneyEvent(request, env, ctx, path, legacyBody);
     return isMemberProductPath(path)
@@ -1010,7 +1016,7 @@ const worker = {
         medicinesWatch: "check_failed",
         message: error?.message || "scheduled_job_failed",
       }));
-      const names = ["intelligence", "radar", "knowledge", "fit-reminders", "article-email", "my-timber-checkin", "member-signup-alerts"];
+      const names = ["intelligence", "radar", "knowledge", "fit-reminders", "article-email", "my-timber-checkin", "member-signup-alerts", "my-treatment"];
       const settled = await Promise.allSettled([
         runScheduledIntelligence(env),
         runRadarScheduledScan(env),
@@ -1019,6 +1025,7 @@ const worker = {
         notifyArticlePublication(env),
         env.MY_TIMBER_PWA_ENABLED==='true'?runPwaReminders(env):Promise.resolve({disabled:true}),
         retryPendingSignupAlerts(env),
+        env.MY_TREATMENT_ENABLED==='true'?runTreatmentReminders(env):Promise.resolve({disabled:true}),
       ]);
       const scheduled = settled.map((result, index) =>
         result.status === "fulfilled"
