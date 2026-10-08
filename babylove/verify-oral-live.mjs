@@ -1,7 +1,7 @@
 import {createHash} from 'node:crypto';
 import {assertCurrentMain} from '../scripts/catalogue-publication-client.mjs';
 import assert from 'node:assert/strict';
-import {writeFileSync,mkdirSync} from 'node:fs';
+import {writeFileSync,mkdirSync,readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {ARTICLE,KNOWLEDGE_CARD} from './oral-public.mjs';
 import {verifyOralImage} from './verify-oral-image.mjs';
@@ -13,7 +13,9 @@ for(const suffix of ['', '/', '.html']){
 for(const [path,expected] of [['/explore-knowledge',KNOWLEDGE_CARD],['/sitemap.xml','<loc>'+ARTICLE.proposed_url+'</loc>']]){const r=await fetch('https://shiftsometimber.co.uk'+path);assert.equal(r.status,200);assert((await r.text()).includes(expected));checks.push({path,status:200});}
 checks.push(await verifyOralImage(ARTICLE.proposed_url));
 // Attest only after the exact public HTML, aliases, listing, sitemap and image pass.
-assert.equal(process.env.GITHUB_EVENT_NAME,'push');assert.equal(process.env.GITHUB_ACTOR_ID,'315011648');await assertCurrentMain();
+const event=process.env.GITHUB_EVENT_NAME;assert(['push','workflow_dispatch'].includes(event));
+if(event==='workflow_dispatch'){const payload=JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH,'utf8'));assert.equal(payload.inputs?.confirm,'PROMOTE_CURRENT_MAIN');}
+assert.equal(process.env.GITHUB_ACTOR_ID,'315011648');await assertCurrentMain();
 const quote=v=>"'"+String(v).replace(/'/g,"''")+"'";
 const proofSQL="CREATE TABLE IF NOT EXISTS knowledge_publication_live_proof(slug TEXT PRIMARY KEY,body_sha256 TEXT NOT NULL,url TEXT NOT NULL,verified_at TEXT NOT NULL,workflow_sha TEXT NOT NULL); INSERT INTO knowledge_publication_live_proof VALUES("+[ARTICLE.slug,createHash('sha256').update(ARTICLE.body).digest('hex'),ARTICLE.proposed_url,new Date().toISOString(),process.env.GITHUB_SHA].map(quote).join(',')+") ON CONFLICT(slug) DO UPDATE SET body_sha256=excluded.body_sha256,url=excluded.url,verified_at=excluded.verified_at,workflow_sha=excluded.workflow_sha";
 execFileSync('npx',['wrangler','d1','execute','DB','--remote','--config','wrangler.jsonc','--command',proofSQL],{stdio:'inherit',timeout:60000});
