@@ -1,3 +1,4 @@
+import {managementRoute} from './hq-management-api.mjs';
 import {continuityScorecard} from './continuity-measurement/scorecard.mjs';
 import legacy from './hq-ai.js';
 import {watchtowerSnapshot} from './watchtower-v1.js';
@@ -5,6 +6,7 @@ import {outcomesSnapshot} from './outcomes-v1.js';
 import {memberJourneySnapshot} from './journey-analytics-v1.js';
 
 export default{async fetch(request,env,ctx){
+  const management=await managementRoute(request,env,ctx,(r,e,c)=>legacy.fetch(r,e,c));if(management){const headers=new Headers(management.headers);if(request.headers.get('Origin')==='https://hq.shiftsometimber.co.uk'){headers.set('Access-Control-Allow-Origin','https://hq.shiftsometimber.co.uk');headers.set('Access-Control-Allow-Credentials','true');headers.set('Vary','Origin');}return new Response(management.body,{status:management.status,headers});}
   const path=new URL(request.url).pathname.replace(/\/+$/,'')||'/';
   const readPaths=['/v1/hq/continuity','/v1/hq/watchtower','/v1/hq/outcomes','/v1/hq/journey','/v1/hq/attention'];
   const ack=path.match(/^\/v1\/hq\/attention\/([a-zA-Z0-9_-]+)\/ack$/);
