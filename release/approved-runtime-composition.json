@@ -249,5 +249,28 @@
     "approvedAnchorChanged": true,
     "medicalContentChanged": false,
     "customerDataChanged": false
+  },
+  "reloadOriginalAttempt": {
+    "proof": "EXACT_RELOAD_ORIGINAL_ATTEMPT_V1",
+    "base": "afe0b80d3e7d7f813c53a659c619ba13b86f6ae4",
+    "source": "f0499ee63fa51cf7b2f41d77ca416064ee5ef8d2",
+    "paths": [
+      "shift-coach/reload-receipt.mjs",
+      "shift-coach/reload-receipt.test.mjs",
+      "release/member-acceptance-scope.mjs"
+    ],
+    "maintenanceSource": "15e6640fce0a18ed02ac71052bb5439b03022557",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/reload-original-release.test.mjs"
+    ],
+    "run": 37763695261,
+    "attempt": 1,
+    "job": 113266037954,
+    "publicCopyChanged": false,
+    "runtimeChanged": false,
+    "medicalContentChanged": false,
+    "customerDataChanged": false,
+    "currentLiveChecksChanged": false
   }
 }
