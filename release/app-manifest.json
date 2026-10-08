@@ -474,7 +474,7 @@
     "base": "e9d8ca70c6cd969bbd02caee31deb1f8b12bb67f",
     "verifierSource": "8d84eb29eb74c3f156ce0ee815cc2d1c644be1e9",
     "run": 37763695261,
-    "source": "f06d6661f46c6f5ba88f9e9ca2ad2c26d98ff17b",
+    "source": "4e918d59105a4cbe4d1c1a9b83ac5ab8da183597",
     "payloadPaths": [
       "rendered-member-acceptance-support.mjs",
       "tests/rendered-member-acceptance-support.test.mjs",
