@@ -111,6 +111,27 @@ export function verifyPublicToolProofRetry(c,{head,read,diff,ancestor}){
 }
 
 
+// Finite repair of the approved canonical anchor inserted after the earlier link pass.
+export const ORAL_CANONICAL_BASE='6752fd02823377b9faf4b1a81a83d7b0a26ba79b';
+export const ORAL_CANONICAL_SOURCE='3ba744802b9334370e1c0124edfb8cb4cf1e142c';
+export const ORAL_CANONICAL_PATHS=["public-practical-guides.mjs","tests/practical-guides.test.mjs","release/live-support-runtime.mjs","tests/live-support-runtime.test.mjs"];
+export const ORAL_CANONICAL_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','.github/workflows/practical-guides-proof.yml','scripts/verify-practical-guides-handler.mjs','release/six-topic-seo-scope.mjs','scripts/verify-practical-guides.mjs'];
+const ORAL_CANONICAL_SET=new Set([...ORAL_CANONICAL_PATHS,...ORAL_CANONICAL_MAINTENANCE]);
+for(const path of ORAL_CANONICAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyOralCanonicalRepair(c,{head,read,diff,ancestor}){
+ assert(c);assert.equal(c.proof,'EXACT_ORAL_CANONICAL_REPAIR_V1');
+ assert.equal(c.base,ORAL_CANONICAL_BASE);assert.equal(c.source,ORAL_CANONICAL_SOURCE);
+ assert.deepEqual(c.paths,ORAL_CANONICAL_PATHS);assert.deepEqual(c.maintenancePaths,ORAL_CANONICAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.runtimeChanged,true);assert.equal(c.approvedAnchorChanged,true);
+ for(const flag of ['publicCopyChanged','medicalContentChanged','customerDataChanged'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated oral canonical repair payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated oral canonical repair reconciliation');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after oral canonical repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition maintenance source drift: Serving rollback NHS article oral canonical source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Serving rollback NHS article oral canonical maintenance source drift: '+path);
+}
+
 // Exact verifier reconciliation after run 37833478472 rejected the already-approved
 // NHS continuity panel/date and safely restored the independently verified runtime.
 export const NHS_ARTICLE_PROOF_BASE='535da9c06fe4ad30375387293ea25f62277e45f6';
@@ -282,12 +303,18 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
- const nhs=c.nhsArticleProofRefresh;
- if(nhs)verifyNhsArticleProofRefresh(nhs,{head,read:readBlob,
+ const anchor=c.oralCanonicalRepair;
+ if(anchor)verifyOralCanonicalRepair(anchor,{head,read:readBlob,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const nhsHead=nhs?nhs.base:head;
- const nhsRead=(ref,path)=>readBlob(nhs&&ref==='HEAD'&&NHS_ARTICLE_PROOF_SET.has(path)?nhs.base:ref,path);
+ const anchorHead=anchor?anchor.base:head;
+ const anchorRead=(ref,path)=>readBlob(anchor&&ref==='HEAD'&&ORAL_CANONICAL_SET.has(path)?anchor.base:ref,path);
+ const nhs=c.nhsArticleProofRefresh;
+ if(nhs)verifyNhsArticleProofRefresh(nhs,{head:anchorHead,read:anchorRead,
+  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
+  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const nhsHead=nhs?nhs.base:anchorHead;
+ const nhsRead=(ref,path)=>anchorRead(nhs&&ref==='HEAD'&&NHS_ARTICLE_PROOF_SET.has(path)?nhs.base:ref,path);
  // Validate the exact current serving rollback receipt before older views.
  const supportRollback=c.supportRollbackRefresh;
  if(supportRollback)verifySupportRollbackRefresh(supportRollback,{head:nhsHead,read:nhsRead,
@@ -396,7 +423,7 @@ export function reconciliationChangedPath(status,path){
  if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
  // Source changes retain their exact add/modify semantics. Existing verifier
  // maintenance may have been added historically and modified subsequently.
- const allowed=existsAtBase.get(path)?(NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
+ const allowed=existsAtBase.get(path)?(ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
  assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
  return true;
 }

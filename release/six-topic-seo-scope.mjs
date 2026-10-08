@@ -1,3 +1,4 @@
+import {reconciliationHistoricalRef} from './approved-runtime-composition.mjs';
 import {followHistoricalRead,followPinnedRef} from './seo-follow-through-scope.mjs';
 import {readFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
@@ -20,7 +21,7 @@ export async function verifySixTopicSeoProof(get,composedSource=SIX_TOPIC_SEO_CO
  const proof=await get('/actions/runs/37363778701');
  assert.equal(proof.head_sha,SIX_TOPIC_SEO_SOURCE);assert.equal(proof.path,'.github/workflows/six-topic-seo-proof.yml');assert.equal(proof.conclusion,'success');
  execFileSync('git',['merge-base','--is-ancestor',SIX_TOPIC_SEO_SOURCE,'HEAD']);
- const read=(ref,path)=>execFileSync('git',['rev-parse',ref+':'+path],{encoding:'utf8'}).trim();
+ const read=(ref,path)=>execFileSync('git',['rev-parse',reconciliationHistoricalRef(ref,path)+':'+path],{encoding:'utf8'}).trim();
  const follow=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8')).seoFollowThroughComposition;
  if(follow)for(const path of [...SIX_TOPIC_SEO_PATHS,...PRACTICAL_GUIDES_PATHS]){const pin=followPinnedRef(follow,path);if(pin)assert.equal(read('HEAD',path),read(pin,path),'Exact composed SEO verifier drift: '+path);}
  if(follow?.tabletGuidanceComposition){const t=follow.tabletGuidanceComposition;assert(t.run&&t.proofSource,'Hosted tablet guidance proof required');const run=await get('/actions/runs/'+t.run);assert.equal(run.head_sha,t.proofSource);assert.equal(run.path,'.github/workflows/practical-guides-proof.yml');assert.equal(run.conclusion,'success');}
