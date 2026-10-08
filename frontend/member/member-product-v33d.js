@@ -148,7 +148,7 @@ function revealPanel(name){
  const panel=$('#panel-'+name);if(!panel)return;
  requestAnimationFrame(()=>requestAnimationFrame(()=>panel.scrollIntoView({behavior:'auto',block:'start',inline:'nearest'})));
 }
-function activate(name){$$('.mp-tab').forEach(x=>x.classList.toggle('active',x.dataset.panel===name));$$('.mp-panel').forEach(x=>x.classList.toggle('active',x.id==='panel-'+name));history.replaceState(null,'','#'+name);revealPanel(name)}
+function activate(name){$$('.mp-tab').forEach(x=>x.classList.toggle('active',x.dataset.panel===name));$$('.mp-panel').forEach(x=>x.classList.toggle('active',x.id==='panel-'+name));$$('[data-portal-panel]').forEach(x=>x.dataset.portalPanel===name?x.setAttribute('aria-current','page'):x.removeAttribute('aria-current'));if(location.hash!=='#'+name)history.replaceState(null,'','#'+name);revealPanel(name)}
 async function load(){
  try{
   await SST_API.getMe();
@@ -287,7 +287,8 @@ function bootProduct(){
  setupMeasurementDropdowns();
  if(!retainedToolsOnly){
   $$('.mp-tab').forEach(b=>b.onclick=()=>activate(b.dataset.panel));
-  const hash=location.hash.slice(1);activate(['today','journey','grub','fit','water','conundrum','plans','ai','visualise','shiftme','lifeback','medicines'].includes(hash)?hash:'today');
+  const syncHash=()=>{const hash=location.hash.slice(1);activate(['today','journey','grub','fit','water','conundrum','plans','ai','visualise','shiftme','lifeback','medicines'].includes(hash)?hash:'today')};
+  syncHash();window.addEventListener('hashchange',syncHash);
  }
  $('#grubGenerate')?.addEventListener('click',e=>run(e.currentTarget,()=>SST_API.generateGrub({days:Number($('#grubDays').value)||7,preferences:$('#grubPrefs').value||undefined}),'#grubStatus','#grubOutput','Building your Grub plan'));
  $('#fitGenerate')?.addEventListener('click',e=>run(e.currentTarget,()=>SST_API.generateFit({days:Number($('#fitDays').value)||3,minutes_per_day:Number($('#fitMinutes').value)||30,location:$('#fitLocation').value,equipment:$('#fitEquipment').value,preferences:$('#fitPrefs').value||undefined,limitations:$('#fitPrefs').value||undefined}),'#fitStatus','#fitOutput','Building your Fit plan'));

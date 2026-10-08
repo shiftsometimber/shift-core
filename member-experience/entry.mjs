@@ -82,6 +82,17 @@ export async function memberExperienceEntry(request, env, response) {
   // scoped layer after those too, so their sidebars cannot reappear on mobile.
   html = html.replace('</body>','<link rel="stylesheet" href="/assets/member-experience/v1.css"><script type="module" src="/assets/member-experience/v1.mjs"></script></body>');
   if(name === 'dashboard') html = html.replace(/(<input\b[^>]*name="firstName"[^>]*?)\s+value="Matt"/,'$1');
+  if(name==='dashboard'&&new URL(request.url).searchParams.get('from')==='weight-loss-support'){
+    html=html.replace("data.source='my-timber';","data.source='my-timber-support';");
+    html=html.replace("window.SSTAnalytics.track(mode==='register'?'sign_up':'login',{method:'website'})","window.SSTAnalytics.track(mode==='register'?'sign_up':'login',{method:'website',source:'weight_loss_support'})");
+  }
+  if(name==='dashboard'&&new URL(request.url).searchParams.get('from')==='someone-who-cares'){
+    html=html.replace("data.source='my-timber';","data.source='my-timber-share';");
+    html=html.replace("window.SSTAnalytics.track(mode==='register'?'sign_up':'login',{method:'website'})","window.SSTAnalytics.track(mode==='register'?'sign_up':'login',{method:'website',source:'someone_who_cares'})");
+    const sharedArrival=`<style data-shared-mytimber-arrival>.shared-mytimber-intro{margin:16px 0 4px;padding:14px;border:1px solid #707762;border-radius:12px;background:#e7e3da;color:#050505}.shared-mytimber-intro strong{display:block}.shared-mytimber-intro p{margin:6px 0 0!important;color:#050505!important}</style><script data-shared-mytimber-arrival>(()=>{const start=()=>{const auth=document.getElementById('previewAuth');if(!auth)return;let box=document.getElementById('someoneSentMyTimber');if(!box){box=document.createElement('aside');box.id='someoneSentMyTimber';box.className='shared-mytimber-intro';box.innerHTML='<strong>Someone thought this might help.</strong><p>My Timber is free — food, movement, check-ins and everyday support in one place. No purchase needed.</p>';const intro=document.getElementById('authIntro');(intro||auth.firstElementChild)?.insertAdjacentElement('afterend',box)}const create=auth.querySelector('[data-auth-mode="register"]');if(create&&create.getAttribute('aria-selected')!=='true')create.click();try{window.SSTAnalytics?.track?.('my_timber_shared_arrival',{source:'someone_who_cares'})}catch{}};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start()})()</script>`;
+    html=html.replace('</body>',sharedArrival+'</body>');
+  }
+
   if(name === 'dashboard')html=restoreDashboardTools(html);
   if(name==='settings')html=html.replace('</main>','<section id="deviceHealth" aria-label="Your device health readings"></section></main>').replace('</body>','<style>'+deviceHealthStyles+'</style><script defer src="/assets/member-experience/device-health.mjs"></script></body>');
   if(name === 'dashboard')html=html.replace(/\/member-my-timber-problem-v1\.js(?:\?[^"'<>\\\s]*)?/g,'/member-my-timber-problem-v1.js?v=member-walk-20260920').replace(/\/member-my-journey-v2\.js(?:\?[^"'<>\\\s]*)?/g,'/member-my-journey-v2.js?v=member-walk-20260920').replace('</body>','<link rel="stylesheet" href="/assets/member-experience/home.css"></body>');

@@ -18,7 +18,7 @@ function fixture(t){
   };
   return{sqlite,env:{DB}};
 }
-const events=['my_timber_today_viewed','my_timber_meal_saved','my_timber_move_saved','my_timber_checkin_saved','my_timber_treatment_action'];
+const events=['my_timber_today_viewed','my_timber_meal_saved','my_timber_move_saved','my_timber_checkin_saved','my_timber_treatment_action','after_treatment_started','after_treatment_week_viewed'];
 const privateProperties={
   date:'2026-09-16',mealSaved:true,moveSaved:false,
   guts:'PRIVATE_GUTS',energy:'PRIVATE_ENERGY',mood:'PRIVATE_MOOD',symptom:'PRIVATE_SYMPTOM',
@@ -33,7 +33,8 @@ for(const eventName of events)test(`${eventName} inserts usage while withholding
   assert.ok(event.id>0);
   const row=sqlite.prepare('SELECT * FROM product_events WHERE id=?').get(event.id);
   assert.equal(row.event_name,eventName);assert.equal(row.user_id,7);assert.equal(row.source,'server');
-  assert.deepEqual(JSON.parse(row.properties_json),eventName==='my_timber_today_viewed'?{date:'2026-09-16',mealSaved:true,moveSaved:false}:{date:'2026-09-16'});
+  const expected=eventName==='my_timber_today_viewed'?{date:'2026-09-16',mealSaved:true,moveSaved:false}:eventName==='after_treatment_started'?{}:eventName==='after_treatment_week_viewed'?{}:{date:'2026-09-16'};
+  assert.deepEqual(JSON.parse(row.properties_json),expected);
   assert.doesNotMatch(row.properties_json,/PRIVATE_|minutes|arbitrary|nested|array/);
 });
 test('allowlisted property names cannot carry nested values or disguised free text',async t=>{
@@ -50,7 +51,7 @@ test('allowlisted property names cannot carry nested values or disguised free te
     assert.deepEqual(JSON.parse(sqlite.prepare('SELECT properties_json FROM product_events WHERE id=?').get(event.id).properties_json),{});
   }
 });
-test('new event permission is limited to the five existing names',async t=>{
+test('event permission stays limited to the approved My Timber usage names',async t=>{
   const{sqlite,env}=fixture(t);
   for(const eventName of ['my_timber_symptom_details','my_timber_arbitrary','my_timber_today_viewed_extra'])await assert.rejects(recordProductEvent(env,{eventName,properties:privateProperties}),/unsupported event/);
   assert.equal(sqlite.prepare("SELECT count(*) count FROM sqlite_master WHERE name='product_events'").get().count,0,'rejected events do not create or write analytics tables');
@@ -59,4 +60,14 @@ test('bounded existing usage fields remain useful without arbitrary values',asyn
   const{sqlite,env}=fixture(t);
   const event=await recordProductEvent(env,{eventName:'today_viewed',properties:{page:'today',count:2,enabled:true,email:'PRIVATE_EMAIL',note:{nested:'PRIVATE_NESTED'}}});
   assert.deepEqual(JSON.parse(sqlite.prepare('SELECT properties_json FROM product_events WHERE id=?').get(event.id).properties_json),{page:'today',count:2,enabled:true});
+});
+
+test('after-treatment week analytics keeps only a bounded week number',async t=>{
+  const{sqlite,env}=fixture(t);
+  const good=await recordProductEvent(env,{userId:7,eventName:'after_treatment_week_viewed',surface:'my_timber_today',properties:{week:4,note:'PRIVATE_NOTE'}});
+  assert.deepEqual(JSON.parse(sqlite.prepare('SELECT properties_json FROM product_events WHERE id=?').get(good.id).properties_json),{week:4});
+  for(const week of [0,13,4.5,'4',{value:4}]){
+    const event=await recordProductEvent(env,{userId:7,eventName:'after_treatment_week_viewed',surface:'my_timber_today',properties:{week,note:'PRIVATE_NOTE'}});
+    assert.deepEqual(JSON.parse(sqlite.prepare('SELECT properties_json FROM product_events WHERE id=?').get(event.id).properties_json),{});
+  }
 });
