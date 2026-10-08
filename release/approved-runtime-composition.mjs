@@ -96,6 +96,27 @@ export function verifyPublicToolExtension(c,{head,read,diff,ancestor}={}){
  for(const path of ['member-experience/entry.mjs','member-experience/tests/shared-arrival.test.mjs','public-continuity.mjs','tests/public-continuity.test.mjs'])assert.equal(read(c.payloadSource,path),read(c.supportSnapshotSource,path),'Captured serving support source drift: '+path);
  return c;
 }
+// Owner's 8 October Go authorises this finite Programme demonstration.
+export const PROGRAMME_DAY_BASE='d2ff6e0ef00d0a1a3907d9184afd64a3aa40c374';
+export const PROGRAMME_DAY_SOURCE='0fe0bc85717b60bdcf7b0a75c9e96b2c3644409a';
+export const PROGRAMME_DAY_PAYLOAD=['.github/workflows/programme-day-preview.yml','growth-member-public.mjs','programme-day.mjs','release/growth-preservation.mjs','scripts/verify-programme-day.cjs','tests/programme-day.test.mjs','tests/growth-release.test.mjs'];
+export const PROGRAMME_DAY_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/programme-day-release.test.mjs'];
+const PROGRAMME_DAY_PATHS=new Set([...PROGRAMME_DAY_PAYLOAD,...PROGRAMME_DAY_MAINTENANCE]);
+for(const path of PROGRAMME_DAY_PATHS)RECONCILIATION_PATHS.add(path);
+export function verifyProgrammeDayExtension(c,{head,read,diff,ancestor}){
+ assert(c,'Programme day receipt required');assert.equal(c.proof,'EXACT_PROGRAMME_DAY_V1');
+ assert.equal(c.base,PROGRAMME_DAY_BASE);assert.equal(c.payloadSource,PROGRAMME_DAY_SOURCE);
+ assert.deepEqual(c.payloadPaths,PROGRAMME_DAY_PAYLOAD);assert.deepEqual(c.maintenancePaths,PROGRAMME_DAY_MAINTENANCE);
+ assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.equal(c.approval,'Go');
+ assert.equal(c.homepageChanged,false);assert.equal(c.clinicalAvailabilityChanged,false);assert.equal(c.memberBehaviourChanged,false);
+ for(const ref of [c.base,c.payloadSource,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.payloadSource)),sorted(PROGRAMME_DAY_PAYLOAD),'Unrelated Programme payload change');
+ assert.deepEqual(sorted(diff(c.payloadSource,c.maintenanceSource)),sorted(PROGRAMME_DAY_MAINTENANCE),'Unrelated Programme verifier change');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Programme receipt');
+ for(const path of PROGRAMME_DAY_PAYLOAD)assert.equal(read('HEAD',path),read(c.payloadSource,path),'Programme payload source drift: '+path);
+ for(const path of PROGRAMME_DAY_MAINTENANCE)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Programme verifier source drift: '+path);
+ return c;
+}
 const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
 export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
 export function assertProductionProofBudget(before,current){
@@ -163,13 +184,20 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
- // Validate all new raw HEAD bytes before exposing any older historical view.
- const extension=c.publicToolDelivery;
- if(extension)verifyPublicToolExtension(extension,{head,read:readBlob,
+ // Validate the finite Programme amendment before exposing the previous release.
+ const day=c.programmeDay;
+ if(day)verifyProgrammeDayExtension(day,{head,read:readBlob,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const compositionHead=extension?extension.base:head;
- const compositionBlob=(path)=>extension&&PUBLIC_TOOL_PATHS.has(path)?readBlob(extension.base,path):readBlob('HEAD',path);
+ const previousHead=day?day.base:head;
+ const priorRead=(ref,path)=>readBlob(day&&ref==='HEAD'&&PROGRAMME_DAY_PATHS.has(path)?day.base:ref,path);
+ // Validate all new raw HEAD bytes before exposing any older historical view.
+ const extension=c.publicToolDelivery;
+ if(extension)verifyPublicToolExtension(extension,{head:previousHead,read:priorRead,
+  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
+  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const compositionHead=extension?extension.base:previousHead;
+ const compositionBlob=(path)=>extension&&PUBLIC_TOOL_PATHS.has(path)?priorRead(extension.base,path):priorRead('HEAD',path);
  // Cache only Git graph facts for resolved immutable commits and this exact
  // receipt. Supplied readers, current bytes and working-tree checks stay fresh.
  const structureKey=JSON.stringify([process.cwd(),head,c]);
