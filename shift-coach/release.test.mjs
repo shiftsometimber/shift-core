@@ -1,3 +1,4 @@
+import {WATCH_FACTUAL_UPDATE_PATHS} from '../release/approved-runtime-composition.mjs';
 import {COMPOSITION_BASE,COMPOSITION_SOURCE,COMPOSITION_PATHS,reconciliationRecord,withImmutableHistoryVerification} from '../release/approved-runtime-composition.mjs';
 import {ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH,ensureReviewedHistory,REVIEWED_HISTORY_REFS,COACH_ARTICLE_BASE,COACH_ARTICLE_ADDITIONS,COACH_ARTICLE_CHANGES} from './release-contract.mjs';
 import test from 'node:test';
@@ -60,7 +61,7 @@ test('merged My Health Plan member asset is retained exactly and cannot be widen
 test('normal production configuration includes the coach with exactly one entrypoint-only change',()=>{assertCoachingConfiguration(config,before);assert.equal(config,readFileSync('wrangler.coaching.jsonc','utf8'));assert.equal(withoutCoachEntrypoint(config),before);});
 test('configuration drift, a lost wrapper, extra bindings and duplicate entrypoints fail closed',()=>{for(const bad of [before,config+'\n',config.replace('"STRIPE_MODE": "test"','"STRIPE_MODE": "live"'),config.replace('"DB"','"OTHER_DB"'),config.replace('"main":','"main": "shift-coach/worker.mjs", "main":')])assert.throws(()=>assertCoachingConfiguration(bad,before));});
 test('every coaching and release integration source has an exact pin; any drift fails',()=>{const m={...manifest,applicationCommit:'a'.repeat(40)},read=(ref,p)=>p;assert.doesNotThrow(()=>validateCoachingSource(read,m));for(const p of m.pinnedPaths)assert.throws(()=>validateCoachingSource((ref,path)=>ref==='HEAD'&&path===p?'drift':path,m),/Coaching release source drift|Approved composition (?:source \/ boundary|maintenance source) drift/);assert.throws(()=>validateCoachingSource(read,{...m,pinnedPaths:m.pinnedPaths.slice(1)}));});
-test('the exact current Watch files remain pinned and historical review bytes are only used for named integrations',()=>{const m={...manifest,applicationCommit:'a'.repeat(40)};for(const p of WATCH_CURRENT_PATHS)assert.throws(()=>validateCoachingSource((ref,path)=>ref==='HEAD'&&path===p?'drift':path,m),/Current Watch source drift|Approved composition source \/ boundary drift/);assert.equal(coachingHistoricalRef('HEAD','wrangler.jsonc'),COACH_BASE);for(const p of ['worker-entry-v6.js','frontend/member/my-timber-preview.html','member-design.mjs','unknown.mjs'])assert.equal(coachingHistoricalRef('HEAD',p),'HEAD');});
+test('the exact current Watch files remain pinned and historical review bytes are only used for named integrations',()=>{const m={...manifest,applicationCommit:'a'.repeat(40)};for(const p of WATCH_CURRENT_PATHS)assert.throws(()=>validateCoachingSource((ref,path)=>ref==='HEAD'&&path===p?'drift':path,m),/Current Watch source drift|Approved composition source \/ boundary drift|Approved factual Watch source drift/);assert.equal(coachingHistoricalRef('HEAD','wrangler.jsonc'),COACH_BASE);for(const p of ['worker-entry-v6.js','frontend/member/my-timber-preview.html','member-design.mjs','unknown.mjs'])assert.equal(coachingHistoricalRef('HEAD',p),'HEAD');});
 test('launch preserves privacy and purpose gates; exact owner acceptance never claims independent review',()=>{
  assert.equal(assertLaunchDecisions(manifest),true);
  assert.equal(typeof manifest.decisions.independentAcceptance.approved,'boolean');
@@ -87,7 +88,7 @@ test('latest registry-wave proof and exact composed Watch bytes remain mandatory
  for(const path of WATCH_COMPOSED_CHANGES)assert(calls.some(c=>c.path===path&&c.ref===watchWaveRef(path)));
  assert(calls.some(c=>c.path==='medicines-watch/discovery.mjs'&&c.ref===WATCH_REGISTRY_WAVE_COMMIT));
  for(const path of WATCH_COMPOSED_CHANGES){assert.doesNotThrow(()=>assertCoachingChangedPath('M',path));assert.throws(()=>assertCoachingChangedPath('D',path));}
- for(const path of WATCH_COMPOSED_ADDITIONS){assert.doesNotThrow(()=>assertCoachingChangedPath('A',path));assert.throws(()=>assertCoachingChangedPath('M',path));}
+ for(const path of WATCH_COMPOSED_ADDITIONS){assert.doesNotThrow(()=>assertCoachingChangedPath('A',path));if(WATCH_FACTUAL_UPDATE_PATHS.includes(path))assert.doesNotThrow(()=>assertCoachingChangedPath('M',path));else assert.throws(()=>assertCoachingChangedPath('M',path));}
 });
 
 test('missing reviewed preview history is fetched by its exact immutable identity and still fails if unavailable',()=>{
