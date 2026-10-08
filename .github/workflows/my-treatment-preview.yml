@@ -1,0 +1,38 @@
+name: My Treatment isolated preview
+on:
+  push:
+    branches: [feat/my-treatment-preview-20261008]
+permissions:
+  contents: read
+concurrency:
+  group: my-treatment-isolated-preview
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
+      WRANGLER_SEND_METRICS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci --no-audit --no-fund
+      - run: node --test member-experience/tests/treatment.test.mjs
+      - run: node preview/my-treatment/prepare.mjs
+      - name: Deploy only separately named preview
+        run: |
+          node --input-type=module - <<'JS'
+          import fs from 'node:fs';import assert from 'node:assert/strict';
+          const c=JSON.parse(fs.readFileSync('preview/my-treatment/generated.json'));
+          assert.equal(c.name,'shift-my-treatment-preview');assert(c.workers_dev&&!c.routes&&!c.triggers&&!c.send_email&&!c.ai);assert.equal(c.d1_databases[0].database_name,'shift-treatment-preview-'+process.env.GITHUB_RUN_ID);
+          JS
+          node node_modules/wrangler/bin/wrangler.js deploy --config preview/my-treatment/generated.json | tee /tmp/treatment-deploy.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: my-treatment-preview-deployment
+          path: /tmp/treatment-deploy.txt

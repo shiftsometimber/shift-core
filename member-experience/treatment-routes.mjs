@@ -1,0 +1,60 @@
+import {authenticateMember} from '../member-state-fast-v1.js';
+import {trackingConsent} from './health-routes.mjs';
+const root='/v1/member/treatment';
+const reply=(data,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store, must-revalidate','Vary':'Cookie','X-Content-Type-Options':'nosniff'}});
+const object=v=>v&&typeof v==='object'&&!Array.isArray(v);
+const text=(v,n=2000)=>typeof v==='string'&&v.length<=n?v.trim():null;
+export const medicines=['Mounjaro','Wegovy','Orlistat','Liraglutide'];
+export function validateTreatment(body){
+ if(!object(body)||Object.keys(body).some(k=>!['medicine','prescriptionDetails','supply','nextAt'].includes(k)))throw Error('invalid_treatment');
+ if(!medicines.includes(body.medicine)||!text(body.prescriptionDetails)||!Number.isInteger(body.supply)||body.supply<0||body.supply>1000)throw Error('invalid_treatment');
+ if(body.nextAt!==null&&(!text(body.nextAt,40)||!Number.isFinite(Date.parse(body.nextAt))))throw Error('invalid_schedule');
+ return body;
+}
+export function validateMedical(body){
+ const fields=['conditions','allergies','otherMedicines','pastTreatment','familyHistory','gp'];
+ if(!object(body)||Object.keys(body).some(k=>!fields.includes(k)))throw Error('invalid_medical_details');
+ const out={};for(const key of fields){const value=text(body[key]);if(value===null)throw Error('invalid_medical_details');out[key]=value;}return out;
+}
+export async function readTreatment(DB,userId){
+ const treatments=(await DB.prepare('SELECT * FROM member_treatment_records WHERE user_id=? ORDER BY created_at DESC').bind(userId).all()).results;
+ const events=(await DB.prepare('SELECT * FROM member_treatment_events WHERE user_id=? ORDER BY occurred_at DESC LIMIT 500').bind(userId).all()).results;
+ const medical=(await DB.prepare('SELECT revision,body_json,confirmed_at FROM member_medical_disclosures WHERE user_id=? ORDER BY revision DESC').bind(userId).all()).results;
+ return {treatments,events:events.map(e=>({...e,details:JSON.parse(e.body_json),body_json:undefined})),medical:medical.map(e=>({revision:e.revision,details:JSON.parse(e.body_json),confirmedAt:e.confirmed_at,source:'member'})),reminderDeliveryAvailable:false};
+}
+export async function treatmentRoutes(request,env){
+ const path=new URL(request.url).pathname;if(!path.startsWith(root))return null;
+ // Isolated preview feature until clinical-source, retention and reminder acceptance pass.
+ if(env.MY_TREATMENT_PREVIEW_ENABLED!=='true')return reply({error:'not_enabled'},404);
+ if(![root,root+'/records',root+'/events',root+'/medical'].includes(path))return reply({error:'not_found'},404);
+ if(!['GET','POST'].includes(request.method)||request.method==='GET'&&path!==root)return reply({error:'method_not_allowed'},405);
+ if(request.method==='POST'&&(request.headers.get('Origin')!==new URL(request.url).origin||!request.headers.get('Content-Type')?.startsWith('application/json')))return reply({error:'origin_not_allowed'},403);
+ let auth;try{auth=await authenticateMember(request,env);}catch{return reply({error:'authentication_unavailable'},503);}if(auth.response)return reply({error:'authentication_required'},401);
+ try{
+ if(request.method==='GET')return reply(await readTreatment(env.DB,auth.userId));
+ if(!await trackingConsent(env.DB,auth.userId))return reply({error:'health_consent_required',message:'Review optional health-data consent before saving.'},409);
+ const raw=await request.text();if(new TextEncoder().encode(raw).length>16000)return reply({error:'too_large'},413);
+ let body;try{body=JSON.parse(raw);}catch{return reply({error:'invalid_json'},400);}const at=new Date().toISOString();
+ if(path===root+'/records'){
+  try{validateTreatment(body);}catch(e){return reply({error:e.message},400);}
+  const id=crypto.randomUUID();await env.DB.batch([
+   env.DB.prepare('INSERT INTO member_treatment_records(id,user_id,medicine,prescription_details,status,supply,next_at,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?)').bind(id,auth.userId,body.medicine,body.prescriptionDetails,'active',body.supply,body.nextAt,at,at),
+   env.DB.prepare('INSERT INTO member_treatment_events(id,user_id,treatment_id,kind,body_json,occurred_at,created_at) VALUES(?,?,?,?,?,?,?)').bind(crypto.randomUUID(),auth.userId,id,'record_added',JSON.stringify({prescriptionDetails:body.prescriptionDetails}),at,at)
+  ]);return reply({ok:true,id},201);
+ }
+ if(path===root+'/medical'){
+  if(!object(body)||Object.keys(body).some(k=>!['revision','details'].includes(k))||!Number.isInteger(body.revision)||body.revision<0)return reply({error:'invalid_revision'},400);
+  let details;try{details=validateMedical(body.details);}catch(e){return reply({error:e.message},400);}
+  const result=await env.DB.prepare('INSERT INTO member_medical_disclosures(user_id,revision,body_json,confirmed_at) SELECT ?,?,?,? WHERE COALESCE((SELECT MAX(revision) FROM member_medical_disclosures WHERE user_id=?),0)=?').bind(auth.userId,body.revision+1,JSON.stringify(details),at,auth.userId,body.revision).run();
+  if(result.meta.changes!==1)return reply({error:'record_changed',message:'Reload the current medical details before saving.'},409);
+  return reply({ok:true,revision:body.revision+1},201);
+ }
+ if(!object(body)||Object.keys(body).some(k=>!['treatmentId','kind','occurredAt','note','operationId'].includes(k))||!['dose_taken','repeat_order','prescription_record','paused','finished','note'].includes(body.kind)||!text(body.note,2000)||!text(body.treatmentId,100)||!text(body.operationId,100)||!text(body.occurredAt,40)||!Number.isFinite(Date.parse(body.occurredAt))||Date.parse(body.occurredAt)>Date.now()+60000)return reply({error:'invalid_event'},400);
+ const record=await env.DB.prepare('SELECT id FROM member_treatment_records WHERE id=? AND user_id=?').bind(body.treatmentId,auth.userId).first();if(!record)return reply({error:'treatment_not_found'},404);
+ const previous=await env.DB.prepare('SELECT * FROM member_treatment_events WHERE id=?').bind(body.operationId).first();
+ const details=JSON.stringify({note:body.note});if(previous){if(previous.user_id!==auth.userId||previous.treatment_id!==body.treatmentId||previous.kind!==body.kind||previous.body_json!==details||previous.occurred_at!==body.occurredAt)return reply({error:'operation_conflict'},409);return reply({ok:true,id:previous.id});}
+ await env.DB.prepare('INSERT INTO member_treatment_events(id,user_id,treatment_id,kind,body_json,occurred_at,created_at) VALUES(?,?,?,?,?,?,?)').bind(body.operationId,auth.userId,body.treatmentId,body.kind,details,body.occurredAt,at).run();
+ // Dose logs do not invent stock, schedules or a prescription change. Each is separate.
+ return reply({ok:true,id:body.operationId},201);
+ }catch{return reply({error:'treatment_unavailable',message:'Your record could not be confirmed. Reload before retrying.'},503);}
+}

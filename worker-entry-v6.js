@@ -1,4 +1,5 @@
 import {withSharedFooter} from './shared-footer.mjs';
+import {treatmentRoutes} from './member-experience/treatment-routes.mjs';
 import {withGrowthPublicCopy} from './growth-member-public.mjs';
 import {appendAiMemoryExport} from './member-experience/ai-memory-bridge.mjs';
 import {articleSitemapResponse} from './babylove/article-sitemap.mjs';
@@ -904,6 +905,7 @@ const worker = {
 
     const lifeBack = await lifeBackRoutes(request,env); if(lifeBack)return lifeBack;
     const passport = await passportRoutes(request, env); if(passport)return withMemberCors(passport,request);
+    const treatment = await treatmentRoutes(request,env); if(treatment)return treatment;
     const memberHealth = await memberHealthRoutes(request, env);
     if (memberHealth) return withMemberCors(memberHealth, request);
     const grubWorkspace = await grubWorkspaceRoutes(request, env);

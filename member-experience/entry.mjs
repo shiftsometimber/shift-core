@@ -1,4 +1,5 @@
 import {ingredientStyles} from './grub-ingredients.mjs';
+import {treatmentHTML,treatmentRuntime,treatmentStyles} from './treatment-page.mjs';
 import {deviceHealthRuntime,deviceHealthStyles} from './device-health-client.mjs';
 import {continuityExposureRuntime} from '../continuity-measurement/client.mjs';
 import {withUnitSettings,unitSettingsRuntime} from './unit-settings.mjs';
@@ -27,6 +28,11 @@ const privateHeaders = {'Cache-Control':'no-store, must-revalidate','X-Robots-Ta
 export function memberExperienceRoutes(request, env) {
   if (env.MEMBER_EXPERIENCE_V1_ENABLED !== 'true') return null;
   const path = new URL(request.url).pathname.replace(/\/+$/, '');
+  if(env.MY_TREATMENT_PREVIEW_ENABLED==='true'){
+    if(path==='/member/treatment')return new Response(request.method==='HEAD'?null:treatmentHTML(),{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8'}});
+    if(path==='/assets/member-experience/treatment.mjs')return new Response(treatmentRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
+    if(path==='/assets/member-experience/treatment.css')return new Response(treatmentStyles,{headers:{...privateHeaders,'Content-Type':'text/css; charset=utf-8'}});
+  }
   if (!['GET','HEAD'].includes(request.method)) return null;
   if(path==='/assets/member-experience/device-health.mjs')return new Response(request.method==='HEAD'?null:deviceHealthRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/member/orders'||path==='/member/orders.html')return new Response(request.method==='HEAD'?null:ordersHTML(env.WORK_V1_ENABLED==='true'),{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});
