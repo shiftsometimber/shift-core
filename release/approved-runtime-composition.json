@@ -311,5 +311,33 @@
     "customerDataChanged": false,
     "stockChanged": false,
     "memberBehaviourChanged": false
+  },
+  "programmeLiveCloseout": {
+    "proof": "EXACT_PROGRAMME_LIVE_CLOSEOUT_V1",
+    "base": "fa5d9bc37b2f88006e6f16498144b27ff10bd17e",
+    "source": "40d37937248d94b32b63e0fd9b5d3afd8693ba3f",
+    "paths": [
+      "release/live-support-runtime.mjs",
+      "tests/live-support-runtime.test.mjs",
+      "scripts/verify-public-continuity-live.mjs",
+      "release/public-continuity-body-proof.mjs",
+      "tests/programme-day-continuity-body.test.mjs",
+      ".github/workflows/cloudflare-production-promote.yml"
+    ],
+    "maintenanceSource": "644f3295af8f00e706234bd76f7f6fc8ccfde97b",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/programme-day-closeout-release.test.mjs"
+    ],
+    "runtimeChanged": false,
+    "publicCopyChanged": false,
+    "clinicalAvailabilityChanged": false,
+    "customerDataChanged": false,
+    "stockChanged": false,
+    "memberBehaviourChanged": false,
+    "privacyAssertionsWeakened": false,
+    "liveProgrammeVerificationAdded": true,
+    "approvedCopyComparisonFixed": true,
+    "rollbackReceiptRun": 37853151026
   }
 }
