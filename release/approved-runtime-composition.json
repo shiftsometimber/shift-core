@@ -84,5 +84,24 @@
       "release/approved-runtime-composition.mjs",
       "tests/approved-runtime-composition.test.mjs"
     ]
+  },
+  "publicToolDelivery": {
+    "proof": "EXACT_PUBLIC_TOOL_DELIVERY_V1",
+    "base": "e8592710a52bc0c7a551798bf426d32e59409caf",
+    "payloadSource": "33b2271d46b27872e41c7390244949744c10539c",
+    "payloadPaths": [
+      "public-tool-delivery.mjs",
+      "shift-coach/worker.mjs",
+      "tests/public-tool-delivery.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/public-tool-release.test.mjs"
+    ],
+    "maintenanceSource": "f636ea890fece979bf06dcc35c3ef878be882dec",
+    "publicCopyChanged": false,
+    "ratingsInvented": false,
+    "homepageChanged": false,
+    "privateCacheChanged": false
   }
 }
