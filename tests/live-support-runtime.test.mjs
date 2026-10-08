@@ -48,3 +48,14 @@ test('only the exact evidenced rollback deployment can retain the same captured 
  for(const patch of [{id:'another-rollback'},{created_on:'later'},{source:'api'},{annotations:{}}])assert.throws(()=>assertSupportRuntimeIdentity({...rollback,...patch}));
  assert.throws(()=>assertSupportStartingPoint(record(),rollback),'Old deployment receipt cannot stand in for rollback proof');
 });
+
+import {SUPPORT_ROLLBACK} from '../release/live-support-runtime.mjs';
+test('the evidenced later owned rollback retains only captured bytes within its execution window',()=>{
+ const rollback={...active(),id:SUPPORT_ROLLBACK.deployment,created_on:'2026-10-08T18:39:38.500000Z',source:'wrangler',annotations:{'workers/message':p.rollbackMessage,'workers/triggered_by':'deployment'}};
+ const captured=assertSupportRuntimeEvidence(rollback,version(),module(),verification());
+ assert.equal(captured.deployment,SUPPORT_ROLLBACK.deployment);
+ assert.equal(assertSupportStartingPoint({...record(),ownerCapturedProof:captured},rollback).deployment,SUPPORT_ROLLBACK.deployment);
+ for(const patch of [{id:'unknown'},{created_on:'invalid'},{created_on:'2026-10-08T18:39:35.000000Z'},{created_on:'2026-10-08T18:39:39.000000Z'},{source:'api'},{annotations:{}},{versions:[{version_id:p.version,percentage:50}]},{versions:[{version_id:'other',percentage:100}]}])assert.throws(()=>assertSupportRuntimeIdentity({...rollback,...patch}));
+ assert.throws(()=>assertSupportStartingPoint(record(),rollback));
+ assert.throws(()=>assertSupportRuntimeEvidence(rollback,version(),{...module(),sha256:'changed'},verification()));
+});

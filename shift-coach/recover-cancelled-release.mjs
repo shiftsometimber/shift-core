@@ -12,7 +12,7 @@ const verified=await get('/actions/runs/'+recovery.verifiedRun),failed=await get
 const activeVersion=before.versions?.[0]?.version_id;
 const version=JSON.parse(wrangler('versions','view',activeVersion,'--json'));
 const versionObservation={kind:'runtime_recovery_version_observation',id:version.id,createdOn:version.metadata?.created_on,source:version.metadata?.source,triggeredBy:version.annotations?.['workers/triggered_by']||null,tag:version.annotations?.['workers/tag']||null,message:version.annotations?.['workers/message']||null};
-console.log(JSON.stringify({kind:'runtime_recovery_observation',deploymentId:before.id,activeVersion,release:process.env.GITHUB_SHA,version:versionObservation}));
+console.log(JSON.stringify({kind:'runtime_recovery_observation',deploymentId:before.id,deploymentCreatedOn:before.created_on,deploymentSource:before.source,deploymentAnnotations:before.annotations,activeVersion,release:process.env.GITHUB_SHA,version:versionObservation}));
 let decision,ownedProof,technicalProof,ownerCapturedProof;
 if(activeVersion===technicalRecovery.version){
  const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact cancelled SEO recovery logs unavailable');return r.text();};

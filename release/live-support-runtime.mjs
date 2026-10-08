@@ -16,7 +16,20 @@ export const SUPPORT_RUNTIME=Object.freeze({kind:'captured-serving-support-runti
  verificationVersion:'ffd402a6-0bdb-4c72-ae85-a697581b2887',verificationAt:'2026-10-08T16:54:00.117465Z',
  verificationTag:'seo-support-baseline-20261008',verificationMessage:'Verification-only reconstruction of serving continuity runtime; no traffic deployment'});
 const p=SUPPORT_RUNTIME;
-export function assertSupportRuntimeIdentity(active){if(active?.id!==p.deployment){assert.equal(active?.id,p.rollbackDeployment,'Unknown support runtime deployment');assert.equal(active.created_on,p.rollbackCreatedOn);assert.equal(active.source,'wrangler');assert.deepEqual(active.annotations,{'workers/message':p.rollbackMessage,'workers/triggered_by':'deployment'});}assert.deepEqual(active.versions,[{version_id:p.version,percentage:100}],'Serving support runtime moved or split');}
+// Run 37823771310, promote job 113471353565, restored these captured bytes.
+// The provider deployment ID was freshly observed by run 37831295302. The
+// timestamp is bounded by the actual rollback log, not an invented exact date.
+export const SUPPORT_ROLLBACK=Object.freeze({deployment:'96b57bf9-0b59-4d16-ba12-7c17e2408903',run:37823771310,job:113471353565,
+ createdAfter:'2026-10-08T18:39:35.247319Z',createdBefore:'2026-10-08T18:39:38.712284Z'});
+export function assertSupportRuntimeIdentity(active){
+ if(active?.id!==p.deployment){
+  if(active?.id===SUPPORT_ROLLBACK.deployment){
+   const at=Date.parse(active.created_on);assert(Number.isFinite(at)&&at>=Date.parse(SUPPORT_ROLLBACK.createdAfter)&&at<=Date.parse(SUPPORT_ROLLBACK.createdBefore),'Support rollback is outside its evidenced execution window');
+  }else{assert.equal(active?.id,p.rollbackDeployment,'Unknown support runtime deployment');assert.equal(active.created_on,p.rollbackCreatedOn);}
+  assert.equal(active.source,'wrangler');assert.deepEqual(active.annotations,{'workers/message':p.rollbackMessage,'workers/triggered_by':'deployment'});
+ }
+ assert.deepEqual(active.versions,[{version_id:p.version,percentage:100}],'Serving support runtime moved or split');
+}
 export function assertSupportRuntimeEvidence(active,version,module,verification){
  assertSupportRuntimeIdentity(active);
  assert.equal(version?.id,p.version);assert.equal(version.number,p.number);assert.equal(version.metadata?.created_on,p.createdOn);assert.equal(version.metadata?.source,'wrangler');assert.equal(version.resources?.script?.etag,p.etag);
