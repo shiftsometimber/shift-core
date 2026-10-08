@@ -26,5 +26,7 @@ test('canonical free-support traffic is tagged without changing the ordinary or 
  assert.match(support,/data\.source='my-timber-support'/);
  assert.match(support,/source:'weight_loss_support'/);
  assert.match(support,/sign_up':'login',\{method:'website',source:'weight_loss_support'\}/);
+ assert.match(support,/data-weight-loss-support-arrival/);
+ assert.match(support,/weight_loss_support_arrival/);
  assert.doesNotMatch(support,/someoneSentMyTimber|someone thought this might help/i);
 });

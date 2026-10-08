@@ -85,6 +85,8 @@ export async function memberExperienceEntry(request, env, response) {
   if(name==='dashboard'&&new URL(request.url).searchParams.get('from')==='weight-loss-support'){
     html=html.replace("data.source='my-timber';","data.source='my-timber-support';");
     html=html.replace("window.SSTAnalytics.track(mode==='register'?'sign_up':'login',{method:'website'})","window.SSTAnalytics.track(mode==='register'?'sign_up':'login',{method:'website',source:'weight_loss_support'})");
+    const distributionArrival=`<script data-weight-loss-support-arrival>(()=>{try{window.SSTAnalytics?.track?.('weight_loss_support_arrival',{source:'canonical_support_page'})}catch{}})()</script>`;
+    html=html.replace('</body>',distributionArrival+'</body>');
   }
   if(name==='dashboard'&&new URL(request.url).searchParams.get('from')==='someone-who-cares'){
     html=html.replace("data.source='my-timber';","data.source='my-timber-share';");
