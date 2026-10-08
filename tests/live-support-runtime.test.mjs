@@ -41,7 +41,7 @@ test('production adoption recognises the fully checked capture without looking u
 });
 
 test('capture recognises only its exact serving identity and evidenced restoration without replacement authority',()=>{
- assert.equal(p.rollbackReceiptRun,37857802619);assert.equal(p.rollbackDeployment,'ce2d15fb-6373-46c4-9517-b9402ecfa780');
+ assert.equal(p.rollbackReceiptRun,37860725562);assert.equal(p.rollbackDeployment,'b5041b69-d523-45b0-83a2-d5bd0ed36033');
  for(const id of ['3e9176eb-468d-42d6-b97a-7c8c1113ffcc','2f65a40d-9bfd-4d23-ae21-27f41661eabc','unknown'])assert.throws(()=>assertSupportRuntimeIdentity({...active(),id}));
  for(const patch of [{created_on:'later'},{source:'api'},{annotations:{}}])assert.throws(()=>assertSupportRuntimeIdentity({...active(),...patch}));
 });
@@ -49,7 +49,7 @@ const restored=()=>({...active(),id:p.rollbackDeployment,created_on:p.rollbackCr
 const rollbackRun=()=>({id:p.rollbackReceiptRun,run_attempt:1,head_sha:p.rollbackReceiptSource,head_branch:'main',event:'push',path:'.github/workflows/cloudflare-production-promote.yml',status:'completed',conclusion:'failure'});
 const rollbackJob=()=>({id:p.rollbackReceiptJob,run_id:p.rollbackReceiptRun,run_attempt:1,head_sha:p.rollbackReceiptSource,name:'promote',status:'completed',conclusion:'failure',steps:[
  ...[[10,'Recover only the evidenced cancelled runtime to the last verified release'],[50,'Capture current Worker deployment for rollback'],[60,'Deploy current main to production'],[109,'Verify query-string log redaction after deployment or rollback']].map(([number,name])=>({number,name,status:'completed',conclusion:'success'})),
- {number:95,name:'Prove automatic article metadata and the shared security policy',status:'completed',conclusion:'failure',completed_at:'2026-10-08T23:30:30Z'},
+ {number:87,name:'Prove exact member scripts and authentication on live traffic',status:'completed',conclusion:'failure',completed_at:'2026-10-08T23:56:17Z'},
  {number:108,name:'Restore the captured runtime if a post-deployment gate failed',status:'completed',conclusion:'success',started_at:p.rollbackEarliest,completed_at:p.rollbackLatest}
 ]});
 test('exact rollback identity and immutable failed-attempt evidence retain the original captured source only',()=>{
@@ -63,12 +63,12 @@ test('exact rollback identity and immutable failed-attempt evidence retain the o
 test('changed rollback run, source, attempt, failed gate or restoration step rejects the receipt',()=>{
  for(const patch of [{id:1},{run_attempt:2},{head_sha:'unknown'},{conclusion:'success'},{event:'workflow_dispatch'},{head_branch:'unknown'}])assert.throws(()=>assertSupportRollbackReceipt({...rollbackRun(),...patch},rollbackJob()));
  for(const patch of [{id:1},{run_attempt:2},{head_sha:'unknown'},{conclusion:'success'}])assert.throws(()=>assertSupportRollbackReceipt(rollbackRun(),{...rollbackJob(),...patch}));
- for(const number of [10,50,60,95,108,109]){const j=rollbackJob();j.steps=j.steps.filter(s=>s.number!==number);assert.throws(()=>assertSupportRollbackReceipt(rollbackRun(),j));}
+ for(const number of [10,50,60,87,108,109]){const j=rollbackJob();j.steps=j.steps.filter(s=>s.number!==number);assert.throws(()=>assertSupportRollbackReceipt(rollbackRun(),j));}
  for(const patch of [{conclusion:'failure'},{started_at:'later'},{completed_at:'later'}]){const j=rollbackJob();Object.assign(j.steps.find(s=>s.number===108),patch);assert.throws(()=>assertSupportRollbackReceipt(rollbackRun(),j));}
 });
 test('rollback verification retrieves the exact original attempt and requires its proof before fresh rebuild',async()=>{
  const paths=[],options={token:'synthetic-test-token',fetcher:async()=>({ok:true,json:async()=>({success:true,result:verification()})}),rebuild:module,githubGet:async path=>{paths.push(path);return path.includes('/jobs?')?{jobs:[rollbackJob()]}:rollbackRun();}};
  assert.equal((await verifySupportRuntime(restored(),version(),options)).rollbackReceiptRun,p.rollbackReceiptRun);
- assert.deepEqual(paths,['/actions/runs/37857802619/attempts/1','/actions/runs/37857802619/attempts/1/jobs?per_page=100']);
+ assert.deepEqual(paths,['/actions/runs/37860725562/attempts/1','/actions/runs/37860725562/attempts/1/jobs?per_page=100']);
  await assert.rejects(()=>verifySupportRuntime(restored(),version(),{...options,githubGet:async path=>path.includes('/jobs?')?{jobs:[]}:rollbackRun()}));
 });
