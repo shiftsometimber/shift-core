@@ -54,3 +54,30 @@ test('warmed default immutable blob proof never caches a supplied reader',()=>{
  assert.throws(()=>verifyReconciledRelease((ref,path)=>{visited.push([ref,path]);return ref==='HEAD'&&path==='worker-entry-v6.js'?'changed':'same';}),/Approved composition source \/ boundary drift/);
  assert(visited.some(([ref,path])=>ref==='HEAD'&&path==='worker-entry-v6.js'));
 });
+
+
+import {withImmutableHistoryVerification,immutableHistoryExecFileSync} from '../release/approved-runtime-composition.mjs';
+import {mkdtempSync,writeFileSync,rmSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {execFileSync as directGit} from 'node:child_process';
+test('immutable history reuse still invokes a fresh supplied source reader',()=>{
+ withImmutableHistoryVerification(()=>{
+  verifyReconciledRelease();verifyReconciledRelease();
+  assert.throws(()=>verifyReconciledRelease((ref,path)=>ref==='HEAD'&&path==='worker-entry-v6.js'?'changed':'same'),/source \/ boundary drift/);
+ });
+});
+test('scoped immutable history rejects real working-source and HEAD changes',()=>{
+ const previous=process.cwd(),dir=mkdtempSync(join(tmpdir(),'shift-history-proof-'));
+ try{
+  process.chdir(dir);directGit('git',['init','-q']);directGit('git',['config','user.name','Synthetic verifier']);directGit('git',['config','user.email','verifier@example.invalid']);writeFileSync('tracked.txt','original\n');directGit('git',['add','tracked.txt']);directGit('git',['commit','-qm','Synthetic fixture']);
+  assert.throws(()=>withImmutableHistoryVerification(()=>{
+   const initial=immutableHistoryExecFileSync('git',['diff','--name-only'],{encoding:'utf8'});writeFileSync('tracked.txt','changed\n');assert.notEqual(immutableHistoryExecFileSync('git',['diff','--name-only'],{encoding:'utf8'}),initial);
+  }),/Working source changed/);
+  writeFileSync('tracked.txt','original\n');
+  assert.throws(()=>withImmutableHistoryVerification(()=>{
+   immutableHistoryExecFileSync('git',['show','HEAD:tracked.txt'],{encoding:'utf8'});
+   directGit('git',['commit','--allow-empty','-qm','Synthetic changed HEAD']);
+  }),/Source HEAD changed/);
+ }finally{process.chdir(previous);rmSync(dir,{recursive:true,force:true});}
+});

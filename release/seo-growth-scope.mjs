@@ -2,7 +2,7 @@ import {reconciliationHistoricalRef,reconciliationHistoricalRead} from './approv
 import {linkHistoricalRead} from './seo-link-repairs-scope.mjs';
 import {metricsRecord,metricsHistoricalRef,metricsHistoricalRead,verifyMetricsConnection} from './metrics-connection-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './approved-runtime-composition.mjs';
 import {readFileSync} from 'node:fs';
 export const RANKING_GROWTH_BASE='33868cbae7be4f10b9fa4d89b9a81f0773761ef4';
 export const RANKING_GROWTH_PAYLOAD='98f29282d53beb9f4b37c5d793082a09c69a189b';

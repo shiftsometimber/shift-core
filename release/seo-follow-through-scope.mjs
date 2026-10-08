@@ -12,7 +12,7 @@ export function validateInlineToolComposition(c,read=(ref,p)=>execFileSync('git'
 import {readFileSync} from 'node:fs';
 import {completionHistoricalRef,TECHNICAL_PATHS,TECHNICAL_BASE,technicalPinnedRef,validateTechnicalComposition,verifyTechnicalHistory} from './seo-technical-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './approved-runtime-composition.mjs';
 export const FOLLOW_BASE='b4392ca89d9388352c0b29117488d44e9886c6c1';
 export const FOLLOW_PAYLOAD='c72474347df03dd1e55178721be02ad85bf80889';
 export const FOLLOW_PAYLOAD_PATHS=['ask-timber-v1.js','public-seo-follow-through.mjs','public-site-stream.mjs','shift-coach/worker.mjs'];

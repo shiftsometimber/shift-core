@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './approved-runtime-composition.mjs';
 // Exact standing-authorised factual research updates through PR #1176, including
 // the specialist semaglutide and sarcopenia registry wave; prior reviewed claims are preserved.
 // Research listings do not establish supply, sale, clinical approval or UK access.

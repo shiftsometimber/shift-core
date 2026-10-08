@@ -1,10 +1,11 @@
-import {COMPOSITION_BASE,COMPOSITION_SOURCE,COMPOSITION_PATHS,reconciliationRecord} from '../release/approved-runtime-composition.mjs';
+import {COMPOSITION_BASE,COMPOSITION_SOURCE,COMPOSITION_PATHS,reconciliationRecord,withImmutableHistoryVerification} from '../release/approved-runtime-composition.mjs';
 import {ARTICLE_CLOSEOUT_SOURCE,ARTICLE_CLOSEOUT_PATH,ensureReviewedHistory,REVIEWED_HISTORY_REFS,COACH_ARTICLE_BASE,COACH_ARTICLE_ADDITIONS,COACH_ARTICLE_CHANGES} from './release-contract.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
-import {COACH_BASE,COACH_PATHS,COACH_COMPOSED_BOOK_ADDITIONS,COACH_COMPOSED_BOOK_CHANGES,assertCoachingChangedPath,WATCH_CURRENT_PATHS,assertCoachingConfiguration,withoutCoachEntrypoint,coachingHistoricalRef,validateCoachingSource,assertLaunchDecisions} from './release-contract.mjs';
+import {COACH_BASE,COACH_PATHS,COACH_COMPOSED_BOOK_ADDITIONS,COACH_COMPOSED_BOOK_CHANGES,assertCoachingChangedPath,WATCH_CURRENT_PATHS,assertCoachingConfiguration,withoutCoachEntrypoint,coachingHistoricalRef,validateCoachingSource as rawValidateCoachingSource,assertLaunchDecisions} from './release-contract.mjs';
+const validateCoachingSource=(...args)=>withImmutableHistoryVerification(()=>rawValidateCoachingSource(...args));
 const config=readFileSync('wrangler.jsonc','utf8'),before=execFileSync('git',['show',COACH_BASE+':wrangler.jsonc'],{encoding:'utf8'});
 const manifest=JSON.parse(readFileSync('shift-coach/release-manifest.json','utf8'));
 test('already-live catalogue copy is reversed before strict homepage banner preservation',async()=>{

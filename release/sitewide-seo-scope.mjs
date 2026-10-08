@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './approved-runtime-composition.mjs';
 import {createHash} from 'node:crypto';
 export const SITEWIDE_BASE='cd2f16af13097f6987087d1cf16b007f7114f017';
 export const SITEWIDE_PAYLOAD='26e9a5c004d5f580b5c4587035cd39117d966c6b';
