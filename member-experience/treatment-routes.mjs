@@ -1,4 +1,4 @@
-import {projectTreatment} from './treatment-model.mjs';
+import {projectTreatment,summaryPdf} from './treatment-model.mjs';
 import {authenticateMember} from '../member-state-fast-v1.js';
 import {trackingConsent} from './health-routes.mjs';
 const root='/v1/member/treatment';
@@ -28,11 +28,17 @@ export async function treatmentRoutes(request,env){
  const path=new URL(request.url).pathname;if(!path.startsWith(root))return null;
  // Isolated preview feature until clinical-source, retention and reminder acceptance pass.
  if(env.MY_TREATMENT_PREVIEW_ENABLED!=='true')return reply({error:'not_enabled'},404);
- if(![root,root+'/records',root+'/events',root+'/medical'].includes(path))return reply({error:'not_found'},404);
- if(!['GET','POST'].includes(request.method)||request.method==='GET'&&path!==root)return reply({error:'method_not_allowed'},405);
+ if(![root,root+'/records',root+'/events',root+'/medical',root+'/summary.pdf'].includes(path))return reply({error:'not_found'},404);
+ if(!['GET','POST'].includes(request.method)||request.method==='GET'&&![root,root+'/summary.pdf'].includes(path))return reply({error:'method_not_allowed'},405);
  if(request.method==='POST'&&(request.headers.get('Origin')!==new URL(request.url).origin||!request.headers.get('Content-Type')?.startsWith('application/json')))return reply({error:'origin_not_allowed'},403);
  let auth;try{auth=await authenticateMember(request,env);}catch{return reply({error:'authentication_unavailable'},503);}if(auth.response)return reply({error:'authentication_required'},401);
  try{
+ if(path===root+'/summary.pdf'){
+ if(request.method!=='GET')return reply({error:'method_not_allowed'},405);
+ const query=new URL(request.url).searchParams,period=query.get('period')||'28',selected=query.get('treatment')||'all';if(!['28','84','all'].includes(period))return reply({error:'invalid_period'},400);const data=await readTreatment(env.DB,auth.userId);if(selected!=='all'&&!data.treatments.some(t=>t.id===selected))return reply({error:'treatment_not_found'},404);const since=period==='all'?0:Date.now()-Number(period)*86400000;const fmt=v=>v?new Date(v).toLocaleString('en-GB',{timeZone:'Europe/London'}):'Not recorded';const lines=['My Timber - personal summary','Fictional preview records - not a clinical assessment','Generated: '+fmt(new Date().toISOString())+' (Europe/London)','Period: '+(period==='all'?'Full history':'Last '+period+' days'),''];
+ for(const t of data.treatments.filter(t=>selected==='all'||t.id===selected)){lines.push(t.medicine+' - '+t.status,t.prescription_details,'Recorded supply: '+t.supply+' - Scheduled: '+fmt(t.next_at));for(const e of data.events.filter(e=>e.treatment_id===t.id&&Date.parse(e.occurred_at)>=since)){const c=e.details.checkin;lines.push(fmt(e.occurred_at)+' - '+e.kind.replaceAll('_',' ')+' - '+e.source,c?'Weight: '+(c.weight===null?'Not recorded':c.weight+' kg')+' - Appetite: '+c.appetite+' - Energy: '+c.energy+' - Reported side effects: '+(c.sideEffects||'None reported'):e.details.note||e.details.prescriptionDetails||'');}lines.push('');}
+ if(query.get('medical')==='1'&&data.medical[0]){lines.push('Medical disclosures - member-reported');for(const[key,value]of Object.entries(data.medical[0].details))lines.push(key+': '+(value||'Not disclosed'));}lines.push('No information is sent automatically.');return new Response(summaryPdf(lines),{headers:{'Content-Type':'application/pdf','Content-Disposition':'attachment; filename="my-timber-summary.pdf"','Cache-Control':'no-store, must-revalidate','Vary':'Cookie','X-Content-Type-Options':'nosniff'}});
+ }
  if(request.method==='GET')return reply(await readTreatment(env.DB,auth.userId));
  if(!await trackingConsent(env.DB,auth.userId))return reply({error:'health_consent_required',message:'Review optional health-data consent before saving.'},409);
  const raw=await request.text();if(new TextEncoder().encode(raw).length>16000)return reply({error:'too_large'},413);
