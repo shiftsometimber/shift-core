@@ -159,3 +159,15 @@ test('oral live dispatch verifier repair is a finite immutable engineering recei
  assert.equal(receipt.oralLiveDispatchGuard.medicalContentChanged,false);
  assert.equal(receipt.oralLiveDispatchGuard.customerDataChanged,false);
 });
+
+import {NHS_ARTICLE_PROOF_SOURCE,NHS_ARTICLE_PROOF_PATHS,NHS_ARTICLE_PROOF_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+test('NHS live verifier refresh pins five exact source files and rejects content or scope drift',()=>{
+ const receipt=verifyReconciledRelease();assert.equal(receipt.nhsArticleProofRefresh.source,NHS_ARTICLE_PROOF_SOURCE);
+ for(const path of [...NHS_ARTICLE_PROOF_PATHS,...NHS_ARTICLE_PROOF_MAINTENANCE]){
+  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/NHS article .*source drift/);
+  for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
+ }
+ for(const flag of ['publicCopyChanged','runtimeChanged','medicalContentChanged','customerDataChanged'])assert.equal(receipt.nhsArticleProofRefresh[flag],false);
+ assert.equal(reconciliationChangedPath('M','editorial/five-articles/proof.mjs'),true);
+ assert.equal(reconciliationChangedPath('M','checkout.mjs'),false);
+});
