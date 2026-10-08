@@ -136,7 +136,9 @@ export function reconciliationMarkHistoricalReader(read){mappedCompositionReader
 let verifiedHead=null;const existsAtBase=new Map();
 function ensureReconciliation(){
  if(!reconciliationRecord())return false;
- const head=git('rev-parse','HEAD');
+ // A synchronous historical test scope captures HEAD and rejects a move at
+ // its end. Outside that scope, every public lookup still resolves HEAD afresh.
+ const head=immutableHistoryScope?.head??git('rev-parse','HEAD');
  if(verifiedHead!==head){verifyReconciledRelease();verifiedHead=head;}
  return true;
 }
