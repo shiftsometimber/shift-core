@@ -17,3 +17,6 @@ CREATE TABLE IF NOT EXISTS member_medical_disclosures (
  revision INTEGER NOT NULL, body_json TEXT NOT NULL, confirmed_at TEXT NOT NULL,
  PRIMARY KEY(user_id,revision)
 );
+CREATE TABLE IF NOT EXISTS fit_notification_config (id INTEGER PRIMARY KEY CHECK(id=1),public_key TEXT NOT NULL,private_key TEXT NOT NULL,subject TEXT NOT NULL,created_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS member_treatment_push_devices (endpoint TEXT PRIMARY KEY,user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,session_id TEXT NOT NULL,p256dh TEXT NOT NULL,auth TEXT NOT NULL,enabled_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS member_treatment_push_deliveries (endpoint TEXT NOT NULL REFERENCES member_treatment_push_devices(endpoint) ON DELETE CASCADE,treatment_id TEXT NOT NULL REFERENCES member_treatment_records(id) ON DELETE CASCADE,scheduled_at TEXT NOT NULL,status TEXT NOT NULL,at TEXT NOT NULL,PRIMARY KEY(endpoint,treatment_id,scheduled_at));

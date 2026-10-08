@@ -28,7 +28,7 @@ jobs:
           node --input-type=module - <<'JS'
           import fs from 'node:fs';import assert from 'node:assert/strict';
           const c=JSON.parse(fs.readFileSync('preview/my-treatment/generated.json'));
-          assert.equal(c.name,'shift-my-treatment-preview');assert(c.workers_dev&&!c.routes&&!c.triggers&&!c.send_email&&!c.ai);assert.equal(c.d1_databases[0].database_name,'shift-treatment-preview-37739991995');
+          assert.equal(c.name,'shift-my-treatment-preview');assert(c.workers_dev&&!c.routes&&JSON.stringify(c.triggers.crons)===JSON.stringify(['* * * * *'])&&!c.send_email&&!c.ai);assert.equal(c.d1_databases[0].database_name,'shift-treatment-preview-37739991995');
           JS
           node node_modules/wrangler/bin/wrangler.js deploy --config preview/my-treatment/generated.json | tee /tmp/treatment-deploy.txt
       - uses: actions/upload-artifact@v4

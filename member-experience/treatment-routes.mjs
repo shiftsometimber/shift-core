@@ -19,7 +19,7 @@ export function validateMedical(body){
 }
 export async function readTreatment(DB,userId){
  const treatments=(await DB.prepare('SELECT * FROM member_treatment_records WHERE user_id=? ORDER BY created_at DESC').bind(userId).all()).results;
- const events=(await DB.prepare('SELECT * FROM member_treatment_events WHERE user_id=? ORDER BY occurred_at DESC').bind(userId).all()).results;
+ const events=(await DB.prepare('SELECT rowid AS sequence,* FROM member_treatment_events WHERE user_id=? ORDER BY occurred_at DESC').bind(userId).all()).results;
  const medical=(await DB.prepare('SELECT revision,body_json,confirmed_at FROM member_medical_disclosures WHERE user_id=? ORDER BY revision DESC').bind(userId).all()).results;
  const parsed=events.map(e=>({...e,details:JSON.parse(e.body_json)}));
  return {treatments:treatments.map(t=>projectTreatment(t,parsed)),events:events.map(e=>({...e,details:JSON.parse(e.body_json),body_json:undefined})),medical:medical.map(e=>({revision:e.revision,details:JSON.parse(e.body_json),confirmedAt:e.confirmed_at,source:'member'})),reminderDeliveryAvailable:false};

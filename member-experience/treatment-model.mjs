@@ -2,7 +2,7 @@
 // schedules remain separate: a dose never creates a new prescribing instruction.
 export function projectTreatment(record, events) {
  let supply=record.supply,status=record.status,nextAt=record.next_at,reminder=false;
- const history=events.filter(e=>e.treatment_id===record.id).sort((a,b)=>a.occurred_at.localeCompare(b.occurred_at)||a.created_at.localeCompare(b.created_at)||a.id.localeCompare(b.id));
+ const history=events.filter(e=>e.treatment_id===record.id).sort((a,b)=>a.occurred_at.localeCompare(b.occurred_at)||a.created_at.localeCompare(b.created_at)||(a.sequence||0)-(b.sequence||0)||a.id.localeCompare(b.id));
  for(const e of history){const d=e.details||JSON.parse(e.body_json||'{}');
   if(e.kind==='dose_taken')supply=Math.max(0,supply-1);
   if(e.kind==='supply_updated')supply=d.supply;
