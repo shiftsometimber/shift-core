@@ -117,6 +117,20 @@ export function verifyProgrammeDayExtension(c,{head,read,diff,ancestor}){
  for(const path of PROGRAMME_DAY_MAINTENANCE)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Programme verifier source drift: '+path);
  return c;
 }
+export const PROGRAMME_PREFLIGHT_BASE='f7999b2be44afd6e6e506762afa860efe5e4e242';
+export const PROGRAMME_PREFLIGHT_SOURCE='33aaaa2f87790b165d4c4ff7a0612ee9d247bdc1';
+export const PROGRAMME_PREFLIGHT_PAYLOAD=['release/growth-preflight.mjs','.github/workflows/programme-day-preview.yml','tests/programme-day-release.test.mjs'];
+export const PROGRAMME_PREFLIGHT_MAINTENANCE=['release/approved-runtime-composition.mjs'];
+const PROGRAMME_PREFLIGHT_PATHS=new Set([...PROGRAMME_PREFLIGHT_PAYLOAD,...PROGRAMME_PREFLIGHT_MAINTENANCE]);
+for(const path of PROGRAMME_PREFLIGHT_PATHS)RECONCILIATION_PATHS.add(path);
+export function verifyProgrammeDayPreflightExtension(c,{head,read,diff,ancestor}){
+ assert(c);assert.equal(c.proof,'EXACT_PROGRAMME_PREFLIGHT_V1');assert.equal(c.base,PROGRAMME_PREFLIGHT_BASE);assert.equal(c.payloadSource,PROGRAMME_PREFLIGHT_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.deepEqual(c.payloadPaths,PROGRAMME_PREFLIGHT_PAYLOAD);assert.deepEqual(c.maintenancePaths,PROGRAMME_PREFLIGHT_MAINTENANCE);
+ for(const ref of [c.base,c.payloadSource,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.payloadSource)),sorted(c.payloadPaths));assert.deepEqual(sorted(diff(c.payloadSource,c.maintenanceSource)),sorted(c.maintenancePaths));assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST]);
+ for(const path of c.payloadPaths)assert.equal(read('HEAD',path),read(c.payloadSource,path),'Programme preflight source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Programme preflight verifier source drift: '+path);return c;
+}
 const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
 export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
 export function assertProductionProofBudget(before,current){
@@ -185,12 +199,16 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   return immutableCompositionBlobs.get(key);
  }:read;
  // Validate the finite Programme amendment before exposing the previous release.
+ const preflight=c.programmeDayPreflight;
+ if(preflight)verifyProgrammeDayPreflightExtension(preflight,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const currentHead=preflight?preflight.base:head;
+ const currentRead=(ref,path)=>readBlob(preflight&&ref==='HEAD'&&PROGRAMME_PREFLIGHT_PATHS.has(path)?preflight.base:ref,path);
  const day=c.programmeDay;
- if(day)verifyProgrammeDayExtension(day,{head,read:readBlob,
+ if(day)verifyProgrammeDayExtension(day,{head:currentHead,read:currentRead,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const previousHead=day?day.base:head;
- const priorRead=(ref,path)=>readBlob(day&&ref==='HEAD'&&PROGRAMME_DAY_PATHS.has(path)?day.base:ref,path);
+ const previousHead=day?day.base:currentHead;
+ const priorRead=(ref,path)=>currentRead(day&&ref==='HEAD'&&PROGRAMME_DAY_PATHS.has(path)?day.base:ref,path);
  // Validate all new raw HEAD bytes before exposing any older historical view.
  const extension=c.publicToolDelivery;
  if(extension)verifyPublicToolExtension(extension,{head:previousHead,read:priorRead,
