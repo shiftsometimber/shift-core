@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {preserveSeo794,expectedSeo794ArticleBody,expectedPublishedArticleBody} from '../release/seo794-preservation.mjs';
+import {preserveSeo794,expectedSeo794ArticleBody,expectedPublishedArticleBody,expectedPublishedArticleDate} from '../release/seo794-preservation.mjs';
 import {repairSeoPresentation} from '../public-seo-presentation.mjs';
 import {stabilisePublicHtml} from '../public-startup-stability.mjs';
 import {preserveApprovedStartup} from '../release/member-details-preservation.mjs';
@@ -57,4 +57,24 @@ test('only the exact approved v42 subset normalises to full CSS; arbitrary edits
  assert.deepEqual(preserveSeo794('/',Buffer.from(source)),preserveSeo794('/',Buffer.from(candidate)));
  assert.notDeepEqual(preserveSeo794('/',Buffer.from(source)),preserveSeo794('/',Buffer.from(candidate.replace(HOME_V42_CSS,HOME_V42_CSS+'.unapproved{color:red}'))));
  assert.notDeepEqual(preserveSeo794('/',Buffer.from(source)),preserveSeo794('/',Buffer.from(candidate.replace('Keep this whole paragraph.','Lost copy'))));
+});
+
+import {articleMain,PATHS as FIVE_PATHS,UPDATED as FIVE_UPDATED} from '../editorial/five-articles/render.mjs';
+import {addContinuityLinks,continuityEntries,DISTRIBUTION_DATE} from '../public-continuity.mjs';
+import {applyFollowThrough} from '../public-seo-follow-through.mjs';
+import {RANKING_GROWTH_PATHS,RANKING_GROWTH_DATE} from '../public-seo-growth.mjs';
+test('NHS live article requires the exact previously approved support panel without accepting other drift',()=>{
+ const path='/guides/nhs-weight-loss-medication-pathways',source=articleMain(path);
+ const expected=addContinuityLinks(applyFollowThrough(source,path),path);
+ assert.equal(continuityEntries[path].length,1038,'Exact panel seen in failed production proof');
+ assert.equal(expectedPublishedArticleBody(source,path),expected);
+ for(const changed of [expected.replace(continuityEntries[path],''),expected.replace('My Timber stays free','Unapproved panel copy'),expected.replace('clinical suitability','unapproved eligibility')])assert.notEqual(expectedPublishedArticleBody(source,path),changed);
+ for(const other of FIVE_PATHS.filter(p=>p!==path))assert.doesNotMatch(expectedPublishedArticleBody(articleMain(other),other),/data-continuity-entry=/);
+});
+test('sitemap uses the support distribution date while medical source and schema review dates stay unchanged',()=>{
+ const path='/guides/nhs-weight-loss-medication-pathways';
+ assert.equal(expectedPublishedArticleDate(path,FIVE_UPDATED),DISTRIBUTION_DATE);
+ for(const other of FIVE_PATHS.filter(p=>p!==path))assert.equal(expectedPublishedArticleDate(other,FIVE_UPDATED),RANKING_GROWTH_PATHS.includes(other)?RANKING_GROWTH_DATE:FIVE_UPDATED);
+ assert.equal(expectedPublishedArticleDate('/unrelated',FIVE_UPDATED),FIVE_UPDATED);
+ assert.match(articleMain(path),/Editorial update and source check: <time datetime="2026-09-19">/);
 });
