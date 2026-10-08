@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {env,DB,cookies} from './hq-management-acceptance.mjs';
+import gateway from './hq-management-entry.mjs';
+const request=(path,method='GET',cookie=cookies.owner,body)=>gateway.fetch(new Request('https://api.shiftsometimber.co.uk'+path,{method,headers:{Origin:'https://hq.shiftsometimber.co.uk',...(cookie?{Cookie:cookie}:{}),'Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{})}),env,{});
+let r=await request('/v1/hq/management/report?start=2026-10-01&end=2026-10-07');assert.equal(r.status,200);
+assert.equal(r.headers.get('access-control-allow-origin'),'https://hq.shiftsometimber.co.uk');
+r=await request('/v1/hq/management/report', 'GET',null);assert.equal(r.status,401);
+r=await request('/v1/hq/management/report','OPTIONS',null);assert.equal(r.status,204);
+r=await request('/');assert.equal(r.status,404);
+r=await request('/v1/hq/users/1');assert.equal(r.status,404);
+const row=await DB.prepare("SELECT id FROM hq_users WHERE role='content'").first();
+r=await request('/v1/hq/management/users/'+row.id,'PATCH',cookies.readonly,{role:'readonly'});assert.equal(r.status,403);
+r=await request('/v1/hq/management/users/'+row.id,'PATCH',cookies.owner,{role:'readonly'});assert.equal(r.status,200);assert.equal((await r.json()).auditRecorded,true);
+r=await request('/v1/hq/management/users/1','PATCH',cookies.owner,{status:'disabled'});assert.equal(r.status,409);
+console.log('PASS isolated HQ gateway: real shared-session authentication, staff mutation routing, role denial, audit and owner protection; no public or MFA routes intercepted.');
