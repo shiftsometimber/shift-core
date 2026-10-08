@@ -110,6 +110,30 @@ export function verifyPublicToolProofRetry(c,{head,read,diff,ancestor}){
  for(const path of PUBLIC_TOOL_PROOF_RETRY_PATHS)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition maintenance source drift: Public-tool proof retry source drift: '+path);
 }
 
+// Finite verifier-only repair after an owner-confirmed current-main production dispatch.
+// The exact two-file source and two-file reconciliation are immutable; this does
+// not approve article copy, runtime behaviour, customer data or medical content.
+export const ORAL_LIVE_DISPATCH_BASE='9ecf2fe50774412c82f473975e4b650518428a90';
+export const ORAL_LIVE_DISPATCH_SOURCE='fac81ea46b9c49adcbae5b9f4910de3632f1992a';
+export const ORAL_LIVE_DISPATCH_PATHS=['babylove/release-quality.test.mjs','babylove/verify-oral-live.mjs'];
+export const ORAL_LIVE_DISPATCH_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs'];
+const ORAL_LIVE_DISPATCH_SET=new Set([...ORAL_LIVE_DISPATCH_PATHS,...ORAL_LIVE_DISPATCH_MAINTENANCE]);
+for(const path of ORAL_LIVE_DISPATCH_SET)RECONCILIATION_PATHS.add(path);
+export function verifyOralLiveDispatchGuard(c,{head,read,diff,ancestor}){
+ assert(c,'Exact oral live dispatch guard receipt required');
+ assert.equal(c.proof,'EXACT_ORAL_LIVE_DISPATCH_GUARD_V1');
+ assert.equal(c.base,ORAL_LIVE_DISPATCH_BASE);assert.equal(c.source,ORAL_LIVE_DISPATCH_SOURCE);
+ assert.deepEqual(c.paths,ORAL_LIVE_DISPATCH_PATHS);assert.deepEqual(c.maintenancePaths,ORAL_LIVE_DISPATCH_MAINTENANCE);
+ assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.publicCopyChanged,false);assert.equal(c.runtimeChanged,false);assert.equal(c.medicalContentChanged,false);assert.equal(c.customerDataChanged,false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(ORAL_LIVE_DISPATCH_PATHS),'Unrelated oral live dispatch guard source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(ORAL_LIVE_DISPATCH_MAINTENANCE),'Unrelated oral live dispatch guard reconciliation');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after oral live dispatch guard');
+ for(const path of ORAL_LIVE_DISPATCH_PATHS)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Oral dispatch source drift: '+path);
+ for(const path of ORAL_LIVE_DISPATCH_MAINTENANCE)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Oral dispatch maintenance source drift: '+path);
+}
+
 // Owner's 8 October Go authorises this finite Programme demonstration.
 export const PROGRAMME_DAY_BASE='d2ff6e0ef00d0a1a3907d9184afd64a3aa40c374';
 export const PROGRAMME_DAY_SOURCE='0fe0bc85717b60bdcf7b0a75c9e96b2c3644409a';
@@ -213,12 +237,18 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   return immutableCompositionBlobs.get(key);
  }:read;
  // Validate raw retry bytes before exposing the exact prior approved release.
- const retry=c.publicToolProofRetry;
- if(retry)verifyPublicToolProofRetry(retry,{head,read:readBlob,
+ const oral=c.oralLiveDispatchGuard;
+ if(oral)verifyOralLiveDispatchGuard(oral,{head,read:readBlob,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const retryHead=retry?retry.base:head;
- const retryRead=(ref,path)=>readBlob(retry&&ref==='HEAD'&&PUBLIC_TOOL_PROOF_RETRY_SET.has(path)?retry.base:ref,path);
+ const oralHead=oral?oral.base:head;
+ const oralRead=(ref,path)=>readBlob(oral&&ref==='HEAD'&&ORAL_LIVE_DISPATCH_SET.has(path)?oral.base:ref,path);
+ const retry=c.publicToolProofRetry;
+ if(retry)verifyPublicToolProofRetry(retry,{head:oralHead,read:oralRead,
+  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
+  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const retryHead=retry?retry.base:oralHead;
+ const retryRead=(ref,path)=>oralRead(retry&&ref==='HEAD'&&PUBLIC_TOOL_PROOF_RETRY_SET.has(path)?retry.base:ref,path);
  // Validate the finite Programme amendment before exposing the previous release.
  const preflight=c.programmeDayPreflight;
  if(preflight)verifyProgrammeDayPreflightExtension(preflight,{head:retryHead,read:retryRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
@@ -307,7 +337,7 @@ export function reconciliationChangedPath(status,path){
  if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
  // Source changes retain their exact add/modify semantics. Existing verifier
  // maintenance may have been added historically and modified subsequently.
- const allowed=existsAtBase.get(path)?(PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
+ const allowed=existsAtBase.get(path)?(ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
  assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
  return true;
 }
