@@ -1,3 +1,4 @@
+import {withProgrammeDay} from './programme-day.mjs';
 import {withAppLayout} from './app-layout-live.mjs';
 // Release adapter for the exact copy reviewed on 27 September. The shared
 // transformer remains byte-identical to the preview; no Pages source is replaced.
@@ -13,4 +14,4 @@ async function originalGrowthPublicCopy(request,response){
  return new Response(after,{status:response.status,statusText:response.statusText,headers});
 }
 
-export async function withGrowthPublicCopy(request,response){return withAppLayout(request,await originalGrowthPublicCopy(request,response));}
+export async function withGrowthPublicCopy(request,response){return withProgrammeDay(request,await withAppLayout(request,await originalGrowthPublicCopy(request,response)));}

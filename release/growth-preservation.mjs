@@ -1,3 +1,4 @@
+import {restoreProgrammeDay} from '../programme-day.mjs';
 import {continuityPages} from '../public-continuity.mjs';
 import assert from 'node:assert/strict';
 import {improvePublicCopy} from '../preview/growth-member/public-copy.mjs';
@@ -8,7 +9,7 @@ const original={
 const sample=path=>improvePublicCopy('<html><head></head><body><main>'+original[path]+'</main></body></html>',path);
 export function preserveGrowthCopy(path,input,{required=false}={}){
  if(['/mens-mental-health','/clinic-gone-quiet','/provider-switch'].includes(path)){
-  let html=input.toString('utf8');
+  let html=path==='/programme'?restoreProgrammeDay(input.toString('utf8')):input.toString('utf8');
   const talk=path==='/mens-mental-health',marker=talk?'data-good-to-talk-alignment':'data-growth-continuity';
   if(!html.includes(marker)){assert(!required,path+': approved addition absent');return input;}
   const baseline=talk?'<html><head></head><main class="template-mens-mental-health"></main></html>':'<html><head></head><main>'+continuityPages[path].body+'</main></html>';
@@ -24,7 +25,7 @@ export function preserveGrowthCopy(path,input,{required=false}={}){
   return Buffer.from(html);
  }
  if(!original[path])return input;
- let html=input.toString('utf8');
+ let html=path==='/programme'?restoreProgrammeDay(input.toString('utf8')):input.toString('utf8');
  const expected=sample(path),style=expected.match(/<style data-growth-copy>[\s\S]*?<\/style>/)[0];
  const body=expected.match(/<main>([\s\S]*?)<\/main>/)[1];
  const addition=path==='/help'?body.slice(original[path].length):body;

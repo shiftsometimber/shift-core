@@ -1,3 +1,4 @@
+import {improveProgrammeDay} from '../programme-day.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {withGrowthPublicCopy} from '../growth-member-public.mjs';
@@ -10,7 +11,7 @@ const before={
 for(const path of Object.keys(before))test('production adapter delivers exactly the approved preview and preserves all other bytes: '+path,async()=>{
  const source='<html><head><title>Keep</title></head><body><header>Keep nav</header><main><h1>Keep heading</h1>'+before[path]+'<p>Keep body</p></main><footer>Keep footer</footer></body></html>';
  const response=await withGrowthPublicCopy(new Request('https://shiftsometimber.co.uk'+path),new Response(source,{headers:{'Content-Type':'text/html','ETag':'old','Cache-Control':'public'}}));
- const actual=await response.text();assert.equal(actual,improvePublicCopy(source,path));assert.equal(response.headers.get('ETag'),null);assert.equal(response.headers.get('Cache-Control'),'public');
+ const actual=await response.text();assert.equal(actual,improveProgrammeDay(improvePublicCopy(source,path),path));assert.equal(response.headers.get('ETag'),null);assert.equal(response.headers.get('Cache-Control'),'public');
  assert.deepEqual(preserveGrowthCopy(path,Buffer.from(actual),{required:true}),Buffer.from(source));
  for(const altered of [actual.replace('Keep body','Unapproved'),actual.replace('Keep nav','Lost nav')])assert.notDeepEqual(preserveGrowthCopy(path,Buffer.from(altered),{required:true}),Buffer.from(source));
  assert.throws(()=>preserveGrowthCopy(path,Buffer.from(actual.replace('#707762','#ffffff')),{required:true}));
