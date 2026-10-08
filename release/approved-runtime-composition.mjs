@@ -303,6 +303,32 @@ export function verifyServingSeoCapture(c,{head,read,diff,ancestor}){
  for(const path of SERVING_SEO_CAPTURE_PATHS)assert.equal(read(c.source,path),read(c.capture,path),'Captured serving SEO source differs: '+path);
 }
 
+export const PROGRAMME_CLOSEOUT_BASE='fa5d9bc37b2f88006e6f16498144b27ff10bd17e';
+export const PROGRAMME_CLOSEOUT_SOURCE='40d37937248d94b32b63e0fd9b5d3afd8693ba3f';
+export const PROGRAMME_CLOSEOUT_PATHS=['release/live-support-runtime.mjs','tests/live-support-runtime.test.mjs','scripts/verify-public-continuity-live.mjs','release/public-continuity-body-proof.mjs','tests/programme-day-continuity-body.test.mjs','.github/workflows/cloudflare-production-promote.yml'];
+export const PROGRAMME_CLOSEOUT_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/programme-day-closeout-release.test.mjs'];
+const PROGRAMME_CLOSEOUT_SET=new Set([...PROGRAMME_CLOSEOUT_PATHS,...PROGRAMME_CLOSEOUT_MAINTENANCE]);
+for(const path of PROGRAMME_CLOSEOUT_SET)RECONCILIATION_PATHS.add(path);
+export const PROGRAMME_LIVE_GATE='      - name: Verify approved Programme day and catalogue artwork live\n        run: PROGRAMME_DAY_LIVE=true PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-programme-day.cjs\n';
+export function withoutProgrammeLiveGate(workflow){
+ assert.equal(workflow.split(PROGRAMME_LIVE_GATE).length,2,'Exactly one approved live Programme gate required');
+ return workflow.replace(PROGRAMME_LIVE_GATE,'');
+}
+export function verifyProgrammeCloseout(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert(c);assert.equal(c.proof,'EXACT_PROGRAMME_LIVE_CLOSEOUT_V1');assert.equal(c.base,PROGRAMME_CLOSEOUT_BASE);assert.equal(c.source,PROGRAMME_CLOSEOUT_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,PROGRAMME_CLOSEOUT_PATHS);assert.deepEqual(c.maintenancePaths,PROGRAMME_CLOSEOUT_MAINTENANCE);
+ for(const flag of ['runtimeChanged','publicCopyChanged','clinicalAvailabilityChanged','customerDataChanged','stockChanged','memberBehaviourChanged','privacyAssertionsWeakened'])assert.equal(c[flag],false);
+ assert.equal(c.liveProgrammeVerificationAdded,true);assert.equal(c.approvedCopyComparisonFixed,true);assert.equal(c.rollbackReceiptRun,37853151026);
+ for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Programme closeout source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Programme closeout maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Programme closeout');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Serving SEO source drift / Programme closeout source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Serving SEO verifier drift / Programme closeout verifier drift: '+path);
+ const workflow='.github/workflows/cloudflare-production-promote.yml';
+ assert.equal(withoutProgrammeLiveGate(content(c.source,workflow)),content(c.base,workflow),'Only the additional exact Programme live gate may change production workflow');
+ return c;
+}
+
 const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
 export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
 export function assertProductionProofBudget(before,current){
@@ -376,10 +402,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const closeout=c.programmeLiveCloseout;
+ if(closeout)verifyProgrammeCloseout(closeout,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const closeoutHead=closeout?closeout.base:head;
+ const closeoutRead=(ref,path)=>readBlob(closeout&&ref==='HEAD'&&PROGRAMME_CLOSEOUT_SET.has(path)?closeout.base:ref,path);
  const serving=c.servingSeoCapture;
- if(serving)verifyServingSeoCapture(serving,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const servingHead=serving?serving.base:head;
- const servingRead=(ref,path)=>readBlob(serving&&ref==='HEAD'&&SERVING_SEO_SET.has(path)?serving.base:ref,path);
+ if(serving)verifyServingSeoCapture(serving,{head:closeoutHead,read:closeoutRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const servingHead=serving?serving.base:closeoutHead;
+ const servingRead=(ref,path)=>closeoutRead(serving&&ref==='HEAD'&&SERVING_SEO_SET.has(path)?serving.base:ref,path);
  const logout=c.logoutNavigationAdoption;
  if(logout)verifyLogoutAdoption(logout,{head:servingHead,read:servingRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const logoutHead=logout?logout.base:servingHead;
@@ -464,7 +494,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  for(const path of PROOF_TRANSPORT_MAINTENANCE)assert.equal(compositionBlob(path),readBlob(transport.maintenanceSource,path),'Approved composition maintenance source drift: '+path);
  for(const path of RELOAD_PAYLOAD)assert.equal(compositionBlob(path),readBlob(RELOAD_VERIFIER,path),'Independent reload harness source drift: '+path);
  productionProofBefore??=execFileSync('git',['show',COMPOSITION_BASE+':.github/workflows/cloudflare-production-promote.yml'],{encoding:'utf8'});
- assertProductionProofBudget(productionProofBefore,readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8'));
+ assertProductionProofBudget(productionProofBefore,closeout?withoutProgrammeLiveGate(readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8')):readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8'));
  assert.equal(git('diff','--name-only'),'','Working source changed during composition verification');
  assert.equal(git('rev-parse','HEAD'),head,'Source HEAD changed during composition verification');
  return c;
