@@ -142,3 +142,16 @@ test('oral live dispatch verifier repair is a finite immutable engineering recei
  assert.equal(receipt.oralLiveDispatchGuard.medicalContentChanged,false);
  assert.equal(receipt.oralLiveDispatchGuard.customerDataChanged,false);
 });
+
+import {SUPPORT_ROLLBACK_SOURCE,SUPPORT_ROLLBACK_PATHS,SUPPORT_ROLLBACK_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+test('support rollback recognition remains an exact verifier-only source receipt',()=>{
+ const receipt=verifyReconciledRelease();assert.equal(receipt.supportRollbackRecognition.source,SUPPORT_ROLLBACK_SOURCE);
+ for(const path of [...SUPPORT_ROLLBACK_PATHS,...SUPPORT_ROLLBACK_MAINTENANCE]){
+  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/Support rollback .*source drift/);
+  for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
+  let existedAtBase=true;try{directGit('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});}catch{existedAtBase=false;}
+  assert.equal(reconciliationChangedPath(existedAtBase?'M':'A',path),true);
+  if(!existedAtBase)assert.throws(()=>reconciliationChangedPath('M',path),/Unexpected/);
+ }
+ for(const flag of ['publicCopyChanged','runtimeChanged','medicalContentChanged','customerDataChanged'])assert.equal(receipt.supportRollbackRecognition[flag],false);
+});
