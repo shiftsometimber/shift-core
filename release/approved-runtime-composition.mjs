@@ -96,6 +96,20 @@ export function verifyPublicToolExtension(c,{head,read,diff,ancestor}={}){
  for(const path of ['member-experience/entry.mjs','member-experience/tests/shared-arrival.test.mjs','public-continuity.mjs','tests/public-continuity.test.mjs'])assert.equal(read(c.payloadSource,path),read(c.supportSnapshotSource,path),'Captured serving support source drift: '+path);
  return c;
 }
+// Preserve the exact approved Programme release while repairing verification only.
+export const PUBLIC_TOOL_PROOF_RETRY_BASE='f7999b2be44afd6e6e506762afa860efe5e4e242';
+export const PUBLIC_TOOL_PROOF_RETRY_PATHS=['release/approved-runtime-composition.mjs','release/live-support-runtime.mjs','tests/live-support-runtime.test.mjs','release/ai-response-proof.mjs','release/shift-ai-live.mjs','tests/ai-response-retry.test.mjs','tests/public-tool-proof-retry.test.mjs'];
+const PUBLIC_TOOL_PROOF_RETRY_SET=new Set(PUBLIC_TOOL_PROOF_RETRY_PATHS);
+for(const path of PUBLIC_TOOL_PROOF_RETRY_PATHS)RECONCILIATION_PATHS.add(path);
+export function verifyPublicToolProofRetry(c,{head,read,diff,ancestor}){
+ assert(c,'Public-tool proof retry receipt required');assert.equal(c.proof,'EXACT_PUBLIC_TOOL_PROOF_RETRY_V1');assert.equal(c.base,PUBLIC_TOOL_PROOF_RETRY_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,PUBLIC_TOOL_PROOF_RETRY_PATHS);
+ assert.equal(c.publicCopyChanged,false);assert.equal(c.aiRuntimeChanged,false);assert.equal(c.customerDataChanged,false);
+ ancestor(c.base,c.source);ancestor(c.source,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(PUBLIC_TOOL_PROOF_RETRY_PATHS),'Unrelated public-tool proof retry source');
+ assert.deepEqual(sorted(diff(c.source,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after public-tool proof retry');
+ for(const path of PUBLIC_TOOL_PROOF_RETRY_PATHS)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition maintenance source drift: Public-tool proof retry source drift: '+path);
+}
+
 // Owner's 8 October Go authorises this finite Programme demonstration.
 export const PROGRAMME_DAY_BASE='d2ff6e0ef00d0a1a3907d9184afd64a3aa40c374';
 export const PROGRAMME_DAY_SOURCE='0fe0bc85717b60bdcf7b0a75c9e96b2c3644409a';
@@ -184,13 +198,20 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
- // Validate the finite Programme amendment before exposing the previous release.
- const day=c.programmeDay;
- if(day)verifyProgrammeDayExtension(day,{head,read:readBlob,
+ // Validate raw retry bytes before exposing the exact prior approved release.
+ const retry=c.publicToolProofRetry;
+ if(retry)verifyPublicToolProofRetry(retry,{head,read:readBlob,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const previousHead=day?day.base:head;
- const priorRead=(ref,path)=>readBlob(day&&ref==='HEAD'&&PROGRAMME_DAY_PATHS.has(path)?day.base:ref,path);
+ const retryHead=retry?retry.base:head;
+ const retryRead=(ref,path)=>readBlob(retry&&ref==='HEAD'&&PUBLIC_TOOL_PROOF_RETRY_SET.has(path)?retry.base:ref,path);
+ // Validate the finite Programme amendment before exposing the previous release.
+ const day=c.programmeDay;
+ if(day)verifyProgrammeDayExtension(day,{head:retryHead,read:retryRead,
+  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
+  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const previousHead=day?day.base:retryHead;
+ const priorRead=(ref,path)=>retryRead(day&&ref==='HEAD'&&PROGRAMME_DAY_PATHS.has(path)?day.base:ref,path);
  // Validate all new raw HEAD bytes before exposing any older historical view.
  const extension=c.publicToolDelivery;
  if(extension)verifyPublicToolExtension(extension,{head:previousHead,read:priorRead,
@@ -268,7 +289,7 @@ export function reconciliationChangedPath(status,path){
  if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
  // Source changes retain their exact add/modify semantics. Existing verifier
  // maintenance may have been added historically and modified subsequently.
- const allowed=existsAtBase.get(path)?(PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
+ const allowed=existsAtBase.get(path)?(PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
  assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
  return true;
 }
