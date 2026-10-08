@@ -8,7 +8,9 @@ const MY_TIMBER_USAGE_PROPERTIES=new Map([
   ['my_timber_meal_saved',['date']],
   ['my_timber_move_saved',['date']],
   ['my_timber_checkin_saved',['date']],
-  ['my_timber_treatment_action',['date']]
+  ['my_timber_treatment_action',['date']],
+  ['after_treatment_started',[]],
+  ['after_treatment_week_viewed',['week']]
 ]);
 const ALLOWED_EVENTS=new Set([
   ...MY_TIMBER_USAGE_PROPERTIES.keys(),
@@ -103,7 +105,8 @@ function sanitiseMyTimberUsage(name,properties){
         const timestamp=Date.parse(`${value}T00:00:00.000Z`);
         if(Number.isFinite(timestamp)&&new Date(timestamp).toISOString().slice(0,10)===value)out.date=value;
       }
-    }else if(typeof value==='boolean')out[key]=value;
+    }else if(key==='week'&&Number.isInteger(value)&&value>=1&&value<=12)out.week=value;
+    else if(typeof value==='boolean')out[key]=value;
   }
   return out;
 }
