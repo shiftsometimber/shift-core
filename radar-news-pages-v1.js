@@ -1,3 +1,4 @@
+import {withArticleResponsePolicy} from './babylove/response-policy.mjs';
 import {originalNoticeHtml,publisherAttributionHtml} from './radar-permitted-content-v1.js';
 import {NEWSROOM_SORTS,newsSortKey,compareNews,newsPublicationDate} from './radar-newsroom-sort-v1.js';
 import {articleTrust,sourceDateLabel} from './radar-editorial-trust-v1.js';
@@ -30,7 +31,7 @@ async function shell(request){
 }
 function responseFrom(base,body,status=200){
  const headers=new Headers(base.headers);headers.delete("Content-Length");headers.delete("ETag");headers.delete("Last-Modified");headers.set("Content-Type","text/html; charset=utf-8");headers.set("Cache-Control","public, max-age=60, stale-while-revalidate=300");headers.set("X-Shift-Newsroom-Renderer","radar-ssr-v1");
- return new Response(body,{status,headers});
+ return withArticleResponsePolicy(new Response(body,{status,headers}));
 }
 function replaceMain(html,main){return html.replace(/<main\b[\s\S]*?<\/main>/i,main)}
 function withoutTicker(html){return html.replace(/<section\s+class=["']medicine-ticker-v138["'][\s\S]*?<\/section>/i,"")}

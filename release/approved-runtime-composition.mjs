@@ -329,6 +329,35 @@ export function verifyProgrammeCloseout(c,{head,read,diff,ancestor,content=(ref,
  return c;
 }
 
+
+export const NEWS_SECURITY_BASE='160fc4fe35ee98c9713cf5fadb7936baa16d2845';
+export const NEWS_SECURITY_SOURCE='14918e97959d669248efd82c2896de59a3a47e25';
+export const NEWS_SECURITY_PATHS=['radar-news-pages-v1.js','tests/programme-day-news-security.test.mjs','release/live-support-runtime.mjs','tests/live-support-runtime.test.mjs'];
+export const NEWS_SECURITY_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/programme-day-news-security-release.test.mjs'];
+const NEWS_SECURITY_SET=new Set([...NEWS_SECURITY_PATHS,...NEWS_SECURITY_MAINTENANCE]);
+for(const path of NEWS_SECURITY_SET)RECONCILIATION_PATHS.add(path);
+export function withoutNewsSecurityPolicy(source){
+ const line="import {withArticleResponsePolicy} from './babylove/response-policy.mjs';\n";
+ const wrapper='return withArticleResponsePolicy(new Response(body,{status,headers}));';
+ assert(source.startsWith(line),'Exact shared policy import required');
+ assert.equal(source.split(wrapper).length,2,'Exactly one shared response policy wrapper required');
+ return source.slice(line.length).replace(wrapper,'return new Response(body,{status,headers});');
+}
+export function verifyNewsSecurity(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert(c);assert.equal(c.proof,'EXACT_NEWS_SECURITY_POLICY_V1');assert.equal(c.base,NEWS_SECURITY_BASE);assert.equal(c.source,NEWS_SECURITY_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,NEWS_SECURITY_PATHS);assert.deepEqual(c.maintenancePaths,NEWS_SECURITY_MAINTENANCE);
+ for(const flag of ['publicCopyChanged','clinicalAvailabilityChanged','customerDataChanged','stockChanged','memberBehaviourChanged','privacyAssertionsWeakened'])assert.equal(c[flag],false);
+ assert.equal(c.runtimeChanged,true);assert.equal(c.existingSecurityPolicyApplied,true);assert.equal(c.rollbackReceiptRun,37857802619);
+ for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated news security source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated news security maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after news security');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Serving SEO source drift / Programme closeout source drift / news security source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Serving SEO verifier drift / Programme closeout verifier drift / news security verifier drift: '+path);
+ assert.equal(withoutNewsSecurityPolicy(content(c.source,'radar-news-pages-v1.js')),content(c.base,'radar-news-pages-v1.js'),'Only the existing shared security policy may change newsroom rendering');
+ assert.equal(content(c.source,'.github/workflows/cloudflare-production-promote.yml'),content(c.base,'.github/workflows/cloudflare-production-promote.yml'),'Production gates must remain unchanged');
+ return c;
+}
+
 const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
 export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
 export function assertProductionProofBudget(before,current){
@@ -402,10 +431,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const news=c.newsSecurityPolicy;
+ if(news)verifyNewsSecurity(news,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const newsHead=news?news.base:head;
+ const newsRead=(ref,path)=>readBlob(news&&ref==='HEAD'&&NEWS_SECURITY_SET.has(path)?news.base:ref,path);
  const closeout=c.programmeLiveCloseout;
- if(closeout)verifyProgrammeCloseout(closeout,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const closeoutHead=closeout?closeout.base:head;
- const closeoutRead=(ref,path)=>readBlob(closeout&&ref==='HEAD'&&PROGRAMME_CLOSEOUT_SET.has(path)?closeout.base:ref,path);
+ if(closeout)verifyProgrammeCloseout(closeout,{head:newsHead,read:newsRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const closeoutHead=closeout?closeout.base:newsHead;
+ const closeoutRead=(ref,path)=>newsRead(closeout&&ref==='HEAD'&&PROGRAMME_CLOSEOUT_SET.has(path)?closeout.base:ref,path);
  const serving=c.servingSeoCapture;
  if(serving)verifyServingSeoCapture(serving,{head:closeoutHead,read:closeoutRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const servingHead=serving?serving.base:closeoutHead;

@@ -339,5 +339,30 @@
     "liveProgrammeVerificationAdded": true,
     "approvedCopyComparisonFixed": true,
     "rollbackReceiptRun": 37853151026
+  },
+  "newsSecurityPolicy": {
+    "proof": "EXACT_NEWS_SECURITY_POLICY_V1",
+    "base": "160fc4fe35ee98c9713cf5fadb7936baa16d2845",
+    "source": "14918e97959d669248efd82c2896de59a3a47e25",
+    "paths": [
+      "radar-news-pages-v1.js",
+      "tests/programme-day-news-security.test.mjs",
+      "release/live-support-runtime.mjs",
+      "tests/live-support-runtime.test.mjs"
+    ],
+    "maintenanceSource": "932d56dc70b3e9dc465565d6633347e253ef2546",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/programme-day-news-security-release.test.mjs"
+    ],
+    "runtimeChanged": true,
+    "existingSecurityPolicyApplied": true,
+    "rollbackReceiptRun": 37857802619,
+    "publicCopyChanged": false,
+    "clinicalAvailabilityChanged": false,
+    "customerDataChanged": false,
+    "stockChanged": false,
+    "memberBehaviourChanged": false,
+    "privacyAssertionsWeakened": false
   }
 }
