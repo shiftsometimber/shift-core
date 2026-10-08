@@ -64,12 +64,26 @@ export function assertWatchFactualUpdateProof(proof){
  assert.equal(proof.status,'completed');assert.equal(proof.conclusion,'success');return proof;
 }
 export async function verifyWatchFactualUpdateProof(get){return assertWatchFactualUpdateProof(await get('/actions/runs/'+WATCH_FACTUAL_UPDATE_RUN));}
+// Exact receipt retrieval repair: later reruns cannot replace the accepted attempt.
+export const RELOAD_ATTEMPT_BASE='afe0b80d3e7d7f813c53a659c619ba13b86f6ae4';
+export const RELOAD_ATTEMPT_PATHS=['release/member-acceptance-scope.mjs','tests/reload-proof-attempt.test.mjs','release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','.github/workflows/cloudflare-production-promote.yml','release/watch-observation-seed.mjs','tests/watch-observation-seed.test.mjs'];
+const RELOAD_ATTEMPT_SET=new Set(RELOAD_ATTEMPT_PATHS);
+export function verifyReloadAttemptExtension(c,{head,read,diff,ancestor}){
+ assert(c,'Exact reload-attempt receipt repair required');assert.equal(c.proof,'EXACT_RELOAD_ATTEMPT_RECEIPT_V1');assert.equal(c.base,RELOAD_ATTEMPT_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,RELOAD_ATTEMPT_PATHS);
+ for(const flag of ['runtimeChanged','customerDataChanged','acceptanceAssertionsWeakened'])assert.equal(c[flag],false);
+ ancestor(c.base,c.source);ancestor(c.source,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated reload-attempt receipt repair source');
+ assert.deepEqual(sorted(diff(c.source,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after reload-attempt receipt repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition maintenance source drift: Serving rollback NHS article oral canonical source drift / Reload-attempt receipt source drift: '+path);
+ return c;
+}
 // Finite engineering amendment: bounded read-only GitHub transport recovery.
 export const PROOF_TRANSPORT_BASE='476a151c2c0d4aa28e098205d1b0bda64410a783';
 export const PROOF_TRANSPORT_SOURCE='d601b545686a74dfe51c6f57a5712b11fba510f9';
 export const PROOF_TRANSPORT_PATHS=['release/growth-preflight.mjs','release/github-proof-get.mjs','tests/github-proof-get.test.mjs'];
 export const PROOF_TRANSPORT_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs'];
 export const RECONCILIATION_PATHS=new Set([...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE,RECONCILIATION_MANIFEST,...WATCH_FACTUAL_UPDATE_PATHS,...WATCH_FACTUAL_UPDATE_MAINTENANCE,...PROOF_TRANSPORT_PATHS,...PROOF_TRANSPORT_MAINTENANCE]);
+for(const path of RELOAD_ATTEMPT_PATHS)RECONCILIATION_PATHS.add(path);
 export const PUBLIC_TOOL_BASE='e8592710a52bc0c7a551798bf426d32e59409caf';
 export const PUBLIC_TOOL_SOURCE='3ba486a87df2ee859fcd579263b5211f338fbf04';
 export const PUBLIC_TOOL_PAYLOAD=['public-tool-delivery.mjs','shift-coach/worker.mjs','tests/public-tool-delivery.test.mjs','member-experience/entry.mjs','member-experience/tests/shared-arrival.test.mjs','public-continuity.mjs','tests/public-continuity.test.mjs'];
@@ -241,7 +255,13 @@ export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(
 export function assertProductionProofBudget(before,current){
  const marker='    timeout-minutes: 25\n    env:\n      CLOUDFLARE_ACCOUNT_ID';
  assert.equal(before.split(marker).length,2,'Exact original production time budget required');
- assert.equal(current,before.replace(marker,marker.replace('25','60')),'Only the production verification time budget may change');
+ let expected=before.replace(marker,marker.replace('25','60'));
+ for(const file of ['medicines-watch-observations.sql','medicines-watch-expansion-observations.sql']){
+  const original='npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/'+file+'"';
+  const online='node release/watch-observation-seed.mjs "$RUNNER_TEMP/'+file+'"';
+  expected=expected.replace(original,online);
+ }
+ assert.equal(current,expected,'Only the production verification time budget and exact online observation transport may change');
 }
 let productionProofBefore;
 const verifiedImmutableStructures=new Set();
@@ -303,12 +323,16 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const attempt=c.reloadAttemptProof;
+ if(attempt)verifyReloadAttemptExtension(attempt,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const attemptHead=attempt?attempt.base:head;
+ const attemptRead=(ref,path)=>readBlob(attempt&&ref==='HEAD'&&RELOAD_ATTEMPT_SET.has(path)?attempt.base:ref,path);
  const anchor=c.oralCanonicalRepair;
- if(anchor)verifyOralCanonicalRepair(anchor,{head,read:readBlob,
+ if(anchor)verifyOralCanonicalRepair(anchor,{head:attemptHead,read:attemptRead,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const anchorHead=anchor?anchor.base:head;
- const anchorRead=(ref,path)=>readBlob(anchor&&ref==='HEAD'&&ORAL_CANONICAL_SET.has(path)?anchor.base:ref,path);
+ const anchorHead=anchor?anchor.base:attemptHead;
+ const anchorRead=(ref,path)=>attemptRead(anchor&&ref==='HEAD'&&ORAL_CANONICAL_SET.has(path)?anchor.base:ref,path);
  const nhs=c.nhsArticleProofRefresh;
  if(nhs)verifyNhsArticleProofRefresh(nhs,{head:anchorHead,read:anchorRead,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
@@ -423,16 +447,16 @@ export function reconciliationChangedPath(status,path){
  if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
  // Source changes retain their exact add/modify semantics. Existing verifier
  // maintenance may have been added historically and modified subsequently.
- const allowed=existsAtBase.get(path)?(ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
+ const allowed=existsAtBase.get(path)?(RELOAD_ATTEMPT_SET.has(path)||ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
  assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
  return true;
 }
 
 
 export function assertReconciledReloadReceipt(run,job){
- assert.equal(run?.id,RELOAD_RUN);assert.equal(run.head_sha,RELOAD_VERIFIER);
+ assert.equal(run?.id,RELOAD_RUN);assert.equal(run.run_attempt,1);assert.equal(run.head_sha,RELOAD_VERIFIER);
  assert.equal(run.path,'.github/workflows/my-timber-final-production.yml');assert.equal(run.head_branch,'fix/member-reload-navigation-20261007');assert.equal(run.event,'push');assert.equal(run.status,'completed');assert.equal(run.conclusion,'success');
- assert.equal(job?.id,113266037954);assert.equal(job.run_id,RELOAD_RUN);assert.equal(job.name,'reload-navigation-diagnostics');assert.equal(job.status,'completed');assert.equal(job.conclusion,'success');
+ assert.equal(job?.id,113266037954);assert.equal(job.run_attempt,1);assert.equal(job.run_id,RELOAD_RUN);assert.equal(job.name,'reload-navigation-diagnostics');assert.equal(job.status,'completed');assert.equal(job.conclusion,'success');
  for(const number of [8,9,11,12,14,15])assert(job.steps?.some(s=>s.number===number&&s.status==='completed'&&s.conclusion==='success'),'Every complete live journey round must pass');
  return {id:run.id,sha:run.head_sha,path:run.path,conclusion:run.conclusion,scope:'Three complete live save, reload, privacy, Today, Grub and Fit journey rounds'};
 }

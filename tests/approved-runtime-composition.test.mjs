@@ -184,3 +184,25 @@ test('late-inserted oral canonical repair is finite and preserves medical and cu
  assert.equal(reconciliationChangedPath('M','public-practical-guides.mjs'),true);
  assert.equal(reconciliationChangedPath('M','checkout.mjs'),false);
 });
+
+import {verifyReloadAttemptExtension,RELOAD_ATTEMPT_BASE,RELOAD_ATTEMPT_PATHS} from '../release/approved-runtime-composition.mjs';
+const attemptFixture=()=>{
+ const source='b'.repeat(40),head='c'.repeat(40),c={proof:'EXACT_RELOAD_ATTEMPT_RECEIPT_V1',base:RELOAD_ATTEMPT_BASE,source,paths:RELOAD_ATTEMPT_PATHS,runtimeChanged:false,customerDataChanged:false,acceptanceAssertionsWeakened:false};
+ return {c,options:{head,read:()=> 'same',ancestor:()=>{},diff:(a,b)=>a===c.base?[...c.paths]:[RECONCILIATION_MANIFEST]}};
+};
+test('exact attempt retrieval amendment passes without changing runtime or acceptance',()=>{const {c,options}=attemptFixture();assert.equal(verifyReloadAttemptExtension(c,options),c);});
+test('attempt amendment rejects raw source drift, unrelated files, weakened checks and broken ancestry',()=>{
+ for(const path of RELOAD_ATTEMPT_PATHS){const {c,options}=attemptFixture();options.read=(ref,p)=>ref==='HEAD'&&p===path?'drift':'same';assert.throws(()=>verifyReloadAttemptExtension(c,options),/source drift/);}
+ for(const key of ['runtimeChanged','customerDataChanged','acceptanceAssertionsWeakened']){const {c,options}=attemptFixture();c[key]=true;assert.throws(()=>verifyReloadAttemptExtension(c,options));}
+ {const {c,options}=attemptFixture();options.diff=()=>['unreviewed.mjs'];assert.throws(()=>verifyReloadAttemptExtension(c,options),/Unrelated/);}
+ {const {c,options}=attemptFixture();options.ancestor=()=>{throw Error('Missing ancestor')};assert.throws(()=>verifyReloadAttemptExtension(c,options),/Missing ancestor/);}
+});
+
+test('only the exact two recurring observation imports may change transport',()=>{
+ const marker='    timeout-minutes: 25\n    env:\n      CLOUDFLARE_ACCOUNT_ID';
+ const imports=['medicines-watch-observations.sql','medicines-watch-expansion-observations.sql'].map(file=>'npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/'+file+'"').join('\n');
+ const before=marker+'\noriginal-guard\n'+imports+'\noriginal-rollback';
+ const current=before.replace('timeout-minutes: 25','timeout-minutes: 60').replaceAll('npx wrangler d1 execute DB --remote --config wrangler.jsonc --file','node release/watch-observation-seed.mjs');
+ assert.doesNotThrow(()=>assertProductionProofBudget(before,current));
+ for(const bad of [current.replace('original-guard','skip-guard'),current.replace('watch-observation-seed.mjs','unknown.mjs'),current.replace('original-rollback','')])assert.throws(()=>assertProductionProofBudget(before,bad));
+});
