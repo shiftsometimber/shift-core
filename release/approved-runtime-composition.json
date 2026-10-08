@@ -167,5 +167,23 @@
     "publicCopyChanged": false,
     "aiRuntimeChanged": false,
     "customerDataChanged": false
+  },
+  "oralLiveDispatchGuard": {
+    "proof": "EXACT_ORAL_LIVE_DISPATCH_GUARD_V1",
+    "base": "9ecf2fe50774412c82f473975e4b650518428a90",
+    "source": "fac81ea46b9c49adcbae5b9f4910de3632f1992a",
+    "paths": [
+      "babylove/release-quality.test.mjs",
+      "babylove/verify-oral-live.mjs"
+    ],
+    "maintenanceSource": "aad720aac8e068e3dc2246aa72db7c56138d3d67",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/approved-runtime-composition.test.mjs"
+    ],
+    "publicCopyChanged": false,
+    "runtimeChanged": false,
+    "medicalContentChanged": false,
+    "customerDataChanged": false
   }
 }
