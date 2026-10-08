@@ -941,8 +941,14 @@ async function adminRoutes(request, env, path, method) {
     if(role&&!HQ_ROLES.has(role)) return json({ok:false,error:'invalid_role'},400);
     if(status&&!['active','disabled'].includes(status)) return json({ok:false,error:'invalid_status'},400);
     const row=await env.DB.prepare('SELECT * FROM hq_users WHERE id=?').bind(id).first(); if(!row)return json({ok:false,error:'not_found'},404);
-    await env.DB.prepare('UPDATE hq_users SET role=COALESCE(?,role),status=COALESCE(?,status),updated_at=? WHERE id=?').bind(role||null,status||null,isoNow(),id).run();
-    await hqAudit(env,hqActor,'hq.user_updated','hq_user',String(id),{role:role||row.role,status:status||row.status}); return json({ok:true});
+    if(id===hqActor.id&&(status==='disabled'||(row.role==='owner'&&role&&role!=='owner')))return json({ok:false,error:'self_access_change_blocked',message:'Ask another owner to disable your account or change your owner role.'},409);
+    if(row.role==='owner'&&row.status==='active'&&(status==='disabled'||(role&&role!=='owner'))){const owners=await env.DB.prepare("SELECT COUNT(*) count FROM hq_users WHERE role='owner' AND status='active' AND id!=?").bind(id).first();if(Number(owners?.count||0)<1)return json({ok:false,error:'last_owner_protected'},409);}
+    const now=isoNow(),removesOwner=status==='disabled'||(role&&role!=='owner');
+    try{const result=await env.DB.batch([
+      env.DB.prepare("UPDATE hq_users SET role=COALESCE(?,role),status=COALESCE(?,status),updated_at=? WHERE id=? AND NOT(role='owner' AND status='active' AND ? AND (SELECT COUNT(*) FROM hq_users WHERE role='owner' AND status='active')<=1)").bind(role||null,status||null,now,id,removesOwner?1:0),
+      env.DB.prepare("INSERT INTO hq_audit(hq_user_id,action,entity_type,entity_id,metadata,created_at) SELECT ?,?,?,?,?,? WHERE changes()>0").bind(hqActor.id,'hq.user_updated','hq_user',String(id),JSON.stringify({before:{role:row.role,status:row.status},after:{role:role||row.role,status:status||row.status}}),now),
+      env.DB.prepare("UPDATE hq_sessions SET revoked_at=? WHERE hq_user_id=? AND revoked_at IS NULL AND ? AND changes()>0").bind(now,id,status==='disabled'||(role&&role!==row.role)?1:0)
+    ]);if(!Number(result[0]?.meta?.changes||0))return json({ok:false,error:'last_owner_protected'},409);return json({ok:true,auditRecorded:true});}catch{return json({ok:false,error:'access_audit_failed',message:'Access change stopped because its audit record could not be retained.'},503)}
   }
   if(method==='GET'&&path==='/v1/hq/audit'){
     const {results}=await env.DB.prepare(`SELECT a.*,h.name actor_name,h.email actor_email FROM hq_audit a LEFT JOIN hq_users h ON h.id=a.hq_user_id ORDER BY a.id DESC LIMIT 500`).all();
