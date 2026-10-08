@@ -1,3 +1,4 @@
+import {SUPPORT_RUNTIME,verifySupportRuntime} from '../release/live-support-runtime.mjs';
 import {OWNER_RUNTIME,verifyOwnerRuntime} from '../release/owner-captured-runtime.mjs';
 import {SITEWIDE_VERSION,verifySitewideRuntime} from '../release/sitewide-seo-scope.mjs';
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
@@ -16,6 +17,11 @@ let decision,ownedProof,technicalProof,ownerCapturedProof;
 if(activeVersion===technicalRecovery.version){
  const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact cancelled SEO recovery logs unavailable');return r.text();};
  technicalProof=await verifyTechnicalCancelledRuntime(before,get,getLogs);decision='restore';
+}
+else if(activeVersion===SUPPORT_RUNTIME.version){
+ ownerCapturedProof=await verifySupportRuntime(before,version);
+ const unchanged=active();assert.deepEqual({id:unchanged.id,versions:unchanged.versions},{id:before.id,versions:before.versions},'Serving support runtime moved during read-only reconstruction');
+ decision='retain';
 }
 else if(activeVersion===OWNER_RUNTIME.version){
  ownerCapturedProof=await verifyOwnerRuntime(before,version);
@@ -72,5 +78,5 @@ if(decision==='restore'){
  assert.equal(recoveryDecision(active(),failed,verified),'retain','Recovery did not restore the verified runtime');
  }
 }
-mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/cancelled-release-recovery.json',JSON.stringify({at:new Date().toISOString(),decision,run:ownerCapturedProof?null:technicalProof?technicalRecovery.run:recovery.run,from:before.versions[0].version_id,to:ownerCapturedProof?OWNER_RUNTIME.version:technicalProof?technicalRecovery.verifiedVersion:ownedProof?.version||recovery.verified,verifiedRun:ownerCapturedProof?null:technicalProof?technicalRecovery.verifiedRun:ownedProof?.run||recovery.verifiedRun,ownedProof:ownedProof||null,...(ownerCapturedProof?{ownerCapturedProof}:{}),...(technicalProof?{technicalRecovery:technicalProof}:{}),customerRecordsRead:0,dataChanged:false},null,2));
+mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/cancelled-release-recovery.json',JSON.stringify({at:new Date().toISOString(),decision,run:ownerCapturedProof?null:technicalProof?technicalRecovery.run:recovery.run,from:before.versions[0].version_id,to:ownerCapturedProof?ownerCapturedProof.version:technicalProof?technicalRecovery.verifiedVersion:ownedProof?.version||recovery.verified,verifiedRun:ownerCapturedProof?null:technicalProof?technicalRecovery.verifiedRun:ownedProof?.run||recovery.verifiedRun,ownedProof:ownedProof||null,...(ownerCapturedProof?{ownerCapturedProof}:{}),...(technicalProof?{technicalRecovery:technicalProof}:{}),customerRecordsRead:0,dataChanged:false},null,2));
 console.log('PASS exact cancelled-release recovery: '+decision+' verified runtime; no data rollback');

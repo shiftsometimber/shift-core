@@ -61,7 +61,7 @@ test('free weight-loss support page is canonical, indexable and answers the visi
  const graph=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];
  const faq=graph.find(x=>x['@type']==='FAQPage');assert(faq);assert.equal(faq.mainEntity.length,6);
  for(const item of faq.mainEntity){assert.ok(html.includes(item.name));assert.ok(html.includes(item.acceptedAnswer.text))}
- assert.equal(graph[0].datePublished,'2026-10-07');assert.equal(graph[0].dateModified,'2026-10-07');
+ assert.equal(graph[0].datePublished,'2026-10-08');assert.equal(graph[0].dateModified,'2026-10-08');
 });
 test('distribution links target the canonical support page only on relevant public surfaces',()=>{
  const paths=['/programme','/explore-knowledge','/treatment-centre','/compare-weight-loss-treatments','/mounjaro','/wegovy','/weight-loss-injections-for-men','/weight-loss-tablets-for-men','/guides/nhs-weight-loss-medication-pathways','/articles/mounjaro-cost-uk','/articles/wegovy-cost-uk','/articles/glp-1-weight-loss-uk'];
@@ -72,7 +72,7 @@ test('distribution links target the canonical support page only on relevant publ
 test('distribution lastmod touches only updated discovery surfaces and dates the new support page',()=>{
  const input='<urlset><url><loc>https://shiftsometimber.co.uk/mounjaro</loc><lastmod>2026-09-01</lastmod></url><url><loc>https://shiftsometimber.co.uk/unrelated</loc><lastmod>2026-09-02</lastmod></url></urlset>';
  const out=continuitySitemap(input);
- assert.match(out,/<loc>https:\/\/shiftsometimber\.co\.uk\/mounjaro<\/loc><lastmod>2026-10-07<\/lastmod>/);
+ assert.match(out,/<loc>https:\/\/shiftsometimber\.co\.uk\/mounjaro<\/loc><lastmod>2026-10-08<\/lastmod>/);
  assert.match(out,/<loc>https:\/\/shiftsometimber\.co\.uk\/unrelated<\/loc><lastmod>2026-09-02<\/lastmod>/);
- assert.match(out,/<loc>https:\/\/shiftsometimber\.co\.uk\/weight-loss-support-for-men<\/loc><lastmod>2026-10-07<\/lastmod>/);
+ assert.match(out,/<loc>https:\/\/shiftsometimber\.co\.uk\/weight-loss-support-for-men<\/loc><lastmod>2026-10-08<\/lastmod>/);
 });
