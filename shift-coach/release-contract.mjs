@@ -5,8 +5,8 @@ import {SITEWIDE_PAYLOAD_PATHS,SITEWIDE_MAINTENANCE_PATHS,sitewidePinnedRef,site
 import {WATCH_SOURCE_LINK_SOURCE,WATCH_OWNERSHIP_PATHS,watchWaveRef} from '../release/watch-registry-wave-scope.mjs';
 import {DEVICE_HEALTH_DELTA,validateDeviceHealthSource} from '../release/device-health-scope.mjs';
 import {validateWatchSourceComposition,validateRolloutPhotoComposition,validateSeoFitComposition,SEO_FIT_COMPOSITION_PATHS,validateAcceptanceReloadComposition,acceptanceReloadHistoricalRead,ACCEPTANCE_RELOAD_VERIFIER_PATHS,validateBaselineRepair,baselineHistoricalRead,CATALOGUE_COPY_PATHS,CATALOGUE_COPY_SOURCE} from '../release/fit-300-scope.mjs';
+import {immutableHistoryExecFileSync as execFileSync} from '../release/approved-runtime-composition.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 export const COACH_BASE='afa730029198f39b60f6ea82d6469e5681d93575';

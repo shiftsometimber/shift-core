@@ -1,4 +1,4 @@
-import {OWNER_RUNTIME,verifyOwnerRuntime} from './owner-captured-runtime.mjs';
+import {verifyCapturedStartingPoint} from './growth-starting-point.mjs';
 import {SITEWIDE_VERSION,verifySitewideRuntime} from './sitewide-seo-scope.mjs';
 import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 import {reusablePublicIndex} from './app-index-freshness.mjs';
@@ -11,10 +11,11 @@ import {validateGrowthSource} from './growth-scope.mjs';
 validateGrowthSource();
 const wrangler=(...args)=>execFileSync(process.execPath,['node_modules/wrangler/bin/wrangler.js',...args,'--config','wrangler.jsonc'],{encoding:'utf8',maxBuffer:4*1024*1024});
 const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
-const point=verifiedStartingPoint(JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json')),active);
+const recoveryRecord=JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json'));
+const point=verifiedStartingPoint(recoveryRecord,active);
 const BASE=point.source,VERSION=point.version;
 let receipt={id:null};
-if(point.kind!==OWNER_RUNTIME.kind){
+if(point.run!==null){
 const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+point.run,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
 assert(r.ok);receipt=await r.json();assert.equal(receipt.id,point.run);assert.equal(receipt.head_sha,BASE);assert.equal(receipt.conclusion,'success');
 if(point.run===catalogueRuntime.run){
@@ -33,10 +34,9 @@ if(point.run===catalogueRuntime.run){
 }else{assert.equal(receipt.path,point.run===articleRuntime.run?articleRuntime.workflow:'.github/workflows/cloudflare-production-promote.yml');assert.equal(receipt.head_branch,'main');}
 }else{
  const version=JSON.parse(wrangler('versions','view',point.version,'--json'));
- const proof=await verifyOwnerRuntime(active,version);
- assert.deepEqual(JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json')).ownerCapturedProof,proof);
+ await verifyCapturedStartingPoint(point,recoveryRecord,active,version);
  const unchanged=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
- assert.deepEqual({id:unchanged.id,versions:unchanged.versions},{id:active.id,versions:active.versions},'Owner runtime moved during adoption');
+ assert.deepEqual({id:unchanged.id,versions:unchanged.versions},{id:active.id,versions:active.versions},'Captured runtime moved during adoption');
 }
 assert.equal(withoutCoachEntrypoint(execFileSync('git',['show','HEAD:wrangler.jsonc'],{encoding:'utf8'})),execFileSync('git',['show','b23010cfca99b3ab05377062ad5b16984711111c:wrangler.jsonc'],{encoding:'utf8'}),'Configuration changed outside the separately pinned coaching entrypoint');
 mkdirSync('b1-runtime-release',{recursive:true});
