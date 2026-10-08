@@ -111,3 +111,16 @@ test('new factual sources remain byte-pinned after successful historical lookups
  assert.equal(reconciliationChangedPath('A','medicines-watch/reviews/2026-10-08-authorised-zupreme-lifecycle-update.json'),true);
  for(const status of ['D','R','T'])assert.throws(()=>reconciliationChangedPath(status,WATCH_FACTUAL_UPDATE_PATHS[0]),/Unexpected/);
 });
+
+import {PROOF_TRANSPORT_PATHS,PROOF_TRANSPORT_SOURCE,PROOF_TRANSPORT_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+test('finite GitHub transport amendment stays byte-pinned with fresh readers and rejects destructive changes',()=>{
+ const receipt=verifyReconciledRelease();assert.equal(receipt.proofTransportUpdate.source,PROOF_TRANSPORT_SOURCE);
+ for(const path of [...PROOF_TRANSPORT_PATHS,...PROOF_TRANSPORT_MAINTENANCE]){
+  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/source.*drift/);
+  for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
+ }
+ assert.equal(reconciliationChangedPath('M','release/growth-preflight.mjs'),true);
+ assert.equal(reconciliationChangedPath('A','release/github-proof-get.mjs'),true);
+ assert.throws(()=>reconciliationChangedPath('M','release/github-proof-get.mjs'),/Unexpected/);
+ assert.equal(reconciliationChangedPath('M','release/unknown-proof-get.mjs'),false);
+});
