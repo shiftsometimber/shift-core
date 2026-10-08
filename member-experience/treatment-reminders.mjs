@@ -40,4 +40,4 @@ export async function runTreatmentReminders(env,now=new Date(),send=sendTreatmen
  }catch{out.failed++;}finally{if(!accepted)await env.DB.prepare("DELETE FROM member_treatment_push_deliveries WHERE endpoint=? AND treatment_id=? AND scheduled_at=? AND status='sending'").bind(row.endpoint,t.id,t.next_at).run();}
  }}return out;
 }
-export const treatmentServiceWorker=String.raw`self.addEventListener('install',e=>e.waitUntil(self.skipWaiting()));self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));self.addEventListener('push',e=>e.waitUntil(self.registration.showNotification('My Timber reminder',{body:'You have a scheduled reminder. Open My Timber to review it.',tag:'my-timber-treatment',data:{url:'/member/treatment'}})));self.addEventListener('notificationclick',e=>{e.notification.close();e.waitUntil(self.clients.openWindow('/member/treatment'));});`;
+export {treatmentServiceWorker} from './treatment-service-worker.mjs';

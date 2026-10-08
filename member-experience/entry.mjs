@@ -1,5 +1,5 @@
 import {treatmentHTML,treatmentRuntime,treatmentStyles} from './treatment-page.mjs';
-import {treatmentServiceWorker} from './treatment-reminders.mjs';
+import {treatmentServiceWorker} from './treatment-service-worker.mjs';
 import {ingredientStyles} from './grub-ingredients.mjs';
 import {deviceHealthRuntime,deviceHealthStyles} from './device-health-client.mjs';
 import {continuityExposureRuntime} from '../continuity-measurement/client.mjs';
