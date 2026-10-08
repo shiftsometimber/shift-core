@@ -7,7 +7,9 @@ const WATCH = new URL('./', import.meta.url);
 const { matchingWatchMedicines, retrieveWatchKnowledge } = await import(new URL('knowledge.mjs', WATCH));
 const { medicines, sources, REVIEWED_AT } = await import(new URL('data.mjs', WATCH));
 const { CHECK_INTERVAL_MS, REVIEW_INTERVAL_MS } = await import(new URL('monitor.mjs', WATCH));
-const NOW = Math.max(Date.parse(REVIEWED_AT), ...sources.map(source => Date.parse(source.reviewedAt))) + 30 * 60 * 1000;
+// Anchor authority fixtures to detailed-card sources, not an unrelated new trial.
+const CARD_SOURCE_IDS = new Set(medicines.flatMap(medicine => medicine.sourceIds));
+const NOW = Math.max(...sources.filter(source => CARD_SOURCE_IDS.has(source.id)).map(source => Date.parse(source.reviewedAt))) + 30 * 60 * 1000;
 const iso = n => new Date(n).toISOString();
 const ids = items => items.map(item => item.id).sort();
 const available = items => items.filter(item => item.reviewState !== 'unavailable');

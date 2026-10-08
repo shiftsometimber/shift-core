@@ -48,5 +48,27 @@
     "rendered-member-acceptance-support.mjs",
     "tests/rendered-member-acceptance-support.test.mjs",
     "tests/member-reload-browser.test.mjs"
-  ]
+  ],
+  "watchFactualUpdate": {
+    "base": "56bba771e9a4006b788bd8fb40358baa3d737dd0",
+    "source": "66236803a719f13d212ad27d032c87e699c9418c",
+    "proofRun": 37797195698,
+    "paths": [
+      "medicines-watch/README.md",
+      "medicines-watch/credibility.mjs",
+      "medicines-watch/credibility.test.mjs",
+      "medicines-watch/evidence-desk.test.mjs",
+      "medicines-watch/industry.mjs",
+      "medicines-watch/industry.test.mjs",
+      "medicines-watch/knowledge.test.mjs",
+      "medicines-watch/reviews/2026-10-08-authorised-zupreme-lifecycle-update.json"
+    ],
+    "maintenanceSource": "ac8b1daa8317febe4b5a5c0513cf62a7254cfbc5",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "release/watch-registry-wave-scope.mjs",
+      "tests/approved-runtime-composition.test.mjs",
+      "shift-coach/release.test.mjs"
+    ]
+  }
 }

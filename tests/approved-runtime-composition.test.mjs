@@ -85,8 +85,8 @@ test('scoped immutable history rejects real working-source and HEAD changes',()=
 import {verifyWatchRegistryWaveProof,WATCH_REGISTRY_WAVE_PROOF_SOURCE} from '../release/watch-registry-wave-scope.mjs';
 test('standalone Watch preflight validates raw current composition before its exact historical entry comparison',async()=>{
  const proof={head_sha:WATCH_REGISTRY_WAVE_PROOF_SOURCE,path:'.github/workflows/medicines-watch-check.yml',conclusion:'success'};
- assert.equal(await verifyWatchRegistryWaveProof(async()=>proof),proof);
- for(const patch of [{head_sha:'a'.repeat(40)},{path:'.github/workflows/unreviewed.yml'},{conclusion:'failure'}])await assert.rejects(()=>verifyWatchRegistryWaveProof(async()=>({...proof,...patch})));
+ assert.equal(await verifyWatchRegistryWaveProof(async path=>path.endsWith('/'+WATCH_FACTUAL_UPDATE_RUN)?factualProof():proof),proof);
+ for(const patch of [{head_sha:'a'.repeat(40)},{path:'.github/workflows/unreviewed.yml'},{conclusion:'failure'}])await assert.rejects(()=>verifyWatchRegistryWaveProof(async path=>path.endsWith('/'+WATCH_FACTUAL_UPDATE_RUN)?factualProof():({...proof,...patch})));
 });
 
 import {verifyTreatmentGuidanceProof,TREATMENT_GUIDANCE_PREVIEW} from '../release/treatment-guidance-scope.mjs';
@@ -94,4 +94,20 @@ test('standalone treatment-guidance preflight preserves exact reviewed source af
  const proof={head_sha:TREATMENT_GUIDANCE_PREVIEW,path:'.github/workflows/treatment-guidance-preview.yml',conclusion:'success'};
  assert.equal(await verifyTreatmentGuidanceProof(async()=>proof),proof);
  for(const patch of [{head_sha:'a'.repeat(40)},{path:'.github/workflows/unreviewed.yml'},{conclusion:'failure'}])await assert.rejects(()=>verifyTreatmentGuidanceProof(async()=>({...proof,...patch})));
+});
+
+import {WATCH_FACTUAL_UPDATE_SOURCE,WATCH_FACTUAL_UPDATE_RUN,WATCH_FACTUAL_UPDATE_PATHS,assertWatchFactualUpdateProof} from '../release/approved-runtime-composition.mjs';
+const factualProof=()=>({id:WATCH_FACTUAL_UPDATE_RUN,head_sha:WATCH_FACTUAL_UPDATE_SOURCE,path:'.github/workflows/medicines-watch-check.yml',event:'pull_request',head_branch:'review/watch-zupreme-lifecycle-20261008',status:'completed',conclusion:'success'});
+test('factual Watch amendment requires the exact passed hosted source rather than a later run or editorial authorisation',()=>{
+ assert.doesNotThrow(()=>assertWatchFactualUpdateProof(factualProof()));
+ for(const patch of [{id:WATCH_FACTUAL_UPDATE_RUN+1},{head_sha:'a'.repeat(40)},{path:'.github/workflows/other.yml'},{event:'push'},{head_branch:'main'},{status:'in_progress'},{conclusion:'failure'}])assert.throws(()=>assertWatchFactualUpdateProof({...factualProof(),...patch}));
+});
+test('new factual sources remain byte-pinned after successful historical lookups',()=>{
+ verifyReconciledRelease();
+ for(const path of WATCH_FACTUAL_UPDATE_PATHS)assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/factual Watch source drift/);
+ const read=reconciliationHistoricalRead((ref,p)=>ref);
+ assert.equal(read('HEAD','medicines-watch/industry.mjs'),COMPOSITION_BASE);
+ assert.equal(read('HEAD','checkout.mjs'),'HEAD');
+ assert.equal(reconciliationChangedPath('A','medicines-watch/reviews/2026-10-08-authorised-zupreme-lifecycle-update.json'),true);
+ for(const status of ['D','R','T'])assert.throws(()=>reconciliationChangedPath(status,WATCH_FACTUAL_UPDATE_PATHS[0]),/Unexpected/);
 });
