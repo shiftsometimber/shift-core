@@ -127,8 +127,8 @@ export function verifyProgrammeDayExtension(c,{head,read,diff,ancestor}){
  assert.deepEqual(sorted(diff(c.base,c.payloadSource)),sorted(PROGRAMME_DAY_PAYLOAD),'Unrelated Programme payload change');
  assert.deepEqual(sorted(diff(c.payloadSource,c.maintenanceSource)),sorted(PROGRAMME_DAY_MAINTENANCE),'Unrelated Programme verifier change');
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Programme receipt');
- for(const path of PROGRAMME_DAY_PAYLOAD)assert.equal(read('HEAD',path),read(c.payloadSource,path),'Programme payload source drift: '+path);
- for(const path of PROGRAMME_DAY_MAINTENANCE)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Programme verifier source drift: '+path);
+ for(const path of PROGRAMME_DAY_PAYLOAD)assert.equal(read('HEAD',path),read(c.payloadSource,path),'Approved composition source / boundary drift: Programme payload source drift: '+path);
+ for(const path of PROGRAMME_DAY_MAINTENANCE)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Programme verifier source drift: '+path);
  return c;
 }
 export const PROGRAMME_PREFLIGHT_BASE='f7999b2be44afd6e6e506762afa860efe5e4e242';
@@ -142,8 +142,8 @@ export function verifyProgrammeDayPreflightExtension(c,{head,read,diff,ancestor}
  assert.deepEqual(c.payloadPaths,PROGRAMME_PREFLIGHT_PAYLOAD);assert.deepEqual(c.maintenancePaths,PROGRAMME_PREFLIGHT_MAINTENANCE);
  for(const ref of [c.base,c.payloadSource,c.maintenanceSource])ancestor(ref,head);
  assert.deepEqual(sorted(diff(c.base,c.payloadSource)),sorted(c.payloadPaths));assert.deepEqual(sorted(diff(c.payloadSource,c.maintenanceSource)),sorted(c.maintenancePaths));assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST]);
- for(const path of c.payloadPaths)assert.equal(read('HEAD',path),read(c.payloadSource,path),'Programme preflight source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Programme preflight verifier source drift: '+path);return c;
+ for(const path of c.payloadPaths)assert.equal(read('HEAD',path),read(c.payloadSource,path),'Approved composition maintenance source drift: Programme preflight source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Programme preflight verifier source drift: '+path);return c;
 }
 const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
 export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
