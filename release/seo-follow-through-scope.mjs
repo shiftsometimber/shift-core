@@ -1,3 +1,4 @@
+import {reconciliationHistoricalRef} from './approved-runtime-composition.mjs';
 import {rankingGrowthHistoricalRef,rankingGrowthGitArgs} from './seo-growth-scope.mjs';
 export const INLINE_TOOL_BASE='f3a5a28e49d148512e4323bd9a58a2232520382e';
 export const INLINE_TOOL_PATHS=["my-timber-pwa/presentation.mjs","my-timber-pwa/service-worker.mjs","preview/app-layout/tabs.mjs","release/app-scope.mjs","release/fit-300-scope.mjs","release/footer-scope.mjs","release/seo-follow-through-scope.mjs","release/watch-registry-wave-scope.mjs","shift-coach/release-contract.mjs","tests/b1-release-scope.test.mjs","tests/inline-tool-release.test.mjs","tests/inline-tool-service-worker.test.mjs","tests/watch-ownership-release.test.mjs"];
@@ -27,7 +28,7 @@ export function verifySeoIntegration(c){
  assert.deepEqual(git('diff','--name-only',c.base,c.source).split('\n').filter(Boolean).sort(),SEO_INTEGRATION_PATHS,'Exact combined SEO release paths required');
  validateInlineToolComposition(c.inlineToolComposition);
  for(const p of c.paths)if(p!=='shift-coach/release-manifest.json')assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',((c.inlineToolComposition?.paths.includes(p)?c.inlineToolComposition.source:null)||usefulnessPinnedRef(JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition,p)||c.source)+':'+p),'Combined SEO source drift: '+p);
- assert.equal(git('rev-parse',c.base+':.github/workflows/cloudflare-production-promote.yml'),git('rev-parse','HEAD:.github/workflows/cloudflare-production-promote.yml'));
+ assert.equal(git('rev-parse',c.base+':.github/workflows/cloudflare-production-promote.yml'),git('rev-parse',reconciliationHistoricalRef('HEAD','.github/workflows/cloudflare-production-promote.yml')+':.github/workflows/cloudflare-production-promote.yml'));
 }
 export const TABLET_GUIDANCE_BASE='4460ea56f931da4003ace68d5d404831c47e08f7';
 export const TABLET_GUIDANCE_PATHS=[".github/workflows/practical-guides-proof.yml","docs/seo/2026-10-06-practical-guides.md","public-practical-guides.mjs","release/seo-follow-through-scope.mjs","release/six-topic-seo-scope.mjs","scripts/verify-practical-guides-handler.mjs","scripts/verify-practical-guides.mjs","shift-coach/worker.mjs","tests/approved-ranking-release.test.mjs","tests/practical-guides.test.mjs","tests/production-completion-release.test.mjs","tests/seo-follow-through-release.test.mjs"];

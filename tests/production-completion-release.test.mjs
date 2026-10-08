@@ -1,3 +1,4 @@
+import {reconciliationRecord,verifyReconciledRelease} from '../release/approved-runtime-composition.mjs';
 import {rankingGrowthHistoricalRef} from '../release/seo-growth-scope.mjs';
 import {followPinnedRef} from '../release/seo-follow-through-scope.mjs';
 import test from 'node:test';
@@ -15,7 +16,8 @@ test('completion source is finite and every previous production step remains int
 test('recovery is checked before browser setup and is never a generic unknown-runtime adoption',()=>{
  const s=readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8');
  assert(s.indexOf('run: node shift-coach/recover-cancelled-release.mjs')<s.indexOf('name: Prepare and launch verification browsers'));
- assert(s.includes('    timeout-minutes: 25'));assert(s.includes('run: node release/member-details-rollback.mjs'));
+ if(reconciliationRecord())verifyReconciledRelease();
+ assert(s.includes('    timeout-minutes: '+(reconciliationRecord()?60:25)));assert(s.includes('run: node release/member-details-rollback.mjs'));
  const r=readFileSync('shift-coach/recover-cancelled-release.mjs','utf8');
  assert(r.includes('Runtime moved before exact SEO recovery'));assert(r.includes('Unknown runtime has no exact successful owned-deployment proof; stop without rollback'));
 });
