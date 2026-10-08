@@ -1,3 +1,4 @@
+import {createGithubProofGet} from './github-proof-get.mjs';
 import {DEVICE_HEALTH_PATHS,historicalDeviceHealthRef,validateDeviceHealthSource,verifyDeviceHealthProof} from './device-health-scope.mjs';
 import {verifyBookVoiceProof} from './book-voice-scope.mjs';
 import {verifyTreatmentGuidanceProof} from './treatment-guidance-scope.mjs';
@@ -9,8 +10,7 @@ import {execFileSync} from 'node:child_process';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {GROWTH_PREVIEW,GROWTH_PINNED_PATHS,validateGrowthSource} from './growth-scope.mjs';
 const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
-const repo='https://api.github.com/repos/shiftsometimber/shift-core';
-async function get(path){const r=await fetch(repo+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'GitHub verification '+r.status);return r.json()}
+const get=createGithubProofGet();
 validateGrowthSource();
 const bookVoiceProof=await verifyBookVoiceProof(get);
 await verifyPublicWordingProof(get);
