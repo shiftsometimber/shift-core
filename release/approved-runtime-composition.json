@@ -112,5 +112,22 @@
     "ratingsInvented": false,
     "homepageChanged": false,
     "privateCacheChanged": false
+  },
+  "runtimeAdoption": {
+    "proof": "EXACT_CAPTURED_RUNTIME_ADOPTION_V1",
+    "base": "2f44a2a0b4fd636fc165f0f66cc93cf50c64d7a5",
+    "source": "c0fad31ee82d2220f740d338efc70766b5ecabc1",
+    "paths": [
+      "release/growth-adopt-deployment.mjs",
+      "release/growth-starting-point.mjs",
+      "tests/growth-starting-point.test.mjs",
+      "shift-coach/release-contract.mjs",
+      "shift-coach/release.test.mjs"
+    ],
+    "maintenanceSource": "b03bf16e052ee053ad59a4088bb4f47064f5e514",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/approved-runtime-composition.test.mjs"
+    ]
   }
 }
