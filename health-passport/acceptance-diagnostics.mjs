@@ -40,3 +40,36 @@ export function attachDiagnostics(page, report, write) {
   page.on('load',()=>record({kind:'load',url:resourcePath(page.url())}));
   return () => ({page:resourcePath(page.url()),frames:page.frames().map(frame=>resourcePath(frame.url())),pending:[...pending.values()]});
 }
+
+const diagnosticPath=value=>{
+ if(value==='about:blank')return value;
+ try{
+  const u=new URL(value);
+  if(!['shiftsometimber.co.uk','api.shiftsometimber.co.uk','test'].includes(u.hostname))return '[external]';
+  const safe=/^\/(?:member\/(?:dashboard|fit|grub|life-back|journey)|v1\/(?:me|auth\/(?:login|logout|register)|health-passport(?:\/records)?|fit\/plan)|(?:assets|frontend\/member)\/[a-zA-Z0-9_./-]+|[a-zA-Z0-9_-]+\.(?:js|mjs|css))$/;
+  return u.origin+(safe.test(u.pathname)?u.pathname:'/[other-path]');
+ }catch{return '[unavailable]';}
+};
+export function navigationLogSummary(report){
+ const number=value=>Number.isFinite(value)?Math.max(0,Math.round(value)):undefined;
+ const resource=row=>({
+  url:diagnosticPath(row.url),
+  ...(typeof row.kind==='string'&&['response','request_failed','navigation_requested','frame_committed','domcontentloaded','load'].includes(row.kind)?{kind:row.kind}:{}),
+  ...(['GET','POST','DELETE','HEAD','OPTIONS'].includes(row.method)?{method:row.method}:{}),
+  ...(['document','script','stylesheet','image','font','fetch','xhr'].includes(row.resourceType)?{resourceType:row.resourceType}:{}),
+  ...(Number.isInteger(row.status)&&row.status>=100&&row.status<=599?{status:row.status}:{}),
+  ...(number(row.atMs)!==undefined?{atMs:number(row.atMs)}:{}),
+  ...(number(row.startedMs)!==undefined?{startedMs:number(row.startedMs)}:{}),
+  ...(typeof row.error==='string'&&/^net::ERR_[A-Z_]+$/.test(row.error)?{error:row.error}:{})
+ });
+ const nav=report.navigation||{},dom=report.reloadFailureState||{};
+ return {kind:'synthetic_navigation_diagnostics',
+  navigation:{page:diagnosticPath(nav.page),frames:(nav.frames||[]).slice(0,12).map(diagnosticPath),pending:(nav.pending||[]).slice(-20).map(resource)},
+  resources:(report.resources||[]).slice(-40).map(resource),
+  document:{...(dom.documentUnavailable===true?{unavailable:true}:{}),
+   ...(['loading','interactive','complete'].includes(dom.readyState)?{readyState:dom.readyState}:{}),
+   ...(typeof dom.memberReady==='boolean'?{memberReady:dom.memberReady}:{}),
+   ...(typeof dom.authHidden==='boolean'?{authHidden:dom.authHidden}:{}),
+   ...(typeof dom.serviceWorker==='boolean'?{serviceWorker:dom.serviceWorker}:{})}
+ };
+}
