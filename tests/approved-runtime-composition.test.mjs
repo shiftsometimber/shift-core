@@ -38,3 +38,12 @@ test('approved composition rejects deletion, rename and type changes for every p
  assert.equal(reconciliationChangedPath('A',RECONCILIATION_MANIFEST),true);
  assert.throws(()=>reconciliationChangedPath('M',RECONCILIATION_MANIFEST),/Unexpected/);
 });
+
+import {assertProductionProofBudget} from '../release/approved-runtime-composition.mjs';
+test('production time budget cannot change commands, permissions, gates or rollback',()=>{
+ const before='jobs:\n  promote:\n    timeout-minutes: 25\n    env:\n      CLOUDFLARE_ACCOUNT_ID: same\n    steps:\n      - run: original-guard\n      - run: original-rollback\n';
+ const current=before.replace('timeout-minutes: 25','timeout-minutes: 60');
+ assert.doesNotThrow(()=>assertProductionProofBudget(before,current));
+ for(const bad of [current.replace('original-guard','skip-guard'),current.replace('original-rollback',''),current+'permissions: write-all\n',current.replace('timeout-minutes: 60','timeout-minutes: 120')])assert.throws(()=>assertProductionProofBudget(before,bad));
+ assert.throws(()=>assertProductionProofBudget(before.replace('timeout-minutes: 25','timeout-minutes: 30'),current));
+});

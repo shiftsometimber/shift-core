@@ -48,10 +48,16 @@ export const RECONCILIATION_MAINTENANCE=[
  'release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs',
  'release/organic-followthrough-scope.mjs','release/seo-link-repairs-scope.mjs',
  'release/seo-growth-scope.mjs','release/app-scope.mjs',
- 'scripts/b1-release-scope.mjs','tests/organic-followthrough-release.test.mjs','release/device-health-scope.mjs','release/footer-scope.mjs','tests/seo-growth-release.test.mjs','release/owner-captured-runtime.mjs','tests/owner-captured-runtime.test.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','release/growth-adopt-deployment.mjs','release/member-acceptance-scope.mjs','shift-coach/scope.mjs','shift-me-source-gate.mjs','.github/workflows/online-privacy-recovery-proof.yml','.github/workflows/shift-coach-integration.yml','.github/workflows/organic-followthrough-proof.yml','.github/workflows/seo-link-repairs-proof.yml','.github/workflows/seo-growth-proof.yml','acquisition-activation/metrics-release.test.mjs','shift-coach/release.test.mjs',...RELOAD_PAYLOAD];
+ 'scripts/b1-release-scope.mjs','tests/organic-followthrough-release.test.mjs','release/device-health-scope.mjs','release/footer-scope.mjs','tests/seo-growth-release.test.mjs','release/owner-captured-runtime.mjs','tests/owner-captured-runtime.test.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','release/growth-adopt-deployment.mjs','release/member-acceptance-scope.mjs','shift-coach/scope.mjs','shift-me-source-gate.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/online-privacy-recovery-proof.yml','.github/workflows/shift-coach-integration.yml','.github/workflows/organic-followthrough-proof.yml','.github/workflows/seo-link-repairs-proof.yml','.github/workflows/seo-growth-proof.yml','acquisition-activation/metrics-release.test.mjs','shift-coach/release.test.mjs',...RELOAD_PAYLOAD];
 export const RECONCILIATION_PATHS=new Set([...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE,RECONCILIATION_MANIFEST]);
 const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
 export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
+export function assertProductionProofBudget(before,current){
+ const marker='    timeout-minutes: 25\n    env:\n      CLOUDFLARE_ACCOUNT_ID';
+ assert.equal(before.split(marker).length,2,'Exact original production time budget required');
+ assert.equal(current,before.replace(marker,marker.replace('25','60')),'Only the production verification time budget may change');
+}
+let productionProofBefore;
 export function verifyReconciledRelease(read=(ref,path)=>git('rev-parse',ref+':'+path)){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -68,6 +74,8 @@ export function verifyReconciledRelease(read=(ref,path)=>git('rev-parse',ref+':'
  for(const path of COMPOSITION_PATHS)assert.equal(read('HEAD',path),read(COMPOSITION_SOURCE,path),'Approved composition source / boundary drift: '+path);
  for(const path of RECONCILIATION_MAINTENANCE)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: '+path);
  for(const path of RELOAD_PAYLOAD)assert.equal(read('HEAD',path),read(RELOAD_VERIFIER,path),'Independent reload harness source drift: '+path);
+ productionProofBefore??=execFileSync('git',['show',COMPOSITION_BASE+':.github/workflows/cloudflare-production-promote.yml'],{encoding:'utf8'});
+ assertProductionProofBudget(productionProofBefore,readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8'));
  assert.equal(git('diff','--name-only'),'','Working source changed during composition verification');
  return c;
 }
