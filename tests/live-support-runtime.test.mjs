@@ -41,7 +41,7 @@ test('production adoption recognises the fully checked capture without looking u
 });
 
 test('only the exact evidenced rollback deployment can retain the same captured bytes',()=>{
- const rollback={...active(),id:p.rollbackDeployment,created_on:p.rollbackCreatedOn,source:'wrangler',annotations:{'workers/message':p.rollbackMessage,'workers/triggered_by':'deployment'}};
+ const rollback={...active(),id:p.rollbackDeployment,created_on:p.rollbackEarliest,source:'wrangler',annotations:{'workers/message':p.rollbackMessage,'workers/triggered_by':'deployment'}};
  const captured=assertSupportRuntimeEvidence(rollback,version(),module(),verification());
  assert.equal(captured.deployment,p.rollbackDeployment);
  assert.equal(assertSupportStartingPoint({...record(),ownerCapturedProof:captured},rollback).deployment,p.rollbackDeployment);
