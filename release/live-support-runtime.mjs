@@ -8,7 +8,7 @@ import {join,resolve} from 'node:path';
 // upload are evidence only: neither is a production deployment or rollback grant.
 export const SUPPORT_RUNTIME=Object.freeze({kind:'captured-serving-support-runtime-v1',
  deployment:'8fa068ce-8f6f-4a3d-bee7-87cf8dad6d12',
- rollbackDeployment:'96b57bf9-0b59-4d16-ba12-7c17e2408903',rollbackEarliest:'2026-10-08T18:39:38.000Z',rollbackLatest:'2026-10-08T18:39:39.956Z',rollbackReceiptRun:37823771310,
+ rollbackDeployment:'2ea2b5ae-5a86-45af-a7eb-692c45d08753',rollbackEarliest:'2026-10-08T19:55:38.000Z',rollbackLatest:'2026-10-08T19:55:40.243Z',rollbackReceiptRun:37833478472,
  rollbackMessage:'Owned release failed post-deployment checks; restore captured runtime and preserve current data',version:'7b67b3f0-4ec0-41b0-8067-f41dc32ce368',number:3926,
  createdOn:'2026-10-08T14:10:27.976802Z',etag:'101ee4138e7ceea8740edceb5cf69297e348588b6f65d847184f7bf9b9301f26',
  reconstruction:'e7c78344694a0101a8105004356b96d3a2066197',tree:'2f2c2ca801b4773d4bab3b7330cba5e7ca33a48a',

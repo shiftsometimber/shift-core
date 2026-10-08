@@ -203,5 +203,26 @@
     "runtimeChanged": false,
     "medicalContentChanged": false,
     "customerDataChanged": false
+  },
+  "nhsArticleProofRefresh": {
+    "proof": "EXACT_NHS_ARTICLE_PROOF_REFRESH_V1",
+    "base": "535da9c06fe4ad30375387293ea25f62277e45f6",
+    "source": "342ad2d537a89f4a915038381000343bcdb06443",
+    "paths": [
+      "release/seo794-preservation.mjs",
+      "editorial/five-articles/proof.mjs",
+      "tests/seo794-preservation.test.mjs",
+      "release/live-support-runtime.mjs",
+      "tests/live-support-runtime.test.mjs"
+    ],
+    "maintenanceSource": "472309e8c6790dd0e2ea3257e8afae77d22cd8b6",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/approved-runtime-composition.test.mjs"
+    ],
+    "publicCopyChanged": false,
+    "runtimeChanged": false,
+    "medicalContentChanged": false,
+    "customerDataChanged": false
   }
 }
