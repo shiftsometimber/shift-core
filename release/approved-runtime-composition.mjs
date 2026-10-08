@@ -74,7 +74,7 @@ export function verifyReloadAttemptExtension(c,{head,read,diff,ancestor}){
  ancestor(c.base,c.source);ancestor(c.source,head);
  assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated reload-attempt receipt repair source');
  assert.deepEqual(sorted(diff(c.source,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after reload-attempt receipt repair');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition maintenance source drift: Reload-attempt receipt source drift: '+path);
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition maintenance source drift: Serving rollback NHS article oral canonical source drift / Reload-attempt receipt source drift: '+path);
  return c;
 }
 // Finite engineering amendment: bounded read-only GitHub transport recovery.
