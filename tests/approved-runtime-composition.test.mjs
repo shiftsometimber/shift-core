@@ -81,3 +81,10 @@ test('scoped immutable history rejects real working-source and HEAD changes',()=
   }),/Source HEAD changed/);
  }finally{process.chdir(previous);rmSync(dir,{recursive:true,force:true});}
 });
+
+import {verifyWatchRegistryWaveProof,WATCH_REGISTRY_WAVE_PROOF_SOURCE} from '../release/watch-registry-wave-scope.mjs';
+test('standalone Watch preflight validates raw current composition before its exact historical entry comparison',async()=>{
+ const proof={head_sha:WATCH_REGISTRY_WAVE_PROOF_SOURCE,path:'.github/workflows/medicines-watch-check.yml',conclusion:'success'};
+ assert.equal(await verifyWatchRegistryWaveProof(async()=>proof),proof);
+ for(const patch of [{head_sha:'a'.repeat(40)},{path:'.github/workflows/unreviewed.yml'},{conclusion:'failure'}])await assert.rejects(()=>verifyWatchRegistryWaveProof(async()=>({...proof,...patch})));
+});

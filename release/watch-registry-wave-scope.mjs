@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {immutableHistoryExecFileSync as execFileSync} from './approved-runtime-composition.mjs';
+import {immutableHistoryExecFileSync as execFileSync,verifyReconciledRelease,reconciliationGitArgs} from './approved-runtime-composition.mjs';
 // Exact standing-authorised factual research updates through PR #1176, including
 // the specialist semaglutide and sarcopenia registry wave; prior reviewed claims are preserved.
 // Research listings do not establish supply, sale, clinical approval or UK access.
@@ -67,4 +67,4 @@ export function validateWatchMergedUpdate(){
  for(const p of WATCH_LATEST_UPDATE_PATHS)assert.equal(git('rev-parse','HEAD:'+p),git('rev-parse',WATCH_REGISTRY_WAVE_PROOF_SOURCE+':'+p),'Latest merged Watch update drift: '+p);
 }
 export function validateWatchRegistryWave(read){validateWatchMergedUpdate();for(const path of WATCH_REGISTRY_WAVE_PATHS)assert.equal(read('HEAD',path),read(watchWaveRef(path),path),'Watch registry-wave source drift: '+path);}
-export async function verifyWatchRegistryWaveProof(get){const proof=await get('/actions/runs/37559233027');assert.equal(proof.head_sha,WATCH_REGISTRY_WAVE_PROOF_SOURCE);assert.equal(proof.path,'.github/workflows/medicines-watch-check.yml');assert.equal(proof.conclusion,'success');validateWatchRegistryWave((ref,path)=>execFileSync('git',['rev-parse',ref+':'+path],{encoding:'utf8'}).trim());return proof;}
+export async function verifyWatchRegistryWaveProof(get){const proof=await get('/actions/runs/37559233027');assert.equal(proof.head_sha,WATCH_REGISTRY_WAVE_PROOF_SOURCE);assert.equal(proof.path,'.github/workflows/medicines-watch-check.yml');assert.equal(proof.conclusion,'success');verifyReconciledRelease();validateWatchRegistryWave((ref,path)=>execFileSync('git',reconciliationGitArgs(['rev-parse',ref+':'+path]),{encoding:'utf8'}).trim());return proof;}
