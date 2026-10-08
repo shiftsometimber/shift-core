@@ -70,5 +70,19 @@
       "tests/approved-runtime-composition.test.mjs",
       "shift-coach/release.test.mjs"
     ]
+  },
+  "proofTransportUpdate": {
+    "base": "476a151c2c0d4aa28e098205d1b0bda64410a783",
+    "source": "d601b545686a74dfe51c6f57a5712b11fba510f9",
+    "paths": [
+      "release/growth-preflight.mjs",
+      "release/github-proof-get.mjs",
+      "tests/github-proof-get.test.mjs"
+    ],
+    "maintenanceSource": "511981f5612b03ba4a8d23033c211692b0a68e83",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/approved-runtime-composition.test.mjs"
+    ]
   }
 }
