@@ -10,7 +10,8 @@
     }
   ],
   "vars": {
-    "ALLOWED_ORIGINS": "https://hq.shiftsometimber.co.uk"
+    "ALLOWED_ORIGINS": "https://hq.shiftsometimber.co.uk",
+    "HQ_PARTNERS_ENABLED": "true"
   },
   "d1_databases": [
     {
