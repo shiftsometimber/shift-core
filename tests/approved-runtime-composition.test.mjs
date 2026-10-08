@@ -124,3 +124,15 @@ test('finite GitHub transport amendment stays byte-pinned with fresh readers and
  assert.throws(()=>reconciliationChangedPath('M','release/github-proof-get.mjs'),/Unexpected/);
  assert.equal(reconciliationChangedPath('M','release/unknown-proof-get.mjs'),false);
 });
+
+import {RUNTIME_ADOPTION_PATHS,RUNTIME_ADOPTION_SOURCE,RUNTIME_ADOPTION_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+test('captured-runtime adoption is an exact finite source and maintenance amendment',()=>{
+ const receipt=verifyReconciledRelease();assert.equal(receipt.runtimeAdoption.source,RUNTIME_ADOPTION_SOURCE);
+ for(const path of [...RUNTIME_ADOPTION_PATHS,...RUNTIME_ADOPTION_MAINTENANCE]){
+  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/captured-runtime adoption.*drift/);
+  for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
+ }
+ assert.equal(reconciliationChangedPath('M','release/growth-adopt-deployment.mjs'),true);
+ assert.equal(reconciliationChangedPath('A','release/growth-starting-point.mjs'),true);
+ assert.throws(()=>reconciliationChangedPath('M','release/growth-starting-point.mjs'),/Unexpected/);
+});

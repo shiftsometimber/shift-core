@@ -96,6 +96,28 @@ export function verifyPublicToolExtension(c,{head,read,diff,ancestor}={}){
  for(const path of ['member-experience/entry.mjs','member-experience/tests/shared-arrival.test.mjs','public-continuity.mjs','tests/public-continuity.test.mjs'])assert.equal(read(c.payloadSource,path),read(c.supportSnapshotSource,path),'Captured serving support source drift: '+path);
  return c;
 }
+// Finite repair after the public-tool extension: captured serving runtimes have
+// no hosted deployment run, while historical owned releases retain their exact
+// successful run. The source also bounds immutable-history reuse to one test
+// scope without caching current bytes or supplied readers.
+export const RUNTIME_ADOPTION_BASE='2f44a2a0b4fd636fc165f0f66cc93cf50c64d7a5';
+export const RUNTIME_ADOPTION_SOURCE='c0fad31ee82d2220f740d338efc70766b5ecabc1';
+export const RUNTIME_ADOPTION_PATHS=['release/growth-adopt-deployment.mjs','release/growth-starting-point.mjs','tests/growth-starting-point.test.mjs','shift-coach/release-contract.mjs','shift-coach/release.test.mjs'];
+export const RUNTIME_ADOPTION_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs'];
+const RUNTIME_ADOPTION_ALL=new Set([...RUNTIME_ADOPTION_PATHS,...RUNTIME_ADOPTION_MAINTENANCE]);
+for(const path of RUNTIME_ADOPTION_ALL)RECONCILIATION_PATHS.add(path);
+export function verifyRuntimeAdoptionExtension(c,{head,read,diff,ancestor}={}){
+ assert(c,'Exact captured-runtime adoption receipt required');
+ assert.equal(c.proof,'EXACT_CAPTURED_RUNTIME_ADOPTION_V1');assert.equal(c.base,RUNTIME_ADOPTION_BASE);assert.equal(c.source,RUNTIME_ADOPTION_SOURCE);
+ assert.deepEqual(c.paths,RUNTIME_ADOPTION_PATHS);assert.deepEqual(c.maintenancePaths,RUNTIME_ADOPTION_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(RUNTIME_ADOPTION_PATHS),'Unrelated captured-runtime adoption source change');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(RUNTIME_ADOPTION_MAINTENANCE),'Unrelated captured-runtime adoption verifier change');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after captured-runtime adoption receipt');
+ for(const path of RUNTIME_ADOPTION_PATHS)assert.equal(read('HEAD',path),read(c.source,path),'Approved captured-runtime adoption source drift: '+path);
+ for(const path of RUNTIME_ADOPTION_MAINTENANCE)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved captured-runtime adoption maintenance drift: '+path);
+ return c;
+}
 const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
 export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
 export function assertProductionProofBudget(before,current){
@@ -154,6 +176,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const transport=c.proofTransportUpdate;assert(transport,'Exact GitHub proof transport amendment required');
  assert.equal(transport.base,PROOF_TRANSPORT_BASE);assert.equal(transport.source,PROOF_TRANSPORT_SOURCE);
  assert.deepEqual(transport.paths,PROOF_TRANSPORT_PATHS);assert.deepEqual(transport.maintenancePaths,PROOF_TRANSPORT_MAINTENANCE);assert.match(transport.maintenanceSource,/^[a-f0-9]{40}$/);
+ const adoption=c.runtimeAdoption;assert(adoption,'Exact captured-runtime adoption amendment required');
  const head=git('rev-parse','HEAD');
  // Only actual Git objects at resolved immutable commit IDs are cacheable.
  // Supplied readers are always invoked again, even after a successful proof.
@@ -164,12 +187,16 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   return immutableCompositionBlobs.get(key);
  }:read;
  // Validate all new raw HEAD bytes before exposing any older historical view.
+ verifyRuntimeAdoptionExtension(adoption,{head,read:readBlob,
+  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
+  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const adoptionBlob=(path)=>RUNTIME_ADOPTION_ALL.has(path)?readBlob(adoption.base,path):readBlob('HEAD',path);
  const extension=c.publicToolDelivery;
- if(extension)verifyPublicToolExtension(extension,{head,read:readBlob,
+ if(extension)verifyPublicToolExtension(extension,{head:adoption.base,read:(ref,path)=>ref==='HEAD'?adoptionBlob(path):readBlob(ref,path),
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const compositionHead=extension?extension.base:head;
- const compositionBlob=(path)=>extension&&PUBLIC_TOOL_PATHS.has(path)?readBlob(extension.base,path):readBlob('HEAD',path);
+ const compositionBlob=(path)=>extension&&PUBLIC_TOOL_PATHS.has(path)?readBlob(extension.base,path):adoptionBlob(path);
  // Cache only Git graph facts for resolved immutable commits and this exact
  // receipt. Supplied readers, current bytes and working-tree checks stay fresh.
  const structureKey=JSON.stringify([process.cwd(),head,c]);
@@ -240,7 +267,7 @@ export function reconciliationChangedPath(status,path){
  if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
  // Source changes retain their exact add/modify semantics. Existing verifier
  // maintenance may have been added historically and modified subsequently.
- const allowed=existsAtBase.get(path)?(PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
+ const allowed=existsAtBase.get(path)?(RUNTIME_ADOPTION_MAINTENANCE.includes(path)||RUNTIME_ADOPTION_PATHS.includes(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
  assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
  return true;
 }
