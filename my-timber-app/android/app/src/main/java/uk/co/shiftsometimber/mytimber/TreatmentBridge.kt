@@ -42,7 +42,7 @@ class TreatmentBridge(private val owner:ComponentActivity,private val web:WebVie
        "enable"->{
         val nm=owner.getSystemService(NotificationManager::class.java)
         nm.createNotificationChannel(NotificationChannel("treatment","My Timber reminders",NotificationManager.IMPORTANCE_DEFAULT))
-        fun done(granted:Boolean){if(generation==token){val enabled=granted&&nm.areNotificationsEnabled();prefs.edit().putBoolean("enabled",enabled).apply();reply(if(enabled)null else "Allow notifications in your phone settings to enable reminders.")}}
+        fun done(granted:Boolean){if(generation==token){val enabled=granted&&nm.areNotificationsEnabled()&&nm.getNotificationChannel("treatment").importance!=NotificationManager.IMPORTANCE_NONE;prefs.edit().putBoolean("enabled",enabled).apply();reply(if(enabled)null else "Allow notifications in your phone settings to enable reminders.")}}
         if(Build.VERSION.SDK_INT>=33&&owner.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED){afterPermission={done(it)};launcher.launch(Manifest.permission.POST_NOTIFICATIONS)}else done(true)
        }
        "sync"->{

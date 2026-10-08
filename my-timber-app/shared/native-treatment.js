@@ -3,7 +3,7 @@
  if(window.top!==window||location.origin!=='https://shiftsometimber.co.uk'||window.SST_NATIVE_TREATMENT)return;
  const apple=window.webkit?.messageHandlers?.sstTreatment;
  if(!apple&&!window.sstTreatment)return;
- const pending=new Map();
+ const pending=new Map();let syncVersion=0;
  function request(action,extra={}){
   const requestId=crypto.randomUUID();
   return new Promise((resolve,reject)=>{
@@ -22,9 +22,9 @@
  window.SST_NATIVE_TREATMENT={
   enable:async()=>{await window.SST_NATIVE_TREATMENT.sync();return request('enable');},disable:()=>request('disable'),
   async sync(){
-   const response=await fetch('/v1/member/treatment/native-reminders',{credentials:'include',cache:'no-store',redirect:'error'});
-   if(!response.ok){await request('disable');if(response.status!==401&&response.status!==404)throw Error('Phone reminders could not be refreshed.');return;}
-   const lease=await response.json();return request('sync',lease);
+   const version=++syncVersion;const response=await fetch('/v1/member/treatment/native-reminders',{credentials:'include',cache:'no-store',redirect:'error'});
+   if(version!==syncVersion)return;if(!response.ok){await request('disable');if(response.status!==401&&response.status!==404)throw Error('Phone reminders could not be refreshed.');return;}
+   const lease=await response.json();if(version!==syncVersion)return;return request('sync',lease);
   },
   async pdf(url){
    const target=new URL(url,location.origin);

@@ -11,3 +11,11 @@ test('native reminders use an authenticated server lease, not supplied client me
  assert.equal(f.calls.at(-1).url,'/v1/member/treatment/native-reminders');assert.equal(f.calls.at(-1).options.credentials,'include');assert.equal(f.calls.at(-1).options.redirect,'error');
 });
 test('PDF bridge rejects foreign origins and unrelated authenticated URLs',async()=>{const f=fixture();await assert.rejects(f.context.SST_NATIVE_TREATMENT.pdf('https://example.invalid/v1/member/treatment/summary.pdf'));await assert.rejects(f.context.SST_NATIVE_TREATMENT.pdf('/v1/me'));});
+test('native PDF export sends only bounded PDF bytes after authenticated fetch',async()=>{
+ const f=fixture();await new Promise(r=>setImmediate(r));
+ f.context.fetch=async(url,options)=>{f.calls.push({url:String(url),options});const bytes=Uint8Array.from(Buffer.from('%PDF-1.4\n'));return {ok:true,headers:new Map([['Content-Type','application/pdf']]),arrayBuffer:async()=>bytes.buffer};};
+ await f.context.SST_NATIVE_TREATMENT.pdf('/v1/member/treatment/summary.pdf?medical=0');assert.equal(f.messages.at(-1).action,'pdf');assert.equal(Buffer.from(f.messages.at(-1).base64,'base64').toString(),'%PDF-1.4\n');assert.equal(f.calls.at(-1).options.cache,'no-store');
+ f.context.fetch=async()=>({ok:true,headers:new Map([['Content-Type','application/pdf']]),arrayBuffer:async()=>new ArrayBuffer(2000001)});
+ await assert.rejects(f.context.SST_NATIVE_TREATMENT.pdf('/v1/member/treatment/summary.pdf'));
+});
+test('expired authentication cancels device reminders',async()=>{const f=fixture();await new Promise(r=>setImmediate(r));f.context.fetch=async()=>({ok:false,status:401});await f.context.SST_NATIVE_TREATMENT.sync();assert.equal(f.messages.at(-1).action,'disable');});
