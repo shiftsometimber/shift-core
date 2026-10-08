@@ -150,5 +150,22 @@
     "maintenancePaths": [
       "release/approved-runtime-composition.mjs"
     ]
+  },
+  "publicToolProofRetry": {
+    "proof": "EXACT_PUBLIC_TOOL_PROOF_RETRY_V1",
+    "base": "36dd6f16835d1de68523437224b7c87dabe305e7",
+    "source": "de68caf05612f56025d198b94113ca7591a5f22b",
+    "paths": [
+      "release/approved-runtime-composition.mjs",
+      "release/live-support-runtime.mjs",
+      "tests/live-support-runtime.test.mjs",
+      "release/ai-response-proof.mjs",
+      "release/shift-ai-live.mjs",
+      "tests/ai-response-retry.test.mjs",
+      "tests/public-tool-proof-retry.test.mjs"
+    ],
+    "publicCopyChanged": false,
+    "aiRuntimeChanged": false,
+    "customerDataChanged": false
   }
 }
