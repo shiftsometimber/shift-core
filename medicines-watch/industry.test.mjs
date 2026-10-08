@@ -1,3 +1,4 @@
+import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {industry,industrySources} from './industry.mjs';
@@ -443,21 +444,21 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.match(azd.summary,/262 actual participants/);
  const pilot=industry.find(e=>e.id==='mirabegron-alpha-lipoic-acid');
  assert.match(pilot.stage,/not yet recruiting/);
- assert.match(pilot.summary,/estimated start moved again to 11 October 2026/);
+ assert.match(pilot.summary,/estimated start moved again to 13 October 2026/);
  assert.match(pilot.summary,/primary endpoint is insulin sensitivity/);
  assert.match(pilot.limitations,/48-person target.*estimates 60/);
  for(const e of [abbv,azd,pilot]){
   assert.equal(e.clinicalApproval,null);
-  assert.equal(e.reviewedAt,e.id==='azd6234'?seleneCorrection.reviewedAt:vikingRhythmRegistryReview.reviewedAt);
+  assert.equal(e.reviewedAt,e.id==='azd6234'?seleneCorrection.reviewedAt:e.id==='mirabegron-alpha-lipoic-acid'?zupremeLifecycleUpdate.reviewedAt:vikingRhythmRegistryReview.reviewedAt);
   assert.equal(e.sourceIds.length,0);
   for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k]);
   const html=industryMarkup({},new URLSearchParams({q:e.name}));
   assert.match(html,/Status checks do not assess clinical outcomes/);
  }
  const correctedSource=registrySources.find(s=>s.id==='registry-nct05713799');
- assert.equal(correctedSource.lifecycle.start.date,'2026-10-11');
- assert.equal(correctedSource.sourceUpdatedAt,'2026-10-06');
- assert.equal(correctedSource.reviewedFingerprint,'5380b7cbd154d5fda5a7c5ca7d1cbded541f6b736b1e52b632e7d728de2cd576');
+ assert.equal(correctedSource.lifecycle.start.date,'2026-10-13');
+ assert.equal(correctedSource.sourceUpdatedAt,'2026-10-08');
+ assert.equal(correctedSource.reviewedFingerprint,'d03e72f9dfacd4c1b1522da358fa21879b126af74f1e2c9f2cfd6c8d9033d4ab');
  assert.equal(nct05713799Correction.clinicalApproval,null);
  assert.equal(nct05713799Correction.industryComplete,false);
  assert.equal(amylinMetabolicFollowup.automatedMonitorChanges,false);
@@ -470,7 +471,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,103);assert.equal(sources.length,193);
+ assert.equal(medicines.length,6);assert.equal(industry.length,103);assert.equal(sources.length,194);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,109);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
@@ -1199,7 +1200,8 @@ test('Petrelintide ZUPREME review distinguishes sponsor initiation from registry
  assert.equal(petrelintideZupreme.industryComplete,false);
  assert.equal(petrelintideZupreme.catalogueCounts.totalAfter,97);
  assert.equal(petrelintideZupreme.catalogueCounts.configuredSourcesAfter,149);
- const petrelintide=industry.find(item=>item.id==='petrelintide');
+ const fields=petrelintideZupreme.changes.find(item=>item.id==='petrelintide').fields;
+ const petrelintide={stage:fields.stage,summary:fields.summaryToAppend,limitations:fields.limitationsToAppend};
  assert.match(petrelintide.stage,/three records not yet recruiting/);
  assert.match(petrelintide.summary,/ZUPREME-3, ZUPREME-4 and ZUPREME-5/);
  assert.match(petrelintide.summary,/list no study locations/);
@@ -1487,9 +1489,9 @@ test('Viking, Rhythm and changed registry evidence stays formulation and indicat
  assert.deepEqual(bivRegistry.lifecycle.start,{date:'2025-11-10',type:'ACTUAL'});
  assert.equal(bivRegistry.lifecycle.hasResults,false);
  const abbv=registrySources.find(source=>source.nctId==='NCT07752979');
- assert.equal(abbv.sourceUpdatedAt,'2026-10-06');assert.equal(abbv.lifecycle.status,'RECRUITING');assert.equal(abbv.lifecycle.hasResults,false);
+ assert.equal(abbv.sourceUpdatedAt,'2026-10-08');assert.equal(abbv.lifecycle.status,'RECRUITING');assert.equal(abbv.lifecycle.hasResults,false);
  const pilot=registrySources.find(source=>source.nctId==='NCT05713799');
- assert.deepEqual(pilot.lifecycle.start,{date:'2026-10-11',type:'ESTIMATED'});assert.equal(pilot.lifecycle.hasResults,false);
+ assert.deepEqual(pilot.lifecycle.start,{date:'2026-10-13',type:'ESTIMATED'});assert.equal(pilot.lifecycle.hasResults,false);
  assert.equal(vikingRhythmRegistryReview.configuredSourcePass.reviewRenewals,false);
  assert.equal(vikingRhythmRegistryReview.discoveryPass.industryComplete,false);
 });
@@ -1600,4 +1602,35 @@ test('ENITH Phase 3 and specialist emugrobart lifecycles preserve results and di
  }
  assert.equal(enicepatideEmugrobartRegistry.configuredSourcePass.reviewRenewals,false);
  assert.equal(enicepatideEmugrobartRegistry.discoveryPass.industryComplete,false);
+});
+
+
+test('8 October update retains typed ZUPREME starts, sponsor uncertainty and overdue boundaries',()=>{
+ const e=industry.find(e=>e.id==='petrelintide');
+ assert.match(e.stage,/Phase 3 ZUPREME recruiting/);
+ assert.doesNotMatch(e.summary,/not yet recruiting|list no study locations/);
+ assert.match(e.summary,/221 actual participants.*sponsor reports 220/);
+ assert.match(e.summary,/efficacy estimand versus 2.0% with placebo/);
+ assert.match(e.limitations,/does not demonstrate cardiovascular-event prevention/);
+ assert.match(e.limitations,/planned initiation is not completed dosing evidence/);
+ assert.equal(e.clinicalApproval,null);
+ assert.equal(zupremeLifecycleUpdate.clinicalApproval,null);
+ assert.equal(zupremeLifecycleUpdate.industryComplete,false);
+ for(const [n,type] of [['07843498','ACTUAL'],['07843485','ESTIMATED'],['07843472','ACTUAL']]){
+  const s=sources.find(s=>s.id==='registry-nct'+n);
+  assert.equal(s.lifecycle.status,'RECRUITING');
+  assert.equal(s.lifecycle.start.type,type);
+  assert.equal(s.lifecycle.hasResults,false);
+ }
+ const phase2=sources.find(s=>s.id==='registry-nct06926842');
+ assert.equal(phase2.lifecycle.status,'COMPLETED');
+ assert.equal(phase2.lifecycle.enrollment.count,221);
+ assert.equal(phase2.lifecycle.hasResults,false);
+ assert.equal(e.additionalEvidence.filter(l=>l.url===phase2.url).length,1);
+ const pilot=industry.find(e=>e.id==='mirabegron-alpha-lipoic-acid');
+ assert.match(pilot.summary,/estimated start moved again to 13 October/);
+ assert.match(pilot.limitations,/48-person target.*estimates 60/);
+ assert.equal(zupremeLifecycleUpdate.configuredSourcePass.overdueReviews,29);
+ assert.equal(zupremeLifecycleUpdate.configuredSourcePass.delayedSources,2);
+ assert.notEqual(sources.find(s=>s.id==='petrelintide-zealand').reviewedAt,zupremeLifecycleUpdate.reviewedAt);
 });

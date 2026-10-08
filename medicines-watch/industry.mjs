@@ -1,3 +1,4 @@
+import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
 import kalohexis710go from './reviews/2026-10-05-authorised-710go.json' with {type:'json'};
 import overdueSourceRenewal from './reviews/2026-10-06-overdue-source-renewal.json' with {type:'json'};
 import gubUcn2Mbl949 from './reviews/2026-10-06-authorised-gub-ucn2-mbl949.json' with {type:'json'};
@@ -364,4 +365,11 @@ export const industry = [...originalIndustry.map(e => {
    ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
    reviewedAt:enicepatideEmugrobartRegistry.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
+ })
+ .map(e=>{
+  const change=zupremeLifecycleUpdate.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  const updatedUrls=new Set(change.additionalEvidence.map(link=>link.url));
+  return {...e,...change.fields,reviewedAt:zupremeLifecycleUpdate.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]).filter(link=>!updatedUrls.has(link.url)),...change.additionalEvidence]};
  });
