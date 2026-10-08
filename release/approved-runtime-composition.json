@@ -136,5 +136,22 @@
     "homepageChanged": false,
     "clinicalAvailabilityChanged": false,
     "memberBehaviourChanged": false
+  },
+  "publicToolProofRetry": {
+    "proof": "EXACT_PUBLIC_TOOL_PROOF_RETRY_V1",
+    "base": "f7999b2be44afd6e6e506762afa860efe5e4e242",
+    "source": "fd43f52f91124000977373a048af18ee403e5c0f",
+    "paths": [
+      "release/approved-runtime-composition.mjs",
+      "release/live-support-runtime.mjs",
+      "tests/live-support-runtime.test.mjs",
+      "release/ai-response-proof.mjs",
+      "release/shift-ai-live.mjs",
+      "tests/ai-response-retry.test.mjs",
+      "tests/public-tool-proof-retry.test.mjs"
+    ],
+    "publicCopyChanged": false,
+    "aiRuntimeChanged": false,
+    "customerDataChanged": false
   }
 }
