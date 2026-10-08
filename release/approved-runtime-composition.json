@@ -185,5 +185,24 @@
     "runtimeChanged": false,
     "medicalContentChanged": false,
     "customerDataChanged": false
+  },
+  "supportRollbackRecognition": {
+    "proof": "EXACT_SUPPORT_ROLLBACK_RECOGNITION_V1",
+    "base": "166c04ab20ec379826bfa1da625d38c98125d376",
+    "source": "5be7aad2fb3052372d2630deed9e74396121d6f3",
+    "paths": [
+      "release/live-support-runtime.mjs",
+      "tests/live-support-runtime.test.mjs",
+      "shift-coach/recover-cancelled-release.mjs"
+    ],
+    "maintenanceSource": "27c66385e151cb6f30e8b1a553f10eecf58c23bf",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/approved-runtime-composition.test.mjs"
+    ],
+    "publicCopyChanged": false,
+    "runtimeChanged": false,
+    "medicalContentChanged": false,
+    "customerDataChanged": false
   }
 }
