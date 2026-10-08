@@ -266,21 +266,5 @@
     "runtimeChanged": false,
     "customerDataChanged": false,
     "acceptanceAssertionsWeakened": false
-  },
-  "logoutNavigationAdoption": {
-    "proof": "EXACT_LOGOUT_NAVIGATION_V1",
-    "base": "b5bd9e34e4869d398884b5317c9234e00d53b6dc",
-    "source": "5414b79b207fb0c3beec86626f2272a7f97295e5",
-    "paths": [
-      "health-passport/production-browser.mjs",
-      "tests/member-reload-browser.test.mjs",
-      "release/approved-runtime-composition.mjs",
-      "tests/approved-runtime-composition.test.mjs",
-      "release/member-acceptance-scope.mjs",
-      "tests/reload-proof-attempt.test.mjs"
-    ],
-    "runtimeChanged": false,
-    "customerDataChanged": false,
-    "acceptanceAssertionsWeakened": false
   }
 }

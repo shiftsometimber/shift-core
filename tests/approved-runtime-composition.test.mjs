@@ -219,7 +219,7 @@ const logoutBefore="await page.locator('[data-member-logout]').click();await pag
 const logoutAfter=logoutBefore.replace("await page.waitForFunction","await page.waitForURL(url=>url.origin===site&&url.pathname==='/member-login',{waitUntil:'domcontentloaded',timeout:30000});await page.waitForFunction");
 function logoutFixture(){
  const source='b'.repeat(40),head='c'.repeat(40),c={proof:'EXACT_LOGOUT_NAVIGATION_V1',base:LOGOUT_ADOPTION_BASE,source,paths:LOGOUT_ADOPTION_PATHS,runtimeChanged:false,customerDataChanged:false,acceptanceAssertionsWeakened:false};
- return {c,options:{head,ancestor:()=>{},diff:(a,b)=>a===c.base?[...c.paths]:[RECONCILIATION_MANIFEST],read:(ref,path)=>path==='health-passport/production-browser.mjs'?[c.base,RELOAD_VERIFIER].includes(ref)?logoutBefore:logoutAfter:'same'}};
+ return {c,options:{head,ancestor:()=>{},diff:(a,b)=>a===c.base?[...c.paths]:[RECONCILIATION_MANIFEST],read:(ref,path)=>path==='health-passport/production-browser.mjs'?[c.base,RELOAD_VERIFIER].includes(ref)?logoutBefore:logoutAfter:'same',content:(ref,path)=>path==='health-passport/production-browser.mjs'?[c.base,RELOAD_VERIFIER].includes(ref)?logoutBefore:logoutAfter:'same'}};
 }
 test('logout adoption binds an exact six-file source and only the real-document wait',()=>{
  const {c,options}=logoutFixture();assert.equal(verifyLogoutAdoption(c,options),c);
