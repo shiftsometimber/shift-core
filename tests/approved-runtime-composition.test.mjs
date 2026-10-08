@@ -104,7 +104,7 @@ test('factual Watch amendment requires the exact passed hosted source rather tha
 });
 test('new factual sources remain byte-pinned after successful historical lookups',()=>{
  verifyReconciledRelease();
- for(const path of WATCH_FACTUAL_UPDATE_PATHS)assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/factual Watch source drift/);
+ for(const path of WATCH_FACTUAL_UPDATE_PATHS)assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/factual Watch source drift/);
  const read=reconciliationHistoricalRead((ref,p)=>ref);
  assert.equal(read('HEAD','medicines-watch/industry.mjs'),COMPOSITION_BASE);
  assert.equal(read('HEAD','checkout.mjs'),'HEAD');
@@ -116,7 +116,7 @@ import {PROOF_TRANSPORT_PATHS,PROOF_TRANSPORT_SOURCE,PROOF_TRANSPORT_MAINTENANCE
 test('finite GitHub transport amendment stays byte-pinned with fresh readers and rejects destructive changes',()=>{
  const receipt=verifyReconciledRelease();assert.equal(receipt.proofTransportUpdate.source,PROOF_TRANSPORT_SOURCE);
  for(const path of [...PROOF_TRANSPORT_PATHS,...PROOF_TRANSPORT_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/source.*drift/);
+  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/source.*drift/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
  }
  assert.equal(reconciliationChangedPath('M','release/growth-preflight.mjs'),true);
@@ -130,7 +130,7 @@ import {SUPPORT_ROLLBACK_SOURCE,SUPPORT_ROLLBACK_PATHS,SUPPORT_ROLLBACK_MAINTENA
 test('serving rollback receipt refresh is finite and changes no public or medical content',()=>{
  const receipt=verifyReconciledRelease();assert.equal(receipt.supportRollbackRefresh.source,SUPPORT_ROLLBACK_SOURCE);
  for(const path of [...SUPPORT_ROLLBACK_PATHS,...SUPPORT_ROLLBACK_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/Serving rollback .*source drift/);
+  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/Serving rollback .*source drift/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
   let existedAtBase=true;
   try{directGit('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});}catch{existedAtBase=false;}
@@ -147,7 +147,7 @@ import {ORAL_LIVE_DISPATCH_SOURCE,ORAL_LIVE_DISPATCH_PATHS,ORAL_LIVE_DISPATCH_MA
 test('oral live dispatch verifier repair is a finite immutable engineering receipt',()=>{
  const receipt=verifyReconciledRelease();assert.equal(receipt.oralLiveDispatchGuard.source,ORAL_LIVE_DISPATCH_SOURCE);
  for(const path of [...ORAL_LIVE_DISPATCH_PATHS,...ORAL_LIVE_DISPATCH_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/(?:Oral dispatch|Serving rollback) .*source drift/);
+  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Oral dispatch|Serving rollback) .*source drift/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
   let existedAtBase=true;
   try{directGit('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});}catch{existedAtBase=false;}
@@ -164,7 +164,7 @@ import {NHS_ARTICLE_PROOF_SOURCE,NHS_ARTICLE_PROOF_PATHS,NHS_ARTICLE_PROOF_MAINT
 test('NHS live verifier refresh pins five exact source files and rejects content or scope drift',()=>{
  const receipt=verifyReconciledRelease();assert.equal(receipt.nhsArticleProofRefresh.source,NHS_ARTICLE_PROOF_SOURCE);
  for(const path of [...NHS_ARTICLE_PROOF_PATHS,...NHS_ARTICLE_PROOF_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/NHS article .*source drift/);
+  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/NHS article .*source drift/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
  }
  for(const flag of ['publicCopyChanged','runtimeChanged','medicalContentChanged','customerDataChanged'])assert.equal(receipt.nhsArticleProofRefresh[flag],false);
@@ -178,12 +178,19 @@ test('late-inserted oral canonical repair is finite and preserves medical and cu
  assert.equal(c.runtimeChanged,true);assert.equal(c.approvedAnchorChanged,true);
  for(const flag of ['publicCopyChanged','medicalContentChanged','customerDataChanged'])assert.equal(c[flag],false);
  for(const path of [...ORAL_CANONICAL_PATHS,...ORAL_CANONICAL_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/oral canonical .*source drift/);
+  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/oral canonical .*source drift/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
  }
  assert.equal(reconciliationChangedPath('M','public-practical-guides.mjs'),true);
  assert.equal(reconciliationChangedPath('M','checkout.mjs'),false);
 });
+
+
+const logoutRawCache=new Map();
+function rawDriftReader(path){return(ref,p)=>{
+ if(ref==='HEAD'&&p===path)return 'changed';
+ const key=ref+':'+p;if(!logoutRawCache.has(key))logoutRawCache.set(key,directGit('git',['show',key],{encoding:'utf8'}));return logoutRawCache.get(key);
+};}
 
 import {verifyReloadAttemptExtension,RELOAD_ATTEMPT_BASE,RELOAD_ATTEMPT_PATHS} from '../release/approved-runtime-composition.mjs';
 const attemptFixture=()=>{
@@ -205,4 +212,23 @@ test('only the exact two recurring observation imports may change transport',()=
  const current=before.replace('timeout-minutes: 25','timeout-minutes: 60').replaceAll('npx wrangler d1 execute DB --remote --config wrangler.jsonc --file','node release/watch-observation-seed.mjs');
  assert.doesNotThrow(()=>assertProductionProofBudget(before,current));
  for(const bad of [current.replace('original-guard','skip-guard'),current.replace('watch-observation-seed.mjs','unknown.mjs'),current.replace('original-rollback','')])assert.throws(()=>assertProductionProofBudget(before,bad));
+});
+
+import {verifyLogoutAdoption,LOGOUT_ADOPTION_BASE,LOGOUT_ADOPTION_PATHS,assertLogoutBoundary,RELOAD_VERIFIER} from '../release/approved-runtime-composition.mjs';
+const logoutBefore="await page.locator('[data-member-logout]').click();await page.waitForFunction(async()=>401);assert.deepEqual(records,[]);";
+const logoutAfter=logoutBefore.replace("await page.waitForFunction","await page.waitForURL(url=>url.origin===site&&url.pathname==='/member-login',{waitUntil:'domcontentloaded',timeout:30000});await page.waitForFunction");
+function logoutFixture(){
+ const source='b'.repeat(40),head='c'.repeat(40),c={proof:'EXACT_LOGOUT_NAVIGATION_V1',base:LOGOUT_ADOPTION_BASE,source,paths:LOGOUT_ADOPTION_PATHS,runtimeChanged:false,customerDataChanged:false,acceptanceAssertionsWeakened:false};
+ return {c,options:{head,ancestor:()=>{},diff:(a,b)=>a===c.base?[...c.paths]:[RECONCILIATION_MANIFEST],read:(ref,path)=>path==='health-passport/production-browser.mjs'?[c.base,RELOAD_VERIFIER].includes(ref)?logoutBefore:logoutAfter:'same',content:(ref,path)=>path==='health-passport/production-browser.mjs'?[c.base,RELOAD_VERIFIER].includes(ref)?logoutBefore:logoutAfter:'same'}};
+}
+test('logout adoption binds an exact six-file source and only the real-document wait',()=>{
+ const {c,options}=logoutFixture();assert.equal(verifyLogoutAdoption(c,options),c);
+ assert.doesNotThrow(()=>assertLogoutBoundary(logoutBefore,logoutAfter));
+ for(const after of [logoutAfter.replace('assert.deepEqual(records,[])',''),logoutAfter.replace('/member-login','/member/dashboard'),logoutAfter+'skip privacy checks'])assert.throws(()=>assertLogoutBoundary(logoutBefore,after));
+});
+test('logout adoption rejects every changed payload, extra file, weakened boundary and missing ancestry',()=>{
+ for(const path of LOGOUT_ADOPTION_PATHS){const {c,options}=logoutFixture(),read=options.read;options.read=(ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p);assert.throws(()=>verifyLogoutAdoption(c,options),/source drift/);}
+ for(const flag of ['runtimeChanged','customerDataChanged','acceptanceAssertionsWeakened']){const {c,options}=logoutFixture();c[flag]=true;assert.throws(()=>verifyLogoutAdoption(c,options));}
+ {const {c,options}=logoutFixture();options.diff=()=>['worker.js'];assert.throws(()=>verifyLogoutAdoption(c,options),/Unrelated/);}
+ {const {c,options}=logoutFixture();options.ancestor=()=>{throw Error('missing ancestor')};assert.throws(()=>verifyLogoutAdoption(c,options),/missing ancestor/);}
 });

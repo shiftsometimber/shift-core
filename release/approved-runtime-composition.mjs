@@ -77,6 +77,39 @@ export function verifyReloadAttemptExtension(c,{head,read,diff,ancestor}){
  for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition maintenance source drift: Serving rollback NHS article oral canonical source drift / Reload-attempt receipt source drift: '+path);
  return c;
 }
+
+export const LOGOUT_ADOPTION_BASE='b5bd9e34e4869d398884b5317c9234e00d53b6dc';
+export const LOGOUT_NAVIGATION_SOURCE='5a478068f8169aba4bd1ed098cb6e43d8096d569';
+export const LOGOUT_NAVIGATION_RUN=37847675774;
+export const LOGOUT_NAVIGATION_JOB=113552515994;
+export const LOGOUT_ADOPTION_PATHS=['health-passport/production-browser.mjs','tests/member-reload-browser.test.mjs','release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','release/member-acceptance-scope.mjs','tests/reload-proof-attempt.test.mjs'];
+const LOGOUT_ADOPTION_SET=new Set(LOGOUT_ADOPTION_PATHS);
+const LOGOUT_OLD="await page.locator('[data-member-logout]').click();await page.waitForFunction";
+const LOGOUT_NEW="await page.locator('[data-member-logout]').click();await page.waitForURL(url=>url.origin===site&&url.pathname==='/member-login',{waitUntil:'domcontentloaded',timeout:30000});await page.waitForFunction";
+export function assertLogoutBoundary(before,after){
+ assert.equal(before.split(LOGOUT_OLD).length,2,'Exactly one actual logout boundary required');
+ assert.equal(after,before.replace(LOGOUT_OLD,LOGOUT_NEW),'Logout verification may only await the real sign-in document; retain every privacy assertion');
+}
+export function verifyLogoutAdoption(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert(c);assert.equal(c.proof,'EXACT_LOGOUT_NAVIGATION_V1');assert.equal(c.base,LOGOUT_ADOPTION_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,LOGOUT_ADOPTION_PATHS);
+ for(const flag of ['runtimeChanged','customerDataChanged','acceptanceAssertionsWeakened'])assert.equal(c[flag],false);
+ ancestor(c.base,c.source);ancestor(c.source,head);ancestor(RELOAD_VERIFIER,LOGOUT_NAVIGATION_SOURCE);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated logout verification source');
+ assert.deepEqual(sorted(diff(c.source,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after logout verification');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition maintenance source drift: Serving rollback NHS article oral canonical source drift / Logout navigation source drift: '+path);
+ assertLogoutBoundary(content(c.base,'health-passport/production-browser.mjs'),content('HEAD','health-passport/production-browser.mjs'));
+ assertLogoutBoundary(content(RELOAD_VERIFIER,'health-passport/production-browser.mjs'),content(LOGOUT_NAVIGATION_SOURCE,'health-passport/production-browser.mjs'));
+ assert.equal(read('HEAD','tests/member-reload-browser.test.mjs'),read(LOGOUT_NAVIGATION_SOURCE,'tests/member-reload-browser.test.mjs'));
+ return c;
+}
+export function assertLogoutNavigationReceipt(run,job){
+ assert.equal(run?.id,LOGOUT_NAVIGATION_RUN);assert.equal(run.run_attempt,1);assert.equal(run.head_sha,LOGOUT_NAVIGATION_SOURCE);
+ assert.equal(run.path,'.github/workflows/my-timber-final-production.yml');assert.equal(run.head_branch,'fix/member-reload-navigation-20261007');assert.equal(run.event,'push');assert.equal(run.status,'completed');assert.equal(run.conclusion,'success');
+ assert.equal(job?.id,LOGOUT_NAVIGATION_JOB);assert.equal(job.run_id,LOGOUT_NAVIGATION_RUN);assert.equal(job.run_attempt,1);assert.equal(job.name,'reload-navigation-diagnostics');assert.equal(job.status,'completed');assert.equal(job.conclusion,'success');
+ for(const number of [8,9,11,12,14,15]){const step=job.steps?.find(s=>s.number===number);assert.equal(step?.status,'completed','Every complete logout/member round is required');assert.equal(step?.conclusion,'success','Every complete logout/member round is required');}
+ return {id:run.id,sha:run.head_sha,path:run.path,conclusion:run.conclusion,attempt:1,rounds:3};
+}
+
 // Finite engineering amendment: bounded read-only GitHub transport recovery.
 export const PROOF_TRANSPORT_BASE='476a151c2c0d4aa28e098205d1b0bda64410a783';
 export const PROOF_TRANSPORT_SOURCE='d601b545686a74dfe51c6f57a5712b11fba510f9';
@@ -84,6 +117,7 @@ export const PROOF_TRANSPORT_PATHS=['release/growth-preflight.mjs','release/gith
 export const PROOF_TRANSPORT_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs'];
 export const RECONCILIATION_PATHS=new Set([...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE,RECONCILIATION_MANIFEST,...WATCH_FACTUAL_UPDATE_PATHS,...WATCH_FACTUAL_UPDATE_MAINTENANCE,...PROOF_TRANSPORT_PATHS,...PROOF_TRANSPORT_MAINTENANCE]);
 for(const path of RELOAD_ATTEMPT_PATHS)RECONCILIATION_PATHS.add(path);
+for(const path of LOGOUT_ADOPTION_PATHS)RECONCILIATION_PATHS.add(path);
 export const PUBLIC_TOOL_BASE='e8592710a52bc0c7a551798bf426d32e59409caf';
 export const PUBLIC_TOOL_SOURCE='3ba486a87df2ee859fcd579263b5211f338fbf04';
 export const PUBLIC_TOOL_PAYLOAD=['public-tool-delivery.mjs','shift-coach/worker.mjs','tests/public-tool-delivery.test.mjs','member-experience/entry.mjs','member-experience/tests/shared-arrival.test.mjs','public-continuity.mjs','tests/public-continuity.test.mjs'];
@@ -323,10 +357,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const logout=c.logoutNavigationAdoption;
+ if(logout)verifyLogoutAdoption(logout,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const logoutHead=logout?logout.base:head;
+ const logoutRead=(ref,path)=>readBlob(logout&&ref==='HEAD'&&LOGOUT_ADOPTION_SET.has(path)?logout.base:ref,path);
  const attempt=c.reloadAttemptProof;
- if(attempt)verifyReloadAttemptExtension(attempt,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const attemptHead=attempt?attempt.base:head;
- const attemptRead=(ref,path)=>readBlob(attempt&&ref==='HEAD'&&RELOAD_ATTEMPT_SET.has(path)?attempt.base:ref,path);
+ if(attempt)verifyReloadAttemptExtension(attempt,{head:logoutHead,read:logoutRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const attemptHead=attempt?attempt.base:logoutHead;
+ const attemptRead=(ref,path)=>logoutRead(attempt&&ref==='HEAD'&&RELOAD_ATTEMPT_SET.has(path)?attempt.base:ref,path);
  const anchor=c.oralCanonicalRepair;
  if(anchor)verifyOralCanonicalRepair(anchor,{head:attemptHead,read:attemptRead,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
@@ -447,7 +485,7 @@ export function reconciliationChangedPath(status,path){
  if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
  // Source changes retain their exact add/modify semantics. Existing verifier
  // maintenance may have been added historically and modified subsequently.
- const allowed=existsAtBase.get(path)?(RELOAD_ATTEMPT_SET.has(path)||ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
+ const allowed=existsAtBase.get(path)?(LOGOUT_ADOPTION_SET.has(path)||RELOAD_ATTEMPT_SET.has(path)||ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
  assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
  return true;
 }
