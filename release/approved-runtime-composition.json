@@ -136,5 +136,19 @@
     "homepageChanged": false,
     "clinicalAvailabilityChanged": false,
     "memberBehaviourChanged": false
+  },
+  "programmeDayPreflight": {
+    "proof": "EXACT_PROGRAMME_PREFLIGHT_V1",
+    "base": "f7999b2be44afd6e6e506762afa860efe5e4e242",
+    "payloadSource": "33aaaa2f87790b165d4c4ff7a0612ee9d247bdc1",
+    "maintenanceSource": "bbba17d571ebcbeed2b4f582c14eb1d9be9bc716",
+    "payloadPaths": [
+      "release/growth-preflight.mjs",
+      ".github/workflows/programme-day-preview.yml",
+      "tests/programme-day-release.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs"
+    ]
   }
 }
