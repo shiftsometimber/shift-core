@@ -14,8 +14,21 @@ const ctx={waitUntil(){}},result=[];
 const {ARTICLE}=await import('../babylove/editorial/oral-bundle.mjs');
 const env={DB:{prepare(sql){let values=[];return {bind(...args){values=args;return this},async first(){return sql.includes('knowledge_article_reviews')&&values[0]===ARTICLE.slug?{...ARTICLE,status:'published',decision:'approved',publish_at:'2026-09-20T00:00:00Z'}:null},async all(){return {results:[]}},async run(){throw Error('Synthetic public proof forbids writes')}}}}};
 for(const p of [...Object.keys(PRACTICAL_GUIDES),'/','/start-here','/wegovy','/mens-mental-health','/explore-knowledge','/guides/retatrutide-uk-guide','/member-login','/member-fit-programme-v1.js','/member-grub-programme-v1.js']){
- const req=new Request('https://shiftsometimber.co.uk'+p),a=await baseline.fetch(req,env,ctx),b=await candidate.fetch(req,env,ctx);assert.equal(b.status,a.status);const before=await a.text(),after=await b.text(),expected=process.env.TABLET_USEFULNESS_PROOF&&p==='/foundayo'?before.replace(baselineGuides.PRACTICAL_GUIDES[p].html,PRACTICAL_GUIDES[p].html):improvePracticalGuides(before,p);
- assert.equal(canonicalize(after,p),canonicalize(expected,p),'Full document differs outside exact reviewed payload: '+p);
+ const req=new Request('https://shiftsometimber.co.uk'+p),a=await baseline.fetch(req,env,ctx),b=await candidate.fetch(req,env,ctx);assert.equal(b.status,a.status);const before=await a.text(),after=await b.text();
+ if(process.env.ORAL_CANONICAL_PROOF==='1'){
+  assert.equal(b.headers.get('location'),a.headers.get('location'),'Existing destination changed: '+p);
+  assert.equal(b.headers.get('content-type'),a.headers.get('content-type'),'Response type changed: '+p);
+  let exactExpected=before;
+  if(p==='/articles/oral-semaglutide-for-weight-loss'){
+   const prior=baselineGuides.PRACTICAL_GUIDES[p].html,current=PRACTICAL_GUIDES[p].html;
+   assert.equal(before.split(prior).length-1,1,'Exact prior oral section required');
+   exactExpected=before.replace(prior,current);
+  }
+  assert.equal(after,exactExpected,'Full response differs outside exact one-anchor repair: '+p);
+ }else{
+  const expected=process.env.TABLET_USEFULNESS_PROOF&&p==='/foundayo'?before.replace(baselineGuides.PRACTICAL_GUIDES[p].html,PRACTICAL_GUIDES[p].html):improvePracticalGuides(before,p);
+  assert.equal(canonicalize(after,p),canonicalize(expected,p),'Full document differs outside exact reviewed payload: '+p);
+ }
  fs.writeFileSync('practical-guides-proof/full-handler-'+p.replaceAll('/','_')+'.html',after);result.push({path:p,status:b.status,exactReviewedTransform:true,protected:!PRACTICAL_GUIDES[p]});
 }
 fs.writeFileSync('practical-guides-proof/full-handler-receipt.json',JSON.stringify(result,null,2));console.log(JSON.stringify({pass:true,responses:result.length,protected:result.filter(r=>r.protected).length}));

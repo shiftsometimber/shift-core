@@ -5,7 +5,16 @@ import {createHash} from 'node:crypto';
 import {improvePracticalGuides,PRACTICAL_GUIDES} from '../public-practical-guides.mjs';
 const live=process.argv.includes('--live'),out='practical-guides-proof',base='https://shiftsometimber.co.uk';
 const priorGuides=process.env.BASELINE_GUIDES?(await import(pathToFileURL(process.env.BASELINE_GUIDES))).PRACTICAL_GUIDES:PRACTICAL_GUIDES;
-const paths=Object.keys(PRACTICAL_GUIDES);
+const canonicalProof=process.env.ORAL_CANONICAL_PROOF==='1';
+const paths=canonicalProof?['/articles/oral-semaglutide-for-weight-loss']:Object.keys(PRACTICAL_GUIDES);
+if(canonicalProof){
+ assert(process.env.BASELINE_GUIDES,'Exact baseline guides required');
+ const receipt=JSON.parse(readFileSync(out+'/full-handler-receipt.json','utf8'));
+ for(const p of Object.keys(PRACTICAL_GUIDES)){
+  assert(receipt.some(r=>r.path===p&&r.exactReviewedTransform===true),'Complete handler proof required: '+p);
+  if(!paths.includes(p))assert.equal(PRACTICAL_GUIDES[p].html,priorGuides[p].html,'Unchanged practical section changed: '+p);
+ }
+}
 const sha=s=>createHash('sha256').update(s).digest('hex'),part=(h,t)=>h.match(new RegExp('<'+t+'\\b[\\s\\S]*?</'+t+'>','i'))?.[0]||'';
 mkdirSync(out,{recursive:true});
 const protectedPaths=['/','/start-here','/articles/wegovy-side-effects-timeline','/articles/nhs-weight-loss-drugs','/member-login','/member-fit-programme-v1.js','/member-grub-programme-v1.js','/member-my-timber-problem-v1.js'];

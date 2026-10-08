@@ -1,3 +1,4 @@
+import {repairOrganicLinks} from './public-seo-organic-links.mjs';
 
 const foodSource='https://www.nhs.uk/better-health/lose-weight/healthy-eating-when-trying-to-lose-weight/';
 const activitySource='https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/';
@@ -97,7 +98,7 @@ const foundayoMonth=section('foundayo-first-month','Starting Foundayo: the pract
 <p><a href="/articles/oral-semaglutide-for-weight-loss#tablet-first-month">Use the shared first-month plan</a> for food, practical check-ins and urgent warning signs, and <a href="/comparisons/medications/wegovy-injection-vs-tablets#tablets-and-injections-uk">compare the daily routines and costs</a>.</p>${tabletSupport}${tabletSources}`);
 export const PRACTICAL_GUIDES=Object.freeze({
  '/comparisons/medications/wegovy-injection-vs-tablets':{marker:'<div class="med2-info">',h1:'Wegovy Injection vs Wegovy',html:tablets},
- '/articles/oral-semaglutide-for-weight-loss':{marker:'<article class="sg-copy">',h1:'Oral semaglutide for weight loss in the UK:',html:tabletMonth},
+ '/articles/oral-semaglutide-for-weight-loss':{marker:'<article class="sg-copy">',h1:'Oral semaglutide for weight loss in the UK:',html:repairOrganicLinks('/articles/oral-semaglutide-for-weight-loss',tabletMonth)},
  '/foundayo':{marker:'<div class="authority-wrap authority-body">',h1:'Foundayo in the UK:',html:foundayoMonth},
  '/articles/weight-loss-after-40-men':{marker:'<div class="cluster-wrap cluster-body">',h1:'Weight loss for men over 40:',html:age,title:'Weight Loss for Men Over 40: A Practical First Week | SHIFT',description:'A practical first week for men over 40: simple food changes, movement, shift-work options, sore-knee alternatives and ways to review progress.'},
  '/guides/mens-weight-management-guide':{marker:'<div class="authority-wrap authority-body">',h1:"Men's weight management:",html:start},

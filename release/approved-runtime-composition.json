@@ -224,5 +224,30 @@
     "runtimeChanged": false,
     "medicalContentChanged": false,
     "customerDataChanged": false
+  },
+  "oralCanonicalRepair": {
+    "proof": "EXACT_ORAL_CANONICAL_REPAIR_V1",
+    "base": "6752fd02823377b9faf4b1a81a83d7b0a26ba79b",
+    "source": "3ba744802b9334370e1c0124edfb8cb4cf1e142c",
+    "paths": [
+      "public-practical-guides.mjs",
+      "tests/practical-guides.test.mjs",
+      "release/live-support-runtime.mjs",
+      "tests/live-support-runtime.test.mjs"
+    ],
+    "maintenanceSource": "9ddadc40bdb4b53ff566a06410a3bf89e80f70dd",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/approved-runtime-composition.test.mjs",
+      ".github/workflows/practical-guides-proof.yml",
+      "scripts/verify-practical-guides-handler.mjs",
+      "release/six-topic-seo-scope.mjs",
+      "scripts/verify-practical-guides.mjs"
+    ],
+    "publicCopyChanged": false,
+    "runtimeChanged": true,
+    "approvedAnchorChanged": true,
+    "medicalContentChanged": false,
+    "customerDataChanged": false
   }
 }

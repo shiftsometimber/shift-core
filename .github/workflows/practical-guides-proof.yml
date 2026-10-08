@@ -39,6 +39,11 @@ jobs:
           if usefulness:
             baseline='7befa850f2a77a38bfd08637184a1952fdf92483'
             allowed={'docs/seo/tablet-runtime-receipt-20261006.json', 'release/seo-follow-through-scope.mjs', 'shift-coach/recover-cancelled-release.mjs', 'tests/tablet-routine-browser.mjs', 'scripts/verify-practical-guides-handler.mjs', 'member-experience/tablet-routine-client.mjs', 'shift-coach/cancelled-release-recovery.mjs', 'shift-coach/release-manifest.json', 'public-practical-guides.mjs', 'release/fit-300-scope.mjs', 'shift-coach/cancelled-release-recovery.test.mjs', 'tests/tablet-routine.test.mjs', 'tests/seo-follow-through-release.test.mjs', '.github/workflows/practical-guides-proof.yml', 'member-experience/tablet-routine.mjs', 'scripts/verify-practical-guides.mjs', 'shift-coach/release-contract.mjs', 'release/book-voice-scope.mjs', 'release/growth-adopt-deployment.mjs'}
+          canonical=os.environ.get('GITHUB_HEAD_REF') == 'fix/oral-support-canonical-20261008'
+          if canonical:
+            subprocess.check_call(['node','--input-type=module','-e',"import {verifyReconciledRelease} from './release/approved-runtime-composition.mjs'; verifyReconciledRelease();"])
+            baseline='6752fd02823377b9faf4b1a81a83d7b0a26ba79b'
+            allowed={'public-practical-guides.mjs','tests/practical-guides.test.mjs','release/live-support-runtime.mjs','tests/live-support-runtime.test.mjs','release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs','.github/workflows/practical-guides-proof.yml','scripts/verify-practical-guides-handler.mjs','release/six-topic-seo-scope.mjs','scripts/verify-practical-guides.mjs','release/approved-runtime-composition.json'}
           changed=set(subprocess.check_output(['git','diff','--name-only',baseline,'HEAD'],text=True).splitlines())
           assert changed == allowed, changed
           protected=['wrangler.jsonc','frontend/member','medicines-watch']+([] if usefulness else ['member-experience'])
@@ -63,7 +68,7 @@ jobs:
         run: |
           git worktree add --detach /tmp/practical-baseline "$(cat /tmp/practical-baseline-ref)"
           ln -s "$GITHUB_WORKSPACE/node_modules" /tmp/practical-baseline/node_modules
-          TABLET_USEFULNESS_PROOF=1 BASELINE_WORKER=/tmp/practical-baseline/shift-coach/worker.mjs node scripts/verify-practical-guides-handler.mjs
+          ORAL_CANONICAL_PROOF=${{ github.head_ref == 'fix/oral-support-canonical-20261008' && '1' || '' }} TABLET_USEFULNESS_PROOF=1 BASELINE_WORKER=/tmp/practical-baseline/shift-coach/worker.mjs node scripts/verify-practical-guides-handler.mjs
       - name: Verify tablet routine in the full browser
         run: |
           npm install --prefix "$RUNNER_TEMP/tablet-qa" --no-audit --no-fund playwright@1.63.0
@@ -71,7 +76,7 @@ jobs:
           node --test tests/tablet-routine.test.mjs
           PLAYWRIGHT_MODULE="$RUNNER_TEMP/tablet-qa/node_modules/playwright" node tests/tablet-routine-browser.mjs
       - name: Verify current destinations and candidate documents
-        run: BASELINE_GUIDES=/tmp/practical-baseline/public-practical-guides.mjs node scripts/verify-practical-guides.mjs
+        run: ORAL_CANONICAL_PROOF=${{ github.head_ref == 'fix/oral-support-canonical-20261008' && '1' || '' }} BASELINE_GUIDES=/tmp/practical-baseline/public-practical-guides.mjs node scripts/verify-practical-guides.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

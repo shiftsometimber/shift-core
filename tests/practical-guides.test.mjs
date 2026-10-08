@@ -42,3 +42,14 @@ test('tablet support uses distinct missed-dose rules and a clinician-led switchi
  }
  assert.match(comparison,/UK authorisation is separate from NHS funding/);
 });
+
+test('late-inserted oral support retains the exact approved canonical movement link',async()=>{
+ const {ORGANIC_LINK_EDITS,repairOrganicLinks}=await import('../public-seo-organic-links.mjs');
+ const path='/articles/oral-semaglutide-for-weight-loss',c=PRACTICAL_GUIDES[path];
+ const [[before,after,count]]=ORGANIC_LINK_EDITS[path];
+ const html=improvePracticalGuides(shell(c),path);
+ assert(!html.includes(before));assert.equal(html.split(after).length-1,count);
+ assert.equal(repairOrganicLinks(path,html),html,'The inserted guide cannot undo an earlier link repair');
+ const original=c.html.replace(after,before);assert.equal(repairOrganicLinks(path,original),c.html,'Only the approved anchor bytes change');
+ assert(PRACTICAL_GUIDES['/foundayo'].html.includes(before),'The independent Foundayo section is not silently changed');
+});

@@ -171,3 +171,16 @@ test('NHS live verifier refresh pins five exact source files and rejects content
  assert.equal(reconciliationChangedPath('M','editorial/five-articles/proof.mjs'),true);
  assert.equal(reconciliationChangedPath('M','checkout.mjs'),false);
 });
+
+import {ORAL_CANONICAL_SOURCE,ORAL_CANONICAL_PATHS,ORAL_CANONICAL_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+test('late-inserted oral canonical repair is finite and preserves medical and customer boundaries',()=>{
+ const c=verifyReconciledRelease().oralCanonicalRepair;assert.equal(c.source,ORAL_CANONICAL_SOURCE);
+ assert.equal(c.runtimeChanged,true);assert.equal(c.approvedAnchorChanged,true);
+ for(const flag of ['publicCopyChanged','medicalContentChanged','customerDataChanged'])assert.equal(c[flag],false);
+ for(const path of [...ORAL_CANONICAL_PATHS,...ORAL_CANONICAL_MAINTENANCE]){
+  assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'changed':'same'),/oral canonical .*source drift/);
+  for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
+ }
+ assert.equal(reconciliationChangedPath('M','public-practical-guides.mjs'),true);
+ assert.equal(reconciliationChangedPath('M','checkout.mjs'),false);
+});

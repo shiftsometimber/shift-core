@@ -50,7 +50,7 @@ test('only the exact evidenced rollback deployment can retain the same captured 
 });
 
 test('exact last failed release receipt is retained without accepting an earlier rollback',()=>{
- assert.equal(p.rollbackReceiptRun,37833478472);
- assert.equal(p.rollbackDeployment,'2ea2b5ae-5a86-45af-a7eb-692c45d08753');
- assert.throws(()=>assertSupportRuntimeIdentity({...active(),id:'96b57bf9-0b59-4d16-ba12-7c17e2408903'}));
+ assert.equal(p.rollbackReceiptRun,37837120636);
+ assert.equal(p.rollbackDeployment,'3e9176eb-468d-42d6-b97a-7c8c1113ffcc');
+ assert.throws(()=>assertSupportRuntimeIdentity({...active(),id:'2ea2b5ae-5a86-45af-a7eb-692c45d08753'}));
 });
