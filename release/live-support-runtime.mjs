@@ -8,7 +8,7 @@ import {join,resolve} from 'node:path';
 // upload are evidence only: neither is a production deployment or rollback grant.
 export const SUPPORT_RUNTIME=Object.freeze({kind:'captured-serving-support-runtime-v1',
  deployment:'8fa068ce-8f6f-4a3d-bee7-87cf8dad6d12',
- rollbackDeployment:'a31ccb67-da1e-4300-853f-b0d94c234e9d',rollbackCreatedOn:'2026-10-08T17:36:17.889038Z',
+ rollbackDeployment:'96b57bf9-0b59-4d16-ba12-7c17e2408903',rollbackEarliest:'2026-10-08T18:39:38.000Z',rollbackLatest:'2026-10-08T18:39:39.956Z',rollbackReceiptRun:37823771310,
  rollbackMessage:'Owned release failed post-deployment checks; restore captured runtime and preserve current data',version:'7b67b3f0-4ec0-41b0-8067-f41dc32ce368',number:3926,
  createdOn:'2026-10-08T14:10:27.976802Z',etag:'101ee4138e7ceea8740edceb5cf69297e348588b6f65d847184f7bf9b9301f26',
  reconstruction:'e7c78344694a0101a8105004356b96d3a2066197',tree:'2f2c2ca801b4773d4bab3b7330cba5e7ca33a48a',
@@ -16,7 +16,7 @@ export const SUPPORT_RUNTIME=Object.freeze({kind:'captured-serving-support-runti
  verificationVersion:'ffd402a6-0bdb-4c72-ae85-a697581b2887',verificationAt:'2026-10-08T16:54:00.117465Z',
  verificationTag:'seo-support-baseline-20261008',verificationMessage:'Verification-only reconstruction of serving continuity runtime; no traffic deployment'});
 const p=SUPPORT_RUNTIME;
-export function assertSupportRuntimeIdentity(active){if(active?.id!==p.deployment){assert.equal(active?.id,p.rollbackDeployment,'Unknown support runtime deployment');assert.equal(active.created_on,p.rollbackCreatedOn);assert.equal(active.source,'wrangler');assert.deepEqual(active.annotations,{'workers/message':p.rollbackMessage,'workers/triggered_by':'deployment'});}assert.deepEqual(active.versions,[{version_id:p.version,percentage:100}],'Serving support runtime moved or split');}
+export function assertSupportRuntimeIdentity(active){if(active?.id!==p.deployment){assert.equal(active?.id,p.rollbackDeployment,'Unknown support runtime deployment');const rollbackCreated=Date.parse(active.created_on);assert(Number.isFinite(rollbackCreated),'Rollback deployment date required');assert(rollbackCreated>=Date.parse(p.rollbackEarliest)&&rollbackCreated<=Date.parse(p.rollbackLatest),'Rollback deployment outside exact evidenced event window');assert.equal(active.source,'wrangler');assert.deepEqual(active.annotations,{'workers/message':p.rollbackMessage,'workers/triggered_by':'deployment'});}assert.deepEqual(active.versions,[{version_id:p.version,percentage:100}],'Serving support runtime moved or split');}
 export function assertSupportRuntimeEvidence(active,version,module,verification){
  assertSupportRuntimeIdentity(active);
  assert.equal(version?.id,p.version);assert.equal(version.number,p.number);assert.equal(version.metadata?.created_on,p.createdOn);assert.equal(version.metadata?.source,'wrangler');assert.equal(version.resources?.script?.etag,p.etag);
