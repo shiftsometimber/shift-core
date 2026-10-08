@@ -284,6 +284,25 @@ export function verifyProgrammeDayPreflightExtension(c,{head,read,diff,ancestor}
  for(const path of c.payloadPaths)assert.equal(read('HEAD',path),read(c.payloadSource,path),'Approved composition maintenance source drift: Programme preflight source drift: '+path);
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Programme preflight verifier source drift: '+path);return c;
 }
+export const SERVING_SEO_BASE='a5e75ea0da68823c786316e7fe6a9e4762ed00f9';
+export const SERVING_SEO_SOURCE='2a26d8e252c2f2c2221103b5f72c15ec1730db89';
+export const SERVING_SEO_CAPTURE='fa481b8193551cea1b8a7fe496ebc0cf70aa0a74';
+export const SERVING_SEO_CAPTURE_PATHS=['public-continuity.mjs','public-seo-closeout.mjs','tests/public-seo-closeout.test.mjs','worker-entry-v6.js'];
+export const SERVING_SEO_PATHS=[...SERVING_SEO_CAPTURE_PATHS,'release/live-support-runtime.mjs','tests/live-support-runtime.test.mjs'];
+export const SERVING_SEO_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/serving-seo-runtime-release.test.mjs','tests/approved-runtime-composition.test.mjs','.github/workflows/practical-guides-proof.yml','scripts/verify-practical-guides-handler.mjs','scripts/verify-practical-guides.mjs'];
+const SERVING_SEO_SET=new Set([...SERVING_SEO_PATHS,...SERVING_SEO_MAINTENANCE]);for(const path of SERVING_SEO_SET)RECONCILIATION_PATHS.add(path);
+export function verifyServingSeoCapture(c,{head,read,diff,ancestor}){
+ assert(c);assert.equal(c.proof,'EXACT_SERVING_SEO_CAPTURE_V1');assert.equal(c.base,SERVING_SEO_BASE);assert.equal(c.source,SERVING_SEO_SOURCE);assert.equal(c.capture,SERVING_SEO_CAPTURE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.deepEqual(c.paths,SERVING_SEO_PATHS);assert.deepEqual(c.maintenancePaths,SERVING_SEO_MAINTENANCE);
+ assert.equal(c.preserveServingSeo,true);for(const flag of ['homepageChanged','clinicalAvailabilityChanged','customerDataChanged','stockChanged','memberBehaviourChanged'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.capture,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff('e7c78344694a0101a8105004356b96d3a2066197',c.capture)),sorted(SERVING_SEO_CAPTURE_PATHS),'Unrelated serving capture change');
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated serving SEO source change');assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths));assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST]);
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Serving SEO source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Serving SEO verifier drift: '+path);
+ for(const path of SERVING_SEO_CAPTURE_PATHS)assert.equal(read(c.source,path),read(c.capture,path),'Captured serving SEO source differs: '+path);
+}
+
 const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
 export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
 export function assertProductionProofBudget(before,current){
@@ -357,10 +376,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const serving=c.servingSeoCapture;
+ if(serving)verifyServingSeoCapture(serving,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const servingHead=serving?serving.base:head;
+ const servingRead=(ref,path)=>readBlob(serving&&ref==='HEAD'&&SERVING_SEO_SET.has(path)?serving.base:ref,path);
  const logout=c.logoutNavigationAdoption;
- if(logout)verifyLogoutAdoption(logout,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const logoutHead=logout?logout.base:head;
- const logoutRead=(ref,path)=>readBlob(logout&&ref==='HEAD'&&LOGOUT_ADOPTION_SET.has(path)?logout.base:ref,path);
+ if(logout)verifyLogoutAdoption(logout,{head:servingHead,read:servingRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const logoutHead=logout?logout.base:servingHead;
+ const logoutRead=(ref,path)=>servingRead(logout&&ref==='HEAD'&&LOGOUT_ADOPTION_SET.has(path)?logout.base:ref,path);
  const attempt=c.reloadAttemptProof;
  if(attempt)verifyReloadAttemptExtension(attempt,{head:logoutHead,read:logoutRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const attemptHead=attempt?attempt.base:logoutHead;
