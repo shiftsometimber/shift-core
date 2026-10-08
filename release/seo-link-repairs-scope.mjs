@@ -1,3 +1,4 @@
+import {reconciliationMarkHistoricalReader,reconciliationHistoricalRead} from './approved-runtime-composition.mjs';
 import {ORGANIC_PATHS,organicHistoricalRead,organicHistoricalHead,organicHistoricalRef,organicChangedPath,organicPreflightPath} from './organic-followthrough-scope.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';import {existsSync,readFileSync} from 'node:fs';
@@ -19,7 +20,7 @@ export function linkRecord(){const p=new URL('./seo-link-repairs.json',import.me
 export function verifyApprovedLinkComposition(read=raw,boundaryRead=read){
  const sourceHead=git('rev-parse','HEAD');const sourceRead=(ref,p)=>objectGit('rev-parse',(ref==='HEAD'?sourceHead:ref)+':'+p);
  if(read===raw)read=sourceRead;if(boundaryRead===raw)boundaryRead=sourceRead;
- read=organicHistoricalRead(read,true);
+ boundaryRead=reconciliationHistoricalRead(boundaryRead,true);read=organicHistoricalRead(read,true);
  const c=linkRecord();if(!c)return null;assert.equal(c.proof,'TWO_OWNER_APPROVED_LINK_EDITS_V1');assert.equal(c.base,LINK_BASE);assert.equal(c.payloadSource,LINK_PAYLOAD);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.payloadPaths,LINK_PAYLOAD_PATHS);assert.deepEqual(c.maintenancePaths,LINK_MAINTENANCE_PATHS);
  assert.deepEqual(c.approval,{owner:'Matt O’Brien',date:'2026-10-07',instruction:'please and then delve into rest of website',review:'SST-SEO-Improvement-Review-2026-10-07.html',scope:'Exact urgent-support href correction and one existing-title CagriSema guide paragraph immediately before Sources and evidence. Clinical wording, metadata, factual check dates, homepage, Start Here, consent and member behaviour preserved.'});
  const head=organicHistoricalHead();for(const r of [c.base,c.payloadSource,c.maintenanceSource])objectGit('merge-base','--is-ancestor',r,head);
@@ -32,7 +33,7 @@ export function verifyApprovedLinkComposition(read=raw,boundaryRead=read){
 let checkedHead=null;
 function ensure(){if(!linkRecord())return false;const h=git('rev-parse','HEAD');if(checkedHead!==h){verifyApprovedLinkComposition();checkedHead=h;}return true;}
 const mappedReaders=new WeakSet();
-export function linkMarkHistoricalReader(out){mappedReaders.add(out);return out;}
+export function linkMarkHistoricalReader(out){mappedReaders.add(out);return reconciliationMarkHistoricalReader(out);}
 export function linkHistoricalRead(read,verifyReader=false){read=organicHistoricalRead(read,verifyReader);if(!linkRecord()||mappedReaders.has(read))return read;if(verifyReader)verifyApprovedLinkComposition(read,raw);else ensure();return linkMarkHistoricalReader((ref,p)=>read(ref==='HEAD'&&LINK_EXISTING.has(p)?LINK_BASE:ref,p));}
 export function linkHistoricalRef(ref,p){ref=organicHistoricalRef(ref,p);return ref==='HEAD'&&LINK_EXISTING.has(p)&&ensure()?LINK_BASE:ref;}
 export function linkHistoricalHead(){return ensure()?LINK_BASE:git('rev-parse','HEAD');}

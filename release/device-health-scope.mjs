@@ -1,3 +1,4 @@
+import {reconciliationGitArgs} from './approved-runtime-composition.mjs';
 // Owner-authorised foreground imports; exact tested bytes, no physical-device pass inferred.
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
@@ -129,7 +130,7 @@ export function assertDeviceHealthSource(read){
  for(const path of DEVICE_HEALTH_PATHS)assert.equal(read('HEAD',path),read(path==='my-timber-app/ios/project.yml'?DEVICE_HEALTH_PURPOSE_SOURCE:DEVICE_HEALTH_CANDIDATE,path),'Native health source drift: '+path);
 }
 export function validateDeviceHealthSource(){
- const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
+ const git=(...args)=>execFileSync('git',reconciliationGitArgs(args),{encoding:'utf8'}).trim();
  git('merge-base','--is-ancestor',DEVICE_HEALTH_BASE,DEVICE_HEALTH_CANDIDATE);
  git('merge-base','--is-ancestor',DEVICE_HEALTH_CANDIDATE,'HEAD');
  git('merge-base','--is-ancestor',DEVICE_HEALTH_PURPOSE_SOURCE,'HEAD');

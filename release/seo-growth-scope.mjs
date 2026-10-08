@@ -1,3 +1,4 @@
+import {reconciliationHistoricalRef,reconciliationHistoricalRead} from './approved-runtime-composition.mjs';
 import {linkHistoricalRead} from './seo-link-repairs-scope.mjs';
 import {metricsRecord,metricsHistoricalRef,metricsHistoricalRead,verifyMetricsConnection} from './metrics-connection-scope.mjs';
 import assert from 'node:assert/strict';
@@ -16,8 +17,8 @@ export function validateRankingGrowth(c){
  assert.deepEqual(c.payloadPaths,RANKING_GROWTH_PAYLOAD_PATHS);assert.deepEqual(c.maintenancePaths,RANKING_GROWTH_MAINTENANCE_PATHS);assert.deepEqual(c.ownerApproval,RANKING_GROWTH_APPROVAL);return c;
 }
 function record(){return JSON.parse(readFileSync(new URL('../shift-coach/release-manifest.json',import.meta.url))).rankingGrowthComposition;}
-export function rankingGrowthHistoricalRef(ref,path,c=record(),includeMetrics=true){const metricsRef=includeMetrics?metricsHistoricalRef(ref,path):ref;if(ref!=='HEAD'||!RANKING_GROWTH_EXISTING.includes(path)||!c)return metricsRef;validateRankingGrowth(c);return RANKING_GROWTH_BASE;}
-export const rankingGrowthHistoricalRead=(read,c)=>(ref,path)=>read(rankingGrowthHistoricalRef(ref,path,c),path);
+export function rankingGrowthHistoricalRef(ref,path,c=record(),includeMetrics=true){const metricsRef=includeMetrics?metricsHistoricalRef(ref,path):ref;if(ref!=='HEAD'||!RANKING_GROWTH_EXISTING.includes(path)||!c)return includeMetrics?reconciliationHistoricalRef(metricsRef,path):metricsRef;validateRankingGrowth(c);return RANKING_GROWTH_BASE;}
+export const rankingGrowthHistoricalRead=(read,c)=>{read=reconciliationHistoricalRead(read);return (ref,path)=>read(rankingGrowthHistoricalRef(ref,path,c),path);};
 export function rankingGrowthGitArgs(args){if(!['rev-parse','show'].includes(args[0])||!args[1]?.startsWith('HEAD:'))return args;const p=args[1].slice(5),ref=rankingGrowthHistoricalRef('HEAD',p);return ref==='HEAD'?args:[args[0],ref+':'+p,...args.slice(2)];}
 export function rankingGrowthPinnedRef(c,path){if(!c||RANKING_GROWTH_EXISTING.includes(path))return null;validateRankingGrowth(c);return c.payloadPaths.includes(path)?c.payloadSource:c.maintenancePaths.includes(path)?c.maintenanceSource:null;}
 export function verifyRankingGrowth(c,read=(ref,p)=>execFileSync('git',['rev-parse',ref+':'+p],{encoding:'utf8'}).trim()){
