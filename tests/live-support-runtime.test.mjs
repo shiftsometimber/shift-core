@@ -39,3 +39,12 @@ test('production adoption recognises the fully checked capture without looking u
  assert(source.includes("assert.deepEqual(JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json')).ownerCapturedProof,proof)"));
  assert(source.includes('Owner runtime moved during adoption'));
 });
+
+test('only the exact evidenced rollback deployment can retain the same captured bytes',()=>{
+ const rollback={...active(),id:p.rollbackDeployment,created_on:p.rollbackCreatedOn,source:'wrangler',annotations:{'workers/message':p.rollbackMessage,'workers/triggered_by':'deployment'}};
+ const captured=assertSupportRuntimeEvidence(rollback,version(),module(),verification());
+ assert.equal(captured.deployment,p.rollbackDeployment);
+ assert.equal(assertSupportStartingPoint({...record(),ownerCapturedProof:captured},rollback).deployment,p.rollbackDeployment);
+ for(const patch of [{id:'another-rollback'},{created_on:'later'},{source:'api'},{annotations:{}}])assert.throws(()=>assertSupportRuntimeIdentity({...rollback,...patch}));
+ assert.throws(()=>assertSupportStartingPoint(record(),rollback),'Old deployment receipt cannot stand in for rollback proof');
+});

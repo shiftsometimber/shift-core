@@ -1,4 +1,4 @@
-import {readSiteAnswer,observeEdgeAnswer} from './ai-response-proof.mjs';
+import {readSiteAnswerWithRetry,observeEdgeAnswer} from './ai-response-proof.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
@@ -30,8 +30,10 @@ if(phase==='before'){
  report.quickReplyMedianMs=[...report.quickReplyTimingsMs].sort((a,b)=>a-b)[2];
  report.quickReplyTargetMet=report.quickReplyMedianMs<1000;
  const siteRequest=async(message,{fresh=false}={})=>{
-  const startedAt=Date.now(),response=await fetch('https://api.shiftsometimber.co.uk/v1/ai/chat',{method:'POST',headers:{'Content-Type':'application/json',...(fresh?{'Cache-Control':'no-cache'}:{}),Origin:'https://shiftsometimber.co.uk'},body:JSON.stringify({message,useJourney:false,stream:true}),signal:AbortSignal.timeout(45000)});
-  return readSiteAnswer(response,{startedAt,requireStream:fresh,sources:report.siteAnswer?.sources});
+  return readSiteAnswerWithRetry(async()=>{
+   const startedAt=Date.now(),response=await fetch('https://api.shiftsometimber.co.uk/v1/ai/chat',{method:'POST',headers:{'Content-Type':'application/json',...(fresh?{'Cache-Control':'no-cache'}:{}),Origin:'https://shiftsometimber.co.uk'},body:JSON.stringify({message,useJourney:false,stream:true}),signal:AbortSignal.timeout(45000)});
+   return {response,startedAt};
+  },{requireStream:fresh,sources:report.siteAnswer?.sources},{onRetry:receipt=>console.log('SITE_ANSWER_PROVIDER_FALLBACK_RETRY '+JSON.stringify(receipt))});
  };
  report.siteAnswer=await siteRequest('What is Life Back?',{fresh:true});
  const answers=new Map();observeEdgeAnswer(answers,report.siteAnswer);
