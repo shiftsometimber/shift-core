@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
-import {summariseContinuity,londonDay,continuityScorecard} from '../../continuity-measurement/scorecard.mjs';
+import {summariseContinuity,summariseAfterTreatment,londonDay,continuityScorecard} from '../../continuity-measurement/scorecard.mjs';
 const exposure={userId:1,at:'2026-09-01T10:00:00Z'};
 test('first Today starts cohort, including unfinished loops; Days 2–7 need full calendar window',()=>{
  const input={exposures:[exposure,{...exposure,at:'2026-09-03T10:00:00Z'},{userId:2,at:exposure.at}],actions:[{userId:1,at:'2026-09-07T22:59:59Z'}]};
@@ -82,4 +82,16 @@ test('support resolution counts explicit latest-reply confirmation without retur
  insert('COACH-confirmed',1,'closed','latest',{replyId:'latest',at:'2026-09-28'});insert('COACH-team-closed',1,'closed','latest',null);insert('COACH-stale',1,'closed','new',{replyId:'old',at:'2026-09-28'});insert('COACH-future-confirmation',1,'closed','latest',{replyId:'latest',at:'2027-01-01'});insert('COACH-test',2,'closed','latest',{replyId:'latest',at:'2026-09-28'});insert('COACH-legacy-json',1,'closed','latest',{replyId:'latest',at:'2026-09-28'},'Original plain request');
  const DB={prepare(sql){let args=[];return{bind(...a){args=a;return this},async all(){return{results:db.prepare(sql).all(...args)}}}}};
  const r=await continuityScorecard(DB,{now:'2026-09-29'});assert.equal(r.supportFollowThrough.memberConfirmedResolution.status,'observed');assert.equal(r.supportFollowThrough.memberConfirmedResolution.requests,1);assert.equal(r.supportFollowThrough.teamMarkedClosed,5);assert(!JSON.stringify(r).includes('PRIVATE'));
+});
+
+test('after-treatment cohort reports mature week-four return and member-reported usefulness without private content',()=>{
+ const starts=[{userId:1,at:'2026-09-01T10:00:00Z'},{userId:2,at:'2026-09-01T11:00:00Z'}];
+ const weekViews=[{userId:1,at:'2026-09-22T09:00:00Z'},{userId:2,at:'2026-09-15T09:00:00Z'}];
+ const episodes=[
+  {userId:1,id:'a',at:'2026-09-02T10:00:00Z',reviews:[{at:'2026-09-03T10:00:00Z',outcome:'helped',text:'PRIVATE WORDS'}]},
+  {userId:2,id:'b',at:'2026-09-03T10:00:00Z',reviews:[{at:'2026-09-04T10:00:00Z',outcome:'didnt-help'}]}
+ ];
+ const r=summariseAfterTreatment({starts,weekViews,episodes,asOf:'2026-09-29T23:00:00Z'});
+ assert.equal(r.starters,2);assert.equal(r.week4.numerator,1);assert.equal(r.week4.denominator,2);assert.equal(r.week4.ratePct,50);
+ assert.equal(r.helped.numerator,1);assert.equal(r.helped.denominator,2);assert.equal(r.helped.ratePct,50);assert(!JSON.stringify(r).includes('PRIVATE WORDS'));
 });

@@ -426,7 +426,8 @@ async function act2bV42Asset(request) {
   headers.set("Cache-Control", "no-store, must-revalidate");
   headers.set("X-Shift-Act2B-Chrome", "v42-enclosure-deleted");
   headers.delete("Content-Length");
-  return new Response(request.method === "HEAD" ? null : cleaned + "\n" + NEWSROOM_MENU_SCRIPT, { status: 200, headers });
+  const publicControlPatch = `;(()=>{const rename=()=>{const ask=document.getElementById('askTimberLaunch');if(ask&&/^Ask Shift$/i.test((ask.textContent||'').trim()))ask.textContent='Ask Timber'};const run=()=>{rename();new MutationObserver(rename).observe(document.body,{childList:true,subtree:true});if(!document.getElementById('sstMobileFloatSafe')){const s=document.createElement('style');s.id='sstMobileFloatSafe';s.textContent='@media(max-width:560px){body{padding-bottom:max(76px,env(safe-area-inset-bottom))}.ask-timber-launch{bottom:calc(10px + env(safe-area-inset-bottom))!important}.cookie-settings-fab,.cookie-choices,[class*=cookie][style*=fixed]{bottom:calc(8px + env(safe-area-inset-bottom))!important}}';document.head.appendChild(s)}};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run()})();`;
+  return new Response(request.method === "HEAD" ? null : cleaned + "\n" + NEWSROOM_MENU_SCRIPT + "\n" + publicControlPatch, { status: 200, headers });
 }
 
 

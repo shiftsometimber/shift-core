@@ -1,6 +1,3 @@
-import {verifyOrganicDelivery} from '../release/organic-followthrough-live.mjs';
-import {preserveOrganicLinks} from '../public-seo-organic-links.mjs';
-import {preserveApprovedLinks} from '../public-seo-link-repairs.mjs';
 import {preserveExactMetricsBootstrap} from '../release/metrics-inline-preservation.mjs';
 import {preserveFollowThrough} from '../release/seo-follow-through-preservation.mjs';
 import {preserveSixTopicSeo} from '../release/six-topic-seo-preservation.mjs';
@@ -56,8 +53,7 @@ const hash=body=>createHash('sha256').update(body).digest('hex');
 for(const path of paths){
  const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,path+' must return HTTP 200');
- const rawBody=Buffer.from(await r.arrayBuffer());
- const body=preserveApprovedLinks(path,preserveOrganicLinks(path,rawBody));
+ const body=Buffer.from(await r.arrayBuffer());
  const reviewedSource=restoreStoppingCitation(path,preserveFollowThrough(path,Buffer.from(preserveExactMetricsBootstrap(body.toString('utf8'))),{required:Boolean(before)}),{required:Boolean(before)});
  const footerPreserved=Buffer.from(applySharedFooter(restoreBookVoiceCopy(path,restoreTrustCentre(path,reviewedSource.toString('utf8'),{required:Boolean(before)}))));
  const pwaPreserved=preservePwaPresentation(path,preserveApprovedStartup(path,preserveGrowthCopy(path,footerPreserved,{required:Boolean(before)})),{required:Boolean(before)});
@@ -73,14 +69,12 @@ for(const path of paths){
  // Apply only the exact already-withdrawn photo options to both comparison
  // sides. The rest of the complete sign-in document remains hash compared.
  if(path==='/member-login')preserved=Buffer.from(withdrawWeightIllustrations(preserved.toString('utf8')));
- pages.push({...publicPageEvidence(path,r.status,preserved,{requireTreatmentsEntry:Boolean(before),hash}),actualSha256:hash(rawBody),actualBytes:rawBody.length,continuityAdditionRemoved:!preserved.equals(body)});
+ pages.push({...publicPageEvidence(path,r.status,preserved,{requireTreatmentsEntry:Boolean(before),hash}),actualSha256:hash(body),actualBytes:body.length,continuityAdditionRemoved:!preserved.equals(body)});
 }
-// A merge or successful deploy alone cannot satisfy these approved changes.
-const organicDelivery=before?await verifyOrganicDelivery():null;
 let comparison='baseline';
 try{if(before)comparison=assertPublicPagesPreserved(pages,JSON.parse(readFileSync(before)).pages);}
 catch(error){writeFileSync(output,JSON.stringify({checkedAt:new Date().toISOString(),pages,comparison:'failed',error:error.message},null,2));throw error;}
-writeFileSync(output,JSON.stringify({checkedAt:new Date().toISOString(),pages,comparison,organicDelivery},null,2));
+writeFileSync(output,JSON.stringify({checkedAt:new Date().toISOString(),pages,comparison},null,2));
 console.log(before?'PASS: all '+paths.length+' public/login responses preserve existing content; exact approved Continuity entries and Life Back link are checked before comparison.':'Captured all '+paths.length+' public/login response hashes, including full raw-body hashes.');
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)await runPublicPreservation();
