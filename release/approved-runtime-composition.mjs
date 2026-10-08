@@ -50,6 +50,28 @@ export const RECONCILIATION_MAINTENANCE=[
  'release/seo-growth-scope.mjs','release/app-scope.mjs',
  'scripts/b1-release-scope.mjs','tests/organic-followthrough-release.test.mjs','release/device-health-scope.mjs','release/footer-scope.mjs','tests/seo-growth-release.test.mjs','release/owner-captured-runtime.mjs','tests/owner-captured-runtime.test.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','release/growth-adopt-deployment.mjs','release/member-acceptance-scope.mjs','shift-coach/scope.mjs','shift-me-source-gate.mjs','release/metrics-connection-scope.mjs','release/seo-context-scope.mjs','release/seo-discovery-scope.mjs','release/seo-follow-through-scope.mjs','release/fit-300-scope.mjs','tests/production-completion-release.test.mjs','.github/workflows/cloudflare-production-promote.yml','.github/workflows/online-privacy-recovery-proof.yml','.github/workflows/shift-coach-integration.yml','.github/workflows/organic-followthrough-proof.yml','.github/workflows/seo-link-repairs-proof.yml','.github/workflows/seo-growth-proof.yml','acquisition-activation/metrics-release.test.mjs','shift-coach/release.test.mjs','tests/growth-release.test.mjs','shift-coach/browser-proof.mjs','shift-coach/full-page-proof.mjs','shift-coach/phantom-members.mjs','shift-coach/browser-journey-support.mjs','release/watch-registry-wave-scope.mjs','release/sitewide-seo-scope.mjs','release/treatment-guidance-scope.mjs',...RELOAD_PAYLOAD];
 export const RECONCILIATION_PATHS=new Set([...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE,RECONCILIATION_MANIFEST]);
+export const PUBLIC_TOOL_BASE='56bba771e9a4006b788bd8fb40358baa3d737dd0';
+export const PUBLIC_TOOL_SOURCE='628bfd86cde27765603c83ee7b22a4fd3a1a095e';
+export const PUBLIC_TOOL_PAYLOAD=['public-tool-delivery.mjs','shift-coach/worker.mjs','tests/public-tool-delivery.test.mjs'];
+export const PUBLIC_TOOL_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/public-tool-release.test.mjs'];
+const PUBLIC_TOOL_PATHS=new Set([...PUBLIC_TOOL_PAYLOAD,...PUBLIC_TOOL_MAINTENANCE]);
+for(const path of PUBLIC_TOOL_PATHS)RECONCILIATION_PATHS.add(path);
+export function verifyPublicToolExtension(c,{head,read,diff,ancestor}={}){
+ assert(c,'Exact public-tool extension receipt required');
+ assert.equal(c.proof,'EXACT_PUBLIC_TOOL_DELIVERY_V1');
+ assert.equal(c.base,PUBLIC_TOOL_BASE);assert.equal(c.payloadSource,PUBLIC_TOOL_SOURCE);
+ assert.deepEqual(c.payloadPaths,PUBLIC_TOOL_PAYLOAD);assert.deepEqual(c.maintenancePaths,PUBLIC_TOOL_MAINTENANCE);
+ assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
+ assert.equal(c.publicCopyChanged,false);assert.equal(c.ratingsInvented,false);
+ assert.equal(c.homepageChanged,false);assert.equal(c.privateCacheChanged,false);
+ for(const ref of [c.base,c.payloadSource,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.payloadSource)),sorted(PUBLIC_TOOL_PAYLOAD),'Unrelated public-tool payload change');
+ assert.deepEqual(sorted(diff(c.payloadSource,c.maintenanceSource)),sorted(PUBLIC_TOOL_MAINTENANCE),'Unrelated public-tool verifier change');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after public-tool receipt');
+ for(const path of PUBLIC_TOOL_PAYLOAD)assert.equal(read('HEAD',path),read(c.payloadSource,path),'Public-tool payload source drift: '+path);
+ for(const path of PUBLIC_TOOL_MAINTENANCE)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Public-tool maintenance source drift: '+path);
+ return c;
+}
 const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
 export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
 export function assertProductionProofBudget(before,current){
@@ -110,6 +132,13 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ // Validate all new raw HEAD bytes before exposing any older historical view.
+ const extension=c.publicToolDelivery;
+ if(extension)verifyPublicToolExtension(extension,{head,read:readBlob,
+  diff:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),
+  ancestor:(a,b)=>git('merge-base','--is-ancestor',a,b)});
+ const compositionHead=extension?extension.base:head;
+ const compositionBlob=(path)=>extension&&PUBLIC_TOOL_PATHS.has(path)?readBlob(extension.base,path):readBlob('HEAD',path);
  // Cache only Git graph facts for resolved immutable commits and this exact
  // receipt. Supplied readers, current bytes and working-tree checks stay fresh.
  const structureKey=JSON.stringify([process.cwd(),head,c]);
@@ -118,12 +147,12 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   const diff=(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean).sort();
   assert.deepEqual(diff(COMPOSITION_BASE,COMPOSITION_SOURCE),sorted(COMPOSITION_PATHS));
   assert.deepEqual(diff(COMPOSITION_SOURCE,c.maintenanceSource).filter(p=>p!==RECONCILIATION_MANIFEST),sorted(RECONCILIATION_MAINTENANCE));
-  assert.deepEqual(diff(c.maintenanceSource,head),[RECONCILIATION_MANIFEST]);
+  assert.deepEqual(diff(c.maintenanceSource,compositionHead),[RECONCILIATION_MANIFEST]);
   verifiedImmutableStructures.add(structureKey);
  }
  // Verify current bytes before exposing historical views to older guards.
- for(const path of COMPOSITION_PATHS)assert.equal(readBlob('HEAD',path),readBlob(COMPOSITION_SOURCE,path),'Approved composition source / boundary drift: '+path);
- for(const path of RECONCILIATION_MAINTENANCE)assert.equal(readBlob('HEAD',path),readBlob(c.maintenanceSource,path),'Approved composition maintenance source drift: '+path);
+ for(const path of COMPOSITION_PATHS)assert.equal(compositionBlob(path),readBlob(COMPOSITION_SOURCE,path),'Approved composition source / boundary drift: '+path);
+ for(const path of RECONCILIATION_MAINTENANCE)assert.equal(compositionBlob(path),readBlob(c.maintenanceSource,path),'Approved composition maintenance source drift: '+path);
  for(const path of RELOAD_PAYLOAD)assert.equal(readBlob('HEAD',path),readBlob(RELOAD_VERIFIER,path),'Independent reload harness source drift: '+path);
  productionProofBefore??=execFileSync('git',['show',COMPOSITION_BASE+':.github/workflows/cloudflare-production-promote.yml'],{encoding:'utf8'});
  assertProductionProofBudget(productionProofBefore,readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8'));
@@ -170,7 +199,7 @@ export function reconciliationChangedPath(status,path){
  if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
  // Source changes retain their exact add/modify semantics. Existing verifier
  // maintenance may have been added historically and modified subsequently.
- const allowed=existsAtBase.get(path)?(RECONCILIATION_MAINTENANCE.includes(path)?['A','M']:['M']):['A'];
+ const allowed=existsAtBase.get(path)?((RECONCILIATION_MAINTENANCE.includes(path)||PUBLIC_TOOL_MAINTENANCE.includes(path))?['A','M']:['M']):['A'];
  assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
  return true;
 }
