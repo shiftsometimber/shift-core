@@ -47,3 +47,10 @@ test('production time budget cannot change commands, permissions, gates or rollb
  for(const bad of [current.replace('original-guard','skip-guard'),current.replace('original-rollback',''),current+'permissions: write-all\n',current.replace('timeout-minutes: 60','timeout-minutes: 120')])assert.throws(()=>assertProductionProofBudget(before,bad));
  assert.throws(()=>assertProductionProofBudget(before.replace('timeout-minutes: 25','timeout-minutes: 30'),current));
 });
+
+test('warmed default immutable blob proof never caches a supplied reader',()=>{
+ verifyReconciledRelease();verifyReconciledRelease();
+ const visited=[];
+ assert.throws(()=>verifyReconciledRelease((ref,path)=>{visited.push([ref,path]);return ref==='HEAD'&&path==='worker-entry-v6.js'?'changed':'same';}),/Approved composition source \/ boundary drift/);
+ assert(visited.some(([ref,path])=>ref==='HEAD'&&path==='worker-entry-v6.js'));
+});

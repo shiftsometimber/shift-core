@@ -59,13 +59,23 @@ export function assertProductionProofBudget(before,current){
 }
 let productionProofBefore;
 const verifiedImmutableStructures=new Set();
-export function verifyReconciledRelease(read=(ref,path)=>git('rev-parse',ref+':'+path)){
+const defaultReconciliationRead=(ref,path)=>git('rev-parse',ref+':'+path);
+const immutableCompositionBlobs=new Map();
+export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
  assert.equal(c.base,COMPOSITION_BASE);assert.equal(c.source,COMPOSITION_SOURCE);
  assert.deepEqual(c.maintenancePaths,RECONCILIATION_MAINTENANCE);
  assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
  const head=git('rev-parse','HEAD');
+ // Only actual Git objects at resolved immutable commit IDs are cacheable.
+ // Supplied readers are always invoked again, even after a successful proof.
+ const readBlob=read===defaultReconciliationRead?(ref,path)=>{
+  const commit=ref==='HEAD'?head:ref;assert.match(commit,/^[a-f0-9]{40}$/);
+  const key=JSON.stringify([process.cwd(),commit,path]);
+  if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
+  return immutableCompositionBlobs.get(key);
+ }:read;
  // Cache only Git graph facts for resolved immutable commits and this exact
  // receipt. Supplied readers, current bytes and working-tree checks stay fresh.
  const structureKey=JSON.stringify([process.cwd(),head,c]);
@@ -78,9 +88,9 @@ export function verifyReconciledRelease(read=(ref,path)=>git('rev-parse',ref+':'
   verifiedImmutableStructures.add(structureKey);
  }
  // Verify current bytes before exposing historical views to older guards.
- for(const path of COMPOSITION_PATHS)assert.equal(read('HEAD',path),read(COMPOSITION_SOURCE,path),'Approved composition source / boundary drift: '+path);
- for(const path of RECONCILIATION_MAINTENANCE)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: '+path);
- for(const path of RELOAD_PAYLOAD)assert.equal(read('HEAD',path),read(RELOAD_VERIFIER,path),'Independent reload harness source drift: '+path);
+ for(const path of COMPOSITION_PATHS)assert.equal(readBlob('HEAD',path),readBlob(COMPOSITION_SOURCE,path),'Approved composition source / boundary drift: '+path);
+ for(const path of RECONCILIATION_MAINTENANCE)assert.equal(readBlob('HEAD',path),readBlob(c.maintenanceSource,path),'Approved composition maintenance source drift: '+path);
+ for(const path of RELOAD_PAYLOAD)assert.equal(readBlob('HEAD',path),readBlob(RELOAD_VERIFIER,path),'Independent reload harness source drift: '+path);
  productionProofBefore??=execFileSync('git',['show',COMPOSITION_BASE+':.github/workflows/cloudflare-production-promote.yml'],{encoding:'utf8'});
  assertProductionProofBudget(productionProofBefore,readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8'));
  assert.equal(git('diff','--name-only'),'','Working source changed during composition verification');
