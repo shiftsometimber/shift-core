@@ -1,13 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
-import {mkdtempSync,writeFileSync,rmSync} from 'node:fs';
+import {mkdtempSync,writeFileSync,rmSync,readFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {execFileSync} from 'node:child_process';
 import {chromium} from 'playwright';
-import {commissioningLogin,memberReload} from '../rendered-member-acceptance-support.mjs';
+import {commissioningLogin,memberReload,memberReady} from '../rendered-member-acceptance-support.mjs';
 
 const email='shiftsometimber+structured-reload-browser@gmail.com';
 const ready='<section id="previewAuth" hidden></section><main id="previewMember" class="is-ready" style="height:200px">Synthetic browser fixture</main>';
@@ -69,4 +69,34 @@ test('a failed retry document cannot pass the recovered navigation',async()=>{
  await fixture(async({page,site})=>{
   await assert.rejects(memberReload(page,{site}),/document failed/);
  },{retryStatus:503});
+});
+
+test('Passport waits for the actual logout redirect before authenticating a different account',async()=>{
+ const source=readFileSync(new URL('../health-passport/production-browser.mjs',import.meta.url),'utf8');
+ assert.match(source,/\[data-member-logout\].*?click\(\);await page\.waitForURL\(url=>url\.origin===site&&url\.pathname==='\/member-login'/);
+ let signedIn=true,loginPageLoaded=false,loginCalls=0;
+ const sockets=new Set();
+ const server=createServer((req,res)=>{
+  const path=new URL(req.url,'http://fixture').pathname;
+  if(path==='/v1/auth/logout'){signedIn=false;res.writeHead(204);res.end();return}
+  if(path==='/logout-finish'){setTimeout(()=>{res.end('ready')},700);return}
+  if(path==='/member-login'){loginPageLoaded=true;res.writeHead(200,{'Content-Type':'text/html'});res.end('<h1>Sign in</h1>');return}
+  if(path==='/v1/auth/login'){assert(loginPageLoaded,'a new login must not race the pending logout redirect');loginCalls++;signedIn=true;res.writeHead(200,{'Content-Type':'application/json'});res.end('{}');return}
+  if(path==='/v1/me'){res.writeHead(signedIn?200:401,{'Content-Type':'application/json'});res.end(JSON.stringify(signedIn?{user:{email}}:{error:'unauthorised'}));return}
+  if(path==='/member/dashboard'){res.writeHead(200,{'Content-Type':'text/html'});res.end(ready+'<button id="logout">Log out</button><script>logout.onclick=async()=>{await fetch("/v1/auth/logout",{method:"POST"});await fetch("/logout-finish");location.href="/member-login"}</script>');return}
+  res.writeHead(404);res.end();
+ });
+ server.on('connection',socket=>{sockets.add(socket);socket.once('close',()=>sockets.delete(socket))});
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+ const site='http://127.0.0.1:'+server.address().port,browser=await chromium.launch({headless:true});
+ try{
+  const context=await browser.newContext(),page=await context.newPage();
+  await page.goto(site+'/member/dashboard');await page.locator('#logout').click();
+  await page.waitForFunction(async()=>{const r=await fetch('/v1/me');return r.status===401});
+  assert.equal(loginPageLoaded,false,'session revocation can precede the logout redirect');
+  await page.waitForURL(url=>url.origin===site&&url.pathname==='/member-login',{waitUntil:'domcontentloaded',timeout:5000});
+  const revoked=await context.request.get(site+'/v1/me');assert.equal(revoked.status(),401);
+  await commissioningLogin(page,{site,api:site,oidc:'local-fixture-only',email,password:'fixture-only'});
+  await memberReady(page,{site});assert.equal(loginCalls,1);assert.equal(new URL(page.url()).pathname,'/member/dashboard');
+ }finally{await browser.close();for(const socket of sockets)socket.destroy();await new Promise(resolve=>server.close(resolve))}
 });
