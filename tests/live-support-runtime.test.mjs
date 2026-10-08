@@ -28,3 +28,14 @@ test('provider read must succeed and every supplied rebuild is checked freshly',
  await assert.rejects(()=>verifySupportRuntime(active(),version(),{...options,fetcher:async()=>({ok:false})}));
  await assert.rejects(()=>verifySupportRuntime(active(),version(),{...options,token:''}));
 });
+
+import {readFileSync} from 'node:fs';
+import {verifiedStartingPoint} from '../shift-coach/cancelled-release-recovery.mjs';
+test('production adoption recognises the fully checked capture without looking up a fabricated hosted run',()=>{
+ const point=verifiedStartingPoint(record(),active());assert.equal(point.kind,p.kind);assert.equal(point.run,null);
+ const source=readFileSync(new URL('../release/growth-adopt-deployment.mjs',import.meta.url),'utf8');
+ assert(source.includes('if(point.kind!==OWNER_RUNTIME.kind&&point.kind!==SUPPORT_RUNTIME.kind){'));
+ assert(source.includes('point.kind===SUPPORT_RUNTIME.kind?verifySupportRuntime(active,version):verifyOwnerRuntime(active,version)'));
+ assert(source.includes("assert.deepEqual(JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json')).ownerCapturedProof,proof)"));
+ assert(source.includes('Owner runtime moved during adoption'));
+});

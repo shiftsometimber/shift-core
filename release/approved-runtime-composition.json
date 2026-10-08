@@ -104,9 +104,10 @@
       "release/live-support-runtime.mjs",
       "tests/live-support-runtime.test.mjs",
       "shift-coach/recover-cancelled-release.mjs",
-      "shift-coach/cancelled-release-recovery.mjs"
+      "shift-coach/cancelled-release-recovery.mjs",
+      "release/growth-adopt-deployment.mjs"
     ],
-    "maintenanceSource": "bec59aebe99e8f79308caba874de43f486148bdb",
+    "maintenanceSource": "fdcde61f8c5f5b1fd8fc242ba11ba6ce06f29f3e",
     "supportSnapshotSource": "e7c78344694a0101a8105004356b96d3a2066197",
     "publicCopyChanged": false,
     "ratingsInvented": false,
