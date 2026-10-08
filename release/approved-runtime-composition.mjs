@@ -48,7 +48,7 @@ export const RECONCILIATION_MAINTENANCE=[
  'release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs',
  'release/organic-followthrough-scope.mjs','release/seo-link-repairs-scope.mjs',
  'release/seo-growth-scope.mjs','release/app-scope.mjs',
- 'scripts/b1-release-scope.mjs','tests/organic-followthrough-release.test.mjs','release/device-health-scope.mjs','release/footer-scope.mjs','tests/seo-growth-release.test.mjs','release/owner-captured-runtime.mjs','tests/owner-captured-runtime.test.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','release/growth-adopt-deployment.mjs','release/member-acceptance-scope.mjs',...RELOAD_PAYLOAD];
+ 'scripts/b1-release-scope.mjs','tests/organic-followthrough-release.test.mjs','release/device-health-scope.mjs','release/footer-scope.mjs','tests/seo-growth-release.test.mjs','release/owner-captured-runtime.mjs','tests/owner-captured-runtime.test.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','release/growth-adopt-deployment.mjs','release/member-acceptance-scope.mjs','shift-coach/scope.mjs',...RELOAD_PAYLOAD];
 export const RECONCILIATION_PATHS=new Set([...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE,RECONCILIATION_MANIFEST]);
 const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
 export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}

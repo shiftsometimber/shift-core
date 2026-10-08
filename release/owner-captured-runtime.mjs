@@ -42,7 +42,7 @@ export function assertOwnerStartingPoint(record,active){
  assertOwnerRuntimeIdentity(active);
  assert.equal(record?.decision,'retain');assert.equal(record.from,p.version);assert.equal(record.to,p.version);
  for(const name of ['run','verifiedRun','ownedProof'])assert.equal(record[name],null,'Captured runtime is not a CI deployment');
- assert.equal(record.dataChanged,false);assert.equal(record.customerRecordsRead,0);
+ assert.equal(record.dataChanged,false);assert.equal(record.customerRecordsRead,0);assert.equal(record.technicalRecovery,undefined,'Conflicting recovery evidence');
  const expected={kind:p.kind,deployment:active.id,version:p.version,reconstruction:p.reconstruction,tree:p.tree,module:p.module,bytes:p.bytes,sha256:p.sha256,etag:p.etag,captureAt:p.captureAt};
  assert.deepEqual(record.ownerCapturedProof,expected);
  return {kind:p.kind,source:null,run:null,version:p.version,reconstruction:p.reconstruction,deployment:active.id};
@@ -51,15 +51,15 @@ export function rebuildOwnerRuntime(){
  const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
  git('merge-base','--is-ancestor',p.reconstruction,'HEAD');
  assert.equal(git('rev-parse',p.reconstruction+'^{tree}'),p.tree);
- const dir=mkdtempSync(join(tmpdir(),'shift-captured-runtime-'));
+ const dir=mkdtempSync(join(tmpdir(),'shift-captured-runtime-'));let attached=false;
  try{
-  execFileSync('git',['worktree','add','--detach',dir,p.reconstruction],{stdio:'pipe',timeout:120000,maxBuffer:4*1024*1024});
+  execFileSync('git',['worktree','add','--detach',dir,p.reconstruction],{stdio:'pipe',timeout:120000,maxBuffer:4*1024*1024});attached=true;
   // Physical dependency paths are required for identical unminified module bytes.
   cpSync(realpathSync(resolve('node_modules')),join(dir,'node_modules'),{recursive:true,dereference:false});
   execFileSync(process.execPath,[join(dir,'node_modules/wrangler/bin/wrangler.js'),'deploy','--dry-run','--config',join(dir,'wrangler.jsonc'),'--outdir',join(dir,'build')],{cwd:dir,stdio:'pipe',timeout:120000,maxBuffer:4*1024*1024});
   const bytes=readFileSync(join(dir,'build/worker.js'));
   return {module:p.module,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')};
- }finally{try{execFileSync('git',['worktree','remove','--force',dir],{stdio:'pipe'});}finally{rmSync(dir,{recursive:true,force:true});}}
+ }finally{try{if(attached)execFileSync('git',['worktree','remove','--force',dir],{stdio:'pipe'});}finally{rmSync(dir,{recursive:true,force:true});}}
 }
 export async function verifyOwnerRuntime(active,version,{token=process.env.CLOUDFLARE_API_TOKEN,fetcher=fetch,rebuild=rebuildOwnerRuntime}={}){
  assertOwnerRuntimeIdentity(active);assert(typeof token==='string'&&token.trim(),'Provider read access required');

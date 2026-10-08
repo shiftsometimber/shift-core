@@ -1,3 +1,4 @@
+import {reconciliationHistoricalRead} from '../release/approved-runtime-composition.mjs';
 import {RECIPE_IMAGE_PATHS,validateRecipeImages} from '../release/recipe-image-scope.mjs';
 import {WATCH_REGISTRY_WAVE_PATHS,validateWatchRegistryWave} from '../release/watch-registry-wave-scope.mjs';
 import {FIT300_PATHS,READONLY_ORGANIC_PATHS,validateFit300} from '../release/fit-300-scope.mjs';
@@ -21,7 +22,7 @@ for(const line of git('diff','--name-status',base,candidate).split('\n').filter(
  if(WATCH_REGISTRY_WAVE_PATHS.includes(path)){assert(['A','M'].includes(status),'Unexpected Watch registry-wave change: '+path);continue;}
  if(!WATCH_REGISTRY_WAVE_PATHS.includes(path))assertCoachingChangedPath(status,path);
 }
-validateWatchRegistryWave((ref,path)=>git('rev-parse',ref+':'+path));
+validateWatchRegistryWave(reconciliationHistoricalRead((ref,path)=>git('rev-parse',ref+':'+path),true));
 for(const path of [...additions,...COACH_BACKEND_PATHS])assert.equal(git('rev-parse',candidate+':'+path),git('rev-parse','HEAD:'+path),'Candidate payload changed in merge: '+path);
 assert.equal(readFileSync('wrangler.coaching.jsonc','utf8'),readFileSync('wrangler.jsonc','utf8'));
 console.log(JSON.stringify({...verifyCoachingRelease(),listedAdditions:additions.size,listedBackendChanges:COACH_BACKEND_PATHS.size,productionActivated:false}));
