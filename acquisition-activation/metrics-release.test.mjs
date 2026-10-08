@@ -1,3 +1,4 @@
+import {reconciliationRecord,verifyReconciledRelease} from '../release/approved-runtime-composition.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {metricsRecord,validateMetricsConnection,verifyMetricsConnection,METRICS_BASE,METRICS_PAYLOAD_PATHS,METRICS_MAINTENANCE_PATHS,METRICS_PATHS,metricsChangedPath,metricsPreflightPath} from '../release/metrics-connection-scope.mjs';
@@ -25,7 +26,9 @@ test('historical added verifier and current modified verifier both require exact
 test('production preflight recognises only the independently pinned metrics files',()=>{
  assert.equal(metricsPreflightPath('acquisition-activation/ai-referrals.test.mjs'),true);
  assert.equal(metricsPreflightPath('release/app-preflight.mjs'),true);
- for(const p of ['worker-entry-v6.js','wrangler.jsonc','public-seo-growth-data.mjs','unlisted.mjs'])assert.equal(metricsPreflightPath(p),false);
+ assert.equal(metricsPreflightPath('worker-entry-v6.js'),Boolean(reconciliationRecord()));
+ if(reconciliationRecord())assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p==='worker-entry-v6.js'?'tampered':p),/Approved composition source \/ boundary drift/);
+ for(const p of ['wrangler.jsonc','public-seo-growth-data.mjs','unlisted.mjs'])assert.equal(metricsPreflightPath(p),false);
  const c=metricsRecord(),read=(ref,p)=>ref==='HEAD'&&p==='release/app-preflight.mjs'?'tampered':p;
  assert.throws(()=>verifyMetricsConnection(c,read),/Metrics maintenance source drift/);
 });

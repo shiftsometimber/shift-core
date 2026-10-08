@@ -30,9 +30,13 @@ const immutableCache=new Map();
 const immutableGit=(...args)=>{const key=JSON.stringify([process.cwd(),...args]);if(!immutableCache.has(key))immutableCache.set(key,rawGit(...args));return immutableCache.get(key);};
 const rawRead=(ref,p)=>rawGit('rev-parse',ref+':'+p);
 export function verifyMetricsConnection(c=metricsRecord(),read=rawRead){
- if(!c)return null;read=linkHistoricalRead(read,true);validateMetricsConnection(c);
- const head=rawGit('rev-parse','HEAD');
- const sourceRead=read===rawRead?(ref,p)=>immutableGit('rev-parse',(ref==='HEAD'?head:ref)+':'+p):read;
+ if(!c)return null;
+ const defaultReader=read===rawRead,head=rawGit('rev-parse','HEAD');
+ // Capture the default-reader identity before historical wrappers replace it.
+ // Only immutable blob IDs are cached, keyed by the freshly resolved HEAD.
+ if(defaultReader)read=(ref,p)=>immutableGit('rev-parse',(ref==='HEAD'?head:ref)+':'+p);
+ read=linkHistoricalRead(read,true);validateMetricsConnection(c);
+ const sourceRead=read;
  for(const ref of [c.base,c.payloadSource,c.maintenanceSource])immutableGit('merge-base','--is-ancestor',ref,head);
  const paths=(from,to)=>immutableGit('diff','--name-only',from,to).split('\n').filter(Boolean).sort();
  assert.deepEqual(paths(c.base,c.payloadSource),c.payloadPaths,'Unrelated metrics payload change');
@@ -43,6 +47,7 @@ export function verifyMetricsConnection(c=metricsRecord(),read=rawRead){
  for(const p of ['activation-measurement/assets.mjs','acquisition-activation/consent.mjs','frontend/member/api-adapter-v33d.js','wrangler.jsonc','.github/workflows/cloudflare-production-promote.yml','shift-coach/release-manifest.json','worker-entry-v6.js','shift-coach/worker.mjs']){
   assert.equal(sourceRead('HEAD',p),sourceRead(c.base,p),'Protected metrics boundary drift: '+p);
  }
+ assert.equal(rawGit('rev-parse','HEAD'),head,'Metrics source HEAD changed during verification');
  return {base:c.base,payload:c.payloadSource,maintenance:c.maintenanceSource,publicCopyChanged:false,consentChanged:false,thirdPartyCollectionChanged:false};
 }
 let verified=false;

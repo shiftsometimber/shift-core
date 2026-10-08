@@ -1,3 +1,4 @@
+import {startCoaching,addCoachingWeek,setCoachingSituation,chooseCoachingFocus} from './browser-journey-support.mjs';
 import {gzipSync,gunzipSync} from 'node:zlib';
 import {createServer} from 'node:http';
 import {readFileSync,existsSync,mkdirSync,writeFileSync} from 'node:fs';
@@ -57,9 +58,7 @@ try{
   });
   await check(profile.name,'Blank required answers do not silently save',async()=>{await page.locator('[data-coach-setup] button[type=submit]').click();return{pass:(await state(ctx)).memory===null,observed:'Browser required-field validation; no coaching record created'};});
   await check(profile.name,'Create personal coaching through the visible form',async()=>{
-   await page.getByLabel('What do you want back?',{exact:true}).fill(profile.goal);await page.getByLabel('What does your week look like?',{exact:true}).fill(profile.week);
-   await page.locator('[data-coach-setup] [name=focus]').selectOption(profile.focus);await page.locator('[data-coach-setup] [name=stage]').selectOption(profile.stage);await page.locator('[data-coach-setup] [name=mode]').selectOption(profile.mode);
-   await page.getByRole('button',{name:'Prepare my first action',exact:true}).click();await saved(page);await page.locator('[data-coach-action=accept]').waitFor();
+   await startCoaching(page,profile.goal);await addCoachingWeek(page,profile.week);await setCoachingSituation(page,profile);await chooseCoachingFocus(page,profile.focus);
    const s=await state(ctx);profile.firstAction=s.action;
    await page.locator('#shiftCoach').screenshot({path:out+'/'+profile.name.toLowerCase()+'-01-first-action.png'});
    return{pass:s.action.reason.includes(profile.goal)&&s.action.reason.includes(profile.week)&&s.memory.mode===profile.mode,observed:s.action};

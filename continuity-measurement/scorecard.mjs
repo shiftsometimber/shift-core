@@ -6,6 +6,26 @@ const unavailable=reason=>({status:'unavailable',numerator:null,denominator:null
 const ratio=(n,d,status='not_yet_eligible')=>({status:d?'observed':status,numerator:n,denominator:d,ratePct:d?Math.round(10000*n/d)/100:null});
 const outcomes=new Set(['helped','not-fit','not-tried','skip','didnt-help','didnt-fit','didnt-try']);
 const answers=new Set(['helped','not-fit','not-tried','didnt-help','didnt-fit','didnt-try']);
+export function summariseAfterTreatment({starts=[],weekViews=[],episodes=[],asOf=new Date().toISOString(),since='1970-01-01'}){
+ const now=instant(asOf),today=londonDay(asOf),first=new Map();
+ for(const e of starts){const at=instant(e.at);if(at===null||at>now||at<instant(since))continue;if(!first.has(e.userId)||at<first.get(e.userId))first.set(e.userId,at)}
+ let eligible=0,returned=0;
+ for(const [userId,at] of first){
+  const day=londonDay(at);if(today<day+28)continue;eligible++;
+  if(weekViews.some(v=>v.userId===userId&&instant(v.at)!==null&&instant(v.at)>=at&&instant(v.at)<=now&&londonDay(v.at)>=day+21&&londonDay(v.at)<=day+27))returned++;
+ }
+ const distinct=new Map();
+ for(const e of episodes){
+  const start=first.get(e.userId),delivered=instant(e.at);if(start===undefined||delivered===null||delivered<start||delivered>now)continue;
+  const key=e.userId+':'+e.id,old=distinct.get(key);if(!old)distinct.set(key,{...e,reviews:[...(e.reviews||[])]});else old.reviews.push(...(e.reviews||[]));
+ }
+ let answered=0,helped=0;
+ for(const e of distinct.values()){
+  const delivered=instant(e.at),last=(e.reviews||[]).filter(r=>outcomes.has(r.outcome)&&instant(r.at)!==null&&instant(r.at)>=delivered&&instant(r.at)<=now).sort((a,b)=>instant(a.at)-instant(b.at)).at(-1);
+  if(last&&answers.has(last.outcome)){answered++;if(last.outcome==='helped')helped++}
+ }
+ return{starters:first.size,week4:{...ratio(returned,eligible,first.size?'not_yet_eligible':'awaiting_first_after_treatment_start'),window:'Week 4 after starting My Timber after-treatment support; full week 4 must have ended.'},helped:ratio(helped,answered,'no_answered_after_treatment_episodes'),privacy:'Aggregate only; no identities, medicine details or free text returned.'};
+}
 export function summariseContinuity({exposures=[],actions=[],episodes=[],asOf=new Date().toISOString(),since='1970-01-01',activityAvailable=true,episodesAvailable=true}){
  const now=instant(asOf),today=londonDay(asOf),first=new Map();
  for(const e of exposures){const at=instant(e.at);if(at===null||at>now)continue;if(!first.has(e.userId)||at<first.get(e.userId))first.set(e.userId,at)}
@@ -47,6 +67,8 @@ export async function continuityScorecard(DB,options={}){
  const staff=tables.has('hq_users')?" AND NOT EXISTS(SELECT 1 FROM hq_users h WHERE lower(h.email)=lower(u.email))":'';
  const eligible=`SELECT u.id FROM users u WHERE NOT ${TEST_ACCOUNT_SQL}${staff}`;
  const exposures=(await DB.prepare(`SELECT e.user_id userId,e.occurred_at at FROM product_events e WHERE e.event_name='continuity_today_exposed' AND e.source='member_client' AND e.user_id IN (${eligible})`).all()).results;
+ const afterEvents=(await DB.prepare(`SELECT e.user_id userId,e.event_name eventName,e.occurred_at at FROM product_events e WHERE e.event_name IN ('after_treatment_started','after_treatment_week_viewed') AND e.source='member_client' AND e.user_id IN (${eligible})`).all()).results;
+ const afterStarts=afterEvents.filter(e=>e.eventName==='after_treatment_started'),afterWeekViews=afterEvents.filter(e=>e.eventName==='after_treatment_week_viewed');
  const actions=[],episodes=[];
  if(tables.has('check_ins'))for(const r of (await DB.prepare(`SELECT user_id,submitted_at FROM check_ins WHERE case_id IS NULL AND user_id IN (${eligible})`).all()).results)actions.push({userId:r.user_id,at:r.submitted_at});
  if(tables.has('member_state'))for(const r of (await DB.prepare(`SELECT user_id,preferences FROM member_state WHERE user_id IN (${eligible})`).all()).results){
@@ -81,5 +103,6 @@ export async function continuityScorecard(DB,options={}){
   const dated=t=>instant(t.updated_at||t.created_at);
   supportFollowThrough={status:'observed',openRequests:open.length,unassignedRequests:open.filter(t=>t.assigned_hq_user_id===null).length,withoutUpdate48Hours:open.filter(t=>dated(t)!==null&&dated(t)<=instant(window.asOf)-48*3600000).length,unknownUpdateTime:open.filter(t=>dated(t)===null||dated(t)>instant(window.asOf)).length,teamMarkedClosed:current.filter(t=>t.status==='closed').length,memberConfirmedResolution:resolutionAvailable?{status:'observed',requests:current.filter(t=>t.status==='closed'&&t.latest_reply_confirmed&&instant(t.confirmed_at)!==null&&instant(t.confirmed_at)<=instant(window.asOf)).length,basis:'Member explicitly confirmed the latest team reply answered the request. This does not measure clinical benefit.'}:unavailable('Reply metadata is unavailable in this support store.'),responsePromise:null,scope:'All retained real-member coaching requests as of the report time, including requests older than the cohort window. Closed status is not proof that help was delivered. The 48-hour marker highlights waiting work; it is not a promised response time.'};
  }
- return {available:true,...summariseContinuity({exposures,actions,episodes,asOf:window.asOf,since:window.since,activityAvailable:['check_ins','member_state','daily_checkin_actions'].every(t=>tables.has(t)),episodesAvailable:['check_ins','member_state','daily_checkin_actions'].every(t=>tables.has(t))}),supportFollowThrough};
+ const afterTreatment=summariseAfterTreatment({starts:afterStarts,weekViews:afterWeekViews,episodes,asOf:window.asOf,since:window.since});
+ return {available:true,...summariseContinuity({exposures,actions,episodes,asOf:window.asOf,since:window.since,activityAvailable:['check_ins','member_state','daily_checkin_actions'].every(t=>tables.has(t)),episodesAvailable:['check_ins','member_state','daily_checkin_actions'].every(t=>tables.has(t))}),afterTreatment,supportFollowThrough};
 }

@@ -1,3 +1,4 @@
+import {reconciliationHistoricalRef} from './approved-runtime-composition.mjs';
 import {METRICS_PATHS,verifyMetricsConnection} from './metrics-connection-scope.mjs';
 import {RANKING_GROWTH_PATHS,rankingGrowthGitArgs} from './seo-growth-scope.mjs';
 export const WATCH_RECONCILIATION_BASE='e723261284d733476370c0e19d3ac7c516d9b8b6';
@@ -17,7 +18,7 @@ export function validateWatchSourceComposition(c,inline){
  assert.deepEqual(g('diff','--name-only',ZENAGAMTIDE_BASE,ZENAGAMTIDE_SOURCE).split('\n').filter(Boolean).sort(),[...ZENAGAMTIDE_PATHS].sort());
  for(const path of ZENAGAMTIDE_PATHS)assert.equal(g('rev-parse','HEAD:'+path),g('rev-parse',(WATCH_MERGED_UPDATE_PATHS.includes(path)?WATCH_REGISTRY_WAVE_PROOF_SOURCE:ZENAGAMTIDE_SOURCE)+':'+path),'Merged Watch evidence drift: '+path);
  for(const path of WATCH_RECONCILIATION_PATHS)assert.equal(g('rev-parse','HEAD:'+path),g('rev-parse',((inline?.paths.includes(path)?inline.source:null)||usefulnessPinnedRef(JSON.parse(readFileSync('shift-coach/release-manifest.json')).seoFollowThroughComposition,path)||c.source)+':'+path),'Watch reconciliation source drift: '+path);
- assert.equal(g('rev-parse',c.base+':.github/workflows/cloudflare-production-promote.yml'),g('rev-parse','HEAD:.github/workflows/cloudflare-production-promote.yml'));
+ assert.equal(g('rev-parse',c.base+':.github/workflows/cloudflare-production-promote.yml'),g('rev-parse',reconciliationHistoricalRef('HEAD','.github/workflows/cloudflare-production-promote.yml')+':.github/workflows/cloudflare-production-promote.yml'));
 }
 export const ROLLOUT_PHOTO_BASE='4460ea56f931da4003ace68d5d404831c47e08f7';
 export const ROLLOUT_PHOTO_PATHS=['member-experience/public-preservation.mjs','release/fit-300-scope.mjs','shift-coach/public-trust-repair.mjs','shift-coach/public-trust-repair.test.mjs','shift-coach/release-contract.mjs'];
@@ -30,7 +31,7 @@ export function validateRolloutPhotoComposition(c){
 import {validateInlineToolComposition,usefulnessPinnedRef,FOLLOW_PATHS,followPinnedRef,followHistoricalRead,validateFollowComposition} from './seo-follow-through-scope.mjs';
 import {sitewidePinnedRef,sitewideHistoricalRead,validateSitewideComposition} from './sitewide-seo-scope.mjs';
 import assert from 'node:assert/strict';
-import {execFileSync} from 'node:child_process';
+import {immutableHistoryExecFileSync as execFileSync} from './approved-runtime-composition.mjs';
 import {readFileSync,existsSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';

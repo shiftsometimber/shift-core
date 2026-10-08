@@ -12,6 +12,7 @@ const worker=fs.readFileSync('worker-entry-v6.js','utf8');
 const workerCompact=worker.replace(/"/g,"'").replace(/\s+/g,'');
 const config=fs.readFileSync('wrangler.jsonc','utf8');
 const extension=fs.readFileSync('frontend/member/my-timber-v11.js','utf8');
+const memberShell=fs.readFileSync('frontend/member/member-shell-v33g.js','utf8');
 
 need(workerCompact.includes("newURL('/my-timber-preview',request.url)"),'live My Timber route is not serving the governed shell');
 for(const marker of [
@@ -55,12 +56,16 @@ for(const marker of ['shiftsometimber.co.uk/lounge*','www.shiftsometimber.co.uk/
 need(workerCompact.includes("newURL('/lounge',request.url),301"),'legacy Tap Room route is not permanently redirected to The Lounge');
 need(!shell.includes('Isolated My Timber preview'),'live My Timber still presents itself as an isolated preview');
 need(!shell.includes('Nothing here touches your live Shift account'),'live My Timber still contains preview-only account copy');
-for(const marker of ['.sst-coming-plan b,.sst-coming-plan span{display:block}', '.sst-coming-plan span{margin-top:4px'])need(extension.includes(marker),`coming-off plan sentence spacing missing ${marker}`);
+for(const marker of ['id="someoneSentMyTimber"','someone-who-cares','My Timber is free — food, movement, check-ins and everyday support','my-timber-share'])need(shell.includes(marker),`shared My Timber arrival contract missing ${marker}`);
+for(const marker of ['.sst-coming-plan b,.sst-coming-plan span{display:block}', '.sst-coming-plan span{margin-top:4px'])need(extension.includes(marker),`after-treatment plan sentence spacing missing ${marker}`);
+need(!shell.includes('data-coming-off'),'after-treatment support must live in Today/support, not as a separate My Timber navigation tile');
+for(const marker of ["const AFTER_WEEKS=[","WEEK '+week+' OF 12","medicineBoundary:'prescriber'","After-treatment support · week"])need(extension.includes(marker),`after-treatment 12-week contract missing ${marker}`);
 const login=fs.readFileSync('member-login-fastpath-v1.js','utf8');
 for(const marker of ['body?.rememberMe===true','Domain=.shiftsometimber.co.uk','Max-Age=','REMEMBER_DAYS=90','STANDARD_HOURS=12'])need(login.includes(marker),`remember-me contract missing ${marker}`);
 const state=fs.readFileSync('member-state-fast-v1.js','utf8');
 for(const marker of ['matchAll','values.slice(0,4)','for(const raw of candidates)'])need(state.includes(marker),`duplicate-cookie recovery contract missing ${marker}`);
 need(workerCompact.includes('authenticateMember(request,env)'),'Lounge page gate is not using duplicate-cookie-safe member authentication');
+for(const marker of ["window.addEventListener('pageshow'","document.documentElement.style.visibility='hidden'","document.querySelector('#previewMember')?.classList.remove('is-ready')","delete window.SST_MEMBER"])need(memberShell.includes(marker),`logout/back privacy guard missing ${marker}`);
 
 console.log('My Timber navigation gate: PASS');
 
