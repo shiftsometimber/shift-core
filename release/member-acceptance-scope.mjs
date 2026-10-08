@@ -1,3 +1,4 @@
+import {fetchOriginalReloadProof} from '../shift-coach/reload-receipt.mjs';
 import {reconciliationGitArgs,reconciliationRecord,RELOAD_RUN,assertReconciledReloadReceipt} from './approved-runtime-composition.mjs';
 import {COACH_BASE,COACH_BACKEND_PATHS,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 // Acceptance only. Bind the exact reviewed scripts to independent live evidence.
@@ -63,8 +64,7 @@ export async function verifyMemberAcceptanceProof(get){
  const production=await get('/actions/runs/37213204839');assert.equal(production.head_sha,MEMBER_DIAGNOSTICS_BASE);assert.equal(production.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(production.conclusion,'success');
  receipts.push({id:diagnostics.id,sha:diagnostics.head_sha,path:diagnostics.path,conclusion:diagnostics.conclusion,unchangedServingSource:production.head_sha});
  if(reconciliationRecord()){
-  const run=await get('/actions/runs/'+RELOAD_RUN),jobs=await get('/actions/runs/'+RELOAD_RUN+'/jobs?filter=latest&per_page=100');
-  receipts.push(assertReconciledReloadReceipt(run,jobs.jobs?.find(j=>j.id===113266037954)));
+  receipts.push(await fetchOriginalReloadProof(get));
  }
  return receipts;
 }
