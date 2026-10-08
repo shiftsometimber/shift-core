@@ -282,5 +282,34 @@
     "runtimeChanged": false,
     "customerDataChanged": false,
     "acceptanceAssertionsWeakened": false
+  },
+  "servingSeoCapture": {
+    "proof": "EXACT_SERVING_SEO_CAPTURE_V1",
+    "base": "a5e75ea0da68823c786316e7fe6a9e4762ed00f9",
+    "source": "2a26d8e252c2f2c2221103b5f72c15ec1730db89",
+    "capture": "fa481b8193551cea1b8a7fe496ebc0cf70aa0a74",
+    "paths": [
+      "public-continuity.mjs",
+      "public-seo-closeout.mjs",
+      "tests/public-seo-closeout.test.mjs",
+      "worker-entry-v6.js",
+      "release/live-support-runtime.mjs",
+      "tests/live-support-runtime.test.mjs"
+    ],
+    "maintenanceSource": "e78d59557e357358bbf5543b277d5b2f35661ed3",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/serving-seo-runtime-release.test.mjs",
+      "tests/approved-runtime-composition.test.mjs",
+      ".github/workflows/practical-guides-proof.yml",
+      "scripts/verify-practical-guides-handler.mjs",
+      "scripts/verify-practical-guides.mjs"
+    ],
+    "preserveServingSeo": true,
+    "homepageChanged": false,
+    "clinicalAvailabilityChanged": false,
+    "customerDataChanged": false,
+    "stockChanged": false,
+    "memberBehaviourChanged": false
   }
 }

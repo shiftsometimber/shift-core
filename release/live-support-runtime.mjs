@@ -7,16 +7,21 @@ import {join,resolve} from 'node:path';
 // Retain this exact already-serving runtime. The reconstruction and verification
 // upload are evidence only: neither is a production deployment or rollback grant.
 export const SUPPORT_RUNTIME=Object.freeze({kind:'captured-serving-support-runtime-v1',
- deployment:'8fa068ce-8f6f-4a3d-bee7-87cf8dad6d12',
- rollbackDeployment:'3e9176eb-468d-42d6-b97a-7c8c1113ffcc',rollbackEarliest:'2026-10-08T20:22:58.000Z',rollbackLatest:'2026-10-08T20:23:00.082Z',rollbackReceiptRun:37837120636,
- rollbackMessage:'Owned release failed post-deployment checks; restore captured runtime and preserve current data',version:'7b67b3f0-4ec0-41b0-8067-f41dc32ce368',number:3926,
- createdOn:'2026-10-08T14:10:27.976802Z',etag:'101ee4138e7ceea8740edceb5cf69297e348588b6f65d847184f7bf9b9301f26',
- reconstruction:'e7c78344694a0101a8105004356b96d3a2066197',tree:'2f2c2ca801b4773d4bab3b7330cba5e7ca33a48a',
- module:'worker.js',bytes:13957875,sha256:'cfc21a281782dc185e30723df53bb5c7e917332996feacfcd6916b0bc430f082',
- verificationVersion:'ffd402a6-0bdb-4c72-ae85-a697581b2887',verificationAt:'2026-10-08T16:54:00.117465Z',
- verificationTag:'seo-support-baseline-20261008',verificationMessage:'Verification-only reconstruction of serving continuity runtime; no traffic deployment'});
+ deployment:'8c9fea69-2cca-4da2-9eba-a50dc0e0a72c',deploymentCreatedOn:'2026-10-08T21:20:19.542998Z',
+ rollbackDeployment:null,rollbackEarliest:null,rollbackLatest:null,rollbackReceiptRun:null,
+ rollbackMessage:'Owned release failed post-deployment checks; restore captured runtime and preserve current data',version:'a403001f-6170-4c81-8afe-e01d05a404df',number:3948,
+ createdOn:'2026-10-08T21:20:16.113647Z',etag:'790904f0358557c2b8e2b62f728950310b2facb2abd463e82c942392707a75d5',
+ reconstruction:'fa481b8193551cea1b8a7fe496ebc0cf70aa0a74',tree:'b3c38898f79fe658625d8a674dc90cc288638e85',
+ module:'worker.js',bytes:13960814,sha256:'eefcc9eb762984093aac7c9988c1a3435e36e882591e74b88d059f6eaff5a658',
+ verificationVersion:'1af5c7b8-13ad-4124-9f1c-48123020234c',verificationAt:'2026-10-08T21:48:07.147732Z',
+ verificationTag:'seo-serving-capture-20261008',verificationMessage:'Verification-only canonical reconstruction of captured serving SEO runtime; no traffic deployment'});
 const p=SUPPORT_RUNTIME;
-export function assertSupportRuntimeIdentity(active){if(active?.id!==p.deployment){assert.equal(active?.id,p.rollbackDeployment,'Unknown support runtime deployment');const rollbackCreated=Date.parse(active.created_on);assert(Number.isFinite(rollbackCreated),'Rollback deployment date required');assert(rollbackCreated>=Date.parse(p.rollbackEarliest)&&rollbackCreated<=Date.parse(p.rollbackLatest),'Rollback deployment outside exact evidenced event window');assert.equal(active.source,'wrangler');assert.deepEqual(active.annotations,{'workers/message':p.rollbackMessage,'workers/triggered_by':'deployment'});}assert.deepEqual(active.versions,[{version_id:p.version,percentage:100}],'Serving support runtime moved or split');}
+export function assertSupportRuntimeIdentity(active){
+ assert.equal(active?.id,p.deployment,'Unknown support runtime deployment');
+ assert.equal(active.created_on,p.deploymentCreatedOn,'Captured deployment date drift');assert.equal(active.source,'wrangler');
+ assert.deepEqual(active.annotations,{'workers/triggered_by':'deployment'});
+ assert.deepEqual(active.versions,[{version_id:p.version,percentage:100}],'Serving support runtime moved or split');
+}
 export function assertSupportRuntimeEvidence(active,version,module,verification){
  assertSupportRuntimeIdentity(active);
  assert.equal(version?.id,p.version);assert.equal(version.number,p.number);assert.equal(version.metadata?.created_on,p.createdOn);assert.equal(version.metadata?.source,'wrangler');assert.equal(version.resources?.script?.etag,p.etag);

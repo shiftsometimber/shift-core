@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {SUPPORT_RUNTIME as p,assertSupportRuntimeIdentity,assertSupportRuntimeEvidence,assertSupportStartingPoint,verifySupportRuntime} from '../release/live-support-runtime.mjs';
-const active=()=>({id:p.deployment,versions:[{version_id:p.version,percentage:100}]});
+const active=()=>({id:p.deployment,created_on:p.deploymentCreatedOn,source:'wrangler',annotations:{'workers/triggered_by':'deployment'},versions:[{version_id:p.version,percentage:100}]});
 const version=()=>({id:p.version,number:p.number,metadata:{created_on:p.createdOn,source:'wrangler'},resources:{script:{etag:p.etag}}});
 const verification=()=>({id:p.verificationVersion,metadata:{created_on:p.verificationAt,source:'wrangler'},resources:{script:{etag:p.etag}},annotations:{'workers/tag':p.verificationTag,'workers/message':p.verificationMessage}});
 const module=()=>({module:p.module,bytes:p.bytes,sha256:p.sha256});
@@ -40,17 +40,8 @@ test('production adoption recognises the fully checked capture without looking u
  assert(source.includes('Owner runtime moved during adoption'));
 });
 
-test('only the exact evidenced rollback deployment can retain the same captured bytes',()=>{
- const rollback={...active(),id:p.rollbackDeployment,created_on:p.rollbackEarliest,source:'wrangler',annotations:{'workers/message':p.rollbackMessage,'workers/triggered_by':'deployment'}};
- const captured=assertSupportRuntimeEvidence(rollback,version(),module(),verification());
- assert.equal(captured.deployment,p.rollbackDeployment);
- assert.equal(assertSupportStartingPoint({...record(),ownerCapturedProof:captured},rollback).deployment,p.rollbackDeployment);
- for(const patch of [{id:'another-rollback'},{created_on:'later'},{source:'api'},{annotations:{}}])assert.throws(()=>assertSupportRuntimeIdentity({...rollback,...patch}));
- assert.throws(()=>assertSupportStartingPoint(record(),rollback),'Old deployment receipt cannot stand in for rollback proof');
-});
-
-test('exact last failed release receipt is retained without accepting an earlier rollback',()=>{
- assert.equal(p.rollbackReceiptRun,37837120636);
- assert.equal(p.rollbackDeployment,'3e9176eb-468d-42d6-b97a-7c8c1113ffcc');
- assert.throws(()=>assertSupportRuntimeIdentity({...active(),id:'2ea2b5ae-5a86-45af-a7eb-692c45d08753'}));
+test('fresh serving capture grants no rollback identity or replacement authority',()=>{
+ assert.equal(p.rollbackDeployment,null);assert.equal(p.rollbackReceiptRun,null);
+ for(const id of ['3e9176eb-468d-42d6-b97a-7c8c1113ffcc','2f65a40d-9bfd-4d23-ae21-27f41661eabc','unknown'])assert.throws(()=>assertSupportRuntimeIdentity({...active(),id}));
+ for(const patch of [{created_on:'later'},{source:'api'},{annotations:{}}])assert.throws(()=>assertSupportRuntimeIdentity({...active(),...patch}));
 });
