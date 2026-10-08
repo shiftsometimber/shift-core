@@ -4,7 +4,7 @@ const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 export const BASE='e9d8ca70';
 export const SOURCE='38b0cc50eeeda7e713c2ce25ebf9c9543cdbb793';
 const payload=['HQ-MANAGEMENT-RELEASE.md','hq-ai-v2.js','hq-management-acceptance.mjs','hq-management-api.mjs','hq-management-browser-acceptance.mjs','worker.js'];
-const plumbing=['hq-management-release-gate.mjs','.github/workflows/hq-management-release.yml'];
+const plumbing=['hq-management-public-preservation.mjs','hq-management-release-gate.mjs','.github/workflows/hq-management-release.yml'];
 git('merge-base','--is-ancestor',BASE,'HEAD');
 git('merge-base','--is-ancestor',SOURCE,'HEAD');
 const changed=git('diff','--name-only',BASE,'HEAD').split('\n').filter(Boolean);

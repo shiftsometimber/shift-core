@@ -50,7 +50,7 @@ jobs:
       - name: Capture rollback and public preservation
         run: |
           npx wrangler deployments list --json > deployment-before.json
-          node member-experience/public-preservation.mjs public-before.json
+          node hq-management-public-preservation.mjs public-before.json
       - name: Deploy the scoped HQ runtime
         id: deploy
         run: |
@@ -72,7 +72,7 @@ jobs:
           console.log('PASS live reporting requires authentication and retains HQ-only CORS');
           JS
       - name: Verify public pages preserved
-        run: node member-experience/public-preservation.mjs public-after.json public-before.json
+        run: node hq-management-public-preservation.mjs public-after.json public-before.json
       - name: Roll back owned runtime on verification failure
         if: failure() && steps.deploy.outcome == 'success'
         run: node release/member-details-rollback.mjs
