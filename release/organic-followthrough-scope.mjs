@@ -1,4 +1,4 @@
-import {reconciliationHistoricalRef,reconciliationMarkHistoricalReader,reconciliationHistoricalRead,reconciliationHead,reconciliationPath,RECONCILIATION_PATHS} from './approved-runtime-composition.mjs';
+import {reconciliationHistoricalRef,reconciliationMarkHistoricalReader,reconciliationHistoricalRead,reconciliationHead,reconciliationPath,reconciliationChangedPath,RECONCILIATION_PATHS} from './approved-runtime-composition.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';import {existsSync,readFileSync} from 'node:fs';
 export const ORGANIC_BASE="bf3af86de87f0a04568805a2372b4e5124a325c5";
@@ -35,5 +35,5 @@ const mapped=new WeakSet();
 export function organicHistoricalRead(read,verifyReader=false){if(mapped.has(read))return read;read=reconciliationHistoricalRead(read,verifyReader);if(!organicRecord())return read;if(verifyReader)verifyOrganicComposition(read,raw);else ensure();const out=reconciliationMarkHistoricalReader((ref,p)=>read(ref==='HEAD'&&EXISTING.has(p)?ORGANIC_BASE:ref,p));mapped.add(out);return out;}
 export function organicHistoricalRef(ref,p){return ref==='HEAD'&&EXISTING.has(p)&&ensure()?ORGANIC_BASE:reconciliationHistoricalRef(ref,p);}
 export function organicHistoricalHead(){return ensure()?ORGANIC_BASE:git('rev-parse','HEAD');}
-export function organicChangedPath(status,p){if(reconciliationPath(p))return true;if(!ORGANIC_PATHS.has(p)||!ensure())return false;if(EXISTING.has(p))assert(['A','M'].includes(status),'Unexpected organic existing file status: '+p);else assert.equal(status,'A','Unexpected organic new file status: '+p);return true;}
+export function organicChangedPath(status,p){if(reconciliationChangedPath(status,p))return true;if(!ORGANIC_PATHS.has(p)||!ensure())return false;if(EXISTING.has(p))assert(['A','M'].includes(status),'Unexpected organic existing file status: '+p);else assert.equal(status,'A','Unexpected organic new file status: '+p);return true;}
 export function organicPreflightPath(p){return ORGANIC_PATHS.has(p)&&ensure();}

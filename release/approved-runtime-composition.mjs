@@ -48,7 +48,7 @@ export const RECONCILIATION_MAINTENANCE=[
  'release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs',
  'release/organic-followthrough-scope.mjs','release/seo-link-repairs-scope.mjs',
  'release/seo-growth-scope.mjs','release/app-scope.mjs',
- 'scripts/b1-release-scope.mjs','tests/organic-followthrough-release.test.mjs','release/device-health-scope.mjs','release/footer-scope.mjs','tests/seo-growth-release.test.mjs','release/owner-captured-runtime.mjs','tests/owner-captured-runtime.test.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','release/growth-adopt-deployment.mjs','release/member-acceptance-scope.mjs','shift-coach/scope.mjs','shift-me-source-gate.mjs',...RELOAD_PAYLOAD];
+ 'scripts/b1-release-scope.mjs','tests/organic-followthrough-release.test.mjs','release/device-health-scope.mjs','release/footer-scope.mjs','tests/seo-growth-release.test.mjs','release/owner-captured-runtime.mjs','tests/owner-captured-runtime.test.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','release/growth-adopt-deployment.mjs','release/member-acceptance-scope.mjs','shift-coach/scope.mjs','shift-me-source-gate.mjs','acquisition-activation/metrics-release.test.mjs','shift-coach/release.test.mjs',...RELOAD_PAYLOAD];
 export const RECONCILIATION_PATHS=new Set([...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE,RECONCILIATION_MANIFEST]);
 const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
 export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
@@ -96,6 +96,16 @@ export function reconciliationGitArgs(args){
 }
 export function reconciliationHead(){return ensureReconciliation()?COMPOSITION_BASE:git('rev-parse','HEAD');}
 export function reconciliationPath(path){return RECONCILIATION_PATHS.has(path)&&ensureReconciliation();}
+export function reconciliationChangedPath(status,path){
+ if(!reconciliationPath(path))return false;
+ if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
+ // Source changes retain their exact add/modify semantics. Existing verifier
+ // maintenance may have been added historically and modified subsequently.
+ const allowed=existsAtBase.get(path)?(RECONCILIATION_MAINTENANCE.includes(path)?['A','M']:['M']):['A'];
+ assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
+ return true;
+}
+
 
 export function assertReconciledReloadReceipt(run,job){
  assert.equal(run?.id,RELOAD_RUN);assert.equal(run.head_sha,RELOAD_VERIFIER);

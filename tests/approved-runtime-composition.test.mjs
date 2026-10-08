@@ -27,3 +27,14 @@ test('actual composed release and its finite maintenance receipt pass',()=>asser
 test('fresh supplied readers cannot conceal payload or maintenance drift',()=>{for(const path of [...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':'same'),/source.*drift/);});
 test('historical reader maps only checked existing composition paths',()=>{const read=reconciliationHistoricalRead((ref,p)=>ref);assert.equal(read('HEAD','worker-entry-v6.js'),COMPOSITION_BASE);assert.equal(read('HEAD','acquisition-activation/consent.mjs'),'HEAD');assert.equal(read('HEAD','public-seo-organic-links.mjs'),'HEAD');});
 test('a fresh malicious reader is rechecked after a successful reader',()=>{reconciliationHistoricalRead((ref,p)=>'same',true);assert.throws(()=>reconciliationHistoricalRead((ref,p)=>ref==='HEAD'&&p==='worker-entry-v6.js'?'drift':'same',true),/drift/);});
+
+import {reconciliationChangedPath,RECONCILIATION_MANIFEST} from '../release/approved-runtime-composition.mjs';
+test('approved composition rejects deletion, rename and type changes for every path',()=>{
+ for(const path of [...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE,RECONCILIATION_MANIFEST])for(const status of ['D','R','R100','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected approved composition file status/);
+ assert.equal(reconciliationChangedPath('M','unreviewed.mjs'),false);
+ for(const status of ['A','M'])assert.equal(reconciliationChangedPath(status,'release/seo-growth-scope.mjs'),true);
+ assert.equal(reconciliationChangedPath('M','worker-entry-v6.js'),true);
+ assert.throws(()=>reconciliationChangedPath('A','worker-entry-v6.js'),/Unexpected/);
+ assert.equal(reconciliationChangedPath('A',RECONCILIATION_MANIFEST),true);
+ assert.throws(()=>reconciliationChangedPath('M',RECONCILIATION_MANIFEST),/Unexpected/);
+});
