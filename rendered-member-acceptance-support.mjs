@@ -56,7 +56,12 @@ export async function memberReload(page,{site,panel=null}){
     if(error?.name!=='TimeoutError')throw error;
     // A transient document navigation may stall even after a confirmed save.
     // Retry only the browser navigation once, never a save or an API mutation.
-    attempts=2;console.warn('Member reload navigation timed out; retrying the page once without repeating the save');
+    attempts=2;console.warn('Member reload navigation timed out; stopping the unfinished request before one real reload retry');
+    // Chromium can report the old request cancellation as the new reload's
+    // ERR_ABORTED if the first navigation is still running. Finish cancellation
+    // before starting the retry; retain HTTP, identity and rendered-UI checks.
+    const session=await page.context().newCDPSession(page);
+    try{await session.send('Page.stopLoading');}finally{await session.detach();}
     response=await page.reload({waitUntil:'domcontentloaded',timeout:30000});
   }
   if(!response?.ok())throw new Error('Member reload document failed');
