@@ -1,3 +1,4 @@
+import {SUPPORT_RUNTIME,verifySupportRuntime} from './live-support-runtime.mjs';
 import {OWNER_RUNTIME,verifyOwnerRuntime} from './owner-captured-runtime.mjs';
 import {SITEWIDE_VERSION,verifySitewideRuntime} from './sitewide-seo-scope.mjs';
 import {COACH_BASE,COACH_PATHS,WATCH_CURRENT_PATHS,coachingHistoricalRef,withoutCoachEntrypoint,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
@@ -14,7 +15,7 @@ const active=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=
 const point=verifiedStartingPoint(JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json')),active);
 const BASE=point.source,VERSION=point.version;
 let receipt={id:null};
-if(point.kind!==OWNER_RUNTIME.kind){
+if(point.kind!==OWNER_RUNTIME.kind&&point.kind!==SUPPORT_RUNTIME.kind){
 const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+point.run,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});
 assert(r.ok);receipt=await r.json();assert.equal(receipt.id,point.run);assert.equal(receipt.head_sha,BASE);assert.equal(receipt.conclusion,'success');
 if(point.run===catalogueRuntime.run){
@@ -33,7 +34,7 @@ if(point.run===catalogueRuntime.run){
 }else{assert.equal(receipt.path,point.run===articleRuntime.run?articleRuntime.workflow:'.github/workflows/cloudflare-production-promote.yml');assert.equal(receipt.head_branch,'main');}
 }else{
  const version=JSON.parse(wrangler('versions','view',point.version,'--json'));
- const proof=await verifyOwnerRuntime(active,version);
+ const proof=await (point.kind===SUPPORT_RUNTIME.kind?verifySupportRuntime(active,version):verifyOwnerRuntime(active,version));
  assert.deepEqual(JSON.parse(readFileSync('b1-runtime-release/cancelled-release-recovery.json')).ownerCapturedProof,proof);
  const unchanged=JSON.parse(wrangler('deployments','list','--json')).toSorted((a,b)=>Date.parse(b.created_on)-Date.parse(a.created_on))[0];
  assert.deepEqual({id:unchanged.id,versions:unchanged.versions},{id:active.id,versions:active.versions},'Owner runtime moved during adoption');
