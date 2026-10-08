@@ -236,6 +236,28 @@ export function verifyProgrammeDayPreflightExtension(c,{head,read,diff,ancestor}
  for(const path of c.payloadPaths)assert.equal(read('HEAD',path),read(c.payloadSource,path),'Approved composition maintenance source drift: Programme preflight source drift: '+path);
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Programme preflight verifier source drift: '+path);return c;
 }
+
+// Finite historical receipt fix; later reruns cannot rewrite the original source evidence.
+export const RELOAD_ORIGINAL_BASE='afe0b80d3e7d7f813c53a659c619ba13b86f6ae4';
+export const RELOAD_ORIGINAL_SOURCE='f0499ee63fa51cf7b2f41d77ca416064ee5ef8d2';
+export const RELOAD_ORIGINAL_PATHS=['shift-coach/reload-receipt.mjs','shift-coach/reload-receipt.test.mjs','release/member-acceptance-scope.mjs'];
+export const RELOAD_ORIGINAL_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/reload-original-release.test.mjs'];
+const RELOAD_ORIGINAL_SET=new Set([...RELOAD_ORIGINAL_PATHS,...RELOAD_ORIGINAL_MAINTENANCE]);
+for(const path of RELOAD_ORIGINAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyReloadOriginalAttempt(c,{head,read,diff,ancestor}){
+ assert(c);assert.equal(c.proof,'EXACT_RELOAD_ORIGINAL_ATTEMPT_V1');
+ assert.equal(c.base,RELOAD_ORIGINAL_BASE);assert.equal(c.source,RELOAD_ORIGINAL_SOURCE);
+ assert.deepEqual(c.paths,RELOAD_ORIGINAL_PATHS);assert.deepEqual(c.maintenancePaths,RELOAD_ORIGINAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.run,RELOAD_RUN);assert.equal(c.attempt,1);assert.equal(c.job,113266037954);
+ for(const flag of ['publicCopyChanged','runtimeChanged','medicalContentChanged','customerDataChanged','currentLiveChecksChanged'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated original reload receipt source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated original reload receipt maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after original reload receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Original reload receipt source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Original reload receipt maintenance drift: '+path);
+}
+
 const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
 export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
 export function assertProductionProofBudget(before,current){
@@ -303,12 +325,18 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
- const anchor=c.oralCanonicalRepair;
- if(anchor)verifyOralCanonicalRepair(anchor,{head,read:readBlob,
+ const originalReload=c.reloadOriginalAttempt;
+ if(originalReload)verifyReloadOriginalAttempt(originalReload,{head,read:readBlob,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const anchorHead=anchor?anchor.base:head;
- const anchorRead=(ref,path)=>readBlob(anchor&&ref==='HEAD'&&ORAL_CANONICAL_SET.has(path)?anchor.base:ref,path);
+ const originalHead=originalReload?originalReload.base:head;
+ const originalRead=(ref,path)=>readBlob(originalReload&&ref==='HEAD'&&RELOAD_ORIGINAL_SET.has(path)?originalReload.base:ref,path);
+ const anchor=c.oralCanonicalRepair;
+ if(anchor)verifyOralCanonicalRepair(anchor,{head:originalHead,read:originalRead,
+  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
+  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const anchorHead=anchor?anchor.base:originalHead;
+ const anchorRead=(ref,path)=>originalRead(anchor&&ref==='HEAD'&&ORAL_CANONICAL_SET.has(path)?anchor.base:ref,path);
  const nhs=c.nhsArticleProofRefresh;
  if(nhs)verifyNhsArticleProofRefresh(nhs,{head:anchorHead,read:anchorRead,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
