@@ -84,5 +84,37 @@
       "release/approved-runtime-composition.mjs",
       "tests/approved-runtime-composition.test.mjs"
     ]
+  },
+  "publicToolDelivery": {
+    "proof": "EXACT_PUBLIC_TOOL_DELIVERY_V1",
+    "base": "e8592710a52bc0c7a551798bf426d32e59409caf",
+    "payloadSource": "3ba486a87df2ee859fcd579263b5211f338fbf04",
+    "payloadPaths": [
+      "public-tool-delivery.mjs",
+      "shift-coach/worker.mjs",
+      "tests/public-tool-delivery.test.mjs",
+      "member-experience/entry.mjs",
+      "member-experience/tests/shared-arrival.test.mjs",
+      "public-continuity.mjs",
+      "tests/public-continuity.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/public-tool-release.test.mjs",
+      "release/live-support-runtime.mjs",
+      "tests/live-support-runtime.test.mjs",
+      "shift-coach/recover-cancelled-release.mjs",
+      "shift-coach/cancelled-release-recovery.mjs",
+      "release/growth-adopt-deployment.mjs",
+      "release/ai-response-proof.mjs",
+      "release/shift-ai-live.mjs",
+      "tests/ai-response-retry.test.mjs"
+    ],
+    "maintenanceSource": "53248f1e007a98c36b5fb476a4db140dfc429f34",
+    "supportSnapshotSource": "e7c78344694a0101a8105004356b96d3a2066197",
+    "publicCopyChanged": false,
+    "ratingsInvented": false,
+    "homepageChanged": false,
+    "privateCacheChanged": false
   }
 }
