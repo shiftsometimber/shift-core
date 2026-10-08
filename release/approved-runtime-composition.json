@@ -2,7 +2,7 @@
   "proof": "EXACT_APPROVED_RUNTIME_COMPOSITION_V1",
   "base": "e9d8ca70c6cd969bbd02caee31deb1f8b12bb67f",
   "source": "63993a0ce480a4aa5c7a1d47017c682dccc837f1",
-  "maintenanceSource": "0c283e649b406a617b6f0e304438ffd9c3adb53d",
+  "maintenanceSource": "41e8117d072db12b4b83d1a533addb2d143eeff6",
   "maintenancePaths": [
     "release/approved-runtime-composition.mjs",
     "tests/approved-runtime-composition.test.mjs",
@@ -44,6 +44,7 @@
     "shift-coach/browser-journey-support.mjs",
     "release/watch-registry-wave-scope.mjs",
     "release/sitewide-seo-scope.mjs",
+    "release/treatment-guidance-scope.mjs",
     "rendered-member-acceptance-support.mjs",
     "tests/rendered-member-acceptance-support.test.mjs",
     "tests/member-reload-browser.test.mjs"
