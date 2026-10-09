@@ -32,3 +32,16 @@ test('real biomarker composition retains previous verified runtime and rejects a
  const read=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8',maxBuffer:4e6});
  for(const path of new Set([...bioPaths,...bioMaintenance]))assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
 });
+
+import {verifyWatchBacklogUpdate,assertWatchBacklogProof,WATCH_BACKLOG_BASE as backlogBase,WATCH_BACKLOG_SOURCE as backlogSource,WATCH_BACKLOG_RUN as backlogRun,WATCH_BACKLOG_PATHS as backlogPaths,WATCH_BACKLOG_MAINTENANCE as backlogMaintenance} from '../release/approved-runtime-composition.mjs';
+const backlogReceipt=()=>({proof:'EXACT_WATCH_BACKLOG_UPDATE_V1',base:backlogBase,source:backlogSource,proofRun:backlogRun,paths:[...backlogPaths],maintenancePaths:[...backlogMaintenance],maintenanceSource:'a'.repeat(40),approvedPR:1281,publicationStatus:'owner_authorised_factual_publication',clinicalApproval:null,sourceReviews:35,changedTrialRecords:3,officialAlternativeReplacements:1,...Object.fromEntries(['reviewDatesRenewedByHttp','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'].map(k=>[k,false]))});
+const backlogOptions=()=>({head:'b'.repeat(40),read:()=> 'same',ancestor:()=>{},diff:(a,b)=>a===backlogBase?[...backlogPaths]:a===backlogSource?[...backlogMaintenance]:[RECONCILIATION_MANIFEST]});
+test('backlog publication binds exact reviewed payload and rejects unrelated changes, drift and clinical signoff',()=>{
+ assert.equal(backlogBase,'b31e1c63cede1cde2be975c4b4cc609ef1a11630');assert.equal(backlogSource,'48020574fdda274d04901052942aacbe1502fb31');assert.equal(backlogRun,37995046889);
+ verifyWatchBacklogUpdate(backlogReceipt(),backlogOptions());
+ for(const patch of [{source:'f'.repeat(40)},{base:'f'.repeat(40)},{proofRun:1},{approvedPR:1},{clinicalApproval:true},{sourceReviews:0},{changedTrialRecords:0},{officialAlternativeReplacements:0},...Object.keys(backlogReceipt()).filter(k=>backlogReceipt()[k]===false).map(k=>({[k]:true}))])assert.throws(()=>verifyWatchBacklogUpdate({...backlogReceipt(),...patch},backlogOptions()));
+ for(const boundary of [backlogBase,backlogSource,'a'.repeat(40)]){const o=backlogOptions(),diff=o.diff;o.diff=(a,b)=>a===boundary?[...diff(a,b),'worker.js']:diff(a,b);assert.throws(()=>verifyWatchBacklogUpdate(backlogReceipt(),o));}
+ for(const path of [...backlogPaths,...backlogMaintenance]){const o=backlogOptions();o.read=(r,p)=>r==='HEAD'&&p===path?'drift':'same';assert.throws(()=>verifyWatchBacklogUpdate(backlogReceipt(),o),/source drift/);}
+ const proof={id:backlogRun,head_sha:backlogSource,path:'.github/workflows/medicines-watch-check.yml',event:'pull_request',head_branch:'review/watch-backlog-20261009',status:'completed',conclusion:'success'};assertWatchBacklogProof(proof);
+ for(const patch of [{id:1},{head_sha:'f'.repeat(40)},{conclusion:'failure'},{status:'in_progress'},{event:'push'},{head_branch:'main'}])assert.throws(()=>assertWatchBacklogProof({...proof,...patch}));
+});
