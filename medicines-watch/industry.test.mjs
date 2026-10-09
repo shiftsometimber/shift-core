@@ -1692,3 +1692,13 @@ test('TOGETHER psoriatic-disease research preserves lifecycle, evidence and enro
  assert.equal(togetherPsoriaticDisease.discoveryPass.industryComplete,false);
  assert.equal(togetherPsoriaticDisease.configuredSourcePass.reviewRenewals,false);
 });
+
+
+test('TOGETHER biomarker follow-up does not renew registry evidence or change UK access',()=>{
+ const item=industry.find(e=>e.id==='ixekizumab-tirzepatide-psoriatic-disease');
+ assert.match(item.summary,/9 October 2026/);assert.match(item.summary,/circulating proteins and blood gene expression/);
+ assert.match(item.limitations,/not a new trial or independently established clinical benefit/);
+ assert.equal(item.clinicalApproval,null);assert.match(item.ukAuthorisation,/does not establish a UK marketing authorisation/);
+ assert.equal(medicines.length+industry.length,110);assert.equal(sources.length,199);
+ for(const old of togetherPsoriaticDisease.registrySources){const current=registrySources.find(s=>s.id===old.id);assert.equal(current.reviewedAt,old.reviewedAt);assert.equal(current.reviewedFingerprint,old.reviewedFingerprint);}
+});
