@@ -242,6 +242,18 @@ test('later unattributed Watch recovery preserves newer main and remains finite'
  {const f=laterUnattributedRecoveryFixture();f.c.observationRun=1;assert.throws(()=>verifyLaterUnattributedWatchRecovery(f.c,f.options));}
 });
 
+import {verifyLaterUnattributedWatchRollbackRetention,LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_BASE,LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_SOURCE,LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_PATHS,LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+const rollbackRetentionFixture=()=>{
+ const maintenanceSource='e'.repeat(40),head='f'.repeat(40),c={proof:'EXACT_LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_V1',base:LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_BASE,source:LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_SOURCE,paths:LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_PATHS,maintenancePaths:LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_MAINTENANCE,maintenanceSource,failedRecoveryRun:37914338433,failedRecoveryJob:113766865055,restoredDeployment:'19c317f4-0058-4497-86a8-596db6de90a9',restoredVersion:'fd7939d8-6387-48fa-adc8-714e6f8bea8d',runtimeChanged:false,medicalClaimsChanged:false,publicCopyChanged:false,customerDataChanged:false,genericAdoptionAllowed:false,rollbackAuthorityBroadened:false,existingGatesWeakened:false};
+ const options={head,read:()=> 'same',ancestor:()=>{},diff:(a,b)=>a===c.base&&b===c.source?[...c.paths]:a===c.source&&b===c.maintenanceSource?[...c.maintenancePaths]:[RECONCILIATION_MANIFEST]};return{c,options};
+};
+test('later Watch rollback retention is finite, byte-pinned and never generic authority',()=>{
+ const {c,options}=rollbackRetentionFixture();assert.equal(verifyLaterUnattributedWatchRollbackRetention(c,options),c);
+ for(const path of [...c.paths,...c.maintenancePaths]){const f=rollbackRetentionFixture();f.options.read=(ref,p)=>ref==='HEAD'&&p===path?'drift':'same';assert.throws(()=>verifyLaterUnattributedWatchRollbackRetention(f.c,f.options),/drift/);}
+ for(const flag of ['runtimeChanged','medicalClaimsChanged','publicCopyChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened']){const f=rollbackRetentionFixture();f.c[flag]=true;assert.throws(()=>verifyLaterUnattributedWatchRollbackRetention(f.c,f.options));}
+ {const f=rollbackRetentionFixture();f.options.diff=()=>['checkout.mjs'];assert.throws(()=>verifyLaterUnattributedWatchRollbackRetention(f.c,f.options),/Unrelated|Unreviewed/);}
+});
+
 import {verifyLogoutAdoption,LOGOUT_ADOPTION_BASE,LOGOUT_ADOPTION_PATHS,assertLogoutBoundary,RELOAD_VERIFIER} from '../release/approved-runtime-composition.mjs';
 const logoutBefore="await page.locator('[data-member-logout]').click();await page.waitForFunction(async()=>401);assert.deepEqual(records,[]);";
 const logoutAfter=logoutBefore.replace("await page.waitForFunction","await page.waitForURL(url=>url.origin===site&&url.pathname==='/member-login',{waitUntil:'domcontentloaded',timeout:30000});await page.waitForFunction");

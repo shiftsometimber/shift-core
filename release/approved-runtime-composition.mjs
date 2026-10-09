@@ -696,12 +696,18 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
- const laterUnattributed=c.laterUnattributedWatchRuntimeRecovery;
- if(laterUnattributed)verifyLaterUnattributedWatchRecovery(laterUnattributed,{head:actualHead,read:rawBlob,
+ const rollbackRetention=c.laterUnattributedWatchRollbackRetention;
+ if(rollbackRetention)verifyLaterUnattributedWatchRollbackRetention(rollbackRetention,{head:actualHead,read:rawBlob,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const laterUnattributedHead=laterUnattributed?laterUnattributed.priorComposition:actualHead;
- const laterUnattributedRead=(ref,path)=>rawBlob(laterUnattributed&&ref==='HEAD'&&LATER_UNATTRIBUTED_WATCH_RECOVERY_SET.has(path)?laterUnattributed.priorComposition:ref,path);
+ const rollbackRetentionHead=rollbackRetention?rollbackRetention.base:actualHead;
+ const rollbackRetentionRead=(ref,path)=>rawBlob(rollbackRetention&&ref==='HEAD'&&LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_SET.has(path)?rollbackRetention.base:ref,path);
+ const laterUnattributed=c.laterUnattributedWatchRuntimeRecovery;
+ if(laterUnattributed)verifyLaterUnattributedWatchRecovery(laterUnattributed,{head:rollbackRetentionHead,read:rollbackRetentionRead,
+  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
+  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const laterUnattributedHead=laterUnattributed?laterUnattributed.priorComposition:rollbackRetentionHead;
+ const laterUnattributedRead=(ref,path)=>rollbackRetentionRead(laterUnattributed&&ref==='HEAD'&&LATER_UNATTRIBUTED_WATCH_RECOVERY_SET.has(path)?laterUnattributed.priorComposition:ref,path);
  const unattributed=c.unattributedWatchRuntimeRecovery;
  if(unattributed)verifyUnattributedWatchRecovery(unattributed,{head:laterUnattributedHead,read:laterUnattributedRead,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
@@ -920,6 +926,28 @@ export function assertReconciledReloadReceipt(run,job){
  assert.equal(job?.id,113266037954);assert.equal(job.run_attempt,1);assert.equal(job.run_id,RELOAD_RUN);assert.equal(job.name,'reload-navigation-diagnostics');assert.equal(job.status,'completed');assert.equal(job.conclusion,'success');
  for(const number of [8,9,11,12,14,15])assert(job.steps?.some(s=>s.number===number&&s.status==='completed'&&s.conclusion==='success'),'Every complete live journey round must pass');
  return {id:run.id,sha:run.head_sha,path:run.path,conclusion:run.conclusion,scope:'Three complete live save, reload, privacy, Today, Grub and Fit journey rounds'};
+}
+
+// Finite follow-through after the exact unattributed-runtime rollback. The
+// recovery succeeded but its job later failed before deployment, so Wrangler's
+// new deployment pointer must be proved from that one job before it is retained.
+export const LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_BASE='b277c25b2d3bf44f97501006f3b3416e9a8d44fe';
+export const LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_SOURCE='dd7537ed6850011fe3a9ccf891f1fccc68e96d9e';
+export const LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_PATHS=Object.freeze(['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/recover-cancelled-release.mjs']);
+export const LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs']);
+const LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_SET=new Set([...LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_PATHS,...LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_MAINTENANCE]);
+for(const path of LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_SET)RECONCILIATION_PATHS.add(path);
+export function verifyLaterUnattributedWatchRollbackRetention(c,{head,read,diff,ancestor}){
+ assert(c);assert.equal(c.proof,'EXACT_LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_V1');assert.equal(c.base,LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_BASE);assert.equal(c.source,LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_SOURCE);assert.deepEqual(c.paths,LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_PATHS);assert.deepEqual(c.maintenancePaths,LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.failedRecoveryRun,37914338433);assert.equal(c.failedRecoveryJob,113766865055);assert.equal(c.restoredDeployment,'19c317f4-0058-4497-86a8-596db6de90a9');assert.equal(c.restoredVersion,'fd7939d8-6387-48fa-adc8-714e6f8bea8d');
+ for(const flag of ['runtimeChanged','medicalClaimsChanged','publicCopyChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated later Watch rollback-retention source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource).filter(path=>path!==RECONCILIATION_MANIFEST)),sorted(c.maintenancePaths),'Unrelated later Watch rollback-retention maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after later Watch rollback-retention receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Later Watch rollback-retention source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Later Watch rollback-retention maintenance drift: '+path);
+ return c;
 }
 
 // A second independently fingerprinted local upload appeared while the first
