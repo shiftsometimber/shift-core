@@ -45,3 +45,14 @@ test('backlog publication binds exact reviewed payload and rejects unrelated cha
  const proof={id:backlogRun,head_sha:backlogSource,path:'.github/workflows/medicines-watch-check.yml',event:'pull_request',head_branch:'review/watch-backlog-20261009',status:'completed',conclusion:'success'};assertWatchBacklogProof(proof);
  for(const patch of [{id:1},{head_sha:'f'.repeat(40)},{conclusion:'failure'},{status:'in_progress'},{event:'push'},{head_branch:'main'}])assert.throws(()=>assertWatchBacklogProof({...proof,...patch}));
 });
+
+import {verifyWatchBacklogReleaseRepair,WATCH_BACKLOG_RELEASE_REPAIR_BASE as repairBase,WATCH_BACKLOG_RELEASE_REPAIR_SOURCE as repairSource,WATCH_BACKLOG_RELEASE_REPAIR_PATHS as repairPaths,WATCH_BACKLOG_RELEASE_REPAIR_MAINTENANCE as repairMaintenance} from '../release/approved-runtime-composition.mjs';
+const repairReceipt=()=>({proof:'EXACT_WATCH_BACKLOG_RELEASE_REPAIR_V1',base:repairBase,source:repairSource,paths:[...repairPaths],maintenancePaths:[...repairMaintenance],maintenanceSource:'a'.repeat(40),approvedPR:1287,failedRun:37996106426,failedStep:'Verify B1 release scope before any production mutation',...Object.fromEntries(['deploymentAttempted','publicContentChanged','evidenceChanged','clinicalApprovalChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'].map(k=>[k,false]))});
+const repairOptions=()=>({head:'b'.repeat(40),read:()=> 'same',ancestor:()=>{},diff:(a,b)=>a===repairBase?[...repairPaths]:a===repairSource?[...repairMaintenance]:[RECONCILIATION_MANIFEST]});
+test('Watch backlog release matcher repair is finite and records the pre-deploy stop',()=>{
+ assert.equal(repairBase,'d5b35abee21030ce7d10e56767ed684fc9d9992d');assert.equal(repairSource,'3a8e109b40c06903b86463f2e7834ed61d4a2872');
+ verifyWatchBacklogReleaseRepair(repairReceipt(),repairOptions());
+ for(const patch of [{source:'f'.repeat(40)},{base:'f'.repeat(40)},{approvedPR:1},{failedRun:1},{failedStep:'deploy'},...Object.keys(repairReceipt()).filter(k=>repairReceipt()[k]===false).map(k=>({[k]:true}))])assert.throws(()=>verifyWatchBacklogReleaseRepair({...repairReceipt(),...patch},repairOptions()));
+ for(const boundary of [repairBase,repairSource,'a'.repeat(40)]){const o=repairOptions(),diff=o.diff;o.diff=(a,b)=>a===boundary?[...diff(a,b),'worker.js']:diff(a,b);assert.throws(()=>verifyWatchBacklogReleaseRepair(repairReceipt(),o));}
+ for(const path of [...repairPaths,...repairMaintenance]){const o=repairOptions();o.read=(r,p)=>r==='HEAD'&&p===path?'drift':'same';assert.throws(()=>verifyWatchBacklogReleaseRepair(repairReceipt(),o),/(?:source|maintenance) drift/);}
+});

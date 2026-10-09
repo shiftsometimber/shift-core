@@ -707,6 +707,27 @@ export function verifyTogetherBiomarkerUpdate(c,{head,read,diff,ancestor}){
  return c;
 }
 
+// Finite fail-closed matcher repair after the backlog merge stopped before deployment.
+export const WATCH_BACKLOG_RELEASE_REPAIR_BASE='d5b35abee21030ce7d10e56767ed684fc9d9992d';
+export const WATCH_BACKLOG_RELEASE_REPAIR_SOURCE='3a8e109b40c06903b86463f2e7834ed61d4a2872';
+export const WATCH_BACKLOG_RELEASE_REPAIR_PATHS=Object.freeze(["shift-coach/release.test.mjs"]);
+export const WATCH_BACKLOG_RELEASE_REPAIR_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs", "tests/late-watch-composition.test.mjs"]);
+const WATCH_BACKLOG_RELEASE_REPAIR_SET=new Set([...WATCH_BACKLOG_RELEASE_REPAIR_PATHS,...WATCH_BACKLOG_RELEASE_REPAIR_MAINTENANCE]);
+for(const path of WATCH_BACKLOG_RELEASE_REPAIR_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchBacklogReleaseRepair(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_BACKLOG_RELEASE_REPAIR_V1');assert.equal(c.base,WATCH_BACKLOG_RELEASE_REPAIR_BASE);assert.equal(c.source,WATCH_BACKLOG_RELEASE_REPAIR_SOURCE);
+ assert.deepEqual(c.paths,WATCH_BACKLOG_RELEASE_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_BACKLOG_RELEASE_REPAIR_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1287);assert.equal(c.failedRun,37996106426);assert.equal(c.failedStep,'Verify B1 release scope before any production mutation');
+ for(const flag of ['deploymentAttempted','publicContentChanged','evidenceChanged','clinicalApprovalChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch backlog release repair');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch backlog release-repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Watch backlog release repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Watch backlog release-repair source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Watch backlog release-repair maintenance drift: '+path);
+ return c;
+}
+
 // Finite owner-authorised factual Medicines Watch backlog publication. No clinical approval.
 export const WATCH_BACKLOG_BASE='b31e1c63cede1cde2be975c4b4cc609ef1a11630';
 export const WATCH_BACKLOG_SOURCE='48020574fdda274d04901052942aacbe1502fb31';
@@ -777,10 +798,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const backlogRepair=c.watchBacklogReleaseRepair;
+ if(backlogRepair)verifyWatchBacklogReleaseRepair(backlogRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preBacklogRepairHead=backlogRepair?backlogRepair.base:actualHead;
+ const backlogRepairRawBlob=(ref,path)=>outerRawBlob(backlogRepair&&ref==='HEAD'&&WATCH_BACKLOG_RELEASE_REPAIR_SET.has(path)?backlogRepair.base:ref,path);
  const backlog=c.watchBacklogUpdate;
- if(backlog)verifyWatchBacklogUpdate(backlog,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preBacklogHead=backlog?backlog.base:actualHead;
- const backlogRawBlob=(ref,path)=>outerRawBlob(backlog&&ref==='HEAD'&&WATCH_BACKLOG_SET.has(path)?backlog.base:ref,path);
+ if(backlog)verifyWatchBacklogUpdate(backlog,{head:preBacklogRepairHead,read:backlogRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preBacklogHead=backlog?backlog.base:preBacklogRepairHead;
+ const backlogRawBlob=(ref,path)=>backlogRepairRawBlob(backlog&&ref==='HEAD'&&WATCH_BACKLOG_SET.has(path)?backlog.base:ref,path);
  const maleObesity=c.maleObesityPillar;
  if(maleObesity)verifyMaleObesityPillar(maleObesity,{head:preBacklogHead,read:backlogRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preMaleObesityHead=maleObesity?maleObesity.base:preBacklogHead;
