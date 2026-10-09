@@ -1,158 +1,91 @@
-name: Rendered Member Production Acceptance
-
+name: My Treatment signed-in production acceptance
 on:
   push:
-    branches: [verification/member-design-20261002]
-  workflow_run:
-    workflows: ['Cloudflare Production Promote']
-    types: [completed]
-    branches: [main]
-  workflow_dispatch:
-
+    branches: [verification/my-treatment-live-20261009]
 permissions:
   contents: read
   id-token: write
-
 concurrency:
-  group: rendered-member-production-acceptance-${{ github.ref }}
-  cancel-in-progress: false
-
+  group: my-treatment-signed-in-acceptance
+  cancel-in-progress: true
 jobs:
-  rendered-member-production-acceptance:
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+  treatment-acceptance:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
-      - name: Check committed acceptance scripts
+          node-version: '24'
+      - name: Require unchanged candidate runtime
         run: |
-          node --test tests/rendered-member-acceptance-support.test.mjs
-          node --check g2-011-progress-story-production.mjs
-          node --check g2-013-progress-picture-rendered-production.mjs
-          node --check g2-014-progress-picture-premium-production.mjs
-          node --check g2-015-plan-manager-production.mjs
-      - name: Install Chromium once
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {execFileSync} from 'node:child_process';
+          const allowed=new Set(['.github/workflows/rendered-member-production-acceptance.yml','member-experience/verify-treatment-browser.mjs']);
+          const paths=execFileSync('git',['diff','--name-only','01194030d52d57a43aa072b27ac962514a668b93','HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
+          assert.equal(paths.length,2);assert(paths.every(x=>allowed.has(x)));
+          console.log('Verification-only branch; runtime source unchanged.');
+          JS
+      - name: Require exact successful guarded release and owned deployment receipt
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {mkdirSync,writeFileSync} from 'node:fs';
+          const base='https://api.github.com/repos/shiftsometimber/shift-core',runId=37927646817,source='01194030d52d57a43aa072b27ac962514a668b93';
+          const get=async path=>{const r=await fetch(base+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r;};
+          const run=await (await get('/actions/runs/'+runId)).json();assert.equal(run.head_sha,source);assert.equal(run.conclusion,'success');assert.equal(run.status,'completed');assert.equal(run.head_branch,'main');assert.equal(run.event,'push');assert.equal(run.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(run.run_attempt,1);
+          const jobs=await (await get('/actions/runs/'+runId+'/jobs?filter=latest&per_page=100')).json(),job=jobs.jobs.find(j=>j.name==='promote'&&j.conclusion==='success');assert(job);
+          for(const [number,name,conclusion]of [[63,'Deploy current main to production','success'],[84,'Verify live My Treatment delivery and private APIs','success'],[114,'Restore the captured runtime if a post-deployment gate failed','skipped']])assert(job.steps.some(s=>s.number===number&&s.name===name&&s.conclusion===conclusion));
+          const logs=await (await get('/actions/jobs/'+job.id+'/logs')).text(),receipts=logs.split('\n').flatMap(line=>{const i=line.indexOf('{"kind":"owned_runtime_deployment"');if(i<0)return [];try{return [JSON.parse(line.slice(i))]}catch{return []}});
+          assert.equal(receipts.length,1);const receipt=receipts[0];assert.equal(receipt.source,source);assert.equal(String(receipt.run),String(runId));assert.equal(receipt.dataRestored,false);
+          mkdirSync('my-treatment-browser-evidence',{recursive:true});writeFileSync('my-treatment-browser-evidence/guarded-deployment.json',JSON.stringify({run:runId,job:job.id,source,receipt},null,2));console.log(JSON.stringify({run:runId,source,deployment:receipt.deploymentId,version:receipt.versionId}));
+          JS
+      - name: Wait for exact guarded My Treatment deployment
+        timeout-minutes: 18
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {treatmentRuntime} from './member-experience/treatment-page.mjs';
+          const site='https://shiftsometimber.co.uk';
+          let ready=false;
+          for(let i=0;i<1;i++){
+            try {
+              const api=await fetch(site+'/v1/member/treatment',{cache:'no-store',signal:AbortSignal.timeout(15000)});
+              const asset=await fetch(site+'/assets/member-experience/treatment.mjs',{cache:'no-store',signal:AbortSignal.timeout(15000)});
+              const text=await asset.text();console.log(JSON.stringify({apiStatus:api.status,assetStatus:asset.status,bytes:text.length,expectedBytes:treatmentRuntime.length,exact:text===treatmentRuntime,prefix:text.slice(0,100)}));
+              if(api.status===401&&asset.ok&&text===treatmentRuntime){ready=true;break;}
+            }catch{}
+            console.log('Waiting for guarded deployment, attempt '+(i+1));
+            await new Promise(resolve=>setTimeout(resolve,10));
+          }
+          assert(ready,'Exact My Treatment runtime did not become live');
+          JS
+      - name: Install acceptance browser
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
-      - name: Acquire growth-loop commissioning identity
-        id: oidc_growth
+      - name: Acquire existing synthetic commissioning identity
+        id: oidc
         shell: bash
         run: |
           raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
           token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
           echo "::add-mask::$token"
           echo "token=$token" >> "$GITHUB_OUTPUT"
-      - name: Prove approved growth feedback through fresh live sign-in
-        id: growth_loop
-        continue-on-error: true
+      - name: Prove private treatment journeys on mobile and desktop
         env:
-          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_growth.outputs.token }}
-        run: node release/growth-member-live.mjs
-      - name: Retain growth-loop live evidence
+          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
+          TREATMENT_RELEASE_SHA: 01194030d52d57a43aa072b27ac962514a668b93
+        run: node member-experience/verify-treatment-browser.mjs
+      - uses: actions/upload-artifact@v4
         if: always()
-        uses: actions/upload-artifact@v4
         with:
-          name: growth-member-live-${{ github.sha }}
-          path: growth-member-live-evidence/
-          if-no-files-found: error
-      - name: Acquire G2-011 commissioning identity
-        id: oidc_011
-        shell: bash
-        run: |
-          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
-          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
-          echo "::add-mask::$token"
-          echo "token=$token" >> "$GITHUB_OUTPUT"
-      - name: Run G2-011 Progress acceptance
-        id: g2_011
-        continue-on-error: true
-        env:
-          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
-          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
-          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_011.outputs.token }}
-          G2_011_EVIDENCE_DIR: g2-011-progress-story-evidence
-        run: node g2-011-progress-story-production.mjs
-      - name: Acquire G2-013 commissioning identity
-        id: oidc_013
-        shell: bash
-        run: |
-          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
-          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
-          echo "::add-mask::$token"
-          echo "token=$token" >> "$GITHUB_OUTPUT"
-      - name: Run G2-013 Progress Picture acceptance
-        id: g2_013
-        continue-on-error: true
-        env:
-          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
-          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
-          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_013.outputs.token }}
-          G2_013_EVIDENCE_DIR: g2-013-progress-picture-evidence
-        run: node g2-013-progress-picture-rendered-production.mjs
-      - name: Acquire G2-014 commissioning identity
-        id: oidc_014
-        shell: bash
-        run: |
-          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
-          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
-          echo "::add-mask::$token"
-          echo "token=$token" >> "$GITHUB_OUTPUT"
-      - name: Run G2-014 premium Progress Picture acceptance
-        id: g2_014
-        continue-on-error: true
-        env:
-          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
-          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
-          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_014.outputs.token }}
-          G2_014_EVIDENCE_DIR: g2-014-progress-picture-premium-evidence
-        run: node g2-014-progress-picture-premium-production.mjs
-      - name: Acquire G2-015 commissioning identity
-        id: oidc_015
-        shell: bash
-        run: |
-          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
-          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
-          echo "::add-mask::$token"
-          echo "token=$token" >> "$GITHUB_OUTPUT"
-      - name: Run G2-015 premium My Plans acceptance
-        id: g2_015
-        continue-on-error: true
-        env:
-          SHIFT_SITE_BASE: https://shiftsometimber.co.uk
-          SHIFT_API_BASE: https://api.shiftsometimber.co.uk
-          SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc_015.outputs.token }}
-          G2_015_EVIDENCE_DIR: g2-015-plan-manager-evidence
-        run: node g2-015-plan-manager-production.mjs
-      - name: Upload rendered member evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: rendered-member-production-evidence
-          path: |
-            g2-011-progress-story-evidence
-            g2-013-progress-picture-evidence
-            g2-014-progress-picture-premium-evidence
-            g2-015-plan-manager-evidence
+          name: my-treatment-signed-in-${{ github.run_id }}
+          path: my-treatment-browser-evidence/
           if-no-files-found: warn
-          retention-days: 30
-      - name: Enforce all five acceptance results
-        if: always()
-        env:
-          GROWTH_OUTCOME: ${{ steps.growth_loop.outcome }}
-          G2_011_OUTCOME: ${{ steps.g2_011.outcome }}
-          G2_013_OUTCOME: ${{ steps.g2_013.outcome }}
-          G2_014_OUTCOME: ${{ steps.g2_014.outcome }}
-          G2_015_OUTCOME: ${{ steps.g2_015.outcome }}
-        run: |
-          printf 'G2-011=%s G2-013=%s G2-014=%s G2-015=%s\n' "$G2_011_OUTCOME" "$G2_013_OUTCOME" "$G2_014_OUTCOME" "$G2_015_OUTCOME"
-          test "$GROWTH_OUTCOME" = success
-          test "$G2_011_OUTCOME" = success
-          test "$G2_013_OUTCOME" = success
-          test "$G2_014_OUTCOME" = success
-          test "$G2_015_OUTCOME" = success
+          retention-days: 7
