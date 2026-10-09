@@ -795,9 +795,10 @@
       "release/approved-runtime-composition.mjs",
       "release/fit-300-scope.mjs",
       "shift-coach/scope.mjs",
-      "tests/approved-runtime-composition.test.mjs"
+      "tests/approved-runtime-composition.test.mjs",
+      "tests/public-tool-release.test.mjs"
     ],
-    "maintenanceSource": "a3d7946b02b345b2b2b3116497a0dfea3d7b232b",
+    "maintenanceSource": "4e6e5db77e8b54e0a8ab775e37f80960acb43870",
     "observationRun": 37908130882,
     "successfulPredecessorRun": 37895305149,
     "restoredVersion": "fd7939d8-6387-48fa-adc8-714e6f8bea8d",
