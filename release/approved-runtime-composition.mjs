@@ -930,7 +930,7 @@ export const LATER_UNATTRIBUTED_WATCH_RECOVERY_BASE='7e218c9187b4605a9ed73bc17b8
 export const LATER_UNATTRIBUTED_WATCH_RECOVERY_PRIOR='59ddd4353fd337631478c3a2704017e1556cf987';
 export const LATER_UNATTRIBUTED_WATCH_RECOVERY_SOURCE='eccb986b1e2f1ef05e3db87ab3bef71d4d1e9913';
 export const LATER_UNATTRIBUTED_WATCH_RECOVERY_PATHS=Object.freeze(['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/recover-cancelled-release.mjs']);
-export const LATER_UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs']);
+export const LATER_UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','release/fit-300-scope.mjs','tests/approved-runtime-composition.test.mjs']);
 export const LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED=Object.freeze(['public-answers-entry.mjs','public-seo-answer-depth.mjs','tests/public-seo-answer-depth.test.mjs','wrangler.public-answers.jsonc']);
 const LATER_UNATTRIBUTED_WATCH_RECOVERY_SET=new Set([...LATER_UNATTRIBUTED_WATCH_RECOVERY_PATHS,...LATER_UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE]);
 for(const path of LATER_UNATTRIBUTED_WATCH_RECOVERY_SET)RECONCILIATION_PATHS.add(path);
