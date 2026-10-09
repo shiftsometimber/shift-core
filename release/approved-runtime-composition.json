@@ -1013,7 +1013,7 @@
       "release/approved-runtime-composition.mjs",
       "tests/late-watch-composition.test.mjs"
     ],
-    "maintenanceSource": "8b17ccfcba32526ede1db26b827ebcb380a7b000",
+    "maintenanceSource": "a37b462b976bdb969cf236293a63e34398b6e9fd",
     "approvedPR": 1267,
     "publicationStatus": "already_merged_owner_authorised_factual_publication",
     "clinicalApproval": null,
