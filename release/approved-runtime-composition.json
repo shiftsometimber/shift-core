@@ -794,11 +794,12 @@
     "maintenancePaths": [
       "release/approved-runtime-composition.mjs",
       "release/fit-300-scope.mjs",
+      "scripts/b1-release-scope.mjs",
       "shift-coach/scope.mjs",
       "tests/approved-runtime-composition.test.mjs",
       "tests/public-tool-release.test.mjs"
     ],
-    "maintenanceSource": "4e6e5db77e8b54e0a8ab775e37f80960acb43870",
+    "maintenanceSource": "71137c07f953c7fcb1ccaa7bbba04e211600b812",
     "observationRun": 37908130882,
     "successfulPredecessorRun": 37895305149,
     "restoredVersion": "fd7939d8-6387-48fa-adc8-714e6f8bea8d",
