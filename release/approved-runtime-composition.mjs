@@ -696,12 +696,18 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
- const unattributed=c.unattributedWatchRuntimeRecovery;
- if(unattributed)verifyUnattributedWatchRecovery(unattributed,{head:actualHead,read:rawBlob,
+ const publicAnswersArchive=c.publicAnswersSourceArchive;
+ if(publicAnswersArchive)verifyPublicAnswersSourceArchive(publicAnswersArchive,{head:actualHead,read:rawBlob,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const unattributedHead=unattributed?unattributed.base:actualHead;
- const unattributedRead=(ref,path)=>rawBlob(unattributed&&ref==='HEAD'&&UNATTRIBUTED_WATCH_RECOVERY_SET.has(path)?unattributed.base:ref,path);
+ const scopedHead=publicAnswersArchive?publicAnswersArchive.base:actualHead;
+ const scopedRead=(ref,path)=>rawBlob(publicAnswersArchive&&ref==='HEAD'&&PUBLIC_ANSWERS_ARCHIVE_SET.has(path)?publicAnswersArchive.base:ref,path);
+ const unattributed=c.unattributedWatchRuntimeRecovery;
+ if(unattributed)verifyUnattributedWatchRecovery(unattributed,{head:scopedHead,read:scopedRead,
+  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
+  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const unattributedHead=unattributed?unattributed.base:scopedHead;
+ const unattributedRead=(ref,path)=>scopedRead(unattributed&&ref==='HEAD'&&UNATTRIBUTED_WATCH_RECOVERY_SET.has(path)?unattributed.base:ref,path);
  const archive=c.toolSchemaArchive;
  if(archive)verifyToolSchemaArchive(archive,{head:unattributedHead,read:unattributedRead,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
@@ -961,4 +967,32 @@ export function verifyToolSchemaArchive(c,{head,read,diff,ancestor}) {
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after archive receipt');
  for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Tool schema archive source drift: '+path);
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift: '+path);
+}
+
+// These exact four additions belong to a separately configured public-pages
+// Worker. Archive their existing source in core's receipt without deploying that
+// Worker, changing core's entry/configuration, or granting runtime ownership.
+export const PUBLIC_ANSWERS_ARCHIVE_BASE='59ddd4353fd337631478c3a2704017e1556cf987';
+export const PUBLIC_ANSWERS_ARCHIVE_SOURCE='7e218c9187b4605a9ed73bc17b8321091d0604a9';
+export const PUBLIC_ANSWERS_ARCHIVE_PATHS=Object.freeze(['public-answers-entry.mjs','public-seo-answer-depth.mjs','tests/public-seo-answer-depth.test.mjs','wrangler.public-answers.jsonc']);
+export const PUBLIC_ANSWERS_ARCHIVE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/public-answers-source-archive.test.mjs']);
+export const PUBLIC_ANSWERS_ARCHIVE_PROTECTED=Object.freeze(['wrangler.jsonc','wrangler.coaching.jsonc','shift-coach/worker.mjs','worker-entry-v6.js','.github/workflows/cloudflare-production-promote.yml','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','release/runtime-rollback-guard.mjs']);
+const PUBLIC_ANSWERS_ARCHIVE_SET=new Set([...PUBLIC_ANSWERS_ARCHIVE_PATHS,...PUBLIC_ANSWERS_ARCHIVE_MAINTENANCE]);
+for(const path of PUBLIC_ANSWERS_ARCHIVE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyPublicAnswersSourceArchive(c,{head,read,diff,ancestor}) {
+ assert(c);assert.equal(c.proof,'EXACT_SEPARATE_PUBLIC_ANSWERS_SOURCE_ARCHIVE_V1');
+ assert.equal(c.base,PUBLIC_ANSWERS_ARCHIVE_BASE);assert.equal(c.source,PUBLIC_ANSWERS_ARCHIVE_SOURCE);
+ assert.deepEqual(c.paths,PUBLIC_ANSWERS_ARCHIVE_PATHS);assert.deepEqual(c.maintenancePaths,PUBLIC_ANSWERS_ARCHIVE_MAINTENANCE);
+ assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ for(const flag of ['coreRuntimeChanged','coreConfigurationChanged','publicAnswersWorkerDeploymentAuthorised','customerDataChanged','deploymentAuthorityBroadened','existingGatesWeakened','rollbackAuthorityBroadened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated separate public-answers source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated public-answers archive maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after public-answers archive receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Public-answers archive source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Public-answers archive maintenance source drift: '+path);
+ for(const path of PUBLIC_ANSWERS_ARCHIVE_PROTECTED){
+  assert.equal(read(c.source,path),read(c.base,path),'Core runtime/ownership changed by archived source: '+path);
+  assert.equal(read('HEAD',path),read(c.base,path),'Core runtime/ownership changed by archive repair: '+path);
+ }
 }
