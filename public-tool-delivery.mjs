@@ -1,3 +1,4 @@
+import {improveToolGuidance} from './public-tool-guidance.mjs';
 // Bounded repair for the nine free public tools observed in the Semrush audit.
 export const TOOL_PATHS = new Set(['/tools/waist-height','/tools/walking','/tools/water','/tools/healthy-weight','/tools/bmi','/tools/calories','/decision-centre','/tools/alcohol','/tools/protein']);
 export const PUBLIC_STYLES = new Set(['/assets/shift-recovery-v6.css','/assets/shift-calculator-flow-v1.css','/assets/ask-timber-drawer-v2.css','/seo-wave2-v15.css','/assets/v136-desolation-recovery.css','/assets/v137-estate-closeout.css','/assets/header-navigation-v2.css','/assets/my-timber-pwa.css','/assets/shift-service-bridge-v1.css']);
@@ -29,10 +30,11 @@ export async function withPublicToolDelivery(response,request) {
   return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
  }
  if(request.method!=='GET' || !TOOL_PATHS.has(url.pathname) || !type.includes('text/html')) return response;
- const original=await response.clone().text(),updated=repairFreeToolSchema(original);
+ const original=await response.clone().text(),updated=improveToolGuidance(repairFreeToolSchema(original),url.pathname);
  if(updated===original)return response;
  const headers=new Headers(response.headers);
  for(const name of ['Content-Length','Content-Encoding','ETag','Content-MD5','Digest','Last-Modified'])headers.delete(name);
  headers.set('X-Shift-Public-Tool-Delivery','2026-10-08');
  return new Response(updated,{status:response.status,statusText:response.statusText,headers});
 }
+

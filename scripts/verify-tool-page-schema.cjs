@@ -1,5 +1,6 @@
 // Read-only public check. Exit non-zero if any of the nine repaired pages regresses.
 const assert = require('node:assert/strict');
+const {createHash} = require('node:crypto');
 const paths = ['/decision-centre','/tools/alcohol','/tools/bmi','/tools/calories','/tools/healthy-weight','/tools/protein','/tools/waist-height','/tools/walking','/tools/water'];
 function* walk(value) {
   if (Array.isArray(value)) { for (const child of value) yield* walk(child); }
@@ -19,7 +20,7 @@ async function check(path, fetchImpl = fetch) {
     assert.equal(pages.length, 1, 'Expected exactly one canonical WebPage item');
     assert.equal(pages[0]['@id'], url + '#webpage', 'WebPage identifier changed');
     assert.equal(pages[0].isAccessibleForFree, true, 'Free-access declaration changed');
-    return { path, status: response.status, jsonBlocks: blocks.length, applicationItems, canonicalWebPageItems: pages.length, passed: true };
+    return { path, status: response.status, htmlSha256: createHash('sha256').update(html).digest('hex'), jsonBlocks: blocks.length, applicationItems, canonicalWebPageItems: pages.length, passed: true };
   } catch (error) { return { path, passed: false, error: error.message }; }
 }
 async function verifyAll(fetchImpl = fetch) {
@@ -33,3 +34,4 @@ async function main(fetchImpl = fetch) {
 }
 module.exports = { paths, check, verifyAll, main };
 if (require.main === module) main().catch(error => { console.error(error.message); process.exitCode = 1; });
+
