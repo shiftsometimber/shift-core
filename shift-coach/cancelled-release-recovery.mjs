@@ -101,6 +101,12 @@ export function verifiedStartingPoint(record,active){
   assert.equal(active?.versions?.length,1);assert.equal(active.versions[0].percentage,100);assert.equal(active.versions[0].version_id,p.verifiedVersion,'Runtime moved since exact later unattributed-runtime recovery');
   return{source:p.verifiedSource,version:p.verifiedVersion,run:p.verifiedRun};
  }
+ if(record.laterUnattributedRollback){
+  const p=laterUnattributedRollback,r=laterUnattributedRuntimeRecovery;assert.equal(record.decision,'retain');assert.equal(record.run,p.run);assert.equal(record.from,p.version);assert.equal(record.to,p.version);assert.equal(record.verifiedRun,r.verifiedRun);assert.equal(record.customerRecordsRead,0);assert.equal(record.ownedProof,null);
+  assert.deepEqual(record.laterUnattributedRollback,{run:p.run,source:p.source,deployment:p.deployment,version:p.version,fromDeployment:p.fromDeployment,fromVersion:p.fromVersion,verifiedRun:r.verifiedRun,verifiedSource:r.verifiedSource});
+  assert.equal(active?.id,p.deployment,'Runtime deployment moved since exact later unattributed rollback');assert.deepEqual(active.versions,[{version_id:p.version,percentage:100}]);
+  return{source:r.verifiedSource,version:p.version,run:r.verifiedRun};
+ }
  assert.equal(record.run,recovery.run);
  assert.equal(active?.versions?.length,1);assert.equal(active.versions[0].percentage,100);
  assert.equal(active.versions[0].version_id,record.to,'Runtime moved since recovery verification');
@@ -246,6 +252,32 @@ export async function verifyLaterUnattributedRuntime(active,version,providerVers
  const observedJob=observedJobs.jobs?.find(j=>j.id===p.job),verifiedJob=verifiedJobs.jobs?.find(j=>j.id===p.verifiedJob);
  assert(verifiedLaterUnattributedRuntimeRecovery(active,version,providerVersion,modules,observed,observedJob,await getLogs(p.job),verified,verifiedJob,await getLogs(p.verifiedJob)),'Exact later unattributed runtime, read-only attribution and successful predecessor evidence required');
  return{run:p.run,source:p.source,version:p.version,deployment:p.deployment,verifiedRun:p.verifiedRun,verifiedSource:p.verifiedSource,verifiedVersion:p.verifiedVersion,verifiedDeployment:p.verifiedDeployment,contentEtag:p.etag,moduleSha256:p.sha256};
+}
+
+// The exact rollback above completed before a later, unrelated verifier test
+// stopped that production job. Wrangler created a fresh deployment pointer to
+// the already-proven predecessor version. Retain only that exact pointer when
+// the failed job and its recovery logs independently prove the transition.
+export const laterUnattributedRollback=Object.freeze({
+ run:37914338433,job:113766865055,source:'5a5d7c997db4b2874f25fbb445c9033d86d2a515',
+ deployment:'19c317f4-0058-4497-86a8-596db6de90a9',version:laterUnattributedRuntimeRecovery.verifiedVersion,
+ fromDeployment:laterUnattributedRuntimeRecovery.deployment,fromVersion:laterUnattributedRuntimeRecovery.version
+});
+export function verifiedLaterUnattributedRollback(active,run,job,logs){
+ const p=laterUnattributedRollback,r=laterUnattributedRuntimeRecovery;
+ if(active?.id!==p.deployment||active.versions?.length!==1||active.versions[0].percentage!==100||active.versions[0].version_id!==p.version)return false;
+ if(run?.id!==p.run||run.head_sha!==p.source||run.run_attempt!==1||run.status!=='completed'||run.conclusion!=='failure'||run.event!=='push'||run.head_branch!=='main'||run.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
+ if(job?.id!==p.job||job.run_id!==p.run||job.name!=='promote'||job.status!=='completed'||job.conclusion!=='failure')return false;
+ for(const [number,name,conclusion] of [[10,'Recover only the evidenced cancelled runtime to the last verified release','success'],[15,'Verify acquisition consent and same-account activation join','failure'],[62,'Deploy current main to production','skipped'],[111,'Restore the captured runtime if a post-deployment gate failed','skipped']])if(!job.steps?.some(s=>s.number===number&&s.name===name&&s.conclusion===conclusion))return false;
+ const observation={kind:'runtime_recovery_observation',deploymentId:p.fromDeployment,activeVersion:p.fromVersion,release:p.source,version:{kind:'runtime_recovery_version_observation',id:p.fromVersion,createdOn:r.createdOn,source:'wrangler',triggeredBy:'version_upload',tag:null,message:r.message}};
+ return typeof logs==='string'&&logs.includes(JSON.stringify(observation))
+  &&logs.includes('Restore exact successful predecessor of unattributed runtime observed by read-only run '+r.run+'; no data rollback')
+  &&logs.includes('SUCCESS  Worker Version '+p.version+' has been deployed to 100% of traffic.');
+}
+export async function verifyLaterUnattributedRollback(active,get,getLogs){
+ const p=laterUnattributedRollback,run=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs?filter=latest&per_page=100'),job=jobs.jobs?.find(j=>j.id===p.job),logs=await getLogs(p.job);
+ assert(verifiedLaterUnattributedRollback(active,run,job,logs),'Exact failed recovery job and restored predecessor deployment evidence required');
+ return{run:p.run,source:p.source,deployment:p.deployment,version:p.version,fromDeployment:p.fromDeployment,fromVersion:p.fromVersion,verifiedRun:laterUnattributedRuntimeRecovery.verifiedRun,verifiedSource:laterUnattributedRuntimeRecovery.verifiedSource};
 }
 
 // Retain only this exact owner-authorised local tablet release. Hosted source

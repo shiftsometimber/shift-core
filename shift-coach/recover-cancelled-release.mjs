@@ -2,7 +2,7 @@ import {SUPPORT_RUNTIME,verifySupportRuntime} from '../release/live-support-runt
 import {OWNER_RUNTIME,verifyOwnerRuntime} from '../release/owner-captured-runtime.mjs';
 import {SITEWIDE_VERSION,verifySitewideRuntime} from '../release/sitewide-seo-scope.mjs';
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';import {createHash} from 'node:crypto';
-import {tabletRuntime,TABLET_RUNTIME_RECEIPT,verifyTabletRuntime,technicalRecovery,verifyTechnicalCancelledRuntime,unattributedRuntimeRecovery,verifyUnattributedRuntime,laterUnattributedRuntimeRecovery,verifyLaterUnattributedRuntime,catalogueRuntime,verifyCatalogueBaseline,articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime,recentSuccessfulPromotions} from './cancelled-release-recovery.mjs';import {verifyCoachingRelease} from './release-contract.mjs';
+import {tabletRuntime,TABLET_RUNTIME_RECEIPT,verifyTabletRuntime,technicalRecovery,verifyTechnicalCancelledRuntime,unattributedRuntimeRecovery,verifyUnattributedRuntime,laterUnattributedRuntimeRecovery,verifyLaterUnattributedRuntime,laterUnattributedRollback,verifyLaterUnattributedRollback,catalogueRuntime,verifyCatalogueBaseline,articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime,recentSuccessfulPromotions} from './cancelled-release-recovery.mjs';import {verifyCoachingRelease} from './release-contract.mjs';
 assert.equal(process.env.GITHUB_REF,'refs/heads/main');verifyCoachingRelease({requireLaunch:true});
 const get=async path=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json();};
 const main=await get('/git/refs/heads/main');assert.equal(main.object.sha,process.env.GITHUB_SHA,'Do not recover from a stale release');
@@ -13,7 +13,7 @@ const activeVersion=before.versions?.[0]?.version_id;
 const version=JSON.parse(wrangler('versions','view',activeVersion,'--json'));
 const versionObservation={kind:'runtime_recovery_version_observation',id:version.id,createdOn:version.metadata?.created_on,source:version.metadata?.source,triggeredBy:version.annotations?.['workers/triggered_by']||null,tag:version.annotations?.['workers/tag']||null,message:version.annotations?.['workers/message']||null};
 console.log(JSON.stringify({kind:'runtime_recovery_observation',deploymentId:before.id,activeVersion,release:process.env.GITHUB_SHA,version:versionObservation}));
-let decision,ownedProof,technicalProof,unattributedProof,laterUnattributedProof,ownerCapturedProof;
+let decision,ownedProof,technicalProof,unattributedProof,laterUnattributedProof,laterUnattributedRollbackProof,ownerCapturedProof;
 if(activeVersion===technicalRecovery.version){
  const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact cancelled SEO recovery logs unavailable');return r.text();};
  technicalProof=await verifyTechnicalCancelledRuntime(before,get,getLogs);decision='restore';
@@ -42,6 +42,10 @@ else if(activeVersion===OWNER_RUNTIME.version){
 }
 else if([recovery.verified,recovery.unverified].includes(before.versions?.[0]?.version_id))decision=recoveryDecision(before,failed,verified);
 else{
+ if(activeVersion===laterUnattributedRollback.version&&before.id===laterUnattributedRollback.deployment){
+  const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact later unattributed-runtime rollback logs unavailable');return r.text();};
+  laterUnattributedRollbackProof=await verifyLaterUnattributedRollback(before,get,getLogs);decision='retain';
+ }
  if(activeVersion===tabletRuntime.version){
   const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact tablet predecessor logs unavailable');return r.text();};
   ownedProof=await verifyTabletRuntime(before,version,readFileSync(TABLET_RUNTIME_RECEIPT,'utf8'),get,getLogs);
@@ -62,7 +66,7 @@ else{
   const job=(jobs.jobs||[]).find(j=>j.name==='release'&&j.conclusion==='success');
   if(verifiedArticleRuntime(before,run,job))ownedProof={run:run.id,source:run.head_sha,version:articleRuntime.version};
  }
- const runs=ownedProof?[]:await recentSuccessfulPromotions(get,before);
+ const runs=ownedProof||laterUnattributedRollbackProof?[]:await recentSuccessfulPromotions(get,before);
  for(const run of runs){
   if(ownedProof)break;
   const jobs=await get('/actions/runs/'+run.id+'/jobs');
@@ -76,7 +80,7 @@ else{
    }
   }
  }
- assert(ownedProof,'Unknown runtime has no exact successful owned-deployment proof; stop without rollback');
+ assert(ownedProof||laterUnattributedRollbackProof,'Unknown runtime has no exact successful owned-deployment proof; stop without rollback');
  decision='retain';
 }
 
@@ -95,5 +99,5 @@ if(decision==='restore'){
  assert.equal(recoveryDecision(active(),failed,verified),'retain','Recovery did not restore the verified runtime');
  }
 }
-mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/cancelled-release-recovery.json',JSON.stringify({at:new Date().toISOString(),decision,run:ownerCapturedProof?null:laterUnattributedProof?laterUnattributedRuntimeRecovery.run:unattributedProof?unattributedRuntimeRecovery.run:technicalProof?technicalRecovery.run:recovery.run,from:before.versions[0].version_id,to:ownerCapturedProof?ownerCapturedProof.version:laterUnattributedProof?laterUnattributedRuntimeRecovery.verifiedVersion:unattributedProof?unattributedRuntimeRecovery.verifiedVersion:technicalProof?technicalRecovery.verifiedVersion:ownedProof?.version||recovery.verified,verifiedRun:ownerCapturedProof?null:laterUnattributedProof?laterUnattributedRuntimeRecovery.verifiedRun:unattributedProof?unattributedRuntimeRecovery.verifiedRun:technicalProof?technicalRecovery.verifiedRun:ownedProof?.run||recovery.verifiedRun,ownedProof:ownedProof||null,...(ownerCapturedProof?{ownerCapturedProof}:{}),...(technicalProof?{technicalRecovery:technicalProof}:{}),...(unattributedProof?{unattributedRuntimeRecovery:unattributedProof}:{}),...(laterUnattributedProof?{laterUnattributedRuntimeRecovery:laterUnattributedProof}:{}),customerRecordsRead:0,dataChanged:false},null,2));
+mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/cancelled-release-recovery.json',JSON.stringify({at:new Date().toISOString(),decision,run:ownerCapturedProof?null:laterUnattributedRollbackProof?laterUnattributedRollback.run:laterUnattributedProof?laterUnattributedRuntimeRecovery.run:unattributedProof?unattributedRuntimeRecovery.run:technicalProof?technicalRecovery.run:recovery.run,from:before.versions[0].version_id,to:ownerCapturedProof?ownerCapturedProof.version:laterUnattributedRollbackProof?laterUnattributedRollback.version:laterUnattributedProof?laterUnattributedRuntimeRecovery.verifiedVersion:unattributedProof?unattributedRuntimeRecovery.verifiedVersion:technicalProof?technicalRecovery.verifiedVersion:ownedProof?.version||recovery.verified,verifiedRun:ownerCapturedProof?null:laterUnattributedRollbackProof?laterUnattributedRuntimeRecovery.verifiedRun:laterUnattributedProof?laterUnattributedRuntimeRecovery.verifiedRun:unattributedProof?unattributedRuntimeRecovery.verifiedRun:technicalProof?technicalRecovery.verifiedRun:ownedProof?.run||recovery.verifiedRun,ownedProof:ownedProof||null,...(ownerCapturedProof?{ownerCapturedProof}:{}),...(technicalProof?{technicalRecovery:technicalProof}:{}),...(unattributedProof?{unattributedRuntimeRecovery:unattributedProof}:{}),...(laterUnattributedProof?{laterUnattributedRuntimeRecovery:laterUnattributedProof}:{}),...(laterUnattributedRollbackProof?{laterUnattributedRollback:laterUnattributedRollbackProof}:{}),customerRecordsRead:0,dataChanged:false},null,2));
 console.log('PASS exact cancelled-release recovery: '+decision+' verified runtime; no data rollback');

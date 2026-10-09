@@ -207,6 +207,30 @@ test('later unattributed recovery starting point remains the proven successful p
  assert.throws(()=>verifiedStartingPoint(record,active(p.version)));
 });
 
+import {laterUnattributedRollback,verifiedLaterUnattributedRollback} from './cancelled-release-recovery.mjs';
+const laterRollbackFixture=()=>{
+ const p=laterUnattributedRollback,r=laterUnattributedRuntimeRecovery,a=active(p.version,p.deployment);
+ const run={id:p.run,head_sha:p.source,run_attempt:1,status:'completed',conclusion:'failure',event:'push',head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml'};
+ const job={id:p.job,run_id:p.run,name:'promote',status:'completed',conclusion:'failure',steps:[[10,'Recover only the evidenced cancelled runtime to the last verified release','success'],[15,'Verify acquisition consent and same-account activation join','failure'],[62,'Deploy current main to production','skipped'],[111,'Restore the captured runtime if a post-deployment gate failed','skipped']].map(([number,name,conclusion])=>({number,name,conclusion}))};
+ const observation={kind:'runtime_recovery_observation',deploymentId:p.fromDeployment,activeVersion:p.fromVersion,release:p.source,version:{kind:'runtime_recovery_version_observation',id:p.fromVersion,createdOn:r.createdOn,source:'wrangler',triggeredBy:'version_upload',tag:null,message:r.message}};
+ const logs=JSON.stringify(observation)+'\nRestore exact successful predecessor of unattributed runtime observed by read-only run '+r.run+'; no data rollback\nSUCCESS  Worker Version '+p.version+' has been deployed to 100% of traffic.';
+ return{p,r,a,run,job,logs};
+};
+test('only the exact failed-job rollback deployment retains the proven Watch predecessor',()=>{
+ const f=laterRollbackFixture(),check=(a=f.a,r=f.run,j=f.job,l=f.logs)=>verifiedLaterUnattributedRollback(a,r,j,l);assert.equal(check(),true);
+ for(const patch of [{id:'unknown'},{versions:[{version_id:f.p.version,percentage:99}]},{versions:[{version_id:f.p.fromVersion,percentage:100}]}])assert.equal(check({...f.a,...patch}),false);
+ for(const patch of [{head_sha:'f'.repeat(40)},{run_attempt:2},{conclusion:'success'},{event:'workflow_dispatch'},{head_branch:'other'},{path:'other.yml'}])assert.equal(check(f.a,{...f.run,...patch}),false);
+ for(const patch of [{id:1},{conclusion:'success'},{steps:f.job.steps.slice(1)}])assert.equal(check(f.a,f.run,{...f.job,...patch}),false);
+ for(const logs of ['',f.logs.replace(f.p.fromVersion,'unknown'),f.logs.replace('no data rollback','data rollback'),f.logs.replace('100%','99%')])assert.equal(check(f.a,f.run,f.job,logs),false);
+});
+test('rollback retention record remains finite and exact',()=>{
+ const {p,r,a}=laterRollbackFixture(),proof={run:p.run,source:p.source,deployment:p.deployment,version:p.version,fromDeployment:p.fromDeployment,fromVersion:p.fromVersion,verifiedRun:r.verifiedRun,verifiedSource:r.verifiedSource};
+ const record={decision:'retain',run:p.run,from:p.version,to:p.version,verifiedRun:r.verifiedRun,ownedProof:null,laterUnattributedRollback:proof,customerRecordsRead:0,dataChanged:false};
+ assert.deepEqual(verifiedStartingPoint(record,a),{source:r.verifiedSource,version:p.version,run:r.verifiedRun});
+ for(const patch of [{decision:'restore'},{run:1},{to:'unknown'},{verifiedRun:1},{dataChanged:true},{customerRecordsRead:1},{laterUnattributedRollback:{...proof,deployment:'unknown'}}])assert.throws(()=>verifiedStartingPoint({...record,...patch},a));
+ assert.throws(()=>verifiedStartingPoint(record,active(p.version,'unknown')));
+});
+
 import {tabletRuntime,TABLET_RUNTIME_RECEIPT,verifyTabletRuntime} from './cancelled-release-recovery.mjs';
 const tabletFixture=()=>{
  const p=tabletRuntime,active={id:p.deployment,source:'wrangler',created_on:'2026-10-06T21:11:22.219924Z',versions:[{version_id:p.version,percentage:100}]};
