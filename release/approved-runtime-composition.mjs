@@ -133,7 +133,7 @@ export function verifyMyTreatment(c,{head,read,diff,ancestor,content=(ref,path)=
  assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated My Treatment maintenance');
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after My Treatment');
  for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: My Treatment source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift / My Treatment: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: My Treatment / Tablet wording verifier source drift: '+path);
  const config=content(c.source,'wrangler.jsonc');assert.equal(config.split(TREATMENT_FLAG).length,2,'Exactly one authorised treatment flag');
  assert.equal(withoutTreatmentFlag(config),content(c.base,'wrangler.jsonc'),'Only the exact treatment flag may change configuration');
  assert.equal(content(c.source,'wrangler.coaching.jsonc'),config,'Coaching and production configuration must remain identical');
