@@ -24,7 +24,7 @@ test('captured repository source passes a real independent Git check',()=>assert
 
 import {verifyReconciledRelease,reconciliationHistoricalRead,reconciliationRecord,RECONCILIATION_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
 test('actual composed release and its finite maintenance receipt pass',()=>assert(verifyReconciledRelease()));
-test('fresh supplied readers cannot conceal payload or maintenance drift',()=>{for(const path of [...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':'same'),/source.*drift/);});
+test('fresh supplied readers cannot conceal payload or maintenance drift',()=>{for(const path of [...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':'same'),/(?:source|maintenance).*drift/);});
 test('historical reader maps only checked existing composition paths',()=>{const read=reconciliationHistoricalRead((ref,p)=>ref);assert.equal(read('HEAD','worker-entry-v6.js'),COMPOSITION_BASE);assert.equal(read('HEAD','acquisition-activation/consent.mjs'),'HEAD');assert.equal(read('HEAD','public-seo-organic-links.mjs'),'HEAD');});
 test('a fresh malicious reader is rechecked after a successful reader',()=>{reconciliationHistoricalRead((ref,p)=>'same',true);assert.throws(()=>reconciliationHistoricalRead((ref,p)=>ref==='HEAD'&&p==='worker-entry-v6.js'?'drift':'same',true),/drift/);});
 
@@ -130,7 +130,7 @@ import {SUPPORT_ROLLBACK_SOURCE,SUPPORT_ROLLBACK_PATHS,SUPPORT_ROLLBACK_MAINTENA
 test('serving rollback receipt refresh is finite and changes no public or medical content',()=>{
  const receipt=verifyReconciledRelease();assert.equal(receipt.supportRollbackRefresh.source,SUPPORT_ROLLBACK_SOURCE);
  for(const path of [...SUPPORT_ROLLBACK_PATHS,...SUPPORT_ROLLBACK_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Serving rollback .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
+  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Later unattributed Watch recovery maintenance drift|Serving rollback .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
   let existedAtBase=true;
   try{directGit('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});}catch{existedAtBase=false;}
@@ -147,7 +147,7 @@ import {ORAL_LIVE_DISPATCH_SOURCE,ORAL_LIVE_DISPATCH_PATHS,ORAL_LIVE_DISPATCH_MA
 test('oral live dispatch verifier repair is a finite immutable engineering receipt',()=>{
  const receipt=verifyReconciledRelease();assert.equal(receipt.oralLiveDispatchGuard.source,ORAL_LIVE_DISPATCH_SOURCE);
  for(const path of [...ORAL_LIVE_DISPATCH_PATHS,...ORAL_LIVE_DISPATCH_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:(?:Oral dispatch|Serving rollback) .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
+  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Later unattributed Watch recovery maintenance drift|(?:Oral dispatch|Serving rollback) .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
   let existedAtBase=true;
   try{directGit('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});}catch{existedAtBase=false;}
@@ -164,7 +164,7 @@ import {NHS_ARTICLE_PROOF_SOURCE,NHS_ARTICLE_PROOF_PATHS,NHS_ARTICLE_PROOF_MAINT
 test('NHS live verifier refresh pins five exact source files and rejects content or scope drift',()=>{
  const receipt=verifyReconciledRelease();assert.equal(receipt.nhsArticleProofRefresh.source,NHS_ARTICLE_PROOF_SOURCE);
  for(const path of [...NHS_ARTICLE_PROOF_PATHS,...NHS_ARTICLE_PROOF_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:NHS article .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
+  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Later unattributed Watch recovery maintenance drift|NHS article .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
  }
  for(const flag of ['publicCopyChanged','runtimeChanged','medicalContentChanged','customerDataChanged'])assert.equal(receipt.nhsArticleProofRefresh[flag],false);
@@ -178,7 +178,7 @@ test('late-inserted oral canonical repair is finite and preserves medical and cu
  assert.equal(c.runtimeChanged,true);assert.equal(c.approvedAnchorChanged,true);
  for(const flag of ['publicCopyChanged','medicalContentChanged','customerDataChanged'])assert.equal(c[flag],false);
  for(const path of [...ORAL_CANONICAL_PATHS,...ORAL_CANONICAL_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:oral canonical .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
+  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Later unattributed Watch recovery maintenance drift|oral canonical .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
  }
  assert.equal(reconciliationChangedPath('M','public-practical-guides.mjs'),true);
@@ -226,6 +226,20 @@ test('unattributed Watch runtime recovery is finite, byte-pinned and never gener
  for(const flag of ['medicalClaimsChanged','publicCopyChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened']){const f=unattributedRecoveryFixture();f.c[flag]=true;assert.throws(()=>verifyUnattributedWatchRecovery(f.c,f.options));}
  {const f=unattributedRecoveryFixture();f.options.diff=()=>['checkout.mjs'];assert.throws(()=>verifyUnattributedWatchRecovery(f.c,f.options),/Unrelated|Unreviewed/);}
  {const f=unattributedRecoveryFixture();f.c.restoredVersion='unknown';assert.throws(()=>verifyUnattributedWatchRecovery(f.c,f.options));}
+});
+
+import {verifyLaterUnattributedWatchRecovery,LATER_UNATTRIBUTED_WATCH_RECOVERY_BASE,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRIOR,LATER_UNATTRIBUTED_WATCH_RECOVERY_SOURCE,LATER_UNATTRIBUTED_WATCH_RECOVERY_PATHS,LATER_UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED} from '../release/approved-runtime-composition.mjs';
+const laterUnattributedRecoveryFixture=()=>{
+ const maintenanceSource='e'.repeat(40),head='f'.repeat(40),c={proof:'EXACT_LATER_UNATTRIBUTED_WATCH_RUNTIME_RECOVERY_V1',base:LATER_UNATTRIBUTED_WATCH_RECOVERY_BASE,priorComposition:LATER_UNATTRIBUTED_WATCH_RECOVERY_PRIOR,source:LATER_UNATTRIBUTED_WATCH_RECOVERY_SOURCE,preservedPaths:LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED,paths:LATER_UNATTRIBUTED_WATCH_RECOVERY_PATHS,maintenancePaths:LATER_UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE,maintenanceSource,observationRun:37908130882,successfulPredecessorRun:37895305149,restoredVersion:'fd7939d8-6387-48fa-adc8-714e6f8bea8d',medicalClaimsChanged:false,publicCopyChanged:false,customerDataChanged:false,genericAdoptionAllowed:false,rollbackAuthorityBroadened:false,existingGatesWeakened:false};
+ const options={head,read:()=> 'same',ancestor:()=>{},diff:(a,b)=>a===c.priorComposition&&b===c.base?[...c.preservedPaths]:a===c.base&&b===c.source?[...c.paths]:a===c.source&&b===c.maintenanceSource?[...c.maintenancePaths]:[RECONCILIATION_MANIFEST]};
+ return{c,options};
+};
+test('later unattributed Watch recovery preserves newer main and remains finite',()=>{
+ const {c,options}=laterUnattributedRecoveryFixture();assert.doesNotThrow(()=>verifyLaterUnattributedWatchRecovery(c,options));
+ for(const path of [...c.preservedPaths,...c.paths,...c.maintenancePaths]){const f=laterUnattributedRecoveryFixture();f.options.read=(ref,p)=>ref==='HEAD'&&p===path?'drift':'same';assert.throws(()=>verifyLaterUnattributedWatchRecovery(f.c,f.options),/drift/);}
+ for(const flag of ['medicalClaimsChanged','publicCopyChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened']){const f=laterUnattributedRecoveryFixture();f.c[flag]=true;assert.throws(()=>verifyLaterUnattributedWatchRecovery(f.c,f.options));}
+ {const f=laterUnattributedRecoveryFixture();f.options.diff=()=>['checkout.mjs'];assert.throws(()=>verifyLaterUnattributedWatchRecovery(f.c,f.options),/Unexpected|Unrelated|Unreviewed/);}
+ {const f=laterUnattributedRecoveryFixture();f.c.observationRun=1;assert.throws(()=>verifyLaterUnattributedWatchRecovery(f.c,f.options));}
 });
 
 import {verifyLogoutAdoption,LOGOUT_ADOPTION_BASE,LOGOUT_ADOPTION_PATHS,assertLogoutBoundary,RELOAD_VERIFIER} from '../release/approved-runtime-composition.mjs';

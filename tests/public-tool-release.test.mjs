@@ -24,6 +24,6 @@ test('real receipt validates the current repair before mapping older worker guar
  for(const p of ['acquisition-activation/consent.mjs','commerce-stripe-v1.js'])assert.equal(read('HEAD',p),'HEAD');
  const c=reconciliationRecord().publicToolDelivery;
  const raw=(ref,path)=>execFileSync('git',['rev-parse',ref+':'+path],{encoding:'utf8'}).trim();
- for(const p of [...PUBLIC_TOOL_PAYLOAD,...PUBLIC_TOOL_MAINTENANCE])assert.throws(()=>verifyReconciledRelease((ref,path)=>ref==='HEAD'&&path===p?'changed':raw(ref,path)),/source drift/);
+ for(const p of [...PUBLIC_TOOL_PAYLOAD,...PUBLIC_TOOL_MAINTENANCE])assert.throws(()=>verifyReconciledRelease((ref,path)=>ref==='HEAD'&&path===p?'changed':raw(ref,path)),/(?:source|maintenance).*drift/);
  assert.equal(c.payloadSource,PUBLIC_TOOL_SOURCE);
 });

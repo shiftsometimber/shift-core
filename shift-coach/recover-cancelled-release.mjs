@@ -2,7 +2,7 @@ import {SUPPORT_RUNTIME,verifySupportRuntime} from '../release/live-support-runt
 import {OWNER_RUNTIME,verifyOwnerRuntime} from '../release/owner-captured-runtime.mjs';
 import {SITEWIDE_VERSION,verifySitewideRuntime} from '../release/sitewide-seo-scope.mjs';
 import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';import {createHash} from 'node:crypto';
-import {tabletRuntime,TABLET_RUNTIME_RECEIPT,verifyTabletRuntime,technicalRecovery,verifyTechnicalCancelledRuntime,unattributedRuntimeRecovery,verifyUnattributedRuntime,catalogueRuntime,verifyCatalogueBaseline,articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime,recentSuccessfulPromotions} from './cancelled-release-recovery.mjs';import {verifyCoachingRelease} from './release-contract.mjs';
+import {tabletRuntime,TABLET_RUNTIME_RECEIPT,verifyTabletRuntime,technicalRecovery,verifyTechnicalCancelledRuntime,unattributedRuntimeRecovery,verifyUnattributedRuntime,laterUnattributedRuntimeRecovery,verifyLaterUnattributedRuntime,catalogueRuntime,verifyCatalogueBaseline,articleRuntime,recovery,recoveryDecision,verifiedArticleRuntime,verifiedOwnedRuntime,recentSuccessfulPromotions} from './cancelled-release-recovery.mjs';import {verifyCoachingRelease} from './release-contract.mjs';
 assert.equal(process.env.GITHUB_REF,'refs/heads/main');verifyCoachingRelease({requireLaunch:true});
 const get=async path=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core'+path,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok);return r.json();};
 const main=await get('/git/refs/heads/main');assert.equal(main.object.sha,process.env.GITHUB_SHA,'Do not recover from a stale release');
@@ -13,19 +13,22 @@ const activeVersion=before.versions?.[0]?.version_id;
 const version=JSON.parse(wrangler('versions','view',activeVersion,'--json'));
 const versionObservation={kind:'runtime_recovery_version_observation',id:version.id,createdOn:version.metadata?.created_on,source:version.metadata?.source,triggeredBy:version.annotations?.['workers/triggered_by']||null,tag:version.annotations?.['workers/tag']||null,message:version.annotations?.['workers/message']||null};
 console.log(JSON.stringify({kind:'runtime_recovery_observation',deploymentId:before.id,activeVersion,release:process.env.GITHUB_SHA,version:versionObservation}));
-let decision,ownedProof,technicalProof,unattributedProof,ownerCapturedProof;
+let decision,ownedProof,technicalProof,unattributedProof,laterUnattributedProof,ownerCapturedProof;
 if(activeVersion===technicalRecovery.version){
  const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact cancelled SEO recovery logs unavailable');return r.text();};
  technicalProof=await verifyTechnicalCancelledRuntime(before,get,getLogs);decision='restore';
 }
-else if(activeVersion===unattributedRuntimeRecovery.version){
- const providerApi='https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID+'/workers/scripts/shift-core';
- const providerGet=async path=>{const r=await fetch(providerApi+path,{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Provider read failed '+path+' HTTP '+r.status);return r;};
- const providerVersion=(await (await providerGet('/versions/'+activeVersion)).json()).result;
- const content=await providerGet('/content/v2'),form=await content.formData(),modules=[];
- for(const [module,file] of form)if(typeof file!=='string'){const bytes=Buffer.from(await file.arrayBuffer());modules.push({module,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')});}
+else if([unattributedRuntimeRecovery.version,laterUnattributedRuntimeRecovery.version].includes(activeVersion)){
+ const accountApi='https://api.cloudflare.com/client/v4/accounts/'+process.env.CLOUDFLARE_ACCOUNT_ID;
+ const providerGet=async url=>{const r=await fetch(url,{headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Provider read failed '+new URL(url).pathname+' HTTP '+r.status);return r;};
+ const providerVersion=(await (await providerGet(accountApi+'/workers/scripts/shift-core/versions/'+activeVersion)).json()).result;
+ const exact=(await (await providerGet(accountApi+'/workers/workers/shift-core/versions/'+activeVersion+'?include=modules')).json()).result;
+ assert.equal(exact.id,activeVersion,'Specific-version API returned the wrong runtime');assert(Array.isArray(exact.modules)&&exact.modules.length>0,'Specific-version API returned no modules');
+ const modules=exact.modules.map(file=>{assert.equal(typeof file.name,'string');assert.equal(typeof file.content_base64,'string');const bytes=Buffer.from(file.content_base64,'base64');return{module:file.name,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')}});
  const getLogs=async id=>{const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/jobs/'+id+'/logs',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Exact unattributed-runtime evidence logs unavailable');return r.text();};
- unattributedProof=await verifyUnattributedRuntime(before,version,providerVersion,modules,get,getLogs);decision='restore';
+ if(activeVersion===laterUnattributedRuntimeRecovery.version)laterUnattributedProof=await verifyLaterUnattributedRuntime(before,version,providerVersion,modules,get,getLogs);
+ else unattributedProof=await verifyUnattributedRuntime(before,version,providerVersion,modules,get,getLogs);
+ decision='restore';
 }
 else if(activeVersion===SUPPORT_RUNTIME.version){
  ownerCapturedProof=await verifySupportRuntime(before,version);
@@ -78,10 +81,11 @@ else{
 }
 
 if(decision==='restore'){
- if(unattributedProof){
+ if(laterUnattributedProof||unattributedProof){
+  const p=laterUnattributedProof?laterUnattributedRuntimeRecovery:unattributedRuntimeRecovery;
   const unchanged=active();assert.deepEqual({id:unchanged.id,versions:unchanged.versions},{id:before.id,versions:before.versions},'Runtime moved before exact unattributed-runtime recovery');
-  console.log(wrangler('rollback',unattributedRuntimeRecovery.verifiedVersion,'--message','Restore exact successful predecessor of unattributed runtime observed by read-only run 37902092425; no data rollback'));
-  const after=active();assert.equal(after.versions?.length,1);assert.equal(after.versions[0].percentage,100);assert.equal(after.versions[0].version_id,unattributedRuntimeRecovery.verifiedVersion,'Unattributed-runtime recovery did not restore the exact successful predecessor');
+  console.log(wrangler('rollback',p.verifiedVersion,'--message','Restore exact successful predecessor of unattributed runtime observed by read-only run '+p.run+'; no data rollback'));
+  const after=active();assert.equal(after.versions?.length,1);assert.equal(after.versions[0].percentage,100);assert.equal(after.versions[0].version_id,p.verifiedVersion,'Unattributed-runtime recovery did not restore the exact successful predecessor');
  }else if(technicalProof){
   const unchanged=active();assert.deepEqual({id:unchanged.id,versions:unchanged.versions},{id:before.id,versions:before.versions},'Runtime moved before exact SEO recovery');
   console.log(wrangler('rollback',technicalRecovery.verifiedVersion,'--message','Restore exact successful predecessor of cancelled SEO run 37512509413; no data rollback'));
@@ -91,5 +95,5 @@ if(decision==='restore'){
  assert.equal(recoveryDecision(active(),failed,verified),'retain','Recovery did not restore the verified runtime');
  }
 }
-mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/cancelled-release-recovery.json',JSON.stringify({at:new Date().toISOString(),decision,run:ownerCapturedProof?null:unattributedProof?unattributedRuntimeRecovery.run:technicalProof?technicalRecovery.run:recovery.run,from:before.versions[0].version_id,to:ownerCapturedProof?ownerCapturedProof.version:unattributedProof?unattributedRuntimeRecovery.verifiedVersion:technicalProof?technicalRecovery.verifiedVersion:ownedProof?.version||recovery.verified,verifiedRun:ownerCapturedProof?null:unattributedProof?unattributedRuntimeRecovery.verifiedRun:technicalProof?technicalRecovery.verifiedRun:ownedProof?.run||recovery.verifiedRun,ownedProof:ownedProof||null,...(ownerCapturedProof?{ownerCapturedProof}:{}),...(technicalProof?{technicalRecovery:technicalProof}:{}),...(unattributedProof?{unattributedRuntimeRecovery:unattributedProof}:{}),customerRecordsRead:0,dataChanged:false},null,2));
+mkdirSync('b1-runtime-release',{recursive:true});writeFileSync('b1-runtime-release/cancelled-release-recovery.json',JSON.stringify({at:new Date().toISOString(),decision,run:ownerCapturedProof?null:laterUnattributedProof?laterUnattributedRuntimeRecovery.run:unattributedProof?unattributedRuntimeRecovery.run:technicalProof?technicalRecovery.run:recovery.run,from:before.versions[0].version_id,to:ownerCapturedProof?ownerCapturedProof.version:laterUnattributedProof?laterUnattributedRuntimeRecovery.verifiedVersion:unattributedProof?unattributedRuntimeRecovery.verifiedVersion:technicalProof?technicalRecovery.verifiedVersion:ownedProof?.version||recovery.verified,verifiedRun:ownerCapturedProof?null:laterUnattributedProof?laterUnattributedRuntimeRecovery.verifiedRun:unattributedProof?unattributedRuntimeRecovery.verifiedRun:technicalProof?technicalRecovery.verifiedRun:ownedProof?.run||recovery.verifiedRun,ownedProof:ownedProof||null,...(ownerCapturedProof?{ownerCapturedProof}:{}),...(technicalProof?{technicalRecovery:technicalProof}:{}),...(unattributedProof?{unattributedRuntimeRecovery:unattributedProof}:{}),...(laterUnattributedProof?{laterUnattributedRuntimeRecovery:laterUnattributedProof}:{}),customerRecordsRead:0,dataChanged:false},null,2));
 console.log('PASS exact cancelled-release recovery: '+decision+' verified runtime; no data rollback');

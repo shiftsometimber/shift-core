@@ -167,6 +167,46 @@ test('unattributed recovery starting point remains the proven successful predece
  assert.throws(()=>verifiedStartingPoint(record,active(p.version)));
 });
 
+import {laterUnattributedRuntimeRecovery,verifiedLaterUnattributedRuntimeRecovery} from './cancelled-release-recovery.mjs';
+const laterUnattributedFixture=()=>{
+ const p=laterUnattributedRuntimeRecovery;
+ const a={id:p.deployment,versions:[{version_id:p.version,percentage:100}]};
+ const version={id:p.version,metadata:{created_on:p.createdOn,source:'wrangler'},annotations:{'workers/triggered_by':'version_upload','workers/message':p.message}};
+ const provider={id:p.version,metadata:{created_on:p.createdOn},resources:{script:{etag:p.etag}}};
+ const modules=[{module:p.module,bytes:p.bytes,sha256:p.sha256}];
+ const observed={id:p.run,head_sha:p.source,run_attempt:1,status:'completed',conclusion:'success',event:'push',head_branch:p.branch,path:'.github/workflows/tablet-runtime-attribution.yml'};
+ const observedJob={id:p.job,run_id:p.run,name:'capture',status:'completed',conclusion:'success',steps:[{number:5,name:'Attribute active runtime without changing it',conclusion:'success'}]};
+ const observation={kind:'tablet_runtime_attribution',deployment:p.deployment,version:p.version,createdOn:p.createdOn,etag:p.etag,modules};
+ const candidates=[
+  {kind:'tablet_runtime_candidate',source:'92a5b8d280b090e609b8f14ed5adf5393bc355f0',bytes:14038047,sha256:'b8f39440e5eb7861283ccbe36a3d7b6d4cc3d66c431db0618f925526516e0a37',matches:false},
+  {kind:'tablet_runtime_candidate',source:'793b5135ce7bcdb42d77597b238c769c32a7dc67',bytes:14039164,sha256:'088fc19b89d39354078d878ca3f55252f743c3b97a97ce6e197a3e7f73eb0453',matches:false},
+  {kind:'tablet_runtime_candidate',source:'3df83d33f1bc26e3119dfeba2cbc54b10cedafdb',bytes:14084893,sha256:'4338571040fd895a9eb7ed8b8576205f06bbc2134f08c2c674c07de6bf254be1',matches:false},
+  {kind:'tablet_runtime_candidate',source:'0d68bce77505ef4fa77412929ff6d4d2dc0a65e7',bytes:14084878,sha256:'90fe8a2c7b97d7a829aabcf540e1a01f4feb3ea22ae7aff7b0191712625e12e8',matches:false},
+  {kind:'tablet_runtime_candidate',source:'59ddd4353fd337631478c3a2704017e1556cf987',bytes:14084878,sha256:'90fe8a2c7b97d7a829aabcf540e1a01f4feb3ea22ae7aff7b0191712625e12e8',matches:false}
+ ];
+ const observedLogs=[JSON.stringify(observation),...candidates.map(JSON.stringify),'PASS read-only runtime attribution; no deployment or data change'].join('\n');
+ const verified={id:p.verifiedRun,head_sha:p.verifiedSource,run_attempt:1,status:'completed',conclusion:'success',event:'push',head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml'};
+ const verifiedJob={id:p.verifiedJob,run_id:p.verifiedRun,name:'promote',status:'completed',conclusion:'success',steps:[[60,'Deploy current main to production','success'],[89,'Prove Medicines Watch and its source checks on live traffic','success'],[108,'Restore the captured runtime if a post-deployment gate failed','skipped']].map(([number,name,conclusion])=>({number,name,conclusion}))};
+ const receipt={kind:'owned_runtime_deployment',source:p.verifiedSource,run:String(p.verifiedRun),deploymentId:p.verifiedDeployment,versionId:p.verifiedVersion,previousDeploymentId:'df3c3764-7fd3-41c8-87ef-e82736af27b6',previousVersionId:'584de8a4-1c0c-416d-b3b6-9d44743dd58f',dataRestored:false};
+ return{p,a,version,provider,modules,observed,observedJob,observedLogs,verified,verifiedJob,verifiedLogs:JSON.stringify(receipt)};
+};
+test('only the exact later fingerprinted runtime can restore the proven Watch predecessor',()=>{
+ const f=laterUnattributedFixture(),check=(a=f.a,v=f.version,pv=f.provider,m=f.modules,o=f.observed,j=f.observedJob,ol=f.observedLogs,r=f.verified,rj=f.verifiedJob,rl=f.verifiedLogs)=>verifiedLaterUnattributedRuntimeRecovery(a,v,pv,m,o,j,ol,r,rj,rl);
+ assert.equal(check(),true);
+ assert.equal(check({...f.a,id:'unknown'}),false);
+ assert.equal(check(f.a,{...f.version,annotations:{...f.version.annotations,'workers/message':'plausible but unproved'}}),false);
+ assert.equal(check(f.a,f.version,f.provider,[{...f.modules[0],sha256:'changed'}]),false);
+ assert.equal(check(f.a,f.version,f.provider,f.modules,f.observed,f.observedJob,f.observedLogs.replace('matches":false','matches":true')),false);
+ assert.equal(check(f.a,f.version,f.provider,f.modules,f.observed,f.observedJob,f.observedLogs,f.verified,f.verifiedJob,f.verifiedLogs+'\n'+f.verifiedLogs),false);
+});
+test('later unattributed recovery starting point remains the proven successful predecessor',()=>{
+ const p=laterUnattributedRuntimeRecovery,proof={run:p.run,source:p.source,version:p.version,deployment:p.deployment,verifiedRun:p.verifiedRun,verifiedSource:p.verifiedSource,verifiedVersion:p.verifiedVersion,verifiedDeployment:p.verifiedDeployment,contentEtag:p.etag,moduleSha256:p.sha256};
+ const record={decision:'restore',run:p.run,from:p.version,to:p.verifiedVersion,verifiedRun:p.verifiedRun,ownedProof:null,laterUnattributedRuntimeRecovery:proof,customerRecordsRead:0,dataChanged:false};
+ assert.deepEqual(verifiedStartingPoint(record,active(p.verifiedVersion)),{source:p.verifiedSource,version:p.verifiedVersion,run:p.verifiedRun});
+ for(const patch of [{decision:'retain'},{run:1},{from:'unknown'},{to:p.version},{verifiedRun:1},{dataChanged:true},{customerRecordsRead:1},{laterUnattributedRuntimeRecovery:{...proof,moduleSha256:'changed'}}])assert.throws(()=>verifiedStartingPoint({...record,...patch},active(p.verifiedVersion)));
+ assert.throws(()=>verifiedStartingPoint(record,active(p.version)));
+});
+
 import {tabletRuntime,TABLET_RUNTIME_RECEIPT,verifyTabletRuntime} from './cancelled-release-recovery.mjs';
 const tabletFixture=()=>{
  const p=tabletRuntime,active={id:p.deployment,source:'wrangler',created_on:'2026-10-06T21:11:22.219924Z',versions:[{version_id:p.version,percentage:100}]};

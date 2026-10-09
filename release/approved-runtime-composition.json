@@ -774,5 +774,42 @@
     "genericAdoptionAllowed": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "laterUnattributedWatchRuntimeRecovery": {
+    "proof": "EXACT_LATER_UNATTRIBUTED_WATCH_RUNTIME_RECOVERY_V1",
+    "priorComposition": "59ddd4353fd337631478c3a2704017e1556cf987",
+    "base": "7e218c9187b4605a9ed73bc17b8321091d0604a9",
+    "source": "eccb986b1e2f1ef05e3db87ab3bef71d4d1e9913",
+    "preservedPaths": [
+      "public-answers-entry.mjs",
+      "public-seo-answer-depth.mjs",
+      "tests/public-seo-answer-depth.test.mjs",
+      "wrangler.public-answers.jsonc"
+    ],
+    "paths": [
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/cancelled-release-recovery.test.mjs",
+      "shift-coach/recover-cancelled-release.mjs"
+    ],
+    "maintenancePaths": [
+      "release/app-preflight.mjs",
+      "release/app-scope.mjs",
+      "release/approved-runtime-composition.mjs",
+      "release/fit-300-scope.mjs",
+      "scripts/b1-release-scope.mjs",
+      "shift-coach/scope.mjs",
+      "tests/approved-runtime-composition.test.mjs",
+      "tests/public-tool-release.test.mjs"
+    ],
+    "maintenanceSource": "d380947a37f9fdc5c84695ef336fe8dd91fdaf05",
+    "observationRun": 37908130882,
+    "successfulPredecessorRun": 37895305149,
+    "restoredVersion": "fd7939d8-6387-48fa-adc8-714e6f8bea8d",
+    "medicalClaimsChanged": false,
+    "publicCopyChanged": false,
+    "customerDataChanged": false,
+    "genericAdoptionAllowed": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
