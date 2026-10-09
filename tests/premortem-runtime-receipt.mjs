@@ -8,17 +8,6 @@ for(const f of files){try{scan(JSON.parse(readFileSync(f)))}catch{}}
 const receipt=receipts.find(x=>String(x.run)===process.env.ACCEPTANCE_RUN&&x.source===process.env.ACCEPTANCE_SOURCE);
 assert(receipt,'Exact owned deployment receipt missing');
 const r=await fetch(root+'/deployments',{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(30000)});const j=await r.json();assert(r.ok&&j.success,'Provider GET failed');
-
-if(process.argv[2]==='before'){
- const query={queryId:'premortem-garage-historic-readonly',dry:true,view:'events',limit:100,timeframe:{from:Date.parse('2026-10-09T21:10:24Z'),to:Date.parse('2026-10-09T21:10:59Z')},parameters:{filterCombination:'and',filters:[{key:'$metadata.service',operation:'eq',type:'string',value:'shift-core'}],needle:{value:'/v1/grub/workspace',isRegex:false,matchCase:true}}};
- const response=await fetch('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/observability/telemetry/query',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(query),signal:AbortSignal.timeout(30000)});
- const data=await response.json();
- const events=(data.result?.events||[]).map(e=>{const w=e.$workers||{},m=e.$metadata||{},req=w.event?.request||{},res=w.event?.response||{};return {timestamp:e.timestamp,requestId:w.requestId||m.requestId,versionId:w.scriptVersion?.id,outcome:w.outcome,cpuTimeMs:w.cpuTimeMs,wallTimeMs:w.wallTimeMs,status:res.status||m.statusCode,path:req.url?new URL(req.url).pathname:undefined,rayId:m.rayId,errorCategories:['D1','timeout','cancel','exception'].filter(k=>JSON.stringify(e).toLowerCase().includes(k.toLowerCase()))}});
- const historic={at:new Date().toISOString(),request:'POST ad-hoc telemetry query, dry=true; no saved query or runtime/data mutation',timeframe:query.timeframe,httpStatus:response.status,success:data.success,errors:(data.errors||[]).map(e=>({code:e.code,message:String(e.message).slice(0,180)})),statistics:data.result?.statistics,eventCount:events.length,events};
- mkdirSync('runtime-acceptance-evidence',{recursive:true});writeFileSync('runtime-acceptance-evidence/garage-historic-telemetry.json',JSON.stringify(historic,null,2));console.log('GARAGE_HISTORIC_TELEMETRY '+JSON.stringify(historic));
- if(response.status===401||response.status===403){console.log('BLOCKED existing configured credential has no telemetry authority; no escalation attempted');process.exitCode=1;}
-}
-
 const active=j.result.deployments[0];console.log(JSON.stringify({providerObservationAt:new Date().toISOString(),activeDeploymentId:active.id,activeVersions:active.versions}));assert.equal(active.versions.length,1);assert.equal(active.versions[0].version_id,receipt.versionId);assert.equal(active.versions[0].percentage,100);
 mkdirSync('runtime-acceptance-evidence',{recursive:true});
 const report={at:new Date().toISOString(),source:receipt.source,run:receipt.run,originalOwnedDeploymentId:receipt.deploymentId,rollbackReceiptRun:'37985093872',deploymentId:active.id,versionId:receipt.versionId,percentage:100,providerRequests:'GET only',pass:true};
