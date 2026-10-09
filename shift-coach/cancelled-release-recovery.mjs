@@ -61,7 +61,9 @@ export function recoveryDecision(active,failed,verified){
 // A later successful release can be retained using its exact owned-deployment
 // receipt. This never grants restoration authority for an unknown runtime.
 export function verifiedOwnedRuntime(active,run,job,receipt){
- if(run?.conclusion!=='success'||run?.status!=='completed'||run?.event!=='push'||run?.head_branch!=='main'||run?.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
+ const exactRecordedManualRelease=run?.id===recordedMedicinesWatchRuntime.run&&run?.head_sha===recordedMedicinesWatchRuntime.source;
+ const expectedEvent=exactRecordedManualRelease?recordedMedicinesWatchRuntime.event:'push';
+ if(run?.conclusion!=='success'||run?.status!=='completed'||run?.event!==expectedEvent||run?.head_branch!=='main'||run?.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
  if(job?.name!=='promote'||job?.conclusion!=='success'||job?.run_id!==run.id)return false;
  if(!/^[a-f0-9]{40}$/.test(run.head_sha||'')||receipt?.kind!=='owned_runtime_deployment'||receipt?.source!==run.head_sha||String(receipt?.run)!==String(run.id))return false;
  if(active?.id!==receipt.deploymentId||active?.versions?.length!==1||active.versions[0].percentage!==100||receipt.versionId!==active.versions[0].version_id)return false;
