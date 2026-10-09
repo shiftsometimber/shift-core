@@ -696,10 +696,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const specialist=c.medicinesWatchSpecialistEvidence;
+ if(specialist)verifyMedicinesWatchSpecialistEvidence(specialist,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSpecialistHead=specialist?specialist.base:actualHead;
+ const specialistRawBlob=(ref,path)=>outerRawBlob(specialist&&ref==='HEAD'&&MEDICINES_WATCH_SPECIALIST_SET.has(path)?specialist.base:ref,path);
  const continuity=c.continuityPreservationRepair;
- if(continuity)verifyContinuityPreservationRepair(continuity,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preContinuityHead=continuity?continuity.base:actualHead;
- const continuityRawBlob=(ref,path)=>outerRawBlob(continuity&&ref==='HEAD'&&CONTINUITY_PRESERVATION_SET.has(path)?continuity.base:ref,path);
+ if(continuity)verifyContinuityPreservationRepair(continuity,{head:preSpecialistHead,read:specialistRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preContinuityHead=continuity?continuity.base:preSpecialistHead;
+ const continuityRawBlob=(ref,path)=>specialistRawBlob(continuity&&ref==='HEAD'&&CONTINUITY_PRESERVATION_SET.has(path)?continuity.base:ref,path);
  const toolBuild=c.toolGuidanceProductionBuildGate;
  if(toolBuild)verifyToolGuidanceBuildGate(toolBuild,{head:preContinuityHead,read:continuityRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preToolBuildHead=toolBuild?toolBuild.base:preContinuityHead;
@@ -1149,5 +1153,43 @@ export function verifyContinuityPreservationRepair(c,{head,read,diff,ancestor}){
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Continuity preservation receipt');
  for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Serving SEO source drift / Passport preservation source drift / Restoration retention source drift: Continuity preservation '+path);
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift / Tablet wording verifier source drift / Restoration retention maintenance drift: Continuity preservation '+path);
+ return c;
+}
+
+// Exact evidence-backed Watch amendment composed after the Continuity repair.
+// The receipt is finite: it accepts these reviewed source bytes and this one
+// independent verifier composition, never a path prefix or a later commit.
+export const MEDICINES_WATCH_SPECIALIST_BASE='29d2c8038505f0a9e49d0abf6cba501149e9817d';
+export const MEDICINES_WATCH_SPECIALIST_SOURCE='f511cd37cbcd53a64bd178ab356c966cd39acb74';
+export const MEDICINES_WATCH_SPECIALIST_PATHS=Object.freeze([
+ 'medicines-watch/README.md',
+ 'medicines-watch/credibility.mjs',
+ 'medicines-watch/credibility.test.mjs',
+ 'medicines-watch/evidence-desk.test.mjs',
+ 'medicines-watch/industry.mjs',
+ 'medicines-watch/industry.test.mjs',
+ 'medicines-watch/reviews/2026-10-09-authorised-together-psoriatic-disease.json',
+ 'medicines-watch/reviews/2026-10-09-overdue-source-renewal-late.json',
+ 'medicines-watch/source-review.test.mjs',
+ 'scripts/verify-public-continuity-live.mjs'
+]);
+export const MEDICINES_WATCH_SPECIALIST_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/medicines-watch-specialist-composition.test.mjs'
+]);
+const MEDICINES_WATCH_SPECIALIST_SET=new Set([...MEDICINES_WATCH_SPECIALIST_PATHS,...MEDICINES_WATCH_SPECIALIST_MAINTENANCE]);
+for(const path of MEDICINES_WATCH_SPECIALIST_SET)RECONCILIATION_PATHS.add(path);
+export function verifyMedicinesWatchSpecialistEvidence(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_MEDICINES_WATCH_SPECIALIST_EVIDENCE_V1');assert.equal(c.base,MEDICINES_WATCH_SPECIALIST_BASE);assert.equal(c.source,MEDICINES_WATCH_SPECIALIST_SOURCE);
+ assert.deepEqual(c.paths,MEDICINES_WATCH_SPECIALIST_PATHS);assert.deepEqual(c.maintenancePaths,MEDICINES_WATCH_SPECIALIST_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.failedRun,37934545725);assert.equal(c.failedJob,113833531088);assert.equal(c.publicationStatus,'approved_for_guarded_release');
+ for(const flag of ['editorialAuthorisationRecorded','primaryEvidenceReviewed','reviewUncertaintyPreserved','continuityVerifierCompositionFixed'])assert.equal(c[flag],true);
+ for(const flag of ['clinicalApprovalClaimed','nhsAccessClaimed','actualSupplyClaimed','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Medicines Watch specialist evidence source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Medicines Watch specialist evidence maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Medicines Watch specialist evidence receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Medicines Watch specialist evidence source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Medicines Watch specialist evidence maintenance drift: '+path);
  return c;
 }
