@@ -24,7 +24,7 @@ for(const [name,width] of [['mobile',390],['desktop',1440]]){
  page.on('pageerror',e=>{report.errors.push({device:name,message:scrub(e.message).slice(0,600)});write()});
  page.on('response',r=>{if(r.status()>=500){report.networkFailures.push({device:name,path:new URL(r.url()).pathname,status:r.status()});write()}});
  const call=async path=>{const r=await context.request.get(site+path,{headers:{Origin:site},timeout:30000});assert.equal(r.status(),200,path);return r.json()};
- const check=async(label,fn)=>{try{await fn();report.checks.push({device:name,label,pass:true});console.log('PASS '+name+' '+label);write()}catch(e){report.checks.push({device:name,label,pass:false,error:scrub(e.message).slice(0,1500)});write();const screenshot=await page.screenshot({path:out+'/'+name+'-failure.png',timeout:10000}).catch(()=>null);if(screenshot)console.log('PROOF_SCREENSHOT '+name+'-failure '+screenshot.toString('base64'));throw e}};
+ const check=async(label,fn)=>{try{await fn();report.checks.push({device:name,label,pass:true});console.log('PASS '+name+' '+label);write()}catch(e){report.checks.push({device:name,label,pass:false,error:scrub(e.message).slice(0,1500)});write();const screenshot=await page.screenshot({path:out+'/'+name+'-failure.png',timeout:10000}).catch(()=>null);if(screenshot)console.log('PROOF_SCREENSHOT '+name+'-failure '+screenshot.toString('base64'));console.log('FAIL '+name+' '+label+' '+scrub(e.message).slice(0,1200));return false}};
  let checkin,next,initial,smaller,changed,firstCheckinResponse;
  try{
  await commissioningLogin(page,{site,api,oidc:await freshOIDC(),...identity});await memberReady(page,{site});
@@ -62,7 +62,7 @@ for(const [name,width] of [['mobile',390],['desktop',1440]]){
   assert.deepEqual((await call('/v1/check-ins/follow-up')).followUp,saved);assert((await call('/v1/check-ins')).checkIns.some(x=>String(x.id)===String(checkin.id)));
  });
  await check('Did not fit produces a smaller step and retains the answer',async()=>{
-  await startCoaching(page,'Make food planning easier');
+  await memberReady(page,{site});await startCoaching(page,'Make food planning easier');
   initial=(await call('/v1/shift-coach')).action;assert(initial.minutes>1,'Initial action must permit a smaller step');
   await page.locator('[data-coach-action="accept"]').click();await page.getByText('Tell Shift AI how it went',{exact:true}).click();
   await page.getByRole('button',{name:"Didn't fit my day",exact:true}).click();await page.locator('[data-coach-action="accept"]').waitFor();
@@ -91,10 +91,11 @@ for(const [name,width] of [['mobile',390],['desktop',1440]]){
   const screenshot=await page.screenshot({path:out+'/'+name+'-returned.png',fullPage:true});console.log('PROOF_SCREENSHOT '+name+'-returned '+screenshot.toString('base64'));
  });
  }finally{
+  await commissioningLogin(page,{site,api,oidc:await freshOIDC(),...identity}).catch(()=>{});
   const erasure=await context.request.delete(site+'/v1/privacy/health-tracking',{headers:{Origin:site},timeout:15000}).catch(()=>null);
   report.checks.push({device:name,label:'Optional fictional health data cleaned',pass:erasure?.status()===200});
   await context.request.post(site+'/v1/auth/logout',{headers:{Origin:site},timeout:15000}).catch(()=>{});await context.close();write();
  }
 }
 }catch(e){report.error=scrub(e.message).slice(0,2000);process.exitCode=1}
-finally{await browser.close();report.pass=!report.error&&!report.errors.length&&!report.networkFailures.length&&report.checks.every(x=>x.pass);write();console.log(JSON.stringify({pass:report.pass,checks:report.checks.length,error:report.error,networkFailures:report.networkFailures}));if(!report.pass)process.exitCode=1;}
+finally{await browser.close();report.pass=!report.error&&!report.errors.length&&!report.networkFailures.length&&report.checks.every(x=>x.pass);write();console.log(JSON.stringify({pass:report.pass,checks:report.checks,adaptationEvidence:report.adaptationEvidence,error:report.error,networkFailures:report.networkFailures}));if(!report.pass)process.exitCode=1;}
