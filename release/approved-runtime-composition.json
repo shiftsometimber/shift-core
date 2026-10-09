@@ -774,5 +774,43 @@
     "genericAdoptionAllowed": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "toolReleaseAutomation": {
+    "proof": "EXACT_PREPARED_TOOL_RELEASE_AUTOMATION_V1",
+    "base": "59ddd4353fd337631478c3a2704017e1556cf987",
+    "source": "6291dc3936b4ae3409e554c26f165c5d9ede3d4a",
+    "paths": [
+      ".github/workflows/cloudflare-production-promote.yml",
+      "public-answers-entry.mjs",
+      "public-seo-answer-depth.mjs",
+      "public-tool-delivery.mjs",
+      "public-tool-guidance.mjs",
+      "release/tool-guidance-20261009/README.md",
+      "release/tool-guidance-20261009/automation-proof.json",
+      "release/tool-guidance-20261009/live-schema-check.json",
+      "release/tool-guidance-20261009/test-results.tap",
+      "release/tool-guidance-20261009/tool-guidance-browser.json",
+      "release/tool-schema-gate.mjs",
+      "scripts/verify-tool-calculators-browser.cjs",
+      "scripts/verify-tool-guidance-browser.cjs",
+      "scripts/verify-tool-page-schema.cjs",
+      "tests/public-seo-answer-depth.test.mjs",
+      "tests/public-tool-guidance.test.mjs",
+      "tests/tool-schema-gate.test.mjs",
+      "wrangler.public-answers.jsonc"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/tool-release-automation-composition.test.mjs"
+    ],
+    "maintenanceSource": "f82074b053907545506b6a2320223f252b35dd5c",
+    "publicationStatus": "paused",
+    "runtimeChanged": true,
+    "publicCopyChanged": true,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "deploymentAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
