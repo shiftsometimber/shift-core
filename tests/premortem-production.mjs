@@ -6,13 +6,19 @@ import {commissioningLogin,memberReady,memberReload,chooseNecessaryCookies} from
 import {startCoaching} from '../shift-coach/browser-journey-support.mjs';
 const site='https://shiftsometimber.co.uk',api='https://api.shiftsometimber.co.uk',oidc=process.env.SHIFT_COMMISSIONING_OIDC;
 assert(oidc);const out='premortem-evidence';mkdirSync(out,{recursive:true});
+async function freshOIDC(){
+ const endpoint=process.env.ACTIONS_ID_TOKEN_REQUEST_URL,credential=process.env.ACTIONS_ID_TOKEN_REQUEST_TOKEN;
+ if(!endpoint||!credential)return oidc;
+ const url=new URL(endpoint);url.searchParams.set('audience','shift-production-commissioning');
+ const response=await fetch(url,{headers:{Authorization:'bearer '+credential},signal:AbortSignal.timeout(30000)});assert(response.ok,'Existing runner commissioning identity renewal');const data=await response.json();assert(data.value);return data.value;
+}
 const report={at:new Date().toISOString(),source:process.env.ACCEPTANCE_SOURCE,scope:'Fictional production accounts; Chromium phone and desktop, no physical-device or real-member-outcome claim',checks:[],errors:[],networkFailures:[],sessionTest:'Server-revoked real test session models expiry; no fabricated API response',realWeekFourOutcome:'unavailable'};
 const write=()=>writeFileSync(out+'/report.json',JSON.stringify(report,null,2));
 const browser=await chromium.launch({headless:true});
 try{
 for(const [name,width] of [['mobile',390],['desktop',1440]]){
  const identity={email:'shiftsometimber+structured-authrender-premortem-'+Date.now()+'-'+name+'@gmail.com',password:'Sst-'+randomUUID()+'-Aa1!'};
- const r=await fetch(api+'/v1/auth/register',{method:'POST',headers:{Origin:site,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':oidc},body:JSON.stringify({...identity,firstName:'Fictional acceptance',source:'commissioning-premortem'}),signal:AbortSignal.timeout(30000)});assert.equal(r.status,201,'Synthetic registration');
+ const r=await fetch(api+'/v1/auth/register',{method:'POST',headers:{Origin:site,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':await freshOIDC()},body:JSON.stringify({...identity,firstName:'Fictional acceptance',source:'commissioning-premortem'}),signal:AbortSignal.timeout(30000)});assert.equal(r.status,201,'Synthetic registration');
  const context=await browser.newContext({viewport:{width,height:900},recordVideo:{dir:out+'/'+name,size:{width,height:900}}});const page=await context.newPage();page.setDefaultTimeout(30000);page.setDefaultNavigationTimeout(30000);
  page.on('pageerror',e=>{report.errors.push({device:name,message:e.message.slice(0,600)});write()});
  page.on('response',r=>{if(r.status()>=500){report.networkFailures.push({device:name,path:new URL(r.url()).pathname,status:r.status()});write()}});
@@ -20,7 +26,7 @@ for(const [name,width] of [['mobile',390],['desktop',1440]]){
  const check=async(label,fn)=>{try{await fn();report.checks.push({device:name,label,pass:true});console.log('PASS '+name+' '+label);write()}catch(e){report.checks.push({device:name,label,pass:false,error:e.message.slice(0,1500)});write();await page.screenshot({path:out+'/'+name+'-failure.png',timeout:10000}).catch(()=>{});throw e}};
  let checkin,next,initial,smaller,changed,firstCheckinResponse;
  try{
- await commissioningLogin(page,{site,api,oidc,...identity});await memberReady(page,{site});
+ await commissioningLogin(page,{site,api,oidc:await freshOIDC(),...identity});await memberReady(page,{site});
  await check('Consent-off blocks personal setup; visible opt-in persists',async()=>{
   const s=await call('/v1/shift-coach');assert.equal(s.consent,false);
   assert.equal(await page.locator('[data-coach-setup]').count(),0);
@@ -51,7 +57,7 @@ for(const [name,width] of [['mobile',390],['desktop',1440]]){
   let saved=(await call('/v1/check-ins/follow-up')).followUp;assert.equal(saved.id,next.id);assert.equal(saved.feedback,'helped');
   await memberReload(page,{site});assert.deepEqual((await call('/v1/check-ins/follow-up')).followUp,saved);
   const logout=await context.request.post(site+'/v1/auth/logout',{headers:{Origin:site},data:{}});assert(logout.ok());
-  await page.goto(site+'/member-login',{waitUntil:'domcontentloaded'});await commissioningLogin(page,{site,api,oidc,...identity});await memberReady(page,{site});
+  await page.goto(site+'/member-login',{waitUntil:'domcontentloaded'});await commissioningLogin(page,{site,api,oidc:await freshOIDC(),...identity});await memberReady(page,{site});
   assert.deepEqual((await call('/v1/check-ins/follow-up')).followUp,saved);assert((await call('/v1/check-ins')).checkIns.some(x=>String(x.id)===String(checkin.id)));
  });
  await check('Did not fit produces a smaller step and retains the answer',async()=>{
@@ -78,7 +84,7 @@ for(const [name,width] of [['mobile',390],['desktop',1440]]){
   assert.equal((await context.request.get(site+'/v1/check-ins')).status(),401);
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>!document.querySelector('[data-coach-action="accept"]')||document.querySelector('#shiftCoach')?.hidden);
-  await commissioningLogin(page,{site,api,oidc,...identity});await memberReady(page,{site});
+  await commissioningLogin(page,{site,api,oidc:await freshOIDC(),...identity});await memberReady(page,{site});
   const returned=await call('/v1/shift-coach');assert.equal(returned.action.id,before.action.id);assert.equal(returned.action.status,before.action.status);
   assert.equal((await call('/v1/check-ins/follow-up')).followUp.feedback,'helped');
   await page.screenshot({path:out+'/'+name+'-returned.png',fullPage:true});
