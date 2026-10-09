@@ -1,3 +1,5 @@
+import {treatmentHTML,treatmentRuntime,treatmentStyles} from './treatment-page.mjs';
+import {treatmentServiceWorker} from './treatment-service-worker.mjs';
 import {ingredientStyles} from './grub-ingredients.mjs';
 import {deviceHealthRuntime,deviceHealthStyles} from './device-health-client.mjs';
 import {continuityExposureRuntime} from '../continuity-measurement/client.mjs';
@@ -28,6 +30,10 @@ export function memberExperienceRoutes(request, env) {
   if (env.MEMBER_EXPERIENCE_V1_ENABLED !== 'true') return null;
   const path = new URL(request.url).pathname.replace(/\/+$/, '');
   if (!['GET','HEAD'].includes(request.method)) return null;
+  if(env.MY_TREATMENT_ENABLED==='true'){
+    const treatment={'/member/treatment':[treatmentHTML(false),'text/html'],'/member/treatment.html':[treatmentHTML(false),'text/html'],'/assets/member-experience/treatment.mjs':[treatmentRuntime,'text/javascript'],'/assets/member-experience/treatment.css':[treatmentStyles,'text/css'],'/treatment-sw.js':[treatmentServiceWorker,'text/javascript'],'/treatment-manifest.json':[JSON.stringify({name:'My Timber',short_name:'My Timber',start_url:'/member/treatment',scope:'/member/',display:'standalone',theme_color:'#050505',background_color:'#050505'}),'application/manifest+json']}[path];
+    if(treatment)return new Response(request.method==='HEAD'?null:treatment[0],{headers:{...privateHeaders,'Content-Type':treatment[1]+'; charset=utf-8',...(path==='/treatment-sw.js'?{'Service-Worker-Allowed':'/member/'}:{})}});
+  }
   if(path==='/assets/member-experience/device-health.mjs')return new Response(request.method==='HEAD'?null:deviceHealthRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
   if(path==='/member/orders'||path==='/member/orders.html')return new Response(request.method==='HEAD'?null:ordersHTML(env.WORK_V1_ENABLED==='true'),{headers:{...privateHeaders,'Content-Type':'text/html; charset=utf-8','Vary':'Cookie'}});
   if(path==='/assets/member-experience/orders.mjs')return new Response(request.method==='HEAD'?null:ordersRuntime,{headers:{...privateHeaders,'Content-Type':'text/javascript; charset=utf-8'}});
@@ -107,7 +113,7 @@ export async function memberExperienceEntry(request, env, response) {
   if(name === 'fit') html=html.replace(/src="[^\"]*shift-fit-approved-v1\.js[^\"]*"/g,'src="/assets/member-experience/fit.mjs"');
   if(['fit','check-in'].includes(name))html=html.replace('</main>','<section class="member-journey-handoff"><h2>Keep your story together.</h2><p>Your saved activity and check-ins feed the same My Timber history.</p><a href="/member/life-back#check-in">Log how life feels</a> · <a href="/member/dashboard#today">Back to Today</a></section></main>');
   if(name === 'check-in') html = html.replace(/(<p class="eyebrow">Daily check-in<\/p>[\s\S]*?<p class="checkin-intro">[\s\S]*?<\/p>)/,'<header class="member-tool-hero">$1</header>');
-  if(name === 'saved') html = html.replace(/(<main\b[^>]*>)[\s\S]*?<\/main>/,'$1'+savedMain+'</main>');
+  if(name === 'saved') {const records=env.MY_TREATMENT_ENABLED==='true'?savedMain.replace('</div></section>','<a class="member-record-card" href="/member/treatment"><span>05 · MY TREATMENT</span><h2>Your treatment records.</h2><p>Supply, scheduled doses, treatment history and your chosen doctor summary.</p><strong>Open My Treatment →</strong></a></div></section>'):savedMain;html=html.replace(/(<main\b[^>]*>)[\s\S]*?<\/main>/,'$1'+records+'</main>');}
   if(['dashboard','check-in','grub','fit'].includes(name)){
     const followup='<section id="dailyCheckinFollowup" aria-label="Your saved next-step feedback" hidden></section>';
     if(name==='dashboard')html=html.replace(/(<(?:section|div)\b[^>]*id="panel-today"[^>]*>)/,'$1'+dayGuideMarkup+followup);

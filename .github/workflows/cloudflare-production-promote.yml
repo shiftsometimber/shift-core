@@ -295,6 +295,8 @@ jobs:
         run: node --test acquisition-activation/*.test.mjs activation-measurement/*.test.mjs
       - name: Verify five source-specific articles without changing unrelated pages
         run: node --test tests/five-article-evidence.test.mjs tests/editorial-resources-v1.test.mjs
+      - name: Verify My Treatment schema preservation and release boundaries
+        run: node --test tests/my-treatment-release.test.mjs
       - name: Verify member experience and Grub account integration
         run: |
           node --test tests/member-checkin-preflight.test.mjs
@@ -469,6 +471,8 @@ jobs:
         run: node release/member-details-schema.mjs
       - name: Prepare the exact additive signup-alert delivery store
         run: node release/member-signup-alert-schema.mjs
+      - name: Prepare exact additive My Treatment stores
+        run: node release/my-treatment-schema.mjs
       - name: Index existing public SHIFT pages for AI without publishing website content
         if: steps.growth_deployed.outputs.existing_index != 'true'
         run: |
@@ -561,6 +565,8 @@ jobs:
           if-no-files-found: warn
       - name: Prove activated Passport delivery and private routes
         run: node health-passport/production-live.mjs
+      - name: Verify live My Treatment delivery and private APIs
+        run: node release/my-treatment-live.mjs
       - name: Retain Passport migration and live evidence
         if: always()
         uses: actions/upload-artifact@v4
