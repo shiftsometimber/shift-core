@@ -1,4 +1,4 @@
-import {reconciliationGitArgs,reconciliationHistoricalRead,reconciliationPath,RECONCILIATION_PATHS,verifyReconciledRelease} from './approved-runtime-composition.mjs';
+import {reconciliationGitArgs,reconciliationHistoricalRead,reconciliationPath,RECONCILIATION_PATHS,verifyReconciledRelease,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED} from './approved-runtime-composition.mjs';
 import {METRICS_PATHS,verifyMetricsConnection} from './metrics-connection-scope.mjs';
 import {rankingGrowthHistoricalRef} from './seo-growth-scope.mjs';
 import {originalPwaLiveReadVerifier} from './seo-follow-through-preservation.mjs';
@@ -39,7 +39,7 @@ export const originalAppHashRef=p=>rankingGrowthHistoricalRef('HEAD',p,undefined
 export function originalMemberWorkerPresentation(source){
  return source.replace("\nexport function memberWorkerHtml(html){\n return html.replace(/(<script\\b[^>]*\\bsrc=[\"'])(\\/(?:app\\.js|register-sw-v3a\\.js)(?:\\?[^\"']*)?)([\"'][^>]*>)/gi,(_,before,src,after)=>before+src+(/[?&](?:amp;)?member_worker=1(?:&|$)/.test(src)?'':(src.includes('?')?'&amp;':'?')+'member_worker=1')+after);\n}\nexport async function memberWorkerAsset(request,response){\n const u=new URL(request.url);\n if(request.method!=='GET'||u.searchParams.get('member_worker')!=='1'||!['/app.js','/register-sw-v3a.js'].includes(u.pathname))return null;\n if(!response.ok||!/(?:javascript|ecmascript)/i.test(response.headers.get('Content-Type')||''))return response;\n const before=await response.text(),legacy=u.pathname==='/app.js'?\"navigator.serviceWorker.register('/service-worker.js')\":\"navigator.serviceWorker.register('/service-worker-v3a.js?v=cos-live-recovery-20260909-r2',{updateViaCache:'none'})\",shared=\"navigator.serviceWorker.register('/shift-push-sw-v1.js',{scope:'/',updateViaCache:'none'})\";\n const h=new Headers(response.headers);for(const k of ['Content-Length','Content-Encoding','ETag','Last-Modified'])h.delete(k);h.set('Cache-Control','no-store');\n if(before.split(legacy).length!==2)return new Response('Member worker registration source changed; please retry later.',{status:503,headers:h});\n return new Response(before.replace(legacy,shared),{status:response.status,statusText:response.statusText,headers:h});\n}\n",'').replace("\n const memberAsset=await memberWorkerAsset(request,response);if(memberAsset)return memberAsset;",'').replace("\n if(/^\\/member\\//.test(path))html=memberWorkerHtml(html);",'');
 }
-for(const p of [...METRICS_PATHS,...RECONCILIATION_PATHS])APP_PATHS.add(p);
+for(const p of [...METRICS_PATHS,...RECONCILIATION_PATHS,...LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED])APP_PATHS.add(p);
 export function validateAppSource(){
  verifyReconciledRelease();
  verifyMetricsConnection();
