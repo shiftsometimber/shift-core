@@ -959,5 +959,38 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "continuityPreservationRepair": {
+    "proof": "EXACT_CONTINUITY_PRESERVATION_REPAIR_V1",
+    "base": "01194030d52d57a43aa072b27ac962514a668b93",
+    "source": "7ad0c34d2551a609b959f2b350f1bde1e8313f10",
+    "paths": [
+      "release/public-continuity-body-proof.mjs",
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/cancelled-release-recovery.test.mjs",
+      "shift-coach/recover-cancelled-release.mjs",
+      "tests/programme-day-continuity-body.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/continuity-preservation-composition.test.mjs"
+    ],
+    "maintenanceSource": "4f706588b96791799eae38b2d4a50f38b7cc9174",
+    "failedRun": 37927646817,
+    "failedJob": 113810894301,
+    "rollbackDeployment": "9cc4ae2f-f84d-4963-9267-8cee6b459b26",
+    "originalSuccessfulRun": 37895305149,
+    "approvedAnswerDepthExpectationFixed": true,
+    "publicationStatus": "approved_for_guarded_release",
+    "runtimeChanged": false,
+    "publicCopyChanged": false,
+    "medicalClaimsChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
