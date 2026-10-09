@@ -1,0 +1,123 @@
+{
+  "reviewedAt": "2026-10-09T15:09:49Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises supported factual informational updates without repeat publication permission. This is editorial authorisation, not clinical approval.",
+    "scope": "Add the separately dated 9 October TOGETHER-PsO sponsor biomarker announcement to the existing programme, without altering trial lifecycle facts or UK authorisation, NHS access or supply."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "change": {
+    "id": "ixekizumab-tirzepatide-psoriatic-disease",
+    "summaryToAppend": "On 9 October 2026, Lilly reported a separate prespecified exploratory TOGETHER-PsO analysis of circulating proteins and blood gene expression, presented at Fall Clinical 2026. Broader biomarker changes with concomitant treatment were sponsor-reported as early as week 12 and at week 36.",
+    "limitationsToAppend": "The biomarker announcement is exploratory sponsor-reported conference evidence, not a new trial or independently established clinical benefit, causal mechanism, comparative recommendation or UK combination approval. Its 274 randomized participants remain separate from the registry's previously reviewed 281 actual participants. No registry lifecycle or review date is advanced from this announcement.",
+    "additionalEvidence": [
+      {
+        "title": "Lilly: TOGETHER-PsO exploratory biomarker findings — 9 October 2026",
+        "url": "https://investor.lilly.com/news-releases/news-release-details/new-phase-3b-data-lillys-taltz-ixekizumab-and-zepbound-0",
+        "sourcePublishedAt": "2026-10-09",
+        "sourceUpdatedAt": null,
+        "reviewedAt": "2026-10-09T15:09:49Z",
+        "evidenceType": "Exploratory biomarker analysis; original sponsor announcement — see limitations",
+        "checkScope": "Original announcement read through trial design, exploratory findings, US safety summaries and forward-looking limitations. Outside automatic content monitoring; no new fingerprint or green baseline."
+      }
+    ]
+  },
+  "sourceReviews": [
+    {
+      "url": "https://investor.lilly.com/news-releases/news-release-details/new-phase-3b-data-lillys-taltz-ixekizumab-and-zepbound-0",
+      "publicationDate": "2026-10-09",
+      "updateDate": null,
+      "reviewedAt": "2026-10-09T15:09:49Z",
+      "outcome": "Original sponsor announcement read via web retrieval (280 lines). Prespecified exploratory blood-protein and gene-expression findings, week-12/week-36 timing, open-label assessor-blinded 52-week Phase 3b design, sponsor's 274 randomized participants, US medicine safety summaries and forward-looking cautions were reviewed. Biomarkers are not an independent clinical outcome or UK access decision."
+    }
+  ],
+  "configuredSourcePass": {
+    "outcome": "incomplete_pending_independent_live_read",
+    "attempts": [
+      {
+        "url": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+        "method": "GET",
+        "outcome": "Direct Python retrieval HTTP 403; browser net::ERR_BLOCKED_BY_CLIENT; web retrieval unavailable."
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/treatment-centre/medicines-watch",
+        "method": "GET",
+        "outcome": "Direct Python retrieval HTTP 403; web search click returned a cached 6 October snapshot, excluded from current live verification."
+      },
+      {
+        "url": "https://shiftsometimber.co.uk/treatment-centre",
+        "method": "GET",
+        "outcome": "Direct Python retrieval HTTP 403; web retrieval showed the Treatments Watch entry, freshness beyond crawl unverified."
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "withdrawalAssessment": "No complete fresh health response available yet; current availability/content changes/withdrawals/overdue queue cannot be declared verified.",
+    "knownPriorState": {
+      "source": "Production run 37938647239, completed 2026-10-09T14:10:54Z; prior run's live review",
+      "programmes": 110,
+      "configuredSources": 199,
+      "currentSources": 163,
+      "awaitingReview": 32,
+      "checkDelayed": 4,
+      "notFreshForThisPass": true
+    }
+  },
+  "discoveryPass": {
+    "method": "Separate topic-based dated and undated searches for approvals, safety, withdrawals, incretin/amylin combinations, muscle preservation, specialist indications, first-in-human work and paused/discontinued programmes; selected sponsor searches supplement unrestricted topic discovery.",
+    "searchedDevelopers": [
+      "Novo Nordisk",
+      "Lilly",
+      "Amgen",
+      "Zealand/Roche",
+      "Pfizer",
+      "Viking",
+      "Structure",
+      "Boehringer Ingelheim",
+      "AstraZeneca",
+      "Hansoh/Merck",
+      "Kailera",
+      "iBio",
+      "Entera/OPKO"
+    ],
+    "included": "9 October TOGETHER-PsO biomarker announcement updates the existing programme rather than creating another medicine.",
+    "existingCoverage": "iBio's June first-dose announcement and named-developer trial leads were compared against current main and receipts; no duplicate additions.",
+    "openReviewPrCheck": {
+      "checkedAt": "2026-10-09T15:09:49Z",
+      "expansionPr851": "merged",
+      "openWatchPrs": [],
+      "duplicationFound": false
+    },
+    "incompleteChecks": [
+      "Search indexing and selected-domain results do not demonstrate exhaustive industry coverage.",
+      "ClinicalTrials.gov NCT06588283 HTML exposed only dynamic shell; exact API retrieval via web failed. The earlier registry receipt is preserved without a new review date.",
+      "Entera EB618 and polyethylene-glycol loxenatide are unpublished leads needing full evidence and indication-specific review; not promoted from search snippets."
+    ],
+    "failedChecks": [
+      {
+        "url": "https://clinicaltrials.gov/api/v2/studies/NCT06588283",
+        "outcome": "not accessible via web retrieval"
+      }
+    ],
+    "clinicalApproval": null,
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailed": 6,
+    "wider": 104,
+    "total": 110,
+    "configuredSources": 199,
+    "trialRecords": 134,
+    "changed": false
+  },
+  "deploymentState": {
+    "baseMain": "e25b404181a71310633f663ddac683629c9e9129",
+    "previousSuccessfulRun": 37938647239,
+    "previousVersion": "b1965a23-cf23-4eb6-a6c5-a3909e9f971e",
+    "previousDeployment": "8290ec3a-1cb3-4c8e-a378-cadf4f5e5959",
+    "freshLiveVerificationRequired": true
+  },
+  "nextAction": "Obtain the independent GET-only live receipt from the existing Watch checks. Run all Watch checks, bind the exact passing source through the finite release composition, merge the exact passing PR and deploy through existing guarded production workflow; verify actual live content, Treatments entry and SELECT-only health before marking published."
+}
