@@ -80,6 +80,13 @@ export function verifiedArticleRuntime(active,run,job){
 // Carry the earlier same-job recovery proof forward without reverting its
 // verified newer runtime to the historical fallback pointer.
 export function verifiedStartingPoint(record,active){
+ if(record?.restoredPassportRuntimeProof){
+  const r=record.restoredPassportRuntimeProof;assert.deepEqual(r,passportRollbackProof());assertPassportRollbackDeployment(active);
+  assert.equal(record.decision,'retain');assert.equal(record.dataChanged,false);assert.equal(record.customerRecordsRead,0);assert.equal(record.ownedProof,null);
+  assert.equal(record.run,restoredPassportRuntime.run);assert.equal(record.from,r.version);assert.equal(record.to,r.version);assert.equal(record.verifiedRun,r.verifiedRun);
+  return {source:r.verifiedSource,version:r.version,run:r.verifiedRun};
+ }
+
  if(record?.restoredToolRuntimeProof){
   const r=record.restoredToolRuntimeProof;assert.deepEqual(r,toolRollbackProof());assertToolRollbackDeployment(active);
   assert.equal(record.decision,'retain');assert.equal(record.dataChanged,false);assert.equal(record.customerRecordsRead,0);assert.equal(record.ownedProof,null);
@@ -388,4 +395,37 @@ export async function verifyToolRollback(active,version,get,getLogs){
  const run=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs?filter=latest&per_page=100');
  assert(verifiedToolRollback(active,version,run,jobs.jobs?.find(j=>j.id===p.job),await getLogs(p.job),priorProof),'Exact failed tool release, owned rollback and original successful predecessor evidence required');
  return toolRollbackProof();
+}
+
+ // Exact second guarded rollback after the already-approved Start Here expectation failed.
+export const restoredPassportRuntime=Object.freeze({run:37922934503,job:113795076080,source:'8406d13df4431345b76d96c82bc1ab34637ee659',deployment:'478c6c6b-5bae-4b2b-9f3f-aa8e5bdc0033',createdOn:'2026-10-09T11:40:18.60588Z',failedDeployment:'cb6e69bf-84e1-421f-9aed-69ecc42e5d08',failedVersion:'59dac77e-b6e0-46b1-af06-d2484c6f5c50'});
+const passportRollbackProof=()=>({...restoredPassportRuntime,priorRestoration:restoredToolRuntime.deployment,version:laterUnattributedRuntimeRecovery.verifiedVersion,verifiedRun:laterUnattributedRuntimeRecovery.verifiedRun,verifiedSource:laterUnattributedRuntimeRecovery.verifiedSource});
+function assertPassportRollbackDeployment(active){
+ const p=restoredPassportRuntime;assert.equal(active?.id,p.deployment);assert.equal(active.source,'wrangler');assert.equal(active.created_on,p.createdOn);
+ assert.deepEqual(active.versions,[{version_id:laterUnattributedRuntimeRecovery.verifiedVersion,percentage:100}]);
+ assert.equal(active.annotations?.['workers/triggered_by'],'deployment');assert.equal(active.annotations?.['workers/message'],'Owned release failed post-deployment checks; restore captured runtime and preserve current data');
+}
+export function verifiedPassportRollback(active,version,run,job,logs,priorProof){
+ const p=restoredPassportRuntime,q=laterUnattributedRuntimeRecovery;
+ try{assertPassportRollbackDeployment(active);assert.deepEqual(priorProof,toolRollbackProof())}catch{return false}
+ if(version?.id!==q.verifiedVersion||version.metadata?.created_on!=='2026-10-09T07:07:16.10051Z'||version.metadata?.source!=='wrangler'||version.annotations?.['workers/triggered_by']!=='version_upload'||version.annotations?.['workers/tag']||version.annotations?.['workers/message'])return false;
+ if(run?.id!==p.run||run.head_sha!==p.source||run.run_attempt!==1||run.status!=='completed'||run.conclusion!=='failure'||run.event!=='push'||run.head_branch!=='main'||run.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
+ if(job?.id!==p.job||job.run_id!==p.run||job.name!=='promote'||job.status!=='completed'||job.conclusion!=='failure')return false;
+ for(const [number,name,conclusion]of [[63,'Deploy current main to production','success'],[67,'Verify nine public tool pages against the owned deployment','success'],[68,'Verify calculator journeys and specific tool guidance live','success'],[83,'Prove activated Passport delivery and private routes','failure'],[84,'Verify live My Treatment delivery and private APIs','skipped'],[114,'Restore the captured runtime if a post-deployment gate failed','success'],[115,'Verify nine public tool pages after owned rollback','success'],[117,'Record public tool verification status before retaining evidence','failure'],[119,'Report final public tool release status','failure']])if(!job.steps?.some(s=>s.number===number&&s.name===name&&s.status==='completed'&&s.conclusion===conclusion))return false;
+ const owned={kind:'owned_runtime_deployment',at:'2026-10-09T11:36:32.746Z',source:p.source,run:String(p.run),deploymentId:p.failedDeployment,versionId:p.failedVersion,previousDeploymentId:restoredToolRuntime.deployment,previousVersionId:q.verifiedVersion,dataRestored:false};
+ try{assert.deepEqual(ownedFrom(logs),[owned])}catch{return false}
+ if(!String(logs).includes('Current Version ID: '+q.verifiedVersion))return false;
+ const paths=['/decision-centre','/tools/alcohol','/tools/bmi','/tools/calories','/tools/healthy-weight','/tools/protein','/tools/waist-height','/tools/walking','/tools/water'];
+ const validChecks=c=>c?.source===p.source&&String(c.run)===String(p.run)&&c.status==='passed'&&c.toolChecksVerified===true&&Array.isArray(c.checks)&&c.checks.length===9&&c.checks.every((x,i)=>x.path===paths[i]&&x.passed===true&&x.status===200&&x.applicationItems===0&&x.canonicalWebPageItems===1&&/^[a-f0-9]{64}$/.test(x.htmlSha256))&&Array.isArray(c.errors)&&c.errors.length===0;
+ const reports=String(logs).split('\n').flatMap(line=>{const at=line.indexOf('{"kind":"guarded_release_verification"');if(at<0)return [];try{return [JSON.parse(line.slice(at))]}catch{return []}});
+ if(reports.length!==2)return false;
+ return reports.every(r=>r.source===p.source&&String(r.run)===String(p.run)&&r.workflowStatus==='failure'&&r.releaseVerified===false&&r.status==='failed'&&r.deployedVersion===p.failedVersion&&validChecks(r.deployChecks)&&r.deployChecks.stage==='deploy'&&r.deployChecks.deployed?.deploymentId===p.failedDeployment&&r.deployChecks.deployed.versionId===p.failedVersion&&r.deployChecks.deployed.percentage===100&&r.deployChecks.afterChecks?.deploymentId===p.failedDeployment&&r.deployChecks.afterChecks.versionId===p.failedVersion&&r.deployChecks.afterChecks.percentage===100&&validChecks(r.rollbackChecks)&&r.rollbackChecks.stage==='rollback'&&r.rollbackChecks.expected?.deploymentId===restoredToolRuntime.deployment&&r.rollbackChecks.expected.versionId===q.verifiedVersion&&r.rollbackChecks.expected.checkSource===p.source&&r.rollbackChecks.deployed?.deploymentId===p.deployment&&r.rollbackChecks.deployed.versionId===q.verifiedVersion&&r.rollbackChecks.deployed.percentage===100&&r.rollbackChecks.afterChecks?.deploymentId===p.deployment&&r.rollbackChecks.afterChecks.versionId===q.verifiedVersion&&r.rollbackChecks.afterChecks.percentage===100);
+}
+export async function verifyPassportRollback(active,version,get,getLogs){
+ const p=restoredPassportRuntime;
+ const prior={id:restoredToolRuntime.deployment,source:'wrangler',created_on:restoredToolRuntime.createdOn,versions:[{version_id:laterUnattributedRuntimeRecovery.verifiedVersion,percentage:100}],annotations:{'workers/message':'Owned release failed post-deployment checks; restore captured runtime and preserve current data','workers/triggered_by':'deployment'}};
+ const priorProof=await verifyToolRollback(prior,version,get,getLogs);
+ const run=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs?filter=latest&per_page=100');
+ assert(verifiedPassportRollback(active,version,run,jobs.jobs?.find(j=>j.id===p.job),await getLogs(p.job),priorProof),'Exact Passport failure, owned rollback and original successful predecessor evidence required');
+ return passportRollbackProof();
 }

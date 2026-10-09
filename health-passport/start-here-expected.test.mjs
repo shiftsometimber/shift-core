@@ -1,0 +1,18 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync,mkdtempSync,writeFileSync,mkdirSync,rmSync} from 'node:fs';import {tmpdir} from 'node:os';import {join,dirname} from 'node:path';import {fileURLToPath} from 'node:url';import {createHash} from 'node:crypto';import {spawnSync} from 'node:child_process';
+import {approvedStartHereExpected} from './start-here-expected.mjs';import {passportClient} from './client.mjs';import {passportCSS} from './presentation.mjs';import {PASSPORT_HEAD} from './production-preservation.mjs';
+const dir=dirname(fileURLToPath(import.meta.url)),baseline=readFileSync(join(dir,'fixtures/start-here-client-before-20261009.js'),'utf8'),hash=x=>createHash('sha256').update(x).digest('hex');
+test('real restored script composes to the exact observed approved live hash',async()=>{assert.equal(hash(baseline),'ee7adbbbd4f83935b9f0a883059fb1c8a0ea9d1de07d7f56837b69a101279c6f');const expected=await approvedStartHereExpected(baseline);assert.equal(hash(expected),'98a80f85a2d68ca25409518e1974218d0840821a864064b7d73b9e12bbb9835a');assert.equal(await approvedStartHereExpected(expected),expected);assert.equal(baseline.split('JSON.stringify({recommended,alternative})').length-1,2);assert(!expected.includes('JSON.stringify({recommended,alternative,answers})'));});
+test('cache-shape drift remains blocked before any composed expectation',async()=>{for(const source of [baseline.replace('JSON.stringify({recommended,alternative})','JSON.stringify({recommended,alternative,answers})'),baseline.replace('JSON.stringify({recommended,alternative})','JSON.stringify({recommended})')])await assert.rejects(()=>approvedStartHereExpected(source));});
+test('the real ten-check Passport command passes approved bytes and rejects changed bytes',async()=>{
+ const expected=await approvedStartHereExpected(baseline),release='a'.repeat(40);
+ for(const [candidate,pass] of [[expected,true],[expected+'\n// unapproved client change',false]]){
+  const root=mkdtempSync(join(tmpdir(),'passport-expected-'));
+  try{
+   mkdirSync(join(root,'passport-release'));writeFileSync(join(root,'passport-release/release.json'),JSON.stringify({release,schemaReady:true,startHereExpected:hash(expected)}));
+   const bodies={'/assets/member-experience/passport.js':passportClient,'/assets/member-experience/passport.css':passportCSS,'/start-here-v72.js':candidate,'/start-here':'<head>'+PASSPORT_HEAD+'</head>','/member/dashboard':'<head>'+PASSPORT_HEAD+'</head>','/':'<head></head>','/programme':'<head></head>','/about':'<head></head>'};
+   const loader=join(root,'fetch-fixture.mjs');writeFileSync(loader,'const bodies='+JSON.stringify(bodies)+';globalThis.fetch=async(url,options={})=>{const path=new URL(url).pathname;if(path.startsWith("/v1/health-passport"))return new Response("{}",{status:401,headers:{"Cache-Control":"no-store"}});if(!(path in bodies))throw Error("Unexpected fixture request: "+path);return new Response(bodies[path],{headers:{"Content-Type":path.endsWith(".js")?"application/javascript":path.endsWith(".css")?"text/css":"text/html"}});};');
+   const result=spawnSync(process.execPath,['--import',loader,join(dir,'production-live.mjs')],{cwd:root,env:{...process.env,GITHUB_SHA:release},encoding:'utf8'});
+   assert.equal(result.status,pass?0:1,result.stderr);const report=JSON.parse(readFileSync(join(root,'passport-release/live-http.json'),'utf8'));assert.equal(report.checks.length,10);assert.equal(report.pass,pass);assert.equal(report.checks.filter(c=>!c.pass).length,pass?0:1);if(!pass)assert.equal(report.checks.find(c=>!c.pass).name,'Start Here client changes only the approved raw-answer cache fields');
+  }finally{rmSync(root,{recursive:true,force:true})}
+ }
+});

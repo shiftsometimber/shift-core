@@ -6,6 +6,7 @@ import {mkdirSync,readFileSync,writeFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 import {readCurrentMain} from '../scripts/current-main-guard.mjs';
 import {patchStartHereClient} from './presentation.mjs';
+import {approvedStartHereExpected} from './start-here-expected.mjs';
 const ORIGIN='https://shiftsometimber.co.uk',OUT='passport-release';
 export const hash=b=>createHash('sha256').update(b).digest('hex');
 export const norm=s=>String(s).replace(/\bIF NOT EXISTS\s+/gi,'').replace(/\s+/g,' ').replace(/;$/,'').trim().toLowerCase();
@@ -29,13 +30,14 @@ async function prepare(){
  const old=await r.text(),count=old.split('JSON.stringify({recommended,alternative,answers})').length-1;
  let expected;
  if(count===2)expected=patchStartHereClient(old);else{assert.equal(count,0);assert.equal(old.split('JSON.stringify({recommended,alternative})').length-1,2,'Start Here source drift');expected=old;}
+ const passportOnlyExpected=expected;expected=await approvedStartHereExpected(expected);
  const before=query(metadata);const existing=before.filter(own);if(existing.length)assertSchema(existing,source);
  const deployments=JSON.parse(readFileSync('deployment-before.json','utf8'));const list=Array.isArray(deployments)?deployments:deployments.deployments||deployments.result?.deployments;
  assert.ok(Array.isArray(list)&&list.length,'Missing rollback deployments');
  const latest=[...list].sort((a,b)=>String(b.created_on).localeCompare(String(a.created_on)))[0];
  assert.equal(latest.versions?.length,1,'A split rollout needs explicit reconciliation');assert.equal(latest.versions[0].percentage,100,'Rollback version must own all traffic');
  const version=latest.versions[0].version_id;assert.match(version,/^[a-f0-9-]{36}$/i);
- const proof={release:process.env.GITHUB_SHA,checkedAt:new Date().toISOString(),migrationSha256:hash(source),previousVersion:version,rollbackCommand:`npx wrangler rollback ${version} --config wrangler.jsonc --message "Restore pre-Passport application; retain additive data"`,databaseRollback:'Do not drop the table or restore the whole database: retain newly saved member records.',startHereBefore:hash(old),startHereExpected:hash(expected),schemaBefore:hash(JSON.stringify(before)),userRowsRead:false,userRowsChanged:false};
+ const proof={release:process.env.GITHUB_SHA,checkedAt:new Date().toISOString(),migrationSha256:hash(source),previousVersion:version,rollbackCommand:`npx wrangler rollback ${version} --config wrangler.jsonc --message "Restore pre-Passport application; retain additive data"`,databaseRollback:'Do not drop the table or restore the whole database: retain newly saved member records.',startHereBefore:hash(old),startHereExpected:hash(expected),startHerePassportOnlyExpected:hash(passportOnlyExpected),startHereExpectedComposition:'Exact Passport cache repair plus existing approved promise/tablet repair; live byte equality remains mandatory',schemaBefore:hash(JSON.stringify(before)),userRowsRead:false,userRowsChanged:false};
  writeFileSync(OUT+'/release.json',JSON.stringify(proof,null,2));
  await readCurrentMain();
  if(process.env.PASSPORT_SCHEMA_READ_ONLY==='true')assertSchema(existing,source);
