@@ -80,6 +80,13 @@ export function verifiedArticleRuntime(active,run,job){
 // Carry the earlier same-job recovery proof forward without reverting its
 // verified newer runtime to the historical fallback pointer.
 export function verifiedStartingPoint(record,active){
+ if(record?.restoredMaleObesityRuntimeProof){
+  const r=record.restoredMaleObesityRuntimeProof;assert.deepEqual(r,maleObesityRollbackProof());assertMaleObesityRollbackDeployment(active);
+  assert.equal(record.decision,'retain');assert.equal(record.dataChanged,false);assert.equal(record.customerRecordsRead,0);assert.equal(record.ownedProof,null);
+  assert.equal(record.run,r.run);assert.equal(record.from,r.version);assert.equal(record.to,r.version);assert.equal(record.verifiedRun,r.verifiedRun);
+  return {source:r.verifiedSource,version:r.version,run:r.verifiedRun};
+ }
+
  if(record?.restoredContinuityRuntimeProof){
   const r=record.restoredContinuityRuntimeProof;assert.deepEqual(r,continuityRollbackProof());assertContinuityRollbackDeployment(active);
   assert.equal(record.decision,'retain');assert.equal(record.dataChanged,false);assert.equal(record.customerRecordsRead,0);assert.equal(record.ownedProof,null);
@@ -463,4 +470,41 @@ export async function verifyContinuityRollback(active,version,get,getLogs){
  const run=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs?filter=latest&per_page=100');
  assert(verifiedContinuityRollback(active,version,run,jobs.jobs?.find(j=>j.id===p.job),await getLogs(p.job),priorProof),'Exact failed Continuity proof, owned rollback and original successful predecessor evidence required');
  return continuityRollbackProof();
+}
+
+// Retain only the exact owned male-obesity rollback, with its original successful
+// predecessor independently authenticated. A failed release is never verified.
+export const restoredMaleObesityRuntime=Object.freeze({run:37985093872,job:114005444173,source:'c44f3e58f60ce9fdbbbb082fcb75c6d895ff6789',deployment:'7dab9b86-13a2-49f0-a1cb-8837e4fdc75b',failedDeployment:'9cc1cf3c-b332-4b36-9490-9f2837e7a3b0',failedVersion:'ae80938d-3b10-4957-9588-cf0eef9c2ffe',previousDeployment:'73b596b7-e095-4589-9f1f-ce80d4fdf2e5',verifiedVersion:'be032b02-d25e-43fb-bdbf-71af8683ecc2',verifiedRun:37951575896,verifiedJob:113891560846,verifiedSource:'77d2469344bb678a8e68b6e4e6cb36dfdbdc28b0'});
+const maleObesityRollbackProof=()=>({...restoredMaleObesityRuntime,version:restoredMaleObesityRuntime.verifiedVersion});
+function assertMaleObesityRollbackDeployment(active){
+ const p=restoredMaleObesityRuntime;assert.equal(active?.id,p.deployment);assert.equal(active.source,'wrangler');
+ assert.deepEqual(active.versions,[{version_id:p.verifiedVersion,percentage:100}]);
+ assert.equal(active.annotations?.['workers/triggered_by'],'deployment');assert.equal(active.annotations?.['workers/message'],'Owned release failed post-deployment checks; restore captured runtime and preserve current data');
+}
+export function verifiedMaleObesityRollback(active,version,run,job,logs,priorProof){
+ const p=restoredMaleObesityRuntime,q=p;
+ try{assertMaleObesityRollbackDeployment(active);assert.deepEqual(priorProof,{run:p.verifiedRun,source:p.verifiedSource,version:p.verifiedVersion,deployment:p.previousDeployment})}catch{return false}
+ if(version?.id!==q.verifiedVersion||version.metadata?.created_on!=='2026-10-09T15:44:33.84265Z'||version.metadata?.source!=='wrangler'||version.annotations?.['workers/triggered_by']!=='version_upload'||version.annotations?.['workers/tag']||version.annotations?.['workers/message'])return false;
+ if(run?.id!==p.run||run.head_sha!==p.source||run.run_attempt!==1||run.status!=='completed'||run.conclusion!=='failure'||run.event!=='push'||run.head_branch!=='main'||run.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
+ if(job?.id!==p.job||job.run_id!==p.run||job.name!=='promote'||job.status!=='completed'||job.conclusion!=='failure')return false;
+ for(const [number,name,conclusion]of [[63,'Deploy current main to production','success'],[81,'Verify five revised articles, metadata, downloads and sitemap on live traffic','failure'],[114,'Restore the captured runtime if a post-deployment gate failed','success'],[115,'Verify nine public tool pages after owned rollback','success']])if(!job.steps?.some(s=>s.number===number&&s.name===name&&s.conclusion===conclusion))return false;
+ const owned={kind:'owned_runtime_deployment',at:'2026-10-09T20:32:55.097Z',source:p.source,run:String(p.run),deploymentId:p.failedDeployment,versionId:p.failedVersion,previousDeploymentId:p.previousDeployment,previousVersionId:q.verifiedVersion,dataRestored:false};
+ try{assert.deepEqual(ownedFrom(logs),[owned])}catch{return false}
+ if(!String(logs).includes('Current Version ID: '+q.verifiedVersion))return false;
+ const reports=String(logs).split('\n').flatMap(line=>{const at=line.indexOf('{"kind":"guarded_release_verification"');if(at<0)return [];try{return [JSON.parse(line.slice(at))]}catch{return []}});
+ if(reports.length!==2)return false;
+ return reports.every(r=>r.source===p.source&&String(r.run)===String(p.run)&&r.workflowStatus==='failure'&&r.releaseVerified===false&&r.status==='failed'&&r.deployedVersion===p.failedVersion&&r.deployChecks?.deployed?.deploymentId===p.failedDeployment&&r.deployChecks.deployed.versionId===p.failedVersion&&r.rollbackChecks?.source===p.source&&String(r.rollbackChecks.run)===String(p.run)&&r.rollbackChecks.stage==='rollback'&&r.rollbackChecks.status==='passed'&&r.rollbackChecks.toolChecksVerified===true&&r.rollbackChecks.expected?.deploymentId===p.previousDeployment&&r.rollbackChecks.expected.versionId===q.verifiedVersion&&r.rollbackChecks.expected.checkSource===p.source&&r.rollbackChecks.deployed?.deploymentId===p.deployment&&r.rollbackChecks.deployed.versionId===q.verifiedVersion&&r.rollbackChecks.deployed.percentage===100&&r.rollbackChecks.afterChecks?.deploymentId===p.deployment&&r.rollbackChecks.afterChecks.versionId===q.verifiedVersion&&r.rollbackChecks.afterChecks.percentage===100);
+}
+
+export async function verifyMaleObesityRollback(active,version,get,getLogs){
+ const p=restoredMaleObesityRuntime;
+ const original=await get('/actions/runs/'+p.verifiedRun),originalJobs=await get('/actions/runs/'+p.verifiedRun+'/jobs?filter=latest&per_page=100'),originalJob=originalJobs.jobs?.find(j=>j.id===p.verifiedJob);
+ assert.equal(original.head_sha,p.verifiedSource);assert.equal(original.run_attempt,1);
+ const prior={id:p.previousDeployment,versions:[{version_id:p.verifiedVersion,percentage:100}]};
+ const receipts=ownedFrom(await getLogs(p.verifiedJob));assert.equal(receipts.length,1);
+ assert.equal(receipts[0].dataRestored,false);assert(verifiedOwnedRuntime(prior,original,originalJob,receipts[0]),'Exact successful predecessor required');
+ const priorProof={run:p.verifiedRun,source:p.verifiedSource,version:p.verifiedVersion,deployment:p.previousDeployment};
+ const run=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs?filter=latest&per_page=100');
+ assert(verifiedMaleObesityRollback(active,version,run,jobs.jobs?.find(j=>j.id===p.job),await getLogs(p.job),priorProof),'Exact failed male-obesity release, owned rollback and original successful predecessor required');
+ return maleObesityRollbackProof();
 }
