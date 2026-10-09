@@ -358,6 +358,27 @@ export function verifyNewsSecurity(c,{head,read,diff,ancestor,content=(ref,path)
  return c;
 }
 
+export const WATCH_HSTS_BASE='8198d99b9f570087e63864e481278b8a2459bfdd';
+export const WATCH_HSTS_PATHS=['medicines-watch/page.mjs','medicines-watch/page.test.mjs'];
+export const WATCH_HSTS_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/watch-hsts-release.test.mjs'];
+const WATCH_HSTS_SET=new Set([...WATCH_HSTS_PATHS,...WATCH_HSTS_MAINTENANCE]);
+for(const path of WATCH_HSTS_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchHsts(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert(c);assert.equal(c.proof,'EXACT_WATCH_HSTS_V1');assert.equal(c.base,WATCH_HSTS_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,WATCH_HSTS_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_HSTS_MAINTENANCE);
+ assert.equal(c.runtimeChanged,true);assert.equal(c.readOnlyHeadersChanged,true);
+ for(const flag of ['publicCopyChanged','medicalEvidenceChanged','clinicalApprovalChanged','catalogueCountChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','customerDataChanged','checkoutChanged','myTimberChanged'])assert.equal(c[flag],false);
+ for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch HSTS source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch HSTS maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Watch HSTS');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved Watch HSTS source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved Watch HSTS maintenance drift: '+path);
+ assert.doesNotMatch(content(c.base,'medicines-watch/page.mjs'),/Strict-Transport-Security/);
+ assert.match(content(c.source,'medicines-watch/page.mjs'),/Strict-Transport-Security/);
+ assert.equal(content(c.source,'.github/workflows/cloudflare-production-promote.yml'),content(c.base,'.github/workflows/cloudflare-production-promote.yml'),'Guarded production workflow must remain unchanged');
+ return c;
+}
+
 export const WATCH_BELIEVE_DIAGNOSTIC_BASE='8f05352def20c636aeb43ba2e7814d3255898d20';
 export const WATCH_BELIEVE_DIAGNOSTIC_PATHS=['release/approved-runtime-composition.mjs','tests/watch-believe-release.test.mjs'];
 const WATCH_BELIEVE_DIAGNOSTIC_SET=new Set(WATCH_BELIEVE_DIAGNOSTIC_PATHS);
@@ -497,10 +518,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const hsts=c.watchHsts;
+ if(hsts)verifyWatchHsts(hsts,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const hstsHead=hsts?hsts.base:head;
+ const hstsRead=(ref,path)=>readBlob(hsts&&ref==='HEAD'&&WATCH_HSTS_SET.has(path)?hsts.base:ref,path);
  const diagnostic=c.watchBelieveDiagnostic;
- if(diagnostic)verifyWatchBelieveDiagnostic(diagnostic,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const diagnosticHead=diagnostic?diagnostic.base:head;
- const diagnosticRead=(ref,path)=>readBlob(diagnostic&&ref==='HEAD'&&WATCH_BELIEVE_DIAGNOSTIC_SET.has(path)?diagnostic.base:ref,path);
+ if(diagnostic)verifyWatchBelieveDiagnostic(diagnostic,{head:hstsHead,read:hstsRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const diagnosticHead=diagnostic?diagnostic.base:hstsHead;
+ const diagnosticRead=(ref,path)=>hstsRead(diagnostic&&ref==='HEAD'&&WATCH_BELIEVE_DIAGNOSTIC_SET.has(path)?diagnostic.base:ref,path);
  const believe=c.watchBelieveEvidence;
  if(believe)verifyWatchBelieveEvidence(believe,{head:diagnosticHead,read:diagnosticRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const believeHead=believe?believe.base:diagnosticHead;
@@ -649,7 +674,7 @@ export function reconciliationChangedPath(status,path){
  if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
  // Source changes retain their exact add/modify semantics. Existing verifier
  // maintenance may have been added historically and modified subsequently.
- const allowed=existsAtBase.get(path)?(LOGOUT_ADOPTION_SET.has(path)||RELOAD_ATTEMPT_SET.has(path)||ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
+ const allowed=existsAtBase.get(path)?(WATCH_HSTS_SET.has(path)||LOGOUT_ADOPTION_SET.has(path)||RELOAD_ATTEMPT_SET.has(path)||ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
  assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
  return true;
 }
