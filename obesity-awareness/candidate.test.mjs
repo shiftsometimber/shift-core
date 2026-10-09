@@ -118,3 +118,16 @@ test('supporting metadata retains approved sharing images and original dates; th
 });
 
 test('all mobile and desktop inherited Programme markers are removed from the owned hub',()=>{const marked=shell.replace('</header>','<a href="/programme" aria-current="page">Mobile Programme</a><a href="/programme" aria-current="page">Desktop Programme</a><a href="https://shiftsometimber.co.uk/programme" aria-current="page">Absolute Programme</a><a href="/unchanged" aria-current="page">Other current</a></header>');const h=renderCandidate(marked);assert.doesNotMatch(h,/href="(?:https:\/\/shiftsometimber\.co\.uk)?\/programme" aria-current="page"/);assert.match(h,/href="\/unchanged" aria-current="page"/);for(const label of ['Mobile Programme','Desktop Programme','Absolute Programme'])assert.ok(h.includes(label));});
+
+import {amendBmiAwarenessRoute} from './candidate.mjs';
+test('optional BMI route retains calculation inputs and limits, replaces exact prescription signposts and has a public return',()=>{
+ const calculation='<form id="bmiForm"><input id="bmiHeightCm"><input id="bmiWeightKg"></form><script>const calculate=(kg,m)=>kg/(m*m)</script>';
+ const limits='<p>BMI cannot distinguish muscle from fat. Screening reference only; not a diagnosis.</p>';
+ const question='Does BMI decide whether I can have Mounjaro or surgery?',answer='BMI is one part of eligibility; health conditions, local pathways and clinical assessment also matter.';
+ const original=calculation+limits+'<a href="/mounjaro">Mounjaro for men</a><a href="/guides/nhs-weight-loss-medication-pathways">NHS medication guide</a><h3>'+question+'</h3><p>'+answer+'</p><script type="application/ld+json">'+JSON.stringify({name:question,acceptedAnswer:{text:answer}})+'</script>';
+ const changed=amendBmiAwarenessRoute('/tools/bmi',original);assert(changed.includes(calculation));assert(changed.includes(limits));assert.doesNotMatch(changed,/mounjaro|Mounjaro|nhs-weight-loss-medication-pathways/);assert.match(changed,/href="\/male-obesity"/);assert.match(changed,/href="\/weight-loss-support-for-men"/);
+ assert.equal(amendBmiAwarenessRoute('/tools/protein',original),original);
+ assert.throws(()=>amendBmiAwarenessRoute('/tools/bmi',original.replace('Mounjaro for men','unreviewed source')));
+ assert.throws(()=>amendBmiAwarenessRoute('/tools/bmi',original+original));
+ const hub=renderCandidate(shell);assert.match(hub,/href="\/tools\/bmi"/);assert.match(hub,/one useful number, not the whole picture/);assert.match(hub,/href="\/member\/grub"/);
+});

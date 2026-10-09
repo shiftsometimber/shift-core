@@ -1,6 +1,7 @@
 import {PATH,renderCandidate,amendSupportingDocument,amendPillarChrome} from './candidate.mjs';
 import {addPillarClient} from './measurement.mjs';
-const supported=new Set(['/weight-loss-support-for-men','/mental-health/mental-health-and-weight','/articles/weight-loss-plateau-men','/mens-weight-management','/articles/evidence-based-weight-loss']);
+import {improveAnswerDepth} from '../public-seo-answer-depth.mjs';
+const supported=new Set(['/tools/bmi','/weight-loss-support-for-men','/mental-health/mental-health-and-weight','/articles/weight-loss-plateau-men','/mens-weight-management','/articles/evidence-based-weight-loss']);
 const exempt=p=>['/','/index','/index.html','/home','/home.html'].includes(p)||/^\/(?:member|api|v1|hq|admin)(?:\/|$)/.test(p);
 function output(r,html,head,indexable=false){const h=new Headers(r.headers);for(const k of ['Content-Length','Content-Encoding','ETag','Last-Modified','Digest','Content-MD5'])h.delete(k);h.set('Cache-Control','no-store');if(indexable){html=html.replace(/<meta name="robots" content="noindex,nofollow">/g,'<meta name="robots" content="index,follow">');h.delete('X-Robots-Tag');h.set('X-Shift-Male-Obesity','v1');}return new Response(head?null:html,{status:r.status,headers:h});}
 export function withMaleObesity(worker){return {...worker,async fetch(request,env,ctx){const u=new URL(request.url),p=u.pathname,head=request.method==='HEAD';if(!['GET','HEAD'].includes(request.method)||exempt(p))return worker.fetch(request,env,ctx);
@@ -9,5 +10,10 @@ export function withMaleObesity(worker){return {...worker,async fetch(request,en
  const r=await worker.fetch(head?new Request(u,{method:'GET',headers:request.headers}):request,env,ctx);if(!r.ok)return head?new Response(null,r):r;
  if(p==='/sitemap.xml'){let xml=await r.text();const loc='<loc>https://shiftsometimber.co.uk'+PATH+'</loc>';if(!xml.includes(loc))xml=xml.replace('</urlset>','<url>'+loc+'</url></urlset>');return output(r,xml,head);}
  if(!r.headers.get('Content-Type')?.includes('text/html'))return head?new Response(null,r):r;
- try{return output(r,amendPillarChrome(amendSupportingDocument(p,await r.text()),p),head,supported.has(p));}catch{return new Response(head?null:'This support page is temporarily unavailable. You can still use the practical step at https://shiftsometimber.co.uk/male-obesity#first-step',{status:503,headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store'}});}
+ try{const document=await r.text();
+ // The separate public-answer Worker wraps CORE after this adapter. Install
+ // this one approved section here so it is qualified before that outer pass.
+ // Its existing idempotency prevents a duplicate; other pages are untouched.
+ const prepared=p==='/weight-loss-support-for-men'?improveAnswerDepth(document,p):document;
+ return output(r,amendPillarChrome(amendSupportingDocument(p,prepared),p),head,supported.has(p));}catch{return new Response(head?null:'This support page is temporarily unavailable. You can still use the practical step at https://shiftsometimber.co.uk/male-obesity#first-step',{status:503,headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store'}});}
 }};}

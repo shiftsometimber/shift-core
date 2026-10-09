@@ -48,7 +48,22 @@ export function renderCandidate(shell){
  const graph={'@context':'https://schema.org','@graph':[{'@type':'Article',headline:'Male obesity: understanding weight and finding support',description:candidate.description,inLanguage:'en-GB',mainEntityOfPage:ORIGIN+PATH,publisher:{'@type':'Organization',name:'Shift Some Timber'},citation:['https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight','https://www.nhs.uk/conditions/overweight-and-obesity/','https://www.niddk.nih.gov/health-information/weight-management/adult-overweight-obesity/eating-physical-activity']},{'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:ORIGIN+'/'},{'@type':'ListItem',position:2,name:'Male obesity',item:ORIGIN+PATH}]}]};
  return amendPillarChrome(applyPillarMetadata(html.replace('</head>',`<title>${esc(candidate.title)}</title><meta name="description" content="${esc(candidate.description)}"><meta name="robots" content="noindex,nofollow"><link rel="canonical" href="${ORIGIN+PATH}"><style data-weight-understanding>${style}</style><script type="application/ld+json">${JSON.stringify(graph).replace(/</g,'\\u003c')}</script></head>`),PATH,candidate),PATH);
 }
+// This informational connection changes only exact related-reading links and
+// the two matching FAQ copies. The calculator, categories and inputs stay intact.
+export function amendBmiAwarenessRoute(path,input){
+ if(path!=='/tools/bmi')return input;
+ let html=input;
+ const changes=[
+  ['<a href="/mounjaro">Mounjaro for men</a>','<a href="/male-obesity">Understand obesity and find a next step</a>',1],
+  ['<a href="/guides/nhs-weight-loss-medication-pathways">NHS medication guide</a>','<a href="/weight-loss-support-for-men">Free practical support for men</a>',1],
+  ['Does BMI decide whether I can have Mounjaro or surgery?','Does BMI decide which healthcare support I can access?',2],
+  ['BMI is one part of eligibility; health conditions, local pathways and clinical assessment also matter.','BMI is one part of the assessment. Your health, circumstances, local services and a healthcare professional’s judgement also matter.',2]
+ ];
+ for(const [before,after,count]of changes){if(html.split(before).length-1!==count||html.includes(after))throw Error('awareness_bmi_source_drift');html=html.split(before).join(after)}
+ return html;
+}
 export function amendSupportingDocument(path,input){
+ if(path==='/tools/bmi')return amendBmiAwarenessRoute(path,input);
  if(!['/weight-loss-support-for-men','/mental-health/mental-health-and-weight','/articles/weight-loss-plateau-men','/mens-weight-management','/articles/evidence-based-weight-loss'].includes(path))return input;
  if((input.match(mainRE)||[]).length!==1)throw Error('awareness_invalid_shell');
  if(input.includes('data-weight-understanding-addition'))return input;
