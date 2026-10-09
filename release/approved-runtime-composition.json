@@ -903,5 +903,34 @@
     "genericAdoptionAllowed": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "passportPreservationRepair": {
+    "proof": "EXACT_PASSPORT_PRESERVATION_REPAIR_V1",
+    "base": "8406d13df4431345b76d96c82bc1ab34637ee659",
+    "source": "58529f0bb165b7620f851e141d2ab81faab87171",
+    "paths": [
+      "health-passport/production-release.mjs",
+      "health-passport/production-release.test.mjs",
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/recover-cancelled-release.mjs",
+      "shift-coach/cancelled-release-recovery.test.mjs"
+    ],
+    "maintenanceSource": "bd1a61bc3afe0367058a7e1ed3cfc44eaf0406a9",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/approved-runtime-composition.test.mjs"
+    ],
+    "failedRun": 37922934503,
+    "failedJob": 113795076080,
+    "rollbackDeployment": "478c6c6b-5bae-4b2b-9f3f-aa8e5bdc0033",
+    "originalSuccessfulRun": 37895305149,
+    "approvedStartHereWordingExpectationFixed": true,
+    "publicCopyChanged": false,
+    "calculatorArithmeticChanged": false,
+    "myTreatmentChanged": false,
+    "customerDataChanged": false,
+    "genericAdoptionAllowed": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
