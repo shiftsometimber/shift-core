@@ -690,15 +690,19 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const actualHead=git('rev-parse','HEAD');
  // Only actual Git objects at resolved immutable commit IDs are cacheable.
  // Supplied readers are always invoked again, even after a successful proof.
- const originalRawBlob=read===defaultReconciliationRead?(ref,path)=>{
+ const outerRawBlob=read===defaultReconciliationRead?(ref,path)=>{
   const commit=ref==='HEAD'?actualHead:ref;assert.match(commit,/^[a-f0-9]{40}$/);
   const key=JSON.stringify([process.cwd(),commit,path]);
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const toolBuild=c.toolGuidanceProductionBuildGate;
+ if(toolBuild)verifyToolGuidanceBuildGate(toolBuild,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preToolBuildHead=toolBuild?toolBuild.base:actualHead;
+ const originalRawBlob=(ref,path)=>outerRawBlob(toolBuild&&ref==='HEAD'&&TOOL_GUIDANCE_BUILD_GATE_SET.has(path)?toolBuild.base:ref,path);
  const passport=c.passportPreservationRepair;
- if(passport)verifyPassportPreservationRepair(passport,{head:actualHead,read:originalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const prePassportHead=passport?passport.base:actualHead;
+ if(passport)verifyPassportPreservationRepair(passport,{head:preToolBuildHead,read:originalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const prePassportHead=passport?passport.base:preToolBuildHead;
  const passportRawBlob=(ref,path)=>originalRawBlob(passport&&ref==='HEAD'&&PASSPORT_PRESERVATION_SET.has(path)?passport.base:ref,path);
  const bundled=c.bundledToolRuntimeRepair;
  if(bundled)verifyBundledToolRuntimeRepair(bundled,{head:prePassportHead,read:passportRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
@@ -1100,4 +1104,24 @@ export function verifyPassportPreservationRepair(c,{head,read,diff,ancestor}){
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Passport preservation repair');
  for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Passport preservation source drift: '+path);
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Passport preservation maintenance source drift / Bundled tool runtime maintenance source drift / Restoration retention maintenance drift: '+path);
+}
+ // Exact additional build proof; runtime and every existing release guard remain pinned.
+export const TOOL_GUIDANCE_BUILD_GATE_BASE='3fae9c5512802908288b4fca19e8421b062e5995';
+export const TOOL_GUIDANCE_BUILD_GATE_SOURCE='45f7f52e560d9d9b9437cdb098b00fe50ebb711b';
+export const TOOL_GUIDANCE_BUILD_GATE_PATHS=Object.freeze([".github/workflows/cloudflare-production-promote.yml","scripts/verify-tool-guidance-build.cjs","tests/tool-guidance-build.test.cjs"]);
+export const TOOL_GUIDANCE_BUILD_GATE_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/tool-guidance-build-composition.test.mjs"]);
+const TOOL_GUIDANCE_BUILD_GATE_SET=new Set([...TOOL_GUIDANCE_BUILD_GATE_PATHS,...TOOL_GUIDANCE_BUILD_GATE_MAINTENANCE]);
+for(const path of TOOL_GUIDANCE_BUILD_GATE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyToolGuidanceBuildGate(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_TOOL_GUIDANCE_PRODUCTION_BUILD_GATE_V1');assert.equal(c.base,TOOL_GUIDANCE_BUILD_GATE_BASE);assert.equal(c.source,TOOL_GUIDANCE_BUILD_GATE_SOURCE);
+ assert.deepEqual(c.paths,TOOL_GUIDANCE_BUILD_GATE_PATHS);assert.deepEqual(c.maintenancePaths,TOOL_GUIDANCE_BUILD_GATE_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.compiledBuildProofAdded,true);assert.equal(c.publicationStatus,'approved_for_guarded_release');
+ for(const flag of ['runtimeChanged','publicCopyChanged','medicalClaimsChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated production-built tool proof source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated production-built tool proof maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after production-built tool proof receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Serving SEO source drift: production-built tool proof '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift / Tablet wording verifier source drift: production-built tool proof '+path);
+ return c;
 }
