@@ -795,7 +795,7 @@
       "release/approved-runtime-composition.mjs",
       "tests/approved-runtime-composition.test.mjs"
     ],
-    "maintenanceSource": "b7ff686c2dacfcd9d7e17e6d77e070bf8a8861c3",
+    "maintenanceSource": "b9b457ca8654f1952cd7de0063b10267ad699ce5",
     "observationRun": 37908130882,
     "successfulPredecessorRun": 37895305149,
     "restoredVersion": "fd7939d8-6387-48fa-adc8-714e6f8bea8d",
