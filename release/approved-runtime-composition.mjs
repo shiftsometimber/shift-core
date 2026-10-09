@@ -117,6 +117,25 @@ export const PROOF_TRANSPORT_SOURCE='d601b545686a74dfe51c6f57a5712b11fba510f9';
 export const PROOF_TRANSPORT_PATHS=['release/growth-preflight.mjs','release/github-proof-get.mjs','tests/github-proof-get.test.mjs'];
 export const PROOF_TRANSPORT_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs'];
 export const RECONCILIATION_PATHS=new Set([...COMPOSITION_PATHS,...RECONCILIATION_MAINTENANCE,RECONCILIATION_MANIFEST,...WATCH_FACTUAL_UPDATE_PATHS,...WATCH_FACTUAL_UPDATE_MAINTENANCE,...PROOF_TRANSPORT_PATHS,...PROOF_TRANSPORT_MAINTENANCE]);
+// Exact repair for the production bundle failure caught by run 37898153870.
+export const TREATMENT_DELIVERY_BASE='3df83d33f1bc26e3119dfeba2cbc54b10cedafdb';
+export const TREATMENT_DELIVERY_SOURCE='db6a831b9845ab90cf8d0d68d3ec8f8f6299c198';
+export const TREATMENT_DELIVERY_PATHS=['member-experience/treatment-page.mjs','member-experience/tests/treatment-model.test.mjs'];
+export const TREATMENT_DELIVERY_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/my-treatment-delivery-repair.test.mjs'];
+const TREATMENT_DELIVERY_SET=new Set([...TREATMENT_DELIVERY_PATHS,...TREATMENT_DELIVERY_MAINTENANCE]);
+for(const path of TREATMENT_DELIVERY_SET)RECONCILIATION_PATHS.add(path);
+export function verifyTreatmentDeliveryRepair(c,{head,read,diff,ancestor}){
+ assert(c);assert.equal(c.proof,'EXACT_MY_TREATMENT_DELIVERY_REPAIR_V1');assert.equal(c.base,TREATMENT_DELIVERY_BASE);assert.equal(c.source,TREATMENT_DELIVERY_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.deepEqual(c.paths,TREATMENT_DELIVERY_PATHS);assert.deepEqual(c.maintenancePaths,TREATMENT_DELIVERY_MAINTENANCE);assert.equal(c.ownerAuthorised,true);assert.equal(c.caughtByRun,37898153870);
+ for(const flag of ['configurationChanged','schemaChanged','customerRowsChanged','homepageChanged','clinicalFeedClaimed','existingGatesWeakened','rollbackAuthorityBroadened'])assert.equal(c[flag],false);
+ for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated My Treatment delivery repair source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated My Treatment delivery repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after My Treatment delivery repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'My Treatment delivery repair source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'My Treatment delivery repair maintenance source drift: '+path);
+ return c;
+}
 export const MY_TREATMENT_BASE='793b5135ce7bcdb42d77597b238c769c32a7dc67';
 export const MY_TREATMENT_SOURCE='8681d219edc06be15c24135741877c47ee36b011';
 export const MY_TREATMENT_PATHS=['.github/workflows/cloudflare-production-promote.yml','.github/workflows/my-treatment-production-check.yml','member-experience/TREATMENT-PRODUCTION-RELEASE.md','member-experience/entry.mjs','member-experience/tests/treatment-model.test.mjs','member-experience/tests/treatment.test.mjs','member-experience/treatment-model.mjs','member-experience/treatment-page.mjs','member-experience/treatment-privacy.mjs','member-experience/treatment-reminders.mjs','member-experience/treatment-routes.mjs','member-experience/treatment-service-worker.mjs','member-experience/treatment.sql','privacy-health-erasure-route-v1.js','release/my-treatment-config.mjs','release/my-treatment-live.mjs','release/my-treatment-schema.mjs','shift-coach/release-contract.mjs','tests/my-treatment-release.test.mjs','worker-entry-v6.js','wrangler.coaching.jsonc','wrangler.jsonc'];
@@ -676,10 +695,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const delivery=c.myTreatmentDeliveryRepair;
+ if(delivery)verifyTreatmentDeliveryRepair(delivery,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const deliveryHead=delivery?delivery.base:head;
+ const deliveryRead=(ref,path)=>readBlob(delivery&&ref==='HEAD'&&TREATMENT_DELIVERY_SET.has(path)?delivery.base:ref,path);
  const treatment=c.myTreatment;
- if(treatment)verifyMyTreatment(treatment,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const treatmentHead=treatment?treatment.base:head;
- const treatmentRead=(ref,path)=>readBlob(treatment&&ref==='HEAD'&&MY_TREATMENT_SET.has(path)?treatment.base:ref,path);
+ if(treatment)verifyMyTreatment(treatment,{head:deliveryHead,read:deliveryRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const treatmentHead=treatment?treatment.base:deliveryHead;
+ const treatmentRead=(ref,path)=>deliveryRead(treatment&&ref==='HEAD'&&MY_TREATMENT_SET.has(path)?treatment.base:ref,path);
  const tablet=c.tabletWording;
  if(tablet)verifyTabletWordingExtension(tablet,{head:treatmentHead,read:treatmentRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const tabletHead=tablet?tablet.base:treatmentHead;

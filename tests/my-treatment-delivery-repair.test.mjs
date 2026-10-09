@@ -1,0 +1,10 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {verifyTreatmentDeliveryRepair,TREATMENT_DELIVERY_BASE,TREATMENT_DELIVERY_SOURCE,TREATMENT_DELIVERY_PATHS,TREATMENT_DELIVERY_MAINTENANCE,RECONCILIATION_MANIFEST} from '../release/approved-runtime-composition.mjs';
+function fixture(){const c={proof:'EXACT_MY_TREATMENT_DELIVERY_REPAIR_V1',base:TREATMENT_DELIVERY_BASE,source:TREATMENT_DELIVERY_SOURCE,maintenanceSource:'b'.repeat(40),paths:TREATMENT_DELIVERY_PATHS,maintenancePaths:TREATMENT_DELIVERY_MAINTENANCE,ownerAuthorised:true,caughtByRun:37898153870,configurationChanged:false,schemaChanged:false,customerRowsChanged:false,homepageChanged:false,clinicalFeedClaimed:false,existingGatesWeakened:false,rollbackAuthorityBroadened:false};return {c,o:{head:'c'.repeat(40),ancestor:()=>{},diff:(a,b)=>a===c.base?c.paths:a===c.source?c.maintenancePaths:[RECONCILIATION_MANIFEST],read:(ref,path)=>c.paths.includes(path)?'source:'+path:'maintenance:'+path}};}
+test('exact bundled browser and PDF repair retains a finite immutable boundary',()=>{const {c,o}=fixture();assert.equal(verifyTreatmentDeliveryRepair(c,o),c);});
+test('delivery repair rejects source drift, unrelated changes and broadened authority',()=>{
+ for(const path of [...TREATMENT_DELIVERY_PATHS,...TREATMENT_DELIVERY_MAINTENANCE]){const{c,o}=fixture(),read=o.read;o.read=(ref,p)=>ref==='HEAD'&&p===path?'tampered':read(ref,p);assert.throws(()=>verifyTreatmentDeliveryRepair(c,o),/source drift/);}
+ for(const stage of ['base','source','maintenanceSource']){const{c,o}=fixture(),diff=o.diff;o.diff=(a,b)=>a===c[stage]?[...diff(a,b),'wrangler.jsonc']:diff(a,b);assert.throws(()=>verifyTreatmentDeliveryRepair(c,o),/Unrelated|Unreviewed/);}
+ for(const flag of ['configurationChanged','schemaChanged','customerRowsChanged','homepageChanged','clinicalFeedClaimed','existingGatesWeakened','rollbackAuthorityBroadened']){const{c,o}=fixture();c[flag]=true;assert.throws(()=>verifyTreatmentDeliveryRepair(c,o));}
+ const{c,o}=fixture();c.caughtByRun=1;assert.throws(()=>verifyTreatmentDeliveryRepair(c,o));
+});
