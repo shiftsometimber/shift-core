@@ -1,0 +1,14 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {WATCH_BELIEVE_BASE,WATCH_BELIEVE_SOURCE,WATCH_BELIEVE_PROOF_RUN,WATCH_BELIEVE_PATHS,WATCH_BELIEVE_MAINTENANCE,RECONCILIATION_MANIFEST,verifyWatchBelieveEvidence} from '../release/approved-runtime-composition.mjs';
+const receipt=JSON.stringify({publicationStatus:'owner_authorised_factual_publication',clinicalApproval:null,industryComplete:false,registrySources:[{nctId:'NCT05616013',lifecycle:{hasResults:true}}]});
+function fixture(){const maintenanceSource='a'.repeat(40),head='b'.repeat(40),c={proof:'EXACT_WATCH_BELIEVE_EVIDENCE_V1',base:WATCH_BELIEVE_BASE,source:WATCH_BELIEVE_SOURCE,maintenanceSource,proofRun:WATCH_BELIEVE_PROOF_RUN,paths:WATCH_BELIEVE_PATHS,maintenancePaths:WATCH_BELIEVE_MAINTENANCE,medicalEvidenceChanged:true,editorialAuthorisationRecorded:true,configuredSourcesAdded:1,runtimeChanged:false,clinicalApprovalChanged:false,catalogueCountChanged:false,ukAuthorisationChanged:false,nhsAccessChanged:false,supplyChanged:false,customerDataChanged:false,checkoutChanged:false,myTimberChanged:false};
+ const payload=new Set(c.paths),maintenance=new Set(c.maintenancePaths);
+ return{c,o:{head,ancestor:()=>{},diff:(a,b)=>a===c.base?c.paths:a===c.source?c.maintenancePaths:[RECONCILIATION_MANIFEST],read:(ref,path)=>ref==='HEAD'?(payload.has(path)?'source:'+path:'maintenance:'+path):ref===c.source?'source:'+path:'maintenance:'+path,content:(ref,path)=>path.endsWith('2026-10-09-authorised-bimagrumab-semaglutide.json')?receipt:'unchanged production boundary'}};
+}
+test('BELIEVE publication is one exact evidence-only amendment',()=>{const {c,o}=fixture();assert.equal(verifyWatchBelieveEvidence(c,o),c);});
+test('unrelated paths, altered evidence, invented approval and release drift fail closed',()=>{
+ {const {c,o}=fixture();o.diff=(a,b)=>a===c.base?[...c.paths,'checkout.mjs']:a===c.source?c.maintenancePaths:[RECONCILIATION_MANIFEST];assert.throws(()=>verifyWatchBelieveEvidence(c,o),/Unrelated BELIEVE evidence source/);}
+ {const {c,o}=fixture(),read=o.read;o.read=(ref,path)=>ref==='HEAD'&&path===c.paths[0]?'changed':read(ref,path);assert.throws(()=>verifyWatchBelieveEvidence(c,o),/source drift/);}
+ for(const flag of ['runtimeChanged','clinicalApprovalChanged','catalogueCountChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','customerDataChanged','checkoutChanged','myTimberChanged']){const {c,o}=fixture();c[flag]=true;assert.throws(()=>verifyWatchBelieveEvidence(c,o));}
+ {const {c,o}=fixture();o.content=(ref,path)=>path.endsWith('.json')?JSON.stringify({publicationStatus:'owner_authorised_factual_publication',clinicalApproval:true,industryComplete:false,registrySources:[{nctId:'NCT05616013',lifecycle:{hasResults:true}}]}):'unchanged production boundary';assert.throws(()=>verifyWatchBelieveEvidence(c,o));}
+});

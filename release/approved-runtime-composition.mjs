@@ -358,6 +358,30 @@ export function verifyNewsSecurity(c,{head,read,diff,ancestor,content=(ref,path)
  return c;
 }
 
+export const WATCH_BELIEVE_BASE='79dfc433a3a5775f0277206ff7134d0900a8c6ae';
+export const WATCH_BELIEVE_SOURCE='532cd3534527a0e4d83b651894a7a7a13b8a66b2';
+export const WATCH_BELIEVE_PROOF_RUN=37866621755;
+export const WATCH_BELIEVE_PATHS=['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-09-authorised-bimagrumab-semaglutide.json'];
+export const WATCH_BELIEVE_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/watch-believe-release.test.mjs'];
+const WATCH_BELIEVE_SET=new Set([...WATCH_BELIEVE_PATHS,...WATCH_BELIEVE_MAINTENANCE]);
+for(const path of WATCH_BELIEVE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchBelieveEvidence(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert(c);assert.equal(c.proof,'EXACT_WATCH_BELIEVE_EVIDENCE_V1');assert.equal(c.base,WATCH_BELIEVE_BASE);assert.equal(c.source,WATCH_BELIEVE_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.equal(c.proofRun,WATCH_BELIEVE_PROOF_RUN);assert.deepEqual(c.paths,WATCH_BELIEVE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_BELIEVE_MAINTENANCE);
+ assert.equal(c.medicalEvidenceChanged,true);assert.equal(c.editorialAuthorisationRecorded,true);assert.equal(c.configuredSourcesAdded,1);
+ for(const flag of ['runtimeChanged','clinicalApprovalChanged','catalogueCountChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','customerDataChanged','checkoutChanged','myTimberChanged'])assert.equal(c[flag],false);
+ for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated BELIEVE evidence source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated BELIEVE evidence maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after BELIEVE evidence');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved BELIEVE evidence factual Watch source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved BELIEVE evidence source drift / verifier drift: '+path);
+ const receipt=JSON.parse(content(c.source,'medicines-watch/reviews/2026-10-09-authorised-bimagrumab-semaglutide.json'));
+ assert.equal(receipt.publicationStatus,'owner_authorised_factual_publication');assert.equal(receipt.clinicalApproval,null);assert.equal(receipt.industryComplete,false);
+ assert.equal(receipt.registrySources.length,1);assert.equal(receipt.registrySources[0].nctId,'NCT05616013');assert.equal(receipt.registrySources[0].lifecycle.hasResults,true);
+ for(const path of ['.github/workflows/cloudflare-production-promote.yml','worker-entry-v6.js','wrangler.jsonc'])assert.equal(content(c.source,path),content(c.base,path),'Production runtime and guarded workflow must remain unchanged: '+path);
+ return c;
+}
+
 
 export const MEMBER_PROOF_RETRY_BASE='5f046576b17ecf5fad5aa5be6d6eab1699f38e86';
 export const MEMBER_PROOF_RETRY_SOURCE='6808493eeca7b747e61668d4e2b0c5f29adffb87';
@@ -459,10 +483,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const believe=c.watchBelieveEvidence;
+ if(believe)verifyWatchBelieveEvidence(believe,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const believeHead=believe?believe.base:head;
+ const believeRead=(ref,path)=>readBlob(believe&&ref==='HEAD'&&WATCH_BELIEVE_SET.has(path)?believe.base:ref,path);
  const memberRetry=c.memberProofTransportRetry;
- if(memberRetry)verifyMemberProofRetry(memberRetry,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const memberRetryHead=memberRetry?memberRetry.base:head;
- const memberRetryRead=(ref,path)=>readBlob(memberRetry&&ref==='HEAD'&&MEMBER_PROOF_RETRY_SET.has(path)?memberRetry.base:ref,path);
+ if(memberRetry)verifyMemberProofRetry(memberRetry,{head:believeHead,read:believeRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const memberRetryHead=memberRetry?memberRetry.base:believeHead;
+ const memberRetryRead=(ref,path)=>believeRead(memberRetry&&ref==='HEAD'&&MEMBER_PROOF_RETRY_SET.has(path)?memberRetry.base:ref,path);
  const news=c.newsSecurityPolicy;
  if(news)verifyNewsSecurity(news,{head:memberRetryHead,read:memberRetryRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const newsHead=news?news.base:memberRetryHead;
