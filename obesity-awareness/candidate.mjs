@@ -31,7 +31,7 @@ export function applyPillarMetadata(html,path,meta=supportingMetadata[path]){
  const url=ORIGIN+path;
  html=html.replace(schemaRE,tag=>{
   const raw=tag.replace(/^<script[^>]*>/i,'').replace(/<\/script>$/i,'');let graph;try{graph=JSON.parse(raw)}catch{throw Error('awareness_invalid_schema')}
-  function visit(n){if(!n||typeof n!=='object')return;if(n['@type']==='Article'&&(n.url===url||n.mainEntityOfPage===url||n['@id']===url+'#article')){n.description=meta.description;delete n.dateModified}for(const v of Object.values(n))if(typeof v==='object'){if(Array.isArray(v))v.forEach(visit);else visit(v)}}visit(graph);
+  function visit(n){if(!n||typeof n!=='object')return;if(n['@type']==='Article'&&(n.url===url||n.mainEntityOfPage===url||n['@id']===url+'#article')){n.description=meta.description}for(const v of Object.values(n))if(typeof v==='object'){if(Array.isArray(v))v.forEach(visit);else visit(v)}}visit(graph);
   return '<script type="application/ld+json">'+JSON.stringify(graph).replace(/</g,'\\u003c')+'</script>';
  });
  return html.replace('</head>','<title>'+esc(meta.title)+'</title><meta name="description" content="'+esc(meta.description)+'"><meta name="robots" content="noindex,nofollow"><link rel="canonical" href="'+url+'"><meta property="og:type" content="article"><meta property="og:locale" content="en_GB"><meta property="og:title" content="'+esc(meta.title)+'"><meta property="og:description" content="'+esc(meta.description)+'"><meta property="og:url" content="'+url+'"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="'+esc(meta.title)+'"><meta name="twitter:description" content="'+esc(meta.description)+'"></head>');
@@ -39,7 +39,8 @@ export function applyPillarMetadata(html,path,meta=supportingMetadata[path]){
 export function renderCandidate(shell){
  if((shell.match(mainRE)||[]).length!==1||!shell.includes('</head>'))throw Error('awareness_invalid_shell');
  // Preserve primary header and consent; apply only the proposed drawer/footer additions.
- let html=shell.replace(mainRE,()=>'<main id="main-content" class="shift-understanding" data-shift-weight-understanding>'+candidate.body+'</main>')
+ // This owned hub is not the Programme page; retain its link without a false current-page marker.
+ let html=shell.replace('href="/programme" aria-current="page"','href="/programme"').replace(mainRE,()=>'<main id="main-content" class="shift-understanding" data-shift-weight-understanding>'+candidate.body+'</main>')
  .replace(/<title>[\s\S]*?<\/title>/gi,'')
  .replace(/<meta\b(?=[^>]*(?:name|property)\s*=\s*["'](?:description|robots|og:[^"']+|twitter:[^"']+)["'])[^>]*>/gi,'')
  .replace(/<link\b(?=[^>]*rel\s*=\s*["']canonical["'])[^>]*>/gi,'').replace(schemaRE,'')

@@ -77,7 +77,7 @@ test('supporting metadata and sharing tags agree; article evidence and dates rem
  for(const [path,meta]of Object.entries(supportingMetadata)){
   const source=shell.replace('</head>',`<meta property="og:title" content="Stale"><script type="application/ld+json">${JSON.stringify({'@graph':[{'@type':'Article',url:'https://shiftsometimber.co.uk'+path,description:'Old',dateModified:'old',citation:['https://www.nhs.uk/']},{'@type':'Article',url:'https://example.org/unrelated',description:'Leave me'}]})}</script></head>`);
   const h=applyPillarMetadata(source,path);assert.equal((h.match(/<title>/g)||[]).length,1);assert.equal((h.match(/rel="canonical"/g)||[]).length,1);assert.match(h,/noindex,nofollow/);assert.ok(!h.includes('content="Stale"'));assert.ok(h.includes(meta.description));
-  const graph=JSON.parse(h.match(/application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];assert.equal(graph[0].description,meta.description);assert.equal(graph[0].dateModified,undefined);assert.deepEqual(graph[0].citation,['https://www.nhs.uk/']);assert.equal(graph[1].description,'Leave me');
+  const graph=JSON.parse(h.match(/application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];assert.equal(graph[0].description,meta.description);assert.equal(graph[0].dateModified,'old');assert.deepEqual(graph[0].citation,['https://www.nhs.uk/']);assert.equal(graph[1].description,'Leave me');
  }
  assert.throws(()=>applyPillarMetadata(shell.replace('</head>',''),'\/weight-loss-support-for-men'),/invalid_shell/);
  assert.throws(()=>applyPillarMetadata(shell.replace('</head>','<script type="application/ld+json">broken</script></head>'),'/weight-loss-support-for-men'),/invalid_schema/);
@@ -88,3 +88,24 @@ test('hub explains Start Here, SHIFT Health and practical support as distinct op
 });
 
 test('owned hub text overrides inherited ID-specific pale heading paint',()=>{const h=renderCandidate(shell);assert.match(h,/html body main#main-content\[data-shift-weight-understanding\] :is\(p,h1,h2,h3,li,summary\)\{color:#050505!important;-webkit-text-fill-color:#050505!important\}/);});
+
+test('hub removes the inherited Programme current-page marker without changing its destination',()=>{const marked=shell.replace('<header>START HERE · THE PROGRAMME · SHIFT HEALTH · TREATMENTS · MY TIMBER</header>','<header><a href="/programme" aria-current="page">The Programme</a></header>');const h=renderCandidate(marked);assert.match(h,/<a href="\/programme">The Programme<\/a>/);assert.doesNotMatch(h,/href="\/programme" aria-current="page"/);});
+
+import {preservePillarMood} from './preservation.mjs';
+import {RANKING_GROWTH_PAGES} from '../public-seo-growth-data.mjs';
+import {repairRankingGrowth,preserveRankingGrowth} from '../public-seo-growth.mjs';
+import {rewriteArticle} from '../editorial/five-articles/render.mjs';
+const moodPath='/mental-health/mental-health-and-weight';
+const moodLegacy='<html><head>'+RANKING_GROWTH_PAGES[moodPath].replacements.filter(x=>x.kind!=='body').map(x=>x.after).join('')+'</head>'+repairRankingGrowth(moodPath,rewriteArticle(shell,moodPath).match(/<main\b[\s\S]*?<\/main>/)[0])+'</html>';
+test('approved mood addition and metadata invert exactly; original clinical body stays verifiable',()=>{
+ const current=amendSupportingDocument(moodPath,moodLegacy),restored=preservePillarMood(moodPath,current);
+ const base=preserveRankingGrowth(moodPath,restored);assert.equal(repairRankingGrowth(moodPath,base),restored);
+ assert.equal(restored.match(/<main\b[\s\S]*?<\/main>/)[0],moodLegacy.match(/<main\b[\s\S]*?<\/main>/)[0]);
+ assert.equal(preservePillarMood('/elsewhere',current),current);
+});
+test('mood verifier rejects changed or duplicated addition, metadata, schema and destinations',()=>{
+ const current=amendSupportingDocument(moodPath,moodLegacy);
+ for(const changed of [current.replace('You do not need to wait','You must wait'),current.replace('Weight, Mood &amp; Asking for Help','Changed'),current.replace('Find a supportive way','Get a prescription'),current.replace('"dateModified":"2026-10-07"','"dateModified":"2099-01-01"'),current.replace('href="/male-obesity"','href="/treatment-centre"'),current.replace('data-weight-understanding-addition','data-weight-understanding-addition changed')]){
+  assert.notEqual(changed,current);assert.throws(()=>preservePillarMood(moodPath,changed));
+ }
+});
