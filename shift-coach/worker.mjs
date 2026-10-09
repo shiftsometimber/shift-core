@@ -1,3 +1,4 @@
+import {withMaleObesity} from '../obesity-awareness/production.mjs';
 import {withPublicToolDelivery} from '../public-tool-delivery.mjs';
 import {withContextSeo} from '../public-seo-context.mjs';
 import {withPublicSeoCloseout} from '../public-seo-closeout.mjs';
@@ -20,7 +21,7 @@ import {runCoachingNight} from './night-job.mjs';
 import {withFitActiveEdit} from './fit-active-edit.mjs';
 // Every original handler, binding, cron and public response passes through.
 // Only the member-owned coaching API, its assets and dashboard wrapper are new.
-export default {
+const composedWorker = {
  ...core,
  async fetch(request,env,ctx){
   const tablet=await tabletRoutineRoutes(request,env);if(tablet)return tablet;
@@ -48,3 +49,5 @@ export default {
   if(ctx?.waitUntil)ctx.waitUntil(job);else await job;
  }
 };
+
+export default withMaleObesity(composedWorker);

@@ -1,3 +1,5 @@
+import {amendSupportingDocument} from '../obesity-awareness/candidate.mjs';
+import {renderContinuityDocument} from '../public-continuity.mjs';
 import assert from 'node:assert/strict';
 import {continuityPages} from '../public-continuity.mjs';
 import {improveContinuityEntry} from '../preview/growth-member/continuity-journey.mjs';
@@ -8,7 +10,11 @@ export function approvedContinuityBody(path){
  assert(continuityPages[path],'Known approved continuity page required');
  const html=improveAnswerDepth('<head></head>'+improveContinuityEntry('<main>'+continuityPages[path].body+'</main>',path),path);
  const main=html.match(/<main>([\s\S]*?)<\/main>/);assert(main,'Exact approved main required');
- return restoreBookVoiceCopy(path,main[1]);
+ const approved=restoreBookVoiceCopy(path,main[1]);
+ if(path!=='/weight-loss-support-for-men')return approved;
+ const shell='<html><head></head><body><main></main></body></html>';
+ const document=renderContinuityDocument(shell,path).replace(/<main\b[^>]*>[\s\S]*?<\/main>/,'<main>'+approved+'</main>');
+ return amendSupportingDocument(path,document).match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];
 }
 export function assertApprovedContinuityBody(path,main){
  assert(main.includes(approvedContinuityBody(path)),path+' must contain the exact approved body');
