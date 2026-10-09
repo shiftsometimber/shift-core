@@ -2,6 +2,7 @@
 // This verifies the live web feature, not native notification delivery.
 import {chromium} from 'playwright';
 import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
 import {randomUUID} from 'node:crypto';
 import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
 import {commissioningLogin,chooseNecessaryCookies} from '../rendered-member-acceptance-support.mjs';
@@ -56,7 +57,7 @@ try{
     await page.getByRole('button',{name:'Medical details',exact:true}).click();await page.getByLabel('Conditions',{exact:true}).fill('SYNTHETIC PRIVATE MEDICAL '+device);await page.getByRole('button',{name:'Confirm these details',exact:true}).click();await page.waitForFunction(async()=>{const r=await fetch('/v1/member/treatment',{cache:'no-store'});return r.ok&&(await r.json()).medical.length===1;});await page.reload({waitUntil:'domcontentloaded'});await page.getByRole('button',{name:'Medical details',exact:true}).click();assert.equal(await page.getByLabel('Conditions',{exact:true}).inputValue(),'SYNTHETIC PRIVATE MEDICAL '+device);
    });
    await check(device+' chosen doctor PDF downloads and contains the selected private summary',async()=>{
-    await page.getByRole('button',{name:'Doctor summary',exact:true}).click();await page.getByLabel('Include medical disclosures',{exact:false}).check();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Download PDF',exact:true}).click();const download=await pending;assert.equal(await download.failure(),null);const path=dir+'/'+device+'-synthetic-summary.pdf';await download.saveAs(path);const bytes=readFileSync(path);assert(bytes.subarray(0,5).equals(Buffer.from('%PDF-')));assert(bytes.includes(Buffer.from('SYNTHETIC PRIVATE MEDICAL')));assert(bytes.includes(Buffer.from('SYNTHETIC OTHER TREATMENT')));assert(bytes.includes(Buffer.from('85.5 kg')));assert(bytes.includes(Buffer.from('Fictional reported side effect')));
+    await page.getByRole('button',{name:'Doctor summary',exact:true}).click();await page.getByLabel('Include medical disclosures',{exact:false}).check();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Download PDF',exact:true}).click();const download=await pending;assert.equal(await download.failure(),null);const path=dir+'/'+device+'-synthetic-summary.pdf';await download.saveAs(path);const bytes=readFileSync(path);assert(bytes.subarray(0,5).equals(Buffer.from('%PDF-')));const pdfText=execFileSync('pdftotext',['-layout',path,'-'],{encoding:'utf8'}).replace(/\s+/g,' ').trim();assert(pdfText.includes('SYNTHETIC PRIVATE MEDICAL'));assert(pdfText.includes('SYNTHETIC OTHER TREATMENT'));assert(pdfText.includes('85.5 kg'));assert(pdfText.includes('Fictional reported side effect'));
    });
    await check(device+' second account cannot read or modify the first account',async()=>{
     await second.goto(site+'/member/treatment',{waitUntil:'domcontentloaded'});const empty=await call(second,'/v1/member/treatment');assert.equal(empty.status,200);assert.deepEqual(empty.body.treatments,[]);assert.deepEqual(empty.body.medical,[]);
