@@ -707,6 +707,27 @@ export function verifyTogetherBiomarkerUpdate(c,{head,read,diff,ancestor}){
  return c;
 }
 
+// Finite owner-authorised informational male-obesity pillar. No generic path or authority expansion.
+export const MALE_OBESITY_BASE='77d2469344bb678a8e68b6e4e6cb36dfdbdc28b0';
+export const MALE_OBESITY_SOURCE='73f09364557810dd8579aaff8ba4fb2b4bb15837';
+export const MALE_OBESITY_PATHS=Object.freeze([".github/workflows/male-obesity-preview.yml", "member-experience/public-preservation.mjs", "obesity-awareness/README.md", "obesity-awareness/candidate.mjs", "obesity-awareness/candidate.test.mjs", "obesity-awareness/content.mjs", "obesity-awareness/measurement.mjs", "obesity-awareness/preservation.mjs", "obesity-awareness/preview-entry.mjs", "obesity-awareness/production.mjs", "obesity-awareness/production.test.mjs", "obesity-awareness/staging-build-proof.json", "obesity-awareness/staging-entry.mjs", "obesity-awareness/staging-entry.test.mjs", "obesity-awareness/verify-live.mjs", "obesity-awareness/wrangler.preview.jsonc", "obesity-awareness/wrangler.staging.jsonc", "release/public-continuity-body-proof.mjs", "shift-coach/worker.mjs"]);
+export const MALE_OBESITY_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs", "tests/male-obesity-composition.test.mjs"]);
+const MALE_OBESITY_SET=new Set([...MALE_OBESITY_PATHS,...MALE_OBESITY_MAINTENANCE]);
+for(const path of MALE_OBESITY_SET)RECONCILIATION_PATHS.add(path);
+export function verifyMaleObesityPillar(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_MALE_OBESITY_PILLAR_V1');assert.equal(c.base,MALE_OBESITY_BASE);assert.equal(c.source,MALE_OBESITY_SOURCE);
+ assert.deepEqual(c.paths,MALE_OBESITY_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.ownerApproval,'Approved, Go; complete authorised informational release');assert.equal(c.externalReviewerRequired,false);assert.equal(c.publicationStatus,'approved_for_guarded_release');
+ for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated male-obesity maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after male-obesity receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity maintenance source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -729,10 +750,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const maleObesity=c.maleObesityPillar;
+ if(maleObesity)verifyMaleObesityPillar(maleObesity,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preMaleObesityHead=maleObesity?maleObesity.base:actualHead;
+ const maleObesityRawBlob=(ref,path)=>outerRawBlob(maleObesity&&ref==='HEAD'&&MALE_OBESITY_SET.has(path)?maleObesity.base:ref,path);
  const biomarker=c.togetherBiomarkerUpdate;
- if(biomarker)verifyTogetherBiomarkerUpdate(biomarker,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preBiomarkerHead=biomarker?biomarker.base:actualHead;
- const biomarkerRawBlob=(ref,path)=>outerRawBlob(biomarker&&ref==='HEAD'&&TOGETHER_BIOMARKER_SET.has(path)?biomarker.base:ref,path);
+ if(biomarker)verifyTogetherBiomarkerUpdate(biomarker,{head:preMaleObesityHead,read:maleObesityRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preBiomarkerHead=biomarker?biomarker.base:preMaleObesityHead;
+ const biomarkerRawBlob=(ref,path)=>maleObesityRawBlob(biomarker&&ref==='HEAD'&&TOGETHER_BIOMARKER_SET.has(path)?biomarker.base:ref,path);
  const lateWatch=c.lateWatchFactualUpdate;
  if(lateWatch)verifyLateWatchFactualUpdate(lateWatch,{head:preBiomarkerHead,read:biomarkerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preLateWatchHead=lateWatch?lateWatch.base:preBiomarkerHead;
