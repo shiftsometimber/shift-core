@@ -6,6 +6,7 @@ import {mkdirSync,readFileSync,writeFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 import {readCurrentMain} from '../scripts/current-main-guard.mjs';
 import {patchStartHereClient} from './presentation.mjs';
+import {tightenTabletWording} from '../tablet-wording-v1.mjs';
 const ORIGIN='https://shiftsometimber.co.uk',OUT='passport-release';
 export const hash=b=>createHash('sha256').update(b).digest('hex');
 export const norm=s=>String(s).replace(/\bIF NOT EXISTS\s+/gi,'').replace(/\s+/g,' ').replace(/;$/,'').trim().toLowerCase();
@@ -19,6 +20,14 @@ function query(sql){const output=JSON.parse(cli(['d1','execute','DB','--remote',
 const metadata="SELECT type,name,tbl_name,sql FROM sqlite_master WHERE type IN ('table','index','trigger','view') AND sql IS NOT NULL ORDER BY type,name";
 const own=r=>r.name==='health_passport_records'||r.name==='idx_health_passport_member';
 export function assertNoOtherSchemaChanges(before,after){assert.deepEqual(after.filter(r=>!own(r)),before.filter(r=>!own(r)),'Non-Passport schema changed during migration');}
+export function expectedStartHereClient(source){
+ const count=source.split('JSON.stringify({recommended,alternative,answers})').length-1;
+ let expected;
+ if(count===2)expected=patchStartHereClient(source);else{assert.equal(count,0);assert.equal(source.split('JSON.stringify({recommended,alternative})').length-1,2,'Start Here source drift');expected=source;}
+ // The already approved wording repair also runs on this browser asset.
+ // Retain exact equality for every other byte; never adopt the candidate body.
+ return tightenTabletWording('/start-here',expected);
+}
 async function prepare(){
  await readCurrentMain();mkdirSync(OUT,{recursive:true});
  const config=readFileSync('wrangler.jsonc','utf8');
@@ -26,9 +35,7 @@ async function prepare(){
  assert.match(config,/"HEALTH_PASSPORT_V1_ENABLED"\s*:\s*"true"/);assert.match(config,/"AUTO_VERIFY_EMAIL"\s*:\s*"false"/);
  const source=readFileSync('health-passport/schema.sql','utf8');assert.equal(hash(source),'9096092462b9c2ec2992c68cf6e45ac1ac7cf901fb21957a3032c6b1382d5342','Unreviewed migration');
  const r=await fetch(ORIGIN+'/start-here-v72.js?v=direct-detail-20260912',{cache:'no-store',signal:AbortSignal.timeout(30000)});assert.equal(r.status,200);assert.match(r.headers.get('content-type')||'',/javascript/);
- const old=await r.text(),count=old.split('JSON.stringify({recommended,alternative,answers})').length-1;
- let expected;
- if(count===2)expected=patchStartHereClient(old);else{assert.equal(count,0);assert.equal(old.split('JSON.stringify({recommended,alternative})').length-1,2,'Start Here source drift');expected=old;}
+ const old=await r.text(),expected=expectedStartHereClient(old);
  const before=query(metadata);const existing=before.filter(own);if(existing.length)assertSchema(existing,source);
  const deployments=JSON.parse(readFileSync('deployment-before.json','utf8'));const list=Array.isArray(deployments)?deployments:deployments.deployments||deployments.result?.deployments;
  assert.ok(Array.isArray(list)&&list.length,'Missing rollback deployments');

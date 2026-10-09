@@ -282,3 +282,14 @@ test('bundled tool runtime repair remains exact and cannot weaken ownership or c
  for(const key of ['failedRun','failedJob','originalSuccessfulRun'])assert.throws(()=>verifyBundledToolRuntimeRepair({...c,[key]:1},options));
  assert.throws(()=>verifyBundledToolRuntimeRepair(c,{...options,diff:()=>['worker.js']}),/Unrelated|Unreviewed/);
 });
+
+import {verifyPassportPreservationRepair,PASSPORT_PRESERVATION_BASE,PASSPORT_PRESERVATION_SOURCE,PASSPORT_PRESERVATION_PATHS,PASSPORT_PRESERVATION_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+test('Passport preservation repair remains exact and cannot weaken ownership or change treatment and public copy',()=>{
+ const c={proof:'EXACT_PASSPORT_PRESERVATION_REPAIR_V1',base:PASSPORT_PRESERVATION_BASE,source:PASSPORT_PRESERVATION_SOURCE,paths:PASSPORT_PRESERVATION_PATHS,maintenancePaths:PASSPORT_PRESERVATION_MAINTENANCE,maintenanceSource:'e'.repeat(40),failedRun:37922934503,failedJob:113795076080,rollbackDeployment:'478c6c6b-5bae-4b2b-9f3f-aa8e5bdc0033',originalSuccessfulRun:37895305149,approvedStartHereWordingExpectationFixed:true,publicCopyChanged:false,calculatorArithmeticChanged:false,myTreatmentChanged:false,customerDataChanged:false,genericAdoptionAllowed:false,rollbackAuthorityBroadened:false,existingGatesWeakened:false};
+ const options={head:'f'.repeat(40),read:()=> 'same',ancestor:()=>{},diff:(a,b)=>a===c.base?c.paths:a===c.source?c.maintenancePaths:[RECONCILIATION_MANIFEST]};
+ assert.doesNotThrow(()=>verifyPassportPreservationRepair(c,options));
+ for(const path of [...c.paths,...c.maintenancePaths])assert.throws(()=>verifyPassportPreservationRepair(c,{...options,read:(ref,p)=>ref==='HEAD'&&p===path?'drift':'same'}),/source drift/);
+ for(const flag of ['publicCopyChanged','calculatorArithmeticChanged','myTreatmentChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.throws(()=>verifyPassportPreservationRepair({...c,[flag]:true},options));
+ for(const key of ['failedRun','failedJob','originalSuccessfulRun'])assert.throws(()=>verifyPassportPreservationRepair({...c,[key]:1},options));
+ assert.throws(()=>verifyPassportPreservationRepair(c,{...options,diff:()=>['worker.js']}),/Unrelated|Unreviewed/);
+});
