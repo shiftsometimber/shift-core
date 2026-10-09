@@ -707,6 +707,32 @@ export function verifyTogetherBiomarkerUpdate(c,{head,read,diff,ancestor}){
  return c;
 }
 
+// Finite owner-authorised factual Medicines Watch backlog publication. No clinical approval.
+export const WATCH_BACKLOG_BASE='b31e1c63cede1cde2be975c4b4cc609ef1a11630';
+export const WATCH_BACKLOG_SOURCE='48020574fdda274d04901052942aacbe1502fb31';
+export const WATCH_BACKLOG_RUN=37995046889;
+export const WATCH_BACKLOG_PATHS=Object.freeze([".github/workflows/medicines-watch-check.yml", "medicines-watch/README.md", "medicines-watch/backlog-review.test.mjs", "medicines-watch/credibility.mjs", "medicines-watch/data.mjs", "medicines-watch/industry.mjs", "medicines-watch/industry.test.mjs", "medicines-watch/product-renewal.test.mjs", "medicines-watch/reviews/2026-10-09-authorised-backlog-review.json", "medicines-watch/source-review.test.mjs"]);
+export const WATCH_BACKLOG_MAINTENANCE=Object.freeze([".github/workflows/medicines-watch-check.yml", "release/approved-runtime-composition.mjs", "tests/approved-runtime-composition.test.mjs", "tests/late-watch-composition.test.mjs"]);
+const WATCH_BACKLOG_SET=new Set([...WATCH_BACKLOG_PATHS,...WATCH_BACKLOG_MAINTENANCE]);
+for(const path of WATCH_BACKLOG_SET)RECONCILIATION_PATHS.add(path);
+export function assertWatchBacklogProof(proof){
+ assert.equal(proof?.id,WATCH_BACKLOG_RUN);assert.equal(proof.head_sha,WATCH_BACKLOG_SOURCE);assert.equal(proof.path,'.github/workflows/medicines-watch-check.yml');
+ assert.equal(proof.event,'pull_request');assert.equal(proof.head_branch,'review/watch-backlog-20261009');assert.equal(proof.status,'completed');assert.equal(proof.conclusion,'success');return proof;
+}
+export function verifyWatchBacklogUpdate(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_BACKLOG_UPDATE_V1');assert.equal(c.base,WATCH_BACKLOG_BASE);assert.equal(c.source,WATCH_BACKLOG_SOURCE);assert.equal(c.proofRun,WATCH_BACKLOG_RUN);
+ assert.deepEqual(c.paths,WATCH_BACKLOG_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_BACKLOG_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1281);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.sourceReviews,35);assert.equal(c.changedTrialRecords,3);assert.equal(c.officialAlternativeReplacements,1);
+ for(const flag of ['reviewDatesRenewedByHttp','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated backlog factual payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated backlog release maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after backlog receipt');
+ for(const path of c.paths.filter(p=>!c.maintenancePaths.includes(p)))assert.equal(read('HEAD',path),read(c.source,path),'Approved backlog source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
+ return c;
+}
+
 // Finite owner-authorised informational male-obesity pillar. No generic path or authority expansion.
 export const MALE_OBESITY_BASE='77d2469344bb678a8e68b6e4e6cb36dfdbdc28b0';
 export const MALE_OBESITY_SOURCE='c2c295782697c98d149d3ac7f335d8028f413b4e';
@@ -751,10 +777,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const backlog=c.watchBacklogUpdate;
+ if(backlog)verifyWatchBacklogUpdate(backlog,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preBacklogHead=backlog?backlog.base:actualHead;
+ const backlogRawBlob=(ref,path)=>outerRawBlob(backlog&&ref==='HEAD'&&WATCH_BACKLOG_SET.has(path)?backlog.base:ref,path);
  const maleObesity=c.maleObesityPillar;
- if(maleObesity)verifyMaleObesityPillar(maleObesity,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preMaleObesityHead=maleObesity?maleObesity.base:actualHead;
- const maleObesityRawBlob=(ref,path)=>outerRawBlob(maleObesity&&ref==='HEAD'&&MALE_OBESITY_SET.has(path)?maleObesity.base:ref,path);
+ if(maleObesity)verifyMaleObesityPillar(maleObesity,{head:preBacklogHead,read:backlogRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preMaleObesityHead=maleObesity?maleObesity.base:preBacklogHead;
+ const maleObesityRawBlob=(ref,path)=>backlogRawBlob(maleObesity&&ref==='HEAD'&&MALE_OBESITY_SET.has(path)?maleObesity.base:ref,path);
  const biomarker=c.togetherBiomarkerUpdate;
  if(biomarker)verifyTogetherBiomarkerUpdate(biomarker,{head:preMaleObesityHead,read:maleObesityRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preBiomarkerHead=biomarker?biomarker.base:preMaleObesityHead;

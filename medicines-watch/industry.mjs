@@ -1,3 +1,4 @@
+import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
 import togetherBiomarkers from './reviews/2026-10-09-authorised-together-biomarkers.json' with {type:'json'};
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
 import bimagrumabSemaglutide from './reviews/2026-10-09-authorised-bimagrumab-semaglutide.json' with {type:'json'};
@@ -80,6 +81,9 @@ export const industrySources = [...evidence.sources,...followup.sources,...conti
 }).map(s => {
  const renewal=lateOverdueSourceRenewal.sources.find(r=>r.id===s.id);
  return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
+}).map(s => s.id===backlogReview.sourceReplacement.id?backlogReview.sourceReplacement:s).map(s=>{
+ const review=backlogReview.sources.find(r=>r.id===s.id);
+ return review?{...s,reviewedAt:review.reviewedAt,reviewedFingerprint:review.reviewedFingerprint}:s;
 }).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
  sourcePublishedAt:s.sourcePublishedAt,sourceDateLabel:s.sourceDateLabel||(s.id.endsWith('-smpc')?'Product information updated':'Source publication date'),
@@ -393,4 +397,11 @@ export const industry = [...originalIndustry.map(e => {
  summary:e.summary+' '+togetherBiomarkers.change.summaryToAppend,
  limitations:e.limitations+' '+togetherBiomarkers.change.limitationsToAppend,
  reviewedAt:togetherBiomarkers.reviewedAt,
- additionalEvidence:[...(e.additionalEvidence||[]),...togetherBiomarkers.change.additionalEvidence]}:e);
+ additionalEvidence:[...(e.additionalEvidence||[]),...togetherBiomarkers.change.additionalEvidence]}:e)
+ .map(e=>{
+  const change=backlogReview.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  const urls=new Set(change.additionalEvidence.map(link=>link.url));
+  return {...e,...change.fields,reviewedAt:backlogReview.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]).filter(link=>!urls.has(link.url)),...change.additionalEvidence]};
+ });
