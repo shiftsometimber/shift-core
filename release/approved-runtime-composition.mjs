@@ -696,10 +696,16 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const toolRelease=c.toolReleaseAutomation;
+ if(toolRelease)verifyToolReleaseAutomation(toolRelease,{head:actualHead,read:baseRawBlob,
+  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
+  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preToolHead=toolRelease?toolRelease.base:actualHead;
+ const preToolBlob=(ref,path)=>baseRawBlob(toolRelease&&ref==='HEAD'&&[...TOOL_RELEASE_AUTOMATION_PATHS,...TOOL_RELEASE_AUTOMATION_MAINTENANCE].includes(path)?toolRelease.base:ref,path);
  const restored=c.restoredLaterRuntimeRetention;
- if(restored)verifyRestoredLaterRetention(restored,{head:actualHead,read:baseRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const restoredHead=restored?restored.base:actualHead;
- const rawBlob=(ref,path)=>baseRawBlob(restored&&ref==='HEAD'&&RESTORED_LATER_RETENTION_SET.has(path)?restored.base:ref,path);
+ if(restored)verifyRestoredLaterRetention(restored,{head:preToolHead,read:preToolBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const restoredHead=restored?restored.base:preToolHead;
+ const rawBlob=(ref,path)=>preToolBlob(restored&&ref==='HEAD'&&RESTORED_LATER_RETENTION_SET.has(path)?restored.base:ref,path);
  const laterUnattributed=c.laterUnattributedWatchRuntimeRecovery;
  if(laterUnattributed)verifyLaterUnattributedWatchRecovery(laterUnattributed,{head:restoredHead,read:rawBlob,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
@@ -866,7 +872,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  for(const path of PROOF_TRANSPORT_MAINTENANCE)assert.equal(compositionBlob(path),readBlob(transport.maintenanceSource,path),'Approved composition maintenance source drift: '+path);
  for(const path of RELOAD_PAYLOAD)assert.equal(compositionBlob(path),readBlob(RELOAD_VERIFIER,path),'Independent reload harness source drift: '+path);
  productionProofBefore??=execFileSync('git',['show',COMPOSITION_BASE+':.github/workflows/cloudflare-production-promote.yml'],{encoding:'utf8'});
- const currentWorkflow=readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8');
+ const currentWorkflow=toolRelease?execFileSync('git',['show',toolRelease.base+':.github/workflows/cloudflare-production-promote.yml'],{encoding:'utf8'}):readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8');
  const treatmentWorkflow=treatment?withoutTreatmentSteps(currentWorkflow):currentWorkflow;
  assertProductionProofBudget(productionProofBefore,closeout?withoutProgrammeLiveGate(treatmentWorkflow):treatmentWorkflow);
  assert.equal(git('diff','--name-only'),'','Working source changed during composition verification');
@@ -1019,4 +1025,29 @@ export function verifyRestoredLaterRetention(c,{head,read,diff,ancestor}){
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after restoration retention');
  for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Restoration retention source drift: '+path);
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Restoration retention maintenance drift: '+path);
+}
+
+// Finite approved public-tool amendment. Approval applies only to this exact payload through the existing guarded workflow.
+export const TOOL_RELEASE_AUTOMATION_BASE='be58decc3b45a668e2a68a287bd1ce8e3f4a2a5d';
+export const TOOL_RELEASE_AUTOMATION_SOURCE='c3a5aaac2b924f13fe5d651c3dc80079abfe17d9';
+export const TOOL_RELEASE_AUTOMATION_PATHS=Object.freeze([".github/workflows/cloudflare-production-promote.yml","public-tool-delivery.mjs","public-tool-guidance.mjs","release/tool-guidance-20261009/README.md","release/tool-guidance-20261009/automation-proof.json","release/tool-guidance-20261009/live-schema-check.json","release/tool-guidance-20261009/test-results.tap","release/tool-guidance-20261009/tool-guidance-browser.json","release/tool-schema-gate.mjs","scripts/verify-tool-calculators-browser.cjs","scripts/verify-tool-guidance-browser.cjs","scripts/verify-tool-page-schema.cjs","tests/public-tool-guidance.test.mjs","tests/tool-schema-gate.test.mjs"]);
+export const TOOL_RELEASE_AUTOMATION_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/tool-release-automation-composition.test.mjs"]);
+for(const path of [...TOOL_RELEASE_AUTOMATION_PATHS,...TOOL_RELEASE_AUTOMATION_MAINTENANCE])RECONCILIATION_PATHS.add(path);
+export function verifyToolReleaseAutomation(c,{head,read,diff,ancestor}) {
+ assert(c);assert.equal(c.proof,'EXACT_PREPARED_TOOL_RELEASE_AUTOMATION_V1');
+ assert.equal(c.base,TOOL_RELEASE_AUTOMATION_BASE);assert.equal(c.source,TOOL_RELEASE_AUTOMATION_SOURCE);
+ assert.deepEqual(c.paths,TOOL_RELEASE_AUTOMATION_PATHS);assert.deepEqual(c.maintenancePaths,TOOL_RELEASE_AUTOMATION_MAINTENANCE);
+ assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.publicationStatus,'approved_for_guarded_release');assert.equal(c.runtimeChanged,true);assert.equal(c.publicCopyChanged,true);
+ for(const flag of ['homepageChanged','startHereChanged','customerDataChanged','deploymentAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated prepared tool payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated prepared tool maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after prepared tool receipt');
+ for(const path of c.paths){
+  const boundary=TOOL_SCHEMA_ARCHIVE_PATHS.includes(path)?'Tool schema archive source drift':'Serving SEO source drift';
+  assert.equal(read('HEAD',path),read(c.source,path),boundary+': prepared public tool amendment '+path);
+ }
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift / Tablet wording verifier source drift: prepared public tool amendment '+path);
+ return c;
 }
