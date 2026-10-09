@@ -1,15 +1,20 @@
 name: Male obesity read-only preview
 on:
+  workflow_run:
+    workflows: [Cloudflare Production Promote]
+    types: [completed]
   push:
     branches: [review/obesity-awareness-20261009]
     paths: ['obesity-awareness/**', '.github/workflows/male-obesity-preview.yml']
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: male-obesity-readonly-preview
   cancel-in-progress: false
 jobs:
   preview:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -32,3 +37,28 @@ jobs:
         with:
           name: male-obesity-preview-evidence
           path: male-obesity-live-proof.json
+  rendered-live:
+    if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      RELEASE_SOURCE: ${{ github.event.workflow_run.head_sha }}
+      RELEASE_RUN: ${{ github.event.workflow_run.id }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Prepare the existing public browser test environment
+        run: |
+          npm install --prefix "$RUNNER_TEMP/pillar-tools" --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/pillar-tools/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Verify the actual released public journey and consented collector
+        run: PLAYWRIGHT_MODULE="$RUNNER_TEMP/pillar-tools/node_modules/playwright" node obesity-awareness/rendered-live-proof.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: male-obesity-rendered-live-${{ github.event.workflow_run.id }}
+          path: male-obesity-rendered-live/

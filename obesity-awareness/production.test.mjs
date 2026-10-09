@@ -24,3 +24,20 @@ test('public measurement uses one existing GTM event route; suppression, withdra
  }
  assert.doesNotMatch(pillarClient,/gtag\(/);
 });
+
+import {wrapAnswerDepthWorker} from '../public-seo-answer-depth.mjs';
+import {assertApprovedContinuityBody} from '../release/public-continuity-body-proof.mjs';
+test('actual outer public-answer wrapper retains the complete qualified support body once',async()=>{
+ const path='/weight-loss-support-for-men';
+ for(const depthAlreadyPresent of [false,true]){
+  const upstream={fetch:async()=>html(depthAlreadyPresent?improveAnswerDepth(renderContinuityDocument(shell,path),path):renderContinuityDocument(shell,path))};
+  const response=await wrapAnswerDepthWorker(withMaleObesity(upstream)).fetch(new Request('https://shiftsometimber.co.uk'+path),{});
+  const document=await response.text();assert.equal(response.status,200);
+  assertApprovedContinuityBody(path,document);
+  assert.equal((document.match(/id="shift-depth-free-my-timber"/g)||[]).length,1);
+  assert.doesNotMatch(document,/Look in Fit|choose your Next Shift|12-week|Grub \+ Fit/);
+  assert.match(document,/one smaller organising step/);
+  assert.throws(()=>assertApprovedContinuityBody(path,document.replace('one smaller organising step','an unapproved promise')));
+  assert.throws(()=>assertApprovedContinuityBody(path,document.replace('href="/male-obesity#healthcare"','href="/unapproved"')));
+ }
+});
