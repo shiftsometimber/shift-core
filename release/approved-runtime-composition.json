@@ -1155,5 +1155,30 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "watchBacklogReleaseRepair": {
+    "proof": "EXACT_WATCH_BACKLOG_RELEASE_REPAIR_V1",
+    "base": "d5b35abee21030ce7d10e56767ed684fc9d9992d",
+    "source": "3a8e109b40c06903b86463f2e7834ed61d4a2872",
+    "paths": [
+      "shift-coach/release.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/late-watch-composition.test.mjs"
+    ],
+    "maintenanceSource": "7275c05127307817663065c188210cd33c5e6a66",
+    "approvedPR": 1287,
+    "failedRun": 37996106426,
+    "failedStep": "Verify B1 release scope before any production mutation",
+    "deploymentAttempted": false,
+    "publicContentChanged": false,
+    "evidenceChanged": false,
+    "clinicalApprovalChanged": false,
+    "customerDataChanged": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
