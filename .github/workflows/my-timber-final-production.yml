@@ -45,6 +45,7 @@ jobs:
           name: b1-runtime-release-37951575896
           path: owned-release
       - name: Provider GET verifies exact receipt active at 100 percent
+        id: serving_before
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node tests/premortem-runtime-receipt.mjs before
@@ -60,6 +61,7 @@ jobs:
           export SHIFT_COMMISSIONING_OIDC="$token"
           node tests/premortem-production.mjs
       - name: Verify same runtime still serves after acceptance
+        if: always() && steps.serving_before.outcome == 'success'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node tests/premortem-runtime-receipt.mjs after
