@@ -109,3 +109,10 @@ test('mood verifier rejects changed or duplicated addition, metadata, schema and
   assert.notEqual(changed,current);assert.throws(()=>preservePillarMood(moodPath,changed));
  }
 });
+
+test('supporting metadata retains approved sharing images and original dates; the new hub does not inherit Programme artwork',()=>{
+ const original=shell.replace('</head>','<meta property="og:image" content="https://shiftsometimber.co.uk/assets/mood-share.png"><meta name="twitter:image" content="https://shiftsometimber.co.uk/assets/mood-share.png"></head>');
+ const support=amendSupportingDocument(moodPath,original);
+ for(const key of ['og:image','twitter:image'])assert.equal((support.match(new RegExp('(?:name|property)="'+key+'"','g'))||[]).length,1);
+ assert.ok(support.includes('/assets/mood-share.png'));assert.doesNotMatch(renderCandidate(original),/mood-share\.png/);
+});
