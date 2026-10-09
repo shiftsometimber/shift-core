@@ -13,10 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - run: node --test medicines-watch/*.test.mjs
+      - run: node --test medicines-watch/*.test.mjs tests/late-watch-composition.test.mjs
       - name: Read current public Watch without writes or review renewal
         run: |
           node --input-type=module - <<'JS'
