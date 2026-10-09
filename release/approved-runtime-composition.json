@@ -1095,7 +1095,7 @@
       "editorial/five-articles/proof.mjs",
       "tests/approved-runtime-composition.test.mjs"
     ],
-    "maintenanceSource": "d2ed188e29eb93322a4f334fc1ef3f4be04963f9",
+    "maintenanceSource": "db85f078de9a74d71da746643faec54bbd916d4a",
     "ownerApproval": "Approved, Go; complete authorised informational release",
     "externalReviewerRequired": false,
     "publicationStatus": "approved_for_guarded_release",
