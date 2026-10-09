@@ -365,6 +365,32 @@
     "memberBehaviourChanged": false,
     "privacyAssertionsWeakened": false
   },
+  "watchHsts": {
+    "proof": "EXACT_WATCH_HSTS_V1",
+    "base": "8198d99b9f570087e63864e481278b8a2459bfdd",
+    "source": "04c50b99d155a9720b59b2e089b670de8523cadb",
+    "maintenanceSource": "8d90e26c5056ca63f68ee0c912afd10f892b58b1",
+    "paths": [
+      "medicines-watch/page.mjs",
+      "medicines-watch/page.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-hsts-release.test.mjs"
+    ],
+    "runtimeChanged": true,
+    "readOnlyHeadersChanged": true,
+    "publicCopyChanged": false,
+    "medicalEvidenceChanged": false,
+    "clinicalApprovalChanged": false,
+    "catalogueCountChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyChanged": false,
+    "customerDataChanged": false,
+    "checkoutChanged": false,
+    "myTimberChanged": false
+  },
   "watchBelieveDiagnostic": {
     "proof": "EXACT_WATCH_BELIEVE_DIAGNOSTIC_V1",
     "base": "8f05352def20c636aeb43ba2e7814d3255898d20",
