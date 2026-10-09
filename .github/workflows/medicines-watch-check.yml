@@ -17,3 +17,13 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - run: node --test medicines-watch/*.test.mjs
+      - name: Read current public Watch without writes or review renewal
+        run: |
+          node --input-type=module - <<'JS'
+          const base='https://shiftsometimber.co.uk';
+          const read=async path=>{const r=await fetch(base+path,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(30000)});if(r.status!==200)throw Error(path+' HTTP '+r.status);return r};
+          const health=await (await read('/v1/medicines-watch/health')).json();
+          const page=await (await read('/treatment-centre/medicines-watch')).text();
+          const hub=await (await read('/treatment-centre')).text();
+          console.log('WATCH_GET_ONLY_RECEIPT '+JSON.stringify({checkedAt:new Date().toISOString(),health,pageBytes:page.length,hubEntry:hub.includes('/treatment-centre/medicines-watch'),existingPsoriaticEntry:page.includes('Ixekizumab with tirzepatide'),biomarkersAlreadyLive:page.includes('circulating proteins and blood gene expression'),reviewRenewals:false,baselineChanges:false,industryComplete:false}));
+          JS
