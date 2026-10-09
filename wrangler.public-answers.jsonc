@@ -1,0 +1,46 @@
+{
+  "name": "shift-public-answers",
+  "main": "public-answers-entry.mjs",
+  "compatibility_date": "2026-08-09",
+  "workers_dev": true,
+  "services": [
+    {
+      "binding": "CORE",
+      "service": "shift-core"
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "https://shiftsometimber.co.uk/mental-health/when-someone-refuses-help*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "https://shiftsometimber.co.uk/mens-mental-health*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "https://shiftsometimber.co.uk/weight-loss-support-for-men*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "https://shiftsometimber.co.uk/mens-weight-management*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "https://shiftsometimber.co.uk/articles/weight-loss-after-40-men*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "https://shiftsometimber.co.uk/mounjaro*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "https://shiftsometimber.co.uk/wegovy*",
+      "zone_name": "shiftsometimber.co.uk"
+    },
+    {
+      "pattern": "https://shiftsometimber.co.uk/articles/stopping-glp1*",
+      "zone_name": "shiftsometimber.co.uk"
+    }
+  ]
+}
