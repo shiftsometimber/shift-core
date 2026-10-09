@@ -10,3 +10,14 @@ test('duplicate, relocated and altered Passport entries fail preservation',()=>{
 test('unrelated public and member paths are never normalised',()=>{for(const p of ['/','/programme','/member/dashboard','/member-login'])assert.equal(preservePassportHead(p,old+PASSPORT_HEAD).toString(),old+PASSPORT_HEAD);});
 test('reviewed additive schema is valid and repeatable on real SQLite',()=>{const db=new DatabaseSync(':memory:');try{db.exec('CREATE TABLE users(id INTEGER PRIMARY KEY)');const sql=readFileSync(new URL('./schema.sql',import.meta.url),'utf8');const metadata="SELECT type,name,tbl_name,sql FROM sqlite_master WHERE sql IS NOT NULL ORDER BY type,name";const before=db.prepare(metadata).all();db.exec(sql);db.exec(sql);const after=db.prepare(metadata).all();assertSchema(after.filter(r=>['health_passport_records','idx_health_passport_member'].includes(r.name)),sql);assertNoOtherSchemaChanges(before,after);db.exec('CREATE TABLE unintended(value TEXT)');assert.throws(()=>assertNoOtherSchemaChanges(before,db.prepare(metadata).all()));}finally{db.close()}});
 test('incompatible existing schema cannot be accepted',()=>{assert.throws(()=>assertSchema([{name:'health_passport_records',sql:'CREATE TABLE health_passport_records (id TEXT)'}],readFileSync(new URL('./schema.sql',import.meta.url),'utf8')))});
+
+import {expectedStartHereClient,hash} from './production-release.mjs';
+import {TABLET_WORDING} from '../tablet-wording-v1.mjs';
+test('Start Here expected delivery includes only approved cache removal and tablet wording',()=>{
+ const raw='JSON.stringify({recommended,alternative,answers});JSON.stringify({recommended,alternative,answers});'+TABLET_WORDING.map(([old])=>old).join(';')+'; KEEP ROUTING PRICES AND MATCHING';
+ const expected=raw.replaceAll('JSON.stringify({recommended,alternative,answers})','JSON.stringify({recommended,alternative})');
+ const approved=TABLET_WORDING.reduce((s,[old,next])=>s.replaceAll(old,next),expected);
+ assert.equal(expectedStartHereClient(raw),approved);assert.equal(expectedStartHereClient(expected),approved);assert.equal(expectedStartHereClient(approved),approved);
+ assert.notEqual(hash(expectedStartHereClient(raw+';unrelated drift')),hash(approved));assert.notEqual(hash(expectedStartHereClient(raw.replace('PRICES','CHANGED'))),hash(approved));
+ assert.throws(()=>expectedStartHereClient(raw.replace('JSON.stringify({recommended,alternative,answers})','changed')));
+});
