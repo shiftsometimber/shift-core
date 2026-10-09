@@ -836,5 +836,43 @@
     "genericAdoptionAllowed": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "toolReleaseAutomation": {
+    "proof": "EXACT_PREPARED_TOOL_RELEASE_AUTOMATION_V1",
+    "base": "be58decc3b45a668e2a68a287bd1ce8e3f4a2a5d",
+    "source": "c3a5aaac2b924f13fe5d651c3dc80079abfe17d9",
+    "paths": [
+      ".github/workflows/cloudflare-production-promote.yml",
+      "public-tool-delivery.mjs",
+      "public-tool-guidance.mjs",
+      "release/tool-guidance-20261009/README.md",
+      "release/tool-guidance-20261009/automation-proof.json",
+      "release/tool-guidance-20261009/live-schema-check.json",
+      "release/tool-guidance-20261009/test-results.tap",
+      "release/tool-guidance-20261009/tool-guidance-browser.json",
+      "release/tool-schema-gate.mjs",
+      "scripts/verify-tool-calculators-browser.cjs",
+      "scripts/verify-tool-guidance-browser.cjs",
+      "scripts/verify-tool-page-schema.cjs",
+      "tests/public-tool-guidance.test.mjs",
+      "tests/tool-schema-gate.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/tool-release-automation-composition.test.mjs"
+    ],
+    "maintenanceSource": "efe4656998ee030110c3ca0358b28653151528b2",
+    "publicationStatus": "approved_for_guarded_release",
+    "runtimeChanged": true,
+    "publicCopyChanged": true,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "deploymentAuthorityBroadened": false,
+    "existingGatesWeakened": false,
+    "approvedPreparedSource": "81592396741a0ab1ebead46f1e1ca2bb19dd8890",
+    "approval": "User Approved, 9 October 2026; exact reviewed nine-page amendment via guarded workflow only",
+    "rollbackAuthorityBroadened": false,
+    "genericRuntimeAdoptionAllowed": false
   }
 }

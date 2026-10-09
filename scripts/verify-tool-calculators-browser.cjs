@@ -39,7 +39,7 @@ try{
   }
   await page.goto('https://shiftsometimber.co.uk/decision-centre',{waitUntil:'load'});
   for(const name of ['Treatment routes','NHS pathway checker','Weight-loss scenarios','GP report']){
-   try{const button=page.getByRole('button',{name,exact:true});await button.click();checks.push({viewport:label,path:'/decision-centre',case:'tab '+name,passed:true,tab:await button.evaluate(e=>({active:e.className,selected:e.getAttribute('aria-selected'),target:e.dataset.tab||e.dataset.dcTab||null})),mainText:(await page.locator('main').innerText()).slice(0,250)});}
+   try{const button=page.getByRole('button',{name,exact:true});if(await button.isDisabled()){assert(await page.locator('[data-tool-guidance="20261009"]').count(),'Unavailable tab has no explanation');checks.push({viewport:label,path:'/decision-centre',case:'unavailable without a saved profile: '+name,passed:true});continue;}await button.click();checks.push({viewport:label,path:'/decision-centre',case:'tab '+name,passed:true,tab:await button.evaluate(e=>({active:e.className,selected:e.getAttribute('aria-selected'),target:e.dataset.tab||e.dataset.dcTab||null})),mainText:(await page.locator('main').innerText()).slice(0,250)});}
    catch(error){checks.push({viewport:label,path:'/decision-centre',case:name,passed:false,error:error.message});}
   }
   await context.close();
@@ -49,3 +49,4 @@ const receipt={verifiedAt:new Date().toISOString(),scope:'Live Chromium desktop/
 fs.writeFileSync(dir+'/browser-verification-20261009.json',JSON.stringify(receipt,null,2));
 console.log(JSON.stringify(receipt));if(checks.some(c=>!c.passed))process.exitCode=1;
 })().catch(error=>{console.error(error);process.exitCode=1});
+
