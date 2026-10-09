@@ -1161,13 +1161,24 @@ export const LATE_WATCH_BASE='29d2c8038505f0a9e49d0abf6cba501149e9817d';
 export const LATE_WATCH_APPROVED_MERGE='f511cd37cbcd53a64bd178ab356c966cd39acb74';
 export const LATE_WATCH_SOURCE='7f9f1bcf2d322ee6b25d61169cae8bbae8b462a4';
 export const LATE_WATCH_PATHS=Object.freeze(["medicines-watch/README.md","medicines-watch/credibility.mjs","medicines-watch/credibility.test.mjs","medicines-watch/evidence-desk.test.mjs","medicines-watch/industry.mjs","medicines-watch/industry.test.mjs","medicines-watch/reviews/2026-10-09-authorised-together-psoriatic-disease.json","medicines-watch/reviews/2026-10-09-overdue-source-renewal-late.json","medicines-watch/source-review.test.mjs"]);
-export const LATE_WATCH_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/late-watch-composition.test.mjs']);
+export const LATE_WATCH_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/late-watch-composition.test.mjs','.github/workflows/cloudflare-production-promote.yml']);
+export const COMPOSITION_TRIGGER_BASE='b9965cc750bb8cbc292c74e1789bf4210537da8c';
+export const COMPOSITION_TRIGGER_SOURCE='b607a838506bff1a5ee4ad3e801951c2804c8017';
+const COMPOSITION_TRIGGER_WORKFLOW='.github/workflows/cloudflare-production-promote.yml';
+export function assertExactCompositionTrigger(before,after){
+ assert.equal(before.split('    paths:\n').length,2,'One original push paths filter required');
+ assert.equal(after,before.replace('    paths:\n','    paths:\n      - "release/approved-runtime-composition.mjs"\n      - "release/approved-runtime-composition.json"\n'),'Only exact release-ledger push triggers may change; every workflow guard must remain byte-identical');
+}
 const LATE_WATCH_RESTORED_PROOF='scripts/verify-public-continuity-live.mjs';
 const LATE_WATCH_SET=new Set([...LATE_WATCH_PATHS,...LATE_WATCH_MAINTENANCE]);
 for(const path of LATE_WATCH_SET)RECONCILIATION_PATHS.add(path);
 export function verifyLateWatchFactualUpdate(c,{head,read,diff,ancestor}){
  assert.equal(c?.proof,'EXACT_LATE_WATCH_FACTUAL_UPDATE_V1');assert.equal(c.base,LATE_WATCH_BASE);assert.equal(c.approvedMerge,LATE_WATCH_APPROVED_MERGE);assert.equal(c.source,LATE_WATCH_SOURCE);
  assert.deepEqual(c.paths,LATE_WATCH_PATHS);assert.deepEqual(c.maintenancePaths,LATE_WATCH_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.workflowTriggerSource,COMPOSITION_TRIGGER_SOURCE);ancestor(COMPOSITION_TRIGGER_BASE,head);ancestor(COMPOSITION_TRIGGER_SOURCE,head);
+ assert.deepEqual(diff(COMPOSITION_TRIGGER_BASE,COMPOSITION_TRIGGER_SOURCE),[COMPOSITION_TRIGGER_WORKFLOW],'Unrelated production-trigger source');
+ assertExactCompositionTrigger(publicToolImmutableGit('show',COMPOSITION_TRIGGER_BASE+':'+COMPOSITION_TRIGGER_WORKFLOW),publicToolImmutableGit('show',COMPOSITION_TRIGGER_SOURCE+':'+COMPOSITION_TRIGGER_WORKFLOW));
+ assert.equal(read('HEAD',COMPOSITION_TRIGGER_WORKFLOW),read(COMPOSITION_TRIGGER_SOURCE,COMPOSITION_TRIGGER_WORKFLOW),'Guarded composition-trigger workflow source drift');
  assert.equal(c.approvedPR,1267);assert.equal(c.publicationStatus,'already_merged_owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.exactCompleteBodyProofRestored,true);
  for(const flag of ['memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
  for(const ref of [c.base,c.approvedMerge,c.source,c.maintenanceSource])ancestor(ref,head);
