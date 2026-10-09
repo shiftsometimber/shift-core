@@ -1090,9 +1090,10 @@
     "maintenancePaths": [
       "release/approved-runtime-composition.mjs",
       "tests/male-obesity-composition.test.mjs",
-      "tests/programme-day-continuity-body.test.mjs"
+      "tests/programme-day-continuity-body.test.mjs",
+      "acquisition-activation/metrics-release.test.mjs"
     ],
-    "maintenanceSource": "cefbc1a784513cad90068b33abb67b518f4856ee",
+    "maintenanceSource": "f355fa7721a93292b34455d2ea42f3cc387ba4b8",
     "ownerApproval": "Approved, Go; complete authorised informational release",
     "externalReviewerRequired": false,
     "publicationStatus": "approved_for_guarded_release",
