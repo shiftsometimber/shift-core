@@ -1065,7 +1065,7 @@
   "maleObesityPillar": {
     "proof": "EXACT_MALE_OBESITY_PILLAR_V1",
     "base": "77d2469344bb678a8e68b6e4e6cb36dfdbdc28b0",
-    "source": "9973744180a7a32832694cff27831de3fd1be2a1",
+    "source": "ba0bf08358fdc7bebed09080af0f6205aab7b432",
     "paths": [
       ".github/workflows/male-obesity-preview.yml",
       "member-experience/public-preservation.mjs",
@@ -1085,7 +1085,10 @@
       "obesity-awareness/wrangler.preview.jsonc",
       "obesity-awareness/wrangler.staging.jsonc",
       "release/public-continuity-body-proof.mjs",
-      "shift-coach/worker.mjs"
+      "shift-coach/worker.mjs",
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/recover-cancelled-release.mjs",
+      "obesity-awareness/rollback-proof.test.mjs"
     ],
     "maintenancePaths": [
       "release/approved-runtime-composition.mjs",
@@ -1095,7 +1098,7 @@
       "editorial/five-articles/proof.mjs",
       "tests/approved-runtime-composition.test.mjs"
     ],
-    "maintenanceSource": "6fd7485c683ef7be753ca43d1ed3b12b6dbad914",
+    "maintenanceSource": "2b4dcbab51b481c662462cf30059b6d99228ee4a",
     "ownerApproval": "Approved, Go; complete authorised informational release",
     "externalReviewerRequired": false,
     "publicationStatus": "approved_for_guarded_release",
