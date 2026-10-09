@@ -696,12 +696,18 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
- const archive=c.toolSchemaArchive;
- if(archive)verifyToolSchemaArchive(archive,{head:actualHead,read:rawBlob,
+ const unattributed=c.unattributedWatchRuntimeRecovery;
+ if(unattributed)verifyUnattributedWatchRecovery(unattributed,{head:actualHead,read:rawBlob,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const head=archive?archive.base:actualHead;
- const readBlob=(ref,path)=>rawBlob(archive&&ref==='HEAD'&&TOOL_SCHEMA_ARCHIVE_MAINTENANCE.includes(path)?archive.base:ref,path);
+ const unattributedHead=unattributed?unattributed.base:actualHead;
+ const unattributedRead=(ref,path)=>rawBlob(unattributed&&ref==='HEAD'&&UNATTRIBUTED_WATCH_RECOVERY_SET.has(path)?unattributed.base:ref,path);
+ const archive=c.toolSchemaArchive;
+ if(archive)verifyToolSchemaArchive(archive,{head:unattributedHead,read:unattributedRead,
+  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
+  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const head=archive?archive.base:unattributedHead;
+ const readBlob=(ref,path)=>unattributedRead(archive&&ref==='HEAD'&&TOOL_SCHEMA_ARCHIVE_MAINTENANCE.includes(path)?archive.base:ref,path);
  const client=c.tabletClient;
  if(client)verifyTabletClientExtension(client,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const clientHead=client?client.base:head;
@@ -896,7 +902,7 @@ export function reconciliationChangedPath(status,path){
  if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
  // Source changes retain their exact add/modify semantics. Existing verifier
  // maintenance may have been added historically and modified subsequently.
- const allowed=existsAtBase.get(path)?(TABLET_CLIENT_SET.has(path)||TABLET_WORDING_SET.has(path)||WATCH_HSTS_SET.has(path)||LOGOUT_ADOPTION_SET.has(path)||RELOAD_ATTEMPT_SET.has(path)||ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
+ const allowed=existsAtBase.get(path)?(UNATTRIBUTED_WATCH_RECOVERY_SET.has(path)||TABLET_CLIENT_SET.has(path)||TABLET_WORDING_SET.has(path)||WATCH_HSTS_SET.has(path)||LOGOUT_ADOPTION_SET.has(path)||RELOAD_ATTEMPT_SET.has(path)||ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
  assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
  return true;
 }
@@ -908,6 +914,29 @@ export function assertReconciledReloadReceipt(run,job){
  assert.equal(job?.id,113266037954);assert.equal(job.run_attempt,1);assert.equal(job.run_id,RELOAD_RUN);assert.equal(job.name,'reload-navigation-diagnostics');assert.equal(job.status,'completed');assert.equal(job.conclusion,'success');
  for(const number of [8,9,11,12,14,15])assert(job.steps?.some(s=>s.number===number&&s.status==='completed'&&s.conclusion==='success'),'Every complete live journey round must pass');
  return {id:run.id,sha:run.head_sha,path:run.path,conclusion:run.conclusion,scope:'Three complete live save, reload, privacy, Today, Grub and Fit journey rounds'};
+}
+
+// Finite engineering-only recovery for one independently fingerprinted Worker
+// upload. It restores the last exact successful production version before the
+// ordinary guarded deployment continues; it grants no generic runtime adoption.
+export const UNATTRIBUTED_WATCH_RECOVERY_BASE='38036236f065e7a760b2e36dc72a7113dd13e785';
+export const UNATTRIBUTED_WATCH_RECOVERY_SOURCE='3e35b57b88342a273831ded3c5f61e3e225ab6e5';
+export const UNATTRIBUTED_WATCH_RECOVERY_PATHS=Object.freeze(['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/recover-cancelled-release.mjs']);
+export const UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs']);
+const UNATTRIBUTED_WATCH_RECOVERY_SET=new Set([...UNATTRIBUTED_WATCH_RECOVERY_PATHS,...UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE]);
+for(const path of UNATTRIBUTED_WATCH_RECOVERY_SET)RECONCILIATION_PATHS.add(path);
+export function verifyUnattributedWatchRecovery(c,{head,read,diff,ancestor}){
+ assert(c);assert.equal(c.proof,'EXACT_UNATTRIBUTED_WATCH_RUNTIME_RECOVERY_V1');
+ assert.equal(c.base,UNATTRIBUTED_WATCH_RECOVERY_BASE);assert.equal(c.source,UNATTRIBUTED_WATCH_RECOVERY_SOURCE);
+ assert.deepEqual(c.paths,UNATTRIBUTED_WATCH_RECOVERY_PATHS);assert.deepEqual(c.maintenancePaths,UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.observationRun,37902092425);assert.equal(c.successfulPredecessorRun,37895305149);assert.equal(c.restoredVersion,'fd7939d8-6387-48fa-adc8-714e6f8bea8d');
+ for(const flag of ['medicalClaimsChanged','publicCopyChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated unattributed Watch recovery source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated unattributed Watch recovery maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after unattributed Watch recovery receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Unattributed Watch recovery source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tablet wording verifier source drift: unattributed Watch recovery maintenance '+path);
 }
 
 

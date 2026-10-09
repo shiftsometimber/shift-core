@@ -89,6 +89,12 @@ export function verifiedStartingPoint(record,active){
   assert.equal(active?.versions?.length,1);assert.equal(active.versions[0].percentage,100);assert.equal(active.versions[0].version_id,p.verifiedVersion,'Runtime moved since exact cancelled SEO recovery');
   return{source:p.verifiedSource,version:p.verifiedVersion,run:p.verifiedRun};
  }
+ if(record.unattributedRuntimeRecovery){
+  const p=unattributedRuntimeRecovery;assert.equal(record.decision,'restore');assert.equal(record.run,p.run);assert.equal(record.from,p.version);assert.equal(record.to,p.verifiedVersion);assert.equal(record.verifiedRun,p.verifiedRun);assert.equal(record.customerRecordsRead,0);assert.equal(record.ownedProof,null);
+  assert.deepEqual(record.unattributedRuntimeRecovery,{run:p.run,source:p.source,version:p.version,deployment:p.deployment,verifiedRun:p.verifiedRun,verifiedSource:p.verifiedSource,verifiedVersion:p.verifiedVersion,verifiedDeployment:p.verifiedDeployment,contentEtag:p.etag,moduleSha256:p.sha256});
+  assert.equal(active?.versions?.length,1);assert.equal(active.versions[0].percentage,100);assert.equal(active.versions[0].version_id,p.verifiedVersion,'Runtime moved since exact unattributed-runtime recovery');
+  return{source:p.verifiedSource,version:p.verifiedVersion,run:p.verifiedRun};
+ }
  assert.equal(record.run,recovery.run);
  assert.equal(active?.versions?.length,1);assert.equal(active.versions[0].percentage,100);
  assert.equal(active.versions[0].version_id,record.to,'Runtime moved since recovery verification');
@@ -145,6 +151,50 @@ export async function verifyTechnicalCancelledRuntime(active,get,getLogs){
  const job=jobs.jobs?.find(j=>j.id===p.job),verifiedJob=verifiedJobs.jobs?.find(j=>j.id===p.verifiedJob);
  assert(verifiedTechnicalCancelledRecovery(active,failed,job,await getLogs(p.job),verified,verifiedJob,await getLogs(p.verifiedJob)),'Exact cancelled SEO runtime and successful captured predecessor evidence required');
  return{run:p.run,source:p.source,version:p.version,deployment:p.deployment,verifiedRun:p.verifiedRun,verifiedSource:p.verifiedSource,verifiedVersion:p.verifiedVersion,verifiedDeployment:p.verifiedDeployment};
+}
+
+// An independently observed local Worker upload replaced the last successful
+// owned release without an owned-deployment receipt. Restore only this exact
+// byte-for-byte runtime to the exact successful predecessor. The observation
+// workflow was read-only and compared the serving module with four candidate
+// main commits; it is evidence of the unknown runtime, never ownership of it.
+export const unattributedRuntimeRecovery=Object.freeze({
+ run:37902092425,job:113726783130,source:'a48535f1f7609ca8c5541e6e9f44f6c7171d3cd6',branch:'verification/tablet-runtime-capture-20261009',
+ deployment:'c8f76e11-a35b-4c92-aff9-c4e961fee078',version:'5e823edb-c7b0-49a0-92b3-2ec9e88db1af',createdOn:'2026-10-09T07:51:41.933502Z',etag:'267d563e7f18fdf07e7ff0960e28b8dc93b86ea54914b4a27faa1336086e8ec2',module:'worker.js',bytes:13961108,sha256:'1c8c2461424f3479191e17fd6248ca0b382028a4f0abf5e1633a964c5f9609e8',
+ verifiedRun:37895305149,verifiedJob:113705612697,verifiedSource:'793b5135ce7bcdb42d77597b238c769c32a7dc67',verifiedDeployment:'5777f172-381d-49b8-a750-046ad60eb676',verifiedVersion:'fd7939d8-6387-48fa-adc8-714e6f8bea8d'
+});
+const unattributedCandidates=Object.freeze([
+ {source:'92a5b8d280b090e609b8f14ed5adf5393bc355f0',bytes:14038047,sha256:'b8f39440e5eb7861283ccbe36a3d7b6d4cc3d66c431db0618f925526516e0a37'},
+ {source:'793b5135ce7bcdb42d77597b238c769c32a7dc67',bytes:14039164,sha256:'088fc19b89d39354078d878ca3f55252f743c3b97a97ce6e197a3e7f73eb0453'},
+ {source:'3df83d33f1bc26e3119dfeba2cbc54b10cedafdb',bytes:14084893,sha256:'4338571040fd895a9eb7ed8b8576205f06bbc2134f08c2c674c07de6bf254be1'},
+ {source:'0d68bce77505ef4fa77412929ff6d4d2dc0a65e7',bytes:14084878,sha256:'90fe8a2c7b97d7a829aabcf540e1a01f4feb3ea22ae7aff7b0191712625e12e8'}
+]);
+export function verifiedUnattributedRuntimeRecovery(active,version,providerVersion,modules,observed,observedJob,observedLogs,verified,verifiedJob,verifiedLogs){
+ const p=unattributedRuntimeRecovery;
+ if(active?.id!==p.deployment||active.versions?.length!==1||active.versions[0].percentage!==100||active.versions[0].version_id!==p.version)return false;
+ if(version?.id!==p.version||version.metadata?.created_on!==p.createdOn||version.metadata?.source!=='wrangler')return false;
+ if(version.annotations?.['workers/triggered_by']!=='version_upload'||version.annotations?.['workers/tag']||version.annotations?.['workers/message'])return false;
+ if(providerVersion?.id!==p.version||providerVersion.metadata?.created_on!==p.createdOn||providerVersion.resources?.script?.etag!==p.etag)return false;
+ if(JSON.stringify(modules)!==JSON.stringify([{module:p.module,bytes:p.bytes,sha256:p.sha256}]))return false;
+ if(observed?.id!==p.run||observed.head_sha!==p.source||observed.run_attempt!==1||observed.status!=='completed'||observed.conclusion!=='success'||observed.event!=='push'||observed.head_branch!==p.branch||observed.path!=='.github/workflows/tablet-runtime-attribution.yml')return false;
+ if(observedJob?.id!==p.job||observedJob.run_id!==p.run||observedJob.name!=='capture'||observedJob.status!=='completed'||observedJob.conclusion!=='success'||!observedJob.steps?.some(s=>s.number===5&&s.name==='Attribute active runtime without changing it'&&s.conclusion==='success'))return false;
+ const observation={kind:'tablet_runtime_attribution',deployment:p.deployment,version:p.version,createdOn:p.createdOn,etag:p.etag,modules:[{module:p.module,bytes:p.bytes,sha256:p.sha256}]};
+ if(typeof observedLogs!=='string'||!observedLogs.includes(JSON.stringify(observation))||!observedLogs.includes('PASS read-only runtime attribution; no deployment or data change'))return false;
+ for(const c of unattributedCandidates)if(!observedLogs.includes(JSON.stringify({kind:'tablet_runtime_candidate',...c,matches:false})))return false;
+ if(verified?.id!==p.verifiedRun||verified.head_sha!==p.verifiedSource||verified.run_attempt!==1)return false;
+ if(verifiedJob?.id!==p.verifiedJob||verifiedJob.run_id!==p.verifiedRun||verifiedJob.name!=='promote'||verifiedJob.status!=='completed'||verifiedJob.conclusion!=='success')return false;
+ for(const [number,name,conclusion] of [[60,'Deploy current main to production','success'],[89,'Prove Medicines Watch and its source checks on live traffic','success'],[108,'Restore the captured runtime if a post-deployment gate failed','skipped']])if(!verifiedJob.steps?.some(s=>s.number===number&&s.name===name&&s.conclusion===conclusion))return false;
+ const predecessor={id:p.verifiedDeployment,versions:[{version_id:p.verifiedVersion,percentage:100}]};
+ const receipts=ownedFrom(verifiedLogs).filter(o=>o.deploymentId===p.verifiedDeployment&&o.versionId===p.verifiedVersion&&o.previousDeploymentId==='df3c3764-7fd3-41c8-87ef-e82736af27b6'&&o.previousVersionId==='584de8a4-1c0c-416d-b3b6-9d44743dd58f'&&o.dataRestored===false&&verifiedOwnedRuntime(predecessor,verified,verifiedJob,o));
+ return receipts.length===1;
+}
+export async function verifyUnattributedRuntime(active,version,providerVersion,modules,get,getLogs){
+ const p=unattributedRuntimeRecovery;
+ const observed=await get('/actions/runs/'+p.run),observedJobs=await get('/actions/runs/'+p.run+'/jobs?filter=latest&per_page=100');
+ const verified=await get('/actions/runs/'+p.verifiedRun),verifiedJobs=await get('/actions/runs/'+p.verifiedRun+'/jobs?filter=latest&per_page=100');
+ const observedJob=observedJobs.jobs?.find(j=>j.id===p.job),verifiedJob=verifiedJobs.jobs?.find(j=>j.id===p.verifiedJob);
+ assert(verifiedUnattributedRuntimeRecovery(active,version,providerVersion,modules,observed,observedJob,await getLogs(p.job),verified,verifiedJob,await getLogs(p.verifiedJob)),'Exact unattributed runtime, read-only attribution and successful predecessor evidence required');
+ return{run:p.run,source:p.source,version:p.version,deployment:p.deployment,verifiedRun:p.verifiedRun,verifiedSource:p.verifiedSource,verifiedVersion:p.verifiedVersion,verifiedDeployment:p.verifiedDeployment,contentEtag:p.etag,moduleSha256:p.sha256};
 }
 
 // Retain only this exact owner-authorised local tablet release. Hosted source

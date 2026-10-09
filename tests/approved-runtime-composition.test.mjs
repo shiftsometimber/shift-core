@@ -214,6 +214,20 @@ test('only the exact two recurring observation imports may change transport',()=
  for(const bad of [current.replace('original-guard','skip-guard'),current.replace('watch-observation-seed.mjs','unknown.mjs'),current.replace('original-rollback','')])assert.throws(()=>assertProductionProofBudget(before,bad));
 });
 
+import {verifyUnattributedWatchRecovery,UNATTRIBUTED_WATCH_RECOVERY_BASE,UNATTRIBUTED_WATCH_RECOVERY_SOURCE,UNATTRIBUTED_WATCH_RECOVERY_PATHS,UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+const unattributedRecoveryFixture=()=>{
+ const maintenanceSource='c'.repeat(40),head='d'.repeat(40),c={proof:'EXACT_UNATTRIBUTED_WATCH_RUNTIME_RECOVERY_V1',base:UNATTRIBUTED_WATCH_RECOVERY_BASE,source:UNATTRIBUTED_WATCH_RECOVERY_SOURCE,paths:UNATTRIBUTED_WATCH_RECOVERY_PATHS,maintenancePaths:UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE,maintenanceSource,observationRun:37902092425,successfulPredecessorRun:37895305149,restoredVersion:'fd7939d8-6387-48fa-adc8-714e6f8bea8d',medicalClaimsChanged:false,publicCopyChanged:false,customerDataChanged:false,genericAdoptionAllowed:false,rollbackAuthorityBroadened:false,existingGatesWeakened:false};
+ const options={head,read:()=> 'same',ancestor:()=>{},diff:(a,b)=>a===c.base&&b===c.source?[...c.paths]:a===c.source&&b===c.maintenanceSource?[...c.maintenancePaths]:[RECONCILIATION_MANIFEST]};
+ return{c,options};
+};
+test('unattributed Watch runtime recovery is finite, byte-pinned and never generic authority',()=>{
+ const {c,options}=unattributedRecoveryFixture();assert.doesNotThrow(()=>verifyUnattributedWatchRecovery(c,options));
+ for(const path of [...c.paths,...c.maintenancePaths]){const f=unattributedRecoveryFixture();f.options.read=(ref,p)=>ref==='HEAD'&&p===path?'drift':'same';assert.throws(()=>verifyUnattributedWatchRecovery(f.c,f.options),/drift/);}
+ for(const flag of ['medicalClaimsChanged','publicCopyChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened']){const f=unattributedRecoveryFixture();f.c[flag]=true;assert.throws(()=>verifyUnattributedWatchRecovery(f.c,f.options));}
+ {const f=unattributedRecoveryFixture();f.options.diff=()=>['checkout.mjs'];assert.throws(()=>verifyUnattributedWatchRecovery(f.c,f.options),/Unrelated|Unreviewed/);}
+ {const f=unattributedRecoveryFixture();f.c.restoredVersion='unknown';assert.throws(()=>verifyUnattributedWatchRecovery(f.c,f.options));}
+});
+
 import {verifyLogoutAdoption,LOGOUT_ADOPTION_BASE,LOGOUT_ADOPTION_PATHS,assertLogoutBoundary,RELOAD_VERIFIER} from '../release/approved-runtime-composition.mjs';
 const logoutBefore="await page.locator('[data-member-logout]').click();await page.waitForFunction(async()=>401);assert.deepEqual(records,[]);";
 const logoutAfter=logoutBefore.replace("await page.waitForFunction","await page.waitForURL(url=>url.origin===site&&url.pathname==='/member-login',{waitUntil:'domcontentloaded',timeout:30000});await page.waitForFunction");
