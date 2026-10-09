@@ -690,15 +690,19 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const actualHead=git('rev-parse','HEAD');
  // Only actual Git objects at resolved immutable commit IDs are cacheable.
  // Supplied readers are always invoked again, even after a successful proof.
- const outerRawBlob=read===defaultReconciliationRead?(ref,path)=>{
+ const rootRawBlob=read===defaultReconciliationRead?(ref,path)=>{
   const commit=ref==='HEAD'?actualHead:ref;assert.match(commit,/^[a-f0-9]{40}$/);
   const key=JSON.stringify([process.cwd(),commit,path]);
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const passportExpected=c.toolPassportExpectedRepair;
+ if(passportExpected)verifyToolPassportExpectedRepair(passportExpected,{head:actualHead,read:rootRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const prePassportExpectedHead=passportExpected?passportExpected.base:actualHead;
+ const outerRawBlob=(ref,path)=>rootRawBlob(passportExpected&&ref==='HEAD'&&TOOL_PASSPORT_EXPECTED_SET.has(path)?passportExpected.base:ref,path);
  const toolBuild=c.toolGuidanceProductionBuildGate;
- if(toolBuild)verifyToolGuidanceBuildGate(toolBuild,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preToolBuildHead=toolBuild?toolBuild.base:actualHead;
+ if(toolBuild)verifyToolGuidanceBuildGate(toolBuild,{head:prePassportExpectedHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preToolBuildHead=toolBuild?toolBuild.base:prePassportExpectedHead;
  const originalRawBlob=(ref,path)=>outerRawBlob(toolBuild&&ref==='HEAD'&&TOOL_GUIDANCE_BUILD_GATE_SET.has(path)?toolBuild.base:ref,path);
  const bundled=c.bundledToolRuntimeRepair;
  if(bundled)verifyBundledToolRuntimeRepair(bundled,{head:preToolBuildHead,read:originalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
@@ -1099,5 +1103,27 @@ export function verifyToolGuidanceBuildGate(c,{head,read,diff,ancestor}){
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after production-built tool proof receipt');
  for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Serving SEO source drift: production-built tool proof '+path);
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift / Tablet wording verifier source drift: production-built tool proof '+path);
+ return c;
+}
+
+ // Exact verification repair: public runtime, Start Here and prior approvals are unchanged.
+export const TOOL_PASSPORT_EXPECTED_BASE='1be764679d08d94498760fc1847487cea5524558';
+export const TOOL_PASSPORT_EXPECTED_SOURCE='ad2ec9253fb0923c3be8931dc3ffb009e27d0046';
+export const TOOL_PASSPORT_EXPECTED_PATHS=Object.freeze(["health-passport/production-release.mjs","health-passport/start-here-expected.mjs","health-passport/start-here-expected.test.mjs","health-passport/fixtures/start-here-client-before-20261009.js","shift-coach/cancelled-release-recovery.mjs","shift-coach/cancelled-release-recovery.test.mjs","shift-coach/recover-cancelled-release.mjs"]);
+export const TOOL_PASSPORT_EXPECTED_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/tool-passport-repair-composition.test.mjs"]);
+const TOOL_PASSPORT_EXPECTED_SET=new Set([...TOOL_PASSPORT_EXPECTED_PATHS,...TOOL_PASSPORT_EXPECTED_MAINTENANCE]);
+for(const path of TOOL_PASSPORT_EXPECTED_SET)RECONCILIATION_PATHS.add(path);
+export function verifyToolPassportExpectedRepair(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_TOOL_PASSPORT_EXPECTATION_REPAIR_V1');assert.equal(c.base,TOOL_PASSPORT_EXPECTED_BASE);assert.equal(c.source,TOOL_PASSPORT_EXPECTED_SOURCE);
+ assert.deepEqual(c.paths,TOOL_PASSPORT_EXPECTED_PATHS);assert.deepEqual(c.maintenancePaths,TOOL_PASSPORT_EXPECTED_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.failedRun,37922934503);assert.equal(c.rollbackDeployment,'478c6c6b-5bae-4b2b-9f3f-aa8e5bdc0033');assert.equal(c.originalSuccessfulRun,37895305149);assert.equal(c.approvedTabletSource,'3011d45d24c363105a7b30014a03868d36ea81f7');
+ assert.equal(c.existingExactHashCheckRetained,true);assert.equal(c.publicationStatus,'approved_for_guarded_release');
+ for(const flag of ['runtimeChanged','publicCopyChanged','medicalClaimsChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated approved Passport expectation source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated approved Passport expectation maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after approved Passport expectation receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Bundled tool runtime source drift / Serving SEO source drift: approved Passport expectation '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Bundled tool runtime maintenance source drift / Restoration retention maintenance drift / Tool schema archive maintenance source drift / Tablet wording verifier source drift: approved Passport expectation '+path);
  return c;
 }
