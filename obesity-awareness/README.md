@@ -10,7 +10,7 @@ Free support amendments remove named medicine/class links and FAQ, qualify catal
 
 ## Test evidence
 
-`node --test obesity-awareness/candidate.test.mjs tests/public-continuity.test.mjs`: 25 passing. Tests cover real source renderers plus fixtures, source drift, metadata/schema, anchor/action routes, outages, HEAD and default-disabled controls. Footer/Menu tests preserve primary header and Start Here main and exclude homepage/member routes. Independent preview DOM behaviour checks are recorded in the verification artifact. This is not phone-rendering or saved-account-return evidence.
+`node --test obesity-awareness/candidate.test.mjs tests/public-continuity.test.mjs`: 33 passing. Tests cover real source renderers plus fixtures, source drift, metadata/schema, anchor/action routes, outages, HEAD and default-disabled controls. Footer/Menu tests preserve primary header and Start Here main and exclude homepage/member routes. Independent preview DOM behaviour checks are recorded in the verification artifact. This is not phone-rendering or saved-account-return evidence.
 
 ## Specific release work
 
@@ -22,3 +22,11 @@ Free support amendments remove named medicine/class links and FAQ, qualify catal
 6. Matt explicitly approves exact staged publication; use guarded release, true review metadata, canonical sitemap registration and remove review noindex only at release. Social/video need exact asset/channel/destination/timing approval; no partner messages/costs/commitments.
 
 Review flag remains `SHIFT_WEIGHT_UNDERSTANDING_REVIEW=1`, for isolated private staging only. No production hook/flag configured. Supporting metadata is implemented and checked against Article/FAQ fixtures; final real-shell integration still requires staged verification. No account registration or terms acceptance performed.
+
+## Disabled staging implementation
+
+`staging-entry.mjs` composes the candidate with fetched public shell documents. It rejects non-GET/HEAD requests and all routes outside the scoped package; strips incoming cookies, authorisation and query strings; disables production scripts/measurement; and retains noindex. Tests use the actual support renderer and shell contract fixtures. `wrangler.staging.jsonc` has no public route, workers.dev URL, preview URL, data binding or schedule, and is disabled. The Wrangler 4.112.0 dry-run succeeds; this is a build, not a deployment.
+
+Owner approved the reviewed copy/chrome on 9 October 2026, 19:46 BST, then said Go. Homepage and communications remain separate. Recorded owner approval does not stand in for clinical/contextual review or staged phone/account evidence.
+
+The exact composition gate rejects this branch because the obesity-awareness payload is not registered in its immutable maintenance receipt. Do not broaden its generic allowlist. Once final review resolves wording, add an exact source/paths maintenance receipt and perform guarded staging/release. The existing public Continuity preview is not an authenticated staging substitute. Browser file access was denied by browser security policy; no bypass attempted.

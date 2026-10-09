@@ -1,0 +1,44 @@
+{
+  "toolchain": "Wrangler 4.112.0 (repository-pinned version)",
+  "mode": "deploy --dry-run",
+  "deployment": false,
+  "file": "staging-entry.js",
+  "bytes": 43678,
+  "sha256": "48c3a5c9455b5dc1cd2ede6ba5f97185e362e17c8bb8faf3d2fce4e2dd785779",
+  "workersDev": false,
+  "previewURLs": false,
+  "enabled": false,
+  "dataBindings": [],
+  "sourceTests": {
+    "pass": 33,
+    "fail": 0
+  },
+  "browserFileTest": {
+    "attempted": true,
+    "pass": false,
+    "reason": "Browser security policy rejects file protocol; no bypass attempted"
+  },
+  "ownerApproval": {
+    "copyRevision": "a048c4a58422a55dc9d93e83f6b8a7e722c8231e",
+    "at": "2026-10-09T19:46:21+01:00",
+    "confirmation": "Approved, followed by Go",
+    "homepage": false,
+    "externalCommunications": false
+  },
+  "releaseScopeCheck": {
+    "pass": false,
+    "reason": "Unreviewed change after biomarker receipt",
+    "paths": [
+      "obesity-awareness/README.md",
+      "obesity-awareness/candidate.mjs",
+      "obesity-awareness/candidate.test.mjs",
+      "obesity-awareness/content.mjs"
+    ],
+    "shallowHistoryCorrected": true,
+    "guardWeakened": false
+  },
+  "approvedCopyHashes": {
+    "content.mjs": "2354b5f5240b7a3ebe6911c1bc5f17bab5c619d8a376409ea22956e94a811ffc",
+    "candidate.mjs": "ec1e91f5433489a85133b9f485079892b76192f8198d1855f08f813a3a88a262"
+  }
+}
