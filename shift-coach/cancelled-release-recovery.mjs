@@ -64,7 +64,7 @@ export function verifiedOwnedRuntime(active,run,job,receipt){
  if(run?.conclusion!=='success'||run?.status!=='completed'||run?.event!=='push'||run?.head_branch!=='main'||run?.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
  if(job?.name!=='promote'||job?.conclusion!=='success'||job?.run_id!==run.id)return false;
  if(!/^[a-f0-9]{40}$/.test(run.head_sha||'')||receipt?.kind!=='owned_runtime_deployment'||receipt?.source!==run.head_sha||String(receipt?.run)!==String(run.id))return false;
- if(active?.versions?.length!==1||active.versions[0].percentage!==100||receipt.versionId!==active.versions[0].version_id)return false;
+ if(active?.id!==receipt.deploymentId||active?.versions?.length!==1||active.versions[0].percentage!==100||receipt.versionId!==active.versions[0].version_id)return false;
  return /^[a-f0-9-]{36}$/.test(receipt.versionId)&&/^[a-f0-9-]{36}$/.test(receipt.deploymentId);
 }
 
@@ -106,9 +106,14 @@ export function verifiedStartingPoint(record,active){
 // This exact successful Watch deployment supersedes the preceding image runtime.
 export const recordedImageRuntime=Object.freeze({run:37336998330,source:'9d2b9e146063d634ac7ce058258c00dd7d804d2c',version:'f81ab965-f6aa-4655-be7d-b29f4ac29d67'});
 export const recordedSeoRuntime=Object.freeze({run:37592938543,source:'a5cca19e89abc04ac8ecb063fcafb4f66004f504',version:'d8f51d84-d973-40ad-9097-c112935d8cb8'});
+// This exact successful Watch release is the current production baseline. Pin
+// its run because the bounded recent-run search can legitimately omit it.
+// The promote job and owned-deployment receipt are still fetched and verified
+// independently before the runtime may be retained.
+export const recordedMedicinesWatchRuntime=Object.freeze({run:37870273259,source:'8198d99b9f570087e63864e481278b8a2459bfdd',version:'48eb4d71-cb90-4132-bb16-4768132d61d5',deployment:'3515e037-1915-476a-9f6b-6b41bbf5e061'});
 export async function recentSuccessfulPromotions(get,active){
  const pinned=active?.versions?.length===1&&active.versions[0].percentage===100
-  ?[recordedImageRuntime,recordedSeoRuntime].find(p=>p.version===active.versions[0].version_id):null;
+  ?[recordedImageRuntime,recordedSeoRuntime,recordedMedicinesWatchRuntime].find(p=>p.version===active.versions[0].version_id&&(!p.deployment||p.deployment===active.id)):null;
  const recorded=pinned?await get('/actions/runs/'+pinned.run):null;
  if(recorded){assert.equal(recorded.id,pinned.run);assert.equal(recorded.head_sha,pinned.source);assert.equal(recorded.conclusion,'success');assert.equal(recorded.status,'completed');assert.equal(recorded.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(recorded.event,'push');assert.equal(recorded.head_branch,'main');}
  const result=await get('/actions/workflows/cloudflare-production-promote.yml/runs?branch=main&event=push&status=success&per_page=100');

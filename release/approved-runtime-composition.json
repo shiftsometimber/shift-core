@@ -49,6 +49,32 @@
     "tests/rendered-member-acceptance-support.test.mjs",
     "tests/member-reload-browser.test.mjs"
   ],
+  "watchRuntimeBaseline": {
+    "proof": "EXACT_WATCH_RUNTIME_BASELINE_V1",
+    "base": "8d1b328c0a5f7169e646ed23d30f79ce7562c8c8",
+    "source": "ba232820de4bf508691f66915eb6e970e68ca313",
+    "maintenanceSource": "99b80501782eb5e11aebc7ffbb82598657348066",
+    "paths": [
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/cancelled-release-recovery.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-runtime-baseline-release.test.mjs"
+    ],
+    "recoveryVerifierChanged": true,
+    "currentDeploymentRun": 37870273259,
+    "currentDeploymentId": "3515e037-1915-476a-9f6b-6b41bbf5e061",
+    "currentVersionId": "48eb4d71-cb90-4132-bb16-4768132d61d5",
+    "runtimeChanged": false,
+    "publicCopyChanged": false,
+    "medicalEvidenceChanged": false,
+    "clinicalApprovalChanged": false,
+    "customerDataChanged": false,
+    "checkoutChanged": false,
+    "myTimberChanged": false,
+    "rollbackAuthorityBroadened": false
+  },
   "watchFactualUpdate": {
     "base": "56bba771e9a4006b788bd8fb40358baa3d737dd0",
     "source": "66236803a719f13d212ad27d032c87e699c9418c",
