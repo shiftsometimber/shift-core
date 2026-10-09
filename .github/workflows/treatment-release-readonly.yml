@@ -1,0 +1,66 @@
+name: Read-only remaining release-gate diagnosis
+on:
+  push:
+    branches: [verification/treatment-release-readonly-20261009]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        include:
+          - name: continuity
+            command: node scripts/verify-public-continuity-live.mjs
+          - name: member-assets
+            command: node member-experience/verify-production-member.mjs
+          - name: pwa
+            command: node my-timber-pwa/verify-live.mjs
+          - name: watch
+            command: node medicines-watch/verify-live.mjs
+          - name: seo-six
+            command: node scripts/verify-six-topic-seo.mjs --live
+          - name: seo-closeout
+            command: node scripts/verify-seo-closeout-live.mjs
+          - name: seo-template
+            command: node scripts/verify-seo-template.mjs --live
+          - name: article-quality
+            command: node scripts/verify-article-quality.mjs
+          - name: public-audit
+            command: node scripts/verify-public-audit-live.mjs
+          - name: discovery
+            command: node scripts/verify-discovery-repairs-live.mjs
+          - name: progress
+            command: node g2-012-production-proof.mjs
+          - name: news-order
+            command: node scripts/verify-newsroom-order-live.mjs
+          - name: news-dates
+            command: node scripts/verify-shift-take-live.mjs
+    name: read-only ${{ matrix.name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --ignore-scripts
+      - name: Scope of this diagnosis
+        run: echo 'Read-only remaining-gate diagnosis against captured predecessor; not successful My Treatment deployment or signed-in acceptance. No provider credentials or commissioning identity.'
+      - name: Execute original check with corrected exact Continuity expectation
+        env:
+          CHECK_COMMAND: ${{ matrix.command }}
+        run: bash -c "$CHECK_COMMAND"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: diagnosis-${{ matrix.name }}
+          path: |
+            *proof.json
+            *proof/
+            *live-proof.json
+            seo-template-live-proof/
+            article-quality-proof/
