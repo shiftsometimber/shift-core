@@ -696,10 +696,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const continuity=c.continuityPreservationRepair;
+ if(continuity)verifyContinuityPreservationRepair(continuity,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preContinuityHead=continuity?continuity.base:actualHead;
+ const continuityRawBlob=(ref,path)=>outerRawBlob(continuity&&ref==='HEAD'&&CONTINUITY_PRESERVATION_SET.has(path)?continuity.base:ref,path);
  const toolBuild=c.toolGuidanceProductionBuildGate;
- if(toolBuild)verifyToolGuidanceBuildGate(toolBuild,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preToolBuildHead=toolBuild?toolBuild.base:actualHead;
- const originalRawBlob=(ref,path)=>outerRawBlob(toolBuild&&ref==='HEAD'&&TOOL_GUIDANCE_BUILD_GATE_SET.has(path)?toolBuild.base:ref,path);
+ if(toolBuild)verifyToolGuidanceBuildGate(toolBuild,{head:preContinuityHead,read:continuityRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preToolBuildHead=toolBuild?toolBuild.base:preContinuityHead;
+ const originalRawBlob=(ref,path)=>continuityRawBlob(toolBuild&&ref==='HEAD'&&TOOL_GUIDANCE_BUILD_GATE_SET.has(path)?toolBuild.base:ref,path);
  const passport=c.passportPreservationRepair;
  if(passport)verifyPassportPreservationRepair(passport,{head:preToolBuildHead,read:originalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const prePassportHead=passport?passport.base:preToolBuildHead;
@@ -1123,5 +1127,27 @@ export function verifyToolGuidanceBuildGate(c,{head,read,diff,ancestor}){
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after production-built tool proof receipt');
  for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Serving SEO source drift: production-built tool proof '+path);
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift / Tablet wording verifier source drift: production-built tool proof '+path);
+ return c;
+}
+
+// Exact approved answer-depth composition and one already-performed owned rollback.
+export const CONTINUITY_PRESERVATION_BASE='01194030d52d57a43aa072b27ac962514a668b93';
+export const CONTINUITY_PRESERVATION_SOURCE='7ad0c34d2551a609b959f2b350f1bde1e8313f10';
+export const CONTINUITY_PRESERVATION_PATHS=Object.freeze(["release/public-continuity-body-proof.mjs","shift-coach/cancelled-release-recovery.mjs","shift-coach/cancelled-release-recovery.test.mjs","shift-coach/recover-cancelled-release.mjs","tests/programme-day-continuity-body.test.mjs"]);
+export const CONTINUITY_PRESERVATION_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/continuity-preservation-composition.test.mjs"]);
+const CONTINUITY_PRESERVATION_SET=new Set([...CONTINUITY_PRESERVATION_PATHS,...CONTINUITY_PRESERVATION_MAINTENANCE]);
+for(const path of CONTINUITY_PRESERVATION_SET)RECONCILIATION_PATHS.add(path);
+export function verifyContinuityPreservationRepair(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_CONTINUITY_PRESERVATION_REPAIR_V1');assert.equal(c.base,CONTINUITY_PRESERVATION_BASE);assert.equal(c.source,CONTINUITY_PRESERVATION_SOURCE);
+ assert.deepEqual(c.paths,CONTINUITY_PRESERVATION_PATHS);assert.deepEqual(c.maintenancePaths,CONTINUITY_PRESERVATION_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.failedRun,37927646817);assert.equal(c.failedJob,113810894301);assert.equal(c.rollbackDeployment,'9cc4ae2f-f84d-4963-9267-8cee6b459b26');assert.equal(c.originalSuccessfulRun,37895305149);
+ assert.equal(c.approvedAnswerDepthExpectationFixed,true);assert.equal(c.publicationStatus,'approved_for_guarded_release');
+ for(const flag of ['runtimeChanged','publicCopyChanged','medicalClaimsChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Continuity preservation source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Continuity preservation maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Continuity preservation receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Serving SEO source drift / Passport preservation source drift / Restoration retention source drift: Continuity preservation '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift / Tablet wording verifier source drift / Restoration retention maintenance drift: Continuity preservation '+path);
  return c;
 }
