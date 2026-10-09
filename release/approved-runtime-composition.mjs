@@ -687,15 +687,21 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const transport=c.proofTransportUpdate;assert(transport,'Exact GitHub proof transport amendment required');
  assert.equal(transport.base,PROOF_TRANSPORT_BASE);assert.equal(transport.source,PROOF_TRANSPORT_SOURCE);
  assert.deepEqual(transport.paths,PROOF_TRANSPORT_PATHS);assert.deepEqual(transport.maintenancePaths,PROOF_TRANSPORT_MAINTENANCE);assert.match(transport.maintenanceSource,/^[a-f0-9]{40}$/);
- const head=git('rev-parse','HEAD');
+ const actualHead=git('rev-parse','HEAD');
  // Only actual Git objects at resolved immutable commit IDs are cacheable.
  // Supplied readers are always invoked again, even after a successful proof.
- const readBlob=read===defaultReconciliationRead?(ref,path)=>{
-  const commit=ref==='HEAD'?head:ref;assert.match(commit,/^[a-f0-9]{40}$/);
+ const rawBlob=read===defaultReconciliationRead?(ref,path)=>{
+  const commit=ref==='HEAD'?actualHead:ref;assert.match(commit,/^[a-f0-9]{40}$/);
   const key=JSON.stringify([process.cwd(),commit,path]);
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const archive=c.toolSchemaArchive;
+ if(archive)verifyToolSchemaArchive(archive,{head:actualHead,read:rawBlob,
+  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
+  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const head=archive?archive.base:actualHead;
+ const readBlob=(ref,path)=>rawBlob(archive&&ref==='HEAD'&&TOOL_SCHEMA_ARCHIVE_MAINTENANCE.includes(path)?archive.base:ref,path);
  const client=c.tabletClient;
  if(client)verifyTabletClientExtension(client,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const clientHead=client?client.base:head;
@@ -902,4 +908,28 @@ export function assertReconciledReloadReceipt(run,job){
  assert.equal(job?.id,113266037954);assert.equal(job.run_attempt,1);assert.equal(job.run_id,RELOAD_RUN);assert.equal(job.name,'reload-navigation-diagnostics');assert.equal(job.status,'completed');assert.equal(job.conclusion,'success');
  for(const number of [8,9,11,12,14,15])assert(job.steps?.some(s=>s.number===number&&s.status==='completed'&&s.conclusion==='success'),'Every complete live journey round must pass');
  return {id:run.id,sha:run.head_sha,path:run.path,conclusion:run.conclusion,scope:'Three complete live save, reload, privacy, Today, Grub and Fit journey rounds'};
+}
+
+
+// Finite source/evidence archive. Prove every added blob before viewing the prior runtime baseline.
+// This extension never grants deployment, runtime edits, guard removals or unlisted source changes.
+export const TOOL_SCHEMA_ARCHIVE_BASE='0d68bce77505ef4fa77412929ff6d4d2dc0a65e7';
+export const TOOL_SCHEMA_ARCHIVE_SOURCE='14db24d531df33776fb8d87785c6c76df5f82b03';
+export const TOOL_SCHEMA_ARCHIVE_PATHS=Object.freeze(["release/tool-page-schema-20261008/%2Fdecision-centre.after.html","release/tool-page-schema-20261008/%2Ftools%2Falcohol.after.html","release/tool-page-schema-20261008/%2Ftools%2Fbmi.after.html","release/tool-page-schema-20261008/%2Ftools%2Fcalories.after.html","release/tool-page-schema-20261008/%2Ftools%2Fhealthy-weight.after.html","release/tool-page-schema-20261008/%2Ftools%2Fprotein.after.html","release/tool-page-schema-20261008/%2Ftools%2Fwaist-height.after.html","release/tool-page-schema-20261008/%2Ftools%2Fwalking.after.html","release/tool-page-schema-20261008/%2Ftools%2Fwater.after.html","release/tool-page-schema-20261008/README.md","release/tool-page-schema-20261008/browser-verification-20261009.json","release/tool-page-schema-20261008/fresh-verification-20261009.json","release/tool-page-schema-20261008/live-verification.json","release/tool-page-schema-20261008/manifest-before.json","release/tool-page-schema-20261008/manifest-candidate.json","release/tool-page-schema-20261008/preview-verification.json","release/tool-page-schema-20261008/scope-proof.json","release/tool-page-schema-20261008/verifier-failure-tests-20261009.json","scripts/tool-page-schema-release.cjs","scripts/verify-tool-calculators-browser.cjs","scripts/verify-tool-page-schema.cjs","scripts/verify-tool-page-schema.test.cjs"]);
+export const TOOL_SCHEMA_ARCHIVE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/tool-schema-archive-composition.test.mjs']);
+for(const path of [...TOOL_SCHEMA_ARCHIVE_PATHS,...TOOL_SCHEMA_ARCHIVE_MAINTENANCE])RECONCILIATION_PATHS.add(path);
+export function verifyToolSchemaArchive(c,{head,read,diff,ancestor}) {
+ assert(c);assert.equal(c.proof,'EXACT_TOOL_SCHEMA_EVIDENCE_ARCHIVE_V1');
+ assert.equal(c.base,TOOL_SCHEMA_ARCHIVE_BASE);assert.equal(c.source,TOOL_SCHEMA_ARCHIVE_SOURCE);
+ assert.deepEqual(c.paths,TOOL_SCHEMA_ARCHIVE_PATHS);
+ assert.deepEqual(c.maintenancePaths,TOOL_SCHEMA_ARCHIVE_MAINTENANCE);
+ assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.productionRepairPreviouslyDeployed,true);
+ for(const flag of ['runtimeChanged','publicCopyChanged','homepageChanged','startHereChanged','customerDataChanged','deploymentAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated archive payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated archive maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after archive receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Tool schema archive source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance drift: '+path);
 }
