@@ -1,4 +1,3 @@
-import {reconciliationGitArgs,reconciliationRecord,RELOAD_RUN,assertReconciledReloadReceipt,LOGOUT_NAVIGATION_RUN,LOGOUT_NAVIGATION_JOB,assertLogoutNavigationReceipt} from './approved-runtime-composition.mjs';
 import {COACH_BASE,COACH_BACKEND_PATHS,verifyCoachingRelease} from '../shift-coach/release-contract.mjs';
 // Acceptance only. Bind the exact reviewed scripts to independent live evidence.
 import assert from 'node:assert/strict';
@@ -35,7 +34,7 @@ export function assertMemberDiagnosticsReceipt(receipt){
  assert.equal(receipt.path,MEMBER_DIAGNOSTICS_WORKFLOW);assert.equal(receipt.head_branch,'codex/member-acceptance-diagnostics-20261004');
  assert.equal(receipt.event,'push');assert.equal(receipt.status,'completed');assert.equal(receipt.conclusion,'success','Exact bounded member acceptance must pass');
 }
-const git=(...a)=>execFileSync('git',reconciliationGitArgs(a),{encoding:'utf8'}).trim();
+const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
 export function validateMemberAcceptanceSource(){
  verifyCoachingRelease();
  git('merge-base','--is-ancestor',MEMBER_ACCEPTANCE_CANDIDATE,'HEAD');
@@ -62,22 +61,5 @@ export async function verifyMemberAcceptanceProof(get){
  const diagnostics=await get('/actions/runs/37216938436');assertMemberDiagnosticsReceipt(diagnostics);
  const production=await get('/actions/runs/37213204839');assert.equal(production.head_sha,MEMBER_DIAGNOSTICS_BASE);assert.equal(production.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(production.conclusion,'success');
  receipts.push({id:diagnostics.id,sha:diagnostics.head_sha,path:diagnostics.path,conclusion:diagnostics.conclusion,unchangedServingSource:production.head_sha});
- if(reconciliationRecord()){
-  receipts.push(await verifyReconciledReloadAttempt(get));
-  if(reconciliationRecord().logoutNavigationAdoption)receipts.push(await verifyLogoutNavigationProof(get));
- }
  return receipts;
-}
-
-// The accepted receipt is attempt 1, not the mutable status of a later rerun.
-export async function verifyReconciledReloadAttempt(get){
- const base='/actions/runs/'+RELOAD_RUN+'/attempts/1';
- const run=await get(base),jobs=await get(base+'/jobs?per_page=100');
- return assertReconciledReloadReceipt(run,jobs.jobs?.find(j=>j.id===113266037954));
-}
-
-export async function verifyLogoutNavigationProof(get){
- const base='/actions/runs/'+LOGOUT_NAVIGATION_RUN+'/attempts/1';
- const run=await get(base),jobs=await get(base+'/jobs?per_page=100');
- return assertLogoutNavigationReceipt(run,jobs.jobs?.find(j=>j.id===LOGOUT_NAVIGATION_JOB));
 }

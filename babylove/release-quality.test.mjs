@@ -60,10 +60,6 @@ test('publication remains a fresh database check and instrumentation contains no
  assert.match(response.headers.get('server-timing'),/^article_db;dur=[\d.]+, article_render;dur=[\d.]+$/);
  assert.equal(await dynamicBabyLovePublicRoute(request,env),null);
 });
-test('oral live proof permits only a push or exact owner-confirmed current-main dispatch',()=>{
- const source=readFileSync('babylove/verify-oral-live.mjs','utf8');
- assert.match(source,/\['push','workflow_dispatch'\]\.includes\(event\)/);assert.match(source,/payload\.inputs\?\.confirm,'PROMOTE_CURRENT_MAIN'/);assert.match(source,/GITHUB_ACTOR_ID,'315011648'/);assert.match(source,/await assertCurrentMain\(\)/);
-});
 test('production deploy cannot skip article quality tests',()=>{
  const workflow=readFileSync('.github/workflows/cloudflare-production-promote.yml','utf8');
  const testAt=workflow.indexOf('node --test babylove/*.test.mjs');

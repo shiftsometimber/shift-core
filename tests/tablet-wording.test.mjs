@@ -27,3 +27,11 @@ test('response integration repairs HTML and already-repaired script, invalidates
   assert.equal(await response.text(),after);assert.equal(response.headers.get('ETag'),null);assert.equal(response.headers.get('Content-Length'),null);assert.equal(response.headers.get('Cache-Control'),'no-store');
  }
 });
+
+test('Start Here results script retains all approved wording after rendering',async()=>{
+ const before='const approvedCopy='+JSON.stringify(TABLET_WORDING.map(([old])=>old))+';';
+ const after='const approvedCopy='+JSON.stringify(TABLET_WORDING.map(([,fresh])=>fresh))+';';
+ const response=await repairPromiseResponse(new Response(before,{headers:{'Content-Type':'application/javascript'}}),new Request('https://example.test/start-here-v72.js'));
+ assert.equal(await response.text(),after);
+ new Function(after);
+});

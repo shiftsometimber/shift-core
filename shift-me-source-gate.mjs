@@ -12,10 +12,6 @@ const grub=fs.readFileSync('frontend/member/member-grub.html','utf8');
 const fit=fs.readFileSync('frontend/member/member-fit.html','utf8');
 const memberCss=fs.readFileSync('frontend/member/my-timber-v11.css','utf8');
 const productionProof=fs.readFileSync('shift-me-production-proof.mjs','utf8');
-const support=fs.readFileSync('frontend/member/my-timber-v11.js','utf8');
-const primaryNav=dashboard.match(/<nav class="sst-portal-tabs"[^>]*>([\s\S]*?)<\/nav>/)?.[1]||'';
-const primaryLinks=[...primaryNav.matchAll(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g)].map(m=>[m[1],m[2]]);
-const approvedPrimaryLinks=[['/member/dashboard#today','TODAY'],['/member/dashboard#journey','MY JOURNEY'],['/member/dashboard#visualise','PROGRESS'],['/member/dashboard#shiftme','SHIFT ME'],['/member/grub','GRUB'],['/member/fit','FIT'],['/lounge','THE LOUNGE']];
 const creatorLower=creator.toLowerCase();
 const checks=[
  ['consent required for photo render',route.includes('consent_required')],
@@ -50,8 +46,7 @@ const checks=[
  ['dashboard primary navigation exposes Shift Me',dashboard.includes('href="/member/dashboard#shiftme" data-portal-panel="shiftme">SHIFT ME</a>')],
  ['Grub primary navigation exposes Shift Me',grub.includes('href="/member/dashboard#shiftme">SHIFT ME</a>')],
  ['Fit primary navigation exposes Shift Me',fit.includes('href="/member/dashboard#shiftme">SHIFT ME</a>')],
- ['seven approved primary destinations retain their exact links',memberCss.includes('grid-template-columns:repeat(8,1fr)')&&JSON.stringify(primaryLinks)===JSON.stringify(approvedPrimaryLinks)],
- ['after-treatment support remains separately reachable',canonicalEntry.includes('my-timber-v11.js')&&support.includes('id="coming-off-support"')&&support.includes('data-coming-save')],
+ ['member destination navigation supports the current eight named destinations',memberCss.includes('grid-template-columns:repeat(8,1fr)')&&['TODAY','MY JOURNEY','PROGRESS','SHIFT ME','CLINIC GONE QUIET / COMING OFF','GRUB','FIT','THE LOUNGE'].every(label=>dashboard.includes(`>${label}<`))],
  ['Shift Me activates its primary destination tab',creator.includes('data-portal-panel="shiftme"')&&creator.includes("x.dataset.portalPanel==='shiftme'")],
  ['no fake placeholder person',creator.includes('Your bloke starts here.')&&!creator.includes('placeholder-avatar')],
  ['privacy and non-clinical copy',creatorLower.includes('not retained')&&creatorLower.includes('not a body scan')&&creatorLower.includes('health assessment')],

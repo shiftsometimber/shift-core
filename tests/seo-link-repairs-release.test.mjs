@@ -1,4 +1,0 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {verifyApprovedLinkComposition,linkHistoricalRead,LINK_BASE} from '../release/seo-link-repairs-scope.mjs';
-test('all approved link payload and maintenance bytes remain pinned',()=>{assert(verifyApprovedLinkComposition());});
-test('raw drift in every new payload or maintenance path is rejected before historical comparison',()=>{const c=verifyApprovedLinkComposition();for(const p of [...c.payloadPaths,...c.maintenancePaths])assert.throws(()=>verifyApprovedLinkComposition((ref,path)=>ref==='HEAD'&&p===path?'drift':'same'),/source drift/);});
-test('unlisted worker and homepage behaviour cannot be changed through this composition',()=>{assert.throws(()=>verifyApprovedLinkComposition((ref,p)=>ref==='HEAD'&&p==='worker-entry-v6.js'?'drift':'same'),/boundary drift/);const read=linkHistoricalRead((r,p)=>r==='HEAD'?'same':'same');assert.equal(read('HEAD','public-seo-context.mjs'),'same');});

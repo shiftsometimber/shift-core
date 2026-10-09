@@ -6,8 +6,6 @@ import {RETA_STYLES} from '../reta-styles-data.mjs';
 import {repairSeoPresentation} from '../public-seo-presentation.mjs';
 import {tickerStyles} from '../public-navigation-policy.mjs';
 import {applyFollowThrough} from '../public-seo-follow-through.mjs';
-import {addContinuityLinks,DISTRIBUTION_PATHS,DISTRIBUTION_DATE} from '../public-continuity.mjs';
-import {RANKING_GROWTH_PATHS,RANKING_GROWTH_DATE} from '../public-seo-growth.mjs';
 export function expectedSeo794ArticleBody(html,path){
  if(path!=='/mental-health/mental-health-and-weight')return html;
  const old='<a href="/good-to-talk">SHIFT: Good to Talk</a>',current='<a href="/mens-mental-health">SHIFT: Good to Talk</a>';
@@ -15,13 +13,10 @@ export function expectedSeo794ArticleBody(html,path){
  return html.replace(old,current);
 }
 // The five-article live proof starts from the exact approved article source.
-// Compose exact approved contextual links and the already-serving support panel.
-// This expectation does not normalise arbitrary live changes or renew medical review.
+// Compose only the two subsequently approved, fail-closed publication layers:
+// the direct support-link repair above and the reviewed SEO contextual links.
 export function expectedPublishedArticleBody(html,path){
- return addContinuityLinks(applyFollowThrough(expectedSeo794ArticleBody(html,path),path),path);
-}
-export function expectedPublishedArticleDate(path,original){
- return DISTRIBUTION_PATHS.includes(path)?DISTRIBUTION_DATE:RANKING_GROWTH_PATHS.includes(path)?RANKING_GROWTH_DATE:original;
+ return applyFollowThrough(expectedSeo794ArticleBody(html,path),path);
 }
 const oldTicker=tickerStyles.replace('background:#050505!important;color:#E7E3DA!important;border-block:1px solid #707762!important','background:#707762;color:#050505;border-block:1px solid #050505').replace('color:#E7E3DA!important;-webkit-text-fill-color:#E7E3DA!important;text-decoration:none','color:#050505;text-decoration:none').replace('outline:2px solid #E7E3DA;outline-offset:3px','outline:2px solid #050505;outline-offset:3px');
 // Forward-normalise only the exact owner-approved presentation delta. Keep all

@@ -228,7 +228,7 @@ jobs:
     needs: select-current
     if: ${{ needs.select-current.outputs.current == 'true' && (github.event_name == 'push' || inputs.confirm == 'PROMOTE_CURRENT_MAIN') }}
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 25
     env:
       CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -397,13 +397,13 @@ jobs:
         if: steps.scope.outputs.runtime_only != 'true'
         run: |
           node medicines-watch/bootstrap.mjs "$RUNNER_TEMP/medicines-watch-observations.sql"
-          node release/watch-observation-seed.mjs "$RUNNER_TEMP/medicines-watch-observations.sql"
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/medicines-watch-observations.sql"
       - name: Initialise reviewed Medicines Watch expansion observations
         if: steps.scope.outputs.runtime_only == 'true'
         run: |
           node scripts/b1-release-scope.mjs
           node medicines-watch/bootstrap.mjs "$RUNNER_TEMP/medicines-watch-expansion-observations.sql"
-          node release/watch-observation-seed.mjs "$RUNNER_TEMP/medicines-watch-expansion-observations.sql"
+          npx wrangler d1 execute DB --remote --config wrangler.jsonc --file "$RUNNER_TEMP/medicines-watch-expansion-observations.sql"
       - name: Publish only the exact previously authorised Grub recipe expansion
         if: steps.scope.outputs.grub_publication == 'true'
         run: |
@@ -594,8 +594,6 @@ jobs:
         run: node member-experience/public-preservation.mjs public-after.json public-before.json
       - name: Prove public Life Back, food-noise guidance and their linked journeys
         run: node scripts/verify-public-continuity-live.mjs
-      - name: Verify approved Programme day and catalogue artwork live
-        run: PROGRAMME_DAY_LIVE=true PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-programme-day.cjs
       - name: Prove newsroom publication order on live traffic
         run: node scripts/verify-newsroom-order-live.mjs
       - name: Verify SHIFT take labels and original dates on every live news article

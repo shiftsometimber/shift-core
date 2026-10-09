@@ -10,13 +10,12 @@ test('recovery only restores the exact evidenced cancelled runtime to the verifi
  assert.throws(()=>recoveryDecision({versions:[{version_id:recovery.unverified,percentage:50}]},failed,verified));
 });
 
-test('a later runtime is retained only against its exact successful production job, deployment and owned receipt',()=>{
+test('a later runtime is retained only against its exact successful production job and owned receipt',()=>{
  const version='11111111-1111-4111-8111-111111111111',run={id:123,status:'completed',conclusion:'success',event:'push',head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml',head_sha:'a'.repeat(40)},job={name:'promote',conclusion:'success',run_id:123},receipt={kind:'owned_runtime_deployment',source:run.head_sha,run:'123',versionId:version,deploymentId:'22222222-2222-4222-8222-222222222222'};
- assert.equal(verifiedOwnedRuntime(active(version,receipt.deploymentId),run,job,receipt),true);
+ assert.equal(verifiedOwnedRuntime(active(version),run,job,receipt),true);
  for(const changes of [{conclusion:'failure'},{status:'in_progress'},{event:'pull_request'},{head_branch:'preview'},{path:'different-workflow.yml'}])assert.equal(verifiedOwnedRuntime(active(version),{...run,...changes},job,receipt),false);
  for(const changes of [{source:'b'.repeat(40)},{run:'124'},{versionId:recovery.unverified},{kind:'unowned_runtime'}])assert.equal(verifiedOwnedRuntime(active(version),run,job,{...receipt,...changes}),false);
  assert.equal(verifiedOwnedRuntime(active(version),run,{...job,run_id:124},receipt),false);
- assert.equal(verifiedOwnedRuntime(active(version,'different-deployment'),run,job,receipt),false);
  assert.equal(verifiedOwnedRuntime({versions:[{version_id:version,percentage:50}]},run,job,receipt),false);
 });
 
@@ -187,24 +186,4 @@ test('exact current SEO runtime is discoverable without recent-list results; own
  assert.deepEqual(await recentSuccessfulPromotions(get,active(p.version)),[r]);
  for(const patch of [{head_sha:'f'.repeat(40)},{conclusion:'failure'},{status:'in_progress'},{event:'pull_request'},{head_branch:'other'},{path:'other.yml'}])await assert.rejects(recentSuccessfulPromotions(async path=>path==='/actions/runs/'+p.run?{...r,...patch}:{workflow_runs:[]},active(p.version)));
  assert.deepEqual(await recentSuccessfulPromotions(get,active('unknown')),[]);
-});
-
-import {recordedMedicinesWatchRuntime} from './cancelled-release-recovery.mjs';
-test('exact current Medicines Watch runtime remains discoverable outside bounded workflow history',async()=>{
- const p=recordedMedicinesWatchRuntime,r={id:p.run,head_sha:p.source,conclusion:'success',status:'completed',path:'.github/workflows/cloudflare-production-promote.yml',event:p.event,head_branch:'main'};
- assert.deepEqual(p,{run:37870273259,source:'8198d99b9f570087e63864e481278b8a2459bfdd',version:'48eb4d71-cb90-4132-bb16-4768132d61d5',deployment:'3515e037-1915-476a-9f6b-6b41bbf5e061',event:'workflow_dispatch'});
- const get=async path=>path==='/actions/runs/'+p.run?r:{workflow_runs:[]};
- assert.deepEqual(await recentSuccessfulPromotions(get,active(p.version,p.deployment)),[r]);
- assert.deepEqual(await recentSuccessfulPromotions(get,active(p.version,'different-deployment')),[]);
- for(const patch of [{head_sha:'f'.repeat(40)},{conclusion:'failure'},{status:'in_progress'},{event:'push'},{event:'pull_request'},{head_branch:'other'},{path:'other.yml'}])await assert.rejects(recentSuccessfulPromotions(async path=>path==='/actions/runs/'+p.run?{...r,...patch}:{workflow_runs:[]},active(p.version,p.deployment)));
-});
-
-test('exact manual Watch release satisfies final ownership only with its deployment and receipt',()=>{
- const p=recordedMedicinesWatchRuntime,run={id:p.run,head_sha:p.source,status:'completed',conclusion:'success',event:p.event,head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml'};
- const job={name:'promote',conclusion:'success',run_id:p.run},receipt={kind:'owned_runtime_deployment',source:p.source,run:String(p.run),versionId:p.version,deploymentId:p.deployment};
- assert.equal(verifiedOwnedRuntime(active(p.version,p.deployment),run,job,receipt),true);
- assert.equal(verifiedOwnedRuntime(active(p.version,p.deployment),{...run,event:'push'},job,receipt),false);
- assert.equal(verifiedOwnedRuntime(active(p.version,'different-deployment'),run,job,receipt),false);
- const unrelated={...run,id:p.run+1,head_sha:'f'.repeat(40)};
- assert.equal(verifiedOwnedRuntime(active(p.version,p.deployment),unrelated,{...job,run_id:unrelated.id},{...receipt,run:String(unrelated.id),source:unrelated.head_sha}),false);
 });

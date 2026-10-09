@@ -28,20 +28,3 @@ export function observeEdgeAnswer(answers,value){
  if(value.delivery==='streamed'||!previous)answers.set(value.edge,value);
  return value.delivery==='cached_public'&&Boolean(previous);
 }
-
-// A provider startup failure returns a direct reviewed extract with HTTP 200.
-// Retry that exact fallback finitely; it never counts as streaming/cache proof.
-export async function readSiteAnswerWithRetry(request,options={}, {attempts=3,onRetry=()=>{}}={}){
- assert(Number.isInteger(attempts)&&attempts>=1&&attempts<=3);
- for(let attempt=1;attempt<=attempts;attempt++){
-  const {response,startedAt}=await request();
-  if(response.status===200&&(response.headers.get('content-type')||'').includes('application/json')){
-   const value=await response.clone().json();
-   if(value.ok===true&&value.mode==='reviewed_direct'&&value.delivery===undefined&&attempt<attempts){
-    onRetry({attempt,edge:response.headers.get('cf-ray')?.split('-').at(-1)});continue;
-   }
-  }
-  return readSiteAnswer(response,{...options,startedAt});
- }
- throw new Error('Public answer verification exhausted');
-}

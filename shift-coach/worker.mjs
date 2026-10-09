@@ -1,6 +1,6 @@
-import {withPublicToolDelivery} from '../public-tool-delivery.mjs';
 import {withContextSeo} from '../public-seo-context.mjs';
 import {withPublicSeoCloseout} from '../public-seo-closeout.mjs';
+import {withPublicContinuity} from '../public-continuity.mjs';
 import {discoveryRoute,withDiscoverySeo} from '../public-seo-discovery.mjs';
 import {withApprovedSeo} from '../public-seo-approved.mjs';
 import {worksheetRoute} from '../prescriber-questions.mjs';
@@ -40,7 +40,8 @@ export default {
    try{const initial=await coachingRoutes(new Request(url,{method:'GET',headers:request.headers}),env);if(initial?.ok)seed=await initial.json();}catch{/* Client keeps its normal retry path; no unchecked snapshot is used. */}
   }
   const publicResponse=await withContextSeo(await withDiscoverySeo(await withApprovedSeo(await withTechnicalSeo(await withSeoFollowThrough(await withProgrammeSeo(await withCatalogueBenefits(request,await withCoaching(request,await withFitActiveEdit(request,response),seed)),request),request),request),request),request),request);
-  return withPublicToolDelivery(await (url.pathname.replace(/\/+$/,'')==='/articles/oral-semaglutide-for-weight-loss'?withPublicSeoCloseout(publicResponse,request):publicResponse),request);
+  const closed=await withPublicSeoCloseout(publicResponse,request);
+  return url.pathname==='/sitemap.xml'?withPublicContinuity(request,closed):closed;
  },
  async scheduled(controller,env,ctx){
   await core.scheduled(controller,env,ctx);

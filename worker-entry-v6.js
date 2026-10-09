@@ -588,6 +588,7 @@ const worker = {
     const measurement = measurementAsset(request); if(measurement)return measurement;
     const publicNavigation = myTimberRedirect(request) || publicTickerAsset(request);
     if (publicNavigation) return publicNavigation;
+    if (['GET','HEAD'].includes(request.method) && path==='/hq/distribution') return hq.fetch(request,env,ctx);
     if (['GET','HEAD'].includes(request.method) && ['/health','/v1/health'].includes(path)) return publicHealthResponse(request,env);
     const medicinesWatch = await medicinesWatchRoutes(request, env);
     if (medicinesWatch) return rewritePublicLoungeChrome(medicinesWatch);

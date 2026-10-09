@@ -131,25 +131,14 @@ test('reload rejects signed-out UI, changed identity, failed document and missin
 test('one transient navigation timeout can recover only through a second real reload and exact session verification',async()=>{
  const h=harness();await commissioningLogin(h.page,identity);let calls=0;
  h.page.reload=async()=>{if(++calls===1)throw Object.assign(new Error('document navigation stalled'),{name:'TimeoutError'});return{ok:()=>true}};
- const recovery=[];h.page.context().newCDPSession=async()=>({send:async method=>recovery.push(method),detach:async()=>recovery.push('detach')});
  const receipt=await memberReload(h.page,{site,panel:'journey'});
- assert.deepEqual(receipt,{attempts:2,recoveredNavigation:true});assert.equal(calls,2);assert.deepEqual(recovery,['Page.stopLoading','detach']);
+ assert.deepEqual(receipt,{attempts:2,recoveredNavigation:true});assert.equal(calls,2);
  assert.deepEqual(h.navigations,[]);assert.equal(h.requests.at(-1).url,site+'/v1/me');assert.equal(h.clicks.length,1);
 });
 test('persistent navigation timeout and non-timeout navigation errors still fail without further retries',async()=>{
  const h=harness();await commissioningLogin(h.page,identity);let calls=0;
- h.page.context().newCDPSession=async()=>({send:async()=>{},detach:async()=>{}});
  h.page.reload=async()=>{calls++;throw Object.assign(new Error('still stalled'),{name:'TimeoutError'})};
  await assert.rejects(memberReload(h.page,{site}),/still stalled/);assert.equal(calls,2);
  calls=0;h.page.reload=async()=>{calls++;throw new Error('certificate or document failure')};
  await assert.rejects(memberReload(h.page,{site}),/certificate or document failure/);assert.equal(calls,1);
-});
-
-test('an unfinished request must be stopped before retry and cancellation failure remains a failure',async()=>{
- const h=harness();await commissioningLogin(h.page,identity);const events=[];let calls=0;
- h.page.reload=async()=>{events.push('reload');if(++calls===1)throw Object.assign(Error('stalled'),{name:'TimeoutError'});return{ok:()=>true}};
- h.page.context().newCDPSession=async()=>({send:async method=>events.push(method),detach:async()=>events.push('detach')});
- await memberReload(h.page,{site});assert.deepEqual(events,['reload','Page.stopLoading','detach','reload']);
- calls=0;h.page.context().newCDPSession=async()=>({send:async()=>{throw Error('cannot cancel unfinished document')},detach:async()=>{}});
- await assert.rejects(memberReload(h.page,{site}),/cannot cancel/);assert.equal(calls,1);
 });

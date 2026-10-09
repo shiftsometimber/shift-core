@@ -1,5 +1,5 @@
 import {WATCH_REGISTRY_WAVE_COMMIT,WATCH_REGISTRY_WAVE_PATHS,WATCH_SOURCE_LINK_SOURCE,watchWaveRef} from '../release/watch-registry-wave-scope.mjs';
-import {PUBLIC_WORDING_PREVIEW,PUBLIC_WORDING_PATHS,WATCH_HSTS_PUBLIC_WORDING_SOURCE,validatePublicWording} from '../release/public-wording-scope.mjs';
+import {PUBLIC_WORDING_PREVIEW,PUBLIC_WORDING_PATHS,validatePublicWording} from '../release/public-wording-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {TREATMENT_GUIDANCE_PREVIEW,TREATMENT_GUIDANCE_PATHS,ADULT_INTAKE_SOURCE,ADULT_INTAKE_PATHS,validateTreatmentGuidance} from '../release/treatment-guidance-scope.mjs';
@@ -186,7 +186,7 @@ test('enobosarm and semaglutide release binds its exact reviewed commit',async()
 });
 
 test('public wording/menu release accepts only the exact browser-tested source',()=>{
- const reviewed=(ref,path)=>ref==='HEAD'?(['medicines-watch/preservation.mjs','medicines-watch/preservation.test.mjs'].includes(path)?'0d084f00cf6c4593dd0c11dfd047daf4e5103295':['medicines-watch/page.mjs','medicines-watch/page.test.mjs'].includes(path)?WATCH_HSTS_PUBLIC_WORDING_SOURCE:PUBLIC_WORDING_PREVIEW)+':'+path:ref+':'+path;
+ const reviewed=(ref,path)=>ref==='HEAD'?(['medicines-watch/preservation.mjs','medicines-watch/preservation.test.mjs'].includes(path)?'0d084f00cf6c4593dd0c11dfd047daf4e5103295':path==='medicines-watch/page.mjs'?WATCH_REGISTRY_WAVE_COMMIT:PUBLIC_WORDING_PREVIEW)+':'+path:ref+':'+path;
  validatePublicWording(reviewed);
  for(const changed of PUBLIC_WORDING_PATHS)assert.throws(()=>validatePublicWording((ref,path)=>ref==='HEAD'&&path===changed?'drift':reviewed(ref,path)),/source drift/);
 });

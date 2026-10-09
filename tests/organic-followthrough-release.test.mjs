@@ -1,6 +1,0 @@
-import {COMPOSITION_BASE} from '../release/approved-runtime-composition.mjs';
-import test from 'node:test';import assert from 'node:assert/strict';import {verifyOrganicComposition,organicHistoricalRead,ORGANIC_BASE} from '../release/organic-followthrough-scope.mjs';
-test('approved organic payload, maintenance and receipt are exact source pins',()=>assert(verifyOrganicComposition()));
-test('each allowed path still rejects source drift before historical mapping',()=>{const c=verifyOrganicComposition();for(const p of [...c.payloadPaths,...c.maintenancePaths])assert.throws(()=>verifyOrganicComposition((ref,path)=>ref==='HEAD'&&p===path?'drift':'same'),/source drift/);});
-test('worker, clinical copy and privacy boundaries cannot be changed by alias approval',()=>{for(const p of ['worker-entry-v6.js','shift-coach/worker.mjs','acquisition-activation/consent.mjs','public-seo-link-repairs.mjs'])assert.throws(()=>verifyOrganicComposition((ref,path)=>ref==='HEAD'&&p===path?'drift':'same'),/boundary drift/);});
-test('organic and separately approved runtime paths retain their respective historical views',()=>{const read=organicHistoricalRead((ref,p)=>ref);assert.equal(read('HEAD','public-seo-context.mjs'),ORGANIC_BASE);assert.equal(read('HEAD','worker-entry-v6.js'),COMPOSITION_BASE);assert.equal(read('HEAD','acquisition-activation/consent.mjs'),'HEAD');});

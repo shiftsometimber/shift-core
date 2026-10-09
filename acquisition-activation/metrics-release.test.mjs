@@ -1,4 +1,3 @@
-import {reconciliationRecord,verifyReconciledRelease} from '../release/approved-runtime-composition.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {metricsRecord,validateMetricsConnection,verifyMetricsConnection,METRICS_BASE,METRICS_PAYLOAD_PATHS,METRICS_MAINTENANCE_PATHS,METRICS_PATHS,metricsChangedPath,metricsPreflightPath} from '../release/metrics-connection-scope.mjs';
@@ -10,7 +9,7 @@ test('extra paths, changed consent and third-party collection cannot be authoris
  for(const mutate of [c=>c.payloadPaths.push('worker-entry-v6.js'),c=>c.maintenancePaths.push('.github/workflows/cloudflare-production-promote.yml'),c=>c.consentChanged=true,c=>c.thirdPartyCollectionChanged=true,c=>c.publicCopyChanged=true,c=>c.base='0'.repeat(40),c=>c.authority.scope='anything']){
   const c=structuredClone(metricsRecord());mutate(c);assert.throws(()=>validateMetricsConnection(c));
  }
- assert.equal(METRICS_PATHS.has('public-seo-growth-data.mjs'),false);assert.equal(METRICS_PAYLOAD_PATHS.length,3);assert.equal(METRICS_MAINTENANCE_PATHS.length,19);
+ assert.equal(METRICS_PATHS.has('public-seo-growth-data.mjs'),false);assert.equal(METRICS_PAYLOAD_PATHS.length,3);assert.equal(METRICS_MAINTENANCE_PATHS.length,14);
 });
 test('source comparison rejects a modified runtime payload after the verified source commit',()=>{
  const c=metricsRecord();const read=(ref,p)=>ref==='HEAD'&&p==='acquisition-activation/model.mjs'?'tampered':ref===c.payloadSource&&p==='acquisition-activation/model.mjs'?'approved':'same';
@@ -26,9 +25,7 @@ test('historical added verifier and current modified verifier both require exact
 test('production preflight recognises only the independently pinned metrics files',()=>{
  assert.equal(metricsPreflightPath('acquisition-activation/ai-referrals.test.mjs'),true);
  assert.equal(metricsPreflightPath('release/app-preflight.mjs'),true);
- assert.equal(metricsPreflightPath('worker-entry-v6.js'),Boolean(reconciliationRecord()));
- if(reconciliationRecord())assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p==='worker-entry-v6.js'?'tampered':p),/Approved composition source \/ boundary drift/);
- for(const p of ['wrangler.jsonc','public-seo-growth-data.mjs','unlisted.mjs'])assert.equal(metricsPreflightPath(p),false);
+ for(const p of ['worker-entry-v6.js','wrangler.jsonc','public-seo-growth-data.mjs','unlisted.mjs'])assert.equal(metricsPreflightPath(p),false);
  const c=metricsRecord(),read=(ref,p)=>ref==='HEAD'&&p==='release/app-preflight.mjs'?'tampered':p;
  assert.throws(()=>verifyMetricsConnection(c,read),/Metrics maintenance source drift/);
 });
@@ -50,13 +47,5 @@ import {execFileSync} from 'node:child_process';
 test('Book Voice accepts exact independently verified measurement maintenance and rejects tampering',()=>{
  const read=(ref,p)=>execFileSync('git',['show',ref+':'+p],{encoding:'utf8'});
  validateBookVoice(read);
- assert.throws(()=>verifyMetricsConnection(metricsRecord(),(ref,p)=>ref==='HEAD'&&p==='member-experience/public-preservation.mjs'?'tampered':read(ref,p)),/(?:Metrics maintenance source drift|Tablet wording source drift)/);
-});
-
-import '../release/live-request-retry.test.mjs';
-
-import {validateGrowthSource} from '../release/growth-scope.mjs';
-test('growth verification checks exact maintenance before comparing historical approvals',()=>{
- validateGrowthSource();
- assert.throws(()=>verifyMetricsConnection(metricsRecord(),(ref,p)=>ref==='HEAD'&&p==='release/growth-public-live.cjs'?'tampered':p),/Metrics maintenance source drift/);
+ assert.throws(()=>verifyMetricsConnection(metricsRecord(),(ref,p)=>ref==='HEAD'&&p==='member-experience/public-preservation.mjs'?'tampered':read(ref,p)),/Metrics maintenance source drift/);
 });

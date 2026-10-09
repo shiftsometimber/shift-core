@@ -1,4 +1,3 @@
-import {reconciliationHistoricalRef} from './approved-runtime-composition.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 export const CONTEXT_BASE='4460ea56f931da4003ace68d5d404831c47e08f7';
@@ -18,5 +17,5 @@ export function verifyContextHistory(c){
  for(const ref of [c.base,c.payloadSource,c.maintenanceSource])git('merge-base','--is-ancestor',ref,'HEAD');
  assert.deepEqual(git('diff','--name-only',c.base,c.payloadSource).split('\n').filter(Boolean).sort(),[...CONTEXT_PAYLOAD_PATHS].sort());
  assert.deepEqual(git('diff','--name-only',c.payloadSource,c.maintenanceSource).split('\n').filter(Boolean).sort(),[...CONTEXT_MAINTENANCE_PATHS,'shift-coach/release-manifest.json'].sort());
- assert.equal(git('rev-parse',c.base+':.github/workflows/cloudflare-production-promote.yml'),git('rev-parse',reconciliationHistoricalRef('HEAD','.github/workflows/cloudflare-production-promote.yml')+':.github/workflows/cloudflare-production-promote.yml'));
+ assert.equal(git('rev-parse',c.base+':.github/workflows/cloudflare-production-promote.yml'),git('rev-parse','HEAD:.github/workflows/cloudflare-production-promote.yml'));
 }

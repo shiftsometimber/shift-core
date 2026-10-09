@@ -76,3 +76,10 @@ test('distribution lastmod touches only updated discovery surfaces and dates the
  assert.match(out,/<loc>https:\/\/shiftsometimber\.co\.uk\/unrelated<\/loc><lastmod>2026-09-02<\/lastmod>/);
  assert.match(out,/<loc>https:\/\/shiftsometimber\.co\.uk\/weight-loss-support-for-men<\/loc><lastmod>2026-10-08<\/lastmod>/);
 });
+
+test('performance pages use the actual 9 October render-change date without redating the wider distribution batch',()=>{
+ const input='<urlset><url><loc>https://shiftsometimber.co.uk/articles/wegovy-side-effects-timeline</loc><lastmod>2026-10-08</lastmod></url><url><loc>https://shiftsometimber.co.uk/articles/nhs-weight-loss-drugs</loc><lastmod>2026-10-08</lastmod></url><url><loc>https://shiftsometimber.co.uk/articles/stopping-glp1</loc><lastmod>2026-10-08</lastmod></url><url><loc>https://shiftsometimber.co.uk/mounjaro</loc><lastmod>2026-10-08</lastmod></url></urlset>';
+ const out=continuitySitemap(input);
+ for(const path of ['/articles/wegovy-side-effects-timeline','/articles/nhs-weight-loss-drugs','/articles/stopping-glp1'])assert.ok(out.includes('<loc>https://shiftsometimber.co.uk'+path+'</loc><lastmod>2026-10-09</lastmod>'));
+ assert.ok(out.includes('<loc>https://shiftsometimber.co.uk/mounjaro</loc><lastmod>2026-10-08</lastmod>'));
+});

@@ -1,5 +1,5 @@
-import {repairCentreGuidance,repairOrderGuidance,repairOrderControllerGuidance,repairIntegratedGuidance,repairSideEffectGuidance} from './public-treatment-guidance.mjs';
 import {tightenTabletWording,correctOasis4} from './tablet-wording-v1.mjs';
+import {repairCentreGuidance,repairOrderGuidance,repairOrderControllerGuidance,repairIntegratedGuidance,repairSideEffectGuidance} from './public-treatment-guidance.mjs';
 // Bounded repairs against current Pages source; amounts, stock and release closure are retained.
 export function repairTreatmentCentre(html){
  return html.replace('Retatrutide, CagriSema, Orforglipron, Amycretin, MariTide and the next generation of weight-management treatments.','Retatrutide, CagriSema, Amycretin, MariTide and the next generation of weight-management treatments.')
@@ -47,7 +47,7 @@ export async function repairPromiseResponse(response,request){
  const startHereHtml=['/start-here','/start-here.html'].includes(path);
  const order=['/treatment-order','/treatment-order.html'].includes(path),integrated=path==='/medicine-front-door-integrated-v1.js',sideEffects=['/articles/glp1-side-effects','/articles/glp1-side-effects.html'].includes(path);
  if(!html&&!script&&!startHereScript&&!startHereHtml&&!order&&!integrated&&!sideEffects)return response;
- const source=await response.text(),body=html?repairCentreGuidance(repairTreatmentCentre(source)):script?repairOrderControllerGuidance(repairTreatmentOrderController(source)):startHereScript?repairStartHereBudget(source):startHereHtml?tightenTabletWording(path,source):order?repairOrderGuidance(source):integrated?correctOasis4(repairIntegratedGuidance(source)):repairSideEffectGuidance(source);
+ const source=await response.text(),body=html?repairCentreGuidance(repairTreatmentCentre(source)):script?repairOrderControllerGuidance(repairTreatmentOrderController(source)):startHereScript?tightenTabletWording('/start-here',repairStartHereBudget(source)):startHereHtml?tightenTabletWording(path,source):order?repairOrderGuidance(source):integrated?correctOasis4(repairIntegratedGuidance(source)):repairSideEffectGuidance(source);
  const headers=new Headers(response.headers);for(const name of ['Content-Length','ETag','Last-Modified'])headers.delete(name);
  headers.set('Cache-Control','no-store');headers.set('X-Shift-Accuracy-Repair','v1');
  return new Response(body,{status:response.status,headers});

@@ -8,6 +8,8 @@ export const PROVIDER_PILOT_PATH='/my-timber-for-providers';
 export const SUPPORT_PATH='/weight-loss-support-for-men';
 export const CONTINUITY_PATHS=[LIFE_BACK_PATH,FOOD_NOISE_PATH,CLINIC_QUIET_PATH,PROVIDER_SWITCH_PATH,PARTNER_HELP_PATH,PROVIDER_PILOT_PATH,SUPPORT_PATH];
 export const DISTRIBUTION_DATE='2026-10-08';
+export const PERFORMANCE_DATE='2026-10-09';
+export const PERFORMANCE_UPDATED_PATHS=Object.freeze(['/articles/wegovy-side-effects-timeline','/articles/nhs-weight-loss-drugs','/articles/stopping-glp1']);
 export const DISTRIBUTION_PATHS=Object.freeze(['/programme','/explore-knowledge','/articles/stopping-glp1','/partner-with-us','/treatment-centre','/compare-weight-loss-treatments','/mounjaro','/wegovy','/weight-loss-injections-for-men','/weight-loss-tablets-for-men','/guides/nhs-weight-loss-medication-pathways','/articles/mounjaro-cost-uk','/articles/wegovy-cost-uk','/articles/glp-1-weight-loss-uk','/articles/wegovy-side-effects-timeline','/articles/nhs-weight-loss-drugs',FOOD_NOISE_PATH,CLINIC_QUIET_PATH,PARTNER_HELP_PATH]);
 export const CONTINUITY_REDIRECTS=Object.freeze({'/coming-off':'/articles/stopping-glp1','/food-noise':FOOD_NOISE_PATH,'/free-weight-loss-support':SUPPORT_PATH,'/my-timber-support':SUPPORT_PATH,'/articles/how-to-help-husband-lose-weight':PARTNER_HELP_PATH,'/mental-health/urgent-help':'/mental-health/when-to-get-help'});
 const origin='https://shiftsometimber.co.uk';
@@ -123,7 +125,7 @@ function setContinuitySitemapDate(xml,path,date){
  return xml.replace(/<url\b[^>]*>[\s\S]*?<\/url>/g,entry=>entry.includes(loc)?entry.replace(/<lastmod>[\s\S]*?<\/lastmod>/g,'').replace('</url>','<lastmod>'+date+'</lastmod></url>'):entry);
 }
 export function continuitySitemap(xml){
- let out=xml;for(const path of DISTRIBUTION_PATHS)out=setContinuitySitemapDate(out,path,DISTRIBUTION_DATE);
+ let out=xml;for(const path of DISTRIBUTION_PATHS)out=setContinuitySitemapDate(out,path,DISTRIBUTION_DATE);for(const path of PERFORMANCE_UPDATED_PATHS)out=setContinuitySitemapDate(out,path,PERFORMANCE_DATE);
  const missing=CONTINUITY_PATHS.filter(path=>!out.includes('<loc>'+origin+path+'</loc>'));
  return out.replace('</urlset>',missing.map(path=>'<url><loc>'+origin+path+'</loc><lastmod>'+(DISTRIBUTION_PATHS.includes(path)?DISTRIBUTION_DATE:(continuityPages[path]?.modified||CONTINUITY_DATE))+'</lastmod></url>').join('')+'</urlset>');
 }
