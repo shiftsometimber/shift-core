@@ -1178,7 +1178,7 @@ export function verifyLateWatchFactualUpdate(c,{head,read,diff,ancestor}){
  assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated late Watch payload');
  assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated late Watch maintenance');
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after late Watch receipt');
- for(const path of c.paths){assert.equal(read(c.source,path),read(c.approvedMerge,path),'Merged approved Watch source required: '+path);assert.equal(read('HEAD',path),read(c.source,path),'Late Watch source drift: '+path);}
+ for(const path of c.paths){assert.equal(read(c.source,path),read(c.approvedMerge,path),'Merged approved Watch source required: '+path);assert.equal(read('HEAD',path),read(c.source,path),'Late factual Watch source drift: '+path);}
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Late Watch maintenance source drift: '+path);
  return c;
 }
