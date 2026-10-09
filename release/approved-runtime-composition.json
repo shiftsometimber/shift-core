@@ -49,6 +49,31 @@
     "tests/rendered-member-acceptance-support.test.mjs",
     "tests/member-reload-browser.test.mjs"
   ],
+  "watchOwnedDispatch": {
+    "proof": "EXACT_WATCH_OWNED_DISPATCH_V1",
+    "base": "acaf0ffd09393e299c91664bf62693504131836d",
+    "source": "377b817984d9469ef5e305434e1b64cdf71633d7",
+    "maintenanceSource": "6b6b26d219924c5ee47b781da87564a352693bba",
+    "paths": [
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/cancelled-release-recovery.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-owned-dispatch-release.test.mjs"
+    ],
+    "pinnedRun": 37870273259,
+    "pinnedEvent": "workflow_dispatch",
+    "finalOwnershipVerifierChanged": true,
+    "runtimeChanged": false,
+    "publicCopyChanged": false,
+    "medicalEvidenceChanged": false,
+    "clinicalApprovalChanged": false,
+    "customerDataChanged": false,
+    "checkoutChanged": false,
+    "myTimberChanged": false,
+    "rollbackAuthorityBroadened": false
+  },
   "watchRuntimeDispatch": {
     "proof": "EXACT_WATCH_RUNTIME_DISPATCH_V1",
     "base": "c7c52acfd2adc2226adc5fad43f4e5c326e788b6",
