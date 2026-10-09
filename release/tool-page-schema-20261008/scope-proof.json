@@ -1,0 +1,136 @@
+{
+  "at": "2026-10-08T21:11:07.134Z",
+  "baseline": "304bf610-f73b-492c-9681-571cba9b5ab8",
+  "changed": [
+    {
+      "path": "/decision-centre",
+      "oldHash": "f6b555d26cbdce1079c05ab385c9e62f5792b70fd25c39f36bb01d8fddc679d9",
+      "newHash": "03c50e60d7bc7f67085987a4b640c19dafd4dd18a5b774d541cd3530ebb0b74e",
+      "visibleHtmlUnchanged": true,
+      "applicationItemsRemoved": 1,
+      "remainingTypes": [
+        "WebPage",
+        "Organization",
+        "Article"
+      ],
+      "jsonParseErrors": 0
+    },
+    {
+      "path": "/tools/alcohol",
+      "oldHash": "b7b8a6823270f3e163e0e4f980a1c0b83088b59d2be5eccafac52e7b68907c15",
+      "newHash": "202bd057ca8cb3a6eae0ef97320f9dd75742ecbf93d11af8dcb0249424e3c5ae",
+      "visibleHtmlUnchanged": true,
+      "applicationItemsRemoved": 1,
+      "remainingTypes": [
+        "BreadcrumbList",
+        "WebPage",
+        "FAQPage",
+        "Organization"
+      ],
+      "jsonParseErrors": 0
+    },
+    {
+      "path": "/tools/bmi",
+      "oldHash": "aed361075da97b652788d96f85bc78aa8313be955b1b216353b81176e0032ce4",
+      "newHash": "3adcc238db7e3ff8663615f03f22c4c7230dbbb77916502afd081570e07f98d1",
+      "visibleHtmlUnchanged": true,
+      "applicationItemsRemoved": 1,
+      "remainingTypes": [
+        "BreadcrumbList",
+        "WebPage",
+        "FAQPage",
+        "Organization"
+      ],
+      "jsonParseErrors": 0
+    },
+    {
+      "path": "/tools/calories",
+      "oldHash": "29d044afb68bf790488a89360a13ce8e7ed472e8bad51d5ea62077f2c0a5ef0f",
+      "newHash": "a18423ac5f08ac43871d3d8ca3f9fc9a736107405d595ac5e4b634f88e5bedf5",
+      "visibleHtmlUnchanged": true,
+      "applicationItemsRemoved": 1,
+      "remainingTypes": [
+        "BreadcrumbList",
+        "WebPage",
+        "FAQPage",
+        "Organization"
+      ],
+      "jsonParseErrors": 0
+    },
+    {
+      "path": "/tools/healthy-weight",
+      "oldHash": "f9647124a915cccf975d48b0993fd64ff3d5c74fb1aa523d2e9862ef74f0f025",
+      "newHash": "11fdec81290c714d709d24828a119ef779753222b270fb45c17038d71382b98e",
+      "visibleHtmlUnchanged": true,
+      "applicationItemsRemoved": 1,
+      "remainingTypes": [
+        "BreadcrumbList",
+        "WebPage",
+        "FAQPage",
+        "Organization"
+      ],
+      "jsonParseErrors": 0
+    },
+    {
+      "path": "/tools/protein",
+      "oldHash": "e064cd19bedd99bfaea7e4f4c301b54d414ec2d75efdbefb387670948a0d3894",
+      "newHash": "1418991fa17d1f1d674eee6dfe782e6dac96abe428fee67623bdfe43b98d22be",
+      "visibleHtmlUnchanged": true,
+      "applicationItemsRemoved": 1,
+      "remainingTypes": [
+        "BreadcrumbList",
+        "WebPage",
+        "FAQPage",
+        "Organization",
+        "Article"
+      ],
+      "jsonParseErrors": 0
+    },
+    {
+      "path": "/tools/waist-height",
+      "oldHash": "11fedf491e4bffd01bd496a0b5f9b91c315eb2b1e3add64f8bda562bdd592260",
+      "newHash": "416d85967deab2e0977e9ca4224508c08abae80f06130a5f4711800114ca9178",
+      "visibleHtmlUnchanged": true,
+      "applicationItemsRemoved": 1,
+      "remainingTypes": [
+        "BreadcrumbList",
+        "WebPage",
+        "FAQPage",
+        "Organization"
+      ],
+      "jsonParseErrors": 0
+    },
+    {
+      "path": "/tools/walking",
+      "oldHash": "86c00109def0e41d806f492316c0da3704185e6fd82255b4a0b2ae94f349b333",
+      "newHash": "756da3bb5d6e36ca80bf65b3684c69fc5371cf7b5344d797d0c64d0bba3080ac",
+      "visibleHtmlUnchanged": true,
+      "applicationItemsRemoved": 1,
+      "remainingTypes": [
+        "BreadcrumbList",
+        "WebPage",
+        "FAQPage",
+        "Organization",
+        "Article"
+      ],
+      "jsonParseErrors": 0
+    },
+    {
+      "path": "/tools/water",
+      "oldHash": "94a469d05f76ec232643312e322f9b42f62de28e659515353196f4282e53b724",
+      "newHash": "ff588dfd4d6255643be08c8829b562b73d030118682bbdd3bb4bc5213bc4649e",
+      "visibleHtmlUnchanged": true,
+      "applicationItemsRemoved": 1,
+      "remainingTypes": [
+        "BreadcrumbList",
+        "WebPage",
+        "FAQPage",
+        "Organization"
+      ],
+      "jsonParseErrors": 0
+    }
+  ],
+  "retainedAssets": 867,
+  "homepageAndStartHerePreserved": true,
+  "googleSoftwareRichResults": "Not requested; no fabricated reviews"
+}
