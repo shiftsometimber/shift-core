@@ -6,6 +6,8 @@ on:
   push:
     branches: [main]
     paths:
+      - "release/approved-runtime-composition.mjs"
+      - "release/approved-runtime-composition.json"
       - "public-tool-guidance.mjs"
       - "public-tool-delivery.mjs"
       - "release/tool-schema-*"
