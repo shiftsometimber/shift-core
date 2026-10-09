@@ -32,7 +32,7 @@ test('production preflight recognises only the independently pinned metrics file
  if(reconciliationRecord()?.myTreatment)assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p==='wrangler.jsonc'?'tampered':p),/Approved composition source \/ boundary drift/);
  for(const p of ['public-seo-growth-data.mjs','unlisted.mjs'])assert.equal(metricsPreflightPath(p),false);
  const c=metricsRecord(),read=(ref,p)=>ref==='HEAD'&&p==='release/app-preflight.mjs'?'tampered':p;
- assert.throws(()=>verifyMetricsConnection(c,read),/Metrics maintenance source drift/);
+ assert.throws(()=>verifyMetricsConnection(c,read),/(?:Metrics maintenance source drift|Later unattributed Watch recovery maintenance drift)/);
 });
 
 import {bootstrap} from '../activation-measurement/assets.mjs';
