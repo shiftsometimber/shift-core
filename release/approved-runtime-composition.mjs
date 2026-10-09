@@ -696,10 +696,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const watchDiagnostic=c.lateWatchDiagnosticRepair;
+ if(watchDiagnostic)verifyLateWatchDiagnosticRepair(watchDiagnostic,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preWatchDiagnosticHead=watchDiagnostic?watchDiagnostic.base:actualHead;
+ const watchDiagnosticRawBlob=(ref,path)=>outerRawBlob(watchDiagnostic&&ref==='HEAD'&&LATE_WATCH_DIAGNOSTIC_SET.has(path)?watchDiagnostic.base:ref,path);
  const lateWatch=c.lateWatchFactualUpdate;
- if(lateWatch)verifyLateWatchFactualUpdate(lateWatch,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preLateWatchHead=lateWatch?lateWatch.base:actualHead;
- const lateWatchRawBlob=(ref,path)=>outerRawBlob(lateWatch&&ref==='HEAD'&&LATE_WATCH_SET.has(path)?lateWatch.base:ref,path);
+ if(lateWatch)verifyLateWatchFactualUpdate(lateWatch,{head:preWatchDiagnosticHead,read:watchDiagnosticRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preLateWatchHead=lateWatch?lateWatch.base:preWatchDiagnosticHead;
+ const lateWatchRawBlob=(ref,path)=>watchDiagnosticRawBlob(lateWatch&&ref==='HEAD'&&LATE_WATCH_SET.has(path)?lateWatch.base:ref,path);
  const continuity=c.continuityPreservationRepair;
  if(continuity)verifyContinuityPreservationRepair(continuity,{head:preLateWatchHead,read:lateWatchRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preContinuityHead=continuity?continuity.base:preLateWatchHead;
@@ -1183,3 +1187,24 @@ export function verifyLateWatchFactualUpdate(c,{head,read,diff,ancestor}){
  return c;
 }
 
+
+// Retain the exact fail-closed Watch diagnostic while accepting its more precise error label.
+export const LATE_WATCH_DIAGNOSTIC_BASE='8f9b060409346e9290640e9b30ae9f489c32ad3f';
+export const LATE_WATCH_DIAGNOSTIC_SOURCE='98222db13ff0c591019c0b7be0486983706b4432';
+export const LATE_WATCH_DIAGNOSTIC_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
+export const LATE_WATCH_DIAGNOSTIC_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/late-watch-diagnostic-composition.test.mjs']);
+const LATE_WATCH_DIAGNOSTIC_SET=new Set([...LATE_WATCH_DIAGNOSTIC_PATHS,...LATE_WATCH_DIAGNOSTIC_MAINTENANCE]);
+for(const path of LATE_WATCH_DIAGNOSTIC_SET)RECONCILIATION_PATHS.add(path);
+export function verifyLateWatchDiagnosticRepair(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_LATE_WATCH_DIAGNOSTIC_REPAIR_V1');assert.equal(c.base,LATE_WATCH_DIAGNOSTIC_BASE);assert.equal(c.source,LATE_WATCH_DIAGNOSTIC_SOURCE);
+ assert.deepEqual(c.paths,LATE_WATCH_DIAGNOSTIC_PATHS);assert.deepEqual(c.maintenancePaths,LATE_WATCH_DIAGNOSTIC_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.failedRun,37935819106);assert.equal(c.failedJob,113837586069);assert.equal(c.releaseGuardExpectationFixed,true);
+ for(const flag of ['runtimeChanged','publicCopyChanged','medicalClaimsChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(diff(c.base,c.source),c.paths,'Unrelated late Watch diagnostic repair');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated late Watch diagnostic maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after late Watch diagnostic receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Late Watch diagnostic source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Late Watch diagnostic maintenance drift: '+path);
+ return c;
+}
