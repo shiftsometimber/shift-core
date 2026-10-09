@@ -73,7 +73,7 @@ Google native UI corroborates the identical UK/Web/all-brand settled report disc
 
 No new indexing, measured growth or independent AI citation is claimed from these source/tests/UI checks. Preserve the permanent hub and six established priorities.
 
-## Measurement completion receipt — 9 October 2026, 22:55 UTC
+## Measurement completion receipt — 9 October 2026, evening
 
 The accepted handover remains accepted. This dated receipt supersedes only the earlier export/access and release-status observations above; it does not reopen delivery or grant new publishing authority.
 
@@ -88,3 +88,9 @@ The accepted handover remains accepted. This dated receipt supersedes only the e
 | Semrush — Organic Growth | Full95-page PDF recovered/read: export generated8Oct, screenshots' underlying crawl updated1Oct/desktop/JS disabled/100-page cap. No fresh current project session; Semrush project URL redirects to signed-out homepage. The user-reported106 keywords/1citation/0mentions remains unverified scope/date, not a comparable growth result. Exact dependency: existing authenticated Semrush project/export with date, UK database, scope, device and citation prompt/platform/source pinned. |
 
 Permanent /male-obesity role, complementary owners and six priorities are unchanged. Publication, Google discovery/indexing, measured acquisition/activation and independently captured AI citations remain separate states. The shared candidate and measurement guard do not establish a growth win.
+
+### Fresh GA4 collection receipt — 9 October 2026, 22:58 UTC
+
+Native GA4 Realtime for property 549150735 showed all four public pillar engagement names in the last-30-minute window: shift_pillar_first_step_opened (1), shift_pillar_step_tried (1), shift_pillar_review_used (2), shift_pillar_onward_opened (1); programme_page_view (1) also appeared. This window includes the briefly deployed candidate before rollback; it is collection evidence, not stable post-release acceptance or a completed outcome. The controlled consented ordinary Programme page loaded one GTM-PSJVW9XR script and one G-Y7BV5KY6RR script; clicking the actual 'Start where I am' public link reached /start-here without entering personal or health data. Realtime still showed 13 names and no programme_cta_click. shift_action increased 6→7, but this aggregate observation cannot correlate a specific collector request to our click. Tag Assistant debug connections did not produce a request trace; that limitation is not proof of a broken collector. Outbound collector payload capture and a stable post-release producer→request→GA4 receipt remain open. No fabricated event or private account action was used.
+
+A later independent ordinary HTTP read of /male-obesity at 22:55 UTC returned bare 403. This is an access limitation for that read, not proof of universal blocking; the earlier dated 22:40 HTTP404 and failed release/rollback remain the specific serving evidence. Do not turn the later 403 into a new site outage claim.
