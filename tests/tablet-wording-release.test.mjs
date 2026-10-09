@@ -9,3 +9,9 @@ test('rejects broader edits, missing approval and altered source',()=>{
  const extra=deps();extra.diff=()=>[...TABLET_WORDING_PAYLOAD,'worker.js'];assert.throws(()=>verifyTabletWordingExtension(receipt(),extra));
  const drift=deps();drift.read=(ref,path)=>ref+path;assert.throws(()=>verifyTabletWordingExtension(receipt(),drift));
 });
+
+import {verifyTabletClientExtension,TABLET_CLIENT_BASE,TABLET_CLIENT_SOURCE,TABLET_CLIENT_RUN,TABLET_CLIENT_PAYLOAD,TABLET_CLIENT_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+const clientReceipt=()=>({proof:'EXACT_TABLET_CLIENT_V1',base:TABLET_CLIENT_BASE,source:TABLET_CLIENT_SOURCE,proofRun:TABLET_CLIENT_RUN,approval:'tighten this',payloadPaths:TABLET_CLIENT_PAYLOAD,maintenancePaths:TABLET_CLIENT_MAINTENANCE,maintenanceSource:maintenance,homepageChanged:false,orderingOpened:false,pricesChanged:false});
+const clientDeps=()=>({head,ancestor:()=>{},diff:a=>a===TABLET_CLIENT_BASE?TABLET_CLIENT_PAYLOAD:a===TABLET_CLIENT_SOURCE?TABLET_CLIENT_MAINTENANCE:[RECONCILIATION_MANIFEST],read:(ref,path)=>path+':'+(ref==='HEAD'?(TABLET_CLIENT_PAYLOAD.includes(path)?TABLET_CLIENT_SOURCE:maintenance):ref)});
+test('results-script follow-through requires its exact source and maintenance',()=>{const c=clientReceipt();assert.equal(verifyTabletClientExtension(c,clientDeps()),c);});
+test('results-script follow-through rejects scope and source changes',()=>{for(const change of [{homepageChanged:true},{orderingOpened:true},{pricesChanged:true},{source:'3'.repeat(40)},{proofRun:1},{approval:'assumed'},{payloadPaths:[...TABLET_CLIENT_PAYLOAD,'worker.js']}])assert.throws(()=>verifyTabletClientExtension({...clientReceipt(),...change},clientDeps()));const d=clientDeps();d.read=(ref,path)=>ref+path;assert.throws(()=>verifyTabletClientExtension(clientReceipt(),d));});
