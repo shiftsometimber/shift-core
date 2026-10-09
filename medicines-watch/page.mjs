@@ -8,6 +8,13 @@ import {TREATMENTS_ENTRY,TREATMENTS_ENTRY_LEGACY} from './preservation.mjs';
 
 export const WATCH_PATH = '/treatment-centre/medicines-watch';
 export const HEALTH_PATH = '/v1/medicines-watch/health';
+const WATCH_HSTS = 'max-age=31536000; includeSubDomains; preload';
+
+function watchHeaders(initial = {}) {
+ const headers = new Headers(initial);
+ headers.set('Strict-Transport-Security',WATCH_HSTS);
+ return headers;
+}
 const CANONICAL = 'https://shiftsometimber.co.uk' + WATCH_PATH;
 const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const date = value => value && Number.isFinite(Date.parse(value)) ? new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'Europe/London'}).format(new Date(value)) : 'Not yet recorded';
@@ -157,18 +164,18 @@ export async function medicinesWatchRoutes(request,env,{fetchImpl=fetch}={}) {
  const url = new URL(request.url), path=url.pathname.replace(/\/+$/,'');
  if (![WATCH_PATH,HEALTH_PATH].includes(path)) return null;
  if (!['shiftsometimber.co.uk','www.shiftsometimber.co.uk'].includes(url.hostname)) return null;
- if (!['GET','HEAD'].includes(request.method)) return new Response('Method not allowed',{status:405,headers:{Allow:'GET, HEAD'}});
+ if (!['GET','HEAD'].includes(request.method)) return new Response('Method not allowed',{status:405,headers:watchHeaders({Allow:'GET, HEAD'})});
  const health = await readWatchHealth(env);
- if (path === HEALTH_PATH) return new Response(request.method==='HEAD'?null:JSON.stringify(health),{headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
+ if (path === HEALTH_PATH) return new Response(request.method==='HEAD'?null:JSON.stringify(health),{headers:watchHeaders({'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'})});
  const upstream = new URL('https://projectshift.pages.dev/treatment-centre');
- const unavailable = () => new Response('The Medicines Watch page is temporarily unavailable. Please try again shortly.',{status:503,headers:{'Content-Type':'text/plain; charset=utf-8','Retry-After':'60'}});
+ const unavailable = () => new Response('The Medicines Watch page is temporarily unavailable. Please try again shortly.',{status:503,headers:watchHeaders({'Content-Type':'text/plain; charset=utf-8','Retry-After':'60'})});
  let base,html;
  try {
   base = await fetchImpl(upstream,{headers:{Accept:'text/html'},signal:AbortSignal.timeout(15000)});
   if (!base.ok) return unavailable();
   html = renderWatchDocument(await base.text(),health,url.searchParams);
  } catch { return unavailable(); }
- const headers = new Headers(base.headers);for (const name of ['Content-Length','ETag','Last-Modified']) headers.delete(name);
+ const headers = watchHeaders(base.headers);for (const name of ['Content-Length','ETag','Last-Modified']) headers.delete(name);
  headers.set('Content-Type','text/html; charset=utf-8');headers.set('Cache-Control','public, max-age=60, must-revalidate');headers.set('X-Shift-Medicines-Watch','1');
  return new Response(request.method==='HEAD'?null:html,{headers});
 }
