@@ -31,9 +31,9 @@ jobs:
           node --input-type=module <<'NODE'
           import assert from 'node:assert/strict';
           import {execFileSync} from 'node:child_process';
-          const allowed=new Set(['.github/workflows/my-timber-final-production.yml','tests/premortem-production.mjs','tests/premortem-runtime-receipt.mjs']);
+          const allowed=new Set(['.github/workflows/my-timber-final-production.yml','tests/premortem-production.mjs','tests/premortem-runtime-receipt.mjs','member-experience/verify-treatment-browser.mjs']);
           const changed=execFileSync('git',['diff','--name-only',process.env.ACCEPTANCE_SOURCE,'HEAD'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
-          assert.equal(changed.length,3);assert(changed.every(x=>allowed.has(x)),'Application source changed');
+          assert.equal(changed.length,4);assert(changed.every(x=>allowed.has(x)),'Application source changed');
           let run;for(let i=0;i<90;i++){const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+process.env.ACCEPTANCE_RUN,{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});assert(r.ok);run=await r.json();assert.equal(run.head_sha,process.env.ACCEPTANCE_SOURCE);if(run.status==='completed')break;await new Promise(resolve=>setTimeout(resolve,10000));}
           assert.equal(run.conclusion,'success','Pinned release must finish successfully');console.log('PASS exact test-only delta and successful owned source receipt');
           NODE
@@ -49,6 +49,29 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node tests/premortem-runtime-receipt.mjs before
+      - name: Install browser
+        run: |
+          npm install --no-save --ignore-scripts playwright
+          npx playwright install --with-deps chromium
+          sudo apt-get install -y poppler-utils
+      - name: Garage save readback refresh return and diagnostic recovery
+        id: garage
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          export SHIFT_COMMISSIONING_OIDC="$token"
+          node tests/premortem-production.mjs
+      - name: Reuse existing owner My Treatment browser acceptance
+        if: always() && steps.serving_before.outcome == 'success'
+        env:
+          TREATMENT_RELEASE_SHA: 77d2469344bb678a8e68b6e4e6cb36dfdbdc28b0
+        run: |
+          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
+          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
+          echo "::add-mask::$token"
+          export SHIFT_COMMISSIONING_OIDC="$token"
+          node member-experience/verify-treatment-browser.mjs
       - name: Verify same runtime still serves after acceptance
         if: always() && steps.serving_before.outcome == 'success'
         env:
@@ -62,4 +85,5 @@ jobs:
             runtime-acceptance-evidence/
             passport-production-evidence/
             premortem-evidence/
+            my-treatment-browser-evidence/
           retention-days: 30
