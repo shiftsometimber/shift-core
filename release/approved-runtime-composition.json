@@ -874,5 +874,38 @@
     "approval": "User Approved, 9 October 2026; exact reviewed nine-page amendment via guarded workflow only",
     "rollbackAuthorityBroadened": false,
     "genericRuntimeAdoptionAllowed": false
+  },
+  "toolGuidanceProductionBuildFix": {
+    "proof": "EXACT_TOOL_GUIDANCE_PRODUCTION_BUILD_FIX_V1",
+    "base": "f2836dc942ef1fcee0d49a686b117bd687be3531",
+    "source": "cd15d3b7181dd9d158bf96a6f7ed991e329c6bcb",
+    "paths": [
+      ".github/workflows/cloudflare-production-promote.yml",
+      "public-tool-guidance.mjs",
+      "scripts/verify-tool-guidance-build.cjs",
+      "tests/tool-guidance-build.test.cjs",
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/cancelled-release-recovery.test.mjs",
+      "shift-coach/recover-cancelled-release.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/tool-guidance-build-composition.test.mjs"
+    ],
+    "maintenanceSource": "e77fb64c62dacb875f158dd9bad6d62ec4353f9c",
+    "failedRun": 37919061119,
+    "rollbackDeployment": "55dd384e-226a-4f19-b989-322dcdee7888",
+    "originalSuccessfulRun": 37895305149,
+    "publicationStatus": "approved_for_guarded_release",
+    "runtimeChanged": true,
+    "publicCopyChanged": false,
+    "medicalClaimsChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
