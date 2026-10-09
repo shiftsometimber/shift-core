@@ -365,6 +365,27 @@
     "memberBehaviourChanged": false,
     "privacyAssertionsWeakened": false
   },
+  "sharedFooterCompositionProof": {
+    "proof": "EXACT_SHARED_FOOTER_COMPOSITION_V1",
+    "base": "c37c770929f7f595def20f23b6092015b820dfff",
+    "source": "860ac9d82b51ca52702498d6d072cf54eced2314",
+    "maintenanceSource": "c3c034e41984d18c5b6b1f9c78e00c14c357ae19",
+    "paths": [
+      "tests/shared-footer.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/shared-footer-composition-release.test.mjs"
+    ],
+    "runtimeChanged": false,
+    "publicCopyChanged": false,
+    "medicalEvidenceChanged": false,
+    "clinicalApprovalChanged": false,
+    "customerDataChanged": false,
+    "checkoutChanged": false,
+    "myTimberChanged": false,
+    "privacyAssertionsWeakened": false
+  },
   "watchHstsPublicWording": {
     "proof": "EXACT_WATCH_HSTS_PUBLIC_WORDING_V1",
     "base": "961fa36a0dfb26a0ed3d4a43cb23a2c278270b75",
