@@ -1,26 +1,24 @@
-# SHIFT weight-understanding review candidate
+# SHIFT permanent male-obesity pillar — review candidate
 
-Original SHIFT content prepared in response to public obesity-awareness interest. No Lilly relationship, copied creative or medicine promotion is implied. Central route: `/why-is-weight-loss-so-hard`.
+Permanent original hub: `/male-obesity`. Supersedes the unpublished question-led route. Lilly prompted the reassessment; hub positioning, evidence and practical support stand independently.
 
-## Implemented
+## Prepared
 
-`content.mjs` contains the substantial central page and scoped additions for existing free support, mood and plateau pages. `candidate.mjs` supplies an isolated review adapter, keeps the existing shell, and gives the support page a no-account first-action CTA. It neutralises the named treatment FAQ in visible copy and JSON-LD, removes the two medicine-class stopping links in the support body, and qualifies unverified catalogue and automatic-adaptation claims. Existing mental-health urgent-help content remains. Existing men's hub and evidence-based article receive an inward link.
+`content.mjs`: full hub, three distinct supporting amendments and inward links from existing broad/evidence pages. `candidate.mjs`: disabled review adapter, Article/Breadcrumb schema and scoped footer/Menu amendments. Male obesity is a footer heading after Start, with five useful links; secondary drawer placement after My Timber. Primary five links preserved. Homepage aliases and private routes are excluded; Start Here main and flow preserved. No wider redesign, production composition, sitemap or deployment change.
 
-The adapter is disabled unless `SHIFT_WEIGHT_UNDERSTANDING_REVIEW` is exactly `1`. The production entry, approved runtime composition, workflows, homepage and Start Here have not been edited. No flag or infrastructure has been configured. This is an implementation candidate, not a deployed feature or clearance to promote.
+Free support amendments remove named medicine/class links and FAQ, qualify catalogue/adaptive-coaching claims, and put public help ahead of account entry. Mood urgent care preserved. No Fit, partner capacity or personalised clinical promise.
 
-## Tests
+## Test evidence
 
-Run `node --test obesity-awareness/candidate.test.mjs tests/public-continuity.test.mjs`. These test a request/response journey with a synthetic shell and the actual repository's support renderer, not a live browser or fresh-user member account. Cases include locked chrome and consent, preserved unrelated GET/HEAD/POST routes, metadata/schema consistency, native no-account choices, atomic source drift, outages and useful 503 fallback.
+`node --test obesity-awareness/candidate.test.mjs tests/public-continuity.test.mjs`: 23 passing. Tests cover real source renderers plus fixtures, source drift, metadata/schema, anchor/action routes, outages, HEAD and default-disabled controls. Footer/Menu tests preserve primary header and Start Here main and exclude homepage/member routes. Independent preview DOM behaviour checks are recorded in the verification artifact. This is not phone-rendering or saved-account-return evidence.
 
-## Integration and release
+## Specific release work
 
-1. Clinical reviewer checks claims, safety wording and evidence. Record truthful review details; the candidate does not invent a reviewer or publication date.
-2. Review the complete advertising context, original final footage, existing header/drawer/footer, linked destinations and optional member continuation. Removing names from this page does not clear the estate. The retained generic Treatments nav needs contextual assessment.
-3. Use the existing guarded composition/release workflow to add the reviewed modules and placement. Do not simply wrap production or bypass ownership. This candidate has no approved composition receipt.
-4. Stage with the existing real shell. Required: rendered 360/390px and desktop checks, keyboard/zoom/screen-reader checks, clinically appropriate safety routes, clean no-account first action, new synthetic member account, consent choices, saved-action persistence and feedback. The review adapter sets noindex headers and adds no tracking. Existing shell scripts still need inspection.
-5. Map measurement into the current consent-aware analytics taxonomy. Do not add health answers or free text to analytics. Differentiate choosing/preparing from completing an action; measure eligible week-four return and helpfulness with denominators. The recorded baseline must be refreshed before release.
-6. Obtain explicit approval of the exact accepted release; only then register the production route, sitemap entry and indexing metadata through the guarded workflow. Any unresolved pause stays in force. Social posts/video and recipient-specific partner messages require separate exact-version sign-off.
+1. Qualified UK clinician/dietitian resolves C1 (chronic/multifactorial and post-loss metabolic/appetite wording), C2 (eating-distress/GP boundary), C3 (non-prescriptive meal/fallback and existing-care examples). Sources checked; no reviewer/date invented.
+2. Advertising owner reviews the exact retained Treatments nav/footer and optional My Timber context under CAP/MHRA indirect-POM rules; final producer verifies original footage/music rights. No external submission is authorised.
+3. Matt approves exact hub, supporting copy and footer/Menu placement; homepage is a separate scope. Release owner integrates into the approved runtime composition on private staging without bypassing controls.
+4. Verify 320/375/390px, zoom, keyboard/menu, account failure, synthetic saved first action and sign-out/return. Do not mutate a real member to obtain test evidence. Fit is excluded pending unit/suitability verification.
+5. Validate consented fixed-property action events, staff/test exclusions and baseline. Prepared/saved plans are not proof of actions tried. Week-four feedback and returns require eligible cohort denominators.
+6. Matt explicitly approves exact staged publication; use guarded release, true review metadata, canonical sitemap registration and remove review noindex only at release. Social/video need exact asset/channel/destination/timing approval; no partner messages/costs/commitments.
 
-## Deliberate limitations
-
-No production hook, sitemap modification, new account, saved health data, analytics event implementation, deployment, paid service, partner commitment or external communication. Supporting changes have been tested against the current support renderer; mood/plateau/hub placement uses synthetic fixture shells and needs staged exact-source review. Native app parity, final original video and independent clinical/legal clearance remain unverified.
+Review flag remains `SHIFT_WEIGHT_UNDERSTANDING_REVIEW=1`, for isolated private staging only. No production hook/flag configured. Supporting metadata proposals are in the review brief; final real-shell integration must reconcile them with existing Article/FAQ schema. No account registration or terms acceptance performed.
