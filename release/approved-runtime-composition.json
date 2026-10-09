@@ -687,5 +687,26 @@
     "customerRowsChanged": false,
     "existingGatesWeakened": false,
     "rollbackAuthorityBroadened": false
+  },
+  "tabletClient": {
+    "proof": "EXACT_TABLET_CLIENT_V1",
+    "base": "3df83d33f1bc26e3119dfeba2cbc54b10cedafdb",
+    "source": "3011d45d24c363105a7b30014a03868d36ea81f7",
+    "proofRun": 37900716657,
+    "approval": "tighten this",
+    "payloadPaths": [
+      "public-promise-accuracy-v1.mjs",
+      "tests/tablet-wording.test.mjs",
+      "member-experience/treatment-page.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/tablet-wording-release.test.mjs",
+      ".github/workflows/tablet-wording-release-proof.yml"
+    ],
+    "maintenanceSource": "e6415afe3acb99ffa4c09a44403b20fe9b2f1c4d",
+    "homepageChanged": false,
+    "orderingOpened": false,
+    "pricesChanged": false
   }
 }

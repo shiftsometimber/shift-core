@@ -26,8 +26,10 @@ jobs:
         run: |
           node --input-type=module <<'JS'
           import assert from 'node:assert/strict';
-          import {verifyReconciledRelease,TABLET_WORDING_RUN,TABLET_WORDING_SOURCE} from './release/approved-runtime-composition.mjs';
+          import {verifyReconciledRelease,TABLET_WORDING_RUN,TABLET_WORDING_SOURCE,TABLET_CLIENT_RUN,TABLET_CLIENT_SOURCE} from './release/approved-runtime-composition.mjs';
           verifyReconciledRelease();
-          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+TABLET_WORDING_RUN,{headers:{Authorization:'Bearer '+process.env.GH_TOKEN}});
-          assert(r.ok);const proof=await r.json();assert.equal(proof.head_sha,TABLET_WORDING_SOURCE);assert.equal(proof.path,'.github/workflows/tablet-wording-proof.yml');assert.equal(proof.event,'pull_request');assert.equal(proof.conclusion,'success');
+          for(const [run,source] of [[TABLET_WORDING_RUN,TABLET_WORDING_SOURCE],[TABLET_CLIENT_RUN,TABLET_CLIENT_SOURCE]]){
+          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+run,{headers:{Authorization:'Bearer '+process.env.GH_TOKEN}});
+          assert(r.ok);const proof=await r.json();assert.equal(proof.head_sha,source);assert.equal(proof.path,'.github/workflows/tablet-wording-proof.yml');assert.equal(proof.event,'pull_request');assert.equal(proof.conclusion,'success');
+          }
           JS
