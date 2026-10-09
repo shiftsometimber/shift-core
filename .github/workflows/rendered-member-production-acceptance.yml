@@ -82,6 +82,21 @@ jobs:
           SHIFT_COMMISSIONING_OIDC: ${{ steps.oidc.outputs.token }}
           TREATMENT_RELEASE_SHA: 8f9b060409346e9290640e9b30ae9f489c32ad3f
         run: node member-experience/verify-treatment-browser.mjs
+      - name: Independently verify active owned Worker after signed-in acceptance
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';import {readFileSync,writeFileSync} from 'node:fs';
+          const evidence=JSON.parse(readFileSync('my-treatment-browser-evidence/guarded-deployment.json','utf8')),receipt=evidence.receipt;
+          assert.equal(evidence.source,'8f9b060409346e9290640e9b30ae9f489c32ad3f');assert.equal(evidence.run,37935819106);assert(process.env.CLOUDFLARE_API_TOKEN);
+          const base='https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/scripts/shift-core';
+          const get=async path=>{const r=await fetch(base+path,{method:'GET',headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN},signal:AbortSignal.timeout(30000)});assert(r.ok,'Read-only provider response: '+r.status);const d=await r.json();assert.equal(d.success,true);return d.result;};
+          const before=(await get('/deployments')).deployments[0];assert.equal(before.id,receipt.deploymentId);assert.deepEqual(before.versions,[{version_id:receipt.versionId,percentage:100}]);
+          const version=await get('/versions/'+receipt.versionId);assert.equal(version.id,receipt.versionId);const flag=version.resources?.bindings?.find(x=>x.name==='MY_TREATMENT_ENABLED');assert.equal(flag?.text,'true');
+          const after=(await get('/deployments')).deployments[0];assert.equal(after.id,before.id);assert.deepEqual(after.versions,before.versions);
+          const result={kind:'post_acceptance_readonly_provider_verification',at:new Date().toISOString(),source:evidence.source,guardedRun:evidence.run,deploymentId:before.id,versionId:version.id,percentage:100,treatmentEnabled:true,unchangedAcrossReads:true,requests:'GET only',productionMutations:0,pass:true};writeFileSync('my-treatment-browser-evidence/provider-active.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result));
+          JS
       - uses: actions/upload-artifact@v4
         if: always()
         with:
