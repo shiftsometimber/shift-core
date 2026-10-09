@@ -164,7 +164,8 @@ export function verifyScope(){
   validateMedicinesReview(reconciliationHistoricalRead((ref,path)=>git('rev-parse',ref+':'+path)));
   git('merge-base','--is-ancestor',WATCH_EXPANSION_COMMIT,'HEAD');
   validateWatchExpansion(reconciliationHistoricalRead((ref,path)=>git('rev-parse',ref+':'+path)));
-  validatePublicWording(reconciliationHistoricalRead((ref,path)=>git('rev-parse',ref+':'+path)));
+  const publicWordingHistory=reconciliationHistoricalRead((ref,path)=>git('rev-parse',ref+':'+path));
+  validatePublicWording((ref,path)=>ref==='HEAD'&&['medicines-watch/page.mjs','medicines-watch/page.test.mjs'].includes(path)?git('rev-parse','HEAD:'+path):publicWordingHistory(ref,path));
   validateTreatmentGuidance(reconciliationHistoricalRead((ref,path)=>git('rev-parse',ref+':'+path)));
   git('merge-base','--is-ancestor',WATCH_BROADER_COMMIT,'HEAD');
   validateWatchBroader(reconciliationHistoricalRead((ref,path)=>git('rev-parse',ref+':'+path)));
