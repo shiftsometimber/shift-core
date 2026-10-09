@@ -12,6 +12,9 @@ on:
       - "scripts/verify-tool-*.cjs"
       - "tests/tool-schema-gate.test.mjs"
       - "tests/public-tool-guidance.test.mjs"
+      - "scripts/verify-tool-guidance-build.cjs"
+      - "tests/tool-guidance-build.test.cjs"
+      - "tests/tool-guidance-build-composition.test.mjs"
       - "home-route-banner.mjs"
       - ".github/workflows/cloudflare-production-promote.yml"
       - "babylove/**"
@@ -443,7 +446,11 @@ jobs:
       - name: Capture AI frontend and aggregate knowledge foundation before release
         run: node release/shift-ai-live.mjs before
       - name: Prove public tool checks and guarded rollback in isolation
-        run: node --test scripts/verify-tool-page-schema.test.cjs tests/tool-schema-gate.test.mjs tests/runtime-rollback-guard.test.mjs tests/public-tool-guidance.test.mjs
+        run: |
+          node --test scripts/verify-tool-page-schema.test.cjs tests/tool-schema-gate.test.mjs tests/runtime-rollback-guard.test.mjs tests/public-tool-guidance.test.mjs tests/tool-guidance-build.test.cjs
+          node scripts/verify-tool-guidance-build.cjs "$RUNNER_TEMP/tool-guidance-build"
+          cp "$RUNNER_TEMP/tool-guidance-build/build-proof.json" b1-runtime-release/tool-guidance-build-proof.json
+          TOOL_GUIDANCE_FIXTURE_DIR="$RUNNER_TEMP/tool-guidance-build/pages" PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-tool-guidance-browser.cjs b1-runtime-release/tool-guidance-built
       - name: Capture current Worker deployment for rollback
         run: |
           if [ "${{ steps.growth_deployed.outputs.already_deployed }}" != true ]; then
