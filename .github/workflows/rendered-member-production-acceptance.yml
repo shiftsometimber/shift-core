@@ -102,7 +102,7 @@ jobs:
         run: |
           node --input-type=module <<'JS'
           import {existsSync,readFileSync} from 'node:fs';
-          for(const name of ['mobile-current-treatment.png','desktop-current-treatment.png','mobile-synthetic-summary.pdf','desktop-synthetic-summary.pdf']){const path='my-treatment-browser-evidence/'+name;if(existsSync(path))console.log(JSON.stringify({kind:'synthetic_visual_acceptance_artifact',scope:'Restricted synthetic commissioning accounts only; fictional treatment and medical information',name,encoding:'base64',data:readFileSync(path).toString('base64')}));}
+          for(const name of ['mobile-current-treatment.png','desktop-current-treatment.png','mobile-synthetic-summary.pdf','desktop-synthetic-summary.pdf','mobile-failure.png','desktop-failure.png']){const path='my-treatment-browser-evidence/'+name;if(existsSync(path))console.log(JSON.stringify({kind:'synthetic_visual_acceptance_artifact',scope:'Restricted synthetic commissioning accounts only; fictional treatment and medical information',name,encoding:'base64',data:readFileSync(path).toString('base64')}));}
           JS
       - uses: actions/upload-artifact@v4
         if: always()
