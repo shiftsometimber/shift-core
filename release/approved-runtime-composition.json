@@ -812,5 +812,31 @@
     "genericAdoptionAllowed": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "laterUnattributedWatchRollbackRetention": {
+    "proof": "EXACT_LATER_UNATTRIBUTED_WATCH_ROLLBACK_RETENTION_V1",
+    "base": "b277c25b2d3bf44f97501006f3b3416e9a8d44fe",
+    "source": "dd7537ed6850011fe3a9ccf891f1fccc68e96d9e",
+    "paths": [
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/cancelled-release-recovery.test.mjs",
+      "shift-coach/recover-cancelled-release.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/approved-runtime-composition.test.mjs"
+    ],
+    "maintenanceSource": "a15cb7decc58324a4ad7d09ceb28adc4451bf97c",
+    "failedRecoveryRun": 37914338433,
+    "failedRecoveryJob": 113766865055,
+    "restoredDeployment": "19c317f4-0058-4497-86a8-596db6de90a9",
+    "restoredVersion": "fd7939d8-6387-48fa-adc8-714e6f8bea8d",
+    "runtimeChanged": false,
+    "medicalClaimsChanged": false,
+    "publicCopyChanged": false,
+    "customerDataChanged": false,
+    "genericAdoptionAllowed": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
