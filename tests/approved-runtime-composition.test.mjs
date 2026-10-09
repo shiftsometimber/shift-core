@@ -228,6 +228,20 @@ test('unattributed Watch runtime recovery is finite, byte-pinned and never gener
  {const f=unattributedRecoveryFixture();f.c.restoredVersion='unknown';assert.throws(()=>verifyUnattributedWatchRecovery(f.c,f.options));}
 });
 
+import {verifyLaterUnattributedWatchRecovery,LATER_UNATTRIBUTED_WATCH_RECOVERY_BASE,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRIOR,LATER_UNATTRIBUTED_WATCH_RECOVERY_SOURCE,LATER_UNATTRIBUTED_WATCH_RECOVERY_PATHS,LATER_UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED} from '../release/approved-runtime-composition.mjs';
+const laterUnattributedRecoveryFixture=()=>{
+ const maintenanceSource='e'.repeat(40),head='f'.repeat(40),c={proof:'EXACT_LATER_UNATTRIBUTED_WATCH_RUNTIME_RECOVERY_V1',base:LATER_UNATTRIBUTED_WATCH_RECOVERY_BASE,priorComposition:LATER_UNATTRIBUTED_WATCH_RECOVERY_PRIOR,source:LATER_UNATTRIBUTED_WATCH_RECOVERY_SOURCE,preservedPaths:LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED,paths:LATER_UNATTRIBUTED_WATCH_RECOVERY_PATHS,maintenancePaths:LATER_UNATTRIBUTED_WATCH_RECOVERY_MAINTENANCE,maintenanceSource,observationRun:37908130882,successfulPredecessorRun:37895305149,restoredVersion:'fd7939d8-6387-48fa-adc8-714e6f8bea8d',medicalClaimsChanged:false,publicCopyChanged:false,customerDataChanged:false,genericAdoptionAllowed:false,rollbackAuthorityBroadened:false,existingGatesWeakened:false};
+ const options={head,read:()=> 'same',ancestor:()=>{},diff:(a,b)=>a===c.priorComposition&&b===c.base?[...c.preservedPaths]:a===c.base&&b===c.source?[...c.paths]:a===c.source&&b===c.maintenanceSource?[...c.maintenancePaths]:[RECONCILIATION_MANIFEST]};
+ return{c,options};
+};
+test('later unattributed Watch recovery preserves newer main and remains finite',()=>{
+ const {c,options}=laterUnattributedRecoveryFixture();assert.doesNotThrow(()=>verifyLaterUnattributedWatchRecovery(c,options));
+ for(const path of [...c.preservedPaths,...c.paths,...c.maintenancePaths]){const f=laterUnattributedRecoveryFixture();f.options.read=(ref,p)=>ref==='HEAD'&&p===path?'drift':'same';assert.throws(()=>verifyLaterUnattributedWatchRecovery(f.c,f.options),/drift/);}
+ for(const flag of ['medicalClaimsChanged','publicCopyChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened']){const f=laterUnattributedRecoveryFixture();f.c[flag]=true;assert.throws(()=>verifyLaterUnattributedWatchRecovery(f.c,f.options));}
+ {const f=laterUnattributedRecoveryFixture();f.options.diff=()=>['checkout.mjs'];assert.throws(()=>verifyLaterUnattributedWatchRecovery(f.c,f.options),/Unexpected|Unrelated|Unreviewed/);}
+ {const f=laterUnattributedRecoveryFixture();f.c.observationRun=1;assert.throws(()=>verifyLaterUnattributedWatchRecovery(f.c,f.options));}
+});
+
 import {verifyLogoutAdoption,LOGOUT_ADOPTION_BASE,LOGOUT_ADOPTION_PATHS,assertLogoutBoundary,RELOAD_VERIFIER} from '../release/approved-runtime-composition.mjs';
 const logoutBefore="await page.locator('[data-member-logout]').click();await page.waitForFunction(async()=>401);assert.deepEqual(records,[]);";
 const logoutAfter=logoutBefore.replace("await page.waitForFunction","await page.waitForURL(url=>url.origin===site&&url.pathname==='/member-login',{waitUntil:'domcontentloaded',timeout:30000});await page.waitForFunction");
