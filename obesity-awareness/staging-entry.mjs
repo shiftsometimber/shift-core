@@ -1,3 +1,4 @@
+import {addPillarClient} from './measurement.mjs';
 import {withWeightUnderstandingReview,PATH} from './candidate.mjs';
 const PRODUCTION='https://shiftsometimber.co.uk';
 export const STAGED_PATHS=Object.freeze([PATH,'/weight-loss-support-for-men','/mental-health/mental-health-and-weight','/articles/weight-loss-plateau-men','/mens-weight-management','/articles/evidence-based-weight-loss']);
@@ -25,9 +26,10 @@ export function createStagingWorker(upstream=fetch){return {async fetch(request,
   const origin=new URL(request.url).origin;
   html=html.replace(/href=["'](\/[^"']*)["']/g,(all,href)=>{const p=href.split(/[?#]/)[0];return 'href="'+(STAGED_PATHS.includes(p)?origin:PRODUCTION)+href+'"'});
   const menu=`<script data-staging-chrome>const b=document.querySelector('.menu-trigger'),d=document.getElementById('site-drawer');if(b&&d){const close=()=>{d.hidden=true;b.setAttribute('aria-expanded','false');b.focus()};b.onclick=()=>{d.hidden=!d.hidden;b.setAttribute('aria-expanded',String(!d.hidden));if(!d.hidden)d.querySelector('.drawer-close')?.focus()};d.querySelector('.drawer-close')?.addEventListener('click',close);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!d.hidden)close()})}for(const [id,cls]of [['toggleLargeText','staging-large'],['toggleMotion','staging-reduced']])document.getElementById(id)?.addEventListener('click',e=>e.currentTarget.setAttribute('aria-pressed',String(document.body.classList.toggle(cls))));</script>`;
+  html=addPillarClient(html);
   html=html.replace('</head>','<base href="'+PRODUCTION+'/"><style>body.staging-large main{font-size:22px!important}body.staging-reduced *{animation:none!important;transition:none!important}</style></head>').replace('</body>',menu+'</body>');
   const h=new Headers(r.headers);for(const k of ['Set-Cookie','Content-Length','Content-Encoding','ETag','Last-Modified'])h.delete(k);for(const [k,v]of Object.entries(headers()))h.set(k,v);
-  h.set('Content-Security-Policy',"default-src 'self' https://shiftsometimber.co.uk; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://shiftsometimber.co.uk; img-src 'self' https://shiftsometimber.co.uk data:; font-src 'self' https://shiftsometimber.co.uk; connect-src 'none'; form-action 'none'; object-src 'none'; base-uri https://shiftsometimber.co.uk; frame-ancestors 'none'");
+  h.set('Content-Security-Policy',"default-src 'self' https://shiftsometimber.co.uk; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://shiftsometimber.co.uk; img-src 'self' https://shiftsometimber.co.uk data:; font-src 'self' https://shiftsometimber.co.uk; connect-src 'none'; form-action 'none'; object-src 'none'; base-uri https://shiftsometimber.co.uk; frame-ancestors 'self'");
   return new Response(html,{status:200,headers:h});
  }catch{return request.method==='HEAD'?new Response(null,{status:503,headers:headers()}):safeFailure()}
 }}}

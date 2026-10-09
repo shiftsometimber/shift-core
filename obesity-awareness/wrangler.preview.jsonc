@@ -1,0 +1,10 @@
+{
+  "name": "shift-male-obesity-review",
+  "main": "preview-entry.mjs",
+  "compatibility_date": "2026-08-09",
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": {
+    "MALE_OBESITY_PREVIEW_ENABLED": "true"
+  }
+}

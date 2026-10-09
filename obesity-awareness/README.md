@@ -10,7 +10,7 @@ Free support amendments remove named medicine/class links and FAQ, qualify catal
 
 ## Test evidence
 
-`node --test obesity-awareness/*.test.mjs tests/public-continuity.test.mjs`: 33 passing. Tests cover real source renderers plus fixtures, source drift, metadata/schema, anchor/action routes, outages, HEAD and default-disabled controls. Footer/Menu tests preserve primary header and Start Here main and exclude homepage/member routes. Independent preview DOM behaviour checks are recorded in the verification artifact. This is not phone-rendering or saved-account-return evidence.
+`node --test obesity-awareness/*.test.mjs tests/public-continuity.test.mjs`: 38 passing. Tests cover real source renderers plus fixtures, source drift, metadata/schema, anchor/action routes, outages, HEAD and default-disabled controls. Footer/Menu tests preserve primary header and Start Here main and exclude homepage/member routes. Independent preview DOM behaviour checks are recorded in the verification artifact. This is not phone-rendering or saved-account-return evidence.
 
 ## Specific release work
 
@@ -30,3 +30,9 @@ Review flag remains `SHIFT_WEIGHT_UNDERSTANDING_REVIEW=1`, for isolated private 
 Owner approved the reviewed copy/chrome on 9 October 2026, 19:46 BST, then said Go. Homepage and communications remain separate. Owner removed the external reviewer condition at 20:07 BST. Source accuracy, contextual advertising checks and staged phone/account evidence remain work to complete internally; they are not requests to appoint a reviewer.
 
 The exact composition gate rejects this branch because the obesity-awareness payload is not registered in its immutable maintenance receipt. Do not broaden its generic allowlist. For the approved informational copy, add an exact source/paths maintenance receipt and perform guarded staging/release. The existing public Continuity preview is not an authenticated staging substitute. Browser file access was denied by browser security policy; no bypass attempted.
+
+## Authorised informational delivery (20:20 BST)
+
+Owner explicitly requests runtime registration, supported rendered preview and authorised release. `production.mjs` integrates the hub, scoped supporting amendments, footer/Menu and a single canonical sitemap entry through `shift-coach/worker.mjs`; homepage/private/API/write handlers remain unchanged. `preview-entry.mjs` and `wrangler.preview.jsonc` use the existing read-only preview capability, no data bindings or production credential. This public-information test environment is noindex and has no account forms or record writes. The earlier assumption that a new authenticated staging destination was required is retired.
+
+Public launch needs actual rendered responsive/keyboard/action and onward-route checks, complete-source registration, compiled/runtime proof and the existing guarded release/ownership controls. Synthetic account saving, sign-out return and automated coaching adaptation belong to later member improvements because this page explicitly saves nothing and does not promise them. The public review controls give a different response to excess effort versus no benefit, without storage; consented generic engagement counts send no chosen step or feedback answer. They are not proof of clinical results or four-week retention.
