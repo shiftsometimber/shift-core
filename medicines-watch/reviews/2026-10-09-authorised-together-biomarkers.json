@@ -34,7 +34,7 @@
     }
   ],
   "configuredSourcePass": {
-    "outcome": "incomplete_pending_independent_live_read",
+    "outcome": "fresh_live_monitor_state_read; factual_source_withdrawal_review_incomplete",
     "attempts": [
       {
         "url": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
@@ -54,7 +54,7 @@
     ],
     "reviewRenewals": false,
     "baselineChanges": false,
-    "withdrawalAssessment": "No complete fresh health response available yet; current availability/content changes/withdrawals/overdue queue cannot be declared verified.",
+    "withdrawalAssessment": "Fresh monitor state is available independently. All 199 configured-source states were inspected; 32 factual reviews remain due and three HTTP 403 source checks remain failed. The known Structure source has recovered. Availability is not a factual review or withdrawal decision; these outstanding reviews remain incomplete.",
     "knownPriorState": {
       "source": "Production run 37938647239, completed 2026-10-09T14:10:54Z; prior run's live review",
       "programmes": 110,
@@ -63,6 +63,105 @@
       "awaitingReview": 32,
       "checkDelayed": 4,
       "notFreshForThisPass": true
+    },
+    "independentLiveRead": {
+      "checkedAt": "2026-10-09T15:12:09.629Z",
+      "workflowRun": 37949854348,
+      "job": 113885495016,
+      "methods": "GET only",
+      "status": "awaiting_review",
+      "sourceCount": 199,
+      "current": 164,
+      "awaitingReview": 32,
+      "checkDelayed": 3,
+      "failedSources": [
+        {
+          "id": "zealand-zp6590-pipeline",
+          "status": "check_delayed",
+          "checkStatus": "check_delayed",
+          "reviewStatus": "verification_pending",
+          "reasons": [
+            "source_not_verified",
+            "last_check_failed"
+          ],
+          "reviewedAt": "2026-10-03T20:05:13.956Z",
+          "lastAttemptAt": "2026-10-09T14:15:33.642Z",
+          "lastSuccessAt": null,
+          "lastFailureAt": "2026-10-09T14:15:33.642Z",
+          "error": "http_403",
+          "httpStatus": 403,
+          "nextCheckAt": "2026-10-09T15:15:33.642Z"
+        },
+        {
+          "id": "bivamelagon-rhythm-20250709",
+          "status": "check_delayed",
+          "checkStatus": "check_delayed",
+          "reviewStatus": "reviewed",
+          "reasons": [
+            "last_check_failed"
+          ],
+          "reviewedAt": "2026-10-06T13:43:02Z",
+          "lastAttemptAt": "2026-10-09T14:15:33.642Z",
+          "lastSuccessAt": "2026-10-09T12:01:15.013Z",
+          "lastFailureAt": "2026-10-09T14:15:33.642Z",
+          "error": "http_403",
+          "httpStatus": 403,
+          "nextCheckAt": "2026-10-09T15:15:33.642Z"
+        },
+        {
+          "id": "rm718-rhythm-20260804",
+          "status": "check_delayed",
+          "checkStatus": "check_delayed",
+          "reviewStatus": "reviewed",
+          "reasons": [
+            "last_check_failed"
+          ],
+          "reviewedAt": "2026-10-06T13:43:02Z",
+          "lastAttemptAt": "2026-10-09T14:15:33.642Z",
+          "lastSuccessAt": "2026-10-09T12:01:15.013Z",
+          "lastFailureAt": "2026-10-09T14:15:33.642Z",
+          "error": "http_403",
+          "httpStatus": 403,
+          "nextCheckAt": "2026-10-09T15:15:33.642Z"
+        }
+      ],
+      "awaitingSourceIds": [
+        "survodutide-zealand",
+        "petrelintide-zealand",
+        "eloralintide-lilly",
+        "dapiglutide-zealand",
+        "lilly-triumph2-20260929",
+        "roche-ct388-20260922",
+        "kailera-q2-2026",
+        "regeneron-courage-20250917",
+        "hrs1596-hengrui-20260929",
+        "emugrobart-chugai-20260928",
+        "env308-enveda-20260818",
+        "pf3944-pfizer-vesper6",
+        "kailera-kainetic-20260930",
+        "registry-nct07215559",
+        "registry-nct07310901",
+        "registry-nct05713799",
+        "mounjaro-mhra",
+        "mounjaro-smpc",
+        "mounjaro-nhs",
+        "mounjaro-nice",
+        "wegovy-injection-access",
+        "wegovy-weight-nice",
+        "wegovy-cardiovascular-nice",
+        "wegovy-tablet-mhra",
+        "wegovy-tablet-smpc",
+        "orlistat-nhs",
+        "orlistat-120-smpc",
+        "orlistat-60-smpc",
+        "foundayo-mhra",
+        "foundayo-smpc",
+        "retatrutide-mhra",
+        "retatrutide-lilly"
+      ],
+      "hubEntry": true,
+      "existingPsoriaticEntry": true,
+      "biomarkersAlreadyLive": false
     }
   },
   "discoveryPass": {
@@ -119,5 +218,5 @@
     "previousDeployment": "8290ec3a-1cb3-4c8e-a378-cadf4f5e5959",
     "freshLiveVerificationRequired": true
   },
-  "nextAction": "Obtain the independent GET-only live receipt from the existing Watch checks. Run all Watch checks, bind the exact passing source through the finite release composition, merge the exact passing PR and deploy through existing guarded production workflow; verify actual live content, Treatments entry and SELECT-only health before marking published."
+  "nextAction": "Bind the exact passing source through finite release composition; merge exact passing PR and deploy through guarded production workflow. Verify actual biomarker supplement live, Treatments entry and SELECT-only health. Keep 32 overdue factual reviews and blocked/incomplete discovery checks explicit."
 }
