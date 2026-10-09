@@ -615,5 +615,30 @@
     "stockChanged": false,
     "memberBehaviourChanged": false,
     "privacyAssertionsWeakened": false
+  },
+  "tabletWording": {
+    "proof": "EXACT_TABLET_WORDING_V1",
+    "base": "92a5b8d280b090e609b8f14ed5adf5393bc355f0",
+    "source": "8b96c26e313df0c950167b7a2a2eb17a42b904f4",
+    "proofRun": 37893723678,
+    "approval": "tighten this",
+    "payloadPaths": [
+      "tablet-wording-v1.mjs",
+      "public-promise-accuracy-v1.mjs",
+      "member-experience/public-preservation.mjs",
+      "tests/tablet-wording.test.mjs",
+      ".github/workflows/tablet-wording-proof.yml"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/tablet-wording-release.test.mjs",
+      ".github/workflows/tablet-wording-release-proof.yml",
+      "tests/approved-runtime-composition.test.mjs",
+      "acquisition-activation/metrics-release.test.mjs"
+    ],
+    "maintenanceSource": "22e055cf93750e34f9e7e6cb0d772e2f86847258",
+    "homepageChanged": false,
+    "orderingOpened": false,
+    "pricesChanged": false
   }
 }
