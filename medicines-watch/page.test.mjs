@@ -50,11 +50,12 @@ test('parent only gains the exact marked entry; all original bytes survive',asyn
 test('public status and document paths are SELECT-only; POST cannot initiate a scan',async()=>{
  const statements=[];const DB={prepare(sql){statements.push(sql);assert.match(sql,/^SELECT /);return {all:async()=>({results:[]})}},exec(){throw Error('unexpected write')}};
  const request=path=>new Request('https://shiftsometimber.co.uk'+path);
- const api=await medicinesWatchRoutes(request(HEALTH_PATH),{DB});assert.equal(api.status,200);assert.equal((await api.json()).sources.length,sources.length);
+ const api=await medicinesWatchRoutes(request(HEALTH_PATH),{DB});assert.equal(api.status,200);assert.equal(api.headers.get('Strict-Transport-Security'),'max-age=31536000; includeSubDomains; preload');assert.equal((await api.json()).sources.length,sources.length);
+ const head=await medicinesWatchRoutes(new Request('https://shiftsometimber.co.uk'+HEALTH_PATH,{method:'HEAD'}),{DB});assert.equal(head.status,200);assert.equal(head.headers.get('Strict-Transport-Security'),'max-age=31536000; includeSubDomains; preload');
  let fetched;
  const page=await medicinesWatchRoutes(request(WATCH_PATH),{DB},{fetchImpl:async(url,options)=>{fetched={url:String(url),options};return new Response(shell,{headers:{'content-type':'text/html'}})}});
- assert.equal(page.status,200);assert.equal(fetched.url,'https://projectshift.pages.dev/treatment-centre');assert.deepEqual(fetched.options.headers,{Accept:'text/html'});
- const post=await medicinesWatchRoutes(new Request('https://shiftsometimber.co.uk'+HEALTH_PATH,{method:'POST'}),{DB});assert.equal(post.status,405);assert.equal(statements.length,2);
+ assert.equal(page.status,200);assert.equal(page.headers.get('Strict-Transport-Security'),'max-age=31536000; includeSubDomains; preload');assert.equal(fetched.url,'https://projectshift.pages.dev/treatment-centre');assert.deepEqual(fetched.options.headers,{Accept:'text/html'});
+ const post=await medicinesWatchRoutes(new Request('https://shiftsometimber.co.uk'+HEALTH_PATH,{method:'POST'}),{DB});assert.equal(post.status,405);assert.equal(post.headers.get('Strict-Transport-Security'),'max-age=31536000; includeSubDomains; preload');assert.equal(post.headers.get('Allow'),'GET, HEAD');assert.equal(statements.length,3);
  assert.equal(await medicinesWatchRoutes(request('/member/dashboard'),{DB}),null);
 });
 

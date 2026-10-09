@@ -44,5 +44,5 @@ test('generated PWA offline response includes the same footer and does not cache
  const r=await result,html=await r.text();assert.equal(r.status,503);assert(html.includes(approvedFooter));assert(html.includes(approvedFooterStyles));assert(!serviceWorker.includes('caches.open'));
 });
 test('final Worker integration wraps both normal and early public HTML routes',()=>{
- const source=readFileSync(new URL('../worker-entry-v6.js',import.meta.url),'utf8');assert(source.includes('if(appStorePublic)return withSharedFooter(request,appStorePublic);'));assert(source.includes('return withSharedFooter(request,await withGrowthPublicCopy('));
+ const source=readFileSync(new URL('../worker-entry-v6.js',import.meta.url),'utf8');assert(source.includes('if(appStorePublic)return withSharedFooter(request,appStorePublic);'));assert(source.includes('return withPublicSeoCloseout(await withSharedFooter(request,await withGrowthPublicCopy('));
 });

@@ -365,6 +365,104 @@
     "memberBehaviourChanged": false,
     "privacyAssertionsWeakened": false
   },
+  "sharedFooterCompositionProof": {
+    "proof": "EXACT_SHARED_FOOTER_COMPOSITION_V1",
+    "base": "c37c770929f7f595def20f23b6092015b820dfff",
+    "source": "860ac9d82b51ca52702498d6d072cf54eced2314",
+    "maintenanceSource": "c3c034e41984d18c5b6b1f9c78e00c14c357ae19",
+    "paths": [
+      "tests/shared-footer.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/shared-footer-composition-release.test.mjs"
+    ],
+    "runtimeChanged": false,
+    "publicCopyChanged": false,
+    "medicalEvidenceChanged": false,
+    "clinicalApprovalChanged": false,
+    "customerDataChanged": false,
+    "checkoutChanged": false,
+    "myTimberChanged": false,
+    "privacyAssertionsWeakened": false
+  },
+  "watchHstsPublicWording": {
+    "proof": "EXACT_WATCH_HSTS_PUBLIC_WORDING_V1",
+    "base": "961fa36a0dfb26a0ed3d4a43cb23a2c278270b75",
+    "source": "9494c0a326cbc193c7247e94cb4e8b9eace379cd",
+    "maintenanceSource": "45cc49973fa09cfd0469992286e90ac483b455f8",
+    "paths": [
+      "release/public-wording-scope.mjs",
+      "scripts/b1-release-scope.mjs",
+      "tests/b1-release-scope.test.mjs",
+      "shift-coach/release.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-hsts-public-wording-release.test.mjs",
+      "shift-coach/release-contract.mjs"
+    ],
+    "runtimeChanged": false,
+    "readOnlyHeadersChanged": false,
+    "publicCopyChanged": false,
+    "medicalEvidenceChanged": false,
+    "clinicalApprovalChanged": false,
+    "catalogueCountChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyChanged": false,
+    "customerDataChanged": false,
+    "checkoutChanged": false,
+    "myTimberChanged": false,
+    "privacyAssertionsWeakened": false
+  },
+  "watchHstsDiagnostic": {
+    "proof": "EXACT_WATCH_HSTS_DIAGNOSTIC_V1",
+    "base": "c13d835552eb97dff903758b00609e73b5e50a88",
+    "source": "566b6108c576c3aec49a1919792b5611c83ee3aa",
+    "paths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-hsts-diagnostic-release.test.mjs"
+    ],
+    "runtimeChanged": false,
+    "readOnlyHeadersChanged": false,
+    "publicCopyChanged": false,
+    "medicalEvidenceChanged": false,
+    "clinicalApprovalChanged": false,
+    "catalogueCountChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyChanged": false,
+    "customerDataChanged": false,
+    "checkoutChanged": false,
+    "myTimberChanged": false
+  },
+  "watchHsts": {
+    "proof": "EXACT_WATCH_HSTS_V1",
+    "base": "8198d99b9f570087e63864e481278b8a2459bfdd",
+    "source": "04c50b99d155a9720b59b2e089b670de8523cadb",
+    "maintenanceSource": "8d90e26c5056ca63f68ee0c912afd10f892b58b1",
+    "paths": [
+      "medicines-watch/page.mjs",
+      "medicines-watch/page.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-hsts-release.test.mjs"
+    ],
+    "runtimeChanged": true,
+    "readOnlyHeadersChanged": true,
+    "publicCopyChanged": false,
+    "medicalEvidenceChanged": false,
+    "clinicalApprovalChanged": false,
+    "catalogueCountChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyChanged": false,
+    "customerDataChanged": false,
+    "checkoutChanged": false,
+    "myTimberChanged": false
+  },
   "watchBelieveDiagnostic": {
     "proof": "EXACT_WATCH_BELIEVE_DIAGNOSTIC_V1",
     "base": "8f05352def20c636aeb43ba2e7814d3255898d20",
