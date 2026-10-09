@@ -1,0 +1,15 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {verifyMyTreatment,MY_TREATMENT_BASE,MY_TREATMENT_SOURCE,MY_TREATMENT_PATHS,MY_TREATMENT_MAINTENANCE,RECONCILIATION_MANIFEST} from '../release/approved-runtime-composition.mjs';
+import {TREATMENT_FLAG,TREATMENT_SCHEMA_STEP,TREATMENT_LIVE_STEP,TREATMENT_TEST_STEP} from '../release/my-treatment-config.mjs';
+function fixture(){const maintenanceSource='b'.repeat(40),head='c'.repeat(40),c={proof:'EXACT_MY_TREATMENT_V1',base:MY_TREATMENT_BASE,source:MY_TREATMENT_SOURCE,maintenanceSource,paths:MY_TREATMENT_PATHS,maintenancePaths:MY_TREATMENT_MAINTENANCE,ownerAuthorised:true,licensedMedicinesOnly:true,additiveSchemaOnly:true,homepageChanged:false,startHereChanged:false,navigationChanged:false,clinicalFeedClaimed:false,prescribingChanged:false,customerRowsChanged:false,existingGatesWeakened:false,rollbackAuthorityBroadened:false};const payload=new Set(c.paths);return {c,o:{head,ancestor:()=>{},diff:(a,b)=>a===c.base?c.paths:a===c.source?c.maintenancePaths:[RECONCILIATION_MANIFEST],read:(ref,path)=>ref==='HEAD'?(payload.has(path)?'source:'+path:'maintenance:'+path):ref===c.source?'source:'+path:'maintenance:'+path,content:(ref,path)=>['wrangler.jsonc','wrangler.coaching.jsonc'].includes(path)?'config\n'+(ref===c.source?TREATMENT_FLAG:''):'gates\n'+(ref===c.source?TREATMENT_SCHEMA_STEP+TREATMENT_LIVE_STEP+TREATMENT_TEST_STEP:'')+'rollback'}};}
+test('My Treatment release is finite, authorised and preserves all earlier gates',()=>{const {c,o}=fixture();assert.equal(verifyMyTreatment(c,o),c);});
+test('My Treatment rejects extra paths and every changed source byte',()=>{
+ {const{c,o}=fixture();o.diff=(a,b)=>a===c.base?[...c.paths,'homepage.js']:a===c.source?c.maintenancePaths:[RECONCILIATION_MANIFEST];assert.throws(()=>verifyMyTreatment(c,o),/Unrelated My Treatment source/);}
+ for(const path of [...MY_TREATMENT_PATHS,...MY_TREATMENT_MAINTENANCE]){const{c,o}=fixture(),read=o.read;o.read=(ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p);assert.throws(()=>verifyMyTreatment(c,o),/source.*drift/);}
+});
+test('My Treatment rejects expanded configuration, missing gates and later unreviewed changes',()=>{
+ {const{c,o}=fixture(),content=o.content;o.content=(ref,p)=>content(ref,p)+(ref===c.source?'other change':'');assert.throws(()=>verifyMyTreatment(c,o),/configuration/);}
+ {const{c,o}=fixture(),content=o.content;o.content=(ref,p)=>p.endsWith('.yml')&&ref===c.source?'weakened':content(ref,p);assert.throws(()=>verifyMyTreatment(c,o),/Existing production gates/);}
+ {const{c,o}=fixture();o.diff=(a,b)=>a===c.base?c.paths:a===c.source?c.maintenancePaths:[RECONCILIATION_MANIFEST,'checkout.js'];assert.throws(()=>verifyMyTreatment(c,o),/Unreviewed/);}
+ for(const flag of ['homepageChanged','startHereChanged','navigationChanged','clinicalFeedClaimed','prescribingChanged','customerRowsChanged','existingGatesWeakened','rollbackAuthorityBroadened']){const{c,o}=fixture();c[flag]=true;assert.throws(()=>verifyMyTreatment(c,o));}
+});

@@ -1,3 +1,4 @@
+import {withoutTreatmentFlag} from '../release/my-treatment-config.mjs';
 import {metricsChangedPath,verifyMetricsConnection} from '../release/metrics-connection-scope.mjs';
 import {RANKING_GROWTH_PATHS,RANKING_GROWTH_EXISTING,verifyRankingGrowth,rankingGrowthHistoricalRead,rankingGrowthPinnedRef} from '../release/seo-growth-scope.mjs';
 import {validateInlineToolComposition,usefulnessPinnedRef,FOLLOW_PATHS,followPinnedRef,followHistoricalRead,validateFollowComposition,verifyFollowHistory} from '../release/seo-follow-through-scope.mjs';
@@ -97,7 +98,7 @@ WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-07-authorised-regi
 WATCH_COMPOSED_ADDITIONS.add('medicines-watch/reviews/2026-10-07-authorised-enicepatide-emugrobart-registry.json');
 export const WATCH_CURRENT_PATHS=new Set([...WATCH_OWNERSHIP_PATHS,...WATCH_COMPOSED_CHANGES,'medicines-watch/README.md','medicines-watch/discovery.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-02-authorised-enobosarm-semaglutide.json','medicines-watch/reviews/2026-10-02-authorised-semaglutide-specialist-trials.json',...WATCH_COMPOSED_ADDITIONS]);
 const oldEntry='"main": "worker-entry-v6.js"',newEntry='"main": "shift-coach/worker.mjs"';
-export function withoutCoachEntrypoint(source){return source.replace(newEntry,oldEntry);}
+export function withoutCoachEntrypoint(source){return withoutTreatmentFlag(source).replace(newEntry,oldEntry);}
 export function assertCoachingConfiguration(current,previous){
  assert.equal((current.match(/"main"\s*:/g)||[]).length,1,'Exactly one entrypoint required');
  assert(current.includes(newEntry),'Coaching must use the normal production entrypoint');

@@ -17,7 +17,7 @@ export async function privacyHealthErasureRoute(request,env,ctx,coreFetch){
   if(!userId)return json({ok:false,error:'unauthorised'},401);
 
   const required=['progress_entries','check_ins'];
-  const optional=['shift_ai_conversations','shift_ai_memory_v2','daily_checkin_actions','health_passport_records','health_mot_entries','health_mots','progress_photos','my_journey_weekly_checkins','shift_today_checkins','shift_progress_photos_v2','member_pen_day_notes'];
+  const optional=['shift_ai_conversations','shift_ai_memory_v2','daily_checkin_actions','health_passport_records','health_mot_entries','health_mots','progress_photos','my_journey_weekly_checkins','shift_today_checkins','shift_progress_photos_v2','member_pen_day_notes','member_treatment_events','member_treatment_push_deliveries','member_treatment_push_devices','member_medical_disclosures','member_treatment_records'];
   const present=await existingTables(env.DB,[...required,...optional]);
   const missingRequired=required.filter(name=>!present.has(name));
   if(missingRequired.length)return json({ok:false,error:'health_erasure_schema_incomplete',missing:missingRequired},503);
@@ -25,7 +25,7 @@ export async function privacyHealthErasureRoute(request,env,ctx,coreFetch){
   const deleted=[],statements=[];
   for(const table of [...required,...optional]){
     if(!present.has(table))continue;
-    statements.push(env.DB.prepare(`DELETE FROM ${table} WHERE user_id=?${table==='check_ins'?' AND case_id IS NULL':''}`).bind(userId));
+    statements.push(env.DB.prepare(table==='member_treatment_push_deliveries'?'DELETE FROM member_treatment_push_deliveries WHERE treatment_id IN (SELECT id FROM member_treatment_records WHERE user_id=?)':`DELETE FROM ${table} WHERE user_id=?${table==='check_ins'?' AND case_id IS NULL':''}`).bind(userId));
     deleted.push({table});
   }
   if(await tableExists(env.DB,'product_events')){

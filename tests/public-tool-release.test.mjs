@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {verifyPublicToolExtension,verifyReconciledRelease,reconciliationHistoricalRead,reconciliationRecord,PUBLIC_TOOL_BASE,PUBLIC_TOOL_SOURCE,PUBLIC_TOOL_PAYLOAD,PUBLIC_TOOL_MAINTENANCE,RECONCILIATION_MANIFEST} from '../release/approved-runtime-composition.mjs';
+import {COMPOSITION_BASE,verifyPublicToolExtension,verifyReconciledRelease,reconciliationHistoricalRead,reconciliationRecord,PUBLIC_TOOL_BASE,PUBLIC_TOOL_SOURCE,PUBLIC_TOOL_PAYLOAD,PUBLIC_TOOL_MAINTENANCE,RECONCILIATION_MANIFEST} from '../release/approved-runtime-composition.mjs';
 const maintenance='a'.repeat(40),head='b'.repeat(40);
 const receipt=()=>({proof:'EXACT_PUBLIC_TOOL_DELIVERY_V1',supportSnapshotSource:'e7c78344694a0101a8105004356b96d3a2066197',base:PUBLIC_TOOL_BASE,payloadSource:PUBLIC_TOOL_SOURCE,payloadPaths:[...PUBLIC_TOOL_PAYLOAD],maintenancePaths:[...PUBLIC_TOOL_MAINTENANCE],maintenanceSource:maintenance,publicCopyChanged:false,ratingsInvented:false,homepageChanged:false,privateCacheChanged:false});
 const fixture=()=>({head,ancestor:()=>{},read:()=> 'same',diff:(a,b)=>a===PUBLIC_TOOL_BASE?[...PUBLIC_TOOL_PAYLOAD]:a===PUBLIC_TOOL_SOURCE?[...PUBLIC_TOOL_MAINTENANCE]:[RECONCILIATION_MANIFEST]});
@@ -20,7 +20,8 @@ test('real receipt validates the current repair before mapping older worker guar
  assert(verifyReconciledRelease().publicToolDelivery);
  const read=reconciliationHistoricalRead((ref,path)=>ref);
  assert.notEqual(read('HEAD','shift-coach/worker.mjs'),'HEAD');
- for(const p of ['wrangler.jsonc','acquisition-activation/consent.mjs','commerce-stripe-v1.js'])assert.equal(read('HEAD',p),'HEAD');
+ assert.equal(read('HEAD','wrangler.jsonc'),reconciliationRecord().myTreatment?COMPOSITION_BASE:'HEAD');
+ for(const p of ['acquisition-activation/consent.mjs','commerce-stripe-v1.js'])assert.equal(read('HEAD',p),'HEAD');
  const c=reconciliationRecord().publicToolDelivery;
  const raw=(ref,path)=>execFileSync('git',['rev-parse',ref+':'+path],{encoding:'utf8'}).trim();
  for(const p of [...PUBLIC_TOOL_PAYLOAD,...PUBLIC_TOOL_MAINTENANCE])assert.throws(()=>verifyReconciledRelease((ref,path)=>ref==='HEAD'&&path===p?'changed':raw(ref,path)),/source drift/);

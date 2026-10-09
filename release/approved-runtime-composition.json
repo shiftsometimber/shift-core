@@ -640,5 +640,52 @@
     "homepageChanged": false,
     "orderingOpened": false,
     "pricesChanged": false
+  },
+  "myTreatment": {
+    "proof": "EXACT_MY_TREATMENT_V1",
+    "base": "793b5135ce7bcdb42d77597b238c769c32a7dc67",
+    "source": "8681d219edc06be15c24135741877c47ee36b011",
+    "maintenanceSource": "cc55eb68dd90930920afd99f2357560d75c12fa5",
+    "paths": [
+      ".github/workflows/cloudflare-production-promote.yml",
+      ".github/workflows/my-treatment-production-check.yml",
+      "member-experience/TREATMENT-PRODUCTION-RELEASE.md",
+      "member-experience/entry.mjs",
+      "member-experience/tests/treatment-model.test.mjs",
+      "member-experience/tests/treatment.test.mjs",
+      "member-experience/treatment-model.mjs",
+      "member-experience/treatment-page.mjs",
+      "member-experience/treatment-privacy.mjs",
+      "member-experience/treatment-reminders.mjs",
+      "member-experience/treatment-routes.mjs",
+      "member-experience/treatment-service-worker.mjs",
+      "member-experience/treatment.sql",
+      "privacy-health-erasure-route-v1.js",
+      "release/my-treatment-config.mjs",
+      "release/my-treatment-live.mjs",
+      "release/my-treatment-schema.mjs",
+      "shift-coach/release-contract.mjs",
+      "tests/my-treatment-release.test.mjs",
+      "worker-entry-v6.js",
+      "wrangler.coaching.jsonc",
+      "wrangler.jsonc"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/my-treatment-composition.test.mjs",
+      "tests/public-tool-release.test.mjs",
+      "acquisition-activation/metrics-release.test.mjs"
+    ],
+    "ownerAuthorised": true,
+    "licensedMedicinesOnly": true,
+    "additiveSchemaOnly": true,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "navigationChanged": false,
+    "clinicalFeedClaimed": false,
+    "prescribingChanged": false,
+    "customerRowsChanged": false,
+    "existingGatesWeakened": false,
+    "rollbackAuthorityBroadened": false
   }
 }
