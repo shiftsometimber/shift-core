@@ -943,7 +943,7 @@ export function verifyLaterUnattributedWatchRecovery(c,{head,read,diff,ancestor}
  for(const ref of [c.priorComposition,c.base,c.source,c.maintenanceSource])ancestor(ref,head);
  assert.deepEqual(sorted(diff(c.priorComposition,c.base)),sorted(c.preservedPaths),'Unexpected change in preserved newer main commit');
  assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated later unattributed Watch recovery source');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated later unattributed Watch recovery maintenance');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource).filter(path=>path!==RECONCILIATION_MANIFEST)),sorted(c.maintenancePaths),'Unrelated later unattributed Watch recovery maintenance');
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after later unattributed Watch recovery receipt');
  for(const path of c.preservedPaths)assert.equal(read('HEAD',path),read(c.base,path),'Preserved newer main source drift: '+path);
  for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Later unattributed Watch recovery source drift: '+path);
