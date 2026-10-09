@@ -191,10 +191,10 @@ test('exact current SEO runtime is discoverable without recent-list results; own
 
 import {recordedMedicinesWatchRuntime} from './cancelled-release-recovery.mjs';
 test('exact current Medicines Watch runtime remains discoverable outside bounded workflow history',async()=>{
- const p=recordedMedicinesWatchRuntime,r={id:p.run,head_sha:p.source,conclusion:'success',status:'completed',path:'.github/workflows/cloudflare-production-promote.yml',event:'push',head_branch:'main'};
- assert.deepEqual(p,{run:37870273259,source:'8198d99b9f570087e63864e481278b8a2459bfdd',version:'48eb4d71-cb90-4132-bb16-4768132d61d5',deployment:'3515e037-1915-476a-9f6b-6b41bbf5e061'});
+ const p=recordedMedicinesWatchRuntime,r={id:p.run,head_sha:p.source,conclusion:'success',status:'completed',path:'.github/workflows/cloudflare-production-promote.yml',event:p.event,head_branch:'main'};
+ assert.deepEqual(p,{run:37870273259,source:'8198d99b9f570087e63864e481278b8a2459bfdd',version:'48eb4d71-cb90-4132-bb16-4768132d61d5',deployment:'3515e037-1915-476a-9f6b-6b41bbf5e061',event:'workflow_dispatch'});
  const get=async path=>path==='/actions/runs/'+p.run?r:{workflow_runs:[]};
  assert.deepEqual(await recentSuccessfulPromotions(get,active(p.version,p.deployment)),[r]);
  assert.deepEqual(await recentSuccessfulPromotions(get,active(p.version,'different-deployment')),[]);
- for(const patch of [{head_sha:'f'.repeat(40)},{conclusion:'failure'},{status:'in_progress'},{event:'pull_request'},{head_branch:'other'},{path:'other.yml'}])await assert.rejects(recentSuccessfulPromotions(async path=>path==='/actions/runs/'+p.run?{...r,...patch}:{workflow_runs:[]},active(p.version,p.deployment)));
+ for(const patch of [{head_sha:'f'.repeat(40)},{conclusion:'failure'},{status:'in_progress'},{event:'push'},{event:'pull_request'},{head_branch:'other'},{path:'other.yml'}])await assert.rejects(recentSuccessfulPromotions(async path=>path==='/actions/runs/'+p.run?{...r,...patch}:{workflow_runs:[]},active(p.version,p.deployment)));
 });

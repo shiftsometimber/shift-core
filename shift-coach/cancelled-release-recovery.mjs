@@ -110,12 +110,12 @@ export const recordedSeoRuntime=Object.freeze({run:37592938543,source:'a5cca19e8
 // its run because the bounded recent-run search can legitimately omit it.
 // The promote job and owned-deployment receipt are still fetched and verified
 // independently before the runtime may be retained.
-export const recordedMedicinesWatchRuntime=Object.freeze({run:37870273259,source:'8198d99b9f570087e63864e481278b8a2459bfdd',version:'48eb4d71-cb90-4132-bb16-4768132d61d5',deployment:'3515e037-1915-476a-9f6b-6b41bbf5e061'});
+export const recordedMedicinesWatchRuntime=Object.freeze({run:37870273259,source:'8198d99b9f570087e63864e481278b8a2459bfdd',version:'48eb4d71-cb90-4132-bb16-4768132d61d5',deployment:'3515e037-1915-476a-9f6b-6b41bbf5e061',event:'workflow_dispatch'});
 export async function recentSuccessfulPromotions(get,active){
  const pinned=active?.versions?.length===1&&active.versions[0].percentage===100
   ?[recordedImageRuntime,recordedSeoRuntime,recordedMedicinesWatchRuntime].find(p=>p.version===active.versions[0].version_id&&(!p.deployment||p.deployment===active.id)):null;
  const recorded=pinned?await get('/actions/runs/'+pinned.run):null;
- if(recorded){assert.equal(recorded.id,pinned.run);assert.equal(recorded.head_sha,pinned.source);assert.equal(recorded.conclusion,'success');assert.equal(recorded.status,'completed');assert.equal(recorded.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(recorded.event,'push');assert.equal(recorded.head_branch,'main');}
+ if(recorded){assert.equal(recorded.id,pinned.run);assert.equal(recorded.head_sha,pinned.source);assert.equal(recorded.conclusion,'success');assert.equal(recorded.status,'completed');assert.equal(recorded.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(recorded.event,pinned.event||'push');assert.equal(recorded.head_branch,'main');}
  const result=await get('/actions/workflows/cloudflare-production-promote.yml/runs?branch=main&event=push&status=success&per_page=100');
  return [...(recorded?[recorded]:[]),...(result.workflow_runs||[]).filter(run=>run.path==='.github/workflows/cloudflare-production-promote.yml'&&run.id!==recorded?.id).slice(0,5)];
 }
