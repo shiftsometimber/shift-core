@@ -40,7 +40,7 @@ export function renderCandidate(shell){
  if((shell.match(mainRE)||[]).length!==1||!shell.includes('</head>'))throw Error('awareness_invalid_shell');
  // Preserve primary header and consent; apply only the proposed drawer/footer additions.
  // This owned hub is not the Programme page; retain its link without a false current-page marker.
- let html=shell.replace('href="/programme" aria-current="page"','href="/programme"').replace(mainRE,()=>'<main id="main-content" class="shift-understanding" data-shift-weight-understanding>'+candidate.body+'</main>')
+ let html=shell.replaceAll('href="/programme" aria-current="page"','href="/programme"').replaceAll('href="https://shiftsometimber.co.uk/programme" aria-current="page"','href="https://shiftsometimber.co.uk/programme"').replace(mainRE,()=>'<main id="main-content" class="shift-understanding" data-shift-weight-understanding>'+candidate.body+'</main>')
  .replace(/<title>[\s\S]*?<\/title>/gi,'')
  .replace(/<meta\b(?=[^>]*(?:name|property)\s*=\s*["'](?:description|robots|og:[^"']+|twitter:[^"']+)["'])[^>]*>/gi,'')
  .replace(/<link\b(?=[^>]*rel\s*=\s*["']canonical["'])[^>]*>/gi,'').replace(schemaRE,'')
