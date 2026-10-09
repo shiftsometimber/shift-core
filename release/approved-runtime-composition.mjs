@@ -559,6 +559,26 @@ export function verifyMemberProofRetry(c,{head,read,diff,ancestor,content=(ref,p
  return c;
 }
 
+// Exact owner-authorised tablet wording and OASIS 4 factual amendment.
+export const TABLET_WORDING_BASE='92a5b8d280b090e609b8f14ed5adf5393bc355f0';
+export const TABLET_WORDING_SOURCE='8b96c26e313df0c950167b7a2a2eb17a42b904f4';
+export const TABLET_WORDING_RUN=37893723678;
+export const TABLET_WORDING_PAYLOAD=['tablet-wording-v1.mjs','public-promise-accuracy-v1.mjs','member-experience/public-preservation.mjs','tests/tablet-wording.test.mjs','.github/workflows/tablet-wording-proof.yml'];
+export const TABLET_WORDING_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/tablet-wording-release.test.mjs','.github/workflows/tablet-wording-release-proof.yml','tests/approved-runtime-composition.test.mjs','acquisition-activation/metrics-release.test.mjs'];
+const TABLET_WORDING_SET=new Set([...TABLET_WORDING_PAYLOAD,...TABLET_WORDING_MAINTENANCE]);
+for(const path of TABLET_WORDING_SET)RECONCILIATION_PATHS.add(path);
+export function verifyTabletWordingExtension(c,{head,read,diff,ancestor}){
+ assert(c,'Exact tablet wording receipt required');assert.equal(c.proof,'EXACT_TABLET_WORDING_V1');assert.equal(c.base,TABLET_WORDING_BASE);assert.equal(c.source,TABLET_WORDING_SOURCE);assert.equal(c.proofRun,TABLET_WORDING_RUN);assert.equal(c.approval,'tighten this');
+ assert.deepEqual(c.payloadPaths,TABLET_WORDING_PAYLOAD);assert.deepEqual(c.maintenancePaths,TABLET_WORDING_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.homepageChanged,false);assert.equal(c.orderingOpened,false);assert.equal(c.pricesChanged,false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.payloadPaths),'Unrelated tablet wording payload change');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated tablet wording verifier change');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after tablet wording receipt');
+ for(const path of c.payloadPaths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: Tablet wording source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: Tablet wording verifier source drift: '+path);
+ return c;
+}
 const recordPath=new URL('./approved-runtime-composition.json',import.meta.url);
 export function reconciliationRecord(){return existsSync(recordPath)?JSON.parse(readFileSync(recordPath)):null;}
 export function assertProductionProofBudget(before,current){
@@ -632,10 +652,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const tablet=c.tabletWording;
+ if(tablet)verifyTabletWordingExtension(tablet,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const tabletHead=tablet?tablet.base:head;
+ const tabletRead=(ref,path)=>readBlob(tablet&&ref==='HEAD'&&TABLET_WORDING_SET.has(path)?tablet.base:ref,path);
  const ownedDispatch=c.watchOwnedDispatch;
- if(ownedDispatch)verifyWatchOwnedDispatch(ownedDispatch,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const ownedDispatchHead=ownedDispatch?ownedDispatch.base:head;
- const ownedDispatchRead=(ref,path)=>readBlob(ownedDispatch&&ref==='HEAD'&&WATCH_OWNED_DISPATCH_SET.has(path)?ownedDispatch.base:ref,path);
+ if(ownedDispatch)verifyWatchOwnedDispatch(ownedDispatch,{head:tabletHead,read:tabletRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const ownedDispatchHead=ownedDispatch?ownedDispatch.base:tabletHead;
+ const ownedDispatchRead=(ref,path)=>tabletRead(ownedDispatch&&ref==='HEAD'&&WATCH_OWNED_DISPATCH_SET.has(path)?ownedDispatch.base:ref,path);
  const runtimeDispatch=c.watchRuntimeDispatch;
  if(runtimeDispatch)verifyWatchRuntimeDispatch(runtimeDispatch,{head:ownedDispatchHead,read:ownedDispatchRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const runtimeDispatchHead=runtimeDispatch?runtimeDispatch.base:head;
@@ -812,7 +836,7 @@ export function reconciliationChangedPath(status,path){
  if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
  // Source changes retain their exact add/modify semantics. Existing verifier
  // maintenance may have been added historically and modified subsequently.
- const allowed=existsAtBase.get(path)?(WATCH_HSTS_SET.has(path)||LOGOUT_ADOPTION_SET.has(path)||RELOAD_ATTEMPT_SET.has(path)||ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
+ const allowed=existsAtBase.get(path)?(TABLET_WORDING_SET.has(path)||WATCH_HSTS_SET.has(path)||LOGOUT_ADOPTION_SET.has(path)||RELOAD_ATTEMPT_SET.has(path)||ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
  assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
  return true;
 }
