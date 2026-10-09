@@ -24,6 +24,8 @@ export function createStagingWorker(upstream=fetch){return {async fetch(request,
   // Preserve readable page content/styles, disable production scripts and measurement in staging.
   html=html.replace(/<script\b(?![^>]*type=["']application\/ld\+json["'])[^>]*>[\s\S]*?<\/script>/gi,'').replace(/<base\b[^>]*>/gi,'');
   const origin=new URL(request.url).origin;
+  html=html.replace(/href=(["'])#([^"']*)\1/g,(_,q,a)=>'href="'+origin+path+'#'+a+'"');
+  html=html.replace(/href=["']https:\/\/shiftsometimber\.co\.uk(\/[^"']*)["']/g,(all,href)=>STAGED_PATHS.includes(href.split(/[?#]/)[0])?'href="'+origin+href+'"':all);
   html=html.replace(/href=["'](\/[^"']*)["']/g,(all,href)=>{const p=href.split(/[?#]/)[0];return 'href="'+(STAGED_PATHS.includes(p)?origin:PRODUCTION)+href+'"'});
   const menu=`<script data-staging-chrome>const b=document.querySelector('.menu-trigger'),d=document.getElementById('site-drawer');if(b&&d){const close=()=>{d.hidden=true;b.setAttribute('aria-expanded','false');b.focus()};b.onclick=()=>{d.hidden=!d.hidden;b.setAttribute('aria-expanded',String(!d.hidden));if(!d.hidden)d.querySelector('.drawer-close')?.focus()};d.querySelector('.drawer-close')?.addEventListener('click',close);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!d.hidden)close()})}for(const [id,cls]of [['toggleLargeText','staging-large'],['toggleMotion','staging-reduced']])document.getElementById(id)?.addEventListener('click',e=>e.currentTarget.setAttribute('aria-pressed',String(document.body.classList.toggle(cls))));</script>`;
   html=addPillarClient(html);
