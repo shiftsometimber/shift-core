@@ -4,7 +4,7 @@ import {chromium} from 'playwright';
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
 import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
-import {commissioningLogin} from '../rendered-member-acceptance-support.mjs';
+import {commissioningLogin,chooseNecessaryCookies} from '../rendered-member-acceptance-support.mjs';
 const site='https://shiftsometimber.co.uk',api='https://api.shiftsometimber.co.uk',oidc=process.env.SHIFT_COMMISSIONING_OIDC;
 assert(oidc,'Existing commissioning identity required');
 const dir='my-treatment-browser-evidence';mkdirSync(dir,{recursive:true});
@@ -25,6 +25,7 @@ try{
    await check(device+' consent gate and treatment save through the real form',async()=>{
     const rejected=await call(page,'/v1/member/treatment/records','POST',{medicine:'Wegovy',prescriptionDetails:'Synthetic blocked',supply:4,nextAt:null});assert.equal(rejected.status,409);
     await page.goto(site+'/member/dashboard',{waitUntil:'domcontentloaded'});
+    await chooseNecessaryCookies(page);
     await page.waitForFunction(()=>typeof window.SST_HEALTH_CONSENT?.ensure==='function'&&typeof window.SST_API?.getConsents==='function');
     const choseConsent=page.evaluate(()=>window.SST_HEALTH_CONSENT.ensure()).then(value=>({value}),error=>({error:error.message}));
     const dialog=page.getByRole('dialog');await dialog.getByRole('checkbox').check();await dialog.getByRole('button',{name:'Agree & continue',exact:true}).click();const consentResult=await choseConsent;assert.equal(consentResult.error,undefined,'Health-data consent dialog completes');assert.equal(consentResult.value,true,'Explicit visible health-data consent');
