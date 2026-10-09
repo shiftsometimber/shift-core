@@ -1065,7 +1065,7 @@
   "maleObesityPillar": {
     "proof": "EXACT_MALE_OBESITY_PILLAR_V1",
     "base": "77d2469344bb678a8e68b6e4e6cb36dfdbdc28b0",
-    "source": "bfdcdc09dd9d4dc6147979c172c0fb1d6f520d8f",
+    "source": "c7724fdad48c9a9abece85e0c07d6e1ba97d1bdb",
     "paths": [
       ".github/workflows/male-obesity-preview.yml",
       "member-experience/public-preservation.mjs",
@@ -1095,7 +1095,7 @@
       "editorial/five-articles/proof.mjs",
       "tests/approved-runtime-composition.test.mjs"
     ],
-    "maintenanceSource": "d675caf25fe9e477e75b5307688ca8a287e14787",
+    "maintenanceSource": "d2ed188e29eb93322a4f334fc1ef3f4be04963f9",
     "ownerApproval": "Approved, Go; complete authorised informational release",
     "externalReviewerRequired": false,
     "publicationStatus": "approved_for_guarded_release",
@@ -1110,7 +1110,7 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false,
-    "previewProofRun": 37989178831,
-    "previewSource": "7663f27f3e9450bbfae87165bd25858a6ea6f32b"
+    "previewProofRun": 37989995147,
+    "previewSource": "096338622f3a3e8a235372ac4f020d60020d678a"
   }
 }
