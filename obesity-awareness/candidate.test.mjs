@@ -88,3 +88,5 @@ test('hub explains Start Here, SHIFT Health and practical support as distinct op
 });
 
 test('owned hub text overrides inherited ID-specific pale heading paint',()=>{const h=renderCandidate(shell);assert.match(h,/html body main#main-content\[data-shift-weight-understanding\] :is\(p,h1,h2,h3,li,summary\)\{color:#050505!important;-webkit-text-fill-color:#050505!important\}/);});
+
+test('hub removes the inherited Programme current-page marker without changing its destination',()=>{const marked=shell.replace('<header>START HERE · THE PROGRAMME · SHIFT HEALTH · TREATMENTS · MY TIMBER</header>','<header><a href="/programme" aria-current="page">The Programme</a></header>');const h=renderCandidate(marked);assert.match(h,/<a href="\/programme">The Programme<\/a>/);assert.doesNotMatch(h,/href="\/programme" aria-current="page"/);});
