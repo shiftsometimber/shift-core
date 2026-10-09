@@ -65,22 +65,22 @@ for(const [name,width] of [['mobile',390],['desktop',1440]]){
   initial=(await call('/v1/shift-coach')).action;assert(initial.minutes>1,'Initial action must permit a smaller step');
   await page.locator('[data-coach-action="accept"]').click();await page.getByText('Tell Shift AI how it went',{exact:true}).click();
   await page.getByRole('button',{name:"Didn't fit my day",exact:true}).click();await page.locator('[data-coach-action="accept"]').waitFor();
-  const s=await call('/v1/shift-coach');smaller=s.action;assert.equal(smaller.type,initial.type);assert(smaller.minutes<initial.minutes,'Must be smaller');assert.equal(smaller.minutes,1);
+  const s=await call('/v1/shift-coach');smaller=s.action;assert.equal(smaller.type,initial.type);assert(smaller.minutes<initial.minutes,'Must be smaller');assert.equal(smaller.minutes,1);assert.equal(smaller.task.steps.length,1);assert(smaller.task.steps.length<initial.task.steps.length,'Actual task must shrink, not just its estimate');report.adaptationEvidence={initial,smaller};
   assert(s.memory.outcomes.some(x=>x.actionId===initial.id&&x.value==='didnt-fit'),'Exact feedback persisted');
   await memberReload(page,{site});assert.equal((await call('/v1/shift-coach')).action.id,smaller.id);
  });
  await check('Did not help changes approach and rejects the previous type',async()=>{
   await page.locator('[data-coach-action="accept"]').click();await page.getByText('Tell Shift AI how it went',{exact:true}).click();await page.getByRole('button',{name:"Done, didn't help",exact:true}).click();
   await page.locator('[data-coach-action="accept"]').waitFor();changed=(await call('/v1/shift-coach')).action;
-  assert.notEqual(changed.type,smaller.type);assert.notEqual(changed.approach,smaller.approach);const result=await call('/v1/shift-coach');assert(result.memory.rejections.includes(smaller.type));assert(result.memory.outcomes.some(x=>x.actionId===smaller.id&&x.value==='didnt-help'));
+  assert.notEqual(changed.type,smaller.type);assert.notEqual(changed.approach,smaller.approach);assert.notDeepEqual(changed.task.steps,smaller.task.steps);report.adaptationEvidence.changed=changed;const result=await call('/v1/shift-coach');assert(result.memory.rejections.includes(smaller.type));assert(result.memory.outcomes.some(x=>x.actionId===smaller.id&&x.value==='didnt-help'));
   await memberReload(page,{site});assert.equal((await call('/v1/shift-coach')).action.id,changed.id);
  });
  await check('Real session revocation blocks private saves; fresh login restores prior state',async()=>{
   const before=await call('/v1/shift-coach');
   const r=await context.request.post(site+'/v1/auth/logout',{headers:{Origin:site},data:{}});assert(r.ok());
   assert.equal((await context.request.get(site+'/v1/shift-coach')).status(),401);
-  await page.locator('[data-coach-action="accept"]').click();
-  await page.waitForFunction(()=>document.querySelector('[data-coach-status]')?.textContent.length>0||location.pathname==='/member-login');
+  const rejectedSave=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/shift-coach'&&r.request().method()==='POST');await page.locator('[data-coach-action="accept"]').click();assert.equal((await rejectedSave).status(),401,'Revoked real session must reject the actual private save');
+  await page.waitForFunction(()=>document.querySelector('[data-coach-status]')?.textContent.includes('could not save')||location.pathname==='/member-login');
   assert.equal((await context.request.get(site+'/v1/check-ins')).status(),401);
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>!document.querySelector('[data-coach-action="accept"]')||document.querySelector('#shiftCoach')?.hidden);
