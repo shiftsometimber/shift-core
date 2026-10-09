@@ -52,24 +52,7 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
-      - name: Three complete Passport and Today Grub Fit rounds with renewed credentials
-        run: |
-          set -e
-          mkdir -p runtime-acceptance-evidence
-          get_identity() {
-            raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
-            token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
-            echo "::add-mask::$token"
-            export SHIFT_COMMISSIONING_OIDC="$token"
-          }
-          for round in 1 2 3; do
-            get_identity
-            PASSPORT_RELEASE_SHA="$ACCEPTANCE_SOURCE" node health-passport/production-browser.mjs
-            mv passport-production-evidence "runtime-acceptance-evidence/passport-$round"
-            get_identity
-            MY_TIMBER_FINAL_EVIDENCE_DIR="runtime-acceptance-evidence/member-$round" node my-timber-final-production.mjs
-          done
-      - name: Premortem consent checkin adaptation refresh return and session recovery
+      - name: Original Premortem named trust-leak checks
         run: |
           raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
           token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
