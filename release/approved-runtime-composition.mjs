@@ -696,10 +696,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const lateWatch=c.lateWatchFactualUpdate;
+ if(lateWatch)verifyLateWatchFactualUpdate(lateWatch,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preLateWatchHead=lateWatch?lateWatch.base:actualHead;
+ const lateWatchRawBlob=(ref,path)=>outerRawBlob(lateWatch&&ref==='HEAD'&&LATE_WATCH_SET.has(path)?lateWatch.base:ref,path);
  const continuity=c.continuityPreservationRepair;
- if(continuity)verifyContinuityPreservationRepair(continuity,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preContinuityHead=continuity?continuity.base:actualHead;
- const continuityRawBlob=(ref,path)=>outerRawBlob(continuity&&ref==='HEAD'&&CONTINUITY_PRESERVATION_SET.has(path)?continuity.base:ref,path);
+ if(continuity)verifyContinuityPreservationRepair(continuity,{head:preLateWatchHead,read:lateWatchRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preContinuityHead=continuity?continuity.base:preLateWatchHead;
+ const continuityRawBlob=(ref,path)=>lateWatchRawBlob(continuity&&ref==='HEAD'&&CONTINUITY_PRESERVATION_SET.has(path)?continuity.base:ref,path);
  const toolBuild=c.toolGuidanceProductionBuildGate;
  if(toolBuild)verifyToolGuidanceBuildGate(toolBuild,{head:preContinuityHead,read:continuityRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preToolBuildHead=toolBuild?toolBuild.base:preContinuityHead;
@@ -1151,3 +1155,31 @@ export function verifyContinuityPreservationRepair(c,{head,read,diff,ancestor}){
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift / Tablet wording verifier source drift / Restoration retention maintenance drift: Continuity preservation '+path);
  return c;
 }
+
+// Bind only the already merged PR #1267 factual Watch content; retain all ownership gates.
+export const LATE_WATCH_BASE='29d2c8038505f0a9e49d0abf6cba501149e9817d';
+export const LATE_WATCH_APPROVED_MERGE='f511cd37cbcd53a64bd178ab356c966cd39acb74';
+export const LATE_WATCH_SOURCE='7f9f1bcf2d322ee6b25d61169cae8bbae8b462a4';
+export const LATE_WATCH_PATHS=Object.freeze(["medicines-watch/README.md","medicines-watch/credibility.mjs","medicines-watch/credibility.test.mjs","medicines-watch/evidence-desk.test.mjs","medicines-watch/industry.mjs","medicines-watch/industry.test.mjs","medicines-watch/reviews/2026-10-09-authorised-together-psoriatic-disease.json","medicines-watch/reviews/2026-10-09-overdue-source-renewal-late.json","medicines-watch/source-review.test.mjs"]);
+export const LATE_WATCH_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/late-watch-composition.test.mjs']);
+const LATE_WATCH_RESTORED_PROOF='scripts/verify-public-continuity-live.mjs';
+const LATE_WATCH_SET=new Set([...LATE_WATCH_PATHS,...LATE_WATCH_MAINTENANCE]);
+for(const path of LATE_WATCH_SET)RECONCILIATION_PATHS.add(path);
+export function verifyLateWatchFactualUpdate(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_LATE_WATCH_FACTUAL_UPDATE_V1');assert.equal(c.base,LATE_WATCH_BASE);assert.equal(c.approvedMerge,LATE_WATCH_APPROVED_MERGE);assert.equal(c.source,LATE_WATCH_SOURCE);
+ assert.deepEqual(c.paths,LATE_WATCH_PATHS);assert.deepEqual(c.maintenancePaths,LATE_WATCH_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1267);assert.equal(c.publicationStatus,'already_merged_owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.exactCompleteBodyProofRestored,true);
+ for(const flag of ['memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.approvedMerge,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.approvedMerge)),sorted([...c.paths,LATE_WATCH_RESTORED_PROOF]),'Unrelated merged Watch change');
+ assert.deepEqual(diff(c.approvedMerge,c.source),[LATE_WATCH_RESTORED_PROOF],'Unrelated complete-body proof repair');
+ assert.equal(read(c.source,LATE_WATCH_RESTORED_PROOF),read(c.base,LATE_WATCH_RESTORED_PROOF),'Original exact complete-body proof required');
+ assert.equal(read('HEAD',LATE_WATCH_RESTORED_PROOF),read(c.base,LATE_WATCH_RESTORED_PROOF),'Complete-body live proof source drift');
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated late Watch payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated late Watch maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after late Watch receipt');
+ for(const path of c.paths){assert.equal(read(c.source,path),read(c.approvedMerge,path),'Merged approved Watch source required: '+path);assert.equal(read('HEAD',path),read(c.source,path),'Late Watch source drift: '+path);}
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Late Watch maintenance source drift: '+path);
+ return c;
+}
+
