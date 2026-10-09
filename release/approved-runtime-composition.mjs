@@ -358,6 +358,23 @@ export function verifyNewsSecurity(c,{head,read,diff,ancestor,content=(ref,path)
  return c;
 }
 
+export const SHARED_FOOTER_COMPOSITION_BASE='c37c770929f7f595def20f23b6092015b820dfff';
+export const SHARED_FOOTER_COMPOSITION_PATHS=['tests/shared-footer.test.mjs'];
+export const SHARED_FOOTER_COMPOSITION_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/shared-footer-composition-release.test.mjs'];
+const SHARED_FOOTER_COMPOSITION_SET=new Set([...SHARED_FOOTER_COMPOSITION_PATHS,...SHARED_FOOTER_COMPOSITION_MAINTENANCE]);
+for(const path of SHARED_FOOTER_COMPOSITION_SET)RECONCILIATION_PATHS.add(path);
+export function verifySharedFooterComposition(c,{head,read,diff,ancestor}){
+ assert(c);assert.equal(c.proof,'EXACT_SHARED_FOOTER_COMPOSITION_V1');assert.equal(c.base,SHARED_FOOTER_COMPOSITION_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,SHARED_FOOTER_COMPOSITION_PATHS);assert.deepEqual(c.maintenancePaths,SHARED_FOOTER_COMPOSITION_MAINTENANCE);
+ for(const flag of ['runtimeChanged','publicCopyChanged','medicalEvidenceChanged','clinicalApprovalChanged','customerDataChanged','checkoutChanged','myTimberChanged','privacyAssertionsWeakened'])assert.equal(c[flag],false);
+ for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated shared footer composition source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated shared footer composition maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after shared footer composition reconciliation');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved shared footer composition source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved shared footer composition maintenance source drift: '+path);
+ return c;
+}
+
 export const WATCH_HSTS_PUBLIC_WORDING_BASE='961fa36a0dfb26a0ed3d4a43cb23a2c278270b75';
 export const WATCH_HSTS_PUBLIC_WORDING_PATHS=['release/public-wording-scope.mjs','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','shift-coach/release.test.mjs'];
 export const WATCH_HSTS_PUBLIC_WORDING_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/watch-hsts-public-wording-release.test.mjs','shift-coach/release-contract.mjs'];
@@ -549,10 +566,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const footerComposition=c.sharedFooterCompositionProof;
+ if(footerComposition)verifySharedFooterComposition(footerComposition,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const footerCompositionHead=footerComposition?footerComposition.base:head;
+ const footerCompositionRead=(ref,path)=>readBlob(footerComposition&&ref==='HEAD'&&SHARED_FOOTER_COMPOSITION_SET.has(path)?footerComposition.base:ref,path);
  const hstsPublicWording=c.watchHstsPublicWording;
- if(hstsPublicWording)verifyWatchHstsPublicWording(hstsPublicWording,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const hstsPublicWordingHead=hstsPublicWording?hstsPublicWording.base:head;
- const hstsPublicWordingRead=(ref,path)=>readBlob(hstsPublicWording&&ref==='HEAD'&&WATCH_HSTS_PUBLIC_WORDING_SET.has(path)?hstsPublicWording.base:ref,path);
+ if(hstsPublicWording)verifyWatchHstsPublicWording(hstsPublicWording,{head:footerCompositionHead,read:footerCompositionRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const hstsPublicWordingHead=hstsPublicWording?hstsPublicWording.base:footerCompositionHead;
+ const hstsPublicWordingRead=(ref,path)=>footerCompositionRead(hstsPublicWording&&ref==='HEAD'&&WATCH_HSTS_PUBLIC_WORDING_SET.has(path)?hstsPublicWording.base:ref,path);
  const hstsDiagnostic=c.watchHstsDiagnostic;
  if(hstsDiagnostic)verifyWatchHstsDiagnostic(hstsDiagnostic,{head:hstsPublicWordingHead,read:hstsPublicWordingRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const hstsDiagnosticHead=hstsDiagnostic?hstsDiagnostic.base:hstsPublicWordingHead;
