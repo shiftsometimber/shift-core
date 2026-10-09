@@ -812,5 +812,29 @@
     "genericAdoptionAllowed": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "restoredLaterRuntimeRetention": {
+    "proof": "EXACT_RESTORED_LATER_RUNTIME_RETENTION_V1",
+    "base": "b277c25b2d3bf44f97501006f3b3416e9a8d44fe",
+    "source": "9b2bfc4b3f90185520b1937c51431cffdcc0cc41",
+    "paths": [
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/cancelled-release-recovery.test.mjs",
+      "shift-coach/recover-cancelled-release.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/approved-runtime-composition.test.mjs"
+    ],
+    "maintenanceSource": "fe2081a44a98c495114e412857e19dbae9a5cb43",
+    "restorationRun": 37914338433,
+    "restorationJob": 113766865055,
+    "restorationDeployment": "19c317f4-0058-4497-86a8-596db6de90a9",
+    "originalSuccessfulRun": 37895305149,
+    "runtimeChanged": false,
+    "customerDataChanged": false,
+    "genericAdoptionAllowed": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
