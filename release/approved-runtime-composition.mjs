@@ -1024,6 +1024,6 @@ export function verifyToolReleaseAutomation(c,{head,read,diff,ancestor}) {
   const boundary=TOOL_SCHEMA_ARCHIVE_PATHS.includes(path)?'Tool schema archive source drift':'Serving SEO source drift';
   assert.equal(read('HEAD',path),read(c.source,path),boundary+': prepared public tool amendment '+path);
  }
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift: prepared public tool amendment '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift / Tablet wording verifier source drift: prepared public tool amendment '+path);
  return c;
 }
