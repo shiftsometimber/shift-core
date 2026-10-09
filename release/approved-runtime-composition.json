@@ -812,5 +812,46 @@
     "genericAdoptionAllowed": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "toolReleaseAutomation": {
+    "proof": "EXACT_PREPARED_TOOL_RELEASE_AUTOMATION_V1",
+    "base": "b277c25b2d3bf44f97501006f3b3416e9a8d44fe",
+    "source": "6de6c61fb04b44d4679d29c9c6748d35786b1214",
+    "paths": [
+      ".github/workflows/cloudflare-production-promote.yml",
+      "public-tool-delivery.mjs",
+      "public-tool-guidance.mjs",
+      "release/tool-guidance-20261009/README.md",
+      "release/tool-guidance-20261009/automation-proof.json",
+      "release/tool-guidance-20261009/live-schema-check.json",
+      "release/tool-guidance-20261009/test-results.tap",
+      "release/tool-guidance-20261009/tool-guidance-browser.json",
+      "release/tool-schema-gate.mjs",
+      "scripts/verify-tool-calculators-browser.cjs",
+      "scripts/verify-tool-guidance-browser.cjs",
+      "scripts/verify-tool-page-schema.cjs",
+      "tests/public-tool-guidance.test.mjs",
+      "tests/tool-schema-gate.test.mjs",
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/cancelled-release-recovery.test.mjs",
+      "shift-coach/recover-cancelled-release.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/tool-release-automation-composition.test.mjs"
+    ],
+    "maintenanceSource": "c9d8d1c5c0956e689f4ca519f064a47387bdcbb8",
+    "publicationStatus": "approved_for_guarded_release",
+    "runtimeChanged": true,
+    "publicCopyChanged": true,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "deploymentAuthorityBroadened": false,
+    "existingGatesWeakened": false,
+    "approvedPreparedSource": "81592396741a0ab1ebead46f1e1ca2bb19dd8890",
+    "approval": "User Approved, 9 October 2026; exact reviewed nine-page amendment via guarded workflow only",
+    "rollbackAuthorityBroadened": false,
+    "genericRuntimeAdoptionAllowed": false
   }
 }
