@@ -1,0 +1,296 @@
+{
+  "safeEnvironment": true,
+  "realCloudflareCalls": 0,
+  "passingExit": 0,
+  "failingExit": 1,
+  "rollbackExit": 0,
+  "rollbackCheckExit": 0,
+  "failedReleaseVerified": false,
+  "newerOwnerRollbackExit": 1,
+  "deployChecks": {
+    "kind": "public_tool_release_check",
+    "stage": "deploy",
+    "source": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "run": "123456",
+    "checkedAt": "2026-10-09T09:11:46.130Z",
+    "scope": "Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.",
+    "status": "failed",
+    "toolChecksVerified": false,
+    "checks": [
+      {
+        "path": "/decision-centre",
+        "status": 200,
+        "htmlSha256": "88fdb9da186d83b302416909a00b738515504e72c60cb16a7696d56fed8f3367",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/alcohol",
+        "status": 200,
+        "htmlSha256": "fd9d0cc5798fa87743f878b047a1f6cdff354edffe0ca6e7dbeed9cfe339290b",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/bmi",
+        "passed": false,
+        "error": "Unexpected HTTP status\n\n503 !== 200\n"
+      },
+      {
+        "path": "/tools/calories",
+        "status": 200,
+        "htmlSha256": "ff9054dc39f8cac18c0eb87a9ce8c8d149bfb2368546543e194b5cfbd4fdd42a",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/healthy-weight",
+        "status": 200,
+        "htmlSha256": "a7dd8cf247225e90a4702a321ec27272bcf705e271a06bfd7b07cbc9b4233194",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/protein",
+        "status": 200,
+        "htmlSha256": "26f0b5b1acbab40efe1adafb1a4701f5f2000db13cd944edeaf2fe8fac3f3458",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/waist-height",
+        "status": 200,
+        "htmlSha256": "0d1213037649542412117e22cc6e94376c2b60be6b89b2a37cfff7dbc9682cc0",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/walking",
+        "status": 200,
+        "htmlSha256": "1ab3ff4cfc39d280cfe9561814d8db368c09addf5b28a88d57768aff74218e2b",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/water",
+        "status": 200,
+        "htmlSha256": "20f79d3e52e16e2d4c818a78e4488f8256a2c42e346446ea8127d8d8e57f65ea",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      }
+    ],
+    "errors": [
+      "/tools/bmi: Unexpected HTTP status\n\n503 !== 200\n",
+      "One or more public tool checks failed\n\n1 !== 0\n"
+    ],
+    "deployed": {
+      "deploymentId": "00000002-1111-4111-8111-111111111111",
+      "versionId": "00000022-1111-4111-8111-111111111111",
+      "percentage": 100
+    },
+    "expected": {
+      "deploymentId": "00000002-1111-4111-8111-111111111111",
+      "versionId": "00000022-1111-4111-8111-111111111111"
+    },
+    "afterChecks": {
+      "deploymentId": "00000002-1111-4111-8111-111111111111",
+      "versionId": "00000022-1111-4111-8111-111111111111",
+      "percentage": 100
+    },
+    "finishedAt": "2026-10-09T09:11:46.199Z"
+  },
+  "rollbackChecks": {
+    "kind": "public_tool_release_check",
+    "stage": "rollback",
+    "source": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "run": "123456",
+    "checkedAt": "2026-10-09T09:11:46.349Z",
+    "scope": "Nine public pages: HTTP status, JSON parsing, canonical free WebPage identity and absence of application markup. Not a calculator interaction test or Semrush crawl.",
+    "status": "passed",
+    "toolChecksVerified": true,
+    "checks": [
+      {
+        "path": "/decision-centre",
+        "status": 200,
+        "htmlSha256": "88fdb9da186d83b302416909a00b738515504e72c60cb16a7696d56fed8f3367",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/alcohol",
+        "status": 200,
+        "htmlSha256": "fd9d0cc5798fa87743f878b047a1f6cdff354edffe0ca6e7dbeed9cfe339290b",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/bmi",
+        "status": 200,
+        "htmlSha256": "4069059490afeaa6824a905ea6b5242e7b937a0f6f0ee90439bedb7bb7cfbf5e",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/calories",
+        "status": 200,
+        "htmlSha256": "ff9054dc39f8cac18c0eb87a9ce8c8d149bfb2368546543e194b5cfbd4fdd42a",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/healthy-weight",
+        "status": 200,
+        "htmlSha256": "a7dd8cf247225e90a4702a321ec27272bcf705e271a06bfd7b07cbc9b4233194",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/protein",
+        "status": 200,
+        "htmlSha256": "26f0b5b1acbab40efe1adafb1a4701f5f2000db13cd944edeaf2fe8fac3f3458",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/waist-height",
+        "status": 200,
+        "htmlSha256": "0d1213037649542412117e22cc6e94376c2b60be6b89b2a37cfff7dbc9682cc0",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/walking",
+        "status": 200,
+        "htmlSha256": "1ab3ff4cfc39d280cfe9561814d8db368c09addf5b28a88d57768aff74218e2b",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      },
+      {
+        "path": "/tools/water",
+        "status": 200,
+        "htmlSha256": "20f79d3e52e16e2d4c818a78e4488f8256a2c42e346446ea8127d8d8e57f65ea",
+        "jsonBlocks": 1,
+        "applicationItems": 0,
+        "canonicalWebPageItems": 1,
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "deployed": {
+      "deploymentId": "00000003-1111-4111-8111-111111111111",
+      "versionId": "00000011-1111-4111-8111-111111111111",
+      "percentage": 100
+    },
+    "expected": {
+      "deploymentId": "00000001-1111-4111-8111-111111111111",
+      "versionId": "00000011-1111-4111-8111-111111111111",
+      "percentage": 100,
+      "checkSource": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "deploymentSource": "captured prior runtime; see deployment-before.json",
+    "afterChecks": {
+      "deploymentId": "00000003-1111-4111-8111-111111111111",
+      "versionId": "00000011-1111-4111-8111-111111111111",
+      "percentage": 100
+    },
+    "finishedAt": "2026-10-09T09:11:46.419Z"
+  },
+  "operations": [
+    [
+      "deployments",
+      "list",
+      "--config",
+      "wrangler.jsonc",
+      "--json"
+    ],
+    [
+      "deployments",
+      "list",
+      "--config",
+      "wrangler.jsonc",
+      "--json"
+    ],
+    [
+      "deployments",
+      "list",
+      "--config",
+      "wrangler.jsonc",
+      "--json"
+    ],
+    [
+      "deployments",
+      "list",
+      "--config",
+      "wrangler.jsonc",
+      "--json"
+    ],
+    [
+      "deployments",
+      "list",
+      "--config",
+      "wrangler.jsonc",
+      "--json"
+    ],
+    [
+      "rollback",
+      "00000011-1111-4111-8111-111111111111",
+      "--config",
+      "wrangler.jsonc",
+      "--message",
+      "Owned release failed post-deployment checks; restore captured runtime and preserve current data"
+    ],
+    [
+      "deployments",
+      "list",
+      "--config",
+      "wrangler.jsonc",
+      "--json"
+    ],
+    [
+      "deployments",
+      "list",
+      "--config",
+      "wrangler.jsonc",
+      "--json"
+    ],
+    [
+      "deployments",
+      "list",
+      "--config",
+      "wrangler.jsonc",
+      "--json"
+    ]
+  ]
+}

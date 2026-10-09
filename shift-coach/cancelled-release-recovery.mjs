@@ -310,3 +310,33 @@ export function verifiedTabletRollback(active,run,job,logs){
   &&String(logs).includes('catalogue_stale_main_rejected')
   &&String(logs).includes('Worker Version '+t.version+' has been deployed to 100% of traffic.');
 }
+
+ 
+// Retain only the exact restoration already performed by the guarded workflow.
+// The failed restoring run proves restoration, never ownership of its source.
+// Ownership comes independently from the original successful release receipt.
+export const restoredWatchRuntime=Object.freeze({run:37914338433,job:113766865055,source:'5a5d7c997db4b2874f25fbb445c9033d86d2a515',deployment:'19c317f4-0058-4497-86a8-596db6de90a9',createdOn:'2026-10-09T09:58:06.04406Z',version:'fd7939d8-6387-48fa-adc8-714e6f8bea8d',versionCreatedOn:'2026-10-09T07:07:16.10051Z'});
+export function verifiedRestoredWatchRuntime(active,version,restoring,restoringJob,restoringLogs,verified,verifiedJob,verifiedLogs){
+ const r=restoredWatchRuntime,p=laterUnattributedRuntimeRecovery;
+ const message='Restore exact successful predecessor of unattributed runtime observed by read-only run '+p.run+'; no data rollback';
+ if(active?.id!==r.deployment||active.source!=='wrangler'||active.created_on!==r.createdOn||active.annotations?.['workers/message']!==message)return false;
+ if(active.versions?.length!==1||active.versions[0].version_id!==r.version||active.versions[0].percentage!==100)return false;
+ if(version?.id!==r.version||version.metadata?.created_on!==r.versionCreatedOn||version.metadata?.source!=='wrangler'||version.annotations?.['workers/triggered_by']!=='version_upload'||version.annotations?.['workers/tag']||version.annotations?.['workers/message'])return false;
+ if(restoring?.id!==r.run||restoring.head_sha!==r.source||restoring.run_attempt!==1||restoring.status!=='completed'||restoring.conclusion!=='failure'||restoring.event!=='push'||restoring.head_branch!=='main'||restoring.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
+ if(restoringJob?.id!==r.job||restoringJob.run_id!==r.run||restoringJob.name!=='promote'||restoringJob.status!=='completed'||restoringJob.conclusion!=='failure')return false;
+ for(const [number,name,conclusion] of [[10,'Recover only the evidenced cancelled runtime to the last verified release','success'],[62,'Deploy current main to production','skipped'],[111,'Restore the captured runtime if a post-deployment gate failed','skipped']])if(!restoringJob.steps?.some(s=>s.number===number&&s.name===name&&s.conclusion===conclusion))return false;
+ const observation={kind:'runtime_recovery_observation',deploymentId:p.deployment,activeVersion:p.version,release:r.source,version:{kind:'runtime_recovery_version_observation',id:p.version,createdOn:p.createdOn,source:'wrangler',triggeredBy:'version_upload',tag:null,message:p.message}};
+ if(typeof restoringLogs!=='string'||!restoringLogs.includes(JSON.stringify(observation))||!restoringLogs.includes(message)||!restoringLogs.includes('Worker Version '+r.version+' has been deployed to 100% of traffic.')||!restoringLogs.includes('PASS exact cancelled-release recovery: restore verified runtime; no data rollback'))return false;
+ if(verified?.id!==p.verifiedRun||verified.head_sha!==p.verifiedSource||verified.run_attempt!==1||verifiedJob?.id!==p.verifiedJob||verifiedJob.status!=='completed')return false;
+ for(const [number,name,conclusion] of [[60,'Deploy current main to production','success'],[89,'Prove Medicines Watch and its source checks on live traffic','success'],[108,'Restore the captured runtime if a post-deployment gate failed','skipped']])if(!verifiedJob.steps?.some(s=>s.number===number&&s.name===name&&s.conclusion===conclusion))return false;
+ const predecessor={id:p.verifiedDeployment,versions:[{version_id:p.verifiedVersion,percentage:100}]};
+ const receipts=ownedFrom(verifiedLogs).filter(o=>o.deploymentId===p.verifiedDeployment&&o.versionId===p.verifiedVersion&&o.previousDeploymentId==='df3c3764-7fd3-41c8-87ef-e82736af27b6'&&o.previousVersionId==='584de8a4-1c0c-416d-b3b6-9d44743dd58f'&&o.dataRestored===false&&verifiedOwnedRuntime(predecessor,verified,verifiedJob,o));
+ return receipts.length===1;
+}
+export async function verifyRestoredWatchRuntime(active,version,get,getLogs){
+ const r=restoredWatchRuntime,p=laterUnattributedRuntimeRecovery;
+ const restoring=await get('/actions/runs/'+r.run),restoringJobs=await get('/actions/runs/'+r.run+'/jobs?filter=latest&per_page=100');
+ const verified=await get('/actions/runs/'+p.verifiedRun),verifiedJobs=await get('/actions/runs/'+p.verifiedRun+'/jobs?filter=latest&per_page=100');
+ assert(verifiedRestoredWatchRuntime(active,version,restoring,restoringJobs.jobs?.find(j=>j.id===r.job),await getLogs(r.job),verified,verifiedJobs.jobs?.find(j=>j.id===p.verifiedJob),await getLogs(p.verifiedJob)),'Exact guarded restoration and original successful owned-deployment proof required');
+ return{run:p.verifiedRun,source:p.verifiedSource,version:p.verifiedVersion,deployment:r.deployment,restorationRun:r.run,evidenceKind:'exact-guarded-restoration-plus-original-successful-owned-deployment'};
+}
