@@ -1026,5 +1026,31 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "lateWatchDiagnosticRepair": {
+    "proof": "EXACT_LATE_WATCH_DIAGNOSTIC_REPAIR_V1",
+    "base": "8f9b060409346e9290640e9b30ae9f489c32ad3f",
+    "source": "98222db13ff0c591019c0b7be0486983706b4432",
+    "paths": [
+      "shift-coach/release.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/late-watch-diagnostic-composition.test.mjs"
+    ],
+    "maintenanceSource": "ce3efa33a56ea652848c791ae5d8efd5c8bf7ffc",
+    "failedRun": 37935819106,
+    "failedJob": 113837586069,
+    "releaseGuardExpectationFixed": true,
+    "runtimeChanged": false,
+    "publicCopyChanged": false,
+    "medicalClaimsChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
