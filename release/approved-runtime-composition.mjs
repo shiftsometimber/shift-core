@@ -711,17 +711,18 @@ export function verifyTogetherBiomarkerUpdate(c,{head,read,diff,ancestor}){
 export const MALE_OBESITY_BASE='77d2469344bb678a8e68b6e4e6cb36dfdbdc28b0';
 export const MALE_OBESITY_SOURCE='73f09364557810dd8579aaff8ba4fb2b4bb15837';
 export const MALE_OBESITY_PATHS=Object.freeze([".github/workflows/male-obesity-preview.yml", "member-experience/public-preservation.mjs", "obesity-awareness/README.md", "obesity-awareness/candidate.mjs", "obesity-awareness/candidate.test.mjs", "obesity-awareness/content.mjs", "obesity-awareness/measurement.mjs", "obesity-awareness/preservation.mjs", "obesity-awareness/preview-entry.mjs", "obesity-awareness/production.mjs", "obesity-awareness/production.test.mjs", "obesity-awareness/staging-build-proof.json", "obesity-awareness/staging-entry.mjs", "obesity-awareness/staging-entry.test.mjs", "obesity-awareness/verify-live.mjs", "obesity-awareness/wrangler.preview.jsonc", "obesity-awareness/wrangler.staging.jsonc", "release/public-continuity-body-proof.mjs", "shift-coach/worker.mjs"]);
-export const MALE_OBESITY_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs", "tests/male-obesity-composition.test.mjs"]);
+export const MALE_OBESITY_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs", "tests/male-obesity-composition.test.mjs", "tests/programme-day-continuity-body.test.mjs"]);
 const MALE_OBESITY_SET=new Set([...MALE_OBESITY_PATHS,...MALE_OBESITY_MAINTENANCE]);
 for(const path of MALE_OBESITY_SET)RECONCILIATION_PATHS.add(path);
-export function verifyMaleObesityPillar(c,{head,read,diff,ancestor}){
+export function verifyMaleObesityPillar(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
  assert.equal(c?.proof,'EXACT_MALE_OBESITY_PILLAR_V1');assert.equal(c.base,MALE_OBESITY_BASE);assert.equal(c.source,MALE_OBESITY_SOURCE);
  assert.deepEqual(c.paths,MALE_OBESITY_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
  assert.equal(c.ownerApproval,'Approved, Go; complete authorised informational release');assert.equal(c.externalReviewerRequired,false);assert.equal(c.publicationStatus,'approved_for_guarded_release');
  for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
  for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
  assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity payload');
- assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated male-obesity maintenance');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource).filter(p=>p!==RECONCILIATION_MANIFEST)),sorted(c.maintenancePaths),'Unrelated male-obesity maintenance');
+ const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityPillar;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by male-obesity registration');
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after male-obesity receipt');
  for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity source drift: '+path);
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity maintenance source drift: '+path);
