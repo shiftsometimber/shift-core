@@ -793,9 +793,10 @@
     ],
     "maintenancePaths": [
       "release/approved-runtime-composition.mjs",
+      "release/fit-300-scope.mjs",
       "tests/approved-runtime-composition.test.mjs"
     ],
-    "maintenanceSource": "b9b457ca8654f1952cd7de0063b10267ad699ce5",
+    "maintenanceSource": "14642aa62a417aec3ec1f3b928db6bc17812309f",
     "observationRun": 37908130882,
     "successfulPredecessorRun": 37895305149,
     "restoredVersion": "fd7939d8-6387-48fa-adc8-714e6f8bea8d",
