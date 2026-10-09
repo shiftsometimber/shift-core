@@ -792,6 +792,7 @@
       "shift-coach/recover-cancelled-release.mjs"
     ],
     "maintenancePaths": [
+      "release/app-scope.mjs",
       "release/approved-runtime-composition.mjs",
       "release/fit-300-scope.mjs",
       "scripts/b1-release-scope.mjs",
@@ -799,7 +800,7 @@
       "tests/approved-runtime-composition.test.mjs",
       "tests/public-tool-release.test.mjs"
     ],
-    "maintenanceSource": "71137c07f953c7fcb1ccaa7bbba04e211600b812",
+    "maintenanceSource": "d11ebab05e08aa7b764dda99581d82c54763dae5",
     "observationRun": 37908130882,
     "successfulPredecessorRun": 37895305149,
     "restoredVersion": "fd7939d8-6387-48fa-adc8-714e6f8bea8d",
