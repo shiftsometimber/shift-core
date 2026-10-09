@@ -365,6 +365,36 @@
     "memberBehaviourChanged": false,
     "privacyAssertionsWeakened": false
   },
+  "watchHstsPublicWording": {
+    "proof": "EXACT_WATCH_HSTS_PUBLIC_WORDING_V1",
+    "base": "961fa36a0dfb26a0ed3d4a43cb23a2c278270b75",
+    "source": "9494c0a326cbc193c7247e94cb4e8b9eace379cd",
+    "maintenanceSource": "45cc49973fa09cfd0469992286e90ac483b455f8",
+    "paths": [
+      "release/public-wording-scope.mjs",
+      "scripts/b1-release-scope.mjs",
+      "tests/b1-release-scope.test.mjs",
+      "shift-coach/release.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-hsts-public-wording-release.test.mjs",
+      "shift-coach/release-contract.mjs"
+    ],
+    "runtimeChanged": false,
+    "readOnlyHeadersChanged": false,
+    "publicCopyChanged": false,
+    "medicalEvidenceChanged": false,
+    "clinicalApprovalChanged": false,
+    "catalogueCountChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyChanged": false,
+    "customerDataChanged": false,
+    "checkoutChanged": false,
+    "myTimberChanged": false,
+    "privacyAssertionsWeakened": false
+  },
   "watchHstsDiagnostic": {
     "proof": "EXACT_WATCH_HSTS_DIAGNOSTIC_V1",
     "base": "c13d835552eb97dff903758b00609e73b5e50a88",
