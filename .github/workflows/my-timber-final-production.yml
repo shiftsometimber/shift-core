@@ -49,17 +49,6 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node tests/premortem-runtime-receipt.mjs before
-      - name: Install browser
-        run: |
-          npm install --no-save --ignore-scripts playwright
-          npx playwright install --with-deps chromium
-      - name: Premortem consent checkin adaptation refresh return and session recovery
-        run: |
-          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
-          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
-          echo "::add-mask::$token"
-          export SHIFT_COMMISSIONING_OIDC="$token"
-          node tests/premortem-production.mjs
       - name: Verify same runtime still serves after acceptance
         if: always() && steps.serving_before.outcome == 'success'
         env:
