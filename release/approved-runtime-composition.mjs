@@ -120,7 +120,7 @@ export const RECONCILIATION_PATHS=new Set([...COMPOSITION_PATHS,...RECONCILIATIO
 export const MY_TREATMENT_BASE='793b5135ce7bcdb42d77597b238c769c32a7dc67';
 export const MY_TREATMENT_SOURCE='8681d219edc06be15c24135741877c47ee36b011';
 export const MY_TREATMENT_PATHS=['.github/workflows/cloudflare-production-promote.yml','.github/workflows/my-treatment-production-check.yml','member-experience/TREATMENT-PRODUCTION-RELEASE.md','member-experience/entry.mjs','member-experience/tests/treatment-model.test.mjs','member-experience/tests/treatment.test.mjs','member-experience/treatment-model.mjs','member-experience/treatment-page.mjs','member-experience/treatment-privacy.mjs','member-experience/treatment-reminders.mjs','member-experience/treatment-routes.mjs','member-experience/treatment-service-worker.mjs','member-experience/treatment.sql','privacy-health-erasure-route-v1.js','release/my-treatment-config.mjs','release/my-treatment-live.mjs','release/my-treatment-schema.mjs','shift-coach/release-contract.mjs','tests/my-treatment-release.test.mjs','worker-entry-v6.js','wrangler.coaching.jsonc','wrangler.jsonc'];
-export const MY_TREATMENT_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/my-treatment-composition.test.mjs','tests/public-tool-release.test.mjs'];
+export const MY_TREATMENT_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/my-treatment-composition.test.mjs','tests/public-tool-release.test.mjs','acquisition-activation/metrics-release.test.mjs'];
 const MY_TREATMENT_SET=new Set([...MY_TREATMENT_PATHS,...MY_TREATMENT_MAINTENANCE]);
 for(const path of MY_TREATMENT_SET)RECONCILIATION_PATHS.add(path);
 export function verifyMyTreatment(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
@@ -133,7 +133,7 @@ export function verifyMyTreatment(c,{head,read,diff,ancestor,content=(ref,path)=
  assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated My Treatment maintenance');
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after My Treatment');
  for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved composition source / boundary drift: My Treatment source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: My Treatment / Tablet wording verifier source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved composition maintenance source drift: My Treatment / Tablet wording verifier source drift / Metrics maintenance source drift: '+path);
  const config=content(c.source,'wrangler.jsonc');assert.equal(config.split(TREATMENT_FLAG).length,2,'Exactly one authorised treatment flag');
  assert.equal(withoutTreatmentFlag(config),content(c.base,'wrangler.jsonc'),'Only the exact treatment flag may change configuration');
  assert.equal(content(c.source,'wrangler.coaching.jsonc'),config,'Coaching and production configuration must remain identical');

@@ -28,7 +28,9 @@ test('production preflight recognises only the independently pinned metrics file
  assert.equal(metricsPreflightPath('release/app-preflight.mjs'),true);
  assert.equal(metricsPreflightPath('worker-entry-v6.js'),Boolean(reconciliationRecord()));
  if(reconciliationRecord())assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p==='worker-entry-v6.js'?'tampered':p),/Approved composition source \/ boundary drift/);
- for(const p of ['wrangler.jsonc','public-seo-growth-data.mjs','unlisted.mjs'])assert.equal(metricsPreflightPath(p),false);
+ assert.equal(metricsPreflightPath('wrangler.jsonc'),Boolean(reconciliationRecord()?.myTreatment));
+ if(reconciliationRecord()?.myTreatment)assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p==='wrangler.jsonc'?'tampered':p),/Approved composition source \/ boundary drift/);
+ for(const p of ['public-seo-growth-data.mjs','unlisted.mjs'])assert.equal(metricsPreflightPath(p),false);
  const c=metricsRecord(),read=(ref,p)=>ref==='HEAD'&&p==='release/app-preflight.mjs'?'tampered':p;
  assert.throws(()=>verifyMetricsConnection(c,read),/Metrics maintenance source drift/);
 });
