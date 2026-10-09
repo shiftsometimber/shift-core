@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {randomUUID} from 'node:crypto';
 import {commissioningLogin,memberReady,requireMemberPanel,chooseNecessaryCookies,memberReload} from '../rendered-member-acceptance-support.mjs';
+import {revealSetupField} from '../release/app-member-live.mjs';
 import {savedFitIssues} from '../member-experience/fit-saved-review.mjs';
 const site='https://shiftsometimber.co.uk',api='https://api.shiftsometimber.co.uk',oidc=process.env.SHIFT_COMMISSIONING_OIDC,out='premortem-evidence';assert(oidc);mkdirSync(out,{recursive:true});
 const report={at:new Date().toISOString(),source:process.env.ACCEPTANCE_SOURCE,scope:'Supplemental fictional production browser proof; historical guard fixtures are isolated technical proof, not real member history',checks:[],errors:[],networkFailures:[]};
@@ -36,7 +37,7 @@ try{
  }
  await check('New Fit session maps movement names groups instructions and images to saved plan',async()=>{
  await page.goto(site+'/member/fit',{waitUntil:'domcontentloaded'});await chooseNecessaryCookies(page);
- await page.locator('#fitGenerate').waitFor({state:'visible'});await page.locator('#fitDays').selectOption('1');await page.locator('#fitMinutes').selectOption('10');
+ const days=await revealSetupField(page,'#fitDays'),minutes=await revealSetupField(page,'#fitMinutes');await days.selectOption('1');await minutes.selectOption('10');await revealSetupField(page,'#fitGenerate');
  const built=page.waitForResponse(r=>new URL(r.url()).pathname==='/v1/fit/plan'&&r.request().method()==='POST');await page.locator('#fitGenerate').click();assert.equal((await built).status(),200);
  await page.locator('.sf-exercise').first().waitFor();const saved=await call('/v1/fit/activity');assert.equal(savedFitIssues(saved.plan).length,0);const movements=saved.plan.sessions.flatMap(s=>s.exercises);assert(movements.length);
  for(const item of movements){const card=page.locator('.sf-exercise').filter({has:page.locator('h4',{hasText:item.name})}).first();assert.equal((await card.locator('h4').innerText()).trim(),item.name);assert.equal(await card.getAttribute('data-exercise-id'),String(item.id));assert.equal(await card.getAttribute('data-exercise-group'),item.group);
@@ -45,6 +46,14 @@ try{
  const image=card.locator('img.sf-approved-exercise-image');await image.scrollIntoViewIfNeeded();await page.waitForFunction(src=>{const i=[...document.images].find(i=>i.getAttribute('src')===src);return i?.complete&&i.naturalWidth>0},await image.getAttribute('src'));assert((await image.getAttribute('src')).includes(item.canonical_movement||item.visual?.canonical_movement));
  }
  const first=page.locator('.sf-exercise').first(),id=await first.getAttribute('data-exercise-id');await first.locator('[data-sf-complete="done"]').click();await page.waitForFunction(id=>document.querySelector('[data-exercise-id="'+id+'"]')?.dataset.completion==='done',id);const after=await call('/v1/fit/activity');report.checks.push({name,label:'Saved Fit completion evidence',pass:true,evidence:after});await page.reload({waitUntil:'domcontentloaded'});await page.locator('[data-exercise-id="'+id+'"][data-completion="done"]').waitFor();await page.screenshot({path:out+'/'+name+'-fit.png'});
+ });
+ await check('Actual browser cookie expiry blocks access and fresh login restores retained Fit state',async()=>{
+ const before=await call('/v1/fit/activity');const cookies=(await context.cookies()).filter(c=>c.name==='sst_session');assert(cookies.length,'Real server-issued session cookie must exist');
+ await context.addCookies(cookies.map(c=>({...c,expires:Math.floor(Date.now()/1000)+2})));await page.waitForTimeout(3100);
+ assert.equal((await context.request.get(site+'/v1/fit/activity')).status(),401);
+ await page.goto(site+'/member/dashboard',{waitUntil:'domcontentloaded'});await page.locator('#previewAuth').waitFor({state:'visible'});assert.equal(await page.locator('#previewMember.is-ready').count(),0);
+ await commissioningLogin(page,{site,api,oidc,...identity});await memberReady(page,{site});assert.deepEqual(await call('/v1/fit/activity'),before);
+ report.checks.push({name,label:'Expiry method',pass:true,scope:'Browser naturally expires shortened lifetime of its real cookie; production server TTL not accelerated or claimed'});
  });
  }finally{
  await context.request.delete(site+'/v1/privacy/health-tracking',{headers:{Origin:site}}).catch(()=>{});await context.request.post(site+'/v1/auth/logout',{headers:{Origin:site},data:{}}).catch(()=>{});await context.close();write();
