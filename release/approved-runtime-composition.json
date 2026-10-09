@@ -992,5 +992,39 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "lateWatchFactualUpdate": {
+    "proof": "EXACT_LATE_WATCH_FACTUAL_UPDATE_V1",
+    "base": "29d2c8038505f0a9e49d0abf6cba501149e9817d",
+    "approvedMerge": "f511cd37cbcd53a64bd178ab356c966cd39acb74",
+    "source": "7f9f1bcf2d322ee6b25d61169cae8bbae8b462a4",
+    "paths": [
+      "medicines-watch/README.md",
+      "medicines-watch/credibility.mjs",
+      "medicines-watch/credibility.test.mjs",
+      "medicines-watch/evidence-desk.test.mjs",
+      "medicines-watch/industry.mjs",
+      "medicines-watch/industry.test.mjs",
+      "medicines-watch/reviews/2026-10-09-authorised-together-psoriatic-disease.json",
+      "medicines-watch/reviews/2026-10-09-overdue-source-renewal-late.json",
+      "medicines-watch/source-review.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/late-watch-composition.test.mjs"
+    ],
+    "maintenanceSource": "a37b462b976bdb969cf236293a63e34398b6e9fd",
+    "approvedPR": 1267,
+    "publicationStatus": "already_merged_owner_authorised_factual_publication",
+    "clinicalApproval": null,
+    "exactCompleteBodyProofRestored": true,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
