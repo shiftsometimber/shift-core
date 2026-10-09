@@ -26,7 +26,7 @@ export function applyPillarMetadata(html,path,meta=supportingMetadata[path]){
  if(!meta)return html;
  if(!html.includes('</head>'))throw Error('awareness_invalid_shell');
  html=html.replace(/<title\b[^>]*>[\s\S]*?<\/title>/gi,'')
- .replace(/<meta\b(?=[^>]*(?:name|property)\s*=\s*["'](?:description|robots|og:[^"']+|twitter:[^"']+)["'])[^>]*>/gi,'')
+ .replace(/<meta\b(?=[^>]*(?:name|property)\s*=\s*["'](?:description|robots|og:[^"']+|twitter:[^"']+)["'])[^>]*>/gi,tag=>/(?:name|property)\s*=\s*["'](?:og:image|twitter:image)(?::[^"']+)?["']/i.test(tag)?tag:'')
  .replace(/<link\b(?=[^>]*rel\s*=\s*["']canonical["'])[^>]*>/gi,'');
  const url=ORIGIN+path;
  html=html.replace(schemaRE,tag=>{
