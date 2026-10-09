@@ -1,3 +1,4 @@
+import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
 import bimagrumabSemaglutide from './reviews/2026-10-09-authorised-bimagrumab-semaglutide.json' with {type:'json'};
 import togetherPsoriaticDisease from './reviews/2026-10-09-authorised-together-psoriatic-disease.json' with {type:'json'};
@@ -446,21 +447,21 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.match(azd.summary,/262 actual participants/);
  const pilot=industry.find(e=>e.id==='mirabegron-alpha-lipoic-acid');
  assert.match(pilot.stage,/not yet recruiting/);
- assert.match(pilot.summary,/estimated start moved again to 13 October 2026/);
+ assert.match(pilot.summary,/estimated start moved again to 14 October 2026/);
  assert.match(pilot.summary,/primary endpoint is insulin sensitivity/);
  assert.match(pilot.limitations,/48-person target.*estimates 60/);
  for(const e of [abbv,azd,pilot]){
   assert.equal(e.clinicalApproval,null);
-  assert.equal(e.reviewedAt,e.id==='azd6234'?seleneCorrection.reviewedAt:e.id==='mirabegron-alpha-lipoic-acid'?zupremeLifecycleUpdate.reviewedAt:vikingRhythmRegistryReview.reviewedAt);
+  assert.equal(e.reviewedAt,e.id==='azd6234'?seleneCorrection.reviewedAt:e.id==='mirabegron-alpha-lipoic-acid'?backlogReview.reviewedAt:vikingRhythmRegistryReview.reviewedAt);
   assert.equal(e.sourceIds.length,0);
   for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k]);
   const html=industryMarkup({},new URLSearchParams({q:e.name}));
   assert.match(html,/Status checks do not assess clinical outcomes/);
  }
  const correctedSource=registrySources.find(s=>s.id==='registry-nct05713799');
- assert.equal(correctedSource.lifecycle.start.date,'2026-10-13');
- assert.equal(correctedSource.sourceUpdatedAt,'2026-10-08');
- assert.equal(correctedSource.reviewedFingerprint,'d03e72f9dfacd4c1b1522da358fa21879b126af74f1e2c9f2cfd6c8d9033d4ab');
+ assert.equal(correctedSource.lifecycle.start.date,'2026-10-14');
+ assert.equal(correctedSource.sourceUpdatedAt,'2026-10-09');
+ assert.equal(correctedSource.reviewedFingerprint,backlogReview.registrySources.find(s=>s.id===correctedSource.id).reviewedFingerprint);
  assert.equal(nct05713799Correction.clinicalApproval,null);
  assert.equal(nct05713799Correction.industryComplete,false);
  assert.equal(amylinMetabolicFollowup.automatedMonitorChanges,false);
@@ -502,7 +503,7 @@ test('AZD6234 correction retains APRICUS and distinguishes recruiting SELENE 1 f
 });
 test('macupatide discovery distinguishes recruiting Phase 2 from planned Phase 1',()=>{
  const entry=industry.find(item=>item.id==='macupatide');
- assert.match(entry.stage,/Recruiting Phase 2/);
+ assert.match(entry.stage,/Active, not recruiting Phase 2/);
  assert.match(entry.stage,/not yet recruiting/);
  assert.match(entry.summary,/actual 16 October 2025 start/);
  assert.match(entry.limitations,/Neither study has posted results/);
@@ -654,7 +655,7 @@ test('GlobeNewswire access repair changes only check URLs and preserves reviewed
   assert.equal(new URL(source.checkUrl).hostname,'rss.globenewswire.com');
   assert.equal(proof.previousReviewedFingerprint,proof.reviewedFingerprint);
   assert.equal(source.reviewedFingerprint,proof.reviewedFingerprint);
-  assert.equal(source.reviewedAt,repaired.reviewedAt);
+  assert.equal(source.reviewedAt,backlogReview.sources.find(r=>r.id===source.id)?.reviewedAt ?? repaired.reviewedAt);
   assert.equal(proof.httpStatus,200);
   assert.equal(proof.withdrawn,false);
  }
@@ -1516,7 +1517,7 @@ test('Viking, Rhythm and changed registry evidence stays formulation and indicat
  const abbv=registrySources.find(source=>source.nctId==='NCT07752979');
  assert.equal(abbv.sourceUpdatedAt,'2026-10-08');assert.equal(abbv.lifecycle.status,'RECRUITING');assert.equal(abbv.lifecycle.hasResults,false);
  const pilot=registrySources.find(source=>source.nctId==='NCT05713799');
- assert.deepEqual(pilot.lifecycle.start,{date:'2026-10-13',type:'ESTIMATED'});assert.equal(pilot.lifecycle.hasResults,false);
+ assert.deepEqual(pilot.lifecycle.start,{date:'2026-10-14',type:'ESTIMATED'});assert.equal(pilot.lifecycle.hasResults,false);
  assert.equal(vikingRhythmRegistryReview.configuredSourcePass.reviewRenewals,false);
  assert.equal(vikingRhythmRegistryReview.discoveryPass.industryComplete,false);
 });
@@ -1653,7 +1654,7 @@ test('8 October update retains typed ZUPREME starts, sponsor uncertainty and ove
  assert.equal(phase2.lifecycle.hasResults,false);
  assert.equal(e.additionalEvidence.filter(l=>l.url===phase2.url).length,1);
  const pilot=industry.find(e=>e.id==='mirabegron-alpha-lipoic-acid');
- assert.match(pilot.summary,/estimated start moved again to 13 October/);
+ assert.match(pilot.summary,/estimated start moved again to 14 October/);
  assert.match(pilot.limitations,/48-person target.*estimates 60/);
  assert.equal(zupremeLifecycleUpdate.configuredSourcePass.overdueReviews,29);
  assert.equal(zupremeLifecycleUpdate.configuredSourcePass.delayedSources,2);
