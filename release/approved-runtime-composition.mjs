@@ -358,6 +358,28 @@ export function verifyNewsSecurity(c,{head,read,diff,ancestor,content=(ref,path)
  return c;
 }
 
+export const WATCH_RUNTIME_BASELINE_BASE='8d1b328c0a5f7169e646ed23d30f79ce7562c8c8';
+export const WATCH_RUNTIME_BASELINE_SOURCE='ba232820de4bf508691f66915eb6e970e68ca313';
+export const WATCH_RUNTIME_BASELINE_PATHS=['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs'];
+export const WATCH_RUNTIME_BASELINE_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/watch-runtime-baseline-release.test.mjs'];
+const WATCH_RUNTIME_BASELINE_SET=new Set([...WATCH_RUNTIME_BASELINE_PATHS,...WATCH_RUNTIME_BASELINE_MAINTENANCE]);
+for(const path of WATCH_RUNTIME_BASELINE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchRuntimeBaseline(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert(c);assert.equal(c.proof,'EXACT_WATCH_RUNTIME_BASELINE_V1');assert.equal(c.base,WATCH_RUNTIME_BASELINE_BASE);assert.equal(c.source,WATCH_RUNTIME_BASELINE_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,WATCH_RUNTIME_BASELINE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RUNTIME_BASELINE_MAINTENANCE);
+ assert.equal(c.recoveryVerifierChanged,true);assert.equal(c.currentDeploymentRun,37870273259);assert.equal(c.currentDeploymentId,'3515e037-1915-476a-9f6b-6b41bbf5e061');assert.equal(c.currentVersionId,'48eb4d71-cb90-4132-bb16-4768132d61d5');
+ for(const flag of ['runtimeChanged','publicCopyChanged','medicalEvidenceChanged','clinicalApprovalChanged','customerDataChanged','checkoutChanged','myTimberChanged','rollbackAuthorityBroadened'])assert.equal(c[flag],false);
+ for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch runtime baseline source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch runtime baseline maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Watch runtime baseline');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved Watch runtime baseline source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved Watch runtime baseline source drift / maintenance: '+path);
+ const verifier=content(c.source,'shift-coach/cancelled-release-recovery.mjs');
+ assert.match(verifier,/recordedMedicinesWatchRuntime/);assert.match(verifier,/active\?\.id!==receipt\.deploymentId/);
+ assert.equal(content(c.source,'.github/workflows/cloudflare-production-promote.yml'),content(c.base,'.github/workflows/cloudflare-production-promote.yml'),'Guarded production workflow must remain byte-for-byte unchanged');
+ return c;
+}
+
 export const SHARED_FOOTER_COMPOSITION_BASE='c37c770929f7f595def20f23b6092015b820dfff';
 export const SHARED_FOOTER_COMPOSITION_PATHS=['tests/shared-footer.test.mjs'];
 export const SHARED_FOOTER_COMPOSITION_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/shared-footer-composition-release.test.mjs'];
@@ -566,10 +588,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const runtimeBaseline=c.watchRuntimeBaseline;
+ if(runtimeBaseline)verifyWatchRuntimeBaseline(runtimeBaseline,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const runtimeBaselineHead=runtimeBaseline?runtimeBaseline.base:head;
+ const runtimeBaselineRead=(ref,path)=>readBlob(runtimeBaseline&&ref==='HEAD'&&WATCH_RUNTIME_BASELINE_SET.has(path)?runtimeBaseline.base:ref,path);
  const footerComposition=c.sharedFooterCompositionProof;
- if(footerComposition)verifySharedFooterComposition(footerComposition,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const footerCompositionHead=footerComposition?footerComposition.base:head;
- const footerCompositionRead=(ref,path)=>readBlob(footerComposition&&ref==='HEAD'&&SHARED_FOOTER_COMPOSITION_SET.has(path)?footerComposition.base:ref,path);
+ if(footerComposition)verifySharedFooterComposition(footerComposition,{head:runtimeBaselineHead,read:runtimeBaselineRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const footerCompositionHead=footerComposition?footerComposition.base:runtimeBaselineHead;
+ const footerCompositionRead=(ref,path)=>runtimeBaselineRead(footerComposition&&ref==='HEAD'&&SHARED_FOOTER_COMPOSITION_SET.has(path)?footerComposition.base:ref,path);
  const hstsPublicWording=c.watchHstsPublicWording;
  if(hstsPublicWording)verifyWatchHstsPublicWording(hstsPublicWording,{head:footerCompositionHead,read:footerCompositionRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const hstsPublicWordingHead=hstsPublicWording?hstsPublicWording.base:footerCompositionHead;
