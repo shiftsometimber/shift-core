@@ -1156,5 +1156,44 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "maleObesityReleaseCloseout": {
+    "proof": "EXACT_MALE_OBESITY_CLOSEOUT_V1",
+    "base": "fcf7711ad6dff2341801ab97fac36ac34bb96305",
+    "source": "8f5871e46f4022ef03440f06d42946896f466952",
+    "paths": [
+      ".github/workflows/male-obesity-preview.yml",
+      "obesity-awareness/candidate.mjs",
+      "obesity-awareness/candidate.test.mjs",
+      "obesity-awareness/content.mjs",
+      "obesity-awareness/production.mjs",
+      "obesity-awareness/production.test.mjs",
+      "obesity-awareness/rollback-proof.test.mjs",
+      "shift-coach/recover-cancelled-release.mjs",
+      "obesity-awareness/rendered-live-proof.cjs",
+      "shift-coach/cancelled-release-recovery.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/male-obesity-closeout-composition.test.mjs",
+      "tests/approved-runtime-composition.test.mjs"
+    ],
+    "maintenanceSource": "f11988923a0ce837605d5816c2e73802b8d38400",
+    "ownerApproval": "Complete authorised release and prove the live male-obesity journey",
+    "failedRun": 37997975670,
+    "failedGate": 89,
+    "externalReviewerRequired": false,
+    "publicationStatus": "approved_for_guarded_release",
+    "homepageChanged": false,
+    "startHereFlowChanged": false,
+    "primaryNavigationChanged": false,
+    "memberDataChanged": false,
+    "checkoutChanged": false,
+    "externalCommunicationsSent": false,
+    "costsCommitted": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
