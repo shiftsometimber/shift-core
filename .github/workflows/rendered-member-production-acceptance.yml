@@ -97,6 +97,13 @@ jobs:
           const after=(await get('/deployments')).deployments[0];assert.equal(after.id,before.id);assert.deepEqual(after.versions,before.versions);
           const result={kind:'post_acceptance_readonly_provider_verification',at:new Date().toISOString(),source:evidence.source,guardedRun:evidence.run,deploymentId:before.id,versionId:version.id,percentage:100,treatmentEnabled:true,unchangedAcrossReads:true,requests:'GET only',productionMutations:0,pass:true};writeFileSync('my-treatment-browser-evidence/provider-active.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result));
           JS
+      - name: Retain inspectable synthetic visual acceptance evidence
+        if: always()
+        run: |
+          node --input-type=module <<'JS'
+          import {existsSync,readFileSync} from 'node:fs';
+          for(const name of ['mobile-current-treatment.png','desktop-current-treatment.png','mobile-synthetic-summary.pdf','desktop-synthetic-summary.pdf']){const path='my-treatment-browser-evidence/'+name;if(existsSync(path))console.log(JSON.stringify({kind:'synthetic_visual_acceptance_artifact',scope:'Restricted synthetic commissioning accounts only; fictional treatment and medical information',name,encoding:'base64',data:readFileSync(path).toString('base64')}));}
+          JS
       - uses: actions/upload-artifact@v4
         if: always()
         with:
