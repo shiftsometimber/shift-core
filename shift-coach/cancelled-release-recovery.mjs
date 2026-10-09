@@ -350,3 +350,34 @@ export function verifiedTabletRollback(active,run,job,logs){
   &&String(logs).includes('catalogue_stale_main_rejected')
   &&String(logs).includes('Worker Version '+t.version+' has been deployed to 100% of traffic.');
 }
+
+// Retain only the exact owned rollback observed after the failed tool release.
+// Its failure is never promoted to verification; ownership is proved again
+// against the original successful release and the exact automatic rollback check.
+export const toolReleaseRollback=Object.freeze({run:37919061119,job:113783602718,source:'f2836dc942ef1fcee0d49a686b117bd687be3531',deployment:'55dd384e-226a-4f19-b989-322dcdee7888',createdOn:'2026-10-09T11:05:31.78167Z',ownedDeployment:'06d47989-47c8-4064-9eb7-865acad0151d',ownedVersion:'9ed844dd-918d-4c6f-8da9-2b97047253e9',previousDeployment:'19c317f4-0058-4497-86a8-596db6de90a9'});
+const releaseRecords=(logs,kind)=>String(logs).split('\n').flatMap(line=>{const at=line.indexOf('{"kind":"'+kind+'"');if(at<0)return[];try{return[JSON.parse(line.slice(at))]}catch{return[]}});
+export function verifiedToolReleaseRollback(active,version,failed,job,logs,verified,verifiedJob,verifiedLogs){
+ const p=toolReleaseRollback,q=laterUnattributedRuntimeRecovery;
+ if(active?.id!==p.deployment||active.source!=='wrangler'||active.created_on!==p.createdOn||active.annotations?.['workers/triggered_by']!=='deployment'||active.annotations?.['workers/message']!=='Owned release failed post-deployment checks; restore captured runtime and preserve current data')return false;
+ if(active.versions?.length!==1||active.versions[0].percentage!==100||active.versions[0].version_id!==q.verifiedVersion)return false;
+ if(version?.id!==q.verifiedVersion||version.metadata?.created_on!=='2026-10-09T07:07:16.10051Z'||version.metadata?.source!=='wrangler'||version.annotations?.['workers/triggered_by']!=='version_upload'||version.annotations?.['workers/tag']||version.annotations?.['workers/message'])return false;
+ if(failed?.id!==p.run||failed.head_sha!==p.source||failed.run_attempt!==1||failed.status!=='completed'||failed.conclusion!=='failure'||failed.event!=='push'||failed.head_branch!=='main'||failed.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
+ if(job?.id!==p.job||job.run_id!==p.run||job.name!=='promote'||job.status!=='completed'||job.conclusion!=='failure')return false;
+ for(const [number,name,conclusion] of [[63,'Deploy current main to production','success'],[68,'Verify calculator journeys and specific tool guidance live','failure'],[114,'Restore the captured runtime if a post-deployment gate failed','success'],[115,'Verify nine public tool pages after owned rollback','success'],[119,'Report final public tool release status','failure']])if(!job.steps?.some(s=>s.number===number&&s.name===name&&s.conclusion===conclusion))return false;
+ const owner=ownedFrom(logs).filter(r=>r.source===p.source&&String(r.run)===String(p.run)&&r.deploymentId===p.ownedDeployment&&r.versionId===p.ownedVersion&&r.previousDeploymentId===p.previousDeployment&&r.previousVersionId===q.verifiedVersion&&r.dataRestored===false);
+ if(owner.length!==1||!String(logs).includes('Worker Version '+q.verifiedVersion+' has been deployed to 100% of traffic.'))return false;
+ const reports=releaseRecords(logs,'guarded_release_verification');
+ const paths=['/decision-centre','/tools/alcohol','/tools/bmi','/tools/calories','/tools/healthy-weight','/tools/protein','/tools/waist-height','/tools/walking','/tools/water'];
+ const exactCheck=c=>c?.kind==='public_tool_release_check'&&c.stage==='rollback'&&c.source===p.source&&String(c.run)===String(p.run)&&c.status==='passed'&&c.toolChecksVerified===true&&c.deployed?.deploymentId===p.deployment&&c.deployed.versionId===q.verifiedVersion&&c.deployed.percentage===100&&JSON.stringify(c.afterChecks)===JSON.stringify(c.deployed)&&c.expected?.deploymentId===p.previousDeployment&&c.expected.versionId===q.verifiedVersion&&c.errors?.length===0&&c.checks?.length===9&&paths.every(path=>c.checks.some(x=>x.path===path&&x.passed===true&&x.status===200&&x.applicationItems===0&&x.canonicalWebPageItems===1&&/^[a-f0-9]{64}$/.test(x.htmlSha256)));
+ if(!reports.length||reports.some(r=>r.source!==p.source||String(r.run)!==String(p.run)||r.workflowStatus!=='failure'||r.status!=='failed'||r.releaseVerified!==false||r.deployedVersion!==p.ownedVersion||!exactCheck(r.rollbackChecks)))return false;
+ if(verified?.id!==q.verifiedRun||verified.head_sha!==q.verifiedSource||verified.run_attempt!==1||verifiedJob?.id!==q.verifiedJob||verifiedJob.status!=='completed')return false;
+ const predecessor={id:q.verifiedDeployment,versions:[{version_id:q.verifiedVersion,percentage:100}]};
+ return ownedFrom(verifiedLogs).filter(r=>r.dataRestored===false&&verifiedOwnedRuntime(predecessor,verified,verifiedJob,r)).length===1;
+}
+export async function verifyToolReleaseRollback(active,version,get,getLogs){
+ const p=toolReleaseRollback,q=laterUnattributedRuntimeRecovery;
+ const failed=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs?filter=latest&per_page=100');
+ const verified=await get('/actions/runs/'+q.verifiedRun),verifiedJobs=await get('/actions/runs/'+q.verifiedRun+'/jobs?filter=latest&per_page=100');
+ assert(verifiedToolReleaseRollback(active,version,failed,jobs.jobs?.find(j=>j.id===p.job),await getLogs(p.job),verified,verifiedJobs.jobs?.find(j=>j.id===q.verifiedJob),await getLogs(q.verifiedJob)),'Exact owned tool rollback, failed release report and original successful ownership proof required');
+ return{run:q.verifiedRun,source:q.verifiedSource,version:q.verifiedVersion,deployment:p.deployment,restorationRun:p.run,evidenceKind:'exact-owned-tool-rollback-plus-original-successful-owned-deployment'};
+}

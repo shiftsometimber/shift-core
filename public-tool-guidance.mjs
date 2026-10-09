@@ -11,7 +11,8 @@ export const TOOL_GUIDANCE=Object.freeze({
 });
 const escape=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const guidanceCard=g=>`<section data-tool-guidance="20261009" class="calc-guide-card" aria-labelledby="tool-guidance-title"><h2 id="tool-guidance-title">Make this result useful</h2><p>${escape(g.method)}</p><h3>Your next three steps</h3><ol>${g.steps.map(s=>'<li>'+escape(s)+'</li>').join('')}</ol><p>${escape(g.action)}</p><a href="${escape(g.href)}">${escape(g.label)} →</a></section>`;
-function toolClient(g) {
+// Browser payloads are literal source: production bundlers must never rewrite them.
+const TOOL_CLIENT_SOURCE=String.raw`function toolClient(g) {
  const boot=()=>{
   const form=document.getElementById(g.form),result=document.getElementById(g.result);if(!form||!result)return;
   const prompt=form.querySelector('[data-tool-input-prompt]');
@@ -29,15 +30,15 @@ function toolClient(g) {
   form.addEventListener('submit',()=>{if(!form.checkValidity())return;queueMicrotask(()=>{form.dataset.toolInputsPending='false';result.style.setProperty('display','block','important');if(prompt)prompt.hidden=true;improve();});},true);
  };
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-}
-function decisionClient() {
+}`;
+const DECISION_CLIENT_SOURCE=String.raw`function decisionClient() {
  const boot=()=>{
   const absent=()=>document.getElementById('nhsEligibility')?.textContent.includes('previously saved browser profile')||document.getElementById('gpReport')?.textContent.includes('No legacy questionnaire profile');
   const apply=()=>{if(!absent())return;for(const id of ['tab-nhs','tab-scenarios','tab-gp']){const panel=document.getElementById(id);if(panel)panel.hidden=true;}const print=[...document.querySelectorAll('button')].find(b=>/Print.*GP report/i.test(b.textContent));if(print){print.disabled=true;print.title='No personal health profile is available for this report.';}for(const button of document.querySelectorAll('[data-tab]'))if(['nhs','scenarios','gp'].includes(button.dataset.tab)){button.disabled=true;button.title='Needs a previously saved health questionnaire profile. Use Treatment Finder for a new decision-support journey.';}};
   apply();const main=document.querySelector('main');if(main)new MutationObserver(apply).observe(main,{childList:true,subtree:true});
  };
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-}
+}`;
 export function improveToolGuidance(html,path) {
  const g=TOOL_GUIDANCE[path];if(!g&&path!=='/decision-centre')return html;
  if(html.includes('data-tool-guidance="20261009"')||!html.includes('</head>')||!html.includes('</body>'))return html;
@@ -51,9 +52,9 @@ export function improveToolGuidance(html,path) {
   if(path==='/tools/protein')html=html.replace('<li>Activity level</li><li>Goal or context</li><li>Estimated daily protein range</li>','<li>Selected grams per kilogram</li><li>Estimated daily protein amount</li>');
   if(path==='/tools/calories')html=html.replace('<li>Sex</li>','<li>Adult male equation (fixed)</li>');
   html=html.replace('</head>','<style data-tool-guidance-style>form[data-tool-inputs-pending="true"] .result{display:none!important}[data-tool-guidance]{box-sizing:border-box;max-width:820px;width:calc(100% - 40px);margin:24px auto;padding:24px;border:1px solid #777;border-radius:12px} [data-tool-guidance] li{margin-bottom:12px}[data-tool-guidance] a{overflow-wrap:anywhere} [data-tool-input-prompt]{padding:12px} [data-tool-input-prompt][hidden]{display:none!important}</style></head>');
-  return html.replace('</body>','<script data-tool-guidance-client>('+toolClient.toString()+')('+JSON.stringify(g).replaceAll('<','\\u003c')+');</script></body>');
+  return html.replace('</body>','<script data-tool-guidance-client>('+TOOL_CLIENT_SOURCE+')('+JSON.stringify(g).replaceAll('<','\\u003c')+');</script></body>');
  }
  const card='<section data-tool-guidance="20261009" class="wrap" aria-labelledby="tool-guidance-title"><h2 id="tool-guidance-title">Choose one route to explore, then prepare three questions</h2><p>For a new visit, use Treatment Finder to enter your preferences and explore the options. It does not decide clinical eligibility or guarantee access to treatment.</p><ol><li>Write down what you want help with: appetite, weight history, day-to-day habits or choosing between treatment routes.</li><li>Use Treatment Finder and compare one or two relevant routes, including lifestyle support, costs and aftercare.</li><li>Take your current measurements, medicines and three unanswered questions to the appropriate professional.</li></ol><p>The legacy NHS pathway calculator, weight-loss scenarios and personal GP report need a previously saved health questionnaire profile. The current Health MOT information page does not create one. An empty report is not a useful referral or personal assessment.</p><p><a href="/treatment-finder">Enter your preferences in Treatment Finder →</a> · <a href="/decision-centre-methodology">Read the decision-support methodology →</a></p></section>';
  html=html.replace(/(<main\b[^>]*>)/i,'$1'+card);
- return html.replace('</body>','<script data-tool-guidance-client>('+decisionClient.toString()+')();</script></body>');
+ return html.replace('</body>','<script data-tool-guidance-client>('+DECISION_CLIENT_SOURCE+')();</script></body>');
 }
