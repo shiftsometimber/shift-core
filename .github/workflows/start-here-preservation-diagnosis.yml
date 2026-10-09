@@ -1,0 +1,29 @@
+name: Read-only Start Here preservation diagnosis
+on:
+  push:
+    branches: [verification/start-here-preservation-20261009]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --ignore-scripts
+      - name: Reconstruct exact public read-only sources
+        run: |
+          git worktree add --detach /tmp/start-here-baseline 793b5135ce7bcdb42d77597b238c769c32a7dc67
+          ln -s "$GITHUB_WORKSPACE/node_modules" /tmp/start-here-baseline/node_modules
+          node verification/start-here-preservation.mjs
+          diff -u start-here-diagnostic/baseline.js start-here-diagnostic/candidate.js > start-here-diagnostic/source.diff || test "$?" = 1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: start-here-preservation
+          path: start-here-diagnostic/
