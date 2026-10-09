@@ -750,5 +750,39 @@
     "customerDataChanged": false,
     "deploymentAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "toolReleaseAutomation": {
+    "proof": "EXACT_PREPARED_TOOL_RELEASE_AUTOMATION_V1",
+    "base": "38036236f065e7a760b2e36dc72a7113dd13e785",
+    "source": "9cab4cd9de53c5dfe81228f3b1932db54e2c5095",
+    "paths": [
+      ".github/workflows/cloudflare-production-promote.yml",
+      "public-tool-delivery.mjs",
+      "public-tool-guidance.mjs",
+      "release/tool-guidance-20261009/README.md",
+      "release/tool-guidance-20261009/automation-proof.json",
+      "release/tool-guidance-20261009/live-schema-check.json",
+      "release/tool-guidance-20261009/test-results.tap",
+      "release/tool-guidance-20261009/tool-guidance-browser.json",
+      "release/tool-schema-gate.mjs",
+      "scripts/verify-tool-calculators-browser.cjs",
+      "scripts/verify-tool-guidance-browser.cjs",
+      "scripts/verify-tool-page-schema.cjs",
+      "tests/public-tool-guidance.test.mjs",
+      "tests/tool-schema-gate.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/tool-release-automation-composition.test.mjs"
+    ],
+    "maintenanceSource": "0166923e0c1c2f5bb1e6c2e7ad0e4667e69452a0",
+    "publicationStatus": "paused",
+    "runtimeChanged": true,
+    "publicCopyChanged": true,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "deploymentAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
