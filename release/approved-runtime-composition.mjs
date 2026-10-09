@@ -696,12 +696,18 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
- const toolRelease=c.toolReleaseAutomation;
- if(toolRelease)verifyToolReleaseAutomation(toolRelease,{head:actualHead,read:baseRawBlob,
+ const toolBuild=c.toolGuidanceProductionBuildFix;
+ if(toolBuild)verifyToolGuidanceBuildFix(toolBuild,{head:actualHead,read:baseRawBlob,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preToolHead=toolRelease?toolRelease.base:actualHead;
- const preToolBlob=(ref,path)=>baseRawBlob(toolRelease&&ref==='HEAD'&&[...TOOL_RELEASE_AUTOMATION_PATHS,...TOOL_RELEASE_AUTOMATION_MAINTENANCE].includes(path)?toolRelease.base:ref,path);
+ const preToolBuildHead=toolBuild?toolBuild.base:actualHead;
+ const preToolBuildBlob=(ref,path)=>baseRawBlob(toolBuild&&ref==='HEAD'&&TOOL_GUIDANCE_BUILD_FIX_SET.has(path)?toolBuild.base:ref,path);
+ const toolRelease=c.toolReleaseAutomation;
+ if(toolRelease)verifyToolReleaseAutomation(toolRelease,{head:preToolBuildHead,read:preToolBuildBlob,
+  diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
+  ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preToolHead=toolRelease?toolRelease.base:preToolBuildHead;
+ const preToolBlob=(ref,path)=>preToolBuildBlob(toolRelease&&ref==='HEAD'&&[...TOOL_RELEASE_AUTOMATION_PATHS,...TOOL_RELEASE_AUTOMATION_MAINTENANCE].includes(path)?toolRelease.base:ref,path);
  const restored=c.restoredLaterRuntimeRetention;
  if(restored)verifyRestoredLaterRetention(restored,{head:preToolHead,read:preToolBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const restoredHead=restored?restored.base:preToolHead;
@@ -1049,5 +1055,28 @@ export function verifyToolReleaseAutomation(c,{head,read,diff,ancestor}) {
   assert.equal(read('HEAD',path),read(c.source,path),boundary+': prepared public tool amendment '+path);
  }
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift / Tablet wording verifier source drift: prepared public tool amendment '+path);
+ return c;
+}
+
+// Finite production-bundling repair and exact retained owned rollback.
+// This adds no publishing, account, generic-adoption or rollback authority.
+export const TOOL_GUIDANCE_BUILD_FIX_BASE='f2836dc942ef1fcee0d49a686b117bd687be3531';
+export const TOOL_GUIDANCE_BUILD_FIX_SOURCE='cd15d3b7181dd9d158bf96a6f7ed991e329c6bcb';
+export const TOOL_GUIDANCE_BUILD_FIX_PATHS=Object.freeze([".github/workflows/cloudflare-production-promote.yml","public-tool-guidance.mjs","scripts/verify-tool-guidance-build.cjs","tests/tool-guidance-build.test.cjs","shift-coach/cancelled-release-recovery.mjs","shift-coach/cancelled-release-recovery.test.mjs","shift-coach/recover-cancelled-release.mjs"]);
+export const TOOL_GUIDANCE_BUILD_FIX_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/tool-guidance-build-composition.test.mjs']);
+const TOOL_GUIDANCE_BUILD_FIX_SET=new Set([...TOOL_GUIDANCE_BUILD_FIX_PATHS,...TOOL_GUIDANCE_BUILD_FIX_MAINTENANCE]);
+for(const path of TOOL_GUIDANCE_BUILD_FIX_SET)RECONCILIATION_PATHS.add(path);
+export function verifyToolGuidanceBuildFix(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_TOOL_GUIDANCE_PRODUCTION_BUILD_FIX_V1');assert.equal(c.base,TOOL_GUIDANCE_BUILD_FIX_BASE);assert.equal(c.source,TOOL_GUIDANCE_BUILD_FIX_SOURCE);
+ assert.deepEqual(c.paths,TOOL_GUIDANCE_BUILD_FIX_PATHS);assert.deepEqual(c.maintenancePaths,TOOL_GUIDANCE_BUILD_FIX_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.failedRun,37919061119);assert.equal(c.rollbackDeployment,'55dd384e-226a-4f19-b989-322dcdee7888');assert.equal(c.originalSuccessfulRun,37895305149);
+ assert.equal(c.publicationStatus,'approved_for_guarded_release');assert.equal(c.runtimeChanged,true);
+ for(const flag of ['publicCopyChanged','medicalClaimsChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated production-built tool repair source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated production-built tool repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after production-built tool receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Serving SEO source drift: production-built tool repair '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift / Tablet wording verifier source drift: production-built tool repair '+path);
  return c;
 }
