@@ -164,7 +164,7 @@ import {NHS_ARTICLE_PROOF_SOURCE,NHS_ARTICLE_PROOF_PATHS,NHS_ARTICLE_PROOF_MAINT
 test('NHS live verifier refresh pins five exact source files and rejects content or scope drift',()=>{
  const receipt=verifyReconciledRelease();assert.equal(receipt.nhsArticleProofRefresh.source,NHS_ARTICLE_PROOF_SOURCE);
  for(const path of [...NHS_ARTICLE_PROOF_PATHS,...NHS_ARTICLE_PROOF_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Restoration retention maintenance drift|Later unattributed Watch recovery maintenance drift|NHS article .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
+  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Restoration retention maintenance drift|Later unattributed Watch recovery maintenance drift|NHS article .*source drift|Male-obesity maintenance source drift: editorial/five-articles/proof\.mjs|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
  }
  for(const flag of ['publicCopyChanged','runtimeChanged','medicalContentChanged','customerDataChanged'])assert.equal(receipt.nhsArticleProofRefresh[flag],false);
