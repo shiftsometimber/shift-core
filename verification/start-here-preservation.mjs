@@ -13,3 +13,8 @@ for(const [name,url] of [['live','https://shiftsometimber.co.uk'+path],['upstrea
  const r=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(30000)}),body=await r.text();writeFileSync(dir+'/'+name+'.js',body);rows.push({name,status:r.status,sha256:h(body),bytes:Buffer.byteLength(body)});
 }
 console.log(JSON.stringify(rows));writeFileSync(dir+'/report.json',JSON.stringify(rows,null,2));
+
+const {expectedStartHereClient}=await import(pathToFileURL(process.cwd()+'/health-passport/production-release.mjs'));
+const expected=expectedStartHereClient(readFileSync(dir+'/live.js','utf8'));
+if(expected!==readFileSync(dir+'/candidate.js','utf8'))throw Error('Corrected exact expected bytes still differ from candidate delivery');
+console.log(JSON.stringify({exactPreservationPassed:true,expectedSha256:h(expected),candidateSource:'9a5548db2633c09dc43067d6afbdfa24f772e745',unrelatedBytesAdopted:false}));

@@ -12,17 +12,21 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: 9a5548db2633c09dc43067d6afbdfa24f772e745
       - uses: actions/setup-node@v4
         with:
           node-version: 22
       - run: npm ci --ignore-scripts
       - name: Reconstruct exact public read-only sources
+        env:
+          DIAG_SOURCE: ${{ github.sha }}
         run: |
           git worktree add --detach /tmp/start-here-baseline 793b5135ce7bcdb42d77597b238c769c32a7dc67
           ln -s "$GITHUB_WORKSPACE/node_modules" /tmp/start-here-baseline/node_modules
-          node verification/start-here-preservation.mjs
+          git show ab2d8c5257ba4d756bdadf78418e1848847b18a5:verification/start-here-preservation.mjs > /tmp/original-diagnostic.mjs
+          git show "$DIAG_SOURCE":verification/start-here-preservation.mjs > /tmp/start-here-preservation.mjs
+          node /tmp/start-here-preservation.mjs
           diff -u start-here-diagnostic/baseline.js start-here-diagnostic/candidate.js > start-here-diagnostic/source.diff || test "$?" = 1
-          cat start-here-diagnostic/source.diff
       - uses: actions/upload-artifact@v4
         if: always()
         with:
