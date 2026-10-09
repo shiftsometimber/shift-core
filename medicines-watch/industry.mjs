@@ -1,5 +1,7 @@
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
 import bimagrumabSemaglutide from './reviews/2026-10-09-authorised-bimagrumab-semaglutide.json' with {type:'json'};
+import lateOverdueSourceRenewal from './reviews/2026-10-09-overdue-source-renewal-late.json' with {type:'json'};
+import togetherPsoriaticDisease from './reviews/2026-10-09-authorised-together-psoriatic-disease.json' with {type:'json'};
 import kalohexis710go from './reviews/2026-10-05-authorised-710go.json' with {type:'json'};
 import overdueSourceRenewal from './reviews/2026-10-06-overdue-source-renewal.json' with {type:'json'};
 import gubUcn2Mbl949 from './reviews/2026-10-06-authorised-gub-ucn2-mbl949.json' with {type:'json'};
@@ -73,6 +75,9 @@ import vikingAntagFollowup from './reviews/2026-10-03-authorised-vk3019-at673.js
 export const INDUSTRY_REVIEWED_AT = evidence.reviewedAt;
 export const industrySources = [...evidence.sources,...followup.sources,...continuing.sources,...berobenatide.sources,kainetic.source,...evidenceDesk.sources,...vk2735Maintenance.sources,...azelapragDiscontinuation.sources,...ribupatideSpecialistWave.sources,...gzc8072Publication.sources,...asc30AuroraCorrection.sources,...asc36OralPublication.sources,...vikingRhythmRegistryReview.sources].map(s => s.id===continuing.sourceReplacement.id?continuing.sourceReplacement:s).map(s => repairs.sources.find(r=>r.id===s.id)||s).map(s => accessRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===eloraTZP.source.id?eloraTZP.source:s).map(s => monitorRepairs.sources.find(r=>r.id===s.id)||s).map(s => pfizerPdfRepair.sources.find(r=>r.id===s.id)||s).map(s => s.id===hansohOlatorepatideReview.source.id?hansohOlatorepatideReview.source:s).map(s => {
  const renewal=overdueSourceRenewal.sources.find(r=>r.id===s.id);
+ return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
+}).map(s => {
+ const renewal=lateOverdueSourceRenewal.sources.find(r=>r.id===s.id);
  return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
 }).map(s => ({
  id:s.id,title:s.title,url:s.url,checkUrl:s.checkUrl,format:s.format,
@@ -152,7 +157,7 @@ export const industry = [...originalIndustry.map(e => {
  const update=followup.updates.find(u=>u.id===e.id);
  return update ? {...e,...update.fields,reviewedAt:followup.reviewedAt,sourceIds:[...e.sourceIds,...update.sourceIdsToAdd]} : e;
 }),...followup.entries,...continuing.entries,...biPublication.entries,...macupatide.entries,...evening.entries,...broaderDiscovery.entries,...internationalOmissions.entries,...expandedDiscovery.entries,...ubt251Publication.entries,...sgb7342Publication.entries,...abbvAsc30TernBimagrumab.entries,...registryOmissions.entries,...enobosarmSemaglutide.entries,...expandedRegistryWave.entries,...semaglutideSpecialistTrials.entries,...glimrCopd.entries,...specialistRegistryFollowup.entries,...na931Publication.entries]
- .concat(amylinMetabolicFollowup.entries,azd1043Publication.entries,wve007Publication.entries,specialistRegistryWave.entries,leanMassEnergyFollowup.entries,vikingAntagFollowup.entries,evidenceDesk.entries,srsd384Publication.entries,fractylModalityGap.entries,arteloMuscleGap.entries,rgt075Publication.entries,vct220Publication.entries,azelapragDiscontinuation.entries,taldefgrobepRv8451.entries,internationalMaintenanceWave.entries,novoSpecialistWave.entries,gzc8072Publication.entries,ard201Pause.entries,asc36OralPublication.entries,te8105Phase2b.entries,semaglutideSpecialistSarcopeniaWave.entries,kalohexis710go.entries,gubUcn2Mbl949.entries,vikingRhythmRegistryReview.entries,gs4571TirzepatideMenopause.entries)
+ .concat(amylinMetabolicFollowup.entries,azd1043Publication.entries,wve007Publication.entries,specialistRegistryWave.entries,leanMassEnergyFollowup.entries,vikingAntagFollowup.entries,evidenceDesk.entries,srsd384Publication.entries,fractylModalityGap.entries,arteloMuscleGap.entries,rgt075Publication.entries,vct220Publication.entries,azelapragDiscontinuation.entries,taldefgrobepRv8451.entries,internationalMaintenanceWave.entries,novoSpecialistWave.entries,gzc8072Publication.entries,ard201Pause.entries,asc36OralPublication.entries,te8105Phase2b.entries,semaglutideSpecialistSarcopeniaWave.entries,kalohexis710go.entries,gubUcn2Mbl949.entries,vikingRhythmRegistryReview.entries,gs4571TirzepatideMenopause.entries,togetherPsoriaticDisease.entries)
  .map(e=>{const update=repairs.updates.find(u=>u.id===e.id);return update?{...e,...update,reviewedAt:repairs.reviewedAt}:e;})
  .map(e=>e.id===berobenatide.change.id?{...e,...berobenatide.change.fields,reviewedAt:berobenatide.reviewedAt,
   sourceIds:[...e.sourceIds,...berobenatide.change.sourceIdsToAdd],additionalEvidence:berobenatide.change.additionalEvidence}:e)

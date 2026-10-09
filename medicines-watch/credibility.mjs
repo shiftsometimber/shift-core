@@ -1,5 +1,6 @@
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
 import bimagrumabSemaglutide from './reviews/2026-10-09-authorised-bimagrumab-semaglutide.json' with {type:'json'};
+import togetherPsoriaticDisease from './reviews/2026-10-09-authorised-together-psoriatic-disease.json' with {type:'json'};
 import receipt from './reviews/2026-10-03-credibility-improvements.json' with {type:'json'};
 import evidenceDesk from './reviews/2026-10-03-evidence-desk-zp6590.json' with {type:'json'};
 import srsd384Publication from './reviews/2026-10-04-authorised-srsd384.json' with {type:'json'};
@@ -31,7 +32,7 @@ export const registrySources=[...baseRegistrySources,...vikingRhythmRegistryRevi
  .map(s=>nct05713799Correction.registrySources.find(r=>r.id===s.id)||s)
  .map(s=>vikingRhythmRegistryReview.registrySources.find(r=>r.id===s.id)||s)
  .map(s=>zupremeLifecycleUpdate.registrySources.find(r=>r.id===s.id)||s)
- .concat(zupremeLifecycleUpdate.registrySources.filter(r=>!baseRegistrySources.some(s=>s.id===r.id)&&![...vikingRhythmRegistryReview.registrySources,...zenagamtideAmbience.registrySources,...gs4571TirzepatideMenopause.registrySources,...registryLifecycleFollowup.registrySources,...enicepatideEmugrobartRegistry.registrySources].some(s=>s.id===r.id)),...bimagrumabSemaglutide.registrySources);
+ .concat(zupremeLifecycleUpdate.registrySources.filter(r=>!baseRegistrySources.some(s=>s.id===r.id)&&![...vikingRhythmRegistryReview.registrySources,...zenagamtideAmbience.registrySources,...gs4571TirzepatideMenopause.registrySources,...registryLifecycleFollowup.registrySources,...enicepatideEmugrobartRegistry.registrySources].some(s=>s.id===r.id)),...bimagrumabSemaglutide.registrySources,...togetherPsoriaticDisease.registrySources);
 export const supportSources=receipt.supportSources;
 export const credibilitySources=[...registrySources,...supportSources];
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -66,6 +67,7 @@ export function industryReviewFlag(entry,health,now=Date.now()) {
   return '';
 }
 export const changes=[
+ {date:'2026-10-09',kind:'Psoriatic-disease combination research added',text:'Added two completed open-label Phase 3b ixekizumab and tirzepatide studies and two active Phase 4 follow-up records in psoriasis or psoriatic arthritis with obesity or overweight. The sponsor release reports exploratory week-52 findings, while none of the registry records has posted results; its 274/271 participant counts remain separate from the later registry totals of 281/279. No approved combined regimen, UK authorisation, NICE/NHS access, supply or clinical approval is inferred.',anchor:'industry-ixekizumab-tirzepatide-psoriatic-disease'},
  {date:'2026-10-09',kind:'Bimagrumab and semaglutide Phase 2 evidence added',text:'Added the completed 507-participant BELIEVE record and peer-reviewed randomized Phase 2 paper to the existing bimagrumab programme. The combination preserved lean mass relative to semaglutide alone in DXA measurements, but this is not evidence of improved strength or function, an approved regimen, UK authorisation, NICE/NHS access, supply or clinical approval. The separate bimagrumab and tirzepatide study remains active, not recruiting.',anchor:'industry-bimagrumab-tirzepatide'},
  {date:'2026-10-08',kind:'Petrelintide diabetes evidence and recruitment corrected',text:'ZUPREME-2 sponsor topline findings remain separate from the completed registry, which has no posted results and a 221/220 participant discrepancy. ZUPREME-3, -4 and -5 now say recruiting; only -3 and -5 record actual starts. The mirabegron pilot retains an estimated start, moved to 13 October. No UK authorisation, NHS access, supply or clinical approval is inferred.',anchor:'industry-petrelintide'},
  {date:'2026-10-07',kind:'Exact ENITH and muscle-study records added',text:'Added the recruiting ENITH-1 and ENITH-2 Phase 3 records to enicepatide and a separate active-not-recruiting Phase 1 muscle-composition and insulin-sensitivity record to emugrobart. None has posted results. The emugrobart record does not reverse the later sponsor decision to end future obesity development, and no UK authorisation, NICE/NHS access, supply or clinical approval is claimed.',anchor:'industry-enicepatide'},
