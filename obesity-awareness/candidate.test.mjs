@@ -86,3 +86,5 @@ test('supporting metadata and sharing tags agree; article evidence and dates rem
 test('hub explains Start Here, SHIFT Health and practical support as distinct optional routes',()=>{
  const h=renderCandidate(shell),main=h.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];assert.match(main,/id="where-shift-fits"/);assert.match(main,/href="\/start-here">Start Here/);assert.match(main,/href="\/shift-health">SHIFT Health/);assert.match(main,/Reading a page does not book a test/);assert.match(main,/does not diagnose you or decide/);assert.match(main,/without an account or purchase/);
 });
+
+test('owned hub text overrides inherited ID-specific pale heading paint',()=>{const h=renderCandidate(shell);assert.match(h,/html body main#main-content\[data-shift-weight-understanding\] :is\(p,h1,h2,h3,li,summary\)\{color:#050505!important;-webkit-text-fill-color:#050505!important\}/);});
