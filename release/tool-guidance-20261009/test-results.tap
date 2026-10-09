@@ -1,0 +1,43 @@
+✔ valid pages pass without write requests (13.476458ms)
+✔ http503 fails and still checks the other eight pages (1.003459ms)
+✔ malformed-json fails and still checks the other eight pages (0.925916ms)
+✔ missing-page fails and still checks the other eight pages (0.450958ms)
+✔ duplicate-page fails and still checks the other eight pages (0.378417ms)
+✔ wrong-id fails and still checks the other eight pages (0.433791ms)
+✔ not-free fails and still checks the other eight pages (0.344541ms)
+✔ nested-application fails and still checks the other eight pages (0.335083ms)
+✔ transport-failure fails and still checks the other eight pages (1.438334ms)
+✔ command exits non-zero when live requests fail (50.347042ms)
+✔ all eight calculators have a specific method, practical steps and named destination (2.393375ms)
+✔ homepage and unrelated or malformed pages remain byte-identical (0.08525ms)
+✔ Decision Centre offers a new-user route and discloses legacy profile limitations (0.096375ms)
+✔ delivery adapter serves guidance only for public successful HTML GETs and clears stale body metadata (16.450084ms)
+✔ workflow automatically checks deployment and successful owned rollback without weakening existing rollback condition (0.857541ms)
+✔ restore is limited to the exact failed deployment and its own captured predecessor (1.40875ms)
+✔ a newer deployment is preserved even when it reused the failed runtime version (0.710083ms)
+✔ already restored previous runtime needs no new rollback (0.070667ms)
+✔ missing receipt, another run/source, and mismatched version cannot authorise recovery (0.214375ms)
+✔ deployment capture rejects splits, missing IDs and an empty inventory (0.221917ms)
+✔ deployment redaction repair preserves sampling, logging and unrelated settings (14.037458ms)
+✔ already-redacted deployment verifies without rewriting settings (0.407416ms)
+✔ redaction verification fails closed on denied access, ignored patch or unrelated drift (1.236416ms)
+✔ missing observability never causes a replacement of unknown settings (0.672333ms)
+✔ passing gate records all nine checks and the exact deployment (13.764125ms)
+✔ deliberate page regression is failed while other pages are checked (1.754083ms)
+✔ failed transport is retained as an explicit failed check (0.270333ms)
+✔ a newer release cannot be verified using this owner receipt (0.204209ms)
+✔ deployment racing with the checks fails verification (0.605958ms)
+✔ source and run ownership remain mandatory (0.156875ms)
+✔ rollback checks verify captured runtime without restoring any data (0.381291ms)
+✔ rollback checks fail if captured runtime is wrong, superseded, or pages fail (0.503083ms)
+✔ successful rollback never changes a failed release into a verified release (1.590875ms)
+✔ missing, skipped, incomplete or mismatched checks are never verified (0.891167ms)
+✔ actual workflow commands pass, fail, run guarded rollback and retain failed release using an isolated CLI double (525.995666ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 615.528875

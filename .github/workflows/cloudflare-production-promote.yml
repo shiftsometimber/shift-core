@@ -6,6 +6,12 @@ on:
   push:
     branches: [main]
     paths:
+      - "public-tool-guidance.mjs"
+      - "public-tool-delivery.mjs"
+      - "release/tool-schema-*"
+      - "scripts/verify-tool-*.cjs"
+      - "tests/tool-schema-gate.test.mjs"
+      - "tests/public-tool-guidance.test.mjs"
       - "home-route-banner.mjs"
       - ".github/workflows/cloudflare-production-promote.yml"
       - "babylove/**"
@@ -436,6 +442,8 @@ jobs:
         run: node preview/ai-context/gateway-settings.mjs b1-runtime-release
       - name: Capture AI frontend and aggregate knowledge foundation before release
         run: node release/shift-ai-live.mjs before
+      - name: Prove public tool checks and guarded rollback in isolation
+        run: node --test scripts/verify-tool-page-schema.test.cjs tests/tool-schema-gate.test.mjs tests/runtime-rollback-guard.test.mjs tests/public-tool-guidance.test.mjs
       - name: Capture current Worker deployment for rollback
         run: |
           if [ "${{ steps.growth_deployed.outputs.already_deployed }}" != true ]; then
@@ -497,6 +505,13 @@ jobs:
         run: node release/growth-adopt-deployment.mjs restore
       - name: Wait briefly for route propagation
         run: sleep 10
+      - name: Verify nine public tool pages against the owned deployment
+        id: public_tool_deploy_check
+        run: node release/tool-schema-gate.mjs deploy
+      - name: Verify calculator journeys and specific tool guidance live
+        run: |
+          PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-tool-calculators-browser.cjs b1-runtime-release/tool-calculators
+          PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-tool-guidance-browser.cjs b1-runtime-release/tool-guidance
       - name: Verify rendered knowledge headings and direct About link live
         timeout-minutes: 2
         run: PREVIEW_URL=https://shiftsometimber.co.uk PLAYWRIGHT_MODULE="$RUNNER_TEMP/heading-tools/node_modules/playwright" node scripts/verify-knowledge-headings.cjs
@@ -721,11 +736,18 @@ jobs:
       - name: Verify B1 protected catalogue and stock remain identical
         run: node scripts/b1-release-scope.mjs --snapshot after
       - name: Restore the captured runtime if a post-deployment gate failed
+        id: runtime_rollback
         if: ${{ failure() && steps.runtime_deploy.outcome == 'success' || (failure() && steps.growth_deployed.outputs.already_deployed == 'true' && steps.growth_live_started.outcome == 'success') }}
         run: node release/member-details-rollback.mjs
+      - name: Verify nine public tool pages after owned rollback
+        if: ${{ always() && steps.runtime_rollback.outcome == 'success' }}
+        run: node release/tool-schema-gate.mjs rollback
       - name: Verify query-string log redaction after deployment or rollback
         if: always()
         run: node release/query-log-redaction.mjs
+      - name: Record public tool verification status before retaining evidence
+        if: always()
+        run: node release/tool-schema-gate.mjs report --workflow-status "${{ job.status }}" --receipt-only
       - name: Retain B1 runtime-only release evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -733,3 +755,7 @@ jobs:
           name: b1-runtime-release-${{ github.run_id }}
           path: b1-runtime-release/
           if-no-files-found: error
+
+      - name: Report final public tool release status
+        if: always()
+        run: node release/tool-schema-gate.mjs report --workflow-status "${{ job.status }}"

@@ -1,0 +1,87 @@
+{
+  "verifiedAt": "2026-10-09T09:11:47.276Z",
+  "scope": "Public HTTP and structured data only; not a Semrush recrawl or calculator interaction test",
+  "checks": [
+    {
+      "path": "/decision-centre",
+      "status": 200,
+      "htmlSha256": "493d7a3b2fa74a3e320b688ec808b2c70f786997c828bb59d12efb498269a97f",
+      "jsonBlocks": 3,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "passed": true
+    },
+    {
+      "path": "/tools/alcohol",
+      "status": 200,
+      "htmlSha256": "5deebf4e46fc9a8968eb84831a5ca3727e2e98c5e32aae0020ac8feaf6bde4a4",
+      "jsonBlocks": 4,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "passed": true
+    },
+    {
+      "path": "/tools/bmi",
+      "status": 200,
+      "htmlSha256": "f35d9541b631e029633655d69f40d96b0faf48f1e233e1f6bf31d933511fbec2",
+      "jsonBlocks": 4,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "passed": true
+    },
+    {
+      "path": "/tools/calories",
+      "status": 200,
+      "htmlSha256": "18307bad27365d8cbbd8752425825b0c9cee18d51b72b6420b383fdb91866c45",
+      "jsonBlocks": 4,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "passed": true
+    },
+    {
+      "path": "/tools/healthy-weight",
+      "status": 200,
+      "htmlSha256": "afd937b7262aca590eb893f4c145ffcafb47099c4e3cd55d8cfbb69878ac17e2",
+      "jsonBlocks": 4,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "passed": true
+    },
+    {
+      "path": "/tools/protein",
+      "status": 200,
+      "htmlSha256": "62805c98428180deacf4313d6c9d60fe85c9f087ce650e3b9cdb99de3cfc7c27",
+      "jsonBlocks": 5,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "passed": true
+    },
+    {
+      "path": "/tools/waist-height",
+      "status": 200,
+      "htmlSha256": "c6d1481386097b9d055473b1f9f41de15af0fa529e199babb46739a9820a08e6",
+      "jsonBlocks": 4,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "passed": true
+    },
+    {
+      "path": "/tools/walking",
+      "status": 200,
+      "htmlSha256": "aa53a03a0d9aea00acb56e3b4253df8c14d813cbd249aa511faffc1fdfd48820",
+      "jsonBlocks": 5,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "passed": true
+    },
+    {
+      "path": "/tools/water",
+      "status": 200,
+      "htmlSha256": "12b209ead3554626443e6fae45375df26158ae11c0140a67dcf109825a564ff7",
+      "jsonBlocks": 4,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "passed": true
+    }
+  ]
+}
