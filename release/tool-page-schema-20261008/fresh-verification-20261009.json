@@ -1,0 +1,77 @@
+{
+  "verifiedAt": "2026-10-09T07:42:26.078057+00:00",
+  "checks": [
+    {
+      "path": "/decision-centre",
+      "http": 200,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "jsonBlocks": 3,
+      "passed": true
+    },
+    {
+      "path": "/tools/alcohol",
+      "http": 200,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "jsonBlocks": 4,
+      "passed": true
+    },
+    {
+      "path": "/tools/bmi",
+      "http": 200,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "jsonBlocks": 4,
+      "passed": true
+    },
+    {
+      "path": "/tools/calories",
+      "http": 200,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "jsonBlocks": 4,
+      "passed": true
+    },
+    {
+      "path": "/tools/healthy-weight",
+      "http": 200,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "jsonBlocks": 4,
+      "passed": true
+    },
+    {
+      "path": "/tools/protein",
+      "http": 200,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "jsonBlocks": 5,
+      "passed": true
+    },
+    {
+      "path": "/tools/waist-height",
+      "http": 200,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "jsonBlocks": 4,
+      "passed": true
+    },
+    {
+      "path": "/tools/walking",
+      "http": 200,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "jsonBlocks": 5,
+      "passed": true
+    },
+    {
+      "path": "/tools/water",
+      "http": 200,
+      "applicationItems": 0,
+      "canonicalWebPageItems": 1,
+      "jsonBlocks": 4,
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,326 @@
+{
+  "verifiedAt": "2026-10-09T08:07:18.443Z",
+  "scope": "Live Chromium desktop/mobile calculator interactions and Decision Centre tab clicks; no member accounts, purchases or submissions",
+  "checks": [
+    {
+      "viewport": "mobile",
+      "path": "/tools/alcohol",
+      "inputs": {
+        "[name=\"ml\"]": "568",
+        "[name=\"abv\"]": "4",
+        "[name=\"n\"]": "2"
+      },
+      "expected": "4.5 units total",
+      "result": "YOUR USEFUL NUMBER\n\n4.5 units total\n\n2.3 units per drink × 2.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nHere’s the bit that matters.\n\nThis is the total for the drinks you entered, not a",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/tools/alcohol",
+      "case": "negative quantity rejected by native form validation",
+      "passed": true
+    },
+    {
+      "viewport": "mobile",
+      "path": "/tools/alcohol",
+      "case": "recalculation updates result to 2.3 units",
+      "passed": true
+    },
+    {
+      "viewport": "mobile",
+      "path": "/tools/bmi",
+      "inputs": {
+        "#bmiHeightCm": "180",
+        "#bmiWeightKg": "80"
+      },
+      "expected": "BMI: 24.7",
+      "result": "YOUR USEFUL NUMBER\n\nBMI: 24.7\n\nScreening reference only: not a diagnosis, NHS-access decision or treatment-eligibility result.\n\nUsing standard adult BMI classifications, this falls within the standard healthy reference r",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/tools/calories",
+      "inputs": {
+        "#calHeightCm": "180",
+        "#calWeightKg": "80",
+        "#calAge": "40",
+        "[name=\"activity\"]": "1.2"
+      },
+      "expected": "2076 kcal/day",
+      "result": "YOUR USEFUL NUMBER\n\nApprox. 2076 kcal/day\n\nPlanning estimate only: not a prescribed intake, guaranteed deficit or treatment target.\n\nEstimated maintenance energy using the Mifflin-St Jeor equation for adult men and your ",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/tools/healthy-weight",
+      "inputs": {
+        "#rangeHeightCm": "180"
+      },
+      "expected": "59.9–80.7 kg",
+      "result": "YOUR USEFUL NUMBER\n\n59.9–80.7 kg\n\nApproximately 9 st 6 lb–12 st 10 lb, corresponding to BMI 18.5–24.9 for your height.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nHere’s the bit that matt",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/tools/protein",
+      "inputs": {
+        "#proteinWeightKg": "80",
+        "[name=\"level\"]": "1.6"
+      },
+      "expected": "128 g protein/day",
+      "result": "YOUR USEFUL NUMBER\n\nApprox. 128 g protein/day\n\nPlanning estimate only: not an individual clinical prescription; health and body-weight context can change what is appropriate.\n\nBased on the selected grams-per-kilogram pla",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/tools/waist-height",
+      "inputs": {
+        "#whHeightCm": "180",
+        "#waistCm": "90"
+      },
+      "expected": "0.50",
+      "result": "YOUR USEFUL NUMBER\n\nWaist-to-height ratio: 0.50\n\nRisk signpost only: not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.\n\nUsing NICE adult reference bands, this ind",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/tools/walking",
+      "inputs": {
+        "#walkWeightKg": "80",
+        "[name=\"minutes\"]": "30",
+        "[name=\"pace\"]": "3.5"
+      },
+      "expected": "147 kcal",
+      "result": "YOUR USEFUL NUMBER\n\nApprox. 147 kcal\n\nEstimated using standard MET values for your selected walking pace.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nHere’s the bit that matters.\n\nThe cal",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/tools/water",
+      "inputs": {
+        "#waterWeightKg": "80"
+      },
+      "expected": "2.4 L",
+      "result": "YOUR USEFUL NUMBER\n\nRough starting point: 2.4 L (4.2 UK pints)\n\nIllustrative estimate using 30 ml/kg.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nHere’s the bit that matters.\n\nHydration i",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "path": "/decision-centre",
+      "case": "tab Treatment routes",
+      "passed": true,
+      "tab": {
+        "active": "active",
+        "selected": null,
+        "target": "routes"
+      },
+      "mainText": "DECISION SUPPORT CENTRE\n\nTurn your health picture into better questions.\n\nWritten and researched by Matt O’Brien, founder of Shift Some Timber.\n\nExplore routes worth discussing: lifestyle support, NHS care, medicines and surgery. Some tools use a pre"
+    },
+    {
+      "viewport": "mobile",
+      "path": "/decision-centre",
+      "case": "tab NHS pathway checker",
+      "passed": true,
+      "tab": {
+        "active": "active",
+        "selected": null,
+        "target": "nhs"
+      },
+      "mainText": "DECISION SUPPORT CENTRE\n\nTurn your health picture into better questions.\n\nWritten and researched by Matt O’Brien, founder of Shift Some Timber.\n\nExplore routes worth discussing: lifestyle support, NHS care, medicines and surgery. Some tools use a pre"
+    },
+    {
+      "viewport": "mobile",
+      "path": "/decision-centre",
+      "case": "tab Weight-loss scenarios",
+      "passed": true,
+      "tab": {
+        "active": "active",
+        "selected": null,
+        "target": "scenarios"
+      },
+      "mainText": "DECISION SUPPORT CENTRE\n\nTurn your health picture into better questions.\n\nWritten and researched by Matt O’Brien, founder of Shift Some Timber.\n\nExplore routes worth discussing: lifestyle support, NHS care, medicines and surgery. Some tools use a pre"
+    },
+    {
+      "viewport": "mobile",
+      "path": "/decision-centre",
+      "case": "tab GP report",
+      "passed": true,
+      "tab": {
+        "active": "active",
+        "selected": null,
+        "target": "gp"
+      },
+      "mainText": "DECISION SUPPORT CENTRE\n\nTurn your health picture into better questions.\n\nWritten and researched by Matt O’Brien, founder of Shift Some Timber.\n\nExplore routes worth discussing: lifestyle support, NHS care, medicines and surgery. Some tools use a pre"
+    },
+    {
+      "viewport": "desktop",
+      "path": "/tools/alcohol",
+      "inputs": {
+        "[name=\"ml\"]": "568",
+        "[name=\"abv\"]": "4",
+        "[name=\"n\"]": "2"
+      },
+      "expected": "4.5 units total",
+      "result": "YOUR USEFUL NUMBER\n\n4.5 units total\n\n2.3 units per drink × 2.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nHere’s the bit that matters.\n\nThis is the total for the drinks you entered, not a",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/tools/bmi",
+      "inputs": {
+        "#bmiHeightCm": "180",
+        "#bmiWeightKg": "80"
+      },
+      "expected": "BMI: 24.7",
+      "result": "YOUR USEFUL NUMBER\n\nBMI: 24.7\n\nScreening reference only: not a diagnosis, NHS-access decision or treatment-eligibility result.\n\nUsing standard adult BMI classifications, this falls within the standard healthy reference r",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/tools/calories",
+      "inputs": {
+        "#calHeightCm": "180",
+        "#calWeightKg": "80",
+        "#calAge": "40",
+        "[name=\"activity\"]": "1.2"
+      },
+      "expected": "2076 kcal/day",
+      "result": "YOUR USEFUL NUMBER\n\nApprox. 2076 kcal/day\n\nPlanning estimate only: not a prescribed intake, guaranteed deficit or treatment target.\n\nEstimated maintenance energy using the Mifflin-St Jeor equation for adult men and your ",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/tools/healthy-weight",
+      "inputs": {
+        "#rangeHeightCm": "180"
+      },
+      "expected": "59.9–80.7 kg",
+      "result": "YOUR USEFUL NUMBER\n\n59.9–80.7 kg\n\nApproximately 9 st 6 lb–12 st 10 lb, corresponding to BMI 18.5–24.9 for your height.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nHere’s the bit that matt",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/tools/protein",
+      "inputs": {
+        "#proteinWeightKg": "80",
+        "[name=\"level\"]": "1.6"
+      },
+      "expected": "128 g protein/day",
+      "result": "YOUR USEFUL NUMBER\n\nApprox. 128 g protein/day\n\nPlanning estimate only: not an individual clinical prescription; health and body-weight context can change what is appropriate.\n\nBased on the selected grams-per-kilogram pla",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/tools/waist-height",
+      "inputs": {
+        "#whHeightCm": "180",
+        "#waistCm": "90"
+      },
+      "expected": "0.50",
+      "result": "YOUR USEFUL NUMBER\n\nWaist-to-height ratio: 0.50\n\nRisk signpost only: not a diagnosis or treatment-eligibility result. NICE says this adds limited value when BMI is 35 or above.\n\nUsing NICE adult reference bands, this ind",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/tools/walking",
+      "inputs": {
+        "#walkWeightKg": "80",
+        "[name=\"minutes\"]": "30",
+        "[name=\"pace\"]": "3.5"
+      },
+      "expected": "147 kcal",
+      "result": "YOUR USEFUL NUMBER\n\nApprox. 147 kcal\n\nEstimated using standard MET values for your selected walking pace.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nHere’s the bit that matters.\n\nThe cal",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/tools/water",
+      "inputs": {
+        "#waterWeightKg": "80"
+      },
+      "expected": "2.4 L",
+      "result": "YOUR USEFUL NUMBER\n\nRough starting point: 2.4 L (4.2 UK pints)\n\nIllustrative estimate using 30 ml/kg.\n\nUseful estimate—not a diagnosis or verdict.\n\nWHAT THIS MEANS FOR REAL LIFE\n\nHere’s the bit that matters.\n\nHydration i",
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "path": "/decision-centre",
+      "case": "tab Treatment routes",
+      "passed": true,
+      "tab": {
+        "active": "active",
+        "selected": null,
+        "target": "routes"
+      },
+      "mainText": "DECISION SUPPORT CENTRE\n\nTurn your health picture into better questions.\n\nWritten and researched by Matt O’Brien, founder of Shift Some Timber.\n\nExplore routes worth discussing: lifestyle support, NHS care, medicines and surgery. Some tools use a pre"
+    },
+    {
+      "viewport": "desktop",
+      "path": "/decision-centre",
+      "case": "tab NHS pathway checker",
+      "passed": true,
+      "tab": {
+        "active": "active",
+        "selected": null,
+        "target": "nhs"
+      },
+      "mainText": "DECISION SUPPORT CENTRE\n\nTurn your health picture into better questions.\n\nWritten and researched by Matt O’Brien, founder of Shift Some Timber.\n\nExplore routes worth discussing: lifestyle support, NHS care, medicines and surgery. Some tools use a pre"
+    },
+    {
+      "viewport": "desktop",
+      "path": "/decision-centre",
+      "case": "tab Weight-loss scenarios",
+      "passed": true,
+      "tab": {
+        "active": "active",
+        "selected": null,
+        "target": "scenarios"
+      },
+      "mainText": "DECISION SUPPORT CENTRE\n\nTurn your health picture into better questions.\n\nWritten and researched by Matt O’Brien, founder of Shift Some Timber.\n\nExplore routes worth discussing: lifestyle support, NHS care, medicines and surgery. Some tools use a pre"
+    },
+    {
+      "viewport": "desktop",
+      "path": "/decision-centre",
+      "case": "tab GP report",
+      "passed": true,
+      "tab": {
+        "active": "active",
+        "selected": null,
+        "target": "gp"
+      },
+      "mainText": "DECISION SUPPORT CENTRE\n\nTurn your health picture into better questions.\n\nWritten and researched by Matt O’Brien, founder of Shift Some Timber.\n\nExplore routes worth discussing: lifestyle support, NHS care, medicines and surgery. Some tools use a pre"
+    }
+  ]
+}

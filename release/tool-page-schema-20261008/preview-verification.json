@@ -1,0 +1,65 @@
+[
+  {
+    "path": "/decision-centre",
+    "status": 200,
+    "exactCandidate": true,
+    "remainingApplicationItems": 0,
+    "jsonParseErrors": 0
+  },
+  {
+    "path": "/tools/alcohol",
+    "status": 200,
+    "exactCandidate": true,
+    "remainingApplicationItems": 0,
+    "jsonParseErrors": 0
+  },
+  {
+    "path": "/tools/bmi",
+    "status": 200,
+    "exactCandidate": true,
+    "remainingApplicationItems": 0,
+    "jsonParseErrors": 0
+  },
+  {
+    "path": "/tools/calories",
+    "status": 200,
+    "exactCandidate": true,
+    "remainingApplicationItems": 0,
+    "jsonParseErrors": 0
+  },
+  {
+    "path": "/tools/healthy-weight",
+    "status": 200,
+    "exactCandidate": true,
+    "remainingApplicationItems": 0,
+    "jsonParseErrors": 0
+  },
+  {
+    "path": "/tools/protein",
+    "status": 200,
+    "exactCandidate": true,
+    "remainingApplicationItems": 0,
+    "jsonParseErrors": 0
+  },
+  {
+    "path": "/tools/waist-height",
+    "status": 200,
+    "exactCandidate": true,
+    "remainingApplicationItems": 0,
+    "jsonParseErrors": 0
+  },
+  {
+    "path": "/tools/walking",
+    "status": 200,
+    "exactCandidate": true,
+    "remainingApplicationItems": 0,
+    "jsonParseErrors": 0
+  },
+  {
+    "path": "/tools/water",
+    "status": 200,
+    "exactCandidate": true,
+    "remainingApplicationItems": 0,
+    "jsonParseErrors": 0
+  }
+]
