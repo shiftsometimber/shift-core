@@ -22,6 +22,7 @@ jobs:
           ln -s "$GITHUB_WORKSPACE/node_modules" /tmp/start-here-baseline/node_modules
           node verification/start-here-preservation.mjs
           diff -u start-here-diagnostic/baseline.js start-here-diagnostic/candidate.js > start-here-diagnostic/source.diff || test "$?" = 1
+          cat start-here-diagnostic/source.diff
       - uses: actions/upload-artifact@v4
         if: always()
         with:
