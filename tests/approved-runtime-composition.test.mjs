@@ -260,3 +260,14 @@ test('logout adoption rejects every changed payload, extra file, weakened bounda
  {const {c,options}=logoutFixture();options.diff=()=>['worker.js'];assert.throws(()=>verifyLogoutAdoption(c,options),/Unrelated/);}
  {const {c,options}=logoutFixture();options.ancestor=()=>{throw Error('missing ancestor')};assert.throws(()=>verifyLogoutAdoption(c,options),/missing ancestor/);}
 });
+
+import {verifyRestoredLaterRetention,RESTORED_LATER_RETENTION_BASE,RESTORED_LATER_RETENTION_SOURCE,RESTORED_LATER_RETENTION_PATHS,RESTORED_LATER_RETENTION_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+test('exact restoration retention rejects unrelated source, maintenance and evidence drift',()=>{
+ const c={proof:'EXACT_RESTORED_LATER_RUNTIME_RETENTION_V1',base:RESTORED_LATER_RETENTION_BASE,source:RESTORED_LATER_RETENTION_SOURCE,paths:RESTORED_LATER_RETENTION_PATHS,maintenancePaths:RESTORED_LATER_RETENTION_MAINTENANCE,maintenanceSource:'e'.repeat(40),restorationRun:37914338433,restorationJob:113766865055,restorationDeployment:'19c317f4-0058-4497-86a8-596db6de90a9',originalSuccessfulRun:37895305149,runtimeChanged:false,customerDataChanged:false,genericAdoptionAllowed:false,rollbackAuthorityBroadened:false,existingGatesWeakened:false};
+ const options={head:'f'.repeat(40),read:()=> 'same',ancestor:()=>{},diff:(a,b)=>a===c.base?c.paths:a===c.source?c.maintenancePaths:[RECONCILIATION_MANIFEST]};
+ assert.doesNotThrow(()=>verifyRestoredLaterRetention(c,options));
+ for(const path of [...c.paths,...c.maintenancePaths])assert.throws(()=>verifyRestoredLaterRetention(c,{...options,read:(ref,p)=>ref==='HEAD'&&p===path?'drift':'same'}),/drift/);
+ for(const flag of ['runtimeChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.throws(()=>verifyRestoredLaterRetention({...c,[flag]:true},options));
+ for(const key of ['restorationRun','restorationJob','originalSuccessfulRun'])assert.throws(()=>verifyRestoredLaterRetention({...c,[key]:1},options));
+ assert.throws(()=>verifyRestoredLaterRetention(c,{...options,diff:()=>['worker.js']}),/Unrelated|Unreviewed/);
+});
