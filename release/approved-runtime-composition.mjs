@@ -358,6 +358,23 @@ export function verifyNewsSecurity(c,{head,read,diff,ancestor,content=(ref,path)
  return c;
 }
 
+export const WATCH_HSTS_PUBLIC_WORDING_BASE='961fa36a0dfb26a0ed3d4a43cb23a2c278270b75';
+export const WATCH_HSTS_PUBLIC_WORDING_PATHS=['release/public-wording-scope.mjs','scripts/b1-release-scope.mjs','tests/b1-release-scope.test.mjs','shift-coach/release.test.mjs'];
+export const WATCH_HSTS_PUBLIC_WORDING_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/watch-hsts-public-wording-release.test.mjs','shift-coach/release-contract.mjs'];
+const WATCH_HSTS_PUBLIC_WORDING_SET=new Set([...WATCH_HSTS_PUBLIC_WORDING_PATHS,...WATCH_HSTS_PUBLIC_WORDING_MAINTENANCE]);
+for(const path of WATCH_HSTS_PUBLIC_WORDING_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchHstsPublicWording(c,{head,read,diff,ancestor}){
+ assert(c);assert.equal(c.proof,'EXACT_WATCH_HSTS_PUBLIC_WORDING_V1');assert.equal(c.base,WATCH_HSTS_PUBLIC_WORDING_BASE);assert.match(c.source,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,WATCH_HSTS_PUBLIC_WORDING_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_HSTS_PUBLIC_WORDING_MAINTENANCE);
+ for(const flag of ['runtimeChanged','readOnlyHeadersChanged','publicCopyChanged','medicalEvidenceChanged','clinicalApprovalChanged','catalogueCountChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','customerDataChanged','checkoutChanged','myTimberChanged','privacyAssertionsWeakened'])assert.equal(c[flag],false);
+ for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch HSTS public wording source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch HSTS public wording maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Watch HSTS public wording reconciliation');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved Watch HSTS public wording source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved Watch HSTS public wording maintenance source drift: '+path);
+ return c;
+}
+
 export const WATCH_HSTS_DIAGNOSTIC_BASE='c13d835552eb97dff903758b00609e73b5e50a88';
 export const WATCH_HSTS_DIAGNOSTIC_PATHS=['release/approved-runtime-composition.mjs','tests/watch-hsts-diagnostic-release.test.mjs'];
 const WATCH_HSTS_DIAGNOSTIC_SET=new Set(WATCH_HSTS_DIAGNOSTIC_PATHS);
@@ -532,10 +549,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const hstsPublicWording=c.watchHstsPublicWording;
+ if(hstsPublicWording)verifyWatchHstsPublicWording(hstsPublicWording,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const hstsPublicWordingHead=hstsPublicWording?hstsPublicWording.base:head;
+ const hstsPublicWordingRead=(ref,path)=>readBlob(hstsPublicWording&&ref==='HEAD'&&WATCH_HSTS_PUBLIC_WORDING_SET.has(path)?hstsPublicWording.base:ref,path);
  const hstsDiagnostic=c.watchHstsDiagnostic;
- if(hstsDiagnostic)verifyWatchHstsDiagnostic(hstsDiagnostic,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const hstsDiagnosticHead=hstsDiagnostic?hstsDiagnostic.base:head;
- const hstsDiagnosticRead=(ref,path)=>readBlob(hstsDiagnostic&&ref==='HEAD'&&WATCH_HSTS_DIAGNOSTIC_SET.has(path)?hstsDiagnostic.base:ref,path);
+ if(hstsDiagnostic)verifyWatchHstsDiagnostic(hstsDiagnostic,{head:hstsPublicWordingHead,read:hstsPublicWordingRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const hstsDiagnosticHead=hstsDiagnostic?hstsDiagnostic.base:hstsPublicWordingHead;
+ const hstsDiagnosticRead=(ref,path)=>hstsPublicWordingRead(hstsDiagnostic&&ref==='HEAD'&&WATCH_HSTS_DIAGNOSTIC_SET.has(path)?hstsDiagnostic.base:ref,path);
  const hsts=c.watchHsts;
  if(hsts)verifyWatchHsts(hsts,{head:hstsDiagnosticHead,read:hstsDiagnosticRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const hstsHead=hsts?hsts.base:hstsDiagnosticHead;
