@@ -365,6 +365,25 @@
     "memberBehaviourChanged": false,
     "privacyAssertionsWeakened": false
   },
+  "watchBelieveDiagnostic": {
+    "proof": "EXACT_WATCH_BELIEVE_DIAGNOSTIC_V1",
+    "base": "8f05352def20c636aeb43ba2e7814d3255898d20",
+    "source": "efbeb34efb88fca8c85fa3700e29a9bd9cb12ecd",
+    "paths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-believe-release.test.mjs"
+    ],
+    "medicalEvidenceChanged": false,
+    "runtimeChanged": false,
+    "clinicalApprovalChanged": false,
+    "catalogueCountChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyChanged": false,
+    "customerDataChanged": false,
+    "checkoutChanged": false,
+    "myTimberChanged": false
+  },
   "watchBelieveEvidence": {
     "proof": "EXACT_WATCH_BELIEVE_EVIDENCE_V1",
     "base": "79dfc433a3a5775f0277206ff7134d0900a8c6ae",
