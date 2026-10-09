@@ -6,6 +6,7 @@ import {withEditorialResources} from '../../editorial-resources-v1.js';
 import {ARTICLES,PATHS,VERSION,rewriteArticle,UPDATED,STATS} from './render.mjs';
 import {CSV,CHART} from '../statistics/assets.js';
 import {expectedPublishedArticleBody,expectedPublishedArticleDate} from '../../release/seo794-preservation.mjs';
+import {preservePillarMood} from '../../obesity-awareness/preservation.mjs';
 const live=process.argv.includes('--live'),root=live?'five-article-live':'five-article-proof';mkdirSync(root,{recursive:true});
 const origin='https://shiftsometimber.co.uk',hash=v=>createHash('sha256').update(v).digest('hex');
 const main=html=>html.match(/<main\b[\s\S]*?<\/main\s*>/i)?.[0];
@@ -15,7 +16,7 @@ const attributes=tag=>Object.fromEntries([...tag.matchAll(/([\w:-]+)\s*=\s*(?:"(
 const evidence={checkedAt:new Date().toISOString(),mode:live?'actual_live_GET':'captured_public_shell_with_candidate_transform',revision:VERSION,articles:[],controls:[],downloads:[],failures:[],productionWrites:false};
 async function read(path){const response=await fetch(origin+path,{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(25000)});assert.equal(response.status,200,path);assert.equal(new URL(response.url).pathname.replace(/\/+$/,''),path.replace(/\/+$/,''),'Unexpected redirect '+path);return response}
 function checkDocument(html,path){
- const current=html;html=preserveRankingGrowth(path,html);
+ html=preservePillarMood(path,html);const current=html;html=preserveRankingGrowth(path,html);
  if(RANKING_GROWTH_PATHS.includes(path))assert.equal(repairRankingGrowth(path,html),current,'Exact owner-approved growth copy absent or changed: '+path);
  assert.equal([...html.matchAll(/<main\b/gi)].length,1);assert.equal([...html.matchAll(/<h1\b/gi)].length,1);assert.ok(html.includes('data-five-article="'+VERSION+'"'));
  const tags=[...html.matchAll(/<meta\b[^>]*>/gi)].map(m=>attributes(m[0]));for(const name of ['description','og:title','og:description','og:url','twitter:title','twitter:description'])assert.equal(tags.filter(x=>(x.name||x.property||'').toLowerCase()===name).length,1,'One '+name+' '+path);

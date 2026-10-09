@@ -709,9 +709,9 @@ export function verifyTogetherBiomarkerUpdate(c,{head,read,diff,ancestor}){
 
 // Finite owner-authorised informational male-obesity pillar. No generic path or authority expansion.
 export const MALE_OBESITY_BASE='77d2469344bb678a8e68b6e4e6cb36dfdbdc28b0';
-export const MALE_OBESITY_SOURCE='19d4c068d4cab854bd1cacbb948179a4992b5b50';
+export const MALE_OBESITY_SOURCE='bfdcdc09dd9d4dc6147979c172c0fb1d6f520d8f';
 export const MALE_OBESITY_PATHS=Object.freeze([".github/workflows/male-obesity-preview.yml", "member-experience/public-preservation.mjs", "obesity-awareness/README.md", "obesity-awareness/candidate.mjs", "obesity-awareness/candidate.test.mjs", "obesity-awareness/content.mjs", "obesity-awareness/measurement.mjs", "obesity-awareness/preservation.mjs", "obesity-awareness/preview-entry.mjs", "obesity-awareness/production.mjs", "obesity-awareness/production.test.mjs", "obesity-awareness/staging-build-proof.json", "obesity-awareness/staging-entry.mjs", "obesity-awareness/staging-entry.test.mjs", "obesity-awareness/verify-live.mjs", "obesity-awareness/wrangler.preview.jsonc", "obesity-awareness/wrangler.staging.jsonc", "release/public-continuity-body-proof.mjs", "shift-coach/worker.mjs"]);
-export const MALE_OBESITY_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs", "tests/male-obesity-composition.test.mjs", "tests/programme-day-continuity-body.test.mjs", "acquisition-activation/metrics-release.test.mjs"]);
+export const MALE_OBESITY_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs", "tests/male-obesity-composition.test.mjs", "tests/programme-day-continuity-body.test.mjs", "acquisition-activation/metrics-release.test.mjs", "editorial/five-articles/proof.mjs"]);
 const MALE_OBESITY_SET=new Set([...MALE_OBESITY_PATHS,...MALE_OBESITY_MAINTENANCE]);
 for(const path of MALE_OBESITY_SET)RECONCILIATION_PATHS.add(path);
 export function verifyMaleObesityPillar(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
