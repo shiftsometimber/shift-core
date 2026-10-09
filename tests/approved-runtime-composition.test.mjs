@@ -293,3 +293,14 @@ test('Passport preservation repair remains exact and cannot weaken ownership or 
  for(const key of ['failedRun','failedJob','originalSuccessfulRun'])assert.throws(()=>verifyPassportPreservationRepair({...c,[key]:1},options));
  assert.throws(()=>verifyPassportPreservationRepair(c,{...options,diff:()=>['worker.js']}),/Unrelated|Unreviewed/);
 });
+
+import {verifyContinuityPreservationRepair,CONTINUITY_PRESERVATION_BASE,CONTINUITY_PRESERVATION_SOURCE,CONTINUITY_PRESERVATION_PATHS,CONTINUITY_PRESERVATION_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+test('Continuity preservation repair remains exact and cannot weaken ownership or change treatment and public copy',()=>{
+ const c={proof:'EXACT_CONTINUITY_PRESERVATION_REPAIR_V1',base:CONTINUITY_PRESERVATION_BASE,source:CONTINUITY_PRESERVATION_SOURCE,paths:CONTINUITY_PRESERVATION_PATHS,maintenancePaths:CONTINUITY_PRESERVATION_MAINTENANCE,maintenanceSource:'e'.repeat(40),failedRun:37927646817,failedJob:113810894301,rollbackDeployment:'9cc4ae2f-f84d-4963-9267-8cee6b459b26',originalSuccessfulRun:37895305149,approvedOuterWorkerAdditionExpectationFixed:true,publicCopyChanged:false,calculatorArithmeticChanged:false,myTreatmentChanged:false,customerDataChanged:false,genericAdoptionAllowed:false,rollbackAuthorityBroadened:false,existingGatesWeakened:false};
+ const options={head:'f'.repeat(40),read:()=> 'same',ancestor:()=>{},diff:(a,b)=>a===c.base?c.paths:a===c.source?c.maintenancePaths:[RECONCILIATION_MANIFEST]};
+ assert.doesNotThrow(()=>verifyContinuityPreservationRepair(c,options));
+ for(const path of [...c.paths,...c.maintenancePaths])assert.throws(()=>verifyContinuityPreservationRepair(c,{...options,read:(ref,p)=>ref==='HEAD'&&p===path?'drift':'same'}),/source drift/);
+ for(const flag of ['publicCopyChanged','calculatorArithmeticChanged','myTreatmentChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.throws(()=>verifyContinuityPreservationRepair({...c,[flag]:true},options));
+ for(const key of ['failedRun','failedJob','originalSuccessfulRun'])assert.throws(()=>verifyContinuityPreservationRepair({...c,[key]:1},options));
+ assert.throws(()=>verifyContinuityPreservationRepair(c,{...options,diff:()=>['worker.js']}),/Unrelated|Unreviewed/);
+});
