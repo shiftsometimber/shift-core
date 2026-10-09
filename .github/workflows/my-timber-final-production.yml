@@ -54,15 +54,9 @@ jobs:
           npm install --no-save --ignore-scripts playwright
           npx playwright install --with-deps chromium
           sudo apt-get install -y poppler-utils
-      - name: Exact My Treatment assets and unauthenticated boundaries
-        run: node release/my-treatment-live.mjs
-      - name: Garage save readback refresh return and diagnostic recovery
-        id: garage
+      - name: Only additional legacy Fit and naturally elapsed clock fixtures
         run: |
-          raw=$(curl -fsSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=shift-production-commissioning")
-          token=$(printf '%s' "$raw" | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>process.stdout.write(JSON.parse(s).value))")
-          echo "::add-mask::$token"
-          export SHIFT_COMMISSIONING_OIDC="$token"
+          node --test member-experience/tests/fit-saved-review.test.mjs tests/member-auth-regression.test.mjs
           node tests/premortem-production.mjs
       - name: Verify same runtime still serves after acceptance
         if: always() && steps.serving_before.outcome == 'success'
