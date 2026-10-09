@@ -750,5 +750,29 @@
     "customerDataChanged": false,
     "deploymentAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "unattributedWatchRuntimeRecovery": {
+    "proof": "EXACT_UNATTRIBUTED_WATCH_RUNTIME_RECOVERY_V1",
+    "base": "38036236f065e7a760b2e36dc72a7113dd13e785",
+    "source": "3e35b57b88342a273831ded3c5f61e3e225ab6e5",
+    "paths": [
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/cancelled-release-recovery.test.mjs",
+      "shift-coach/recover-cancelled-release.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/approved-runtime-composition.test.mjs"
+    ],
+    "maintenanceSource": "e6a07507f87a778705170b998665b2d482eca610",
+    "observationRun": 37902092425,
+    "successfulPredecessorRun": 37895305149,
+    "restoredVersion": "fd7939d8-6387-48fa-adc8-714e6f8bea8d",
+    "medicalClaimsChanged": false,
+    "publicCopyChanged": false,
+    "customerDataChanged": false,
+    "genericAdoptionAllowed": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
