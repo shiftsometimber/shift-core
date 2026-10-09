@@ -696,10 +696,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const passport=c.passportPreservationRepair;
+ if(passport)verifyPassportPreservationRepair(passport,{head:actualHead,read:originalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const prePassportHead=passport?passport.base:actualHead;
+ const passportRawBlob=(ref,path)=>originalRawBlob(passport&&ref==='HEAD'&&PASSPORT_PRESERVATION_SET.has(path)?passport.base:ref,path);
  const bundled=c.bundledToolRuntimeRepair;
- if(bundled)verifyBundledToolRuntimeRepair(bundled,{head:actualHead,read:originalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preBundledHead=bundled?bundled.base:actualHead;
- const baseRawBlob=(ref,path)=>originalRawBlob(bundled&&ref==='HEAD'&&BUNDLED_TOOL_RUNTIME_SET.has(path)?bundled.base:ref,path);
+ if(bundled)verifyBundledToolRuntimeRepair(bundled,{head:prePassportHead,read:passportRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preBundledHead=bundled?bundled.base:prePassportHead;
+ const baseRawBlob=(ref,path)=>passportRawBlob(bundled&&ref==='HEAD'&&BUNDLED_TOOL_RUNTIME_SET.has(path)?bundled.base:ref,path);
  const toolRelease=c.toolReleaseAutomation;
  if(toolRelease)verifyToolReleaseAutomation(toolRelease,{head:preBundledHead,read:baseRawBlob,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
@@ -1075,4 +1079,25 @@ export function verifyBundledToolRuntimeRepair(c,{head,read,diff,ancestor}){
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after bundled tool runtime repair');
  for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Bundled tool runtime source drift: '+path);
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Bundled tool runtime maintenance source drift / Restoration retention maintenance drift: '+path);
+}
+
+// Exact approved wording expectation; runtime and production workflow unchanged.
+export const PASSPORT_PRESERVATION_BASE='8406d13df4431345b76d96c82bc1ab34637ee659';
+export const PASSPORT_PRESERVATION_SOURCE='58529f0bb165b7620f851e141d2ab81faab87171';
+export const PASSPORT_PRESERVATION_PATHS=Object.freeze(['health-passport/production-release.mjs','health-passport/production-release.test.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/cancelled-release-recovery.test.mjs']);
+export const PASSPORT_PRESERVATION_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs']);
+const PASSPORT_PRESERVATION_SET=new Set([...PASSPORT_PRESERVATION_PATHS,...PASSPORT_PRESERVATION_MAINTENANCE]);
+for(const path of PASSPORT_PRESERVATION_SET)RECONCILIATION_PATHS.add(path);
+export function verifyPassportPreservationRepair(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_PASSPORT_PRESERVATION_REPAIR_V1');assert.equal(c.base,PASSPORT_PRESERVATION_BASE);assert.equal(c.source,PASSPORT_PRESERVATION_SOURCE);
+ assert.deepEqual(c.paths,PASSPORT_PRESERVATION_PATHS);assert.deepEqual(c.maintenancePaths,PASSPORT_PRESERVATION_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.failedRun,37922934503);assert.equal(c.failedJob,113795076080);assert.equal(c.rollbackDeployment,'478c6c6b-5bae-4b2b-9f3f-aa8e5bdc0033');assert.equal(c.originalSuccessfulRun,37895305149);
+ assert.equal(c.approvedStartHereWordingExpectationFixed,true);
+ for(const flag of ['publicCopyChanged','calculatorArithmeticChanged','myTreatmentChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Passport preservation repair source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Passport preservation repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Passport preservation repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Passport preservation source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Passport preservation maintenance source drift / Bundled tool runtime maintenance source drift / Restoration retention maintenance drift: '+path);
 }
