@@ -687,5 +687,28 @@
     "customerRowsChanged": false,
     "existingGatesWeakened": false,
     "rollbackAuthorityBroadened": false
+  },
+  "myTreatmentDeliveryRepair": {
+    "proof": "EXACT_MY_TREATMENT_DELIVERY_REPAIR_V1",
+    "base": "3df83d33f1bc26e3119dfeba2cbc54b10cedafdb",
+    "source": "db6a831b9845ab90cf8d0d68d3ec8f8f6299c198",
+    "maintenanceSource": "d5ce05f16abe86428c581a7ce419ec1cae899b7a",
+    "paths": [
+      "member-experience/treatment-page.mjs",
+      "member-experience/tests/treatment-model.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/my-treatment-delivery-repair.test.mjs"
+    ],
+    "ownerAuthorised": true,
+    "caughtByRun": 37898153870,
+    "configurationChanged": false,
+    "schemaChanged": false,
+    "customerRowsChanged": false,
+    "homepageChanged": false,
+    "clinicalFeedClaimed": false,
+    "existingGatesWeakened": false,
+    "rollbackAuthorityBroadened": false
   }
 }
