@@ -755,6 +755,30 @@ export function verifyMaleObesityPillar(c,{head,read,diff,ancestor,content=(ref,
  return c;
 }
 
+// Finite closeout of failed run 37997975670; preserve every earlier receipt.
+export const MALE_OBESITY_CLOSEOUT_BASE='fcf7711ad6dff2341801ab97fac36ac34bb96305';
+export const MALE_OBESITY_CLOSEOUT_SOURCE='8f5871e46f4022ef03440f06d42946896f466952';
+export const MALE_OBESITY_CLOSEOUT_PATHS=Object.freeze([".github/workflows/male-obesity-preview.yml","obesity-awareness/candidate.mjs","obesity-awareness/candidate.test.mjs","obesity-awareness/content.mjs","obesity-awareness/production.mjs","obesity-awareness/production.test.mjs","obesity-awareness/rollback-proof.test.mjs","shift-coach/recover-cancelled-release.mjs","obesity-awareness/rendered-live-proof.cjs","shift-coach/cancelled-release-recovery.mjs"]);
+export const MALE_OBESITY_CLOSEOUT_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/male-obesity-closeout-composition.test.mjs','tests/approved-runtime-composition.test.mjs']);
+const MALE_OBESITY_CLOSEOUT_SET=new Set([...MALE_OBESITY_CLOSEOUT_PATHS,...MALE_OBESITY_CLOSEOUT_MAINTENANCE]);
+for(const path of MALE_OBESITY_CLOSEOUT_SET)RECONCILIATION_PATHS.add(path);
+export function verifyMaleObesityCloseout(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_MALE_OBESITY_CLOSEOUT_V1');assert.equal(c.base,MALE_OBESITY_CLOSEOUT_BASE);assert.equal(c.source,MALE_OBESITY_CLOSEOUT_SOURCE);
+ assert.deepEqual(c.paths,MALE_OBESITY_CLOSEOUT_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_CLOSEOUT_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.ownerApproval,'Complete authorised release and prove the live male-obesity journey');assert.equal(c.failedRun,37997975670);assert.equal(c.failedGate,89);
+ assert.equal(c.externalReviewerRequired,false);assert.equal(c.publicationStatus,'approved_for_guarded_release');
+ for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity closeout payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated male-obesity closeout maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after male-obesity closeout receipt');
+ const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityReleaseCloseout;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by male-obesity closeout');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity maintenance source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -777,10 +801,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const maleCloseout=c.maleObesityReleaseCloseout;
+ if(maleCloseout)verifyMaleObesityCloseout(maleCloseout,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preCloseoutHead=maleCloseout?maleCloseout.base:actualHead;
+ const closeoutRawBlob=(ref,path)=>outerRawBlob(maleCloseout&&ref==='HEAD'&&MALE_OBESITY_CLOSEOUT_SET.has(path)?maleCloseout.base:ref,path);
  const backlog=c.watchBacklogUpdate;
- if(backlog)verifyWatchBacklogUpdate(backlog,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preBacklogHead=backlog?backlog.base:actualHead;
- const backlogRawBlob=(ref,path)=>outerRawBlob(backlog&&ref==='HEAD'&&WATCH_BACKLOG_SET.has(path)?backlog.base:ref,path);
+ if(backlog)verifyWatchBacklogUpdate(backlog,{head:preCloseoutHead,read:closeoutRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preBacklogHead=backlog?backlog.base:preCloseoutHead;
+ const backlogRawBlob=(ref,path)=>closeoutRawBlob(backlog&&ref==='HEAD'&&WATCH_BACKLOG_SET.has(path)?backlog.base:ref,path);
  const maleObesity=c.maleObesityPillar;
  if(maleObesity)verifyMaleObesityPillar(maleObesity,{head:preBacklogHead,read:backlogRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preMaleObesityHead=maleObesity?maleObesity.base:preBacklogHead;
