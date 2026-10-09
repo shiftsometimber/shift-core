@@ -130,7 +130,7 @@ import {SUPPORT_ROLLBACK_SOURCE,SUPPORT_ROLLBACK_PATHS,SUPPORT_ROLLBACK_MAINTENA
 test('serving rollback receipt refresh is finite and changes no public or medical content',()=>{
  const receipt=verifyReconciledRelease();assert.equal(receipt.supportRollbackRefresh.source,SUPPORT_ROLLBACK_SOURCE);
  for(const path of [...SUPPORT_ROLLBACK_PATHS,...SUPPORT_ROLLBACK_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Later unattributed Watch recovery maintenance drift|Serving rollback .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
+  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Restoration retention maintenance drift|Later unattributed Watch recovery maintenance drift|Serving rollback .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
   let existedAtBase=true;
   try{directGit('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});}catch{existedAtBase=false;}
@@ -147,7 +147,7 @@ import {ORAL_LIVE_DISPATCH_SOURCE,ORAL_LIVE_DISPATCH_PATHS,ORAL_LIVE_DISPATCH_MA
 test('oral live dispatch verifier repair is a finite immutable engineering receipt',()=>{
  const receipt=verifyReconciledRelease();assert.equal(receipt.oralLiveDispatchGuard.source,ORAL_LIVE_DISPATCH_SOURCE);
  for(const path of [...ORAL_LIVE_DISPATCH_PATHS,...ORAL_LIVE_DISPATCH_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Later unattributed Watch recovery maintenance drift|(?:Oral dispatch|Serving rollback) .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
+  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Restoration retention maintenance drift|Later unattributed Watch recovery maintenance drift|(?:Oral dispatch|Serving rollback) .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
   let existedAtBase=true;
   try{directGit('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});}catch{existedAtBase=false;}
@@ -164,7 +164,7 @@ import {NHS_ARTICLE_PROOF_SOURCE,NHS_ARTICLE_PROOF_PATHS,NHS_ARTICLE_PROOF_MAINT
 test('NHS live verifier refresh pins five exact source files and rejects content or scope drift',()=>{
  const receipt=verifyReconciledRelease();assert.equal(receipt.nhsArticleProofRefresh.source,NHS_ARTICLE_PROOF_SOURCE);
  for(const path of [...NHS_ARTICLE_PROOF_PATHS,...NHS_ARTICLE_PROOF_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Later unattributed Watch recovery maintenance drift|NHS article .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
+  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Restoration retention maintenance drift|Later unattributed Watch recovery maintenance drift|NHS article .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
  }
  for(const flag of ['publicCopyChanged','runtimeChanged','medicalContentChanged','customerDataChanged'])assert.equal(receipt.nhsArticleProofRefresh[flag],false);
@@ -178,7 +178,7 @@ test('late-inserted oral canonical repair is finite and preserves medical and cu
  assert.equal(c.runtimeChanged,true);assert.equal(c.approvedAnchorChanged,true);
  for(const flag of ['publicCopyChanged','medicalContentChanged','customerDataChanged'])assert.equal(c[flag],false);
  for(const path of [...ORAL_CANONICAL_PATHS,...ORAL_CANONICAL_MAINTENANCE]){
-  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Later unattributed Watch recovery maintenance drift|oral canonical .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
+  assert.throws(()=>verifyReconciledRelease(rawDriftReader(path)),/(?:Restoration retention maintenance drift|Later unattributed Watch recovery maintenance drift|oral canonical .*source drift|Serving SEO (?:source|verifier) drift|Tablet wording verifier source drift)/);
   for(const status of ['D','R','T','C'])assert.throws(()=>reconciliationChangedPath(status,path),/Unexpected/);
  }
  assert.equal(reconciliationChangedPath('M','public-practical-guides.mjs'),true);
@@ -259,4 +259,15 @@ test('logout adoption rejects every changed payload, extra file, weakened bounda
  for(const flag of ['runtimeChanged','customerDataChanged','acceptanceAssertionsWeakened']){const {c,options}=logoutFixture();c[flag]=true;assert.throws(()=>verifyLogoutAdoption(c,options));}
  {const {c,options}=logoutFixture();options.diff=()=>['worker.js'];assert.throws(()=>verifyLogoutAdoption(c,options),/Unrelated/);}
  {const {c,options}=logoutFixture();options.ancestor=()=>{throw Error('missing ancestor')};assert.throws(()=>verifyLogoutAdoption(c,options),/missing ancestor/);}
+});
+
+import {verifyRestoredLaterRetention,RESTORED_LATER_RETENTION_BASE,RESTORED_LATER_RETENTION_SOURCE,RESTORED_LATER_RETENTION_PATHS,RESTORED_LATER_RETENTION_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+test('exact restoration retention rejects unrelated source, maintenance and evidence drift',()=>{
+ const c={proof:'EXACT_RESTORED_LATER_RUNTIME_RETENTION_V1',base:RESTORED_LATER_RETENTION_BASE,source:RESTORED_LATER_RETENTION_SOURCE,paths:RESTORED_LATER_RETENTION_PATHS,maintenancePaths:RESTORED_LATER_RETENTION_MAINTENANCE,maintenanceSource:'e'.repeat(40),restorationRun:37914338433,restorationJob:113766865055,restorationDeployment:'19c317f4-0058-4497-86a8-596db6de90a9',originalSuccessfulRun:37895305149,runtimeChanged:false,customerDataChanged:false,genericAdoptionAllowed:false,rollbackAuthorityBroadened:false,existingGatesWeakened:false};
+ const options={head:'f'.repeat(40),read:()=> 'same',ancestor:()=>{},diff:(a,b)=>a===c.base?c.paths:a===c.source?c.maintenancePaths:[RECONCILIATION_MANIFEST]};
+ assert.doesNotThrow(()=>verifyRestoredLaterRetention(c,options));
+ for(const path of [...c.paths,...c.maintenancePaths])assert.throws(()=>verifyRestoredLaterRetention(c,{...options,read:(ref,p)=>ref==='HEAD'&&p===path?'drift':'same'}),/drift/);
+ for(const flag of ['runtimeChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.throws(()=>verifyRestoredLaterRetention({...c,[flag]:true},options));
+ for(const key of ['restorationRun','restorationJob','originalSuccessfulRun'])assert.throws(()=>verifyRestoredLaterRetention({...c,[key]:1},options));
+ assert.throws(()=>verifyRestoredLaterRetention(c,{...options,diff:()=>['worker.js']}),/Unrelated|Unreviewed/);
 });

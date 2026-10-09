@@ -690,17 +690,21 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const actualHead=git('rev-parse','HEAD');
  // Only actual Git objects at resolved immutable commit IDs are cacheable.
  // Supplied readers are always invoked again, even after a successful proof.
- const rawBlob=read===defaultReconciliationRead?(ref,path)=>{
+ const baseRawBlob=read===defaultReconciliationRead?(ref,path)=>{
   const commit=ref==='HEAD'?actualHead:ref;assert.match(commit,/^[a-f0-9]{40}$/);
   const key=JSON.stringify([process.cwd(),commit,path]);
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const restored=c.restoredLaterRuntimeRetention;
+ if(restored)verifyRestoredLaterRetention(restored,{head:actualHead,read:baseRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const restoredHead=restored?restored.base:actualHead;
+ const rawBlob=(ref,path)=>baseRawBlob(restored&&ref==='HEAD'&&RESTORED_LATER_RETENTION_SET.has(path)?restored.base:ref,path);
  const laterUnattributed=c.laterUnattributedWatchRuntimeRecovery;
- if(laterUnattributed)verifyLaterUnattributedWatchRecovery(laterUnattributed,{head:actualHead,read:rawBlob,
+ if(laterUnattributed)verifyLaterUnattributedWatchRecovery(laterUnattributed,{head:restoredHead,read:rawBlob,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const laterUnattributedHead=laterUnattributed?laterUnattributed.priorComposition:actualHead;
+ const laterUnattributedHead=laterUnattributed?laterUnattributed.priorComposition:restoredHead;
  const laterUnattributedRead=(ref,path)=>rawBlob(laterUnattributed&&ref==='HEAD'&&LATER_UNATTRIBUTED_WATCH_RECOVERY_SET.has(path)?laterUnattributed.priorComposition:ref,path);
  const unattributed=c.unattributedWatchRuntimeRecovery;
  if(unattributed)verifyUnattributedWatchRecovery(unattributed,{head:laterUnattributedHead,read:laterUnattributedRead,
@@ -995,4 +999,24 @@ export function verifyToolSchemaArchive(c,{head,read,diff,ancestor}) {
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after archive receipt');
  for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Tool schema archive source drift: '+path);
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift: '+path);
+}
+
+// Exact retention of a restoration already performed by the guarded workflow.
+export const RESTORED_LATER_RETENTION_BASE='b277c25b2d3bf44f97501006f3b3416e9a8d44fe';
+export const RESTORED_LATER_RETENTION_SOURCE='9b2bfc4b3f90185520b1937c51431cffdcc0cc41';
+export const RESTORED_LATER_RETENTION_PATHS=Object.freeze(['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs','shift-coach/recover-cancelled-release.mjs']);
+export const RESTORED_LATER_RETENTION_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs']);
+const RESTORED_LATER_RETENTION_SET=new Set([...RESTORED_LATER_RETENTION_PATHS,...RESTORED_LATER_RETENTION_MAINTENANCE]);
+for(const path of RESTORED_LATER_RETENTION_SET)RECONCILIATION_PATHS.add(path);
+export function verifyRestoredLaterRetention(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_RESTORED_LATER_RUNTIME_RETENTION_V1');assert.equal(c.base,RESTORED_LATER_RETENTION_BASE);assert.equal(c.source,RESTORED_LATER_RETENTION_SOURCE);
+ assert.deepEqual(c.paths,RESTORED_LATER_RETENTION_PATHS);assert.deepEqual(c.maintenancePaths,RESTORED_LATER_RETENTION_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.restorationRun,37914338433);assert.equal(c.restorationJob,113766865055);assert.equal(c.restorationDeployment,'19c317f4-0058-4497-86a8-596db6de90a9');assert.equal(c.originalSuccessfulRun,37895305149);
+ for(const flag of ['runtimeChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated exact restoration retention source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated exact restoration retention maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after restoration retention');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Restoration retention source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Restoration retention maintenance drift: '+path);
 }

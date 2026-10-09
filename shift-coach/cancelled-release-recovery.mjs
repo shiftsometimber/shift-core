@@ -80,6 +80,14 @@ export function verifiedArticleRuntime(active,run,job){
 // Carry the earlier same-job recovery proof forward without reverting its
 // verified newer runtime to the historical fallback pointer.
 export function verifiedStartingPoint(record,active){
+ if(record?.restoredLaterRuntimeProof){
+  const p=restoredLaterRuntime,r=record.restoredLaterRuntimeProof;
+  assert.deepEqual(r,{...p,verifiedRun:laterUnattributedRuntimeRecovery.verifiedRun,verifiedSource:laterUnattributedRuntimeRecovery.verifiedSource,verifiedVersion:laterUnattributedRuntimeRecovery.verifiedVersion});
+  assert.equal(record.decision,'retain');assert.equal(record.dataChanged,false);assert.equal(record.customerRecordsRead,0);assert.equal(record.ownedProof,null);
+  assert.equal(record.run,p.run);assert.equal(record.from,r.verifiedVersion);assert.equal(record.to,r.verifiedVersion);assert.equal(record.verifiedRun,r.verifiedRun);
+  assertRestoredLaterDeployment(active);
+  return {source:r.verifiedSource,version:r.verifiedVersion,run:r.verifiedRun};
+ }
  if(record?.ownerCapturedProof)return record.ownerCapturedProof.kind===SUPPORT_RUNTIME.kind?assertSupportStartingPoint(record,active):assertOwnerStartingPoint(record,active);
  assert(['retain','restore'].includes(record?.decision),'Recovery decision absent');
  assert.equal(record.dataChanged,false);
@@ -246,6 +254,38 @@ export async function verifyLaterUnattributedRuntime(active,version,providerVers
  const observedJob=observedJobs.jobs?.find(j=>j.id===p.job),verifiedJob=verifiedJobs.jobs?.find(j=>j.id===p.verifiedJob);
  assert(verifiedLaterUnattributedRuntimeRecovery(active,version,providerVersion,modules,observed,observedJob,await getLogs(p.job),verified,verifiedJob,await getLogs(p.verifiedJob)),'Exact later unattributed runtime, read-only attribution and successful predecessor evidence required');
  return{run:p.run,source:p.source,version:p.version,deployment:p.deployment,verifiedRun:p.verifiedRun,verifiedSource:p.verifiedSource,verifiedVersion:p.verifiedVersion,verifiedDeployment:p.verifiedDeployment,contentEtag:p.etag,moduleSha256:p.sha256};
+}
+
+// Retain this exact restoration only. The failed recovery job is never treated
+// as a successful release, and this grants no upload or rollback authority.
+export const restoredLaterRuntime=Object.freeze({run:37914338433,job:113766865055,source:'5a5d7c997db4b2874f25fbb445c9033d86d2a515',deployment:'19c317f4-0058-4497-86a8-596db6de90a9',createdOn:'2026-10-09T09:58:06.04406Z'});
+function assertRestoredLaterDeployment(active){
+ const p=restoredLaterRuntime;
+ assert.equal(active?.id,p.deployment);assert.equal(active.source,'wrangler');assert.equal(active.created_on,p.createdOn);
+ assert.deepEqual(active.versions,[{version_id:laterUnattributedRuntimeRecovery.verifiedVersion,percentage:100}]);
+ assert.equal(active.annotations?.['workers/message'],'Restore exact successful predecessor of unattributed runtime observed by read-only run 37908130882; no data rollback');
+ assert.equal(active.annotations?.['workers/triggered_by'],'deployment');
+}
+export function verifiedRestoredLaterRuntime(active,version,run,job,logs,verified,verifiedJob,verifiedLogs){
+ const p=restoredLaterRuntime,q=laterUnattributedRuntimeRecovery;
+ try{assertRestoredLaterDeployment(active)}catch{return false}
+ if(version?.id!==q.verifiedVersion||version.metadata?.created_on!=='2026-10-09T07:07:16.10051Z'||version.metadata?.source!=='wrangler'||version.annotations?.['workers/triggered_by']!=='version_upload'||version.annotations?.['workers/tag']||version.annotations?.['workers/message'])return false;
+ if(run?.id!==p.run||run.head_sha!==p.source||run.run_attempt!==1||run.status!=='completed'||run.conclusion!=='failure'||run.event!=='push'||run.head_branch!=='main'||run.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
+ if(job?.id!==p.job||job.run_id!==p.run||job.name!=='promote'||job.status!=='completed'||job.conclusion!=='failure')return false;
+ for(const [number,name,conclusion] of [[10,'Recover only the evidenced cancelled runtime to the last verified release','success'],[15,'Verify acquisition consent and same-account activation join','failure'],[62,'Deploy current main to production','skipped']])if(!job.steps?.some(s=>s.number===number&&s.name===name&&s.conclusion===conclusion))return false;
+ const observation={kind:'runtime_recovery_observation',deploymentId:q.deployment,activeVersion:q.version,release:p.source,version:{kind:'runtime_recovery_version_observation',id:q.version,createdOn:q.createdOn,source:'wrangler',triggeredBy:'version_upload',tag:null,message:q.message}};
+ if(typeof logs!=='string'||!logs.includes(JSON.stringify(observation))||!logs.includes('Current Version ID: '+q.verifiedVersion)||!logs.includes('PASS exact cancelled-release recovery: restore verified runtime; no data rollback'))return false;
+ if(ownedFrom(logs).length!==0)return false;
+ if(verified?.id!==q.verifiedRun||verified.head_sha!==q.verifiedSource||verified.run_attempt!==1||verifiedJob?.id!==q.verifiedJob||verifiedJob.status!=='completed')return false;
+ const predecessor={id:q.verifiedDeployment,versions:[{version_id:q.verifiedVersion,percentage:100}]};
+ return ownedFrom(verifiedLogs).filter(r=>r.dataRestored===false&&verifiedOwnedRuntime(predecessor,verified,verifiedJob,r)).length===1;
+}
+export async function verifyRestoredLaterRuntime(active,version,get,getLogs){
+ const p=restoredLaterRuntime,q=laterUnattributedRuntimeRecovery;
+ const run=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs?filter=latest&per_page=100');
+ const verified=await get('/actions/runs/'+q.verifiedRun),verifiedJobs=await get('/actions/runs/'+q.verifiedRun+'/jobs?filter=latest&per_page=100');
+ assert(verifiedRestoredLaterRuntime(active,version,run,jobs.jobs?.find(j=>j.id===p.job),await getLogs(p.job),verified,verifiedJobs.jobs?.find(j=>j.id===q.verifiedJob),await getLogs(q.verifiedJob)),'Exact restoration and original successful owned release evidence required');
+ return {...p,verifiedRun:q.verifiedRun,verifiedSource:q.verifiedSource,verifiedVersion:q.verifiedVersion};
 }
 
 // Retain only this exact owner-authorised local tablet release. Hosted source

@@ -292,3 +292,31 @@ test('exact manual Watch release satisfies final ownership only with its deploym
  const unrelated={...run,id:p.run+1,head_sha:'f'.repeat(40)};
  assert.equal(verifiedOwnedRuntime(active(p.version,p.deployment),unrelated,{...job,run_id:unrelated.id},{...receipt,run:String(unrelated.id),source:unrelated.head_sha}),false);
 });
+
+import {restoredLaterRuntime,verifiedRestoredLaterRuntime} from './cancelled-release-recovery.mjs';
+const restoredLaterFixture=()=>{
+ const f=laterUnattributedFixture(),p=restoredLaterRuntime,q=f.p;
+ const a={id:p.deployment,source:'wrangler',created_on:p.createdOn,versions:[{version_id:q.verifiedVersion,percentage:100}],annotations:{'workers/message':'Restore exact successful predecessor of unattributed runtime observed by read-only run 37908130882; no data rollback','workers/triggered_by':'deployment'}};
+ const version={id:q.verifiedVersion,metadata:{created_on:'2026-10-09T07:07:16.10051Z',source:'wrangler'},annotations:{'workers/triggered_by':'version_upload'}};
+ const run={id:p.run,head_sha:p.source,run_attempt:1,status:'completed',conclusion:'failure',event:'push',head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml'};
+ const job={id:p.job,run_id:p.run,name:'promote',status:'completed',conclusion:'failure',steps:[[10,'Recover only the evidenced cancelled runtime to the last verified release','success'],[15,'Verify acquisition consent and same-account activation join','failure'],[62,'Deploy current main to production','skipped']].map(([number,name,conclusion])=>({number,name,conclusion}))};
+ const logs=JSON.stringify({kind:'runtime_recovery_observation',deploymentId:q.deployment,activeVersion:q.version,release:p.source,version:{kind:'runtime_recovery_version_observation',id:q.version,createdOn:q.createdOn,source:'wrangler',triggeredBy:'version_upload',tag:null,message:q.message}})+'\nCurrent Version ID: '+q.verifiedVersion+'\nPASS exact cancelled-release recovery: restore verified runtime; no data rollback';
+ return {...f,a,version,run,job,logs};
+};
+test('exact previously restored deployment is retained using the original successful ownership proof',()=>{
+ const f=restoredLaterFixture(),check=(a=f.a,v=f.version,r=f.run,j=f.job,l=f.logs,vr=f.verified,vj=f.verifiedJob,vl=f.verifiedLogs)=>verifiedRestoredLaterRuntime(a,v,r,j,l,vr,vj,vl);
+ assert.equal(check(),true);
+ for(const patch of [{id:'other'},{source:'other'},{created_on:'other'},{annotations:{}},{versions:[{version_id:f.p.verifiedVersion,percentage:50}]}])assert.equal(check({...f.a,...patch}),false);
+ for(const patch of [{id:1},{head_sha:'f'.repeat(40)},{run_attempt:2},{conclusion:'success'},{event:'workflow_dispatch'},{status:'in_progress'},{path:'other.yml'},{head_branch:'other'}])assert.equal(check(f.a,f.version,{...f.run,...patch}),false);
+ for(const patch of [{id:1},{run_id:1},{status:'in_progress'},{conclusion:'success'},{steps:f.job.steps.slice(1)}])assert.equal(check(f.a,f.version,f.run,{...f.job,...patch}),false);
+ for(const l of ['',f.logs.replace('restore verified runtime','retain verified runtime'),f.logs.replace(f.p.version,'other'),f.logs+'\n'+f.verifiedLogs])assert.equal(check(f.a,f.version,f.run,f.job,l),false);
+ assert.equal(check(f.a,{...f.version,id:'other'}),false);
+ assert.equal(check(f.a,f.version,f.run,f.job,f.logs,{...f.verified,conclusion:'failure'}),false);
+ assert.equal(check(f.a,f.version,f.run,f.job,f.logs,f.verified,{...f.verifiedJob,id:1}),false);
+ for(const l of ['',f.verifiedLogs+'\n'+f.verifiedLogs,f.verifiedLogs.replace(f.p.verifiedDeployment,'other')])assert.equal(check(f.a,f.version,f.run,f.job,f.logs,f.verified,f.verifiedJob,l),false);
+ const p=restoredLaterRuntime,proof={...p,verifiedRun:f.p.verifiedRun,verifiedSource:f.p.verifiedSource,verifiedVersion:f.p.verifiedVersion};
+ const record={decision:'retain',run:p.run,from:f.p.verifiedVersion,to:f.p.verifiedVersion,verifiedRun:f.p.verifiedRun,ownedProof:null,restoredLaterRuntimeProof:proof,customerRecordsRead:0,dataChanged:false};
+ assert.deepEqual(verifiedStartingPoint(record,f.a),{source:f.p.verifiedSource,version:f.p.verifiedVersion,run:f.p.verifiedRun});
+ for(const patch of [{decision:'restore'},{run:1},{from:'other'},{dataChanged:true},{customerRecordsRead:1},{ownedProof:{}},{restoredLaterRuntimeProof:{...proof,source:'other'}}])assert.throws(()=>verifiedStartingPoint({...record,...patch},f.a));
+ assert.throws(()=>verifiedStartingPoint(record,{...f.a,id:'other'}));
+});
