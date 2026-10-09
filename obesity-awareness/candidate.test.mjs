@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {PATH,amendPillarChrome,renderCandidate,amendSupportingDocument,withWeightUnderstandingReview} from './candidate.mjs';
+import {PATH,applyPillarMetadata,supportingMetadata,amendPillarChrome,renderCandidate,amendSupportingDocument,withWeightUnderstandingReview} from './candidate.mjs';
 import {renderContinuityDocument} from '../public-continuity.mjs';
 const shell='<!doctype html><html lang="en-GB"><head><title>Programme</title><meta name="description" content="Old"><link rel="canonical" href="https://shiftsometimber.co.uk/programme"><script src="/consent-v4a.js" defer></script><script src="/programme.js" defer></script></head><body><header>START HERE · THE PROGRAMME · SHIFT HEALTH · TREATMENTS · MY TIMBER</header><main id="main-content"><h1>Programme</h1></main><footer>Existing footer</footer></body></html>';
 const support=renderContinuityDocument(shell,'/weight-loss-support-for-men');
@@ -66,4 +66,23 @@ test('pillar is a footer heading and drawer entry, with primary nav and Start He
  assert.match(changed,/<h2>Male obesity<\/h2>/);assert.match(changed,/My Timber<\/a><a href="\/male-obesity">Male obesity/);
  assert.equal(changed.match(/<main[\s\S]*?<\/main>/)[0],real.match(/<main[\s\S]*?<\/main>/)[0]);
  assert.equal(amendPillarChrome(real,'/'),real);assert.equal(amendPillarChrome(real,'/member/dashboard'),real);assert.equal(amendPillarChrome(changed,'/start-here'),changed);
+});
+
+test('support visible copy and FAQ stop promising unchecked Fit and twelve-week delivery',()=>{
+ const h=amendSupportingDocument('/weight-loss-support-for-men',support);
+ assert.doesNotMatch(h,/12-week|12 weeks|Grub \+ Fit|Today, Grub, Fit|guidance available in Fit|thousands of recipe|let My Timber adapt/);
+ assert.match(h,/meal is suitable/);assert.match(h,/Can I keep using the free support/);
+});
+test('supporting metadata and sharing tags agree; article evidence and dates remain truthful',()=>{
+ for(const [path,meta]of Object.entries(supportingMetadata)){
+  const source=shell.replace('</head>',`<meta property="og:title" content="Stale"><script type="application/ld+json">${JSON.stringify({'@graph':[{'@type':'Article',url:'https://shiftsometimber.co.uk'+path,description:'Old',dateModified:'old',citation:['https://www.nhs.uk/']},{'@type':'Article',url:'https://example.org/unrelated',description:'Leave me'}]})}</script></head>`);
+  const h=applyPillarMetadata(source,path);assert.equal((h.match(/<title>/g)||[]).length,1);assert.equal((h.match(/rel="canonical"/g)||[]).length,1);assert.match(h,/noindex,nofollow/);assert.ok(!h.includes('content="Stale"'));assert.ok(h.includes(meta.description));
+  const graph=JSON.parse(h.match(/application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];assert.equal(graph[0].description,meta.description);assert.equal(graph[0].dateModified,undefined);assert.deepEqual(graph[0].citation,['https://www.nhs.uk/']);assert.equal(graph[1].description,'Leave me');
+ }
+ assert.throws(()=>applyPillarMetadata(shell.replace('</head>',''),'\/weight-loss-support-for-men'),/invalid_shell/);
+ assert.throws(()=>applyPillarMetadata(shell.replace('</head>','<script type="application/ld+json">broken</script></head>'),'/weight-loss-support-for-men'),/invalid_schema/);
+});
+
+test('hub explains Start Here, SHIFT Health and practical support as distinct optional routes',()=>{
+ const h=renderCandidate(shell),main=h.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];assert.match(main,/id="where-shift-fits"/);assert.match(main,/href="\/start-here">Start Here/);assert.match(main,/href="\/shift-health">SHIFT Health/);assert.match(main,/Reading a page does not book a test/);assert.match(main,/does not diagnose you or decide/);assert.match(main,/without an account or purchase/);
 });
