@@ -364,5 +364,31 @@
     "stockChanged": false,
     "memberBehaviourChanged": false,
     "privacyAssertionsWeakened": false
+  },
+  "memberProofTransportRetry": {
+    "proof": "EXACT_MEMBER_PROOF_TRANSPORT_RETRY_V1",
+    "base": "5f046576b17ecf5fad5aa5be6d6eab1699f38e86",
+    "source": "6808493eeca7b747e61668d4e2b0c5f29adffb87",
+    "paths": [
+      "release/public-proof-fetch.mjs",
+      "tests/programme-day-public-proof-fetch.test.mjs",
+      "member-experience/verify-production-member.mjs",
+      "release/live-support-runtime.mjs",
+      "tests/live-support-runtime.test.mjs"
+    ],
+    "maintenanceSource": "21119aac1f827d2836bda773e562198ef8919f10",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/programme-day-member-proof-retry-release.test.mjs"
+    ],
+    "runtimeChanged": false,
+    "readOnlyTransportRetryAdded": true,
+    "rollbackReceiptRun": 37860725562,
+    "publicCopyChanged": false,
+    "clinicalAvailabilityChanged": false,
+    "customerDataChanged": false,
+    "stockChanged": false,
+    "memberBehaviourChanged": false,
+    "privacyAssertionsWeakened": false
   }
 }

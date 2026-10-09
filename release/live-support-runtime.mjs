@@ -9,7 +9,7 @@ import {join,resolve} from 'node:path';
 // upload are evidence only: neither is a production deployment or rollback grant.
 export const SUPPORT_RUNTIME=Object.freeze({kind:'captured-serving-support-runtime-v1',
  deployment:'8c9fea69-2cca-4da2-9eba-a50dc0e0a72c',deploymentCreatedOn:'2026-10-08T21:20:19.542998Z',
- rollbackDeployment:'ce2d15fb-6373-46c4-9517-b9402ecfa780',rollbackCreatedOn:'2026-10-08T23:30:33.919506Z',rollbackEarliest:'2026-10-08T23:30:31Z',rollbackLatest:'2026-10-08T23:30:35Z',rollbackReceiptRun:37857802619,rollbackReceiptJob:113586211600,rollbackReceiptSource:'160fc4fe35ee98c9713cf5fadb7936baa16d2845',
+ rollbackDeployment:'b5041b69-d523-45b0-83a2-d5bd0ed36033',rollbackCreatedOn:'2026-10-08T23:56:20.746965Z',rollbackEarliest:'2026-10-08T23:56:18Z',rollbackLatest:'2026-10-08T23:56:22Z',rollbackReceiptRun:37860725562,rollbackReceiptJob:113595632550,rollbackReceiptSource:'5f046576b17ecf5fad5aa5be6d6eab1699f38e86',
  rollbackMessage:'Owned release failed post-deployment checks; restore captured runtime and preserve current data',version:'a403001f-6170-4c81-8afe-e01d05a404df',number:3948,
  createdOn:'2026-10-08T21:20:16.113647Z',etag:'790904f0358557c2b8e2b62f728950310b2facb2abd463e82c942392707a75d5',
  reconstruction:'fa481b8193551cea1b8a7fe496ebc0cf70aa0a74',tree:'b3c38898f79fe658625d8a674dc90cc288638e85',
@@ -30,7 +30,7 @@ export function assertSupportRollbackReceipt(run,job){
  for(const [number,name] of [[10,'Recover only the evidenced cancelled runtime to the last verified release'],[50,'Capture current Worker deployment for rollback'],[60,'Deploy current main to production'],[108,'Restore the captured runtime if a post-deployment gate failed'],[109,'Verify query-string log redaction after deployment or rollback']]){
   const step=job.steps?.find(s=>s.number===number);assert.equal(step?.name,name);assert.equal(step?.status,'completed');assert.equal(step?.conclusion,'success');
  }
- const failed=job.steps.filter(s=>s.conclusion==='failure');assert.equal(failed.length,1);assert.equal(failed[0].number,95);assert.equal(failed[0].name,'Prove automatic article metadata and the shared security policy');
+ const failed=job.steps.filter(s=>s.conclusion==='failure');assert.equal(failed.length,1);assert.equal(failed[0].number,87);assert.equal(failed[0].name,'Prove exact member scripts and authentication on live traffic');
  const restore=job.steps.find(s=>s.number===108);assert.equal(restore.started_at,p.rollbackEarliest);assert.equal(restore.completed_at,p.rollbackLatest);assert(Date.parse(failed[0].completed_at)<=Date.parse(restore.started_at));assert(Date.parse(p.rollbackCreatedOn)>=Date.parse(restore.started_at)&&Date.parse(p.rollbackCreatedOn)<=Date.parse(restore.completed_at));
  return {run:p.rollbackReceiptRun,attempt:1,job:p.rollbackReceiptJob,source:p.rollbackReceiptSource,decision:'retain'};
 }

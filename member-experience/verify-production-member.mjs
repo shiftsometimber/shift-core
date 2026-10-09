@@ -1,3 +1,4 @@
+import {fetchPublicProof as fetch} from '../release/public-proof-fetch.mjs';
 import {withTrustRepair} from '../shift-coach/public-trust-repair.mjs';
 import {applyBookVoiceCopy,withBookVoice} from '../book-voice.mjs';
 import {dayGuideRuntime,dayGuideStyles} from './day-guide.mjs';
