@@ -116,3 +116,5 @@ test('supporting metadata retains approved sharing images and original dates; th
  for(const key of ['og:image','twitter:image'])assert.equal((support.match(new RegExp('(?:name|property)="'+key+'"','g'))||[]).length,1);
  assert.ok(support.includes('/assets/mood-share.png'));assert.doesNotMatch(renderCandidate(original),/mood-share\.png/);
 });
+
+test('all mobile and desktop inherited Programme markers are removed from the owned hub',()=>{const marked=shell.replace('</header>','<a href="/programme" aria-current="page">Mobile Programme</a><a href="/programme" aria-current="page">Desktop Programme</a><a href="https://shiftsometimber.co.uk/programme" aria-current="page">Absolute Programme</a><a href="/unchanged" aria-current="page">Other current</a></header>');const h=renderCandidate(marked);assert.doesNotMatch(h,/href="(?:https:\/\/shiftsometimber\.co\.uk)?\/programme" aria-current="page"/);assert.match(h,/href="\/unchanged" aria-current="page"/);for(const label of ['Mobile Programme','Desktop Programme','Absolute Programme'])assert.ok(h.includes(label));});
