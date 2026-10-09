@@ -1092,9 +1092,10 @@
       "tests/male-obesity-composition.test.mjs",
       "tests/programme-day-continuity-body.test.mjs",
       "acquisition-activation/metrics-release.test.mjs",
-      "editorial/five-articles/proof.mjs"
+      "editorial/five-articles/proof.mjs",
+      "tests/approved-runtime-composition.test.mjs"
     ],
-    "maintenanceSource": "441a25f33eb5790d34422856e23395b09b268f0d",
+    "maintenanceSource": "53a8956bed1802ab8997b39ac4162b45f7f044a0",
     "ownerApproval": "Approved, Go; complete authorised informational release",
     "externalReviewerRequired": false,
     "publicationStatus": "approved_for_guarded_release",
