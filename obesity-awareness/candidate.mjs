@@ -31,7 +31,7 @@ export function applyPillarMetadata(html,path,meta=supportingMetadata[path]){
  const url=ORIGIN+path;
  html=html.replace(schemaRE,tag=>{
   const raw=tag.replace(/^<script[^>]*>/i,'').replace(/<\/script>$/i,'');let graph;try{graph=JSON.parse(raw)}catch{throw Error('awareness_invalid_schema')}
-  function visit(n){if(!n||typeof n!=='object')return;if(n['@type']==='Article'&&(n.url===url||n.mainEntityOfPage===url||n['@id']===url+'#article')){n.description=meta.description;delete n.dateModified}for(const v of Object.values(n))if(typeof v==='object'){if(Array.isArray(v))v.forEach(visit);else visit(v)}}visit(graph);
+  function visit(n){if(!n||typeof n!=='object')return;if(n['@type']==='Article'&&(n.url===url||n.mainEntityOfPage===url||n['@id']===url+'#article')){n.description=meta.description}for(const v of Object.values(n))if(typeof v==='object'){if(Array.isArray(v))v.forEach(visit);else visit(v)}}visit(graph);
   return '<script type="application/ld+json">'+JSON.stringify(graph).replace(/</g,'\\u003c')+'</script>';
  });
  return html.replace('</head>','<title>'+esc(meta.title)+'</title><meta name="description" content="'+esc(meta.description)+'"><meta name="robots" content="noindex,nofollow"><link rel="canonical" href="'+url+'"><meta property="og:type" content="article"><meta property="og:locale" content="en_GB"><meta property="og:title" content="'+esc(meta.title)+'"><meta property="og:description" content="'+esc(meta.description)+'"><meta property="og:url" content="'+url+'"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="'+esc(meta.title)+'"><meta name="twitter:description" content="'+esc(meta.description)+'"></head>');
