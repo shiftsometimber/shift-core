@@ -1061,5 +1061,52 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "maleObesityPillar": {
+    "proof": "EXACT_MALE_OBESITY_PILLAR_V1",
+    "base": "77d2469344bb678a8e68b6e4e6cb36dfdbdc28b0",
+    "source": "73f09364557810dd8579aaff8ba4fb2b4bb15837",
+    "paths": [
+      ".github/workflows/male-obesity-preview.yml",
+      "member-experience/public-preservation.mjs",
+      "obesity-awareness/README.md",
+      "obesity-awareness/candidate.mjs",
+      "obesity-awareness/candidate.test.mjs",
+      "obesity-awareness/content.mjs",
+      "obesity-awareness/measurement.mjs",
+      "obesity-awareness/preservation.mjs",
+      "obesity-awareness/preview-entry.mjs",
+      "obesity-awareness/production.mjs",
+      "obesity-awareness/production.test.mjs",
+      "obesity-awareness/staging-build-proof.json",
+      "obesity-awareness/staging-entry.mjs",
+      "obesity-awareness/staging-entry.test.mjs",
+      "obesity-awareness/verify-live.mjs",
+      "obesity-awareness/wrangler.preview.jsonc",
+      "obesity-awareness/wrangler.staging.jsonc",
+      "release/public-continuity-body-proof.mjs",
+      "shift-coach/worker.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/male-obesity-composition.test.mjs"
+    ],
+    "maintenanceSource": "4814675f7e17c3ceee5ac25c489b7b5b0f6da9c0",
+    "ownerApproval": "Approved, Go; complete authorised informational release",
+    "externalReviewerRequired": false,
+    "publicationStatus": "approved_for_guarded_release",
+    "homepageChanged": false,
+    "startHereFlowChanged": false,
+    "primaryNavigationChanged": false,
+    "memberDataChanged": false,
+    "checkoutChanged": false,
+    "externalCommunicationsSent": false,
+    "costsCommitted": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false,
+    "previewProofRun": 37980835713,
+    "previewSource": "73f09364557810dd8579aaff8ba4fb2b4bb15837"
   }
 }
