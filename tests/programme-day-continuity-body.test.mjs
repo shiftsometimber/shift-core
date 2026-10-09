@@ -20,3 +20,11 @@ test('approved 332-word provider body passes its exact-copy gate without a contr
  assert.equal(approvedContinuityMinimumWords('/my-timber-for-providers'),332);assert.equal(approvedContinuityMinimumWords('/life-back'),400);assert.equal(approvedContinuityMinimumWords('/husband-help'),180);
  const body=approvedContinuityBody('/my-timber-for-providers');assert.doesNotThrow(()=>assertApprovedContinuityBody('/my-timber-for-providers',body));assert.throws(()=>assertApprovedContinuityBody('/my-timber-for-providers',body.slice(0,-100)));
 });
+import {ANSWER_DEPTH_ADDITIONS,improveAnswerDepth} from '../public-seo-answer-depth.mjs';
+import {restoreBookVoiceCopy} from '../book-voice.mjs';
+test('support body includes the exact approved outer Worker addition in its actual position',()=>{
+ const path='/weight-loss-support-for-men',addition=ANSWER_DEPTH_ADDITIONS.find(d=>d.path===path),base=continuityPages[path].body;
+ const actual=restoreBookVoiceCopy(path,improveAnswerDepth('<html><head></head><main>'+base+'</main></html>',path)).match(/<main>([\s\S]*?)<\/main>/)[1];
+ assert.equal(approvedContinuityBody(path),actual);assert.doesNotThrow(()=>assertApprovedContinuityBody(path,actual));assert.throws(()=>assertApprovedContinuityBody(path,base));
+ for(const changed of [actual.replace(addition.id,'unapproved'),actual.replace('Examples of how the different parts fit together','Unapproved substitution'),actual.replace(/href="[^"]+"/,'href="/unapproved"'),actual+restoreBookVoiceCopy(path,addition.html)])assert.throws(()=>assertApprovedContinuityBody(path,changed));
+});
