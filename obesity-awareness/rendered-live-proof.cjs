@@ -65,7 +65,7 @@ function observeCollector(page,records){
     result.checks.push({width,checks:['menu placement and Escape','meal and fallback immediately available','effort and unhelpful alternatives','return still works, answers not persisted','declined consent sends no pillar events'],status:'pass'});
     await page.getByRole('link',{name:'Check your BMI — one useful number, not the whole picture.',exact:true}).click();await page.locator('#bmiForm').waitFor();
     await page.waitForFunction(()=>typeof document.getElementById('bmiForm')?.onsubmit==='function');
-    await page.getByRole('button',{name:'Metric',exact:true}).click();await page.locator('#bmiHeightCm').selectOption('175');await page.locator('#bmiWeightKg').selectOption('100');await page.locator('#bmiForm button[type="submit"]').click();
+    await page.getByRole('button',{name:'Metric',exact:true}).click();await page.locator('#bmiHeightCm').selectOption('175');await page.locator('#bmiWeightKg').selectOption('100');await page.getByRole('button',{name:'Calculate BMI',exact:true}).click();
     await page.waitForFunction(()=>document.getElementById('bmiR')?.textContent.includes('32.7'));
     assert.equal(await page.locator('a[href="/mounjaro"]').count(),0);
     assert.equal(await page.getByRole('link',{name:'Understand obesity and find a next step',exact:true}).count(),1);
