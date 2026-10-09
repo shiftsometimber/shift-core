@@ -21,3 +21,18 @@ test('workflow automatically checks deployment and successful owned rollback wit
  const deploy=workflow.indexOf('node release/tool-schema-gate.mjs deploy'),rollback=workflow.indexOf('node release/member-details-rollback.mjs'),check=workflow.indexOf('node release/tool-schema-gate.mjs rollback'),report=workflow.lastIndexOf('node release/tool-schema-gate.mjs report');assert(deploy>0&&rollback>deploy&&check>rollback&&report>check);
  assert(!/continue-on-error: true/.test(workflow.slice(deploy-150,deploy+100)));assert(workflow.slice(report).includes('${{ job.status }}'));
 });
+
+// Reproduce the production bundler, rather than testing unbundled function source.
+import {build} from 'esbuild';
+import vm from 'node:vm';
+test('all nine browser clients survive the production name-preserving bundle without Worker helper dependencies',async()=>{
+ const bundled=await build({entryPoints:['public-tool-guidance.mjs'],bundle:true,format:'esm',platform:'node',keepNames:true,write:false});
+ const module=await import('data:text/javascript;base64,'+Buffer.from(bundled.outputFiles[0].text).toString('base64'));
+ for(const [path,g]of [...Object.entries(module.TOOL_GUIDANCE),['/decision-centre',null]]){
+  const raw=g?sample(g):'<html><head></head><body><main></main></body></html>';
+  const html=module.improveToolGuidance(raw,path),script=html.match(/<script data-tool-guidance-client>([\s\S]*?)<\/script>/)?.[1];assert(script,path);
+  assert(!script.includes('__name'),path+' contains a server-only helper');let boot;
+  assert.doesNotThrow(()=>vm.runInNewContext(script,{document:{readyState:'loading',addEventListener(event,listener,options){assert.equal(event,'DOMContentLoaded');assert.equal(options.once,true);boot=listener;}}}),path);
+  assert.equal(typeof boot,'function',path+' did not initialise');
+ }
+});
