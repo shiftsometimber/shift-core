@@ -10,3 +10,25 @@ test('real release composition keeps prior ownership and all fresh-reader drift 
 
 
 test('release-ledger trigger fix changes no production guard or workflow step',()=>{const read=ref=>execFileSync('git',['show',ref+':.github/workflows/cloudflare-production-promote.yml'],{encoding:'utf8'}),before=read(COMPOSITION_TRIGGER_BASE),after=read(COMPOSITION_TRIGGER_SOURCE);assert.doesNotThrow(()=>assertExactCompositionTrigger(before,after));for(const changed of [after.replace("needs.select-current.outputs.current == 'true'","true"),after.replace('Recover only the evidenced cancelled runtime','Ignore the evidenced cancelled runtime'),after.replace('PROMOTE_CURRENT_MAIN','PROMOTE_ANY_BRANCH'),after+'\n',before])assert.throws(()=>assertExactCompositionTrigger(before,changed));});
+
+import {verifyTogetherBiomarkerUpdate,assertTogetherBiomarkerProof,TOGETHER_BIOMARKER_BASE as bioBase,TOGETHER_BIOMARKER_SOURCE as bioSource,TOGETHER_BIOMARKER_RUN as bioRun,TOGETHER_BIOMARKER_PATHS as bioPaths,TOGETHER_BIOMARKER_MAINTENANCE as bioMaintenance} from '../release/approved-runtime-composition.mjs';
+const bioReceipt=()=>({proof:'EXACT_TOGETHER_BIOMARKER_UPDATE_V1',base:bioBase,source:bioSource,proofRun:bioRun,paths:[...bioPaths],maintenancePaths:[...bioMaintenance],maintenanceSource:'a'.repeat(40),approvedPR:1276,publicationStatus:'owner_authorised_factual_publication',clinicalApproval:null,...Object.fromEntries(['registryFactsChanged','reviewDatesRenewedByHttp','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'].map(k=>[k,false]))});
+const bioOptions=()=>({head:'b'.repeat(40),read:()=> 'same',ancestor:()=>{},diff:(a,b)=>a===bioBase?[...bioPaths]:a===bioSource?[...bioMaintenance]:[RECONCILIATION_MANIFEST]});
+test('biomarker release requires exact reviewed payload and finite maintenance',()=>verifyTogetherBiomarkerUpdate(bioReceipt(),bioOptions()));
+test('biomarker release rejects stale evidence, clinical approval and unrelated changes at every boundary',()=>{
+ for(const patch of [{source:'f'.repeat(40)},{base:'f'.repeat(40)},{proofRun:1},{approvedPR:1},{clinicalApproval:true},{publicationStatus:'draft'},{maintenanceSource:'main'},...Object.keys(bioReceipt()).filter(k=>bioReceipt()[k]===false).map(k=>({[k]:true}))])assert.throws(()=>verifyTogetherBiomarkerUpdate({...bioReceipt(),...patch},bioOptions()));
+ for(const boundary of [bioBase,bioSource,'a'.repeat(40)]){const o=bioOptions(),diff=o.diff;o.diff=(a,b)=>a===boundary?[...diff(a,b),'worker.js']:diff(a,b);assert.throws(()=>verifyTogetherBiomarkerUpdate(bioReceipt(),o));}
+ const o=bioOptions();o.ancestor=()=>{throw Error('unrelated history')};assert.throws(()=>verifyTogetherBiomarkerUpdate(bioReceipt(),o));
+});
+test('biomarker release detects current payload and maintenance drift including overlapping review workflow',()=>{
+ for(const path of new Set([...bioPaths,...bioMaintenance])){const o=bioOptions();o.read=(r,p)=>r==='HEAD'&&p===path?'drift':'same';assert.throws(()=>verifyTogetherBiomarkerUpdate(bioReceipt(),o),/source drift/);}
+});
+test('biomarker proof requires exact successful PR attempt, source and workflow',()=>{
+ const proof={id:bioRun,head_sha:bioSource,path:'.github/workflows/medicines-watch-check.yml',event:'pull_request',head_branch:'review/watch-together-biomarkers-20261009',status:'completed',conclusion:'success'};assertTogetherBiomarkerProof(proof);
+ for(const patch of [{id:bioRun+1},{head_sha:'f'.repeat(40)},{path:'.github/workflows/cloudflare-production-promote.yml'},{event:'push'},{head_branch:'main'},{status:'in_progress'},{conclusion:'failure'}])assert.throws(()=>assertTogetherBiomarkerProof({...proof,...patch}));
+});
+test('real biomarker composition retains previous verified runtime and rejects all fresh-reader drift',()=>{
+ const c=verifyReconciledRelease();assert.equal(c.togetherBiomarkerUpdate.source,bioSource);assert.equal(c.lateWatchFactualUpdate.source,source);
+ const read=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8',maxBuffer:4e6});
+ for(const path of new Set([...bioPaths,...bioMaintenance]))assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
+});
