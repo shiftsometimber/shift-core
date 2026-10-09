@@ -903,5 +903,32 @@
     "genericAdoptionAllowed": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "toolGuidanceProductionBuildGate": {
+    "proof": "EXACT_TOOL_GUIDANCE_PRODUCTION_BUILD_GATE_V1",
+    "base": "8406d13df4431345b76d96c82bc1ab34637ee659",
+    "source": "5e0dbe1fb68cf695e8b15278c70cb3ee03879144",
+    "paths": [
+      ".github/workflows/cloudflare-production-promote.yml",
+      "scripts/verify-tool-guidance-build.cjs",
+      "tests/tool-guidance-build.test.cjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/tool-guidance-build-composition.test.mjs"
+    ],
+    "maintenanceSource": "c458e91e31907c469b7c092058f9d192056f833e",
+    "compiledBuildProofAdded": true,
+    "publicationStatus": "approved_for_guarded_release",
+    "runtimeChanged": false,
+    "publicCopyChanged": false,
+    "medicalClaimsChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
