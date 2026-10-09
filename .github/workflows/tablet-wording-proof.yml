@@ -1,0 +1,21 @@
+name: Tablet wording proof
+on:
+  pull_request:
+    paths:
+      - 'tablet-wording-v1.mjs'
+      - 'public-promise-accuracy-v1.mjs'
+      - 'member-experience/public-preservation.mjs'
+      - 'tests/tablet-wording.test.mjs'
+      - '.github/workflows/tablet-wording-proof.yml'
+permissions:
+  contents: read
+jobs:
+  wording:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check tablet-wording-v1.mjs && node --check public-promise-accuracy-v1.mjs && node --check member-experience/public-preservation.mjs
+      - run: node --test tests/tablet-wording.test.mjs tests/promise-accuracy.test.mjs tests/public-treatment-guidance.test.mjs
