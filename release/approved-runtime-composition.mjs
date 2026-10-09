@@ -358,6 +358,28 @@ export function verifyNewsSecurity(c,{head,read,diff,ancestor,content=(ref,path)
  return c;
 }
 
+export const WATCH_RUNTIME_DISPATCH_BASE='c7c52acfd2adc2226adc5fad43f4e5c326e788b6';
+export const WATCH_RUNTIME_DISPATCH_SOURCE='326572c4e265542b7a8146cf30294b3aa5b56146';
+export const WATCH_RUNTIME_DISPATCH_PATHS=['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs'];
+export const WATCH_RUNTIME_DISPATCH_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/watch-runtime-dispatch-release.test.mjs'];
+const WATCH_RUNTIME_DISPATCH_SET=new Set([...WATCH_RUNTIME_DISPATCH_PATHS,...WATCH_RUNTIME_DISPATCH_MAINTENANCE]);
+for(const path of WATCH_RUNTIME_DISPATCH_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchRuntimeDispatch(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert(c);assert.equal(c.proof,'EXACT_WATCH_RUNTIME_DISPATCH_V1');assert.equal(c.base,WATCH_RUNTIME_DISPATCH_BASE);assert.equal(c.source,WATCH_RUNTIME_DISPATCH_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,WATCH_RUNTIME_DISPATCH_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RUNTIME_DISPATCH_MAINTENANCE);
+ assert.equal(c.pinnedRun,37870273259);assert.equal(c.pinnedEvent,'workflow_dispatch');assert.equal(c.recoveryVerifierChanged,true);
+ for(const flag of ['runtimeChanged','publicCopyChanged','medicalEvidenceChanged','clinicalApprovalChanged','customerDataChanged','checkoutChanged','myTimberChanged','rollbackAuthorityBroadened'])assert.equal(c[flag],false);
+ for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch runtime dispatch source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch runtime dispatch maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Watch runtime dispatch');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved Watch runtime dispatch source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved Watch runtime dispatch source drift / maintenance: '+path);
+ const verifier=content(c.source,'shift-coach/cancelled-release-recovery.mjs');
+ assert.match(verifier,/event:'workflow_dispatch'/);assert.match(verifier,/recorded\.event,pinned\.event\|\|'push'/);
+ assert.equal(content(c.source,'.github/workflows/cloudflare-production-promote.yml'),content(c.base,'.github/workflows/cloudflare-production-promote.yml'),'Guarded production workflow must remain byte-for-byte unchanged');
+ return c;
+}
+
 export const WATCH_RUNTIME_BASELINE_BASE='8d1b328c0a5f7169e646ed23d30f79ce7562c8c8';
 export const WATCH_RUNTIME_BASELINE_SOURCE='ba232820de4bf508691f66915eb6e970e68ca313';
 export const WATCH_RUNTIME_BASELINE_PATHS=['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs'];
@@ -588,10 +610,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const runtimeDispatch=c.watchRuntimeDispatch;
+ if(runtimeDispatch)verifyWatchRuntimeDispatch(runtimeDispatch,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const runtimeDispatchHead=runtimeDispatch?runtimeDispatch.base:head;
+ const runtimeDispatchRead=(ref,path)=>readBlob(runtimeDispatch&&ref==='HEAD'&&WATCH_RUNTIME_DISPATCH_SET.has(path)?runtimeDispatch.base:ref,path);
  const runtimeBaseline=c.watchRuntimeBaseline;
- if(runtimeBaseline)verifyWatchRuntimeBaseline(runtimeBaseline,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ if(runtimeBaseline)verifyWatchRuntimeBaseline(runtimeBaseline,{head:runtimeDispatchHead,read:runtimeDispatchRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const runtimeBaselineHead=runtimeBaseline?runtimeBaseline.base:head;
- const runtimeBaselineRead=(ref,path)=>readBlob(runtimeBaseline&&ref==='HEAD'&&WATCH_RUNTIME_BASELINE_SET.has(path)?runtimeBaseline.base:ref,path);
+ const runtimeBaselineRead=(ref,path)=>runtimeDispatchRead(runtimeBaseline&&ref==='HEAD'&&WATCH_RUNTIME_BASELINE_SET.has(path)?runtimeBaseline.base:ref,path);
  const footerComposition=c.sharedFooterCompositionProof;
  if(footerComposition)verifySharedFooterComposition(footerComposition,{head:runtimeBaselineHead,read:runtimeBaselineRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const footerCompositionHead=footerComposition?footerComposition.base:runtimeBaselineHead;

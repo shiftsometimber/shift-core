@@ -49,6 +49,31 @@
     "tests/rendered-member-acceptance-support.test.mjs",
     "tests/member-reload-browser.test.mjs"
   ],
+  "watchRuntimeDispatch": {
+    "proof": "EXACT_WATCH_RUNTIME_DISPATCH_V1",
+    "base": "c7c52acfd2adc2226adc5fad43f4e5c326e788b6",
+    "source": "326572c4e265542b7a8146cf30294b3aa5b56146",
+    "maintenanceSource": "baf86f04c4c75c93af91884573dd24f4714edba1",
+    "paths": [
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/cancelled-release-recovery.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-runtime-dispatch-release.test.mjs"
+    ],
+    "pinnedRun": 37870273259,
+    "pinnedEvent": "workflow_dispatch",
+    "recoveryVerifierChanged": true,
+    "runtimeChanged": false,
+    "publicCopyChanged": false,
+    "medicalEvidenceChanged": false,
+    "clinicalApprovalChanged": false,
+    "customerDataChanged": false,
+    "checkoutChanged": false,
+    "myTimberChanged": false,
+    "rollbackAuthorityBroadened": false
+  },
   "watchRuntimeBaseline": {
     "proof": "EXACT_WATCH_RUNTIME_BASELINE_V1",
     "base": "8d1b328c0a5f7169e646ed23d30f79ce7562c8c8",
