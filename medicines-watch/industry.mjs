@@ -1,3 +1,4 @@
+import togetherBiomarkers from './reviews/2026-10-09-authorised-together-biomarkers.json' with {type:'json'};
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
 import bimagrumabSemaglutide from './reviews/2026-10-09-authorised-bimagrumab-semaglutide.json' with {type:'json'};
 import lateOverdueSourceRenewal from './reviews/2026-10-09-overdue-source-renewal-late.json' with {type:'json'};
@@ -388,4 +389,8 @@ export const industry = [...originalIndustry.map(e => {
    limitations:e.limitations+' '+limitationsToAppend,
    reviewedAt:bimagrumabSemaglutide.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
- });
+ }).map(e=>e.id===togetherBiomarkers.change.id?{...e,
+ summary:e.summary+' '+togetherBiomarkers.change.summaryToAppend,
+ limitations:e.limitations+' '+togetherBiomarkers.change.limitationsToAppend,
+ reviewedAt:togetherBiomarkers.reviewedAt,
+ additionalEvidence:[...(e.additionalEvidence||[]),...togetherBiomarkers.change.additionalEvidence]}:e);
