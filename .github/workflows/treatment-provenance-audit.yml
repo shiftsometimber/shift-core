@@ -1,0 +1,37 @@
+name: My Treatment paused provenance audit
+on:
+  push:
+    branches: [verification/treatment-provenance-20261009]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Test evidence attribution and refusal cases
+        run: node --test tests/treatment-provenance-audit.test.mjs tests/runtime-rollback-guard.test.mjs shift-coach/cancelled-release-recovery.test.mjs member-experience/tests/treatment-model.test.mjs member-experience/tests/treatment.test.mjs tests/my-treatment-release.test.mjs
+      - name: Rebuild preserved source and audit provider evidence without mutations
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node release/treatment-provenance-audit.mjs
+      - name: Check actual public treatment delivery without customer accounts
+        if: always()
+        continue-on-error: true
+        run: node release/my-treatment-live.mjs
+      - name: Retain audit and delivery evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: paused-treatment-provenance-${{ github.sha }}
+          path: |
+            b1-runtime-release/treatment-provenance-audit.json
+            b1-runtime-release/my-treatment-live.json
+          if-no-files-found: error
