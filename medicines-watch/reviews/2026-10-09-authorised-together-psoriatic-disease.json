@@ -1,0 +1,304 @@
+{
+  "reviewedAt": "2026-10-09T11:50:00Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises supported factual additions and corrections to go live without repeat permission.",
+    "scope": "Add the previously untracked ixekizumab and tirzepatide psoriatic-disease programme after complete sponsor-announcement and primary-registry review. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "entries": [
+    {
+      "id": "ixekizumab-tirzepatide-psoriatic-disease",
+      "name": "Ixekizumab with tirzepatide in psoriatic disease",
+      "developer": "Eli Lilly and Company",
+      "group": "research",
+      "stage": "Completed Phase 3b psoriasis and psoriatic-arthritis studies; Phase 4 follow-up active",
+      "summary": "Lilly's sponsor-submitted records describe two completed open-label Phase 3b studies of ixekizumab with tirzepatide in adults with moderate-to-severe plaque psoriasis or psoriatic arthritis and obesity or overweight. A 31 August 2026 sponsor release reports prespecified exploratory week-52 findings. Two separate real-world Phase 4 studies have actual March 2025 starts: the psoriasis study is recruiting and the psoriatic-arthritis study is active, not recruiting.",
+      "ukAuthorisation": "The reviewed evidence does not establish a UK marketing authorisation for ixekizumab and tirzepatide as a combined psoriatic-disease and weight-management regimen.",
+      "nhsEngland": "No NICE recommendation or NHS England access for this combination and specialist research question is established by these studies.",
+      "supply": "Trial completion, a sponsor announcement and active Phase 4 research do not establish a combined UK treatment pathway, lawful retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The sponsor's week-52 analyses are exploratory, open-label and reported without multiplicity control; detailed results were not peer reviewed in the reviewed release. None of the four registry records has posted results. Lilly reports 274 and 271 enrolled participants in TOGETHER-PsO and TOGETHER-PsA, while the later registry records report 281 and 279 actual participants; both dated accounts remain visible. Skin, joint, weight and metabolic outcomes are indication-specific and do not establish comparative superiority, an approved combined regimen, UK authorisation, NHS access, supply or clinical approval. The Phase 4 enrolment and May 2028 or August 2027 completion dates remain estimates.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-09T11:50:00Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Lilly: TOGETHER-PsO and TOGETHER-PsA week-52 sponsor results",
+          "url": "https://investor.lilly.com/news-releases/news-release-details/new-phase-3b-data-lillys-taltz-ixekizumab-and-zepbound",
+          "sourcePublishedAt": "2026-08-31",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-09T11:50:00Z",
+          "evidenceType": "Original sponsor announcement; exploratory open-label Phase 3b findings — see limitations",
+          "checkScope": "Complete sponsor announcement read for design, sponsor-reported participant counts, week-52 exploratory findings, safety context and stated limitations. This page remains outside automatic content monitoring."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT06588283: TOGETHER-PsO",
+          "url": "https://clinicaltrials.gov/study/NCT06588283",
+          "sourcePublishedAt": "2024-09-19",
+          "sourceUpdatedAt": "2026-06-17",
+          "reviewedAt": "2026-10-09T11:50:00Z",
+          "checkScope": "Sponsor-submitted Phase 3 record read for completed status, actual dates and enrolment and absence of posted results; automatic monitoring covers lifecycle facts only."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT06588296: TOGETHER-PsA",
+          "url": "https://clinicaltrials.gov/study/NCT06588296",
+          "sourcePublishedAt": "2024-09-19",
+          "sourceUpdatedAt": "2026-05-13",
+          "reviewedAt": "2026-10-09T11:50:00Z",
+          "checkScope": "Sponsor-submitted Phase 3 record read for completed status, actual dates and enrolment and absence of posted results; automatic monitoring covers lifecycle facts only."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT06857942: TOGETHER AMPLIFY-PsO",
+          "url": "https://clinicaltrials.gov/study/NCT06857942",
+          "sourcePublishedAt": "2025-03-05",
+          "sourceUpdatedAt": "2026-09-04",
+          "reviewedAt": "2026-10-09T11:50:00Z",
+          "checkScope": "Sponsor-submitted Phase 4 record read for recruiting status, actual start, estimated enrolment and completion and absence of posted results; automatic monitoring covers lifecycle facts only."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT06864026: TOGETHER AMPLIFY-PsA",
+          "url": "https://clinicaltrials.gov/study/NCT06864026",
+          "sourcePublishedAt": "2025-03-07",
+          "sourceUpdatedAt": "2026-09-21",
+          "reviewedAt": "2026-10-09T11:50:00Z",
+          "checkScope": "Sponsor-submitted Phase 4 record read for active-not-recruiting status, actual start, estimated enrolment and completion and absence of posted results; automatic monitoring covers lifecycle facts only."
+        }
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct06588283",
+      "nctId": "NCT06588283",
+      "title": "ClinicalTrials.gov NCT06588283: TOGETHER-PsO",
+      "url": "https://clinicaltrials.gov/study/NCT06588283",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06588283",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT06588283", "Eli Lilly and Company"],
+      "reviewedAt": "2026-10-09T11:50:00Z",
+      "sourcePublishedAt": "2024-09-19",
+      "sourceUpdatedAt": "2026-06-17",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment, typed dates, enrolment and results-posting status; they do not evaluate skin, joint, weight, metabolic or safety outcomes.",
+      "lifecycle": {
+        "nctId": "NCT06588283",
+        "title": "Ixekizumab Concomitantly Administered With Tirzepatide in Adults With Moderate-to-Severe Plaque Psoriasis and Obesity or Overweight",
+        "sponsor": "Eli Lilly and Company",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": ["PHASE3"],
+        "enrollment": {"count": 281, "type": "ACTUAL"},
+        "start": {"date": "2024-09-30", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2026-01-08", "type": "ACTUAL"},
+        "completion": {"date": "2026-06-01", "type": "ACTUAL"},
+        "firstPosted": {"date": "2024-09-19", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-06-17", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["ixekizumab-tirzepatide-psoriatic-disease"],
+      "rawResponseSha256": "9156f4f64bfaafd24aaa8f08963164a6dc55687032dd8ce2d5c10ea83a2098dd",
+      "reviewedFingerprint": "b35732a4c4174659507ef2c634aae1b2027f258cef235ee2bb5e142737a38ff6"
+    },
+    {
+      "id": "registry-nct06588296",
+      "nctId": "NCT06588296",
+      "title": "ClinicalTrials.gov NCT06588296: TOGETHER-PsA",
+      "url": "https://clinicaltrials.gov/study/NCT06588296",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06588296",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT06588296", "Eli Lilly and Company"],
+      "reviewedAt": "2026-10-09T11:50:00Z",
+      "sourcePublishedAt": "2024-09-19",
+      "sourceUpdatedAt": "2026-05-13",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment, typed dates, enrolment and results-posting status; they do not evaluate skin, joint, weight, metabolic or safety outcomes.",
+      "lifecycle": {
+        "nctId": "NCT06588296",
+        "title": "Ixekizumab Concomitantly Administered With Tirzepatide in Adults With Psoriatic Arthritis and Obesity or Overweight",
+        "sponsor": "Eli Lilly and Company",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": ["PHASE3"],
+        "enrollment": {"count": 279, "type": "ACTUAL"},
+        "start": {"date": "2024-09-24", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2025-11-18", "type": "ACTUAL"},
+        "completion": {"date": "2026-04-23", "type": "ACTUAL"},
+        "firstPosted": {"date": "2024-09-19", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-05-13", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["ixekizumab-tirzepatide-psoriatic-disease"],
+      "rawResponseSha256": "a8e327254b17be7108b03562cabf6b579b009a18bf44295f66c95138dfc7a43f",
+      "reviewedFingerprint": "2f4bb2210271938454feebd924a060e92d7e739331cc38868495b3c6f27bd775"
+    },
+    {
+      "id": "registry-nct06857942",
+      "nctId": "NCT06857942",
+      "title": "ClinicalTrials.gov NCT06857942: TOGETHER AMPLIFY-PsO",
+      "url": "https://clinicaltrials.gov/study/NCT06857942",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06857942",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT06857942", "Eli Lilly and Company"],
+      "reviewedAt": "2026-10-09T11:50:00Z",
+      "sourcePublishedAt": "2025-03-05",
+      "sourceUpdatedAt": "2026-09-04",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment, typed dates, enrolment and results-posting status; they do not evaluate real-world effectiveness, weight or clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT06857942",
+        "title": "A Study to Investigate the Effectiveness of Tirzepatide (LY3298176) Following Initiation of Ixekizumab (LY2439821) in Participants With Moderate-to-Severe Plaque PsO and Obesity or Overweight in Clinical Practice (TOGETHER AMPLIFY-PsO)",
+        "sponsor": "Eli Lilly and Company",
+        "status": "RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE4"],
+        "enrollment": {"count": 200, "type": "ESTIMATED"},
+        "start": {"date": "2025-03-19", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2028-05", "type": "ESTIMATED"},
+        "completion": {"date": "2028-05", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2025-03-05", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-09-04", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["ixekizumab-tirzepatide-psoriatic-disease"],
+      "rawResponseSha256": "ecc0a3c87d0db5c88a394f3320e18df2381bf11099b5bc2abba91d4d18724e72",
+      "reviewedFingerprint": "adb146481db482806b74110111eaeb706d0dfb88ee91294b4737a3b94d3d4284"
+    },
+    {
+      "id": "registry-nct06864026",
+      "nctId": "NCT06864026",
+      "title": "ClinicalTrials.gov NCT06864026: TOGETHER AMPLIFY-PsA",
+      "url": "https://clinicaltrials.gov/study/NCT06864026",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06864026",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT06864026", "Eli Lilly and Company"],
+      "reviewedAt": "2026-10-09T11:50:00Z",
+      "sourcePublishedAt": "2025-03-07",
+      "sourceUpdatedAt": "2026-09-21",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment, typed dates, enrolment and results-posting status; they do not evaluate real-world effectiveness, weight or clinical outcomes.",
+      "lifecycle": {
+        "nctId": "NCT06864026",
+        "title": "A Study to Investigate Effectiveness of Tirzepatide Following Initiation of Ixekizumab in Participants With Active Psoriatic Arthritis and Overweight or Obesity in Clinical Practice (TOGETHER AMPLIFY-PsA)",
+        "sponsor": "Eli Lilly and Company",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE4"],
+        "enrollment": {"count": 200, "type": "ESTIMATED"},
+        "start": {"date": "2025-03-06", "type": "ACTUAL"},
+        "primaryCompletion": {"date": "2027-08", "type": "ESTIMATED"},
+        "completion": {"date": "2027-08", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2025-03-07", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-09-21", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["ixekizumab-tirzepatide-psoriatic-disease"],
+      "rawResponseSha256": "22454b8cdf6a6fbdd9df3fc1e06fdbc56c209db30a75a6e34c8210bcb45bab63",
+      "reviewedFingerprint": "915c90ad7bb24886166f1e51e4b8133ef0713c21fd60bc61f48dca5a5bba93b3"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://investor.lilly.com/news-releases/news-release-details/new-phase-3b-data-lillys-taltz-ixekizumab-and-zepbound",
+      "publicationDate": "2026-08-31",
+      "updateDate": null,
+      "reviewedAt": "2026-10-09T11:50:00Z",
+      "outcome": "Complete original sponsor announcement read: two open-label randomized assessor-blinded Phase 3b studies, prespecified exploratory week-52 sponsor findings, safety context and stated absence of peer-reviewed detailed results. The release's 274/271 participant counts remain explicitly separate from later registry actual counts of 281/279."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06588283",
+      "publicationDate": "2024-09-19",
+      "updateDate": "2026-06-17",
+      "reviewedAt": "2026-10-09T11:50:00Z",
+      "outcome": "Complete primary registry response read: completed Phase 3; 281 actual participants; actual start and completion; no posted results."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06588296",
+      "publicationDate": "2024-09-19",
+      "updateDate": "2026-05-13",
+      "reviewedAt": "2026-10-09T11:50:00Z",
+      "outcome": "Complete primary registry response read: completed Phase 3; 279 actual participants; actual start and completion; no posted results."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06857942",
+      "publicationDate": "2025-03-05",
+      "updateDate": "2026-09-04",
+      "reviewedAt": "2026-10-09T11:50:00Z",
+      "outcome": "Complete primary registry response read: recruiting Phase 4; actual start; 200 estimated participants; estimated May 2028 completion; no posted results."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT06864026",
+      "publicationDate": "2025-03-07",
+      "updateDate": "2026-09-21",
+      "reviewedAt": "2026-10-09T11:50:00Z",
+      "outcome": "Complete primary registry response read: active-not-recruiting Phase 4; actual start; 200 estimated participants; estimated August 2027 completion; no posted results."
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-09T11:15:57.715Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "awaiting_review",
+    "configuredSources": 195,
+    "currentSources": 161,
+    "overdueReviews": 33,
+    "withdrawnSources": 0,
+    "attention": [{"id":"zealand-zp6590-pipeline","status":"check_delayed","reviewStatus":"verification_pending","error":"http_403","httpStatus":403}],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "This SELECT-only response verifies configured-source monitoring only. It does not renew factual reviews, approve changed claims or prove complete industry coverage. The separate companion receipt renews four deadline-crossing sources only after full primary review."
+  },
+  "discoveryPass": {
+    "method": "A separate current-date pass and broader undated topic pass covered weight-management medicines, peptides, combinations, muscle-preservation approaches, specialist indications, early and late trials and paused or discontinued programmes across named and additional developers. Primary MHRA, NICE/NHS, product-information, ClinicalTrials.gov and sponsor sources were prioritized.",
+    "included": "The unrestricted specialist-indication and combination pass found the TOGETHER psoriasis and psoriatic-arthritis programme absent from live entries, merged expansion work and open review pull requests. One programme entry represents four indication-specific registry records without inflating each trial into a separate medicine.",
+    "notDuplicated": "Expansion PR #851 is merged. Current main, dated receipts and subsequent open review PR #1264 were checked; #1264 concerns production-built tool verification and contains no ixekizumab-tirzepatide evidence.",
+    "incompleteChecks": [
+      "Search indexing, sponsor disclosure and registry coverage remain incomplete and cannot establish an exhaustive industry universe.",
+      "The sponsor release reports 274 and 271 enrolled participants, while the later registry records report 281 and 279 actual participants; the source set does not explain the discrepancy.",
+      "The Phase 3 registry records have no posted results; the reviewed outcome evidence is a sponsor announcement whose detailed results were not peer reviewed at publication.",
+      "No new MHRA authorisation, NICE recommendation, NHS access decision or verified UK supply change was established."
+    ],
+    "failedChecks": [],
+    "preservedKnownFailures": "The unchanged Zealand ZP6590 HTTP 403 remains visible and is not cleared by the successful Lilly and registry reads.",
+    "openReviewPrCheck": {"checkedAt":"2026-10-09T11:50:00Z","openWatchPullRequests":[{"number":1264,"scope":"production-built public-tool verification; no Watch evidence overlap"}],"duplicationFound":false},
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "detailedAfter": 6,
+    "widerBefore": 103,
+    "widerAfter": 104,
+    "totalBefore": 109,
+    "totalAfter": 110,
+    "configuredSourcesBefore": 195,
+    "configuredSourcesAfter": 199,
+    "trialRecordsBefore": 130,
+    "trialRecordsAfter": 134
+  },
+  "retrievalEvidence": [
+    {"id":"lilly-together-psoriatic-disease-20260831","retrievedAt":"2026-10-09T11:54:00Z","httpStatus":200,"contentType":"text/html; charset=UTF-8","bytes":132505,"responseSha256":"0f2c13cf134ec9152cd23938a3a660fc897365026ea4d80455935a0b3e1f9931","automaticallyMonitored":false},
+    {"id":"registry-nct06588283","retrievedAt":"2026-10-09T11:49:07.985Z","httpStatus":200,"contentType":"application/json","bytes":22788,"responseSha256":"9156f4f64bfaafd24aaa8f08963164a6dc55687032dd8ce2d5c10ea83a2098dd"},
+    {"id":"registry-nct06588296","retrievedAt":"2026-10-09T11:49:08.138Z","httpStatus":200,"contentType":"application/json","bytes":26282,"responseSha256":"a8e327254b17be7108b03562cabf6b579b009a18bf44295f66c95138dfc7a43f"},
+    {"id":"registry-nct06857942","retrievedAt":"2026-10-09T11:49:08.388Z","httpStatus":200,"contentType":"application/json","bytes":22332,"responseSha256":"ecc0a3c87d0db5c88a394f3320e18df2381bf11099b5bc2abba91d4d18724e72"},
+    {"id":"registry-nct06864026","retrievedAt":"2026-10-09T11:49:08.527Z","httpStatus":200,"contentType":"application/json","bytes":23748,"responseSha256":"22454b8cdf6a6fbdd9df3fc1e06fdbc56c209db30a75a6e34c8210bcb45bab63"}
+  ],
+  "deploymentState": {
+    "mainCommit": "8406d13df4431345b76d96c82bc1ab34637ee659",
+    "observedAt": "2026-10-09T11:50:00Z",
+    "liveProgrammes": 109,
+    "liveConfiguredSources": 195,
+    "openPullRequests": 1,
+    "releaseBlocker": "The current-main guarded run fails the independent Passport preservation hash for approved Start Here raw-answer cache fields and rolls back."
+  },
+  "nextAction": "Run the complete Watch checks and publish a reviewable pull request. Merge and deploy only after the independent Passport preservation gate is reconciled and current main passes its guarded production run; then verify this entry, the Treatments link and SELECT-only health endpoint on live traffic."
+}

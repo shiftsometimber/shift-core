@@ -10,6 +10,7 @@ const latestNhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-01-m
 const foundayoReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-29-foundayo-nice-schedule.json', import.meta.url)));
 const overdueReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-30-overdue-source-renewal.json', import.meta.url)));
 const octoberOverdueReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-06-overdue-source-renewal.json', import.meta.url)));
+const lateOverdueReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-09-overdue-source-renewal-late.json', import.meta.url)));
 const foundayoPredictedRiskReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-03-authorised-foundayo-predicted-risk.json', import.meta.url)));
 const foundayoAttainMaintainReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-04-authorised-foundayo-attain-maintain.json', import.meta.url)));
 const wegovyMashReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-03-authorised-wegovy-mash-correction.json', import.meta.url)));
@@ -112,6 +113,36 @@ test('fourteen 6 October overdue reviews are renewed from unchanged primary evid
     'survodutide-zealand', 'dapiglutide-zealand', 'apitegromab-embraze-paper', 'zealand-zp6590-pipeline',
   ]));
   assert.ok(octoberOverdueReceipt.followUpObservation.separateFailures.every(source => source.error));
+});
+
+test('four late 9 October overdue reviews renew only unchanged primary evidence', () => {
+  assert.equal(lateOverdueReceipt.reviewType, 'AI-assisted factual source review; not clinical approval');
+  assert.equal(lateOverdueReceipt.clinicalApproval, null);
+  assert.equal(lateOverdueReceipt.industryComplete, false);
+  assert.equal(lateOverdueReceipt.disposition, 'source_reviews_renewed_without_wording_change');
+  assert.equal(lateOverdueReceipt.sources.length, 4);
+  assert.deepEqual(new Set(lateOverdueReceipt.liveObservation.reviewDueRenewedHere), new Set(lateOverdueReceipt.sources.map(source => source.id)));
+  for (const proof of lateOverdueReceipt.sources) {
+    const source = sources.find(candidate => candidate.id === proof.id);
+    assert.ok(source, proof.id);
+    for (const key of ['url', 'checkUrl', 'reviewedAt', 'reviewedFingerprint', 'sourcePublishedAt']) {
+      assert.equal(source[key], proof[key], `${proof.id} ${key}`);
+    }
+    assert.ok(Date.parse(proof.reviewedAt) > Date.parse(proof.previousReviewedAt) + REVIEW_INTERVAL_MS);
+    assert.equal(proof.previousReviewedFingerprint, proof.reviewedFingerprint);
+    assert.equal(proof.httpStatus, 200);
+    assert.ok(proof.bytes > 1000 && proof.bytes <= 2 * 1024 * 1024);
+    assert.match(proof.responseSha256, /^[a-f0-9]{64}$/);
+    assert.equal(proof.withdrawn, false);
+    assert.equal(proof.wordingChanged, false);
+    assert.ok(proof.assessment.length > 180);
+    const time = Date.parse(proof.reviewedAt);
+    assert.equal(projectSourceHealth(source, rowFor(source, time), time).status, 'current');
+    const old = {...source, reviewedAt: proof.previousReviewedAt};
+    assert.ok(projectSourceHealth(old, rowFor(old, time), time).reasons.includes('review_due'));
+  }
+  assert.equal(lateOverdueReceipt.liveObservation.unchangedSeparateFailure.id, 'zealand-zp6590-pipeline');
+  assert.equal(lateOverdueReceipt.liveObservation.unchangedSeparateFailure.error, 'http_403');
 });
 
 test('review expiry, changed content and failures still fail closed', () => {

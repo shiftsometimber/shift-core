@@ -1,5 +1,6 @@
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
 import bimagrumabSemaglutide from './reviews/2026-10-09-authorised-bimagrumab-semaglutide.json' with {type:'json'};
+import togetherPsoriaticDisease from './reviews/2026-10-09-authorised-together-psoriatic-disease.json' with {type:'json'};
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {industry,industrySources} from './industry.mjs';
@@ -472,8 +473,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,103);assert.equal(sources.length,195);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,109);
+ assert.equal(medicines.length,6);assert.equal(industry.length,104);assert.equal(sources.length,199);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,110);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -1004,7 +1005,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,103);
+ assert.equal(industry.length,104);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -1554,7 +1555,7 @@ test('registry follow-up adds exact lifecycles without duplicating programmes or
  assert.equal(registryLifecycleFollowup.clinicalApproval,null);
  assert.equal(registryLifecycleFollowup.industryComplete,false);
  assert.deepEqual(registryLifecycleFollowup.catalogueCounts,{detailedBefore:6,detailedAfter:6,widerBefore:103,widerAfter:103,totalBefore:109,totalAfter:109,configuredSourcesBefore:184,configuredSourcesAfter:190,trialRecordsBefore:119,trialRecordsAfter:125});
- assert.equal(industry.length,103);
+ assert.equal(industry.length,104);
  const ribupatide=industry.find(entry=>entry.id==='ribupatide-injection');
  assert.match(ribupatide.summary,/2,530 participants/);
  assert.match(ribupatide.summary,/1,270 with diabetes/);
@@ -1598,7 +1599,7 @@ test('ENITH Phase 3 and specialist emugrobart lifecycles preserve results and di
  assert.equal(enicepatideEmugrobartRegistry.clinicalApproval,null);
  assert.equal(enicepatideEmugrobartRegistry.industryComplete,false);
  assert.deepEqual(enicepatideEmugrobartRegistry.catalogueCounts,{detailedBefore:6,detailedAfter:6,widerBefore:103,widerAfter:103,totalBefore:109,totalAfter:109,configuredSourcesBefore:190,configuredSourcesAfter:193,trialRecordsBefore:125,trialRecordsAfter:128});
- assert.equal(industry.length,103);
+ assert.equal(industry.length,104);
  const enicepatide=industry.find(entry=>entry.id==='enicepatide');
  assert.match(enicepatide.summary,/ENITH-1 and ENITH-2 Phase 3 records are recruiting/);
  assert.match(enicepatide.summary,/2,000 participants without type 2 diabetes/);
@@ -1657,4 +1658,37 @@ test('8 October update retains typed ZUPREME starts, sponsor uncertainty and ove
  assert.equal(zupremeLifecycleUpdate.configuredSourcePass.overdueReviews,29);
  assert.equal(zupremeLifecycleUpdate.configuredSourcePass.delayedSources,2);
  assert.notEqual(sources.find(s=>s.id==='petrelintide-zealand').reviewedAt,zupremeLifecycleUpdate.reviewedAt);
+});
+
+test('TOGETHER psoriatic-disease research preserves lifecycle, evidence and enrolment boundaries',()=>{
+ assert.equal(togetherPsoriaticDisease.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(togetherPsoriaticDisease.clinicalApproval,null);
+ assert.equal(togetherPsoriaticDisease.industryComplete,false);
+ assert.deepEqual(togetherPsoriaticDisease.catalogueCounts,{detailedBefore:6,detailedAfter:6,widerBefore:103,widerAfter:104,totalBefore:109,totalAfter:110,configuredSourcesBefore:195,configuredSourcesAfter:199,trialRecordsBefore:130,trialRecordsAfter:134});
+ const item=industry.find(entry=>entry.id==='ixekizumab-tirzepatide-psoriatic-disease');
+ assert.ok(item);assert.equal(item.group,'research');assert.equal(item.clinicalApproval,null);
+ assert.match(item.stage,/Completed Phase 3b psoriasis and psoriatic-arthritis studies/);
+ assert.match(item.summary,/prespecified exploratory week-52 findings/);
+ assert.match(item.limitations,/274 and 271 enrolled participants/);
+ assert.match(item.limitations,/281 and 279 actual participants/);
+ assert.match(item.limitations,/none of the four registry records has posted results/i);
+ assert.match(item.ukAuthorisation,/does not establish a UK marketing authorisation/);
+ assert.match(item.nhsEngland,/No NICE recommendation or NHS England access/);
+ assert.match(item.supply,/do not establish a combined UK treatment pathway/);
+ const expected={
+  NCT06588283:['COMPLETED',281,'ACTUAL','ACTUAL'],
+  NCT06588296:['COMPLETED',279,'ACTUAL','ACTUAL'],
+  NCT06857942:['RECRUITING',200,'ESTIMATED','ESTIMATED'],
+  NCT06864026:['ACTIVE_NOT_RECRUITING',200,'ESTIMATED','ESTIMATED'],
+ };
+ for(const [nctId,[status,count,enrollmentType,completionType]] of Object.entries(expected)){
+  const source=registrySources.find(source=>source.nctId===nctId);assert.ok(source,nctId);
+  assert.equal(source.lifecycle.status,status);assert.deepEqual(source.lifecycle.enrollment,{count,type:enrollmentType});
+  assert.equal(source.lifecycle.start.type,'ACTUAL');assert.equal(source.lifecycle.completion.type,completionType);
+  assert.equal(source.lifecycle.hasResults,false);assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
+  assert.ok(item.additionalEvidence.some(link=>link.url===source.url));
+ }
+ assert.equal(togetherPsoriaticDisease.discoveryPass.failedChecks.length,0);
+ assert.equal(togetherPsoriaticDisease.discoveryPass.industryComplete,false);
+ assert.equal(togetherPsoriaticDisease.configuredSourcePass.reviewRenewals,false);
 });
