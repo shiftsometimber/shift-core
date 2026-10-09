@@ -380,3 +380,33 @@ test('exact owned Passport rollback retains only the original successful runtime
  for(const patch of [{decision:'restore'},{run:1},{dataChanged:true},{customerRecordsRead:1},{ownedProof:{}},{restoredPassportRuntimeProof:{...proof,failedDeployment:'other'}}])assert.throws(()=>verifiedStartingPoint({...record,...patch},f.a));
  assert.throws(()=>verifiedStartingPoint(record,{...f.a,id:'other'}));
 });
+
+import {restoredContinuityRuntime,verifiedContinuityRollback} from './cancelled-release-recovery.mjs';
+const continuityRollbackFixture=()=>{
+ const f=restoredLaterFixture(),p=restoredContinuityRuntime,q=f.p;
+ const a={...f.a,id:p.deployment,created_on:p.createdOn,annotations:{'workers/triggered_by':'deployment','workers/message':'Owned release failed post-deployment checks; restore captured runtime and preserve current data'}};
+ const run={...f.run,id:p.run,head_sha:p.source};
+ const job={...f.job,id:p.job,run_id:p.run,steps:[[63,'Deploy current main to production','success'],[68,'Verify calculator journeys and specific tool guidance live','success'],[83,'Prove activated Passport delivery and private routes','success'],[84,'Verify live My Treatment delivery and private APIs','success'],[89,'Prove public Life Back, food-noise guidance and their linked journeys','failure'],[114,'Restore the captured runtime if a post-deployment gate failed','success'],[115,'Verify nine public tool pages after owned rollback','success']].map(([number,name,conclusion])=>({number,name,conclusion}))};
+ const owned={kind:'owned_runtime_deployment',at:'2026-10-09T12:26:59.776Z',source:p.source,run:String(p.run),deploymentId:p.failedDeployment,versionId:p.failedVersion,previousDeploymentId:restoredPassportRuntime.deployment,previousVersionId:q.verifiedVersion,dataRestored:false};
+ const restored={deploymentId:p.deployment,versionId:q.verifiedVersion,percentage:100};
+ const report={kind:'guarded_release_verification',source:p.source,run:String(p.run),workflowStatus:'failure',releaseVerified:false,status:'failed',deployedVersion:p.failedVersion,deployChecks:{deployed:{deploymentId:p.failedDeployment,versionId:p.failedVersion}},rollbackChecks:{source:p.source,run:String(p.run),stage:'rollback',status:'passed',toolChecksVerified:true,expected:{deploymentId:restoredPassportRuntime.deployment,versionId:q.verifiedVersion,checkSource:p.source},deployed:restored,afterChecks:restored}};
+ const priorProof={...restoredPassportRuntime,priorRestoration:restoredToolRuntime.deployment,version:q.verifiedVersion,verifiedRun:q.verifiedRun,verifiedSource:q.verifiedSource};
+ const logs=()=>[JSON.stringify(owned),'Current Version ID: '+q.verifiedVersion,JSON.stringify(report),JSON.stringify(report)].join('\n');
+ return {...f,a,run,job,owned,report,priorProof,logs};
+};
+test('exact owned Continuity rollback retains only the original successful runtime with the complete failed-release evidence chain',()=>{
+ const f=continuityRollbackFixture(),check=(a=f.a,v=f.version,r=f.run,j=f.job,l=f.logs(),p=f.priorProof)=>verifiedContinuityRollback(a,v,r,j,l,p);
+ assert.equal(check(),true);
+ for(const patch of [{id:'other'},{created_on:'other'},{annotations:{}},{versions:[{version_id:f.p.verifiedVersion,percentage:50}]}])assert.equal(check({...f.a,...patch}),false);
+ for(const patch of [{id:1},{head_sha:'f'.repeat(40)},{run_attempt:2},{conclusion:'success'},{event:'workflow_dispatch'},{path:'other'},{head_branch:'other'}])assert.equal(check(f.a,f.version,{...f.run,...patch}),false);
+ assert.equal(check(f.a,f.version,f.run,{...f.job,steps:f.job.steps.slice(1)}),false);
+ assert.equal(check(f.a,{...f.version,id:restoredContinuityRuntime.failedVersion}),false);
+ for(const patch of [{dataRestored:true},{previousDeploymentId:'other'},{deploymentId:'other'},{source:'f'.repeat(40)}]){const original={...f.owned};Object.assign(f.owned,patch);assert.equal(check(),false);Object.assign(f.owned,original);}
+ for(const patch of [{releaseVerified:true},{workflowStatus:'success'},{source:'f'.repeat(40)},{rollbackChecks:{...f.report.rollbackChecks,status:'failed'}},{rollbackChecks:{...f.report.rollbackChecks,afterChecks:{...f.report.rollbackChecks.afterChecks,percentage:50}}}]){const original={...f.report};Object.assign(f.report,patch);assert.equal(check(),false);Object.assign(f.report,original);}
+ assert.equal(check(f.a,f.version,f.run,f.job,''),false);assert.equal(check(f.a,f.version,f.run,f.job,f.logs(),{...f.priorProof,verifiedSource:'other'}),false);
+ const p=restoredContinuityRuntime,proof={...p,priorRestoration:restoredPassportRuntime.deployment,version:f.p.verifiedVersion,verifiedRun:f.p.verifiedRun,verifiedSource:f.p.verifiedSource};
+ const record={decision:'retain',run:p.run,from:proof.version,to:proof.version,verifiedRun:proof.verifiedRun,ownedProof:null,restoredContinuityRuntimeProof:proof,customerRecordsRead:0,dataChanged:false};
+ assert.deepEqual(verifiedStartingPoint(record,f.a),{source:proof.verifiedSource,version:proof.version,run:proof.verifiedRun});
+ for(const patch of [{decision:'restore'},{run:1},{dataChanged:true},{customerRecordsRead:1},{ownedProof:{}},{restoredContinuityRuntimeProof:{...proof,failedDeployment:'other'}}])assert.throws(()=>verifiedStartingPoint({...record,...patch},f.a));
+ assert.throws(()=>verifiedStartingPoint(record,{...f.a,id:'other'}));
+});
