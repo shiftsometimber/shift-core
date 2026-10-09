@@ -1,4 +1,5 @@
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
+import bimagrumabSemaglutide from './reviews/2026-10-09-authorised-bimagrumab-semaglutide.json' with {type:'json'};
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {industry,industrySources} from './industry.mjs';
@@ -471,7 +472,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,103);assert.equal(sources.length,194);
+ assert.equal(medicines.length,6);assert.equal(industry.length,103);assert.equal(sources.length,195);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,109);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
@@ -807,6 +808,29 @@ test('latest wider discovery keeps formulations, plans and stopped programmes di
  assert.equal(industry.find(entry=>entry.id==='tern601').group,'discontinued');
  assert.match(industry.find(entry=>entry.id==='bimagrumab-tirzepatide').limitations,/do not establish improved strength/);
  for(const domain of ['abbvie.com','ascletis.com','ternspharma.com'])assert.ok(discoveryDomains.includes(domain));
+});
+
+test('BELIEVE evidence is attached to the existing bimagrumab programme with clinical boundaries',()=>{
+ assert.equal(bimagrumabSemaglutide.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(bimagrumabSemaglutide.clinicalApproval,null);
+ const item=industry.find(entry=>entry.id==='bimagrumab-tirzepatide');
+ assert.ok(item);
+ assert.match(item.name,/semaglutide or tirzepatide/);
+ assert.match(item.stage,/Completed Phase 2 semaglutide results/);
+ assert.match(item.stage,/tirzepatide Phase 2 active, not recruiting/);
+ assert.match(item.summary,/507 adults/);
+ assert.match(item.summary,/preserving lean mass/);
+ assert.match(item.limitations,/not the same as muscle strength or function/);
+ assert.match(item.limitations,/no significant improvement in grip strength/);
+ assert.match(item.ukAuthorisation,/does not establish UK marketing authorisation/);
+ assert.equal(item.clinicalApproval,null);
+ const registry=registrySources.find(source=>source.nctId==='NCT05616013');
+ assert.ok(registry);
+ assert.equal(registry.lifecycle.status,'COMPLETED');
+ assert.equal(registry.lifecycle.enrollment.count,507);
+ assert.equal(registry.lifecycle.hasResults,true);
+ assert.match(registry.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ assert.ok(item.additionalEvidence.some(link=>link.url===registry.url));
 });
 
 test('international registry omissions preserve live, completed and delayed status boundaries',()=>{
