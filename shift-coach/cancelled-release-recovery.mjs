@@ -80,6 +80,13 @@ export function verifiedArticleRuntime(active,run,job){
 // Carry the earlier same-job recovery proof forward without reverting its
 // verified newer runtime to the historical fallback pointer.
 export function verifiedStartingPoint(record,active){
+ if(record?.restoredToolRuntimeProof){
+  const r=record.restoredToolRuntimeProof;assert.deepEqual(r,toolRollbackProof());assertToolRollbackDeployment(active);
+  assert.equal(record.decision,'retain');assert.equal(record.dataChanged,false);assert.equal(record.customerRecordsRead,0);assert.equal(record.ownedProof,null);
+  assert.equal(record.run,restoredToolRuntime.run);assert.equal(record.from,r.version);assert.equal(record.to,r.version);assert.equal(record.verifiedRun,r.verifiedRun);
+  return {source:r.verifiedSource,version:r.version,run:r.verifiedRun};
+ }
+
  if(record?.restoredLaterRuntimeProof){
   const p=restoredLaterRuntime,r=record.restoredLaterRuntimeProof;
   assert.deepEqual(r,{...p,verifiedRun:laterUnattributedRuntimeRecovery.verifiedRun,verifiedSource:laterUnattributedRuntimeRecovery.verifiedSource,verifiedVersion:laterUnattributedRuntimeRecovery.verifiedVersion});
@@ -349,4 +356,36 @@ export function verifiedTabletRollback(active,run,job,logs){
  return ownedFrom(logs).filter(o=>JSON.stringify(o)===JSON.stringify(owned)).length===1
   &&String(logs).includes('catalogue_stale_main_rejected')
   &&String(logs).includes('Worker Version '+t.version+' has been deployed to 100% of traffic.');
+}
+
+// One exact rollback by the guarded tool release. Retention only, never a
+// successful-release claim for that failed run or authority to restore another version.
+export const restoredToolRuntime=Object.freeze({run:37919061119,job:113783602718,source:'f2836dc942ef1fcee0d49a686b117bd687be3531',deployment:'55dd384e-226a-4f19-b989-322dcdee7888',createdOn:'2026-10-09T11:05:31.78167Z',failedDeployment:'06d47989-47c8-4064-9eb7-865acad0151d',failedVersion:'9ed844dd-918d-4c6f-8da9-2b97047253e9'});
+const toolRollbackProof=()=>({...restoredToolRuntime,priorRestoration:restoredLaterRuntime.deployment,version:laterUnattributedRuntimeRecovery.verifiedVersion,verifiedRun:laterUnattributedRuntimeRecovery.verifiedRun,verifiedSource:laterUnattributedRuntimeRecovery.verifiedSource});
+function assertToolRollbackDeployment(active){
+ const p=restoredToolRuntime;assert.equal(active?.id,p.deployment);assert.equal(active.source,'wrangler');assert.equal(active.created_on,p.createdOn);
+ assert.deepEqual(active.versions,[{version_id:laterUnattributedRuntimeRecovery.verifiedVersion,percentage:100}]);
+ assert.equal(active.annotations?.['workers/triggered_by'],'deployment');assert.equal(active.annotations?.['workers/message'],'Owned release failed post-deployment checks; restore captured runtime and preserve current data');
+}
+export function verifiedToolRollback(active,version,run,job,logs,priorProof){
+ const p=restoredToolRuntime,q=laterUnattributedRuntimeRecovery;
+ try{assertToolRollbackDeployment(active);assert.deepEqual(priorProof,{...restoredLaterRuntime,verifiedRun:q.verifiedRun,verifiedSource:q.verifiedSource,verifiedVersion:q.verifiedVersion})}catch{return false}
+ if(version?.id!==q.verifiedVersion||version.metadata?.created_on!=='2026-10-09T07:07:16.10051Z'||version.metadata?.source!=='wrangler'||version.annotations?.['workers/triggered_by']!=='version_upload'||version.annotations?.['workers/tag']||version.annotations?.['workers/message'])return false;
+ if(run?.id!==p.run||run.head_sha!==p.source||run.run_attempt!==1||run.status!=='completed'||run.conclusion!=='failure'||run.event!=='push'||run.head_branch!=='main'||run.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
+ if(job?.id!==p.job||job.run_id!==p.run||job.name!=='promote'||job.status!=='completed'||job.conclusion!=='failure')return false;
+ for(const [number,name,conclusion]of [[63,'Deploy current main to production','success'],[68,'Verify calculator journeys and specific tool guidance live','failure'],[84,'Verify live My Treatment delivery and private APIs','skipped'],[114,'Restore the captured runtime if a post-deployment gate failed','success'],[115,'Verify nine public tool pages after owned rollback','success']])if(!job.steps?.some(s=>s.number===number&&s.name===name&&s.conclusion===conclusion))return false;
+ const owned={kind:'owned_runtime_deployment',at:'2026-10-09T11:04:09.351Z',source:p.source,run:String(p.run),deploymentId:p.failedDeployment,versionId:p.failedVersion,previousDeploymentId:restoredLaterRuntime.deployment,previousVersionId:q.verifiedVersion,dataRestored:false};
+ try{assert.deepEqual(ownedFrom(logs),[owned])}catch{return false}
+ if(!String(logs).includes('Current Version ID: '+q.verifiedVersion))return false;
+ const reports=String(logs).split('\n').flatMap(line=>{const at=line.indexOf('{"kind":"guarded_release_verification"');if(at<0)return [];try{return [JSON.parse(line.slice(at))]}catch{return []}});
+ if(reports.length!==2)return false;
+ return reports.every(r=>r.source===p.source&&String(r.run)===String(p.run)&&r.workflowStatus==='failure'&&r.releaseVerified===false&&r.status==='failed'&&r.deployedVersion===p.failedVersion&&r.deployChecks?.deployed?.deploymentId===p.failedDeployment&&r.deployChecks.deployed.versionId===p.failedVersion&&r.rollbackChecks?.source===p.source&&String(r.rollbackChecks.run)===String(p.run)&&r.rollbackChecks.stage==='rollback'&&r.rollbackChecks.status==='passed'&&r.rollbackChecks.toolChecksVerified===true&&r.rollbackChecks.expected?.deploymentId===restoredLaterRuntime.deployment&&r.rollbackChecks.expected.versionId===q.verifiedVersion&&r.rollbackChecks.expected.checkSource===p.source&&r.rollbackChecks.deployed?.deploymentId===p.deployment&&r.rollbackChecks.deployed.versionId===q.verifiedVersion&&r.rollbackChecks.deployed.percentage===100&&r.rollbackChecks.afterChecks?.deploymentId===p.deployment&&r.rollbackChecks.afterChecks.versionId===q.verifiedVersion&&r.rollbackChecks.afterChecks.percentage===100);
+}
+export async function verifyToolRollback(active,version,get,getLogs){
+ const p=restoredToolRuntime;
+ const prior={id:restoredLaterRuntime.deployment,source:'wrangler',created_on:restoredLaterRuntime.createdOn,versions:[{version_id:laterUnattributedRuntimeRecovery.verifiedVersion,percentage:100}],annotations:{'workers/message':'Restore exact successful predecessor of unattributed runtime observed by read-only run 37908130882; no data rollback','workers/triggered_by':'deployment'}};
+ const priorProof=await verifyRestoredLaterRuntime(prior,version,get,getLogs);
+ const run=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs?filter=latest&per_page=100');
+ assert(verifiedToolRollback(active,version,run,jobs.jobs?.find(j=>j.id===p.job),await getLogs(p.job),priorProof),'Exact failed tool release, owned rollback and original successful predecessor evidence required');
+ return toolRollbackProof();
 }

@@ -690,17 +690,21 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const actualHead=git('rev-parse','HEAD');
  // Only actual Git objects at resolved immutable commit IDs are cacheable.
  // Supplied readers are always invoked again, even after a successful proof.
- const baseRawBlob=read===defaultReconciliationRead?(ref,path)=>{
+ const originalRawBlob=read===defaultReconciliationRead?(ref,path)=>{
   const commit=ref==='HEAD'?actualHead:ref;assert.match(commit,/^[a-f0-9]{40}$/);
   const key=JSON.stringify([process.cwd(),commit,path]);
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const bundled=c.bundledToolRuntimeRepair;
+ if(bundled)verifyBundledToolRuntimeRepair(bundled,{head:actualHead,read:originalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preBundledHead=bundled?bundled.base:actualHead;
+ const baseRawBlob=(ref,path)=>originalRawBlob(bundled&&ref==='HEAD'&&BUNDLED_TOOL_RUNTIME_SET.has(path)?bundled.base:ref,path);
  const toolRelease=c.toolReleaseAutomation;
- if(toolRelease)verifyToolReleaseAutomation(toolRelease,{head:actualHead,read:baseRawBlob,
+ if(toolRelease)verifyToolReleaseAutomation(toolRelease,{head:preBundledHead,read:baseRawBlob,
   diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preToolHead=toolRelease?toolRelease.base:actualHead;
+ const preToolHead=toolRelease?toolRelease.base:preBundledHead;
  const preToolBlob=(ref,path)=>baseRawBlob(toolRelease&&ref==='HEAD'&&[...TOOL_RELEASE_AUTOMATION_PATHS,...TOOL_RELEASE_AUTOMATION_MAINTENANCE].includes(path)?toolRelease.base:ref,path);
  const restored=c.restoredLaterRuntimeRetention;
  if(restored)verifyRestoredLaterRetention(restored,{head:preToolHead,read:preToolBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
@@ -1050,4 +1054,25 @@ export function verifyToolReleaseAutomation(c,{head,read,diff,ancestor}) {
  }
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Tool schema archive maintenance source drift / Tablet wording verifier source drift: prepared public tool amendment '+path);
  return c;
+}
+
+// Exact compiled-browser repair and retention of the resulting guarded rollback.
+export const BUNDLED_TOOL_RUNTIME_BASE='f2836dc942ef1fcee0d49a686b117bd687be3531';
+export const BUNDLED_TOOL_RUNTIME_SOURCE='1b749a68bd764abbae6635d9cc7292d4b414477f';
+export const BUNDLED_TOOL_RUNTIME_PATHS=Object.freeze(['public-tool-guidance.mjs','tests/public-tool-guidance.test.mjs','shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','shift-coach/cancelled-release-recovery.test.mjs']);
+export const BUNDLED_TOOL_RUNTIME_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/approved-runtime-composition.test.mjs']);
+const BUNDLED_TOOL_RUNTIME_SET=new Set([...BUNDLED_TOOL_RUNTIME_PATHS,...BUNDLED_TOOL_RUNTIME_MAINTENANCE]);
+for(const path of BUNDLED_TOOL_RUNTIME_SET)RECONCILIATION_PATHS.add(path);
+export function verifyBundledToolRuntimeRepair(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_BUNDLED_TOOL_RUNTIME_REPAIR_V1');assert.equal(c.base,BUNDLED_TOOL_RUNTIME_BASE);assert.equal(c.source,BUNDLED_TOOL_RUNTIME_SOURCE);
+ assert.deepEqual(c.paths,BUNDLED_TOOL_RUNTIME_PATHS);assert.deepEqual(c.maintenancePaths,BUNDLED_TOOL_RUNTIME_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.failedRun,37919061119);assert.equal(c.failedJob,113783602718);assert.equal(c.rollbackDeployment,'55dd384e-226a-4f19-b989-322dcdee7888');assert.equal(c.originalSuccessfulRun,37895305149);
+ assert.equal(c.browserSourceSerializationFixed,true);
+ for(const flag of ['publicCopyChanged','calculatorArithmeticChanged','myTreatmentChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated bundled tool runtime repair source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated bundled tool runtime repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after bundled tool runtime repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Bundled tool runtime source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Bundled tool runtime maintenance source drift / Restoration retention maintenance drift: '+path);
 }

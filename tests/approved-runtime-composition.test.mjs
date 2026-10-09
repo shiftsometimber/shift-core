@@ -271,3 +271,14 @@ test('exact restoration retention rejects unrelated source, maintenance and evid
  for(const key of ['restorationRun','restorationJob','originalSuccessfulRun'])assert.throws(()=>verifyRestoredLaterRetention({...c,[key]:1},options));
  assert.throws(()=>verifyRestoredLaterRetention(c,{...options,diff:()=>['worker.js']}),/Unrelated|Unreviewed/);
 });
+
+import {verifyBundledToolRuntimeRepair,BUNDLED_TOOL_RUNTIME_BASE,BUNDLED_TOOL_RUNTIME_SOURCE,BUNDLED_TOOL_RUNTIME_PATHS,BUNDLED_TOOL_RUNTIME_MAINTENANCE} from '../release/approved-runtime-composition.mjs';
+test('bundled tool runtime repair remains exact and cannot weaken ownership or change treatment and public copy',()=>{
+ const c={proof:'EXACT_BUNDLED_TOOL_RUNTIME_REPAIR_V1',base:BUNDLED_TOOL_RUNTIME_BASE,source:BUNDLED_TOOL_RUNTIME_SOURCE,paths:BUNDLED_TOOL_RUNTIME_PATHS,maintenancePaths:BUNDLED_TOOL_RUNTIME_MAINTENANCE,maintenanceSource:'e'.repeat(40),failedRun:37919061119,failedJob:113783602718,rollbackDeployment:'55dd384e-226a-4f19-b989-322dcdee7888',originalSuccessfulRun:37895305149,browserSourceSerializationFixed:true,publicCopyChanged:false,calculatorArithmeticChanged:false,myTreatmentChanged:false,customerDataChanged:false,genericAdoptionAllowed:false,rollbackAuthorityBroadened:false,existingGatesWeakened:false};
+ const options={head:'f'.repeat(40),read:()=> 'same',ancestor:()=>{},diff:(a,b)=>a===c.base?c.paths:a===c.source?c.maintenancePaths:[RECONCILIATION_MANIFEST]};
+ assert.doesNotThrow(()=>verifyBundledToolRuntimeRepair(c,options));
+ for(const path of [...c.paths,...c.maintenancePaths])assert.throws(()=>verifyBundledToolRuntimeRepair(c,{...options,read:(ref,p)=>ref==='HEAD'&&p===path?'drift':'same'}),/source drift/);
+ for(const flag of ['publicCopyChanged','calculatorArithmeticChanged','myTreatmentChanged','customerDataChanged','genericAdoptionAllowed','rollbackAuthorityBroadened','existingGatesWeakened'])assert.throws(()=>verifyBundledToolRuntimeRepair({...c,[flag]:true},options));
+ for(const key of ['failedRun','failedJob','originalSuccessfulRun'])assert.throws(()=>verifyBundledToolRuntimeRepair({...c,[key]:1},options));
+ assert.throws(()=>verifyBundledToolRuntimeRepair(c,{...options,diff:()=>['worker.js']}),/Unrelated|Unreviewed/);
+});
