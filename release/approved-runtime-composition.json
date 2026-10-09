@@ -1137,9 +1137,10 @@
       ".github/workflows/medicines-watch-check.yml",
       "release/approved-runtime-composition.mjs",
       "tests/approved-runtime-composition.test.mjs",
-      "tests/late-watch-composition.test.mjs"
+      "tests/late-watch-composition.test.mjs",
+      "shift-coach/release.test.mjs"
     ],
-    "maintenanceSource": "522a6c191d188d5cdc2e73df2b4cef9bf77fa74d",
+    "maintenanceSource": "36612f5a2aadb051591e8de8f72b9b28140769ac",
     "approvedPR": 1281,
     "publicationStatus": "owner_authorised_factual_publication",
     "clinicalApproval": null,
