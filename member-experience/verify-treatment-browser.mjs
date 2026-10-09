@@ -21,7 +21,7 @@ try{
   const page=await context.newPage(),second=await other.newPage();page.setDefaultTimeout(30000);page.setDefaultNavigationTimeout(30000);const errors=[];page.on('pageerror',e=>errors.push(e.message));let id;
   try{
    await commissioningLogin(page,{site,api,oidc,...a});await commissioningLogin(second,{site,api,oidc,...b});
-   await page.goto(site+'/member/treatment',{waitUntil:'domcontentloaded'});
+   await page.goto(site+'/member/saved',{waitUntil:'domcontentloaded'});await chooseNecessaryCookies(page);await page.getByRole('link',{name:/MY TREATMENT.*Your treatment records/}).click();await page.waitForURL(site+'/member/treatment');
    await check(device+' consent gate and treatment save through the real form',async()=>{
     const rejected=await call(page,'/v1/member/treatment/records','POST',{medicine:'Wegovy',prescriptionDetails:'Synthetic blocked',supply:4,nextAt:null});assert.equal(rejected.status,409);
     await page.goto(site+'/member/dashboard',{waitUntil:'domcontentloaded'});
