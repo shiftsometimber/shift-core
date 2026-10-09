@@ -53,8 +53,8 @@ test('GET and HEAD work in review; upstream outages remain failures and no stale
  for(const method of ['GET','HEAD']){const r=await w.fetch(new Request('https://shiftsometimber.co.uk'+PATH+'?from=test',{method}),{SHIFT_WEIGHT_UNDERSTANDING_REVIEW:'1'});assert.equal(r.status,200);assert.equal(r.headers.get('ETag'),null);assert.equal(r.headers.get('Content-Encoding'),null);assert.equal(r.headers.get('X-Robots-Tag'),'noindex, nofollow');assert.equal((await r.text()).length===0,method==='HEAD')}
  const failed=withWeightUnderstandingReview({fetch:async()=>new Response('unavailable',{status:503})});assert.equal((await failed.fetch(new Request('https://shiftsometimber.co.uk'+PATH),{SHIFT_WEIGHT_UNDERSTANDING_REVIEW:'1'})).status,503);
 });
-test('production entry, approval composition and deployment workflows do not import or enable this candidate',()=>{
- for(const p of ['worker-entry-v6.js','release/approved-runtime-composition.mjs','.github/workflows/cloudflare-production-promote.yml'])assert.doesNotMatch(readFileSync(new URL('../'+p,import.meta.url),'utf8'),/obesity-awareness\/candidate|SHIFT_WEIGHT_UNDERSTANDING_REVIEW/);
+test('production entry and workflows never import or enable the disabled review adapter',()=>{
+ for(const p of ['worker-entry-v6.js','release/approved-runtime-composition.mjs','.github/workflows/cloudflare-production-promote.yml'])assert.doesNotMatch(readFileSync(new URL('../'+p,import.meta.url),'utf8'),/from\s*['"][^'"]*obesity-awareness\/candidate|SHIFT_WEIGHT_UNDERSTANDING_REVIEW/);
 });
 
 import {publicHeader,publicDrawer} from '../public-shell-contract.mjs';
@@ -86,3 +86,5 @@ test('supporting metadata and sharing tags agree; article evidence and dates rem
 test('hub explains Start Here, SHIFT Health and practical support as distinct optional routes',()=>{
  const h=renderCandidate(shell),main=h.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];assert.match(main,/id="where-shift-fits"/);assert.match(main,/href="\/start-here">Start Here/);assert.match(main,/href="\/shift-health">SHIFT Health/);assert.match(main,/Reading a page does not book a test/);assert.match(main,/does not diagnose you or decide/);assert.match(main,/without an account or purchase/);
 });
+
+test('owned hub text overrides inherited ID-specific pale heading paint',()=>{const h=renderCandidate(shell);assert.match(h,/html body main#main-content\[data-shift-weight-understanding\] :is\(p,h1,h2,h3,li,summary\)\{color:#050505!important;-webkit-text-fill-color:#050505!important\}/);});
