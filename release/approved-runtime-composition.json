@@ -796,7 +796,7 @@
       "release/fit-300-scope.mjs",
       "tests/approved-runtime-composition.test.mjs"
     ],
-    "maintenanceSource": "14642aa62a417aec3ec1f3b928db6bc17812309f",
+    "maintenanceSource": "a3313fbc5d646b7d0e6792660a8fffde0a4fcd85",
     "observationRun": 37908130882,
     "successfulPredecessorRun": 37895305149,
     "restoredVersion": "fd7939d8-6387-48fa-adc8-714e6f8bea8d",
