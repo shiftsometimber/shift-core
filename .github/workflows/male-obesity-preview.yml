@@ -1,11 +1,7 @@
 name: Male obesity read-only preview
 on:
-  workflow_run:
-    workflows: [Cloudflare Production Promote]
-    types: [completed]
   push:
     branches: [review/obesity-awareness-20261009]
-    paths: ['obesity-awareness/**', '.github/workflows/male-obesity-preview.yml']
 permissions:
   contents: read
   actions: read
@@ -13,52 +9,35 @@ concurrency:
   group: male-obesity-readonly-preview
   cancel-in-progress: false
 jobs:
-  preview:
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    env:
-      CLOUDFLARE_ACCOUNT_ID: 9e5386dcf455be34c582d93f8bfc79e6
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PREVIEW_API_TOKEN }}
-      WRANGLER_SEND_METRICS: 'false'
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-      - run: npm ci --no-audit --no-fund
-      - run: node --test obesity-awareness/*.test.mjs tests/public-continuity.test.mjs
-      - name: Deploy isolated read-only public-information preview
-        run: npx wrangler deploy --config obesity-awareness/wrangler.preview.jsonc
-      - name: Check real upstream composition
-        run: node obesity-awareness/verify-live.mjs https://shift-male-obesity-review.matobrien.workers.dev
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: male-obesity-preview-evidence
-          path: male-obesity-live-proof.json
   rendered-live:
-    if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      RELEASE_SOURCE: ${{ github.event.workflow_run.head_sha }}
-      RELEASE_RUN: ${{ github.event.workflow_run.id }}
+      RELEASE_SOURCE: 78c515b7c49bcf309941a53c2f87c6e94e76d6b7
+      RELEASE_RUN: '38004309288'
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.workflow_run.head_sha }}
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
+      - name: Require the exact successful guarded release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/'+process.env.RELEASE_RUN,{headers:{Authorization:'Bearer '+process.env.GH_TOKEN}});
+          assert(r.ok);const run=await r.json();
+          assert.equal(run.head_sha,process.env.RELEASE_SOURCE);assert.equal(run.head_branch,'main');assert.equal(run.path,'.github/workflows/cloudflare-production-promote.yml');assert.equal(run.conclusion,'success');
+          JS
       - name: Prepare the existing public browser test environment
         run: |
           npm install --prefix "$RUNNER_TEMP/pillar-tools" --no-audit --no-fund playwright@1.63.0
           "$RUNNER_TEMP/pillar-tools/node_modules/.bin/playwright" install --with-deps chromium
-      - name: Verify the actual released public journey and consented collector
+      - name: Verify the released public journey and consented collector without deployment
         run: PLAYWRIGHT_MODULE="$RUNNER_TEMP/pillar-tools/node_modules/playwright" node obesity-awareness/rendered-live-proof.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: male-obesity-rendered-live-${{ github.event.workflow_run.id }}
+          name: male-obesity-rendered-live-38004309288
           path: male-obesity-rendered-live/

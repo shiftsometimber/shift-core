@@ -4,7 +4,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require(
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE);
 const origin='https://shiftsometimber.co.uk',dir='male-obesity-rendered-live';
 fs.mkdirSync(dir,{recursive:true});
-const result={at:new Date().toISOString(),source:process.env.RELEASE_SOURCE,releaseRun:process.env.RELEASE_RUN,
+const result={at:new Date().toISOString(),source:process.env.RELEASE_SOURCE,releaseRun:process.env.RELEASE_RUN,proofSource:process.env.GITHUB_SHA,
  classification:'Controlled public QA, not organic growth; mobile-sized Chromium, not a physical phone',checks:[],collector:[],customerRecordsRead:0,memberWrites:0};
 const eventNames=['shift_pillar_first_step_opened','shift_pillar_onward_opened','shift_pillar_step_tried','shift_pillar_review_used'];
 const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
@@ -65,7 +65,7 @@ function observeCollector(page,records){
     result.checks.push({width,checks:['menu placement and Escape','meal and fallback immediately available','effort and unhelpful alternatives','return still works, answers not persisted','declined consent sends no pillar events'],status:'pass'});
     await page.getByRole('link',{name:'Check your BMI — one useful number, not the whole picture.',exact:true}).click();await page.locator('#bmiForm').waitFor();
     await page.waitForFunction(()=>typeof document.getElementById('bmiForm')?.onsubmit==='function');
-    await page.getByRole('button',{name:'Metric',exact:true}).click();await page.locator('#bmiHeightCm').fill('175');await page.locator('#bmiWeightKg').fill('100');await page.locator('#bmiForm button[type="submit"]').click();
+    await page.getByRole('button',{name:'Metric',exact:true}).click();await page.locator('#bmiHeightCm').selectOption('175');await page.locator('#bmiWeightKg').selectOption('100');await page.locator('#bmiForm button[type="submit"]').click();
     await page.waitForFunction(()=>document.getElementById('bmiR')?.textContent.includes('32.7'));
     assert.equal(await page.locator('a[href="/mounjaro"]').count(),0);
     assert.equal(await page.getByRole('link',{name:'Understand obesity and find a next step',exact:true}).count(),1);
