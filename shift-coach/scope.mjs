@@ -1,4 +1,4 @@
-import {reconciliationHistoricalRead,reconciliationPath} from '../release/approved-runtime-composition.mjs';
+import {reconciliationHistoricalRead,reconciliationPath,LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED} from '../release/approved-runtime-composition.mjs';
 import {RECIPE_IMAGE_PATHS,validateRecipeImages} from '../release/recipe-image-scope.mjs';
 import {WATCH_REGISTRY_WAVE_PATHS,validateWatchRegistryWave} from '../release/watch-registry-wave-scope.mjs';
 import {FIT300_PATHS,READONLY_ORGANIC_PATHS,validateFit300} from '../release/fit-300-scope.mjs';
@@ -21,6 +21,12 @@ for(const line of git('diff','--name-status',base,candidate).split('\n').filter(
   const current=git('diff','--name-status',base,'HEAD','--',path).split('\t');
   assert.equal(status,current[0],'Composition candidate history differs: '+path);
   assert.equal(git('rev-parse',candidate+':'+path),git('rev-parse','HEAD:'+path),'Composition candidate bytes changed in merge: '+path);
+  continue;
+ }
+
+ if(LATER_UNATTRIBUTED_WATCH_RECOVERY_PRESERVED.includes(path)){
+  assert(['A','M'].includes(status),'Unexpected preserved newer-main status: '+path);
+  assert.equal(git('rev-parse',candidate+':'+path),git('rev-parse','HEAD:'+path),'Preserved newer-main bytes changed in merge: '+path);
   continue;
  }
 
