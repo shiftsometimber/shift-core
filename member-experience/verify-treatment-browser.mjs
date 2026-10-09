@@ -24,7 +24,11 @@ try{
    await page.goto(site+'/member/treatment',{waitUntil:'domcontentloaded'});
    await check(device+' consent gate and treatment save through the real form',async()=>{
     const rejected=await call(page,'/v1/member/treatment/records','POST',{medicine:'Wegovy',prescriptionDetails:'Synthetic blocked',supply:4,nextAt:null});assert.equal(rejected.status,409);
-    const consent=await call(page,'/v1/consents','POST',{type:'my_shift_health_tracking',version:'2026-08-18-v1',granted:true});assert.equal(consent.status,201);
+    await page.goto(site+'/member/dashboard',{waitUntil:'domcontentloaded'});
+    await page.waitForFunction(()=>typeof window.SST_HEALTH_CONSENT?.ensure==='function');
+    const choseConsent=page.evaluate(()=>window.SST_HEALTH_CONSENT.ensure());
+    const dialog=page.getByRole('dialog');await dialog.getByRole('checkbox').check();await dialog.getByRole('button',{name:'Agree & continue',exact:true}).click();assert.equal(await choseConsent,true,'Explicit visible health-data consent');
+    await page.goto(site+'/member/treatment',{waitUntil:'domcontentloaded'});
     await page.getByLabel('Treatment',{exact:true}).selectOption('Wegovy');await page.getByLabel('Prescription or appointment details').fill('SYNTHETIC PRIVATE TREATMENT '+device);await page.getByLabel('Remaining supply in doses').fill('4');await page.getByRole('button',{name:'Save treatment record',exact:true}).click();
     await page.waitForFunction(async()=>{const r=await fetch('/v1/member/treatment',{cache:'no-store'});return r.ok&&(await r.json()).treatments.length===1;});
     const saved=await call(page,'/v1/member/treatment');assert.equal(saved.status,200);id=saved.body.treatments[0].id;assert.equal(saved.body.treatments[0].supply,4);
