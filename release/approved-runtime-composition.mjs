@@ -674,6 +674,39 @@ export function immutableHistoryExecFileSync(bin,args,options){
 
 const defaultReconciliationRead=(ref,path)=>git('rev-parse',ref+':'+path);
 const immutableCompositionBlobs=new Map();
+
+// Finite 9 October sponsor-biomarker supplement. Editorial authority is not clinical approval.
+export const TOGETHER_BIOMARKER_BASE='e25b404181a71310633f663ddac683629c9e9129';
+export const TOGETHER_BIOMARKER_SOURCE='48dff23b6bb420fce087346cfff239e0318e85c3';
+export const TOGETHER_BIOMARKER_RUN=37950444948;
+export const TOGETHER_BIOMARKER_PATHS=Object.freeze(["medicines-watch/README.md","medicines-watch/industry.mjs","medicines-watch/industry.test.mjs","medicines-watch/reviews/2026-10-09-authorised-together-biomarkers.json",".github/workflows/medicines-watch-check.yml"]);
+export const TOGETHER_BIOMARKER_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/late-watch-composition.test.mjs",".github/workflows/medicines-watch-check.yml"]);
+const TOGETHER_BIOMARKER_SET=new Set([...TOGETHER_BIOMARKER_PATHS,...TOGETHER_BIOMARKER_MAINTENANCE]);
+for(const path of TOGETHER_BIOMARKER_SET)RECONCILIATION_PATHS.add(path);
+export function assertTogetherBiomarkerProof(proof){
+ assert.equal(proof.id,TOGETHER_BIOMARKER_RUN);assert.equal(proof.head_sha,TOGETHER_BIOMARKER_SOURCE);
+ assert.equal(proof.path,'.github/workflows/medicines-watch-check.yml');assert.equal(proof.event,'pull_request');
+ assert.equal(proof.head_branch,'review/watch-together-biomarkers-20261009');
+ assert.equal(proof.status,'completed');assert.equal(proof.conclusion,'success');return proof;
+}
+export function verifyTogetherBiomarkerUpdate(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_TOGETHER_BIOMARKER_UPDATE_V1');assert.equal(c.base,TOGETHER_BIOMARKER_BASE);assert.equal(c.source,TOGETHER_BIOMARKER_SOURCE);
+ assert.equal(c.proofRun,TOGETHER_BIOMARKER_RUN);assert.deepEqual(c.paths,TOGETHER_BIOMARKER_PATHS);assert.deepEqual(c.maintenancePaths,TOGETHER_BIOMARKER_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1276);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
+ for(const flag of ['registryFactsChanged','reviewDatesRenewedByHttp','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated biomarker factual payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated biomarker release maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after biomarker receipt');
+ // The one overlapping workflow is pinned to its exact maintenance source;
+ // its initial source proof remains pinned independently.
+ for(const path of c.paths.filter(p=>!c.maintenancePaths.includes(p)))assert.equal(read('HEAD',path),read(c.source,path),'Approved factual Watch source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Biomarker maintenance source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -696,10 +729,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const biomarker=c.togetherBiomarkerUpdate;
+ if(biomarker)verifyTogetherBiomarkerUpdate(biomarker,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preBiomarkerHead=biomarker?biomarker.base:actualHead;
+ const biomarkerRawBlob=(ref,path)=>outerRawBlob(biomarker&&ref==='HEAD'&&TOGETHER_BIOMARKER_SET.has(path)?biomarker.base:ref,path);
  const lateWatch=c.lateWatchFactualUpdate;
- if(lateWatch)verifyLateWatchFactualUpdate(lateWatch,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preLateWatchHead=lateWatch?lateWatch.base:actualHead;
- const lateWatchRawBlob=(ref,path)=>outerRawBlob(lateWatch&&ref==='HEAD'&&LATE_WATCH_SET.has(path)?lateWatch.base:ref,path);
+ if(lateWatch)verifyLateWatchFactualUpdate(lateWatch,{head:preBiomarkerHead,read:biomarkerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preLateWatchHead=lateWatch?lateWatch.base:preBiomarkerHead;
+ const lateWatchRawBlob=(ref,path)=>biomarkerRawBlob(lateWatch&&ref==='HEAD'&&LATE_WATCH_SET.has(path)?lateWatch.base:ref,path);
  const continuity=c.continuityPreservationRepair;
  if(continuity)verifyContinuityPreservationRepair(continuity,{head:preLateWatchHead,read:lateWatchRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preContinuityHead=continuity?continuity.base:preLateWatchHead;
