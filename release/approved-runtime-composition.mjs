@@ -358,6 +358,28 @@ export function verifyNewsSecurity(c,{head,read,diff,ancestor,content=(ref,path)
  return c;
 }
 
+export const WATCH_OWNED_DISPATCH_BASE='acaf0ffd09393e299c91664bf62693504131836d';
+export const WATCH_OWNED_DISPATCH_SOURCE='377b817984d9469ef5e305434e1b64cdf71633d7';
+export const WATCH_OWNED_DISPATCH_PATHS=['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs'];
+export const WATCH_OWNED_DISPATCH_MAINTENANCE=['release/approved-runtime-composition.mjs','tests/watch-owned-dispatch-release.test.mjs'];
+const WATCH_OWNED_DISPATCH_SET=new Set([...WATCH_OWNED_DISPATCH_PATHS,...WATCH_OWNED_DISPATCH_MAINTENANCE]);
+for(const path of WATCH_OWNED_DISPATCH_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchOwnedDispatch(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert(c);assert.equal(c.proof,'EXACT_WATCH_OWNED_DISPATCH_V1');assert.equal(c.base,WATCH_OWNED_DISPATCH_BASE);assert.equal(c.source,WATCH_OWNED_DISPATCH_SOURCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.deepEqual(c.paths,WATCH_OWNED_DISPATCH_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_OWNED_DISPATCH_MAINTENANCE);
+ assert.equal(c.pinnedRun,37870273259);assert.equal(c.pinnedEvent,'workflow_dispatch');assert.equal(c.finalOwnershipVerifierChanged,true);
+ for(const flag of ['runtimeChanged','publicCopyChanged','medicalEvidenceChanged','clinicalApprovalChanged','customerDataChanged','checkoutChanged','myTimberChanged','rollbackAuthorityBroadened'])assert.equal(c[flag],false);
+ for(const sha of [c.base,c.source,c.maintenanceSource])ancestor(sha,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch owned dispatch source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch owned dispatch maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after Watch owned dispatch');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved Watch owned dispatch source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved Watch owned dispatch source drift / maintenance: '+path);
+ const verifier=content(c.source,'shift-coach/cancelled-release-recovery.mjs');
+ assert.match(verifier,/exactRecordedManualRelease/);assert.match(verifier,/run\?\.event!==expectedEvent/);
+ assert.equal(content(c.source,'.github/workflows/cloudflare-production-promote.yml'),content(c.base,'.github/workflows/cloudflare-production-promote.yml'),'Guarded production workflow must remain byte-for-byte unchanged');
+ return c;
+}
+
 export const WATCH_RUNTIME_DISPATCH_BASE='c7c52acfd2adc2226adc5fad43f4e5c326e788b6';
 export const WATCH_RUNTIME_DISPATCH_SOURCE='326572c4e265542b7a8146cf30294b3aa5b56146';
 export const WATCH_RUNTIME_DISPATCH_PATHS=['shift-coach/cancelled-release-recovery.mjs','shift-coach/cancelled-release-recovery.test.mjs'];
@@ -610,10 +632,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const ownedDispatch=c.watchOwnedDispatch;
+ if(ownedDispatch)verifyWatchOwnedDispatch(ownedDispatch,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const ownedDispatchHead=ownedDispatch?ownedDispatch.base:head;
+ const ownedDispatchRead=(ref,path)=>readBlob(ownedDispatch&&ref==='HEAD'&&WATCH_OWNED_DISPATCH_SET.has(path)?ownedDispatch.base:ref,path);
  const runtimeDispatch=c.watchRuntimeDispatch;
- if(runtimeDispatch)verifyWatchRuntimeDispatch(runtimeDispatch,{head,read:readBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ if(runtimeDispatch)verifyWatchRuntimeDispatch(runtimeDispatch,{head:ownedDispatchHead,read:ownedDispatchRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const runtimeDispatchHead=runtimeDispatch?runtimeDispatch.base:head;
- const runtimeDispatchRead=(ref,path)=>readBlob(runtimeDispatch&&ref==='HEAD'&&WATCH_RUNTIME_DISPATCH_SET.has(path)?runtimeDispatch.base:ref,path);
+ const runtimeDispatchRead=(ref,path)=>ownedDispatchRead(runtimeDispatch&&ref==='HEAD'&&WATCH_RUNTIME_DISPATCH_SET.has(path)?runtimeDispatch.base:ref,path);
  const runtimeBaseline=c.watchRuntimeBaseline;
  if(runtimeBaseline)verifyWatchRuntimeBaseline(runtimeBaseline,{head:runtimeDispatchHead,read:runtimeDispatchRead,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const runtimeBaselineHead=runtimeBaseline?runtimeBaseline.base:head;

@@ -198,3 +198,13 @@ test('exact current Medicines Watch runtime remains discoverable outside bounded
  assert.deepEqual(await recentSuccessfulPromotions(get,active(p.version,'different-deployment')),[]);
  for(const patch of [{head_sha:'f'.repeat(40)},{conclusion:'failure'},{status:'in_progress'},{event:'push'},{event:'pull_request'},{head_branch:'other'},{path:'other.yml'}])await assert.rejects(recentSuccessfulPromotions(async path=>path==='/actions/runs/'+p.run?{...r,...patch}:{workflow_runs:[]},active(p.version,p.deployment)));
 });
+
+test('exact manual Watch release satisfies final ownership only with its deployment and receipt',()=>{
+ const p=recordedMedicinesWatchRuntime,run={id:p.run,head_sha:p.source,status:'completed',conclusion:'success',event:p.event,head_branch:'main',path:'.github/workflows/cloudflare-production-promote.yml'};
+ const job={name:'promote',conclusion:'success',run_id:p.run},receipt={kind:'owned_runtime_deployment',source:p.source,run:String(p.run),versionId:p.version,deploymentId:p.deployment};
+ assert.equal(verifiedOwnedRuntime(active(p.version,p.deployment),run,job,receipt),true);
+ assert.equal(verifiedOwnedRuntime(active(p.version,p.deployment),{...run,event:'push'},job,receipt),false);
+ assert.equal(verifiedOwnedRuntime(active(p.version,'different-deployment'),run,job,receipt),false);
+ const unrelated={...run,id:p.run+1,head_sha:'f'.repeat(40)};
+ assert.equal(verifiedOwnedRuntime(active(p.version,p.deployment),unrelated,{...job,run_id:unrelated.id},{...receipt,run:String(unrelated.id),source:unrelated.head_sha}),false);
+});
