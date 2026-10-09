@@ -708,5 +708,47 @@
     "homepageChanged": false,
     "orderingOpened": false,
     "pricesChanged": false
+  },
+  "toolSchemaArchive": {
+    "proof": "EXACT_TOOL_SCHEMA_EVIDENCE_ARCHIVE_V1",
+    "base": "0d68bce77505ef4fa77412929ff6d4d2dc0a65e7",
+    "source": "14db24d531df33776fb8d87785c6c76df5f82b03",
+    "paths": [
+      "release/tool-page-schema-20261008/%2Fdecision-centre.after.html",
+      "release/tool-page-schema-20261008/%2Ftools%2Falcohol.after.html",
+      "release/tool-page-schema-20261008/%2Ftools%2Fbmi.after.html",
+      "release/tool-page-schema-20261008/%2Ftools%2Fcalories.after.html",
+      "release/tool-page-schema-20261008/%2Ftools%2Fhealthy-weight.after.html",
+      "release/tool-page-schema-20261008/%2Ftools%2Fprotein.after.html",
+      "release/tool-page-schema-20261008/%2Ftools%2Fwaist-height.after.html",
+      "release/tool-page-schema-20261008/%2Ftools%2Fwalking.after.html",
+      "release/tool-page-schema-20261008/%2Ftools%2Fwater.after.html",
+      "release/tool-page-schema-20261008/README.md",
+      "release/tool-page-schema-20261008/browser-verification-20261009.json",
+      "release/tool-page-schema-20261008/fresh-verification-20261009.json",
+      "release/tool-page-schema-20261008/live-verification.json",
+      "release/tool-page-schema-20261008/manifest-before.json",
+      "release/tool-page-schema-20261008/manifest-candidate.json",
+      "release/tool-page-schema-20261008/preview-verification.json",
+      "release/tool-page-schema-20261008/scope-proof.json",
+      "release/tool-page-schema-20261008/verifier-failure-tests-20261009.json",
+      "scripts/tool-page-schema-release.cjs",
+      "scripts/verify-tool-calculators-browser.cjs",
+      "scripts/verify-tool-page-schema.cjs",
+      "scripts/verify-tool-page-schema.test.cjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/tool-schema-archive-composition.test.mjs"
+    ],
+    "maintenanceSource": "8f35cae6c2d31d61e2b3c0e5815e3707f59d0c70",
+    "productionRepairPreviouslyDeployed": true,
+    "runtimeChanged": false,
+    "publicCopyChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "deploymentAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
