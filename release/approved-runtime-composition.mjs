@@ -943,6 +943,33 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 
 
 // Exact approved Hub-v2 upgrade; preserve every prior receipt and protected route.
+export const OBESITY_PRACTICAL_BASE='84810813ab060a78935cca29b87011986f479953';
+export const OBESITY_PRACTICAL_SOURCE='2af00448b5aa7cb2b5dbedc8505d19e6932ab2c4';
+export const OBESITY_PRACTICAL_PATHS=Object.freeze(['obesity-awareness/content.mjs','obesity-awareness/rendered-live-proof.cjs']);
+export const OBESITY_PRACTICAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/obesity-practical-composition.test.mjs']);
+const OBESITY_PRACTICAL_SET=new Set([...OBESITY_PRACTICAL_PATHS,...OBESITY_PRACTICAL_MAINTENANCE]);
+for(const path of OBESITY_PRACTICAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyObesityPractical(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_OBESITY_PRACTICAL_20261010');
+ assert.equal(c.base,OBESITY_PRACTICAL_BASE);assert.equal(c.source,OBESITY_PRACTICAL_SOURCE);
+ assert.deepEqual(c.paths,OBESITY_PRACTICAL_PATHS);assert.deepEqual(c.maintenancePaths,OBESITY_PRACTICAL_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'authorised_by_Matt_20261010');
+ assert.equal(c.priorPreviewRun,38058282091);
+ for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Hub-v2 payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Hub-v2 maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Hub-v2 receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
+ delete current.obesityPractical;assert.deepEqual(current,prior,'Prior release receipts changed by Hub-v2');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Hub-v2 source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Hub-v2 maintenance source drift: '+path);
+ return c;
+}
+
+// Exact approved Hub-v2 upgrade; preserve every prior receipt and protected route.
 export const OBESITY_HUB_V2_BASE='21d698db2c34676116d4f9c19127127fcf414cbe';
 export const OBESITY_HUB_V2_SOURCE='6229eabca4c03099712af001bc98bb775d5d182a';
 export const OBESITY_HUB_V2_PATHS=Object.freeze(["obesity-awareness/candidate.mjs", "obesity-awareness/candidate.test.mjs", "obesity-awareness/content.mjs", "obesity-awareness/preview-entry.mjs", "obesity-awareness/production.mjs", "obesity-awareness/production.test.mjs", "obesity-awareness/rendered-live-proof.cjs", "obesity-awareness/rollback-proof.test.mjs"]);
@@ -1132,10 +1159,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const practical=c.obesityPractical;
+ if(practical)verifyObesityPractical(practical,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const prePracticalHead=practical?practical.base:actualHead;
+ const practicalRawBlob=(ref,path)=>outerRawBlob(practical&&ref==='HEAD'&&OBESITY_PRACTICAL_SET.has(path)?practical.base:ref,path);
  const hubV2=c.obesityHubV2;
- if(hubV2)verifyObesityHubV2(hubV2,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preHubV2Head=hubV2?hubV2.base:actualHead;
- const hubV2RawBlob=(ref,path)=>outerRawBlob(hubV2&&ref==='HEAD'&&OBESITY_HUB_V2_SET.has(path)?hubV2.base:ref,path);
+ if(hubV2)verifyObesityHubV2(hubV2,{head:prePracticalHead,read:practicalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preHubV2Head=hubV2?hubV2.base:prePracticalHead;
+ const hubV2RawBlob=(ref,path)=>practicalRawBlob(hubV2&&ref==='HEAD'&&OBESITY_HUB_V2_SET.has(path)?hubV2.base:ref,path);
  const wegovyRenewal=c.watchWegovySourceRenewal;
  const preWegovyRenewalHead=wegovyRenewal?wegovyRenewal.base:preHubV2Head;
  const wegovyRenewalRawBlob=(ref,path)=>hubV2RawBlob(wegovyRenewal&&ref==='HEAD'&&WATCH_WEGOVY_RENEWAL_SET.has(path)?wegovyRenewal.base:ref,path);

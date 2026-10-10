@@ -72,6 +72,8 @@ function observeCollector(page,records){
     await page.getByRole('link',{name:'Find one useful step',exact:true}).click();
     await page.locator('summary').filter({hasText:'I get home hungry and have no plan'}).click();
     assert((await page.locator('#first-step').innerText()).includes('my fallback is'));
+    assert((await page.locator('#first-step').innerText()).includes('beans on toast'));
+    assert((await page.locator('main').innerText()).includes('was it affordable and easy enough')); 
     await page.screenshot({path:dir+'/'+width+'-first-action.png'});
     await page.getByRole('button',{name:'I tried my step',exact:true}).click();await page.getByRole('button',{name:'Too much effort',exact:true}).click();
     assert((await page.locator('[data-pillar-status]').innerText()).includes('smaller'));
