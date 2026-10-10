@@ -942,6 +942,31 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 }
 
 
+// Register three newly posted primary trial records without treating estimated
+// starts as actual recruitment, results or clinical switching guidance.
+export const WATCH_VK2735_ZENAGAMTIDE_BASE='68cd3d2f9cf6399bcd2a4cc0f6623684bb8ffe77';
+export const WATCH_VK2735_ZENAGAMTIDE_SOURCE='eb1e3ae8756e2858638f2e88d28d4cafa45023a9';
+export const WATCH_VK2735_ZENAGAMTIDE_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/backlog-review.test.mjs','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/evidence-desk.test.mjs','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/reviews/2026-10-10-authorised-vk2735-zenagamtide-registry.json']);
+export const WATCH_VK2735_ZENAGAMTIDE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-vk2735-zenagamtide-registry-composition.test.mjs']);
+const WATCH_VK2735_ZENAGAMTIDE_SET=new Set([...WATCH_VK2735_ZENAGAMTIDE_PATHS,...WATCH_VK2735_ZENAGAMTIDE_MAINTENANCE]);
+for(const path of WATCH_VK2735_ZENAGAMTIDE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchVk2735ZenagamtideRegistry(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_VK2735_ZENAGAMTIDE_REGISTRY_V1');assert.equal(c.base,WATCH_VK2735_ZENAGAMTIDE_BASE);assert.equal(c.source,WATCH_VK2735_ZENAGAMTIDE_SOURCE);
+ assert.deepEqual(c.paths,WATCH_VK2735_ZENAGAMTIDE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_VK2735_ZENAGAMTIDE_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1312);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
+ assert.equal(c.sourceReviews,3);assert.equal(c.programmesAfter,116);assert.equal(c.configuredSources,202);assert.equal(c.trialRecordsAfter,137);assert.equal(c.preservedSourceReviews,35);
+ assert.equal(c.factualReviewNeeded,0);assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);assert.equal(c.automatedMonitorChanges,true);
+ for(const flag of ['resultsClaimed','phase3StartClaimed','switchingGuidanceClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated VK2735/zenagamtide registry payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated VK2735/zenagamtide registry maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after VK2735/zenagamtide registry receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchVk2735ZenagamtideRegistry;assert.deepEqual(current,prior,'Prior release receipts changed by VK2735/zenagamtide registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved backlog source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
+ return c;
+}
+
 // Apply the already completed 10 October primary-record review to the exact
 // monitored ZP6590 registry source. This changes only the factual review date;
 // the separately denied sponsor source remains verification-pending and delayed.
@@ -1322,10 +1347,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const vk2735ZenagamtideRegistry=c.watchVk2735ZenagamtideRegistry;
+ if(vk2735ZenagamtideRegistry)verifyWatchVk2735ZenagamtideRegistry(vk2735ZenagamtideRegistry,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preVk2735ZenagamtideHead=vk2735ZenagamtideRegistry?vk2735ZenagamtideRegistry.base:actualHead;
+ const vk2735ZenagamtideRawBlob=(ref,path)=>outerRawBlob(vk2735ZenagamtideRegistry&&ref==='HEAD'&&WATCH_VK2735_ZENAGAMTIDE_SET.has(path)?vk2735ZenagamtideRegistry.base:ref,path);
  const zp6590ReleaseGuardRepair=c.watchZp6590ReleaseGuardRepair;
- if(zp6590ReleaseGuardRepair)verifyWatchZp6590ReleaseGuardRepair(zp6590ReleaseGuardRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preZp6590ReleaseGuardHead=zp6590ReleaseGuardRepair?zp6590ReleaseGuardRepair.base:actualHead;
- const zp6590ReleaseGuardRawBlob=(ref,path)=>outerRawBlob(zp6590ReleaseGuardRepair&&ref==='HEAD'&&WATCH_ZP6590_RELEASE_GUARD_SET.has(path)?zp6590ReleaseGuardRepair.base:ref,path);
+ if(zp6590ReleaseGuardRepair)verifyWatchZp6590ReleaseGuardRepair(zp6590ReleaseGuardRepair,{head:preVk2735ZenagamtideHead,read:vk2735ZenagamtideRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preZp6590ReleaseGuardHead=zp6590ReleaseGuardRepair?zp6590ReleaseGuardRepair.base:preVk2735ZenagamtideHead;
+ const zp6590ReleaseGuardRawBlob=(ref,path)=>vk2735ZenagamtideRawBlob(zp6590ReleaseGuardRepair&&ref==='HEAD'&&WATCH_ZP6590_RELEASE_GUARD_SET.has(path)?zp6590ReleaseGuardRepair.base:ref,path);
  const zp6590RegistryRenewal=c.watchZp6590RegistryReviewRenewal;
  if(zp6590RegistryRenewal)verifyWatchZp6590RegistryRenewal(zp6590RegistryRenewal,{head:preZp6590ReleaseGuardHead,read:zp6590ReleaseGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preZp6590RegistryRenewalHead=zp6590RegistryRenewal?zp6590RegistryRenewal.base:preZp6590ReleaseGuardHead;
