@@ -65,8 +65,24 @@ export function amendBmiAwarenessRoute(path,input){
  for(const [before,after,count]of changes){if(html.split(before).length-1!==count||html.includes(after))throw Error('awareness_bmi_source_drift');html=html.split(before).join(after)}
  return html;
 }
+const hubContextLinks = Object.freeze({
+ '/tools/waist-height':'Put this measurement in context: understand obesity in men and choose a useful next step.',
+ '/research/uk-mens-weight-health-statistics':'What do these measurements mean for you? Read our male-obesity guide.',
+ '/articles/waist-size-men':'See how waist and BMI fit into the wider picture for men.',
+ '/articles/prediabetes-men':'If weight concerns sit alongside this, use our male-obesity guide to prepare your next question.',
+ '/articles/heart-health-men':'Understand weight and waist measurements without treating them as your whole health.',
+ '/articles/knee-pain-weight-men':'Put weight questions in context with our male-obesity guide.',
+ '/articles/testosterone-weight-men':'Read about measurements, men’s health and choosing appropriate help.',
+ '/articles/sleep-apnoea-weight-men':'For wider weight and health questions, read our male-obesity guide.',
+ '/husband-help':'Share our male-obesity guide if he wants an explanation and one useful next step.'
+});
 export function amendSupportingDocument(path,input){
  if(path==='/tools/bmi')return amendBmiAwarenessRoute(path,input);
+ if(hubContextLinks[path]){
+  if((input.match(mainRE)||[]).length!==1)throw Error('awareness_invalid_shell');
+  if(input.includes('data-obesity-context-link'))return input;
+  return input.replace(mainRE,main=>main.replace(/<\/main>$/i,'<p data-obesity-context-link><a href="/male-obesity">'+hubContextLinks[path]+'</a></p></main>'));
+ }
  if(!['/weight-loss-support-for-men','/mental-health/mental-health-and-weight','/articles/weight-loss-plateau-men','/mens-weight-management','/articles/evidence-based-weight-loss'].includes(path))return input;
  if((input.match(mainRE)||[]).length!==1)throw Error('awareness_invalid_shell');
  if(input.includes('data-weight-understanding-addition'))return input;

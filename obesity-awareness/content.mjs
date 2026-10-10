@@ -1,4 +1,4 @@
-// Revised hub candidate: full wording awaits Matt’s approval; existing supporting content preserved.
+// Revised hub candidate: approved wording authorised for publication by Matt on 10 October; existing supporting content preserved.
 export const candidate = {
   "path": "/male-obesity",
   "title": "Male Obesity UK: BMI, Waist Size, Health Risks & Help | SHIFT",
