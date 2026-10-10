@@ -25,4 +25,3 @@ test('unknown runtime, drifted ownership, duplicate receipts, incomplete rollbac
  await assert.rejects(()=>verifyMaleObesityRollback(active(),version,async path=>path==='/actions/runs/'+p.verifiedRun?{...evidence.originalRun,conclusion:'failure'}:get(path),logs));
  await assert.rejects(()=>verifyMaleObesityRollback(active(),version,get,async id=>id===p.verifiedJob?evidence.originalLogs+'\n'+evidence.originalLogs:logs(id)));
 });
-
