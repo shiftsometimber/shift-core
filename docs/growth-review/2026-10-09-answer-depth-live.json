@@ -1,0 +1,242 @@
+{
+  "checkedAt": "2026-10-09T20:38:44.202Z",
+  "method": "Independent delivered-HTML HTTPS checks after observed core rollback",
+  "result": [
+    {
+      "path": "/mental-health/when-someone-refuses-help",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/mental-health/when-someone-refuses-help",
+      "sha256": "d0594b152fc2b0338f20dc3ca2fbb5f0cad150d573d9002118489384e05f2553",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/mental-health/when-someone-refuses-help",
+      "approvedAdditionCount": 1
+    },
+    {
+      "path": "/mens-mental-health",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/mens-mental-health",
+      "sha256": "0397ca841a81350f649ceb51da2cb9f9372c121a53cd0084038c9f1f7ac92e99",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/mens-mental-health",
+      "approvedAdditionCount": 1
+    },
+    {
+      "path": "/weight-loss-support-for-men",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/weight-loss-support-for-men",
+      "sha256": "2ecd5a29a0325518096968f0ef922befcfe9f11dae6236c82069c13e397d565b",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/weight-loss-support-for-men",
+      "approvedAdditionCount": 1
+    },
+    {
+      "path": "/mens-weight-management",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/mens-weight-management",
+      "sha256": "fcc1446bde5810cb99dedefcd58e32cdbc2c752f8e23c80717c510ccca9427cf",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/mens-weight-management",
+      "approvedAdditionCount": 1
+    },
+    {
+      "path": "/articles/weight-loss-after-40-men",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/articles/weight-loss-after-40-men",
+      "sha256": "88fc1976506857d434adef7c2917a241a34cb0156373d706437f0c627e3a8e86",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/articles/weight-loss-after-40-men",
+      "approvedAdditionCount": 1
+    },
+    {
+      "path": "/mounjaro",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/mounjaro",
+      "sha256": "1274fcdd3dbbb69f07ad99a402b3a883890a0d8ff2626ab268326ac9aac38014",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/mounjaro",
+      "approvedAdditionCount": 1
+    },
+    {
+      "path": "/wegovy",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/wegovy",
+      "sha256": "570739f2ef9feb4e8c7df3fee997fa2236491e22d4f895ea4fa9ca42dcba869a",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/wegovy",
+      "approvedAdditionCount": 1
+    },
+    {
+      "path": "/articles/stopping-glp1",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/articles/stopping-glp1",
+      "sha256": "08342e2b48c42c2bc924002020985ee594a56550ecc02ecc2aec83d25e8641cc",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/articles/stopping-glp1",
+      "approvedAdditionCount": 1
+    },
+    {
+      "path": "/guides/retatrutide-uk-guide",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/guides/retatrutide-uk-guide",
+      "sha256": "7356b52504b6fb2f826d6f5f52297230d0d6a6b08230d7d887eca1840a46b312",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/guides/retatrutide-uk-guide",
+      "baseline": {
+        "path": "/guides/retatrutide-uk-guide",
+        "status": 200,
+        "unchanged": true,
+        "answerDepthAbsent": true,
+        "sha256": "7356b52504b6fb2f826d6f5f52297230d0d6a6b08230d7d887eca1840a46b312"
+      },
+      "unchanged": true
+    },
+    {
+      "path": "/articles/wegovy-side-effects-timeline",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/articles/wegovy-side-effects-timeline",
+      "sha256": "d625881743da16fcea55cb781f0ab7a00e6cc3d1284ea84655c28601d23296a5",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/articles/wegovy-side-effects-timeline",
+      "baseline": {
+        "path": "/articles/wegovy-side-effects-timeline",
+        "status": 200,
+        "unchanged": true,
+        "answerDepthAbsent": true,
+        "sha256": "d625881743da16fcea55cb781f0ab7a00e6cc3d1284ea84655c28601d23296a5"
+      },
+      "unchanged": true
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/",
+      "sha256": "63a94996d73561b1774cdeceda3924eb13dccea0735562570b1714ed9a578d19",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/",
+      "baseline": {
+        "path": "/",
+        "status": 200,
+        "unchanged": true,
+        "answerDepthAbsent": true,
+        "sha256": "63a94996d73561b1774cdeceda3924eb13dccea0735562570b1714ed9a578d19"
+      },
+      "unchanged": true
+    },
+    {
+      "path": "/start-here",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/start-here",
+      "sha256": "5a2067d7548cc3b6276eae60b31cc156e05d636f279e6649e7cdad0af6b0ce82",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/start-here",
+      "baseline": {
+        "path": "/start-here",
+        "status": 200,
+        "unchanged": true,
+        "answerDepthAbsent": true,
+        "sha256": "5a2067d7548cc3b6276eae60b31cc156e05d636f279e6649e7cdad0af6b0ce82"
+      },
+      "unchanged": true
+    },
+    {
+      "path": "/mental-health/urgent-mental-health-help",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/mental-health/urgent-mental-health-help",
+      "sha256": "d7c39c11b910ca5e7fdfd6eee2dc118cb9c140efb519daf5f3058ac431f1eb2f",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/mental-health/urgent-mental-health-help",
+      "baseline": {
+        "path": "/mental-health/urgent-mental-health-help",
+        "status": 200,
+        "unchanged": true,
+        "answerDepthAbsent": true,
+        "sha256": "d7c39c11b910ca5e7fdfd6eee2dc118cb9c140efb519daf5f3058ac431f1eb2f"
+      },
+      "unchanged": true
+    },
+    {
+      "path": "/mental-health/ask-about-suicide",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/mental-health/ask-about-suicide",
+      "sha256": "f9a398c66180e69e7c9a83e8a52d8ab0ea161cbd6cb54ccf7c2f4787236352fa",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/mental-health/ask-about-suicide"
+    },
+    {
+      "path": "/member/dashboard",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/member/dashboard",
+      "sha256": "2a5a3087d53164e3bc5e78a256e6f84dea7090653d16d0e7499b90adfc8be1d5",
+      "h1Count": 1
+    },
+    {
+      "path": "/privacy",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/privacy",
+      "sha256": "c85cfb3678962b9616b7066a69ace7de499cc8a45295d262f37084a04b1e3a14",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/privacy"
+    },
+    {
+      "path": "/articles/nhs-weight-loss-drugs",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/articles/nhs-weight-loss-drugs",
+      "sha256": "4e06ccf71768adf3e42f1d72aec9cda49c0a3e3d9724c1c28675242c8d3a5962",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/articles/nhs-weight-loss-drugs"
+    },
+    {
+      "path": "/articles/mounjaro-cost-uk",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/articles/mounjaro-cost-uk",
+      "sha256": "7f03aed3ac0bd3adc03f5c094d11bf9aec93d48a17fdb5787c7dc8b4cf12e1fc",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/articles/mounjaro-cost-uk"
+    },
+    {
+      "path": "/comparisons/medications/wegovy-injection-vs-tablets",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/comparisons/medications/wegovy-injection-vs-tablets",
+      "sha256": "3515e3ce4ca5ce79b8b2449a3fa7fe7ba95ed949450c79b42cc7eeb41ed24efa",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/comparisons/medications/wegovy-injection-vs-tablets"
+    },
+    {
+      "path": "/articles/food-noise-after-stopping-glp1",
+      "status": 200,
+      "finalUrl": "https://shiftsometimber.co.uk/articles/food-noise-after-stopping-glp1",
+      "sha256": "e7d3e6af6fdc345e63ff3e30760102d7d0bf5999926feee23db8eebfe475c11b",
+      "h1Count": 1,
+      "canonical": "https://shiftsometimber.co.uk/articles/food-noise-after-stopping-glp1"
+    }
+  ],
+  "runs": [
+    {
+      "id": 37985093872,
+      "name": "Cloudflare Production Promote",
+      "status": "completed",
+      "conclusion": "failure",
+      "sha": "c44f3e58f60ce9fdbbbb082fcb75c6d895ff6789",
+      "url": "https://github.com/shiftsometimber/shift-core/actions/runs/37985093872",
+      "updatedAt": "2026-10-09T20:37:49Z"
+    },
+    {
+      "id": 37983995272,
+      "name": "Cloudflare Production Promote",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "sha": "97ef3916d44cecee5bddba1c0679140190008428",
+      "url": "https://github.com/shiftsometimber/shift-core/actions/runs/37983995272",
+      "updatedAt": "2026-10-09T20:10:30Z"
+    },
+    {
+      "id": 37982172305,
+      "name": "Cloudflare Production Promote",
+      "status": "completed",
+      "conclusion": "failure",
+      "sha": "f1c52b6dc883aa5093155a20fc13e717956efacf",
+      "url": "https://github.com/shiftsometimber/shift-core/actions/runs/37982172305",
+      "updatedAt": "2026-10-09T19:52:56Z"
+    }
+  ]
+}

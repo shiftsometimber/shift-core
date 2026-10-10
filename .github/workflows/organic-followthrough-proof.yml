@@ -9,7 +9,7 @@ permissions:
 jobs:
   proof:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Exact reporting scope and independent export attribution guard
+        run: node --test tests/organic-measurement-reconciliation.test.mjs tests/organic-measurement-composition.test.mjs
       - run: node --test tests/organic-followthrough-live.test.mjs tests/public-seo-organic-links.test.mjs tests/organic-followthrough-release.test.mjs tests/public-seo-link-repairs.test.mjs tests/seo-link-repairs-release.test.mjs acquisition-activation/metrics-release.test.mjs tests/seo-growth-release.test.mjs tests/seo-context-release.test.mjs tests/seo-discovery-release.test.mjs tests/approved-ranking-release.test.mjs shift-coach/release.test.mjs tests/b1-release-scope.test.mjs
       - run: node shift-coach/release-contract.mjs --require-launch
       - run: node scripts/b1-release-scope.mjs --check
