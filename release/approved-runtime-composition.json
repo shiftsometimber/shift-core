@@ -1690,5 +1690,36 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "obesityHubRollback": {
+    "proof": "EXACT_OBESITY_HUB_ROLLBACK_20261010",
+    "base": "539541adba87e13d769e4fc94520e0fe4bbbb91d",
+    "source": "1c4fec2846aa6283c2b647e318193b0127e743e2",
+    "maintenanceSource": "1c8e813ef778d0470972cb6c74c47b5e9f744ad8",
+    "paths": [
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/recover-cancelled-release.mjs",
+      "tests/obesity-hub-v2-rollback.test.mjs",
+      "tests/fixtures/obesity-hub-v2-rollback-38072143100.json"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/obesity-hub-rollback-composition.test.mjs"
+    ],
+    "integrationIssue": 1065,
+    "publicationStatus": "authorised_by_Matt_20261010",
+    "priorPreviewRun": 38058282091,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "sharedNavigationChanged": false,
+    "memberDataChanged": false,
+    "checkoutChanged": false,
+    "analyticsChanged": false,
+    "consentChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }

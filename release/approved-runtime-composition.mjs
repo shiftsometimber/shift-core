@@ -942,6 +942,33 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 }
 
 
+// Exact approved Hub-v2 exact rollback receipt upgrade; preserve every prior receipt and protected route.
+export const OBESITY_HUB_ROLLBACK_BASE='539541adba87e13d769e4fc94520e0fe4bbbb91d';
+export const OBESITY_HUB_ROLLBACK_SOURCE='1c4fec2846aa6283c2b647e318193b0127e743e2';
+export const OBESITY_HUB_ROLLBACK_PATHS=Object.freeze(['shift-coach/cancelled-release-recovery.mjs','shift-coach/recover-cancelled-release.mjs','tests/obesity-hub-v2-rollback.test.mjs','tests/fixtures/obesity-hub-v2-rollback-38072143100.json']);
+export const OBESITY_HUB_ROLLBACK_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/obesity-hub-rollback-composition.test.mjs']);
+const OBESITY_HUB_ROLLBACK_SET=new Set([...OBESITY_HUB_ROLLBACK_PATHS,...OBESITY_HUB_ROLLBACK_MAINTENANCE]);
+for(const path of OBESITY_HUB_ROLLBACK_SET)RECONCILIATION_PATHS.add(path);
+export function verifyObesityHubRollback(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_OBESITY_HUB_ROLLBACK_20261010');
+ assert.equal(c.base,OBESITY_HUB_ROLLBACK_BASE);assert.equal(c.source,OBESITY_HUB_ROLLBACK_SOURCE);
+ assert.deepEqual(c.paths,OBESITY_HUB_ROLLBACK_PATHS);assert.deepEqual(c.maintenancePaths,OBESITY_HUB_ROLLBACK_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'authorised_by_Matt_20261010');
+ assert.equal(c.priorPreviewRun,38058282091);
+ for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Hub-v2 exact rollback receipt payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Hub-v2 exact rollback receipt maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Hub-v2 exact rollback receipt receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
+ delete current.obesityHubRollback;assert.deepEqual(current,prior,'Prior release receipts changed by Hub-v2 exact rollback receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Hub-v2 exact rollback receipt source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Hub-v2 exact rollback receipt maintenance source drift: '+path);
+ return c;
+}
+
 // Exact approved Hub-v2 scoped repair upgrade; preserve every prior receipt and protected route.
 export const OBESITY_HUB_REPAIR_BASE='21dcc6e5034d9e9db787b122f3e467910c093564';
 export const OBESITY_HUB_REPAIR_SOURCE='ff92aff1cb07093397bc474f90ee597acc4211c7';
@@ -1186,10 +1213,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const hubRollback=c.obesityHubRollback;
+ if(hubRollback)verifyObesityHubRollback(hubRollback,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preHubRollbackHead=hubRollback?hubRollback.base:actualHead;
+ const hubRollbackRawBlob=(ref,path)=>outerRawBlob(hubRollback&&ref==='HEAD'&&OBESITY_HUB_ROLLBACK_SET.has(path)?hubRollback.base:ref,path);
  const hubRepair=c.obesityHubRepair;
- if(hubRepair)verifyObesityHubRepair(hubRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preHubRepairHead=hubRepair?hubRepair.base:actualHead;
- const hubRepairRawBlob=(ref,path)=>outerRawBlob(hubRepair&&ref==='HEAD'&&OBESITY_HUB_REPAIR_SET.has(path)?hubRepair.base:ref,path);
+ if(hubRepair)verifyObesityHubRepair(hubRepair,{head:preHubRollbackHead,read:hubRollbackRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preHubRepairHead=hubRepair?hubRepair.base:preHubRollbackHead;
+ const hubRepairRawBlob=(ref,path)=>hubRollbackRawBlob(hubRepair&&ref==='HEAD'&&OBESITY_HUB_REPAIR_SET.has(path)?hubRepair.base:ref,path);
  const practical=c.obesityPractical;
  if(practical)verifyObesityPractical(practical,{head:preHubRepairHead,read:hubRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const prePracticalHead=practical?practical.base:preHubRepairHead;
