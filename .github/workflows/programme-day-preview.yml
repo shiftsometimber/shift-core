@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - run: node --test tests/programme-day*.mjs tests/growth-release.test.mjs tests/approved-runtime-composition.test.mjs tests/public-tool-release.test.mjs
+      - run: node --test tests/programme-day*.mjs tests/growth-release.test.mjs tests/approved-runtime-composition.test.mjs tests/public-tool-release.test.mjs obesity-awareness/measurement-navigation.test.mjs obesity-awareness/production.test.mjs
       - run: node scripts/b1-release-scope.mjs
       - run: node release/growth-preflight.mjs
         env:
