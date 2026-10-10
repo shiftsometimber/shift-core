@@ -1,0 +1,157 @@
+{
+  "reviewedAt": "2026-10-10T12:16:36Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections without repeat permission.",
+    "scope": "Four bounded preclinical oral small-molecule programmes found by the undated combination and modality pass. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "discovery": {
+    "reason": "The live catalogue included Ascletis's injectable peptide programmes and ASC30 formulations but omitted the separate ASC39 and ASC48 oral small-molecule programmes and their fixed-dose combinations.",
+    "currentDateSearch": "Exact programme-name searches on 10 October 2026 found no accessible official announcement establishing that the planned Q3 2026 IND filings for ASC39 or ASC30_39 FDC had occurred. The reviewed August sponsor announcement remains the latest directly reviewable official evidence found and still labels all four events as planned filings.",
+    "failedOrIncomplete": [
+      {
+        "scope": "ClinicalTrials.gov exact-name discovery for ASC39, ASC30_39 FDC, ASC30_48 FDC and ASC30_48_39 FDC",
+        "outcome": "No matching public human study record was identified in the reviewed search results.",
+        "nextAction": "Repeat exact-name and sponsor searches; do not infer first dosing or trial initiation from a planned filing."
+      },
+      {
+        "scope": "Ascletis direct English announcement pages",
+        "outcome": "Search indexing exposed a directly readable Chinese sponsor page for ASC30_48 FDC but not a stable directly reviewable English copy for all four programmes.",
+        "nextAction": "Use the complete sponsor-distributed PR Newswire copies for this review and seek a stable English Ascletis or HKEX artefact at the next material review."
+      }
+    ]
+  },
+  "entries": [
+    {
+      "id": "asc39-oral",
+      "name": "ASC39 oral tablets",
+      "developer": "Ascletis Pharma",
+      "group": "research",
+      "stage": "Preclinical oral amylin programme; planned IND not verified",
+      "summary": "Ascletis describes ASC39 as a once-daily oral small-molecule selective amylin receptor agonist. Its 3 August 2026 portfolio update reports only animal findings and listed a US IND filing for the third quarter of 2026; no accessible official source reviewed on 10 October confirmed that filing or a human study.",
+      "ukAuthorisation": "The reviewed sponsor evidence does not establish UK marketing authorisation or UK clinical-trial authorisation for ASC39.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Preclinical development and a planned US filing do not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The reported weight observations are from diet-induced-obesity rats, not people. They do not establish human efficacy, safety, tolerability, dose, durability, muscle preservation or superiority. A planned third-quarter IND filing is not presented as submitted, cleared or as trial initiation; the absence of a later accessible announcement is retained as uncertainty.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-10T12:16:36Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Ascletis: oral GLP-1/GIP/amylin portfolio update",
+          "url": "https://www.prnewswire.com/news-releases/ascletis-announces-initiation-of-global-phase-iii-for-oral-small-molecule-glp-1-asc30-and-positive-preclinical-data-for-its-first-in-class-oral-small-molecule-glp-1gipamylin-fixed-dose-combination-302841108.html",
+          "sourcePublishedAt": "2026-08-03",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-10T12:16:36Z",
+          "checkScope": "Complete sponsor-distributed announcement read for programme composition, animal-only evidence and planned filing status. Not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "asc30-39-fdc",
+      "name": "ASC30_39 FDC oral combination",
+      "developer": "Ascletis Pharma",
+      "group": "research",
+      "stage": "Preclinical oral GLP-1/amylin combination; planned IND not verified",
+      "summary": "Ascletis selected a once-daily oral fixed-dose combination of ASC30 and ASC39 for clinical development. The reviewed April and August 2026 sponsor announcements report formulation, pharmacokinetic and animal findings and planned a US IND filing in the third quarter of 2026; no accessible official source reviewed on 10 October confirmed that filing or first dosing.",
+      "ukAuthorisation": "The reviewed sponsor evidence does not establish UK marketing authorisation or UK clinical-trial authorisation for ASC30_39 FDC.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Preclinical development and a planned US filing do not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "Dog pharmacokinetic and formulation observations and rodent or non-human-primate weight findings are not human obesity efficacy or safety results. They do not establish an approved combined regimen, dose, tolerability, durability, muscle preservation or superiority. The planned third-quarter filing is not presented as completed.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-10T12:16:36Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Ascletis: ASC30_39 FDC selected for clinical development",
+          "url": "https://www.prnewswire.com/news-releases/ascletis-announces-fixed-dose-combination-of-asc30-once-daily-oral-small-molecule-glp-1r-agonist-and-asc39-once-daily-oral-small-molecule-amylin-selective-amylin-receptor-agonist-for-clinical-development-302735615.html",
+          "sourcePublishedAt": "2026-04-07",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-10T12:16:36Z",
+          "checkScope": "Complete sponsor-distributed announcement read for candidate selection, non-human evidence and planned filing. Not automatically content-monitored."
+        },
+        {
+          "title": "Ascletis: oral GLP-1/GIP/amylin portfolio update",
+          "url": "https://www.prnewswire.com/news-releases/ascletis-announces-initiation-of-global-phase-iii-for-oral-small-molecule-glp-1-asc30-and-positive-preclinical-data-for-its-first-in-class-oral-small-molecule-glp-1gipamylin-fixed-dose-combination-302841108.html",
+          "sourcePublishedAt": "2026-08-03",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-10T12:16:36Z",
+          "checkScope": "Complete sponsor-distributed announcement read for current dated portfolio status. Not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "asc30-48-fdc",
+      "name": "ASC30_48 FDC oral combination",
+      "developer": "Ascletis Pharma",
+      "group": "research",
+      "stage": "Preclinical oral GLP-1/GIP combination; IND filing planned",
+      "summary": "Ascletis selected a once-daily oral fixed-dose combination of ASC30 and ASC48 for clinical development. The sponsor reports only non-human-primate weight findings and planned a US IND filing in the fourth quarter of 2026; the reviewed sources do not establish a completed filing, clearance or human study.",
+      "ukAuthorisation": "The reviewed sponsor evidence does not establish UK marketing authorisation or UK clinical-trial authorisation for ASC30_48 FDC.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Preclinical development and a planned US filing do not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The reported weight observations are from an eight-day non-human-primate study, not people. They do not establish human efficacy, safety, tolerability, dose, durability, muscle preservation, equivalence to tirzepatide or superiority. A fourth-quarter filing remains a plan, not a completed event.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-10T12:16:36Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Ascletis: ASC30_48 FDC selected for clinical development",
+          "url": "https://www.prnewswire.com/news-releases/ascletis-selects-for-clinical-development-a-fixed-dose-combination-of-first-in-class-oral-small-molecule-gipr-agonist-asc48-and-oral-small-molecule-glp-1r-agonist-asc30-302826283.html",
+          "sourcePublishedAt": "2026-07-15",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-10T12:16:36Z",
+          "checkScope": "Complete sponsor-distributed announcement read for candidate selection, animal-only evidence and planned filing. Not automatically content-monitored."
+        },
+        {
+          "title": "Ascletis: oral GLP-1/GIP/amylin portfolio update",
+          "url": "https://www.prnewswire.com/news-releases/ascletis-announces-initiation-of-global-phase-iii-for-oral-small-molecule-glp-1-asc30-and-positive-preclinical-data-for-its-first-in-class-oral-small-molecule-glp-1gipamylin-fixed-dose-combination-302841108.html",
+          "sourcePublishedAt": "2026-08-03",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-10T12:16:36Z",
+          "checkScope": "Complete sponsor-distributed announcement read for current dated portfolio status. Not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "asc30-48-39-fdc",
+      "name": "ASC30_48_39 FDC oral combination",
+      "developer": "Ascletis Pharma",
+      "group": "research",
+      "stage": "Preclinical oral GLP-1/GIP/amylin combination; IND filing planned",
+      "summary": "Ascletis describes a once-daily oral fixed-dose combination of ASC30, ASC48 and ASC39 targeting GLP-1, GIP and amylin receptors. Its 3 August 2026 announcement reports only non-human-primate findings and planned a US IND filing in the fourth quarter of 2026; no human trial or completed filing is established.",
+      "ukAuthorisation": "The reviewed sponsor evidence does not establish UK marketing authorisation or UK clinical-trial authorisation for ASC30_48_39 FDC.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Preclinical development and a planned US filing do not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The reported seven-day weight observations are from non-human primates, not people. They do not establish human efficacy, safety, tolerability, dose, durability, muscle preservation, equivalence to injectable combinations or superiority. A fourth-quarter filing remains a plan, not a completed event.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-10T12:16:36Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Ascletis: oral GLP-1/GIP/amylin portfolio update",
+          "url": "https://www.prnewswire.com/news-releases/ascletis-announces-initiation-of-global-phase-iii-for-oral-small-molecule-glp-1-asc30-and-positive-preclinical-data-for-its-first-in-class-oral-small-molecule-glp-1gipamylin-fixed-dose-combination-302841108.html",
+          "sourcePublishedAt": "2026-08-03",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-10T12:16:36Z",
+          "checkScope": "Complete sponsor-distributed announcement read for programme composition, animal-only evidence and planned filing status. Not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "liveAcceptance": {
+    "requiredProgrammeCount": 116,
+    "requiredConfiguredSourceCount": 199,
+    "requiredManualEvidenceUrlCount": 96,
+    "requiredReviewCounts": {
+      "factualReviewNeeded": 0,
+      "verificationPending": 1,
+      "checksDelayed": 1
+    },
+    "preserve": "All 35 completed factual reviews, the reviewed-delayed/pending-delayed queue distinction, the ZP6590 sponsor uncertainty and every existing release guard."
+  }
+}

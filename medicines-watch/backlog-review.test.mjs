@@ -13,5 +13,5 @@ test('changed registry records remove stale recruitment, dates and enrollment wi
  const mir=industry.find(e=>e.id==='mirabegron-alpha-lipoic-acid');assert.match(mir.summary,/14 October 2026/);assert.match(mir.limitations,/48-person target.*60/);assert.doesNotMatch(mir.summary,/13 October/);
 });
 test('official alternative replaces rejection page without certifying unavailable English evidence',()=>{
- const s=sources.find(s=>s.id==='hrs1596-hengrui-20260929');assert.equal(s.url,'https://www.hengrui.com/media/detail-1041.html');assert.equal(s.contentSelector,'article');assert.match(receipt.remainingObstacles[0].error,/Request Rejected/);assert.match(receipt.remainingObstacles[0].disposition,/not.*certified/);assert.equal(sources.length,199);assert.equal(industry.length,106);
+ const s=sources.find(s=>s.id==='hrs1596-hengrui-20260929');assert.equal(s.url,'https://www.hengrui.com/media/detail-1041.html');assert.equal(s.contentSelector,'article');assert.match(receipt.remainingObstacles[0].error,/Request Rejected/);assert.match(receipt.remainingObstacles[0].disposition,/not.*certified/);assert.equal(sources.length,199);assert.equal(industry.length,110);
 });
