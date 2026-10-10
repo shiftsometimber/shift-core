@@ -1463,5 +1463,40 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "organicMeasurementIntegration": {
+    "proof": "EXACT_ORGANIC_MEASUREMENT_INTEGRATION_V1",
+    "base": "8a1fc5ac713e371b35b5a454e1433b00338070f8",
+    "source": "69432861d55b74ce2b8251a0efec53f5014010e8",
+    "paths": [
+      "docs/growth-review/2026-10-09-answer-depth-live.json",
+      "docs/growth-review/2026-10-09-campaign-release-state.json",
+      "docs/growth-review/2026-10-09-measurement.json",
+      "docs/growth-review/2026-10-09-ownership.md",
+      "scripts/reconcile-organic-measurement.mjs",
+      "tests/organic-measurement-reconciliation.test.mjs"
+    ],
+    "maintenancePaths": [
+      ".github/workflows/organic-followthrough-proof.yml",
+      "release/approved-runtime-composition.mjs",
+      "tests/organic-measurement-composition.test.mjs"
+    ],
+    "maintenanceSource": "62e28aaad018d1b5e961ab329e9ae4a264f41e52",
+    "approvedPR": 1280,
+    "integrationIssue": 1065,
+    "pageClickAttribution": "unresolved",
+    "pageCTRUsable": false,
+    "outcomeClaimsAllowed": false,
+    "runtimeChanged": false,
+    "analyticsChanged": false,
+    "consentChanged": false,
+    "privateDataRead": false,
+    "homepageChanged": false,
+    "medicalClaimsChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
