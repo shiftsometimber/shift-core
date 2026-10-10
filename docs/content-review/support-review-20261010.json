@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-10",
+  "status": "candidate_not_released",
+  "ownerLane": 1065,
+  "paths": [
+    "/complaints",
+    "/contact",
+    "/terms-of-sale",
+    "/refunds"
+  ],
+  "basis": "Full current public main text and rendered 390/1440px pages, plus existing current-status source in shift-coach/public-trust-repair.mjs.",
+  "changes": [
+    "Explicit complaint initiation and minimum details; no invented acknowledgement deadline.",
+    "Map payment-query to existing My order option; complaint to Something else with editable prompt.",
+    "Use existing four-nation Help route, preserving 999 emergency advice.",
+    "Payment-query checklist and distinction between cancellation request and confirmation; closed ordering unchanged."
+  ],
+  "candidateVerification": "10 intercepted candidate page/states and 6 actual link-to-form/Back journeys passed at 390/1440; selected screenshots manually inspected. Not live acceptance.",
+  "operationalGap": "Public headless security challenge remained pending at 45 seconds. Separate controlled test blocking every modifying request produced a visible security error, retained the message and re-enabled Send at 390/1440. Actual successful receipt and reply remain unverified; no delivery claim.",
+  "protected": [
+    "homepage",
+    "campaign",
+    "organic growth",
+    "Watch",
+    "stock",
+    "prices",
+    "clinical gates",
+    "checkout",
+    "refund SLA",
+    "privacy controls"
+  ],
+  "register": "libfile_bd750155ae1c8191a16306ff8c4a4ce5",
+  "reconciledBase": "d54b9e139ca0b65a3fba15ab0d33dd397fa45fc2",
+  "integrationStatus": "Three-file candidate rebased onto merged continuity main; finite release source registration and guarded publication remain pending."
+}
