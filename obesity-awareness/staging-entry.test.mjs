@@ -11,3 +11,11 @@ test('HEAD is bodyless; source HEAD status and review controls remain',async()=>
 test('configuration has no public route, preview URL, data binding, schedule or enabled flag',()=>{const c=JSON.parse(readFileSync(new URL('./wrangler.staging.jsonc',import.meta.url),'utf8'));assert.equal(c.workers_dev,false);assert.equal(c.preview_urls,false);assert.equal(c.vars.MALE_OBESITY_PREVIEW_ENABLED,'false');for(const key of ['routes','route','d1_databases','kv_namespaces','r2_buckets','durable_objects','triggers'])assert.equal(c[key],undefined)});
 
 test('rendered review fragments stay in candidate and absolute scoped production links remain staged',async()=>{const w=createStagingWorker(async()=>new Response(shell,{headers:{'Content-Type':'text/html'}}));const r=await w.fetch(new Request('https://staging.invalid'+PATH),enabled),h=await r.text();assert.match(h,/href="https:\/\/staging.invalid\/male-obesity#first-step"/);assert.doesNotMatch(h,/href="#first-step"/);assert.match(h,/href="https:\/\/staging.invalid\/weight-loss-support-for-men"/)});
+
+test('hub preview preserves the actual scoped accessibility hook, not production tracking',async()=>{
+ const w=createStagingWorker(async()=>new Response(shell,{headers:{'Content-Type':'text/html'}}));
+ const h=await (await w.fetch(new Request('https://staging.invalid'+PATH),enabled)).text();
+ assert.match(h,/<script data-obesity-accessibility>/);
+ assert.match(h,/data-guide-large-text/);
+ assert.doesNotMatch(h,/tracking.js/);
+});

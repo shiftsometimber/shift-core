@@ -56,8 +56,12 @@ function observeCollector(page,records){
     assert(schema.some(s=>s.includes('MedicalWebPage')&&s.includes('2026-10-10')));
     assert(!schema.some(s=>s.includes('reviewedBy')));
     assert.equal(await page.locator('meta[name="twitter:card"]').getAttribute('content'),'summary_large_image');
+    const textSize=await page.locator('#measurements p').first().evaluate(el=>parseFloat(getComputedStyle(el).fontSize));
     await page.getByRole('button',{name:'Larger text',exact:true}).click();
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+    assert(await page.locator('#measurements p').first().evaluate(el=>parseFloat(getComputedStyle(el).fontSize))>textSize,'Larger text must actually enlarge the guide');
+    assert.equal(await page.locator('#toggleLargeText').getAttribute('aria-pressed'),'true');
+    await page.getByRole('button',{name:'Reduce motion',exact:true}).click();assert.equal(await page.locator('main').getAttribute('data-guide-reduce-motion'),'true');
     await page.screenshot({path:dir+'/'+width+'-enlarged.png'});
     await page.getByRole('button',{name:'Larger text',exact:true}).click();
     await page.keyboard.press('Tab');assert(await page.evaluate(()=>document.activeElement!==document.body));
@@ -73,7 +77,7 @@ function observeCollector(page,records){
     await page.locator('summary').filter({hasText:'I get home hungry and have no plan'}).click();
     assert((await page.locator('#first-step').innerText()).includes('my fallback is'));
     assert((await page.locator('#first-step').innerText()).includes('beans on toast'));
-    assert((await page.locator('main').innerText()).includes('was it affordable and easy enough')); 
+    assert((await page.locator('main').innerText()).includes('was it affordable and easy enough'));
     await page.screenshot({path:dir+'/'+width+'-first-action.png'});
     await page.getByRole('button',{name:'I tried my step',exact:true}).click();await page.getByRole('button',{name:'Too much effort',exact:true}).click();
     assert((await page.locator('[data-pillar-status]').innerText()).includes('smaller'));

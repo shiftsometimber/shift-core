@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {amendSupportingDocument} from '../obesity-awareness/candidate.mjs';
 import {HOME_V42_CSS} from '../home-v42-critical.mjs';
 import {HOME_BLOCKING_STYLES} from '../home-blocking-styles.mjs';
 import {HOME_RECOVERY_CSS} from '../home-critical-styles.mjs';
@@ -18,7 +19,8 @@ export function expectedSeo794ArticleBody(html,path){
 // Compose exact approved contextual links and the already-serving support panel.
 // This expectation does not normalise arbitrary live changes or renew medical review.
 export function expectedPublishedArticleBody(html,path){
- return addContinuityLinks(applyFollowThrough(expectedSeo794ArticleBody(html,path),path),path);
+ const expected=addContinuityLinks(applyFollowThrough(expectedSeo794ArticleBody(html,path),path),path);
+ return path==='/research/uk-mens-weight-health-statistics'?amendSupportingDocument(path,expected):expected;
 }
 export function expectedPublishedArticleDate(path,original){
  return DISTRIBUTION_PATHS.includes(path)?DISTRIBUTION_DATE:RANKING_GROWTH_PATHS.includes(path)?RANKING_GROWTH_DATE:original;
