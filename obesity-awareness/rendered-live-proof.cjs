@@ -9,7 +9,16 @@ const result={at:new Date().toISOString(),source:process.env.RELEASE_SOURCE,rele
 const eventNames=['shift_pillar_first_step_opened','shift_pillar_onward_opened','shift_pillar_step_tried','shift_pillar_review_used'];
 const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
 // Own HTTP/render readiness avoids unrelated deferred-resource lifecycle stalls; all assertions remain required.
-const navigate=async(page,path)=>{const r=await page.goto(origin+path,{waitUntil:'commit',timeout:60000});assert.equal(r.status(),200,path);await page.locator('h1').waitFor({state:'visible',timeout:20000});await page.locator('[data-male-obesity-footer]').waitFor({state:'attached',timeout:20000});return r;};
+const ownRenderReady=async(page)=>{
+ await page.locator('h1').waitFor({state:'visible',timeout:20000});
+ await page.locator('[data-male-obesity-footer]').waitFor({state:'attached',timeout:20000});
+ await page.waitForFunction(()=>document.readyState!=='loading'&&[...document.querySelectorAll('link[rel~="stylesheet"]')].every(l=>l.disabled||Boolean(l.sheet)),null,{timeout:20000});
+ if(page.viewportSize().width===390)await page.waitForFunction(()=>getComputedStyle(document.querySelector('.desktop-nav')).display==='none',null,{timeout:20000});
+ await Promise.race([page.evaluate(()=>document.fonts.ready.then(()=>true)),new Promise((_,reject)=>setTimeout(()=>reject(Error('Owned font readiness timed out')),20000))]);
+ await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+};
+const renderState=page=>page.evaluate(()=>{const from=(()=>{try{return new URL(document.referrer);}catch{return null;}})();return{path:location.pathname,readyState:document.readyState,scrollWidth:document.documentElement.scrollWidth,viewportWidth:innerWidth,navDisplay:document.querySelector('.desktop-nav')?getComputedStyle(document.querySelector('.desktop-nav')).display:null,stylesheetReady:[...document.querySelectorAll('link[rel~="stylesheet"]')].map(l=>({path:new URL(l.href).pathname,loaded:Boolean(l.sheet)})),fontStatus:document.fonts.status,hasPillarClient:Boolean(document.querySelector('[data-pillar-client]')),analyticsConsent:window.SSTConsent?.get?.()?.analytics===true,suppressed:window.SST_ANALYTICS_SUPPRESSED===true,referrerPath:from?.pathname||null,sameOriginReferrer:from?.origin===location.origin,pillarEvents:(window.dataLayer||[]).filter(x=>/^shift_pillar_/.test(x?.event||'')).map(x=>x.event)};});
+const navigate=async(page,path)=>{const r=await page.goto(origin+path,{waitUntil:'commit',timeout:60000});assert.equal(r.status(),200,path);await ownRenderReady(page);return r;};
 async function necessary(page){if(!await page.getByRole('dialog',{name:'Cookie choices',exact:true}).isVisible())await page.getByRole('button',{name:'Cookie choices',exact:true}).click();await page.getByRole('button',{name:'Necessary only',exact:true}).click();}
 function observeCollector(page,records){
  const pending=new WeakMap();
@@ -44,7 +53,7 @@ function observeCollector(page,records){
      assert(!/noindex/i.test((await page.locator('meta[name="robots"]').getAttribute('content'))||''));
      result.checks.push({path,width,status:200,htmlSha256:hash(html),canonical,checks:['one H1','five primary navigation links','male-obesity footer','no horizontal overflow','indexable canonical']});
     }
-    await navigate(page,'/male-obesity');await necessary(page);await page.reload({waitUntil:'domcontentloaded'});
+    await navigate(page,'/male-obesity');await necessary(page);await page.reload({waitUntil:'commit'});await ownRenderReady(page);
     await page.screenshot({path:dir+'/'+width+'-hub.png'});
     const menu=page.getByRole('button',{name:'Menu',exact:true});await menu.click();
     const links=await page.locator('#site-drawer a').allTextContents(),m=links.indexOf('Male obesity');
@@ -84,19 +93,19 @@ function observeCollector(page,records){
     const missing=await page.goto(origin+'/male-obesity/route-does-not-exist',{waitUntil:'domcontentloaded'});assert.equal(missing.status(),404);assert(await page.getByRole('link',{name:'Search Shift',exact:true}).isVisible());
     await navigate(page,'/male-obesity');assert(await page.getByRole('link',{name:'Find one useful step',exact:true}).isVisible());
     result.checks.push({width,status:'pass',checks:['missing page is an honest 404 with recovery','public hub remains usable on return']});
-   }finally{await context.close();}
+   }catch(error){result.renderFailure=await renderState(page).catch(()=>null);await page.screenshot({path:dir+'/'+width+'-failed-render.png'}).catch(()=>{});throw error;}finally{await context.close();}
   }
   // One genuine consented public pass, separate from the declined/BMI checks.
   const context=await browser.newContext({viewport:{width:390,height:900}}),page=await context.newPage();observeCollector(page,result.collector);
   try{
-   await navigate(page,'/male-obesity');if(!await page.getByRole('dialog',{name:'Cookie choices',exact:true}).isVisible())await page.getByRole('button',{name:'Cookie choices',exact:true}).click();await page.getByRole('button',{name:'Accept analytics',exact:true}).click();await page.reload({waitUntil:'domcontentloaded'});
+   await navigate(page,'/male-obesity');if(!await page.getByRole('dialog',{name:'Cookie choices',exact:true}).isVisible())await page.getByRole('button',{name:'Cookie choices',exact:true}).click();await page.getByRole('button',{name:'Accept analytics',exact:true}).click();await page.reload({waitUntil:'commit'});await ownRenderReady(page);
    const accepted=async(name)=>{const until=Date.now()+15000;while(Date.now()<until&&!result.collector.some(r=>r.event===name&&[200,204].includes(r.responseStatus)))await page.waitForTimeout(100);assert(result.collector.some(r=>r.event===name&&[200,204].includes(r.responseStatus)),name+' accepted before the next distinct action');};await page.getByRole('link',{name:'Find one useful step',exact:true}).click();await accepted('shift_pillar_first_step_opened');await page.getByRole('button',{name:'I tried my step',exact:true}).click();await accepted('shift_pillar_step_tried');await page.getByRole('button',{name:'Too much effort',exact:true}).click();await accepted('shift_pillar_review_used');
    await page.getByRole('link',{name:'see the free support available through My Timber',exact:true}).click();await page.locator('h1').waitFor();
    const until=Date.now()+15000;while(Date.now()<until&&!eventNames.every(n=>result.collector.some(x=>x.event===n&&[200,204].includes(x.responseStatus))))await page.waitForTimeout(250);
    for(const name of eventNames)assert(result.collector.some(r=>r.event===name&&r.stream==='G-Y7BV5KY6RR'&&[200,204].includes(r.responseStatus)),name+' must be accepted by the real GA4 collector');
    for(const receipt of result.collector){assert(!receipt.unsafeAnswerParameter,'An answer reached public analytics');const u=new URL(receipt.location);assert.equal(u.origin,origin);assert.equal(u.search,'');assert.equal(u.hash,'');assert(!u.pathname.startsWith('/member/'));}
    result.collectorVerified=true;result.collectionReportingVerified=false;result.reportingRequirement='Independently check GA4 Realtime; collector requests are not reporting or growth evidence.';
-  }finally{await context.close();}
+  }finally{result.collectorRenderState=await renderState(page).catch(()=>null);await context.close();}
   result.status='passed';
  }catch(error){result.status='failed';result.error=error.message;throw error;}
  finally{await browser.close();result.finishedAt=new Date().toISOString();fs.writeFileSync(dir+'/receipt.json',JSON.stringify(result,null,2));console.log('PILLAR_SAFE_LIVE_RECEIPT '+JSON.stringify(result));}
