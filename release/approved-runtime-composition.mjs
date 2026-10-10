@@ -779,6 +779,28 @@ export function verifyMaleObesityCloseout(c,{head,read,diff,ancestor,content=(re
  return c;
 }
 
+// One finite read-only acceptance repair; serving content and prior receipts stay pinned.
+export const MALE_OBESITY_ACCEPTANCE_BASE='78c515b7c49bcf309941a53c2f87c6e94e76d6b7';
+export const MALE_OBESITY_ACCEPTANCE_SOURCE='6a01a19137cfc81a5c4acbb5be2832dcfe991c88';
+export const MALE_OBESITY_ACCEPTANCE_PATHS=Object.freeze(['obesity-awareness/rendered-live-proof.cjs','obesity-awareness/measurement.mjs','obesity-awareness/measurement-navigation.test.mjs']);
+export const MALE_OBESITY_ACCEPTANCE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/male-obesity-acceptance-composition.test.mjs']);
+const MALE_OBESITY_ACCEPTANCE_SET=new Set([...MALE_OBESITY_ACCEPTANCE_PATHS,...MALE_OBESITY_ACCEPTANCE_MAINTENANCE]);
+for(const path of MALE_OBESITY_ACCEPTANCE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyMaleObesityAcceptance(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_MALE_OBESITY_JOURNEY_REPAIR_V1');assert.equal(c.base,MALE_OBESITY_ACCEPTANCE_BASE);assert.equal(c.source,MALE_OBESITY_ACCEPTANCE_SOURCE);
+ assert.deepEqual(c.paths,MALE_OBESITY_ACCEPTANCE_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_ACCEPTANCE_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
+ assert.equal(c.ownerApproval,'Complete authorised release and prove the live male-obesity journey');assert.equal(c.repair,'Preserve real consented onward collection before navigation with a350ms fallback; align acceptance with existing public controls');assert.equal(c.acceptanceHarnessOnly,false);assert.equal(c.runtimeChanged,true);
+ for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity acceptance payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated male-obesity acceptance maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after male-obesity acceptance receipt');
+ const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityAcceptanceRepair;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by acceptance repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity maintenance source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -801,10 +823,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const maleAcceptance=c.maleObesityAcceptanceRepair;
+ if(maleAcceptance)verifyMaleObesityAcceptance(maleAcceptance,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preAcceptanceHead=maleAcceptance?maleAcceptance.base:actualHead;
+ const acceptanceRawBlob=(ref,path)=>outerRawBlob(maleAcceptance&&ref==='HEAD'&&MALE_OBESITY_ACCEPTANCE_SET.has(path)?maleAcceptance.base:ref,path);
  const maleCloseout=c.maleObesityReleaseCloseout;
- if(maleCloseout)verifyMaleObesityCloseout(maleCloseout,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preCloseoutHead=maleCloseout?maleCloseout.base:actualHead;
- const closeoutRawBlob=(ref,path)=>outerRawBlob(maleCloseout&&ref==='HEAD'&&MALE_OBESITY_CLOSEOUT_SET.has(path)?maleCloseout.base:ref,path);
+ if(maleCloseout)verifyMaleObesityCloseout(maleCloseout,{head:preAcceptanceHead,read:acceptanceRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preCloseoutHead=maleCloseout?maleCloseout.base:preAcceptanceHead;
+ const closeoutRawBlob=(ref,path)=>acceptanceRawBlob(maleCloseout&&ref==='HEAD'&&MALE_OBESITY_CLOSEOUT_SET.has(path)?maleCloseout.base:ref,path);
  const backlog=c.watchBacklogUpdate;
  if(backlog)verifyWatchBacklogUpdate(backlog,{head:preCloseoutHead,read:closeoutRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preBacklogHead=backlog?backlog.base:preCloseoutHead;

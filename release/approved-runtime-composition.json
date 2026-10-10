@@ -1195,5 +1195,35 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "maleObesityAcceptanceRepair": {
+    "proof": "EXACT_MALE_OBESITY_JOURNEY_REPAIR_V1",
+    "base": "78c515b7c49bcf309941a53c2f87c6e94e76d6b7",
+    "source": "6a01a19137cfc81a5c4acbb5be2832dcfe991c88",
+    "paths": [
+      "obesity-awareness/rendered-live-proof.cjs",
+      "obesity-awareness/measurement.mjs",
+      "obesity-awareness/measurement-navigation.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/male-obesity-acceptance-composition.test.mjs"
+    ],
+    "maintenanceSource": "460cafa987e0ace455c17d8408c0eed5fa04f3d6",
+    "ownerApproval": "Complete authorised release and prove the live male-obesity journey",
+    "repair": "Preserve real consented onward collection before navigation with a350ms fallback; align acceptance with existing public controls",
+    "acceptanceHarnessOnly": false,
+    "runtimeChanged": true,
+    "homepageChanged": false,
+    "startHereFlowChanged": false,
+    "primaryNavigationChanged": false,
+    "memberDataChanged": false,
+    "checkoutChanged": false,
+    "externalCommunicationsSent": false,
+    "costsCommitted": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
