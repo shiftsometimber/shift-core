@@ -4,6 +4,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { readFileSync } from 'node:fs';
 import { checkSources, readWatchHealth, fingerprintSource, projectSourceHealth,
   CHECK_INTERVAL_MS, REVIEW_INTERVAL_MS, sourceDeadlineMs } from './monitor.mjs';
+import { evidenceQueue } from './evidence-desk.mjs';
 
 const NOW = Date.parse('2026-09-15T22:00:00Z');
 const source = {
@@ -222,6 +223,27 @@ test('failed fetch keeps last successful observation and separate latest failure
   assert.equal(state.status, 'current');
   assert.equal(state.sources[0].lastFailureAt, new Date(later).toISOString());
   assert.equal(state.sources[0].error, null);
+});
+
+test('full monitor projection keeps reviewed, pending and changed delayed queue states distinct', async t => {
+  const changedBody={...document,details:{body:'<p>Example medicine is authorised for a materially different indication.</p>'}};
+  const cases=[
+    {id:'reviewed-delayed',approved:true,first:()=>response(),review:false,pending:false},
+    {id:'pending-delayed',approved:false,first:null,review:false,pending:true},
+    {id:'changed-delayed',approved:true,first:()=>response(changedBody),review:true,pending:false}
+  ];
+  for(const item of cases){
+    const env=setup(t),configured={...(item.approved?await approvedSource():source),id:item.id};
+    if(item.first)await scan(env,configured,{fetchImpl:async()=>item.first()});
+    await scan(env,configured,{now:NOW+CHECK_INTERVAL_MS,fetchImpl:async()=>new Response('Forbidden',{status:403})});
+    const state=await health(env,configured,{now:NOW+CHECK_INTERVAL_MS});
+    const observation=state.sources[0];
+    assert.equal(observation.checkStatus,'check_delayed',item.id);
+    const queue=evidenceQueue([configured],state,NOW+CHECK_INTERVAL_MS);
+    assert.equal(queue.length,1,item.id);
+    assert.deepEqual({review:queue[0].review,delayed:queue[0].delayed,pending:queue[0].pending},
+      {review:item.review,delayed:true,pending:item.pending},item.id);
+  }
 });
 
 test('malformed JSON, empty 202, wrong MIME and wrong identity cannot pass as fresh', async t => {

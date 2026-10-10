@@ -24,6 +24,7 @@ export const discoveryDomains = [
  'biomedind.com',
  'antagtherapeutics.com','ganlee.com',
  'bioagelabs.com',
+ 'mwyngil.com','palatin.com',
 ];
 // Supply a current date when running; never leave a review month fixed.
 export function queriesForDate(date=new Date()) {

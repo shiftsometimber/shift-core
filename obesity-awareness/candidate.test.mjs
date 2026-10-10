@@ -8,7 +8,7 @@ const support=renderContinuityDocument(shell,'/weight-loss-support-for-men');
 test('central retains locked chrome/consent and replaces stale programme metadata/runtime',()=>{
  const h=renderCandidate(shell);for(const s of ['<header>START HERE · THE PROGRAMME · SHIFT HEALTH · TREATMENTS · MY TIMBER</header>','<footer>Existing footer</footer>','/consent-v4a.js'])assert.ok(h.includes(s));
  assert.doesNotMatch(h,/src="\/programme.js"/);assert.equal((h.match(/<h1\b/g)||[]).length,1);assert.equal((h.match(/rel="canonical"/g)||[]).length,1);assert.match(h,/noindex,nofollow/);
- const graph=JSON.parse(h.match(/application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];assert.equal(graph[0]['@type'],'Article');assert.equal(graph[1]['@type'],'BreadcrumbList');assert.ok(!graph[0].reviewedBy);assert.ok(!graph[0].datePublished);
+ const graph=JSON.parse(h.match(/application\/ld\+json">([\s\S]*?)<\/script>/)[1])['@graph'];assert.equal(graph[0]['@type'],'MedicalWebPage');assert.equal(graph[1]['@type'],'BreadcrumbList');assert.ok(!graph[0].reviewedBy);assert.equal(graph[0].datePublished,'2026-10-10');assert.equal(graph[0].dateModified,'2026-10-10');assert.equal(graph[0].author.name,'Matt O’Brien');assert.equal(graph[0].about.name,'Obesity');assert.equal(graph[0].citation.length,12);
 });
 test('public actions need no form, JS, data save or prescription route',()=>{
  const main=renderCandidate(shell).match(/<main\b[^>]*>([\s\S]*?)<\/main>/)[1];assert.equal((main.match(/<details>/g)||[]).length,3);
