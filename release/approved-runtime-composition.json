@@ -1258,6 +1258,35 @@
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
   },
+  "watchPreclinicalReleaseTestRepair": {
+    "proof": "EXACT_WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_V1",
+    "base": "0baf1873fa1a6275258e984939d97c05aaeae61c",
+    "source": "687efaeafd0fa280f99941252430fc6722e57af7",
+    "paths": [
+      "shift-coach/release.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/late-watch-composition.test.mjs"
+    ],
+    "maintenanceSource": "b4c77830ded0c006a828fec1e60a18a4870f49fb",
+    "approvedPR": 1293,
+    "failedRun": 38026970615,
+    "releaseReachedProduction": false,
+    "failureGate": "Verify B1 release scope before any production mutation",
+    "failureCause": "release meta-test did not recognise factual Watch source drift wording",
+    "medicalEvidenceChanged": false,
+    "reviewDatesChanged": false,
+    "monitorBaselinesChanged": false,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
+  },
   "watchPreclinicalDiscoveryUpdate": {
     "proof": "EXACT_WATCH_PRECLINICAL_DISCOVERY_V1",
     "base": "834680b4353551b257fe0094e834fa827c86ad70",
