@@ -8,7 +8,8 @@ const result={at:new Date().toISOString(),source:process.env.RELEASE_SOURCE,rele
  classification:'Controlled public QA, not organic growth; mobile-sized Chromium, not a physical phone',checks:[],collector:[],customerRecordsRead:0,memberWrites:0};
 const eventNames=['shift_pillar_first_step_opened','shift_pillar_onward_opened','shift_pillar_step_tried','shift_pillar_review_used'];
 const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
-const navigate=async(page,path)=>{const r=await page.goto(origin+path,{waitUntil:'domcontentloaded',timeout:60000});assert.equal(r.status(),200,path);await page.locator('h1').waitFor();return r;};
+// Own HTTP/render readiness avoids unrelated deferred-resource lifecycle stalls; all assertions remain required.
+const navigate=async(page,path)=>{const r=await page.goto(origin+path,{waitUntil:'commit',timeout:60000});assert.equal(r.status(),200,path);await page.locator('h1').waitFor({state:'visible',timeout:20000});await page.locator('[data-male-obesity-footer]').waitFor({state:'attached',timeout:20000});return r;};
 async function necessary(page){if(!await page.getByRole('dialog',{name:'Cookie choices',exact:true}).isVisible())await page.getByRole('button',{name:'Cookie choices',exact:true}).click();await page.getByRole('button',{name:'Necessary only',exact:true}).click();}
 function observeCollector(page,records){
  const pending=new WeakMap();
