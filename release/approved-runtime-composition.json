@@ -1628,5 +1628,34 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "obesityPractical": {
+    "proof": "EXACT_OBESITY_PRACTICAL_20261010",
+    "base": "84810813ab060a78935cca29b87011986f479953",
+    "source": "2af00448b5aa7cb2b5dbedc8505d19e6932ab2c4",
+    "maintenanceSource": "963ca257d60d8b61bbd3c3d09c8fd91f6ef6b8a7",
+    "paths": [
+      "obesity-awareness/content.mjs",
+      "obesity-awareness/rendered-live-proof.cjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/obesity-practical-composition.test.mjs"
+    ],
+    "integrationIssue": 1065,
+    "publicationStatus": "authorised_by_Matt_20261010",
+    "priorPreviewRun": 38058282091,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "sharedNavigationChanged": false,
+    "memberDataChanged": false,
+    "checkoutChanged": false,
+    "analyticsChanged": false,
+    "consentChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
