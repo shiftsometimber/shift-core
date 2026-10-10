@@ -9,6 +9,7 @@ const receipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-23-product-in
 const nhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-01-mounjaro-nhs-renewal.json', import.meta.url)));
 const overdueReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-30-overdue-source-renewal.json', import.meta.url)));
 const wegovyMashReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-03-authorised-wegovy-mash-correction.json', import.meta.url)));
+const wegovyRenewalReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-10-wegovy-source-renewal.json', import.meta.url)));
 const ids = ['mounjaro-smpc', 'wegovy-tablet-smpc', 'orlistat-120-smpc', 'orlistat-60-smpc', 'foundayo-smpc'];
 const time = Date.parse(receipt.reviewedAt);
 const observation = (source, now = time) => ({
@@ -72,5 +73,5 @@ test('renewal does not renew the catalogue, medicine claims, NHS or provider rev
   assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, backlogReview.reviewedAt);
   assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, JSON.parse(readFileSync(new URL('./reviews/2026-10-04-wegovy-tablet-provider-renewal.json', import.meta.url))).reviewedAt);
   assert.equal(sources.find(s => s.id === 'wegovy-injection-smpc').reviewedAt,
-    wegovyMashReceipt.reviewedAt);
+    wegovyRenewalReceipt.reviewedAt);
 });

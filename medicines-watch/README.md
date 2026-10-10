@@ -2,6 +2,12 @@
 
 Public route: `/treatment-centre/medicines-watch`. Entry point is Treatments only. No member or My Timber integration. This is a continuously expanding selected weight-management reference, not an exhaustive medicine database, prescribing tool, stock service or recommendation ranking.
 
+## 10 October Wegovy source renewal
+
+`reviews/2026-10-10-wegovy-source-renewal.json` records the complete factual rereview of the two sources that crossed the seven-day deadline. The current 22 September Wegovy injection SmPC still separately supports weight management, cardiovascular-risk reduction for eligible adults and non-cirrhotic MASH with F2 to F3 fibrosis; it also says the 240-week confirmatory MASH results remain outstanding. NICE ID6458 remains an appraisal in progress, with a provisional 15 October committee meeting and expected publication on 7 January 2027. The appraisal is not a recommendation and does not establish NHS England MASH access.
+
+Both configured claim fingerprints remained unchanged and neither source was withdrawn. Only the two source-specific review dates advance; medicine wording and its 3 October medicine-review date, UK authorisation wording, NHS access, supply, the 116-programme catalogue, the 199-source monitor, the 35 previously completed reviews and the pending-delayed ZP6590 uncertainty are preserved. The ordinary web-reading route returned HTTP 403 for NICE, but the same official project page was directly rendered and read in a browser while the configured monitor continued to retrieve it successfully. Editorial authority covers this bounded factual renewal; it is not clinical approval and recurring freshness monitoring remains open.
+
 ## 10 October oral small-molecule portfolio discovery
 
 `reviews/2026-10-10-authorised-ascletis-oral-portfolio.json` closes four programme-level omissions found by the undated combination and modality pass: ASC39, ASC30_39 FDC, ASC30_48 FDC and ASC30_48_39 FDC. Complete sponsor-distributed announcements dated 7 April, 15 July and 3 August 2026 were read. They establish preclinical oral small-molecule programmes and planned US IND filings, not completed filings, clearances, human trials or first dosing.

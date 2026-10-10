@@ -1,0 +1,81 @@
+{
+  "reviewedAt": "2026-10-10T16:59:10Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "reviewType": "AI-assisted factual source review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "sources": [
+    {
+      "id": "wegovy-injection-smpc",
+      "publisher": "electronic medicines compendium / Novo Nordisk Limited",
+      "title": "Wegovy 2.4 mg FlexTouch solution for injection: Summary of Product Characteristics",
+      "url": "https://www.medicines.org.uk/emc/product/13803/smpc",
+      "checkUrl": "https://www.medicines.org.uk/emc/product/13803/smpc",
+      "format": "html",
+      "sourcePublishedAt": "2026-09-22",
+      "retrievedAt": "2026-10-10T16:59:10Z",
+      "reviewedAt": "2026-10-10T16:59:10Z",
+      "previousReviewedAt": "2026-10-03T16:42:06Z",
+      "httpStatus": 200,
+      "renderedHtmlCharacters": 712195,
+      "retrievalMethod": "Direct browser rendering of the complete current official page; the claim-bearing sections were read and cross-checked against the same-hour configured monitor result.",
+      "reviewedFingerprint": "2d47d8fcebc5f78afe4fa4834970434d327c9731ecd2efbfc4ec85e649059ca6",
+      "previousReviewedFingerprint": "2d47d8fcebc5f78afe4fa4834970434d327c9731ecd2efbfc4ec85e649059ca6",
+      "withdrawn": false,
+      "wordingChanged": false,
+      "assessment": "The complete current product information was reread. It remains dated 22 September 2026 and its configured claim-bearing fingerprint is unchanged. Section 4.1 still separately authorises Wegovy injection for weight management, cardiovascular-risk reduction in eligible adults, and non-cirrhotic MASH in adults with F2 to F3 fibrosis. The MASH clinical-programme section still says the 240-week Part 2 confirmatory results are outstanding. This is UK product-authorisation evidence, not an NHS funding decision, proof of supply or an individual treatment recommendation."
+    },
+    {
+      "id": "wegovy-mash-nice",
+      "publisher": "National Institute for Health and Care Excellence",
+      "title": "Semaglutide for treating moderate to advanced liver fibrosis without cirrhosis caused by MASH [ID6458]",
+      "url": "https://www.nice.org.uk/guidance/indevelopment/gid-ta11477",
+      "checkUrl": "https://www.nice.org.uk/guidance/indevelopment/gid-ta11477",
+      "format": "html",
+      "sourcePublishedAt": null,
+      "retrievedAt": "2026-10-10T16:59:10Z",
+      "reviewedAt": "2026-10-10T16:59:10Z",
+      "previousReviewedAt": "2026-10-03T16:42:06Z",
+      "httpStatus": 200,
+      "renderedHtmlCharacters": 124515,
+      "retrievalMethod": "Direct browser rendering of the complete current official NICE page after the ordinary web-reading route returned HTTP 403; the configured monitor also retrieved the page successfully in the same serving snapshot.",
+      "reviewedFingerprint": "5d75c09f811f61c16bb0b7d857582253b4e434855acaf802aa2962d6dfcf37e8",
+      "previousReviewedFingerprint": "5d75c09f811f61c16bb0b7d857582253b4e434855acaf802aa2962d6dfcf37e8",
+      "withdrawn": false,
+      "wordingChanged": false,
+      "assessment": "The complete current NICE project page was read. It remains in progress for ID6458, retains the provisional 15 October 2026 committee meeting and expected publication on 7 January 2027, and records the earlier company-requested delay and 20 May restart. The page contains no published recommendation. An appraisal in development is not a NICE recommendation and does not establish NHS England access for MASH."
+    }
+  ],
+  "liveObservation": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "checkedAt": "2026-10-10T15:45:59.349Z",
+    "status": "awaiting_review",
+    "reviewDue": [
+      "wegovy-injection-smpc",
+      "wegovy-mash-nice"
+    ],
+    "contentChecks": "Both sources returned HTTP 200 and their current fingerprints matched the reviewed baselines. That successful retrieval did not renew either factual review; the complete source reviews recorded above did."
+  },
+  "preservedState": {
+    "programmes": 116,
+    "configuredSources": 199,
+    "manualEvidenceUrls": 96,
+    "previouslyCompletedFactualReviews": 35,
+    "verificationPending": 1,
+    "checksDelayed": 2,
+    "boundary": "The prior 35 completed reviews, the repaired counter, reviewed-delayed and pending-delayed distinctions, the ZP6590 sponsor uncertainty and all release guards remain unchanged."
+  },
+  "catalogueChanges": false,
+  "medicineReviewAdvanced": false,
+  "monitorBaselinesChanged": false,
+  "wordingChanges": false,
+  "remainingSourceObstacles": [
+    {
+      "id": "zealand-zp6590-pipeline",
+      "status": "verification_pending_and_check_delayed",
+      "obstacle": "The configured Zealand sponsor pipeline URL still returns HTTP 403 to the monitor; the accessible registry evidence does not replace direct sponsor confirmation of the programme wording.",
+      "nextAction": "Seek a stable, directly reviewable Zealand artefact or deliberately review an official replacement source while retaining registry evidence and sponsor uncertainty."
+    }
+  ],
+  "editorialBoundary": "Standing owner authority permits this evidence-backed source-only renewal. It does not constitute clinical approval, change medicine wording, establish NHS access or supply, reopen the repaired queue counter, or finish recurring monitoring."
+}

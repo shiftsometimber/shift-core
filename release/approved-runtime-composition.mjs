@@ -980,6 +980,40 @@ export function verifyOrganicMeasurement(c,{head,read,diff,ancestor,content=(ref
  return c;
 }
 
+// Source-only renewal for the two Wegovy references that became factually
+// overdue on 10 October. It preserves medicine wording and every queue state.
+export const WATCH_WEGOVY_RENEWAL_BASE='8624f2dfbefaf5028a60b3ced664b96aa077929b';
+export const WATCH_WEGOVY_RENEWAL_SOURCE='4fd913f11f4bba2e684e691e02fa02f526e22b40';
+export const WATCH_WEGOVY_RENEWAL_PATHS=Object.freeze([
+ 'medicines-watch/README.md',
+ 'medicines-watch/data.mjs',
+ 'medicines-watch/product-renewal.test.mjs',
+ 'medicines-watch/source-review.test.mjs',
+ 'medicines-watch/reviews/2026-10-10-wegovy-source-renewal.json'
+]);
+export const WATCH_WEGOVY_RENEWAL_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/watch-wegovy-source-renewal-composition.test.mjs'
+]);
+const WATCH_WEGOVY_RENEWAL_SET=new Set([...WATCH_WEGOVY_RENEWAL_PATHS,...WATCH_WEGOVY_RENEWAL_MAINTENANCE]);
+for(const path of WATCH_WEGOVY_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchWegovySourceRenewal(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_WEGOVY_SOURCE_RENEWAL_V1');assert.equal(c.base,WATCH_WEGOVY_RENEWAL_BASE);assert.equal(c.source,WATCH_WEGOVY_RENEWAL_SOURCE);
+ assert.deepEqual(c.paths,WATCH_WEGOVY_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_WEGOVY_RENEWAL_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1301);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
+ assert.equal(c.sourceReviews,2);assert.equal(c.programmes,116);assert.equal(c.configuredSources,199);assert.equal(c.manualEvidenceUrls,96);assert.equal(c.preservedSourceReviews,35);
+ assert.equal(c.factualReviewNeeded,0);assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,2);
+ for(const flag of ['medicineWordingChanged','medicineReviewAdvanced','humanEfficacyClaimed','humanSafetyClaimed','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','delayedSourceStatesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Wegovy source-renewal payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Wegovy source-renewal maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Wegovy source-renewal receipt');
+ const drift='Approved Wegovy source drift; Approved composition source / boundary drift; Approved factual Watch source drift; Approved backlog source drift; Backlog maintenance source drift; archive compatibility drift; Reporting source drift; Male-obesity maintenance source drift: release/approved-runtime-composition.mjs';
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),drift+': '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),drift+': '+path);
+ return c;
+}
+
 
 export const SUPPORT_CONTENT_BASE='d54b9e139ca0b65a3fba15ab0d33dd397fa45fc2';
 export const SUPPORT_CONTENT_SOURCE='bca498cf36bda01e089b8826e6a0750fe38b2bd7';
@@ -1071,10 +1105,13 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const wegovyRenewal=c.watchWegovySourceRenewal;
+ const preWegovyRenewalHead=wegovyRenewal?wegovyRenewal.base:actualHead;
+ const wegovyRenewalRawBlob=(ref,path)=>outerRawBlob(wegovyRenewal&&ref==='HEAD'&&WATCH_WEGOVY_RENEWAL_SET.has(path)?wegovyRenewal.base:ref,path);
  const reporting=c.organicMeasurementIntegration;
- if(reporting)verifyOrganicMeasurement(reporting,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preReportingHead=reporting?reporting.base:actualHead;
- const reportingRawBlob=(ref,path)=>outerRawBlob(reporting&&ref==='HEAD'&&ORGANIC_MEASUREMENT_SET.has(path)?reporting.base:ref,path);
+ if(reporting)verifyOrganicMeasurement(reporting,{head:preWegovyRenewalHead,read:wegovyRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preReportingHead=reporting?reporting.base:preWegovyRenewalHead;
+ const reportingRawBlob=(ref,path)=>wegovyRenewalRawBlob(reporting&&ref==='HEAD'&&ORGANIC_MEASUREMENT_SET.has(path)?reporting.base:ref,path);
  const ascletisOral=c.watchAscletisOralPortfolio;
  if(ascletisOral)verifyWatchAscletisOralPortfolio(ascletisOral,{head:preReportingHead,read:reportingRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preAscletisOralHead=ascletisOral?ascletisOral.base:preReportingHead;
@@ -1297,6 +1334,9 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const compositionHead=extension?extension.base:previousHead;
  const compositionBlob=(path)=>extension&&PUBLIC_TOOL_PATHS.has(path)?priorRead(extension.base,path):priorRead('HEAD',path);
+ // Validate the newest source-renewal bytes after all older receipts so a
+ // synthetic drift in an older layer retains that layer's diagnostic.
+ if(wegovyRenewal)verifyWatchWegovySourceRenewal(wegovyRenewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  // Cache only Git graph facts for resolved immutable commits and this exact
  // receipt. Supplied readers, current bytes and working-tree checks stay fresh.
  const structureKey=JSON.stringify([process.cwd(),head,c]);

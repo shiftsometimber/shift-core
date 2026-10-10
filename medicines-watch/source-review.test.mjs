@@ -15,6 +15,7 @@ const lateOverdueReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-09
 const foundayoPredictedRiskReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-03-authorised-foundayo-predicted-risk.json', import.meta.url)));
 const foundayoAttainMaintainReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-04-authorised-foundayo-attain-maintain.json', import.meta.url)));
 const wegovyMashReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-03-authorised-wegovy-mash-correction.json', import.meta.url)));
+const wegovyRenewalReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-10-wegovy-source-renewal.json', import.meta.url)));
 const reviewTime = Date.parse(receipt.reviewedAt);
 const rowFor = (source, now = reviewTime) => ({
   source_url: source.url, check_url: source.checkUrl,
@@ -29,7 +30,8 @@ test('source-only review binds twelve complete primary responses without clinica
   assert.equal(new Set(receipt.sources.map(s => s.id)).size, 12);
   for (const proof of receipt.sources) {
     const source = sources.find(s => s.id === proof.id);
-    const currentProof = octoberOverdueReceipt.sources.find(source => source.id === proof.id)
+    const currentProof = wegovyRenewalReceipt.sources.find(source => source.id === proof.id)
+      ?? octoberOverdueReceipt.sources.find(source => source.id === proof.id)
       ?? wegovyMashReceipt.sources.find(source => source.id === proof.id)
       ?? overdueReceipt.sources.find(source => source.id === proof.id)
       ?? (proof.id === 'foundayo-nice' ? foundayoReceipt.sources[0] : proof);
@@ -39,8 +41,10 @@ test('source-only review binds twelve complete primary responses without clinica
     assert.equal(source.reviewedFingerprint, currentProof.reviewedFingerprint);
     assert.equal(source.sourcePublishedAt, currentProof.sourcePublishedAt);
     assert.equal(currentProof.httpStatus, 200);
-    assert.ok(currentProof.bytes > 0 && currentProof.bytes <= 2 * 1024 * 1024);
-    assert.match(currentProof.responseSha256, /^[a-f0-9]{64}$/);
+    const reviewedSize = currentProof.bytes ?? currentProof.renderedHtmlCharacters;
+    assert.ok(reviewedSize > 0 && reviewedSize <= 2 * 1024 * 1024);
+    if (currentProof.responseSha256) assert.match(currentProof.responseSha256, /^[a-f0-9]{64}$/);
+    else assert.match(currentProof.retrievalMethod, /complete current official|complete current NICE/i);
     assert.equal(currentProof.withdrawn, false);
     assert.equal(currentProof.wordingChanged, false);
     assert.ok(currentProof.assessment.length > 100);
@@ -57,7 +61,8 @@ test('sixteen overdue reviews are renewed only from complete unchanged evidence'
   assert.deepEqual(new Set(overdueReceipt.liveObservation.reviewDue), new Set(overdueReceipt.sources.map(source => source.id)));
   for (const proof of overdueReceipt.sources) {
     const source = sources.find(candidate => candidate.id === proof.id);
-    const currentProof = wegovyMashReceipt.sources.find(candidate => candidate.id === proof.id) ?? proof;
+    const currentProof = wegovyRenewalReceipt.sources.find(candidate => candidate.id === proof.id)
+      ?? wegovyMashReceipt.sources.find(candidate => candidate.id === proof.id) ?? proof;
     for (const key of ['url', 'checkUrl', 'reviewedAt', 'reviewedFingerprint', 'sourcePublishedAt']) {
       assert.equal(source[key], key==='reviewedAt'?(backlogReview.sources.find(r=>r.id===source.id)?.reviewedAt ?? currentProof[key]):currentProof[key]);
     }
@@ -258,7 +263,8 @@ test('Wegovy MASH correction separates UK authorisation, NICE appraisal and NHS 
   assert.ok(wegovy.sourceIds.includes('wegovy-mash-nice'));
   assert.equal(sources.find(source => source.id === 'wegovy-mash-nice').reviewedFingerprint, niceProof.reviewedFingerprint);
   assert.equal(sources.find(source => source.id === 'wegovy-injection-smpc').reviewedFingerprint, smpcProof.reviewedFingerprint);
-  assert.equal(sources.find(source => source.id === 'wegovy-injection-smpc').reviewedAt, wegovyMashReceipt.reviewedAt);
+  assert.equal(sources.find(source => source.id === 'wegovy-injection-smpc').reviewedAt, wegovyRenewalReceipt.reviewedAt);
+  assert.equal(sources.find(source => source.id === 'wegovy-mash-nice').reviewedAt, wegovyRenewalReceipt.reviewedAt);
   assert.equal(wegovy.reviewedAt, wegovyMashReceipt.reviewedAt);
   assert.match(niceProof.assessment, /not a recommendation/i);
   assert.match(sponsorProof.assessment, /55 participants/i);
@@ -270,4 +276,32 @@ test('Wegovy MASH correction separates UK authorisation, NICE appraisal and NHS 
   assert.equal(wegovyMashReceipt.configuredSourceChange.before, 50);
   assert.equal(wegovyMashReceipt.configuredSourceChange.after, 51);
   assert.equal(wegovyMashReceipt.catalogueCounts.totalBefore, wegovyMashReceipt.catalogueCounts.totalAfter);
+});
+
+test('Wegovy source renewal closes only the due factual reviews', () => {
+  assert.equal(wegovyRenewalReceipt.reviewType, 'AI-assisted factual source review; not clinical approval');
+  assert.equal(wegovyRenewalReceipt.clinicalApproval, null);
+  assert.deepEqual(wegovyRenewalReceipt.sources.map(source => source.id).sort(), ['wegovy-injection-smpc', 'wegovy-mash-nice']);
+  for (const proof of wegovyRenewalReceipt.sources) {
+    const source = sources.find(candidate => candidate.id === proof.id);
+    assert.equal(source.url, proof.url);
+    assert.equal(source.reviewedAt, wegovyRenewalReceipt.reviewedAt);
+    assert.equal(source.reviewedFingerprint, proof.reviewedFingerprint);
+    assert.equal(proof.previousReviewedAt, wegovyMashReceipt.reviewedAt);
+    assert.equal(proof.previousReviewedFingerprint, proof.reviewedFingerprint);
+    assert.equal(proof.httpStatus, 200);
+    assert.ok(proof.renderedHtmlCharacters > 10000);
+    assert.equal(proof.withdrawn, false);
+    assert.equal(proof.wordingChanged, false);
+    assert.ok(proof.assessment.length > 150);
+  }
+  assert.equal(medicines.find(medicine => medicine.id === 'wegovy-injection').reviewedAt, wegovyMashReceipt.reviewedAt);
+  assert.equal(wegovyRenewalReceipt.catalogueChanges, false);
+  assert.equal(wegovyRenewalReceipt.monitorBaselinesChanged, false);
+  assert.deepEqual(wegovyRenewalReceipt.remainingSourceObstacles, [{
+    id: 'zealand-zp6590-pipeline',
+    status: 'verification_pending_and_check_delayed',
+    obstacle: 'The configured Zealand sponsor pipeline URL still returns HTTP 403 to the monitor; the accessible registry evidence does not replace direct sponsor confirmation of the programme wording.',
+    nextAction: 'Seek a stable, directly reviewable Zealand artefact or deliberately review an official replacement source while retaining registry evidence and sponsor uncertainty.'
+  }]);
 });
