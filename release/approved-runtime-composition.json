@@ -1657,5 +1657,38 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "obesityHubRepair": {
+    "proof": "EXACT_OBESITY_HUB_REPAIR_20261010",
+    "base": "21dcc6e5034d9e9db787b122f3e467910c093564",
+    "source": "ff92aff1cb07093397bc474f90ee597acc4211c7",
+    "maintenanceSource": "303be699677759df2bd81d36fadc4c478cca7971",
+    "paths": [
+      "obesity-awareness/candidate.mjs",
+      "obesity-awareness/rendered-live-proof.cjs",
+      "obesity-awareness/staging-entry.mjs",
+      "obesity-awareness/staging-entry.test.mjs",
+      "release/seo794-preservation.mjs",
+      "tests/seo794-preservation.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/obesity-hub-repair-composition.test.mjs"
+    ],
+    "integrationIssue": 1065,
+    "publicationStatus": "authorised_by_Matt_20261010",
+    "priorPreviewRun": 38058282091,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "sharedNavigationChanged": false,
+    "memberDataChanged": false,
+    "checkoutChanged": false,
+    "analyticsChanged": false,
+    "consentChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
