@@ -87,7 +87,7 @@ if(remote){
  fs.writeFileSync('retatrutide-safety-publication-proof.json',JSON.stringify(proof,null,2));
  const r=await fetch(proof.url+'?publication-check='+Date.now(),{headers:{'Cache-Control':'no-cache'}});assert.ok(r.ok);const html=await r.text();
  const plain=v=>String(v).replace(/\[([^\]]+)\]\(https:\/\/[^)]+\)/g,'$1');
- const text=html.replace(/<[^>]*>/g,' ').replace(/&#39;/g,"'").replace(/&amp;/g,'&').replace(/\s+/g,' ');
+ const text=html.replace(/<[^>]*>/g,' ').replace(/&#39;/g,"'").replace(/&amp;/g,'&').replace(/\s+/g,' ').replace(/\s+([.,;:!?])/g,'$1');
  for(const value of [contentPackage.headline,...contentPackage.article_markdown.split('\n\n'),...contentPackage.shift_take.split('\n\n'),contentPackage.safety])assert.ok(text.includes(plain(value)),'Public copy mismatch');
  assert.ok(html.includes('data-shift-take'));for(const e of evidence)assert.ok(html.includes(e.url));
  const index=await(await fetch('https://shiftsometimber.co.uk/shift-newsroom?publication-check='+Date.now())).text();assert.ok(index.includes(contentPackage.seo.slug));

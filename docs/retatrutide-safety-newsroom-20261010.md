@@ -21,3 +21,9 @@ Pre-publication renderer/browser receipt: 10 October 2026 21:56–21:59 UTC. Thi
 Use the existing production concurrency lane, exact current-main guard, owner actor guard and a four-file allowlist. Fixed package digest prevents silently altered copy. No Worker/Pages runtime deployment or migration is requested.
 Existing event/source matches stop for reconciliation; a separately prepared story is never overwritten. Source drift and existing editorial holds are not bypassed.
 This owner request authorises site publication only. One event's publication-email entry is marked cancelled before publication, leaving unrelated email records/settings untouched and preventing scheduled backfill for this article. No message is sent.
+
+## Published and live acceptance — 10 October 2026
+The single article was published by run 38089756732 at source ae6a56054d86dc3397e33baa2deef7e66a74f3db, after the preceding #1310 guarded promotion 38088990139 succeeded. The workflow's final string comparison failed after publication because stripping the link tag inserted a space before a full stop. The public content is correct; this verification failure is retained, not described as a failed/no-write publication.
+The verification-only correction normalises whitespace before punctuation. It changes no copy or publication gates and reuses the existing published event through the idempotent path.
+Live browser acceptance at 22:27:19–22:27:24 UTC passed at 390×844 and 1440×1000: normal newsroom listing → the single article → MHRA suspicious-seller checker. Heading, SHIFT position, original source dates, all three sources and no horizontal overflow passed. Both actual rendered screenshots were captured for inspection. No contact form or report was submitted.
+Live URL: https://shiftsometimber.co.uk/medicine-news/retatrutide-fakes-research-is-not-a-treatment-offer
