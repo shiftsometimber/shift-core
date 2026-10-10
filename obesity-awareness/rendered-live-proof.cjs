@@ -8,6 +8,10 @@ const result={at:new Date().toISOString(),source:process.env.RELEASE_SOURCE,rele
  classification:'Controlled public QA, not organic growth; mobile-sized Chromium, not a physical phone',checks:[],collector:[],customerRecordsRead:0,memberWrites:0};
 const eventNames=['shift_pillar_first_step_opened','shift_pillar_onward_opened','shift_pillar_step_tried','shift_pillar_review_used'];
 const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
+function checkpoint(stage){if(stage)result.stage=stage;fs.writeFileSync(dir+'/progress.json',JSON.stringify(result,null,2));console.log('PILLAR_PROGRESS '+JSON.stringify({stage:result.stage,checks:result.checks.length,collector:result.collector.map(x=>({event:x.event,status:x.responseStatus}))}));}
+const bounded=(promise,label,ms=20000)=>{let timer;return Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error(label+' timed out after '+ms+'ms')),ms);})]).finally(()=>clearTimeout(timer));};
+const heartbeat=setInterval(()=>checkpoint(),15000);
+const watchdog=setTimeout(()=>{result.status='failed';result.error='Owned browser proof exceeded six minutes at '+result.stage;result.finishedAt=new Date().toISOString();fs.writeFileSync(dir+'/receipt.json',JSON.stringify(result,null,2));console.log('PILLAR_SAFE_LIVE_RECEIPT '+JSON.stringify(result));process.exit(1);},360000);
 // Own HTTP/render readiness avoids unrelated deferred-resource lifecycle stalls; all assertions remain required.
 const ownRenderReady=async(page)=>{
  await page.locator('h1').waitFor({state:'visible',timeout:20000});
@@ -18,8 +22,8 @@ const ownRenderReady=async(page)=>{
  await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
 };
 const renderState=page=>page.evaluate(()=>{const from=(()=>{try{return new URL(document.referrer);}catch{return null;}})();return{path:location.pathname,readyState:document.readyState,scrollWidth:document.documentElement.scrollWidth,viewportWidth:innerWidth,navDisplay:document.querySelector('.desktop-nav')?getComputedStyle(document.querySelector('.desktop-nav')).display:null,stylesheetReady:[...document.querySelectorAll('link[rel~="stylesheet"]')].map(l=>({path:new URL(l.href).pathname,loaded:Boolean(l.sheet)})),fontStatus:document.fonts.status,menuExpanded:document.querySelector('button[aria-controls="site-drawer"]')?.getAttribute('aria-expanded'),drawerHidden:document.querySelector('#site-drawer')?.hidden,drawerDisplay:document.querySelector('#site-drawer')?getComputedStyle(document.querySelector('#site-drawer')).display:null,hasPillarClient:Boolean(document.querySelector('[data-pillar-client]')),analyticsConsent:window.SSTConsent?.get?.()?.analytics===true,suppressed:window.SST_ANALYTICS_SUPPRESSED===true,referrerPath:from?.pathname||null,sameOriginReferrer:from?.origin===location.origin,pillarEvents:(window.dataLayer||[]).filter(x=>/^shift_pillar_/.test(x?.event||'')).map(x=>x.event)};});
-const navigate=async(page,path)=>{const r=await page.goto(origin+path,{waitUntil:'commit',timeout:60000});assert.equal(r.status(),200,path);await ownRenderReady(page);return r;};
-async function chooseConsent(page,analytics){await page.waitForLoadState('domcontentloaded',{timeout:60000});await page.waitForFunction(()=>typeof window.SSTConsent?.get==='function',null,{timeout:20000});const dialog=page.getByRole('dialog',{name:'Cookie choices',exact:true});await dialog.waitFor({state:'visible',timeout:20000});await page.getByRole('button',{name:analytics?'Accept analytics':'Necessary only',exact:true}).click();await page.waitForFunction(value=>window.SSTConsent.get()?.analytics===value,analytics,{timeout:20000});await dialog.waitFor({state:'hidden',timeout:20000});}
+const navigate=async(page,path)=>{checkpoint('navigate '+path+' width '+page.viewportSize().width);const r=await page.goto(origin+path,{waitUntil:'commit',timeout:60000});assert.equal(r.status(),200,path);await ownRenderReady(page);return r;};
+async function chooseConsent(page,analytics){checkpoint('choose consent '+analytics+' width '+page.viewportSize().width);await page.waitForLoadState('domcontentloaded',{timeout:60000});await page.waitForFunction(()=>typeof window.SSTConsent?.get==='function',null,{timeout:20000});const dialog=page.getByRole('dialog',{name:'Cookie choices',exact:true});await dialog.waitFor({state:'visible',timeout:20000});await page.getByRole('button',{name:analytics?'Accept analytics':'Necessary only',exact:true}).click();await page.waitForFunction(value=>window.SSTConsent.get()?.analytics===value,analytics,{timeout:20000});await dialog.waitFor({state:'hidden',timeout:20000});}
 async function necessary(page){await chooseConsent(page,false);}
 function observeCollector(page,records){
  const pending=new WeakMap();
@@ -45,7 +49,7 @@ function observeCollector(page,records){
    observeCollector(page,denied);
    try{
     for(const path of ['/male-obesity','/weight-loss-support-for-men','/mental-health/mental-health-and-weight','/articles/weight-loss-plateau-men','/mens-weight-management']){
-     const r=await navigate(page,path),html=await r.text();
+     const r=await navigate(page,path);checkpoint('read complete approved response '+path+' width '+width);const html=await bounded(r.text(),'Complete response body '+path);
      if(path==='/male-obesity')assert(html.includes(candidate.body),'Live hub must contain the entire source-approved body');
      assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('.desktop-nav a').count(),5);
      assert.equal(await page.locator('[data-male-obesity-footer]').count(),1);
@@ -56,13 +60,13 @@ function observeCollector(page,records){
     }
     await navigate(page,'/male-obesity');await necessary(page);await page.reload({waitUntil:'commit'});await ownRenderReady(page);await page.waitForLoadState('domcontentloaded',{timeout:60000});
     await page.screenshot({path:dir+'/'+width+'-hub.png'});
-    const menu=page.getByRole('button',{name:'Menu',exact:true});await menu.click();
+    checkpoint('open menu width '+width);const menu=page.getByRole('button',{name:'Menu',exact:true});await menu.click();
     const links=await page.locator('#site-drawer a').allTextContents(),m=links.indexOf('Male obesity');
     assert(m>0&&links[m-1]==='My Timber'&&links[m+1]==='About');
     await page.getByRole('link',{name:'Male obesity',exact:true}).waitFor({state:'visible',timeout:20000});assert(await page.getByRole('link',{name:'Male obesity',exact:true}).isVisible());
     await page.screenshot({path:dir+'/'+width+'-menu.png'});await page.keyboard.press('Escape');assert.equal(await menu.getAttribute('aria-expanded'),'false');
     assert(await menu.evaluate(el=>el===document.activeElement),'Escape returns focus to Menu');
-    await page.getByRole('link',{name:'Find one useful step',exact:true}).click();
+    checkpoint('open useful first step width '+page.viewportSize().width);await page.getByRole('link',{name:'Find one useful step',exact:true}).click();
     await page.locator('summary').filter({hasText:'I get home hungry and have no plan'}).click();
     assert((await page.locator('#first-step').innerText()).includes('my fallback is'));
     await page.screenshot({path:dir+'/'+width+'-first-action.png'});
@@ -74,7 +78,7 @@ function observeCollector(page,records){
     await page.locator('[data-male-obesity-footer]').scrollIntoViewIfNeeded();await page.screenshot({path:dir+'/'+width+'-footer.png'});
     assert.equal(denied.length,0,'No pillar collection when analytics is declined');
     result.checks.push({width,checks:['menu placement and Escape','meal and fallback immediately available','effort and unhelpful alternatives','return still works, answers not persisted','declined consent sends no pillar events'],status:'pass'});
-    await page.getByRole('link',{name:'Check your BMI — one useful number, not the whole picture.',exact:true}).click();await page.locator('#bmiForm').waitFor();
+    checkpoint('BMI action width '+width);await page.getByRole('link',{name:'Check your BMI — one useful number, not the whole picture.',exact:true}).click();await page.locator('#bmiForm').waitFor();
     await page.waitForFunction(()=>typeof document.getElementById('bmiForm')?.onsubmit==='function');
     await page.getByRole('button',{name:'Metric',exact:true}).click();await page.locator('#bmiHeightCm').selectOption('175');await page.locator('#bmiWeightKg').selectOption('100');await page.getByRole('button',{name:'Calculate BMI',exact:true}).click();
     await page.waitForFunction(()=>document.getElementById('bmiR')?.textContent.includes('32.7'));
@@ -85,23 +89,24 @@ function observeCollector(page,records){
     await page.getByRole('link',{name:'Understand obesity and find a next step',exact:true}).click();assert.equal(await page.locator('h1').innerText(),'Male obesity: understand what’s happening. Find your next step.');
     const main=await page.locator('main').innerText();assert(main.includes('one useful number, not the whole picture'));assert.equal(await page.locator('a[href="/member/grub"]').count(),1);
     result.checks.push({width,status:'pass',checks:['live hub to existing BMI calculator','fictional 175cm/100kg gives BMI32.7','screening limitation','prescription reading signposts removed','return to useful hub'],analyticsChoiceOnBmi:'Necessary only'});
-    await page.getByRole('link',{name:'Explore meal ideas in Grub',exact:true}).click();
+    checkpoint('unsigned Grub handoff width '+width);await page.getByRole('link',{name:'Explore meal ideas in Grub',exact:true}).click();
     await page.locator('body[data-member-session="signed-out"]').waitFor({timeout:20000});
     const signIn=page.locator('#memberSessionStatus a');assert.equal(await signIn.getAttribute('href'),'/member-login?returnTo=%2Fmember%2Fgrub');
     await signIn.click();await page.locator('#previewAuth:not([hidden])').waitFor({timeout:20000});
     assert(await page.locator('#previewRegister input[name="email"]').isVisible());
     result.checks.push({width,status:'pass',checks:['direct Grub route reaches existing sign-in','private records remain hidden'],accountCreated:false});
-    const missing=await page.goto(origin+'/male-obesity/route-does-not-exist',{waitUntil:'domcontentloaded'});assert.equal(missing.status(),404);assert(await page.getByRole('link',{name:'Search Shift',exact:true}).isVisible());
+    checkpoint('404 and recovery width '+width);const missing=await page.goto(origin+'/male-obesity/route-does-not-exist',{waitUntil:'domcontentloaded'});assert.equal(missing.status(),404);assert(await page.getByRole('link',{name:'Search Shift',exact:true}).isVisible());
     await navigate(page,'/male-obesity');assert(await page.getByRole('link',{name:'Find one useful step',exact:true}).isVisible());
     result.checks.push({width,status:'pass',checks:['missing page is an honest 404 with recovery','public hub remains usable on return']});
-   }catch(error){result.renderFailure=await renderState(page).catch(()=>null);await page.screenshot({path:dir+'/'+width+'-failed-render.png'}).catch(()=>{});throw error;}finally{await context.close();}
+   }catch(error){result.renderFailure=await renderState(page).catch(()=>null);await page.screenshot({path:dir+'/'+width+'-failed-render.png'}).catch(()=>{});throw error;}finally{checkpoint('close isolated context');await bounded(context.close(),'Isolated context cleanup',10000);}
   }
   // One genuine consented public pass, separate from the declined/BMI checks.
+   checkpoint('start real consented collector');
   const context=await browser.newContext({viewport:{width:390,height:900}}),page=await context.newPage();observeCollector(page,result.collector);
   try{
    await navigate(page,'/male-obesity');await chooseConsent(page,true);await page.reload({waitUntil:'commit'});await ownRenderReady(page);
    const accepted=async(name)=>{const until=Date.now()+15000;while(Date.now()<until&&!result.collector.some(r=>r.event===name&&[200,204].includes(r.responseStatus)))await page.waitForTimeout(100);assert(result.collector.some(r=>r.event===name&&[200,204].includes(r.responseStatus)),name+' accepted before the next distinct action');};await page.getByRole('link',{name:'Find one useful step',exact:true}).click();await accepted('shift_pillar_first_step_opened');await page.getByRole('button',{name:'I tried my step',exact:true}).click();await accepted('shift_pillar_step_tried');await page.getByRole('button',{name:'Too much effort',exact:true}).click();await accepted('shift_pillar_review_used');
-   await page.getByRole('link',{name:'see the free support available through My Timber',exact:true}).click();await page.locator('h1').waitFor();
+   checkpoint('real public support arrival');await page.getByRole('link',{name:'see the free support available through My Timber',exact:true}).click();await page.locator('h1').waitFor();
    const until=Date.now()+15000;while(Date.now()<until&&!eventNames.every(n=>result.collector.some(x=>x.event===n&&[200,204].includes(x.responseStatus))))await page.waitForTimeout(250);
    for(const name of eventNames)assert(result.collector.some(r=>r.event===name&&r.stream==='G-Y7BV5KY6RR'&&[200,204].includes(r.responseStatus)),name+' must be accepted by the real GA4 collector');
    for(const receipt of result.collector){assert(!receipt.unsafeAnswerParameter,'An answer reached public analytics');const u=new URL(receipt.location);assert.equal(u.origin,origin);assert.equal(u.search,'');assert.equal(u.hash,'');assert(!u.pathname.startsWith('/member/'));}
@@ -109,6 +114,6 @@ function observeCollector(page,records){
   }finally{result.collectorRenderState=await renderState(page).catch(()=>null);await context.close();}
   result.status='passed';
  }catch(error){result.status='failed';result.error=error.message;throw error;}
- finally{await browser.close();result.finishedAt=new Date().toISOString();fs.writeFileSync(dir+'/receipt.json',JSON.stringify(result,null,2));console.log('PILLAR_SAFE_LIVE_RECEIPT '+JSON.stringify(result));}
+ finally{checkpoint('final owned browser cleanup');result.finishedAt=new Date().toISOString();fs.writeFileSync(dir+'/receipt.json',JSON.stringify(result,null,2));try{await bounded(browser.close(),'Owned browser cleanup',10000);}catch(error){result.status='failed';result.cleanupError=error.message;process.exitCode=1;}clearInterval(heartbeat);clearTimeout(watchdog);result.finishedAt=new Date().toISOString();fs.writeFileSync(dir+'/receipt.json',JSON.stringify(result,null,2));console.log('PILLAR_SAFE_LIVE_RECEIPT '+JSON.stringify(result));}
  console.log(JSON.stringify({status:result.status,source:result.source,releaseRun:result.releaseRun,checks:result.checks.length,collectorEvents:result.collector.map(r=>r.event)}));
 })().catch(error=>{console.error(error);process.exitCode=1;});
