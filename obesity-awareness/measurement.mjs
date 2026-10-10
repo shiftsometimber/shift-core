@@ -18,4 +18,4 @@ function publicSupportArrival(){try{
 }catch(_){} }
 if(document.readyState==='complete')publicSupportArrival();else if(typeof window.addEventListener==='function')window.addEventListener('load',publicSupportArrival,{once:true});
 })();`;
-export function addPillarClient(html){if(!html.includes('data-shift-weight-understanding')||html.includes('data-pillar-client'))return html;return html.replace('</body>','<script data-pillar-client>'+pillarClient+'</script></body>');}
+export function addPillarClient(html){if((!html.includes('data-shift-weight-understanding')&&!html.includes('data-weight-understanding-addition'))||html.includes('data-pillar-client'))return html;return html.replace('</body>','<script data-pillar-client>'+pillarClient+'</script></body>');}
