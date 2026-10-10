@@ -2,6 +2,12 @@
 
 Public route: `/treatment-centre/medicines-watch`. Entry point is Treatments only. No member or My Timber integration. This is a continuously expanding selected weight-management reference, not an exhaustive medicine database, prescribing tool, stock service or recommendation ranking.
 
+## 10 October registry and UK access review renewal
+
+`reviews/2026-10-10-overdue-registry-access-renewal.json` records the complete factual rereview of the seven-day expiry wave: 63 exact ClinicalTrials.gov API records plus MHRA pancreatitis safety information and the Scotland, Wales and Northern Ireland access sources. Every primary record was retrieved in full and the claim-bearing identity, sponsor, phase, recruitment state, enrolment, actual/estimated dates, results-posting state, withdrawal, safety and access wording was read. All 67 reviewed fingerprints and bounded lifecycle facts remain unchanged, so only their source-specific factual-review dates advance; programme wording, medicine-summary dates, UK authorisation, NHS access and actual-supply claims do not change. Passed estimated starts remain estimates, completed records are not treated as results, and the single registry record that already had posted results is not reinterpreted.
+
+The earlier Welsh HTTP 403 remains recorded as a monitor retrieval event even though the complete official HTML was directly retrieved for this review. ZP6590 is outside this renewal and remains both `verification_pending` and `check_delayed`: registry, CTIS and the official H1 report corroborate trial initiation but do not certify the blocked pipeline page's latest internally inconsistent wording. Editorial authorisation is not clinical approval, and the configured-source count does not establish industry completeness.
+
 ## 10 October Wegovy source renewal
 
 `reviews/2026-10-10-wegovy-source-renewal.json` records the complete factual rereview of the two sources that crossed the seven-day deadline. The current 22 September Wegovy injection SmPC still separately supports weight management, cardiovascular-risk reduction for eligible adults and non-cirrhotic MASH with F2 to F3 fibrosis; it also says the 240-week confirmatory MASH results remain outstanding. NICE ID6458 remains an appraisal in progress, with a provisional 15 October committee meeting and expected publication on 7 January 2027. The appraisal is not a recommendation and does not establish NHS England MASH access.

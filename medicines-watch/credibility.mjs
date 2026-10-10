@@ -1,4 +1,5 @@
 import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
+import overdueRegistryAccessRenewal from './reviews/2026-10-10-overdue-registry-access-renewal.json' with {type:'json'};
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
 import bimagrumabSemaglutide from './reviews/2026-10-09-authorised-bimagrumab-semaglutide.json' with {type:'json'};
 import togetherPsoriaticDisease from './reviews/2026-10-09-authorised-together-psoriatic-disease.json' with {type:'json'};
@@ -34,8 +35,12 @@ export const registrySources=[...baseRegistrySources,...vikingRhythmRegistryRevi
  .map(s=>vikingRhythmRegistryReview.registrySources.find(r=>r.id===s.id)||s)
  .map(s=>zupremeLifecycleUpdate.registrySources.find(r=>r.id===s.id)||s)
  .concat(zupremeLifecycleUpdate.registrySources.filter(r=>!baseRegistrySources.some(s=>s.id===r.id)&&![...vikingRhythmRegistryReview.registrySources,...zenagamtideAmbience.registrySources,...gs4571TirzepatideMenopause.registrySources,...registryLifecycleFollowup.registrySources,...enicepatideEmugrobartRegistry.registrySources].some(s=>s.id===r.id)),...bimagrumabSemaglutide.registrySources,...togetherPsoriaticDisease.registrySources)
- .map(s=>backlogReview.registrySources.find(r=>r.id===s.id)||s);
-export const supportSources=receipt.supportSources;
+ .map(s=>backlogReview.registrySources.find(r=>r.id===s.id)||s)
+ .map(s=>overdueRegistryAccessRenewal.registrySources.find(r=>r.id===s.id)?{...s,reviewedAt:overdueRegistryAccessRenewal.reviewedAt,reviewedFingerprint:overdueRegistryAccessRenewal.registrySources.find(r=>r.id===s.id).reviewedFingerprint}:s);
+export const supportSources=receipt.supportSources.map(s=>{
+ const renewal=overdueRegistryAccessRenewal.supportSources.find(r=>r.id===s.id);
+ return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
+});
 export const credibilitySources=[...registrySources,...supportSources];
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const date=v=>v?new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'Europe/London'}).format(new Date(v)):'Not verified';
