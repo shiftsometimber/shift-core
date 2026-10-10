@@ -1225,5 +1225,37 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "maleObesityArrivalRepair": {
+    "proof": "EXACT_MALE_OBESITY_PUBLIC_ARRIVAL_V1",
+    "base": "f5fd1b53209d9337590f1c8b4d80501bb78c3bf4",
+    "source": "b7b0c1c4a4beee1f3d41a1287e070ac522571715",
+    "paths": [
+      "obesity-awareness/measurement.mjs",
+      "obesity-awareness/measurement-navigation.test.mjs",
+      "obesity-awareness/rendered-live-proof.cjs",
+      ".github/workflows/programme-day-preview.yml",
+      "obesity-awareness/production.mjs",
+      "obesity-awareness/production.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/male-obesity-arrival-composition.test.mjs"
+    ],
+    "maintenanceSource": "3ffdd7a1d5dd853edbd605d7a2a61fde72995ef4",
+    "ownerApproval": "Complete authorised release and prove the live male-obesity journey",
+    "repair": "Count completed public-support arrivals through existing consented dataLayer; native navigation remains immediate",
+    "runtimeChanged": true,
+    "homepageChanged": false,
+    "startHereFlowChanged": false,
+    "primaryNavigationChanged": false,
+    "memberDataChanged": false,
+    "checkoutChanged": false,
+    "externalCommunicationsSent": false,
+    "costsCommitted": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }

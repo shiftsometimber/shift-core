@@ -41,3 +41,11 @@ test('actual outer public-answer wrapper retains the complete qualified support 
   assert.throws(()=>assertApprovedContinuityBody(path,document.replace('href="/male-obesity#healthcare"','href="/unapproved"')));
  }
 });
+
+// The real adapter must install the arrival client; a client-only unit test cannot prove this.
+test('public support installs one arrival client while preserving the complete approved body and homepage',async()=>{
+ const w=withMaleObesity(base),path='/weight-loss-support-for-men';
+ const response=await w.fetch(new Request('https://shiftsometimber.co.uk'+path),{}),h=await response.text();
+ assert.equal(response.status,200);assert.equal((h.match(/<script data-pillar-client>/g)||[]).length,1);assert.match(h,/function publicSupportArrival/);assertApprovedContinuityBody(path,h);
+ assert.equal(await(await w.fetch(new Request('https://shiftsometimber.co.uk/'),{})).text(),shell);
+});

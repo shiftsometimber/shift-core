@@ -15,5 +15,6 @@ export function withMaleObesity(worker){return {...worker,async fetch(request,en
  // this one approved section here so it is qualified before that outer pass.
  // Its existing idempotency prevents a duplicate; other pages are untouched.
  const prepared=p==='/weight-loss-support-for-men'?improveAnswerDepth(document,p):document;
- return output(r,amendPillarChrome(amendSupportingDocument(p,prepared),p),head,supported.has(p));}catch{return new Response(head?null:'This support page is temporarily unavailable. You can still use the practical step at https://shiftsometimber.co.uk/male-obesity#first-step',{status:503,headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store'}});}
+ const rendered=amendPillarChrome(amendSupportingDocument(p,prepared),p);
+ return output(r,p==='/weight-loss-support-for-men'?addPillarClient(rendered):rendered,head,supported.has(p));}catch{return new Response(head?null:'This support page is temporarily unavailable. You can still use the practical step at https://shiftsometimber.co.uk/male-obesity#first-step',{status:503,headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store'}});}
 }};}

@@ -98,6 +98,6 @@ function observeCollector(page,records){
   }finally{await context.close();}
   result.status='passed';
  }catch(error){result.status='failed';result.error=error.message;throw error;}
- finally{await browser.close();result.finishedAt=new Date().toISOString();fs.writeFileSync(dir+'/receipt.json',JSON.stringify(result,null,2));}
+ finally{await browser.close();result.finishedAt=new Date().toISOString();fs.writeFileSync(dir+'/receipt.json',JSON.stringify(result,null,2));console.log('PILLAR_SAFE_LIVE_RECEIPT '+JSON.stringify(result));}
  console.log(JSON.stringify({status:result.status,source:result.source,releaseRun:result.releaseRun,checks:result.checks.length,collectorEvents:result.collector.map(r=>r.event)}));
 })().catch(error=>{console.error(error);process.exitCode=1;});
