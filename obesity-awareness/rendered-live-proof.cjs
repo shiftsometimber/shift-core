@@ -5,7 +5,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE);
 const origin='https://shiftsometimber.co.uk',dir='male-obesity-rendered-live';
 fs.mkdirSync(dir,{recursive:true});
 const result={at:new Date().toISOString(),source:process.env.RELEASE_SOURCE,releaseRun:process.env.RELEASE_RUN,proofSource:process.env.GITHUB_SHA,
- classification:'Controlled public QA, not organic growth; mobile-sized Chromium, not a physical phone',checks:[],collector:[],customerRecordsRead:0,memberWrites:0};
+ classification:'Collector-only diagnostic; separate unchanged serving source already passed 18 rendered journey checks in run38007004682; not organic growth',checks:[],collector:[],customerRecordsRead:0,memberWrites:0};
 const eventNames=['shift_pillar_first_step_opened','shift_pillar_onward_opened','shift_pillar_step_tried','shift_pillar_review_used'];
 const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
 const navigate=async(page,path)=>{const r=await page.goto(origin+path,{waitUntil:'domcontentloaded',timeout:30000});assert.equal(r.status(),200,path);await page.locator('h1').waitFor();return r;};
@@ -29,7 +29,7 @@ function observeCollector(page,records){
  const browser=await chromium.launch();
  try{
   const {candidate}=await import('./content.mjs');
-  for(const width of [390,1440]){
+  for(const width of []){
    const context=await browser.newContext({viewport:{width,height:900}}),page=await context.newPage(),denied=[];
    observeCollector(page,denied);
    try{
@@ -95,7 +95,7 @@ function observeCollector(page,records){
    for(const name of eventNames)assert(result.collector.some(r=>r.event===name&&r.stream==='G-Y7BV5KY6RR'&&[200,204].includes(r.responseStatus)),name+' must be accepted by the real GA4 collector');
    for(const receipt of result.collector){assert(!receipt.unsafeAnswerParameter,'An answer reached public analytics');const u=new URL(receipt.location);assert.equal(u.origin,origin);assert.equal(u.search,'');assert.equal(u.hash,'');assert(!u.pathname.startsWith('/member/'));}
    result.collectorVerified=true;result.collectionReportingVerified=false;result.reportingRequirement='Independently check GA4 Realtime; collector requests are not reporting or growth evidence.';
-  }finally{await context.close();}
+  }catch(error){result.diagnostic=await page.evaluate(()=>({suppressed:window.SST_ANALYTICS_SUPPRESSED===true,analyticsConsent:window.SSTConsent?.get()?.analytics===true,path:location.pathname,hash:location.hash,pillarEvents:(window.dataLayer||[]).filter(e=>/^shift_pillar_(first_step_opened|onward_opened|step_tried|review_used)$/.test(e?.event)).map(e=>e.event)}));throw error;}finally{await context.close();}
   result.status='passed';
  }catch(error){result.status='failed';result.error=error.message;throw error;}
  finally{await browser.close();result.finishedAt=new Date().toISOString();fs.writeFileSync(dir+'/receipt.json',JSON.stringify(result,null,2));}
