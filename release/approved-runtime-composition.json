@@ -1327,5 +1327,39 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "watchPendingDelayedQueueRepair": {
+    "proof": "EXACT_WATCH_PENDING_DELAYED_QUEUE_REPAIR_V1",
+    "base": "800b7fbc9da6705ca37b98574f15b058f361defe",
+    "source": "16907563a3ff9c213f17e73f188b61f6c707e83c",
+    "paths": [
+      "medicines-watch/evidence-desk.mjs",
+      "medicines-watch/evidence-desk.test.mjs",
+      "medicines-watch/monitor.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/late-watch-composition.test.mjs"
+    ],
+    "maintenanceSource": "0648491a5f51a8c7a164a1d9f6583ea3c948dd88",
+    "approvedPR": 1294,
+    "reviewedSources": 198,
+    "pendingSources": 1,
+    "delayedSources": 3,
+    "preservedReviewedEntries": 35,
+    "clinicalApproval": null,
+    "medicalEvidenceChanged": false,
+    "factualReviewsChanged": false,
+    "reviewDatesChanged": false,
+    "monitorBaselinesChanged": false,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
