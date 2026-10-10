@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {verifyWatchZp6590RegistryRenewal,verifyReconciledRelease,WATCH_ZP6590_REGISTRY_RENEWAL_BASE as base,WATCH_ZP6590_REGISTRY_RENEWAL_SOURCE as source,WATCH_ZP6590_REGISTRY_RENEWAL_PATHS as paths,WATCH_ZP6590_REGISTRY_RENEWAL_MAINTENANCE as maintenance,RECONCILIATION_MANIFEST as manifest} from '../release/approved-runtime-composition.mjs';
+const flags=['reviewRepeated','medicalClaimsChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'];
+const receipt=()=>({proof:'EXACT_WATCH_ZP6590_REGISTRY_REVIEW_DATE_V1',base,source,maintenanceSource:'a'.repeat(40),paths:[...paths],maintenancePaths:[...maintenance],integrationIssue:1065,publicationStatus:'owner_authorised_factual_publication',clinicalApproval:null,sourceReviewsApplied:1,factualChanges:0,reviewedAt:'2026-10-10T09:39:21Z',zp6590VerificationPending:true,zp6590CheckDelayed:true,...Object.fromEntries(flags.map(k=>[k,false]))});
+const options=()=>({head:'b'.repeat(40),read:()=> 'same',ancestor:()=>{},content:ref=>JSON.stringify(ref===base?{retained:'same'}:{retained:'same',watchZp6590RegistryReviewRenewal:{}}),diff:(a,b)=>a===base?[...paths]:a===source?[...maintenance]:[manifest]});
+test('ZP6590 registry renewal applies the completed source review without resolving sponsor uncertainty',()=>verifyWatchZp6590RegistryRenewal(receipt(),options()));
+test('ZP6590 registry renewal rejects repeated review, changed claims and false sponsor resolution',()=>{
+ for(const patch of [{source:'f'.repeat(40)},{clinicalApproval:true},{sourceReviewsApplied:0},{factualChanges:1},{reviewedAt:'2026-10-03T20:05:13.956Z'},{zp6590VerificationPending:false},{zp6590CheckDelayed:false},...flags.map(k=>({[k]:true}))])assert.throws(()=>verifyWatchZp6590RegistryRenewal({...receipt(),...patch},options()));
+});
+test('composed release verifier remains exported for the guarded workflow',()=>assert.equal(typeof verifyReconciledRelease,'function'));
