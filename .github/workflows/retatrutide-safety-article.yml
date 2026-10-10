@@ -1,0 +1,45 @@
+name: Publish requested retatrutide safety briefing
+on:
+  push:
+    branches: [content/retatrutide-safety-20261010]
+    paths:
+      - '.github/workflows/retatrutide-safety-article.yml'
+      - 'editorial/retatrutide-safety-20261010.mjs'
+      - 'scripts/publish-retatrutide-safety-20261010.mjs'
+permissions:
+  contents: read
+concurrency:
+  group: cloudflare-production-promote
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Guard current source, owner actor and content-only scope
+        run: |
+          test "$GITHUB_ACTOR_ID" = 315011648
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = 68cd3d2f9cf6399bcd2a4cc0f6623684bb8ffe77
+          python3 - <<'PY'
+          import subprocess
+          allowed={'.github/workflows/retatrutide-safety-article.yml','editorial/retatrutide-safety-20261010.mjs','scripts/publish-retatrutide-safety-20261010.mjs','docs/retatrutide-safety-newsroom-20261010.md'}
+          changed=set(subprocess.check_output(['git','diff','--name-only','68cd3d2f9cf6399bcd2a4cc0f6623684bb8ffe77','HEAD'],text=True).splitlines())
+          assert changed<=allowed, changed-allowed
+          PY
+      - name: Verify exact source package and governed idempotent publication offline
+        run: node scripts/publish-retatrutide-safety-20261010.mjs
+      - name: Publish the single briefing through the existing publication core
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node scripts/publish-retatrutide-safety-20261010.mjs --publish
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: retatrutide-safety-publication-proof
+          path: retatrutide-safety-publication-proof.json
