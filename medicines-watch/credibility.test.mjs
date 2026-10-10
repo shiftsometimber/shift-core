@@ -64,6 +64,6 @@ test('public status distinguishes record review, summary review, results and unc
  const s=registrySources[0];const markup=registryEvidenceMarkup({url:s.url,title:'A <record>',reviewedAt:'2026-09-01'},{});
  assert.match(markup,/A &lt;record&gt;/);assert.match(markup,/Medical evidence summary reviewed 1 September 2026/);assert.match(markup,/Record status reviewed 3 October 2026/);assert.match(markup,/Verification pending/);
  const overdueSource=registrySources.find(source=>source.nctId==='NCT07721597');
- const entry=industry.find(e=>overdueSource.entryIds.includes(e.id));assert.match(industryReviewFlag(entry,{},Date.parse('2026-10-12')),/due for factual review/);
+ const entry=industry.find(e=>overdueSource.entryIds.includes(e.id));assert.match(industryReviewFlag(entry,{},Date.parse(entry.reviewedAt)+8*24*60*60*1000),/due for factual review/);
  const html=credibilityMarkup({});for(const id of ['watch-changes','watch-safety','watch-uk-access'])assert.match(html,new RegExp(id));assert.match(html,/Current operational access remains unverified/);assert.match(html,/Reporting does not replace urgent medical care/);assert.match(html,/International maintenance and combination evidence/);assert.match(html,/catalogue now contains 96 programmes/);assert.match(html,/industry-zynergy-petrelintide-enicepatide/);assert.match(html,/VK2735 maintenance study/);assert.match(html,/industry-vk2735/);
 });

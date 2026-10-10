@@ -1,3 +1,4 @@
+import officialAlternatives from './reviews/2026-10-10-authorised-official-alternatives.json' with {type:'json'};
 import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
 import togetherBiomarkers from './reviews/2026-10-09-authorised-together-biomarkers.json' with {type:'json'};
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
@@ -405,4 +406,10 @@ export const industry = [...originalIndustry.map(e => {
   const urls=new Set(change.additionalEvidence.map(link=>link.url));
   return {...e,...change.fields,reviewedAt:backlogReview.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]).filter(link=>!urls.has(link.url)),...change.additionalEvidence]};
+ })
+ .map(e=>{
+  const change=officialAlternatives.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  return {...e,...change.fields,reviewedAt:officialAlternatives.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
  });

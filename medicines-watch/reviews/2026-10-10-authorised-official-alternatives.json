@@ -1,0 +1,255 @@
+{
+  "reviewedAt": "2026-10-10T09:39:21Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "editorialAuthorisation": "Matt's standing Medicines Watch authority permits evidence-backed informational additions and corrections without repeat permission. This is editorial authorisation, not clinical approval.",
+  "reviewType": "AI-assisted scoped primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "baseCommit": "4e3aa6c3a7dc72b2f8d2a6a3e625e086b2137c8d",
+  "preservedPublication": {
+    "pr": 1281,
+    "sourceReviews": 35,
+    "counterRepairPr": 1294,
+    "compositionGuardPr": 1297
+  },
+  "changes": [
+    {
+      "id": "zp6590",
+      "fields": {
+        "limitations": "The previously reviewed pipeline described first-in-human initiation as the next step. Its latest wording cannot be reverified because that endpoint remains HTTP 403 and verification-pending; the registry, CTIS and Zealand's dated 13 August 2026 interim report corroborate initiation. ClinicalTrials.gov estimates completion on 6 September 2027; CTIS lists an estimated EU trial end of 30 June 2027. These separately scoped estimates are retained without reconciliation. This dose-escalation study assesses safety, tolerability, pharmacokinetics and pharmacodynamics; recruitment is not proof of efficacy or safety. Co-formulation is a development aim, and preclinical combination and antiemetic findings are not human combination benefits."
+      },
+      "additionalEvidence": [
+        {
+          "title": "CTIS 2026-525978-19-00: ZP6590-26033",
+          "url": "https://euclinicaltrials.eu/ctis-public/view/2026-525978-19-00",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": "2026-08-13",
+          "reviewedAt": "2026-10-10T09:39:21Z",
+          "checkScope": "Official CTIS summary reviewed: matching protocol, ongoing/recruiting, Human Pharmacology Phase I and actual 9 July 2026 trial/recruitment start in Germany. EU estimated end 30 June 2027 is distinct from the ClinicalTrials.gov estimate. Publication date unknown. Not automatically content-monitored."
+        },
+        {
+          "title": "Zealand Pharma H1 2026 interim report: ZP6590 initiation",
+          "url": "https://www.zealandpharma.com/media/gfdbqawp/zealand-pharma-h1-2026-interim-report.pdf",
+          "sourcePublishedAt": "2026-08-13",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-10T09:39:21Z",
+          "checkScope": "Complete official PDF retrieved; dated company announcement and relevant pipeline discussion read. Supports sponsor-reported first-in-human initiation, not clinical outcomes. Unknown subsequent content-update date; not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "710go",
+      "fields": {
+        "stage": "Recruiting Phase 1 dose-escalation record; food-effect record not yet recruiting",
+        "summary": "710GO is an investigational oral peptide acting at melanocortin-3 and melanocortin-4 receptors. ANZCTR ACTRN12626000541303 (710GO-HV-01 Parts A/B), updated 2 July 2026, lists a randomized, blinded, placebo-controlled Australian Phase 1 study as recruiting, with actual first enrolment on 21 April 2026, a target of 120 and 11 enrolled at that update. The separately registered Part C food-effect crossover study ACTRN12626000540314, last updated 30 April 2026, still lists not yet recruiting and a target of 12.",
+        "limitations": "The 28 May 2026 sponsor announcement reported first dosing and approximately 100 planned participants. Its count is retained separately from the later dose-escalation registry's 120 target; 11 is a dated accrual count, not current enrolment or a result. Part C's recruitment start remains anticipated, not actual. Both records give anticipated last enrolment on 2 November and last data collection on 31 December 2026, with no study results posted. Differences in population wording, counts and recruitment timing remain unresolved. ClinicalTrials.gov discovery remains incomplete; these ANZCTR records provide official alternatives. Neither first enrolment nor dosing establishes human efficacy or safety. Weight, fat, lean-mass, tolerability, maintenance and combination observations in the earlier announcement concern preclinical studies, not human benefits, strength, function, durability, superiority or an approved regimen. The separate mifomelatide cancer-cachexia programme is not obesity evidence."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ANZCTR ACTRN12626000541303: 710GO-HV-01 dose escalation",
+          "url": "https://www.anzctr.org.au/Trial/Registration/TrialReview.aspx?id=391355&isReview=true&showHistory=true",
+          "sourcePublishedAt": "2026-04-30",
+          "sourceUpdatedAt": "2026-07-02",
+          "reviewedAt": "2026-10-10T09:39:21Z",
+          "checkScope": "Complete official registry record read: Parts A/B only, Phase 1, recruiting, actual first enrolment 21 April 2026, target 120, dated accrual 11, anticipated future dates and no posted study results. Not automatically content-monitored."
+        },
+        {
+          "title": "ANZCTR ACTRN12626000540314: 710GO-HV-01 Part C food effect",
+          "url": "https://anzctr.org.au/Trial/Registration/TrialReview.aspx?id=391627",
+          "sourcePublishedAt": "2026-04-30",
+          "sourceUpdatedAt": "2026-04-30",
+          "reviewedAt": "2026-10-10T09:39:21Z",
+          "checkScope": "Complete official registry record read: separate open-label randomized food-effect crossover Part C, target 12, not yet recruiting, anticipated dates with actual dates blank, no results documents. Not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://clinicaltrials.gov/study/NCT07721597",
+      "sourcePublishedAt": "2026-07-23",
+      "sourceUpdatedAt": "2026-08-13",
+      "reviewedAt": "2026-10-10T09:39:21Z",
+      "assessment": "Actual complete rendered primary record read. Recruiting Early Phase 1, matching sponsor/protocol, estimated enrolment 88, actual start 9 July 2026, estimated primary/overall completion 6 September 2027 and no posted results. No lifecycle change."
+    },
+    {
+      "url": "https://euclinicaltrials.eu/ctis-public/view/2026-525978-19-00",
+      "sourcePublishedAt": null,
+      "sourceUpdatedAt": "2026-08-13",
+      "reviewedAt": "2026-10-10T09:39:21Z",
+      "assessment": "Official CTIS rendered summary read. Matching ZP6590-26033, Germany, Human Pharmacology Phase I, ongoing and recruiting, actual trial/recruitment start 9 July 2026. Estimated EU trial end 30 June 2027 is not substituted for the ClinicalTrials.gov global estimate. Aggregated CTIS adult age band is not used to override protocol eligibility."
+    },
+    {
+      "url": "https://www.zealandpharma.com/media/gfdbqawp/zealand-pharma-h1-2026-interim-report.pdf",
+      "sourcePublishedAt": "2026-08-13",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-10T09:39:21Z",
+      "httpStatus": 200,
+      "bytes": 2335462,
+      "responseSha256": "ea4b0ea6be430ca921d055c590d813f5dbbb879313c1331d5f4847b48d83950c",
+      "assessment": "Complete official PDF retrieved and relevant dated company-announcement/pipeline sections read. Directly reviewable sponsor alternative corroborates first-in-human initiation. It is larger than the monitor's 2 MiB limit and is not installed as an automatic replacement. No renewal or green baseline for the denied pipeline endpoint."
+    },
+    {
+      "url": "https://investors.kailera.com/news-releases/news-release-details/kailera-reports-second-quarter-2026-financial-results-and",
+      "sourcePublishedAt": "2026-08-12",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-10T09:39:21Z",
+      "assessment": "Complete recovered official release read. Global versus Chinese development distinguished; oral ribupatide global Phase 3 H1 2027 and KAI-4729 global Phase 1 by end 2026 are plans. KAI-7535 global Phase 2 initiation and high-dose injection Phase 2b enrolment are sponsor-reported completed events. No new public correction or monitor baseline."
+    },
+    {
+      "url": "https://investors.kailera.com/news-releases/news-release-details/kailera-therapeutics-announces-completion-enrollment-kainetic",
+      "sourcePublishedAt": "2026-09-30",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-10T09:39:21Z",
+      "assessment": "Complete recovered official release read. KaiNETIC enrolment completion is sponsor-reported; approximate trial counts are distinguished from older target counts. Mid-2028 data and H1 2027 oral Phase 3 remain planned. No correction required."
+    },
+    {
+      "url": "https://www.kailera.com/clinical-trials/",
+      "sourcePublishedAt": null,
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-10T09:39:21Z",
+      "assessment": "Official trial page read. Older target counts are not substituted for later sponsor enrolment statements. Expanded access policy does not establish UK supply. Unknown publication/update dates."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1774857/000119312526344987/ck0001774857-20260630.htm",
+      "sourcePublishedAt": "2026-08-11",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-10T09:39:21Z",
+      "assessment": "Official Form 10-Q programme and safety disclosure read. ARD-201 POWER initiation, STRENGTH plan, voluntary pause and dependency on resolving the ARD-101 IND hold remain accurately scoped in live entry. HERO/OLE termination is ARD-101-specific and is not applied to ARD-201. No restart established."
+    },
+    {
+      "url": "https://siriusrna.com/html/companynews/119.html",
+      "sourcePublishedAt": "2026-07-01",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-10T09:39:21Z",
+      "assessment": "Complete original sponsor release read. SRSD384 first dosing is sponsor-reported; monotherapy and tirzepatide/T2DM parts remain distinct. H1 2027 interim data is planned. No human fat or lean-mass benefit inferred."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07557355",
+      "sourcePublishedAt": "2026-04-29",
+      "sourceUpdatedAt": "2026-06-05",
+      "reviewedAt": "2026-10-10T09:39:21Z",
+      "assessment": "Complete primary API record retrieved and read. Still NOT_YET_RECRUITING with estimated June 2026 start, estimated enrolment 78 and October 2027 estimated completion, no results. Older registry versus 1 July sponsor first-dosing conflict remains; no stale record silently treated as current activity."
+    },
+    {
+      "url": "https://www.kalohexis.com/weight-loss/",
+      "sourcePublishedAt": null,
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-10T09:39:21Z",
+      "assessment": "Official programme page read; it directly links the Parts A/B ANZCTR record. Animal-model claims are not human outcomes. Used for registry discovery, not to renew the denied sponsor-distribution URL."
+    },
+    {
+      "url": "https://www.anzctr.org.au/Trial/Registration/TrialReview.aspx?id=391355&isReview=true&showHistory=true",
+      "sourcePublishedAt": "2026-04-30",
+      "sourceUpdatedAt": "2026-07-02",
+      "reviewedAt": "2026-10-10T09:39:21Z",
+      "assessment": "Complete dose-escalation record read including history, actual versus anticipated dates, planned versus dated accrual counts, design, population and absence of results. Sponsor/registry differences explicitly retained."
+    },
+    {
+      "url": "https://anzctr.org.au/Trial/Registration/TrialReview.aspx?id=391627",
+      "sourcePublishedAt": "2026-04-30",
+      "sourceUpdatedAt": "2026-04-30",
+      "reviewedAt": "2026-10-10T09:39:21Z",
+      "assessment": "Complete food-effect record read. A distinct Part C, not the complete approximately 100-person sponsor-reported trial. Not-yet-recruiting and target 12 are dated record assertions; actual enrolment/date fields empty and no results documents."
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "lastAttemptAt": "2026-10-10T09:15:23.418Z",
+    "configured": 199,
+    "current": 198,
+    "reviewed": 198,
+    "verificationPending": 1,
+    "delayed": 1,
+    "factualReviewNeeded": 0,
+    "kaileraRecovered": true,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "reviewStatus": "verification_pending",
+        "httpStatus": 403,
+        "error": "http_403",
+        "lastSuccessAt": null
+      }
+    ],
+    "boundary": "SELECT-only public health read. No source dates, fingerprints or observations are changed by this two-entry update."
+  },
+  "discoveryPass": {
+    "date": "2026-10-10",
+    "method": "Separate configured-source pass followed by unrestricted current-date and broader undated topic searches, selected official-domain sponsor/regulator searches, and alternative-registry discovery. Selected developers are not an exhaustive universe.",
+    "topics": [
+      "UK authorisation, access, safety and withdrawals",
+      "incretin/amylin trials and paused programmes",
+      "muscle preservation, oral peptides and combinations",
+      "specialist obesity indications",
+      "early-phase smaller/international developers"
+    ],
+    "selectedDevelopersSearched": [
+      "Novo Nordisk",
+      "Lilly",
+      "Amgen",
+      "Zealand/Roche",
+      "Pfizer",
+      "Viking",
+      "Structure",
+      "Boehringer Ingelheim",
+      "AstraZeneca",
+      "Hansoh/Merck",
+      "Kailera",
+      "Aardvark",
+      "Sirius",
+      "Kalohexis",
+      "Ascletis",
+      "Rhythm"
+    ],
+    "limits": "Dated MHRA/NICE and Aardvark searches produced sparse or unrelated results; these checks are incomplete, not evidence of no changes. Other results mostly overlapped already published evidence. No source-count ratio or claim of industry completeness. Leads not read in full are not factual reviews."
+  },
+  "remainingObstacles": [
+    {
+      "id": "zealand-zp6590-pipeline",
+      "url": "https://www.zealandpharma.com/pipeline/zp6590/",
+      "obstacle": "Known direct HTTP 403; no successful monitor baseline. Latest sponsor pipeline wording remains unverified.",
+      "alternative": "Readable official 13 August H1 PDF and CTIS reviewed. The PDF is 2335462 bytes, above the configured monitor's 2097152-byte limit.",
+      "nextAction": "Retain pending and delayed on the original source. Review a stable monitor-compatible official HTML/text artifact or deliberately scoped replacement before changing the monitor; do not weaken the size limit or pin an error response."
+    },
+    {
+      "id": "srsd384-recruitment-conflict",
+      "url": "https://clinicaltrials.gov/study/NCT07557355",
+      "obstacle": "Accessible but last updated 5 June; NOT_YET_RECRUITING conflicts with the later 1 July sponsor dosing announcement.",
+      "nextAction": "Check the next substantive registry update or dated original sponsor follow-up; retain both dated accounts."
+    },
+    {
+      "id": "710go-count-and-component-scope",
+      "url": "https://www.anzctr.org.au/Trial/Registration/TrialReview.aspx?id=391355&isReview=true&showHistory=true",
+      "obstacle": "Accessible official record target 120 differs from May sponsor approximately 100; dated accrual 11 is not today's recruitment count; separate Part C remains not yet recruiting.",
+      "nextAction": "Review next registry revision or original sponsor protocol/count clarification; keep Parts A/B and C separate and no completion inference."
+    },
+    {
+      "id": "710go-distribution-denial",
+      "url": "https://www.prnewswire.com/news-releases/kalohexis-announces-first-patients-dosed-in-first-in-human-phase-1-clinical-trial-of-710go-for-general-obesity-302783802.html",
+      "obstacle": "Previously recorded direct HTTP 403; not retried. Prior reviewed sponsor statement retained with its original review date.",
+      "nextAction": "Use current official Kalohexis page and exact ANZCTR records for freshness; replace the distribution URL only after an equivalent dated official release is reviewed."
+    },
+    {
+      "id": "aardvark-distribution-denial",
+      "url": "https://ir.aardvarktherapeutics.com/news-releases/news-release-details/aardvark-therapeutics-announces-voluntary-pause-phase-3-hero",
+      "obstacle": "Web retrieval HTTP 403 this pass; not repeatedly retried. Official August SEC disclosure accessible; newer hold-resolution search inconclusive.",
+      "nextAction": "Review subsequent official SEC filing or dated company release for any restart or hold change; current pause/dependency stays."
+    },
+    {
+      "id": "unreviewed-manual-evidence",
+      "obstacle": "Remaining manually followed evidence URLs were not all individually reviewed in this bounded pass. Their prior dates remain; complete coverage is not claimed.",
+      "nextAction": "Prioritise unmonitored safety/withdrawal claims, actual trial status changes and near-term estimated dates; then specialist and smaller-developer omissions. Preserve the existing Hengrui English rejection and unknown sponsor-page publication dates."
+    }
+  ],
+  "counts": {
+    "totalProgrammes": 112,
+    "configuredSources": 199,
+    "monitoredTrialLifecycles": 134,
+    "manualEvidenceBefore": 89,
+    "manualEvidenceAfter": 93
+  },
+  "nextAction": "Run required tests, merge the exact passing PR through #1065's single release train, then verify serving content and queue/health counts. This receipt is factual review evidence, not proof of deployment."
+}
