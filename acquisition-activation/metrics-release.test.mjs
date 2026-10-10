@@ -52,7 +52,7 @@ import {execFileSync} from 'node:child_process';
 test('Book Voice accepts exact independently verified measurement maintenance and rejects tampering',()=>{
  const read=(ref,p)=>execFileSync('git',['show',ref+':'+p],{encoding:'utf8'});
  validateBookVoice(read);
- assert.throws(()=>verifyMetricsConnection(metricsRecord(),(ref,p)=>ref==='HEAD'&&p==='member-experience/public-preservation.mjs'?'tampered':read(ref,p)),/(?:Metrics maintenance source drift|Tablet wording source drift|Male-obesity source drift)/);
+ assert.throws(()=>verifyMetricsConnection(metricsRecord(),(ref,p)=>ref==='HEAD'&&p==='member-experience/public-preservation.mjs'?'tampered':read(ref,p)),/(?:Metrics maintenance source drift|Tablet wording source drift|Male-obesity source drift|Continuity-content source drift)/);
 });
 
 import '../release/live-request-retry.test.mjs';
