@@ -2,6 +2,7 @@ import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' 
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
 import bimagrumabSemaglutide from './reviews/2026-10-09-authorised-bimagrumab-semaglutide.json' with {type:'json'};
 import togetherPsoriaticDisease from './reviews/2026-10-09-authorised-together-psoriatic-disease.json' with {type:'json'};
+import mwyngilPalatinPreclinical from './reviews/2026-10-10-authorised-mwyngil-palatin-preclinical.json' with {type:'json'};
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {industry,industrySources} from './industry.mjs';
@@ -474,8 +475,8 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,104);assert.equal(sources.length,199);
- assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,110);
+ assert.equal(medicines.length,6);assert.equal(industry.length,106);assert.equal(sources.length,199);
+ assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,112);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
 });
@@ -1006,7 +1007,7 @@ test('switching studies remain planned research and do not inflate programme cou
  assert.equal(switchingStudies.automatedMonitorChanges,false);
  assert.equal(switchingStudies.configuredSourcePass.status,'current');
  assert.equal(switchingStudies.configuredSourcePass.currentCount,50);
- assert.equal(industry.length,104);
+ assert.equal(industry.length,106);
  const zenagamtide=industry.find(entry=>entry.id==='zenagamtide');
  assert.match(zenagamtide.summary,/switching from maintenance semaglutide/);
  assert.match(zenagamtide.summary,/60 adults/);
@@ -1556,7 +1557,7 @@ test('registry follow-up adds exact lifecycles without duplicating programmes or
  assert.equal(registryLifecycleFollowup.clinicalApproval,null);
  assert.equal(registryLifecycleFollowup.industryComplete,false);
  assert.deepEqual(registryLifecycleFollowup.catalogueCounts,{detailedBefore:6,detailedAfter:6,widerBefore:103,widerAfter:103,totalBefore:109,totalAfter:109,configuredSourcesBefore:184,configuredSourcesAfter:190,trialRecordsBefore:119,trialRecordsAfter:125});
- assert.equal(industry.length,104);
+ assert.equal(industry.length,106);
  const ribupatide=industry.find(entry=>entry.id==='ribupatide-injection');
  assert.match(ribupatide.summary,/2,530 participants/);
  assert.match(ribupatide.summary,/1,270 with diabetes/);
@@ -1600,7 +1601,7 @@ test('ENITH Phase 3 and specialist emugrobart lifecycles preserve results and di
  assert.equal(enicepatideEmugrobartRegistry.clinicalApproval,null);
  assert.equal(enicepatideEmugrobartRegistry.industryComplete,false);
  assert.deepEqual(enicepatideEmugrobartRegistry.catalogueCounts,{detailedBefore:6,detailedAfter:6,widerBefore:103,widerAfter:103,totalBefore:109,totalAfter:109,configuredSourcesBefore:190,configuredSourcesAfter:193,trialRecordsBefore:125,trialRecordsAfter:128});
- assert.equal(industry.length,104);
+ assert.equal(industry.length,106);
  const enicepatide=industry.find(entry=>entry.id==='enicepatide');
  assert.match(enicepatide.summary,/ENITH-1 and ENITH-2 Phase 3 records are recruiting/);
  assert.match(enicepatide.summary,/2,000 participants without type 2 diabetes/);
@@ -1700,6 +1701,25 @@ test('TOGETHER biomarker follow-up does not renew registry evidence or change UK
  assert.match(item.summary,/9 October 2026/);assert.match(item.summary,/circulating proteins and blood gene expression/);
  assert.match(item.limitations,/not a new trial or independently established clinical benefit/);
  assert.equal(item.clinicalApproval,null);assert.match(item.ukAuthorisation,/does not establish a UK marketing authorisation/);
- assert.equal(medicines.length+industry.length,110);assert.equal(sources.length,199);
+ assert.equal(medicines.length+industry.length,112);assert.equal(sources.length,199);
  for(const old of togetherPsoriaticDisease.registrySources){const current=registrySources.find(s=>s.id===old.id);assert.equal(current.reviewedAt,old.reviewedAt);assert.equal(current.reviewedFingerprint,old.reviewedFingerprint);}
+});
+
+test('Mwyngil and Palatin additions remain bounded preclinical evidence',()=>{
+ assert.equal(mwyngilPalatinPreclinical.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(mwyngilPalatinPreclinical.clinicalApproval,null);
+ assert.equal(mwyngilPalatinPreclinical.industryComplete,false);
+ assert.deepEqual(mwyngilPalatinPreclinical.catalogueCounts,{detailedBefore:6,detailedAfter:6,widerBefore:104,widerAfter:106,totalBefore:110,totalAfter:112,configuredSourcesBefore:199,configuredSourcesAfter:199});
+ const mwyngil=industry.find(entry=>entry.id==='mw401-gpr75');
+ assert.ok(mwyngil);assert.equal(mwyngil.group,'research');assert.equal(mwyngil.clinicalApproval,null);
+ assert.match(mwyngil.stage,/Preclinical/);assert.match(mwyngil.limitations,/mice, not people/);
+ assert.match(mwyngil.limitations,/antagonist and inverse-agonist terminology/);
+ assert.match(mwyngil.ukAuthorisation,/does not establish UK marketing authorisation/);
+ const palatin=industry.find(entry=>entry.id==='palatin-pl1000-pl2000');
+ assert.ok(palatin);assert.equal(palatin.group,'research');assert.equal(palatin.clinicalApproval,null);
+ assert.match(palatin.stage,/Preclinical and IND-enabling/);
+ assert.match(palatin.summary,/hypothalamic obesity, Prader-Willi syndrome and Bardet-Biedl syndrome/);
+ assert.match(palatin.limitations,/future targets subject to funding, not completed events/);
+ assert.ok(discoveryDomains.includes('mwyngil.com'));assert.ok(discoveryDomains.includes('palatin.com'));
+ assert.equal(medicines.length+industry.length,112);assert.equal(sources.length,199);
 });
