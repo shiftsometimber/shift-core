@@ -45,3 +45,14 @@ test('backlog publication binds exact reviewed payload and rejects unrelated cha
  const proof={id:backlogRun,head_sha:backlogSource,path:'.github/workflows/medicines-watch-check.yml',event:'pull_request',head_branch:'review/watch-backlog-20261009',status:'completed',conclusion:'success'};assertWatchBacklogProof(proof);
  for(const patch of [{id:1},{head_sha:'f'.repeat(40)},{conclusion:'failure'},{status:'in_progress'},{event:'push'},{head_branch:'main'}])assert.throws(()=>assertWatchBacklogProof({...proof,...patch}));
 });
+
+
+import {verifyWatchPreclinicalDiscoveryUpdate,WATCH_PRECLINICAL_DISCOVERY_BASE as discoveryBase,WATCH_PRECLINICAL_DISCOVERY_SOURCE as discoverySource,WATCH_PRECLINICAL_DISCOVERY_PATHS as discoveryPaths,WATCH_PRECLINICAL_DISCOVERY_MAINTENANCE as discoveryMaintenance} from '../release/approved-runtime-composition.mjs';
+const discoveryReceipt=()=>({proof:'EXACT_WATCH_PRECLINICAL_DISCOVERY_V1',base:discoveryBase,source:discoverySource,paths:[...discoveryPaths],maintenancePaths:[...discoveryMaintenance],maintenanceSource:'a'.repeat(40),approvedPR:1292,publicationStatus:'owner_authorised_factual_publication',clinicalApproval:null,programmesReviewed:2,monitorSources:199,delayedSources:3,...Object.fromEntries(['humanEfficacyClaimed','humanSafetyClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'].map(k=>[k,false]))});
+const discoveryOptions=()=>({head:'b'.repeat(40),read:()=> 'same',ancestor:()=>{},diff:(a,b)=>a===discoveryBase?[...discoveryPaths]:a===discoverySource?[...discoveryMaintenance]:[RECONCILIATION_MANIFEST]});
+test('preclinical discovery receipt preserves evidence limits and exact release ownership',()=>{
+ verifyWatchPreclinicalDiscoveryUpdate(discoveryReceipt(),discoveryOptions());
+ for(const patch of [{source:'f'.repeat(40)},{approvedPR:1},{clinicalApproval:true},{programmesReviewed:0},{monitorSources:0},{delayedSources:0},...Object.keys(discoveryReceipt()).filter(k=>discoveryReceipt()[k]===false).map(k=>({[k]:true}))])assert.throws(()=>verifyWatchPreclinicalDiscoveryUpdate({...discoveryReceipt(),...patch},discoveryOptions()));
+ for(const boundary of [discoveryBase,discoverySource,'a'.repeat(40)]){const o=discoveryOptions(),diff=o.diff;o.diff=(a,b)=>a===boundary?[...diff(a,b),'worker.js']:diff(a,b);assert.throws(()=>verifyWatchPreclinicalDiscoveryUpdate(discoveryReceipt(),o));}
+ for(const path of [...discoveryPaths,...discoveryMaintenance]){const o=discoveryOptions();o.read=(r,p)=>r==='HEAD'&&p===path?'drift':'same';assert.throws(()=>verifyWatchPreclinicalDiscoveryUpdate(discoveryReceipt(),o),/source drift/);}
+});
