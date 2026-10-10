@@ -1765,6 +1765,44 @@
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
   },
+  "watchZp6590RegistryReviewRenewal": {
+    "proof": "EXACT_WATCH_ZP6590_REGISTRY_REVIEW_DATE_V1",
+    "base": "06acc6a90d80d6386f618ba739d95085b13341c2",
+    "source": "d476cb32c3ea888dd56f78a3b30631e863537800",
+    "maintenanceSource": "e6a9a9ab6475ae9e1a973576aa0e22818794504e",
+    "paths": [
+      "medicines-watch/credibility.mjs",
+      "medicines-watch/credibility.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-zp6590-registry-renewal-composition.test.mjs",
+      "tests/approved-runtime-composition.test.mjs"
+    ],
+    "integrationIssue": 1065,
+    "publicationStatus": "owner_authorised_factual_publication",
+    "clinicalApproval": null,
+    "sourceReviewsApplied": 1,
+    "factualChanges": 0,
+    "reviewedAt": "2026-10-10T09:39:21Z",
+    "zp6590VerificationPending": true,
+    "zp6590CheckDelayed": true,
+    "reviewRepeated": false,
+    "medicalClaimsChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyChanged": false,
+    "monitorBaselinesChanged": false,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
+  },
   "obesityHubTransport": {
     "proof": "EXACT_OBESITY_HUB_TRANSPORT_20261010",
     "base": "1b43badb186b40a35f145a63051f0307785dad7d",
