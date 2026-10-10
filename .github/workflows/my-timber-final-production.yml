@@ -14,9 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      ACCEPTANCE_SOURCE: 834680b4353551b257fe0094e834fa827c86ad70
-      ACCEPTANCE_RUN: '38012358318'
-      EXPECTED_SERVING_DEPLOYMENT: 7dab9b86-13a2-49f0-a1cb-8837e4fdc75b
+      ACCEPTANCE_SOURCE: d54b9e139ca0b65a3fba15ab0d33dd397fa45fc2
+      ACCEPTANCE_RUN: '38035742614'
+      EXPECTED_SERVING_DEPLOYMENT: a5d4256f-c397-4581-b5e5-510c569aa7e1
     steps:
       - uses: actions/checkout@v4
         with:
@@ -41,15 +41,15 @@ jobs:
         with:
           github-token: ${{ github.token }}
           repository: shiftsometimber/shift-core
-          run-id: 38012358318
-          name: b1-runtime-release-38012358318
+          run-id: 38035742614
+          name: b1-runtime-release-38035742614
           path: owned-release
       - name: Provider GET verifies exact receipt active at 100 percent
         id: serving_before
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node tests/premortem-runtime-receipt.mjs before
-      - name: Only additional read-only phase breakdown; no completed acceptance repeated
+      - name: Current live observability and private-read recovery only; no phase replay or completed acceptance repeated
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node tests/premortem-production.mjs

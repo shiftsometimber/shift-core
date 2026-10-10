@@ -17,6 +17,23 @@ test('review work and retrieval work remain independent and can overlap',()=>{
  assert.equal(q[0].review,true);assert.equal(q[0].delayed,false);assert.equal(q[1].review,true);assert.equal(q[1].delayed,true);assert.equal(q[2].pending,true);
  const unavailable=evidenceQueue(fixture,{available:false,sources:fixture.map(s=>({id:s.id,status:'current'}))},now);assert.equal(unavailable.length,3);assert.ok(unavailable.every(s=>s.pending));
 });
+test('queue preserves reviewed-delayed, pending-delayed and changed-delayed distinctions',()=>{
+ const fixture=[
+  {id:'reviewed-delayed',reviewedAt:'2026-10-03',reviewedFingerprint:'reviewed'},
+  {id:'pending-delayed',reviewedAt:'2026-10-03',reviewedFingerprint:'reviewed'},
+  {id:'changed-delayed',reviewedAt:'2026-10-03',reviewedFingerprint:'reviewed'}
+ ];
+ const q=evidenceQueue(fixture,{available:true,sources:[
+  {id:'reviewed-delayed',status:'check_delayed',checkStatus:'check_delayed',reviewStatus:'reviewed',reasons:['last_check_failed']},
+  {id:'pending-delayed',status:'check_delayed',checkStatus:'check_delayed',reviewStatus:'verification_pending',reasons:['source_not_verified','last_check_failed']},
+  {id:'changed-delayed',status:'check_delayed',checkStatus:'check_delayed',reviewStatus:'awaiting_review',reasons:['source_changed','last_check_failed']}
+ ]},now);
+ assert.deepEqual(q.map(({source,review,delayed,pending})=>({id:source.id,review,delayed,pending})),[
+  {id:'reviewed-delayed',review:false,delayed:true,pending:false},
+  {id:'pending-delayed',review:false,delayed:true,pending:true},
+  {id:'changed-delayed',review:true,delayed:true,pending:false}
+ ]);
+});
 test('coverage directory deduplicates exact configured URLs and escapes evidence',()=>{
  const entries=[{name:'<A>',additionalEvidence:[{title:'<source>',url:'https://example.com/a'}]},{name:'B',evidenceLinks:[{url:'https://example.com/a'}]}];
  assert.equal(manualEvidence(entries,[]).length,1);assert.equal(manualEvidence(entries,[{url:'https://example.com/a'}]).length,0);
@@ -27,7 +44,7 @@ test('ZP6590 review preserves conflicts, estimates and absent results',()=>{
  assert.equal(s.lifecycle.status,'RECRUITING');assert.deepEqual(s.lifecycle.start,{date:'2026-07-09',type:'ACTUAL'});assert.equal(s.lifecycle.hasResults,false);assert.equal(entry.clinicalApproval,null);assert.match(entry.limitations,/next step/);assert.match(entry.limitations,/not human combination benefits/);
  assert.match(registryEvidenceMarkup(entry.additionalEvidence[0],{}),/Last reviewed record: Recruiting/);assert.match(registryEvidenceMarkup(entry.additionalEvidence[0],{}),/6 September 2027 \(estimated\)/);
  assert.equal(receipt.monitorObservationsSeeded,false);assert.equal(receipt.industryComplete,false);assert.match(receipt.discovery.rejectedLeads[0].outcome,/eloralintide/);
- assert.equal(medicines.length+industry.length,110);assert.equal(sources.length,199);
+ assert.equal(medicines.length+industry.length,112);assert.equal(sources.length,199);
 });
 test('topic discovery requires dated and undated attempts; failure is never completion',()=>{
  const date=new Date(now),plan=topicQueriesForDate(date);assert.equal(plan.length,discoveryTopics.length*2);assert.ok(plan.every(q=>!q.q.includes('site:')));

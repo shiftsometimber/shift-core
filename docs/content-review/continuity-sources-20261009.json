@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-09",
+  "scope": [
+    "/clinic-gone-quiet",
+    "/provider-switch"
+  ],
+  "editorialStatus": "General practical guidance; not individually reviewed clinical advice",
+  "ownerRoles": {
+    "/male-obesity": "Permanent male-obesity hub; unchanged",
+    "organicGrowth": "Complementary hub/support roles and answer-depth additions unchanged"
+  },
+  "sources": [
+    {
+      "url": "https://www.nhs.uk/nhs-services/prescriptions/emergency-prescriptions/",
+      "sourceReviewed": "2024-01-15",
+      "supports": "Routes to seek help after running out; does not guarantee a specific supply or private-to-NHS transfer",
+      "page": "/clinic-gone-quiet"
+    },
+    {
+      "url": "https://inspections.pharmacyregulation.org/home/index",
+      "supports": "Great Britain pharmacy standards and published inspection findings; link to register",
+      "page": "/provider-switch"
+    }
+  ],
+  "independentChecks": [
+    "13 * 28 = 364; not a price promise",
+    "Contact prompt and handover note are original practical suggestions",
+    "No new medicine, dose, stock, eligibility or clinical-service claim"
+  ],
+  "acceptance": "Exact full copy, destinations and mobile/desktop rendered proof required; source registration is not deployment evidence"
+}

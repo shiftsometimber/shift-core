@@ -15,7 +15,7 @@ export function evidenceQueue(sources,health={},now=Date.now()){
   if(!Number.isFinite(age)||age<0||age>interval)reasons.add('review_due');
   const review=reasons.has('review_due')||reasons.has('source_changed')||reasons.has('source_withdrawn')||h?.reviewStatus==='awaiting_review'||h?.status==='awaiting_review';
   const delayed=h?.checkStatus==='check_delayed'||h?.status==='check_delayed';
-  const pending=!h||h.status==='verification_pending'||!s.reviewedFingerprint;
+  const pending=!h||h.reviewStatus==='verification_pending'||h.status==='verification_pending'||!s.reviewedFingerprint;
   return {source:s,observation:h,review,delayed,pending,reasons:[...reasons]};
  }).filter(s=>s.review||s.delayed||s.pending);
 }

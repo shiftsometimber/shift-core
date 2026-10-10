@@ -1,30 +1,39 @@
 import assert from 'node:assert/strict';
-import {randomUUID,createHash} from 'node:crypto';
-import {performance} from 'node:perf_hooks';
+import {randomUUID} from 'node:crypto';
 import {mkdirSync,writeFileSync} from 'node:fs';
-import {grubWorkspaceRoutes} from '../member-experience/grub-routes.mjs';
+import {execFileSync} from 'node:child_process';
 const site='https://shiftsometimber.co.uk',api='https://api.shiftsometimber.co.uk';
-const report={source:process.env.ACCEPTANCE_SOURCE,scope:'Additional phase-only read diagnostic, no legacy/Garage/coaching acceptance repeated; exact route source, real D1 via REST adapter. NOT serving-Worker binding phase timing.',queries:[],digestCalls:[]};mkdirSync('reliability-evidence',{recursive:true});
+const report={source:process.env.ACCEPTANCE_SOURCE,scope:'New fictional commissioning identity: only current live observability and private-read/logout recovery; no completed browser acceptance repeated',requests:[],pass:false};
+mkdirSync('reliability-evidence',{recursive:true});
 async function oidc(){const u=new URL(process.env.ACTIONS_ID_TOKEN_REQUEST_URL);u.searchParams.set('audience','shift-production-commissioning');const r=await fetch(u,{headers:{Authorization:'bearer '+process.env.ACTIONS_ID_TOKEN_REQUEST_TOKEN}});assert(r.ok);return(await r.json()).value}
-let uid,hash,sessionId,start,authEnd,catalogueStart,memberStateStart,phaseName='authentication';
-async function sql(sql,params,label){const began=performance.now();const r=await fetch('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/d1/database/88f40aed-cb23-4372-8c94-8a73f48bc847/query',{method:'POST',headers:{Authorization:'Bearer '+process.env.CLOUDFLARE_API_TOKEN,'Content-Type':'application/json'},body:JSON.stringify({sql,params}),signal:AbortSignal.timeout(30000)});if(r.status===401||r.status===403)throw Error('STOP existing D1 authority unavailable');const j=await r.json();assert(r.ok&&j.success&&j.result?.[0]?.success);const v=j.result[0];report.queries.push({phase:label,startedOffsetMs:began-start,elapsedMs:performance.now()-began,executionMs:v.meta?.duration,rowsRead:v.meta?.rows_read,rowsWritten:v.meta?.rows_written,colo:v.meta?.served_by_colo});return v}
-const DB={prepare(sqlText){let params=[];const label=/FROM user_sessions/.test(sqlText)?'authentication.session-select':/last_used_at/.test(sqlText)?'authentication.last-used-update':/structured_content/.test(sqlText)?'catalogue.page-select':'member-state.preferences-select';
-if(label==='catalogue.page-select'&&catalogueStart===undefined){catalogueStart=performance.now();phaseName='catalogue'}
-if(label==='member-state.preferences-select'&&memberStateStart===undefined){memberStateStart=performance.now();phaseName='member-state'}
-const execute=async()=>{if(label==='authentication.session-select')assert.equal(params[0],hash);else if(label==='authentication.last-used-update')assert.equal(params[1],sessionId);else if(label==='member-state.preferences-select'){assert.equal(sqlText,'SELECT preferences FROM member_state WHERE user_id=?');assert.equal(params[0],uid)}else assert.match(sqlText,/content_type='recipe' AND status='published'/);
-const v=await sql(sqlText,params,label);if(label==='authentication.session-select'){assert.equal(Number(v.results[0].id),uid);sessionId=v.results[0].session_id}if(label==='authentication.last-used-update')authEnd=performance.now();return v};
-return{bind(...p){params=p;return this},async first(){return(await execute()).results[0]||null},async all(){return execute()},async run(){return execute()}}}};
-const identity={email:'shiftsometimber+structured-authrender-phase-'+Date.now()+'@gmail.com',password:'Sst-'+randomUUID()+'-Aa1!'};let cookie;
-try{let r=await fetch(api+'/v1/auth/register',{method:'POST',headers:{Origin:site,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':await oidc()},body:JSON.stringify({...identity,firstName:'Fictional phase diagnostic',source:'commissioning-premortem'})});assert.equal(r.status,201);
-r=await fetch(api+'/v1/auth/login',{method:'POST',headers:{Origin:site,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':await oidc()},body:JSON.stringify(identity)});assert.equal(r.status,200);const issued=r.headers.getSetCookie().filter(x=>x.startsWith('sst_session='));const liveCookies=issued.filter(x=>/^sst_session=[^;]+/.test(x)&&!/Max-Age=0(?:;|$)/i.test(x));report.cookieJarSelection={issuedHeaders:issued.length,emptyOrClearedHeaders:issued.length-liveCookies.length,nonEmptyCandidates:liveCookies.length};assert(liveCookies.length,'No server-issued live session cookie');cookie=liveCookies.at(-1).split(';')[0];hash=createHash('sha256').update(decodeURIComponent(cookie.slice('sst_session='.length))).digest('hex');
-r=await fetch(site+'/v1/me',{headers:{Cookie:cookie}});assert.equal(r.status,200);const me=await r.json();assert.equal(me.user.email,identity.email);uid=Number(me.user.id);
-const live=await fetch(site+'/v1/grub/workspace',{headers:{Cookie:cookie,'Cache-Control':'no-cache'},signal:AbortSignal.timeout(30000)});assert.equal(live.status,200);const food=await live.json();report.live={at:new Date().toISOString(),status:live.status,ray:live.headers.get('cf-ray')};
-const digest=crypto.subtle.digest.bind(crypto.subtle);crypto.subtle.digest=async(...args)=>{const t=performance.now();const result=await digest(...args);report.digestCalls.push({phase:phaseName,elapsedMs:performance.now()-t});return result};
-start=performance.now();try{r=await grubWorkspaceRoutes(new Request(site+'/v1/grub/workspace',{headers:{Cookie:cookie}}),{DB,MEMBER_EXPERIENCE_V1_ENABLED:'true'});}finally{crypto.subtle.digest=digest}
-const end=performance.now();assert.equal(r.status,200);assert.deepEqual(await r.json(),food);
-report.phases={authenticationMs:catalogueStart-start,catalogueMs:memberStateStart-catalogueStart,memberStateAndCompositionMs:end-memberStateStart,totalMs:end-start,authenticationDigestMs:report.digestCalls.filter(x=>x.phase==='authentication').reduce((a,x)=>a+x.elapsedMs,0),catalogueDigestMs:report.digestCalls.filter(x=>x.phase==='catalogue').reduce((a,x)=>a+x.elapsedMs,0)};
-const plan=await sql("EXPLAIN QUERY PLAN SELECT id,title,version,data_json,review_json,updated_at FROM structured_content WHERE content_type='recipe' AND status='published' AND id > ? ORDER BY id LIMIT ?",['',500],'catalogue.explain-read-only');report.queryPlan=plan.results;
+const identity={email:'shiftsometimber+structured-authrender-live-'+Date.now()+'@gmail.com',password:'Sst-'+randomUUID()+'-Aa1!'};
+let cookie;
+function issued(r){const candidates=r.headers.getSetCookie().filter(x=>/^sst_session=[^;]+/.test(x)&&!/Max-Age=0(?:;|$)/i.test(x));assert(candidates.length);return candidates.at(-1).split(';')[0]}
+async function login(){const r=await fetch(api+'/v1/auth/login',{method:'POST',headers:{Origin:site,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':await oidc()},body:JSON.stringify(identity)});assert.equal(r.status,200);cookie=issued(r);}
+function timed(path,expected){
+const at=new Date().toISOString();
+const config='url = "'+site+path+'"\nheader = "Cookie: '+cookie+'"\nheader = "Cache-Control: no-cache"\n';
+const raw=execFileSync('curl',['--config','-','--silent','--show-error','--max-time','35','--output','/dev/null','--dump-header','-','--write-out','\nCURL_TIMING %{json}\n'],{input:config,encoding:'utf8',maxBuffer:200000});
+const split=raw.lastIndexOf('CURL_TIMING ');assert(split>=0);const timing=JSON.parse(raw.slice(split+'CURL_TIMING '.length).trim()),head=raw.slice(0,split);
+const header=name=>head.split(/\r?\n/).filter(x=>x.toLowerCase().startsWith(name.toLowerCase()+':')).at(-1)?.slice(name.length+1).trim()||null;
+const entry={at,completedAt:new Date().toISOString(),path,status:timing.http_code,protocol:timing.http_version,ray:header('cf-ray'),serverTiming:header('server-timing'),transport:{dnsMs:timing.time_namelookup*1000,connectMs:timing.time_connect*1000,tlsCompletionMs:timing.time_appconnect*1000,firstByteMs:timing.time_starttransfer*1000,totalMs:timing.time_total*1000,bodyAfterFirstByteMs:(timing.time_total-timing.time_starttransfer)*1000}};
+report.requests.push(entry);assert.equal(entry.status,expected);return entry}
+try{
+const r=await fetch(api+'/v1/auth/register',{method:'POST',headers:{Origin:site,'Content-Type':'application/json','X-Shift-Commissioning-OIDC':await oidc()},body:JSON.stringify({...identity,firstName:'Fictional live reliability',source:'commissioning-premortem'})});assert.equal(r.status,201);
+await login();
+const me=await fetch(site+'/v1/me',{headers:{Cookie:cookie}});assert.equal(me.status,200);assert.equal((await me.json()).user.email,identity.email);
+timed('/v1/member-state',200);
+timed('/v1/grub/workspace',200);
+const state=await fetch(site+'/v1/grub/workspace',{headers:{Cookie:cookie}});assert.equal(state.status,200);const before=await state.json();
+const lo=await fetch(site+'/v1/auth/logout',{method:'POST',headers:{Origin:site,Cookie:cookie,'Content-Type':'application/json'},body:'{}'});assert.equal(lo.status,200);
+timed('/v1/grub/workspace',401);
+await login();
+timed('/v1/grub/workspace',200);
+const back=await fetch(site+'/v1/grub/workspace',{headers:{Cookie:cookie}});assert.equal(back.status,200);assert.deepEqual(await back.json(),before);
+report.recovery={realLogout200:true,revokedPrivateGET401:true,freshServerLogin:true,privateStateDeepEqual:true,mutationsReplayed:0};
+report.livePhaseCapture={available:report.requests.some(x=>x.serverTiming),qualification:'Endpoint client timings include complete server work, not authentication/catalogue/member-state phase isolation. Server-Timing header absence is recorded rather than filling missing phases.'};
+report.naturalExpiry={performed:false,reason:'No retained unrevoked previously issued session available. This short-lived job cannot observe 12h deadline; session explicitly logged out, never counted as natural expiry. No clock/lifetime changes or credential export.'};
 report.pass=true;
-}catch(e){report.pass=false;report.error={name:e.name,message:e.message.slice(0,250)}}
-finally{if(cookie){const r=await fetch(site+'/v1/auth/logout',{method:'POST',headers:{Origin:site,Cookie:cookie,'Content-Type':'application/json'},body:'{}'}).catch(()=>null);report.logoutStatus=r?.status}
-writeFileSync('reliability-evidence/phase-only.json',JSON.stringify(report,null,2));console.log('PHASE_REPORT '+JSON.stringify(report));if(!report.pass)process.exitCode=1}
+}catch(e){report.error={name:e.name,message:e.message.slice(0,250)}}
+finally{if(cookie){const r=await fetch(site+'/v1/auth/logout',{method:'POST',headers:{Origin:site,Cookie:cookie,'Content-Type':'application/json'},body:'{}'}).catch(()=>null);report.cleanupLogoutStatus=r?.status}
+writeFileSync('reliability-evidence/current-live.json',JSON.stringify(report,null,2));console.log('CURRENT_LIVE_REPORT '+JSON.stringify(report));if(!report.pass)process.exitCode=1}

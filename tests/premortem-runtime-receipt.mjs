@@ -43,15 +43,14 @@ const report={at:new Date().toISOString(),source:receipt.source,run:receipt.run,
 writeFileSync('runtime-acceptance-evidence/'+(process.argv[2]||'before')+'.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
 
 if(process.argv[2]==='after'){
- const query={queryId:'commissioning-live-ray-readonly',dry:true,view:'events',limit:20,timeframe:{from:1791612511112,to:1791612700920},parameters:{needle:{value:'a483767e78c95113',isRegex:false,matchCase:true}}};
- const response=await fetch('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/observability/telemetry/query',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(query),signal:AbortSignal.timeout(30000)});const data=await response.json();
- const evidence={at:new Date().toISOString(),httpStatus:response.status,success:data.success,count:data.result?.events?.count,events:(data.result?.events?.events||[]).map(e=>{const w=e.$workers||{},m=e.$metadata||{};return{timestamp:e.timestamp,requestId:w.requestId||m.requestId,rayId:m.rayId,spanId:m.spanId,traceId:m.traceId,startTime:m.startTime,endTime:m.endTime,version:w.scriptVersion?.id,outcome:w.outcome,cpuTimeMs:w.cpuTimeMs,wallTimeMs:w.wallTimeMs,status:w.event?.response?.status,protocol:w.event?.request?.cf?.httpProtocol,colo:w.event?.request?.cf?.colo}})};
- console.log('LIVE_RAY_TELEMETRY '+JSON.stringify(evidence));
- const traceId=data.result?.events?.events?.find(e=>e.$metadata?.rayId==='a483767e78c95113')?.$metadata?.traceId;
- if(traceId){for(const view of ['events','traces']){
-  const linked={...query,view,parameters:{filterCombination:'and',filters:[{key:'$metadata.traceId',operation:'eq',type:'string',value:traceId}]}};
-  const lr=await fetch('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/observability/telemetry/query',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(linked),signal:AbortSignal.timeout(30000)});const lj=await lr.json();
-  console.log('LIVE_TRACE_SEARCH '+JSON.stringify({view,httpStatus:lr.status,success:lj.success,traceId,count:lj.result?.events?.count,events:(lj.result?.events?.events||[]).map(e=>{const m=e.$metadata||{},w=e.$workers||{};return{timestamp:e.timestamp,service:m.service,type:m.type,requestId:w.requestId||m.requestId,spanId:m.spanId,spanName:m.spanName,parentSpanId:m.parentSpanId,startTime:m.startTime,endTime:m.endTime,duration:m.duration,outcome:w.outcome,cpuTimeMs:w.cpuTimeMs,wallTimeMs:w.wallTimeMs}}),traces:(lj.result?.traces||[]).map(t=>({traceId:t.traceId,spans:t.spans,durationMs:t.traceDurationMs}))}));
- }}
-writeFileSync('runtime-acceptance-evidence/live-client-ray.json',JSON.stringify(evidence,null,2));
-}
+const current=JSON.parse(readFileSync('reliability-evidence/current-live.json'));
+for(const request of current.requests.filter(x=>x.ray)){
+const ray=request.ray.split('-')[0],query={queryId:'current-reliability-readonly',dry:true,view:'events',limit:100,timeframe:{from:Date.parse(request.at)-30000,to:Date.parse(request.completedAt)+60000},parameters:{needle:{value:ray,isRegex:false,matchCase:true}}};
+const endpoint='https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/observability/telemetry/query';
+async function read(q){const r=await fetch(endpoint,{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(q),signal:AbortSignal.timeout(30000)});assert(![401,403].includes(r.status),'STOP telemetry authority unavailable');const j=await r.json();assert(r.ok&&j.success);return j}
+const raw=await read(query),events=(raw.result?.events?.events||[]).map(e=>{const w=e.$workers||{},m=e.$metadata||{};return{timestamp:e.timestamp,requestId:w.requestId||m.requestId,rayId:m.rayId,traceId:m.traceId,service:m.service,type:m.type,version:w.scriptVersion?.id,outcome:w.outcome,cpuMs:w.cpuTimeMs,wallMs:w.wallTimeMs,status:w.event?.response?.status,spanId:m.spanId,spanName:m.spanName,parentSpanId:m.parentSpanId,duration:m.duration}});
+const evidence={at:new Date().toISOString(),path:request.path,ray,events,queries:[]};
+const traceId=events.find(x=>x.rayId===ray)?.traceId;
+if(traceId)for(const view of ['events','traces']){const d=await read({...query,view,parameters:{filterCombination:'and',filters:[{key:'$metadata.traceId',operation:'eq',type:'string',value:traceId}]}});evidence.queries.push({view,count:d.result?.events?.count,eventTypes:(d.result?.events?.events||[]).map(e=>({type:e.$metadata?.type,service:e.$metadata?.service,spanName:e.$metadata?.spanName,duration:e.$metadata?.duration})),traces:(d.result?.traces||[]).map(t=>({traceId:t.traceId,spans:t.spans,durationMs:t.traceDurationMs}))})}
+writeFileSync('runtime-acceptance-evidence/current-ray-'+ray+'.json',JSON.stringify(evidence,null,2));console.log('CURRENT_RAY_EVIDENCE '+JSON.stringify(evidence));
+}}

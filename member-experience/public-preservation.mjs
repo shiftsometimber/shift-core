@@ -1,3 +1,4 @@
+import {preserveContinuityUpgrade} from '../release/continuity-content-20261009.mjs';
 import {preservePillarChrome} from '../obesity-awareness/preservation.mjs';
 import {verifyOrganicDelivery} from '../release/organic-followthrough-live.mjs';
 import {preserveTabletWording} from '../tablet-wording-v1.mjs';
@@ -59,7 +60,7 @@ for(const path of paths){
  const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,path+' must return HTTP 200');
  const rawBody=Buffer.from(await r.arrayBuffer());
- const body=preserveTabletWording(path,preservePillarChrome(path,preserveApprovedLinks(path,preserveOrganicLinks(path,rawBody)),{required:Boolean(before)}));
+ const body=preserveTabletWording(path,preservePillarChrome(path,preserveApprovedLinks(path,preserveOrganicLinks(path,preserveContinuityUpgrade(path,rawBody,{required:Boolean(before)}))),{required:Boolean(before)}));
  const reviewedSource=restoreStoppingCitation(path,preserveFollowThrough(path,Buffer.from(preserveExactMetricsBootstrap(body.toString('utf8'))),{required:Boolean(before)}),{required:Boolean(before)});
  const footerPreserved=Buffer.from(applySharedFooter(restoreBookVoiceCopy(path,restoreTrustCentre(path,reviewedSource.toString('utf8'),{required:Boolean(before)}))));
  const pwaPreserved=preservePwaPresentation(path,preserveApprovedStartup(path,preserveGrowthCopy(path,footerPreserved,{required:Boolean(before)})),{required:Boolean(before)});
@@ -86,3 +87,4 @@ writeFileSync(output,JSON.stringify({checkedAt:new Date().toISOString(),pages,co
 console.log(before?'PASS: all '+paths.length+' public/login responses preserve existing content; exact approved Continuity entries and Life Back link are checked before comparison.':'Captured all '+paths.length+' public/login response hashes, including full raw-body hashes.');
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)await runPublicPreservation();
+
