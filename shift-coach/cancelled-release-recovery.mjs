@@ -478,7 +478,8 @@ export const restoredMaleObesityRuntime=Object.freeze({run:37985093872,job:11400
 // One further authenticated owned rollback. Its predecessor must pass the
 // original bounded proof above; this grants retention, never restoration.
 export const restoredMaleObesitySupportRuntime=Object.freeze({...restoredMaleObesityRuntime,run:37997975670,job:114048838060,source:'fcf7711ad6dff2341801ab97fac36ac34bb96305',deployment:'33ab6016-cffc-4a2d-9cb0-80678968adbb',failedDeployment:'b3a1f773-b3e6-4751-9608-2447f4ba38e4',failedVersion:'293dbce3-c414-440a-8529-51585e2728ed',previousDeployment:restoredMaleObesityRuntime.deployment,ownedAt:'2026-10-09T22:35:12.229Z'});
-const maleObesityRollbackFor=active=>active?.id===restoredMaleObesitySupportRuntime.deployment?restoredMaleObesitySupportRuntime:restoredMaleObesityRuntime;
+export const restoredMaleObesityHubV2Runtime=Object.freeze({run:38072143100,job:114271691798,source:'21dcc6e5034d9e9db787b122f3e467910c093564',deployment:'10757695-905a-4f61-9127-2330feb91165',failedDeployment:'d832fab8-dde0-4d39-81a9-5009a8639fb5',failedVersion:'4a08ee27-a0d0-4de7-8406-d9cd69089f84',previousDeployment:'ebcf0cf0-3326-4b02-a454-4a2d7864e1ed',verifiedVersion:'dfd44e91-ac5f-4ce3-89d1-ceeba277befc',verifiedRun:38055024934,verifiedJob:114221677146,verifiedSource:'8624f2dfbefaf5028a60b3ced664b96aa077929b',versionCreatedOn:'2026-10-10T13:40:48.922536Z',ownedAt:'2026-10-10T17:56:14.543Z'});
+const maleObesityRollbackFor=active=>active?.id===restoredMaleObesityHubV2Runtime.deployment?restoredMaleObesityHubV2Runtime:active?.id===restoredMaleObesitySupportRuntime.deployment?restoredMaleObesitySupportRuntime:restoredMaleObesityRuntime;
 const maleObesityRollbackProof=(p=restoredMaleObesityRuntime)=>({...p,version:p.verifiedVersion});
 function assertMaleObesityRollbackDeployment(active){
  const p=maleObesityRollbackFor(active);assert.equal(active?.id,p.deployment);assert.equal(active.source,'wrangler');
@@ -487,8 +488,8 @@ function assertMaleObesityRollbackDeployment(active){
 }
 export function verifiedMaleObesityRollback(active,version,run,job,logs,priorProof){
  const p=maleObesityRollbackFor(active),q=p,original=restoredMaleObesityRuntime;
- try{assertMaleObesityRollbackDeployment(active);assert.deepEqual(priorProof,{run:p.verifiedRun,source:p.verifiedSource,version:p.verifiedVersion,deployment:original.previousDeployment,...(p===restoredMaleObesitySupportRuntime?{priorRollbackProof:maleObesityRollbackProof()}: {})})}catch{return false}
- if(version?.id!==q.verifiedVersion||version.metadata?.created_on!=='2026-10-09T15:44:33.84265Z'||version.metadata?.source!=='wrangler'||version.annotations?.['workers/triggered_by']!=='version_upload'||version.annotations?.['workers/tag']||version.annotations?.['workers/message'])return false;
+ try{assertMaleObesityRollbackDeployment(active);assert.deepEqual(priorProof,{run:p.verifiedRun,source:p.verifiedSource,version:p.verifiedVersion,deployment:p===restoredMaleObesityHubV2Runtime?p.previousDeployment:original.previousDeployment,...(p===restoredMaleObesitySupportRuntime?{priorRollbackProof:maleObesityRollbackProof()}: {})})}catch{return false}
+ if(version?.id!==q.verifiedVersion||version.metadata?.created_on!==(p.versionCreatedOn||'2026-10-09T15:44:33.84265Z')||version.metadata?.source!=='wrangler'||version.annotations?.['workers/triggered_by']!=='version_upload'||version.annotations?.['workers/tag']||version.annotations?.['workers/message'])return false;
  if(run?.id!==p.run||run.head_sha!==p.source||run.run_attempt!==1||run.status!=='completed'||run.conclusion!=='failure'||run.event!=='push'||run.head_branch!=='main'||run.path!=='.github/workflows/cloudflare-production-promote.yml')return false;
  if(job?.id!==p.job||job.run_id!==p.run||job.name!=='promote'||job.status!=='completed'||job.conclusion!=='failure')return false;
  for(const [number,name,conclusion]of [[63,'Deploy current main to production','success'],[81,'Verify five revised articles, metadata, downloads and sitemap on live traffic',p===restoredMaleObesitySupportRuntime?'success':'failure'],...(p===restoredMaleObesitySupportRuntime?[[89,'Prove public Life Back, food-noise guidance and their linked journeys','failure']]:[]),[114,'Restore the captured runtime if a post-deployment gate failed','success'],[115,'Verify nine public tool pages after owned rollback','success']])if(!job.steps?.some(s=>s.number===number&&s.name===name&&s.conclusion===conclusion))return false;
@@ -509,7 +510,7 @@ export async function verifyMaleObesityRollback(active,version,get,getLogs){
   assert(verifiedMaleObesityRollback(active,version,run,jobs.jobs?.find(j=>j.id===p.job),await getLogs(p.job),priorProof),'Exact support-body failure, owned rollback and authenticated original rollback chain required');
   return maleObesityRollbackProof(p);
  }
- const p=restoredMaleObesityRuntime;
+ const p=maleObesityRollbackFor(active);
  const original=await get('/actions/runs/'+p.verifiedRun),originalJobs=await get('/actions/runs/'+p.verifiedRun+'/jobs?filter=latest&per_page=100'),originalJob=originalJobs.jobs?.find(j=>j.id===p.verifiedJob);
  assert.equal(original.head_sha,p.verifiedSource);assert.equal(original.run_attempt,1);
  const prior={id:p.previousDeployment,versions:[{version_id:p.verifiedVersion,percentage:100}]};
@@ -518,5 +519,5 @@ export async function verifyMaleObesityRollback(active,version,get,getLogs){
  const priorProof={run:p.verifiedRun,source:p.verifiedSource,version:p.verifiedVersion,deployment:p.previousDeployment};
  const run=await get('/actions/runs/'+p.run),jobs=await get('/actions/runs/'+p.run+'/jobs?filter=latest&per_page=100');
  assert(verifiedMaleObesityRollback(active,version,run,jobs.jobs?.find(j=>j.id===p.job),await getLogs(p.job),priorProof),'Exact failed male-obesity release, owned rollback and original successful predecessor required');
- return maleObesityRollbackProof();
+ return maleObesityRollbackProof(p);
 }
