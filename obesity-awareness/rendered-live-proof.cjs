@@ -29,7 +29,7 @@ function observeCollector(page,records){
  const browser=await chromium.launch();
  try{
   const {candidate}=await import('./content.mjs');
-  for(const width of [390,1440]){
+  for(const width of [380,1440]){
    const context=await browser.newContext({viewport:{width,height:900}}),page=await context.newPage(),denied=[];
    observeCollector(page,denied);
    try{
@@ -45,6 +45,24 @@ function observeCollector(page,records){
     }
     await navigate(page,'/male-obesity');await necessary(page);await page.reload({waitUntil:'domcontentloaded'});
     await page.screenshot({path:dir+'/'+width+'-hub.png'});
+    for(const id of ['measurements','mens-health','choose-next','why-hard','getting-help','keeping-progress']){
+     assert.equal(await page.locator('#'+id).count(),1);
+     await page.locator('nav[aria-label="On this page"] a[href="#'+id+'"]').click();
+     assert((await page.locator('#'+id).boundingBox()).y>=80,'Jump heading clears sticky header');
+    }
+    const visible=await page.locator('main').innerText();
+    for(const text of ['70%','29%','98.4','men aged 16','2024','27 January 2026','not a healthy target','Middle Eastern','African–Caribbean','fatty liver'])assert(visible.includes(text),text);
+    const schema=await page.locator('script[type="application/ld+json"]').allTextContents();
+    assert(schema.some(s=>s.includes('MedicalWebPage')&&s.includes('2026-10-10')));
+    assert(!schema.some(s=>s.includes('reviewedBy')));
+    assert.equal(await page.locator('meta[name="twitter:card"]').getAttribute('content'),'summary_large_image');
+    await page.getByRole('button',{name:'Larger text',exact:true}).click();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+    await page.screenshot({path:dir+'/'+width+'-enlarged.png'});
+    await page.getByRole('button',{name:'Larger text',exact:true}).click();
+    await page.keyboard.press('Tab');assert(await page.evaluate(()=>document.activeElement!==document.body));
+    result.checks.push({width,status:'pass',checks:['three layers visible','retained jump links clear header','truthful medical page schema','enlarged text has no horizontal overflow','keyboard focus']});
+
     const menu=page.getByRole('button',{name:'Menu',exact:true});await menu.click();
     const links=await page.locator('#site-drawer a').allTextContents(),m=links.indexOf('Male obesity');
     assert(m>0&&links[m-1]==='My Timber'&&links[m+1]==='About');
@@ -63,6 +81,16 @@ function observeCollector(page,records){
     await page.locator('[data-male-obesity-footer]').scrollIntoViewIfNeeded();await page.screenshot({path:dir+'/'+width+'-footer.png'});
     assert.equal(denied.length,0,'No pillar collection when analytics is declined');
     result.checks.push({width,checks:['menu placement and Escape','meal and fallback immediately available','effort and unhelpful alternatives','return still works, answers not persisted','declined consent sends no pillar events'],status:'pass'});
+    await navigate(page,'/tools/waist-height');
+    await page.getByRole('button',{name:'Metric',exact:true}).click();
+    await page.locator('#whHeightCm').selectOption('180');await page.locator('#waistCm').selectOption('90');
+    await page.getByRole('button',{name:'Calculate ratio',exact:true}).click();
+    await page.waitForFunction(()=>document.getElementById('whR')?.textContent.includes('0.50'));
+    assert((await page.locator('main').innerText()).includes('Increased'));
+    assert(await page.locator('[data-obesity-context-link] a').isVisible());
+    await page.screenshot({path:dir+'/'+width+'-waist.png'});
+    await page.locator('[data-obesity-context-link] a').click();assert.equal(new URL(page.url()).pathname,'/male-obesity');
+    result.checks.push({width,status:'pass',checks:['waist calculator 180cm/90cm gives0.50','risk interpretation','contextual return to hub']});
     await page.getByRole('link',{name:'Check your BMI — one useful number, not the whole picture.',exact:true}).click();await page.locator('#bmiForm').waitFor();
     await page.waitForFunction(()=>typeof document.getElementById('bmiForm')?.onsubmit==='function');
     await page.getByRole('button',{name:'Metric',exact:true}).click();await page.locator('#bmiHeightCm').selectOption('175');await page.locator('#bmiWeightKg').selectOption('100');await page.getByRole('button',{name:'Calculate BMI',exact:true}).click();
@@ -71,7 +99,7 @@ function observeCollector(page,records){
     assert.equal(await page.getByRole('link',{name:'Understand obesity and find a next step',exact:true}).count(),1);
     assert((await page.locator('body').innerText()).includes('Screening reference only'));
     await page.screenshot({path:dir+'/'+width+'-bmi.png'});
-    await page.getByRole('link',{name:'Understand obesity and find a next step',exact:true}).click();assert.equal(await page.locator('h1').innerText(),'Male obesity: understand what’s happening. Find your next step.');
+    await page.getByRole('link',{name:'Understand obesity and find a next step',exact:true}).click();assert.equal(await page.locator('h1').innerText(),'Male obesity: what it means for your health. What to do next.');
     const main=await page.locator('main').innerText();assert(main.includes('one useful number, not the whole picture'));assert.equal(await page.locator('a[href="/member/grub"]').count(),1);
     result.checks.push({width,status:'pass',checks:['live hub to existing BMI calculator','fictional 175cm/100kg gives BMI32.7','screening limitation','prescription reading signposts removed','return to useful hub'],analyticsChoiceOnBmi:'Necessary only'});
     await page.getByRole('link',{name:'Explore meal ideas in Grub',exact:true}).click();

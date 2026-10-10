@@ -942,6 +942,33 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 }
 
 
+// Exact approved Hub-v2 upgrade; preserve every prior receipt and protected route.
+export const OBESITY_HUB_V2_BASE='21d698db2c34676116d4f9c19127127fcf414cbe';
+export const OBESITY_HUB_V2_SOURCE='6229eabca4c03099712af001bc98bb775d5d182a';
+export const OBESITY_HUB_V2_PATHS=Object.freeze(["obesity-awareness/candidate.mjs", "obesity-awareness/candidate.test.mjs", "obesity-awareness/content.mjs", "obesity-awareness/preview-entry.mjs", "obesity-awareness/production.mjs", "obesity-awareness/production.test.mjs", "obesity-awareness/rendered-live-proof.cjs", "obesity-awareness/rollback-proof.test.mjs"]);
+export const OBESITY_HUB_V2_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/obesity-hub-v2-composition.test.mjs']);
+const OBESITY_HUB_V2_SET=new Set([...OBESITY_HUB_V2_PATHS,...OBESITY_HUB_V2_MAINTENANCE]);
+for(const path of OBESITY_HUB_V2_SET)RECONCILIATION_PATHS.add(path);
+export function verifyObesityHubV2(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_OBESITY_HUB_V2_20261010');
+ assert.equal(c.base,OBESITY_HUB_V2_BASE);assert.equal(c.source,OBESITY_HUB_V2_SOURCE);
+ assert.deepEqual(c.paths,OBESITY_HUB_V2_PATHS);assert.deepEqual(c.maintenancePaths,OBESITY_HUB_V2_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'authorised_by_Matt_20261010');
+ assert.equal(c.priorPreviewRun,38058282091);
+ for(const flag of ['homepageChanged','startHereChanged','sharedNavigationChanged','memberDataChanged','checkoutChanged','analyticsChanged','consentChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Hub-v2 payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Hub-v2 maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Hub-v2 receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
+ delete current.obesityHubV2;assert.deepEqual(current,prior,'Prior release receipts changed by Hub-v2');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Hub-v2 source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Hub-v2 maintenance source drift: '+path);
+ return c;
+}
+
 // Exact read-only reporting integration. Prior runtime receipts remain unchanged.
 export const ORGANIC_MEASUREMENT_BASE='4f2fc285fc08c8a2e1418b87f42a77217017b2e1';
 export const ORGANIC_MEASUREMENT_SOURCE='0451b00e191c998081b51030e2474bc63c482c39';
@@ -1105,9 +1132,13 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const hubV2=c.obesityHubV2;
+ if(hubV2)verifyObesityHubV2(hubV2,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preHubV2Head=hubV2?hubV2.base:actualHead;
+ const hubV2RawBlob=(ref,path)=>outerRawBlob(hubV2&&ref==='HEAD'&&OBESITY_HUB_V2_SET.has(path)?hubV2.base:ref,path);
  const wegovyRenewal=c.watchWegovySourceRenewal;
- const preWegovyRenewalHead=wegovyRenewal?wegovyRenewal.base:actualHead;
- const wegovyRenewalRawBlob=(ref,path)=>outerRawBlob(wegovyRenewal&&ref==='HEAD'&&WATCH_WEGOVY_RENEWAL_SET.has(path)?wegovyRenewal.base:ref,path);
+ const preWegovyRenewalHead=wegovyRenewal?wegovyRenewal.base:preHubV2Head;
+ const wegovyRenewalRawBlob=(ref,path)=>hubV2RawBlob(wegovyRenewal&&ref==='HEAD'&&WATCH_WEGOVY_RENEWAL_SET.has(path)?wegovyRenewal.base:ref,path);
  const reporting=c.organicMeasurementIntegration;
  if(reporting)verifyOrganicMeasurement(reporting,{head:preWegovyRenewalHead,read:wegovyRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preReportingHead=reporting?reporting.base:preWegovyRenewalHead;
@@ -1336,7 +1367,7 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
  const compositionBlob=(path)=>extension&&PUBLIC_TOOL_PATHS.has(path)?priorRead(extension.base,path):priorRead('HEAD',path);
  // Validate the newest source-renewal bytes after all older receipts so a
  // synthetic drift in an older layer retains that layer's diagnostic.
- if(wegovyRenewal)verifyWatchWegovySourceRenewal(wegovyRenewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ if(wegovyRenewal)verifyWatchWegovySourceRenewal(wegovyRenewal,{head:preHubV2Head,read:hubV2RawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  // Cache only Git graph facts for resolved immutable commits and this exact
  // receipt. Supplied readers, current bytes and working-tree checks stay fresh.
  const structureKey=JSON.stringify([process.cwd(),head,c]);
