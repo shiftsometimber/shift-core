@@ -942,6 +942,27 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 }
 
 
+export const SUPPORT_CONTENT_BASE='d54b9e139ca0b65a3fba15ab0d33dd397fa45fc2';
+export const SUPPORT_CONTENT_SOURCE='bca498cf36bda01e089b8826e6a0750fe38b2bd7';
+export const SUPPORT_CONTENT_PATHS=Object.freeze(['shift-coach/public-trust-repair.mjs','shift-coach/support-content-20261010.mjs','docs/content-review/support-review-20261010.json']);
+export const SUPPORT_CONTENT_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/support-content-composition.test.mjs']);
+const SUPPORT_CONTENT_SET=new Set([...SUPPORT_CONTENT_PATHS,...SUPPORT_CONTENT_MAINTENANCE]);
+for(const path of SUPPORT_CONTENT_SET)RECONCILIATION_PATHS.add(path);
+export function verifySupportContent(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_SUPPORT_CONTENT_DELIVERY_V1');assert.equal(c.base,SUPPORT_CONTENT_BASE);assert.equal(c.source,SUPPORT_CONTENT_SOURCE);
+ assert.deepEqual(c.paths,SUPPORT_CONTENT_PATHS);assert.deepEqual(c.maintenancePaths,SUPPORT_CONTENT_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.ownerApproval,'Move the substantive content audit forward now; implement authorised improvements and verify affected mobile/desktop journeys');
+ for(const flag of ['homepageChanged','campaignChanged','organicGrowthChanged','watchChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','clinicalGatesChanged','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated support-content payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated support-content maintenance');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.supportContentUpgrade;assert.deepEqual(current,prior,'Prior owner receipts must remain unchanged');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed changes after support receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Support-content source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Support-content maintenance source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -964,10 +985,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const supportContent=c.supportContentUpgrade;
+ if(supportContent)verifySupportContent(supportContent,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSupportContentHead=supportContent?supportContent.base:actualHead;
+ const supportContentRawBlob=(ref,path)=>outerRawBlob(supportContent&&ref==='HEAD'&&SUPPORT_CONTENT_SET.has(path)?supportContent.base:ref,path);
  const continuityContent=c.continuityContentUpgrade;
- if(continuityContent)verifyContinuityContent(continuityContent,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preContinuityContentHead=continuityContent?continuityContent.base:actualHead;
- const continuityContentRawBlob=(ref,path)=>outerRawBlob(continuityContent&&ref==='HEAD'&&CONTINUITY_CONTENT_SET.has(path)?continuityContent.base:ref,path);
+ if(continuityContent)verifyContinuityContent(continuityContent,{head:preSupportContentHead,read:supportContentRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preContinuityContentHead=continuityContent?continuityContent.base:preSupportContentHead;
+ const continuityContentRawBlob=(ref,path)=>supportContentRawBlob(continuityContent&&ref==='HEAD'&&CONTINUITY_CONTENT_SET.has(path)?continuityContent.base:ref,path);
  const pendingDelayedQueueRepair=c.watchPendingDelayedQueueRepair;
  if(pendingDelayedQueueRepair)verifyWatchPendingDelayedQueueRepair(pendingDelayedQueueRepair,{head:preContinuityContentHead,read:continuityContentRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const prePendingDelayedQueueHead=pendingDelayedQueueRepair?pendingDelayedQueueRepair.base:preContinuityContentHead;
