@@ -758,6 +758,38 @@ export function verifyWatchPreclinicalReleaseTestRepair(c,{head,read,diff,ancest
  return c;
 }
 
+// Finite Medicines Watch evidence-queue consistency repair. The factual reviews,
+// monitor observations and clinical evidence remain byte-identical.
+export const WATCH_PENDING_DELAYED_QUEUE_BASE='800b7fbc9da6705ca37b98574f15b058f361defe';
+export const WATCH_PENDING_DELAYED_QUEUE_SOURCE='16907563a3ff9c213f17e73f188b61f6c707e83c';
+export const WATCH_PENDING_DELAYED_QUEUE_PATHS=Object.freeze([
+ 'medicines-watch/evidence-desk.mjs',
+ 'medicines-watch/evidence-desk.test.mjs',
+ 'medicines-watch/monitor.test.mjs'
+]);
+export const WATCH_PENDING_DELAYED_QUEUE_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/late-watch-composition.test.mjs'
+]);
+const WATCH_PENDING_DELAYED_QUEUE_SET=new Set([...WATCH_PENDING_DELAYED_QUEUE_PATHS,...WATCH_PENDING_DELAYED_QUEUE_MAINTENANCE]);
+for(const path of WATCH_PENDING_DELAYED_QUEUE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchPendingDelayedQueueRepair(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_PENDING_DELAYED_QUEUE_REPAIR_V1');
+ assert.equal(c.base,WATCH_PENDING_DELAYED_QUEUE_BASE);assert.equal(c.source,WATCH_PENDING_DELAYED_QUEUE_SOURCE);
+ assert.deepEqual(c.paths,WATCH_PENDING_DELAYED_QUEUE_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PENDING_DELAYED_QUEUE_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1294);assert.equal(c.reviewedSources,198);assert.equal(c.pendingSources,1);assert.equal(c.delayedSources,3);
+ assert.equal(c.preservedReviewedEntries,35);assert.equal(c.clinicalApproval,null);
+ for(const flag of ['medicalEvidenceChanged','factualReviewsChanged','reviewDatesChanged','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch pending-delayed queue payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch pending-delayed queue maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Watch pending-delayed queue receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'factual Watch source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
+ return c;
+}
+
 // Finite owner-authorised preclinical discovery update. No clinical approval,
 // UK access, supply or human-outcome claim is introduced by this receipt.
 export const WATCH_PRECLINICAL_DISCOVERY_BASE='834680b4353551b257fe0094e834fa827c86ad70';
@@ -909,10 +941,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const pendingDelayedQueueRepair=c.watchPendingDelayedQueueRepair;
+ if(pendingDelayedQueueRepair)verifyWatchPendingDelayedQueueRepair(pendingDelayedQueueRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const prePendingDelayedQueueHead=pendingDelayedQueueRepair?pendingDelayedQueueRepair.base:actualHead;
+ const pendingDelayedQueueRawBlob=(ref,path)=>outerRawBlob(pendingDelayedQueueRepair&&ref==='HEAD'&&WATCH_PENDING_DELAYED_QUEUE_SET.has(path)?pendingDelayedQueueRepair.base:ref,path);
  const preclinicalReleaseTestRepair=c.watchPreclinicalReleaseTestRepair;
- if(preclinicalReleaseTestRepair)verifyWatchPreclinicalReleaseTestRepair(preclinicalReleaseTestRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preReleaseTestRepairHead=preclinicalReleaseTestRepair?preclinicalReleaseTestRepair.base:actualHead;
- const releaseTestRepairRawBlob=(ref,path)=>outerRawBlob(preclinicalReleaseTestRepair&&ref==='HEAD'&&WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SET.has(path)?preclinicalReleaseTestRepair.base:ref,path);
+ if(preclinicalReleaseTestRepair)verifyWatchPreclinicalReleaseTestRepair(preclinicalReleaseTestRepair,{head:prePendingDelayedQueueHead,read:pendingDelayedQueueRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preReleaseTestRepairHead=preclinicalReleaseTestRepair?preclinicalReleaseTestRepair.base:prePendingDelayedQueueHead;
+ const releaseTestRepairRawBlob=(ref,path)=>pendingDelayedQueueRawBlob(preclinicalReleaseTestRepair&&ref==='HEAD'&&WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SET.has(path)?preclinicalReleaseTestRepair.base:ref,path);
  const preclinical=c.watchPreclinicalDiscoveryUpdate;
  if(preclinical)verifyWatchPreclinicalDiscoveryUpdate(preclinical,{head:preReleaseTestRepairHead,read:releaseTestRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const prePreclinicalHead=preclinical?preclinical.base:preReleaseTestRepairHead;
@@ -1183,7 +1219,7 @@ export function reconciliationChangedPath(status,path){
  if(!existsAtBase.has(path)){try{execFileSync('git',['cat-file','-e',COMPOSITION_BASE+':'+path],{stdio:'ignore'});existsAtBase.set(path,true);}catch{existsAtBase.set(path,false);}}
  // Source changes retain their exact add/modify semantics. Existing verifier
  // maintenance may have been added historically and modified subsequently.
- const allowed=existsAtBase.get(path)?(UNATTRIBUTED_WATCH_RECOVERY_SET.has(path)||TABLET_CLIENT_SET.has(path)||TABLET_WORDING_SET.has(path)||WATCH_HSTS_SET.has(path)||LOGOUT_ADOPTION_SET.has(path)||RELOAD_ATTEMPT_SET.has(path)||ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
+ const allowed=existsAtBase.get(path)?(UNATTRIBUTED_WATCH_RECOVERY_SET.has(path)||TABLET_CLIENT_SET.has(path)||TABLET_WORDING_SET.has(path)||WATCH_HSTS_SET.has(path)||LOGOUT_ADOPTION_SET.has(path)||RELOAD_ATTEMPT_SET.has(path)||ORAL_CANONICAL_SET.has(path)||NHS_ARTICLE_PROOF_SET.has(path)||SUPPORT_ROLLBACK_SET.has(path)||ORAL_LIVE_DISPATCH_SET.has(path)||PUBLIC_TOOL_PROOF_RETRY_SET.has(path)||PUBLIC_TOOL_MAINTENANCE.includes(path)||RECONCILIATION_MAINTENANCE.includes(path)||WATCH_FACTUAL_UPDATE_PATHS.includes(path)||WATCH_PENDING_DELAYED_QUEUE_SET.has(path)||PROOF_TRANSPORT_PATHS.includes(path)?['A','M']:['M']):['A'];
  assert(allowed.includes(status),'Unexpected approved composition file status: '+status+' '+path);
  return true;
 }
