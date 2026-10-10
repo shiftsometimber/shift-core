@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-09T20:38:44.202Z",
+  "releaseRun": 37985093872,
+  "releaseCommit": "c44f3e58f60ce9fdbbbb082fcb75c6d895ff6789",
+  "releaseResult": "failed_after_deployment_runtime_restored",
+  "failedStep": "Verify five revised articles, metadata, downloads and sitemap on live traffic",
+  "failure": {
+    "path": "/mental-health/mental-health-and-weight",
+    "message": "Missing or duplicate approved growth change: /mental-health/mental-health-and-weight article-schema; 1 !== 2"
+  },
+  "artifact": "https://github.com/shiftsometimber/shift-core/actions/runs/37985093872/artifacts/11643593872",
+  "observations": [
+    {
+      "at": "2026-10-09T20:36:48.186Z",
+      "path": "/male-obesity",
+      "status": 200,
+      "canonical": "https://shiftsometimber.co.uk/male-obesity",
+      "h1Count": 1,
+      "sha256": "91d5f246ea0190165e9210f1fa263ecb7cb1e6aa27ec02af76e6332a7f86753d"
+    },
+    {
+      "at": "2026-10-09T20:38:15.673Z",
+      "path": "/male-obesity",
+      "status": 404,
+      "sha256": "a031a20b4b598f554681eea9410f0494c8f9056fa80e2fafcfca07abafd8fc0e"
+    }
+  ],
+  "cloudflare": {
+    "rolledBackDeployment": "7dab9b86-13a2-49f0-a1cb-8837e4fdc75b",
+    "at": "2026-10-09T20:37:37.26094Z",
+    "runtimeVersion": "be032b02-d25e-43fb-bdbf-71af8683ecc2",
+    "trafficPercent": 100,
+    "failedDeployment": "9cc1cf3c-b332-4b36-9490-9f2837e7a3b0",
+    "failedRuntime": "ae80938d-3b10-4957-9588-cf0eef9c2ffe"
+  },
+  "owner": "Existing Obesity Campaign/release worker; SHIFT Organic Growth coordinates status",
+  "nextAction": "Reconcile the exact growth Article-schema preservation expectation with the approved campaign transform, prove composition and five-article checks together, then use the existing guarded promotion and verify hub/supporting pages/sitemap live. Retain copy approvals and rollback/privacy/homepage controls."
+}
