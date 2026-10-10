@@ -945,6 +945,30 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 // Apply the already completed 10 October primary-record review to the exact
 // monitored ZP6590 registry source. This changes only the factual review date;
 // the separately denied sponsor source remains verification-pending and delayed.
+export const WATCH_ZP6590_RELEASE_GUARD_BASE='f35066a6b630df8c16a2040e1186d7096cff08ab';
+export const WATCH_ZP6590_RELEASE_GUARD_SOURCE='6a35467e56e87dc4ab78114d80a6bad668bf99fe';
+export const WATCH_ZP6590_RELEASE_GUARD_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
+export const WATCH_ZP6590_RELEASE_GUARD_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-zp6590-release-guard-repair-composition.test.mjs']);
+const WATCH_ZP6590_RELEASE_GUARD_SET=new Set([...WATCH_ZP6590_RELEASE_GUARD_PATHS,...WATCH_ZP6590_RELEASE_GUARD_MAINTENANCE]);
+for(const path of WATCH_ZP6590_RELEASE_GUARD_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchZp6590ReleaseGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_ZP6590_RELEASE_GUARD_REPAIR_V1');
+ assert.equal(c.base,WATCH_ZP6590_RELEASE_GUARD_BASE);assert.equal(c.source,WATCH_ZP6590_RELEASE_GUARD_SOURCE);
+ assert.deepEqual(c.paths,WATCH_ZP6590_RELEASE_GUARD_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_ZP6590_RELEASE_GUARD_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.failedRun,38085522316);assert.equal(c.failedJob,114311137380);assert.equal(c.failedStep,13);
+ assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
+ for(const flag of ['productionMutated','publicCopyChanged','medicalContentChanged','evidenceReviewChanged','queueLogicChanged','monitorBaselinesChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated ZP6590 release-guard repair payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated ZP6590 release-guard repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after ZP6590 release-guard repair receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchZp6590ReleaseGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by ZP6590 release-guard repair registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'ZP6590 release-guard repair source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'ZP6590 release-guard repair maintenance source drift: '+path);
+ return c;
+}
+
 export const WATCH_ZP6590_REGISTRY_RENEWAL_BASE='06acc6a90d80d6386f618ba739d95085b13341c2';
 export const WATCH_ZP6590_REGISTRY_RENEWAL_SOURCE='d476cb32c3ea888dd56f78a3b30631e863537800';
 export const WATCH_ZP6590_REGISTRY_RENEWAL_PATHS=Object.freeze(['medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs']);
@@ -1298,10 +1322,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const zp6590ReleaseGuardRepair=c.watchZp6590ReleaseGuardRepair;
+ if(zp6590ReleaseGuardRepair)verifyWatchZp6590ReleaseGuardRepair(zp6590ReleaseGuardRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preZp6590ReleaseGuardHead=zp6590ReleaseGuardRepair?zp6590ReleaseGuardRepair.base:actualHead;
+ const zp6590ReleaseGuardRawBlob=(ref,path)=>outerRawBlob(zp6590ReleaseGuardRepair&&ref==='HEAD'&&WATCH_ZP6590_RELEASE_GUARD_SET.has(path)?zp6590ReleaseGuardRepair.base:ref,path);
  const zp6590RegistryRenewal=c.watchZp6590RegistryReviewRenewal;
- if(zp6590RegistryRenewal)verifyWatchZp6590RegistryRenewal(zp6590RegistryRenewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preZp6590RegistryRenewalHead=zp6590RegistryRenewal?zp6590RegistryRenewal.base:actualHead;
- const zp6590RegistryRenewalRawBlob=(ref,path)=>outerRawBlob(zp6590RegistryRenewal&&ref==='HEAD'&&WATCH_ZP6590_REGISTRY_RENEWAL_SET.has(path)?zp6590RegistryRenewal.base:ref,path);
+ if(zp6590RegistryRenewal)verifyWatchZp6590RegistryRenewal(zp6590RegistryRenewal,{head:preZp6590ReleaseGuardHead,read:zp6590ReleaseGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preZp6590RegistryRenewalHead=zp6590RegistryRenewal?zp6590RegistryRenewal.base:preZp6590ReleaseGuardHead;
+ const zp6590RegistryRenewalRawBlob=(ref,path)=>zp6590ReleaseGuardRawBlob(zp6590RegistryRenewal&&ref==='HEAD'&&WATCH_ZP6590_REGISTRY_RENEWAL_SET.has(path)?zp6590RegistryRenewal.base:ref,path);
  const overdueRenewal=c.watchOverduePrimaryReviewRenewal;
  if(overdueRenewal)verifyWatchOverdueRenewal(overdueRenewal,{head:preZp6590RegistryRenewalHead,read:zp6590RegistryRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preOverdueRenewalHead=overdueRenewal?overdueRenewal.base:preZp6590RegistryRenewalHead;

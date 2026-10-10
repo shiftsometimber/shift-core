@@ -1765,6 +1765,36 @@
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
   },
+  "watchZp6590ReleaseGuardRepair": {
+    "proof": "EXACT_WATCH_ZP6590_RELEASE_GUARD_REPAIR_V1",
+    "base": "f35066a6b630df8c16a2040e1186d7096cff08ab",
+    "source": "6a35467e56e87dc4ab78114d80a6bad668bf99fe",
+    "maintenanceSource": "6cdcefcd17fbc521c070be801e8089e3c6510b5d",
+    "paths": [
+      "shift-coach/release.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-zp6590-release-guard-repair-composition.test.mjs"
+    ],
+    "failedRun": 38085522316,
+    "failedJob": 114311137380,
+    "failedStep": 13,
+    "zp6590VerificationPending": true,
+    "zp6590CheckDelayed": true,
+    "productionMutated": false,
+    "publicCopyChanged": false,
+    "medicalContentChanged": false,
+    "evidenceReviewChanged": false,
+    "queueLogicChanged": false,
+    "monitorBaselinesChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
+  },
   "watchZp6590RegistryReviewRenewal": {
     "proof": "EXACT_WATCH_ZP6590_REGISTRY_REVIEW_DATE_V1",
     "base": "06acc6a90d80d6386f618ba739d95085b13341c2",
