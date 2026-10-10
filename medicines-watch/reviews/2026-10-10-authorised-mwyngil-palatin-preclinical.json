@@ -1,0 +1,155 @@
+{
+  "reviewedAt": "2026-10-10T04:46:52Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections without repeat permission.",
+    "scope": "Two bounded preclinical smaller-developer omissions. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": false,
+  "entries": [
+    {
+      "id": "mw401-gpr75",
+      "name": "MW-401 / GPR75 programme",
+      "developer": "Mwyngil Therapeutics",
+      "group": "research",
+      "stage": "Preclinical oral small-molecule programme",
+      "summary": "Mwyngil's pipeline names MW-401 as a selective oral GPR75 antagonist in preclinical development. Its separate 25 June 2026 announcement reports diet-induced-obesity mouse findings for a GPR75 inverse-agonist programme and says candidate optimisation is continuing.",
+      "ukAuthorisation": "The reviewed sponsor evidence does not establish UK marketing authorisation or UK clinical-trial authorisation for MW-401.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Preclinical development does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The reported weight and body-composition findings are from mice, not people. They do not establish human efficacy, safety, lean-mass preservation, muscle strength or function, dose, durability or superiority. The dated announcement does not name MW-401, while the undated pipeline page supplies that code; the sponsor's public pages do not explicitly reconcile antagonist and inverse-agonist terminology. No human trial, first dosing or development-candidate selection is established by these sources.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-10T04:46:52Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Mwyngil pipeline: MW-401",
+          "url": "https://www.mwyngil.com/pipeline/",
+          "sourcePublishedAt": null,
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-10T04:46:52Z",
+          "checkScope": "Official sponsor pipeline read in full for programme name, modality and preclinical stage; no verified publication or update date. Not automatically content-monitored."
+        },
+        {
+          "title": "Mwyngil: GPR75 preclinical proof-of-concept announcement",
+          "url": "https://www.mwyngil.com/2026/06/25/mwyngil-therapeutics-announces-positive-in-vivo-proof-of-concept-data-for-first-in-class-gpr75-inverse-agonist-in-obesity-and-cardiometabolic-disease/",
+          "sourcePublishedAt": "2026-06-25",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-10T04:46:52Z",
+          "checkScope": "Official dated sponsor announcement read in full; animal findings remain preclinical and are not automatically content-monitored."
+        }
+      ]
+    },
+    {
+      "id": "palatin-pl1000-pl2000",
+      "name": "PL1000 / PL2000 MC4R programmes",
+      "developer": "Palatin Technologies",
+      "group": "research",
+      "stage": "Preclinical and IND-enabling peptide programmes",
+      "summary": "Palatin's 28 September 2026 business update describes non-lipidated PL1000 and lipidated PL2000 melanocortin-4-receptor peptide series in preclinical and IND-enabling work, with specialist development plans that include hypothalamic obesity, Prader-Willi syndrome and Bardet-Biedl syndrome.",
+      "ukAuthorisation": "The reviewed sponsor evidence does not establish UK marketing authorisation or UK clinical-trial authorisation for PL1000 or PL2000.",
+      "nhsEngland": "No NICE recommendation or NHS England access is established by the reviewed evidence.",
+      "supply": "Preclinical development does not establish lawful UK retail supply, pharmacy stock or sale by Shift Some Timber.",
+      "limitations": "The reported body-weight findings and pharmacokinetic comparisons are preclinical animal evidence, not human results. Planned IND filings, Phase 1 starts and data are future targets subject to funding, not completed events. The reviewed sources do not establish human efficacy, safety, muscle preservation, an approved regimen or general-obesity use. Palatin's separate oral small-molecule MC4R work remains a preclinical discovery programme and is not treated as the same formulation as PL1000 or PL2000.",
+      "sourceIds": [],
+      "reviewedAt": "2026-10-10T04:46:52Z",
+      "clinicalApproval": null,
+      "additionalEvidence": [
+        {
+          "title": "Palatin FY2026 results and business update",
+          "url": "https://palatin.com/press_releases/palatin-reports-fiscal-year-2026-financial-results-and-provides-business-update/",
+          "sourcePublishedAt": "2026-09-28",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-10T04:46:52Z",
+          "checkScope": "Official dated sponsor release read in full for preclinical stage, specialist indications and explicitly planned development events; not automatically content-monitored."
+        },
+        {
+          "title": "Palatin September 2026 corporate presentation",
+          "url": "https://palatin.com/wp-content/uploads/2021/09/PTN_Corporate_Presentation-September-2026_updated_9-28-26.pdf",
+          "sourcePublishedAt": "2026-09-28",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-10T04:46:52Z",
+          "checkScope": "Official sponsor presentation read for programme identity and preclinical evidence only; animal data are not human outcomes. Not automatically content-monitored."
+        }
+      ]
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://www.mwyngil.com/pipeline/",
+      "sourcePublishedAt": null,
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-10T04:46:52Z",
+      "assessment": "Supports the MW-401 code, oral GPR75-antagonist modality and preclinical stage only."
+    },
+    {
+      "url": "https://www.mwyngil.com/2026/06/25/mwyngil-therapeutics-announces-positive-in-vivo-proof-of-concept-data-for-first-in-class-gpr75-inverse-agonist-in-obesity-and-cardiometabolic-disease/",
+      "sourcePublishedAt": "2026-06-25",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-10T04:46:52Z",
+      "assessment": "Supports sponsor-reported mouse evidence and continuing optimisation only; no human claim."
+    },
+    {
+      "url": "https://palatin.com/press_releases/palatin-reports-fiscal-year-2026-financial-results-and-provides-business-update/",
+      "sourcePublishedAt": "2026-09-28",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-10T04:46:52Z",
+      "assessment": "Supports preclinical and IND-enabling stage, specialist-indication plans and future targets only."
+    },
+    {
+      "url": "https://palatin.com/wp-content/uploads/2021/09/PTN_Corporate_Presentation-September-2026_updated_9-28-26.pdf",
+      "sourcePublishedAt": "2026-09-28",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-10T04:46:52Z",
+      "assessment": "Corroborates programme naming and preclinical animal evidence; does not establish human outcomes."
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-10T04:46:52Z",
+    "httpStatus": 200,
+    "configuredSources": 199,
+    "current": 196,
+    "status": "check_delayed",
+    "lastAttemptAt": "2026-10-10T04:16:04.086Z",
+    "delayedSources": 3,
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "attention": [
+      {"id":"kailera-q2-2026","reviewStatus":"reviewed","error":"http_403","lastSuccessAt":"2026-10-09T21:00:33Z"},
+      {"id":"kailera-kainetic","reviewStatus":"reviewed","error":"http_403","lastSuccessAt":"2026-10-09T21:00:33Z"},
+      {"id":"zealand-zp6590-pipeline","reviewStatus":"verification_pending","error":"http_403","lastSuccessAt":null,"officialAlternative":"https://clinicaltrials.gov/study/NCT07721597"}
+    ],
+    "boundary": "SELECT-only public health evidence. Successful checks do not renew medical reviews. Three access failures remain explicit."
+  },
+  "discoveryPass": {
+    "method": "Separate monitored-source pass, unrestricted dated and undated topic searches, then full reading of official sponsor pages and presentation evidence.",
+    "date": "2026-10-10",
+    "usefulAdditions": ["MW-401 / GPR75 programme","PL1000 / PL2000 MC4R programmes"],
+    "limitations": "The two additions are preclinical sponsor evidence. Searches are not exhaustive, indexing can lag, and no source-count ratio establishes completeness.",
+    "duplicates": "No MW-401, Mwyngil, PL1000, PL2000 or Palatin catalogue entry was present on current main. No later open Medicines Watch review PR duplicated these programmes.",
+    "industryComplete": false
+  },
+  "failedChecks": [],
+  "incompleteChecks": [
+    {
+      "url": "https://www.mwyngil.com/pipeline/",
+      "outcome": "No verified publication or update date on the official pipeline page.",
+      "effect": "The review date is recorded, while the source date remains unknown."
+    }
+  ],
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "detailedAfter": 6,
+    "widerBefore": 104,
+    "widerAfter": 106,
+    "totalBefore": 110,
+    "totalAfter": 112,
+    "configuredSourcesBefore": 199,
+    "configuredSourcesAfter": 199
+  },
+  "nextAction": "Run exact source and release checks, merge the reviewed change, complete guarded production promotion and verify the serving entries and counts. Recurring discovery and monitoring remain open."
+}
