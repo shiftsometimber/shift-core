@@ -92,7 +92,8 @@ function observeCollector(page,records){
     await page.locator('#whHeightCm').selectOption('180');await page.locator('#waistCm').selectOption('90');
     await page.getByRole('button',{name:'Calculate ratio',exact:true}).click();
     await page.waitForFunction(()=>document.getElementById('whR')?.textContent.includes('0.50'));
-    assert((await page.locator('main').innerText()).includes('Increased'));
+    const waistResult=await page.locator('#whR').innerText();
+    assert(waistResult.includes('0.50 is in the increased band.')&&waistResult.includes('this indicates increased central adiposity.')&&waistResult.includes('not a diagnosis'),'Actual0.50 result must explain the correct NICE band and its limitation');
     assert(await page.locator('[data-obesity-context-link] a').isVisible());
     await page.screenshot({path:dir+'/'+width+'-waist.png'});
     await page.locator('[data-obesity-context-link] a').click();assert.equal(new URL(page.url()).pathname,'/male-obesity');

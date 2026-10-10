@@ -32,6 +32,21 @@ jobs:
         run: npx wrangler deploy --config obesity-awareness/wrangler.preview.jsonc
       - name: Check real upstream composition
         run: node obesity-awareness/verify-live.mjs https://shift-male-obesity-review.matobrien.workers.dev
+      - name: Verify the already-released public journey with corrected result assertions
+        env:
+          RELEASE_SOURCE: d722e91767e84ee26e1fb176074f31cb635c9704
+          RELEASE_RUN: '38077639068'
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module -e "import assert from 'node:assert/strict';const r=await fetch('https://api.github.com/repos/shiftsometimber/shift-core/actions/runs/38077639068',{headers:{Authorization:'Bearer '+process.env.GITHUB_TOKEN}});assert(r.ok);const d=await r.json();assert.equal(d.head_sha,process.env.RELEASE_SOURCE);assert.equal(d.conclusion,'success');assert.equal(d.head_branch,'main');assert.equal(d.path,'.github/workflows/cloudflare-production-promote.yml');"
+          npm install --prefix "$RUNNER_TEMP/pillar-tools" --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/pillar-tools/node_modules/.bin/playwright" install --with-deps chromium
+          PLAYWRIGHT_MODULE="$RUNNER_TEMP/pillar-tools/node_modules/playwright" node obesity-awareness/rendered-live-proof.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: male-obesity-rechecked-live-38077639068
+          path: male-obesity-rendered-live/
       - uses: actions/upload-artifact@v4
         if: always()
         with:
