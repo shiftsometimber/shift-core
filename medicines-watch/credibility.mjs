@@ -1,3 +1,4 @@
+import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
 import bimagrumabSemaglutide from './reviews/2026-10-09-authorised-bimagrumab-semaglutide.json' with {type:'json'};
 import togetherPsoriaticDisease from './reviews/2026-10-09-authorised-together-psoriatic-disease.json' with {type:'json'};
@@ -32,7 +33,8 @@ export const registrySources=[...baseRegistrySources,...vikingRhythmRegistryRevi
  .map(s=>nct05713799Correction.registrySources.find(r=>r.id===s.id)||s)
  .map(s=>vikingRhythmRegistryReview.registrySources.find(r=>r.id===s.id)||s)
  .map(s=>zupremeLifecycleUpdate.registrySources.find(r=>r.id===s.id)||s)
- .concat(zupremeLifecycleUpdate.registrySources.filter(r=>!baseRegistrySources.some(s=>s.id===r.id)&&![...vikingRhythmRegistryReview.registrySources,...zenagamtideAmbience.registrySources,...gs4571TirzepatideMenopause.registrySources,...registryLifecycleFollowup.registrySources,...enicepatideEmugrobartRegistry.registrySources].some(s=>s.id===r.id)),...bimagrumabSemaglutide.registrySources,...togetherPsoriaticDisease.registrySources);
+ .concat(zupremeLifecycleUpdate.registrySources.filter(r=>!baseRegistrySources.some(s=>s.id===r.id)&&![...vikingRhythmRegistryReview.registrySources,...zenagamtideAmbience.registrySources,...gs4571TirzepatideMenopause.registrySources,...registryLifecycleFollowup.registrySources,...enicepatideEmugrobartRegistry.registrySources].some(s=>s.id===r.id)),...bimagrumabSemaglutide.registrySources,...togetherPsoriaticDisease.registrySources)
+ .map(s=>backlogReview.registrySources.find(r=>r.id===s.id)||s);
 export const supportSources=receipt.supportSources;
 export const credibilitySources=[...registrySources,...supportSources];
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

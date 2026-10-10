@@ -707,6 +707,123 @@ export function verifyTogetherBiomarkerUpdate(c,{head,read,diff,ancestor}){
  return c;
 }
 
+// Finite owner-authorised factual Medicines Watch backlog publication. No clinical approval.
+export const WATCH_BACKLOG_BASE='b31e1c63cede1cde2be975c4b4cc609ef1a11630';
+export const WATCH_BACKLOG_SOURCE='48020574fdda274d04901052942aacbe1502fb31';
+export const WATCH_BACKLOG_RUN=37995046889;
+export const WATCH_BACKLOG_PATHS=Object.freeze([".github/workflows/medicines-watch-check.yml", "medicines-watch/README.md", "medicines-watch/backlog-review.test.mjs", "medicines-watch/credibility.mjs", "medicines-watch/data.mjs", "medicines-watch/industry.mjs", "medicines-watch/industry.test.mjs", "medicines-watch/product-renewal.test.mjs", "medicines-watch/reviews/2026-10-09-authorised-backlog-review.json", "medicines-watch/source-review.test.mjs"]);
+export const WATCH_BACKLOG_MAINTENANCE=Object.freeze([".github/workflows/medicines-watch-check.yml", "release/approved-runtime-composition.mjs", "tests/approved-runtime-composition.test.mjs", "tests/late-watch-composition.test.mjs", "shift-coach/release.test.mjs"]);
+const WATCH_BACKLOG_SET=new Set([...WATCH_BACKLOG_PATHS,...WATCH_BACKLOG_MAINTENANCE]);
+for(const path of WATCH_BACKLOG_SET)RECONCILIATION_PATHS.add(path);
+export function assertWatchBacklogProof(proof){
+ assert.equal(proof?.id,WATCH_BACKLOG_RUN);assert.equal(proof.head_sha,WATCH_BACKLOG_SOURCE);assert.equal(proof.path,'.github/workflows/medicines-watch-check.yml');
+ assert.equal(proof.event,'pull_request');assert.equal(proof.head_branch,'review/watch-backlog-20261009');assert.equal(proof.status,'completed');assert.equal(proof.conclusion,'success');return proof;
+}
+export function verifyWatchBacklogUpdate(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_BACKLOG_UPDATE_V1');assert.equal(c.base,WATCH_BACKLOG_BASE);assert.equal(c.source,WATCH_BACKLOG_SOURCE);assert.equal(c.proofRun,WATCH_BACKLOG_RUN);
+ assert.deepEqual(c.paths,WATCH_BACKLOG_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_BACKLOG_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1281);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.sourceReviews,35);assert.equal(c.changedTrialRecords,3);assert.equal(c.officialAlternativeReplacements,1);
+ for(const flag of ['reviewDatesRenewedByHttp','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated backlog factual payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated backlog release maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after backlog receipt');
+ for(const path of c.paths.filter(p=>!c.maintenancePaths.includes(p)))assert.equal(read('HEAD',path),read(c.source,path),'Approved backlog source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
+ return c;
+}
+
+// Finite owner-authorised informational male-obesity pillar. No generic path or authority expansion.
+export const MALE_OBESITY_BASE='77d2469344bb678a8e68b6e4e6cb36dfdbdc28b0';
+export const MALE_OBESITY_SOURCE='c2c295782697c98d149d3ac7f335d8028f413b4e';
+export const MALE_OBESITY_PATHS=Object.freeze([".github/workflows/male-obesity-preview.yml", "member-experience/public-preservation.mjs", "obesity-awareness/README.md", "obesity-awareness/candidate.mjs", "obesity-awareness/candidate.test.mjs", "obesity-awareness/content.mjs", "obesity-awareness/measurement.mjs", "obesity-awareness/preservation.mjs", "obesity-awareness/preview-entry.mjs", "obesity-awareness/production.mjs", "obesity-awareness/production.test.mjs", "obesity-awareness/staging-build-proof.json", "obesity-awareness/staging-entry.mjs", "obesity-awareness/staging-entry.test.mjs", "obesity-awareness/verify-live.mjs", "obesity-awareness/wrangler.preview.jsonc", "obesity-awareness/wrangler.staging.jsonc", "release/public-continuity-body-proof.mjs", "shift-coach/worker.mjs", "shift-coach/cancelled-release-recovery.mjs", "shift-coach/recover-cancelled-release.mjs", "obesity-awareness/rollback-proof.test.mjs"]);
+export const MALE_OBESITY_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs", "tests/male-obesity-composition.test.mjs", "tests/programme-day-continuity-body.test.mjs", "acquisition-activation/metrics-release.test.mjs", "editorial/five-articles/proof.mjs", "tests/approved-runtime-composition.test.mjs"]);
+const MALE_OBESITY_SET=new Set([...MALE_OBESITY_PATHS,...MALE_OBESITY_MAINTENANCE]);
+for(const path of MALE_OBESITY_SET)RECONCILIATION_PATHS.add(path);
+export function verifyMaleObesityPillar(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_MALE_OBESITY_PILLAR_V1');assert.equal(c.base,MALE_OBESITY_BASE);assert.equal(c.source,MALE_OBESITY_SOURCE);
+ assert.deepEqual(c.paths,MALE_OBESITY_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.ownerApproval,'Approved, Go; complete authorised informational release');assert.equal(c.externalReviewerRequired,false);assert.equal(c.publicationStatus,'approved_for_guarded_release');
+ for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource).filter(p=>p!==RECONCILIATION_MANIFEST)),sorted(c.maintenancePaths),'Unrelated male-obesity maintenance');
+ const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityPillar;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by male-obesity registration');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after male-obesity receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity maintenance source drift: '+path);
+ return c;
+}
+
+// Finite closeout of failed run 37997975670; preserve every earlier receipt.
+export const MALE_OBESITY_CLOSEOUT_BASE='fcf7711ad6dff2341801ab97fac36ac34bb96305';
+export const MALE_OBESITY_CLOSEOUT_SOURCE='8f5871e46f4022ef03440f06d42946896f466952';
+export const MALE_OBESITY_CLOSEOUT_PATHS=Object.freeze([".github/workflows/male-obesity-preview.yml","obesity-awareness/candidate.mjs","obesity-awareness/candidate.test.mjs","obesity-awareness/content.mjs","obesity-awareness/production.mjs","obesity-awareness/production.test.mjs","obesity-awareness/rollback-proof.test.mjs","shift-coach/recover-cancelled-release.mjs","obesity-awareness/rendered-live-proof.cjs","shift-coach/cancelled-release-recovery.mjs"]);
+export const MALE_OBESITY_CLOSEOUT_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/male-obesity-closeout-composition.test.mjs','tests/approved-runtime-composition.test.mjs']);
+const MALE_OBESITY_CLOSEOUT_SET=new Set([...MALE_OBESITY_CLOSEOUT_PATHS,...MALE_OBESITY_CLOSEOUT_MAINTENANCE]);
+for(const path of MALE_OBESITY_CLOSEOUT_SET)RECONCILIATION_PATHS.add(path);
+export function verifyMaleObesityCloseout(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_MALE_OBESITY_CLOSEOUT_V1');assert.equal(c.base,MALE_OBESITY_CLOSEOUT_BASE);assert.equal(c.source,MALE_OBESITY_CLOSEOUT_SOURCE);
+ assert.deepEqual(c.paths,MALE_OBESITY_CLOSEOUT_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_CLOSEOUT_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.ownerApproval,'Complete authorised release and prove the live male-obesity journey');assert.equal(c.failedRun,37997975670);assert.equal(c.failedGate,89);
+ assert.equal(c.externalReviewerRequired,false);assert.equal(c.publicationStatus,'approved_for_guarded_release');
+ for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity closeout payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated male-obesity closeout maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after male-obesity closeout receipt');
+ const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityReleaseCloseout;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by male-obesity closeout');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity maintenance source drift: '+path);
+ return c;
+}
+
+// One finite read-only acceptance repair; serving content and prior receipts stay pinned.
+export const MALE_OBESITY_ACCEPTANCE_BASE='78c515b7c49bcf309941a53c2f87c6e94e76d6b7';
+export const MALE_OBESITY_ACCEPTANCE_SOURCE='6a01a19137cfc81a5c4acbb5be2832dcfe991c88';
+export const MALE_OBESITY_ACCEPTANCE_PATHS=Object.freeze(['obesity-awareness/rendered-live-proof.cjs','obesity-awareness/measurement.mjs','obesity-awareness/measurement-navigation.test.mjs']);
+export const MALE_OBESITY_ACCEPTANCE_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/male-obesity-acceptance-composition.test.mjs']);
+const MALE_OBESITY_ACCEPTANCE_SET=new Set([...MALE_OBESITY_ACCEPTANCE_PATHS,...MALE_OBESITY_ACCEPTANCE_MAINTENANCE]);
+for(const path of MALE_OBESITY_ACCEPTANCE_SET)RECONCILIATION_PATHS.add(path);
+export function verifyMaleObesityAcceptance(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_MALE_OBESITY_JOURNEY_REPAIR_V1');assert.equal(c.base,MALE_OBESITY_ACCEPTANCE_BASE);assert.equal(c.source,MALE_OBESITY_ACCEPTANCE_SOURCE);
+ assert.deepEqual(c.paths,MALE_OBESITY_ACCEPTANCE_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_ACCEPTANCE_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
+ assert.equal(c.ownerApproval,'Complete authorised release and prove the live male-obesity journey');assert.equal(c.repair,'Preserve real consented onward collection before navigation with a350ms fallback; align acceptance with existing public controls');assert.equal(c.acceptanceHarnessOnly,false);assert.equal(c.runtimeChanged,true);
+ for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity acceptance payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated male-obesity acceptance maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after male-obesity acceptance receipt');
+ const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityAcceptanceRepair;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by acceptance repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity maintenance source drift: '+path);
+ return c;
+}
+
+// Exact public-arrival measurement repair; all prior source and preservation receipts remain immutable.
+export const MALE_OBESITY_ARRIVAL_BASE='f5fd1b53209d9337590f1c8b4d80501bb78c3bf4';
+export const MALE_OBESITY_ARRIVAL_SOURCE='b7b0c1c4a4beee1f3d41a1287e070ac522571715';
+export const MALE_OBESITY_ARRIVAL_PATHS=Object.freeze(["obesity-awareness/measurement.mjs","obesity-awareness/measurement-navigation.test.mjs","obesity-awareness/rendered-live-proof.cjs",".github/workflows/programme-day-preview.yml","obesity-awareness/production.mjs","obesity-awareness/production.test.mjs"]);
+export const MALE_OBESITY_ARRIVAL_MAINTENANCE=Object.freeze(["release/approved-runtime-composition.mjs","tests/male-obesity-arrival-composition.test.mjs"]);
+const MALE_OBESITY_ARRIVAL_SET=new Set([...MALE_OBESITY_ARRIVAL_PATHS,...MALE_OBESITY_ARRIVAL_MAINTENANCE]);
+for(const path of MALE_OBESITY_ARRIVAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyMaleObesityArrival(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_MALE_OBESITY_PUBLIC_ARRIVAL_V1');assert.equal(c.base,MALE_OBESITY_ARRIVAL_BASE);assert.equal(c.source,MALE_OBESITY_ARRIVAL_SOURCE);
+ assert.deepEqual(c.paths,MALE_OBESITY_ARRIVAL_PATHS);assert.deepEqual(c.maintenancePaths,MALE_OBESITY_ARRIVAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);assert.match(head,/^[a-f0-9]{40}$/);
+ assert.equal(c.ownerApproval,'Complete authorised release and prove the live male-obesity journey');assert.equal(c.repair,'Count completed public-support arrivals through existing consented dataLayer; native navigation remains immediate');assert.equal(c.runtimeChanged,true);
+ for(const flag of ['homepageChanged','startHereFlowChanged','primaryNavigationChanged','memberDataChanged','checkoutChanged','externalCommunicationsSent','costsCommitted','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated male-obesity public-arrival payload');
+ assert.equal(content(c.source,".github/workflows/programme-day-preview.yml"),content(c.base,".github/workflows/programme-day-preview.yml").replace("node --test tests/programme-day*.mjs tests/growth-release.test.mjs tests/approved-runtime-composition.test.mjs tests/public-tool-release.test.mjs","node --test tests/programme-day*.mjs tests/growth-release.test.mjs tests/approved-runtime-composition.test.mjs tests/public-tool-release.test.mjs obesity-awareness/measurement-navigation.test.mjs obesity-awareness/production.test.mjs tests/male-obesity-arrival-composition.test.mjs"),'Only additive measurement tests may change the existing preview workflow');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated male-obesity public-arrival maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after public-arrival receipt');
+ const priorLedger=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),currentLedger=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete currentLedger.maleObesityArrivalRepair;assert.deepEqual(currentLedger,priorLedger,'Prior release receipts must remain unchanged by public-arrival repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Male-obesity public-arrival source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Male-obesity public-arrival maintenance source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -729,10 +846,30 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const maleArrival=c.maleObesityArrivalRepair;
+ if(maleArrival)verifyMaleObesityArrival(maleArrival,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preArrivalHead=maleArrival?maleArrival.base:actualHead;
+ const arrivalRawBlob=(ref,path)=>outerRawBlob(maleArrival&&ref==='HEAD'&&MALE_OBESITY_ARRIVAL_SET.has(path)?maleArrival.base:ref,path);
+ const maleAcceptance=c.maleObesityAcceptanceRepair;
+ if(maleAcceptance)verifyMaleObesityAcceptance(maleAcceptance,{head:preArrivalHead,read:arrivalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preAcceptanceHead=maleAcceptance?maleAcceptance.base:preArrivalHead;
+ const acceptanceRawBlob=(ref,path)=>arrivalRawBlob(maleAcceptance&&ref==='HEAD'&&MALE_OBESITY_ACCEPTANCE_SET.has(path)?maleAcceptance.base:ref,path);
+ const maleCloseout=c.maleObesityReleaseCloseout;
+ if(maleCloseout)verifyMaleObesityCloseout(maleCloseout,{head:preAcceptanceHead,read:acceptanceRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preCloseoutHead=maleCloseout?maleCloseout.base:preAcceptanceHead;
+ const closeoutRawBlob=(ref,path)=>acceptanceRawBlob(maleCloseout&&ref==='HEAD'&&MALE_OBESITY_CLOSEOUT_SET.has(path)?maleCloseout.base:ref,path);
+ const backlog=c.watchBacklogUpdate;
+ if(backlog)verifyWatchBacklogUpdate(backlog,{head:preCloseoutHead,read:closeoutRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preBacklogHead=backlog?backlog.base:preCloseoutHead;
+ const backlogRawBlob=(ref,path)=>closeoutRawBlob(backlog&&ref==='HEAD'&&WATCH_BACKLOG_SET.has(path)?backlog.base:ref,path);
+ const maleObesity=c.maleObesityPillar;
+ if(maleObesity)verifyMaleObesityPillar(maleObesity,{head:preBacklogHead,read:backlogRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preMaleObesityHead=maleObesity?maleObesity.base:preBacklogHead;
+ const maleObesityRawBlob=(ref,path)=>backlogRawBlob(maleObesity&&ref==='HEAD'&&MALE_OBESITY_SET.has(path)?maleObesity.base:ref,path);
  const biomarker=c.togetherBiomarkerUpdate;
- if(biomarker)verifyTogetherBiomarkerUpdate(biomarker,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preBiomarkerHead=biomarker?biomarker.base:actualHead;
- const biomarkerRawBlob=(ref,path)=>outerRawBlob(biomarker&&ref==='HEAD'&&TOGETHER_BIOMARKER_SET.has(path)?biomarker.base:ref,path);
+ if(biomarker)verifyTogetherBiomarkerUpdate(biomarker,{head:preMaleObesityHead,read:maleObesityRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preBiomarkerHead=biomarker?biomarker.base:preMaleObesityHead;
+ const biomarkerRawBlob=(ref,path)=>maleObesityRawBlob(biomarker&&ref==='HEAD'&&TOGETHER_BIOMARKER_SET.has(path)?biomarker.base:ref,path);
  const lateWatch=c.lateWatchFactualUpdate;
  if(lateWatch)verifyLateWatchFactualUpdate(lateWatch,{head:preBiomarkerHead,read:biomarkerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preLateWatchHead=lateWatch?lateWatch.base:preBiomarkerHead;

@@ -1,0 +1,916 @@
+{
+  "reviewedAt": "2026-10-09T20:33:58Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "editorialAuthorisation": "Matt O'Brien authorises supported factual informational Watch updates without repeat publication permission. This is editorial authorisation, not clinical approval.",
+  "reviewType": "AI-assisted scoped primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "scope": "29 overdue sources, three changed trial records and three sources with recent monitor denials. Full responses retrieved; existing claim scopes reviewed. Only specific source dates advance.",
+  "sources": [
+    {
+      "id": "survodutide-zealand",
+      "url": "https://www.globenewswire.com/news-release/2026/06/07/3307740/0/en/zealand-pharma-announces-boehringer-ingelheim-s-survodutide-phase-iii-trial-in-people-living-with-obesity-showed-targeted-34-visceral-and-63-liver-fat-reduction-while-minimizing-le.html",
+      "checkUrl": "https://rss.globenewswire.com/news-release/2026/06/07/3307740/0/en/zealand-pharma-announces-boehringer-ingelheim-s-survodutide-phase-iii-trial-in-people-living-with-obesity-showed-targeted-34-visceral-and-63-liver-fat-reduction-while-minimizing-le.html",
+      "httpStatus": 200,
+      "bytes": 102118,
+      "responseSha256": "a6aa288559977553662c2df89ba07038916fccef31084a81405df6406ff59872",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "4fba69fec7a54bb93b780329b5105e45c010f2c874843d7a7f35acf9e9a41bad",
+      "previousReviewedAt": "2026-09-30T13:34:45.242Z",
+      "previousReviewedFingerprint": "4fba69fec7a54bb93b780329b5105e45c010f2c874843d7a7f35acf9e9a41bad",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-06-07",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Dated SYNCHRONIZE-1 and MASLD sponsor findings remain investigational; body composition is not proof of strength or function; planned Phase IIIb events are not completed events."
+    },
+    {
+      "id": "petrelintide-zealand",
+      "url": "https://www.globenewswire.com/news-release/2026/09/29/3371443/0/en/zealand-pharma-to-present-additional-data-from-phase-2-zupreme-1-trial-for-petrelintide-at-easd-2026-and-announces-publication-of-trial-results-in-the-lancet-diabetes-endocrinology.html",
+      "checkUrl": "https://rss.globenewswire.com/news-release/2026/09/29/3371443/0/en/zealand-pharma-to-present-additional-data-from-phase-2-zupreme-1-trial-for-petrelintide-at-easd-2026-and-announces-publication-of-trial-results-in-the-lancet-diabetes-endocrinology.html",
+      "httpStatus": 200,
+      "bytes": 81057,
+      "responseSha256": "a77803660c379166582811a0ada97866381e1d741590bf9c24d635b188def4c6",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "0e622225091edfd20d33620d6520e4c8f1d8233466401b7c439f67c1e2b3e8f7",
+      "previousReviewedAt": "2026-09-30T11:44:48Z",
+      "previousReviewedFingerprint": "0e622225091edfd20d33620d6520e4c8f1d8233466401b7c439f67c1e2b3e8f7",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-09-29",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "ZUPREME-1 Phase 2 findings and reported Phase 3 initiation remain separate; later reviewed ZUPREME registry lifecycles retained. No new authorisation or comparative prescribing conclusion."
+    },
+    {
+      "id": "eloralintide-lilly",
+      "url": "https://investor.lilly.com/news-releases/news-release-details/lillys-eloratzp-combination-eloralintide-and-tirzepatide",
+      "checkUrl": "https://investor.lilly.com/news-releases/news-release-details/lillys-eloratzp-combination-eloralintide-and-tirzepatide",
+      "httpStatus": 200,
+      "bytes": 167351,
+      "responseSha256": "e5340587ff6a3dff9d8a7ce888ad4cc4c582a5a95a977651996efd0034135429",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "147480a7d79ca0e13a2c2c5582ff5e9e39d40edf986fcd9a050f1dbf101b1834",
+      "previousReviewedAt": "2026-09-30T23:37:52Z",
+      "previousReviewedFingerprint": "147480a7d79ca0e13a2c2c5582ff5e9e39d40edf986fcd9a050f1dbf101b1834",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-09-30",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "EloraTZP Phase 2b separate injections remain distinct from planned Q4 2026 Phase 3 co-formulation; sponsor estimand and tolerability limitations retained."
+    },
+    {
+      "id": "dapiglutide-zealand",
+      "url": "https://rss.globenewswire.com/news-release/2025/11/13/3186997/0/en/zealand-pharma-announces-financial-results-for-the-first-nine-months-of-2025.html",
+      "checkUrl": "https://rss.globenewswire.com/news-release/2025/11/13/3186997/0/en/zealand-pharma-announces-financial-results-for-the-first-nine-months-of-2025.html",
+      "httpStatus": 200,
+      "bytes": 90891,
+      "responseSha256": "659d7ede9d2867a83e87bb7200e5b78dca42d69a874b3bbd9b89aec266e9dde9",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "4ee9ceee38670db1c43a33c4ade7b0a9fbd3c208737d80126120c8f0a598b08e",
+      "previousReviewedAt": "2026-09-30T13:34:45.242Z",
+      "previousReviewedFingerprint": "4ee9ceee38670db1c43a33c4ade7b0a9fbd3c208737d80126120c8f0a598b08e",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2025-11-13",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Dapiglutide remains paused for portfolio management in the dated 13 November 2025 announcement. Older future plans for other programmes are not current lifecycle evidence."
+    },
+    {
+      "id": "lilly-triumph2-20260929",
+      "url": "https://investor.lilly.com/node/54981",
+      "checkUrl": "https://investor.lilly.com/node/54981",
+      "httpStatus": 200,
+      "bytes": 162869,
+      "responseSha256": "ef549ca01bc1bcc177ea7d5b925778b5abacba1b3f68b76fa419e4ed9d18cb9c",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "e91eef89128b1071a4eb6a594cdd7685f59acdb8942ed1a3b26853bf5301fce6",
+      "previousReviewedAt": "2026-09-30T08:10:07.915Z",
+      "previousReviewedFingerprint": "e91eef89128b1071a4eb6a594cdd7685f59acdb8942ed1a3b26853bf5301fce6",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-09-29",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Detailed 80-week Phase 3 TRIUMPH-2 sponsor results remain investigational; Q1 2027 BLA submission remains planned, not completed."
+    },
+    {
+      "id": "roche-ct388-20260922",
+      "url": "https://www.roche.com/media/releases/med-cor-2026-09-22",
+      "checkUrl": "https://www.roche.com/media/releases/med-cor-2026-09-22",
+      "httpStatus": 200,
+      "bytes": 159942,
+      "responseSha256": "c47c49d306f18eb50388e9d7265202c75a5d6f1860a50c34f9bc83255f137a9e",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "d020eaa2acd5176c477e761040f90f49741a7fecc70efdf6259a9c69185350b3",
+      "previousReviewedAt": "2026-09-30T08:10:07.915Z",
+      "previousReviewedFingerprint": "d020eaa2acd5176c477e761040f90f49741a7fecc70efdf6259a9c69185350b3",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-09-22",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Enicepatide Phase II type 2 diabetes findings remain separate from ongoing weight-management Phase III and planned 2027 glycaemic/CV studies."
+    },
+    {
+      "id": "kailera-q2-2026",
+      "url": "https://investors.kailera.com/news-releases/news-release-details/kailera-reports-second-quarter-2026-financial-results-and",
+      "checkUrl": "https://investors.kailera.com/news-releases/news-release-details/kailera-reports-second-quarter-2026-financial-results-and",
+      "httpStatus": 200,
+      "bytes": 113972,
+      "responseSha256": "5b97d1ca09eab86d27499513c6ca0038d5da23c208a73eafed235dccce2e8db1",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "5412ee3bcb41e94644e0f223a768c3786e108620ebcee1a95e2d9bd60c09d07c",
+      "previousReviewedAt": "2026-09-30T08:10:07.915Z",
+      "previousReviewedFingerprint": "5412ee3bcb41e94644e0f223a768c3786e108620ebcee1a95e2d9bd60c09d07c",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-08-12",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Formulation-specific injection, oral and small-molecule research stages and future trial/data plans retained. Later KaiNETIC enrollment evidence is not regressed."
+    },
+    {
+      "id": "regeneron-courage-20250917",
+      "url": "https://investor.regeneron.com/news-releases/news-release-details/results-phase-2-courage-trial-demonstrating-potential-improve",
+      "checkUrl": "https://investor.regeneron.com/news-releases/news-release-details/results-phase-2-courage-trial-demonstrating-potential-improve",
+      "httpStatus": 200,
+      "bytes": 80604,
+      "responseSha256": "cc10981f312271ab8a6cbf1a0658251213cf3e3ee540968c97561416f33014ec",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "f147837f8f3ace543d106a28ec523f5131c3c2cda79d1b6c06cf32ea077abdba",
+      "previousReviewedAt": "2026-09-30T08:10:07.915Z",
+      "previousReviewedFingerprint": "f147837f8f3ace543d106a28ec523f5131c3c2cda79d1b6c06cf32ea077abdba",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2025-09-17",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "26-week Phase 2 DXA lean-mass findings are not demonstrated strength or function. Triplet tolerability, discontinuations and deaths retained without asserting causality."
+    },
+    {
+      "id": "emugrobart-chugai-20260928",
+      "url": "https://www.chugai-pharm.co.jp/english/news/detail/20260928160000_1289.html",
+      "checkUrl": "https://www.chugai-pharm.co.jp/english/news/detail/20260928160000_1289.html",
+      "httpStatus": 200,
+      "bytes": 47052,
+      "responseSha256": "e83cf075ec7f80e60bddc5c9cec583018f89e0f002e9f5c80b101153c6fb2732",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "03ca2e806407bfd2dc1db310fdf7c3afdc8d9a44d9c8c84813fd3389fa67fda0",
+      "previousReviewedAt": "2026-09-30T11:44:48Z",
+      "previousReviewedFingerprint": "03ca2e806407bfd2dc1db310fdf7c3afdc8d9a44d9c8c84813fd3389fa67fda0",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-09-28",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Obesity development discontinued after unlikely efficacy objectives; planned Chugai SMA resumption is not obesity restart or a completed trial."
+    },
+    {
+      "id": "env308-enveda-20260818",
+      "url": "https://enveda.com/news/308-phase1/",
+      "checkUrl": "https://enveda.com/news/308-phase1/",
+      "httpStatus": 200,
+      "bytes": 50933,
+      "responseSha256": "b5318c316ca084634d40ae73831270c8b1984eda327db3a16bfa4cad4fb8af0c",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "322f1dfc6c374ad507bb053c51cad772c102ab6c1339ce0cbd931893ee6340c6",
+      "previousReviewedAt": "2026-09-30T12:30:02Z",
+      "previousReviewedFingerprint": "322f1dfc6c374ad507bb053c51cad772c102ab6c1339ce0cbd931893ee6340c6",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-08-18",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "88 healthy-volunteer Phase 1 tolerability and exploratory leptin evidence separated from animal muscle/weight-maintenance findings and planned Phase 2."
+    },
+    {
+      "id": "pf3944-pfizer-vesper6",
+      "url": "https://www.pfizerclinicaltrials.com/nct07595549-obesity-overweight-trial",
+      "checkUrl": "https://www.pfizerclinicaltrials.com/nct07595549-obesity-overweight-trial",
+      "httpStatus": 200,
+      "bytes": 413937,
+      "responseSha256": "65d19b47aabe71ec50f6db696eacb9561e60f0b5395d9f9f8fdebd74427080c7",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "08e97ca3f67e644e0f2d9486b74df48c99392226b25f57ac28ad4489f88aff15",
+      "previousReviewedAt": "2026-09-30T21:50:00Z",
+      "previousReviewedFingerprint": "08e97ca3f67e644e0f2d9486b74df48c99392226b25f57ac28ad4489f88aff15",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": null,
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Participant information describes enrollment, once-monthly investigational injection and 72-week treatment; no results or UK retail availability inferred."
+    },
+    {
+      "id": "kailera-kainetic-20260930",
+      "url": "https://investors.kailera.com/news-releases/news-release-details/kailera-therapeutics-announces-completion-enrollment-kainetic",
+      "checkUrl": "https://investors.kailera.com/news-releases/news-release-details/kailera-therapeutics-announces-completion-enrollment-kainetic",
+      "httpStatus": 200,
+      "bytes": 58073,
+      "responseSha256": "23be62a2b6f611d68fc9f4579af6f7c51f6e313fc7c64f1db5355b12913de13c",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "576ed348b2f31ca8cf8f3c4cbb5f955d2dc6d82816d2f1518c19b21bf682a268",
+      "previousReviewedAt": "2026-10-01T01:03:58Z",
+      "previousReviewedFingerprint": "576ed348b2f31ca8cf8f3c4cbb5f955d2dc6d82816d2f1518c19b21bf682a268",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-09-30",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Three KaiNETIC trials completed enrollment; mid-2028 data remain expected. Approximate sponsor counts remain separate from newer actual registry counts."
+    },
+    {
+      "id": "zealand-zp6590-pipeline",
+      "url": "https://www.zealandpharma.com/pipeline/zp6590/",
+      "checkUrl": "https://www.zealandpharma.com/pipeline/zp6590/",
+      "httpStatus": 200,
+      "bytes": 104833,
+      "responseSha256": "364ce664d66adeb7d7fe01981ffab8d26d42e52902255e95d70bbbfdc3caa82b",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "f329bcaeb902a9146326ffa3066ec8d4395e6a5fdfaa9d2ee14dcc8d5fb2a6d4",
+      "previousReviewedAt": "2026-10-03T20:05:13.956Z",
+      "previousReviewedFingerprint": "f329bcaeb902a9146326ffa3066ec8d4395e6a5fdfaa9d2ee14dcc8d5fb2a6d4",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": null,
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Original sponsor page is accessible in this review and unchanged. Its Phase 1 label conflicts with narrative saying first-in-human initiation is the next step; existing uncertainty and preclinical limitation retained."
+    },
+    {
+      "id": "bivamelagon-rhythm-20250709",
+      "url": "https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-oral-mc4r-agonist-bivamelagon",
+      "checkUrl": "https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-oral-mc4r-agonist-bivamelagon",
+      "httpStatus": 200,
+      "bytes": 56959,
+      "responseSha256": "143575c2a2a6d1085d7e3cd2783e3158f857437348238a8ed42f13bf663a3f46",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "9dae9e1e06d882975c3c8257e8d197b03c80627a06d1933f859df553e871b341",
+      "previousReviewedAt": "2026-10-06T13:43:02Z",
+      "previousReviewedFingerprint": "9dae9e1e06d882975c3c8257e8d197b03c80627a06d1933f859df553e871b341",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2025-07-09",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Small acquired-hypothalamic-obesity Phase 2 sponsor findings and planned regulatory discussions retained; cross-trial post-hoc comparisons are not head-to-head results."
+    },
+    {
+      "id": "rm718-rhythm-20260804",
+      "url": "https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-preliminary-data-phase-2-trial",
+      "checkUrl": "https://ir.rhythmtx.com/news-releases/news-release-details/rhythm-pharmaceuticals-announces-preliminary-data-phase-2-trial",
+      "httpStatus": 200,
+      "bytes": 56858,
+      "responseSha256": "d40aeb659720dbf3fdf3c9c0795d288debe6822bfa1dc4c5c0274c713f0a246c",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "0d8e5c4d20bfee3a25fb5fb81900669eb258cc47a317b238e92d7721e97e185c",
+      "previousReviewedAt": "2026-10-06T13:43:02Z",
+      "previousReviewedFingerprint": "0d8e5c4d20bfee3a25fb5fb81900669eb258cc47a317b238e92d7721e97e185c",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-08-04",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Preliminary open-label Phase 2 acquired-HO findings remain small and incomplete; seven evaluable participants at week16, not general-obesity or UK approval evidence."
+    },
+    {
+      "id": "registry-nct07215559",
+      "url": "https://clinicaltrials.gov/study/NCT07215559",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07215559",
+      "httpStatus": 200,
+      "bytes": 14869,
+      "responseSha256": "f2d207e7f0f1eda9578cb3cbe272c1df463769e8deb9e7b1d038b4cd44e90655",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "00c8890fd4ca95b44785406cdf52d5d5d41b1080b0c92f42d810f31615698d39",
+      "previousReviewedAt": "2026-10-03T18:59:53.508Z",
+      "previousReviewedFingerprint": "21a555a589360067bf2802e01f6794d7c69f8b0dcdfbf9bcd174d605654e88a2",
+      "withdrawn": false,
+      "claimsUnchanged": false,
+      "sourcePublishedAt": "2025-10-10",
+      "sourceUpdatedAt": "2026-09-08",
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed full protocol identity, status, typed dates, enrollment, intervention design, endpoints, eligibility and results-posting status. Registry lifecycle changes do not establish efficacy, safety or approval."
+    },
+    {
+      "id": "registry-nct07310901",
+      "url": "https://clinicaltrials.gov/study/NCT07310901",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07310901",
+      "httpStatus": 200,
+      "bytes": 13346,
+      "responseSha256": "54eae5a5fb4ee77f1ab0e71a03be5d37e97a36eea0438806402f5a4b7e4b6c4a",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "32c37bbb3db99fee9512098ceaac5390efd6f0ffeb72ee21c762b182bd5c6b80",
+      "previousReviewedAt": "2026-10-03T18:59:53.508Z",
+      "previousReviewedFingerprint": "c3d2e17b320ff8459cb6b45ac0a02aa68222855f291197441182a8c77824d45d",
+      "withdrawn": false,
+      "claimsUnchanged": false,
+      "sourcePublishedAt": "2025-12-30",
+      "sourceUpdatedAt": "2026-05-29",
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed full protocol identity, status, typed dates, enrollment, intervention design, endpoints, eligibility and results-posting status. Registry lifecycle changes do not establish efficacy, safety or approval."
+    },
+    {
+      "id": "registry-nct05713799",
+      "url": "https://clinicaltrials.gov/study/NCT05713799",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT05713799",
+      "httpStatus": 200,
+      "bytes": 16912,
+      "responseSha256": "872b15004a4fcfa5d48c737999257d1b918bd234d5d8c5333f40287678682078",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "2da0e1fe1503cd8fca76178296053befda915dfa294fa3689f0d9692aca7d278",
+      "previousReviewedAt": "2026-10-08T14:55:23Z",
+      "previousReviewedFingerprint": "d03e72f9dfacd4c1b1522da358fa21879b126af74f1e2c9f2cfd6c8d9033d4ab",
+      "withdrawn": false,
+      "claimsUnchanged": false,
+      "sourcePublishedAt": "2023-02-06",
+      "sourceUpdatedAt": "2026-10-08",
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed full protocol identity, status, typed dates, enrollment, intervention design, endpoints, eligibility and results-posting status. Registry lifecycle changes do not establish efficacy, safety or approval."
+    },
+    {
+      "id": "mounjaro-mhra",
+      "url": "https://www.gov.uk/government/news/mhra-authorises-diabetes-drug-mounjaro-tirzepatide-for-weight-management-and-weight-loss",
+      "checkUrl": "https://www.gov.uk/api/content/government/news/mhra-authorises-diabetes-drug-mounjaro-tirzepatide-for-weight-management-and-weight-loss",
+      "httpStatus": 200,
+      "bytes": 16011,
+      "responseSha256": "412ad11a8ba7e1db21a1b31e3b79f9d8830d12176965fa8877c505fb0bdfbb0f",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "a12f34e632571947426d59bf458053d8b59c6dc93507ca644529ecbb600ca3bb",
+      "previousReviewedAt": "2026-09-30T16:55:00Z",
+      "previousReviewedFingerprint": "a12f34e632571947426d59bf458053d8b59c6dc93507ca644529ecbb600ca3bb",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2023-11-08",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed full regulator announcement, authorisation/formulation/indication and access boundaries; no withdrawal. Authorisation does not confirm pharmacy stock."
+    },
+    {
+      "id": "mounjaro-smpc",
+      "url": "https://www.medicines.org.uk/emc/product/15481/smpc",
+      "checkUrl": "https://www.medicines.org.uk/emc/product/15481/smpc",
+      "httpStatus": 200,
+      "bytes": 1257738,
+      "responseSha256": "565c6408dad3c62a7f80af83415b6e85338b004aac2bf794e7bc625669e8f2a8",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "c90e97fb8006378a825eacbd4c2667245b406609426500cc782459e6a8979e55",
+      "previousReviewedAt": "2026-09-30T18:55:00Z",
+      "previousReviewedFingerprint": "c90e97fb8006378a825eacbd4c2667245b406609426500cc782459e6a8979e55",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-09-08",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed product identity, formulation, sections 4.1 and 4.2, authorisation holder and text-revision date against the Watch claims. Entire response retrieved and claim fingerprint unchanged. This scoped factual review is not a full pharmacovigilance assessment or clinical approval."
+    },
+    {
+      "id": "mounjaro-nhs",
+      "url": "https://www.nhs.uk/medicines/tirzepatide/",
+      "checkUrl": "https://www.nhs.uk/medicines/tirzepatide/",
+      "httpStatus": 200,
+      "bytes": 49862,
+      "responseSha256": "1eed962c54fd38ad2e68bf9a6803996f79600b74e97ce6bc1c93760d98406c52",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "0bf989841235e78419af0a47946bdff342f08d9d8f52068a17ae8c8accab29ff",
+      "previousReviewedAt": "2026-10-01T06:30:54Z",
+      "previousReviewedFingerprint": "0bf989841235e78419af0a47946bdff342f08d9d8f52068a17ae8c8accab29ff",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-05-15",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed NHS/DHSC access, prescription and eligibility claims in the dated information, with registered-pharmacy and supply limitations; dated launch supply statements are not current stock evidence."
+    },
+    {
+      "id": "mounjaro-nice",
+      "url": "https://www.nice.org.uk/guidance/ta1026",
+      "checkUrl": "https://www.nice.org.uk/guidance/ta1026",
+      "httpStatus": 200,
+      "bytes": 22260,
+      "responseSha256": "122471867d8776eb9da7cfcb28f7d27bbcab6b326dad2fac5a8ae990ce005260",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "c98a760dfef35423c18cbc30873f721acd1327e32ede791bdffaf6af25a5b3d8",
+      "previousReviewedAt": "2026-09-30T16:55:00Z",
+      "previousReviewedFingerprint": "c98a760dfef35423c18cbc30873f721acd1327e32ede791bdffaf6af25a5b3d8",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2025-09-01",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed guidance identity, publication/update, recommendation overview and implementation boundaries; unchanged. This overview alone is not reapproval of all linked prescribing criteria."
+    },
+    {
+      "id": "wegovy-injection-access",
+      "url": "https://healthmedia.blog.gov.uk/2023/09/04/accessing-wegovy-for-weight-loss-everything-you-need-to-know/",
+      "checkUrl": "https://healthmedia.blog.gov.uk/2023/09/04/accessing-wegovy-for-weight-loss-everything-you-need-to-know/",
+      "httpStatus": 200,
+      "bytes": 67942,
+      "responseSha256": "f84946a9b10f227fae146ae8153998ce46ab1bed371877e93bcca9e6c00ae995",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "8eb2cb71a8b584a471647a770f6c37cea413bf80fb4dce760ca1064f53d677ca",
+      "previousReviewedAt": "2026-09-30T16:55:00Z",
+      "previousReviewedFingerprint": "8eb2cb71a8b584a471647a770f6c37cea413bf80fb4dce760ca1064f53d677ca",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2023-09-04",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed NHS/DHSC access, prescription and eligibility claims in the dated information, with registered-pharmacy and supply limitations; dated launch supply statements are not current stock evidence."
+    },
+    {
+      "id": "wegovy-weight-nice",
+      "url": "https://www.nice.org.uk/guidance/ta875",
+      "checkUrl": "https://www.nice.org.uk/guidance/ta875",
+      "httpStatus": 200,
+      "bytes": 19292,
+      "responseSha256": "55073f80af990243642857babfde6a1a71fcaf419d59f5563207ea44a39780ea",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "4bbb19ea7e2989ef413d4370875c97102c3160bd1a5d73eb5e4aa19e21f2bbe5",
+      "previousReviewedAt": "2026-09-30T16:55:00Z",
+      "previousReviewedFingerprint": "4bbb19ea7e2989ef413d4370875c97102c3160bd1a5d73eb5e4aa19e21f2bbe5",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2023-09-04",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed guidance identity, publication/update, recommendation overview and implementation boundaries; unchanged. This overview alone is not reapproval of all linked prescribing criteria."
+    },
+    {
+      "id": "wegovy-cardiovascular-nice",
+      "url": "https://www.nice.org.uk/guidance/ta1152",
+      "checkUrl": "https://www.nice.org.uk/guidance/ta1152",
+      "httpStatus": 200,
+      "bytes": 19100,
+      "responseSha256": "8ba172c1c75a7ab633c7f32aab867dfaa2efb2f83c0d3150a7c395c1a894b8a6",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "c163aec659c98fc11c0d0ee6f8b9285426a0f2b8b34d9fb3b6f48744223f8ce3",
+      "previousReviewedAt": "2026-09-30T16:55:00Z",
+      "previousReviewedFingerprint": "c163aec659c98fc11c0d0ee6f8b9285426a0f2b8b34d9fb3b6f48744223f8ce3",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-05-07",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed guidance identity, publication/update, recommendation overview and implementation boundaries; unchanged. This overview alone is not reapproval of all linked prescribing criteria."
+    },
+    {
+      "id": "wegovy-tablet-mhra",
+      "url": "https://www.gov.uk/government/news/first-glp-1-tablet-for-weight-loss-approved-in-the-uk",
+      "checkUrl": "https://www.gov.uk/api/content/government/news/first-glp-1-tablet-for-weight-loss-approved-in-the-uk",
+      "httpStatus": 200,
+      "bytes": 14337,
+      "responseSha256": "82ae4f72a6ad51f490209c69750d6c2305444316fbc7b1a5fcb4badc28ea9b4a",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "6499382984b746412447de56ccaf04852a6d304cfa68fb7ea89195b562fc9c99",
+      "previousReviewedAt": "2026-09-30T16:55:00Z",
+      "previousReviewedFingerprint": "6499382984b746412447de56ccaf04852a6d304cfa68fb7ea89195b562fc9c99",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-06-11",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed full regulator announcement, authorisation/formulation/indication and access boundaries; no withdrawal. Authorisation does not confirm pharmacy stock."
+    },
+    {
+      "id": "wegovy-tablet-smpc",
+      "url": "https://www.medicines.org.uk/emc/product/102347/smpc",
+      "checkUrl": "https://www.medicines.org.uk/emc/product/102347/smpc",
+      "httpStatus": 200,
+      "bytes": 390543,
+      "responseSha256": "b21cb12ba99ed964ea6d2ff8f9004fb735cc3300dabf30efd6f7488778389b17",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "142cfab62735e887697d6ec81e3ca3a4b35323c69d7b170387ba48ef23c6ff9e",
+      "previousReviewedAt": "2026-09-30T18:55:00Z",
+      "previousReviewedFingerprint": "142cfab62735e887697d6ec81e3ca3a4b35323c69d7b170387ba48ef23c6ff9e",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-06-16",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed product identity, formulation, sections 4.1 and 4.2, authorisation holder and text-revision date against the Watch claims. Entire response retrieved and claim fingerprint unchanged. This scoped factual review is not a full pharmacovigilance assessment or clinical approval."
+    },
+    {
+      "id": "orlistat-nhs",
+      "url": "https://www.nhs.uk/medicines/orlistat/",
+      "checkUrl": "https://www.nhs.uk/medicines/orlistat/",
+      "httpStatus": 200,
+      "bytes": 43541,
+      "responseSha256": "9eee486e6be15e7b3ccf541d59a8dd705b214c2a5416b49e426ca96d42226295",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "a005b76ef816a6b6d4505122c902445d5396d1e74dc6f2b4c58c51f057ce9f37",
+      "previousReviewedAt": "2026-09-30T16:55:00Z",
+      "previousReviewedFingerprint": "a005b76ef816a6b6d4505122c902445d5396d1e74dc6f2b4c58c51f057ce9f37",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-05-06",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed NHS/DHSC access, prescription and eligibility claims in the dated information, with registered-pharmacy and supply limitations; dated launch supply statements are not current stock evidence."
+    },
+    {
+      "id": "orlistat-120-smpc",
+      "url": "https://www.medicines.org.uk/emc/product/2592/smpc",
+      "checkUrl": "https://www.medicines.org.uk/emc/product/2592/smpc",
+      "httpStatus": 200,
+      "bytes": 77713,
+      "responseSha256": "15ec8635e2bd768f35f5ffa387ced4736c900ae57ee34fdb309c0d86d6ba6abe",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "029e3b4179df1b22b4b3594bd54b5be4ca95c43983411a18433c97d2cf77e114",
+      "previousReviewedAt": "2026-09-30T18:55:00Z",
+      "previousReviewedFingerprint": "029e3b4179df1b22b4b3594bd54b5be4ca95c43983411a18433c97d2cf77e114",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2023-10-24",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed product identity, formulation, sections 4.1 and 4.2, authorisation holder and text-revision date against the Watch claims. Entire response retrieved and claim fingerprint unchanged. This scoped factual review is not a full pharmacovigilance assessment or clinical approval."
+    },
+    {
+      "id": "orlistat-60-smpc",
+      "url": "https://www.medicines.org.uk/emc/product/6533/smpc",
+      "checkUrl": "https://www.medicines.org.uk/emc/product/6533/smpc",
+      "httpStatus": 200,
+      "bytes": 80096,
+      "responseSha256": "79e8b32dc389bdc314a08412cb9a3a1bd9cfe23a7b24412b44fc845808bad3c4",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "423e9d82afdb18cda4f8bc7b727df90424606f2c648c465098586283779abddd",
+      "previousReviewedAt": "2026-09-30T18:55:00Z",
+      "previousReviewedFingerprint": "423e9d82afdb18cda4f8bc7b727df90424606f2c648c465098586283779abddd",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2023-04-25",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed product identity, formulation, sections 4.1 and 4.2, authorisation holder and text-revision date against the Watch claims. Entire response retrieved and claim fingerprint unchanged. This scoped factual review is not a full pharmacovigilance assessment or clinical approval."
+    },
+    {
+      "id": "foundayo-mhra",
+      "url": "https://www.gov.uk/government/news/uk-first-in-europe-to-authorise-orforglipron-for-weight-management-and-type-2-diabetes",
+      "checkUrl": "https://www.gov.uk/api/content/government/news/uk-first-in-europe-to-authorise-orforglipron-for-weight-management-and-type-2-diabetes",
+      "httpStatus": 200,
+      "bytes": 13502,
+      "responseSha256": "6cd74147d3ba1298de699a137b1e4f405cf6168298699279678b96b07ce06e84",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "9b6fbf229dd96da3d00e041465d868ede55d0acc9b5ddeb7783ff3b5bb3bd3c2",
+      "previousReviewedAt": "2026-09-30T16:55:00Z",
+      "previousReviewedFingerprint": "9b6fbf229dd96da3d00e041465d868ede55d0acc9b5ddeb7783ff3b5bb3bd3c2",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-08-10",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed full regulator announcement, authorisation/formulation/indication and access boundaries; no withdrawal. Authorisation does not confirm pharmacy stock."
+    },
+    {
+      "id": "foundayo-smpc",
+      "url": "https://www.medicines.org.uk/emc/product/102531/smpc",
+      "checkUrl": "https://www.medicines.org.uk/emc/product/102531/smpc",
+      "httpStatus": 200,
+      "bytes": 1046901,
+      "responseSha256": "2b41e37acf60e3f1abc968caa2db6540fcb779e87d5a483979c372dd971bdd17",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "e528bfc81887cc52f40a8086cc26488db67e72e349bd63eebc3d24ff27249101",
+      "previousReviewedAt": "2026-09-30T18:55:00Z",
+      "previousReviewedFingerprint": "e528bfc81887cc52f40a8086cc26488db67e72e349bd63eebc3d24ff27249101",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-08-14",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed product identity, formulation, sections 4.1 and 4.2, authorisation holder and text-revision date against the Watch claims. Entire response retrieved and claim fingerprint unchanged. This scoped factual review is not a full pharmacovigilance assessment or clinical approval."
+    },
+    {
+      "id": "retatrutide-mhra",
+      "url": "https://www.gov.uk/government/news/no-summer-shortcut-for-safe-weight-loss",
+      "checkUrl": "https://www.gov.uk/api/content/government/news/no-summer-shortcut-for-safe-weight-loss",
+      "httpStatus": 200,
+      "bytes": 12409,
+      "responseSha256": "61c561e86d6be84d773c5748aebbe8e5077c23b4816e3662bd032c15a9bb93a9",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "34258dd5def20deb8e4e24894d51d5407bc2dd2073e0911d43f0839c4017d40e",
+      "previousReviewedAt": "2026-09-30T16:55:00Z",
+      "previousReviewedFingerprint": "34258dd5def20deb8e4e24894d51d5407bc2dd2073e0911d43f0839c4017d40e",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-07-24",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed full regulator announcement, authorisation/formulation/indication and access boundaries; no withdrawal. Authorisation does not confirm pharmacy stock."
+    },
+    {
+      "id": "retatrutide-lilly",
+      "url": "https://investor.lilly.com/news-releases/news-release-details/lillys-triple-agonist-retatrutide-successful-two-additional",
+      "checkUrl": "https://investor.lilly.com/news-releases/news-release-details/lillys-triple-agonist-retatrutide-successful-two-additional",
+      "httpStatus": 200,
+      "bytes": 149315,
+      "responseSha256": "9637846b6bdb0d774e784bef866cbbf58c5f3bca26d3c7570d255923e2a4b000",
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "3299261d5adcc54a277026fe7ba6030b303fd979998fcd1ae1f418b9e7ac8690",
+      "previousReviewedAt": "2026-09-30T16:55:00Z",
+      "previousReviewedFingerprint": "3299261d5adcc54a277026fe7ba6030b303fd979998fcd1ae1f418b9e7ac8690",
+      "withdrawn": false,
+      "claimsUnchanged": true,
+      "sourcePublishedAt": "2026-07-23",
+      "sourceUpdatedAt": null,
+      "dateVerification": "Dates retained from individually cited evidence; no unverified publication date invented.",
+      "assessment": "Reviewed NHS/DHSC access, prescription and eligibility claims in the dated information, with registered-pharmacy and supply limitations; dated launch supply statements are not current stock evidence."
+    },
+    {
+      "id": "hrs1596-hengrui-20260929",
+      "url": "https://www.hengrui.com/media/detail-1041.html",
+      "checkUrl": "https://www.hengrui.com/media/detail-1041.html",
+      "httpStatus": 200,
+      "bytes": 10465,
+      "responseSha256": "a1f5c03061dfd3e3beecc8b4e4276412e86028a16f5965a9db73a01be4b2926f",
+      "sourcePublishedAt": "2026-09-29",
+      "sourceUpdatedAt": null,
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "reviewedFingerprint": "efef49786abf566da9b187e326092aa38627954d09577ab271fba0f6bc07b929",
+      "previousReviewedAt": "2026-09-30T10:32:33Z",
+      "previousReviewedFingerprint": "62aef0982e1b9f71f48111b34a1a79667a979166100e417b8143918278623099",
+      "withdrawn": false,
+      "claimsUnchanged": false,
+      "assessment": "Official Chinese-language original corroborates Phase I permission, proposed weekly oral GLP-1/GIP programme and licence expected to close in Q4 subject to conditions. No actual first dosing or completed closing inferred. English endpoint is retired from monitoring, not falsely reviewed."
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct07215559",
+      "nctId": "NCT07215559",
+      "title": "ClinicalTrials.gov NCT07215559",
+      "url": "https://clinicaltrials.gov/study/NCT07215559",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07215559",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07215559"
+      ],
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "sourcePublishedAt": "2025-10-10",
+      "sourceUpdatedAt": "2026-10-09",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07215559",
+        "title": "A Study of Macupatide (LY3532226) and Eloralintide (LY3841136), Alone or in Combination, in Adults With Obesity or Overweight and With Type 2 Diabetes",
+        "sponsor": "Eli Lilly and Company",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 200,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2025-10-16",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2027-03",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2027-05",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2025-10-10",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-10-09",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "macupatide"
+      ],
+      "reviewedFingerprint": "00c8890fd4ca95b44785406cdf52d5d5d41b1080b0c92f42d810f31615698d39"
+    },
+    {
+      "id": "registry-nct07310901",
+      "nctId": "NCT07310901",
+      "title": "ClinicalTrials.gov NCT07310901",
+      "url": "https://clinicaltrials.gov/study/NCT07310901",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07310901",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT07310901"
+      ],
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "sourcePublishedAt": "2025-12-30",
+      "sourceUpdatedAt": "2026-10-09",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07310901",
+        "title": "A 2-part, Phase 1b Clinical Study Designed to Evaluate the Safety, PK, and Efficacy of CRB-913 in Participants With Obesity",
+        "sponsor": "Corbus Pharmaceuticals Inc.",
+        "status": "COMPLETED",
+        "whyStopped": null,
+        "phases": [
+          "PHASE1"
+        ],
+        "enrollment": {
+          "count": 254,
+          "type": "ACTUAL"
+        },
+        "start": {
+          "date": "2025-12-04",
+          "type": "ACTUAL"
+        },
+        "primaryCompletion": {
+          "date": "2026-08-03",
+          "type": "ACTUAL"
+        },
+        "completion": {
+          "date": "2026-08-03",
+          "type": "ACTUAL"
+        },
+        "firstPosted": {
+          "date": "2025-12-30",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-10-09",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "crb913"
+      ],
+      "reviewedFingerprint": "32c37bbb3db99fee9512098ceaac5390efd6f0ffeb72ee21c762b182bd5c6b80"
+    },
+    {
+      "id": "registry-nct05713799",
+      "nctId": "NCT05713799",
+      "title": "ClinicalTrials.gov NCT05713799",
+      "url": "https://clinicaltrials.gov/study/NCT05713799",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT05713799",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": [
+        "NCT05713799"
+      ],
+      "reviewedAt": "2026-10-09T20:33:58Z",
+      "sourcePublishedAt": "2023-02-06",
+      "sourceUpdatedAt": "2026-10-09",
+      "evidenceType": "Sponsor/investigator-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT05713799",
+        "title": "Trial of the Combination of Alpha-Lipoic Acid and Mirabegron in Women and in Men With Obesity",
+        "sponsor": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": [
+          "PHASE2"
+        ],
+        "enrollment": {
+          "count": 60,
+          "type": "ESTIMATED"
+        },
+        "start": {
+          "date": "2026-10-14",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletion": {
+          "date": "2030-03-01",
+          "type": "ESTIMATED"
+        },
+        "completion": {
+          "date": "2030-03-01",
+          "type": "ESTIMATED"
+        },
+        "firstPosted": {
+          "date": "2023-02-06",
+          "type": "ACTUAL"
+        },
+        "lastUpdated": {
+          "date": "2026-10-09",
+          "type": "ACTUAL"
+        },
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": [
+        "mirabegron-alpha-lipoic-acid"
+      ],
+      "rawResponseSha256": "0faa3795b7bfb10528e85b77c8422536528086a95ec8dfc8d82dc9357e887833",
+      "reviewedFingerprint": "2da0e1fe1503cd8fca76178296053befda915dfa294fa3689f0d9692aca7d278"
+    }
+  ],
+  "sourceReplacement": {
+    "id": "hrs1596-hengrui-20260929",
+    "title": "Hengrui: HRS-1596 licence and Phase I readiness (official Chinese announcement)",
+    "url": "https://www.hengrui.com/media/detail-1041.html",
+    "checkUrl": "https://www.hengrui.com/media/detail-1041.html",
+    "format": "html",
+    "sourcePublishedAt": "2026-09-29",
+    "sourceDateLabel": "Source publication date",
+    "reviewedAt": "2026-10-09T20:33:58Z",
+    "requiredTerms": [
+      "HRS-1596",
+      "GLP-1",
+      "2026-09-29"
+    ],
+    "reviewedFingerprint": "efef49786abf566da9b187e326092aa38627954d09577ab271fba0f6bc07b929",
+    "evidenceType": "original sponsor announcement",
+    "contentSelector": "article"
+  },
+  "changes": [
+    {
+      "id": "macupatide",
+      "fields": {
+        "stage": "Active, not recruiting Phase 2 combination study; separate Phase 1 study not yet recruiting",
+        "summary": "The sponsor-submitted registry records an active, not recruiting Phase 2 study (record updated 9 October 2026) of macupatide and eloralintide, alone or in combination, in an estimated 200 adults with obesity or overweight and type 2 diabetes. It records an actual 16 October 2025 start and estimated March 2027 primary completion. A separate Japanese Phase 1 study remains not yet recruiting and has only an estimated October 2026 start.",
+        "limitations": "Active, not recruiting status is not a result. Neither study has posted results, estimated enrolment and completion dates may change, and the Phase 1 study must not be described as started while its registry status remains not yet recruiting."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07215559 \u2014 lifecycle reviewed 9 October 2026",
+          "url": "https://clinicaltrials.gov/study/NCT07215559",
+          "sourcePublishedAt": "2025-10-10",
+          "sourceUpdatedAt": "2026-10-09",
+          "reviewedAt": "2026-10-09T20:33:58Z",
+          "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability."
+        }
+      ]
+    },
+    {
+      "id": "crb913",
+      "fields": {
+        "stage": "Phase 1b completed without posted registry results; Phase 2 planned",
+        "summary": "A once-daily oral, peripherally restricted CB1 inverse agonist. Corbus reported CANYON-1 topline Phase 1b results on 14 September 2026 after 12 weeks of treatment. A Phase 2 monotherapy study was planned for the first half of 2027, not yet treated as started. The registry update posted on 9 October 2026 records CANYON-1 as completed with 254 actual participants and actual primary and study completion on 3 August 2026.",
+        "limitations": "The 9 October registry update confirms completed status but has no posted results. The September sponsor topline announcement remains separate evidence for findings, not registry results or a head-to-head comparison. Planned Phase 2 remains unconfirmed as started."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07310901 \u2014 lifecycle reviewed 9 October 2026",
+          "url": "https://clinicaltrials.gov/study/NCT07310901",
+          "sourcePublishedAt": "2025-12-30",
+          "sourceUpdatedAt": "2026-10-09",
+          "reviewedAt": "2026-10-09T20:33:58Z",
+          "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability."
+        }
+      ]
+    },
+    {
+      "id": "mirabegron-alpha-lipoic-acid",
+      "fields": {
+        "summary": "NIDDK's NCT05713799 record describes an oral mirabegron and alpha-lipoic acid crossover pilot in adults with obesity. The 9 October 2026 update remains not yet recruiting, with its estimated start moved again to 14 October 2026, 60 estimated participants and estimated March 2030 completion. Its primary endpoint is insulin sensitivity, with metabolic and exploratory body-composition outcomes.",
+        "limitations": "First posted in February 2023: an older study, not an October medicine launch. The 14 October start remains estimated, not actual dosing, and no results are posted. The detailed protocol retains a 48-person target while the enrolment field estimates 60; this discrepancy is preserved. Metabolic study aims are not demonstrated weight-loss benefit, a prescribing recommendation or approval of this combination."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT05713799 \u2014 lifecycle reviewed 9 October 2026",
+          "url": "https://clinicaltrials.gov/study/NCT05713799",
+          "sourcePublishedAt": "2023-02-06",
+          "sourceUpdatedAt": "2026-10-09",
+          "reviewedAt": "2026-10-09T20:33:58Z",
+          "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment/stopping reason, actual/estimated dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability."
+        }
+      ]
+    },
+    {
+      "id": "hrs1596",
+      "fields": {},
+      "additionalEvidence": [
+        {
+          "title": "Hengrui: HRS-1596 licence and Phase I readiness (official Chinese announcement)",
+          "url": "https://www.hengrui.com/media/detail-1041.html",
+          "sourcePublishedAt": "2026-09-29",
+          "sourceUpdatedAt": null,
+          "reviewedAt": "2026-10-09T20:33:58Z",
+          "checkScope": "Official original Chinese announcement read for Phase I permission, investigational weekly oral potential and proposed licence closing. Replaces blocked English monitoring endpoint; no new trial-start or closing assertion."
+        }
+      ]
+    }
+  ],
+  "remainingObstacles": [
+    {
+      "id": "hrs1596-hengrui-20260929",
+      "url": "https://www.hengrui.com/en/media/detail-1042.html",
+      "httpStatus": 200,
+      "bytes": 245,
+      "error": "Request Rejected HTML; missing_content_selector; original English article not available in this retrieval",
+      "alternativeUrl": "https://www.hengrui.com/media/detail-1041.html",
+      "disposition": "Original English endpoint retired; original Chinese sponsor evidence reviewed and configured instead. English document content/withdrawal cannot be certified."
+    }
+  ],
+  "monitorBoundary": "Direct source retrieval does not repair the scheduled writer or erase historical HTTP 403s. Actual live monitor availability must be verified independently after guarded deployment.",
+  "evidenceUnavailable": [
+    "No posted results in NCT07215559, NCT07310901 or NCT05713799. Completion/recruitment updates do not establish clinical outcomes."
+  ]
+}

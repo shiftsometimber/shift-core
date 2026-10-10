@@ -1,0 +1,20 @@
+import {PATH,renderCandidate,amendSupportingDocument,amendPillarChrome} from './candidate.mjs';
+import {addPillarClient} from './measurement.mjs';
+import {improveAnswerDepth} from '../public-seo-answer-depth.mjs';
+const supported=new Set(['/tools/bmi','/weight-loss-support-for-men','/mental-health/mental-health-and-weight','/articles/weight-loss-plateau-men','/mens-weight-management','/articles/evidence-based-weight-loss']);
+const exempt=p=>['/','/index','/index.html','/home','/home.html'].includes(p)||/^\/(?:member|api|v1|hq|admin)(?:\/|$)/.test(p);
+function output(r,html,head,indexable=false){const h=new Headers(r.headers);for(const k of ['Content-Length','Content-Encoding','ETag','Last-Modified','Digest','Content-MD5'])h.delete(k);h.set('Cache-Control','no-store');if(indexable){html=html.replace(/<meta name="robots" content="noindex,nofollow">/g,'<meta name="robots" content="index,follow">');h.delete('X-Robots-Tag');h.set('X-Shift-Male-Obesity','v1');}return new Response(head?null:html,{status:r.status,headers:h});}
+export function withMaleObesity(worker){return {...worker,async fetch(request,env,ctx){const u=new URL(request.url),p=u.pathname,head=request.method==='HEAD';if(!['GET','HEAD'].includes(request.method)||exempt(p))return worker.fetch(request,env,ctx);
+ if(p===PATH+'/'){u.pathname=PATH;return Response.redirect(u.toString(),301);}
+ if(p===PATH){try{const shell=new URL(u);shell.pathname='/programme';shell.search='';const r=await worker.fetch(new Request(shell,{headers:request.headers}),env,ctx);if(!r.ok||!r.headers.get('Content-Type')?.includes('text/html'))throw Error('shell');return output(r,addPillarClient(renderCandidate(await r.text())),head,true);}catch{return new Response(head?null:'<!doctype html><html lang="en-GB"><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Guide unavailable | SHIFT</title></head><body><main><h1>We cannot load the guide right now</h1><p>You can still choose tomorrow’s meal and a fallback, or write down a question for your GP.</p><a href="https://www.nhs.uk/conditions/overweight-and-obesity/">NHS information about weight and support</a></main></body></html>',{status:503,headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'}});}}
+ const r=await worker.fetch(head?new Request(u,{method:'GET',headers:request.headers}):request,env,ctx);if(!r.ok)return head?new Response(null,r):r;
+ if(p==='/sitemap.xml'){let xml=await r.text();const loc='<loc>https://shiftsometimber.co.uk'+PATH+'</loc>';if(!xml.includes(loc))xml=xml.replace('</urlset>','<url>'+loc+'</url></urlset>');return output(r,xml,head);}
+ if(!r.headers.get('Content-Type')?.includes('text/html'))return head?new Response(null,r):r;
+ try{const document=await r.text();
+ // The separate public-answer Worker wraps CORE after this adapter. Install
+ // this one approved section here so it is qualified before that outer pass.
+ // Its existing idempotency prevents a duplicate; other pages are untouched.
+ const prepared=p==='/weight-loss-support-for-men'?improveAnswerDepth(document,p):document;
+ const rendered=amendPillarChrome(amendSupportingDocument(p,prepared),p);
+ return output(r,p==='/weight-loss-support-for-men'?addPillarClient(rendered):rendered,head,supported.has(p));}catch{return new Response(head?null:'This support page is temporarily unavailable. You can still use the practical step at https://shiftsometimber.co.uk/male-obesity#first-step',{status:503,headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store'}});}
+}};}

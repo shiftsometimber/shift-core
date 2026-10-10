@@ -1,3 +1,4 @@
+import {amendSupportingDocument} from '../obesity-awareness/candidate.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';
 import {approvedContinuityBody,assertApprovedContinuityBody,approvedContinuityMinimumWords} from '../release/public-continuity-body-proof.mjs';
 import {continuityPages} from '../public-continuity.mjs';
@@ -22,11 +23,12 @@ test('approved 332-word provider body passes its exact-copy gate without a contr
 });
 import {ANSWER_DEPTH_ADDITIONS,improveAnswerDepth} from '../public-seo-answer-depth.mjs';
 import {renderContinuityDocument} from '../public-continuity.mjs';
-test('support proof requires the exact separately approved answer-depth addition within the complete original body',()=>{
+test('support proof requires complete approved body with exact informational and answer-depth amendments',()=>{
  const path='/weight-loss-support-for-men',addition=ANSWER_DEPTH_ADDITIONS.find(x=>x.path===path),body=approvedContinuityBody(path);
- const response=improveAnswerDepth(renderContinuityDocument('<head></head><main>shell</main>',path),path);
- assert(response.includes(body));assert(body.includes(addition.html));assert.equal(body.split(addition.html).length,2);
- assert.doesNotThrow(()=>assertApprovedContinuityBody(path,response));
- for(const changed of [body.replace(addition.html,''),body.replace(addition.html,addition.html.replace('Tuesday','Wednesday')),body.replace('href="/member/dashboard"','href="/unapproved"'),body.slice(0,-20)])assert.throws(()=>assertApprovedContinuityBody(path,changed));
+ const response=amendSupportingDocument(path,improveAnswerDepth(renderContinuityDocument('<head></head><main>shell</main>',path),path));
+ const qualifiedAddition=response.match(/<section\b[^>]*id="shift-depth-free-my-timber"[\s\S]*?<\/section>/)[0];
+ assert(response.includes(body));assert(body.includes(qualifiedAddition));assert.equal(body.split(qualifiedAddition).length,2);
+ assert.doesNotThrow(()=>assertApprovedContinuityBody(path,response));assert.doesNotMatch(body,/Look in Fit|12-week|Grub \+ Fit/);assert(body.includes('My meal is'));
+ for(const changed of [body.replace(qualifiedAddition,''),body.replace(qualifiedAddition,qualifiedAddition.replace('Tuesday','Wednesday')),body.replace('href="/member/dashboard"','href="/unapproved"'),body.slice(0,-20)])assert.throws(()=>assertApprovedContinuityBody(path,changed));
  const historical=continuityPages[path].body;assert.throws(()=>assertApprovedContinuityBody(path,historical));
 });

@@ -1,3 +1,4 @@
+import {preservePillarChrome} from '../obesity-awareness/preservation.mjs';
 import {verifyOrganicDelivery} from '../release/organic-followthrough-live.mjs';
 import {preserveTabletWording} from '../tablet-wording-v1.mjs';
 import {preserveOrganicLinks} from '../public-seo-organic-links.mjs';
@@ -58,7 +59,7 @@ for(const path of paths){
  const r=await fetch('https://shiftsometimber.co.uk'+path,{signal:AbortSignal.timeout(30000)});
  assert.equal(r.status,200,path+' must return HTTP 200');
  const rawBody=Buffer.from(await r.arrayBuffer());
- const body=preserveTabletWording(path,preserveApprovedLinks(path,preserveOrganicLinks(path,rawBody)),{required:Boolean(before)});
+ const body=preserveTabletWording(path,preservePillarChrome(path,preserveApprovedLinks(path,preserveOrganicLinks(path,rawBody)),{required:Boolean(before)}));
  const reviewedSource=restoreStoppingCitation(path,preserveFollowThrough(path,Buffer.from(preserveExactMetricsBootstrap(body.toString('utf8'))),{required:Boolean(before)}),{required:Boolean(before)});
  const footerPreserved=Buffer.from(applySharedFooter(restoreBookVoiceCopy(path,restoreTrustCentre(path,reviewedSource.toString('utf8'),{required:Boolean(before)}))));
  const pwaPreserved=preservePwaPresentation(path,preserveApprovedStartup(path,preserveGrowthCopy(path,footerPreserved,{required:Boolean(before)})),{required:Boolean(before)});
