@@ -19,7 +19,8 @@ const ownRenderReady=async(page)=>{
 };
 const renderState=page=>page.evaluate(()=>{const from=(()=>{try{return new URL(document.referrer);}catch{return null;}})();return{path:location.pathname,readyState:document.readyState,scrollWidth:document.documentElement.scrollWidth,viewportWidth:innerWidth,navDisplay:document.querySelector('.desktop-nav')?getComputedStyle(document.querySelector('.desktop-nav')).display:null,stylesheetReady:[...document.querySelectorAll('link[rel~="stylesheet"]')].map(l=>({path:new URL(l.href).pathname,loaded:Boolean(l.sheet)})),fontStatus:document.fonts.status,menuExpanded:document.querySelector('button[aria-controls="site-drawer"]')?.getAttribute('aria-expanded'),drawerHidden:document.querySelector('#site-drawer')?.hidden,drawerDisplay:document.querySelector('#site-drawer')?getComputedStyle(document.querySelector('#site-drawer')).display:null,hasPillarClient:Boolean(document.querySelector('[data-pillar-client]')),analyticsConsent:window.SSTConsent?.get?.()?.analytics===true,suppressed:window.SST_ANALYTICS_SUPPRESSED===true,referrerPath:from?.pathname||null,sameOriginReferrer:from?.origin===location.origin,pillarEvents:(window.dataLayer||[]).filter(x=>/^shift_pillar_/.test(x?.event||'')).map(x=>x.event)};});
 const navigate=async(page,path)=>{const r=await page.goto(origin+path,{waitUntil:'commit',timeout:60000});assert.equal(r.status(),200,path);await ownRenderReady(page);return r;};
-async function necessary(page){if(!await page.getByRole('dialog',{name:'Cookie choices',exact:true}).isVisible())await page.getByRole('button',{name:'Cookie choices',exact:true}).click();await page.getByRole('button',{name:'Necessary only',exact:true}).click();}
+async function chooseConsent(page,analytics){await page.waitForLoadState('domcontentloaded',{timeout:60000});await page.waitForFunction(()=>typeof window.SSTConsent?.get==='function',null,{timeout:20000});const dialog=page.getByRole('dialog',{name:'Cookie choices',exact:true});await dialog.waitFor({state:'visible',timeout:20000});await page.getByRole('button',{name:analytics?'Accept analytics':'Necessary only',exact:true}).click();await page.waitForFunction(value=>window.SSTConsent.get()?.analytics===value,analytics,{timeout:20000});await dialog.waitFor({state:'hidden',timeout:20000});}
+async function necessary(page){await chooseConsent(page,false);}
 function observeCollector(page,records){
  const pending=new WeakMap();
  page.on('request',request=>{
@@ -53,7 +54,7 @@ function observeCollector(page,records){
      assert(!/noindex/i.test((await page.locator('meta[name="robots"]').getAttribute('content'))||''));
      result.checks.push({path,width,status:200,htmlSha256:hash(html),canonical,checks:['one H1','five primary navigation links','male-obesity footer','no horizontal overflow','indexable canonical']});
     }
-    await navigate(page,'/male-obesity');await necessary(page);await page.reload({waitUntil:'commit'});await ownRenderReady(page);
+    await navigate(page,'/male-obesity');await necessary(page);await page.reload({waitUntil:'commit'});await ownRenderReady(page);await page.waitForLoadState('domcontentloaded',{timeout:60000});
     await page.screenshot({path:dir+'/'+width+'-hub.png'});
     const menu=page.getByRole('button',{name:'Menu',exact:true});await menu.click();
     const links=await page.locator('#site-drawer a').allTextContents(),m=links.indexOf('Male obesity');
@@ -98,7 +99,7 @@ function observeCollector(page,records){
   // One genuine consented public pass, separate from the declined/BMI checks.
   const context=await browser.newContext({viewport:{width:390,height:900}}),page=await context.newPage();observeCollector(page,result.collector);
   try{
-   await navigate(page,'/male-obesity');if(!await page.getByRole('dialog',{name:'Cookie choices',exact:true}).isVisible())await page.getByRole('button',{name:'Cookie choices',exact:true}).click();await page.getByRole('button',{name:'Accept analytics',exact:true}).click();await page.reload({waitUntil:'commit'});await ownRenderReady(page);
+   await navigate(page,'/male-obesity');await chooseConsent(page,true);await page.reload({waitUntil:'commit'});await ownRenderReady(page);
    const accepted=async(name)=>{const until=Date.now()+15000;while(Date.now()<until&&!result.collector.some(r=>r.event===name&&[200,204].includes(r.responseStatus)))await page.waitForTimeout(100);assert(result.collector.some(r=>r.event===name&&[200,204].includes(r.responseStatus)),name+' accepted before the next distinct action');};await page.getByRole('link',{name:'Find one useful step',exact:true}).click();await accepted('shift_pillar_first_step_opened');await page.getByRole('button',{name:'I tried my step',exact:true}).click();await accepted('shift_pillar_step_tried');await page.getByRole('button',{name:'Too much effort',exact:true}).click();await accepted('shift_pillar_review_used');
    await page.getByRole('link',{name:'see the free support available through My Timber',exact:true}).click();await page.locator('h1').waitFor();
    const until=Date.now()+15000;while(Date.now()<until&&!eventNames.every(n=>result.collector.some(x=>x.event===n&&[200,204].includes(x.responseStatus))))await page.waitForTimeout(250);
