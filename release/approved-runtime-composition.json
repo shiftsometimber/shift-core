@@ -1341,7 +1341,7 @@
       "release/approved-runtime-composition.mjs",
       "tests/late-watch-composition.test.mjs"
     ],
-    "maintenanceSource": "678e1ea6394bed8a96bd65af5d77817cbccf4c75",
+    "maintenanceSource": "3aa46a4be9ce7037dc385a1c83f47eb4745265d3",
     "approvedPR": 1294,
     "reviewedSources": 198,
     "pendingSources": 1,
