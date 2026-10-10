@@ -1,0 +1,2418 @@
+{
+  "checkedAt": "2026-10-09T20:28:46.133Z",
+  "reports": {
+    "discrepancy_country": {
+      "siteUrl": "sc-domain:shiftsometimber.co.uk",
+      "startDate": "2026-09-09",
+      "endDate": "2026-10-06",
+      "dimensions": [
+        "country"
+      ],
+      "searchType": "web",
+      "rowCount": 1,
+      "rows": [
+        {
+          "keys": [
+            "gbr"
+          ],
+          "clicks": 24,
+          "impressions": 2895,
+          "ctr": 0.8290155440414507,
+          "position": 29.52642487046632
+        }
+      ],
+      "pagination": {
+        "limit": 25000,
+        "offset": 0,
+        "returned": 1,
+        "hasMore": false,
+        "note": "Showing all 1 rows."
+      },
+      "dataSource": "api",
+      "settledThrough": "2026-10-06",
+      "dataMaturity": {
+        "firstIncompleteDate": "2026-10-07",
+        "settledThrough": "2026-10-06",
+        "dateBasis": "America/Los_Angeles",
+        "source": "gsc-api-metadata",
+        "probe": {
+          "searchType": "web",
+          "startDate": "2026-09-30",
+          "endDate": "2026-10-09",
+          "dataState": "all"
+        }
+      }
+    },
+    "discrepancy_page_country_device": {
+      "siteUrl": "sc-domain:shiftsometimber.co.uk",
+      "startDate": "2026-09-09",
+      "endDate": "2026-10-06",
+      "dimensions": [
+        "page",
+        "country",
+        "device"
+      ],
+      "searchType": "web",
+      "rowCount": 103,
+      "rows": [
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/food-noise-after-stopping-glp1",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 11.5
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/glp-1-binge-eating",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 2
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/glp-1-coaching",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 2.5
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/glp-1-coaching",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 7,
+          "ctr": 0,
+          "position": 21.714285714285715
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/life-after-ozempic",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 53
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/missed-wegovy-dose",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 78
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/mounjaro-cost-uk",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 10,
+          "ctr": 0,
+          "position": 39.3
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/mounjaro-cost-uk",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 11,
+          "ctr": 0,
+          "position": 52.36363636363637
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/nhs-weight-loss-drugs",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 314,
+          "ctr": 0,
+          "position": 54.853503184713375
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/nhs-weight-loss-drugs",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 95,
+          "ctr": 0,
+          "position": 54.252631578947366
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/nhs-weight-loss-drugs",
+            "gbr",
+            "TABLET"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 90
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/wegovy-not-working",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 75.5
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/wegovy-not-working",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 69.5
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/wegovy-side-effects-timeline",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 84,
+          "ctr": 0,
+          "position": 8.80952380952381
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/wegovy-side-effects-timeline",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 389,
+          "ctr": 0,
+          "position": 4.650385604113111
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/articles/wegovy-side-effects-timeline",
+            "gbr",
+            "TABLET"
+          ],
+          "clicks": 0,
+          "impressions": 11,
+          "ctr": 0,
+          "position": 3
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/clinical-governance",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 37
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/medications/mounjaro-vs-orlistat",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 10,
+          "ctr": 0,
+          "position": 26.9
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/medications/mounjaro-vs-orlistat",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 110,
+          "ctr": 0,
+          "position": 43.8
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/medications/mounjaro-vs-orlistat",
+            "gbr",
+            "TABLET"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 44
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/medications/mounjaro-vs-saxenda",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 16,
+          "ctr": 0,
+          "position": 82.4375
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/medications/mounjaro-vs-saxenda",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 83,
+          "ctr": 0,
+          "position": 82.67469879518072
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/medications/ozempic-vs-wegovy",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 19,
+          "ctr": 0,
+          "position": 25.263157894736842
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/medications/ozempic-vs-wegovy",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 21,
+          "ctr": 0,
+          "position": 57.80952380952381
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/medications/saxenda-vs-orlistat",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 81,
+          "ctr": 0,
+          "position": 15.098765432098766
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/medications/saxenda-vs-orlistat",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 55,
+          "ctr": 0,
+          "position": 22.527272727272727
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/medications/wegovy-injection-vs-tablets",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 91
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/medications/wegovy-vs-orlistat",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 34,
+          "ctr": 0,
+          "position": 26.323529411764707
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/medications/wegovy-vs-orlistat",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 75,
+          "ctr": 0,
+          "position": 43.16
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/medications/wegovy-vs-saxenda",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 29,
+          "ctr": 0,
+          "position": 86.89655172413794
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/medications/wegovy-vs-saxenda",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 109,
+          "ctr": 0,
+          "position": 85.91743119266054
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/surgery/balloon-vs-esg",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 8,
+          "ctr": 0,
+          "position": 36.75
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/surgery/balloon-vs-esg",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 7.333333333333333
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/surgery/esg-vs-gastric-sleeve",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 7,
+          "ctr": 0,
+          "position": 59.714285714285715
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/surgery/gastric-bypass-vs-mini-bypass",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 9,
+          "ctr": 0,
+          "position": 71.66666666666667
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/surgery/gastric-bypass-vs-mini-bypass",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 75
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/surgery/sleeve-vs-gastric-bypass",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 29,
+          "ctr": 0,
+          "position": 83
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/surgery/sleeve-vs-mini-bypass",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 85
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/comparisons/surgery/sleeve-vs-mini-bypass",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 65
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/contact",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 42
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/foundayo",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 7,
+          "ctr": 0,
+          "position": 57.285714285714285
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/foundayo",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 92
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/future-medicines-comparison",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 30
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/guides/cagrisema-uk-guide",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 16,
+          "ctr": 0,
+          "position": 16.8125
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/guides/endoscopic-sleeve-gastroplasty-esg-uk-guide",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 23,
+          "ctr": 0,
+          "position": 68.04347826086956
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/guides/gastric-balloon-uk-guide",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 64
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/guides/glp1-ultimate-uk-guide",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 81
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/guides/glp1-ultimate-uk-guide",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 89
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/guides/mounjaro-ultimate-uk-guide",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 67
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/guides/nhs-bariatric-surgery-pathways",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 9,
+          "ctr": 0,
+          "position": 55
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/guides/nhs-bariatric-surgery-pathways",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 41.5
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/guides/nhs-weight-loss-medication-pathways",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 23,
+          "ctr": 0,
+          "position": 68.30434782608695
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/guides/nutrition-protein-calories-meal-planning",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 8,
+          "ctr": 0,
+          "position": 70.125
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/guides/weight-loss-surgery-uk-costs-guide",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 11,
+          "ctr": 0,
+          "position": 71.72727272727273
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/guides/weight-loss-surgery-uk-guide",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 71
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/help",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 56
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/husband-help",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 6.5
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 70
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/cagrilintide-and-semaglutide-clinical-trial-update",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 55.8
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/cagrisema-semaglutide-obesity-weight-loss",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 85.25
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/cagrisema-semaglutide-obesity-weight-loss",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 90
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/cagrisema-weight-loss-trial",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 72
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-weight-loss",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 87
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/glucagon-like-peptide-1-receptor-agonists-weight-loss",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 90
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/incretin-therapies-hfpef-clinical-trial",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 39
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/nnc0174-1213-trial-update",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 6
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/oral-semaglutide-weight-loss-research-study",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 70.83333333333333
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/oral-semaglutide-weight-loss-research-study",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 78
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/pharmacy-first-expansion-england-autumn-2026",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 60
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/pharmacy-first-expansion-england-autumn-2026",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 45
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/resmetirom-semaglutide-mash-fibrosis-review",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 6
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/rsv-vaccines-small-gbs-risk-mhra-context",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 6
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/rsv-vaccines-small-gbs-risk-mhra-context",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 3
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/rybelsus-semaglutide-tablets-formulation-change",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 55
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/rybelsus-semaglutide-tablets-formulation-change",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 63.6
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/semaglutide-metformin-pcos-weight-loss-fertility",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 69
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/shemed-ltd-advert-banned",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 9
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/ubt251-injection-phase-1a-1b-trials",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 4
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-england-first-mens-health-strategy",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 75
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-england-mental-health-survey-2023-2024",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 6
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-heartflow-nhs-coronary-scan-evidence",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 11.75
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-heartflow-nhs-coronary-scan-evidence",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 11
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-lung-cancer-screening-mobile-scans-england",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 3.5
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-lung-cancer-screening-mobile-scans-england",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 14,
+          "ctr": 0,
+          "position": 72.28571428571429
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-nhs-diabetes-remission-programme-explained",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 82.33333333333333
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-nhs-mounjaro-access-england-2026",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 90.5
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-northern-ireland-obesity-service-first-phase",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 7.5
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-northern-ireland-obesity-service-first-phase",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 9.4
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-prostate-sabr-radiotherapy-england",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 82
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-samh-nook-aberdeen-glasgow-mental-health",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 36
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-scotland-mat-standards-mental-health-support",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 61.5
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-tower-hamlets-24-hour-mental-health-centre",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 39
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/uk-archive-wales-mental-health-strategy-2025-2035",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 10
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/medicine-news/virtual-glp-1-programme-weight-loss",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 57
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/mental-health/gambling-mental-health",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 79
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/mental-health/mental-health-and-weight",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 28,
+          "ctr": 0,
+          "position": 57.285714285714285
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/mental-health/nhs-talking-therapies",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 92
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/mental-health/occupational-health-mental-health",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 65
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/mental-health/redundancy-job-loss",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 50
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/nhs-vs-private",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 96.16666666666667
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/shift-newsroom",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 36.5
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/shift-newsroom",
+            "gbr",
+            "MOBILE"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 5
+        },
+        {
+          "keys": [
+            "https://shiftsometimber.co.uk/treatment-centre",
+            "gbr",
+            "DESKTOP"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 90
+        }
+      ],
+      "pagination": {
+        "limit": 25000,
+        "offset": 0,
+        "returned": 103,
+        "hasMore": false,
+        "note": "Showing all 103 rows."
+      },
+      "dataSource": "api",
+      "settledThrough": "2026-10-06",
+      "dataMaturity": {
+        "firstIncompleteDate": "2026-10-07",
+        "settledThrough": "2026-10-06",
+        "dateBasis": "America/Los_Angeles",
+        "source": "gsc-api-metadata",
+        "probe": {
+          "searchType": "web",
+          "startDate": "2026-09-30",
+          "endDate": "2026-10-09",
+          "dataState": "all"
+        }
+      }
+    },
+    "discrepancy_country_device_date": {
+      "siteUrl": "sc-domain:shiftsometimber.co.uk",
+      "startDate": "2026-09-09",
+      "endDate": "2026-10-06",
+      "dimensions": [
+        "country",
+        "device",
+        "date"
+      ],
+      "searchType": "web",
+      "rowCount": 69,
+      "rows": [
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-10-03"
+          ],
+          "clicks": 3,
+          "impressions": 236,
+          "ctr": 1.2711864406779663,
+          "position": 6.521186440677966
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-10-05"
+          ],
+          "clicks": 3,
+          "impressions": 35,
+          "ctr": 8.571428571428571,
+          "position": 20.97142857142857
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-18"
+          ],
+          "clicks": 2,
+          "impressions": 27,
+          "ctr": 7.4074074074074066,
+          "position": 26.962962962962962
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-10-01"
+          ],
+          "clicks": 2,
+          "impressions": 116,
+          "ctr": 1.7241379310344827,
+          "position": 34.060344827586206
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-15"
+          ],
+          "clicks": 1,
+          "impressions": 19,
+          "ctr": 5.263157894736842,
+          "position": 31.157894736842106
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-22"
+          ],
+          "clicks": 1,
+          "impressions": 36,
+          "ctr": 2.7777777777777777,
+          "position": 29.583333333333332
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-24"
+          ],
+          "clicks": 1,
+          "impressions": 36,
+          "ctr": 2.7777777777777777,
+          "position": 34.22222222222222
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-10-04"
+          ],
+          "clicks": 1,
+          "impressions": 89,
+          "ctr": 1.1235955056179776,
+          "position": 38.764044943820224
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-10-06"
+          ],
+          "clicks": 1,
+          "impressions": 36,
+          "ctr": 2.7777777777777777,
+          "position": 24.22222222222222
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-09"
+          ],
+          "clicks": 1,
+          "impressions": 29,
+          "ctr": 3.4482758620689653,
+          "position": 62.41379310344828
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-11"
+          ],
+          "clicks": 1,
+          "impressions": 29,
+          "ctr": 3.4482758620689653,
+          "position": 68.17241379310344
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-16"
+          ],
+          "clicks": 1,
+          "impressions": 29,
+          "ctr": 3.4482758620689653,
+          "position": 38
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-19"
+          ],
+          "clicks": 1,
+          "impressions": 36,
+          "ctr": 2.7777777777777777,
+          "position": 34.583333333333336
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-20"
+          ],
+          "clicks": 1,
+          "impressions": 37,
+          "ctr": 2.7027027027027026,
+          "position": 50.24324324324324
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-21"
+          ],
+          "clicks": 1,
+          "impressions": 43,
+          "ctr": 2.3255813953488373,
+          "position": 48.883720930232556
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-25"
+          ],
+          "clicks": 1,
+          "impressions": 24,
+          "ctr": 4.166666666666666,
+          "position": 23.375
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-28"
+          ],
+          "clicks": 1,
+          "impressions": 56,
+          "ctr": 1.7857142857142856,
+          "position": 24.535714285714285
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-10-06"
+          ],
+          "clicks": 1,
+          "impressions": 28,
+          "ctr": 3.571428571428571,
+          "position": 24.357142857142858
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-09"
+          ],
+          "clicks": 0,
+          "impressions": 37,
+          "ctr": 0,
+          "position": 50.972972972972975
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-10"
+          ],
+          "clicks": 0,
+          "impressions": 25,
+          "ctr": 0,
+          "position": 57.96
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-11"
+          ],
+          "clicks": 0,
+          "impressions": 17,
+          "ctr": 0,
+          "position": 49.705882352941174
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-12"
+          ],
+          "clicks": 0,
+          "impressions": 44,
+          "ctr": 0,
+          "position": 61.5
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-13"
+          ],
+          "clicks": 0,
+          "impressions": 19,
+          "ctr": 0,
+          "position": 70.26315789473684
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-14"
+          ],
+          "clicks": 0,
+          "impressions": 25,
+          "ctr": 0,
+          "position": 51.52
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-16"
+          ],
+          "clicks": 0,
+          "impressions": 29,
+          "ctr": 0,
+          "position": 39.6551724137931
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-17"
+          ],
+          "clicks": 0,
+          "impressions": 42,
+          "ctr": 0,
+          "position": 24.476190476190474
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-19"
+          ],
+          "clicks": 0,
+          "impressions": 22,
+          "ctr": 0,
+          "position": 49.86363636363637
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-20"
+          ],
+          "clicks": 0,
+          "impressions": 9,
+          "ctr": 0,
+          "position": 31.444444444444443
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-21"
+          ],
+          "clicks": 0,
+          "impressions": 30,
+          "ctr": 0,
+          "position": 26.633333333333333
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-23"
+          ],
+          "clicks": 0,
+          "impressions": 25,
+          "ctr": 0,
+          "position": 17.92
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-25"
+          ],
+          "clicks": 0,
+          "impressions": 47,
+          "ctr": 0,
+          "position": 18.70212765957447
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-26"
+          ],
+          "clicks": 0,
+          "impressions": 57,
+          "ctr": 0,
+          "position": 23.859649122807017
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-27"
+          ],
+          "clicks": 0,
+          "impressions": 29,
+          "ctr": 0,
+          "position": 31.655172413793103
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-28"
+          ],
+          "clicks": 0,
+          "impressions": 49,
+          "ctr": 0,
+          "position": 22.632653061224488
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-29"
+          ],
+          "clicks": 0,
+          "impressions": 43,
+          "ctr": 0,
+          "position": 16.46511627906977
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-30"
+          ],
+          "clicks": 0,
+          "impressions": 36,
+          "ctr": 0,
+          "position": 11.055555555555555
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-10-02"
+          ],
+          "clicks": 0,
+          "impressions": 78,
+          "ctr": 0,
+          "position": 42.52564102564103
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-10-03"
+          ],
+          "clicks": 0,
+          "impressions": 78,
+          "ctr": 0,
+          "position": 36.6025641025641
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-10-05"
+          ],
+          "clicks": 0,
+          "impressions": 129,
+          "ctr": 0,
+          "position": 45.968992248062015
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-10"
+          ],
+          "clicks": 0,
+          "impressions": 10,
+          "ctr": 0,
+          "position": 44.4
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-12"
+          ],
+          "clicks": 0,
+          "impressions": 44,
+          "ctr": 0,
+          "position": 61.75
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-13"
+          ],
+          "clicks": 0,
+          "impressions": 20,
+          "ctr": 0,
+          "position": 66.35
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-14"
+          ],
+          "clicks": 0,
+          "impressions": 46,
+          "ctr": 0,
+          "position": 52.97826086956522
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-15"
+          ],
+          "clicks": 0,
+          "impressions": 41,
+          "ctr": 0,
+          "position": 55.90243902439025
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-17"
+          ],
+          "clicks": 0,
+          "impressions": 26,
+          "ctr": 0,
+          "position": 35.69230769230769
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-18"
+          ],
+          "clicks": 0,
+          "impressions": 24,
+          "ctr": 0,
+          "position": 44.375
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-22"
+          ],
+          "clicks": 0,
+          "impressions": 33,
+          "ctr": 0,
+          "position": 56.39393939393939
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-23"
+          ],
+          "clicks": 0,
+          "impressions": 20,
+          "ctr": 0,
+          "position": 52
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-24"
+          ],
+          "clicks": 0,
+          "impressions": 28,
+          "ctr": 0,
+          "position": 33.5
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-26"
+          ],
+          "clicks": 0,
+          "impressions": 50,
+          "ctr": 0,
+          "position": 31.24
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-27"
+          ],
+          "clicks": 0,
+          "impressions": 40,
+          "ctr": 0,
+          "position": 26.325
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-29"
+          ],
+          "clicks": 0,
+          "impressions": 83,
+          "ctr": 0,
+          "position": 26.903614457831324
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-30"
+          ],
+          "clicks": 0,
+          "impressions": 74,
+          "ctr": 0,
+          "position": 26.472972972972972
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-10-01"
+          ],
+          "clicks": 0,
+          "impressions": 149,
+          "ctr": 0,
+          "position": 14.590604026845638
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-10-02"
+          ],
+          "clicks": 0,
+          "impressions": 189,
+          "ctr": 0,
+          "position": 4.613756613756614
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-10-04"
+          ],
+          "clicks": 0,
+          "impressions": 177,
+          "ctr": 0,
+          "position": 9.429378531073446
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-09-09"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 44
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-09-12"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 5
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-09-20"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 5
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-09-24"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 9
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-09-27"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 7
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-09-28"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 2
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-09-29"
+          ],
+          "clicks": 0,
+          "impressions": 4,
+          "ctr": 0,
+          "position": 3
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-09-30"
+          ],
+          "clicks": 0,
+          "impressions": 7,
+          "ctr": 0,
+          "position": 3
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-10-01"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 3
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-10-02"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 3
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-10-03"
+          ],
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 3.8
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-10-04"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 32
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-10-06"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 11
+        }
+      ],
+      "pagination": {
+        "limit": 25000,
+        "offset": 0,
+        "returned": 69,
+        "hasMore": false,
+        "note": "Showing all 69 rows."
+      },
+      "dataSource": "api",
+      "settledThrough": "2026-10-06",
+      "dataMaturity": {
+        "firstIncompleteDate": "2026-10-07",
+        "settledThrough": "2026-10-06",
+        "dateBasis": "America/Los_Angeles",
+        "source": "gsc-api-metadata",
+        "probe": {
+          "searchType": "web",
+          "startDate": "2026-09-30",
+          "endDate": "2026-10-09",
+          "dataState": "all"
+        }
+      }
+    },
+    "previous_matched": {
+      "siteUrl": "sc-domain:shiftsometimber.co.uk",
+      "startDate": "2026-08-12",
+      "endDate": "2026-09-08",
+      "dimensions": [
+        "country",
+        "device",
+        "date"
+      ],
+      "searchType": "web",
+      "rowCount": 34,
+      "rows": [
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-03"
+          ],
+          "clicks": 1,
+          "impressions": 16,
+          "ctr": 6.25,
+          "position": 58.25
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-03"
+          ],
+          "clicks": 1,
+          "impressions": 10,
+          "ctr": 10,
+          "position": 32
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-08-25"
+          ],
+          "clicks": 0,
+          "impressions": 50,
+          "ctr": 0,
+          "position": 77.9
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-08-26"
+          ],
+          "clicks": 0,
+          "impressions": 70,
+          "ctr": 0,
+          "position": 76.48571428571428
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-08-27"
+          ],
+          "clicks": 0,
+          "impressions": 49,
+          "ctr": 0,
+          "position": 64.55102040816327
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-08-28"
+          ],
+          "clicks": 0,
+          "impressions": 21,
+          "ctr": 0,
+          "position": 59.904761904761905
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-08-29"
+          ],
+          "clicks": 0,
+          "impressions": 24,
+          "ctr": 0,
+          "position": 65.79166666666667
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-08-30"
+          ],
+          "clicks": 0,
+          "impressions": 23,
+          "ctr": 0,
+          "position": 66.56521739130434
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-08-31"
+          ],
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 75.6
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-01"
+          ],
+          "clicks": 0,
+          "impressions": 11,
+          "ctr": 0,
+          "position": 56.81818181818182
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-02"
+          ],
+          "clicks": 0,
+          "impressions": 10,
+          "ctr": 0,
+          "position": 51.9
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-04"
+          ],
+          "clicks": 0,
+          "impressions": 16,
+          "ctr": 0,
+          "position": 58.3125
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-05"
+          ],
+          "clicks": 0,
+          "impressions": 13,
+          "ctr": 0,
+          "position": 49.38461538461539
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-06"
+          ],
+          "clicks": 0,
+          "impressions": 19,
+          "ctr": 0,
+          "position": 52.36842105263158
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-07"
+          ],
+          "clicks": 0,
+          "impressions": 25,
+          "ctr": 0,
+          "position": 45.6
+        },
+        {
+          "keys": [
+            "gbr",
+            "DESKTOP",
+            "2026-09-08"
+          ],
+          "clicks": 0,
+          "impressions": 26,
+          "ctr": 0,
+          "position": 61.15384615384615
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-08-25"
+          ],
+          "clicks": 0,
+          "impressions": 18,
+          "ctr": 0,
+          "position": 64.55555555555556
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-08-26"
+          ],
+          "clicks": 0,
+          "impressions": 16,
+          "ctr": 0,
+          "position": 63.1875
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-08-27"
+          ],
+          "clicks": 0,
+          "impressions": 14,
+          "ctr": 0,
+          "position": 49.214285714285715
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-08-28"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 85
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-08-29"
+          ],
+          "clicks": 0,
+          "impressions": 15,
+          "ctr": 0,
+          "position": 77.26666666666667
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-08-30"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 46
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-08-31"
+          ],
+          "clicks": 0,
+          "impressions": 15,
+          "ctr": 0,
+          "position": 61.666666666666664
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-01"
+          ],
+          "clicks": 0,
+          "impressions": 13,
+          "ctr": 0,
+          "position": 47.92307692307692
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-02"
+          ],
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 52.833333333333336
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-04"
+          ],
+          "clicks": 0,
+          "impressions": 7,
+          "ctr": 0,
+          "position": 29.571428571428573
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-05"
+          ],
+          "clicks": 0,
+          "impressions": 15,
+          "ctr": 0,
+          "position": 70.66666666666667
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-06"
+          ],
+          "clicks": 0,
+          "impressions": 14,
+          "ctr": 0,
+          "position": 64.35714285714286
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-07"
+          ],
+          "clicks": 0,
+          "impressions": 36,
+          "ctr": 0,
+          "position": 65.97222222222223
+        },
+        {
+          "keys": [
+            "gbr",
+            "MOBILE",
+            "2026-09-08"
+          ],
+          "clicks": 0,
+          "impressions": 23,
+          "ctr": 0,
+          "position": 47.95652173913044
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-08-25"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 88
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-08-31"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 6
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-09-01"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 81
+        },
+        {
+          "keys": [
+            "gbr",
+            "TABLET",
+            "2026-09-05"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 8
+        }
+      ],
+      "pagination": {
+        "limit": 25000,
+        "offset": 0,
+        "returned": 34,
+        "hasMore": false,
+        "note": "Showing all 34 rows."
+      },
+      "dataSource": "api",
+      "settledThrough": "2026-10-06",
+      "dataMaturity": {
+        "firstIncompleteDate": "2026-10-07",
+        "settledThrough": "2026-10-06",
+        "dateBasis": "America/Los_Angeles",
+        "source": "gsc-api-metadata",
+        "probe": {
+          "searchType": "web",
+          "startDate": "2026-09-30",
+          "endDate": "2026-10-09",
+          "dataState": "all"
+        }
+      }
+    }
+  }
+}
