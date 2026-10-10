@@ -115,7 +115,7 @@ function observeCollector(page,records){
     await signIn.click();await page.locator('#previewAuth:not([hidden])').waitFor({timeout:20000});
     assert(await page.locator('#previewRegister input[name="email"]').isVisible());
     result.checks.push({width,status:'pass',checks:['direct Grub route reaches existing sign-in','private records remain hidden'],accountCreated:false});
-    const missing=await page.goto(origin+'/male-obesity/route-does-not-exist',{waitUntil:'domcontentloaded'});assert.equal(missing.status(),404);assert(await page.getByRole('link',{name:'Search Shift',exact:true}).isVisible());
+    const missing=await page.goto(origin+'/male-obesity/route-does-not-exist',{waitUntil:'commit',timeout:60000});assert.equal(missing.status(),404);await page.getByRole('link',{name:'Search Shift',exact:true}).waitFor({state:'visible',timeout:60000});assert(await page.getByRole('link',{name:'Search Shift',exact:true}).isVisible());
     await navigate(page,'/male-obesity');assert(await page.getByRole('link',{name:'Find one useful step',exact:true}).isVisible());
     result.checks.push({width,status:'pass',checks:['missing page is an honest 404 with recovery','public hub remains usable on return']});
    }finally{await context.close();}
