@@ -733,6 +733,31 @@ export function verifyWatchBacklogUpdate(c,{head,read,diff,ancestor}){
  return c;
 }
 
+// Finite repair for the preclinical Watch release meta-test. The failed run
+// stopped before production mutation; this changes no factual or clinical data.
+export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_BASE='0baf1873fa1a6275258e984939d97c05aaeae61c';
+export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SOURCE='687efaeafd0fa280f99941252430fc6722e57af7';
+export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
+export const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/late-watch-composition.test.mjs']);
+const WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SET=new Set([...WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_PATHS,...WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_MAINTENANCE]);
+for(const path of WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchPreclinicalReleaseTestRepair(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_V1');
+ assert.equal(c.base,WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_BASE);assert.equal(c.source,WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SOURCE);
+ assert.deepEqual(c.paths,WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1293);assert.equal(c.failedRun,38026970615);assert.equal(c.releaseReachedProduction,false);
+ assert.equal(c.failureGate,'Verify B1 release scope before any production mutation');assert.equal(c.failureCause,'release meta-test did not recognise factual Watch source drift wording');
+ for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated preclinical release-test repair payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated preclinical release-test repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after preclinical release-test repair');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Preclinical release-test repair source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Preclinical release-test repair maintenance drift: '+path);
+ return c;
+}
+
 // Finite owner-authorised preclinical discovery update. No clinical approval,
 // UK access, supply or human-outcome claim is introduced by this receipt.
 export const WATCH_PRECLINICAL_DISCOVERY_BASE='834680b4353551b257fe0094e834fa827c86ad70';
@@ -884,10 +909,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const preclinicalReleaseTestRepair=c.watchPreclinicalReleaseTestRepair;
+ if(preclinicalReleaseTestRepair)verifyWatchPreclinicalReleaseTestRepair(preclinicalReleaseTestRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preReleaseTestRepairHead=preclinicalReleaseTestRepair?preclinicalReleaseTestRepair.base:actualHead;
+ const releaseTestRepairRawBlob=(ref,path)=>outerRawBlob(preclinicalReleaseTestRepair&&ref==='HEAD'&&WATCH_PRECLINICAL_RELEASE_TEST_REPAIR_SET.has(path)?preclinicalReleaseTestRepair.base:ref,path);
  const preclinical=c.watchPreclinicalDiscoveryUpdate;
- if(preclinical)verifyWatchPreclinicalDiscoveryUpdate(preclinical,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const prePreclinicalHead=preclinical?preclinical.base:actualHead;
- const preclinicalRawBlob=(ref,path)=>outerRawBlob(preclinical&&ref==='HEAD'&&WATCH_PRECLINICAL_DISCOVERY_SET.has(path)?preclinical.base:ref,path);
+ if(preclinical)verifyWatchPreclinicalDiscoveryUpdate(preclinical,{head:preReleaseTestRepairHead,read:releaseTestRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const prePreclinicalHead=preclinical?preclinical.base:preReleaseTestRepairHead;
+ const preclinicalRawBlob=(ref,path)=>releaseTestRepairRawBlob(preclinical&&ref==='HEAD'&&WATCH_PRECLINICAL_DISCOVERY_SET.has(path)?preclinical.base:ref,path);
  const maleArrival=c.maleObesityArrivalRepair;
  if(maleArrival)verifyMaleObesityArrival(maleArrival,{head:prePreclinicalHead,read:preclinicalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preArrivalHead=maleArrival?maleArrival.base:prePreclinicalHead;
