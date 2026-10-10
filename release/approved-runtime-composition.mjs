@@ -964,7 +964,7 @@ export function verifyObesityHubTransport(c,{head,read,diff,ancestor,content=(re
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Hub-v2 bounded transport and rollback chain receipt');
  const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
  delete current.obesityHubTransport;assert.deepEqual(current,prior,'Prior release receipts changed by Hub-v2 bounded transport and rollback chain');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Hub-v2 bounded transport and rollback chain source drift: '+path);
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),(OBESITY_HUB_ROLLBACK_PATHS.includes(path)?'Hub-v2 exact rollback receipt source drift: ':'Hub-v2 bounded transport and rollback chain source drift: ')+path);
  for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Hub-v2 bounded transport and rollback chain maintenance source drift: '+path);
  return c;
 }
