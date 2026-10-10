@@ -1396,5 +1396,30 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "supportContentUpgrade": {
+    "proof": "EXACT_SUPPORT_CONTENT_DELIVERY_V1",
+    "base": "d54b9e139ca0b65a3fba15ab0d33dd397fa45fc2",
+    "source": "bca498cf36bda01e089b8826e6a0750fe38b2bd7",
+    "paths": [
+      "shift-coach/public-trust-repair.mjs",
+      "shift-coach/support-content-20261010.mjs",
+      "docs/content-review/support-review-20261010.json"
+    ],
+    "maintenanceSource": "b91716080f475fb8d8cfd3ed207f4436808ffcb3",
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/support-content-composition.test.mjs"
+    ],
+    "ownerApproval": "Move the substantive content audit forward now; implement authorised improvements and verify affected mobile/desktop journeys",
+    "homepageChanged": false,
+    "campaignChanged": false,
+    "organicGrowthChanged": false,
+    "watchChanged": false,
+    "memberDataChanged": false,
+    "checkoutChanged": false,
+    "externalCommunicationsSent": false,
+    "clinicalGatesChanged": false,
+    "existingGatesWeakened": false
   }
 }

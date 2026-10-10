@@ -1,3 +1,4 @@
+import {supportContent} from './support-content-20261010.mjs';
 // Owner-requested public audit repairs, 3 October 2026. No customer-record writes.
 export const crisis = '<aside data-shift-urgent-help><h2>Need help now?</h2><p>If you or someone else is in immediate danger, call <a href="tel:999">999</a> or go to A&amp;E. For someone to talk to, call Samaritans free on <a href="tel:116123?oai_link_source=model_response_hotline">116 123</a>, day or night. <a href="https://www.samaritans.org/how-we-can-help/contact-samaritan/?oai_link_source=model_response_hotline">Samaritans contact information</a>.</p><p>My Timber check-ins and AI replies are not monitored by a clinician or emergency team. Do not wait for a reply here if you need urgent help.</p></aside>';
 export const pages = {
@@ -59,7 +60,7 @@ export function repairHtml(html,path){
 }
 export async function withTrustRepair(request,response){
  const path=pathOf(request);if(path==='/')return response;
- const relevant=pages[path]||photoEntry(path)||path.startsWith('/member/')||/^\/(?:medicine-news|newsroom)(?:\/|$)/.test(path)||/urgent-help|crisis|suicid/.test(path)||['/robots.txt','/lounge','/contact','/treatment-centre','/advertise-with-us','/commercial-principles','/articles/stopping-glp1'].includes(path);
+ const relevant=pages[path]||photoEntry(path)||path.startsWith('/member/')||/^\/(?:medicine-news|newsroom)(?:\/|$)/.test(path)||/urgent-help|crisis|suicid/.test(path)||['/robots.txt','/lounge','/contact','/complaints','/treatment-centre','/advertise-with-us','/commercial-principles','/articles/stopping-glp1'].includes(path);
  if(!relevant)return response;
  const headers=new Headers(response.headers);
  if(path==='/robots.txt'&&response.ok){let body=await response.text();body=body.replace(/^.*clinician-dashboard-v3d.*\n?/gm,'');headers.delete('Content-Length');headers.delete('ETag');return new Response(body,{status:200,headers});}
@@ -69,7 +70,7 @@ export async function withTrustRepair(request,response){
   const [title,content]=pages[path];
   html=html.replace(/<main\b[^>]*>[\s\S]*?<\/main>/i,`<main class="page-template template-legal-utility" id="main-content"><div class="standard-layout"><section class="pagehero"><div class="wrap"><h1>${title}</h1></div></section><section class="content"><div class="wrap prose">${content}</div></section></div></main>`).replace(/<title>[\s\S]*?<\/title>/i,`<title>${title} | Shift Some Timber</title>`).replace(/<link\b(?=[^>]*rel=["']canonical["'])[^>]*>/gi,`<link rel="canonical" href="https://shiftsometimber.co.uk${path}">`);
  }
- html=repairHtml(html,path);
+ html=supportContent(repairHtml(html,path),path);
  if(/^\/(?:medicine-news|newsroom)(?:\/|$)/.test(path)){
   headers.set('X-Robots-Tag','noindex, follow');
   html=html.replace(/<meta\b(?=[^>]*name=["']robots["'])[^>]*>/gi,'').replace('</head>','<meta name="robots" content="noindex,follow"></head>');
@@ -79,7 +80,7 @@ export async function withTrustRepair(request,response){
  return new Response(request.method==='HEAD'?null:html,{status:response.status,headers});
 }
 
-const contactInit=String.raw`(()=>{const init=()=>{const form=document.getElementById('shiftContactForm');if(!form)return;const params=new URLSearchParams(location.search),product=params.get('product'),name=params.get('name'),type=params.get('type'),select=document.getElementById('ct-subject'),message=document.getElementById('ct-message');if(select){const routeStock=()=>{if(String(select.value).toLowerCase()==='stock update')location.assign('/waiting-list-journey');};select.addEventListener('input',routeStock);select.addEventListener('change',routeStock);}if(type&&select){const option=Array.from(select.options).find(o=>o.text.toLowerCase()===type.toLowerCase());if(option)select.value=option.value;}if(product&&message&&!message.value)message.value='Please tell me about '+(name||product)+'.\n\nSHIFT Health reference: '+product;};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();})();`;
+const contactInit=String.raw`(()=>{const init=()=>{const form=document.getElementById('shiftContactForm');if(!form)return;const params=new URLSearchParams(location.search),product=params.get('product'),name=params.get('name'),type=params.get('type'),select=document.getElementById('ct-subject'),message=document.getElementById('ct-message');if(select){const routeStock=()=>{if(String(select.value).toLowerCase()==='stock update')location.assign('/waiting-list-journey');};select.addEventListener('input',routeStock);select.addEventListener('change',routeStock);}if(select&&!Array.from(select.options).some(o=>o.value==='complaint'))select.add(new Option('Complaint','complaint'));if(type&&select){const topic=({'payment-query':'My order','complaint':'Complaint',accessibility:'Website or technical help'})[type]||type;const option=Array.from(select.options).find(o=>o.text.toLowerCase()===topic.toLowerCase());if(option)select.value=option.value;if(type==='complaint'&&message&&!message.value)message.value='Complaint\n\nWhat happened and when:\n\nWhat I would like put right:\n\nReference (if available): ';}if(product&&message&&!message.value)message.value='Please tell me about '+(name||product)+'.\n\nSHIFT Health reference: '+product;};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();})();`;
 export async function withContactReference(request){
  if(new URL(request.url).pathname!=='/v1/contact'||request.method!=='POST')return request;
  let ref;try{ref=new URL(request.headers.get('Referer'));}catch{return request;}
