@@ -1721,5 +1721,40 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "obesityHubTransport": {
+    "proof": "EXACT_OBESITY_HUB_TRANSPORT_20261010",
+    "base": "1b43badb186b40a35f145a63051f0307785dad7d",
+    "source": "b3df285586189f1be6560cce7e42e0bdf77ca73b",
+    "maintenanceSource": "550c945fe1cf3f98f011e987efdce6e6c7935f29",
+    "paths": [
+      "release/public-proof-text-fetch.mjs",
+      "release/organic-followthrough-live.mjs",
+      "tests/public-proof-fetch.test.mjs",
+      "tests/organic-followthrough-live.test.mjs",
+      "shift-coach/cancelled-release-recovery.mjs",
+      "shift-coach/recover-cancelled-release.mjs",
+      "tests/obesity-hub-v2-transport-rollback.test.mjs",
+      "tests/fixtures/obesity-hub-v2-transport-rollback-38075479733.json"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/obesity-hub-transport-composition.test.mjs"
+    ],
+    "integrationIssue": 1065,
+    "publicationStatus": "authorised_by_Matt_20261010",
+    "priorPreviewRun": 38058282091,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "sharedNavigationChanged": false,
+    "memberDataChanged": false,
+    "checkoutChanged": false,
+    "analyticsChanged": false,
+    "consentChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
