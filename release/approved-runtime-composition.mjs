@@ -785,8 +785,8 @@ export function verifyWatchPendingDelayedQueueRepair(c,{head,read,diff,ancestor}
  assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Watch pending-delayed queue payload');
  assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Watch pending-delayed queue maintenance');
  assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Watch pending-delayed queue receipt');
- for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Watch pending-delayed queue source drift: '+path);
- for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Watch pending-delayed queue maintenance drift: '+path);
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'factual Watch source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
  return c;
 }
 
