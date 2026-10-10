@@ -16,6 +16,6 @@ function publicSupportArrival(){try{
  if(kind==='reload'||kind==='back_forward')return;
  count('pillar_onward_opened');
 }catch(_){} }
-if(document.readyState==='complete')publicSupportArrival();else window.addEventListener('load',publicSupportArrival,{once:true});
+if(document.readyState==='complete')publicSupportArrival();else if(typeof window.addEventListener==='function')window.addEventListener('load',publicSupportArrival,{once:true});
 })();`;
 export function addPillarClient(html){if(!html.includes('data-shift-weight-understanding')||html.includes('data-pillar-client'))return html;return html.replace('</body>','<script data-pillar-client>'+pillarClient+'</script></body>');}
