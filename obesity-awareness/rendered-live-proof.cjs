@@ -9,7 +9,7 @@ const result={at:new Date().toISOString(),source:process.env.RELEASE_SOURCE,rele
 const eventNames=['shift_pillar_first_step_opened','shift_pillar_onward_opened','shift_pillar_step_tried','shift_pillar_review_used'];
 const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
 const navigate=async(page,path)=>{const r=await page.goto(origin+path,{waitUntil:'commit',timeout:60000});assert.equal(r.status(),200,path);await page.locator('main h1').waitFor({state:'visible',timeout:60000});return r;};
-async function necessary(page){if(!await page.getByRole('dialog',{name:'Cookie choices',exact:true}).isVisible())await page.getByRole('button',{name:'Cookie choices',exact:true}).click();await page.getByRole('button',{name:'Necessary only',exact:true}).click();}
+async function necessary(page){await page.locator('#sstCookieSettings').waitFor({state:'visible',timeout:60000});if(!await page.getByRole('dialog',{name:'Cookie choices',exact:true}).isVisible())await page.getByRole('button',{name:'Cookie choices',exact:true}).click();await page.getByRole('button',{name:'Necessary only',exact:true}).click();}
 function observeCollector(page,records){
  const pending=new WeakMap();
  page.on('request',request=>{
@@ -123,7 +123,7 @@ function observeCollector(page,records){
   // One genuine consented public pass, separate from the declined/BMI checks.
   const context=await browser.newContext({viewport:{width:390,height:900}}),page=await context.newPage();observeCollector(page,result.collector);
   try{
-   await navigate(page,'/male-obesity');if(!await page.getByRole('dialog',{name:'Cookie choices',exact:true}).isVisible())await page.getByRole('button',{name:'Cookie choices',exact:true}).click();await page.getByRole('button',{name:'Accept analytics',exact:true}).click();await page.reload({waitUntil:'commit'});
+   await navigate(page,'/male-obesity');await page.locator('#sstCookieSettings').waitFor({state:'visible',timeout:60000});if(!await page.getByRole('dialog',{name:'Cookie choices',exact:true}).isVisible())await page.getByRole('button',{name:'Cookie choices',exact:true}).click();await page.getByRole('button',{name:'Accept analytics',exact:true}).click();await page.reload({waitUntil:'commit'});
    const accepted=async(name)=>{const until=Date.now()+15000;while(Date.now()<until&&!result.collector.some(r=>r.event===name&&[200,204].includes(r.responseStatus)))await page.waitForTimeout(100);assert(result.collector.some(r=>r.event===name&&[200,204].includes(r.responseStatus)),name+' accepted before the next distinct action');};await page.getByRole('link',{name:'Find one useful step',exact:true}).click();await accepted('shift_pillar_first_step_opened');await page.getByRole('button',{name:'I tried my step',exact:true}).click();await accepted('shift_pillar_step_tried');await page.getByRole('button',{name:'Too much effort',exact:true}).click();await accepted('shift_pillar_review_used');
    await page.getByRole('link',{name:'see the free support available through My Timber',exact:true}).click();await page.locator('h1').waitFor();
    const until=Date.now()+15000;while(Date.now()<until&&!eventNames.every(n=>result.collector.some(x=>x.event===n&&[200,204].includes(x.responseStatus))))await page.waitForTimeout(250);
