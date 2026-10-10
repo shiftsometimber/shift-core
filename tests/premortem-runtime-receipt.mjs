@@ -41,3 +41,10 @@ const active=j.result.deployments[0];console.log(JSON.stringify({providerObserva
 mkdirSync('runtime-acceptance-evidence',{recursive:true});
 const report={at:new Date().toISOString(),source:receipt.source,run:receipt.run,originalOwnedDeploymentId:receipt.deploymentId,deploymentId:active.id,versionId:receipt.versionId,percentage:100,providerRequests:'GET only',pass:true};
 writeFileSync('runtime-acceptance-evidence/'+(process.argv[2]||'before')+'.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
+
+if(process.argv[2]==='after'){
+ const query={queryId:'commissioning-live-ray-readonly',dry:true,view:'events',limit:20,timeframe:{from:1791612511112,to:1791612700920},parameters:{needle:{value:'a483767e78c95113',isRegex:false,matchCase:true}}};
+ const response=await fetch('https://api.cloudflare.com/client/v4/accounts/9e5386dcf455be34c582d93f8bfc79e6/workers/observability/telemetry/query',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify(query),signal:AbortSignal.timeout(30000)});const data=await response.json();
+ const evidence={at:new Date().toISOString(),httpStatus:response.status,success:data.success,count:data.result?.events?.count,events:(data.result?.events?.events||[]).map(e=>{const w=e.$workers||{},m=e.$metadata||{};return{timestamp:e.timestamp,requestId:w.requestId||m.requestId,rayId:m.rayId,spanId:m.spanId,traceId:m.traceId,startTime:m.startTime,endTime:m.endTime,version:w.scriptVersion?.id,outcome:w.outcome,cpuTimeMs:w.cpuTimeMs,wallTimeMs:w.wallTimeMs,status:w.event?.response?.status,protocol:w.event?.request?.cf?.httpProtocol,colo:w.event?.request?.cf?.colo}})};
+ console.log('LIVE_RAY_TELEMETRY '+JSON.stringify(evidence));writeFileSync('runtime-acceptance-evidence/live-client-ray.json',JSON.stringify(evidence,null,2));
+}

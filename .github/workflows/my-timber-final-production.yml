@@ -49,11 +49,7 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node tests/premortem-runtime-receipt.mjs before
-      - name: Install browser for only the new reliability journey
-        run: |
-          npm install --no-save --ignore-scripts playwright
-          npx playwright install --with-deps chromium
-      - name: Current commissioning timings and persisted legacy return
+      - name: Only additional read-only phase breakdown; no completed acceptance repeated
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node tests/premortem-production.mjs
