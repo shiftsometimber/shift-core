@@ -942,6 +942,35 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 }
 
 
+// Exact Medicines Watch overdue primary-source review renewal. This records the
+// bounded factual-review payload without turning HTTP success into review,
+// resolving ZP6590, or widening clinical or deployment authority.
+export const WATCH_OVERDUE_RENEWAL_BASE='d722e91767e84ee26e1fb176074f31cb635c9704';
+export const WATCH_OVERDUE_RENEWAL_SOURCE='d427dc2ffd451741f6c2431572360519b61338b4';
+export const WATCH_OVERDUE_RENEWAL_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/overdue-registry-access-renewal.test.mjs','medicines-watch/reviews/2026-10-10-overdue-registry-access-renewal.json']);
+export const WATCH_OVERDUE_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-overdue-registry-access-composition.test.mjs','tests/approved-runtime-composition.test.mjs']);
+const WATCH_OVERDUE_RENEWAL_SET=new Set([...WATCH_OVERDUE_RENEWAL_PATHS,...WATCH_OVERDUE_RENEWAL_MAINTENANCE]);
+for(const path of WATCH_OVERDUE_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchOverdueRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_OVERDUE_PRIMARY_REVIEW_RENEWAL_V1');
+ assert.equal(c.base,WATCH_OVERDUE_RENEWAL_BASE);assert.equal(c.source,WATCH_OVERDUE_RENEWAL_SOURCE);
+ assert.deepEqual(c.paths,WATCH_OVERDUE_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_OVERDUE_RENEWAL_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.approvedPR,1307);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
+ assert.equal(c.sourceReviews,67);assert.equal(c.registryRecords,63);assert.equal(c.officialAccessSources,4);assert.equal(c.factualChanges,0);
+ assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
+ for(const flag of ['httpSuccessTreatedAsReview','medicalClaimsChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated Medicines Watch overdue-review payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated Medicines Watch overdue-review maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after Medicines Watch overdue-review receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchOverduePrimaryReviewRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by Medicines Watch overdue-review registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved factual Watch source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Medicines Watch overdue-review maintenance source drift: '+path);
+ return c;
+}
+
 // Exact approved Hub-v2 bounded transport and rollback chain upgrade; preserve every prior receipt and protected route.
 export const OBESITY_HUB_TRANSPORT_BASE='1b43badb186b40a35f145a63051f0307785dad7d';
 export const OBESITY_HUB_TRANSPORT_SOURCE='b3df285586189f1be6560cce7e42e0bdf77ca73b';
@@ -1240,10 +1269,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const overdueRenewal=c.watchOverduePrimaryReviewRenewal;
+ if(overdueRenewal)verifyWatchOverdueRenewal(overdueRenewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preOverdueRenewalHead=overdueRenewal?overdueRenewal.base:actualHead;
+ const overdueRenewalRawBlob=(ref,path)=>outerRawBlob(overdueRenewal&&ref==='HEAD'&&WATCH_OVERDUE_RENEWAL_SET.has(path)?overdueRenewal.base:ref,path);
  const hubTransport=c.obesityHubTransport;
- if(hubTransport)verifyObesityHubTransport(hubTransport,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preHubTransportHead=hubTransport?hubTransport.base:actualHead;
- const hubTransportRawBlob=(ref,path)=>outerRawBlob(hubTransport&&ref==='HEAD'&&OBESITY_HUB_TRANSPORT_SET.has(path)?hubTransport.base:ref,path);
+ if(hubTransport)verifyObesityHubTransport(hubTransport,{head:preOverdueRenewalHead,read:overdueRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preHubTransportHead=hubTransport?hubTransport.base:preOverdueRenewalHead;
+ const hubTransportRawBlob=(ref,path)=>overdueRenewalRawBlob(hubTransport&&ref==='HEAD'&&OBESITY_HUB_TRANSPORT_SET.has(path)?hubTransport.base:ref,path);
  const hubRollback=c.obesityHubRollback;
  if(hubRollback)verifyObesityHubRollback(hubRollback,{head:preHubTransportHead,read:hubTransportRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preHubRollbackHead=hubRollback?hubRollback.base:preHubTransportHead;
