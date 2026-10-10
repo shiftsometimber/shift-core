@@ -78,3 +78,11 @@ test('sitemap uses the support distribution date while medical source and schema
  assert.equal(expectedPublishedArticleDate('/unrelated',FIVE_UPDATED),FIVE_UPDATED);
  assert.match(articleMain(path),/Editorial update and source check: <time datetime="2026-09-19">/);
 });
+
+// Production run 38072143100 rejected this exact approved contextual addition.
+test('statistics expectation requires the exact Hub-v2 link and retains every source byte',()=>{
+ const path='/research/uk-mens-weight-health-statistics',source=articleMain(path);
+ const expected=source.replace('</main>','<p data-obesity-context-link><a href="/male-obesity">What do these measurements mean for you? Read our male-obesity guide.</a></p></main>');
+ assert.equal(expectedPublishedArticleBody(source,path),expected);
+ for(const changed of [source,expected.replace('/male-obesity','/other'),expected.replace('What do these measurements mean for you?','Unapproved copy'),expected.replace('98.4','99.4')])assert.notEqual(expectedPublishedArticleBody(source,path),changed);
+});
