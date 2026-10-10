@@ -942,6 +942,45 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 }
 
 
+// Exact read-only reporting integration. Prior runtime receipts remain unchanged.
+export const ORGANIC_MEASUREMENT_BASE='4e3aa6c3a7dc72b2f8d2a6a3e625e086b2137c8d';
+export const ORGANIC_MEASUREMENT_SOURCE='b290d83188f721bd19efbcb8afce48e7aaa18e7b';
+export const ORGANIC_MEASUREMENT_PATHS=Object.freeze([
+ 'docs/growth-review/2026-10-09-answer-depth-live.json',
+ 'docs/growth-review/2026-10-09-campaign-release-state.json',
+ 'docs/growth-review/2026-10-09-measurement.json',
+ 'docs/growth-review/2026-10-09-ownership.md',
+ 'scripts/reconcile-organic-measurement.mjs',
+ 'tests/organic-measurement-reconciliation.test.mjs'
+]);
+export const ORGANIC_MEASUREMENT_MAINTENANCE=Object.freeze([
+ '.github/workflows/organic-followthrough-proof.yml',
+ 'release/approved-runtime-composition.mjs',
+ 'tests/organic-measurement-composition.test.mjs'
+]);
+const ORGANIC_MEASUREMENT_SET=new Set([...ORGANIC_MEASUREMENT_PATHS,...ORGANIC_MEASUREMENT_MAINTENANCE]);
+for(const path of ORGANIC_MEASUREMENT_SET)RECONCILIATION_PATHS.add(path);
+export function verifyOrganicMeasurement(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_ORGANIC_MEASUREMENT_INTEGRATION_V1');
+ assert.equal(c.base,ORGANIC_MEASUREMENT_BASE);assert.equal(c.source,ORGANIC_MEASUREMENT_SOURCE);
+ assert.deepEqual(c.paths,ORGANIC_MEASUREMENT_PATHS);assert.deepEqual(c.maintenancePaths,ORGANIC_MEASUREMENT_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1280);assert.equal(c.integrationIssue,1065);
+ assert.equal(c.pageClickAttribution,'unresolved');assert.equal(c.pageCTRUsable,false);assert.equal(c.outcomeClaimsAllowed,false);
+ for(const flag of ['runtimeChanged','analyticsChanged','consentChanged','privateDataRead','homepageChanged','medicalClaimsChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);
+ ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated reporting payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated reporting maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after reporting receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));
+ delete current.organicMeasurementIntegration;assert.deepEqual(current,prior,'Prior release receipts changed by reporting integration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Reporting source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Reporting maintenance source drift: '+path);
+ return c;
+}
+
+
 export const SUPPORT_CONTENT_BASE='d54b9e139ca0b65a3fba15ab0d33dd397fa45fc2';
 export const SUPPORT_CONTENT_SOURCE='bca498cf36bda01e089b8826e6a0750fe38b2bd7';
 export const SUPPORT_CONTENT_PATHS=Object.freeze(['shift-coach/public-trust-repair.mjs','shift-coach/support-content-20261010.mjs','docs/content-review/support-review-20261010.json']);
@@ -985,10 +1024,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const reporting=c.organicMeasurementIntegration;
+ if(reporting)verifyOrganicMeasurement(reporting,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preReportingHead=reporting?reporting.base:actualHead;
+ const reportingRawBlob=(ref,path)=>outerRawBlob(reporting&&ref==='HEAD'&&ORGANIC_MEASUREMENT_SET.has(path)?reporting.base:ref,path);
  const supportContent=c.supportContentUpgrade;
- if(supportContent)verifySupportContent(supportContent,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preSupportContentHead=supportContent?supportContent.base:actualHead;
- const supportContentRawBlob=(ref,path)=>outerRawBlob(supportContent&&ref==='HEAD'&&SUPPORT_CONTENT_SET.has(path)?supportContent.base:ref,path);
+ if(supportContent)verifySupportContent(supportContent,{head:preReportingHead,read:reportingRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSupportContentHead=supportContent?supportContent.base:preReportingHead;
+ const supportContentRawBlob=(ref,path)=>reportingRawBlob(supportContent&&ref==='HEAD'&&SUPPORT_CONTENT_SET.has(path)?supportContent.base:ref,path);
  const continuityContent=c.continuityContentUpgrade;
  if(continuityContent)verifyContinuityContent(continuityContent,{head:preSupportContentHead,read:supportContentRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preContinuityContentHead=continuityContent?continuityContent.base:preSupportContentHead;
