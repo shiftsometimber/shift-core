@@ -1257,46 +1257,5 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
-  },
-  "watchPreclinicalDiscoveryUpdate": {
-    "proof": "EXACT_WATCH_PRECLINICAL_DISCOVERY_V1",
-    "base": "834680b4353551b257fe0094e834fa827c86ad70",
-    "source": "8c407fe3382e4da3eeddf62898215a93d5b12690",
-    "paths": [
-      "medicines-watch/README.md",
-      "medicines-watch/backlog-review.test.mjs",
-      "medicines-watch/credibility.mjs",
-      "medicines-watch/discovery.mjs",
-      "medicines-watch/evidence-desk.test.mjs",
-      "medicines-watch/industry.mjs",
-      "medicines-watch/industry.test.mjs",
-      "medicines-watch/reviews/2026-10-10-authorised-mwyngil-palatin-preclinical.json"
-    ],
-    "maintenancePaths": [
-      "release/approved-runtime-composition.mjs",
-      "tests/late-watch-composition.test.mjs"
-    ],
-    "maintenanceSource": "bb9f34564c34efabb7855f712f8f656e54786441",
-    "approvedPR": 1292,
-    "publicationStatus": "owner_authorised_factual_publication",
-    "clinicalApproval": null,
-    "programmesReviewed": 2,
-    "monitorSources": 199,
-    "delayedSources": 3,
-    "humanEfficacyClaimed": false,
-    "humanSafetyClaimed": false,
-    "ukAuthorisationClaimed": false,
-    "nhsAccessClaimed": false,
-    "supplyClaimed": false,
-    "reviewDatesRenewedByHttp": false,
-    "monitorBaselinesChanged": false,
-    "memberTreatmentChanged": false,
-    "homepageChanged": false,
-    "startHereChanged": false,
-    "customerDataChanged": false,
-    "genericAdoptionAllowed": false,
-    "deploymentAuthorityBroadened": false,
-    "rollbackAuthorityBroadened": false,
-    "existingGatesWeakened": false
   }
 }
