@@ -948,7 +948,7 @@ export function verifyContinuityContent(c,{head,read,diff,ancestor,content=(ref,
 export const WATCH_OVERDUE_RENEWAL_BASE='d722e91767e84ee26e1fb176074f31cb635c9704';
 export const WATCH_OVERDUE_RENEWAL_SOURCE='d427dc2ffd451741f6c2431572360519b61338b4';
 export const WATCH_OVERDUE_RENEWAL_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/credibility.mjs','medicines-watch/credibility.test.mjs','medicines-watch/overdue-registry-access-renewal.test.mjs','medicines-watch/reviews/2026-10-10-overdue-registry-access-renewal.json']);
-export const WATCH_OVERDUE_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-overdue-registry-access-composition.test.mjs']);
+export const WATCH_OVERDUE_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-overdue-registry-access-composition.test.mjs','tests/approved-runtime-composition.test.mjs']);
 const WATCH_OVERDUE_RENEWAL_SET=new Set([...WATCH_OVERDUE_RENEWAL_PATHS,...WATCH_OVERDUE_RENEWAL_MAINTENANCE]);
 for(const path of WATCH_OVERDUE_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
 export function verifyWatchOverdueRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
