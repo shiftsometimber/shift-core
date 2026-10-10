@@ -963,6 +963,28 @@ export function verifySupportContent(c,{head,read,diff,ancestor,content=(ref,pat
  return c;
 }
 
+// Finite factual source alternatives. No monitor, queue or prior review payload changes.
+export const WATCH_OFFICIAL_ALTERNATIVES_BASE='4e3aa6c3a7dc72b2f8d2a6a3e625e086b2137c8d';
+export const WATCH_OFFICIAL_ALTERNATIVES_SOURCE='c38ace311fb7b216c31418fd185a2c424f070ac7';
+export const WATCH_OFFICIAL_ALTERNATIVES_PATHS=Object.freeze(['medicines-watch/README.md','medicines-watch/industry.mjs','medicines-watch/industry.test.mjs','medicines-watch/credibility.test.mjs','medicines-watch/reviews/2026-10-10-authorised-official-alternatives.json']);
+export const WATCH_OFFICIAL_ALTERNATIVES_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-official-alternatives-composition.test.mjs']);
+const WATCH_OFFICIAL_ALTERNATIVES_SET=new Set([...WATCH_OFFICIAL_ALTERNATIVES_PATHS,...WATCH_OFFICIAL_ALTERNATIVES_MAINTENANCE]);
+for(const path of WATCH_OFFICIAL_ALTERNATIVES_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchOfficialAlternatives(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_OFFICIAL_ALTERNATIVES_V1');assert.equal(c.base,WATCH_OFFICIAL_ALTERNATIVES_BASE);assert.equal(c.source,WATCH_OFFICIAL_ALTERNATIVES_SOURCE);
+ assert.deepEqual(c.paths,WATCH_OFFICIAL_ALTERNATIVES_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_OFFICIAL_ALTERNATIVES_MAINTENANCE);assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1299);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
+ assert.equal(c.sourceReviews,12);assert.equal(c.entriesUpdated,2);assert.equal(c.manualEvidenceAdded,4);assert.equal(c.configuredSources,199);assert.equal(c.preservedSourceReviews,35);
+ for(const flag of ['humanEfficacyClaimed','humanSafetyClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated official-alternative factual payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated official-alternative maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after official-alternative receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved factual Watch source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -985,10 +1007,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const officialAlternatives=c.watchOfficialAlternatives;
+ if(officialAlternatives)verifyWatchOfficialAlternatives(officialAlternatives,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preOfficialAlternativesHead=officialAlternatives?officialAlternatives.base:actualHead;
+ const officialAlternativesRawBlob=(ref,path)=>outerRawBlob(officialAlternatives&&ref==='HEAD'&&WATCH_OFFICIAL_ALTERNATIVES_SET.has(path)?officialAlternatives.base:ref,path);
  const supportContent=c.supportContentUpgrade;
- if(supportContent)verifySupportContent(supportContent,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preSupportContentHead=supportContent?supportContent.base:actualHead;
- const supportContentRawBlob=(ref,path)=>outerRawBlob(supportContent&&ref==='HEAD'&&SUPPORT_CONTENT_SET.has(path)?supportContent.base:ref,path);
+ if(supportContent)verifySupportContent(supportContent,{head:preOfficialAlternativesHead,read:officialAlternativesRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preSupportContentHead=supportContent?supportContent.base:preOfficialAlternativesHead;
+ const supportContentRawBlob=(ref,path)=>officialAlternativesRawBlob(supportContent&&ref==='HEAD'&&SUPPORT_CONTENT_SET.has(path)?supportContent.base:ref,path);
  const continuityContent=c.continuityContentUpgrade;
  if(continuityContent)verifyContinuityContent(continuityContent,{head:preSupportContentHead,read:supportContentRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preContinuityContentHead=continuityContent?continuityContent.base:preSupportContentHead;
