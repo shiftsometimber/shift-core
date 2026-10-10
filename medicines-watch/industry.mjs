@@ -1,4 +1,5 @@
 import officialAlternatives from './reviews/2026-10-10-authorised-official-alternatives.json' with {type:'json'};
+import vk2735ZenagamtideRegistry from './reviews/2026-10-10-authorised-vk2735-zenagamtide-registry.json' with {type:'json'};
 import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
 import togetherBiomarkers from './reviews/2026-10-09-authorised-together-biomarkers.json' with {type:'json'};
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
@@ -412,5 +413,15 @@ export const industry = [...originalIndustry.map(e => {
   const change=officialAlternatives.changes.find(c=>c.id===e.id);
   if(!change)return e;
   return {...e,...change.fields,reviewedAt:officialAlternatives.reviewedAt,
+   additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
+ })
+ .map(e=>{
+  const change=vk2735ZenagamtideRegistry.changes.find(c=>c.id===e.id);
+  if(!change)return e;
+  const {summaryToAppend,limitationsToAppend,...fields}=change.fields;
+  return {...e,...fields,
+   ...(summaryToAppend?{summary:e.summary+' '+summaryToAppend}:{}),
+   ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
+   reviewedAt:vk2735ZenagamtideRegistry.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
  });

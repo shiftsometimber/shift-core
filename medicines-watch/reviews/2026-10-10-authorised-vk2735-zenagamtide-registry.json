@@ -1,0 +1,245 @@
+{
+  "reviewedAt": "2026-10-10T22:50:07Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational additions and corrections to go live without repeat permission.",
+    "scope": "Add two newly posted oral VK2735 Phase 3 registry records and one newly posted zenagamtide switch-tolerability record to their existing programmes. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "automatedMonitorChanges": true,
+  "changes": [
+    {
+      "id": "vk2735",
+      "fields": {
+        "stage": "Injectable Phase 3 ongoing; oral Phase 3 registered but not yet recruiting; oral and subcutaneous maintenance study ongoing",
+        "summary": "Viking's sponsor-submitted SUNRISE 1 and SUNRISE 2 records, both first posted 9 October 2026, describe separate 68-week oral VK2735 Phase 3 studies in adults without and with type 2 diabetes. Each plans 560 participants and remains not yet recruiting. Separately, Viking reported Part 1 maintenance observations in approximately 180 adults and says Part 2 has now started in approximately 195 adults, testing oral and subcutaneous maintenance after weekly subcutaneous induction. Its injectable VANQUISH Phase 3 studies are ongoing.",
+        "limitations": "The SUNRISE records are registrations, not evidence that Phase 3 recruitment or dosing has started. Their 15 and 16 October 2026 starts, enrolment and 2028 completion dates remain estimates, and neither record has posted results. The daily oral doses are trial arms, not approved dosing regimens. Part 1 findings and Part 2 initiation come from sponsor announcements, not peer-reviewed results, and Part 2 has no posted results. These maintenance studies do not establish switching from another medicine. No reviewed evidence establishes long-term durability, cardiovascular benefit, superiority, UK authorisation, NICE or NHS access, lawful UK supply or clinical approval."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07868835: oral VK2735 SUNRISE 1 Phase 3",
+          "url": "https://clinicaltrials.gov/study/NCT07868835",
+          "sourcePublishedAt": "2026-10-09",
+          "sourceUpdatedAt": "2026-10-09",
+          "reviewedAt": "2026-10-10T22:50:07Z",
+          "checkScope": "Sponsor-submitted Phase 3 record read for not-yet-recruiting status, population without type 2 diabetes, estimated enrolment and dates, once-daily oral intervention, 68-week weight endpoint and absence of posted results. Automatic monitoring covers record lifecycle only, not clinical outcomes."
+        },
+        {
+          "title": "ClinicalTrials.gov NCT07868939: oral VK2735 SUNRISE 2 Phase 3",
+          "url": "https://clinicaltrials.gov/study/NCT07868939",
+          "sourcePublishedAt": "2026-10-09",
+          "sourceUpdatedAt": "2026-10-09",
+          "reviewedAt": "2026-10-10T22:50:07Z",
+          "checkScope": "Sponsor-submitted Phase 3 record read for not-yet-recruiting status, type 2 diabetes population, estimated enrolment and dates, once-daily oral intervention, 68-week weight endpoint and absence of posted results. Automatic monitoring covers record lifecycle only, not clinical outcomes."
+        }
+      ]
+    },
+    {
+      "id": "zenagamtide",
+      "fields": {
+        "stage": "Phase 3 weight-management and cardiovascular-outcomes development; AMBIENCE not yet recruiting; separate Phase 1 tirzepatide-switch study not yet recruiting",
+        "summaryToAppend": "A separate sponsor-submitted Phase 1 record, first posted 9 October 2026, plans to assess tolerability when an estimated 60 adults with overweight or obesity, with or without type 2 diabetes, switch from maintenance tirzepatide to subcutaneous zenagamtide.",
+        "limitationsToAppend": "The switch study remains not yet recruiting and has no posted results. Its 8 October 2026 start has already passed but remains an estimate, not evidence of recruitment or dosing. The protocol studies treatment-emergent adverse events after switching and does not establish comparative efficacy, a recommended switching schedule, UK authorisation, NICE or NHS access, lawful UK supply or clinical approval."
+      },
+      "additionalEvidence": [
+        {
+          "title": "ClinicalTrials.gov NCT07868354: tirzepatide-to-zenagamtide switch-tolerability study",
+          "url": "https://clinicaltrials.gov/study/NCT07868354",
+          "sourcePublishedAt": "2026-10-09",
+          "sourceUpdatedAt": "2026-10-09",
+          "reviewedAt": "2026-10-10T22:50:07Z",
+          "checkScope": "Sponsor-submitted Phase 1 record read for not-yet-recruiting status, estimated enrolment and dates, subcutaneous interventions, tolerability endpoint, two listed US facilities and absence of posted results. Automatic monitoring covers record lifecycle only, not clinical outcomes."
+        }
+      ]
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct07868835",
+      "nctId": "NCT07868835",
+      "title": "ClinicalTrials.gov NCT07868835: oral VK2735 SUNRISE 1 Phase 3",
+      "url": "https://clinicaltrials.gov/study/NCT07868835",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07868835",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07868835", "Viking Therapeutics, Inc."],
+      "reviewedAt": "2026-10-10T22:50:07Z",
+      "sourcePublishedAt": "2026-10-09",
+      "sourceUpdatedAt": "2026-10-09",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment, typed dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07868835",
+        "title": "Oral VK2735 for Weight Management Phase 3 (SUNRISE 1)",
+        "sponsor": "Viking Therapeutics, Inc.",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE3"],
+        "enrollment": {"count": 560, "type": "ESTIMATED"},
+        "start": {"date": "2026-10-15", "type": "ESTIMATED"},
+        "primaryCompletion": {"date": "2028-07", "type": "ESTIMATED"},
+        "completion": {"date": "2028-08", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2026-10-09", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-10-09", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["vk2735"],
+      "rawResponseSha256": "6897a437673d026402c9aaeba49ff554020c4a547acef43c29bd2319ca77a169",
+      "reviewedFingerprint": "857aafe184cfd35d23d0f8939b4c296bb6991b1848d5aa1faf6e17ac06a0c881"
+    },
+    {
+      "id": "registry-nct07868939",
+      "nctId": "NCT07868939",
+      "title": "ClinicalTrials.gov NCT07868939: oral VK2735 SUNRISE 2 Phase 3",
+      "url": "https://clinicaltrials.gov/study/NCT07868939",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07868939",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07868939", "Viking Therapeutics, Inc."],
+      "reviewedAt": "2026-10-10T22:50:07Z",
+      "sourcePublishedAt": "2026-10-09",
+      "sourceUpdatedAt": "2026-10-09",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment, typed dates, enrolment and results-posting status. They do not evaluate efficacy, safety outcomes or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07868939",
+        "title": "Oral VK2735 for Weight Management in Adults With Type 2 Diabetes Mellitus Phase 3 (SUNRISE 2)",
+        "sponsor": "Viking Therapeutics, Inc.",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE3"],
+        "enrollment": {"count": 560, "type": "ESTIMATED"},
+        "start": {"date": "2026-10-16", "type": "ESTIMATED"},
+        "primaryCompletion": {"date": "2028-10", "type": "ESTIMATED"},
+        "completion": {"date": "2028-12", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2026-10-09", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-10-09", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["vk2735"],
+      "rawResponseSha256": "5e4e48c046a73989f761c36f17ee006cf0e65d90f0d15f55ffd589995e718a51",
+      "reviewedFingerprint": "429f61ac3118f4e47a2ac10420a33f5b20c36da978951c869450622b460515f6"
+    },
+    {
+      "id": "registry-nct07868354",
+      "nctId": "NCT07868354",
+      "title": "ClinicalTrials.gov NCT07868354: tirzepatide-to-zenagamtide switch-tolerability study",
+      "url": "https://clinicaltrials.gov/study/NCT07868354",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07868354",
+      "format": "ctgov-lifecycle",
+      "requiredTerms": ["NCT07868354", "Novo Nordisk A/S"],
+      "reviewedAt": "2026-10-10T22:50:07Z",
+      "sourcePublishedAt": "2026-10-09",
+      "sourceUpdatedAt": "2026-10-09",
+      "evidenceType": "Sponsor-submitted trial registry; status review only",
+      "checkScope": "Automatic record-status checks cover identity, sponsor, phase, recruitment, typed dates, enrolment and results-posting status. They do not evaluate tolerability outcomes, comparative efficacy or clinical suitability.",
+      "lifecycle": {
+        "nctId": "NCT07868354",
+        "title": "A Research Study Investigating How Adults With Overweight or Obesity, With or Without Type 2 Diabetes, Tolerate Switching to a New Treatment (Zenagamtide) From Their Current Tirzepatide Medication",
+        "sponsor": "Novo Nordisk A/S",
+        "status": "NOT_YET_RECRUITING",
+        "whyStopped": null,
+        "phases": ["PHASE1"],
+        "enrollment": {"count": 60, "type": "ESTIMATED"},
+        "start": {"date": "2026-10-08", "type": "ESTIMATED"},
+        "primaryCompletion": {"date": "2028-09-07", "type": "ESTIMATED"},
+        "completion": {"date": "2028-09-07", "type": "ESTIMATED"},
+        "firstPosted": {"date": "2026-10-09", "type": "ACTUAL"},
+        "lastUpdated": {"date": "2026-10-09", "type": "ACTUAL"},
+        "hasResults": false,
+        "resultsFirstPosted": null,
+        "resultsLastUpdated": null
+      },
+      "entryIds": ["zenagamtide"],
+      "rawResponseSha256": "7e0a54eacf8fbeac96e65f3e60d36e037ad26c6cab9c58d17168619eacc24fc0",
+      "reviewedFingerprint": "411ef8a13da3e3150a1c6de3e68582eba610a1e063aff9cd26a22145b3216f1b"
+    }
+  ],
+  "sourceReviews": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07868835",
+      "publicationDate": "2026-10-09",
+      "updateDate": "2026-10-09",
+      "reviewedAt": "2026-10-10T22:50:07Z",
+      "outcome": "Complete primary registry response read: not-yet-recruiting Phase 3 SUNRISE 1; 560 estimated participants without type 2 diabetes; estimated 15 October 2026 start; once-daily oral VK2735; no posted results."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07868939",
+      "publicationDate": "2026-10-09",
+      "updateDate": "2026-10-09",
+      "reviewedAt": "2026-10-10T22:50:07Z",
+      "outcome": "Complete primary registry response read: not-yet-recruiting Phase 3 SUNRISE 2; 560 estimated participants with type 2 diabetes; estimated 16 October 2026 start; once-daily oral VK2735; no posted results."
+    },
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT07868354",
+      "publicationDate": "2026-10-09",
+      "updateDate": "2026-10-09",
+      "reviewedAt": "2026-10-10T22:50:07Z",
+      "outcome": "Complete primary registry response read: not-yet-recruiting Phase 1 tirzepatide-to-zenagamtide switch-tolerability study; 60 estimated participants; passed 8 October estimated start; two US facilities; no posted results."
+    }
+  ],
+  "configuredSourcePass": {
+    "healthUrl": "https://shiftsometimber.co.uk/v1/medicines-watch/health",
+    "observedAt": "2026-10-10T22:45:54.717Z",
+    "httpStatus": 200,
+    "available": true,
+    "status": "check_delayed",
+    "configuredSources": 199,
+    "currentSources": 198,
+    "reviewedSources": 198,
+    "factualReviewNeeded": 0,
+    "verificationPending": 1,
+    "delayedSources": 1,
+    "attention": [
+      {
+        "id": "zealand-zp6590-pipeline",
+        "status": "check_delayed",
+        "checkStatus": "check_delayed",
+        "reviewStatus": "verification_pending",
+        "reasons": ["source_not_verified", "last_check_failed"],
+        "lastAttemptAt": "2026-10-10T22:45:54.717Z",
+        "lastSuccessAt": null,
+        "error": "http_403",
+        "httpStatus": 403
+      }
+    ],
+    "reviewRenewals": false,
+    "baselineChanges": false,
+    "boundary": "The SELECT-only response confirms the completed 35-source review publication and repaired queue counter at one serving snapshot. It does not renew factual reviews, approve changed wording or establish industry completeness. ZP6590 remains both verification-pending and check-delayed."
+  },
+  "discoveryPass": {
+    "method": "The configured-source queue was checked separately. A current-date ClinicalTrials.gov API pass reviewed obesity and overweight drug records posted or updated since 9 October, followed by broader undated primary-source searches for programmes, formulations, combinations, muscle preservation, specialist indications and stopped development.",
+    "included": "NCT07868835 and NCT07868939 replace the older description of oral VK2735 Phase 3 as merely planned with the narrower fact that two Phase 3 records are registered but not yet recruiting. NCT07868354 adds a separate tirzepatide-to-zenagamtide switch-tolerability study to the existing zenagamtide programme.",
+    "notDuplicated": "PR #851, current main, dated Watch receipts and the open pull-request search were checked. No open review or live evidence link contains these three records.",
+    "incompleteChecks": [
+      "Search indexing can lag, and current-date plus broader undated searches cannot exclude older omissions, unannounced programmes or every international developer.",
+      "None of the three records has posted results. Estimated starts are not substituted for actual recruitment or dosing.",
+      "No new MHRA authorisation, NICE recommendation, NHS access decision or verified UK supply change was established."
+    ],
+    "failedChecks": [],
+    "preservedKnownFailures": "The Zealand ZP6590 pipeline endpoint remains HTTP 403 with no successful monitor observation. Registry, CTIS and the reviewed interim-report PDF corroborate trial initiation but do not certify the blocked page's latest wording.",
+    "industryComplete": false
+  },
+  "catalogueCounts": {
+    "detailedBefore": 6,
+    "detailedAfter": 6,
+    "widerBefore": 110,
+    "widerAfter": 110,
+    "totalBefore": 116,
+    "totalAfter": 116,
+    "configuredSourcesBefore": 199,
+    "configuredSourcesAfter": 202,
+    "trialRecordsBefore": 134,
+    "trialRecordsAfter": 137
+  },
+  "retrievalEvidence": [
+    {"id":"registry-nct07868835","retrievedAt":"2026-10-10T22:50:07.678Z","httpStatus":200,"contentType":"application/json","bytes":6826,"responseSha256":"6897a437673d026402c9aaeba49ff554020c4a547acef43c29bd2319ca77a169"},
+    {"id":"registry-nct07868939","retrievedAt":"2026-10-10T22:50:07.490Z","httpStatus":200,"contentType":"application/json","bytes":8266,"responseSha256":"5e4e48c046a73989f761c36f17ee006cf0e65d90f0d15f55ffd589995e718a51"},
+    {"id":"registry-nct07868354","retrievedAt":"2026-10-10T22:50:07.783Z","httpStatus":200,"contentType":"application/json","bytes":9458,"responseSha256":"7e0a54eacf8fbeac96e65f3e60d36e037ad26c6cab9c58d17168619eacc24fc0"}
+  ],
+  "nextAction": "Run the complete Watch and release gates, publish the exact passing head through the guarded production workflow, then verify both updated entries, the three registry lifecycles, Treatments entry, 202-source count and preserved ZP6590 pending-delayed state on live traffic."
+}

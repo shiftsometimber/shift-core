@@ -4,6 +4,7 @@ import bimagrumabSemaglutide from './reviews/2026-10-09-authorised-bimagrumab-se
 import togetherPsoriaticDisease from './reviews/2026-10-09-authorised-together-psoriatic-disease.json' with {type:'json'};
 import mwyngilPalatinPreclinical from './reviews/2026-10-10-authorised-mwyngil-palatin-preclinical.json' with {type:'json'};
 import ascletisOralPortfolio from './reviews/2026-10-10-authorised-ascletis-oral-portfolio.json' with {type:'json'};
+import vk2735ZenagamtideRegistry from './reviews/2026-10-10-authorised-vk2735-zenagamtide-registry.json' with {type:'json'};
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {industry,industrySources} from './industry.mjs';
@@ -122,14 +123,14 @@ test('VK2735 maintenance evidence stays sponsor-reported and does not create an 
  assert.equal(vk2735Maintenance.clinicalApproval,null);
  assert.equal(vk2735Maintenance.industryComplete,false);
  assert.match(e.stage,/maintenance study ongoing/);
- assert.match(e.stage,/oral Phase 3 planned/);
+ assert.match(e.stage,/oral Phase 3 registered but not yet recruiting/);
  assert.match(e.summary,/approximately 180 adults/);
  assert.match(e.summary,/approximately 195 adults/);
  assert.match(e.limitations,/sponsor announcements/);
  assert.match(e.limitations,/not peer-reviewed results/);
  assert.match(e.limitations,/do not establish switching from another medicine/);
  assert.ok(e.sourceIds.includes('vk2735-maintenance-viking'));
- assert.equal(e.reviewedAt,vikingRhythmRegistryReview.reviewedAt);
+ assert.equal(e.reviewedAt,vk2735ZenagamtideRegistry.reviewedAt);
  const source=industrySources.find(s=>s.id==='vk2735-maintenance-viking');
  assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
  assert.equal(vk2735Maintenance.catalogueCounts.configuredSourcesAfter,132);
@@ -476,7 +477,7 @@ test('amylin follow-up corrects actual research stage while retaining dated disc
  assert.ok(!industry.some(e=>/TIX100/.test(e.name)));
 });
 test('expanded registry distinguishes depth, clinical approval and access and joins every source',()=>{
- assert.equal(medicines.length,6);assert.equal(industry.length,110);assert.equal(sources.length,199);
+ assert.equal(medicines.length,6);assert.equal(industry.length,110);assert.equal(sources.length,202);
  assert.equal(new Set([...medicines,...industry].map(e=>e.id)).size,116);
  for(const e of industry){assert.equal(e.clinicalApproval,null);for(const k of ['ukAuthorisation','nhsEngland','supply','limitations'])assert.ok(e[k],e.id+':'+k);for(const id of e.sourceIds)assert.ok(industrySources.some(s=>s.id===id),id);}
  for(const s of evidence.sources){assert.ok(Date.parse(s.reviewedAt));if(s.evidenceType==='NICE guidance')assert.equal(new URL(s.url).hostname,'www.nice.org.uk');if(s.reviewedFingerprint){assert.equal(s.httpStatus,200);assert.ok(s.responseSha256);assert.ok(s.bytes>0);}else assert.ok(!s.responseSha256);}
@@ -1702,7 +1703,7 @@ test('TOGETHER biomarker follow-up does not renew registry evidence or change UK
  assert.match(item.summary,/9 October 2026/);assert.match(item.summary,/circulating proteins and blood gene expression/);
  assert.match(item.limitations,/not a new trial or independently established clinical benefit/);
  assert.equal(item.clinicalApproval,null);assert.match(item.ukAuthorisation,/does not establish a UK marketing authorisation/);
- assert.equal(medicines.length+industry.length,116);assert.equal(sources.length,199);
+ assert.equal(medicines.length+industry.length,116);assert.equal(sources.length,202);
  for(const old of togetherPsoriaticDisease.registrySources){const current=registrySources.find(s=>s.id===old.id);assert.equal(current.reviewedAt,old.reviewedAt);assert.equal(current.reviewedFingerprint,old.reviewedFingerprint);}
 });
 
@@ -1722,7 +1723,7 @@ test('Mwyngil and Palatin additions remain bounded preclinical evidence',()=>{
  assert.match(palatin.summary,/hypothalamic obesity, Prader-Willi syndrome and Bardet-Biedl syndrome/);
  assert.match(palatin.limitations,/future targets subject to funding, not completed events/);
  assert.ok(discoveryDomains.includes('mwyngil.com'));assert.ok(discoveryDomains.includes('palatin.com'));
- assert.equal(medicines.length+industry.length,116);assert.equal(sources.length,199);
+ assert.equal(medicines.length+industry.length,116);assert.equal(sources.length,202);
 });
 
 test('Ascletis oral portfolio additions remain preclinical and preserve missed filing uncertainty',()=>{
@@ -1737,5 +1738,28 @@ test('Ascletis oral portfolio additions remain preclinical and preserve missed f
  }
  assert.match(industry.find(item=>item.id==='asc39-oral').limitations,/not presented as submitted, cleared or as trial initiation/);
  assert.match(industry.find(item=>item.id==='asc30-48-fdc').limitations,/fourth-quarter filing remains a plan/);
- assert.equal(medicines.length+industry.length,116);assert.equal(sources.length,199);
+ assert.equal(medicines.length+industry.length,116);assert.equal(sources.length,202);
+});
+
+test('new oral VK2735 and zenagamtide records stay registered research, not completed starts',()=>{
+ assert.equal(vk2735ZenagamtideRegistry.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(vk2735ZenagamtideRegistry.clinicalApproval,null);
+ assert.equal(vk2735ZenagamtideRegistry.industryComplete,false);
+ assert.deepEqual(vk2735ZenagamtideRegistry.catalogueCounts,{detailedBefore:6,detailedAfter:6,widerBefore:110,widerAfter:110,totalBefore:116,totalAfter:116,configuredSourcesBefore:199,configuredSourcesAfter:202,trialRecordsBefore:134,trialRecordsAfter:137});
+ const vk=industry.find(entry=>entry.id==='vk2735');
+ assert.match(vk.stage,/oral Phase 3 registered but not yet recruiting/);
+ assert.match(vk.summary,/SUNRISE 1 and SUNRISE 2/);assert.match(vk.summary,/Each plans 560 participants/);
+ assert.match(vk.limitations,/15 and 16 October 2026 starts.*remain estimates/);
+ const zen=industry.find(entry=>entry.id==='zenagamtide');
+ assert.match(zen.stage,/tirzepatide-switch study not yet recruiting/);
+ assert.match(zen.summary,/60 adults.*switch from maintenance tirzepatide/);
+ assert.match(zen.limitations,/8 October 2026 start.*remains an estimate/);
+ const expected={NCT07868835:['PHASE3','2026-10-15',560],NCT07868939:['PHASE3','2026-10-16',560],NCT07868354:['PHASE1','2026-10-08',60]};
+ for(const [nctId,[phase,start,count]] of Object.entries(expected)){
+  const source=registrySources.find(item=>item.nctId===nctId);assert.ok(source,nctId);
+  assert.equal(source.lifecycle.status,'NOT_YET_RECRUITING');assert.deepEqual(source.lifecycle.phases,[phase]);
+  assert.deepEqual(source.lifecycle.start,{date:start,type:'ESTIMATED'});assert.deepEqual(source.lifecycle.enrollment,{count,type:'ESTIMATED'});
+  assert.equal(source.lifecycle.hasResults,false);assert.match(source.reviewedFingerprint,/^[a-f0-9]{64}$/);
+ }
+ assert.equal(registrySources.length,137);assert.equal(sources.length,202);
 });
