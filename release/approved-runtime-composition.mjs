@@ -733,6 +733,44 @@ export function verifyWatchBacklogUpdate(c,{head,read,diff,ancestor}){
  return c;
 }
 
+// Finite owner-authorised preclinical discovery update. No clinical approval,
+// UK access, supply or human-outcome claim is introduced by this receipt.
+export const WATCH_PRECLINICAL_DISCOVERY_BASE='834680b4353551b257fe0094e834fa827c86ad70';
+export const WATCH_PRECLINICAL_DISCOVERY_SOURCE='8c407fe3382e4da3eeddf62898215a93d5b12690';
+export const WATCH_PRECLINICAL_DISCOVERY_PATHS=Object.freeze([
+ 'medicines-watch/README.md',
+ 'medicines-watch/backlog-review.test.mjs',
+ 'medicines-watch/credibility.mjs',
+ 'medicines-watch/discovery.mjs',
+ 'medicines-watch/evidence-desk.test.mjs',
+ 'medicines-watch/industry.mjs',
+ 'medicines-watch/industry.test.mjs',
+ 'medicines-watch/reviews/2026-10-10-authorised-mwyngil-palatin-preclinical.json'
+]);
+export const WATCH_PRECLINICAL_DISCOVERY_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/late-watch-composition.test.mjs'
+]);
+const WATCH_PRECLINICAL_DISCOVERY_SET=new Set([...WATCH_PRECLINICAL_DISCOVERY_PATHS,...WATCH_PRECLINICAL_DISCOVERY_MAINTENANCE]);
+for(const path of WATCH_PRECLINICAL_DISCOVERY_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchPreclinicalDiscoveryUpdate(c,{head,read,diff,ancestor}){
+ assert.equal(c?.proof,'EXACT_WATCH_PRECLINICAL_DISCOVERY_V1');
+ assert.equal(c.base,WATCH_PRECLINICAL_DISCOVERY_BASE);assert.equal(c.source,WATCH_PRECLINICAL_DISCOVERY_SOURCE);
+ assert.deepEqual(c.paths,WATCH_PRECLINICAL_DISCOVERY_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_PRECLINICAL_DISCOVERY_MAINTENANCE);
+ assert.match(head,/^[a-f0-9]{40}$/);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1292);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);
+ assert.equal(c.programmesReviewed,2);assert.equal(c.monitorSources,199);assert.equal(c.delayedSources,3);
+ for(const flag of ['humanEfficacyClaimed','humanSafetyClaimed','ukAuthorisationClaimed','nhsAccessClaimed','supplyClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated preclinical discovery payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated preclinical discovery release maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after preclinical discovery receipt');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Preclinical discovery source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Preclinical discovery maintenance source drift: '+path);
+ return c;
+}
+
+
 // Finite owner-authorised informational male-obesity pillar. No generic path or authority expansion.
 export const MALE_OBESITY_BASE='77d2469344bb678a8e68b6e4e6cb36dfdbdc28b0';
 export const MALE_OBESITY_SOURCE='c2c295782697c98d149d3ac7f335d8028f413b4e';
@@ -846,10 +884,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const preclinical=c.watchPreclinicalDiscoveryUpdate;
+ if(preclinical)verifyWatchPreclinicalDiscoveryUpdate(preclinical,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const prePreclinicalHead=preclinical?preclinical.base:actualHead;
+ const preclinicalRawBlob=(ref,path)=>outerRawBlob(preclinical&&ref==='HEAD'&&WATCH_PRECLINICAL_DISCOVERY_SET.has(path)?preclinical.base:ref,path);
  const maleArrival=c.maleObesityArrivalRepair;
- if(maleArrival)verifyMaleObesityArrival(maleArrival,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preArrivalHead=maleArrival?maleArrival.base:actualHead;
- const arrivalRawBlob=(ref,path)=>outerRawBlob(maleArrival&&ref==='HEAD'&&MALE_OBESITY_ARRIVAL_SET.has(path)?maleArrival.base:ref,path);
+ if(maleArrival)verifyMaleObesityArrival(maleArrival,{head:prePreclinicalHead,read:preclinicalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preArrivalHead=maleArrival?maleArrival.base:prePreclinicalHead;
+ const arrivalRawBlob=(ref,path)=>preclinicalRawBlob(maleArrival&&ref==='HEAD'&&MALE_OBESITY_ARRIVAL_SET.has(path)?maleArrival.base:ref,path);
  const maleAcceptance=c.maleObesityAcceptanceRepair;
  if(maleAcceptance)verifyMaleObesityAcceptance(maleAcceptance,{head:preArrivalHead,read:arrivalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preAcceptanceHead=maleAcceptance?maleAcceptance.base:preArrivalHead;
