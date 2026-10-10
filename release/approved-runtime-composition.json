@@ -1722,6 +1722,48 @@
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
   },
+  "watchOverduePrimaryReviewRenewal": {
+    "proof": "EXACT_WATCH_OVERDUE_PRIMARY_REVIEW_RENEWAL_V1",
+    "base": "d722e91767e84ee26e1fb176074f31cb635c9704",
+    "source": "d427dc2ffd451741f6c2431572360519b61338b4",
+    "maintenanceSource": "825b9fe4e4cce15a1caac69bf452b3c6dcc8901c",
+    "paths": [
+      "medicines-watch/README.md",
+      "medicines-watch/credibility.mjs",
+      "medicines-watch/credibility.test.mjs",
+      "medicines-watch/overdue-registry-access-renewal.test.mjs",
+      "medicines-watch/reviews/2026-10-10-overdue-registry-access-renewal.json"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-overdue-registry-access-composition.test.mjs"
+    ],
+    "integrationIssue": 1065,
+    "approvedPR": 1307,
+    "publicationStatus": "owner_authorised_factual_publication",
+    "clinicalApproval": null,
+    "sourceReviews": 67,
+    "registryRecords": 63,
+    "officialAccessSources": 4,
+    "factualChanges": 0,
+    "zp6590VerificationPending": true,
+    "zp6590CheckDelayed": true,
+    "httpSuccessTreatedAsReview": false,
+    "medicalClaimsChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyChanged": false,
+    "monitorBaselinesChanged": false,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
+  },
   "obesityHubTransport": {
     "proof": "EXACT_OBESITY_HUB_TRANSPORT_20261010",
     "base": "1b43badb186b40a35f145a63051f0307785dad7d",
