@@ -1,0 +1,94 @@
+{
+  "reviewedAt": "2026-10-11T20:40:31Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational source reviews to go live without repeat permission.",
+    "scope": "Renew only the two configured ClinicalTrials.gov record-review dates after reading the complete current API records. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "registrySources": [
+    {
+      "id": "registry-nct07281495",
+      "nctId": "NCT07281495",
+      "title": "ClinicalTrials.gov NCT07281495: taldefgrobep alfa in adults with overweight and obesity",
+      "url": "https://clinicaltrials.gov/study/NCT07281495",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07281495",
+      "sourcePublishedAt": "2025-12-15",
+      "sourceUpdatedAt": "2026-03-20",
+      "reviewedAt": "2026-10-11T20:40:31Z",
+      "previousReviewedAt": "2026-10-04T18:18:00Z",
+      "httpStatus": 200,
+      "bytes": 8328,
+      "responseSha256": "0ce22fc1e3cc5ca1ddc825bfe8bc37050713ddf334439c62139f726c128cd021",
+      "reviewedFingerprint": "1bdb60c0234e5e7babea960bea4a448ef7c51e8dbf81ee70d91a60362e9d7f2c",
+      "previousReviewedFingerprint": "1bdb60c0234e5e7babea960bea4a448ef7c51e8dbf81ee70d91a60362e9d7f2c",
+      "withdrawn": false,
+      "wordingChanged": false,
+      "lifecycleChanged": false,
+      "assessment": "The complete current ClinicalTrials.gov API record was read. NCT07281495 remains active, not recruiting, Phase 2, with 150 estimated participants, an actual 24 November 2025 start, estimated September 2026 primary and overall completion, and no posted results. The record's last update remains 20 March 2026. Planned endpoints and estimated dates are not results, completed events, an approved regimen, UK authorisation, NICE/NHS access, supply or clinical approval.",
+      "uncertainty": "The estimated completion month has passed without a newer posted registry update or results. The current registry position therefore remains dated and must not be interpreted as confirmation that completion or an outcome occurred."
+    },
+    {
+      "id": "registry-nct06584916",
+      "nctId": "NCT06584916",
+      "title": "ClinicalTrials.gov NCT06584916: ATTAIN-MAINTAIN",
+      "url": "https://clinicaltrials.gov/study/NCT06584916",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06584916",
+      "sourcePublishedAt": "2024-09-05",
+      "sourceUpdatedAt": "2026-06-04",
+      "reviewedAt": "2026-10-11T20:40:31Z",
+      "previousReviewedAt": "2026-10-04T20:20:59Z",
+      "httpStatus": 200,
+      "bytes": 11864,
+      "responseSha256": "7d440ce4274440dad7f2133abe45e87999d26bc64bf6d1d853accdf70c55e3f8",
+      "reviewedFingerprint": "504a69920fee24c6c1465d8e387b9632a17dd7850212e7d2c15fcff643490357",
+      "previousReviewedFingerprint": "504a69920fee24c6c1465d8e387b9632a17dd7850212e7d2c15fcff643490357",
+      "withdrawn": false,
+      "wordingChanged": false,
+      "lifecycleChanged": false,
+      "assessment": "The complete current ClinicalTrials.gov API record was read. NCT06584916 remains a completed Phase 3b study with 376 actual participants, actual 13 September 2024 start and 21 November 2025 primary and overall completion dates, and no registry results posted. The record still describes oral orforglipron versus placebo after prior SURMOUNT-5 injectable tirzepatide or semaglutide; it has no continued-injectable comparator. The linked May 2026 publication is already separately reviewed and is not reinterpreted here. Registry completion is not an approved switching regimen, UK authorisation, NICE/NHS access, supply or clinical approval.",
+      "uncertainty": "The registry has no posted results and does not establish how an individual should switch treatment. The peer-reviewed study's one-year, US-only, placebo-controlled limitations remain separate and unchanged."
+    }
+  ],
+  "changes": {
+    "sourceReviewDatesRenewed": 2,
+    "programmeWordingChanged": false,
+    "programmeReviewDatesChanged": false,
+    "configuredSourceCountChanged": false,
+    "programmeCountChanged": false,
+    "registryLifecycleChanged": false,
+    "resultsClaimed": false,
+    "monitorBaselinesChanged": false,
+    "monitorLogicChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseShapeChanged": false,
+    "medicalClaimsChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyClaimChanged": false
+  },
+  "preserved": {
+    "completedFactualReviews": 35,
+    "programmes": 118,
+    "configuredSources": 202,
+    "programmeSummaryFactualReviewNeeded": 68,
+    "zp6590VerificationPending": true,
+    "zp6590CheckDelayed": true,
+    "externalCommunicationsSent": false,
+    "customerDataChanged": false,
+    "memberTreatmentChanged": false,
+    "checkoutChanged": false
+  },
+  "remainingObstacles": [
+    {
+      "id": "zealand-zp6590-pipeline",
+      "state": ["verification_pending", "check_delayed"],
+      "obstacle": "Configured sponsor monitoring still receives HTTP 403 and has no approved baseline; the readable sponsor page remains internally inconsistent with its Phase 1 badge and preclinical/first-in-human narrative.",
+      "nextAction": "Retain registry/CTIS corroboration while deliberately reviewing a stable directly reviewable Zealand artefact or a bounded replacement source; do not repeatedly retry the denied endpoint."
+    }
+  ],
+  "discoveryBoundary": "A separate current-date and broader undated primary-source pass remains ongoing. These two record renewals do not establish industry completeness or finish authoritative alternate-source and programme-summary work.",
+  "nextAction": "Run the exact-head Watch and release gates, publish through the guarded production workflow, then verify the serving source and fresh uncached SELECT-only health response."
+}
