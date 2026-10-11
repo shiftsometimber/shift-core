@@ -1480,6 +1480,103 @@ export function verifyWatchAscletisOralPortfolio(c,{head,read,diff,ancestor}){
  return c;
 }
 
+// Exact correction for the one overlapping shared-verifier path in the
+// preceding receipt. The independent source file and maintenance set are disjoint.
+export const WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_BASE='7e769e11dff4a8b7f650173e4fb64d9e5215b7f9';
+export const WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_SOURCE='febc76e01aaf447e570e9134fe2abd93cdfa42f1';
+export const WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_PATHS=Object.freeze(['release/watch-rgt-vct-drift-category-overlap-repair.json']);
+export const WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-rgt-vct-drift-category-overlap-composition.test.mjs']);
+const WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_SET=new Set([...WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_PATHS,...WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_MAINTENANCE]);
+for(const path of WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchRgtVctDriftCategoryOverlap(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_REPAIR_V1');assert.equal(c.base,WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_BASE);assert.equal(c.source,WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_SOURCE);
+ assert.deepEqual(c.paths,WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1318);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38117465443);assert.equal(c.failureGate,'Medicines Watch checks');
+ assert.equal(c.repair,'pin overlapping shared verifier to preceding maintenance source');
+ for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated RGT/VCT drift-category overlap source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated RGT/VCT drift-category overlap maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after RGT/VCT drift-category overlap repair');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRgtVctDriftCategoryOverlapRepair;assert.deepEqual(current,prior,'Prior release receipts changed by RGT/VCT drift-category overlap registration');
+ const sourceReceipt=JSON.parse(content(c.source,c.paths[0]));assert.equal(sourceReceipt.proof,'EXACT_WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_REPAIR_SOURCE_V1');assert.equal(sourceReceipt.base,c.base);assert.equal(sourceReceipt.approvedPR,1318);assert.equal(sourceReceipt.integrationIssue,1065);
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift: RGT/VCT overlap source: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: RGT/VCT overlap maintenance: '+path);
+ return c;
+}
+
+// Finite follow-up for the shared negative-test vocabulary. This changes only
+// the category emitted by the preceding guard and retains all drift assertions.
+export const WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_BASE='6b281196dcd77401be62deecd822cd2da06bd32c';
+export const WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_SOURCE='6696042f3a1dc8ccf29769ebe02cccab23c423ed';
+export const WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_PATHS=Object.freeze(['release/approved-runtime-composition.mjs']);
+export const WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-rgt-vct-drift-category-repair-composition.test.mjs']);
+const WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_SET=new Set([...WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_PATHS,...WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_MAINTENANCE]);
+for(const path of WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchRgtVctDriftCategoryRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_V1');assert.equal(c.base,WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_BASE);assert.equal(c.source,WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_SOURCE);
+ assert.deepEqual(c.paths,WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1318);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38117296398);assert.equal(c.failureGate,'Programme day preview');
+ assert.equal(c.repair,'retain shared fail-closed drift category');
+ for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated RGT/VCT drift-category repair source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated RGT/VCT drift-category repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after RGT/VCT drift-category repair');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRgtVctDriftCategoryRepair;assert.deepEqual(current,prior,'Prior release receipts changed by RGT/VCT drift-category repair registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.maintenancePaths.includes(path)?c.maintenanceSource:c.source,path),'Backlog maintenance source drift: RGT/VCT drift-category source: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: RGT/VCT drift-category maintenance: '+path);
+ return c;
+}
+
+// Finite release-guard repair: teach the existing factual-drift meta-test the
+// exact RGT/VCT label without changing evidence, runtime or release authority.
+export const WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_BASE='95b14a502dec187f6bbf0687cfde18ab49788bae';
+export const WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_SOURCE='775dd2d7248a5bb87bbfb2c56cdceb5f628ab55a';
+export const WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_PATHS=Object.freeze(['tests/approved-runtime-composition.test.mjs']);
+export const WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-rgt-vct-release-guard-repair-composition.test.mjs']);
+const WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_SET=new Set([...WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_PATHS,...WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_MAINTENANCE]);
+for(const path of WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchRgtVctReleaseGuardRepair(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_V1');assert.equal(c.base,WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_BASE);assert.equal(c.source,WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_SOURCE);
+ assert.deepEqual(c.paths,WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1318);assert.equal(c.integrationIssue,1065);assert.equal(c.failedRun,38117053153);assert.equal(c.failureGate,'Programme day preview');
+ assert.equal(c.repair,'recognise exact RGT/VCT source-renewal drift label');
+ for(const flag of ['medicalEvidenceChanged','reviewDatesChanged','programmeWordingChanged','queueLogicChanged','healthResponseChanged','monitorBaselinesChanged','verificationPendingChanged','delayedStatusChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated RGT/VCT release-guard repair source');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated RGT/VCT release-guard repair maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after RGT/VCT release-guard repair');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRgtVctReleaseGuardRepair;assert.deepEqual(current,prior,'Prior release receipts changed by RGT/VCT release-guard repair registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Backlog maintenance source drift: RGT/VCT release-guard repair source: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Backlog maintenance source drift: RGT/VCT release-guard repair maintenance: '+path);
+ return c;
+}
+
+// Renew six unchanged RGT-075 and CX11/VCT220 registry records after
+// complete primary-source rereview; do not renew the separate programme queue.
+export const WATCH_RGT_VCT_RENEWAL_BASE='68d4c1cd8ef36ca47fe079a5706b6ee84fb8a502';
+export const WATCH_RGT_VCT_RENEWAL_SOURCE='49f69628a0862eb140be814065e4ba06f1798d02';
+export const WATCH_RGT_VCT_RENEWAL_PATHS=Object.freeze(['medicines-watch/credibility.mjs','medicines-watch/reviews/2026-10-11-authorised-rgt-vct-source-renewal.json','medicines-watch/rgt-vct-source-renewal.test.mjs']);
+export const WATCH_RGT_VCT_RENEWAL_MAINTENANCE=Object.freeze(['release/approved-runtime-composition.mjs','tests/watch-rgt-vct-source-renewal-composition.test.mjs']);
+const WATCH_RGT_VCT_RENEWAL_SET=new Set([...WATCH_RGT_VCT_RENEWAL_PATHS,...WATCH_RGT_VCT_RENEWAL_MAINTENANCE]);
+for(const path of WATCH_RGT_VCT_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchRgtVctSourceRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_RGT_VCT_SOURCE_RENEWAL_V1');assert.equal(c.base,WATCH_RGT_VCT_RENEWAL_BASE);assert.equal(c.source,WATCH_RGT_VCT_RENEWAL_SOURCE);
+ assert.deepEqual(c.paths,WATCH_RGT_VCT_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_RGT_VCT_RENEWAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1318);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
+ assert.equal(c.sourceReviewsApplied,6);assert.equal(c.programmesAfter,116);assert.equal(c.configuredSources,202);assert.equal(c.preservedSourceReviews,35);assert.equal(c.configuredSourceFactualReviewNeeded,0);assert.equal(c.programmeSummaryFactualReviewNeeded,66);assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
+ for(const flag of ['programmeWordingChanged','programmeReviewDatesChanged','programmeSummaryQueueChanged','configuredSourceCountChanged','registryLifecycleChanged','resultsClaimed','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','reviewDatesRenewedByHttp','monitorBaselinesChanged','queueLogicChanged','memberTreatmentChanged','homepageChanged','startHereChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated RGT/VCT source-renewal payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated RGT/VCT source-renewal maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after RGT/VCT source-renewal receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchRgtVctSourceRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by RGT/VCT source-renewal registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'RGT/VCT source-renewal source drift: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'RGT/VCT source-renewal maintenance source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -1502,10 +1599,26 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const rgtVctDriftCategoryOverlapRepair=c.watchRgtVctDriftCategoryOverlapRepair;
+ if(rgtVctDriftCategoryOverlapRepair)verifyWatchRgtVctDriftCategoryOverlap(rgtVctDriftCategoryOverlapRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preRgtVctDriftCategoryOverlapHead=rgtVctDriftCategoryOverlapRepair?rgtVctDriftCategoryOverlapRepair.base:actualHead;
+ const rgtVctDriftCategoryOverlapRawBlob=(ref,path)=>outerRawBlob(rgtVctDriftCategoryOverlapRepair&&ref==='HEAD'&&WATCH_RGT_VCT_DRIFT_CATEGORY_OVERLAP_SET.has(path)?rgtVctDriftCategoryOverlapRepair.base:ref,path);
+ const rgtVctDriftCategoryRepair=c.watchRgtVctDriftCategoryRepair;
+ if(rgtVctDriftCategoryRepair)verifyWatchRgtVctDriftCategoryRepair(rgtVctDriftCategoryRepair,{head:preRgtVctDriftCategoryOverlapHead,read:rgtVctDriftCategoryOverlapRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preRgtVctDriftCategoryRepairHead=rgtVctDriftCategoryRepair?rgtVctDriftCategoryRepair.base:preRgtVctDriftCategoryOverlapHead;
+ const rgtVctDriftCategoryRepairRawBlob=(ref,path)=>rgtVctDriftCategoryOverlapRawBlob(rgtVctDriftCategoryRepair&&ref==='HEAD'&&WATCH_RGT_VCT_DRIFT_CATEGORY_REPAIR_SET.has(path)?rgtVctDriftCategoryRepair.base:ref,path);
+ const rgtVctReleaseGuardRepair=c.watchRgtVctReleaseGuardRepair;
+ if(rgtVctReleaseGuardRepair)verifyWatchRgtVctReleaseGuardRepair(rgtVctReleaseGuardRepair,{head:preRgtVctDriftCategoryRepairHead,read:rgtVctDriftCategoryRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preRgtVctReleaseGuardRepairHead=rgtVctReleaseGuardRepair?rgtVctReleaseGuardRepair.base:preRgtVctDriftCategoryRepairHead;
+ const rgtVctReleaseGuardRepairRawBlob=(ref,path)=>rgtVctDriftCategoryRepairRawBlob(rgtVctReleaseGuardRepair&&ref==='HEAD'&&WATCH_RGT_VCT_RELEASE_GUARD_REPAIR_SET.has(path)?rgtVctReleaseGuardRepair.base:ref,path);
+ const rgtVctSourceRenewal=c.watchRgtVctSourceRenewal;
+ if(rgtVctSourceRenewal)verifyWatchRgtVctSourceRenewal(rgtVctSourceRenewal,{head:preRgtVctReleaseGuardRepairHead,read:rgtVctReleaseGuardRepairRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preRgtVctSourceRenewalHead=rgtVctSourceRenewal?rgtVctSourceRenewal.base:preRgtVctReleaseGuardRepairHead;
+ const rgtVctSourceRenewalRawBlob=(ref,path)=>rgtVctReleaseGuardRepairRawBlob(rgtVctSourceRenewal&&ref==='HEAD'&&WATCH_RGT_VCT_RENEWAL_SET.has(path)?rgtVctSourceRenewal.base:ref,path);
  const programmeSummaryReleaseGuardRepair=c.watchProgrammeSummaryReleaseGuardRepair;
- if(programmeSummaryReleaseGuardRepair)verifyWatchProgrammeSummaryReleaseGuardRepair(programmeSummaryReleaseGuardRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preProgrammeSummaryReleaseGuardHead=programmeSummaryReleaseGuardRepair?programmeSummaryReleaseGuardRepair.base:actualHead;
- const programmeSummaryReleaseGuardRawBlob=(ref,path)=>outerRawBlob(programmeSummaryReleaseGuardRepair&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_SET.has(path)?programmeSummaryReleaseGuardRepair.base:ref,path);
+ if(programmeSummaryReleaseGuardRepair)verifyWatchProgrammeSummaryReleaseGuardRepair(programmeSummaryReleaseGuardRepair,{head:preRgtVctSourceRenewalHead,read:rgtVctSourceRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preProgrammeSummaryReleaseGuardHead=programmeSummaryReleaseGuardRepair?programmeSummaryReleaseGuardRepair.base:preRgtVctSourceRenewalHead;
+ const programmeSummaryReleaseGuardRawBlob=(ref,path)=>rgtVctSourceRenewalRawBlob(programmeSummaryReleaseGuardRepair&&ref==='HEAD'&&WATCH_PROGRAMME_SUMMARY_RELEASE_GUARD_SET.has(path)?programmeSummaryReleaseGuardRepair.base:ref,path);
  const programmeSummaryQueueMatcherRepair=c.watchProgrammeSummaryQueueMatcherRepair;
  if(programmeSummaryQueueMatcherRepair)verifyWatchProgrammeSummaryQueueMatcherRepair(programmeSummaryQueueMatcherRepair,{head:preProgrammeSummaryReleaseGuardHead,read:programmeSummaryReleaseGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preProgrammeSummaryQueueMatcherHead=programmeSummaryQueueMatcherRepair?programmeSummaryQueueMatcherRepair.base:preProgrammeSummaryReleaseGuardHead;

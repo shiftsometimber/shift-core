@@ -2,6 +2,7 @@ import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' 
 import overdueRegistryAccessRenewal from './reviews/2026-10-10-overdue-registry-access-renewal.json' with {type:'json'};
 import officialAlternatives from './reviews/2026-10-10-authorised-official-alternatives.json' with {type:'json'};
 import srsd384Renewal from './reviews/2026-10-11-authorised-srsd384-renewal.json' with {type:'json'};
+import rgtVctSourceRenewal from './reviews/2026-10-11-authorised-rgt-vct-source-renewal.json' with {type:'json'};
 import vk2735ZenagamtideRegistry from './reviews/2026-10-10-authorised-vk2735-zenagamtide-registry.json' with {type:'json'};
 import zupremeLifecycleUpdate from './reviews/2026-10-08-authorised-zupreme-lifecycle-update.json' with {type:'json'};
 import bimagrumabSemaglutide from './reviews/2026-10-09-authorised-bimagrumab-semaglutide.json' with {type:'json'};
@@ -44,7 +45,11 @@ export const registrySources=[...baseRegistrySources,...vikingRhythmRegistryRevi
   const review=officialAlternatives.sourceReviews.find(r=>r.url===s.url||r.url===s.checkUrl);
   return review?{...s,reviewedAt:review.reviewedAt}:s;
  })
- .map(s=>s.id===srsd384Renewal.source.id?{...s,reviewedAt:srsd384Renewal.source.reviewedAt,reviewedFingerprint:srsd384Renewal.source.reviewedFingerprint}:s);
+ .map(s=>s.id===srsd384Renewal.source.id?{...s,reviewedAt:srsd384Renewal.source.reviewedAt,reviewedFingerprint:srsd384Renewal.source.reviewedFingerprint}:s)
+ .map(s=>{
+  const renewal=rgtVctSourceRenewal.registrySources.find(r=>r.id===s.id);
+  return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
+ });
 export const supportSources=receipt.supportSources.map(s=>{
  const renewal=overdueRegistryAccessRenewal.supportSources.find(r=>r.id===s.id);
  return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;

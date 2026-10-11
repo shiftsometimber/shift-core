@@ -1,0 +1,187 @@
+{
+  "reviewedAt": "2026-10-11T06:04:46Z",
+  "baseCommit": "68d4c1cd8ef36ca47fe079a5706b6ee84fb8a502",
+  "reviewType": "Bounded overdue factual review of six unchanged sponsor-submitted trial records",
+  "editorialAuthorisation": "Matt's standing authority covers evidence-backed informational Watch updates. This is not clinical approval.",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "programmes": [
+    {
+      "id": "rgt075",
+      "name": "RGT-075 / RGT001-075",
+      "assessment": "Both complete ClinicalTrials.gov records were reread. Their status, actual dates, actual enrolment and absence of posted results remain unchanged; the programme wording remains accurate and is not advanced."
+    },
+    {
+      "id": "vct220",
+      "name": "CX11 / VCT220",
+      "assessment": "All four complete ClinicalTrials.gov records were reread. The three completed studies and the active-not-recruiting hypertension study retain the same actual or estimated distinctions and no posted results; the programme wording remains accurate and is not advanced."
+    }
+  ],
+  "registrySources": [
+    {
+      "id": "registry-nct06277934",
+      "nctId": "NCT06277934",
+      "url": "https://clinicaltrials.gov/study/NCT06277934",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06277934",
+      "sourceUpdatedAt": "2025-08-07",
+      "reviewedAt": "2026-10-11T06:04:46Z",
+      "reviewedFingerprint": "bd4998d577e5849a19bab77d429623f073a3947d26a3c04d3847d3040a65dfe4",
+      "status": "COMPLETED",
+      "enrollment": {
+        "count": 73,
+        "type": "ACTUAL"
+      },
+      "start": {
+        "date": "2024-03-08",
+        "type": "ACTUAL"
+      },
+      "completion": {
+        "date": "2024-08-13",
+        "type": "ACTUAL"
+      },
+      "hasResults": false,
+      "assessment": "Complete current official record read; no factual change."
+    },
+    {
+      "id": "registry-nct06867718",
+      "nctId": "NCT06867718",
+      "url": "https://clinicaltrials.gov/study/NCT06867718",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06867718",
+      "sourceUpdatedAt": "2026-05-28",
+      "reviewedAt": "2026-10-11T06:04:46Z",
+      "reviewedFingerprint": "72ea8badc24a101765b77716967041820d22a25de50742dd3e10de3c55bbf3aa",
+      "status": "COMPLETED",
+      "enrollment": {
+        "count": 267,
+        "type": "ACTUAL"
+      },
+      "start": {
+        "date": "2025-01-24",
+        "type": "ACTUAL"
+      },
+      "completion": {
+        "date": "2025-11-06",
+        "type": "ACTUAL"
+      },
+      "hasResults": false,
+      "assessment": "Complete current official record read; no factual change."
+    },
+    {
+      "id": "registry-nct06569355",
+      "nctId": "NCT06569355",
+      "url": "https://clinicaltrials.gov/study/NCT06569355",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06569355",
+      "sourceUpdatedAt": "2025-07-01",
+      "reviewedAt": "2026-10-11T06:04:46Z",
+      "reviewedFingerprint": "9188ddf11f62a22fa87697c8dd4e4e3f157103c90d19f0e6701cb534b0f71e14",
+      "status": "COMPLETED",
+      "enrollment": {
+        "count": 250,
+        "type": "ACTUAL"
+      },
+      "start": {
+        "date": "2023-12-27",
+        "type": "ACTUAL"
+      },
+      "completion": {
+        "date": "2024-08-01",
+        "type": "ACTUAL"
+      },
+      "hasResults": false,
+      "assessment": "Complete current official record read; no factual change."
+    },
+    {
+      "id": "registry-nct06939296",
+      "nctId": "NCT06939296",
+      "url": "https://clinicaltrials.gov/study/NCT06939296",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT06939296",
+      "sourceUpdatedAt": "2026-09-16",
+      "reviewedAt": "2026-10-11T06:04:46Z",
+      "reviewedFingerprint": "9a4791e34d286bdbb5951736e7e9a23672165c7850fc607397708c771fee335d",
+      "status": "COMPLETED",
+      "enrollment": {
+        "count": 840,
+        "type": "ACTUAL"
+      },
+      "start": {
+        "date": "2024-12-24",
+        "type": "ACTUAL"
+      },
+      "completion": {
+        "date": "2026-03-31",
+        "type": "ACTUAL"
+      },
+      "hasResults": false,
+      "assessment": "Complete current official record read; no factual change."
+    },
+    {
+      "id": "registry-nct07011797",
+      "nctId": "NCT07011797",
+      "url": "https://clinicaltrials.gov/study/NCT07011797",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07011797",
+      "sourceUpdatedAt": "2026-05-28",
+      "reviewedAt": "2026-10-11T06:04:46Z",
+      "reviewedFingerprint": "037c208e9a3c2731a99b3cd7802027dac5cbb81857e1c21a7ff2e60aa4704f8d",
+      "status": "COMPLETED",
+      "enrollment": {
+        "count": 250,
+        "type": "ACTUAL"
+      },
+      "start": {
+        "date": "2025-06-17",
+        "type": "ACTUAL"
+      },
+      "completion": {
+        "date": "2026-04-09",
+        "type": "ACTUAL"
+      },
+      "hasResults": false,
+      "assessment": "Complete current official record read; no factual change. The registry's 250-person count remains distinct from the sponsor announcement's 246-person count."
+    },
+    {
+      "id": "registry-nct07360275",
+      "nctId": "NCT07360275",
+      "url": "https://clinicaltrials.gov/study/NCT07360275",
+      "checkUrl": "https://clinicaltrials.gov/api/v2/studies/NCT07360275",
+      "sourceUpdatedAt": "2026-09-21",
+      "reviewedAt": "2026-10-11T06:04:46Z",
+      "reviewedFingerprint": "2bc711be3870f45a8ab518c303f7e45da377be22ade22dc7ba48b0ec46272b20",
+      "status": "ACTIVE_NOT_RECRUITING",
+      "enrollment": {
+        "count": 160,
+        "type": "ESTIMATED"
+      },
+      "start": {
+        "date": "2026-03-01",
+        "type": "ACTUAL"
+      },
+      "primaryCompletion": {
+        "date": "2026-10-30",
+        "type": "ESTIMATED"
+      },
+      "completion": {
+        "date": "2026-12-20",
+        "type": "ESTIMATED"
+      },
+      "hasResults": false,
+      "assessment": "Complete current official record read; no factual change. Estimated enrolment and completion dates remain prospective."
+    }
+  ],
+  "finding": "No source or programme wording changed. A successful automatic check was not used as the review: all six official public records were opened and read before renewing their factual review dates.",
+  "publication": {
+    "programmeWordingChanged": false,
+    "programmeReviewDatesChanged": false,
+    "programmeSummaryQueueChanged": false,
+    "configuredSourceCountChanged": false,
+    "reviewDatesRenewed": true,
+    "expectedConfiguredSourceFactualReviewNeeded": 0,
+    "zp6590": "Remains verification_pending and check_delayed; this review does not alter or certify the blocked Zealand source.",
+    "monitoring": "Recurring source freshness and broader discovery remain open."
+  },
+  "uncertainties": [
+    "Neither RGT-075 registry record posts results; the absence of registry results is retained.",
+    "The VCT220 China Phase III and US Phase II records still do not post results; sponsor topline claims remain sponsor-reported.",
+    "NCT07360275 retains estimated enrolment and completion dates; they are not treated as completed events.",
+    "No reviewed record establishes UK authorisation, NICE/NHS access, actual UK supply, comparative superiority or clinical approval."
+  ]
+}
