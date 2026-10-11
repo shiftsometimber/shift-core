@@ -1,0 +1,123 @@
+{
+  "reviewedAt": "2026-10-11T22:33:19Z",
+  "publicationStatus": "owner_authorised_factual_publication",
+  "publicationDecision": {
+    "authorisation": "Matt's standing Medicines Watch instruction authorises needed evidence-backed informational source and summary reviews to go live without repeat permission.",
+    "scope": "Renew only three unchanged ClinicalTrials.gov record reviews and their three associated programme-summary reviews after reading the complete current API records. Editorial authorisation is not clinical approval."
+  },
+  "reviewType": "AI-assisted primary-source factual review; not clinical approval",
+  "clinicalApproval": null,
+  "industryComplete": false,
+  "registrySources": [
+    {
+      "id": "registry-nct07589686",
+      "nctId": "NCT07589686",
+      "entryId": "zynergy-petrelintide-enicepatide",
+      "reviewedAt": "2026-10-11T22:33:19Z",
+      "previousReviewedAt": "2026-10-04T21:37:32Z",
+      "sourcePublishedAt": "2026-05-15",
+      "sourceUpdatedAt": "2026-09-09",
+      "httpStatus": 200,
+      "bytes": 10252,
+      "responseSha256": "b5adc5fa9bdf97db79626f227fc1fc76083dc79f0214c66e59447b0e3b92b03e",
+      "reviewedFingerprint": "7472d8e9ff7bfc674013a3a2e5ba291f2b5d4fe8e08257cb2c984d2337d0a24f",
+      "previousReviewedFingerprint": "7472d8e9ff7bfc674013a3a2e5ba291f2b5d4fe8e08257cb2c984d2337d0a24f",
+      "withdrawn": false,
+      "wordingChanged": false,
+      "lifecycleChanged": false,
+      "assessment": "The complete current ClinicalTrials.gov API record was read. NCT07589686 remains a not-yet-recruiting Phase 2 dose-finding study of weekly petrelintide co-administered with weekly enicepatide, with 486 estimated participants, an estimated 30 September 2026 start, estimated 12 November 2027 primary completion, estimated 31 January 2028 overall completion and no posted results. The record's last update remains 9 September 2026.",
+      "uncertainty": "The estimated start date has passed, but the registry still does not establish recruitment or first dosing. Planned weight, metabolic and safety outcomes are not results, and the record does not establish an approved combination, UK authorisation, NICE/NHS access, supply or clinical approval."
+    },
+    {
+      "id": "registry-nct07517042",
+      "nctId": "NCT07517042",
+      "entryId": "mazdutide",
+      "reviewedAt": "2026-10-11T22:33:19Z",
+      "previousReviewedAt": "2026-10-04T21:37:32Z",
+      "sourcePublishedAt": "2026-04-08",
+      "sourceUpdatedAt": "2026-09-15",
+      "httpStatus": 200,
+      "bytes": 14600,
+      "responseSha256": "c5cb9981c755c78e067183c294c73d92677b02a15c4b703b958addebf9f1ac9e",
+      "reviewedFingerprint": "d30d414c70aaa7b589ea815eda7790e94097f02fceb56a9df8eac84fd3380ce5",
+      "previousReviewedFingerprint": "d30d414c70aaa7b589ea815eda7790e94097f02fceb56a9df8eac84fd3380ce5",
+      "withdrawn": false,
+      "wordingChanged": false,
+      "lifecycleChanged": false,
+      "assessment": "The complete current ClinicalTrials.gov API record was read. NCT07517042 remains a recruiting Chinese maintenance study after an actual 10 June 2026 start, with 420 estimated participants and estimated December 2028 primary and overall completion. It compares reduced-dose weekly mazdutide, intensive lifestyle support, their combination and standard health education after initial mazdutide-assisted weight loss. The record still has no posted results and was last updated 15 September 2026.",
+      "uncertainty": "Recruitment and an actual start are not results. Estimated enrolment and completion are not completed events, and the study does not establish that any arm maintains weight loss. China authorisation does not establish UK authorisation, NICE/NHS access, UK supply or clinical approval."
+    },
+    {
+      "id": "registry-nct07654374",
+      "nctId": "NCT07654374",
+      "entryId": "aleniglipron",
+      "reviewedAt": "2026-10-11T22:33:19Z",
+      "previousReviewedAt": "2026-10-04T21:37:32Z",
+      "sourcePublishedAt": "2026-06-17",
+      "sourceUpdatedAt": "2026-09-11",
+      "httpStatus": 200,
+      "bytes": 29642,
+      "responseSha256": "3fad743afe8f8436a120756eb4d3757334de87487c401d5b280ae969601b0c69",
+      "reviewedFingerprint": "cfb65a5aa51575912b057b1119883f3f898416432d3b121d85e92ad10d95cf28",
+      "previousReviewedFingerprint": "cfb65a5aa51575912b057b1119883f3f898416432d3b121d85e92ad10d95cf28",
+      "withdrawn": false,
+      "wordingChanged": false,
+      "lifecycleChanged": false,
+      "assessment": "The complete current ClinicalTrials.gov API record was read. NCT07654374 remains recruiting Phase 3 research in adults with obesity or overweight and type 2 diabetes after an actual 17 July 2026 start. It retains 1,100 estimated participants, estimated September 2028 primary completion, estimated November 2028 overall completion and no posted results. The record's last update remains 11 September 2026.",
+      "uncertainty": "Recruitment and an actual start are not results or completion. The type 2 diabetes population and maintenance-dose design must not be generalized to every aleniglipron study or indication, and the record does not establish an authorised regimen, UK authorisation, NICE/NHS access, supply or clinical approval."
+    }
+  ],
+  "programmeReviews": [
+    {"id": "zynergy-petrelintide-enicepatide", "reviewedAt": "2026-10-11T22:33:19Z", "wordingChanged": false},
+    {"id": "mazdutide", "reviewedAt": "2026-10-11T22:33:19Z", "wordingChanged": false},
+    {"id": "aleniglipron", "reviewedAt": "2026-10-11T22:33:19Z", "wordingChanged": false}
+  ],
+  "changes": {
+    "sourceReviewDatesRenewed": 3,
+    "programmeReviewDatesRenewed": 3,
+    "programmeWordingChanged": false,
+    "configuredSourceCountChanged": false,
+    "programmeCountChanged": false,
+    "registryLifecycleChanged": false,
+    "resultsClaimed": false,
+    "monitorBaselinesChanged": false,
+    "monitorLogicChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseShapeChanged": false,
+    "medicalClaimsChanged": false,
+    "ukAuthorisationChanged": false,
+    "nhsAccessChanged": false,
+    "supplyClaimChanged": false
+  },
+  "preserved": {
+    "completedFactualReviews": 35,
+    "programmes": 118,
+    "configuredSources": 202,
+    "programmeSummaryFactualReviewNeededAfter": 68,
+    "zp6590VerificationPending": true,
+    "zp6590CheckDelayed": true,
+    "walesReviewed": true,
+    "walesCheckDelayed": true,
+    "externalCommunicationsSent": false,
+    "customerDataChanged": false,
+    "memberTreatmentChanged": false,
+    "checkoutChanged": false
+  },
+  "failedChecks": [],
+  "remainingObstacles": [
+    {
+      "id": "zealand-zp6590-pipeline",
+      "state": ["verification_pending", "check_delayed"],
+      "obstacle": "Configured sponsor monitoring still receives HTTP 403 and has no approved baseline.",
+      "nextAction": "Retain registry and CTIS corroboration while deliberately reviewing a stable directly reviewable Zealand artefact or a bounded replacement source; do not repeatedly retry the denied endpoint."
+    },
+    {
+      "id": "wales-weight-access",
+      "state": ["reviewed", "check_delayed"],
+      "obstacle": "The official Welsh source remains factually reviewed but routine monitoring receives HTTP 403.",
+      "nextAction": "Retain the dated review and seek accessible official evidence if routine retrieval remains denied."
+    }
+  ],
+  "discoveryBoundary": "A separate current-date and broader undated primary-source pass remains ongoing. These record and summary renewals do not establish industry completeness or finish authoritative alternate-source and programme-summary work.",
+  "nextAction": "Run exact-head Watch and release gates, publish through the guarded production workflow, then verify the serving source and fresh uncached SELECT-only health response."
+}

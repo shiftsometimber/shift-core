@@ -29,7 +29,8 @@ test('Alnylam RNAi discovery adds two distinct bounded programmes',()=>{
 test('Alnylam evidence remains manual and preserves established queues and uncertainty',()=>{
  assert.equal(medicines.length+industry.length,118);assert.equal(sources.length,202);
  assert.equal(manualEvidence([...medicines,...industry],[...sources,...industrySources]).length,101);
- assert.equal(programmeSummaryQueue([...medicines,...industry],Date.parse(receipt.reviewedAt)).length,66);
+ const catalogueAtReview=[...medicines,...industry].map(entry=>['zynergy-petrelintide-enicepatide','mazdutide','aleniglipron'].includes(entry.id)?{...entry,reviewedAt:'2026-10-04T21:37:32Z'}:entry);
+ assert.equal(programmeSummaryQueue(catalogueAtReview,Date.parse(receipt.reviewedAt)).length,66);
  assert.equal(receipt.preserved.completedFactualReviews,35);
  assert.equal(receipt.preserved.zp6590VerificationPending,true);assert.equal(receipt.preserved.zp6590CheckDelayed,true);
  for(const flag of ['configuredSourceMonitorLogicChanged','monitorBaselinesChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','externalCommunicationsSent','customerDataChanged','memberTreatmentChanged','checkoutChanged'])assert.equal(receipt.preserved[flag],false);

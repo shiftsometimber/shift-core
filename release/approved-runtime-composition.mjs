@@ -1732,6 +1732,44 @@ export function verifyWaistRollbackRetention(c,{head,read,diff,ancestor,content=
 
 // Finite outer-meta repair after the current-head release test rejected the
 // already fail-closed renewal drift label. It changes no evidence or runtime.
+export const WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_BASE='b184d1cd50ed7c833d9e2d0f39a66e55362a5227';
+export const WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_SOURCE='1596e4561bf8e469ca602abce9ab9a61ae17dfbe';
+export const WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_PATHS=Object.freeze([
+ 'medicines-watch/README.md',
+ 'medicines-watch/alnylam-rnai-discovery.test.mjs',
+ 'medicines-watch/azelaprag-renewal.test.mjs',
+ 'medicines-watch/credibility.mjs',
+ 'medicines-watch/industry.mjs',
+ 'medicines-watch/international-maintenance-renewal.test.mjs',
+ 'medicines-watch/reviews/2026-10-11-authorised-international-maintenance-renewal.json'
+]);
+export const WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/watch-international-maintenance-renewal-composition.test.mjs'
+]);
+const WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_SET=new Set([...WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_PATHS,...WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_MAINTENANCE]);
+for(const path of WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchInternationalMaintenanceRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_20261011');
+ assert.equal(c.base,WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_BASE);assert.equal(c.source,WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_SOURCE);
+ assert.deepEqual(c.paths,WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);
+ assert.equal(c.reviewedAt,'2026-10-11T22:33:19Z');assert.equal(c.sourceReviewsApplied,3);assert.equal(c.programmeReviewsApplied,3);
+ assert.deepEqual(c.sourceIds,['registry-nct07589686','registry-nct07517042','registry-nct07654374']);
+ assert.deepEqual(c.unchangedFingerprints,['7472d8e9ff7bfc674013a3a2e5ba291f2b5d4fe8e08257cb2c984d2337d0a24f','d30d414c70aaa7b589ea815eda7790e94097f02fceb56a9df8eac84fd3380ce5','cfb65a5aa51575912b057b1119883f3f898416432d3b121d85e92ad10d95cf28']);
+ assert.equal(c.preservedSourceReviews,35);assert.equal(c.programmesAfter,118);assert.equal(c.configuredSources,202);assert.equal(c.programmeSummaryFactualReviewNeeded,68);
+ assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);assert.equal(c.walesReviewed,true);assert.equal(c.walesCheckDelayed,true);assert.equal(c.monitoringFinished,false);
+ for(const flag of ['programmeWordingChanged','configuredSourceCountChanged','programmeCountChanged','registryLifecycleChanged','resultsClaimed','reviewDatesRenewedByHttp','monitorBaselinesChanged','monitorLogicChanged','queueLogicChanged','healthResponseChanged','medicalClaimsChanged','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated international maintenance renewal payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated international maintenance renewal maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after international maintenance renewal receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchInternationalMaintenanceRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by international maintenance renewal registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Approved backlog source drift: medicines-watch/international-maintenance renewal payload: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Approved backlog source drift: medicines-watch/international-maintenance renewal maintenance: '+path);
+ return c;
+}
+
 export const WATCH_TALDEFGROBEP_ATTAIN_GUARD_BASE='95c6c9fc78eb49d2fb40e57b1ecc5bcd7fbf5fb2';
 export const WATCH_TALDEFGROBEP_ATTAIN_GUARD_SOURCE='084d87cfa1fd2b61a9d12e37e61bda9f5158ab9f';
 export const WATCH_TALDEFGROBEP_ATTAIN_GUARD_PATHS=Object.freeze(['shift-coach/release.test.mjs']);
@@ -1914,10 +1952,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const watchInternationalMaintenanceRenewal=c.watchInternationalMaintenanceRenewal;
+ if(watchInternationalMaintenanceRenewal)verifyWatchInternationalMaintenanceRenewal(watchInternationalMaintenanceRenewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preInternationalMaintenanceRenewalHead=watchInternationalMaintenanceRenewal?watchInternationalMaintenanceRenewal.base:actualHead;
+ const internationalMaintenanceRenewalRawBlob=(ref,path)=>outerRawBlob(watchInternationalMaintenanceRenewal&&ref==='HEAD'&&WATCH_INTERNATIONAL_MAINTENANCE_RENEWAL_SET.has(path)?watchInternationalMaintenanceRenewal.base:ref,path);
  const watchTaldefgrobepAttainGuardRepair=c.watchTaldefgrobepAttainGuardRepair;
- if(watchTaldefgrobepAttainGuardRepair)verifyWatchTaldefgrobepAttainGuardRepair(watchTaldefgrobepAttainGuardRepair,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preTaldefgrobepAttainGuardHead=watchTaldefgrobepAttainGuardRepair?watchTaldefgrobepAttainGuardRepair.base:actualHead;
- const taldefgrobepAttainGuardRawBlob=(ref,path)=>outerRawBlob(watchTaldefgrobepAttainGuardRepair&&ref==='HEAD'&&WATCH_TALDEFGROBEP_ATTAIN_GUARD_SET.has(path)?watchTaldefgrobepAttainGuardRepair.base:ref,path);
+ if(watchTaldefgrobepAttainGuardRepair)verifyWatchTaldefgrobepAttainGuardRepair(watchTaldefgrobepAttainGuardRepair,{head:preInternationalMaintenanceRenewalHead,read:internationalMaintenanceRenewalRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preTaldefgrobepAttainGuardHead=watchTaldefgrobepAttainGuardRepair?watchTaldefgrobepAttainGuardRepair.base:preInternationalMaintenanceRenewalHead;
+ const taldefgrobepAttainGuardRawBlob=(ref,path)=>internationalMaintenanceRenewalRawBlob(watchTaldefgrobepAttainGuardRepair&&ref==='HEAD'&&WATCH_TALDEFGROBEP_ATTAIN_GUARD_SET.has(path)?watchTaldefgrobepAttainGuardRepair.base:ref,path);
  const watchTaldefgrobepAttainRenewal=c.watchTaldefgrobepAttainRenewal;
  if(watchTaldefgrobepAttainRenewal)verifyWatchTaldefgrobepAttainRenewal(watchTaldefgrobepAttainRenewal,{head:preTaldefgrobepAttainGuardHead,read:taldefgrobepAttainGuardRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preTaldefgrobepAttainHead=watchTaldefgrobepAttainRenewal?watchTaldefgrobepAttainRenewal.base:preTaldefgrobepAttainGuardHead;

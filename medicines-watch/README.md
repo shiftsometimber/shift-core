@@ -1,5 +1,11 @@
 # Treatments: Medicines & Peptides Watch
 
+## 11 October international maintenance registry and summary renewal
+
+`reviews/2026-10-11-authorised-international-maintenance-renewal.json` records a complete rereview of NCT07589686, NCT07517042 and NCT07654374 after their configured-source and associated programme-summary review windows expired. All three normalized lifecycle fingerprints remain unchanged. ZYNERGY remains not yet recruiting despite its passed estimated start; ASCEND-1 and ACCOMPLISH-2 remain recruiting after actual starts. Enrolment and completion remain estimates and none has posted results.
+
+Only the three registry-source and associated programme-summary review dates advance. Programme wording, registry lifecycle claims, monitor baselines and logic, the 118-programme catalogue, 202 configured sources and completed 35-review publication remain unchanged. The separate programme-summary queue returns from the time-based 71 to 68 items without changing queue logic. No approved combination or regimen, UK authorisation, NICE/NHS access, supply or clinical approval is inferred. ZP6590 remains `verification_pending` plus `check_delayed`; Wales remains reviewed plus `check_delayed`. Authoritative alternate-source work, remaining summary reviews and broad discovery remain ongoing.
+
 ## 11 October taldefgrobep and ATTAIN-MAINTAIN registry renewal
 
 `reviews/2026-10-11-authorised-taldefgrobep-attain-maintain-renewal.json` records an actual rereview of the complete ClinicalTrials.gov API records for NCT07281495 and NCT06584916 after their configured-source review windows expired. Both normalized lifecycle fingerprints remain unchanged. Taldefgrobep remains active, not recruiting, Phase II, with 150 estimated participants, estimated September 2026 completion and no posted results. ATTAIN-MAINTAIN remains completed, Phase IIIb, with 376 actual participants, actual 21 November 2025 completion and no registry results posted; its already reviewed publication is not reinterpreted here.
