@@ -1,0 +1,99 @@
+{
+  "date": "2026-10-11",
+  "status": "staged_not_published",
+  "ownerLane": 1065,
+  "register": "libfile_bd750155ae1c8191a16306ff8c4a4ce5",
+  "paths": [
+    "/contact",
+    "/help",
+    "/medical-disclaimer",
+    "/accessibility"
+  ],
+  "readerIntent": {
+    "/contact": "Recover an unsent enquiry without losing fields.",
+    "/help": "Recover an existing account without duplicate registration.",
+    "/medical-disclaimer": "Recognise information limits and reach urgent help.",
+    "/accessibility": "Use support utilities with keyboard without covering content."
+  },
+  "exactImprovement": {
+    "/contact": "Contact-only security recovery: unsent, retained fields, actual Send securely label; timers/widget validation unchanged.",
+    "/help": "Actual verification resend/reset actions, privacy advice and escalation; urgent-help anchor.",
+    "/medical-disclaimer": "999 telephone action, four-nation Help handoff, own prescriber/pharmacist route inside existing content column.",
+    "/accessibility": "Four support pages only: dock utilities below main, 44px targets, focus outline, expanded state, Escape and focus return, closed drawer inert."
+  },
+  "sources": [
+    {
+      "url": "https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-call-999/",
+      "checked": "2026-10-11"
+    },
+    {
+      "url": "https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-use-111/",
+      "checked": "2026-10-11",
+      "basis": "Existing four-nation Help handoff preserved."
+    },
+    {
+      "path": "frontend/member/my-timber-preview.html",
+      "basis": "Actual password reset and verification recovery actions."
+    },
+    {
+      "path": "frontend/member/turnstile-auth-v1.js",
+      "basis": "45-second timer, config/script timers, token and widget cleanup preserved."
+    }
+  ],
+  "verification": {
+    "kind": "Candidate interception over live documents, not released acceptance",
+    "at": "2026-10-11T12:26:15.537Z",
+    "widths": [
+      390,
+      1440
+    ],
+    "states": 14,
+    "proof": "docs/content-review/support-recovery-browser-proof-20261011.json",
+    "screenshots": "/tmp/support-recovery-20261011 on authorised Mac; 14 captures inspected",
+    "externalMessages": 0,
+    "modifyingRequests": "All blocked; consent telemetry attempts recorded separately. No contact POST/reset request.",
+    "outcomes": "Contact repeated timeout retains all fields and fresh security widget; Help opens actual reset form; disclaimer Enter reaches urgent Help; four support-page utility controls Enter/Escape/focus return, inert closed state and Cookie choices reopen.",
+    "liveAcceptance": "Pending owner-held guarded release and repeat affected journeys."
+  },
+  "communications": {
+    "approval": "13:38 BST 10 October 2026; unchanged C1/P1 preserved in contact-human-handoff-20261011.md and existing register.",
+    "sent": false,
+    "acceptance": "Human submission, visible receiving-inbox references/timestamps and actual requested replies remain separate."
+  },
+  "checkoutReadiness": [
+    {
+      "responsibility": "Seller",
+      "current": "Site operator exists; treatment ordering closed. Operator is not evidence of future treatment seller.",
+      "required": "Named contracting seller, address, customer terms and support responsibility."
+    },
+    {
+      "responsibility": "Clinical/dispensing",
+      "current": "Public terms require named prescribing service and pharmacy before payment; no future partner assumed live.",
+      "required": "Named authorised service/prescriber/pharmacy, registrations, assessment, prescription, delivery, continuity and escalation duties."
+    },
+    {
+      "responsibility": "Payment/decline",
+      "current": "No live treatment checkout; payment cannot guarantee a prescription.",
+      "required": "Authorisation versus collection, decision trigger, disclosed separate assessment fee if any, release/refund owner and notification."
+    },
+    {
+      "responsibility": "Cancellation/refund",
+      "current": "Live pages give seller/date/amount/reference checklist, preserve rights; no transaction tested.",
+      "required": "Owner-approved cancellation stages, service commencement, amount/channel/timescale, pharmacy return instructions and escalation."
+    }
+  ],
+  "existingPublication": "PR1284/1298 closed; retain receipts. No redeployment task reopened.",
+  "protected": [
+    "homepage",
+    "primary navigation",
+    "canonical obesity architecture",
+    "Organic Growth",
+    "Medicines Watch",
+    "mail routing",
+    "Turnstile verification",
+    "clinical gates",
+    "prices",
+    "zero stock",
+    "checkout"
+  ]
+}
