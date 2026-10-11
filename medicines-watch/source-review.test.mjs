@@ -16,6 +16,7 @@ const foundayoPredictedRiskReceipt = JSON.parse(readFileSync(new URL('./reviews/
 const foundayoAttainMaintainReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-04-authorised-foundayo-attain-maintain.json', import.meta.url)));
 const wegovyMashReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-03-authorised-wegovy-mash-correction.json', import.meta.url)));
 const wegovyRenewalReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-10-wegovy-source-renewal.json', import.meta.url)));
+const twoSourceReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-11-authorised-two-source-freshness.json', import.meta.url)));
 const reviewTime = Date.parse(receipt.reviewedAt);
 const rowFor = (source, now = reviewTime) => ({
   source_url: source.url, check_url: source.checkUrl,
@@ -208,7 +209,11 @@ test('changed SmPC metadata preserves the medicine catalogue and separately evid
     assert.equal(sources.find(s => s.id === proof.id).reviewedAt, backlogReview.sources.find(r=>r.id===proof.id)?.reviewedAt ?? currentProof.reviewedAt);
     assert.ok(!receipt.sources.some(s => s.id === proof.id));
   }
-  assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, JSON.parse(readFileSync(new URL('./reviews/2026-10-04-wegovy-tablet-provider-renewal.json', import.meta.url))).reviewedAt);
+  const priorProviderReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-04-wegovy-tablet-provider-renewal.json', import.meta.url)));
+  const providerReview = twoSourceReceipt.sources.find(source => source.id === 'wegovy-tablet-private');
+  assert.equal(sources.find(source => source.id === 'wegovy-tablet-private').reviewedAt, twoSourceReceipt.reviewedAt);
+  assert.equal(providerReview.previousReviewedAt, priorProviderReceipt.reviewedAt);
+  assert.equal(providerReview.previousReviewedFingerprint, providerReview.reviewedFingerprint);
   assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, backlogReview.reviewedAt);
 });
 

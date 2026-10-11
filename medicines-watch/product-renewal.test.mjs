@@ -10,6 +10,7 @@ const nhsReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-01-mounjar
 const overdueReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-09-30-overdue-source-renewal.json', import.meta.url)));
 const wegovyMashReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-03-authorised-wegovy-mash-correction.json', import.meta.url)));
 const wegovyRenewalReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-10-wegovy-source-renewal.json', import.meta.url)));
+const twoSourceReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-11-authorised-two-source-freshness.json', import.meta.url)));
 const ids = ['mounjaro-smpc', 'wegovy-tablet-smpc', 'orlistat-120-smpc', 'orlistat-60-smpc', 'foundayo-smpc'];
 const time = Date.parse(receipt.reviewedAt);
 const observation = (source, now = time) => ({
@@ -65,13 +66,17 @@ test('HTTP success does not cure expiry, changed evidence, withdrawal or failure
   }
 });
 
-test('renewal does not renew the catalogue, medicine claims, NHS or provider reviews', () => {
+test('two-source renewal preserves the catalogue, medicine claims, NHS and unrelated reviews', () => {
   assert.equal(REVIEWED_AT, '2026-09-15T21:28:30Z');
   assert.equal(medicines.find(m => m.id === 'mounjaro').reviewedAt, '2026-09-17T05:45:00Z');
   assert.ok(medicines.filter(m => !['mounjaro','retatrutide','wegovy-injection'].includes(m.id)).every(m => m.reviewedAt === undefined));
   assert.equal(medicines.find(m => m.id === 'wegovy-injection').reviewedAt, wegovyMashReceipt.reviewedAt);
   assert.equal(sources.find(s => s.id === 'mounjaro-nhs').reviewedAt, backlogReview.reviewedAt);
-  assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, JSON.parse(readFileSync(new URL('./reviews/2026-10-04-wegovy-tablet-provider-renewal.json', import.meta.url))).reviewedAt);
+  const priorProviderReceipt = JSON.parse(readFileSync(new URL('./reviews/2026-10-04-wegovy-tablet-provider-renewal.json', import.meta.url)));
+  const providerReview = twoSourceReceipt.sources.find(s => s.id === 'wegovy-tablet-private');
+  assert.equal(sources.find(s => s.id === 'wegovy-tablet-private').reviewedAt, twoSourceReceipt.reviewedAt);
+  assert.equal(providerReview.previousReviewedAt, priorProviderReceipt.reviewedAt);
+  assert.equal(providerReview.previousReviewedFingerprint, providerReview.reviewedFingerprint);
   assert.equal(sources.find(s => s.id === 'wegovy-injection-smpc').reviewedAt,
     wegovyRenewalReceipt.reviewedAt);
 });
