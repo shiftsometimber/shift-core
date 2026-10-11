@@ -1,5 +1,11 @@
 # Treatments: Medicines & Peptides Watch
 
+## 11 October programme-summary queue disclosure
+
+The public evidence desk now reports configured-source factual reviews and overdue wider-programme evidence summaries as separate queues. The configured-source queue remains governed by monitored source review state; it is no longer presented as the whole editorial backlog while programme cards independently apply their seven-day summary-review window. Overdue summary rows link back to their programme cards, retain the last factual review date and state that an unchanged technical source check does not renew the summary.
+
+This is a queue-disclosure correction only. It does not renew any programme review, approve a medical claim, alter configured-source health, change the ZP6590 pending/delayed overlap, or assert industry completeness. Existing programme wording and all completed review receipts remain unchanged.
+
 Public route: `/treatment-centre/medicines-watch`. Entry point is Treatments only. No member or My Timber integration. This is a continuously expanding selected weight-management reference, not an exhaustive medicine database, prescribing tool, stock service or recommendation ranking.
 
 ## 11 October SRSD384 review renewal and source-date reconciliation
