@@ -1,4 +1,5 @@
 import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
+import internationalMaintenanceRenewal from './reviews/2026-10-11-authorised-international-maintenance-renewal.json' with {type:'json'};
 import taldefgrobepAttainMaintainRenewal from './reviews/2026-10-11-authorised-taldefgrobep-attain-maintain-renewal.json' with {type:'json'};
 import azelapragRenewal from './reviews/2026-10-11-authorised-azelaprag-renewal.json' with {type:'json'};
 import overdueRegistryAccessRenewal from './reviews/2026-10-10-overdue-registry-access-renewal.json' with {type:'json'};
@@ -56,6 +57,9 @@ export const registrySources=[...baseRegistrySources,...vikingRhythmRegistryRevi
   return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
  }).map(s=>{
   const renewal=taldefgrobepAttainMaintainRenewal.registrySources.find(r=>r.id===s.id);
+  return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
+ }).map(s=>{
+  const renewal=internationalMaintenanceRenewal.registrySources.find(r=>r.id===s.id);
   return renewal?{...s,reviewedAt:renewal.reviewedAt,reviewedFingerprint:renewal.reviewedFingerprint}:s;
  });
 export const supportSources=receipt.supportSources.map(s=>{

@@ -1,4 +1,5 @@
 import twoSourceFreshness from './reviews/2026-10-11-authorised-two-source-freshness.json' with {type:'json'};
+import internationalMaintenanceRenewal from './reviews/2026-10-11-authorised-international-maintenance-renewal.json' with {type:'json'};
 import alnylamRnaiDiscovery from './reviews/2026-10-11-authorised-alnylam-rnai-discovery.json' with {type:'json'};
 import azelapragRenewal from './reviews/2026-10-11-authorised-azelaprag-renewal.json' with {type:'json'};
 import officialAlternatives from './reviews/2026-10-10-authorised-official-alternatives.json' with {type:'json'};
@@ -448,4 +449,13 @@ export const industry = [...originalIndustry.map(e => {
    ...(limitationsToAppend?{limitations:e.limitations+' '+limitationsToAppend}:{}),
    reviewedAt:vk2735ZenagamtideRegistry.reviewedAt,
    additionalEvidence:[...(e.additionalEvidence||[]),...change.additionalEvidence]};
+ })
+ .map(e=>{
+  const review=internationalMaintenanceRenewal.programmeReviews.find(item=>item.id===e.id);
+  if(!review)return e;
+  return {...e,reviewedAt:review.reviewedAt,
+   additionalEvidence:(e.additionalEvidence||[]).map(link=>{
+    const source=internationalMaintenanceRenewal.registrySources.find(item=>item.entryId===e.id&&item.nctId&&link.url.endsWith(item.nctId));
+    return source?{...link,reviewedAt:review.reviewedAt}:link;
+   })};
  });

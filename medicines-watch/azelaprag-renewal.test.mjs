@@ -50,7 +50,7 @@ test('azelaprag renewal clears only its due work and preserves separate queues',
  assert.equal(allSources.length,receipt.preserved.configuredSources);
  assert.equal(receipt.preserved.expectedConfiguredSourceFactualReviewNeeded,0);
  assert.equal(receipt.preserved.expectedProgrammeSummaryFactualReviewNeeded,66);
- const catalogueAtReview=[...medicines,...industry].filter(entry=>!['aln2232','aln6222'].includes(entry.id));
+ const catalogueAtReview=[...medicines,...industry].filter(entry=>!['aln2232','aln6222'].includes(entry.id)).map(entry=>['zynergy-petrelintide-enicepatide','mazdutide','aleniglipron'].includes(entry.id)?{...entry,reviewedAt:'2026-10-04T21:37:32Z'}:entry);
  assert.equal(programmeSummaryQueue(catalogueAtReview,time).length,66);
  assert.equal(receipt.preserved.zp6590VerificationPending,true);
  assert.equal(receipt.preserved.zp6590CheckDelayed,true);
