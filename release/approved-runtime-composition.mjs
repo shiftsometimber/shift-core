@@ -1730,6 +1730,45 @@ export function verifyWaistRollbackRetention(c,{head,read,diff,ancestor,content=
  return c;
 }
 
+// Finite PR1325 factual renewal, rebased only after PR1323 terminal acceptance.
+// The five reviewed payload blobs retain their original factual review dates.
+export const WATCH_AZELAPRAG_RENEWAL_BASE='5102e0c9f52e5d8722a2b1e7f1e73148f73edd45';
+export const WATCH_AZELAPRAG_RENEWAL_SOURCE='c12b9e0540b827134927be767a83b4f3fbb3fa3e';
+export const WATCH_AZELAPRAG_RENEWAL_PATHS=Object.freeze([
+ 'medicines-watch/README.md',
+ 'medicines-watch/azelaprag-renewal.test.mjs',
+ 'medicines-watch/credibility.mjs',
+ 'medicines-watch/industry.mjs',
+ 'medicines-watch/reviews/2026-10-11-authorised-azelaprag-renewal.json'
+]);
+export const WATCH_AZELAPRAG_RENEWAL_MAINTENANCE=Object.freeze([
+ 'release/approved-runtime-composition.mjs',
+ 'tests/watch-azelaprag-renewal-composition.test.mjs'
+]);
+const WATCH_AZELAPRAG_RENEWAL_SET=new Set([...WATCH_AZELAPRAG_RENEWAL_PATHS,...WATCH_AZELAPRAG_RENEWAL_MAINTENANCE]);
+for(const path of WATCH_AZELAPRAG_RENEWAL_SET)RECONCILIATION_PATHS.add(path);
+export function verifyWatchAzelapragRenewal(c,{head,read,diff,ancestor,content=(ref,path)=>execFileSync('git',['show',ref+':'+path],{encoding:'utf8'})}){
+ assert.equal(c?.proof,'EXACT_WATCH_AZELAPRAG_RENEWAL_20261011');
+ assert.equal(c.base,WATCH_AZELAPRAG_RENEWAL_BASE);assert.equal(c.source,WATCH_AZELAPRAG_RENEWAL_SOURCE);
+ assert.deepEqual(c.paths,WATCH_AZELAPRAG_RENEWAL_PATHS);assert.deepEqual(c.maintenancePaths,WATCH_AZELAPRAG_RENEWAL_MAINTENANCE);assert.match(c.maintenanceSource,/^[a-f0-9]{40}$/);
+ assert.equal(c.approvedPR,1325);assert.equal(c.integrationIssue,1065);assert.equal(c.publicationStatus,'owner_authorised_factual_publication');
+ assert.equal(c.clinicalApproval,null);assert.equal(c.industryComplete,false);assert.equal(c.sourceReviewsApplied,2);assert.equal(c.programmeReviewDatesRenewed,1);
+ assert.equal(c.reviewedAt,'2026-10-11T13:10:56Z');assert.equal(c.secFilingPublishedAt,'2025-03-20');
+ assert.deepEqual(c.unchangedFingerprints,['0080170ec76c06b5c251ad17226440a7807402e108d6ed1c995fe9fc0c07aba5','c7e60ac3b739c60de594cfaae6772d270457b3749e561c92ee777353d04093f1']);
+ assert.equal(c.preservedSourceReviews,35);assert.equal(c.programmesAfter,116);assert.equal(c.configuredSources,202);
+ assert.equal(c.configuredSourceFactualReviewNeeded,0);assert.equal(c.programmeSummaryFactualReviewNeeded,66);
+ assert.equal(c.verificationPending,1);assert.equal(c.delayedSources,1);assert.equal(c.zp6590VerificationPending,true);assert.equal(c.zp6590CheckDelayed,true);
+ for(const flag of ['programmeWordingChanged','configuredSourceCountChanged','programmeCountChanged','registryLifecycleChanged','resultsClaimed','ukAuthorisationChanged','nhsAccessChanged','supplyChanged','clinicalApprovalChanged','reviewDatesRenewedByHttp','monitorBaselinesChanged','monitorLogicChanged','queueLogicChanged','healthResponseChanged','memberTreatmentChanged','homepageChanged','startHereChanged','sharedNavigationChanged','calculatorChanged','analyticsChanged','consentChanged','checkoutChanged','customerDataChanged','externalCommunicationsSent','genericAdoptionAllowed','deploymentAuthorityBroadened','rollbackAuthorityBroadened','existingGatesWeakened'])assert.equal(c[flag],false);
+ for(const ref of [c.base,c.source,c.maintenanceSource])ancestor(ref,head);ancestor(c.base,c.source);ancestor(c.source,c.maintenanceSource);
+ assert.deepEqual(sorted(diff(c.base,c.source)),sorted(c.paths),'Unrelated azelaprag renewal payload');
+ assert.deepEqual(sorted(diff(c.source,c.maintenanceSource)),sorted(c.maintenancePaths),'Unrelated azelaprag renewal maintenance');
+ assert.deepEqual(sorted(diff(c.maintenanceSource,head)),[RECONCILIATION_MANIFEST],'Unreviewed change after azelaprag renewal receipt');
+ const prior=JSON.parse(content(c.base,RECONCILIATION_MANIFEST)),current=JSON.parse(content(head,RECONCILIATION_MANIFEST));delete current.watchAzelapragRenewal;assert.deepEqual(current,prior,'Prior release receipts changed by azelaprag renewal registration');
+ for(const path of c.paths)assert.equal(read('HEAD',path),read(c.source,path),'Watch azelaprag renewal source drift / Backlog maintenance source drift: two-source freshness payload: '+path);
+ for(const path of c.maintenancePaths)assert.equal(read('HEAD',path),read(c.maintenanceSource,path),'Watch azelaprag renewal maintenance source drift / Backlog maintenance source drift / archive compatibility drift / Approved composition source / boundary drift / Male-obesity maintenance source drift: '+path);
+ return c;
+}
+
 export function verifyReconciledRelease(read=defaultReconciliationRead){
  const c=reconciliationRecord();if(!c)return null;
  assert.equal(c.proof,'EXACT_APPROVED_RUNTIME_COMPOSITION_V1');
@@ -1752,10 +1791,14 @@ export function verifyReconciledRelease(read=defaultReconciliationRead){
   if(!immutableCompositionBlobs.has(key))immutableCompositionBlobs.set(key,defaultReconciliationRead(commit,path));
   return immutableCompositionBlobs.get(key);
  }:read;
+ const watchAzelapragRenewal=c.watchAzelapragRenewal;
+ if(watchAzelapragRenewal)verifyWatchAzelapragRenewal(watchAzelapragRenewal,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preAzelapragHead=watchAzelapragRenewal?watchAzelapragRenewal.base:actualHead;
+ const azelapragRawBlob=(ref,path)=>outerRawBlob(watchAzelapragRenewal&&ref==='HEAD'&&WATCH_AZELAPRAG_RENEWAL_SET.has(path)?watchAzelapragRenewal.base:ref,path);
  const waistRollbackRetention=c.waistRollbackRetention;
- if(waistRollbackRetention)verifyWaistRollbackRetention(waistRollbackRetention,{head:actualHead,read:outerRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
- const preWaistRollbackHead=waistRollbackRetention?waistRollbackRetention.base:actualHead;
- const waistRollbackRawBlob=(ref,path)=>outerRawBlob(waistRollbackRetention&&ref==='HEAD'&&WAIST_ROLLBACK_SET.has(path)?waistRollbackRetention.base:ref,path);
+ if(waistRollbackRetention)verifyWaistRollbackRetention(waistRollbackRetention,{head:preAzelapragHead,read:azelapragRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
+ const preWaistRollbackHead=waistRollbackRetention?waistRollbackRetention.base:preAzelapragHead;
+ const waistRollbackRawBlob=(ref,path)=>azelapragRawBlob(waistRollbackRetention&&ref==='HEAD'&&WAIST_ROLLBACK_SET.has(path)?waistRollbackRetention.base:ref,path);
  const waistKeyboardSettle=c.waistKeyboardSettle;
  if(waistKeyboardSettle)verifyWaistKeyboardSettle(waistKeyboardSettle,{head:preWaistRollbackHead,read:waistRollbackRawBlob,diff:(a,b)=>publicToolImmutableGit('diff','--name-only',a,b).split('\n').filter(Boolean),ancestor:(a,b)=>publicToolImmutableGit('merge-base','--is-ancestor',a,b)});
  const preWaistSettleHead=waistKeyboardSettle?waistKeyboardSettle.base:preWaistRollbackHead;

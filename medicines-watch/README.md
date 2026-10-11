@@ -1,5 +1,11 @@
 # Treatments: Medicines & Peptides Watch
 
+## 11 October azelaprag source and summary renewal
+
+`reviews/2026-10-11-authorised-azelaprag-renewal.json` records an actual rereview of BioAge's complete STRIDES discontinuation announcement, the complete ClinicalTrials.gov NCT06515418 API record and BioAge's complete 2024 annual filing after both configured sources and the wider programme summary crossed their seven-day review boundary. The announcement and registry normalized fingerprints remain identical. STRIDES remains terminated with 204 actual participants, actual February 2025 completion dates and no posted results; the later filing still says BioAge terminated azelaprag development in January 2025.
+
+No programme or medical wording changes. The two configured-source review dates and the azelaprag programme-summary review date advance only after the evidence was read. The filing's official creation timestamp and Last-Modified header verify 20 March 2025 as its publication date, replacing the earlier unverified null date. The 116 programmes, 202 configured sources, completed 35-review publication, separate 66-item programme-summary queue, UK authorisation, NICE/NHS access, supply position and clinical-approval boundary are preserved. ZP6590 remains both `verification_pending` and `check_delayed`; recurring freshness and discovery remain open.
+
 ## 11 October programme-summary queue disclosure
 
 The public evidence desk now reports configured-source factual reviews and overdue wider-programme evidence summaries as separate queues. The configured-source queue remains governed by monitored source review state; it is no longer presented as the whole editorial backlog while programme cards independently apply their seven-day summary-review window. Overdue summary rows link back to their programme cards, retain the last factual review date and state that an unchanged technical source check does not renew the summary.
