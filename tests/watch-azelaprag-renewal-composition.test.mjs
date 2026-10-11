@@ -33,7 +33,8 @@ test('real azelaprag composition preserves every earlier receipt and rejects all
  const current=verifyReconciledRelease();assert.equal(current.watchAzelapragRenewal.source,source);
  const prior=JSON.parse(read(base,manifest)),retained=structuredClone(current);delete retained.watchAlnylamRnaiDiscovery;delete retained.watchAzelapragRenewal;assert.deepEqual(retained,prior);
  for(const path of [...paths,...maintenance])assert.throws(()=>verifyReconciledRelease((ref,p)=>ref==='HEAD'&&p===path?'drift':read(ref,p)),/source drift/);
- for(const path of paths)assert.equal(read('HEAD',path),read(source,path));
+ const laterPaths=new Set(current.watchAlnylamRnaiDiscovery.paths);
+ for(const path of paths)if(!laterPaths.has(path))assert.equal(read('HEAD',path),read(source,path));
 });
 
 test('keyboard-settle verifier, all prior drift tests and live browser acceptance remain immutable',()=>{
