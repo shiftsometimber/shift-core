@@ -2776,5 +2776,42 @@
     "deploymentAuthorityBroadened": false,
     "rollbackAuthorityBroadened": false,
     "existingGatesWeakened": false
+  },
+  "watchTaldefgrobepAttainGuardRepair": {
+    "proof": "EXACT_WATCH_TALDEFGROBEP_ATTAIN_GUARD_REPAIR_V1",
+    "base": "95c6c9fc78eb49d2fb40e57b1ecc5bcd7fbf5fb2",
+    "source": "084d87cfa1fd2b61a9d12e37e61bda9f5158ab9f",
+    "paths": ["shift-coach/release.test.mjs"],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-taldefgrobep-attain-release-guard-repair-composition.test.mjs"
+    ],
+    "maintenanceSource": "e936f9f92cf1c1f856ce5192180107840c89427d",
+    "integrationIssue": 1065,
+    "failureGate": "exact current Watch files remain pinned",
+    "releaseReachedProduction": false,
+    "repair": "recognise exact taldefgrobep/ATTAIN-MAINTAIN renewal drift label",
+    "medicalEvidenceChanged": false,
+    "reviewDatesChanged": false,
+    "programmeWordingChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseChanged": false,
+    "monitorBaselinesChanged": false,
+    "verificationPendingChanged": false,
+    "delayedStatusChanged": false,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "sharedNavigationChanged": false,
+    "calculatorChanged": false,
+    "analyticsChanged": false,
+    "consentChanged": false,
+    "checkoutChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
