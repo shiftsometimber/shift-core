@@ -2418,5 +2418,41 @@
     "supplyChanged": false,
     "clinicalApprovalChanged": false,
     "healthResponseChanged": false
+  },
+  "watchTwoSourceFreshnessReleaseGuardRepair": {
+    "proof": "EXACT_WATCH_TWO_SOURCE_RELEASE_GUARD_REPAIR_V1",
+    "base": "7c6b4efbce3492583277efbc84ca7b484d01da64",
+    "source": "0e47cf02253ec77e19f628c1121760443235b093",
+    "maintenanceSource": "9da482b4b0e323ce13b6686fadbe0c7f94c6b956",
+    "paths": [
+      "shift-coach/release.test.mjs"
+    ],
+    "maintenancePaths": [
+      "release/approved-runtime-composition.mjs",
+      "tests/watch-two-source-freshness-release-guard-repair-composition.test.mjs"
+    ],
+    "approvedPR": 1321,
+    "integrationIssue": 1065,
+    "failedRun": 38122695667,
+    "failureGate": "Verify B1 release scope before any production mutation",
+    "releaseReachedProduction": false,
+    "repair": "recognise exact two-source freshness payload drift label",
+    "medicalEvidenceChanged": false,
+    "reviewDatesChanged": false,
+    "programmeWordingChanged": false,
+    "queueLogicChanged": false,
+    "healthResponseChanged": false,
+    "monitorBaselinesChanged": false,
+    "verificationPendingChanged": false,
+    "delayedStatusChanged": false,
+    "memberTreatmentChanged": false,
+    "homepageChanged": false,
+    "startHereChanged": false,
+    "customerDataChanged": false,
+    "externalCommunicationsSent": false,
+    "genericAdoptionAllowed": false,
+    "deploymentAuthorityBroadened": false,
+    "rollbackAuthorityBroadened": false,
+    "existingGatesWeakened": false
   }
 }
