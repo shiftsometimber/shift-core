@@ -1,3 +1,4 @@
+import twoSourceFreshness from './reviews/2026-10-11-authorised-two-source-freshness.json' with {type:'json'};
 import backlogReview from './reviews/2026-10-09-authorised-backlog-review.json' with {type:'json'};
 import {industrySources} from './industry.mjs';
 import {credibilitySources} from './credibility.mjs';
@@ -63,7 +64,7 @@ const sourceReviewedDates = {
 
 const source = (id, title, url, sourcePublishedAt, requiredTerms, extra = {}) => ({
   id, title, url, checkUrl: url, format: 'html', sourcePublishedAt,
-  reviewedAt: backlogReview.sources.find(r=>r.id===id)?.reviewedAt || sourceReviewedDates[id] || REVIEWED_AT, requiredTerms,
+  reviewedAt: twoSourceFreshness.sources.find(r=>r.id===id)?.reviewedAt || backlogReview.sources.find(r=>r.id===id)?.reviewedAt || sourceReviewedDates[id] || REVIEWED_AT, requiredTerms,
   ...(reviewedFingerprints[id] ? { reviewedFingerprint: reviewedFingerprints[id] } : {}), ...extra,
 });
 const govuk = (id, title, path, publishedAt, requiredTerms) => source(
